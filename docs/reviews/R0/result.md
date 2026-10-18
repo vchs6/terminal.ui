@@ -43,4 +43,10 @@ OpenSpec 1.14.3 实际安装并执行 init --tools codex --language zh-CN，生�
 
 诊断尝试：检查已 source 的 SDK 环境及编译器版本；strace 因 PTRACE_TRACEME Operation not permitted 无法进一步跟踪，没有绕过环境限制。本轮不为排障编写产品源码。独立 toolchain CI 将核实 GitHub Ubuntu Runner 中 cjc/cjpm 是否可用。
 
-远端 Actions 状态待提交后记录；未运行前不宣称 CI 通过。当前计划产物与配置不能替代功能验收；产品 AC 均 pending。
+远端 Actions 已核实：[run 39099462257](https://github.com/vchs6/terminal.ui/actions/runs/39099462257)，受检代码提交 0637be9a327da35f565a6f078e4786955514fa69：
+
+- repository：success；含 npm ci、OpenSpec strict、仓库检查及实际 Superpowers 安装/可读性检查。
+- toolchain：success；官网下载、固定摘要校验及解压通过，cjc 和 cjpm 均实际报告 1.2.0。
+- product：skipped；无新框架源码，属于预期范围，不是产品通过。
+
+本次仅补记审查证据，未改受检代码、依赖、配置和验证范围，因此复用上述有效 CI 结果；本地 cjpm 失败不再阻塞对 GitHub Runner 开发环境可用性的判断。实际中心仓依赖编译、bundle 与产品运行仍待后续授权和实现。当前计划产物与配置不能替代功能验收；产品 AC 均 pending。
