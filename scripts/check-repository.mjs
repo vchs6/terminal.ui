@@ -32,6 +32,17 @@ for (const file of markdown) {
   }
 }
 const tasks = read('docs/tasks.md');
-if ((tasks.match(/^- \[ \] \d+\.\d+ TASK-/gm)||[]).length !== 24) throw new Error('Expected 24 planned product tasks');
-for (let i=1;i<=24;i++) if (!read('docs/acceptance.md').includes('AC-'+String(i).padStart(3,'0'))) throw new Error('Missing acceptance reference');
+const acceptance = read('docs/acceptance.md');
+const taskRows = [...tasks.matchAll(/^- \[([ xX])\] \d+\.\d+ (TASK-\d+)：([^\n]+)/gm)];
+if (!taskRows.length) throw new Error('Missing product task mapping');
+const seenTasks = new Set();
+for (const [, , id, description] of taskRows) {
+  if (seenTasks.has(id)) throw new Error('Duplicate product task: '+id);
+  seenTasks.add(id);
+  const refs = description.match(/AC-\d+/g) || [];
+  if (!refs.length) throw new Error('Missing task acceptance mapping: '+id);
+  for (const ref of refs) {
+    if (!new RegExp('^\\| '+ref+' \\|','m').test(acceptance)) throw new Error('Missing acceptance reference: '+ref);
+  }
+}
 console.log('Repository/configuration/links/task mapping checks passed; no product capability verified.');

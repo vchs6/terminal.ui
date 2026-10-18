@@ -82,6 +82,7 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation |
 | classification / basis | decision；产品交互目标明确，需用证据确定可承诺的平台与终端边界 |
+| openspec_change_ref / planning_gaps | null / 具体实施变更尚未启动，当前仅规划 |
 | requirement_refs / workflow_ref | REQ-003、REQ-004、REQ-007 / 项目规划 docs/tasks.md |
 | objective / deliverables | 产品平台/终端支持矩阵、输入/缩放/恢复边界及限制证据 |
 | scope / impact | 平台适配设计及 docs/decisions；不实现正式内核或新增平台承诺 |
@@ -108,6 +109,7 @@ L4：
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation 或 design |
 | classification / basis | decision；所需语法已明确，但可编译实现路线仍有技术不确定性 |
+| openspec_change_ref / planning_gaps | null / 具体实施变更尚未启动，当前仅规划 |
 | requirement_refs / workflow_ref | REQ-001 / 项目规划 docs/tasks.md |
 | objective / deliverables | 可复现的最小编译实验和语法路线结论 |
 | scope / impact | 实验目录及构造契约；不扩展组件库，不以手工转换替代真实语法 |
@@ -133,6 +135,7 @@ L4：
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation 或 design |
 | classification / basis | decision；中心仓选型和固定版本已定，但 API 与缺口需证据确认 |
+| openspec_change_ref / planning_gaps | null / 具体实施变更尚未启动，当前仅规划 |
 | requirement_refs / workflow_ref | REQ-004,REQ-005 / 项目规划 docs/tasks.md |
 | objective / deliverables | 版本解析证据、能力缺口矩阵及必要适配设计 |
 | scope / impact | 依赖解析、文本/输出适配契约；不复制第三方内核或修改产品范围 |
@@ -158,6 +161,7 @@ L4：
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation 或 design |
 | classification / basis | decision；语法与依赖调查完成后，必须冻结可实施的公开构造契约 |
+| openspec_change_ref / planning_gaps | null / 具体实施变更尚未启动，当前仅规划 |
 | requirement_refs / workflow_ref | REQ-001,REQ-002 / 项目规划 docs/tasks.md |
 | objective / deliverables | 精确语法/API 契约和后续任务输入 |
 | scope / impact | docs/ui-construction.md 用户构造设计、OpenSpec 设计/API 契约；不实现正式内核 |
@@ -214,3 +218,7 @@ L4：
 ## Workflow follow-up
 
 - 只有后续实施授权、必需验收及独立审查完成后，才执行适用 OpenSpec sync/archive；当前不创建整项目实施变更，不归档为产品完成。后续具体变更按 AGENTS 第 10.1 节建立任务映射。
+
+## 开发治理变更映射
+
+GOV-001 治理修订的任务状态见 [已归档变更](../openspec/changes/archive/2026-10-18-refine-development-governance/tasks.md)，复核证据见 [R4](reviews/R4/result.md)。该变更不启动任何产品任务。

@@ -1,0 +1,83 @@
+{
+  "round_id": "R4",
+  "scope": "GOV-001 only; no product implementation",
+  "review_mode": "single-agent role rounds",
+  "base_commit": "554b40840766e95fce738ff895e445b6acc4a1a5",
+  "content_snapshots": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "e64d91cc1fe6c26a11a35e8bb017aeae9eb0ad3dd414f227b4105793198f4fe7"
+    },
+    {
+      "path": "BATTLE_PROTOCOL.md",
+      "sha256": "fc954ffa193e78aaa76c641e85729ab488eb6951ef32fa5c94a378812fcba959"
+    },
+    {
+      "path": "ENGINEERING_TASK_DECOMPOSITION.md",
+      "sha256": "d8f43ef8c6f63ffcd1b4b640e0a343a694948c8283b1f17de725ee07aa0a4666"
+    },
+    {
+      "path": "docs/tasks.md",
+      "sha256": "fea33e3a213c4aaaee9798a329ab344314213f4bfcbf6893e0be4caf101fadef"
+    },
+    {
+      "path": "openspec/specs/development-workflow/spec.md",
+      "sha256": "528f050d0ef875351ba52e5ed355d1d04db4e3879e756c38694cd672d27ec6de"
+    },
+    {
+      "path": "scripts/check-repository.mjs",
+      "sha256": "17a03d50f57e18d380866f37e9e00434bdc006141b4138b0989bbbeaa4697b60"
+    }
+  ],
+  "environment": {
+    "node": "v24.19.0",
+    "openspec": "1.14.3",
+    "platform": "Linux"
+  },
+  "checks": [
+    {
+      "evidence_id": "R4-STATIC",
+      "command": "npm run check",
+      "result": "passed",
+      "artifact": "docs/reviews/R4/repository-check.log",
+      "task_ref": "GOV-001",
+      "revision_ref": "reviewed_revision",
+      "sha256": "5b6e381721687cf7cf5393eb7c7d07e4bf2f7d19708a3eb661110af5c70bb438"
+    },
+    {
+      "evidence_id": "R4-MAPPING",
+      "method": "Execute unchanged checker with in-memory tasks/acceptance variants: completed, added, duplicate, missing acceptance",
+      "result": "4 expected outcomes confirmed",
+      "artifact": "docs/reviews/R4/validation.log",
+      "task_ref": "GOV-001",
+      "revision_ref": "reviewed_revision",
+      "sha256": "c308ae9726778e8f615200b19ffe4281745999788b7bfab905743dc75b096e34"
+    },
+    {
+      "evidence_id": "R4-DIFF",
+      "command": "git diff --check",
+      "result": "passed",
+      "task_ref": "GOV-001",
+      "revision_ref": "reviewed_revision"
+    }
+  ],
+  "limitations": [
+    "No product build or behavior verification",
+    "No independent reviewer in this round",
+    "Legacy review versions not retroactively reconstructed"
+  ],
+  "reviewed_revision": {
+    "base_commit": "554b40840766e95fce738ff895e445b6acc4a1a5",
+    "patch": "docs/reviews/R4/reviewed.patch",
+    "sha256": "f2afd2a74ba96734d122009882d3d03c885af41f67e37b23af2e3662b21926ed",
+    "scope": [
+      "AGENTS.md",
+      "BATTLE_PROTOCOL.md",
+      "ENGINEERING_TASK_DECOMPOSITION.md",
+      "docs/tasks.md",
+      "openspec/specs/development-workflow/spec.md",
+      "scripts/check-repository.mjs"
+    ],
+    "restore": "git apply --unidiff-zero docs/reviews/R4/reviewed.patch on base_commit"
+  }
+}

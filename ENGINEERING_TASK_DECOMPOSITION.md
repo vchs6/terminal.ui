@@ -38,7 +38,9 @@ parent: WP-001
 requirement_refs: [REQ-001]
 classification: execution  # decision / execution，与 level 和 type 独立
 classification_basis: 焦点恢复规则已确定，本任务实现并验证现有契约
-openspec_change_ref: <对应变更引用>
+openspec_change_ref: null  # planned 可暂缺并说明原因；ready 前必须定位具体变更及任务
+workflow_ref: docs/tasks.md  # 规划入口；具体变更启动后指向其 tasks.md
+planning_gaps: [尚未启动具体变更]
 required_skills: []  # 任务就绪前填入实际必需技能及用途，不以空列表逃避识别
 skill_evidence_refs: []  # 安装/复用、验证及实际使用证据按阶段补充
 decision_refs: []  # 引用已有或本任务形成的决策；执行型不虚构新决策
@@ -104,6 +106,17 @@ evidence_refs: []
 | 质量治理 | 按 AGENTS.md 第 10.5 节记录必要性、权威职责、新旧路径处置、兼容例外及复杂度影响；不适用项说明理由 |
 | 状态与证据 | 当前状态、阻塞原因、完成时的证据引用 |
 
+字段按阶段填写，不以占位文字冒充可定位引用：
+
+| 阶段 | 流程、技能与证据要求 |
+|---|---|
+| planned | 保留稳定编号、目标与已知依赖；openspec_change_ref 可为 null，但须有 workflow_ref 和缺失原因。远期待细化项目列出 planning_gaps，不伪造完整任务卡 |
+| ready | 具体 OpenSpec 变更及任务映射可定位；required_skills 列明用途，必需技能已安装且可用。skill_evidence_refs 至少能定位来源/版本和可用性检查；本任务尚未执行的技能使用证据不要求预先产生 |
+| in_progress / verifying | 随实际工作补充技能使用、命令、决策和验收证据；未使用的条件性技能注明未触发及理由 |
+| completed | 所有适用验收有可定位结果，实际必需技能有使用证据；按 Battle 结论关闭必需缺陷，未验证项目不能勾选完成 |
+
+同一环境检查或技能使用证据可以被多个适用任务引用，不重复创建日志。任务表格与 YAML 字段语义等价；本阶段先采用人工 DQ 记录，不声称已有任务卡或 findings 的 schema 自动校验。
+
 计划中的验证方式与执行后的证据必须区分。调查任务可以交付有依据的结论；验证类型、时机、范围、复用和重跑统一遵循 [AGENTS.md](AGENTS.md) 第 11 节，任务卡和 L4 不得另设逐步必跑规则。
 
 “完成布局”“支持阴影”“实现状态管理”通常属于 L2，缺少具体行为和独立验收时不能进入执行。
@@ -147,7 +160,7 @@ L4 使用具体动作及检查结果，按需要覆盖定位、实现、调用�
 
 任务与验收矩阵维护需求、父子关系、依赖及证据引用。可采用稳定编号 G-001 / WP-001 / TASK-001 / TASK-001.S1；编号不因重排随意改变，拆分或替代保留关系。
 
-建议 L3 状态：planned → ready → in_progress → verifying → completed；依赖或环境阻塞使用 blocked 并记录原因。复核失败返回 in_progress，完成后发现失效则重新打开并保留记录。ready 表示准入及依赖已满足，不代表已实现。
+建议 L3 状态：planned → ready → in_progress → verifying → completed；依赖或环境阻塞使用 blocked 并记录原因。复核失败返回 in_progress，完成后发现失效则重新打开并保留记录。ready 表示准入及依赖已满足，不代表已实现。任务状态、验收结论和复选框分别表达执行进度、验证结果和完成摘要；insufficient_evidence 是验收结论，任务保持 verifying 或 blocked 并说明恢复条件。任务数与未完成任务数可随批准的分解调整，不得固定数量作为质量门槛。
 
 ## 7. 完成与变更规则
 
@@ -188,7 +201,7 @@ DQ-07 在规划阶段检查“映射是否完整”，不要求所有子任务�
 
 ### 8.3 判定与执行门槛
 
-每项记录 pass / fail / not_applicable；not_applicable 必须说明理由。未检查或证据不足不能记 pass，不允许用总分或平均分掩盖失败项。
+每项记录 pass / fail / not_checked / not_applicable；not_checked 表示尚未检查，不能通过 ready 门槛；not_applicable 必须说明理由。DQ-05 为所有 L3 必检项，不允许标为不适用。未检查或证据不足不能记 pass，不允许用总分或平均分掩盖失败项。
 
 - 当前 L3 的适用检查全部通过且该任务所需依赖满足，才可进入 ready。依赖及安装规则引用 AGENTS.md 第 10 节。决策型 L3 的 ready 前提是分析所需输入和工具就绪，不要求该任务自己的结论预先产生；依赖其结论的下游实施任务仍须等待决策完成。DQ-13 的“需先完成的决策”仅指前置决策，避免循环准入。
 - 定义或粒度不合格退回 planned 重写/重分解；外部依赖未满足则保持 planned 或标 blocked，不强行编码。
