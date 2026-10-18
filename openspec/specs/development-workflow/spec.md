@@ -1,10 +1,12 @@
-# Spec Delta
+# Capability Specification
+
+状态：需求基线；实现 planned，验证 pending。登记基线不代表产品已实现或变更已归档。
 
 ## Purpose
 
 使后续开发在既定授权范围内能够连续推进，并保留工具、决策、分层任务和验收的单一可追踪记录；同时使自动检查能够区分规划完备性与真实产品交付证据。
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: 流程与单一记录
 

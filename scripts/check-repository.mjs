@@ -31,7 +31,7 @@ for (const file of markdown) {
     if (!existsSync(resolve(root,dirname(file),path))) throw new Error('Broken local link: '+file+' -> '+path);
   }
 }
-const tasks = read('openspec/changes/rebuild-terminal-ui/tasks.md');
+const tasks = read('docs/tasks.md');
 if ((tasks.match(/^- \[ \] \d+\.\d+ TASK-/gm)||[]).length !== 24) throw new Error('Expected 24 planned product tasks');
 for (let i=1;i<=24;i++) if (!read('docs/acceptance.md').includes('AC-'+String(i).padStart(3,'0'))) throw new Error('Missing acceptance reference');
 console.log('Repository/configuration/links/task mapping checks passed; no product capability verified.');

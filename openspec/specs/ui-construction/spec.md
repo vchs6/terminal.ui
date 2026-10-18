@@ -1,10 +1,12 @@
-# Spec Delta
+# Capability Specification
+
+状态：需求基线；实现 planned，验证 pending。登记基线不代表产品已实现或变更已归档。
 
 ## Purpose
 
 定义应用开发者如何以仓颉业务逻辑和声明式终端组件构造界面，覆盖简单使用、动态更新和跨场景复用，确保公开方法能服务真实应用而不是仅通过内部演示。
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: 组件块与属性链
 

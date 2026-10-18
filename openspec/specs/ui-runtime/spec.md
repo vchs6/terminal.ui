@@ -1,10 +1,12 @@
-# Spec Delta
+# Capability Specification
+
+状态：需求基线；实现 planned，验证 pending。登记基线不代表产品已实现或变更已归档。
 
 ## Purpose
 
 规定终端组件在挂载、更新、卸载以及布局和覆盖层组合期间的可观察行为，使应用状态、显示与交互保持一致，并确保嵌套界面具有确定的生命周期和焦点恢复规则。
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: 状态与生命周期
 
