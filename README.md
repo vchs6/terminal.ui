@@ -5,6 +5,7 @@
 **当前处于仓库重建与规划阶段，新框架尚未实现，不能作为可运行产品使用。**
 
 - 产品范围与当前状态：[产品说明](docs/product/README.md)。
+- 仓颉包名：`cjtui`。
 - 许可证：[MulanPSL-2.0](LICENSE)。
 - ANSI 与 Unicode 采用仓颉中心仓 `ansies`、`unicode`；依赖声明不表示集成验证已通过。
 
