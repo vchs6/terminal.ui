@@ -1,0 +1,17 @@
+schema: spec-driven
+context: |
+  Language: zh-CN. Keep OpenSpec headings and SHALL/MUST keywords in English.
+  terminal.ui is a Cangjie terminal UI framework rebuilt from AGENTS.md, BATTLE_PROTOCOL.md and ENGINEERING_TASK_DECOMPOSITION.md.
+  Current authorization: repository planning and development infrastructure only. No framework code, prototype, example or benchmark implementation.
+  Use central ansies 1.3.113 and unicode 0.1.0. SDK baseline 1.2.0 requires compatibility evidence.
+  OpenSpec change tasks.md is the sole task-state authority; docs/tasks.md is an index.
+  Superpowers plans/designs belong in the matching OpenSpec change, not duplicate docs/superpowers trees.
+rules:
+  proposal:
+    - Separate required behavior from reference implementation; state authorization boundary.
+  design:
+    - Compare feasible alternatives and record legacy retirement; do not claim untested syntax works.
+  tasks:
+    - Follow ENGINEERING_TASK_DECOMPOSITION.md; L1/L2 are not execution units.
+    - Each executable L3 needs a task card, acceptance refs, dependency refs, skills and checkable L4.
+    - Future tasks remain planned until dependencies, DQ review and explicit implementation authorization are satisfied.

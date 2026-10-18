@@ -1,0 +1,119 @@
+name: Repository and product checks
+on:
+  push:
+    branches: [main, 'chore/**', 'docs/**', 'feat/**', 'fix/**']
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      release_check:
+        description: Run final product completeness checks (fails while unimplemented)
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  repository:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    outputs:
+      source_present: ${{ steps.scope.outputs.source_present }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Validate repository and OpenSpec
+        env:
+          OPENSPEC_TELEMETRY: '0'
+        run: npm run check
+      - name: Check development tool installation
+        env:
+          OPENSPEC_TELEMETRY: '0'
+        run: npm run dev:setup
+      - name: Detect implementation scope
+        id: scope
+        shell: bash
+        run: |
+          if find src -name '*.cj' -print -quit | grep -q .; then
+            echo 'source_present=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'source_present=false' >> "$GITHUB_OUTPUT"
+            echo 'Planning/infrastructure only; product capabilities remain pending.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+  toolchain:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install SDK system prerequisites
+        run: sudo apt-get update && sudo apt-get install -y libssl-dev libffi-dev libncurses5 libtinfo5 libxml2
+      - uses: actions/cache@v4
+        id: sdk
+        with:
+          path: ${{ runner.temp }}/sdk
+          key: cangjie-linux-x64-${{ hashFiles('docs/development/tools.lock.json') }}
+      - name: Install verified Cangjie SDK
+        if: steps.sdk.outputs.cache-hit != 'true'
+        run: bash scripts/install-sdk.sh "$RUNNER_TEMP/sdk"
+      - name: Verify SDK can run in the CI host
+        shell: bash
+        run: |
+          set +u
+          source "$RUNNER_TEMP/sdk/cangjie/envsetup.sh"
+          set -u
+          cjc --version
+          cjpm --version
+  product:
+    needs: [repository, toolchain]
+    if: needs.repository.outputs.source_present == 'true' || inputs.release_check == true
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Install SDK system prerequisites
+        run: sudo apt-get update && sudo apt-get install -y libssl-dev libffi-dev libncurses5 libtinfo5 libxml2
+      - uses: actions/cache@v4
+        id: sdk
+        with:
+          path: ${{ runner.temp }}/sdk
+          key: cangjie-linux-x64-${{ hashFiles('docs/development/tools.lock.json') }}
+      - name: Install verified Cangjie SDK
+        if: steps.sdk.outputs.cache-hit != 'true'
+        run: bash scripts/install-sdk.sh "$RUNNER_TEMP/sdk"
+      - name: Verify implemented slice or final product
+        env:
+          RELEASE_CHECK: ${{ inputs.release_check || 'false' }}
+        shell: bash
+        run: |
+          set +u
+          source "$RUNNER_TEMP/sdk/cangjie/envsetup.sh"
+          set -u
+          if [[ "$RELEASE_CHECK" == true ]]; then
+            bash scripts/check-product.sh release
+          else
+            bash scripts/check-product.sh slice
+          fi
+      - name: Upload verification artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cangjie-verification-${{ github.sha }}
+          path: |
+            target/*.cjp
+            target/meta-data.json
+            **/test_report/**
+            **/bench_report/**
+          if-no-files-found: ignore
