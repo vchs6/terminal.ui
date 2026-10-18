@@ -2,21 +2,21 @@
 
 > **For agentic workers:** 后续获授权后使用 superpowers:executing-plans；按阶段使用适用技能，不自动启动本计划。
 
-**Goal:** 按规范重建 cjtui 的用户构造能力并形成完整源码制品。
+**Goal:** 开发 cjtui 的声明式用户构造能力并形成完整源码制品。
 
 **Architecture:** 见 docs/architecture.md；语法先验证，依赖经薄适配边界，单一节点/渲染路径。
 
-**Tech Stack:** 仓颉 SDK 验证基线 1.2.0；中心仓 ansies 1.3.113、unicode 0.1.0。
+**Tech Stack:** 仓颉 SDK 验证版本 1.2.0；中心仓 ansies 1.3.113、unicode 0.1.0。
 
-**Spec:** openspec/specs/ 下五类需求基线；已有更细边界继续引用根 AGENTS.md 第 1–9 节。
+**Spec:** [完整需求说明](requirements.md)及 openspec/specs/ 下对应场景投影；构造与接口输入见 [总体架构](architecture.md)和[用户构造设计](ui-construction.md)。执行治理继续遵循 AGENTS.md。
 
 ## 工程目标与工作包
 
-L1 G-001：以现有规范为基线重新实现 cjtui 并形成可发布制品。
+L1 G-001：从零开发 cjtui 并形成可发布制品。
 
 | L2 | 工作包 | L3 范围 |
 |---|---|---|
-| WP-001 | 基线、依赖与语法验证 | TASK-001–004 |
+| WP-001 | 平台、依赖与语法验证 | TASK-001–004 |
 | WP-002 | 文本与渲染 | TASK-005–010 |
 | WP-003 | 布局与组合 | TASK-011–014 |
 | WP-004 | 状态、输入与覆盖层 | TASK-015–020 |
@@ -27,7 +27,7 @@ L1 G-001：以现有规范为基线重新实现 cjtui 并形成可发布制品�
 
 - 当前仅规划和仓库配置，不执行下列任务，所有功能任务状态为 planned。
 - L1 G-001、L2 WP-001–005 由 docs/tasks.md 索引，不能直接编码。
-- 本文件是项目基线任务状态唯一权威，复选框只标 L3 交付完成，不能以勾完 L4 代替验收。
+- 本文件是项目规划任务状态唯一权威，复选框只标 L3 交付完成，不能以勾完 L4 代替验收。
 - 近期 TASK-001–004 定义完整；远期为 L3 候选，需要按前置契约渐进细化、DQ 复核和实施授权后方可 ready。
 - 代码质量、技能安装、任务分类和验证复用引用 AGENTS，不另立平行规则。
 
@@ -41,7 +41,7 @@ L1 G-001：以现有规范为基线重新实现 cjtui 并形成可发布制品�
 
 ## 1. WP-001
 
-- [ ] 1.1 TASK-001：旧行为与退役边界盘点；验收 AC-001：从 legacy 清单标出必须保留的外部行为和不保留内部 API，确认无活动入口。
+- [ ] 1.1 TASK-001：产品平台与终端支持契约调查；验收 AC-001：形成 OS、终端、TTY/非 TTY、输入、缩放和模式恢复支持矩阵及限制证据。
 - [ ] 1.2 TASK-002：验证仓颉声明式语法可编译性；验收 AC-002：分别证明组件块、链、状态、条件/列表、自定义组件与回调；记录失败定位与限制。
 - [ ] 1.3 TASK-003：验证中心仓依赖与 SDK 适配边界；验收 AC-003：固定两项依赖可解析；核对 Unicode API、ANSI 生成/解析缺口及传递许可证。
 - [ ] 1.4 TASK-004：冻结首个公共构造切片契约；验收 AC-004：U1–U5 设计稿均可映射至语法规则、签名、模块归属和验收，不以设计稿冒充运行。
@@ -50,7 +50,7 @@ L1 G-001：以现有规范为基线重新实现 cjtui 并形成可发布制品�
 - [ ] 2.5 TASK-005：字符簇写入和边缘裁剪；验收 AC-005：中文、组合符和 emoji 在边缘写入/覆盖/裁剪无半宽字符或孤立延续单元。
 - [ ] 2.6 TASK-006：结构化样式映射与 ANSI 编码；验收 AC-006：默认/16/256/真彩色按能力映射，组件不直接发序列。
 - [ ] 2.7 TASK-007：完整目标帧与覆盖合成；验收 AC-007：透明单元和带样式空格有区别，前后层按确定规则合成。
-- [ ] 2.8 TASK-008：差分提交与写失败恢复；验收 AC-008：无变化不输出；部分写失败不提交基线，下一次完整重绘。
+- [ ] 2.8 TASK-008：差分提交与写失败恢复；验收 AC-008：无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错。
 - [ ] 2.9 TASK-009：有界增量 ANSI 输入适配；验收 AC-009：跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传。
 - [ ] 2.10 TASK-010：完整彩色与纯文本快照；验收 AC-010：含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告。
 ## 3. WP-003
@@ -72,51 +72,52 @@ L1 G-001：以现有规范为基线重新实现 cjtui 并形成可发布制品�
 - [ ] 5.21 TASK-021：交付 U1–U5 公开接口示例；验收 AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判。
 - [ ] 5.22 TASK-022：交付可重复渲染基准项目；验收 AC-022：固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果。
 - [ ] 5.23 TASK-023：验证最终源码制品可独立使用；验收 AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整。
-- [ ] 5.24 TASK-024：整体验收与历史路径最终退役；验收 AC-024：需求全部有证据，移除 legacy 后无引用；Battle 无未关闭必需失败。
+- [ ] 5.24 TASK-024：整体验收与发行准备；验收 AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败。
 
 ## 近期 L3 任务卡
 
-### TASK-001：旧行为与退役边界盘点
+### TASK-001：产品平台与终端支持契约调查
 
 | 字段 | 定义 |
 |---|---|
-| level / parent / type | L3 / WP-001 / investigation 或 design |
-| classification / basis | decision；重建方向已定，但需要确定旧外部行为与退役范围 |
-| requirement_refs / workflow_ref | REQ-001 / 项目基线 docs/tasks.md |
-| objective / deliverables | 行为/入口/归属/处置表、平台/终端支持调查与引用证据 |
-| scope / impact | legacy/**、docs/decisions；不修改新内核，不运行旧程序冒充新验收 |
-| inputs / depends_on | legacy 文件清单、AGENTS 第 1–9 节、源码与规范基线 SHA / 无 |
-| preconditions | 后续用户明确授权实施；所列前置交付及技能环境可用 |
-| acceptance / verification | AC-001：从 legacy 清单标出必须保留的外部行为和不保留内部 API，确认无活动入口；以交付物、可复现命令和 Battle 结论核验 |
-| required_skills | using-superpowers、brainstorming、writing-plans；涉及编译实验时按任务识别 systematic-debugging、verification-before-completion |
-| skill_evidence_refs / decision_refs | 启动时记录实际安装/调用证据；现有 D-001–005 见 docs/architecture.md |
-| compatibility | 不承诺旧内部 API；若改变明确用户目标须另裁决 |
-| quality_governance | 权威归属为对应 OpenSpec 契约；不新增活动平行内核；旧路径按 D-001；不适用兼容例外，不引入产品复杂度 |
-| risks | 工具限制、源码事实与文档不一致；出现失败保留真实证据 |
-| status / blockers | planned / 本轮不授权实施；另受上列依赖约束 |
-| evidence_refs | 尚无任务执行证据；环境配置不等于本任务完成 |
+| level / parent / type | L3 / WP-001 / investigation |
+| classification / basis | decision；产品交互目标明确，需用证据确定可承诺的平台与终端边界 |
+| requirement_refs / workflow_ref | REQ-003、REQ-004、REQ-007 / 项目规划 docs/tasks.md |
+| objective / deliverables | 产品平台/终端支持矩阵、输入/缩放/恢复边界及限制证据 |
+| scope / impact | 平台适配设计及 docs/decisions；不实现正式内核或新增平台承诺 |
+| inputs / depends_on | docs/requirements.md、docs/architecture.md、目标环境说明 / 无 |
+| preconditions | 后续用户明确授权调查；实际所需工具和技能可用 |
+| acceptance / verification | AC-001：形成 OS、终端、TTY/非 TTY、输入、缩放和模式恢复支持矩阵及限制证据；记录实测方法、结果和不可承诺项 |
+| required_skills | using-superpowers、brainstorming、verification-before-completion；涉及环境失败时使用 systematic-debugging |
+| skill_evidence_refs / decision_refs | 启动时记录安装与实际使用证据；架构 D-001 及平台适配约束 |
+| compatibility | 不假设对任何现有产品/API 的兼容义务；变更产品目标须裁决 |
+| quality_governance | 平台契约归平台适配模块；不建立重复输入/输出内核；不涉及替换退役，兼容例外不适用 |
+| risks | 模式恢复、非 TTY 或特定输入序列不能可靠支持；必须记录限制而非猜测通过 |
+| status / blockers | planned / 当前未授权实施调查 |
+| evidence_refs | 尚无该任务执行证据；SDK 可启动不等于终端契约成立 |
 
 L4：
 
-1. TASK-001.S1：枚举 legacy 源码、导入和配置入口，并调查目标 OS、TTY/非 TTY、键盘输入、raw mode、resize 和恢复边界。检查结果：形成可定位的主路径、被调用方、历史 API 列表和待冻结平台/终端支持矩阵。
-2. TASK-001.S2：将公开可观察行为逐项对照新规范并标注保留/重建/不承诺。检查结果：每项有依据，不将内部类名作为兼容证据。
-3. TASK-001.S3：检查根清单、CI 和文档引用是否仍指向历史构建。检查结果：记录静态引用及仍需动态验证边界，产出处置表。
+1. TASK-001.S1：列出候选 OS/终端及 TTY、输入、尺寸/resize、模式保存/恢复维度。检查结果：每个产品承诺都有可验证项目，不从 CI 主机推断全平台支持。
+2. TASK-001.S2：在获授权的调查环境执行必要兼容性检查并保留结果。检查结果：可支持、受限和未知明确分开，失败不记通过。
+3. TASK-001.S3：形成支持矩阵和推荐边界并进行针对性决策审查。检查结果：TASK-004 可据此冻结公开契约，改变用户目标的取舍不得先行实施。
+
 ### TASK-002：验证仓颉声明式语法可编译性
 
 | 字段 | 定义 |
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation 或 design |
 | classification / basis | decision；所需语法已明确，但可编译实现路线仍有技术不确定性 |
-| requirement_refs / workflow_ref | REQ-001 / 项目基线 docs/tasks.md |
+| requirement_refs / workflow_ref | REQ-001 / 项目规划 docs/tasks.md |
 | objective / deliverables | 可复现的最小编译实验和语法路线结论 |
 | scope / impact | 实验目录及构造契约；不扩展组件库，不以手工转换替代真实语法 |
-| inputs / depends_on | TASK-001 处置表、AGENTS 第 2/4 节、SDK 1.2.0 / TASK-001 |
+| inputs / depends_on | TASK-001 平台调查结论、AGENTS 第 2/4 节、SDK 1.2.0 / TASK-001 |
 | preconditions | 后续用户明确授权实施；所列前置交付及技能环境可用 |
 | acceptance / verification | AC-002：分别证明组件块、链、状态、条件/列表、自定义组件与回调；记录失败定位与限制；以交付物、可复现命令和 Battle 结论核验 |
 | required_skills | using-superpowers、brainstorming、writing-plans；涉及编译实验时按任务识别 systematic-debugging、verification-before-completion |
 | skill_evidence_refs / decision_refs | 启动时记录实际安装/调用证据；现有 D-001–005 见 docs/architecture.md |
-| compatibility | 不承诺旧内部 API；若改变明确用户目标须另裁决 |
-| quality_governance | 权威归属为对应 OpenSpec 契约；不新增活动平行内核；旧路径按 D-001；不适用兼容例外，不引入产品复杂度 |
+| compatibility | 不假设现有产品/API 的兼容义务；若改变明确用户目标须另裁决 |
+| quality_governance | 权威归属为对应产品契约；不新增平行内核；本任务为新增调查或设计，不涉及替换退役或兼容例外 |
 | risks | 工具限制、源码事实与文档不一致；出现失败保留真实证据 |
 | status / blockers | planned / 本轮不授权实施；另受上列依赖约束 |
 | evidence_refs | 尚无任务执行证据；环境配置不等于本任务完成 |
@@ -132,7 +133,7 @@ L4：
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation 或 design |
 | classification / basis | decision；中心仓选型和固定版本已定，但 API 与缺口需证据确认 |
-| requirement_refs / workflow_ref | REQ-004,REQ-005 / 项目基线 docs/tasks.md |
+| requirement_refs / workflow_ref | REQ-004,REQ-005 / 项目规划 docs/tasks.md |
 | objective / deliverables | 版本解析证据、能力缺口矩阵及必要适配设计 |
 | scope / impact | 依赖解析、文本/输出适配契约；不复制第三方内核或修改产品范围 |
 | inputs / depends_on | docs/development/central-packages.json、根 cjpm.toml、TASK-001 / TASK-001 |
@@ -140,8 +141,8 @@ L4：
 | acceptance / verification | AC-003：固定两项依赖可解析；核对 Unicode API、ANSI 生成/解析缺口及传递许可证；以交付物、可复现命令和 Battle 结论核验 |
 | required_skills | using-superpowers、brainstorming、writing-plans；涉及编译实验时按任务识别 systematic-debugging、verification-before-completion |
 | skill_evidence_refs / decision_refs | 启动时记录实际安装/调用证据；现有 D-001–005 见 docs/architecture.md |
-| compatibility | 不承诺旧内部 API；若改变明确用户目标须另裁决 |
-| quality_governance | 权威归属为对应 OpenSpec 契约；不新增活动平行内核；旧路径按 D-001；不适用兼容例外，不引入产品复杂度 |
+| compatibility | 不假设现有产品/API 的兼容义务；若改变明确用户目标须另裁决 |
+| quality_governance | 权威归属为对应产品契约；不新增平行内核；本任务为新增调查或设计，不涉及替换退役或兼容例外 |
 | risks | 工具限制、源码事实与文档不一致；出现失败保留真实证据 |
 | status / blockers | planned / 本轮不授权实施；另受上列依赖约束 |
 | evidence_refs | 尚无任务执行证据；环境配置不等于本任务完成 |
@@ -157,16 +158,16 @@ L4：
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation 或 design |
 | classification / basis | decision；语法与依赖调查完成后，必须冻结可实施的公开构造契约 |
-| requirement_refs / workflow_ref | REQ-001,REQ-002 / 项目基线 docs/tasks.md |
+| requirement_refs / workflow_ref | REQ-001,REQ-002 / 项目规划 docs/tasks.md |
 | objective / deliverables | 精确语法/API 契约和后续任务输入 |
-| scope / impact | docs/ui-construction 索引、OpenSpec 设计/API 契约；不实现正式内核 |
+| scope / impact | docs/ui-construction.md 用户构造设计、OpenSpec 设计/API 契约；不实现正式内核 |
 | inputs / depends_on | TASK-002 编译路线、TASK-003 缺口矩阵、U1–U5 / TASK-002,TASK-003 |
 | preconditions | 后续用户明确授权实施；所列前置交付及技能环境可用 |
 | acceptance / verification | AC-004：U1–U5 设计稿均可映射至语法规则、签名、模块归属和验收，不以设计稿冒充运行；以交付物、可复现命令和 Battle 结论核验 |
 | required_skills | using-superpowers、brainstorming、writing-plans；涉及编译实验时按任务识别 systematic-debugging、verification-before-completion |
 | skill_evidence_refs / decision_refs | 启动时记录实际安装/调用证据；现有 D-001–005 见 docs/architecture.md |
-| compatibility | 不承诺旧内部 API；若改变明确用户目标须另裁决 |
-| quality_governance | 权威归属为对应 OpenSpec 契约；不新增活动平行内核；旧路径按 D-001；不适用兼容例外，不引入产品复杂度 |
+| compatibility | 不假设现有产品/API 的兼容义务；若改变明确用户目标须另裁决 |
+| quality_governance | 权威归属为对应产品契约；不新增平行内核；本任务为新增调查或设计，不涉及替换退役或兼容例外 |
 | risks | 工具限制、源码事实与文档不一致；出现失败保留真实证据 |
 | status / blockers | planned / 本轮不授权实施；另受上列依赖约束 |
 | evidence_refs | 尚无任务执行证据；环境配置不等于本任务完成 |
@@ -186,7 +187,7 @@ L4：
 | TASK-005 / WP-002 | REQ-004 | 字符簇写入和边缘裁剪；统一文本适配与对应回归 | TASK-003,TASK-004 | AC-005：中文、组合符和 emoji 在边缘写入/覆盖/裁剪无半宽字符或孤立延续单元 |
 | TASK-006 / WP-002 | REQ-005 | 结构化样式映射与 ANSI 编码；ansies 薄适配与编码矩阵 | TASK-003,TASK-004 | AC-006：默认/16/256/真彩色按能力映射，组件不直接发序列 |
 | TASK-007 / WP-002 | REQ-004 | 完整目标帧与覆盖合成；合成帧实现与独立屏幕断言 | TASK-005,TASK-006 | AC-007：透明单元和带样式空格有区别，前后层按确定规则合成 |
-| TASK-008 / WP-002 | REQ-004 | 差分提交与写失败恢复；差分后端及故障注入证据 | TASK-007 | AC-008：无变化不输出；部分写失败不提交基线，下一次完整重绘 |
+| TASK-008 / WP-002 | REQ-004 | 差分提交与写失败恢复；差分后端及故障注入证据 | TASK-007 | AC-008：无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错 |
 | TASK-009 / WP-002 | REQ-005 | 有界增量 ANSI 输入适配；受限解析适配与负向输入证据 | TASK-003,TASK-006 | AC-009：跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传 |
 | TASK-010 / WP-002 | REQ-005 | 完整彩色与纯文本快照；文件导出 API 与独立消费验证 | TASK-007,TASK-009 | AC-010：含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告 |
 | TASK-011 / WP-003 | REQ-003 | 横纵与弹性尺寸协商；容器尺寸算法与边界回归 | TASK-004,TASK-005 | AC-011：窄屏、零尺寸和非整除弹性分配有确定结果 |
@@ -202,7 +203,7 @@ L4：
 | TASK-021 / WP-005 | REQ-001 | 交付 U1–U5 公开接口示例；可运行示例、产品使用说明与构造便利性证据 | TASK-010,TASK-019,TASK-020 | AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判 |
 | TASK-022 / WP-005 | REQ-004 | 交付可重复渲染基准项目；独立 benchmarks/rendering 项目与产品基准方法 | TASK-008,TASK-011,TASK-016 | AC-022：固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果 |
 | TASK-023 / WP-005 | REQ-006 | 验证最终源码制品可独立使用；制品清单、解包证据、最终发布候选；不自动上传 | TASK-021,TASK-022 | AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整 |
-| TASK-024 / WP-005 | REQ-001,REQ-006,REQ-007 | 整体验收与历史路径最终退役；整体验收、退役证据、归档准备结论 | TASK-023 | AC-024：需求全部有证据，移除 legacy 后无引用；Battle 无未关闭必需失败 |
+| TASK-024 / WP-005 | REQ-001,REQ-006,REQ-007 | 整体验收与发行准备；整体验收、发行检查与归档准备结论 | TASK-023 | AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败 |
 
 所有候选的范围限于标题行为及其调用方、回归与产品文档；不包含无关重构。实现负责人先补齐 canonical_owner、旧路径处置与兼容例外、实际必需技能、L4 输入和输出；每项代码变更遵循 AGENTS 第 10.5 节。
 

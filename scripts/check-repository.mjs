@@ -9,7 +9,7 @@ if (manifest.workspace || !p || p['src-dir'] !== 'src') throw new Error('Root mu
 for (const path of ['/src','/examples','/benchmarks','/docs/product','/LICENSE','/NOTICE']) {
   if (!p.include.includes(path)) throw new Error('Missing distribution include: ' + path);
 }
-for (const path of ['/legacy','/openspec','/AGENTS.md','/BATTLE_PROTOCOL.md','/ENGINEERING_TASK_DECOMPOSITION.md','/scripts','/tests']) {
+for (const path of ['/openspec','/AGENTS.md','/BATTLE_PROTOCOL.md','/ENGINEERING_TASK_DECOMPOSITION.md','/scripts','/tests']) {
   if (!p.exclude.includes(path)) throw new Error('Missing development exclusion: ' + path);
 }
 const packages = JSON.parse(read('docs/development/central-packages.json')).packages;

@@ -1,0 +1,31 @@
+[
+  {
+    "id": "R3-001",
+    "round_id": "R3",
+    "revision": "working-tree-based-on-1e3b47fc3e837bfa7842a48bcc92e7c1bad2d5a8",
+    "category": "rendering",
+    "target": "部分输出失败后的安全恢复契约",
+    "contract_ref": "REQ-004.6; docs/architecture.md §11",
+    "acceptance_ref": "AC-008",
+    "claim": "仅标记基线失效并完整重绘，未说明被截断 ANSI 序列导致的终端解析状态未知",
+    "severity": "major",
+    "status": "verified",
+    "reproducer": {
+      "setup": "总体架构文档审查，不执行产品",
+      "actions": [
+        "检查部分写入恰好截断控制序列的恢复边界"
+      ],
+      "expected": "安全确认同步后重绘，或明确停止输出",
+      "observed": "旧表述只规定下次完整重绘"
+    },
+    "evidence_refs": [
+      "docs/requirements.md",
+      "docs/architecture.md",
+      "openspec/specs/terminal-output/spec.md",
+      "docs/tasks.md",
+      "docs/acceptance.md"
+    ],
+    "fix_revision": "R3-reviewed-working-tree",
+    "verification": "上述文档及治理规则已同步；文档校验通过，不代表产品故障恢复已实现"
+  }
+]

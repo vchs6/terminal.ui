@@ -11,6 +11,6 @@ ansies 的中心仓元数据还声明 bitarray 0.1.0。上述两项许可证均�
 
 框架负责：能力降级、安全边界、显示宽度策略配置、结构化样式映射及渲染不变量。依赖负责其已有字符和序列算法。终端回复解析不自动等同于任意富文本 ANSI 增量解析；TASK-003 逐项建立适用/缺口矩阵，再形成必要的受限输入适配设计。禁止假设依赖已经提供全部解析能力。
 
-选择 SDK 1.2.0 作为重建与 CJPM bundle 验证基线，未承诺旧 1.0.0 兼容。当前仅清单已配置；依赖下载、编译和运行验收仍为 pending。
+选择 SDK 1.2.0 作为项目与 CJPM bundle 验证版本，未承诺旧 1.0.0 兼容。当前仅清单已配置；依赖下载、编译和运行验收仍为 pending。
 
 CJPM 规则依据：[官方 1.2.0 手册](https://cj-docs.gitcode.com/zh/1.2.0/tools/source_zh_cn/cmd-tools/cjpm_manual.html)。include/exclude 位于 package 表，非 workspace 表；版本固定字符串代表指定版本。bundle 是源码制品包，不是预编译静态库分发。

@@ -1,6 +1,8 @@
 # Capability Specification
 
-状态：需求基线；实现 planned，验证 pending。登记基线不代表产品已实现或变更已归档。
+状态：待实现需求规格；实现 planned，验证 pending。登记需求不代表产品已实现或变更已归档。
+
+需求全文及细化编号见 [需求说明](../../../docs/requirements.md) REQ-001。本文件维护对应的流程场景投影，变更时与全文及验收映射同步核对，不独立扩大范围。
 
 ## Purpose
 

@@ -18,9 +18,9 @@ OpenSpec 六个 Codex 入口由 CLI 生成并提交，能发现读取；Superpow
 
 | 工作法 | 权威位置 |
 |---|---|
-| Superpowers 方案设计 | 基线 docs/architecture.md；具体变更归入或引用对应 OpenSpec design.md |
-| Superpowers 实施计划 | 基线 docs/tasks.md；进入具体变更后按编号转至对应 OpenSpec tasks.md |
-| 长期需求与索引 | docs/requirements.md 等链接至规格 |
+| Superpowers 方案设计 | 总体设计 docs/architecture.md；具体变更归入或引用对应 OpenSpec design.md |
+| Superpowers 实施计划 | 项目任务 docs/tasks.md；进入具体变更后按编号转至对应 OpenSpec tasks.md |
+| 长期需求与场景投影 | docs/requirements.md 为完整需求，openspec/specs/ 提供对应流程场景 |
 | 验收事实 | docs/acceptance.md |
 | Battle 与技能使用证据 | docs/reviews/<round>/ |
 
