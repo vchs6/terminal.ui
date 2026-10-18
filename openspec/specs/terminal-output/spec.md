@@ -1,10 +1,12 @@
-# Spec Delta
+# Capability Specification
+
+状态：需求基线；实现 planned，验证 pending。登记基线不代表产品已实现或变更已归档。
 
 ## Purpose
 
 明确字符终端中的显示完整性、更新、失败恢复和导出结果，保证多层合成的结果一致可复核，并通过受约束的外部库适配保持字符宽度和终端控制语义的单一归属。
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: Unicode 与帧完整性
 

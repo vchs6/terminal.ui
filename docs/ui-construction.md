@@ -1,6 +1,6 @@
 # 用户构造契约索引
 
-[AGENTS.md](../AGENTS.md) 第 4–7 节为已有基线；[构造规格](../openspec/changes/rebuild-terminal-ui/specs/ui-construction/spec.md)定义重建验收边界。
+[AGENTS.md](../AGENTS.md) 第 4–7 节为已有基线；[构造规格](../openspec/specs/ui-construction/spec.md)定义重建验收边界。
 
 | 场景 | 范围 | 实现 | 验证 |
 |---|---|---|---|

@@ -2,10 +2,12 @@
   "name": "terminal-ui-development",
   "private": true,
   "version": "0.0.0",
-  "engines": {"node": ">=20.19.0"},
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "dev:setup": "node scripts/setup-development.mjs",
-    "check": "node scripts/check-repository.mjs && openspec validate rebuild-terminal-ui --strict",
+    "check": "node scripts/check-repository.mjs && openspec validate --all --strict --no-interactive",
     "check:bundle": "node scripts/check-bundle.mjs"
   },
   "devDependencies": {

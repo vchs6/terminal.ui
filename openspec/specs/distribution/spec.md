@@ -1,10 +1,12 @@
-# Spec Delta
+# Capability Specification
+
+状态：需求基线；实现 planned，验证 pending。登记基线不代表产品已实现或变更已归档。
 
 ## Purpose
 
 规定使用者拿到的源码制品必须完整并可以离开开发仓库使用，同时明确开发治理文件的排除边界，避免将历史实现、开发工具、审查记录和凭据混入产品交付。
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: 产品范围
 
