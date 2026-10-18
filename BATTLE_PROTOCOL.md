@@ -1,4 +1,4 @@
-# terminal.ui — Battle 对抗审查协议
+# cjtui — Battle 对抗审查协议
 
 ## 1. 审查目标
 

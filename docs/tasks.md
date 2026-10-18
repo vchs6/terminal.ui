@@ -2,7 +2,7 @@
 
 > **For agentic workers:** 后续获授权后使用 superpowers:executing-plans；按阶段使用适用技能，不自动启动本计划。
 
-**Goal:** 按规范重建 terminal.ui 的用户构造能力并形成完整源码制品。
+**Goal:** 按规范重建 cjtui 的用户构造能力并形成完整源码制品。
 
 **Architecture:** 见 docs/architecture.md；语法先验证，依赖经薄适配边界，单一节点/渲染路径。
 
@@ -12,7 +12,7 @@
 
 ## 工程目标与工作包
 
-L1 G-001：以现有规范为基线重新实现 terminal.ui 并形成可发布制品。
+L1 G-001：以现有规范为基线重新实现 cjtui 并形成可发布制品。
 
 | L2 | 工作包 | L3 范围 |
 |---|---|---|
