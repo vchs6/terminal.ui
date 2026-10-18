@@ -64,13 +64,15 @@
 
 能力矩阵必须区分范围（required / unsupported / extension）、实现（planned / implemented）和验证（pending / passed / insufficient_evidence / failed），三者不可混用。“未列入不支持”不代表已实现。
 
-## 3. 开工检查与现有实现复用
+## 3. 开工检查与重建基线
 
-开工重新读取 cjpm.toml、现有指令和工作区状态。初始仓库包名为 acnl、声明 cjc-version = "1.0.0"、输出 static；该信息仅作定位，不替代当前配置及实际版本检查。不得未经说明升级 SDK 或改包名。
+本仓库按用户授权重新规划与实现，当前仅完成规划和开发基础设施，尚未授权功能实施。治理基线来自 PR #1 的三份规范；仓库重建方案及目录映射见 [OpenSpec design](openspec/changes/rebuild-terminal-ui/design.md)。不得以规划完成自动进入 apply。
 
-评估 src/terminal/core/ 下的 tconsolebuffer、twidget、tcomponent、twindow、tobject、updatable、ANSI/样式类型，src/terminal/renders/tbufferedrender.cj 与 src/unicode/ 的复用价值。已有类名不代表能力正确或完整。
+开工核对 cjpm.toml、工具版本及工作区状态。CJPM 模块名暂保留 acnl、历史版本字段暂保留 1.0.0；SDK 改用 1.2.0 作为重建验证基线，因为中心仓 unicode 声明至少 1.1.0，旧 1.0.0 配置不足。版本字段不表示重新发布或兼容性已验证。
 
-先记录现状、差距和受影响接口。复用、替换与旧实现处置遵循第 10.5 节；保留用户未提交修改，不无关改名、全库格式化或重写 Unicode 数据。
+旧 src 与配置隔离至 legacy/，不参与构建、测试或发布；保留与删除条件见 [隔离说明](legacy/README.md)。新框架以本规范的契约重新实现，不沿用旧类名推定能力已完成。保留未提交修改，不进行无关格式化。
+
+ANSI 生成与适用解析使用中心仓 ansies；字符簇、宽度及规范化使用中心仓 unicode。通过薄适配边界隔离库 API 与框架策略，不复制数据表或另建平行 ANSI/Unicode 内核。依赖缺口先记录适用边界与证据，再按第 10.3 节决定补充适配或推动上游，不静默换回旧实现。确切版本、传递依赖与验证状态见 [依赖证据](docs/development/dependencies.md)。
 
 ## 4. 先验证用户构造方法，再扩展实现
 
@@ -205,6 +207,9 @@ Superpowers 产生的计划和结论归入或链接至对应 OpenSpec 产物。O
 - docs/decisions/：重要决策及其替代关系。
 - docs/reviews/<round-id>/：battle 输入、findings.json、结果及证据索引。
 - examples/：已验证的用户程序；设计稿不得混充可运行示例。
+- benchmarks/：独立基准项目，使用公开接口，随制品交付；不以单元测试代替性能证据。
+- docs/product/：随制品交付的使用说明；开发资料位于其他 docs 路径，按 cjpm.toml 排除。
+- legacy/：排除发布的历史参考，非活动内核；退出条件见其 README。
 - tests/：项目支持的仓颉测试与集成场景；执行入口在文档中明确。
 
 本清单是后续开发产物要求，本规范文件的提交不意味着这些产物已存在。按需创建实质内容，不批量生成空文档。

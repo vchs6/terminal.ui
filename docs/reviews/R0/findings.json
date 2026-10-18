@@ -1,0 +1,58 @@
+[
+  {
+    "id": "R0-001",
+    "category": "code_quality",
+    "claim": "平台/终端输入与缩放边界需在近期调查中显式闭合",
+    "status": "verified",
+    "fix": "TASK-001 调查、TASK-004 冻结，Linux CI 不替代产品平台承诺",
+    "verification": "设计和任务引用一致性复核",
+    "round_id": "R0",
+    "revision": "working-tree-based-on-713e2aeda6b10bb185f2a61c9928d8b5b74aed06",
+    "target": "重建规划与 CI",
+    "contract_ref": "AGENTS.md §10.3; ENGINEERING_TASK_DECOMPOSITION.md DQ-09/10",
+    "acceptance_ref": "规划内部一致性；不作为产品 AC 证据",
+    "severity": "major",
+    "reproducer": {
+      "setup": "评审重建提案、任务及 CI",
+      "actions": [
+        "对照渐进交付与输入契约检查"
+      ],
+      "expected": "规划边界和 CI 门槛一致",
+      "observed": "平台/终端输入与缩放边界需在近期调查中显式闭合"
+    },
+    "evidence_refs": [
+      "openspec/changes/rebuild-terminal-ui/design.md",
+      "openspec/changes/rebuild-terminal-ui/tasks.md",
+      ".github/workflows/ci.yml"
+    ],
+    "fix_revision": "R0-reviewed-working-tree"
+  },
+  {
+    "id": "R0-002",
+    "category": "code_quality",
+    "claim": "初次源码出现便强制未来示例/基准完整会阻碍渐进切片",
+    "status": "verified",
+    "fix": "CI 分 slice 与 release；最终制品仍要求完整",
+    "verification": "workflow、脚本及发行规格交叉复核",
+    "round_id": "R0",
+    "revision": "working-tree-based-on-713e2aeda6b10bb185f2a61c9928d8b5b74aed06",
+    "target": "重建规划与 CI",
+    "contract_ref": "AGENTS.md §10.3; ENGINEERING_TASK_DECOMPOSITION.md DQ-09/10",
+    "acceptance_ref": "规划内部一致性；不作为产品 AC 证据",
+    "severity": "major",
+    "reproducer": {
+      "setup": "评审重建提案、任务及 CI",
+      "actions": [
+        "对照渐进交付与输入契约检查"
+      ],
+      "expected": "规划边界和 CI 门槛一致",
+      "observed": "初次源码出现便强制未来示例/基准完整会阻碍渐进切片"
+    },
+    "evidence_refs": [
+      "openspec/changes/rebuild-terminal-ui/design.md",
+      "openspec/changes/rebuild-terminal-ui/tasks.md",
+      ".github/workflows/ci.yml"
+    ],
+    "fix_revision": "R0-reviewed-working-tree"
+  }
+]
