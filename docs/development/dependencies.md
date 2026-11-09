@@ -40,3 +40,7 @@ REQ-011要求Linux、Windows、macOS、HarmonyOS。现有日志仅Linux x64/SDK1
 普通build同样缺少libunicodedata，根因为官方包无自动原生构建脚本，而非探针使用skip-script。固定源码/UCD17生成原生库后，在依赖副本补FFI声明以及由中间静态适配库自行拥有 `[ffi.c]` 两种路径已运行；后者保持unicode官方清单原样且可传递到独立消费者，作为推荐集成边界。这不表示中心仓原包已自带该集成。主库清单本轮不改；正式构建、FFI传递与干净制品归TASK-003/023。详见[风险处置](../reviews/R7/risks.md)。
 
 本轮已取得固定上游许可证原文及Unicode数据许可来源；unicodewidth全包仅换行差异，ansies/unicode仍有版本/文件对应边界，bitarray声明冲突仍待核实。许可正文找到不等于最终分发许可通过，见[来源与差异](../reviews/R7/evidence/licenses/README.md)。
+
+## 6. 当前用户裁决（后于R7）
+
+用户明确许可证冲突无需由本项目解决，包可用即可。以上R5/R7的自设许可阻塞政策已被该裁决替代；当前实施/交付核对实际可构建、链接和运行，保留原始许可/归属，继续编码，不等待上游澄清。

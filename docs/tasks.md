@@ -520,3 +520,7 @@ L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直
 R6跨平台规格补充的TASK-042（AC-042）、TASK-043（AC-043）状态仅在[变更tasks.md](../openspec/changes/refine-terminal-ui-contracts/tasks.md)；R5已完成任务保持历史结论，不覆盖到新增平台契约。
 
 R7 Linux顺序TASK-044（AC-044）、原生构建TASK-046（AC-046）、许可来源TASK-047（AC-047）及独立审核TASK-045（AC-045）的状态仅在同一变更tasks.md。风险调查不完成产品TASK-001/003/004或041。旧R6四后端先汇合顺序由用户后续Linux优先裁决替代；历史检查脚本只适用于其受审版本，当前使用R7核对。
+
+## 首个Linux产品切片
+
+用户要求停止停留于文档并交付代码。TASK-048测试契约、049正式构建、050首个运行切片、051独立审核、052独立测试执行、053独立验收的唯一状态在[切片tasks](../openspec/changes/implement-linux-first-slice/tasks.md)。这是既有产品任务的有限实现切片，不将001–004、005–032等全量任务直接勾完。

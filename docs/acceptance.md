@@ -53,3 +53,14 @@
 | AC-045 | REQ-007 | R7独立审核 | TASK-045 |固定版本、DQ检查、发现修复及复核；证据待交付；实际证据：R7/re-review.md及verification/verification.md：三项发现verified，固定技术版本e2c122de616207c9e5166a9c89416233b8b81268| design_reviewed |
 
 REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖环境与规划检查，不替代持续开发或框架集成证据。U1–U5、主题、焦点、多层、失败恢复与制品完整性全部通过后方可声明 G-001 完成。
+
+## 首个Linux产品切片验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-048 | REQ-001/004 | TASK-048 | 独立测试契约、RED及可执行入口 | pending |
+| AC-049 | REQ-004/005/006 | TASK-049 | 正常原生构建和独立消费者链接，无探针路径 | pending |
+| AC-050 | REQ-001/003/004/005 | TASK-050 | 本切片公开API、真实Linux会话和minimal示例 | pending |
+| AC-051 | REQ-007 | TASK-051 | 独立代码/契约审核及修复复核 | pending |
+| AC-052 | REQ-007 | TASK-052 | 独立构建/测试/PTY执行原始证据 | pending |
+| AC-053 | REQ-001–007 | TASK-053 | 首片交付与最终集成，未完功能明确 | pending |
