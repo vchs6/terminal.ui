@@ -1,0 +1,789 @@
+{
+  "task": "TASK-053",
+  "phase": "final integration",
+  "source": "e68f4cee3273d8428c7d991b00eb5323b0a48077",
+  "technical_source": "2ad6c5ceeb0068d3b2b2d5efe010059965b9415a",
+  "commands": [
+    {
+      "id": "head",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "e68f4cee3273d8428c7d991b00eb5323b0a48077\n",
+      "stderr": ""
+    },
+    {
+      "id": "technical-diff",
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "2ad6c5ceeb0068d3b2b2d5efe010059965b9415a",
+        "HEAD",
+        "--",
+        "src",
+        "native",
+        "build.cj",
+        "cjpm.toml",
+        "examples",
+        "tests",
+        "scripts",
+        "package.json",
+        "package-lock.json",
+        ".github"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "id": "changed-files",
+      "command": [
+        "git",
+        "diff",
+        "--name-only",
+        "14370a107d6e5558e5ec31aea7edd2de9f3c43b3",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "docs/acceptance.md\ndocs/reviews/R8/execution/artifacts.json\ndocs/reviews/R8/execution/audit-slice-archive.mjs\ndocs/reviews/R8/execution/commands.jsonl\ndocs/reviews/R8/execution/dependency-inputs.sha256\ndocs/reviews/R8/execution/logs/environment.log\ndocs/reviews/R8/execution/logs/immutability.log\ndocs/reviews/R8/execution/logs/native-smoke-hook.log\ndocs/reviews/R8/execution/logs/native-smoke.log\ndocs/reviews/R8/execution/logs/package-consumer-build.log\ndocs/reviews/R8/execution/logs/package-consumer-hook.log\ndocs/reviews/R8/execution/logs/package-consumer-run.log\ndocs/reviews/R8/execution/logs/package-extract.log\ndocs/reviews/R8/execution/logs/root-build-hook.log\ndocs/reviews/R8/execution/logs/root-build.log\ndocs/reviews/R8/execution/logs/runtime-file.trace\ndocs/reviews/R8/execution/logs/runtime-isolation.log\ndocs/reviews/R8/execution/logs/slice-bundle.log\ndocs/reviews/R8/execution/logs/slice-cold-examples-minimal-hook.log\ndocs/reviews/R8/execution/logs/slice-cold-input.log\ndocs/reviews/R8/execution/logs/slice-cold-product.log\ndocs/reviews/R8/execution/logs/slice-cold-repo-contract-hook.log\ndocs/reviews/R8/execution/logs/slice-cold-repo-native-smoke-hook.log\ndocs/reviews/R8/execution/logs/slice-cold-repo-root-hook.log\ndocs/reviews/R8/execution/logs/slice-cold-root-hook.log\ndocs/reviews/R8/execution/logs/slice-cold-tests-contract-hook.log\ndocs/reviews/R8/execution/logs/slice-cold-tests-coordinate-boundary-hook.log\ndocs/reviews/R8/execution/logs/slice-cold-tests-integration-fixture-hook.log\ndocs/reviews/R8/execution/logs/slice-cold-tests-native-smoke-hook.log\ndocs/reviews/R8/execution/logs/slice-environment.log\ndocs/reviews/R8/execution/logs/slice-final-immutability.log\ndocs/reviews/R8/execution/logs/slice-minimal-build.log\ndocs/reviews/R8/execution/logs/slice-minimal-pty.log\ndocs/reviews/R8/execution/logs/slice-package-build.log\ndocs/reviews/R8/execution/logs/slice-package-extract.log\ndocs/reviews/R8/execution/logs/slice-package-hook.log\ndocs/reviews/R8/execution/logs/slice-package-run.log\ndocs/reviews/R8/execution/logs/slice-product.log\ndocs/reviews/R8/execution/logs/slice-repo-contract-hook.log\ndocs/reviews/R8/execution/logs/slice-repo-coordinate-boundary-hook.log\ndocs/reviews/R8/execution/logs/slice-repo-integration-fixture-hook.log\ndocs/reviews/R8/execution/logs/slice-repo-minimal-hook.log\ndocs/reviews/R8/execution/logs/slice-repo-native-smoke-hook.log\ndocs/reviews/R8/execution/logs/slice-repo-root-hook.log\ndocs/reviews/R8/execution/logs/slice-reuse-scope.log\ndocs/reviews/R8/execution/logs/slice-root-build.log\ndocs/reviews/R8/execution/logs/slice-runtime-file.trace\ndocs/reviews/R8/execution/logs/slice-runtime.log\ndocs/reviews/R8/execution/logs/slice-tests-all.log\ndocs/reviews/R8/execution/logs/source-bundle.log\ndocs/reviews/R8/execution/minimal-pty.mjs\ndocs/reviews/R8/execution/minimal-pty/after\ndocs/reviews/R8/execution/minimal-pty/before\ndocs/reviews/R8/execution/minimal-pty/result.json\ndocs/reviews/R8/execution/minimal-pty/stderr.bin\ndocs/reviews/R8/execution/minimal-pty/stdout.bin\ndocs/reviews/R8/execution/native-report.json\ndocs/reviews/R8/execution/native-report.original.md.txt\ndocs/reviews/R8/execution/run-command.sh\ndocs/reviews/R8/execution/sdk-inputs.sha256\ndocs/reviews/R8/execution/slice-archive.json\ndocs/reviews/R8/execution/slice-artifacts.json\ndocs/reviews/R8/execution/slice-cache-after.sha256\ndocs/reviews/R8/execution/slice-cache-before.sha256\ndocs/reviews/R8/execution/slice-cold-tracked-inputs.sha256\ndocs/reviews/R8/execution/slice-package/consumer/cjpm.toml\ndocs/reviews/R8/execution/slice-package/consumer/src/main.cj\ndocs/reviews/R8/execution/slice-payload-reuse.json\ndocs/reviews/R8/execution/slice-report.md\ndocs/reviews/R8/execution/slice-report.original.md.txt\ndocs/reviews/R8/execution/slice-results.json\ndocs/reviews/R8/execution/slice-tracked-inputs.sha256\ndocs/reviews/R8/execution/snapshot-ansi.txt\ndocs/reviews/R8/execution/snapshot-plain.txt\ndocs/reviews/R8/execution/snapshot-values.json\ndocs/reviews/R8/result.md\ndocs/reviews/R8/verification/audit.mjs\ndocs/reviews/R8/verification/check-execution.mjs\ndocs/reviews/R8/verification/check-native-artifacts.mjs\ndocs/reviews/R8/verification/commands.json\ndocs/reviews/R8/verification/execution-evidence-check-initial-error.log\ndocs/reviews/R8/verification/execution-evidence-check.json\ndocs/reviews/R8/verification/execution-evidence-check.log\ndocs/reviews/R8/verification/finalize-report.mjs\ndocs/reviews/R8/verification/mapping.json\ndocs/reviews/R8/verification/native-artifact-check.json\ndocs/reviews/R8/verification/npm-check.log\ndocs/reviews/R8/verification/openspec-apply.json\ndocs/reviews/R8/verification/openspec-status.json\ndocs/reviews/R8/verification/preflight-commands.json\ndocs/reviews/R8/verification/preflight-validation.txt\ndocs/reviews/R8/verification/validation.txt\ndocs/reviews/R8/verification/verification.md\nopenspec/changes/implement-linux-first-slice/progress.md\nopenspec/changes/implement-linux-first-slice/tasks.md\n",
+      "stderr": ""
+    },
+    {
+      "id": "repository-openspec-strict",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "exit_code": 0,
+      "stdout": "\n> cjtui-development@0.0.0 check\n> node scripts/check-repository.mjs && openspec validate --all --strict --no-interactive\n\nRepository/configuration/links/task mapping checks passed; no product capability verified.\n✓ spec/development-workflow\n✓ spec/distribution\n✓ change/implement-linux-first-slice\n✓ change/refine-terminal-ui-contracts\n✓ spec/terminal-output\n✓ spec/terminal-session\n✓ spec/theme-config\n✓ spec/ui-construction\n✓ spec/ui-runtime\nTotals: 9 passed, 0 failed (9 items)\n",
+      "stderr": "  ℹ [INFO] file: skip_specs is set in .openspec.yaml: change declares no spec-level behavior changes, zero deltas accepted\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.2\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2\nnpm notice To update run: npm install -g npm@12.2.2\nnpm notice\n"
+    },
+    {
+      "id": "apply-progress",
+      "command": [
+        "./node_modules/.bin/openspec",
+        "instructions",
+        "apply",
+        "--change",
+        "implement-linux-first-slice",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"changeName\": \"implement-linux-first-slice\",\n  \"changeDir\": \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice\",\n  \"schemaName\": \"spec-driven\",\n  \"contextFiles\": {\n    \"proposal\": [\n      \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/proposal.md\"\n    ],\n    \"design\": [\n      \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/design.md\"\n    ],\n    \"tasks\": [\n      \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md\"\n    ]\n  },\n  \"progress\": {\n    \"total\": 6,\n    \"complete\": 5,\n    \"remaining\": 1\n  },\n  \"tasks\": [\n    {\n      \"id\": \"1\",\n      \"description\": \"1.1 TASK-048：独立编写本切片测试与执行入口；验收AC-048：缺产品时真实失败，预期独立于实现，正/边界/故障和TTY场景可执行。\",\n      \"done\": true,\n      \"sourcePath\": \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md\",\n      \"line\": 23\n    },\n    {\n      \"id\": \"2\",\n      \"description\": \"2.1 TASK-049：正式原生构建入口与Unicode薄适配；验收AC-049：普通cjpm构建与独立消费者可链接，固定输入/离线处理明确，无探针绝对路径或共享cache修改。\",\n      \"done\": true,\n      \"sourcePath\": \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md\",\n      \"line\": 27\n    },\n    {\n      \"id\": \"3\",\n      \"description\": \"3.1 TASK-050：Frame、样式、声明式构造、M1输出及Linux会话/示例；验收AC-050：公开API及独立测试通过，TTY运行、键盘/resize/取消和异常清理有效。\",\n      \"done\": true,\n      \"sourcePath\": \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md\",\n      \"line\": 31\n    },\n    {\n      \"id\": \"4\",\n      \"description\": \"4.1 TASK-051：独立审核固定产品差异；验收AC-051：契约/代码质量双结论，必需缺陷修复复核。\",\n      \"done\": true,\n      \"sourcePath\": \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md\",\n      \"line\": 35\n    },\n    {\n      \"id\": \"5\",\n      \"description\": \"4.2 TASK-052：独立执行构建、测试、消费者与TTY集成；验收AC-052：实际命令/退出值/原始结果，无作者自测替代。\",\n      \"done\": true,\n      \"sourcePath\": \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md\",\n      \"line\": 36\n    },\n    {\n      \"id\": \"6\",\n      \"description\": \"4.3 TASK-053：独立验收和最终集成检查；验收AC-053：需求逐项与代码/证据对应，未完产品范围明确，主仓库源码可见且构建可用。\",\n      \"done\": false,\n      \"sourcePath\": \"/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md\",\n      \"line\": 37\n    }\n  ],\n  \"taskTrackingConfigured\": true,\n  \"state\": \"ready\",\n  \"instruction\": \"Read context files, work through pending tasks, mark complete as you go.\\nPause if you hit blockers or need clarification.\",\n  \"context\": \"Language: zh-CN. Keep OpenSpec headings and SHALL/MUST keywords in English.\\ncjtui is implementing its first Linux ANSI product slice in src/native with examples/minimal. Product documents are self-contained; implementation and verification are scoped per slice, never inferred as full-framework completion.\\nCurrent authorization (2026-11-09): specifications/probes/independent review, followed by Linux-first ANSI terminal implementation and platform/dependency risk resolution. Proceed autonomously within admitted L3 contracts. Complete all Linux capabilities and acceptance before considering Windows, macOS or HarmonyOS implementation; those remain future required targets and never gate the Linux phase. No publication.\\nEvaluate central ansies and compare unicode with unicodewidth before selection, as newly authorized. Current manifest versions and selection evidence live in docs/development/dependencies.md. SDK baseline 1.2.0 is the existing Linux probe only; target SDK/runtime/ABI must be verified. Required OS targets: Linux, Windows, macOS, HarmonyOS; OpenHarmony evidence does not substitute for HarmonyOS local execution.\\nProject tasks live in docs/tasks.md; when a concrete change starts, transfer its task state authority to that change tasks.md and keep only references in docs/tasks.md.\\nProject design is docs/architecture.md, proposal is docs/development/proposal.md, requirements are fully documented in docs/requirements.md, and openspec/specs/ holds corresponding scenario projections. All describe planned requirements, not implemented capabilities.\\nFuture concrete changes use OpenSpec workflows; do not recreate a whole-project change.\\nSuperpowers plans/designs use the same authority, not duplicate docs/superpowers trees.\\nUser requires separate subagents for test design, product implementation, code review, test execution and acceptance verification. Use suitable models, isolated contexts and workspaces, and hand off only contracts and fixed-version artifacts; the main agent coordinates/integrates and resolves disagreements. Author self-tests never replace independent acceptance.\\n\",\n  \"root\": {\n    \"path\": \"/workspace/work/first-slice-acceptance/repo\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "id": "tracked-clean",
+      "command": [
+        "git",
+        "diff",
+        "--exit-code"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "technical": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "fc04c1b172a0e7d9228b78263c1ba3d9d545ff2aac5b98899994aa9e7cf2b24e"
+    },
+    {
+      "path": "build.cj",
+      "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9"
+    },
+    {
+      "path": "cjpm.toml",
+      "sha256": "8b7fb5766553da31672a48c78871390b2f62bb4ec4c71d2dad49ad190a7e3e64"
+    },
+    {
+      "path": "examples/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "examples/minimal/cjpm.toml",
+      "sha256": "d301a62d68caaa94a7bccf19ea1fb9072309f8bfacfde7b1c0779055acd43f03"
+    },
+    {
+      "path": "examples/minimal/src/main.cj",
+      "sha256": "6887f6e6a8c8412017e8cd4b6c715cf10c2f11ce40c893d3de59fff44476a296"
+    },
+    {
+      "path": "native/build.sh",
+      "sha256": "77677c3921f7c3388cf0bdea851c11f8216e2a2e95217163692f4725279dcddc"
+    },
+    {
+      "path": "native/cjtui_terminal.c",
+      "sha256": "f870938439c7b330cab29ed8478f748b228617a471b0a6cbe3b0f18d2b17b5d3"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "468214cca6138f31ff3746f28fbcf5b56053af0ef7769a899a6d76015c911175"
+    },
+    {
+      "path": "package.json",
+      "sha256": "28114b2481e51d69558603c4481817f3803c067def69d7872c0e6cfe18799aba"
+    },
+    {
+      "path": "scripts/check-bundle.mjs",
+      "sha256": "9e57db16956ccf6000ab4838d4e273d1d4acfc6e4113871d1684fe99239d9a1a"
+    },
+    {
+      "path": "scripts/check-product.sh",
+      "sha256": "9d624eb7b751c86f6f1e1fcd3fc056300957284833abae368d86b51cceac51af"
+    },
+    {
+      "path": "scripts/check-repository.mjs",
+      "sha256": "e080b325b27d4788205b48a39839f6de78b31a07bdf09b358c1bcadc83b89bdf"
+    },
+    {
+      "path": "scripts/install-sdk.sh",
+      "sha256": "c7851c0f0abe16e73a16ee5f1ee2ec9a448f8b0fe2c376a0a0d120c5ebb1b2c2"
+    },
+    {
+      "path": "scripts/setup-development.mjs",
+      "sha256": "4173fe6b3cec9e45005d8d58ec3fc476e77b8b92313db4a72a1a30e271139718"
+    },
+    {
+      "path": "src/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "src/application.cj",
+      "sha256": "04013a55423b36795a1f08f0fdf98145e82c151afd6d5913b8bae4a5fe0006ba"
+    },
+    {
+      "path": "src/component.cj",
+      "sha256": "3dd153d64b99b7cf5d317405139731259942df2b1a4a5aa86de57912034ca872"
+    },
+    {
+      "path": "src/frame.cj",
+      "sha256": "f5a758267b2c6e503b2070af9831971d9b3bb1485685a7ec0b05a7c1f07ad20f"
+    },
+    {
+      "path": "src/unicode.cj",
+      "sha256": "fffbac2ef91ae1e762ed5a53d1cca5435d8acb758cb632f9625d55c17b248f69"
+    },
+    {
+      "path": "tests/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "tests/README.md",
+      "sha256": "1c47df7340348a472278a0c99b3a49f95c2983e8cbdc0cca74b3b418b65ad96e"
+    },
+    {
+      "path": "tests/contract/cjpm.toml",
+      "sha256": "cea11d8d0d7415e4538907e61c28636ea9984e48f858d5c62cd992061d489940"
+    },
+    {
+      "path": "tests/contract/src/main.cj",
+      "sha256": "e784e492ac9c74c063603de9008eb07a1cc6459a98ef003bff75bfeb4a330987"
+    },
+    {
+      "path": "tests/coordinate-boundary/cjpm.toml",
+      "sha256": "8706bfe74da2112da1a179ef6facdafb1d4c2c46dc558137bd4b6e6a2260c2f5"
+    },
+    {
+      "path": "tests/coordinate-boundary/src/main.cj",
+      "sha256": "bdbf4befb55de3e22d2a0697e8010bbb708af10163c363fb92e5ba612fce15b4"
+    },
+    {
+      "path": "tests/integration/fixture/cjpm.toml",
+      "sha256": "8b6a9ac6fa5553b85e3b908f3d1b588abbfb8d31c883c6c5b337aa69e55b0978"
+    },
+    {
+      "path": "tests/integration/fixture/src/main.cj",
+      "sha256": "c1836269cc223749c548a836e3601b8a5855407f02c2ba45ef2673b956be9743"
+    },
+    {
+      "path": "tests/integration/pty.mjs",
+      "sha256": "867ce724e7202fdba4414d65e8f87ab247ad24424ad1ad448c05309164eb29ee"
+    },
+    {
+      "path": "tests/native-session/README.md",
+      "sha256": "8683d1ffc66a4d37711d32eb36aa56a3f5da1483349e7f70d2253de1a0089691"
+    },
+    {
+      "path": "tests/native-session/run.sh",
+      "sha256": "d69a3228f02dbdab9447aca27c8cbafb5c17b32a6de4452ab8e8cb4e33ad9e60"
+    },
+    {
+      "path": "tests/native-session/session.c",
+      "sha256": "8b7f8152837bf9216589c34091bfcb50c4c1f47b37d8b322581a6bebad69cc1c"
+    },
+    {
+      "path": "tests/native-smoke/cjpm.toml",
+      "sha256": "dbb3e477136fa38302d571efc81f52b52d0f2f4a2678ca5dfe3ae25ccfd16f45"
+    },
+    {
+      "path": "tests/native-smoke/src/main.cj",
+      "sha256": "6086b1dc95ef55703b4b7842f75905599c658cb3f0e4340cd50c212b98dfc3e1"
+    },
+    {
+      "path": "tests/run-slice.sh",
+      "sha256": "54974950bface0e5823708c7cafb02704aef41e09a1c8f8cb40b7fd814c786c4"
+    }
+  ],
+  "copies": [
+    {
+      "path": "docs/reviews/R8/execution/artifacts.json",
+      "source": "/workspace/work/first-slice-execution/artifacts.json",
+      "sha256": "f9b8aa0a7a65f7336cf0971f45f959fdf72c402fbcd7b5ebb9a76271d51fbd93",
+      "size": 1928
+    },
+    {
+      "path": "docs/reviews/R8/execution/audit-slice-archive.mjs",
+      "source": "/workspace/work/first-slice-execution/audit-slice-archive.mjs",
+      "sha256": "7a19fbee2182316a26a2be613fdb20576a6f7544ef69b34098205750dc10fcf6",
+      "size": 2262
+    },
+    {
+      "path": "docs/reviews/R8/execution/commands.jsonl",
+      "source": "/workspace/work/first-slice-execution/commands.jsonl",
+      "sha256": "4d0d76e78edcb29051f4f033a150efb0730be5f1c3cbbaf4831508e979b8af70",
+      "size": 10131
+    },
+    {
+      "path": "docs/reviews/R8/execution/dependency-inputs.sha256",
+      "source": "/workspace/work/first-slice-execution/dependency-inputs.sha256",
+      "sha256": "160598aa08a9b94d7b9a73bf15b16ca52a1ed1524e7a03f84c5240d17ad63e50",
+      "size": 697
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/environment.log",
+      "source": "/workspace/work/first-slice-execution/logs/environment.log",
+      "sha256": "9563b0f9181efe5209bef3dc7a1f168ca2254f114af26227de7d42c3b1a16c32",
+      "size": 986
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/immutability.log",
+      "source": "/workspace/work/first-slice-execution/logs/immutability.log",
+      "sha256": "447e1e08534474cbce1edf0c9b7d06d6118f7de2574efaf2e12b25f95f4bafc7",
+      "size": 15546
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/native-smoke-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/native-smoke-hook.log",
+      "sha256": "bdf805f55a34a992be2f1f04b665e67e2a04c13ef290b7385e4f906194be14a0",
+      "size": 172
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/native-smoke.log",
+      "source": "/workspace/work/first-slice-execution/logs/native-smoke.log",
+      "sha256": "988b1d2e828b855e6d8261cea17f0d484b2264d18fd282ed09d0dfa80d0aa934",
+      "size": 477
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/package-consumer-build.log",
+      "source": "/workspace/work/first-slice-execution/logs/package-consumer-build.log",
+      "sha256": "2affd3c5d3f918a06c6e844d6513c02dc8f43d8047352f3cec1f78620dcb3e4f",
+      "size": 172
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/package-consumer-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/package-consumer-hook.log",
+      "sha256": "9a03962b20d9a1e6582536e4a91ae39eabec02229bcae34fd335ee10f9bc923c",
+      "size": 1534
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/package-consumer-run.log",
+      "source": "/workspace/work/first-slice-execution/logs/package-consumer-run.log",
+      "sha256": "4b0733b0ef16e5eb181da550fa7e07da3ca21c758d6a19de4d6c911e56eec9d4",
+      "size": 192
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/package-extract.log",
+      "source": "/workspace/work/first-slice-execution/logs/package-extract.log",
+      "sha256": "a74892a12585639453cbfcb455c67011772ee21beaf6c15df4f1fb0c426a325f",
+      "size": 2315
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/root-build-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/root-build-hook.log",
+      "sha256": "342f77b076bdf6237f7db03c5098f3e84e64fec2d18ce70ab8e972f553b81e08",
+      "size": 1223
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/root-build.log",
+      "source": "/workspace/work/first-slice-execution/logs/root-build.log",
+      "sha256": "689719dfa0597922cfea6b8a35fe08557158ef30f5a6ef92a36bfae803cef747",
+      "size": 154
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/runtime-file.trace",
+      "source": "/workspace/work/first-slice-execution/logs/runtime-file.trace",
+      "sha256": "5f0b9eb4fde522d64948757ec200240ef51d79b9793f543dc6797e811955bb5e",
+      "size": 7057
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/runtime-isolation.log",
+      "source": "/workspace/work/first-slice-execution/logs/runtime-isolation.log",
+      "sha256": "9c9d066e1cd9a7e025f1bbb7554a94bb7b2f3a3dbe910fe8f2b8dc69a69355f5",
+      "size": 1376
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-bundle.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-bundle.log",
+      "sha256": "2652db5b38f3e4f902356a99f4da92a2057fce9b156d0c36f7ca966bd2a07bd1",
+      "size": 186
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-examples-minimal-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-examples-minimal-hook.log",
+      "sha256": "ba1feb2deafbc70af96a1647449842f202ac9f51c9b31d6122902f25169dcf88",
+      "size": 549
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-input.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-input.log",
+      "sha256": "5ffca1e61b95d9c7e0623e7fdd8447ca9b2f6c549f5d935656471b6791fa00e0",
+      "size": 607
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-product.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-product.log",
+      "sha256": "5f8b2dcdd6715a4cfbac46095c6f88167a67aa44e8272031469eea6f1b4a402f",
+      "size": 6866
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-repo-contract-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-repo-contract-hook.log",
+      "sha256": "42b0379d5bdcc659950e9080e138bef9e0584cd0a11df4308b7fcb5b950b13d9",
+      "size": 183
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-repo-native-smoke-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-repo-native-smoke-hook.log",
+      "sha256": "42b0379d5bdcc659950e9080e138bef9e0584cd0a11df4308b7fcb5b950b13d9",
+      "size": 183
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-repo-root-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-repo-root-hook.log",
+      "sha256": "e923d37985c23e24471dbe2c0138bcf682d46c41c61c98afe9f3c0f93f7bb6b6",
+      "size": 1600
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-root-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-root-hook.log",
+      "sha256": "e923d37985c23e24471dbe2c0138bcf682d46c41c61c98afe9f3c0f93f7bb6b6",
+      "size": 1600
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-tests-contract-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-tests-contract-hook.log",
+      "sha256": "42b0379d5bdcc659950e9080e138bef9e0584cd0a11df4308b7fcb5b950b13d9",
+      "size": 183
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-tests-coordinate-boundary-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-tests-coordinate-boundary-hook.log",
+      "sha256": "42b0379d5bdcc659950e9080e138bef9e0584cd0a11df4308b7fcb5b950b13d9",
+      "size": 183
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-tests-integration-fixture-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-tests-integration-fixture-hook.log",
+      "sha256": "42b0379d5bdcc659950e9080e138bef9e0584cd0a11df4308b7fcb5b950b13d9",
+      "size": 183
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-cold-tests-native-smoke-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-cold-tests-native-smoke-hook.log",
+      "sha256": "42b0379d5bdcc659950e9080e138bef9e0584cd0a11df4308b7fcb5b950b13d9",
+      "size": 183
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-environment.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-environment.log",
+      "sha256": "4bcbd8268698fd8718be599f870fffdb42b8b497247db6ce972556b4cab5a70c",
+      "size": 777
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-final-immutability.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-final-immutability.log",
+      "sha256": "3342ff6e95c2798f94efd1731f50bb15745ab2cb8623095e6b5e1a49583f442c",
+      "size": 32548
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-minimal-build.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-minimal-build.log",
+      "sha256": "186c352b2966cd2a339c178ce6dfbf269bc4ddc7ac0a31991de2c7f6943e3d2f",
+      "size": 177
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-minimal-pty.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-minimal-pty.log",
+      "sha256": "2e58dc88285d7659b6f7898bfcb5b38e8ebb38bb7a6845be5a47aa2cceacf863",
+      "size": 315
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-package-build.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-package-build.log",
+      "sha256": "31815eeecb7641df4198f4f21197178027d7c9c054d204c22fa8be31090f63b1",
+      "size": 172
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-package-extract.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-package-extract.log",
+      "sha256": "ea20193c2894bfb6f1d980cd364833ef69225d52f556ad5923c481846e64d346",
+      "size": 2793
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-package-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-package-hook.log",
+      "sha256": "5fcf08f3c54b9d7b70d76dfb89efcba40366e744116a53a27a384e7a189ad9c7",
+      "size": 1455
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-package-run.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-package-run.log",
+      "sha256": "2fddd58965c24a1f7ca0015510ca1dad6fbdda89ef334451730731f0d2605ad5",
+      "size": 880
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-product.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-product.log",
+      "sha256": "2d4d5aced7c1c37bcad7aa1df0d9d7c22a4d30d0c77ca399061c5da1f65a1e69",
+      "size": 667
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-repo-contract-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-repo-contract-hook.log",
+      "sha256": "b7307e18950b39049c3e095fc82918721bfbd7f92307e6037d705a60ebcde869",
+      "size": 178
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-repo-coordinate-boundary-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-repo-coordinate-boundary-hook.log",
+      "sha256": "b7307e18950b39049c3e095fc82918721bfbd7f92307e6037d705a60ebcde869",
+      "size": 178
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-repo-integration-fixture-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-repo-integration-fixture-hook.log",
+      "sha256": "b7307e18950b39049c3e095fc82918721bfbd7f92307e6037d705a60ebcde869",
+      "size": 178
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-repo-minimal-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-repo-minimal-hook.log",
+      "sha256": "b7307e18950b39049c3e095fc82918721bfbd7f92307e6037d705a60ebcde869",
+      "size": 178
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-repo-native-smoke-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-repo-native-smoke-hook.log",
+      "sha256": "b7307e18950b39049c3e095fc82918721bfbd7f92307e6037d705a60ebcde869",
+      "size": 178
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-repo-root-hook.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-repo-root-hook.log",
+      "sha256": "b7307e18950b39049c3e095fc82918721bfbd7f92307e6037d705a60ebcde869",
+      "size": 178
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-reuse-scope.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-reuse-scope.log",
+      "sha256": "2c8167e4fca44eb858ad696dc4da88ce681c0c5fde378d259d4348e77fcd2ba1",
+      "size": 936
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-root-build.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-root-build.log",
+      "sha256": "b92683378fadac8ee2447aa3e96d9d3345dc91ff120f7d88de0bafdd2d4e8aa3",
+      "size": 160
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-runtime-file.trace",
+      "source": "/workspace/work/first-slice-execution/logs/slice-runtime-file.trace",
+      "sha256": "c961379ffbe8deeede94ba36aa50f52cdc8100a0e983a7c37eb2e68842f8e2e0",
+      "size": 7112
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-runtime.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-runtime.log",
+      "sha256": "db58e5617daf84428e144c6dc55ba3bf08e593a5e801edf4de9b4407d52a843b",
+      "size": 1594
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/slice-tests-all.log",
+      "source": "/workspace/work/first-slice-execution/logs/slice-tests-all.log",
+      "sha256": "bf172f2fe9e18633262cc64d8d67e4f53551f1b6fb228b54f8e46ed41960de45",
+      "size": 5226
+    },
+    {
+      "path": "docs/reviews/R8/execution/logs/source-bundle.log",
+      "source": "/workspace/work/first-slice-execution/logs/source-bundle.log",
+      "sha256": "a2da5745122beb0a83ffcb51126158b68124ef40e279148d58698b1241d0f5fe",
+      "size": 180
+    },
+    {
+      "path": "docs/reviews/R8/execution/minimal-pty.mjs",
+      "source": "/workspace/work/first-slice-execution/minimal-pty.mjs",
+      "sha256": "840ebfe9f805102f5360dd4e2c49d89997053f74520b2094417f1fb8a53f1530",
+      "size": 2893
+    },
+    {
+      "path": "docs/reviews/R8/execution/minimal-pty/after",
+      "source": "/workspace/work/first-slice-execution/minimal-pty/after",
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+      "size": 87
+    },
+    {
+      "path": "docs/reviews/R8/execution/minimal-pty/before",
+      "source": "/workspace/work/first-slice-execution/minimal-pty/before",
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+      "size": 87
+    },
+    {
+      "path": "docs/reviews/R8/execution/minimal-pty/result.json",
+      "source": "/workspace/work/first-slice-execution/minimal-pty/result.json",
+      "sha256": "cda118268283320a29a25e1b2da64a74d6ae42ec12f103304edd7c4162b7dcd3",
+      "size": 455
+    },
+    {
+      "path": "docs/reviews/R8/execution/minimal-pty/stderr.bin",
+      "source": "/workspace/work/first-slice-execution/minimal-pty/stderr.bin",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "docs/reviews/R8/execution/minimal-pty/stdout.bin",
+      "source": "/workspace/work/first-slice-execution/minimal-pty/stdout.bin",
+      "sha256": "7605ffbf2d22cb6f793d226500bfd278b0fc5b3522856903f10165354d7a7d2f",
+      "size": 182
+    },
+    {
+      "path": "docs/reviews/R8/execution/native-report.json",
+      "source": "/workspace/work/first-slice-execution/native-report.json",
+      "sha256": "06a5a8737a1bd2b4f56ae440c174b4126bda1069f63df2d813b5a42bd485cbf2",
+      "size": 8054
+    },
+    {
+      "path": "docs/reviews/R8/execution/native-report.original.md.txt",
+      "source": "/workspace/work/first-slice-execution/native-report.md",
+      "sha256": "a7b365388b98c481618ee4c520e8a5c786bbc7fe3d26e411520ed3e89deff334",
+      "size": 6435
+    },
+    {
+      "path": "docs/reviews/R8/execution/run-command.sh",
+      "source": "/workspace/work/first-slice-execution/run-command.sh",
+      "sha256": "f04d3ee4541daa8f6d76b8491e398328ed7cef3668c71de81ff540192d10eaef",
+      "size": 828
+    },
+    {
+      "path": "docs/reviews/R8/execution/sdk-inputs.sha256",
+      "source": "/workspace/work/first-slice-execution/sdk-inputs.sha256",
+      "sha256": "99a2e8f34a13bd86136fa47ea803971cd3dda6550b325dc0af698fa91871c5d5",
+      "size": 350
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-archive.json",
+      "source": "/workspace/work/first-slice-execution/slice-archive.json",
+      "sha256": "1a862bb2f6dfe6119d904b8c8ff2a03848f59c16e95f4ca56c6c1a6c5cbd1e1c",
+      "size": 1889
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-artifacts.json",
+      "source": "/workspace/work/first-slice-execution/slice-artifacts.json",
+      "sha256": "7ed7a8e1f8ba71ae2f5c598a25ebde5004af23c26e8565c71f8acc47af98aea7",
+      "size": 5023
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-cache-after.sha256",
+      "source": "/workspace/work/first-slice-execution/slice-cache-after.sha256",
+      "sha256": "cb6b42b013db271dd4d1ac07da919053458d0ad32171316b9a5abf33b1eb0791",
+      "size": 59565
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-cache-before.sha256",
+      "source": "/workspace/work/first-slice-execution/slice-cache-before.sha256",
+      "sha256": "cb6b42b013db271dd4d1ac07da919053458d0ad32171316b9a5abf33b1eb0791",
+      "size": 59565
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-cold-tracked-inputs.sha256",
+      "source": "/workspace/work/first-slice-execution/slice-cold-tracked-inputs.sha256",
+      "sha256": "d981d083984b121b01c95be940d8937aed3bb4f8d261ecc2fc8ce591999ab9a8",
+      "size": 34668
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-package/consumer/cjpm.toml",
+      "source": "/workspace/work/first-slice-execution/slice-package/consumer/cjpm.toml",
+      "sha256": "ad4f6714cf23c245290a86907d8127f5e50f73252884279d0eae7232f6aca73e",
+      "size": 186
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-package/consumer/src/main.cj",
+      "source": "/workspace/work/first-slice-execution/slice-package/consumer/src/main.cj",
+      "sha256": "fb4ec75d94dc6730cc4dd247fe0b69bf18255b77883c393820ed7fd434e051d7",
+      "size": 546
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-payload-reuse.json",
+      "source": "/workspace/work/first-slice-execution/slice-payload-reuse.json",
+      "sha256": "47d36d99d0452d6e8f45dede559525b3447b6cecd724b5859d78890dd2e959aa",
+      "size": 5607
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-report.original.md.txt",
+      "source": "/workspace/work/first-slice-execution/slice-report.md",
+      "sha256": "cbcce3ba38b19377b921a6e041eedaed336ac74111602859a3e3ea085ea4f630",
+      "size": 10082
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-results.json",
+      "source": "/workspace/work/first-slice-execution/slice-results.json",
+      "sha256": "5a9349adbd608a404723825486021df2f71b17c6404ce9c26094117d3c89a771",
+      "size": 27270
+    },
+    {
+      "path": "docs/reviews/R8/execution/slice-tracked-inputs.sha256",
+      "source": "/workspace/work/first-slice-execution/slice-tracked-inputs.sha256",
+      "sha256": "9e94d1ed79cd21fb45f0ec33cf9c2a45ac43de80d8ebe4013c6a8c2b791e40df",
+      "size": 34668
+    },
+    {
+      "path": "docs/reviews/R8/execution/snapshot-ansi.txt",
+      "source": "/workspace/work/first-slice-execution/snapshot-ansi.txt",
+      "sha256": "befe4bdeab0d785d8d302e2829a7239e72048e7773802e36fd6fac5f62e90f5e",
+      "size": 98
+    },
+    {
+      "path": "docs/reviews/R8/execution/snapshot-plain.txt",
+      "source": "/workspace/work/first-slice-execution/snapshot-plain.txt",
+      "sha256": "d0afae39faadd13b6951ddc8c7a506f0de4de7eccac6e0b594153c59b6350457",
+      "size": 61
+    },
+    {
+      "path": "docs/reviews/R8/execution/snapshot-values.json",
+      "source": "/workspace/work/first-slice-execution/snapshot-values.json",
+      "sha256": "8d22f2922a30362f9b52e99723b9c0de60571589684e2b6426a504443fa6e888",
+      "size": 376
+    },
+    {
+      "path": "docs/reviews/R8/verification/audit.mjs",
+      "source": "/workspace/work/first-slice-acceptance/audit.mjs",
+      "sha256": "e9177744120e7a3293a84a7c112cdbcfb62ecd67618d99d326bf43a228320ce8",
+      "size": 2259
+    },
+    {
+      "path": "docs/reviews/R8/verification/check-execution.mjs",
+      "source": "/workspace/work/first-slice-acceptance/check-execution.mjs",
+      "sha256": "2b5fde3a719aceaf9a2c42afb9aac6cc1c4f289c66ca4a8ef9af9841b0c21dab",
+      "size": 5691
+    },
+    {
+      "path": "docs/reviews/R8/verification/check-native-artifacts.mjs",
+      "source": "/workspace/work/first-slice-acceptance/check-native-artifacts.mjs",
+      "sha256": "ba38fd882e7ee361daf0fb383155fba47a7406eaae706f37b7a2395c306d6963",
+      "size": 721
+    },
+    {
+      "path": "docs/reviews/R8/verification/commands.json",
+      "source": "/workspace/work/first-slice-acceptance/commands.json",
+      "sha256": "5b721e41a6842000ebcdc1a8535bff276c741c159449ff3ae1c344365c7b0780",
+      "size": 6943
+    },
+    {
+      "path": "docs/reviews/R8/verification/execution-evidence-check-initial-error.log",
+      "source": "/workspace/work/first-slice-acceptance/execution-evidence-check-initial-error.log",
+      "sha256": "55e9bf367053b8e4b3ff248a4e5a096c847917fd57fc8c18a2d50ae6beafcf13",
+      "size": 544
+    },
+    {
+      "path": "docs/reviews/R8/verification/execution-evidence-check.json",
+      "source": "/workspace/work/first-slice-acceptance/execution-evidence-check.json",
+      "sha256": "76f4fffdcff09b21090a2420b02551fd5e2828c6301f3d45691e6264daf32e23",
+      "size": 13596
+    },
+    {
+      "path": "docs/reviews/R8/verification/execution-evidence-check.log",
+      "source": "/workspace/work/first-slice-acceptance/execution-evidence-check.log",
+      "sha256": "3b5e2a405ad5d307df136b25a27560e7a3b400dec49fb643ebde0f9b08690e97",
+      "size": 2776
+    },
+    {
+      "path": "docs/reviews/R8/verification/finalize-report.mjs",
+      "source": "/workspace/work/first-slice-acceptance/finalize-report.mjs",
+      "sha256": "dbebc264f331c3b8a81ff58533d1d19ee12f1f9d3f3f87f00b963c6c08be4f19",
+      "size": 10399
+    },
+    {
+      "path": "docs/reviews/R8/verification/mapping.json",
+      "source": "/workspace/work/first-slice-acceptance/mapping.json",
+      "sha256": "d3bd628cf8b8a843b154333dc42a2ce299a74eb2b1a2b56c16637fcb5871ff83",
+      "size": 12468
+    },
+    {
+      "path": "docs/reviews/R8/verification/native-artifact-check.json",
+      "source": "/workspace/work/first-slice-acceptance/native-artifact-check.json",
+      "sha256": "25a60acdca8fdb24e487d63e97b575f4e3734136c5e25dc6cf103fbc4aa76752",
+      "size": 3128
+    },
+    {
+      "path": "docs/reviews/R8/verification/npm-check.log",
+      "source": "/workspace/work/first-slice-acceptance/npm-check.log",
+      "sha256": "ff85b3f613de75cc4a36f973aa00a78ebeee7be8a070119496feea3c79247501",
+      "size": 833
+    },
+    {
+      "path": "docs/reviews/R8/verification/openspec-apply.json",
+      "source": "/workspace/work/first-slice-acceptance/openspec-apply.json",
+      "sha256": "2ca544f6950983f6301817ab835291a8a5684638f045bc6b1d5954cb3bcbf5e7",
+      "size": 5408
+    },
+    {
+      "path": "docs/reviews/R8/verification/openspec-status.json",
+      "source": "/workspace/work/first-slice-acceptance/openspec-status.json",
+      "sha256": "7f7129028981040c304f81fff5c3458155d392dd8b7293b0a5bbc998d51e53d6",
+      "size": 3059
+    },
+    {
+      "path": "docs/reviews/R8/verification/preflight-commands.json",
+      "source": "/workspace/work/first-slice-acceptance/preflight-commands.json",
+      "sha256": "0b2d0cf2bfe43466cdc562e84d19bc3275e92d771cc44b25ce7ae5dc354946b3",
+      "size": 5813
+    },
+    {
+      "path": "docs/reviews/R8/verification/preflight-validation.txt",
+      "source": "/workspace/work/first-slice-acceptance/preflight-validation.txt",
+      "sha256": "5d967031d1e4a9c624ddab8281d9562c68f0605d2d3f01de7b1479bc9bf8d610",
+      "size": 3148
+    },
+    {
+      "path": "docs/reviews/R8/verification/validation.txt",
+      "source": "/workspace/work/first-slice-acceptance/validation.txt",
+      "sha256": "dd6564d6bff4836b414d5f2329ce3cf6eede3c81f30eb9909f4302e63e9fe2f8",
+      "size": 3856
+    },
+    {
+      "path": "docs/reviews/R8/verification/verification.md",
+      "source": "/workspace/work/first-slice-acceptance/verification.md",
+      "sha256": "52386555d6b8bdc2783a29e383b1997979f927e9ad8697b8f343d1662505e792",
+      "size": 12723
+    }
+  ],
+  "scope": {
+    "report_projection": "One documented prefatory paragraph and exact absolute-link-prefix replacement only; original byte-identical",
+    "old_full_ac_rows_byte_unchanged": true,
+    "ac048_052": "passed",
+    "ac053_at_examined_commit": "pending as required before this independent result",
+    "tasks_complete": 5,
+    "tasks_total": 6,
+    "version": "0.0.0",
+    "compiled_artifacts_committed": false,
+    "markdown_links_and_openspec_strict": "passed",
+    "runtime_retests": "not run; same technical content"
+  },
+  "verdict": "passed; AC-053 may be registered passed and TASK-053 completed for this finite slice"
+}

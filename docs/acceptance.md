@@ -58,9 +58,9 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-048 | REQ-001/004 | TASK-048 | 独立测试契约、RED及可执行入口 | passed |
-| AC-049 | REQ-004/005/006 | TASK-049 | 正常原生构建和独立消费者链接，无探针路径 | passed |
-| AC-050 | REQ-001/003/004/005 | TASK-050 | 本切片公开API、真实Linux会话和minimal示例 | passed |
-| AC-051 | REQ-007 | TASK-051 | 独立代码/契约审核及修复复核 | passed |
-| AC-052 | REQ-007 | TASK-052 | 独立构建/测试/PTY执行原始证据 | passed |
-| AC-053 | REQ-001–007 | TASK-053 | 首片交付与最终集成，未完功能明确 | pending |
+| AC-048 | REQ-001/004 | TASK-048 | 独立测试契约、RED及可执行入口 ；实际证据：[测试设计与RED](reviews/R8/test-design/report.md) | passed |
+| AC-049 | REQ-004/005/006 | TASK-049 | 正常原生构建和独立消费者链接，无探针路径 ；实际证据：[冷构建与源码包消费](reviews/R8/execution/slice-report.md) | passed |
+| AC-050 | REQ-001/003/004/005 | TASK-050 | 本切片公开API、真实Linux会话和minimal示例 ；实际证据：[公开接口与真实TTY执行](reviews/R8/execution/slice-report.md) | passed |
+| AC-051 | REQ-007 | TASK-051 | 独立代码/契约审核及修复复核 ；实际证据：[代码复核](reviews/R8/whole-review/re-review-2.md)及[入口复核](reviews/R8/whole-review/entry-review.md) | passed |
+| AC-052 | REQ-007 | TASK-052 | 独立构建/测试/PTY执行原始证据 ；实际证据：[独立执行原始结果](reviews/R8/execution/slice-results.json) | passed |
+| AC-053 | REQ-001–007 | TASK-053 | 首片交付与最终集成，未完功能明确 ；实际证据：[独立验收](reviews/R8/verification/verification.md)及[最终集成](reviews/R8/verification/final-integration.md) | passed |
