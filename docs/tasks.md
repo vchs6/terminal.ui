@@ -84,8 +84,8 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 | classification / basis | decision；产品交互目标明确，需用证据确定可承诺的平台与终端边界 |
 | openspec_change_ref / planning_gaps | null / 具体实施变更尚未启动，当前仅规划 |
 | requirement_refs / workflow_ref | REQ-003、REQ-004、REQ-007 / 项目规划 docs/tasks.md |
-| objective / deliverables | 产品平台/终端支持矩阵、输入/缩放/恢复边界及限制证据 |
-| scope / impact | 平台适配设计及 docs/decisions；不实现正式内核或新增平台承诺 |
+| objective / deliverables | Linux/Windows/macOS/HarmonyOS的OS/SDK/CPU/ABI/终端宿主矩阵、输入/尺寸/恢复及权限边界证据；OpenHarmony单列 |
+| scope / impact | 平台适配设计及docs/decisions；不实现正式内核；四平台目标由REQ-011确定，调查不得静默取消目标 |
 | inputs / depends_on | docs/requirements.md、docs/architecture.md、目标环境说明 / 无 |
 | preconditions | 后续用户明确授权调查；实际所需工具和技能可用 |
 | acceptance / verification | AC-001：形成 OS、终端、TTY/非 TTY、输入、缩放和模式恢复支持矩阵及限制证据；记录实测方法、结果和不可承诺项 |
@@ -203,11 +203,11 @@ L4：
 | TASK-017 / WP-004 | REQ-003 | 键盘导航和有效焦点；输入路由和焦点契约验证 | TASK-015 | AC-017：禁用、卸载和空焦点集合有确定行为，无失效引用 |
 | TASK-018 / WP-004 | REQ-003 | 覆盖层嵌套与关闭恢复；覆盖层公共接口及嵌套场景验证 | TASK-012,TASK-016,TASK-017 | AC-018：父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态 |
 | TASK-019 / WP-004 | REQ-003 | 菜单与状态条组合行为；公共组件和 U2/U4 验证 | TASK-013,TASK-017,TASK-018 | AC-019：水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合 |
-| TASK-020 / WP-004 | REQ-004 | 应用退出与终端模式恢复；统一应用入口和退出路径证据 | TASK-008,TASK-017 | AC-020：正常退出、异常和取消均恢复光标及终端模式 |
+| TASK-020 / WP-004 | REQ-004、REQ-011 | 应用退出与终端模式恢复；四目标后端的统一入口和会话集成证据 | TASK-008,TASK-017,TASK-038,TASK-039,TASK-040,TASK-041 | AC-020：正常退出、异常和取消均恢复光标及终端模式 |
 | TASK-021 / WP-005 | REQ-001 | M1的U1–U5示例基线，不含四主题完整展示或M2；供TASK-027复用 | TASK-010,TASK-019,TASK-020 | AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判 |
 | TASK-022 / WP-005 | REQ-004 | 交付可重复渲染基准项目；独立 benchmarks/rendering 项目与产品基准方法 | TASK-008,TASK-011,TASK-016 | AC-022：固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果 |
-| TASK-023 / WP-005 | REQ-006、REQ-008 | 验证最终源码制品可独立使用；包含四主题/展示、M2及混合操作交付的真实制品；不自动上传 | TASK-021,TASK-022,TASK-027,TASK-031,TASK-032 | AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整 |
-| TASK-024 / WP-005 | REQ-001–010（REQ-010按可选能力矩阵） | 整体验收与发行准备；整体验收、发行检查与归档准备结论 | TASK-023 | AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败 |
+| TASK-023 / WP-005 | REQ-006、REQ-008、REQ-011 | 验证最终源码制品可独立使用；包含四主题/展示、M2及混合操作交付的真实制品；不自动上传 | TASK-021,TASK-022,TASK-027,TASK-031,TASK-032 | AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整 |
+| TASK-024 / WP-005 | REQ-001–011（REQ-010按可选能力矩阵） | 整体验收与发行准备；整体验收、发行检查与归档准备结论 | TASK-023 | AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败 |
 
 所有候选的范围限于标题行为及其调用方、回归与产品文档；不包含无关重构。实现负责人先补齐 canonical_owner、旧路径处置与兼容例外、实际必需技能、L4 输入和输出；每项代码变更遵循 AGENTS 第 10.5 节。
 
@@ -423,3 +423,98 @@ TASK-033（AC-033）、TASK-034（AC-034，语言）、TASK-035（AC-035）、TA
 | risks / evidence_refs | 偏移越界、宽字符与焦点不可见；后续用边界场景验证 / 当前仅设计证据 |
 
 L4在进入ready前按冻结契约展开，不具备直接编码准入。TASK-027验证展示中的滚动集成，TASK-031验证滚动的局部渲染等价性，TASK-023/024按依赖完成最终集成。
+
+## 8. 必需跨平台后端候选
+
+四OS至少各一个冻结且验收通过的配置；不是各平台所有版本/CPU/终端的无条件保证。四个后端不互相依赖，先共用TASK-001/003/004的调查与契约，TASK-020汇合会话集成，再经021/027及023/024最终验收。具体配置由调查冻结，未满足前不能宣称已支持。
+
+- [ ] 8.1 TASK-038：Windows平台会话适配；验收AC-038：Windows终端输入/输出/尺寸/模式及取消恢复，目标原生依赖可构建链接。
+
+### TASK-038：Windows平台会话适配
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-004 / implementation |
+| classification / basis | execution候选；REQ-011确定目标，平台接口/SDK/ABI/宿主经前置调查冻结后实施 |
+| requirement_refs / workflow_ref | REQ-011、REQ-003、REQ-004、REQ-009 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；未启动该产品变更 / Windows目标版本/CPU/ABI/SDK、终端宿主/权限及精确平台接口尚未冻结 |
+| objective / deliverables | Windows后端及可运行字符会话证据、依赖构建/链接配置与公开限制 |
+| scope / impact | 单一OS平台适配及必要调用方/回归；不复制UI/业务、不实现GUI/PTY/Shell或替代OS目标 |
+| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004 |
+| preconditions / status | 前置证据、合法目标环境、具体变更、技能/DQ准入和产品实施授权 / planned |
+| acceptance / verification | AC-038：Windows终端输入/输出/尺寸/模式及取消恢复，目标原生依赖可构建链接；至少同一核心场景的键盘/Unicode/布局/固定或变化尺寸、完整/部分输出及正常/取消/异常清理可判定；无目标环境记insufficient_evidence |
+| required_skills / skill_evidence_refs | ready前确定实现/测试/审查及平台环境技能 / 当前无后端执行证据 |
+| decision_refs / compatibility | 变更design D-017 / 统一公开API，不要求跨OS同一二进制 |
+| quality_governance | 后端封装平台差异，核心合成与Unicode算法不分叉；无旧产品实现需退役 |
+| risks / evidence_refs | 终端权限/模式/键盘差异、原生ABI和运行库；缺失可选宿主功能不等于核心失败 / R6仅文档与官方证据，不代表本后端通过 |
+
+L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直接编码。
+
+- [ ] 8.2 TASK-039：macOS平台会话适配；验收AC-039：macOS字符终端输入/输出/尺寸/模式及取消恢复，目标原生依赖可构建链接。
+
+### TASK-039：macOS平台会话适配
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-004 / implementation |
+| classification / basis | execution候选；REQ-011确定目标，平台接口/SDK/ABI/宿主经前置调查冻结后实施 |
+| requirement_refs / workflow_ref | REQ-011、REQ-003、REQ-004、REQ-009 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；未启动该产品变更 / macOS目标版本/CPU/ABI/SDK、终端宿主/权限及精确平台接口尚未冻结 |
+| objective / deliverables | macOS后端及可运行字符会话证据、依赖构建/链接配置与公开限制 |
+| scope / impact | 单一OS平台适配及必要调用方/回归；不复制UI/业务、不实现GUI/PTY/Shell或替代OS目标 |
+| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004 |
+| preconditions / status | 前置证据、合法目标环境、具体变更、技能/DQ准入和产品实施授权 / planned |
+| acceptance / verification | AC-039：macOS字符终端输入/输出/尺寸/模式及取消恢复，目标原生依赖可构建链接；至少同一核心场景的键盘/Unicode/布局/固定或变化尺寸、完整/部分输出及正常/取消/异常清理可判定；无目标环境记insufficient_evidence |
+| required_skills / skill_evidence_refs | ready前确定实现/测试/审查及平台环境技能 / 当前无后端执行证据 |
+| decision_refs / compatibility | 变更design D-017 / 统一公开API，不要求跨OS同一二进制 |
+| quality_governance | 后端封装平台差异，核心合成与Unicode算法不分叉；无旧产品实现需退役 |
+| risks / evidence_refs | 终端权限/模式/键盘差异、原生ABI和运行库；缺失可选宿主功能不等于核心失败 / R6仅文档与官方证据，不代表本后端通过 |
+
+L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直接编码。
+
+- [ ] 8.3 TASK-040：HarmonyOS平台会话适配；验收AC-040：HarmonyOS实际字符终端宿主可交互运行、权限/尺寸/恢复及目标原生依赖通过；交叉编译或OpenHarmony/SSH客户端不替代。
+
+### TASK-040：HarmonyOS平台会话适配
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-004 / implementation |
+| classification / basis | execution候选；REQ-011确定目标，平台接口/SDK/ABI/宿主经前置调查冻结后实施 |
+| requirement_refs / workflow_ref | REQ-011、REQ-003、REQ-004、REQ-009 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；未启动该产品变更 / HarmonyOS目标版本/CPU/ABI/SDK、终端宿主/权限及精确平台接口尚未冻结 |
+| objective / deliverables | HarmonyOS后端及可运行字符会话证据、依赖构建/链接配置与公开限制 |
+| scope / impact | 单一OS平台适配及必要调用方/回归；不复制UI/业务、不实现GUI/PTY/Shell或替代OS目标 |
+| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004 |
+| preconditions / status | 前置证据、合法目标环境、具体变更、技能/DQ准入和产品实施授权 / planned |
+| acceptance / verification | AC-040：HarmonyOS实际字符终端宿主可交互运行、权限/尺寸/恢复及目标原生依赖通过；交叉编译或OpenHarmony/SSH客户端不替代；至少同一核心场景的键盘/Unicode/布局/固定或变化尺寸、完整/部分输出及正常/取消/异常清理可判定；无目标环境记insufficient_evidence |
+| required_skills / skill_evidence_refs | ready前确定实现/测试/审查及平台环境技能 / 当前无后端执行证据 |
+| decision_refs / compatibility | 变更design D-017 / 统一公开API，不要求跨OS同一二进制 |
+| quality_governance | 后端封装平台差异，核心合成与Unicode算法不分叉；无旧产品实现需退役 |
+| risks / evidence_refs | 终端权限/模式/键盘差异、原生ABI和运行库；缺失可选宿主功能不等于核心失败 / R6仅文档与官方证据，不代表本后端通过 |
+
+L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直接编码。
+
+- [ ] 8.4 TASK-041：Linux平台会话适配；验收AC-041：Linux字符终端（含固定视口无图形控制台）及模拟终端输入/输出/尺寸/恢复，目标原生依赖通过。
+
+### TASK-041：Linux平台会话适配
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-004 / implementation |
+| classification / basis | execution候选；REQ-011确定目标，平台接口/SDK/ABI/宿主经前置调查冻结后实施 |
+| requirement_refs / workflow_ref | REQ-011、REQ-003、REQ-004、REQ-009 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；未启动该产品变更 / Linux目标版本/CPU/ABI/SDK、终端宿主/权限及精确平台接口尚未冻结 |
+| objective / deliverables | Linux后端及可运行字符会话证据、依赖构建/链接配置与公开限制 |
+| scope / impact | 单一OS平台适配及必要调用方/回归；不复制UI/业务、不实现GUI/PTY/Shell或替代OS目标 |
+| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004 |
+| preconditions / status | 前置证据、合法目标环境、具体变更、技能/DQ准入和产品实施授权 / planned |
+| acceptance / verification | AC-041：Linux字符终端（含固定视口无图形控制台）及模拟终端输入/输出/尺寸/恢复，目标原生依赖通过；至少同一核心场景的键盘/Unicode/布局/固定或变化尺寸、完整/部分输出及正常/取消/异常清理可判定；无目标环境记insufficient_evidence |
+| required_skills / skill_evidence_refs | ready前确定实现/测试/审查及平台环境技能 / 当前无后端执行证据 |
+| decision_refs / compatibility | 变更design D-017 / 统一公开API，不要求跨OS同一二进制 |
+| quality_governance | 后端封装平台差异，核心合成与Unicode算法不分叉；无旧产品实现需退役 |
+| risks / evidence_refs | 终端权限/模式/键盘差异、原生ABI和运行库；缺失可选宿主功能不等于核心失败 / R6仅文档与官方证据，不代表本后端通过 |
+
+L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直接编码。
+
+
+R6跨平台规格补充的TASK-042（AC-042）、TASK-043（AC-043）状态仅在[变更tasks.md](../openspec/changes/refine-terminal-ui-contracts/tasks.md)；R5已完成任务保持历史结论，不覆盖到新增平台契约。

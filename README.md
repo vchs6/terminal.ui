@@ -6,6 +6,7 @@
 
 - 产品范围与当前状态：[产品说明](docs/product/README.md)。
 - 仓颉包名：`cjtui`；当前开发版本 `0.0.0`，未发布。
+- 必需平台目标：Linux、Windows、macOS、HarmonyOS；产品实现与平台验收均待完成。
 - 许可证：[MulanPSL-2.0](LICENSE)。
 - ANSI 与 Unicode 采用仓颉中心仓 `ansies`、`unicode`、`unicodewidth`；依赖声明不表示集成验证已通过。
 

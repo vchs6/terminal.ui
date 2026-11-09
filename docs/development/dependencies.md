@@ -30,3 +30,7 @@ unicodewidth数据表标识Unicode17.0.0；unicode原生数据来源及版本见
 TASK-003/023须核对上游授权来源、完整许可证文本、Unicode数据许可及必要归属，解决bitarray声明冲突。当前只登记原始证据与风险，不作法律许可通过结论，不发布。保持根项目MulanPSL-2.0许可，不将第三方双许可合并成根许可。
 
 CJPM制品规则依据：[官方1.2.0手册](https://cj-docs.gitcode.com/zh/1.2.0/tools/source_zh_cn/cmd-tools/cjpm_manual.html)。include/exclude约束源码cjp而不是GitHub源码zip；后续须用真实bundle与干净解包验证依赖路径及构建，不以配置字符串替代证据。
+
+## 4. 跨平台集成门槛
+
+REQ-011要求Linux、Windows、macOS、HarmonyOS。现有日志仅Linux x64/SDK1.2.0；其他目标的仓颉标准库/运行库、CJPM依赖、unicode原生生成/汇编归档及链接必须分别验证。不得将Linux生成归档或仅存在交叉编译target当作通过。尤其要核对Windows COFF、macOS Mach-O与鸿蒙目标ABI、C/ASM工具链及沙箱文件/终端权限；此处是调查维度，不是已判兼容或不兼容。TASK-003/004提供每个目标可复现消费方法，缺证目标保持pending并阻止完整跨平台发行结论。

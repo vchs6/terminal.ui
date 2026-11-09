@@ -45,3 +45,17 @@ CJPM 配置 SHALL 使用 include/exclude 限定产品范围，排除治理规范
 
 - **WHEN** 读取当前cjpm/package清单
 - **THEN** 产品开发版本为0.0.0；工具和第三方依赖版本保留实际固定值，不被批量重置。
+
+### Requirement: Target-specific clean build evidence
+
+发行准备 SHALL 分别验证Linux、Windows、macOS、HarmonyOS冻结配置的源码消费、目标依赖/原生构建及示例运行，记录SDK、CPU/ABI与终端宿主。不能把宿主构建成功或Linux原生归档当作其他目标支持，也不要求同一二进制跨OS运行。
+
+#### Scenario: Clean consumption for each required target
+
+- **WHEN** 为必需平台准备最终源码制品并在干净消费环境构建
+- **THEN** 各目标能构建并运行对应示例、主题展示与基准；缺失的构建/链接/运行或许可证据阻止完整跨平台发行结论。
+
+#### Scenario: Native dependency portability
+
+- **WHEN** 字符依赖需要生成数据和C/ASM归档
+- **THEN** 用目标工具链/ABI生成并链接，运行分段/宽度样本；不能直接复用Linux归档并声称鸿蒙或其他平台已通过。

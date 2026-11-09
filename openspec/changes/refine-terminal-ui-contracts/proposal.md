@@ -13,6 +13,7 @@
 - 分类主题配置、四套预置主题、应用主动重载及失败保留旧主题；不引入完整 CSS 引擎或默认文件监听。
 - 将本地设备剪贴板、宿主标题和实际图片图标区分为可选会话能力；不向文本终端强加图形支持，不把图标名称当图片图标。
 - 在隔离目录验证 SDK 1.2.0 的尾随 Lambda 组合、属性链、回调及绑定边界；调查指定依赖。只将实际证据支持的结论写为已验证。
+- 明确Linux、Windows、macOS、HarmonyOS为必需跨平台目标，共用视图API；逐OS/SDK/ABI/终端宿主验证依赖与核心交互，不以交叉编译或OpenHarmony替代HarmonyOS本地运行。
 - 同步长期需求、架构、治理、任务与主规格；保留已有文件快照导出，不新增命令行一次性/内联输出模式。
 
 ## Capabilities
@@ -20,14 +21,14 @@
 ### New Capabilities
 
 - `theme-config`: 分类主题、预置样式、显式加载/重载与失效传播。
-- `terminal-session`: 字符终端会话、能力报告及可选本地剪贴板/标题/图片图标。
+- `terminal-session`: 跨Linux/Windows/macOS/HarmonyOS的字符终端会话、分目标证据、能力报告及可选本地剪贴板/标题/图片图标。
 
 ### Modified Capabilities
 
 - `ui-construction`: 基础组件清单、尾随 Lambda 验证路线与统一动态构造。
 - `ui-runtime`: 数据与视图职责、通知、布局、滚动、键盘和编辑契约。
 - `terminal-output`: M1/M2 渲染阶段及等价性、性能证据。
-- `distribution`: 四主题和组件展示应用的制品责任。
+- `distribution`: 四主题、组件展示应用和必需目标的干净构建/消费责任。
 - `development-workflow`: 授权隔离验证、文档与产品验收分离。
 
 ## Impact

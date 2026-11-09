@@ -117,7 +117,56 @@ L4：
 
 ## Workflow follow-up
 
-- 本轮完成仅表示文档与有界探针交付。未来产品任务见 docs/tasks.md TASK-001–032及TASK-037，均需产品实施授权、契约和DQ准入；不把这些未来任务复制为本变更已完成步骤。
+- 本轮完成仅表示文档与有界探针交付。未来产品任务见 docs/tasks.md TASK-001–032及TASK-037–041，均需产品实施授权、契约和DQ准入；不把这些未来任务复制为本变更已完成步骤。
 - 审核完成后按用户授权直接提交并推送main；不创建PR、不发布、不以本次规格同步归档产品能力。
 
 收尾结论：TASK-033/034/035/036仅本轮范围完成；实际验收见docs/acceptance.md。独立复核070623f1014a48bd559364747550c48332c16201为design_reviewed，原5项verified。产品任务和AC仍pending，未启动产品apply。
+
+## 5. Cross-platform amendment R6
+
+- [ ] 5.1 TASK-042：补充REQ-011四OS/HarmonyOS规格、提案、后端及验收映射并核对官方资料；验收AC-042：严格规格/引用/依赖检查通过，平台实现证据不虚构。
+- [ ] 5.2 TASK-043：独立审核本轮跨平台补充并复核必需修复；验收AC-043：固定版本、可定位发现和design_reviewed结论，无未关闭必需文档缺陷。
+
+### TASK-042
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3 / WP-001 / documentation |
+| classification / basis | execution；用户新增跨平台及HarmonyOS需求，延伸已有平台后端方向；四目标矩阵为工程细化 |
+| requirement_refs / workflow_ref | REQ-011、NFR-07 / 本文件 |
+| openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / 无文档准入缺口；目标设备运行不在本轮可声称范围 |
+| objective / deliverables | 明确跨平台目标、统一API/后端职责、官方证据与必需任务/验收闭合 |
+| scope / impact | 规格/提案/架构/任务/验收/治理及R6来源核对；不写平台实现或GUI宿主 |
+| inputs / depends_on | 用户新增需求、f998e15基线及官方仓颉/鸿蒙资料 / 无 |
+| preconditions | 既有文档修订授权、工具/Skill可用及明确字符终端边界 |
+| acceptance / verification | AC-042：npm run check、check-consistency及平台依赖/覆盖检查，官方事实引用与未知清楚，四目标缺一不冒充完整支持 |
+| required_skills / skill_evidence_refs | brainstorming、openspec-update-change/sync-specs、verification-before-completion / R6/input.md |
+| decision_refs / compatibility | D-017 / 无已发布API，开发版本仍0.0.0 |
+| quality_governance | 平台差异单一后端归属；不复制UI/Unicode内核，不以Linux-only旧限制覆盖新目标；无产品旧路径退役 |
+| risks / blockers | 鸿蒙终端宿主/权限、SDK/原生ABI尚需产品实测；本轮只登记不伪造通过 |
+| status / evidence_refs | in_progress / docs/reviews/R6 |
+
+L4：1.核对官方工具链/宿主资料与现有边界，检查来源能证明的范围；2.修订REQ/场景/设计及任务矩阵，检查四OS有独立责任且无环；3.执行引用/严格校验与独立审核修复，检查产品pending不变。
+
+### TASK-043
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3 / WP-001 / verification |
+| classification / basis | execution；按既有独立审核要求审查新增规格，不重开已确认产品方向 |
+| requirement_refs / workflow_ref | REQ-007、REQ-011 / 本文件 |
+| openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / TASK-042交付后固定输入 |
+| objective / deliverables | R6独立发现、修复复核、DQ及设计结论 |
+| scope / impact | 本轮跨平台文档、任务、官方证据及其与既有核心/可选边界一致性；不审为产品运行通过 |
+| inputs / depends_on | 受审commit、REQ-011及R6证据 / TASK-042文档交付 |
+| preconditions | 未参与撰写且不继承作者过程上下文的独立代理，输入可恢复 |
+| acceptance / verification | AC-043：覆盖四OS/HarmonyOS实际运行门槛、SDK/ABI/宿主证据等级及任务闭合；必需发现修复后复核，结论仅design_reviewed |
+| required_skills / skill_evidence_refs | requesting/receiving-code-review、verification-before-completion / R6/input.md |
+| decision_refs / compatibility | D-017 / 不取消必需平台目标，不把可选扩展强制为核心 |
+| quality_governance | 不引入额外GUI/PTY或审批平台；修复到权威需求并同步场景 |
+| risks / blockers | 无真机/对应工具链不等于文档失败，但不得记平台通过 |
+| status / evidence_refs | planned / docs/reviews/R6 |
+
+L4：1.固定版本并独立审查；2.核实/修复或有依据驳回发现；3.复核版本和检查结果，记录真实结论。
+
+R5完成记录只覆盖原范围。R6尚未完成时不得把此前4项勾选或design_reviewed外推为本增量已审核；未来产品TASK-038–041仍planned。

@@ -68,3 +68,22 @@
 #### Scenario: Do not fabricate restoration
 - **WHEN** 原始标题/图标未知或恢复写入失败
 - **THEN** 分别报告无法保证恢复或恢复失败，不宣称宿主已回到原状态；其他可清理资源仍继续清理
+
+### Requirement: Cross-platform core including HarmonyOS
+
+框架 SHALL 以Linux、Windows、macOS、HarmonyOS为必需目标，使用统一公开UI/API及视图源码；每个OS至少有一个冻结配置完成核心字符UI验收。平台差异限于会话/依赖适配及能力配置，不能把图形宿主作为核心前提。对应REQ-011。
+
+#### Scenario: Same application across targets
+
+- **WHEN** 同一应用在各冻结OS/SDK/CPU/ABI/字符终端宿主配置构建运行
+- **THEN** 组件、布局、状态、键盘和更新遵守同一契约；输入、尺寸、写入/失败及退出恢复有分目标证据，缺任一目标不报完整跨平台支持。
+
+#### Scenario: Require HarmonyOS local execution evidence
+
+- **WHEN** 只有交叉编译成功、OpenHarmony测试、鸿蒙作SSH客户端访问Linux或输出应用日志
+- **THEN** 保持HarmonyOS端到端字符UI验收pending；需实际目标环境中的交互输入/渲染/尺寸/恢复证据，不能改称GUI支持。
+
+#### Scenario: Separate optional host features
+
+- **WHEN** 某必需目标不支持剪贴板、窗口标题或图片图标
+- **THEN** 核心字符UI仍按平台契约运行，可选操作明确报告能力，不因此取消该OS目标。
