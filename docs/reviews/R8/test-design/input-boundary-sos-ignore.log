@@ -1,0 +1,40 @@
+PASS non-TTY: no ESC
+SEND PTY sos-ignore: 1b587365637265741b5c; then q
+OBSERVED PTY sos-ignore: [{"code":"text","text":"s"},{"code":"text","text":"e"},{"code":"text","text":"c"},{"code":"text","text":"r"},{"code":"text","text":"e"},{"code":"text","text":"t"},{"code":"text","text":"q"}]
+PTY failure (sos-ignore): finished=true, exit=0, signal=null, before=500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0, after=500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0, stderr=
+FAIL integration: AssertionError [ERR_ASSERTION]: SOS control and payload produce no fabricated key/text events; subsequent q remains usable
++ actual - expected
+
+  [
+    {
+      code: 'text',
++     text: 's'
++   },
++   {
++     code: 'text',
++     text: 'e'
++   },
++   {
++     code: 'text',
++     text: 'c'
++   },
++   {
++     code: 'text',
++     text: 'r'
++   },
++   {
++     code: 'text',
++     text: 'e'
++   },
++   {
++     code: 'text',
++     text: 't'
++   },
++   {
++     code: 'text',
+      text: 'q'
+    }
+  ]
+
+    at session (file:///workspace/work/first-slice-tests/repo/tests/integration/pty.mjs:93:14)
+    at async file:///workspace/work/first-slice-tests/repo/tests/integration/pty.mjs:127:68
