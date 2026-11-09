@@ -1,0 +1,8 @@
+cwd=/workspace/work/first-slice-execution/slice-cold-repo
+command=set -e; git rev-parse HEAD; git diff --name-status 2f85fcbe4c422f4f45b69875feb4728f9bea3f8f HEAD; git diff --exit-code 2f85fcbe4c422f4f45b69875feb4728f9bea3f8f HEAD -- src native tests cjpm.toml build.cj examples; git ls-files -z | xargs -0 sha256sum > ../slice-cold-tracked-inputs.sha256; test ! -d target; test ! -d .cjtui-build; test ! -e native/libcjtui_terminal.a; test ! -e native/libunicodedata.a
+started=2026-11-09T17:00:26Z
+2ad6c5ceeb0068d3b2b2d5efe010059965b9415a
+M	scripts/check-product.sh
+
+exit_code=0
+ended=2026-11-09T17:00:26Z

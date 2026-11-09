@@ -1,0 +1,7 @@
+cwd=/workspace/work/first-slice-execution
+command=node -e 'const fs=require("fs"),crypto=require("crypto"),assert=require("assert");const files=JSON.parse(fs.readFileSync("slice-archive.json")).files;const hashes=files.map(path=>{const a=fs.readFileSync("slice-package/unpacked/cjtui-0.0.0/"+path),b=fs.readFileSync("slice-cold-repo/"+path);assert(a.equals(b),"packaged source differs: "+path);return {path,sha256:crypto.createHash("sha256").update(a).digest("hex")};});fs.writeFileSync("slice-payload-reuse.json",JSON.stringify({from_commit:"2f85fcbe4c422f4f45b69875feb4728f9bea3f8f",to_commit:"2ad6c5ceeb0068d3b2b2d5efe010059965b9415a",all_packaged_files_byte_identical:true,files:hashes},null,2)+"\n");console.log("PASS: all "+hashes.length+" packaged files byte-identical to final commit clone");'
+started=2026-11-09T17:04:18Z
+PASS: all 37 packaged files byte-identical to final commit clone
+
+exit_code=0
+ended=2026-11-09T17:04:18Z

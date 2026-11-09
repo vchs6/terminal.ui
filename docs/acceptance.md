@@ -58,9 +58,9 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-048 | REQ-001/004 | TASK-048 | 独立测试契约、RED及可执行入口 | pending |
-| AC-049 | REQ-004/005/006 | TASK-049 | 正常原生构建和独立消费者链接，无探针路径 | pending |
-| AC-050 | REQ-001/003/004/005 | TASK-050 | 本切片公开API、真实Linux会话和minimal示例 | pending |
-| AC-051 | REQ-007 | TASK-051 | 独立代码/契约审核及修复复核 | pending |
-| AC-052 | REQ-007 | TASK-052 | 独立构建/测试/PTY执行原始证据 | pending |
+| AC-048 | REQ-001/004 | TASK-048 | 独立测试契约、RED及可执行入口 | passed |
+| AC-049 | REQ-004/005/006 | TASK-049 | 正常原生构建和独立消费者链接，无探针路径 | passed |
+| AC-050 | REQ-001/003/004/005 | TASK-050 | 本切片公开API、真实Linux会话和minimal示例 | passed |
+| AC-051 | REQ-007 | TASK-051 | 独立代码/契约审核及修复复核 | passed |
+| AC-052 | REQ-007 | TASK-052 | 独立构建/测试/PTY执行原始证据 | passed |
 | AC-053 | REQ-001–007 | TASK-053 | 首片交付与最终集成，未完功能明确 | pending |

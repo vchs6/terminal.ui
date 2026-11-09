@@ -1,0 +1,200 @@
+cwd=/workspace/work/first-slice-execution/slice-cold-repo
+command=scripts/check-product.sh slice
+started=2026-11-09T17:00:26Z
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+The valid serial compilation order is:
+    ansies -> ansies.core -> bitarray -> unicode.constants -> unicodewidth.gen -> ansies.api -> ansies.extensions -> bitarray.test -> unicode.types -> unicode.utf -> unicodewidth -> ansies.utils -> unicode -> ansies.test -> cjtui -> unicode.test
+cjpm check success
+[?25l[0J7[;r8
+[1F7[9999E8--------------------------------------------------------------------------------------------------
+Project tests finished, RESULT:
+Summary: TOTAL: 0
+    [32mPASSED[0m: 0, [32mSKIPPED[0m: 0, ERROR: 0
+    [31mFAILED[0m: 0
+--------------------------------------------------------------------------------------------------
+[0J7[;r8[?25hcjpm test success
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+owner: open1=0 open2=-1 successes=1 close=0 restored=1 original_lflag=32779 restored_lflag=32779
+PASS owner
+setup-signal: open=0 read_after_SIGTERM=-2 close=0 restored=1
+PASS setup-signal
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+PASS: empty has no clusters
+PASS: empty width
+PASS: CJK segmentation
+PASS: CJK columns
+PASS: combining EGC
+PASS: combining width
+PASS: ZWJ and flag EGC
+PASS: emoji columns
+PASS: ambiguous width policy
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+PASS: negative width
+PASS: negative height
+PASS: zero area ANSI
+PASS: zero area cellAt
+PASS: zero area ANSI
+PASS: zero area cellAt
+PASS: zero area ANSI
+PASS: zero area cellAt
+PASS: frame dimensions
+PASS: negative cellAt
+PASS: right cellAt
+PASS: bottom cellAt
+PASS: combining cell
+PASS: wide leading cell
+PASS: wide continuation
+PASS: wide leading cell
+PASS: wide continuation
+PASS: wide leading cell
+PASS: wide continuation
+PASS: full columns plain snapshot
+PASS: overwrite continuation clears old cluster
+PASS: overwrite leading clears continuation
+PASS: right clipped wide omitted
+PASS: left clipped wide omitted but following text positioned
+PASS: wide write covers old narrow
+PASS: standalone zero width and empty ignored
+PASS: LF and CRLF restore original x
+PASS: frame ambiguous policy
+PASS: reject C0 0
+PASS: reject C0 1
+PASS: reject C0 2
+PASS: reject C0 3
+PASS: reject C0 4
+PASS: reject C0 5
+PASS: reject C0 6
+PASS: reject C0 7
+PASS: reject C0 8
+PASS: reject C0 9
+PASS: reject C0 11
+PASS: reject C0 12
+PASS: reject C0 14
+PASS: reject C0 15
+PASS: reject C0 16
+PASS: reject C0 17
+PASS: reject C0 18
+PASS: reject C0 19
+PASS: reject C0 20
+PASS: reject C0 21
+PASS: reject C0 22
+PASS: reject C0 23
+PASS: reject C0 24
+PASS: reject C0 25
+PASS: reject C0 26
+PASS: reject C0 27
+PASS: reject C0 28
+PASS: reject C0 29
+PASS: reject C0 30
+PASS: reject C0 31
+PASS: reject C1 128
+PASS: reject C1 129
+PASS: reject C1 130
+PASS: reject C1 131
+PASS: reject C1 132
+PASS: reject C1 133
+PASS: reject C1 134
+PASS: reject C1 135
+PASS: reject C1 136
+PASS: reject C1 137
+PASS: reject C1 138
+PASS: reject C1 139
+PASS: reject C1 140
+PASS: reject C1 141
+PASS: reject C1 142
+PASS: reject C1 143
+PASS: reject C1 144
+PASS: reject C1 145
+PASS: reject C1 146
+PASS: reject C1 147
+PASS: reject C1 148
+PASS: reject C1 149
+PASS: reject C1 150
+PASS: reject C1 151
+PASS: reject C1 152
+PASS: reject C1 153
+PASS: reject C1 154
+PASS: reject C1 155
+PASS: reject C1 156
+PASS: reject C1 157
+PASS: reject C1 158
+PASS: reject C1 159
+PASS: reject lone CR
+PASS: reject CSI injection
+PASS: reject OSC injection
+PASS: component text cannot inject
+PASS: style fields
+PASS: style value equality
+PASS: style only update changes ANSI
+PASS: ANSI reset and absolute initial position
+PASS: ANSI row positioning and final reset
+PASS: ANSI snapshot never scrolls with newline
+PASS: plain retains spaces no final LF or ESC
+PASS: blocks if for custom function and layout
+PASS: explicit child overrides inherited color
+PASS: ancestor style inheritance
+PASS: standalone multiline Text root
+PASS: actual size clips ancestor wide glyph
+PASS: construction exception propagated
+PASS: construction context clean after nested exception
+PASS: standalone root clean after exception
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+PASS: extreme x=9223372036854775807 clips without exception and preserves frame
+PASS: extreme x=-9223372036854775808 clips without exception and preserves frame
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+PASS non-TTY: no ESC
+PASS PTY q: exit=0, termios restored, bytes=182
+PASS PTY ctrl-c: exit=0, termios restored, bytes=182
+PASS PTY sigint: exit=0, termios restored, bytes=182
+PASS PTY sigterm: exit=0, termios restored, bytes=182
+PASS PTY resize: exit=0, termios restored, bytes=256
+PASS PTY exception: exit=1, termios restored, bytes=623
+SEND PTY osc-ctrl-c: prefix=1b5d303b78797a78797a, then Ctrl-C=03
+PASS PTY osc-ctrl-c: exit=0, termios restored, bytes=182
+SEND PTY utf8-ctrl-c: prefix=c2, then Ctrl-C=03
+PASS PTY utf8-ctrl-c: exit=0, termios restored, bytes=182
+SEND PTY utf8-fragmented: e4b8ad, one byte per write, 160ms apart; then q
+OBSERVED PTY utf8-fragmented: [{"code":"text","text":"中"},{"code":"text","text":"q"}]
+PASS PTY utf8-fragmented: exit=0, termios restored, bytes=232
+SEND PTY sos-ignore: 1b587365637265741b5c; then q
+OBSERVED PTY sos-ignore: [{"code":"text","text":"q"}]
+PASS PTY sos-ignore: exit=0, termios restored, bytes=206
+SEND PTY sos-escape-utf8: 1b581be4b89c7365637265741b5c; then q
+OBSERVED PTY sos-escape-utf8: [{"code":"text","text":"q"}]
+PASS PTY sos-escape-utf8: exit=0, termios restored, bytes=206
+cjpm build success
+The valid serial compilation order is:
+    ansies -> ansies.core -> bitarray -> unicode.constants -> unicodewidth.gen -> ansies.api -> ansies.extensions -> bitarray.test -> unicode.types -> unicode.utf -> unicodewidth -> ansies.utils -> unicode -> ansies.test -> cjtui -> unicode.test -> cjtui_minimal
+cjpm check success
+[?25l[0J7[;r8
+[1F7[9999E8--------------------------------------------------------------------------------------------------
+Project tests finished, RESULT:
+Summary: TOTAL: 0
+    [32mPASSED[0m: 0, [32mSKIPPED[0m: 0, ERROR: 0
+    [31mFAILED[0m: 0
+--------------------------------------------------------------------------------------------------
+[0J7[;r8[?25hcjpm test success
+Implemented slice checks complete; not a final product/release verification.
+
+exit_code=0
+ended=2026-11-09T17:08:55Z

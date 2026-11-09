@@ -1,0 +1,14 @@
+cwd=/workspace/work/first-slice-execution/slice-repo
+command=set -e; cjc --version; cjpm --version; gcc --version | head -1; ar --version | head -1; uname -srm; sha256sum "$CJTUI_UCD_ARCHIVE"; git rev-parse HEAD; git status --porcelain; test ! -d target; test ! -d .cjtui-build; test ! -e native/libcjtui_terminal.a; test ! -e native/libunicodedata.a
+started=2026-11-09T16:53:40Z
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+gcc (Debian 14.2.0-19) 14.2.0
+GNU ar (GNU Binutils for Debian) 2.44
+Linux 6.18.57 x86_64
+2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e  /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+2f85fcbe4c422f4f45b69875feb4728f9bea3f8f
+
+exit_code=0
+ended=2026-11-09T16:53:41Z

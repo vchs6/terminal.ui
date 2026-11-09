@@ -1,0 +1,94 @@
+> 本文件仅将独立执行报告的绝对链接改为仓库相对链接；结论和正文不变。原始字节见 [slice-report.original.md.txt](slice-report.original.md.txt)。未随仓库提交可执行文件、原生归档或cjp，仅保存其SHA及可复现记录。
+
+# TASK-052：Linux 首片独立执行报告
+
+最终受检提交：`2ad6c5ceeb0068d3b2b2d5efe010059965b9415a`。完整 `scripts/check-product.sh slice` 在独立全新克隆中运行到结尾，实际退出 **0**。固定断言、真实 PTY、实际 minimal 与全新解包消费者均有执行证据。此结论仅为首片执行结果，最终需求验收由独立角色负责。
+
+## 固定源、隔离与首次失败
+
+最初按 `2f85fcbe4c422f4f45b69875feb4728f9bea3f8f` 以 `git clone --no-hardlinks` 创建 `slice-repo`，detached HEAD；首次入口 `scripts/check-product.sh slice` 在 `cjpm check` 阶段退出 **1**，因 build hook 尚未生成 `unicodedata`、`cjtui_terminal`。首次日志完整保留：[slice-product.log](logs/slice-product.log)。未修改脚本救构建，也未重复不变失败。
+
+随后独立执行正常 `cjpm build` 与固定 `./tests/run-slice.sh all`，两者均为 **0**。协调者提供入口修复提交后，再创建完全独立的 `slice-cold-repo`，确认无 target、.cjtui-build 或 native archives，完整重跑入口至最终提示 `Implemented slice checks complete; not a final product/release verification.`，退出 **0**。未主动停止在前两步。
+
+[输入与复用核对](logs/slice-cold-input.log) 证明最终提交仅改变 `scripts/check-product.sh`；src/native/tests/依赖/示例逐字节未变。[全部制品文件复用证据](slice-payload-reuse.json) 另证源码包 37 个文件均与最终克隆逐字节一致，因此旧固定源的实际 minimal、源码包消费证据适用于最终提交。最终版本本身另已跑完冷入口及其全部固定测试。
+
+## 环境与完整性
+
+- SDK/CJPM **1.2.0**、cjnative、x86_64-unknown-linux-gnu；GCC 14.2.0、GNU ar 2.44、Linux 6.18.57。[实际版本输出](logs/slice-environment.log)，[SDK文件摘要](sdk-inputs.sha256)。
+- UCD 17.0.0 SHA-256：`2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e`。官方四个依赖原包及 UCD 摘要见 [dependency-inputs.sha256](dependency-inputs.sha256)。构建时设置 CJTUI_UCD_ARCHIVE；产品 hook 独立校验原包并生成自身归档。
+- 只在忽略的各项目 cangjie-repo.toml 中配置既有官方缓存和 `http://127.0.0.1:18972` 开发 relay；relay 是既有 R5 curl 设施，保持官方字节。SDK、cache、relay 与离线 UCD 均为环境输入，未写入产品或作为应用运行依赖。
+- [最终完整性日志](logs/slice-final-immutability.log) 实际退出 **0**：官方缓存[前](slice-cache-before.sha256)/[后](slice-cache-after.sha256)清单完全相同；SDK及依赖原包摘要未变；两克隆受检跟踪文件[初始源](slice-tracked-inputs.sha256)/[最终源](slice-cold-tracked-inputs.sha256)逐项校验成功，git diff 为 0。仅有正常生成的未跟踪 cjpm.lock 及忽略的环境/构建文件。未拷贝作者二进制或归档。
+
+## 固定测试与真实退出
+
+固定 runner 使用 `cjpm build` 后直接执行真实消费者 binary，并用 set -e 传递非零退出；没有依赖 `cjpm run` 的包装退出码判断测试。
+
+[最初固定源 all 日志](logs/slice-tests-all.log) 和 [最终版本完整冷入口日志](logs/slice-cold-product.log) 均保留全部输出，各包含 134 行 PASS：C 模块 owner/setup-signal 2 条、公开消费者断言 120 条、non-TTY 无 ESC 1 条和真实 PTY 场景 11 条。这些数量只描述本次执行。`cjpm test` 的本地单元用例数为 0，不将其冒充行为验证。
+
+公开消费者覆盖 Unicode、Frame/样式/快照、C0/C1/ESC 注入拒绝、声明式构造与异常上下文清理、Int64 两端极值。C owner 测例实测仅一位 opener 成功且恢复原 termios；setup-signal 实测 SIGTERM 后 cjt_read 返回 -2。
+
+最终版本 PTY 原始结果：
+
+| 场景 | 真实进程退出码 | termios 完全恢复 |
+| --- | --- | --- |
+| q | 0 | 是 |
+| ctrl-c | 0 | 是 |
+| sigint | 0 | 是 |
+| sigterm | 0 | 是 |
+| resize | 0 | 是 |
+| exception | 1 | 是 |
+| osc-ctrl-c | 0 | 是 |
+| utf8-ctrl-c | 0 | 是 |
+| utf8-fragmented | 0 | 是 |
+| sos-ignore | 0 | 是 |
+| sos-escape-utf8 | 0 | 是 |
+
+exception 的 **1** 是固定断言要求的异常上报，测试本身通过。其余十个 PTY 场景退出 **0**。UTF-8 分片实测事件仅为 text/中、text/q；SOS 及 ESC+UTF8 的未知字符串实测仅为 text/q。non-TTY 验证无 ESC，不额外推断其程序退出码。
+
+## 实际 minimal 示例
+
+独立 `cjpm build` 后，用 util-linux script 分配 **5×24 真实 PTY**，启动的是 `slice-repo/examples/minimal/target/release/bin/main`，没有用测试 fixture 代替。看到 cjtui、中文、👩‍💻 和 ANSI 首帧后才发送 q；实际应用退出 **0**，PTY wrapper 退出 **0**，无强制信号，前后完整 termios 相同。
+
+[命令/退出日志](logs/slice-minimal-pty.log)、[临时执行设施](minimal-pty.mjs)、[机器结果](minimal-pty/result.json)、[实际 stdout 原始字节](minimal-pty/stdout.bin)、[stderr](minimal-pty/stderr.bin)、[before](minimal-pty/before)、[after](minimal-pty/after)。stdout 为 182 字节；设施不替应用恢复 termios。
+
+## 源码包与普通消费
+
+`cjpm bundle --skip-test --skip-lint` 生成源码 cjp，退出 **0**；它只生成待检包，不表示完整 release gate 通过。包 SHA-256：`2edd4ae9f120db34c0dbcc9e721bc75b1a60d21d3e12fc5fd320b06dc2793fb3`。
+
+[完整 tar 与解包日志](logs/slice-package-extract.log)、[包边界审计](slice-archive.json) 验证仅常规文件/目录，含 build.cj、native/build.sh、native/cjtui_terminal.c、四个产品源码文件、minimal、产品文档和第三方归属；没有 .a/.o/target/.cjtui-build、测试或开发目录。解包到新目录前没有任何生成原生库。没有为了完整打包伪造 composition/benchmark。
+
+全新[普通消费者清单](slice-package/consumer/cjpm.toml)仅声明 cjtui 路径依赖，[源码](slice-package/consumer/src/main.cj)只使用公开 API；没有手加 FFI 或 linker flags。正常 `cjpm build`、`cjpm run` 和直接 binary 实际均为 **0**。[运行日志](logs/slice-package-run.log)还记录 `nm` 证明可执行文件包含 cjt_open、cjt_close、cjt_buffer_write。
+
+消费者实际调用 graphemeClusters、displayWidth、Column/Row/Text、render、toPlainText、toAnsi；输出 CLUSTERS=4、COLUMNS=7。保存的 [plain](snapshot-plain.txt)、[ANSI](snapshot-ansi.txt)、[结构化值](snapshot-values.json)展示独立三行快照；plain 保留列空格且无 ESC，ANSI 以 reset/绝对定位起始、逐行绝对定位、以 reset 结束，不含 LF。正式固定测试另对这些契约给出精确断言。
+
+复制消费者可执行文件到独立运行目录，取消 UCD/代理环境后运行退出 **0**；[文件访问 trace](logs/slice-runtime-file.trace)未访问产品 checkout、官方 cache 或 UCD。[运行/ldd日志](logs/slice-runtime.log)显示仅仓颉 SDK 运行库与系统库，没有 Unicode/C桥开发归档或开发目录运行依赖。
+
+## 全部命令与产物索引
+
+每条原始日志首部记录实际工作目录、完整命令和 UTC 起止，尾部记录数值退出码；[slice-results.json](slice-results.json)收录全部命令及结构化结果，[commands.jsonl](commands.jsonl)为全会话原始命令账本。
+
+| 执行项 | 数值退出码 | 命令/原始日志 |
+| --- | --- | --- |
+| slice-environment | 0 | [原始命令/输出](logs/slice-environment.log) |
+| slice-product | 1 | [原始命令/输出](logs/slice-product.log) |
+| slice-root-build | 0 | [原始命令/输出](logs/slice-root-build.log) |
+| slice-tests-all | 0 | [原始命令/输出](logs/slice-tests-all.log) |
+| slice-minimal-build | 0 | [原始命令/输出](logs/slice-minimal-build.log) |
+| slice-cold-input | 0 | [原始命令/输出](logs/slice-cold-input.log) |
+| slice-minimal-pty | 0 | [原始命令/输出](logs/slice-minimal-pty.log) |
+| slice-bundle | 0 | [原始命令/输出](logs/slice-bundle.log) |
+| slice-package-extract | 0 | [原始命令/输出](logs/slice-package-extract.log) |
+| slice-package-build | 0 | [原始命令/输出](logs/slice-package-build.log) |
+| slice-package-run | 0 | [原始命令/输出](logs/slice-package-run.log) |
+| slice-runtime | 0 | [原始命令/输出](logs/slice-runtime.log) |
+| slice-reuse-scope | 0 | [原始命令/输出](logs/slice-reuse-scope.log) |
+| slice-cold-product | 0 | [原始命令/输出](logs/slice-cold-product.log) |
+| slice-final-immutability | 0 | [原始命令/输出](logs/slice-final-immutability.log) |
+
+[产物清单](slice-artifacts.json)含 cjp、独立生成的两种 native archives、主库、真实消费者和示例可执行文件、minimal 原始输出及快照的大小和 SHA-256；hook 日志保存在 logs/slice-*-hook.log。
+
+## 边界与交接
+
+本角色只执行固定测试与普通消费，不编写/修改产品代码或冻结断言，不提交、推送、发布或派生代理。初次入口失败已由最终固定版本的完整冷运行闭合。完整框架、composition、benchmark、响应式/M2、跨平台和完整发行验收仍 pending；本次未新跑官方 Unicode conformance 或注入设备写失败测试，不以首片通过替代它们。最终需求验收交给独立角色。
+
+使用既有 OpenSpec implement-linux-first-slice 的 TASK052，协调者维护权威状态。适用技能 verification-before-completion 与 systematic-debugging 已读取并用于真实执行/失败证据交接；执行者没有自行实施修复。

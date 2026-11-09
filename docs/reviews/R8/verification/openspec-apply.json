@@ -1,0 +1,73 @@
+{
+  "changeName": "implement-linux-first-slice",
+  "changeDir": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice",
+  "schemaName": "spec-driven",
+  "contextFiles": {
+    "proposal": [
+      "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/proposal.md"
+    ],
+    "design": [
+      "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/design.md"
+    ],
+    "tasks": [
+      "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md"
+    ]
+  },
+  "progress": {
+    "total": 6,
+    "complete": 0,
+    "remaining": 6
+  },
+  "tasks": [
+    {
+      "id": "1",
+      "description": "1.1 TASK-048：独立编写本切片测试与执行入口；验收AC-048：缺产品时真实失败，预期独立于实现，正/边界/故障和TTY场景可执行。",
+      "done": false,
+      "sourcePath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md",
+      "line": 23
+    },
+    {
+      "id": "2",
+      "description": "2.1 TASK-049：正式原生构建入口与Unicode薄适配；验收AC-049：普通cjpm构建与独立消费者可链接，固定输入/离线处理明确，无探针绝对路径或共享cache修改。",
+      "done": false,
+      "sourcePath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md",
+      "line": 27
+    },
+    {
+      "id": "3",
+      "description": "3.1 TASK-050：Frame、样式、声明式构造、M1输出及Linux会话/示例；验收AC-050：公开API及独立测试通过，TTY运行、键盘/resize/取消和异常清理有效。",
+      "done": false,
+      "sourcePath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md",
+      "line": 31
+    },
+    {
+      "id": "4",
+      "description": "4.1 TASK-051：独立审核固定产品差异；验收AC-051：契约/代码质量双结论，必需缺陷修复复核。",
+      "done": false,
+      "sourcePath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md",
+      "line": 35
+    },
+    {
+      "id": "5",
+      "description": "4.2 TASK-052：独立执行构建、测试、消费者与TTY集成；验收AC-052：实际命令/退出值/原始结果，无作者自测替代。",
+      "done": false,
+      "sourcePath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md",
+      "line": 36
+    },
+    {
+      "id": "6",
+      "description": "4.3 TASK-053：独立验收和最终集成检查；验收AC-053：需求逐项与代码/证据对应，未完产品范围明确，主仓库源码可见且构建可用。",
+      "done": false,
+      "sourcePath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md",
+      "line": 37
+    }
+  ],
+  "taskTrackingConfigured": true,
+  "state": "ready",
+  "instruction": "Read context files, work through pending tasks, mark complete as you go.\nPause if you hit blockers or need clarification.",
+  "context": "Language: zh-CN. Keep OpenSpec headings and SHALL/MUST keywords in English.\ncjtui is implementing its first Linux ANSI product slice in src/native with examples/minimal. Product documents are self-contained; implementation and verification are scoped per slice, never inferred as full-framework completion.\nCurrent authorization (2026-11-09): specifications/probes/independent review, followed by Linux-first ANSI terminal implementation and platform/dependency risk resolution. Proceed autonomously within admitted L3 contracts. Complete all Linux capabilities and acceptance before considering Windows, macOS or HarmonyOS implementation; those remain future required targets and never gate the Linux phase. No publication.\nEvaluate central ansies and compare unicode with unicodewidth before selection, as newly authorized. Current manifest versions and selection evidence live in docs/development/dependencies.md. SDK baseline 1.2.0 is the existing Linux probe only; target SDK/runtime/ABI must be verified. Required OS targets: Linux, Windows, macOS, HarmonyOS; OpenHarmony evidence does not substitute for HarmonyOS local execution.\nProject tasks live in docs/tasks.md; when a concrete change starts, transfer its task state authority to that change tasks.md and keep only references in docs/tasks.md.\nProject design is docs/architecture.md, proposal is docs/development/proposal.md, requirements are fully documented in docs/requirements.md, and openspec/specs/ holds corresponding scenario projections. All describe planned requirements, not implemented capabilities.\nFuture concrete changes use OpenSpec workflows; do not recreate a whole-project change.\nSuperpowers plans/designs use the same authority, not duplicate docs/superpowers trees.\nUser requires separate subagents for test design, product implementation, code review, test execution and acceptance verification. Use suitable models, isolated contexts and workspaces, and hand off only contracts and fixed-version artifacts; the main agent coordinates/integrates and resolves disagreements. Author self-tests never replace independent acceptance.\n",
+  "root": {
+    "path": "/workspace/work/first-slice-acceptance/repo",
+    "source": "nearest"
+  }
+}

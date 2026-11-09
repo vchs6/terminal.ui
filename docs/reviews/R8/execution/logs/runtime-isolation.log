@@ -1,0 +1,17 @@
+cwd=/workspace/work/first-slice-execution/runtime-only
+command=set -e; cp ../package-check/consumer/target/release/bin/main ./ordinary_native_consumer; ldd ./ordinary_native_consumer; env -u CJTUI_UCD_ARCHIVE -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY strace -f -e trace=file -o ../logs/runtime-file.trace ./ordinary_native_consumer; if rg "/workspace/work/(first-slice|validation/replay-dependencies|terminal.ui)" ../logs/runtime-file.trace; then exit 1; fi
+started=2026-11-09T16:18:03Z
+	linux-vdso.so.1 (0x00007fd0185e5000)
+	libcangjie-runtime.so => /workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative/libcangjie-runtime.so (0x0000000000400000)
+	libboundscheck.so => /workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative/libboundscheck.so (0x00007fd017400000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fd0176c8000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd01720c000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fd016fa6000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fd0185e7000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fd017699000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fd017694000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fd01768f000)
+clusters=4, columns=7
+
+exit_code=0
+ended=2026-11-09T16:18:04Z

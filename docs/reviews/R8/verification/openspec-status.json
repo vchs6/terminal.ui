@@ -1,0 +1,102 @@
+{
+  "changeName": "implement-linux-first-slice",
+  "schemaName": "spec-driven",
+  "planningHome": {
+    "kind": "repo",
+    "root": "/workspace/work/first-slice-acceptance/repo",
+    "changesDir": "/workspace/work/first-slice-acceptance/repo/openspec/changes",
+    "defaultSchema": "spec-driven"
+  },
+  "changeRoot": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice",
+  "artifactPaths": {
+    "proposal": {
+      "outputPath": "proposal.md",
+      "resolvedOutputPath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/proposal.md",
+      "existingOutputPaths": [
+        "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/proposal.md"
+      ]
+    },
+    "specs": {
+      "outputPath": "specs/**/*.md",
+      "resolvedOutputPath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/specs/**/*.md",
+      "existingOutputPaths": []
+    },
+    "design": {
+      "outputPath": "design.md",
+      "resolvedOutputPath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/design.md",
+      "existingOutputPaths": [
+        "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/design.md"
+      ]
+    },
+    "tasks": {
+      "outputPath": "tasks.md",
+      "resolvedOutputPath": "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md",
+      "existingOutputPaths": [
+        "/workspace/work/first-slice-acceptance/repo/openspec/changes/implement-linux-first-slice/tasks.md"
+      ]
+    }
+  },
+  "isPlanningComplete": true,
+  "isComplete": true,
+  "applyRequires": [
+    "tasks"
+  ],
+  "nextSteps": [
+    "All planning artifacts are complete. Run openspec instructions apply --change \"implement-linux-first-slice\" --json to inspect implementation progress."
+  ],
+  "actionContext": {
+    "mode": "repo-local",
+    "sourceOfTruth": "repo",
+    "planningArtifacts": [
+      "proposal",
+      "specs",
+      "design",
+      "tasks"
+    ],
+    "linkedContext": [],
+    "allowedEditRoots": [
+      "/workspace/work/first-slice-acceptance/repo"
+    ],
+    "requiresAffectedAreaSelection": false,
+    "constraints": [
+      "Repo-local change artifacts and implementation edits are scoped to this project."
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "proposal",
+      "outputPath": "proposal.md",
+      "status": "done",
+      "requires": []
+    },
+    {
+      "id": "specs",
+      "outputPath": "specs/**/*.md",
+      "status": "skipped",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "design",
+      "outputPath": "design.md",
+      "status": "done",
+      "requires": [
+        "proposal"
+      ]
+    },
+    {
+      "id": "tasks",
+      "outputPath": "tasks.md",
+      "status": "done",
+      "requires": [
+        "specs",
+        "design"
+      ]
+    }
+  ],
+  "root": {
+    "path": "/workspace/work/first-slice-acceptance/repo",
+    "source": "nearest"
+  }
+}

@@ -1,0 +1,399 @@
+{
+  "source": "2ad6c5ceeb0068d3b2b2d5efe010059965b9415a",
+  "commands": [
+    {
+      "id": "slice-environment",
+      "exit_code": 0,
+      "log_sha256": "4bcbd8268698fd8718be599f870fffdb42b8b497247db6ce972556b4cab5a70c"
+    },
+    {
+      "id": "slice-product",
+      "exit_code": 1,
+      "log_sha256": "2d4d5aced7c1c37bcad7aa1df0d9d7c22a4d30d0c77ca399061c5da1f65a1e69"
+    },
+    {
+      "id": "slice-root-build",
+      "exit_code": 0,
+      "log_sha256": "b92683378fadac8ee2447aa3e96d9d3345dc91ff120f7d88de0bafdd2d4e8aa3"
+    },
+    {
+      "id": "slice-tests-all",
+      "exit_code": 0,
+      "log_sha256": "bf172f2fe9e18633262cc64d8d67e4f53551f1b6fb228b54f8e46ed41960de45"
+    },
+    {
+      "id": "slice-minimal-build",
+      "exit_code": 0,
+      "log_sha256": "186c352b2966cd2a339c178ce6dfbf269bc4ddc7ac0a31991de2c7f6943e3d2f"
+    },
+    {
+      "id": "slice-cold-input",
+      "exit_code": 0,
+      "log_sha256": "5ffca1e61b95d9c7e0623e7fdd8447ca9b2f6c549f5d935656471b6791fa00e0"
+    },
+    {
+      "id": "slice-minimal-pty",
+      "exit_code": 0,
+      "log_sha256": "2e58dc88285d7659b6f7898bfcb5b38e8ebb38bb7a6845be5a47aa2cceacf863"
+    },
+    {
+      "id": "slice-bundle",
+      "exit_code": 0,
+      "log_sha256": "2652db5b38f3e4f902356a99f4da92a2057fce9b156d0c36f7ca966bd2a07bd1"
+    },
+    {
+      "id": "slice-package-extract",
+      "exit_code": 0,
+      "log_sha256": "ea20193c2894bfb6f1d980cd364833ef69225d52f556ad5923c481846e64d346"
+    },
+    {
+      "id": "slice-package-build",
+      "exit_code": 0,
+      "log_sha256": "31815eeecb7641df4198f4f21197178027d7c9c054d204c22fa8be31090f63b1"
+    },
+    {
+      "id": "slice-package-run",
+      "exit_code": 0,
+      "log_sha256": "2fddd58965c24a1f7ca0015510ca1dad6fbdda89ef334451730731f0d2605ad5"
+    },
+    {
+      "id": "slice-runtime",
+      "exit_code": 0,
+      "log_sha256": "db58e5617daf84428e144c6dc55ba3bf08e593a5e801edf4de9b4407d52a843b"
+    },
+    {
+      "id": "slice-reuse-scope",
+      "exit_code": 0,
+      "log_sha256": "2c8167e4fca44eb858ad696dc4da88ce681c0c5fde378d259d4348e77fcd2ba1"
+    },
+    {
+      "id": "slice-cold-product",
+      "exit_code": 0,
+      "log_sha256": "5f8b2dcdd6715a4cfbac46095c6f88167a67aa44e8272031469eea6f1b4a402f"
+    },
+    {
+      "id": "slice-final-immutability",
+      "exit_code": 0,
+      "log_sha256": "3342ff6e95c2798f94efd1731f50bb15745ab2cb8623095e6b5e1a49583f442c"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "slice-repo/target/cjtui-0.0.0.cjp",
+      "sha256": "2edd4ae9f120db34c0dbcc9e721bc75b1a60d21d3e12fc5fd320b06dc2793fb3",
+      "size": 36257
+    },
+    {
+      "path": "slice-repo/native/libunicodedata.a",
+      "sha256": "96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03",
+      "size": 234778
+    },
+    {
+      "path": "slice-repo/native/libcjtui_terminal.a",
+      "sha256": "eee23c40470c3692f923affdbba80042da570a4d75a80bde2e9887b51efaec8a",
+      "size": 5580
+    },
+    {
+      "path": "slice-repo/target/release/cjtui/libcjtui.a",
+      "sha256": "417fdffc8dd8a2f9e0cc8d4303ec071291fa0b5c7a2b6baeef0453e07c49b87b",
+      "size": 249662
+    },
+    {
+      "path": "slice-repo/examples/minimal/target/release/bin/main",
+      "sha256": "8d7eb65bfcbf84b27a9fe75f89cbbfeeda3f3914c736d044d64b73090dc40d1b",
+      "size": 15450744
+    },
+    {
+      "path": "slice-cold-repo/native/libunicodedata.a",
+      "sha256": "96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03",
+      "size": 234778
+    },
+    {
+      "path": "slice-cold-repo/native/libcjtui_terminal.a",
+      "sha256": "eee23c40470c3692f923affdbba80042da570a4d75a80bde2e9887b51efaec8a",
+      "size": 5580
+    },
+    {
+      "path": "slice-cold-repo/target/release/cjtui/libcjtui.a",
+      "sha256": "2d058e95afbcdd10b58b72c8b8ddca103d6437ac422ac0c17c75a373210f0cff",
+      "size": 250542
+    },
+    {
+      "path": "slice-cold-repo/examples/minimal/target/release/bin/main",
+      "sha256": "db31cda176d0346ff7ec0affe79223773e4716331a91b1f1d6332df64b3d3dee",
+      "size": 15450792
+    },
+    {
+      "path": "slice-cold-repo/tests/native-smoke/target/release/bin/main",
+      "sha256": "df2038d783318791e098cbc2ff4fc175a08436e77f794e061d3326c5803067ac",
+      "size": 15449376
+    },
+    {
+      "path": "slice-cold-repo/tests/contract/target/release/bin/main",
+      "sha256": "264edf3557305ef4678de239352b5828d2f6521e25fdc7612e291bbce7d193de",
+      "size": 15516352
+    },
+    {
+      "path": "slice-cold-repo/tests/coordinate-boundary/target/release/bin/main",
+      "sha256": "3123e246fa3253409bb9215067187a2bd41d71e9d8bfd054cfdf2150dfe10a23",
+      "size": 15449432
+    },
+    {
+      "path": "slice-cold-repo/tests/integration/fixture/target/release/bin/main",
+      "sha256": "ae1bf60159983e7bf5012ceaa1208692d0264ece25d09409df1ad9adcc26f741",
+      "size": 15451800
+    },
+    {
+      "path": "slice-package/unpacked/cjtui-0.0.0/native/libunicodedata.a",
+      "sha256": "96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03",
+      "size": 234778
+    },
+    {
+      "path": "slice-package/unpacked/cjtui-0.0.0/native/libcjtui_terminal.a",
+      "sha256": "eee23c40470c3692f923affdbba80042da570a4d75a80bde2e9887b51efaec8a",
+      "size": 5580
+    },
+    {
+      "path": "slice-package/consumer/cjpm.toml",
+      "sha256": "ad4f6714cf23c245290a86907d8127f5e50f73252884279d0eae7232f6aca73e",
+      "size": 186
+    },
+    {
+      "path": "slice-package/consumer/src/main.cj",
+      "sha256": "fb4ec75d94dc6730cc4dd247fe0b69bf18255b77883c393820ed7fd434e051d7",
+      "size": 546
+    },
+    {
+      "path": "slice-package/consumer/cjpm.lock",
+      "sha256": "1df195991316f56e5434c574aef38bbef65749c13dc8984be329948a6a3ae7c7",
+      "size": 161
+    },
+    {
+      "path": "slice-package/consumer/target/release/bin/main",
+      "sha256": "4f814b796ed12aad84101742d19c9463cff20c90511204eec71b254f632fabfd",
+      "size": 15451352
+    },
+    {
+      "path": "slice-runtime-only/ordinary_slice_consumer",
+      "sha256": "4f814b796ed12aad84101742d19c9463cff20c90511204eec71b254f632fabfd",
+      "size": 15451352
+    },
+    {
+      "path": "minimal-pty.mjs",
+      "sha256": "840ebfe9f805102f5360dd4e2c49d89997053f74520b2094417f1fb8a53f1530",
+      "size": 2893
+    },
+    {
+      "path": "minimal-pty/stdout.bin",
+      "sha256": "7605ffbf2d22cb6f793d226500bfd278b0fc5b3522856903f10165354d7a7d2f",
+      "size": 182
+    },
+    {
+      "path": "minimal-pty/stderr.bin",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "minimal-pty/before",
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+      "size": 87
+    },
+    {
+      "path": "minimal-pty/after",
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+      "size": 87
+    },
+    {
+      "path": "minimal-pty/result.json",
+      "sha256": "cda118268283320a29a25e1b2da64a74d6ae42ec12f103304edd7c4162b7dcd3",
+      "size": 455
+    },
+    {
+      "path": "snapshot-plain.txt",
+      "sha256": "d0afae39faadd13b6951ddc8c7a506f0de4de7eccac6e0b594153c59b6350457",
+      "size": 61
+    },
+    {
+      "path": "snapshot-ansi.txt",
+      "sha256": "befe4bdeab0d785d8d302e2829a7239e72048e7773802e36fd6fac5f62e90f5e",
+      "size": 98
+    },
+    {
+      "path": "snapshot-values.json",
+      "sha256": "8d22f2922a30362f9b52e99723b9c0de60571589684e2b6426a504443fa6e888",
+      "size": 376
+    },
+    {
+      "path": "slice-snapshots.stdout",
+      "sha256": "9326e105318aaeb847868f1bae0664db28ad1f79a7c4dd87947ffe6131859092",
+      "size": 225
+    },
+    {
+      "path": "logs/slice-runtime-file.trace",
+      "sha256": "c961379ffbe8deeede94ba36aa50f52cdc8100a0e983a7c37eb2e68842f8e2e0",
+      "size": 7112
+    }
+  ],
+  "payload": [
+    {
+      "path": "examples/minimal/src/main.cj",
+      "sha256": "6887f6e6a8c8412017e8cd4b6c715cf10c2f11ce40c893d3de59fff44476a296"
+    },
+    {
+      "path": "examples/minimal/cjpm.toml",
+      "sha256": "d301a62d68caaa94a7bccf19ea1fb9072309f8bfacfde7b1c0779055acd43f03"
+    },
+    {
+      "path": "src/unicode.cj",
+      "sha256": "fffbac2ef91ae1e762ed5a53d1cca5435d8acb758cb632f9625d55c17b248f69"
+    },
+    {
+      "path": "src/frame.cj",
+      "sha256": "f5a758267b2c6e503b2070af9831971d9b3bb1485685a7ec0b05a7c1f07ad20f"
+    },
+    {
+      "path": "src/application.cj",
+      "sha256": "04013a55423b36795a1f08f0fdf98145e82c151afd6d5913b8bae4a5fe0006ba"
+    },
+    {
+      "path": "src/component.cj",
+      "sha256": "3dd153d64b99b7cf5d317405139731259942df2b1a4a5aa86de57912034ca872"
+    },
+    {
+      "path": "docs/product/native-build.md",
+      "sha256": "353f732ac0b85e1628ac34640734f28d80fb1d7d20a0bb760eb6906c7d024177"
+    },
+    {
+      "path": "docs/product/README.md",
+      "sha256": "4c3d25801cee533b3cf6f30d21db91b50bb7892f23eb82ab9fa290e9fd818987"
+    },
+    {
+      "path": "third_party/licenses/ansies/package-README.md.txt",
+      "sha256": "46b894ffbb402c7c43d65e91d282593a3c1940800e64e995d3195ac820724d29"
+    },
+    {
+      "path": "third_party/licenses/ansies/LICENSE",
+      "sha256": "3ff90416cfa7c39fa712549d388be9f6a6c9f08b56a5df3b8a19727978eae0a5"
+    },
+    {
+      "path": "third_party/licenses/ansies/package-cjpm.toml",
+      "sha256": "554516e616d2c76aaad5d55dbea69980be62959b13cad910be964e9240b6478e"
+    },
+    {
+      "path": "third_party/licenses/ansies/README.OpenSource",
+      "sha256": "b077416cdd0bb7d739c7fed04f8089ae37a8090a0c7c9a821d43232c6cd54040"
+    },
+    {
+      "path": "third_party/licenses/unicodewidth/LICENSE-MIT",
+      "sha256": "7b63ecd5f1902af1b63729947373683c32745c16a10e8e6292e2e2dcd7e90ae0"
+    },
+    {
+      "path": "third_party/licenses/unicodewidth/COPYRIGHT",
+      "sha256": "23860c2a7b5d96b21569afedf033469bab9fe14a1b24a35068b8641c578ce24d"
+    },
+    {
+      "path": "third_party/licenses/unicodewidth/package-README.md.txt",
+      "sha256": "a34af89dd95578079c87b7141579300c54680b1f1578a55dee58f8a327267170"
+    },
+    {
+      "path": "third_party/licenses/unicodewidth/LICENSE-APACHE",
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/licenses/unicodewidth/LICENSE",
+      "sha256": "57a0e7f3270c6b6b341aa5080207063c77b2639ed5da56e0f7e0bbcc1e34b02b"
+    },
+    {
+      "path": "third_party/licenses/unicodewidth/package-cjpm.toml",
+      "sha256": "f5819f0562ef4079f76b2d68e09f4d67806fbd68e0e410e51817a15df5cce36e"
+    },
+    {
+      "path": "third_party/licenses/unicodewidth/README.OpenSource",
+      "sha256": "6c0a7fe96d19fc8367c3e524a5e4d5ab2316f6aab981e59539ab657135798754"
+    },
+    {
+      "path": "third_party/licenses/UNICODE-DATA-LICENSE.txt",
+      "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+    },
+    {
+      "path": "third_party/licenses/bitarray/LICENSE-MIT",
+      "sha256": "7b63ecd5f1902af1b63729947373683c32745c16a10e8e6292e2e2dcd7e90ae0"
+    },
+    {
+      "path": "third_party/licenses/bitarray/package-README.md.txt",
+      "sha256": "a2f3df0ecb73a59cbd84c7a0b1c47f436081452383f31c7326ff6628fa6dd183"
+    },
+    {
+      "path": "third_party/licenses/bitarray/LICENSE-APACHE",
+      "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+    },
+    {
+      "path": "third_party/licenses/bitarray/LICENSE",
+      "sha256": "57a0e7f3270c6b6b341aa5080207063c77b2639ed5da56e0f7e0bbcc1e34b02b"
+    },
+    {
+      "path": "third_party/licenses/bitarray/package-cjpm.toml",
+      "sha256": "f3a0c41d07823621d5abd3c4783694b8b081daad534313ee71e4054a1b862915"
+    },
+    {
+      "path": "third_party/licenses/unicode/package-README.md.txt",
+      "sha256": "111341f3db05e67aa9c38ed4fb9c5840d5c254d19e9bd44253fd7b6e09cef651"
+    },
+    {
+      "path": "third_party/licenses/unicode/LICENSE",
+      "sha256": "3ff90416cfa7c39fa712549d388be9f6a6c9f08b56a5df3b8a19727978eae0a5"
+    },
+    {
+      "path": "third_party/licenses/unicode/package-cjpm.toml",
+      "sha256": "42049dd08985115f3c6c6c7e26acb385c9fc48d59b7556e78bb1d7cf42a54dbc"
+    },
+    {
+      "path": "third_party/licenses/unicode/README.OpenSource",
+      "sha256": "1e962fe7c70199c241e4a2241eaf1d61af8bc1fbf32c3af1a4f333749c37949e"
+    },
+    {
+      "path": "cjpm.toml",
+      "sha256": "8b7fb5766553da31672a48c78871390b2f62bb4ec4c71d2dad49ad190a7e3e64"
+    },
+    {
+      "path": "native/build.sh",
+      "sha256": "77677c3921f7c3388cf0bdea851c11f8216e2a2e95217163692f4725279dcddc"
+    },
+    {
+      "path": "native/cjtui_terminal.c",
+      "sha256": "f870938439c7b330cab29ed8478f748b228617a471b0a6cbe3b0f18d2b17b5d3"
+    },
+    {
+      "path": "README.md",
+      "sha256": "4179ae0ed5cc8b97aede1039e33b10908b07282955f98007112dc4cdb6f78592"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "9f2bea7a0f3311ab915c19351fca4e9cc0270925c7abd60f5a2a62b66fc179a1"
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "7350d4646d307851a0625c09fb8c9a5ea48ec4df185446aa89832de86c404991"
+    },
+    {
+      "path": "build.cj",
+      "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "ce93efd87e1c7c9b599fdb007e52fda53de059eae79cf03d4cccd58863134164"
+    }
+  ],
+  "observations": {
+    "cold_pass_lines": 134,
+    "pty_modes": 11,
+    "actual_minimal": true,
+    "minimal_stdout_bytes": 182,
+    "packaged_files": 37,
+    "package_sha256": "2edd4ae9f120db34c0dbcc9e721bc75b1a60d21d3e12fc5fd320b06dc2793fb3",
+    "plain_snapshot_exact": true,
+    "ansi_snapshot_boundary": true,
+    "cache_lists_identical": true,
+    "runtime_development_path_access": false
+  }
+}

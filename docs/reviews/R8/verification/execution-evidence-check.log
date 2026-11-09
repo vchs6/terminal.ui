@@ -1,0 +1,92 @@
+{
+  "commands": [
+    {
+      "id": "slice-environment",
+      "exit_code": 0,
+      "log_sha256": "4bcbd8268698fd8718be599f870fffdb42b8b497247db6ce972556b4cab5a70c"
+    },
+    {
+      "id": "slice-product",
+      "exit_code": 1,
+      "log_sha256": "2d4d5aced7c1c37bcad7aa1df0d9d7c22a4d30d0c77ca399061c5da1f65a1e69"
+    },
+    {
+      "id": "slice-root-build",
+      "exit_code": 0,
+      "log_sha256": "b92683378fadac8ee2447aa3e96d9d3345dc91ff120f7d88de0bafdd2d4e8aa3"
+    },
+    {
+      "id": "slice-tests-all",
+      "exit_code": 0,
+      "log_sha256": "bf172f2fe9e18633262cc64d8d67e4f53551f1b6fb228b54f8e46ed41960de45"
+    },
+    {
+      "id": "slice-minimal-build",
+      "exit_code": 0,
+      "log_sha256": "186c352b2966cd2a339c178ce6dfbf269bc4ddc7ac0a31991de2c7f6943e3d2f"
+    },
+    {
+      "id": "slice-cold-input",
+      "exit_code": 0,
+      "log_sha256": "5ffca1e61b95d9c7e0623e7fdd8447ca9b2f6c549f5d935656471b6791fa00e0"
+    },
+    {
+      "id": "slice-minimal-pty",
+      "exit_code": 0,
+      "log_sha256": "2e58dc88285d7659b6f7898bfcb5b38e8ebb38bb7a6845be5a47aa2cceacf863"
+    },
+    {
+      "id": "slice-bundle",
+      "exit_code": 0,
+      "log_sha256": "2652db5b38f3e4f902356a99f4da92a2057fce9b156d0c36f7ca966bd2a07bd1"
+    },
+    {
+      "id": "slice-package-extract",
+      "exit_code": 0,
+      "log_sha256": "ea20193c2894bfb6f1d980cd364833ef69225d52f556ad5923c481846e64d346"
+    },
+    {
+      "id": "slice-package-build",
+      "exit_code": 0,
+      "log_sha256": "31815eeecb7641df4198f4f21197178027d7c9c054d204c22fa8be31090f63b1"
+    },
+    {
+      "id": "slice-package-run",
+      "exit_code": 0,
+      "log_sha256": "2fddd58965c24a1f7ca0015510ca1dad6fbdda89ef334451730731f0d2605ad5"
+    },
+    {
+      "id": "slice-runtime",
+      "exit_code": 0,
+      "log_sha256": "db58e5617daf84428e144c6dc55ba3bf08e593a5e801edf4de9b4407d52a843b"
+    },
+    {
+      "id": "slice-reuse-scope",
+      "exit_code": 0,
+      "log_sha256": "2c8167e4fca44eb858ad696dc4da88ce681c0c5fde378d259d4348e77fcd2ba1"
+    },
+    {
+      "id": "slice-cold-product",
+      "exit_code": 0,
+      "log_sha256": "5f8b2dcdd6715a4cfbac46095c6f88167a67aa44e8272031469eea6f1b4a402f"
+    },
+    {
+      "id": "slice-final-immutability",
+      "exit_code": 0,
+      "log_sha256": "3342ff6e95c2798f94efd1731f50bb15745ab2cb8623095e6b5e1a49583f442c"
+    }
+  ],
+  "artifacts_verified": 31,
+  "observations": {
+    "cold_pass_lines": 134,
+    "pty_modes": 11,
+    "actual_minimal": true,
+    "minimal_stdout_bytes": 182,
+    "packaged_files": 37,
+    "package_sha256": "2edd4ae9f120db34c0dbcc9e721bc75b1a60d21d3e12fc5fd320b06dc2793fb3",
+    "plain_snapshot_exact": true,
+    "ansi_snapshot_boundary": true,
+    "cache_lists_identical": true,
+    "runtime_development_path_access": false
+  }
+}
