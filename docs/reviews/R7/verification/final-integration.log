@@ -1,0 +1,463 @@
+Final integrated acceptance check; fixed c52bb9a64e06ec80c8b9dc330de8651839486783
+
+$ ["git","diff","--name-status","e2c122de616207c9e5166a9c89416233b8b81268","HEAD"]
+M	docs/acceptance.md
+A	docs/reviews/R7/execution/clone.log
+A	docs/reviews/R7/execution/execute.sh
+A	docs/reviews/R7/execution/execution.log
+A	docs/reviews/R7/execution/ffi-link-lines.log
+A	docs/reviews/R7/execution/final-checks.log
+A	docs/reviews/R7/execution/final-checks.sh
+A	docs/reviews/R7/execution/native-probe/logs/adapter-owned-ffi-relink.log
+A	docs/reviews/R7/execution/native-probe/logs/archive-files.txt
+A	docs/reviews/R7/execution/native-probe/logs/consumer-native-link.log
+A	docs/reviews/R7/execution/native-probe/logs/dependency-ffi-transitive.log
+A	docs/reviews/R7/execution/native-probe/logs/generate-conformance.log
+A	docs/reviews/R7/execution/native-probe/logs/generator-build.log
+A	docs/reviews/R7/execution/native-probe/logs/generator-run.log
+A	docs/reviews/R7/execution/native-probe/logs/grapheme-conformance.log
+A	docs/reviews/R7/execution/native-probe/logs/input-checksums.log
+A	docs/reviews/R7/execution/native-probe/logs/intermediate-ffi.log
+A	docs/reviews/R7/execution/native-probe/logs/native-build.log
+A	docs/reviews/R7/execution/native-probe/logs/normal-build-clean.log
+A	docs/reviews/R7/execution/native-probe/logs/tools.log
+A	docs/reviews/R7/execution/native-probe/logs/transitive-input-checksum.log
+A	docs/reviews/R7/execution/report.md
+A	docs/reviews/R7/execution/results.json
+A	docs/reviews/R7/execution/retest-execute.sh
+A	docs/reviews/R7/execution/retest-execution.log
+A	docs/reviews/R7/execution/retest-final-state.log
+A	docs/reviews/R7/execution/retest-native-probe/logs/adapter-owned-ffi-relink.log
+A	docs/reviews/R7/execution/retest-native-probe/logs/grapheme-conformance.log
+A	docs/reviews/R7/execution/retest-native-probe/logs/intermediate-ffi.log
+A	docs/reviews/R7/execution/retest-native-probe/logs/transitive-input-checksum.log
+A	docs/reviews/R7/execution/retest-report.md
+A	docs/reviews/R7/execution/retest-results.json
+A	docs/reviews/R7/execution/retest-run-transitive.trace.log
+A	docs/reviews/R7/execution/run-native.trace.log
+A	docs/reviews/R7/execution/run-transitive.trace.log
+A	docs/reviews/R7/findings.json
+A	docs/reviews/R7/independent-review.md
+A	docs/reviews/R7/re-review.md
+A	docs/reviews/R7/response.md
+A	docs/reviews/R7/result.md
+A	docs/reviews/R7/verification/audit.mjs
+A	docs/reviews/R7/verification/check-contract.mjs
+A	docs/reviews/R7/verification/check-execution.mjs
+A	docs/reviews/R7/verification/check-provenance.mjs
+A	docs/reviews/R7/verification/check-unicode-source.mjs
+A	docs/reviews/R7/verification/contract-results.json
+A	docs/reviews/R7/verification/contract.log
+A	docs/reviews/R7/verification/execution-check.log
+A	docs/reviews/R7/verification/execution-evidence.json
+A	docs/reviews/R7/verification/provenance-results.json
+A	docs/reviews/R7/verification/provenance.log
+A	docs/reviews/R7/verification/unicode-official-results.json
+A	docs/reviews/R7/verification/unicode-source.log
+A	docs/reviews/R7/verification/validation.txt
+A	docs/reviews/R7/verification/verification.md
+M	openspec/changes/refine-terminal-ui-contracts/tasks.md
+
+exit=0
+BYTE_IDENTICAL docs/reviews/R7/execution/clone.log <- /workspace/work/r7-independent-test/clone.log sha256=cc8e05d41a132fb07876a40fac3c298c3e681ff1c81a702be574c862f991e1af
+BYTE_IDENTICAL docs/reviews/R7/execution/execute.sh <- /workspace/work/r7-independent-test/execute.sh sha256=5ecfce678f1ce80bd0518fa1c37f167016686a3d3722bb6a4b2524fcd0832bb2
+BYTE_IDENTICAL docs/reviews/R7/execution/execution.log <- /workspace/work/r7-independent-test/execution.log sha256=67135874f2af46783c6bb589f5d5d5fafef68f7654880364c5256688e9664481
+BYTE_IDENTICAL docs/reviews/R7/execution/ffi-link-lines.log <- /workspace/work/r7-independent-test/ffi-link-lines.log sha256=889ce6b3241fa13b413444df7ba2515748886a85925f1f175581e6d9df7e25f9
+BYTE_IDENTICAL docs/reviews/R7/execution/final-checks.log <- /workspace/work/r7-independent-test/final-checks.log sha256=2cdaa1ce3073f5d4cb102e99373d43299c0f5419ff0caf397f41114d05b08076
+BYTE_IDENTICAL docs/reviews/R7/execution/final-checks.sh <- /workspace/work/r7-independent-test/final-checks.sh sha256=6d060defd81479f0b212b3987c5c73c60e09dcb4e68ccf87102ee85ebf8c04e3
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/adapter-owned-ffi-relink.log <- /workspace/work/r7-independent-test/native-probe/logs/adapter-owned-ffi-relink.log sha256=9e6f50d6477e020f498a6c0e33ad59649749f03d73703a8686ab7b357d58009b
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/archive-files.txt <- /workspace/work/r7-independent-test/native-probe/logs/archive-files.txt sha256=c2a8b509ad0d6def5f2d50dfe2e22155201b26c90449a35ec3800cd762bddaef
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/consumer-native-link.log <- /workspace/work/r7-independent-test/native-probe/logs/consumer-native-link.log sha256=cc2d661613223998d146cdf74628c1214399b394df7d5c12b738577f57149bb5
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/dependency-ffi-transitive.log <- /workspace/work/r7-independent-test/native-probe/logs/dependency-ffi-transitive.log sha256=c62260968c01a3f70161c8194ad0286fc87324360dc4dd0dc9697ca6176e06a9
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/generate-conformance.log <- /workspace/work/r7-independent-test/native-probe/logs/generate-conformance.log sha256=edbde48c60e2588611593b1cd8e4d45f304aaaa8fc49a3afd0e10199e7d9594e
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/generator-build.log <- /workspace/work/r7-independent-test/native-probe/logs/generator-build.log sha256=101c91932677a2ded03852a9268d67ef2bda624174489284003987556ba321ee
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/generator-run.log <- /workspace/work/r7-independent-test/native-probe/logs/generator-run.log sha256=dcca7f2bea88970d0a908518b4cec9fa83095b59856b5a50eed0937b8a2df353
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/grapheme-conformance.log <- /workspace/work/r7-independent-test/native-probe/logs/grapheme-conformance.log sha256=658f3e73e841a5bcf81e1122eab88149c6ae6e445c76b75628693685856cd09e
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/input-checksums.log <- /workspace/work/r7-independent-test/native-probe/logs/input-checksums.log sha256=324ec11f3458987991c92ecb5c7cd6adbfc9d356b05f03e36623c1a48f2e5a0e
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/intermediate-ffi.log <- /workspace/work/r7-independent-test/native-probe/logs/intermediate-ffi.log sha256=0b42fa4fab2d4597262e51c6342d34c3c986d8dbdfb76a1858bde824f50bc908
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/native-build.log <- /workspace/work/r7-independent-test/native-probe/logs/native-build.log sha256=9561f99c0da05cf4c5ca7235c128349b649154d330f2f2a34febbf796936b86f
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/normal-build-clean.log <- /workspace/work/r7-independent-test/native-probe/logs/normal-build-clean.log sha256=bf96bea7e6c578b080a26786ee2bc3ebeb079a73563c80cc71e9c07a532597b1
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/tools.log <- /workspace/work/r7-independent-test/native-probe/logs/tools.log sha256=32aa543499fc6754e91e09ec998f27a35b676ea65a20623a64ea499b7ebfb797
+BYTE_IDENTICAL docs/reviews/R7/execution/native-probe/logs/transitive-input-checksum.log <- /workspace/work/r7-independent-test/native-probe/logs/transitive-input-checksum.log sha256=a250ce32224eee3f7c78271fc44c72bfddbc19a1c45ae9abad2a97d2bd317544
+BYTE_IDENTICAL docs/reviews/R7/execution/report.md <- /workspace/work/r7-independent-test/report.md sha256=f8c80bc345a6e20af076277d8a470c6e6b524180e1690a8ada8d3c2ad7df04f2
+BYTE_IDENTICAL docs/reviews/R7/execution/results.json <- /workspace/work/r7-independent-test/results.json sha256=7e17cd3899ca26daa43c36c7208a8f42d3063effc18ddcb37479c740085ba763
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-execute.sh <- /workspace/work/r7-independent-test/retest-execute.sh sha256=b1d46ddece496d6cf8b1c8e92e6e01643d7bac43ec1f4733bfab0b70dccacc62
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-execution.log <- /workspace/work/r7-independent-test/retest-execution.log sha256=959d74abe2d120ef3a180316e3dac5a1df230d6080574f6159d461a54a9ef081
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-final-state.log <- /workspace/work/r7-independent-test/retest-final-state.log sha256=e044f7a07dab32f9f259c106de7cae03142a66558b58a4eeeb1d5f9609d652f8
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-native-probe/logs/adapter-owned-ffi-relink.log <- /workspace/work/r7-independent-test/retest-native-probe/logs/adapter-owned-ffi-relink.log sha256=d18e3e8c217f2dd3188b436b316fa6deddfc30911b8a4e680cce52dd7b0b2dc1
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-native-probe/logs/grapheme-conformance.log <- /workspace/work/r7-independent-test/retest-native-probe/logs/grapheme-conformance.log sha256=658f3e73e841a5bcf81e1122eab88149c6ae6e445c76b75628693685856cd09e
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-native-probe/logs/intermediate-ffi.log <- /workspace/work/r7-independent-test/retest-native-probe/logs/intermediate-ffi.log sha256=9091cefa5e11cdc0952ef9467d516f9305235c841ce7f954431bfb1394413d1c
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-native-probe/logs/transitive-input-checksum.log <- /workspace/work/r7-independent-test/retest-native-probe/logs/transitive-input-checksum.log sha256=a250ce32224eee3f7c78271fc44c72bfddbc19a1c45ae9abad2a97d2bd317544
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-report.md <- /workspace/work/r7-independent-test/retest-report.md sha256=0a27559b45432316f168ec36d78319bf17a1074eeb1c36f2ba23d07bec5adc2a
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-results.json <- /workspace/work/r7-independent-test/retest-results.json sha256=85351155c95f335d9e85e8ad23915cd44fd3e3e4cf342c51106501bc6563ddfc
+BYTE_IDENTICAL docs/reviews/R7/execution/retest-run-transitive.trace.log <- /workspace/work/r7-independent-test/retest-run-transitive.trace.log sha256=e4c167148012df82b7a96fab17dd2f2614e08da18d7c448be95395e809c39629
+BYTE_IDENTICAL docs/reviews/R7/execution/run-native.trace.log <- /workspace/work/r7-independent-test/run-native.trace.log sha256=42a0e0736178edf4f649a7f8f4310656d332ef450e19fd5b4b43fc32be637d2a
+BYTE_IDENTICAL docs/reviews/R7/execution/run-transitive.trace.log <- /workspace/work/r7-independent-test/run-transitive.trace.log sha256=2f54522c1de0101bab0c913ad8bcf880fdea703209c604f3f3f73113ba2a15aa
+BYTE_IDENTICAL docs/reviews/R7/findings.json <- /workspace/work/r7-independent-review/findings.json sha256=b8e77db6094ffda9b1d5b03c48ed2c92f3f28c60f4b771de57ead51eb69e50df
+BYTE_IDENTICAL docs/reviews/R7/independent-review.md <- /workspace/work/r7-independent-review/independent-review.md sha256=9e0e44707a929c670119a34c2c42614e4dcbfdfcc3c91f9e078d8e2720c46b78
+BYTE_IDENTICAL docs/reviews/R7/re-review.md <- /workspace/work/r7-independent-review/re-review.md sha256=a182585073c334e7391c29b3505326f4c481d88f6bdb3286a22d9d04fa536b98
+BYTE_IDENTICAL docs/reviews/R7/verification/audit.mjs <- /workspace/work/r7-acceptance/audit.mjs sha256=ab57c9176f18f83f076f49e744358a5f29ca854897086ab9487dbbc5e82df46e
+BYTE_IDENTICAL docs/reviews/R7/verification/check-contract.mjs <- /workspace/work/r7-acceptance/check-contract.mjs sha256=a1a4cfc84d5537e7adc766acfc77313bce4b2a9a3d00febe69cc1d8e1a5a0f77
+BYTE_IDENTICAL docs/reviews/R7/verification/check-execution.mjs <- /workspace/work/r7-acceptance/check-execution.mjs sha256=50d8f9bbb645abb8bff4adf43906eb92fa89a985a610db56e4172e8380d8149f
+BYTE_IDENTICAL docs/reviews/R7/verification/check-provenance.mjs <- /workspace/work/r7-acceptance/check-provenance.mjs sha256=81723c4c4aa0ad4062412cd69b7fa61b300d61dba043edae14c2b159a5ed23bc
+BYTE_IDENTICAL docs/reviews/R7/verification/check-unicode-source.mjs <- /workspace/work/r7-acceptance/check-unicode-source.mjs sha256=2d4ac16adbc1ee264538a9a1c7b0235527f15ec0bc2fb6ea8ba757548ae42d81
+BYTE_IDENTICAL docs/reviews/R7/verification/contract-results.json <- /workspace/work/r7-acceptance/contract-results.json sha256=3f8f1fd37f1e8e9a63122b6dfa2f08aab430dbaed0c3f6728b7b243440e40e57
+BYTE_IDENTICAL docs/reviews/R7/verification/contract.log <- /workspace/work/r7-acceptance/contract.log sha256=d8c1ac5b03cd635e1b5b98c9dc1bf9f93d05905b4d654a468f8424c87020728d
+BYTE_IDENTICAL docs/reviews/R7/verification/execution-check.log <- /workspace/work/r7-acceptance/execution-check.log sha256=234cc8f3ac2bcb47b30e0d2b2be304d7cc7d2781e493516d89d9b513a863a1d7
+BYTE_IDENTICAL docs/reviews/R7/verification/execution-evidence.json <- /workspace/work/r7-acceptance/execution-evidence.json sha256=210bd694d6493e04db7cdc042d5c0c23296cb6009abd387a60f1fbf0cb734143
+BYTE_IDENTICAL docs/reviews/R7/verification/provenance-results.json <- /workspace/work/r7-acceptance/provenance-results.json sha256=c9ea25f2c5a7d2496bcddf2c516b660d604420c430e3a9c8cdb10b491353765d
+BYTE_IDENTICAL docs/reviews/R7/verification/provenance.log <- /workspace/work/r7-acceptance/provenance.log sha256=044f4aaf2bb2d1abcb9d663183d062f4a6e2119397f81e133298b81499f4e397
+BYTE_IDENTICAL docs/reviews/R7/verification/unicode-official-results.json <- /workspace/work/r7-acceptance/unicode-official-results.json sha256=404198df9b75cdb2c569b2fb79ae9fa1b62448ad0978a444ffbfa3c3e3f75a65
+BYTE_IDENTICAL docs/reviews/R7/verification/unicode-source.log <- /workspace/work/r7-acceptance/unicode-source.log sha256=84d64c64a9c1dd8193c958551263c6c945b3294a12e7c3bd53ceb7883f01fd35
+BYTE_IDENTICAL docs/reviews/R7/verification/validation.txt <- /workspace/work/r7-acceptance/validation.txt sha256=a3cbea538c77530d1ef0bef284e10c5b92d0d2b0696e56d4219cb237022b7192
+BYTE_IDENTICAL docs/reviews/R7/verification/verification.md <- /workspace/work/r7-acceptance/verification.md sha256=ffd2767c0d8511c30c5ff0cb988d60713826bd6208ec705e158007fd1ba8a6a2
+
+$ ["git","ls-tree","-r","--name-only","e2c122de616207c9e5166a9c89416233b8b81268"]
+.agents/skills/.openspec-target
+.agents/skills/openspec-apply-change/SKILL.md
+.agents/skills/openspec-archive-change/SKILL.md
+.agents/skills/openspec-explore/SKILL.md
+.agents/skills/openspec-propose/SKILL.md
+.agents/skills/openspec-sync-specs/SKILL.md
+.agents/skills/openspec-update-change/SKILL.md
+.github/workflows/ci.yml
+.gitignore
+AGENTS.md
+BATTLE_PROTOCOL.md
+CHANGELOG.md
+CONTRIBUTING.md
+ENGINEERING_TASK_DECOMPOSITION.md
+LICENSE
+NOTICE
+README.md
+benchmarks/.gitkeep
+cjpm.toml
+docs/README.md
+docs/acceptance.md
+docs/architecture.md
+docs/development/central-packages.json
+docs/development/dependencies.md
+docs/development/environment.md
+docs/development/framework-research.md
+docs/development/proposal.md
+docs/development/tools.lock.json
+docs/implementation_plan_and_tasks.md
+docs/product/README.md
+docs/requirements.md
+docs/reviews/R0/findings.json
+docs/reviews/R0/result.md
+docs/reviews/R1/result.md
+docs/reviews/R3/findings.json
+docs/reviews/R3/result.md
+docs/reviews/R4/evidence.json
+docs/reviews/R4/repository-check.log
+docs/reviews/R4/result.md
+docs/reviews/R4/reviewed.patch
+docs/reviews/R4/validation.log
+docs/reviews/R5/check-consistency.mjs
+docs/reviews/R5/evidence/.gitignore
+docs/reviews/R5/evidence/README.md
+docs/reviews/R5/evidence/dependency-logs/ansies-run.log
+docs/reviews/R5/evidence/dependency-logs/ansies-update.log
+docs/reviews/R5/evidence/dependency-logs/combined-environment.log
+docs/reviews/R5/evidence/dependency-logs/combined-run.log
+docs/reviews/R5/evidence/dependency-logs/dependency-update.log
+docs/reviews/R5/evidence/dependency-logs/package-checksums.log
+docs/reviews/R5/evidence/dependency-logs/replay.log
+docs/reviews/R5/evidence/dependency-logs/tools.log
+docs/reviews/R5/evidence/dependency-logs/ucd-checksum.log
+docs/reviews/R5/evidence/dependency-logs/unicode-cases.log
+docs/reviews/R5/evidence/dependency-logs/unicode-clean-link-failure.log
+docs/reviews/R5/evidence/dependency-logs/unicode-generator-build.log
+docs/reviews/R5/evidence/dependency-logs/unicode-generator-run.log
+docs/reviews/R5/evidence/dependency-logs/unicode-native-build.log
+docs/reviews/R5/evidence/dependency-logs/unicodewidth-run.log
+docs/reviews/R5/evidence/dependency-logs/unicodewidth-update.log
+docs/reviews/R5/evidence/dependency-metadata.json
+docs/reviews/R5/evidence/dependency-probes/ansies/cjpm.toml
+docs/reviews/R5/evidence/dependency-probes/ansies/src/main.cj
+docs/reviews/R5/evidence/dependency-probes/combined/cjpm.lock
+docs/reviews/R5/evidence/dependency-probes/combined/cjpm.toml
+docs/reviews/R5/evidence/dependency-probes/combined/src/main.cj
+docs/reviews/R5/evidence/dependency-probes/unicode/cjpm.toml
+docs/reviews/R5/evidence/dependency-probes/unicode/src/main.cj
+docs/reviews/R5/evidence/dependency-probes/unicodewidth/cjpm.toml
+docs/reviews/R5/evidence/dependency-probes/unicodewidth/src/main.cj
+docs/reviews/R5/evidence/download-sha256.txt
+docs/reviews/R5/evidence/language/logs/binding.compile.log
+docs/reviews/R5/evidence/language/logs/binding.run.log
+docs/reviews/R5/evidence/language/logs/mutable_capture_negative.compile.log
+docs/reviews/R5/evidence/language/logs/negative.compile.log
+docs/reviews/R5/evidence/language/logs/plain_block.compile.log
+docs/reviews/R5/evidence/language/logs/plain_block.run.log
+docs/reviews/R5/evidence/language/logs/toolchain.log
+docs/reviews/R5/evidence/language/logs/trailing.compile.log
+docs/reviews/R5/evidence/language/logs/trailing.run.log
+docs/reviews/R5/evidence/language/sources/binding.cj
+docs/reviews/R5/evidence/language/sources/mutable_capture_negative.cj
+docs/reviews/R5/evidence/language/sources/negative.cj
+docs/reviews/R5/evidence/language/sources/plain_block.cj
+docs/reviews/R5/evidence/language/sources/trailing.cj
+docs/reviews/R5/evidence/package-license-file-scan.json
+docs/reviews/R5/evidence/registry-relay.mjs
+docs/reviews/R5/evidence/run-combined.sh
+docs/reviews/R5/evidence/run-dependencies.sh
+docs/reviews/R5/evidence/run-language.sh
+docs/reviews/R5/findings.json
+docs/reviews/R5/independent-review.md
+docs/reviews/R5/initial-findings.json
+docs/reviews/R5/input.md
+docs/reviews/R5/re-review.md
+docs/reviews/R5/response.md
+docs/reviews/R5/result.md
+docs/reviews/R5/validation-final.txt
+docs/reviews/R5/validation-revision.txt
+docs/reviews/R6/check-platform-mapping.mjs
+docs/reviews/R6/findings.json
+docs/reviews/R6/independent-review.md
+docs/reviews/R6/input.md
+docs/reviews/R6/platform-evidence.md
+docs/reviews/R6/result.md
+docs/reviews/R6/validation-final.txt
+docs/reviews/R6/validation-initial.txt
+docs/reviews/R7/evidence/licenses/README.md
+docs/reviews/R7/evidence/licenses/SHA256SUMS
+docs/reviews/R7/evidence/licenses/evidence-index.json
+docs/reviews/R7/evidence/licenses/evidence/ansies/LICENSE
+docs/reviews/R7/evidence/licenses/evidence/ansies/README.OpenSource
+docs/reviews/R7/evidence/licenses/evidence/ansies/package-README.md.txt
+docs/reviews/R7/evidence/licenses/evidence/ansies/package-cjpm.toml
+docs/reviews/R7/evidence/licenses/evidence/bitarray/LICENSE
+docs/reviews/R7/evidence/licenses/evidence/bitarray/LICENSE-APACHE
+docs/reviews/R7/evidence/licenses/evidence/bitarray/LICENSE-MIT
+docs/reviews/R7/evidence/licenses/evidence/bitarray/package-README.md.txt
+docs/reviews/R7/evidence/licenses/evidence/bitarray/package-cjpm.toml
+docs/reviews/R7/evidence/licenses/evidence/unicode/LICENSE
+docs/reviews/R7/evidence/licenses/evidence/unicode/README.OpenSource
+docs/reviews/R7/evidence/licenses/evidence/unicode/package-README.md.txt
+docs/reviews/R7/evidence/licenses/evidence/unicode/package-cjpm.toml
+docs/reviews/R7/evidence/licenses/evidence/unicodewidth/COPYRIGHT
+docs/reviews/R7/evidence/licenses/evidence/unicodewidth/LICENSE
+docs/reviews/R7/evidence/licenses/evidence/unicodewidth/LICENSE-APACHE
+docs/reviews/R7/evidence/licenses/evidence/unicodewidth/LICENSE-MIT
+docs/reviews/R7/evidence/licenses/evidence/unicodewidth/README.OpenSource
+docs/reviews/R7/evidence/licenses/evidence/unicodewidth/package-README.md.txt
+docs/reviews/R7/evidence/licenses/evidence/unicodewidth/package-cjpm.toml
+docs/reviews/R7/evidence/licenses/source-differences.diff
+docs/reviews/R7/evidence/licenses/ucd17-ReadMe.txt
+docs/reviews/R7/evidence/licenses/unicode-license-fetch.json
+docs/reviews/R7/evidence/licenses/unicode-license-v3.txt
+docs/reviews/R7/evidence/licenses/unicode-terms.html
+docs/reviews/R7/evidence/native/README.md
+docs/reviews/R7/evidence/native/SHA256SUMS
+docs/reviews/R7/evidence/native/generate-conformance.mjs
+docs/reviews/R7/evidence/native/logs/adapter-owned-ffi-relink.log
+docs/reviews/R7/evidence/native/logs/consumer-native-link.log
+docs/reviews/R7/evidence/native/logs/dependency-ffi-transitive.log
+docs/reviews/R7/evidence/native/logs/dependency-script-hook-markers.log
+docs/reviews/R7/evidence/native/logs/dependency-script-hooks.log
+docs/reviews/R7/evidence/native/logs/generator-build.log
+docs/reviews/R7/evidence/native/logs/generator-run.log
+docs/reviews/R7/evidence/native/logs/grapheme-conformance.log
+docs/reviews/R7/evidence/native/logs/intermediate-ffi-sequential.log
+docs/reviews/R7/evidence/native/logs/native-output-sha256.txt
+docs/reviews/R7/evidence/native/logs/native-symbols.txt
+docs/reviews/R7/evidence/native/logs/node-generator-equivalence.log
+docs/reviews/R7/evidence/native/logs/normal-build-clean.log
+docs/reviews/R7/evidence/native/metadata.json
+docs/reviews/R7/evidence/native/run-native.sh
+docs/reviews/R7/evidence/native/run-transitive.sh
+docs/reviews/R7/evidence/native/templates/consumer-main.cj
+docs/reviews/R7/evidence/native/templates/consumer-middle.cj
+docs/reviews/R7/evidence/native/templates/hook-probe.cj
+docs/reviews/R7/evidence/native/templates/middle-lib.cj
+docs/reviews/R7/evidence/native/unicode-ffi.patch
+docs/reviews/R7/input.md
+docs/reviews/R7/risks.md
+docs/reviews/R7/skills.md
+docs/tasks.md
+docs/terminal-session.md
+docs/theme-config.md
+docs/ui-construction.md
+examples/.gitkeep
+openspec/changes/archive/.gitkeep
+openspec/changes/archive/2026-10-18-refine-development-governance/.openspec.yaml
+openspec/changes/archive/2026-10-18-refine-development-governance/design.md
+openspec/changes/archive/2026-10-18-refine-development-governance/proposal.md
+openspec/changes/archive/2026-10-18-refine-development-governance/specs/development-workflow/spec.md
+openspec/changes/archive/2026-10-18-refine-development-governance/tasks.md
+openspec/changes/refine-terminal-ui-contracts/.openspec.yaml
+openspec/changes/refine-terminal-ui-contracts/design.md
+openspec/changes/refine-terminal-ui-contracts/proposal.md
+openspec/changes/refine-terminal-ui-contracts/specs/development-workflow/spec.md
+openspec/changes/refine-terminal-ui-contracts/specs/distribution/spec.md
+openspec/changes/refine-terminal-ui-contracts/specs/terminal-output/spec.md
+openspec/changes/refine-terminal-ui-contracts/specs/terminal-session/spec.md
+openspec/changes/refine-terminal-ui-contracts/specs/theme-config/spec.md
+openspec/changes/refine-terminal-ui-contracts/specs/ui-construction/spec.md
+openspec/changes/refine-terminal-ui-contracts/specs/ui-runtime/spec.md
+openspec/changes/refine-terminal-ui-contracts/tasks.md
+openspec/config.yaml
+openspec/specs/.gitkeep
+openspec/specs/development-workflow/spec.md
+openspec/specs/distribution/spec.md
+openspec/specs/terminal-output/spec.md
+openspec/specs/terminal-session/spec.md
+openspec/specs/theme-config/spec.md
+openspec/specs/ui-construction/spec.md
+openspec/specs/ui-runtime/spec.md
+package-lock.json
+package.json
+scripts/check-bundle.mjs
+scripts/check-product.sh
+scripts/check-repository.mjs
+scripts/install-sdk.sh
+scripts/setup-development.mjs
+src/.gitkeep
+tests/.gitkeep
+
+exit=0
+ALL_EXISTING_TECHNICAL_FILES_IDENTICAL count=200; two state projection files separately inspected
+COPIED_INDEPENDENT_ARTIFACTS_IDENTICAL count=52
+
+$ ["npm","run","check"]
+
+> cjtui-development@0.0.0 check
+> node scripts/check-repository.mjs && openspec validate --all --strict --no-interactive
+
+Repository/configuration/links/task mapping checks passed; no product capability verified.
+✓ spec/development-workflow
+✓ spec/distribution
+✓ change/refine-terminal-ui-contracts
+✓ spec/terminal-output
+✓ spec/terminal-session
+✓ spec/theme-config
+✓ spec/ui-construction
+✓ spec/ui-runtime
+Totals: 8 passed, 0 failed (8 items)
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+
+exit=0
+
+$ ["/workspace/work/terminal.ui/node_modules/.bin/openspec","instructions","apply","--change","refine-terminal-ui-contracts","--json"]
+{
+  "changeName": "refine-terminal-ui-contracts",
+  "changeDir": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts",
+  "schemaName": "spec-driven",
+  "contextFiles": {
+    "proposal": [
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/proposal.md"
+    ],
+    "specs": [
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/specs/development-workflow/spec.md",
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/specs/distribution/spec.md",
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/specs/terminal-output/spec.md",
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/specs/terminal-session/spec.md",
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/specs/theme-config/spec.md",
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/specs/ui-construction/spec.md",
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/specs/ui-runtime/spec.md"
+    ],
+    "design": [
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/design.md"
+    ],
+    "tasks": [
+      "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md"
+    ]
+  },
+  "progress": {
+    "total": 10,
+    "complete": 10,
+    "remaining": 0
+  },
+  "tasks": [
+    {
+      "id": "1",
+      "description": "1.1 TASK-033：同步长期需求、架构、构造契约、治理及七项 OpenSpec 场景；验收 AC-033：严格校验、引用与需求任务映射一致，无产品实现宣称。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 7
+    },
+    {
+      "id": "2",
+      "description": "2.1 TASK-034：隔离验证SDK1.2.0语言构造，记录正反例和限制；验收AC-034：语言证据可重跑、结论范围准确，不将产品TASK-002/004勾完。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 35
+    },
+    {
+      "id": "3",
+      "description": "3.1 TASK-036：隔离评估三项直接及传递依赖，验证联合消费并记录原生/许可边界；验收AC-036：包摘要、正负结果和选型可恢复，不冒充产品集成通过。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 64
+    },
+    {
+      "id": "4",
+      "description": "4.1 TASK-035：未参与撰写的审核代理检查全部变更，处置并复核发现；验收 AC-035：固定受审版本、findings、修复及独立复核可定位，无未关闭必需文档缺陷。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 92
+    },
+    {
+      "id": "5",
+      "description": "5.1 TASK-042：补充REQ-011四OS/HarmonyOS规格、提案、后端及验收映射并核对官方资料；验收AC-042：严格规格/引用/依赖检查通过，平台实现证据不虚构。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 127
+    },
+    {
+      "id": "6",
+      "description": "5.2 TASK-043：独立审核本轮跨平台补充并复核必需修复；验收AC-043：固定版本、可定位发现和design_reviewed结论，无未关闭必需文档缺陷。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 128
+    },
+    {
+      "id": "7",
+      "description": "6.1 TASK-044：落实Linux优先依赖顺序；验收AC-044：规格/任务无环且非Linux不阻塞Linux，全部Linux功能前置闭合。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 176
+    },
+    {
+      "id": "8",
+      "description": "6.3 TASK-046：验证Linux Unicode原生构建路线；验收AC-046：根因、固定输入、干净构建、FFI传递与分段用例有独立复验，不冒充产品集成。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 177
+    },
+    {
+      "id": "9",
+      "description": "6.4 TASK-047：核对依赖许可来源；验收AC-047：确切包/上游许可文本对应、差异及剩余发布门槛可复核，不作法律授权认定。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 178
+    },
+    {
+      "id": "10",
+      "description": "6.2 TASK-045：独立审核本轮顺序与风险证据，修复并复核必需发现；验收AC-045：固定版本和可定位发现，产品仍pending，结论仅design_reviewed。",
+      "done": true,
+      "sourcePath": "/workspace/work/r7-acceptance/repo/openspec/changes/refine-terminal-ui-contracts/tasks.md",
+      "line": 179
+    }
+  ],
+  "taskTrackingConfigured": true,
+  "state": "all_done",
+  "instruction": "All tracked tasks are complete.\nReview or verify the change as appropriate before archiving.",
+  "context": "Language: zh-CN. Keep OpenSpec headings and SHALL/MUST keywords in English.\ncjtui is a new Cangjie terminal UI project awaiting development. Product documents are self-contained and do not depend on prior implementations or historical baselines.\nCurrent authorization (2026-11-09): specifications/probes/independent review, followed by Linux-first ANSI terminal implementation and platform/dependency risk resolution. Proceed autonomously within admitted L3 contracts. Complete all Linux capabilities and acceptance before considering Windows, macOS or HarmonyOS implementation; those remain future required targets and never gate the Linux phase. No publication.\nEvaluate central ansies and compare unicode with unicodewidth before selection, as newly authorized. Current manifest versions and selection evidence live in docs/development/dependencies.md. SDK baseline 1.2.0 is the existing Linux probe only; target SDK/runtime/ABI must be verified. Required OS targets: Linux, Windows, macOS, HarmonyOS; OpenHarmony evidence does not substitute for HarmonyOS local execution.\nProject tasks live in docs/tasks.md; when a concrete change starts, transfer its task state authority to that change tasks.md and keep only references in docs/tasks.md.\nProject design is docs/architecture.md, proposal is docs/development/proposal.md, requirements are fully documented in docs/requirements.md, and openspec/specs/ holds corresponding scenario projections. All describe planned requirements, not implemented capabilities.\nFuture concrete changes use OpenSpec workflows; do not recreate a whole-project change.\nSuperpowers plans/designs use the same authority, not duplicate docs/superpowers trees.\nUser requires separate subagents for test design, product implementation, code review, test execution and acceptance verification. Use suitable models, isolated contexts and workspaces, and hand off only contracts and fixed-version artifacts; the main agent coordinates/integrates and resolves disagreements. Author self-tests never replace independent acceptance.\n",
+  "root": {
+    "path": "/workspace/work/r7-acceptance/repo",
+    "source": "nearest"
+  }
+}
+
+exit=0
+AC044/046/047=passed (document/investigation); AC045=design_reviewed; all product AC001-032,037-041 pending
+
+$ ["git","status","--porcelain"]
+
+exit=0
