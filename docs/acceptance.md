@@ -47,7 +47,9 @@
 | AC-041 | REQ-011 | Linux平台会话 | TASK-041 | Linux固定控制台/模拟终端字符会话及依赖，模式/尺寸/错误/恢复可复核；产品证据待实现 | pending |
 | AC-042 | REQ-007、REQ-011 | R6跨平台规格及官方事实核对 | TASK-042 |平台目标、契约/任务/场景一致；官方资料与运行证据分开；实际证据：R6/validation-final.txt、platform-evidence.md及independent-review.md| passed |
 | AC-043 | REQ-007 | R6独立设计审核 | TASK-043 |固定受审版本、独立发现及复核，无必需文档缺陷；不代表平台实现通过；实际证据：R6/independent-review.md；受审64418db53921895e43fe7d928f806507908cd087，findings为空| design_reviewed |
-| AC-044 | REQ-007、REQ-011、REQ-004/005 | Linux优先与依赖风险调查 | TASK-044 |顺序、原生构建和许可证来源有证据；不代表Linux产品集成通过；证据入口R7/input.md| pending |
+| AC-044 | REQ-007、REQ-011、REQ-004/005 | Linux优先顺序 | TASK-044 |Linux全部前置闭合，非Linux后置且目标保留；不代表Linux产品集成通过；证据入口R7/input.md| pending |
+| AC-046 | REQ-004/005、REQ-007 | Linux Unicode原生构建调查 | TASK-046 |固定输入、根因、原生生成和FFI传递及766分段用例可独立复现，不代表产品集成| pending |
+| AC-047 | REQ-007 | 依赖许可来源调查 | TASK-047 |固定上游/包SHA与许可原文、内容差异及未解决门槛明确，不是法律授权批准| pending |
 | AC-045 | REQ-007 | R7独立审核 | TASK-045 |固定版本、DQ检查、发现修复及复核；证据待交付| pending |
 
 REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖环境与规划检查，不替代持续开发或框架集成证据。U1–U5、主题、焦点、多层、失败恢复与制品完整性全部通过后方可声明 G-001 完成。

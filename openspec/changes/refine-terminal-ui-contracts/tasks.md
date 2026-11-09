@@ -173,7 +173,9 @@ R5完成记录只覆盖原范围。R6独立审查64418db53921895e43fe7d928f80650
 
 ## 6. Linux-first risk amendment R7
 
-- [ ] 6.1 TASK-044：落实Linux优先依赖顺序并验证依赖风险根因、可行处理和剩余门槛；验收AC-044：规格/任务无环且非Linux不阻塞Linux，原生构建和许可结论有固定来源与可复现证据，不伪称风险全部消除。
+- [ ] 6.1 TASK-044：落实Linux优先依赖顺序；验收AC-044：规格/任务无环且非Linux不阻塞Linux，全部Linux功能前置闭合。
+- [ ] 6.3 TASK-046：验证Linux Unicode原生构建路线；验收AC-046：根因、固定输入、干净构建、FFI传递与分段用例有独立复验，不冒充产品集成。
+- [ ] 6.4 TASK-047：核对依赖许可来源；验收AC-047：确切包/上游许可文本对应、差异及剩余发布门槛可复核，不作法律授权认定。
 - [ ] 6.2 TASK-045：独立审核本轮顺序与风险证据，修复并复核必需发现；验收AC-045：固定版本和可定位发现，产品仍pending，结论仅design_reviewed。
 
 ### TASK-044
@@ -181,21 +183,21 @@ R5完成记录只覆盖原范围。R6独立审查64418db53921895e43fe7d928f80650
 | 字段 | 定义 |
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation-documentation |
-| classification / basis | execution：用户指定Linux优先；decision：原生构建与许可风险按证据选择处理 |
+| classification / basis | execution：用户已指定Linux优先，落实阶段门槛 |
 | requirement_refs / workflow_ref | REQ-007、REQ-011、REQ-004/005、NFR-07 / 本文件 |
 | openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / 无本轮调查准入缺口；完整产品集成不在本任务范围 |
-| objective / deliverables | Linux优先规格/任务闭合；隔离干净原生构建证据、许可来源和风险处置表 |
+| objective / deliverables | Linux优先规格、治理和任务依赖闭合 |
 | scope / impact | 长期契约与场景、任务/验收映射、治理、R7证据；不实现产品、不发布 |
 | inputs / depends_on | 用户后续明确顺序和风险处理要求、533bb9b基线、固定依赖及SDK / 无 |
 | preconditions | 已有授权与工具可用；子代理隔离工作，不改历史依赖缓存 |
-| acceptance / verification | AC-044：npm run check、依赖无环/投影一致检查；可复现命令、失败根因与处理边界明确；许可有证据不足则保持发布阻塞，不假装风险关闭 |
+| acceptance / verification | AC-044：npm run check、依赖无环/投影一致检查，TASK-024闭包包含全部Linux功能且不含非Linux；旧授权冲突清除 |
 | required_skills / skill_evidence_refs | OpenSpec update-change/sync-specs、systematic-debugging、dispatching-parallel-agents、verification-before-completion / R7/input.md |
 | decision_refs / compatibility | D-018 / 现有产品未实现；保留未来required目标及0.0.0 |
 | quality_governance | 平台和字符算法保持单一职责；只退役当前四后端先汇合的依赖顺序，不删除历史审核；无平行内核或新运行依赖 |
 | risks / blockers | 上游许可及干净产品制品尚待验证；准确记录不等于已解决这些外部条件 |
 | status / evidence_refs | in_progress / docs/reviews/R7 |
 
-L4：1.核对实际包与工具，定位构建失败并隔离验证；2.核对授权来源，明确已解决/可处理/阻塞与解除条件；3.同步Linux顺序和任务依赖，执行静态一致性与独立审查修复。
+L4：1.根据用户裁决核对当前授权及阶段范围；2.同步Linux顺序和任务依赖；3.执行静态一致性与独立审查修复，确认全部Linux前置闭合且非Linux后置。
 
 ### TASK-045
 
@@ -203,11 +205,11 @@ L4：1.核对实际包与工具，定位构建失败并隔离验证；2.核对�
 |---|---|
 | level / parent / type | L3 / WP-001 / verification |
 | classification / basis | execution；已有独立审查要求，覆盖本次增量 |
-| requirement_refs / workflow_ref | REQ-007、REQ-011、AC-044 / 本文件 |
+| requirement_refs / workflow_ref | REQ-007、REQ-011、AC-044/046/047 / 本文件 |
 | openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / TASK-044交付后固定输入 |
 | objective / deliverables | R7独立发现、DQ检查与修复复核结论 |
 | scope / impact | Linux顺序、依赖事实和风险边界；不审为产品运行通过 |
-| inputs / depends_on | 固定受审commit及R7证据 / TASK-044 |
+| inputs / depends_on | 固定受审commit及R7证据 / TASK-044、TASK-046、TASK-047 |
 | preconditions | 独立审核者未参与撰写，不继承作者过程上下文 |
 | acceptance / verification | AC-045：DQ01–14、本轮目标/证据/任务一致；必需缺陷修复复核，结论仅design_reviewed |
 | required_skills / skill_evidence_refs | requesting/receiving-code-review、verification-before-completion / R7/input.md |
@@ -217,3 +219,45 @@ L4：1.核对实际包与工具，定位构建失败并隔离验证；2.核对�
 | status / evidence_refs | planned / docs/reviews/R7 |
 
 L4：1.固定受审版本与独立输入；2.复现发现并修复或有依据说明；3.独立复核最终版本，登记实际验收结果。
+
+### TASK-046
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3 / WP-001 / investigation |
+| classification / basis | decision；Linux风险处理已授权，技术结论由固定来源和验证取得 |
+| requirement_refs / workflow_ref | REQ-004/005、REQ-007、REQ-011 / 本文件 |
+| openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / 本轮有界调查输入齐备，产品集成另行准入 |
+| objective / deliverables | Unicode Linux原生构建根因、最小集成边界及可重复证据 |
+| scope / impact | 仅隔离脚本/模板/日志，原生数据与二进制不提交；不实现产品hook |
+| inputs / depends_on | 固定unicode0.1.0 cjp、UCD17、SDK1.2.0和GNU C/ASM工具链 / 无 |
+| preconditions | 已有风险调查授权；独立上下文、隔离目录，不写共享依赖缓存 |
+| acceptance / verification | AC-046：独立新目录复现正常build缺库及从固定输入生成、链接、跨静态库FFI传递；官方766分段用例及空串边界明确；产品hook/干净cjp仍未验证 |
+| required_skills / skill_evidence_refs | systematic-debugging、dispatching-parallel-agents、verification-before-completion / R7/input.md及对应证据 |
+| decision_refs / compatibility | D-016、D-018 / 不修改主库依赖或产品API，不取消未来平台 |
+| quality_governance | 复用原库生成器与数据，不复制平行算法；FFI归适配边界，不修改共享cache |
+| risks / blockers | 只验证Linux x86_64；规范化全量、真实会话及正式制品尚未完成 |
+| status / evidence_refs | in_progress / docs/reviews/R7 |
+
+L4：1.以正常build复现并定位原生缺失；2.最小验证FFI及官方分段向量；3.固定脚本交独立执行与验收，保留未解决项。
+
+### TASK-047
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3 / WP-001 / investigation |
+| classification / basis | decision；Linux风险处理已授权，技术结论由固定来源和验证取得 |
+| requirement_refs / workflow_ref | REQ-004/005、REQ-007、REQ-011 / 本文件 |
+| openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / 本轮有界调查输入齐备，产品集成另行准入 |
+| objective / deliverables | 依赖许可固定来源、确切源码对应与发布门槛 |
+| scope / impact | 仅许可与归属原文、索引和差异，不改上游声明、不联系维护者 |
+| inputs / depends_on | R5四包索引/实际cjp、官方上游固定Git对象与Unicode官网许可 / 无 |
+| preconditions | 已有风险调查授权；独立上下文、隔离目录，不写共享依赖缓存 |
+| acceptance / verification | AC-047：索引固定commit/URL/包SHA与原文哈希可复核；原包和上游差异明确；bitarray声明矛盾不被误判为已解决或法律禁止，项目发布门槛保持待核实 |
+| required_skills / skill_evidence_refs | systematic-debugging、dispatching-parallel-agents、verification-before-completion / R7/input.md及对应证据 |
+| decision_refs / compatibility | D-016、D-018 / 不修改主库依赖或产品API，不取消未来平台 |
+| quality_governance | 完整授权文本与数据归属各有来源，证据保留原文，不把元数据变成法律认定 |
+| risks / blockers | 上游声明冲突无法由代理代签；最终制品归属材料仍须检查 |
+| status / evidence_refs | in_progress / docs/reviews/R7 |
+
+L4：1.取确切包及上游许可原文；2.比对固定版本内容并检查声明冲突；3.交独立验收核对来源和门槛，登记可关闭及未关闭部分。
