@@ -4,7 +4,7 @@
 
 ## 1. Contract revision
 
-- [ ] 1.1 TASK-033：同步长期需求、架构、构造契约、治理及七项 OpenSpec 场景；验收 AC-033：严格校验、引用与需求任务映射一致，无产品实现宣称。
+- [x] 1.1 TASK-033：同步长期需求、架构、构造契约、治理及七项 OpenSpec 场景；验收 AC-033：严格校验、引用与需求任务映射一致，无产品实现宣称。
 
 ### TASK-033
 
@@ -23,7 +23,7 @@
 | decision_refs / skill_evidence_refs | design D-009–016 / docs/reviews/R5/input.md |
 | compatibility / quality_governance | 无已发布API；修订旧规划并保留历史；requirements为需求权威，OpenSpec投影；不新增并行状态或产品内核 |
 | risks / blockers | 文档漂移、未测例误称能力；由一致性检查与独立审核处理 / 无文档外部阻塞 |
-| status / evidence_refs | verifying / docs/reviews/R5 |
+| status / evidence_refs | completed / docs/reviews/R5 |
 
 L4：
 1. TASK-033.S1：核对已确认需求与基线差异，记录设计取舍和授权；检查有稳定需求编号。
@@ -32,7 +32,7 @@ L4：
 
 ## 2. Bounded feasibility evidence
 
-- [ ] 2.1 TASK-034：隔离验证SDK1.2.0语言构造，记录正反例和限制；验收AC-034：语言证据可重跑、结论范围准确，不将产品TASK-002/004勾完。
+- [x] 2.1 TASK-034：隔离验证SDK1.2.0语言构造，记录正反例和限制；验收AC-034：语言证据可重跑、结论范围准确，不将产品TASK-002/004勾完。
 
 ### TASK-034
 
@@ -51,7 +51,7 @@ L4：
 | decision_refs / skill_evidence_refs | D-010 / R5/input.md及evidence/README.md |
 | compatibility / quality_governance | 构造探针不是产品节点实现；全局构造栈不作为生产架构，语言能力不冒充依赖追踪 |
 | risks / blockers | 编译器差异、语言样本不足；未覆盖能力保持pending，不改产品验收结论 |
-| status / evidence_refs | verifying / docs/reviews/R5/evidence/ |
+| status / evidence_refs | completed / docs/reviews/R5/evidence/ |
 
 L4：
 1. TASK-034.S1：校验安装SDK，运行语言正负例；检查真实源码、命令与返回码可恢复。
@@ -61,7 +61,7 @@ L4：
 
 ## 3. Dependency selection evidence
 
-- [ ] 3.1 TASK-036：隔离评估三项直接及传递依赖，验证联合消费并记录原生/许可边界；验收AC-036：包摘要、正负结果和选型可恢复，不冒充产品集成通过。
+- [x] 3.1 TASK-036：隔离评估三项直接及传递依赖，验证联合消费并记录原生/许可边界；验收AC-036：包摘要、正负结果和选型可恢复，不冒充产品集成通过。
 
 ### TASK-036
 
@@ -80,7 +80,7 @@ L4：
 | decision_refs / compatibility | D-016 / 清单为未实现开发选型，不承诺跨平台或干净制品通过 |
 | quality_governance | unicodewidth唯一宽度、unicode分段/规范化、ansies实际ANSI能力；不建立平行内核，relay仅隔离网络工具 |
 | risks / blockers | 原生数据构建/许可尚需产品任务解决；不阻塞记录有界调查事实，不标产品通过 |
-| status / evidence_refs | verifying / R5/evidence/ |
+| status / evidence_refs | completed / R5/evidence/ |
 
 L4：
 1. TASK-036.S1：核对官方包与索引摘要、传递依赖和许可声明；检查实际归档与来源一致，冲突保留。
@@ -89,7 +89,7 @@ L4：
 
 ## 4. Independent design review
 
-- [ ] 4.1 TASK-035：未参与撰写的审核代理检查全部变更，处置并复核发现；验收 AC-035：固定受审版本、findings、修复及独立复核可定位，无未关闭必需文档缺陷。
+- [x] 4.1 TASK-035：未参与撰写的审核代理检查全部变更，处置并复核发现；验收 AC-035：固定受审版本、findings、修复及独立复核可定位，无未关闭必需文档缺陷。
 
 ### TASK-035
 
@@ -108,7 +108,7 @@ L4：
 | decision_refs / skill_evidence_refs | D-009–016 / R5/input.md |
 | compatibility / quality_governance | 不因审核引入未授权范围；必要修复到权威文档并同步投影，无独立产品功能 |
 | risks / blockers | 审核不能代替真实运行；仅标design_reviewed，不称外部机构认证 |
-| status / evidence_refs | verifying / docs/reviews/R5 |
+| status / evidence_refs | completed / docs/reviews/R5 |
 
 L4：
 1. TASK-035.S1：固定完整补丁及摘要，交给独立审核者；检查输入可唯一恢复且覆盖新增文件。
@@ -119,3 +119,5 @@ L4：
 
 - 本轮完成仅表示文档与有界探针交付。未来产品任务见 docs/tasks.md TASK-001–032及TASK-037，均需产品实施授权、契约和DQ准入；不把这些未来任务复制为本变更已完成步骤。
 - 审核完成后按用户授权直接提交并推送main；不创建PR、不发布、不以本次规格同步归档产品能力。
+
+收尾结论：TASK-033/034/035/036仅本轮范围完成；实际验收见docs/acceptance.md。独立复核070623f1014a48bd559364747550c48332c16201为design_reviewed，原5项verified。产品任务和AC仍pending，未启动产品apply。
