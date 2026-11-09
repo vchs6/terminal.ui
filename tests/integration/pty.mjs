@@ -7,7 +7,7 @@ import { resolve, join } from 'node:path';
 import assert from 'node:assert/strict';
 
 const binary = resolve(process.argv[2] ?? 'tests/integration/fixture/target/release/bin/main');
-const modes = ['q', 'ctrl-c', 'sigint', 'sigterm', 'resize', 'exception', 'osc-ctrl-c', 'utf8-ctrl-c'];
+const modes = ['q', 'ctrl-c', 'sigint', 'sigterm', 'resize', 'exception', 'osc-ctrl-c', 'utf8-ctrl-c', 'utf8-fragmented', 'sos-ignore'];
 const selectedModes = process.argv.slice(3);
 const delay = ms => new Promise(r => setTimeout(r, ms));
 const quote = s => `'${s.replaceAll("'", "'\\''")}'`;
@@ -18,10 +18,11 @@ async function until(predicate, what, ms = 5000) {
 }
 async function read(path) { try { return await readFile(path, 'utf8'); } catch { return ''; } }
 async function session(mode) {
+  const collectEvents = mode === 'utf8-fragmented' || mode === 'sos-ignore';
   const dir = await mkdtemp(join(tmpdir(), 'cjtui-pty-'));
   const wrapper = join(dir, 'session.sh');
   await writeFile(wrapper, `#!/bin/sh\nstty rows 5 cols 24\nstty -g > "$2/before"\ntty > "$2/tty"\n"$1" < /dev/tty &\np=$!\necho "$p" > "$2/pid"\nwait "$p"\nstatus=$?\nstty -g > "$2/after"\nexit "$status"\n`);
-  const child = spawn('script', ['--quiet', '--return', '--flush', '--command', `sh ${quote(wrapper)} ${quote(binary)} ${quote(dir)}`, '/dev/null'], { stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, TERM: 'xterm-256color' } });
+  const child = spawn('script', ['--quiet', '--return', '--flush', '--command', `sh ${quote(wrapper)} ${quote(binary)} ${quote(dir)}`, '/dev/null'], { stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, TERM: 'xterm-256color', CJTUI_TEST_EVENTS: collectEvents ? '1' : '0' } });
   let output = Buffer.alloc(0), stderr = '';
   child.stdout.on('data', b => { output = Buffer.concat([output, b]); });
   child.stderr.on('data', b => { stderr += b.toString(); });
@@ -56,6 +57,21 @@ async function session(mode) {
       assert(!finished, `${mode}: application remains active before Ctrl-C`);
       console.log(`SEND PTY ${mode}: prefix=${prefix.toString('hex')}, then Ctrl-C=03`);
       child.stdin.write(Buffer.from([0x03]));
+    } else if (mode === 'utf8-fragmented') {
+      const bytes = Buffer.from('中');
+      for (let i = 0; i < bytes.length; i++) {
+        child.stdin.write(bytes.subarray(i, i + 1));
+        if (i + 1 < bytes.length) await delay(160);
+      }
+      console.log(`SEND PTY ${mode}: ${bytes.toString('hex')}, one byte per write, 160ms apart; then q`);
+      await delay(200);
+      child.stdin.write('q');
+    } else if (mode === 'sos-ignore') {
+      const sequence = Buffer.from('\x1bXsecret\x1b\\');
+      child.stdin.write(sequence);
+      console.log(`SEND PTY ${mode}: ${sequence.toString('hex')}; then q`);
+      await delay(200);
+      child.stdin.write('q');
     } else if (mode === 'ctrl-c') { child.stdin.write('\x03'); }
     else if (mode === 'sigint') { process.kill(pid, 'SIGINT'); }
     else if (mode === 'sigterm') { process.kill(pid, 'SIGTERM'); }
@@ -69,6 +85,13 @@ async function session(mode) {
     assert.equal(signal, null, 'script must exit without forced signal');
     if (mode === 'q' || mode === 'resize') assert.equal(code, 0, 'normal stop succeeds');
     if (mode === 'osc-ctrl-c' || mode === 'utf8-ctrl-c') assert.equal(code, 0, 'Ctrl-C cancellation returns normally despite incomplete input');
+    if (collectEvents) {
+      assert.equal(code, 0, 'event collection fixture stops normally on q');
+      const events = [...output.toString('utf8').matchAll(/CJTUI_TEST_EVENT:([a-z-]+):([^\r\n]*)/g)].map(match => ({ code: match[1], text: match[2] }));
+      console.log(`OBSERVED PTY ${mode}: ${JSON.stringify(events)}`);
+      const expected = mode === 'utf8-fragmented' ? [{ code: 'text', text: '中' }, { code: 'text', text: 'q' }] : [{ code: 'text', text: 'q' }];
+      assert.deepEqual(events, expected, mode === 'utf8-fragmented' ? 'fragmented UTF-8 produces one complete text event without byte fragments or loss' : 'SOS control and payload produce no fabricated key/text events; subsequent q remains usable');
+    }
     if (mode === 'exception') assert.notEqual(code, 0, 'callback exception reported to caller');
     console.log(`PASS PTY ${mode}: exit=${code}, termios restored, bytes=${output.length}`);
   } catch (error) {

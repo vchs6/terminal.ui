@@ -10,6 +10,7 @@ Source Cangjie SDK **1.2.0** `envsetup.sh`, then from the repository root run:
 ```sh
 ./tests/run-slice.sh native-smoke # TASK-049 only: public Unicode adapters
 ./tests/run-slice.sh contract     # Frame/style/components, no terminal required
+./tests/run-slice.sh coordinates  # Int64 coordinate extrema, no terminal required
 ./tests/run-slice.sh integration  # build external application, then actual Linux PTYs
 ./tests/run-slice.sh all
 ```
@@ -19,6 +20,9 @@ root path. No private imports, embedded product logic, test hooks, product stubs
 framework test runner are used. Failed assertions throw and exit nonzero. Compiler or
 linker failure is a failing run, never a test pass. Consumers require the product's
 normal build hook; they must not be given ad hoc FFI flags to rescue product packaging.
+Every executable consumer entry uses `cjpm build` then directly runs the produced
+binary, so a nonzero assertion exit reaches the caller. SDK 1.2.0 `cjpm run` itself
+can return zero after a failing consumer; its wrapper status is not sufficient evidence.
 
 If the environment uses an existing official offline cache, create an **untracked**
 `cangjie-repo.toml` in each consumer directory (including `tests/integration/fixture`):
@@ -43,6 +47,7 @@ content or product dependencies.
 | contract / input | Every C0 other than LF/CR, every C1, lone CR, CSI/OSC/ESC rejection, component text rejection |
 | contract / snapshot | Full-column plain spaces and LF structure, no extra LF/ESC; ANSI reset/absolute rows/final reset, no newline scrolling; style-only overwrite affects ANSI |
 | contract / construction | Text/Row/Column chains, if/for/custom function, inherited styles/explicit override, multiline root, actual-width clipping, clean context after nested construction exception |
+| coordinate-boundary | Frame(1, 1) put at Int64.Max and Int64.Min x clips without exception and leaves the frame unchanged |
 | integration | Actual external application q/resize exit; Ctrl-C, SIGINT, SIGTERM cancellation; callback exception reporting; exact termios restoration; idle no-update; resize repaint clipped to actual width; non-TTY no ESC |
 
 `tests/integration/pty.mjs` needs Node and util-linux `script`/`stty` on Linux.
@@ -77,6 +82,30 @@ Both run by default. To collect separate regression logs after building the fixt
 node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main osc-ctrl-c
 node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main utf8-ctrl-c
 ```
+
+Further public-input regressions use an opt-in event recorder in the external
+fixture (`CJTUI_TEST_EVENTS=1`, set only by the two corresponding harness modes).
+The recorder prints the actual public `KeyEvent.code` and `.text`; it does not
+decode input or emulate the product. In this mode q still stops, while e is recorded
+instead of triggering the ordinary exception scenario. With recording disabled,
+all original fixture behavior is unchanged.
+
+`utf8-fragmented` writes the three UTF-8 bytes of 中 in separate writes, each 160ms
+apart, then q. The exact callback event list must be text/中 followed by text/q.
+`sos-ignore` writes `ESC X secret ESC \\` then q; its callback event list must contain
+only text/q, with no key event fabricated from the unknown SOS control or payload.
+Both require normal exit and exact termios restoration, and run in the default suite.
+Run either independently using the final argument:
+
+```sh
+node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main utf8-fragmented
+node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main sos-ignore
+```
+
+The `coordinate-boundary` project is another ordinary public-API consumer. It tests
+both extrema independently and reports both before failing if any write throws or
+changes the initial blank frame. It must use the normal product build, just like
+the other consumers; it does not contain overflow handling that alters the product.
 
 This suite does not claim to exhaustively test injected device write failure, official
 Unicode conformance data, concurrency/thread isolation, or later full-framework/M2
