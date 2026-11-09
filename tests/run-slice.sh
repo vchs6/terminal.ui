@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 cjc --version
 cjpm --version
 case "${1:-all}" in
+  native-session) tests/native-session/run.sh ;;
   native-smoke)
     (cd tests/native-smoke && cjpm build)
     tests/native-smoke/target/release/bin/main
@@ -22,10 +23,11 @@ case "${1:-all}" in
     node tests/integration/pty.mjs "${SLICE_SESSION_BIN:-tests/integration/fixture/target/release/bin/main}"
     ;;
   all)
+    "$0" native-session
     "$0" native-smoke
     "$0" contract
     "$0" coordinates
     "$0" integration
     ;;
-  *) echo "usage: $0 [native-smoke|contract|coordinates|integration|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|integration|all]" >&2; exit 2 ;;
 esac

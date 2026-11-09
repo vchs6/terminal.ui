@@ -9,6 +9,7 @@ Source Cangjie SDK **1.2.0** `envsetup.sh`, then from the repository root run:
 
 ```sh
 ./tests/run-slice.sh native-smoke # TASK-049 only: public Unicode adapters
+./tests/run-slice.sh native-session # C bridge owner/setup-signal regressions
 ./tests/run-slice.sh contract     # Frame/style/components, no terminal required
 ./tests/run-slice.sh coordinates  # Int64 coordinate extrema, no terminal required
 ./tests/run-slice.sh integration  # build external application, then actual Linux PTYs
@@ -119,8 +120,10 @@ and distinguish compiler syntax checks from behavioral results. OpenSpec apply s
 was read for the existing `implement-linux-first-slice` change; the coordinator updates
 authoritative task state, since this test author is restricted to tests/test documentation.
 
-Native bridge ownership/setup-signal module regressions have a separate entry:
-`./tests/native-session/run.sh`. They link the actual product C and control external
+Native bridge ownership/setup-signal module regressions can run through
+`./tests/run-slice.sh native-session` or directly via `./tests/native-session/run.sh`.
+The default `./tests/run-slice.sh all` runs both C cases before the SDK consumers,
+so existing CI slice checks include them. They link the actual product C and control external
 syscalls; they are white-box C tests, distinct from the public consumers and real
 PTY suite above. See [native-session/README.md](native-session/README.md) for the
 contract, controlled interleaving, and evidence limits.
