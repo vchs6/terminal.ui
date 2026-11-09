@@ -7,7 +7,7 @@ import { resolve, join } from 'node:path';
 import assert from 'node:assert/strict';
 
 const binary = resolve(process.argv[2] ?? 'tests/integration/fixture/target/release/bin/main');
-const modes = ['q', 'ctrl-c', 'sigint', 'sigterm', 'resize', 'exception', 'osc-ctrl-c', 'utf8-ctrl-c', 'utf8-fragmented', 'sos-ignore'];
+const modes = ['q', 'ctrl-c', 'sigint', 'sigterm', 'resize', 'exception', 'osc-ctrl-c', 'utf8-ctrl-c', 'utf8-fragmented', 'sos-ignore', 'sos-escape-utf8'];
 const selectedModes = process.argv.slice(3);
 const delay = ms => new Promise(r => setTimeout(r, ms));
 const quote = s => `'${s.replaceAll("'", "'\\''")}'`;
@@ -18,7 +18,7 @@ async function until(predicate, what, ms = 5000) {
 }
 async function read(path) { try { return await readFile(path, 'utf8'); } catch { return ''; } }
 async function session(mode) {
-  const collectEvents = mode === 'utf8-fragmented' || mode === 'sos-ignore';
+  const collectEvents = mode === 'utf8-fragmented' || mode === 'sos-ignore' || mode === 'sos-escape-utf8';
   const dir = await mkdtemp(join(tmpdir(), 'cjtui-pty-'));
   const wrapper = join(dir, 'session.sh');
   await writeFile(wrapper, `#!/bin/sh\nstty rows 5 cols 24\nstty -g > "$2/before"\ntty > "$2/tty"\n"$1" < /dev/tty &\np=$!\necho "$p" > "$2/pid"\nwait "$p"\nstatus=$?\nstty -g > "$2/after"\nexit "$status"\n`);
@@ -66,8 +66,8 @@ async function session(mode) {
       console.log(`SEND PTY ${mode}: ${bytes.toString('hex')}, one byte per write, 160ms apart; then q`);
       await delay(200);
       child.stdin.write('q');
-    } else if (mode === 'sos-ignore') {
-      const sequence = Buffer.from('\x1bXsecret\x1b\\');
+    } else if (mode === 'sos-ignore' || mode === 'sos-escape-utf8') {
+      const sequence = mode === 'sos-ignore' ? Buffer.from('\x1bXsecret\x1b\\') : Buffer.from('1b581be4b89c7365637265741b5c', 'hex');
       child.stdin.write(sequence);
       console.log(`SEND PTY ${mode}: ${sequence.toString('hex')}; then q`);
       await delay(200);

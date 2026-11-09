@@ -103,6 +103,17 @@ node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main
 node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main sos-ignore
 ```
 
+`sos-escape-utf8` applies the same no-fabricated-events assertion to the exact bytes
+`1b581be4b89c7365637265741b5c` (`ESC X ESC 东secret ESC \\`), then separately sends q.
+An ESC followed by a UTF-8 character inside the unknown SOS payload must not expose
+any payload as text or hotkeys. The expected event list is still only text/q, with
+normal exit and exact termios restoration. This case runs by default and can be
+isolated without changing any existing assertion:
+
+```sh
+node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main sos-escape-utf8
+```
+
 The `coordinate-boundary` project is another ordinary public-API consumer. It tests
 both extrema independently and reports both before failing if any write throws or
 changes the initial blank frame. It must use the normal product build, just like
