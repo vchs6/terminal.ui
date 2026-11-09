@@ -7,16 +7,17 @@ mode="${1:-slice}"
 find src -name '*.cj' -print -quit | grep -q . || { echo 'Product not implemented: no active Cangjie source' >&2; exit 1; }
 cjc --version
 cjpm --version
+# The build hook creates the native archives needed by cjpm check on a fresh tree.
+cjpm build
 cjpm check
 if [[ "$mode" == slice ]]; then
-  cjpm build
   cjpm test
   ./tests/run-slice.sh all
 fi
 # Check all projects actually introduced; future projects stay pending in the plan.
 while IFS= read -r manifest; do
   project_dir="$(dirname "$manifest")"
-  ( cd "$project_dir"; cjpm check; cjpm build; cjpm test )
+  ( cd "$project_dir"; cjpm build; cjpm check; cjpm test )
 done < <(find examples benchmarks -name cjpm.toml -not -path '*/target/*' | sort)
 if [[ "$mode" == slice ]]; then
   echo 'Implemented slice checks complete; not a final product/release verification.'
@@ -36,7 +37,7 @@ trap 'rm -rf "$clean_dir"' EXIT
 tar -xzf "$bundle_path" -C "$clean_dir"
 product_manifest="$(find "$clean_dir" -maxdepth 2 -name cjpm.toml -print -quit)"
 product_dir="$(dirname "$product_manifest")"
-( cd "$product_dir"; cjpm check; cjpm build )
+( cd "$product_dir"; cjpm build; cjpm check )
 for project_dir in examples/minimal examples/composition; do
   # Product docs must offer a deterministic noninteractive smoke mode before release.
   ( cd "$product_dir/$project_dir"; timeout 60s cjpm run -- --smoke )
