@@ -63,6 +63,21 @@ A different executable must supply the fixture's three text lines and q/e handle
 The ordinary product minimal example should additionally be built/run by TASK-052;
 this external fixture verifies the public API without depending on example internals.
 
+Input cancellation regressions added against product revision
+`2794136e45aee98300f4b16456dfa6b605cfdf74` follow the same design contract:
+default Ctrl-C exits, unknown control sequences are bounded and ignored, and UTF-8
+bytes cannot become separate text characters. `osc-ctrl-c` sends the unterminated OSC
+prefix `ESC ] 0 ; xyzxyz`; `utf8-ctrl-c` sends only the UTF-8 lead byte `0xc2`.
+Each waits briefly before sending raw Ctrl-C (`0x03`), requires normal exit, and compares
+the exact saved/restored termios values. No OSC terminator, UTF-8 continuation, external
+signal, or q key rescues these cases. A timeout is a failure; SIGKILL is cleanup only.
+Both run by default. To collect separate regression logs after building the fixture:
+
+```sh
+node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main osc-ctrl-c
+node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main utf8-ctrl-c
+```
+
 This suite does not claim to exhaustively test injected device write failure, official
 Unicode conformance data, concurrency/thread isolation, or later full-framework/M2
 features. Public API exposes no device writer injection; independent code review and
