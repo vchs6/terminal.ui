@@ -47,9 +47,11 @@ class InputDecoder {
             return None
         }
         if (state == 4) {
-            if (first == 92 || first == 7) { state = 0 }
-            else if (first != 27) { state = 3; stringRemaining = 0; stringC2 = false }
-            return None
+            if (first == 92 || first == 7) { state = 0; return None }
+            if (first == 27) { return None }
+            state = 3; stringRemaining = 0; stringC2 = false
+            // This byte belongs to the discarded string too, including UTF-8 leads.
+            return feed(first)
         }
         if (state == 2) {
             if (first >= 64 && first <= 126) {
