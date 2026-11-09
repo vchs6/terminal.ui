@@ -23,7 +23,7 @@
 | decision_refs / skill_evidence_refs | design D-009–016 / docs/reviews/R5/input.md |
 | compatibility / quality_governance | 无已发布API；修订旧规划并保留历史；requirements为需求权威，OpenSpec投影；不新增并行状态或产品内核 |
 | risks / blockers | 文档漂移、未测例误称能力；由一致性检查与独立审核处理 / 无文档外部阻塞 |
-| status / evidence_refs | in_progress / docs/reviews/R5 |
+| status / evidence_refs | verifying / docs/reviews/R5 |
 
 L4：
 1. TASK-033.S1：核对已确认需求与基线差异，记录设计取舍和授权；检查有稳定需求编号。
@@ -32,35 +32,64 @@ L4：
 
 ## 2. Bounded feasibility evidence
 
-- [ ] 2.1 TASK-034：隔离验证 SDK1.2.0 语言及中心仓依赖，记录正反例、来源摘要和限制；验收 AC-034：证据可重跑且结论范围准确，不将产品 TASK-001–004 勾完。
+- [ ] 2.1 TASK-034：隔离验证SDK1.2.0语言构造，记录正反例和限制；验收AC-034：语言证据可重跑、结论范围准确，不将产品TASK-002/004勾完。
 
 ### TASK-034
 
 | 字段 | 定义 |
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation |
-| classification / basis | decision；用真实证据比较原生构造与字符依赖选型，用户授权必要验证 |
-| requirement_refs / workflow_ref | REQ-001.1/.2/.10、REQ-004.3/.4、REQ-005.1 / 本文件 |
-| openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / 仅有界语言与依赖调查，不承诺完整平台/产品集成 |
-| objective / deliverables | 可复现仓颉探针、负向诊断、包元数据/摘要、结果和选型说明 |
+| classification / basis | decision；用真实证据判断原生构造能力，依赖选型已拆至TASK-036 |
+| requirement_refs / workflow_ref | REQ-001.1/.2/.10 / 本文件 |
+| openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / 仅有界语言调查，不承诺完整平台/产品集成 |
+| objective / deliverables | 可复现仓颉语言探针、负向诊断、初值/闭包及子元素收集边界 |
 | scope / impact | 仓库外实验，版本化最小源码/脚本及日志于R5；不写产品目录、不打包原生二进制 |
-| inputs / depends_on | tools.lock SDK1.2.0、用户指定中心仓三个候选包 / 无 |
+| inputs / depends_on | tools.lock SDK1.2.0与官方尾随Lambda说明 / 无 |
 | preconditions | 隔离实验获授权、官方来源与SDK摘要可核对 |
-| acceptance / verification | AC-034：尾随块/链/嵌套/收集/条件循环/自定义回调、闭包与初值、错误定位；字符宽度和分段代表用例、原生构建/传递许可；失败也须保留且不伪称产品集成 |
+| acceptance / verification | AC-034：尾随块/链/嵌套/显式收集/条件循环/自定义回调、闭包与初值、负例错误定位；失败保留且不伪称完整DSL/框架 |
 | required_skills | using-superpowers；systematic-debugging（遇失败）；verification-before-completion |
-| decision_refs / skill_evidence_refs | D-010、D-016 / R5/input.md及evidence/README.md |
-| compatibility / quality_governance | 依赖选择经用户新授权；第三方算法不复制，分段与宽度唯一职责；探针不是第二产品实现 |
-| risks / blockers | 网络、原生数据构建、样本不足；未覆盖能力保持pending，不改产品验收结论 |
-| status / evidence_refs | in_progress / docs/reviews/R5/evidence/ |
+| decision_refs / skill_evidence_refs | D-010 / R5/input.md及evidence/README.md |
+| compatibility / quality_governance | 构造探针不是产品节点实现；全局构造栈不作为生产架构，语言能力不冒充依赖追踪 |
+| risks / blockers | 编译器差异、语言样本不足；未覆盖能力保持pending，不改产品验收结论 |
+| status / evidence_refs | verifying / docs/reviews/R5/evidence/ |
 
 L4：
 1. TASK-034.S1：校验安装SDK，运行语言正负例；检查真实源码、命令与返回码可恢复。
-2. TASK-034.S2：评估指定包及传递许可，运行代表字符/ANSI用例；检查成功和失败原因均记录。
-3. TASK-034.S3：形成选型边界并同步清单/契约；检查产品集成与完整平台矩阵未被误标完成。
+2. TASK-034.S2：核对普通初值、保存闭包、显式子元素收集差异；检查正反例均有源码及诊断。
+3. TASK-034.S3：记录原生构造可行范围并同步契约；检查依赖追踪、完整DSL与产品验收未被误标完成。
 
-## 3. Independent design review
 
-- [ ] 3.1 TASK-035：未参与撰写的审核代理检查全部变更，处置并复核发现；验收 AC-035：固定受审版本、findings、修复及独立复核可定位，无未关闭必需文档缺陷。
+## 3. Dependency selection evidence
+
+- [ ] 3.1 TASK-036：隔离评估三项直接及传递依赖，验证联合消费并记录原生/许可边界；验收AC-036：包摘要、正负结果和选型可恢复，不冒充产品集成通过。
+
+### TASK-036
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3 / WP-001 / investigation |
+| classification / basis | decision；从原TASK-034拆分，字符依赖选型独立于语言构造，由用户授权评估 |
+| requirement_refs / workflow_ref | REQ-004.3/.4、REQ-005.1 / 本文件 |
+| openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / 仅本轮有界样本，无完整产品集成结论 |
+| objective / deliverables | 中心仓元数据/摘要、Unicode分段/宽度及ANSI探针、联合消费、原生与许可缺口 |
+| scope / impact | 隔离消费项目和R5最小证据；依赖选型清单/文档；不写产品源码或第三方算法 |
+| inputs / depends_on | 锁定SDK1.2.0、用户指定unicode/unicodewidth/ansies / 无；复用SDK安装，不依赖TASK-034语言结论 |
+| preconditions | 官方来源可核对、隔离调查授权及环境工具可用 |
+| acceptance / verification | AC-036：四包摘要核对，三依赖分别及联合消费，保留unicode纯消费链接失败和有条件成功，分段/宽度差异与许可冲突可定位 |
+| required_skills / skill_evidence_refs | systematic-debugging、verification-before-completion / R5/input.md及evidence/README.md |
+| decision_refs / compatibility | D-016 / 清单为未实现开发选型，不承诺跨平台或干净制品通过 |
+| quality_governance | unicodewidth唯一宽度、unicode分段/规范化、ansies实际ANSI能力；不建立平行内核，relay仅隔离网络工具 |
+| risks / blockers | 原生数据构建/许可尚需产品任务解决；不阻塞记录有界调查事实，不标产品通过 |
+| status / evidence_refs | verifying / R5/evidence/ |
+
+L4：
+1. TASK-036.S1：核对官方包与索引摘要、传递依赖和许可声明；检查实际归档与来源一致，冲突保留。
+2. TASK-036.S2：运行分段/宽度/ANSI正负及联合消费，检查原生链接前提和实际API，复用有效结果不重复全量。
+3. TASK-036.S3：同步选型职责和正式集成门槛；检查产品AC-003/023仍pending，没有把许可或样本缺口改写为通过。
+
+## 4. Independent design review
+
+- [ ] 4.1 TASK-035：未参与撰写的审核代理检查全部变更，处置并复核发现；验收 AC-035：固定受审版本、findings、修复及独立复核可定位，无未关闭必需文档缺陷。
 
 ### TASK-035
 
@@ -72,14 +101,14 @@ L4：
 | openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / 无审核输入缺口后执行 |
 | objective / deliverables | R5/input.md、受审补丁/版本、findings.json、独立审核结果与修复复核 |
 | scope / impact | 设计与规格一致性、证据充分性、DQ-01–14；不能判产品已实现 |
-| inputs / depends_on | TASK-033/034交付与稳定受审快照 / TASK-033、TASK-034 |
+| inputs / depends_on | TASK-033/034/036交付与稳定受审快照 / TASK-033、TASK-034、TASK-036 |
 | preconditions | 独立审核代理无撰写参与，输入包含验收、版本及限制 |
 | acceptance / verification | AC-035：查需求覆盖/旧约束冲突/任务责任/终端边界/证据，修复必需发现并独立复核；最终严格检查 |
 | required_skills | requesting-code-review、receiving-code-review（收到反馈）、verification-before-completion |
 | decision_refs / skill_evidence_refs | D-009–016 / R5/input.md |
 | compatibility / quality_governance | 不因审核引入未授权范围；必要修复到权威文档并同步投影，无独立产品功能 |
 | risks / blockers | 审核不能代替真实运行；仅标design_reviewed，不称外部机构认证 |
-| status / evidence_refs | planned / docs/reviews/R5 |
+| status / evidence_refs | verifying / docs/reviews/R5 |
 
 L4：
 1. TASK-035.S1：固定完整补丁及摘要，交给独立审核者；检查输入可唯一恢复且覆盖新增文件。
@@ -88,5 +117,5 @@ L4：
 
 ## Workflow follow-up
 
-- 本轮完成仅表示文档与有界探针交付。未来产品任务见 docs/tasks.md TASK-001–032，均需产品实施授权、契约和DQ准入；不把这些未来任务复制为本变更已完成步骤。
+- 本轮完成仅表示文档与有界探针交付。未来产品任务见 docs/tasks.md TASK-001–032及TASK-037，均需产品实施授权、契约和DQ准入；不把这些未来任务复制为本变更已完成步骤。
 - 审核完成后按用户授权直接提交并推送main；不创建PR、不发布、不以本次规格同步归档产品能力。

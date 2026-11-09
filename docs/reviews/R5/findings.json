@@ -1,0 +1,157 @@
+[
+  {
+    "id": "R5-IR-001",
+    "round_id": "R5",
+    "revision": "21602ada8424bab266f2f2153e6fff5b126bf789",
+    "category": "code_quality",
+    "target": "TASK-021/027完成边界与最终集成依赖",
+    "contract_ref": "ENGINEERING_TASK_DECOMPOSITION.md §8 DQ-06/08/09; docs/tasks.md:228,289",
+    "acceptance_ref": "AC-021,AC-027,AC-033",
+    "claim": "TASK-021被要求集成四主题/展示，TASK-027却依赖TASK-021；最终制品任务也未显式接上新增交付。",
+    "severity": "major",
+    "status": "fixed",
+    "reproducer": {
+      "setup": "按docs/tasks.md:228完成TASK-021，再按:289启动TASK-027。",
+      "actions": [
+        "将四主题和展示作为TASK-021完成条件",
+        "检查其所需TASK-027的depends_on",
+        "检查TASK-023/024当前依赖表"
+      ],
+      "expected": "示例基线、主题展示和最终制品具有无环且可独立判定的完成边界。",
+      "observed": "TASK-021须等TASK-027，而TASK-027须等TASK-021；TASK-023依赖仍只有021/022，未明确等待027/031/032等新增交付。"
+    },
+    "evidence_refs": [
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:207",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:209",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:228",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:289"
+    ],
+    "fix_recommendation": "明确TASK-021只交付可供展示复用的M1示例基线，把四主题/新增能力最终集成归TASK-027及TASK-023/024；同步依赖与AC，或采用另一条明确无环路径。不要依靠任务完成后再隐式重开来解环。",
+    "fix_revision": null,
+    "verification": "待独立修订复核；主代理处置见response.md"
+  },
+  {
+    "id": "R5-IR-002",
+    "round_id": "R5",
+    "revision": "21602ada8424bab266f2f2153e6fff5b126bf789",
+    "category": "layout",
+    "target": "REQ-003.11普通容器滚动责任缺口",
+    "contract_ref": "ENGINEERING_TASK_DECOMPOSITION.md §8 DQ-07/09; docs/requirements.md:75,161",
+    "acceptance_ref": "AC-011,AC-033",
+    "claim": "纵向内容访问和表格横向滚动已有必需需求，但当前TASK/AC只映射到尺寸协商、焦点和层任务，没有明确滚动交付责任。",
+    "severity": "major",
+    "status": "fixed",
+    "reproducer": {
+      "setup": "使用实际80×24终端、含100行内容的普通容器及宽于视口的表格。",
+      "actions": [
+        "追踪REQ-003.11到docs/requirements.md:161列出的任务",
+        "检查TASK-011、017、018、019的交付物和验收",
+        "检查新增TASK-025–032是否补足通用滚动实现/验收"
+      ],
+      "expected": "至少一个明确任务承担视口偏移、键盘滚动、裁剪和缩放后状态保持，并有可观察AC。",
+      "observed": "TASK-011仅承担容器尺寸算法和窄屏/零尺寸/余量；017为导航焦点，018/019为层/菜单。032为混合节点，031为局部渲染对照；没有一般内容滚动的明确交付和验收。仅按现有局部AC实现可裁掉第25–100行仍通过这些AC。"
+    },
+    "evidence_refs": [
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/requirements.md:75",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/requirements.md:161",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:197",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:203",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/acceptance.md:17"
+    ],
+    "fix_recommendation": "在现有任务中明确扩展滚动责任及独立验收，或新增planned候选；至少覆盖纵向访问、表格横向、宽字符裁剪、resize后偏移/焦点保持。无需现在冻结API或实现滚动。",
+    "fix_revision": null,
+    "verification": "待独立修订复核；主代理处置见response.md"
+  },
+  {
+    "id": "R5-IR-003",
+    "round_id": "R5",
+    "revision": "21602ada8424bab266f2f2153e6fff5b126bf789",
+    "category": "rendering",
+    "target": "M2必需性旧文案冲突",
+    "contract_ref": "AGENTS.md §8; docs/requirements.md REQ-004.8; openspec/specs/terminal-output/spec.md 局部渲染里程碑",
+    "acceptance_ref": "AC-031,AC-033",
+    "claim": "架构§17仍将是否引入局部重绘交给未来基准决定，与本轮已选择的必需M2冲突。",
+    "severity": "minor",
+    "status": "fixed",
+    "reproducer": {
+      "setup": "阅读docs/architecture.md:288并与同文件:312–314及AGENTS.md §8比较。",
+      "actions": [
+        "根据§17将局部重绘判定为可选优化",
+        "对照M2必需条款及REQ-004.5旧表述"
+      ],
+      "expected": "是否交付M2已确定；基准只决定实现策略和证明收益，不能决定取消M2。",
+      "observed": "§17明确写“是否引入局部重绘或缓存由基准证据决定”；REQ-004.5仍写“无需预先承诺局部重绘优化”，未限定为M1。"
+    },
+    "evidence_refs": [
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/architecture.md:288",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/architecture.md:312",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/requirements.md:88"
+    ],
+    "fix_recommendation": "将旧句明确限定M1，并把待基准决定的事项改成缓存/索引策略和优化程度；保持M2必需。",
+    "fix_revision": null,
+    "verification": "待独立修订复核；主代理处置见response.md"
+  },
+  {
+    "id": "R5-IR-004",
+    "round_id": "R5",
+    "revision": "21602ada8424bab266f2f2153e6fff5b126bf789",
+    "category": "code_quality",
+    "target": "依赖选型与AC-003/TASK-003不一致",
+    "contract_ref": "AGENTS.md §3; docs/development/dependencies.md §1–3; ENGINEERING_TASK_DECOMPOSITION.md DQ-12",
+    "acceptance_ref": "AC-003,AC-033",
+    "claim": "已选三项直接依赖，但AC-003及TASK-003仍只要求两项，L4仍把unicode宽度接口作为调查主项。",
+    "severity": "minor",
+    "status": "fixed",
+    "reproducer": {
+      "setup": "对照根cjpm.toml三项依赖与docs/acceptance.md:9、docs/tasks.md:144,156。",
+      "actions": [
+        "按AC-003核对固定两项依赖",
+        "按TASK-003.S2核对unicode字符簇/宽度及ansies",
+        "检查unicodewidth唯一宽度职责、原生构建和许可门槛是否写入任务完成条件"
+      ],
+      "expected": "任务卡和唯一AC明确涵盖ansies、unicode、unicodewidth及传递依赖，职责与选型一致。",
+      "observed": "AC和卡片仍写“两项”；S2未列unicodewidth。末尾总述虽扩展输入，却未修订实际完成判据。"
+    },
+    "evidence_refs": [
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/acceptance.md:9",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:46",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:144",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:156",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:docs/tasks.md:228"
+    ],
+    "fix_recommendation": "将已选直接/传递依赖明确列入AC和L4，按分段/规范化、唯一宽度、ANSI职责核验；回链原生构建、干净消费和许可证未决项。",
+    "fix_revision": null,
+    "verification": "待独立修订复核；主代理处置见response.md"
+  },
+  {
+    "id": "R5-IR-005",
+    "round_id": "R5",
+    "revision": "21602ada8424bab266f2f2153e6fff5b126bf789",
+    "category": "code_quality",
+    "target": "TASK-034的L3粒度",
+    "contract_ref": "ENGINEERING_TASK_DECOMPOSITION.md §3.1/4/5及DQ-02",
+    "acceptance_ref": "AC-034,AC-033",
+    "claim": "当前可执行L3 TASK-034把原生语言构造验证与外部字符/ANSI依赖选型两个可独立验收的工程结果合并。",
+    "severity": "minor",
+    "status": "fixed",
+    "reproducer": {
+      "setup": "检查TASK-034.S1与S2、D-010与D-016和各自独立重跑脚本。",
+      "actions": [
+        "单独运行run-language.sh并形成D-010结论",
+        "单独运行run-dependencies.sh并形成D-016结论",
+        "检查二者是否存在必须共同交付才能判断成功的依赖"
+      ],
+      "expected": "独立技术决策与证据可分别判定完成；L4不隐含另一个独立L3。",
+      "observed": "两组输入、失败条件、交付和决策均独立；同用SDK不使其成为不可分的单一结果，当前卡片却仅有一个AC/状态。"
+    },
+    "evidence_refs": [
+      "21602ada8424bab266f2f2153e6fff5b126bf789:openspec/changes/refine-terminal-ui-contracts/tasks.md:42",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:openspec/changes/refine-terminal-ui-contracts/tasks.md:49",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:openspec/changes/refine-terminal-ui-contracts/tasks.md:57",
+      "21602ada8424bab266f2f2153e6fff5b126bf789:openspec/changes/refine-terminal-ui-contracts/tasks.md:58"
+    ],
+    "fix_recommendation": "保留编号关系，将TASK-034调整为明确的汇总/映射并拆出语言和依赖两个L3，或保留034为其中之一并新增稳定编号；各自复用已有日志，无需重复实验。",
+    "fix_revision": null,
+    "verification": "待独立修订复核；主代理处置见response.md"
+  }
+]

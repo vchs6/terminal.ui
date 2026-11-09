@@ -43,7 +43,7 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 
 - [ ] 1.1 TASK-001：产品平台与终端支持契约调查；验收 AC-001：形成 OS、终端、TTY/非 TTY、输入、缩放和模式恢复支持矩阵及限制证据。
 - [ ] 1.2 TASK-002：验证仓颉声明式语法可编译性；验收 AC-002：分别证明组件块、链、状态、条件/列表、自定义组件与回调；记录失败定位与限制。
-- [ ] 1.3 TASK-003：验证中心仓依赖与 SDK 适配边界；验收 AC-003：固定两项依赖可解析；核对 Unicode API、ANSI 生成/解析缺口及传递许可证。
+- [ ] 1.3 TASK-003：验证中心仓依赖与 SDK 适配边界；验收 AC-003：固定ansies、unicode、unicodewidth及传递依赖可解析；按分段/规范化、唯一宽度及ANSI职责验证，覆盖原生构建/干净消费、缺口和许可来源。
 - [ ] 1.4 TASK-004：冻结首个公共构造切片契约；验收 AC-004：U1–U5 设计稿均可映射至语法规则、签名、模块归属和验收，不以设计稿冒充运行。
 ## 2. WP-002
 
@@ -141,7 +141,7 @@ L4：
 | scope / impact | 依赖解析、文本/输出适配契约；不复制第三方内核或修改产品范围 |
 | inputs / depends_on | docs/development/central-packages.json、根 cjpm.toml、TASK-001 / TASK-001 |
 | preconditions | 后续用户明确授权实施；所列前置交付及技能环境可用 |
-| acceptance / verification | AC-003：固定两项依赖可解析；核对 Unicode API、ANSI 生成/解析缺口及传递许可证；以交付物、可复现命令和 Battle 结论核验 |
+| acceptance / verification | AC-003：固定ansies、unicode、unicodewidth及传递依赖可解析；按分段/规范化、唯一宽度及ANSI职责验证，覆盖原生构建/干净消费、缺口和许可来源；以交付物、可复现命令和 Battle 结论核验 |
 | required_skills | using-superpowers、brainstorming、writing-plans；涉及编译实验时按任务识别 systematic-debugging、verification-before-completion |
 | skill_evidence_refs / decision_refs | 启动时记录实际安装/调用证据；现有 D-001–005 见 docs/architecture.md |
 | compatibility | 不假设现有产品/API 的兼容义务；若改变明确用户目标须另裁决 |
@@ -153,7 +153,7 @@ L4：
 L4：
 
 1. TASK-003.S1：用实际 cjpm update/check 解析固定中心仓版本。检查结果：留存解析结果、传递依赖、实际摘要和 SDK 版本；失败记录阻塞。
-2. TASK-003.S2：核对 unicode 字符簇/宽度接口及 ansies 生成/解析接口。检查结果：产出 API/行为/缺口矩阵，分清回复解析与富文本解析。
+2. TASK-003.S2：分别核对unicode分段/规范化、unicodewidth唯一宽度和ansies生成/解析；检查原生数据构建、显式链接、空串适配、Unicode数据及传递许可来源。检查结果：API/行为/缺口矩阵包含三项直接依赖及bitarray，干净消费可复现，未决许可不能记通过。
 3. TASK-003.S3：验证必要最小适配并核对传递许可证。检查结果：形成映射、限制与回归输入集合，不以文档声明替代运行证据。
 ### TASK-004：冻结首个公共构造切片契约
 
@@ -204,10 +204,10 @@ L4：
 | TASK-018 / WP-004 | REQ-003 | 覆盖层嵌套与关闭恢复；覆盖层公共接口及嵌套场景验证 | TASK-012,TASK-016,TASK-017 | AC-018：父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态 |
 | TASK-019 / WP-004 | REQ-003 | 菜单与状态条组合行为；公共组件和 U2/U4 验证 | TASK-013,TASK-017,TASK-018 | AC-019：水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合 |
 | TASK-020 / WP-004 | REQ-004 | 应用退出与终端模式恢复；统一应用入口和退出路径证据 | TASK-008,TASK-017 | AC-020：正常退出、异常和取消均恢复光标及终端模式 |
-| TASK-021 / WP-005 | REQ-001 | 交付 U1–U5 公开接口示例；可运行示例、产品使用说明与构造便利性证据 | TASK-010,TASK-019,TASK-020 | AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判 |
+| TASK-021 / WP-005 | REQ-001 | M1的U1–U5示例基线，不含四主题完整展示或M2；供TASK-027复用 | TASK-010,TASK-019,TASK-020 | AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判 |
 | TASK-022 / WP-005 | REQ-004 | 交付可重复渲染基准项目；独立 benchmarks/rendering 项目与产品基准方法 | TASK-008,TASK-011,TASK-016 | AC-022：固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果 |
-| TASK-023 / WP-005 | REQ-006 | 验证最终源码制品可独立使用；制品清单、解包证据、最终发布候选；不自动上传 | TASK-021,TASK-022 | AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整 |
-| TASK-024 / WP-005 | REQ-001,REQ-006,REQ-007 | 整体验收与发行准备；整体验收、发行检查与归档准备结论 | TASK-023 | AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败 |
+| TASK-023 / WP-005 | REQ-006、REQ-008 | 验证最终源码制品可独立使用；包含四主题/展示、M2及混合操作交付的真实制品；不自动上传 | TASK-021,TASK-022,TASK-027,TASK-031,TASK-032 | AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整 |
+| TASK-024 / WP-005 | REQ-001–010（REQ-010按可选能力矩阵） | 整体验收与发行准备；整体验收、发行检查与归档准备结论 | TASK-023 | AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败 |
 
 所有候选的范围限于标题行为及其调用方、回归与产品文档；不包含无关重构。实现负责人先补齐 canonical_owner、旧路径处置与兼容例外、实际必需技能、L4 输入和输出；每项代码变更遵循 AGENTS 第 10.5 节。
 
@@ -225,7 +225,7 @@ GOV-001 治理修订的任务状态见 [已归档变更](../openspec/changes/arc
 
 ## 6. 本轮新增产品候选（状态权威仍在本文）
 
-新增项均为planned，不是本轮实施清单。所属L1仍为G-001。WP-002/003/004/005原有职责分别扩展至下列稳定编号。TASK-001/003的调查输入扩展至本地剪贴板/标题/图片图标能力和unicodewidth候选；R5探针不满足其完整产品验收。TASK-004冻结范围纳入REQ-001–010；TASK-021/023/024集成四主题、展示、全部基础组件及M1/M2分阶段结果。
+新增项均为planned，不是本轮实施清单。所属L1仍为G-001。WP-002/003/004/005原有职责分别扩展至下列稳定编号。TASK-001/003的调查输入扩展至本地剪贴板/标题/图片图标能力和unicodewidth候选；R5探针不满足其完整产品验收。TASK-004冻结范围纳入REQ-001–010；TASK-021只交付M1的U1–U5示例基线；四主题及完整组件展示由后续TASK-027交付，复用而不反向成为TASK-021前置。TASK-023负责新增交付的制品集成，TASK-024负责全部必需需求及M2的整体验收。通用滚动另由TASK-037交付。
 
 - [ ] 6.1 TASK-025：分类主题配置解析与诊断；验收 AC-025：合法单文件主题形成结构化配置；未知字段/非法值/坏引用带位置错误，不执行代码。
 - [ ] 6.2 TASK-026：应用主动主题重载与原子替换；验收 AC-026：有效重载同批次生效；失败保留旧主题，旧请求不覆盖较新请求，状态/焦点保留。
@@ -286,7 +286,7 @@ L4在进入ready前按冻结契约展开；本候选不具备直接编码准入�
 | openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / 主题最终配色及展示代码待实现，打包接入TASK-023 |
 | objective / acceptance | 深/浅/高对比/经典主题用同一展示应用，覆盖组件状态、受限色和窄屏；制品独立运行；AC-027 |
 | scope / impact | 四套预置主题及统一组件展示及其公开使用文档/必要回归；不实现其他候选能力 |
-| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-021、TASK-026、TASK-028、TASK-029 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-021、TASK-026、TASK-028、TASK-029、TASK-037 |
 | preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
 | deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
 | required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
@@ -366,7 +366,7 @@ L4在进入ready前按冻结契约展开；本候选不具备直接编码准入�
 | openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / M1正确性与基准前置未完成，局部依赖/缓存策略由实测细化 |
 | objective / acceptance | 局部负载减少无关工作，移动/遮挡/宽字符/resize与M1帧结果一致，记录CPU/分配/输出及大范围退化；AC-031 |
 | scope / impact | M2局部布局绘制及基线对照及其公开使用文档/必要回归；不实现其他候选能力 |
-| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-005、TASK-007、TASK-008、TASK-011、TASK-012、TASK-016、TASK-018、TASK-020、TASK-022 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-005、TASK-007、TASK-008、TASK-011、TASK-012、TASK-016、TASK-018、TASK-020、TASK-022、TASK-037 |
 | preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
 | deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
 | required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
@@ -398,4 +398,28 @@ L4在进入ready前按冻结契约展开；本候选不具备直接编码准入�
 
 ## 本轮文档与有界验证任务映射
 
-TASK-033（AC-033）、TASK-034（AC-034）、TASK-035（AC-035）的状态权威已转至 [refine-terminal-ui-contracts/tasks.md](../openspec/changes/refine-terminal-ui-contracts/tasks.md)，本文不复制其状态。产品TASK-001–032不因此标完成。
+TASK-033（AC-033）、TASK-034（AC-034，语言）、TASK-035（AC-035）、TASK-036（AC-036，依赖）的状态权威已转至 [refine-terminal-ui-contracts/tasks.md](../openspec/changes/refine-terminal-ui-contracts/tasks.md)，本文不复制其状态。产品TASK-001–032不因此标完成。
+
+## 7. 通用内容滚动候选
+
+- [ ] 7.1 TASK-037：通用纵向视口及表格横向滚动；验收 AC-037：100行内容可经键盘访问全部行，宽表可横向访问；宽字符裁剪完整，resize保留有效偏移与焦点。
+
+### TASK-037：通用视口滚动
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-003 / implementation |
+| classification / basis | execution候选；REQ-003.11已确认，独立承担内容访问，区别于尺寸协商和局部渲染优化 |
+| requirement_refs / workflow_ref | REQ-003.10/.11、REQ-009.1 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；未启动产品变更 / 内容视口/滚动命令精确接口和边界待TASK-004冻结 |
+| objective / deliverables | 纵向内容视口、表格横向偏移、键盘滚动、裁剪/resize行为及公开例证 |
+| scope / impact | 容器内容访问与表格视口；不扩展业务排序、页面横向画布或完整表格业务功能 |
+| inputs / depends_on | 已冻结布局/输入/字符契约 / TASK-004、TASK-005、TASK-011、TASK-017 |
+| acceptance / verification | AC-037：80×24访问100行全部内容，横向访问宽表；边缘宽字符不拆，resize钳制偏移并保持有效焦点；精确命令在ready前细化 |
+| preconditions / status | 前置验收、具体变更、必需技能及DQ复核、产品实施授权 / planned |
+| required_skills / skill_evidence_refs | ready前按实现/测试/审查阶段确定 / 尚无产品执行证据 |
+| decision_refs / compatibility | 本轮design D-013 / 无已发布API迁移 |
+| quality_governance | 内容视口为唯一滚动职责；布局只计算区域，M2只优化绘制；无旧实现需退役 |
+| risks / evidence_refs | 偏移越界、宽字符与焦点不可见；后续用边界场景验证 / 当前仅设计证据 |
+
+L4在进入ready前按冻结契约展开，不具备直接编码准入。TASK-027验证展示中的滚动集成，TASK-031验证滚动的局部渲染等价性，TASK-023/024按依赖完成最终集成。

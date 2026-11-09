@@ -78,3 +78,20 @@ USE_CURL_REGISTRY_RELAY=1 bash docs/reviews/R5/evidence/run-dependencies.sh /abs
 ## 适用范围
 
 这些结果只覆盖列明版本、源码、Linux环境和用例，没有实现终端会话、布局、焦点、剪贴板、图标、主题、局部绘制或性能基准。编译器普通诊断不等于完整DSL诊断验证；探针中保存回调不等于生命周期契约已完成。产品验收继续保持 pending。
+
+## 联合消费补充验证
+
+`dependency-probes/combined/` 同时声明 `unicode 0.1.0` 与 `unicodewidth 0.1.113` 两个根依赖，`cjpm.lock` 为 CJPM 实际生成。导入仅包括 `unicode.{GraphemeIterator, Codepoint}`、`unicode.types.NormalizationForm` 和 `unicodewidth.StringWidth`，避免同时引入两个库的 `width()` 扩展。
+
+样本 `中é👩‍💻❤️🇨🇳` 实际分成5个字素簇；逐簇调用 unicodewidth 计宽共9列，整体计宽也为9列；同一消费程序的 NFD 分解断言通过。该样本不证明所有 Unicode 文本跨字素边界都具有宽度可加性。日志见 `dependency-logs/combined-run.log`。
+
+轻量重跑复用前述依赖脚本已经准备好的 cache 与原生归档，不下载或重建 Unicode 数据：
+
+```sh
+bash docs/reviews/R5/evidence/run-combined.sh \
+  /absolute/scratch/combined-probe \
+  /absolute/scratch/dependency-probe/cache \
+  /absolute/scratch/dependency-probe/cache/repository/source/default/unicode-0.1.0/lib
+```
+
+该结果仍然是**带显式原生链接前提的 Linux x86_64 联合消费可行性**。未验证产品源码、CJPM干净制品分发、跨平台集成或完整Unicode一致性，不能据此声称 cjtui 已可运行。这里的联合计宽只使用 unicodewidth，不启用 unicode 自带的宽度实现。
