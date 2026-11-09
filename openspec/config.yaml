@@ -1,7 +1,7 @@
 schema: spec-driven
 context: |
   Language: zh-CN. Keep OpenSpec headings and SHALL/MUST keywords in English.
-  cjtui is a new Cangjie terminal UI project awaiting development. Product documents are self-contained and do not depend on prior implementations or historical baselines.
+  cjtui is implementing its first Linux ANSI product slice in src/native with examples/minimal. Product documents are self-contained; implementation and verification are scoped per slice, never inferred as full-framework completion.
   Current authorization (2026-11-09): specifications/probes/independent review, followed by Linux-first ANSI terminal implementation and platform/dependency risk resolution. Proceed autonomously within admitted L3 contracts. Complete all Linux capabilities and acceptance before considering Windows, macOS or HarmonyOS implementation; those remain future required targets and never gate the Linux phase. No publication.
   Evaluate central ansies and compare unicode with unicodewidth before selection, as newly authorized. Current manifest versions and selection evidence live in docs/development/dependencies.md. SDK baseline 1.2.0 is the existing Linux probe only; target SDK/runtime/ABI must be verified. Required OS targets: Linux, Windows, macOS, HarmonyOS; OpenHarmony evidence does not substitute for HarmonyOS local execution.
   Project tasks live in docs/tasks.md; when a concrete change starts, transfer its task state authority to that change tasks.md and keep only references in docs/tasks.md.

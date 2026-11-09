@@ -4,7 +4,7 @@
 
 本文说明应用作者如何组织界面、业务状态和事件，作为 [需求说明](requirements.md) REQ-001–003 的使用侧设计。它不是已发布 API 手册，也不提供伪可运行仓颉代码。精确语法、类型签名、源码形式和构建命令须经 TASK-002/004 验证冻结。R5 隔离探针只验证语言组合性质，不是 cjtui 已实现 API。
 
-当前 U1–U5 范围均 required、实现均 planned、验证均 pending。具体结果记录在 [验收矩阵](acceptance.md)。
+当前 U1–U5 全量范围仍为 required，完整场景验收尚待完成；Linux 首片已实现 Text/Row/Column、Frame 与 Application 的有限公开接口，实际切片证据与剩余范围见 docs/product/README.md 及 implement-linux-first-slice 变更。具体结果记录在 [验收矩阵](acceptance.md)。
 
 ## 2. 统一构造模型
 

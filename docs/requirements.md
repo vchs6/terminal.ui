@@ -4,7 +4,7 @@
 
 本文件完整描述产品必须提供的外部行为、约束及可观察验收条件，不只是目录索引。面向一个全新的待开发项目，明确产品目标、能力范围、平台与运行约束。开发治理见 [AGENTS.md](../AGENTS.md)。产品与仓颉包名为 cjtui，仓库名保持 terminal.ui。
 
-核心产品要求当前为 required / planned / pending；REQ-010 可选宿主扩展为 extension / planned / pending，不能视为字符终端必需能力。required 表示目标范围，planned 表示未实现，pending 表示尚无产品验收结果；三者不互相替代。本文是需求全貌的阅读入口，OpenSpec 文件是对应场景投影，不独立增加另一套需求；变更时同步核对。执行治理仍由 AGENTS、Battle 与任务分解规范定义。
+本文描述完整产品目标；Linux首片已有有限实现，已进入独立切片验收，已覆盖行为见docs/product/README.md及AC-048–053，不能视为完整REQ已通过。未覆盖的核心要求保持required / planned / pending；REQ-010 可选宿主扩展为extension，不能视为字符终端必需能力。required 表示目标范围，planned 表示未实现，pending 表示对应完整范围尚未验收通过；三者不互相替代。本文是需求全貌的阅读入口，OpenSpec 文件是对应场景投影，不独立增加另一套需求；变更时同步核对。执行治理仍由 AGENTS、Battle 与任务分解规范定义。
 
 [整体提案](development/proposal.md)说明价值和范围，[架构设计](architecture.md)说明如何组织，[用户构造设计](ui-construction.md)细化开发者使用契约，[工程任务](tasks.md)负责执行状态，[验收矩阵](acceptance.md)负责证据。本文不记录另一套完成进度。
 

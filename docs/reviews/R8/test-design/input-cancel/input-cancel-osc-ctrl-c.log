@@ -1,0 +1,7 @@
+PASS non-TTY: no ESC
+SEND PTY osc-ctrl-c: prefix=1b5d303b78797a78797a, then Ctrl-C=03
+PTY failure (osc-ctrl-c): finished=false, exit=undefined, signal=undefined, before=500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0, after=, stderr=
+FAIL integration: Error: timeout: clean termination (osc-ctrl-c)
+    at until (file:///workspace/work/first-slice-tests/repo/tests/integration/pty.mjs:17:9)
+    at async session (file:///workspace/work/first-slice-tests/repo/tests/integration/pty.mjs:64:5)
+    at async file:///workspace/work/first-slice-tests/repo/tests/integration/pty.mjs:104:68

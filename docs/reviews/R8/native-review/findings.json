@@ -1,0 +1,27 @@
+{
+  "task": "TASK049",
+  "revision": "67e62024c34792f8d7a41456e7df0002a81b840d",
+  "baseline": "03f67935e11a63c9ce7b0d318a79882ceda90d80",
+  "contract_verdict": "request_changes",
+  "code_quality_verdict": "request_changes",
+  "findings": [
+    {
+      "id": "F049-01",
+      "priority": "P2",
+      "blocking": true,
+      "title": "Synchronize bundle validation with required native build files",
+      "location": "scripts/check-bundle.mjs:15-17 (affected caller of cjpm.toml include change)",
+      "counterexample": "The actual allowed expression evaluates false for build.cj, native/build.sh and third_party/licenses/UNICODE-DATA-LICENSE.txt; line 17 rejects these intended bundle entries.",
+      "repair_standard": "Allow the required build.cj, native source/build inputs and third_party/licenses; explicitly reject generated native objects/archives and caches. Preserve the full-release required files and source directories, without waiving future TASK050+ deliverables."
+    }
+  ],
+  "checks": {
+    "shell_syntax": "passed",
+    "first_party_diff_check": "passed",
+    "validator_predicate_diagnostic": "confirmed F049-01",
+    "cjpm_version": "1.2.0",
+    "bundle_attempt": "blocked before archive creation: Failed to resolve address pkg.cangjie-lang.cn",
+    "full_native_build": "not run; assigned to independent execution role"
+  },
+  "scope": "Independent TASK049 code/contract review; no product edits or final acceptance claims"
+}

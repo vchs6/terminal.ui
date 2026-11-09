@@ -1,0 +1,166 @@
+[
+  {
+    "round_id": "FIRST-SLICE-051-R1",
+    "revision": "2794136e45aee98300f4b16456dfa6b605cfdf74",
+    "acceptance_ref": "AC-050 / AC-051",
+    "status": "open",
+    "fix_revision": null,
+    "verification": null,
+    "id": "SLICE-051-001",
+    "category": "lifecycle",
+    "target": "src/application.cj:20–29,35–43,75–80",
+    "contract_ref": "design.md Public slice contract: 默认Ctrl-C退出；D-021取消统一清理",
+    "claim": "Ctrl-C在控制串丢弃状态或UTF-8补字节期间被消费，应用不会默认退出。",
+    "severity": "major",
+    "reproducer": {
+      "setup": "运行附录A的公开API消费者于真实PTY。",
+      "actions": [
+        "发送ESC ]，等待150ms，再发送0x03；或一次发送E4 03。",
+        "等待350ms并检查进程退出。"
+      ],
+      "expected": "Ctrl-C优先取消会话并恢复termios。",
+      "observed": "两个场景exitedAfterInput=false，events=[]；必须另发SIGTERM才退出。"
+    },
+    "evidence_refs": [
+      "review.md#e1",
+      "2794136:src/application.cj:21",
+      "2794136:src/application.cj:77"
+    ]
+  },
+  {
+    "round_id": "FIRST-SLICE-051-R1",
+    "revision": "2794136e45aee98300f4b16456dfa6b605cfdf74",
+    "acceptance_ref": "AC-050 / AC-051",
+    "status": "open",
+    "fix_revision": null,
+    "verification": null,
+    "id": "SLICE-051-002",
+    "category": "ansi",
+    "target": "src/application.cj:68–81",
+    "contract_ref": "design.md Public slice contract: text事件有Unicode文本，不能把UTF8字节当多个字符；AGENTS.md §9跨块解析状态",
+    "claim": "有效UTF-8输入在字节间隔超过100ms时被静默丢弃，解码状态没有跨读超时保存。",
+    "severity": "major",
+    "reproducer": {
+      "setup": "运行附录A公开API消费者。",
+      "actions": [
+        "发送中文“中”的首字节E4。",
+        "等待160ms，再发送B8 AD。"
+      ],
+      "expected": "后续字节到达后产生一次text事件，text为“中”。",
+      "observed": "无text事件；E4在超时后丢弃，B8/AD随后被当作非法首字节丢弃。"
+    },
+    "evidence_refs": [
+      "review.md#e1",
+      "2794136:src/application.cj:76"
+    ]
+  },
+  {
+    "round_id": "FIRST-SLICE-051-R1",
+    "revision": "2794136e45aee98300f4b16456dfa6b605cfdf74",
+    "acceptance_ref": "AC-050 / AC-051",
+    "status": "open",
+    "fix_revision": null,
+    "verification": null,
+    "id": "SLICE-051-003",
+    "category": "ansi",
+    "target": "src/application.cj:32–46",
+    "contract_ref": "design.md Public slice contract: 未知控制序列有界忽略，不执行或伪造文本",
+    "claim": "SOS控制串ESC X未进入有界丢弃状态，其payload被伪造为普通文本事件。",
+    "severity": "major",
+    "reproducer": {
+      "setup": "运行附录A公开API消费者。",
+      "actions": [
+        "发送ESC X secret ESC \\（SOS、payload、ST）。"
+      ],
+      "expected": "未知SOS序列整体忽略，不触发业务文本回调。",
+      "observed": "依次收到KEY=text:s、e、c、r、e、t；若payload含q即可触发业务退出。"
+    },
+    "evidence_refs": [
+      "review.md#e1",
+      "2794136:src/application.cj:35",
+      "2794136:src/application.cj:46"
+    ]
+  },
+  {
+    "round_id": "FIRST-SLICE-051-R1",
+    "revision": "2794136e45aee98300f4b16456dfa6b605cfdf74",
+    "acceptance_ref": "AC-050 / AC-051",
+    "status": "open",
+    "fix_revision": null,
+    "verification": null,
+    "id": "SLICE-051-004",
+    "category": "code_quality",
+    "target": "native/cjtui_terminal.c:10–20,21–35,37–44；src/application.cj:18–19,99–102",
+    "contract_ref": "AGENTS.md §6状态同步、§8统一会话模式管理、§10.5状态所有权；design.md D-021恢复保存模式",
+    "claim": "会话active检查和占有不是原子的；并发Application.run可同时启动，覆盖唯一saved/old_signal快照，关闭成功却留下raw模式；共享buffer及解析状态也无独立所有权。",
+    "severity": "major",
+    "reproducer": {
+      "setup": "按附录B对固定原C桥做pthread+链接器syscall包装诊断；仅控制系统调用返回和线程时序，不改产品C。",
+      "actions": [
+        "两线程均通过active检查；在第二次isatty处同步。",
+        "第二线程tcgetattr等待第一线程open完成，再读取此时raw状态。",
+        "两open完成后调用cjt_close。"
+      ],
+      "expected": "只有一个open成功，或会话明确串行；关闭恢复original_lflag=11。",
+      "observed": "open1=0 open2=0 close=0 original_lflag=11 restored_lflag=0。"
+    },
+    "evidence_refs": [
+      "review.md#e2",
+      "2794136:native/cjtui_terminal.c:20",
+      "2794136:native/cjtui_terminal.c:35"
+    ]
+  },
+  {
+    "round_id": "FIRST-SLICE-051-R1",
+    "revision": "2794136e45aee98300f4b16456dfa6b605cfdf74",
+    "acceptance_ref": "AC-050 / AC-051",
+    "status": "open",
+    "fix_revision": null,
+    "verification": null,
+    "id": "SLICE-051-005",
+    "category": "lifecycle",
+    "target": "native/cjtui_terminal.c:23–35",
+    "contract_ref": "design.md D-021取消统一清理；AGENTS.md §8退出/取消恢复",
+    "claim": "安装信号处理器后才把interrupted清零，启动期间已接收的SIGINT/SIGTERM被抹掉，run继续工作。",
+    "severity": "major",
+    "reproducer": {
+      "setup": "附录C直接链接固定C桥；包装tcsetattr在首次应用raw参数时raise(SIGTERM)，其他TTY调用提供正常返回。",
+      "actions": [
+        "调用cjt_open。",
+        "立即调用cjt_read(0)。"
+      ],
+      "expected": "已捕获SIGTERM保留，cjt_read返回-2，Application退出进入清理。",
+      "observed": "open=0 read_after_SIGTERM=-1 close=0；信号被cjt_open末尾清零。"
+    },
+    "evidence_refs": [
+      "review.md#e3",
+      "2794136:native/cjtui_terminal.c:35"
+    ]
+  },
+  {
+    "round_id": "FIRST-SLICE-051-R1",
+    "revision": "2794136e45aee98300f4b16456dfa6b605cfdf74",
+    "acceptance_ref": "AC-050 / AC-051",
+    "status": "open",
+    "fix_revision": null,
+    "verification": null,
+    "id": "SLICE-051-006",
+    "category": "rendering",
+    "target": "src/frame.cj:88–103",
+    "contract_ref": "design.md Public slice contract: put越界裁剪；AGENTS.md §8负坐标/越界确定规则",
+    "claim": "完全位于右侧边界外的Int64.Max坐标仍递增，产生OverflowException，而不是无害裁剪。",
+    "severity": "minor",
+    "reproducer": {
+      "setup": "公开API Frame(1,1)。",
+      "actions": [
+        "调用Frame(1,1).put(Int64.Max,0,\"a\")。"
+      ],
+      "expected": "越界写入被裁剪，帧不变，不抛算术溢出。",
+      "observed": "OverflowException: add；Int64.Min同等短输入可正常裁剪。"
+    },
+    "evidence_refs": [
+      "review.md#e4",
+      "2794136:src/frame.cj:102"
+    ]
+  }
+]
