@@ -25,3 +25,5 @@
 需求全文由 requirements.md 组织，场景投影不独立新增要求；架构描述参考实现，不能擅自改变需求。任务状态、验收结果各有唯一位置，本文只导航。精确语法/API、平台矩阵和依赖运行证据仍须按已定义调查任务获取；本轮已授权隔离语言/依赖验证，不进入产品实现。
 
 本轮规格修订入口：[变更提案](../openspec/changes/refine-terminal-ui-contracts/proposal.md)、[设计](../openspec/changes/refine-terminal-ui-contracts/design.md)、[主题配置](theme-config.md)、[会话能力](terminal-session.md)、[框架调研](development/framework-research.md)、[独立审核](reviews/R5/result.md)。
+
+跨平台与HarmonyOS补充：见需求REQ-011、[R6官方证据](reviews/R6/platform-evidence.md)及[独立审核结果](reviews/R6/result.md)。

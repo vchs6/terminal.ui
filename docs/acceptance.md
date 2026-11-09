@@ -45,7 +45,7 @@
 | AC-039 | REQ-011 | macOS平台会话 | TASK-039 | macOS会话/依赖目标构建及字符UI核心场景，模式/尺寸/错误/恢复可复核；产品证据待实现 | pending |
 | AC-040 | REQ-011 | HarmonyOS平台会话 | TASK-040 | HarmonyOS实际目标宿主交互、依赖构建/链接、权限/尺寸/恢复证据；不得以交叉编译或OpenHarmony/SSH替代；产品证据待实现 | pending |
 | AC-041 | REQ-011 | Linux平台会话 | TASK-041 | Linux固定控制台/模拟终端字符会话及依赖，模式/尺寸/错误/恢复可复核；产品证据待实现 | pending |
-| AC-042 | REQ-007、REQ-011 | R6跨平台规格及官方事实核对 | TASK-042 | 平台目标、契约/任务/场景一致；官方资料与运行证据分开 | pending |
-| AC-043 | REQ-007 | R6独立设计审核 | TASK-043 | 固定受审版本、独立发现及复核，无必需文档缺陷；不代表平台实现通过 | pending |
+| AC-042 | REQ-007、REQ-011 | R6跨平台规格及官方事实核对 | TASK-042 |平台目标、契约/任务/场景一致；官方资料与运行证据分开；实际证据：R6/validation-final.txt、platform-evidence.md及independent-review.md| passed |
+| AC-043 | REQ-007 | R6独立设计审核 | TASK-043 |固定受审版本、独立发现及复核，无必需文档缺陷；不代表平台实现通过；实际证据：R6/independent-review.md；受审64418db53921895e43fe7d928f806507908cd087，findings为空| design_reviewed |
 
 REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖环境与规划检查，不替代持续开发或框架集成证据。U1–U5、主题、焦点、多层、失败恢复与制品完整性全部通过后方可声明 G-001 完成。

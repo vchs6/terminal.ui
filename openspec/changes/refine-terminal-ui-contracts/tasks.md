@@ -124,8 +124,8 @@ L4：
 
 ## 5. Cross-platform amendment R6
 
-- [ ] 5.1 TASK-042：补充REQ-011四OS/HarmonyOS规格、提案、后端及验收映射并核对官方资料；验收AC-042：严格规格/引用/依赖检查通过，平台实现证据不虚构。
-- [ ] 5.2 TASK-043：独立审核本轮跨平台补充并复核必需修复；验收AC-043：固定版本、可定位发现和design_reviewed结论，无未关闭必需文档缺陷。
+- [x] 5.1 TASK-042：补充REQ-011四OS/HarmonyOS规格、提案、后端及验收映射并核对官方资料；验收AC-042：严格规格/引用/依赖检查通过，平台实现证据不虚构。
+- [x] 5.2 TASK-043：独立审核本轮跨平台补充并复核必需修复；验收AC-043：固定版本、可定位发现和design_reviewed结论，无未关闭必需文档缺陷。
 
 ### TASK-042
 
@@ -144,7 +144,7 @@ L4：
 | decision_refs / compatibility | D-017 / 无已发布API，开发版本仍0.0.0 |
 | quality_governance | 平台差异单一后端归属；不复制UI/Unicode内核，不以Linux-only旧限制覆盖新目标；无产品旧路径退役 |
 | risks / blockers | 鸿蒙终端宿主/权限、SDK/原生ABI尚需产品实测；本轮只登记不伪造通过 |
-| status / evidence_refs | in_progress / docs/reviews/R6 |
+| status / evidence_refs | completed / docs/reviews/R6 |
 
 L4：1.核对官方工具链/宿主资料与现有边界，检查来源能证明的范围；2.修订REQ/场景/设计及任务矩阵，检查四OS有独立责任且无环；3.执行引用/严格校验与独立审核修复，检查产品pending不变。
 
@@ -165,8 +165,8 @@ L4：1.核对官方工具链/宿主资料与现有边界，检查来源能证明
 | decision_refs / compatibility | D-017 / 不取消必需平台目标，不把可选扩展强制为核心 |
 | quality_governance | 不引入额外GUI/PTY或审批平台；修复到权威需求并同步场景 |
 | risks / blockers | 无真机/对应工具链不等于文档失败，但不得记平台通过 |
-| status / evidence_refs | planned / docs/reviews/R6 |
+| status / evidence_refs | completed / docs/reviews/R6 |
 
 L4：1.固定版本并独立审查；2.核实/修复或有依据驳回发现；3.复核版本和检查结果，记录真实结论。
 
-R5完成记录只覆盖原范围。R6尚未完成时不得把此前4项勾选或design_reviewed外推为本增量已审核；未来产品TASK-038–041仍planned。
+R5完成记录只覆盖原范围。R6独立审查64418db53921895e43fe7d928f806507908cd087结论design_reviewed；此前R5结论不外推，R6结果见docs/reviews/R6/result.md；未来产品TASK-038–041仍planned。
