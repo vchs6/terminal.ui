@@ -1,0 +1,105 @@
+{
+  "source": "e162f7962ce2c211a9be0ef2bf03c77c907538b6",
+  "commands": [
+    {
+      "name": "head",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "technical-source",
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "2ad6c5ceeb0068d3b2b2d5efe010059965b9415a",
+        "HEAD",
+        "--",
+        "src",
+        "native",
+        "build.cj",
+        "cjpm.toml",
+        "examples",
+        "tests",
+        "scripts",
+        "package.json",
+        "package-lock.json",
+        ".github"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "metadata-only",
+      "command": [
+        "git",
+        "diff",
+        "--name-only",
+        "e68f4cee3273d8428c7d991b00eb5323b0a48077",
+        "HEAD"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "metadata-strict-and-links",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "final-apply",
+      "command": [
+        "./node_modules/.bin/openspec",
+        "instructions",
+        "apply",
+        "--change",
+        "implement-linux-first-slice",
+        "--json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "tracked-clean",
+      "command": [
+        "git",
+        "diff",
+        "--exit-code"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "technical_files": 35,
+  "final_copies": [
+    {
+      "file": "final-integration.md",
+      "sha256": "2ba873f4f30ede7181e6c32d624d9b7febc55c9e91e83ea9780842183e69f159"
+    },
+    {
+      "file": "final-integration.log",
+      "sha256": "6e57f614d1f250580bf097342daa9eef6ba0ba736a8434f6d109dae20136850c"
+    },
+    {
+      "file": "final-integration-check.json",
+      "sha256": "79327bb36c2577b354b94f51151379ba584d585bdad0b96ec210b0d7f8398c19"
+    },
+    {
+      "file": "check-final-integration.mjs",
+      "sha256": "06eb135623cf75a151d05ca0b8a28e79d588229e558934f9101896b8ea793ca3"
+    }
+  ],
+  "scope": "finite Linux first slice only",
+  "apply": {
+    "total": 6,
+    "complete": 6,
+    "state": "all_done"
+  },
+  "old_full_product_ac_block": "byte-identical",
+  "acceptance": "AC048–053 passed, finite slice only",
+  "verdict": "passed; final metadata registration matches independently verified delivery; no runtime retest required"
+}
