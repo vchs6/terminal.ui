@@ -12,14 +12,14 @@ if (manifestEntries.length!==1) throw new Error('Expected one root manifest');
 const prefix = manifestEntries[0].slice(0,-'cjpm.toml'.length);
 if (raw.some(p=>!p.startsWith(prefix) && p!==prefix.replace(/\/$/,''))) throw new Error('Files outside product root');
 const paths = raw.map(p=>p.slice(prefix.length)).filter(p=>p&&!p.endsWith('/'));
-const allowed = /^(?:src\/|examples\/|benchmarks\/|docs\/product\/|cjpm\.toml$|README(?:_zh)?\.md$|LICENSE$|NOTICE$|CHANGELOG\.md$)/;
+const allowed = /^(?:src\/|examples\/|benchmarks\/|docs\/product\/|native\/.*\.(?:sh|c|h|S|cj)$|third_party\/licenses\/|build\.cj$|cjpm\.toml$|README(?:_zh)?\.md$|LICENSE$|NOTICE$|CHANGELOG\.md$)/;
 for (const p of paths) {
-  if (!allowed.test(p) || p.split('/').some(s=>s.startsWith('.')||s==='target'||s==='node_modules') || /(?:^|\/)(?:AGENTS\.md|BATTLE_PROTOCOL\.md|ENGINEERING_TASK_DECOMPOSITION\.md|cangjie-repo\.toml|cjpm\.lock)$/.test(p)) throw new Error('Development/unexpected file in bundle: '+p);
+  if (!allowed.test(p) || p.split('/').some(s=>s.startsWith('.')||['target','node_modules','cache','build-script-cache'].includes(s)) || /\.(?:a|o|so|cjo|cjp|zip|tar|gz)$/i.test(p) || /(?:^|\/)(?:AGENTS\.md|BATTLE_PROTOCOL\.md|ENGINEERING_TASK_DECOMPOSITION\.md|cangjie-repo\.toml|cjpm\.lock)$/.test(p)) throw new Error('Development/unexpected file in bundle: '+p);
 }
 const required=['cjpm.toml','README.md','LICENSE','NOTICE','docs/product/README.md','examples/minimal/cjpm.toml','examples/composition/cjpm.toml','benchmarks/rendering/cjpm.toml'];
 for (const p of required) if (!paths.includes(p)) throw new Error('Incomplete product bundle: '+p);
 for (const dir of ['src/','examples/minimal/src/','examples/composition/src/','benchmarks/rendering/src/']) if (!paths.some(p=>p.startsWith(dir)&&p.endsWith('.cj'))) throw new Error('Missing product source: '+dir);
-for (const path of paths.filter(p=>p.endsWith('cjpm.toml'))) {
+for (const path of paths.filter(p=>p==='cjpm.toml'||p.endsWith('/cjpm.toml'))) {
   const data=parse(execFileSync('tar',['-xOzf',archive,prefix+path],{encoding:'utf8'}));
   function dependencies(value) {
     if (!value || typeof value !== 'object') return [];
