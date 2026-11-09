@@ -1,3 +1,5 @@
+> 历史草稿，非执行入口。下文含与已确定仓颉路线冲突的 JS 产品/SAR 等建议，未被采纳，不能用于创建任务或判定完成。唯一有效规划为 [工程任务](tasks.md)，本轮变更为 [契约修订](../openspec/changes/refine-terminal-ui-contracts/proposal.md)。保留本文仅作历史记录。
+
 # Implementation plan & 任务分解（初稿）
 
 > 本文件为 terminal.ui 项目在现有治理规范（AGENTS.md / ENGINEERING_TASK_DECOMPOSITION.md / docs/*）基础上的可执行实施规划与任务分解（L1→L2→L3→L4）。遵循仓库工程任务分解规范：L3 为最小可独立交付单元，L4 为具体可检查步骤。每个 L3 含 acceptance 条目与 evidence_refs 要求。完成后由维护者审核并决定后续编码执行（本次提交仅为实施规划与任务分解）。

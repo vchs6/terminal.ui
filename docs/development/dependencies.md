@@ -1,16 +1,32 @@
 # 外部依赖与适配边界
 
-2026-10-18 读取中心仓包页面及其公开元数据接口。可复核字段快照见 [central-packages.json](central-packages.json)，只证明版本、摘要、许可证及声明的最低编译器，不证明集成运行通过。
+2026-11-09 用户授权比较中心仓 unicode、unicodewidth 并评估 ansies 后选型；该授权替代原先未经实测固定 unicode 单库的限制。当前开发版本0.0.0、SDK验证基线1.2.0，清单不代表产品发布或集成通过。
 
-| 依赖 | 固定版本 | 声明 cjc | 内容摘要 SHA256 | 职责 |
-|---|---|---|---|---|
-| [ansies](https://pkg.cangjie-lang.cn/package/ansies) | 1.3.113 | 1.0.0 | 396ead6ab841eddd12b196fb657848587c4514a435c536146810ee5675344940 | ANSI 序列生成及实际支持的终端回复解析 |
-| [unicode](https://pkg.cangjie-lang.cn/package/unicode) | 0.1.0 | 1.1.0 | d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c | 字符簇、显示宽度、码点属性及规范化 |
+## 1. 选型与唯一职责
 
-ansies 的中心仓元数据还声明 bitarray 0.1.0。上述两项许可证均为 MulanPSL-2.0；传递许可证需在 TASK-003 核对。不得手写伪 cjpm.lock；实施阶段用 cjpm update/check 生成解析证据并核对实际内容摘要。
+| 依赖 | 固定版本 | 职责 | 本轮结论 |
+|---|---|---|---|
+| [ansies](https://pkg.cangjie-lang.cn/package/ansies) | 1.3.113 | ANSI序列生成与实际支持的终端回复解析 | 代表SGR/光标生成可编译运行；完整富文本/键盘解析不因此成立 |
+| [unicodewidth](https://pkg.cangjie-lang.cn/package/unicodewidth) | 0.1.113 | 唯一显示宽度来源，含模糊宽度策略 | ASCII、CJK、组合、ZWJ、肤色、心形/国旗emoji代表样本及widthCjk通过；不是分段库 |
+| [unicode](https://pkg.cangjie-lang.cn/package/unicode) | 0.1.0 | 字符簇分段及规范化，不使用其宽度算法 | 非空代表分段/NFD通过；有原生数据构建前提，空串迭代额外空簇需薄适配过滤 |
+| bitarray（传递） | 0.1.0 | ansies依赖 | 包摘要核对；许可证来源有冲突，发布前须解决 |
 
-框架负责：能力降级、安全边界、显示宽度策略配置、结构化样式映射及渲染不变量。依赖负责其已有字符和序列算法。终端回复解析不自动等同于任意富文本 ANSI 增量解析；TASK-003 逐项建立适用/缺口矩阵，再形成必要的受限输入适配设计。禁止假设依赖已经提供全部解析能力。
+采用职责互补：unicodewidth不提供字符簇分段，单独使用不能满足编辑；unicode的宽度在本轮心形/国旗样本与所需策略不符，不能独自满足宽度。两个库不重复调用宽度互相兜底，也不复制第三方数据表或自写平行Unicode内核。真实API为 widthCjk()，不是unicodewidth包README过时的width_cjk()。
 
-选择 SDK 1.2.0 作为项目与 CJPM bundle 验证版本，未承诺旧 1.0.0 兼容。当前仅清单已配置；依赖下载、编译和运行验收仍为 pending。
+## 2. 可复现证据与限制
 
-CJPM 规则依据：[官方 1.2.0 手册](https://cj-docs.gitcode.com/zh/1.2.0/tools/source_zh_cn/cmd-tools/cjpm_manual.html)。include/exclude 位于 package 表，非 workspace 表；版本固定字符串代表指定版本。bundle 是源码制品包，不是预编译静态库分发。
+来源、中心仓索引和实际cjp摘要见 [元数据](../reviews/R5/evidence/dependency-metadata.json)、[证据入口](../reviews/R5/evidence/README.md)。全部结论仅覆盖记录版本、Linux x64/SDK1.2.0及代表样本，完整Unicode一致性、平台适配和制品验收仍pending。
+
+unicode0.1.0直接CJPM依赖在本环境链接失败，缺少libunicodedata符号。隔离实验通过生成器、Unicode17 UCD数据、C/ASM构建该原生库并显式链接后运行；这证明有可行调查路径，不表示普通用户仅cjpm build就能使用。TASK-003必须把源码来源、校验、工具版本、构建/链接、许可及干净消费转成正式可复现契约，TASK-023验证真正制品；未解决前不声明依赖即插即用，也不把探针二进制混入制品。
+
+CJPM在本环境直接联网失败；隔离验证脚本通过本地HTTP relay使用继承代理/CA连接官方中心仓，未改写下载内容，实际cjp按索引SHA256核对。本relay只是本轮网络环境工具，不是产品运行依赖。
+
+unicodewidth数据表标识Unicode17.0.0；unicode原生数据来源及版本见重跑脚本。字符簇、宽度与终端字体的差异由策略/矩阵明确；本轮未执行官方完整一致性测试，不声称支持完整IME、BiDi或所有字形。word boundary/line breaking不是unicode包已实现能力，相关编辑/换行需要单独契约和验证。
+
+## 3. 许可证与发布门槛
+
+中心仓声明：ansies、unicode为MulanPSL-2.0；unicodewidth为MIT/Apache-2.0；bitarray索引元数据为MIT/Apache-2.0，但其README许可证章节写“无。”。本轮下载包中未发现完整LICENSE文本，不能把元数据声明当作完成了分发许可审查。
+
+TASK-003/023须核对上游授权来源、完整许可证文本、Unicode数据许可及必要归属，解决bitarray声明冲突。当前只登记原始证据与风险，不作法律许可通过结论，不发布。保持根项目MulanPSL-2.0许可，不将第三方双许可合并成根许可。
+
+CJPM制品规则依据：[官方1.2.0手册](https://cj-docs.gitcode.com/zh/1.2.0/tools/source_zh_cn/cmd-tools/cjpm_manual.html)。include/exclude约束源码cjp而不是GitHub源码zip；后续须用真实bundle与干净解包验证依赖路径及构建，不以配置字符串替代证据。

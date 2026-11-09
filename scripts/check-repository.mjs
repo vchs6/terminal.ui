@@ -12,8 +12,9 @@ for (const path of ['/src','/examples','/benchmarks','/docs/product','/LICENSE',
 for (const path of ['/openspec','/AGENTS.md','/BATTLE_PROTOCOL.md','/ENGINEERING_TASK_DECOMPOSITION.md','/scripts','/tests']) {
   if (!p.exclude.includes(path)) throw new Error('Missing development exclusion: ' + path);
 }
+if (!/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(p.version)) throw new Error('Product version must be three numeric segments');
 const packages = JSON.parse(read('docs/development/central-packages.json')).packages;
-for (const name of ['ansies','unicode']) {
+for (const name of ['ansies','unicode','unicodewidth']) {
   const dep = manifest.dependencies[name];
   if (dep.version !== packages[name].version || dep.path || dep.git) throw new Error('Must use pinned central dependency: ' + name);
 }

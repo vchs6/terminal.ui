@@ -6,7 +6,7 @@
 
 **Architecture:** 见 docs/architecture.md；语法先验证，依赖经薄适配边界，单一节点/渲染路径。
 
-**Tech Stack:** 仓颉 SDK 验证版本 1.2.0；中心仓 ansies 1.3.113、unicode 0.1.0。
+**Tech Stack:** 仓颉 SDK 验证版本 1.2.0；中心仓 ansies 1.3.113、unicode 0.1.0、unicodewidth 0.1.113。
 
 **Spec:** [完整需求说明](requirements.md)及 openspec/specs/ 下对应场景投影；构造与接口输入见 [总体架构](architecture.md)和[用户构造设计](ui-construction.md)。执行治理继续遵循 AGENTS.md。
 
@@ -25,10 +25,10 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 
 ## Global Constraints
 
-- 当前仅规划和仓库配置，不执行下列任务，所有功能任务状态为 planned。
+- 当前产品实现任务保持 planned；2026-11-09 仅授权本次文档修订、必要隔离验证和独立审核，状态见变更 TASK-033–035。
 - L1 G-001、L2 WP-001–005 由 docs/tasks.md 索引，不能直接编码。
 - 本文件是项目规划任务状态唯一权威，复选框只标 L3 交付完成，不能以勾完 L4 代替验收。
-- 近期 TASK-001–004 定义完整；远期为 L3 候选，需要按前置契约渐进细化、DQ 复核和实施授权后方可 ready。
+- 近期 TASK-001–004 的完整产品验收仍未完成；R5仅提供部分输入证据。远期为 L3 候选，需要按前置契约渐进细化、DQ 复核和实施授权后方可 ready。
 - 代码质量、技能安装、任务分类和验证复用引用 AGENTS，不另立平行规则。
 
 ## Review Focus
@@ -222,3 +222,180 @@ L4：
 ## 开发治理变更映射
 
 GOV-001 治理修订的任务状态见 [已归档变更](../openspec/changes/archive/2026-10-18-refine-development-governance/tasks.md)，复核证据见 [R4](reviews/R4/result.md)。该变更不启动任何产品任务。
+
+## 6. 本轮新增产品候选（状态权威仍在本文）
+
+新增项均为planned，不是本轮实施清单。所属L1仍为G-001。WP-002/003/004/005原有职责分别扩展至下列稳定编号。TASK-001/003的调查输入扩展至本地剪贴板/标题/图片图标能力和unicodewidth候选；R5探针不满足其完整产品验收。TASK-004冻结范围纳入REQ-001–010；TASK-021/023/024集成四主题、展示、全部基础组件及M1/M2分阶段结果。
+
+- [ ] 6.1 TASK-025：分类主题配置解析与诊断；验收 AC-025：合法单文件主题形成结构化配置；未知字段/非法值/坏引用带位置错误，不执行代码。
+- [ ] 6.2 TASK-026：应用主动主题重载与原子替换；验收 AC-026：有效重载同批次生效；失败保留旧主题，旧请求不覆盖较新请求，状态/焦点保留。
+- [ ] 6.3 TASK-027：四套预置主题及统一组件展示；验收 AC-027：深/浅/高对比/经典主题用同一展示应用，覆盖组件状态、受限色和窄屏；制品独立运行。
+- [ ] 6.4 TASK-028：基础输入编辑与标准快捷操作；验收 AC-028：单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交。
+- [ ] 6.5 TASK-029：按钮标签与选择进度基础组件；验收 AC-029：标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致。
+- [ ] 6.6 TASK-030：可选会话能力与本地剪贴板通道；验收 AC-030：SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心。
+- [ ] 6.7 TASK-031：M2局部布局绘制及基线对照；验收 AC-031：局部负载减少无关工作，移动/遮挡/宽字符/resize与M1帧结果一致，记录CPU/分配/输出及大范围退化。
+- [ ] 6.8 TASK-032：混合子元素操作与定向通知集成；验收 AC-032：声明A/B/C中插X融合排序位置；显式移动/移除、无效锚点/卸载/重入操作有诊断；定向通知合批无手动flush。
+
+### TASK-025：分类主题配置解析与诊断
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-003 / implementation |
+| classification / basis | execution候选；外部目标已确定，进入ready前依前置契约复核技术决策 |
+| requirement_refs / workflow_ref | REQ-008 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / 主题schema、仓颉解析依赖及错误签名待冻结 |
+| objective / acceptance | 合法单文件主题形成结构化配置；未知字段/非法值/坏引用带位置错误，不执行代码；AC-025 |
+| scope / impact | 分类主题配置解析与诊断及其公开使用文档/必要回归；不实现其他候选能力 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-003、TASK-004 |
+| preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
+| deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
+| required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
+| decision_refs / compatibility | 本次变更design / 无已发布API迁移；未来冻结后不得静默改约 |
+| quality_governance | 对应模块唯一职责；不另建节点/样式/Unicode内核；无旧产品源码需退役 |
+| risks / evidence_refs | 主题schema、仓颉解析依赖及错误签名待冻结 / 当前只有R5规划与隔离探针，非产品通过证据 |
+
+L4在进入ready前按冻结契约展开；本候选不具备直接编码准入。
+
+### TASK-026：应用主动主题重载与原子替换
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-003 / implementation |
+| classification / basis | execution候选；外部目标已确定，进入ready前依前置契约复核技术决策 |
+| requirement_refs / workflow_ref | REQ-008 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / 重载与调度精确接口待冻结 |
+| objective / acceptance | 有效重载同批次生效；失败保留旧主题，旧请求不覆盖较新请求，状态/焦点保留；AC-026 |
+| scope / impact | 应用主动主题重载与原子替换及其公开使用文档/必要回归；不实现其他候选能力 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-013、TASK-025、TASK-016 |
+| preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
+| deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
+| required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
+| decision_refs / compatibility | 本次变更design / 无已发布API迁移；未来冻结后不得静默改约 |
+| quality_governance | 对应模块唯一职责；不另建节点/样式/Unicode内核；无旧产品源码需退役 |
+| risks / evidence_refs | 重载与调度精确接口待冻结 / 当前只有R5规划与隔离探针，非产品通过证据 |
+
+L4在进入ready前按冻结契约展开；本候选不具备直接编码准入。
+
+### TASK-027：四套预置主题及统一组件展示
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-005 / implementation |
+| classification / basis | execution候选；外部目标已确定，进入ready前依前置契约复核技术决策 |
+| requirement_refs / workflow_ref | REQ-008、REQ-006 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / 主题最终配色及展示代码待实现，打包接入TASK-023 |
+| objective / acceptance | 深/浅/高对比/经典主题用同一展示应用，覆盖组件状态、受限色和窄屏；制品独立运行；AC-027 |
+| scope / impact | 四套预置主题及统一组件展示及其公开使用文档/必要回归；不实现其他候选能力 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-021、TASK-026、TASK-028、TASK-029 |
+| preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
+| deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
+| required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
+| decision_refs / compatibility | 本次变更design / 无已发布API迁移；未来冻结后不得静默改约 |
+| quality_governance | 对应模块唯一职责；不另建节点/样式/Unicode内核；无旧产品源码需退役 |
+| risks / evidence_refs | 主题最终配色及展示代码待实现，打包接入TASK-023 / 当前只有R5规划与隔离探针，非产品通过证据 |
+
+L4在进入ready前按冻结契约展开；本候选不具备直接编码准入。
+
+### TASK-028：基础输入编辑与标准快捷操作
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-004 / implementation |
+| classification / basis | execution候选；外部目标已确定，进入ready前依前置契约复核技术决策 |
+| requirement_refs / workflow_ref | REQ-001.8、REQ-009 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / 编辑状态/撤销边界、按键及输入策略精确签名待冻结；按可选能力降级不阻塞编辑 |
+| objective / acceptance | 单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交；AC-028 |
+| scope / impact | 基础输入编辑与标准快捷操作及其公开使用文档/必要回归；不实现其他候选能力 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-003、TASK-004、TASK-015、TASK-017、TASK-030 |
+| preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
+| deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
+| required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
+| decision_refs / compatibility | 本次变更design / 无已发布API迁移；未来冻结后不得静默改约 |
+| quality_governance | 对应模块唯一职责；不另建节点/样式/Unicode内核；无旧产品源码需退役 |
+| risks / evidence_refs | 编辑状态/撤销边界、按键及输入策略精确签名待冻结；按可选能力降级不阻塞编辑 / 当前只有R5规划与隔离探针，非产品通过证据 |
+
+L4在进入ready前按冻结契约展开；本候选不具备直接编码准入。
+
+### TASK-029：按钮标签与选择进度基础组件
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-004 / implementation |
+| classification / basis | execution候选；外部目标已确定，进入ready前依前置契约复核技术决策 |
+| requirement_refs / workflow_ref | REQ-001.8、REQ-009 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / 基础组件参数/单选分组与进度范围待冻结；不含菜单/输入既有独立任务 |
+| objective / acceptance | 标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致；AC-029 |
+| scope / impact | 按钮标签与选择进度基础组件及其公开使用文档/必要回归；不实现其他候选能力 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-004、TASK-013、TASK-014、TASK-016、TASK-017 |
+| preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
+| deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
+| required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
+| decision_refs / compatibility | 本次变更design / 无已发布API迁移；未来冻结后不得静默改约 |
+| quality_governance | 对应模块唯一职责；不另建节点/样式/Unicode内核；无旧产品源码需退役 |
+| risks / evidence_refs | 基础组件参数/单选分组与进度范围待冻结；不含菜单/输入既有独立任务 / 当前只有R5规划与隔离探针，非产品通过证据 |
+
+L4在进入ready前按冻结契约展开；本候选不具备直接编码准入。
+
+### TASK-030：可选会话能力与本地剪贴板通道
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-004 / implementation |
+| classification / basis | execution候选；外部目标已确定，进入ready前依前置契约复核技术决策 |
+| requirement_refs / workflow_ref | REQ-010 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / 具体宿主/协议/权限/上限及标题图标适配证据待调查；不能承诺通用图片图标支持 |
+| objective / acceptance | SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心；AC-030 |
+| scope / impact | 可选会话能力与本地剪贴板通道及其公开使用文档/必要回归；不实现其他候选能力 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-001、TASK-003、TASK-004 |
+| preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
+| deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
+| required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
+| decision_refs / compatibility | 本次变更design / 无已发布API迁移；未来冻结后不得静默改约 |
+| quality_governance | 对应模块唯一职责；不另建节点/样式/Unicode内核；无旧产品源码需退役 |
+| risks / evidence_refs | 具体宿主/协议/权限/上限及标题图标适配证据待调查；不能承诺通用图片图标支持 / 当前只有R5规划与隔离探针，非产品通过证据 |
+
+L4在进入ready前按冻结契约展开；本候选不具备直接编码准入。
+
+### TASK-031：M2局部布局绘制及基线对照
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-002 / implementation |
+| classification / basis | execution候选；外部目标已确定，进入ready前依前置契约复核技术决策 |
+| requirement_refs / workflow_ref | REQ-004.8 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / M1正确性与基准前置未完成，局部依赖/缓存策略由实测细化 |
+| objective / acceptance | 局部负载减少无关工作，移动/遮挡/宽字符/resize与M1帧结果一致，记录CPU/分配/输出及大范围退化；AC-031 |
+| scope / impact | M2局部布局绘制及基线对照及其公开使用文档/必要回归；不实现其他候选能力 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-005、TASK-007、TASK-008、TASK-011、TASK-012、TASK-016、TASK-018、TASK-020、TASK-022 |
+| preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
+| deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
+| required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
+| decision_refs / compatibility | 本次变更design / 无已发布API迁移；未来冻结后不得静默改约 |
+| quality_governance | 对应模块唯一职责；不另建节点/样式/Unicode内核；无旧产品源码需退役 |
+| risks / evidence_refs | M1正确性与基准前置未完成，局部依赖/缓存策略由实测细化 / 当前只有R5规划与隔离探针，非产品通过证据 |
+
+L4在进入ready前按冻结契约展开；本候选不具备直接编码准入。
+
+### TASK-032：混合子元素操作与定向通知集成
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3候选 / WP-004 / implementation |
+| classification / basis | execution候选；外部目标已确定，进入ready前依前置契约复核技术决策 |
+| requirement_refs / workflow_ref | REQ-001.9、REQ-002.7/.8 / docs/tasks.md |
+| openspec_change_ref / planning_gaps | null；尚未启动该产品变更 / 统一节点操作/绑定通知批次及身份冲突契约待冻结 |
+| objective / acceptance | 声明A/B/C中插X融合排序位置；显式移动/移除、无效锚点/卸载/重入操作有诊断；定向通知合批无手动flush；AC-032 |
+| scope / impact | 混合子元素操作与定向通知集成及其公开使用文档/必要回归；不实现其他候选能力 |
+| inputs / depends_on | requirements、architecture、theme-config、terminal-session及TASK-004契约 / TASK-004、TASK-014、TASK-015、TASK-016、TASK-017 |
+| preconditions / status | 前置验收、具体变更、适用技能与DQ复核及产品实施授权 / planned |
+| deliverables / verification | 对应仓颉实现、公开使用证据和正常/失败用例；精确文件/命令/API随前置契约细化，不以未来测试替代当期验收 |
+| required_skills / skill_evidence_refs | 进入ready前确定并验证阶段所需OpenSpec、实现、测试、审查技能 / 当前尚未调用产品实施技能 |
+| decision_refs / compatibility | 本次变更design / 无已发布API迁移；未来冻结后不得静默改约 |
+| quality_governance | 对应模块唯一职责；不另建节点/样式/Unicode内核；无旧产品源码需退役 |
+| risks / evidence_refs | 统一节点操作/绑定通知批次及身份冲突契约待冻结 / 当前只有R5规划与隔离探针，非产品通过证据 |
+
+L4在进入ready前按冻结契约展开；本候选不具备直接编码准入。
+
+## 本轮文档与有界验证任务映射
+
+TASK-033（AC-033）、TASK-034（AC-034）、TASK-035（AC-035）的状态权威已转至 [refine-terminal-ui-contracts/tasks.md](../openspec/changes/refine-terminal-ui-contracts/tasks.md)，本文不复制其状态。产品TASK-001–032不因此标完成。

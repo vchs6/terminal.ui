@@ -22,4 +22,6 @@
 - [Agent 规范](../AGENTS.md)、[Battle 协议](../BATTLE_PROTOCOL.md)、[任务分解规范](../ENGINEERING_TASK_DECOMPOSITION.md)：执行治理，不能代替产品需求与架构。
 - [完整性审查](reviews/R3/result.md)：本次文档补齐的范围、问题处置和验证证据。
 
-需求全文由 requirements.md 组织，场景投影不独立新增要求；架构描述参考实现，不能擅自改变需求。任务状态、验收结果各有唯一位置，本文只导航。精确语法/API、平台矩阵和依赖运行证据仍须按已定义调查任务获取；不在本轮运行原型或进入功能实现。
+需求全文由 requirements.md 组织，场景投影不独立新增要求；架构描述参考实现，不能擅自改变需求。任务状态、验收结果各有唯一位置，本文只导航。精确语法/API、平台矩阵和依赖运行证据仍须按已定义调查任务获取；本轮已授权隔离语言/依赖验证，不进入产品实现。
+
+本轮规格修订入口：[变更提案](../openspec/changes/refine-terminal-ui-contracts/proposal.md)、[设计](../openspec/changes/refine-terminal-ui-contracts/design.md)、[主题配置](theme-config.md)、[会话能力](terminal-session.md)、[框架调研](development/framework-research.md)、[独立审核](reviews/R5/result.md)。
