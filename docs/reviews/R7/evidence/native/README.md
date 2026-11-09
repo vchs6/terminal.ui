@@ -19,7 +19,9 @@ Input bytes are checked before extraction. The source cjp and UCD zip may be ind
 
 `run-native.sh` requires a nonexistent output directory. It records an expected clean normal-build failure, builds the shipped generator, generates all seven native tables from pinned UCD17, compiles the shipped C/ASM without editing them, proves explicit consumer linking, then proves a corrected isolated dependency manifest can propagate FFI. It finally runs all 766 official GraphemeBreakTest17 vectors, comparing every boundary and output code point. The official file has no empty-input case; a separate raw-library probe records the known one-empty-cluster behavior. Node emits test source from official expected boundaries and does not implement segmentation.
 
-`run-transitive.sh` continues in that disposable directory. It proves consumer -> static adapter -> unicode FFI propagation, then restores the exact official unicode manifest and moves `[ffi.c]` ownership to the adapter. It forces and records an actual consumer relink. No consumer link option is needed. The consumer uses the adapter's public function and does not import unicode directly.
+`run-transitive.sh` continues in that disposable directory. It proves consumer -> static adapter -> unicode FFI propagation, then restores the exact official unicode manifest and moves `[ffi.c]` ownership to the adapter. It creates a new empty target directory and performs a normal build there, recording the compiler's native link option and the new executable path. No consumer link option is needed. The consumer uses the adapter's public function and does not import unicode directly.
+
+The original script tried to force an incremental relink by appending a comment. Independent execution showed that CJPM can reuse the old executable, correctly failing the script's compile-line assertion. A controlled developer probe reproduced this when the changed file's timestamp was preserved. The corrected owner stage relies on an empty target and retains the compiler/link assertions; comment edits and incremental cache invalidation are no longer acceptance evidence.
 
 ## Findings and recommendation
 

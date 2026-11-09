@@ -33,7 +33,16 @@ TOML
 # Preferred boundary: restore official unicode manifest; adapter owns native FFI.
 tar -xOf "$cjp_input" unicode-0.1.0/cjpm.toml > "$probe_work/unicode-0.1.0/cjpm.toml"
 printf '\n[ffi.c]\nunicodedata = { path = "../unicode-0.1.0/lib" }\n' >> "$probe_work/middle/cjpm.toml"
-printf '\n// Force relink after moving FFI ownership to the adapter.\n' >> "$probe_work/consumer/src/main.cj"
-(cd "$probe_work/consumer" && cjpm run --build-args="-i" --verbose) > "$probe_work/logs/adapter-owned-ffi-relink.log" 2>&1
+# A comment edit does not guarantee CJPM incremental invalidation. Build into a
+# new empty target so an executable linked under the old FFI owner cannot run.
+owner_target=$(mktemp -d "$probe_work/adapter-owned-target.XXXXXX")
+[[ ! -e "$owner_target/release/bin/main" ]]
+(
+ printf 'Fresh adapter-owned build target: %s\n' "$owner_target"
+ cd "$probe_work/consumer"
+ cjpm run --target-dir="$owner_target" --verbose
+) > "$probe_work/logs/adapter-owned-ffi-relink.log" 2>&1
+[[ -x "$owner_target/release/bin/main" ]]
 rg 'Compiling package.*native_probe.*-lunicodedata' "$probe_work/logs/adapter-owned-ffi-relink.log" >/dev/null
+rg -F "$owner_target/release/bin/main" "$probe_work/logs/adapter-owned-ffi-relink.log" >/dev/null
 printf 'PASS independent consumer -> static adapter -> official unicode; adapter owns native FFI\n'
