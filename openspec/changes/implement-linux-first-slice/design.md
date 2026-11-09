@@ -23,6 +23,7 @@ D-022：构造上下文必须串行/按线程隔离并在异常时清理，不�
 
 所有公开接口由`import cjtui.*`使用；具体仓颉源码以真实SDK编译为准，签名变化必须先同步独立测试作者。
 
+- `public func graphemeClusters(value: String): Array<String>`与`public func displayWidth(value: String, ambiguousWide!: Bool = false): Int64`为正式字符薄适配API；空输入返回空数组/0，宽度只调用unicodewidth。原生构建任务先交付该可独立消费的最小库，后续Frame复用它们。
 - `public enum Color { Default | Black | Red | Green | Yellow | Blue | Magenta | Cyan | White }`。
 - `public struct Style`，`init(foreground!: Color = Color.Default, background!: Color = Color.Default, bold!: Bool = false)`，同名只读字段。样式相等按值。
 - `public struct Cell`只读`grapheme: String`、`width: Int64`、`continuation: Bool`、`style: Style`；空白为带样式空格/width1，宽字符续格width0且continuation=true。
