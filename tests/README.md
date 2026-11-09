@@ -1,0 +1,76 @@
+# Linux first-slice independent tests (TASK-048)
+
+Frozen input: `openspec/changes/implement-linux-first-slice/design.md` at
+`09f3e513cd62fb16ae85633c11ee2d3e15bb7d52`; all expected results come from that contract.
+This is execution work, scoped to independent consumers and test facilities. There was
+no product implementation at the input revision. No prior implementation is replaced.
+
+Source Cangjie SDK **1.2.0** `envsetup.sh`, then from the repository root run:
+
+```sh
+./tests/run-slice.sh native-smoke # TASK-049 only: public Unicode adapters
+./tests/run-slice.sh contract     # Frame/style/components, no terminal required
+./tests/run-slice.sh integration  # build external application, then actual Linux PTYs
+./tests/run-slice.sh all
+```
+
+Each project is an ordinary external CJPM executable depending on `cjtui` by relative
+root path. No private imports, embedded product logic, test hooks, product stubs, or
+framework test runner are used. Failed assertions throw and exit nonzero. Compiler or
+linker failure is a failing run, never a test pass. Consumers require the product's
+normal build hook; they must not be given ad hoc FFI flags to rescue product packaging.
+
+If the environment uses an existing official offline cache, create an **untracked**
+`cangjie-repo.toml` in each consumer directory (including `tests/integration/fixture`):
+
+```toml
+[repository.cache]
+path = "/absolute/path/to/existing/cache"
+[repository.home]
+registry = "https://pkg.cangjie-lang.cn/registry"
+```
+
+Use the cache read-only; never patch its sources or native artifacts. SDK installation,
+cache paths and temporary syntax-only stubs are environment inputs, not repository
+content or product dependencies.
+
+## Coverage
+
+| Consumer | Contract expectations |
+| --- | --- |
+| native-smoke | Empty input; CJK; combining EGC; ZWJ emoji/flag segmentation and columns; ambiguous-width option |
+| contract / Frame | Negative/zero dimensions, out-of-range cell reads, EGC cells, wide continuations, overwrite either half, left/right clipping, out-of-area writes, zero-width clusters, original-x LF/CRLF |
+| contract / input | Every C0 other than LF/CR, every C1, lone CR, CSI/OSC/ESC rejection, component text rejection |
+| contract / snapshot | Full-column plain spaces and LF structure, no extra LF/ESC; ANSI reset/absolute rows/final reset, no newline scrolling; style-only overwrite affects ANSI |
+| contract / construction | Text/Row/Column chains, if/for/custom function, inherited styles/explicit override, multiline root, actual-width clipping, clean context after nested construction exception |
+| integration | Actual external application q/resize exit; Ctrl-C, SIGINT, SIGTERM cancellation; callback exception reporting; exact termios restoration; idle no-update; resize repaint clipped to actual width; non-TTY no ESC |
+
+`tests/integration/pty.mjs` needs Node and util-linux `script`/`stty` on Linux.
+Those are test facilities only. `script` allocates a real PTY. The wrapper records
+termios before/after the actual executable, without restoring it on the application's
+behalf. Timeouts fail and kill test processes. A SIGKILL used for timeout cleanup is
+never considered successful cancellation. No Python or node-pty dependency is needed.
+
+The fixture uses only `Application`, `Column`, `Row`, `Text`, and `onKey`. Key `e`
+throws a callback exception; `q` stops. The final line makes resize clipping observable.
+To rerun the same PTY harness against a compatible built executable directly:
+
+```sh
+node tests/integration/pty.mjs /absolute/path/to/executable
+```
+
+A different executable must supply the fixture's three text lines and q/e handlers.
+The ordinary product minimal example should additionally be built/run by TASK-052;
+this external fixture verifies the public API without depending on example internals.
+
+This suite does not claim to exhaustively test injected device write failure, official
+Unicode conformance data, concurrency/thread isolation, or later full-framework/M2
+features. Public API exposes no device writer injection; independent code review and
+later fault evidence must address write-failure baseline rules. This is not product
+acceptance. After freeze, implementation authors report assertion problems through the
+coordinator; they do not alter expected results to fit implementation.
+
+TDD and verification-before-completion skills were applied to establish real RED
+and distinguish compiler syntax checks from behavioral results. OpenSpec apply state
+was read for the existing `implement-linux-first-slice` change; the coordinator updates
+authoritative task state, since this test author is restricted to tests/test documentation.
