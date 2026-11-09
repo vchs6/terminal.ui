@@ -1,0 +1,37 @@
++ set -x
++ cd /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/src
++ gcc -fPIC -O2 -I../include -c library.c -o ../../lib/library.o
++ gcc -fPIC -c data.S -o ../../lib/data.o
++ ar rcs ../../lib/libunicodedata.a ../../lib/library.o ../../lib/data.o
++ sha256sum ../memmap/DecompSequences.bin ../memmap/Pages.bin ../memmap/Properties.bin ../memmap/Sections.bin ../memmap/Segments.bin ../memmap/combinsequences_first.bin ../memmap/combinsequences_second.bin ../../lib/libunicodedata.a
+a629de991162f742c45b18d81dd5fcd30708991e89c273d83aa08ec9a7c6c7e6  ../memmap/DecompSequences.bin
+d7f6ff9a6b60474739ba885fbf6fc274a285e4384c2fe796bb448f60b31d2438  ../memmap/Pages.bin
+6b1281b411e836e9cfad76c6b79e18e0d33d48fe3b87eb656a12638725cc05f2  ../memmap/Properties.bin
+d66958b0537099339c9ee7e6f527bb1cb894ca46933425d60defd29d2684c7af  ../memmap/Sections.bin
+90af6719055eda3983174a02da7bc45068027e785d80fc1a40703128e54b1a9f  ../memmap/Segments.bin
+167bf85b93fbad15759113aa780ce6b4feb7e4f07ba3d00360df0f121d8f2324  ../memmap/combinsequences_first.bin
+22e24d71eb7ae064e7d2208ead8fc24058ef39dde4c3ce4b5851f045f7e24034  ../memmap/combinsequences_second.bin
+96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03  ../../lib/libunicodedata.a
++ nm -g --defined-only ../../lib/libunicodedata.a
+
+library.o:
+0000000000000340 T free_utf16array
+0000000000000030 T getCodepointProperty
+0000000000000250 T getCombinSequences
+0000000000000140 T getDecompSequence
+
+data.o:
+0000000000030340 R DecompSequences
+0000000000035158 R DecompSequences_size
+0000000000035180 R FirstCharCombinSequences
+0000000000035c36 R FirstCharCombinSequences_size
+00000000000018c0 R Pages
+00000000000148c0 R Pages_size
+0000000000014900 R Properties
+0000000000030310 R Properties_size
+0000000000035c40 R SecondCharCombinSequences
+0000000000037ce8 R SecondCharCombinSequences_size
+0000000000000080 R Sections
+0000000000001880 R Sections_size
+0000000000000000 R Segments
+0000000000000044 R Segments_size

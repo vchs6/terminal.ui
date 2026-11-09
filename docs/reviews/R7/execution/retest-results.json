@@ -1,0 +1,114 @@
+{
+  "role": "independent test execution; no overall acceptance conclusion",
+  "previousCommit": "9a5c7034d245a053ff4614c3b7f594689a5b1389",
+  "commit": "e2c122de616207c9e5166a9c89416233b8b81268",
+  "versionPreparation": {
+    "command": "git -C /workspace/work/r7-independent-test/repo fetch /workspace/work/terminal.ui e2c122de616207c9e5166a9c89416233b8b81268 && git -C /workspace/work/r7-independent-test/repo checkout --detach e2c122de616207c9e5166a9c89416233b8b81268",
+    "exit": 0
+  },
+  "startUtc": "2026-11-09T15:31:05Z",
+  "endUtc": "2026-11-09T15:33:23Z",
+  "scope": "Only fixed run-transitive.sh re-executed in a new independent scratch directory",
+  "precondition": {
+    "scratch": "/workspace/work/r7-independent-test/retest-native-probe",
+    "commandRecord": "retest-execute.sh",
+    "source": "Only this role native-probe outputs from the first independent run reused.",
+    "restoration": "Copied unicode source/native archive, restored official unicode manifest then appended original [ffi.c] ./lib declaration, restored direct-consumer fixture/manifest; no middle or consumer target inherited.",
+    "nativeArchiveSha256": "96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03",
+    "nativeArchiveCmpExit": 0
+  },
+  "reuse": {
+    "unchangedPathsDiffExit": 0,
+    "paths": [
+      "run-native.sh",
+      "generate-conformance.mjs",
+      "templates/*"
+    ],
+    "inputHashesUnchanged": true,
+    "officialVectors": {
+      "total": 766,
+      "failed": 0,
+      "rerun": false
+    },
+    "other": "Initial normal clean expected failure, seven table generation/native build, explicit link, dependency-owned FFI and separate raw empty observation reused from report.md/results.json; no new claims outside this scope."
+  },
+  "hashes": {
+    "run-native.sh": "4470e67f35e5dafe8f6910d737f88345c792043c75a8df967ef54b80815a2742",
+    "run-transitive.sh": "613c25077512af6ccfe2c11bed0228ed4d457e9bbfabf45cd28417ea0e0a9050",
+    "generate-conformance.mjs": "202453714f7fe5a3f35d5bc2eb7a67765c8864f9d06d9ccdb2be579e2ba2ac0f",
+    "templates/consumer-main.cj": "ca37136319c522dcfdf4b51241f9ec70ec39a6b44c7cf7378d3a6af4321a19d5",
+    "templates/consumer-middle.cj": "33f28fdcd17a656369b3ce97bc5a012adb371003e91759fa5b3ba1c2d3c56d3e",
+    "templates/hook-probe.cj": "3696978c2e16b14d508aacd198a01cfab31b59c0d42f0ff4f92768e2ecb0e8cb",
+    "templates/middle-lib.cj": "3c856740fd0006e4fb3d5b080618dcd9e11ca4bfb406c9a4abaa9ec913843d44",
+    "unicodeCjp": "d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c",
+    "ucdZip": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e"
+  },
+  "results": [
+    {
+      "stage": "static adapter with dependency-owned ffi",
+      "exit": 0,
+      "fixtureCount": 1,
+      "evidence": "retest-native-probe/logs/intermediate-ffi.log"
+    },
+    {
+      "stage": "fresh adapter-owned target normal build/run",
+      "exit": 0,
+      "fixtureCount": 1,
+      "evidence": "retest-native-probe/logs/adapter-owned-ffi-relink.log",
+      "target": "/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF",
+      "executable": "/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main",
+      "actualConsumerLink": "Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/ -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/native_adapter/ -lnative_adapter -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main"
+    },
+    {
+      "stage": "fixed script assertions: absent before build, executable after build, compile-link flag, executed path",
+      "exit": 0,
+      "evidence": "retest-run-transitive.trace.log"
+    },
+    {
+      "stage": "run-transitive.sh overall",
+      "exit": 0
+    },
+    {
+      "stage": "final official unicode manifest equality",
+      "exit": 0,
+      "evidence": "retest-final-state.log"
+    }
+  ],
+  "findingFollowup": {
+    "id": "ITE-001",
+    "executionStatus": "Previous missing-relink observation is not reproduced with the fixed script; actual fresh consumer link and execution now recorded.",
+    "firstFailureEvidencePreserved": true
+  },
+  "rawLogIndex": [
+    {
+      "file": "retest-execution.log",
+      "sha256": "959d74abe2d120ef3a180316e3dac5a1df230d6080574f6159d461a54a9ef081"
+    },
+    {
+      "file": "retest-run-transitive.trace.log",
+      "sha256": "e4c167148012df82b7a96fab17dd2f2614e08da18d7c448be95395e809c39629"
+    },
+    {
+      "file": "retest-native-probe/logs/transitive-input-checksum.log",
+      "sha256": "a250ce32224eee3f7c78271fc44c72bfddbc19a1c45ae9abad2a97d2bd317544"
+    },
+    {
+      "file": "retest-native-probe/logs/intermediate-ffi.log",
+      "sha256": "9091cefa5e11cdc0952ef9467d516f9305235c841ce7f954431bfb1394413d1c"
+    },
+    {
+      "file": "retest-native-probe/logs/adapter-owned-ffi-relink.log",
+      "sha256": "d18e3e8c217f2dd3188b436b316fa6deddfc30911b8a4e680cce52dd7b0b2dc1"
+    },
+    {
+      "file": "retest-final-state.log",
+      "sha256": "e044f7a07dab32f9f259c106de7cae03142a66558b58a4eeeb1d5f9609d652f8"
+    }
+  ],
+  "limitations": [
+    "No main repo edits, fixed-script changes, commits, pushes, or new product/test implementation.",
+    "No author development logs or process reasoning read.",
+    "Successful nested command statuses follow set -e continuation; overall script exit captured explicitly.",
+    "This is execution evidence for a separate acceptance role; Linux-only scope persists."
+  ]
+}

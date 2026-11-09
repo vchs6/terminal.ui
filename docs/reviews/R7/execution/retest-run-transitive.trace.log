@@ -1,0 +1,28 @@
++ set -euo pipefail
+++ realpath /workspace/work/r7-independent-test/retest-native-probe
++ probe_work=/workspace/work/r7-independent-test/retest-native-probe
+++ realpath /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ cjp_input=/workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++++ dirname /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh
+++ cd /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native
+++ pwd
++ script_dir=/workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native
++ [[ -f /workspace/work/r7-independent-test/retest-native-probe/logs/grapheme-conformance.log ]]
++ [[ -f /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a ]]
++ printf '%s  %s\n' d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ sha256sum -c
++ mkdir -p /workspace/work/r7-independent-test/retest-native-probe/middle/src
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/middle-lib.cj /workspace/work/r7-independent-test/retest-native-probe/middle/src/lib.cj
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-middle.cj /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj
++ cat
++ cat
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ printf '\n[ffi.c]\nunicodedata = { path = "../unicode-0.1.0/lib" }\n'
+++ mktemp -d /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.XXXXXX
++ owner_target=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main ]]
++ [[ -x /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main ]]
++ rg 'Compiling package.*native_probe.*-lunicodedata' /workspace/work/r7-independent-test/retest-native-probe/logs/adapter-owned-ffi-relink.log
++ rg -F /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main /workspace/work/r7-independent-test/retest-native-probe/logs/adapter-owned-ffi-relink.log
++ printf 'PASS independent consumer -> static adapter -> official unicode; adapter owns native FFI\n'
+PASS independent consumer -> static adapter -> official unicode; adapter owns native FFI

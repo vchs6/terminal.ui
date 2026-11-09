@@ -1,0 +1,114 @@
++ base=/workspace/work/r7-independent-test
++ repo=/workspace/work/r7-independent-test/repo
++ original=/workspace/work/r7-independent-test/native-probe
++ probe=/workspace/work/r7-independent-test/retest-native-probe
++ evidence=docs/reviews/R7/evidence/native
++ date -u +%Y-%m-%dT%H:%M:%SZ
+2026-11-09T15:31:05Z
++ git -C /workspace/work/r7-independent-test/repo rev-parse HEAD
+e2c122de616207c9e5166a9c89416233b8b81268
++ git -C /workspace/work/r7-independent-test/repo status --porcelain
++ git -C /workspace/work/r7-independent-test/repo diff --exit-code 9a5c7034d245a053ff4614c3b7f594689a5b1389 e2c122de616207c9e5166a9c89416233b8b81268 -- docs/reviews/R7/evidence/native/run-native.sh docs/reviews/R7/evidence/native/generate-conformance.mjs docs/reviews/R7/evidence/native/templates
++ sha256sum /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-native.sh /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/generate-conformance.mjs /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-middle.cj /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/hook-probe.cj /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/middle-lib.cj /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+4470e67f35e5dafe8f6910d737f88345c792043c75a8df967ef54b80815a2742  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-native.sh
+613c25077512af6ccfe2c11bed0228ed4d457e9bbfabf45cd28417ea0e0a9050  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh
+202453714f7fe5a3f35d5bc2eb7a67765c8864f9d06d9ccdb2be579e2ba2ac0f  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/generate-conformance.mjs
+ca37136319c522dcfdf4b51241f9ec70ec39a6b44c7cf7378d3a6af4321a19d5  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj
+33f28fdcd17a656369b3ce97bc5a012adb371003e91759fa5b3ba1c2d3c56d3e  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-middle.cj
+3696978c2e16b14d508aacd198a01cfab31b59c0d42f0ff4f92768e2ecb0e8cb  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/hook-probe.cj
+3c856740fd0006e4fb3d5b080618dcd9e11ca4bfb406c9a4abaa9ec913843d44  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/middle-lib.cj
+d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c  /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
+2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e  /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe ]]
++ mkdir -p /workspace/work/r7-independent-test/retest-native-probe/logs /workspace/work/r7-independent-test/retest-native-probe/consumer/src
++ cp -a /workspace/work/r7-independent-test/native-probe/unicode-0.1.0 /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0
++ cp /workspace/work/r7-independent-test/native-probe/logs/grapheme-conformance.log /workspace/work/r7-independent-test/retest-native-probe/logs/grapheme-conformance.log
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ printf '\n[ffi.c]\nunicodedata = { path = "./lib" }\n'
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj
++ cat
++ cat /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/cjpm.toml /workspace/work/r7-independent-test/retest-native-probe/consumer/cjpm.toml
+[package]
+  cjc-version = "1.1.0"
+  name = "unicode"
+  description = "Cangjie Unicode Library"
+  version = "0.1.0"
+  authors = ["vchuoshen6"]
+  repository = "https://gitcode.com/vchuoshen6/libunicode.git"
+  homepage = "https://gitcode.com/vchuoshen6/libunicode"
+  documentation = "https://gitcode.com/vchuoshen6/libunicode"
+  tag = ["unicode"]
+  category = ["Utility"]
+  license = ["MulanPSL-2.0"]
+  include = ["unicode", "unicodedata", "generator", "doc", "lib"]
+  target-dir = ""
+  src-dir = "unicode"
+  output-type = "static"
+  compile-option = ""
+  override-compile-option = ""
+  link-option = "-Llib -lunicodedata"
+
+[dependencies]
+
+[ffi.c]
+unicodedata = { path = "./lib" }
+[package]
+cjc-version = "1.2.0"
+name = "native_probe"
+version = "0.0.1"
+src-dir = "src"
+output-type = "executable"
+[dependencies]
+unicode = { path = "../unicode-0.1.0" }
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe/middle ]]
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe/consumer/target ]]
++ sha256sum /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib/libunicodedata.a /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a
+96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03  /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib/libunicodedata.a
+96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03  /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a
++ cmp /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib/libunicodedata.a /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a
++ source /workspace/work/validation/sdk/cangjie/envsetup.sh
+++ return 0
++++ _cj_detect_shell_name
++++ '[' -n '' ']'
++++ '[' -n '5.2.37(1)-release' ']'
++++ printf '%s\n' bash
++++ return 0
+++ shell_name=bash
+++ case "$shell_name" in
++++ _cj_script_dir_from_path /workspace/work/validation/sdk/cangjie/envsetup.sh
+++ script_dir=/workspace/work/validation/sdk/cangjie
+++ '[' -z /workspace/work/validation/sdk/cangjie ']'
++++ uname -s
+++ sys_name=Linux
+++ '[' Linux = HarmonyOS ']'
+++ sys_name=
++++ uname -m
+++ hw_arch=x86_64
+++ '[' x86_64 = '' ']'
+++ hw_arch=_x86_64
+++ '[' -n '' ']'
+++ export CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+++ CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+++ export PATH=/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin
+++ PATH=/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin
+++ export LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+++ LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+++ unset hw_arch
+++ unset sys_name
++ cjc --version
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
++ cjpm --version
+Cangjie Project Manager: 1.2.0
++ printf 'CANGJIE_HOME=%s\nLD_LIBRARY_PATH=%s\n' /workspace/work/validation/sdk/cangjie /workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
++ set +e
++ bash -x /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh /workspace/work/r7-independent-test/retest-native-probe /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ status=0
++ set -e
++ printf 'run_transitive_exit=%s\n' 0
+run_transitive_exit=0
++ date -u +%Y-%m-%dT%H:%M:%SZ
+2026-11-09T15:33:23Z
++ exit 0

@@ -1,0 +1,24 @@
+{
+  "commit": "e2c122de616207c9e5166a9c89416233b8b81268",
+  "hashesVerified": true,
+  "rawLogHashesVerified": 6,
+  "unchangedReusePaths": true,
+  "inputHashes": {
+    "run-native.sh": "4470e67f35e5dafe8f6910d737f88345c792043c75a8df967ef54b80815a2742",
+    "run-transitive.sh": "613c25077512af6ccfe2c11bed0228ed4d457e9bbfabf45cd28417ea0e0a9050",
+    "generate-conformance.mjs": "202453714f7fe5a3f35d5bc2eb7a67765c8864f9d06d9ccdb2be579e2ba2ac0f",
+    "templates/consumer-main.cj": "ca37136319c522dcfdf4b51241f9ec70ec39a6b44c7cf7378d3a6af4321a19d5",
+    "templates/consumer-middle.cj": "33f28fdcd17a656369b3ce97bc5a012adb371003e91759fa5b3ba1c2d3c56d3e",
+    "templates/hook-probe.cj": "3696978c2e16b14d508aacd198a01cfab31b59c0d42f0ff4f92768e2ecb0e8cb",
+    "templates/middle-lib.cj": "3c856740fd0006e4fb3d5b080618dcd9e11ca4bfb406c9a4abaa9ec913843d44",
+    "unicodeCjp": "d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c",
+    "ucdZip": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e"
+  },
+  "compileLinkLine": "Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/ -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/native_adapter/ -lnative_adapter -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main",
+  "runLine": "Run current project: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main",
+  "target": "/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF",
+  "originalGraphemeResult": [
+    "GraphemeBreakTest17 raw total=766 failed=0"
+  ],
+  "normalFailureSymbolsVerified": true
+}

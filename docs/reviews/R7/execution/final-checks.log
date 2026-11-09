@@ -1,0 +1,34 @@
++ base=/workspace/work/r7-independent-test
++ repo=/workspace/work/r7-independent-test/repo
++ probe=/workspace/work/r7-independent-test/native-probe
++ git -C /workspace/work/r7-independent-test/repo diff --exit-code
++ git -C /workspace/work/r7-independent-test/repo status --porcelain
++ sha256sum /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c  /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
+2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e  /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
++ for file in unicode-0.1.0/cjpm.toml unicode-0.1.0/unicodedata/src/library.c unicode-0.1.0/unicodedata/src/data.S
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ cmp - /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/cjpm.toml
++ printf 'official_bytes_match=%s\n' unicode-0.1.0/cjpm.toml
+official_bytes_match=unicode-0.1.0/cjpm.toml
++ for file in unicode-0.1.0/cjpm.toml unicode-0.1.0/unicodedata/src/library.c unicode-0.1.0/unicodedata/src/data.S
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/unicodedata/src/library.c
++ cmp - /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/src/library.c
++ printf 'official_bytes_match=%s\n' unicode-0.1.0/unicodedata/src/library.c
+official_bytes_match=unicode-0.1.0/unicodedata/src/library.c
++ for file in unicode-0.1.0/cjpm.toml unicode-0.1.0/unicodedata/src/library.c unicode-0.1.0/unicodedata/src/data.S
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/unicodedata/src/data.S
++ cmp - /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/src/data.S
++ printf 'official_bytes_match=%s\n' unicode-0.1.0/unicodedata/src/data.S
+official_bytes_match=unicode-0.1.0/unicodedata/src/data.S
++ sha256sum /workspace/work/r7-independent-test/native-probe/conformance/src/main.cj /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/UCD/auxiliary/GraphemeBreakTest.txt
+08eee34893b887f996786649cb4e2ec05a7ed3f55c6a58082e2a7b81d07aef71  /workspace/work/r7-independent-test/native-probe/conformance/src/main.cj
+e2d134d2c52919bace503ebb6a551c1855fe1a1faec18478c78fff254a1793ec  /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/UCD/auxiliary/GraphemeBreakTest.txt
++ stat -c '%y %n' /workspace/work/r7-independent-test/native-probe/consumer/src/main.cj /workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/main
+2026-11-09 15:26:26.944504883 +0000 /workspace/work/r7-independent-test/native-probe/consumer/src/main.cj
+2026-11-09 15:26:26.900504245 +0000 /workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/main
++ rg 'Compiling package.*native_probe' /workspace/work/r7-independent-test/native-probe/logs/consumer-native-link.log /workspace/work/r7-independent-test/native-probe/logs/dependency-ffi-transitive.log /workspace/work/r7-independent-test/native-probe/logs/intermediate-ffi.log
++ cat /workspace/work/r7-independent-test/ffi-link-lines.log
+/workspace/work/r7-independent-test/native-probe/logs/intermediate-ffi.log:Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/native_adapter/ -lnative_adapter -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main
+/workspace/work/r7-independent-test/native-probe/logs/dependency-ffi-transitive.log:Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main
+/workspace/work/r7-independent-test/native-probe/logs/consumer-native-link.log:Compiling package `native_probe`: cjc -p /workspace/work/r7-independent-test/native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants --link-options "-L/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib -lunicodedata" --output-type=exe -o=main

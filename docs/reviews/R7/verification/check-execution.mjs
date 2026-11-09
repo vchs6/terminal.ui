@@ -1,0 +1,34 @@
+import fs from 'node:fs';
+import {run,root,repo,hash} from './audit.mjs';
+const base='/workspace/work/r7-independent-test';
+const first=JSON.parse(fs.readFileSync(base+'/results.json'));
+const second=JSON.parse(fs.readFileSync(base+'/retest-results.json'));
+if(second.commit!=='e2c122de616207c9e5166a9c89416233b8b81268')throw Error('wrong retest');
+for(const [p,h] of Object.entries(second.hashes).filter(([p])=>p.endsWith('.sh')||p.endsWith('.mjs')||p.endsWith('.cj'))){
+ const actual=hash(fs.readFileSync(repo+'/docs/reviews/R7/evidence/native/'+p));if(actual!==h)throw Error('fixed file hash mismatch '+p);
+ if(p!=='run-transitive.sh'&&first.fixedHandoffHashes[p]&&first.fixedHandoffHashes[p]!==h)throw Error('reuse changed '+p);
+}
+const unmodified=run('git',['diff','9a5c7034d245a053ff4614c3b7f594689a5b1389','HEAD','--','docs/reviews/R7/evidence/native/run-native.sh','docs/reviews/R7/evidence/native/generate-conformance.mjs','docs/reviews/R7/evidence/native/templates']);
+if(unmodified.status||unmodified.stdout)throw Error('reuse input path changed');
+const inputs={unicodeCjp:'/workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp',ucdZip:'/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip'};
+for(const [k,f] of Object.entries(inputs))if(hash(fs.readFileSync(f))!==second.hashes[k])throw Error('input mismatch '+f);
+for(const [file,expected] of [[base+'/native-probe/unicode-0.1.0/unicodedata/UCD/auxiliary/GraphemeBreakTest.txt',first.generatedHashes.officialGraphemeFile],[base+'/native-probe/conformance/src/main.cj',first.generatedHashes.testSource]])if(hash(fs.readFileSync(file))!==expected)throw Error('conformance content hash mismatch '+file);
+for(const item of second.rawLogIndex)if(hash(fs.readFileSync(base+'/'+item.file))!==item.sha256)throw Error('raw log hash mismatch '+item.file);
+const relink=fs.readFileSync(base+'/retest-native-probe/logs/adapter-owned-ffi-relink.log','utf8');
+const trace=fs.readFileSync(base+'/retest-run-transitive.trace.log','utf8');
+const overall=fs.readFileSync(base+'/retest-execution.log','utf8');
+const final=fs.readFileSync(base+'/retest-final-state.log','utf8');
+const target=second.results.find(x=>x.target).target;
+const line=relink.split('\n').find(x=>x.includes('Compiling package `native_probe`'));
+const runline=relink.split('\n').find(x=>x.includes('Run current project')&&x.includes(target+'/release/bin/main'));
+if(!line||!line.includes('--output-dir='+target+'/release/bin/')||!line.includes('-lnative_adapter')||!line.includes('-lunicodedata')||!runline)throw Error('fresh compile/link/run absent');
+if(!trace.includes('[[ ! -e '+target+'/release/bin/main ]]')||!trace.includes('[[ -x '+target+'/release/bin/main ]]'))throw Error('pre/post target evidence absent');
+if(!overall.includes('run_transitive_exit=0')||!final.includes('official_unicode_manifest_cmp_exit=0'))throw Error('numeric final status absent');
+const grapheme=fs.readFileSync(base+'/native-probe/logs/grapheme-conformance.log','utf8');
+if(!grapheme.includes('GraphemeBreakTest17 raw total=766 failed=0'))throw Error('grapheme result');
+const normal=fs.readFileSync(base+'/native-probe/logs/normal-build-clean.log','utf8');
+for(const sym of ['getCodepointProperty','getDecompSequence','getCombinSequences','free_utf16array'])if(!normal.includes(sym))throw Error('missing expected error '+sym);
+const report={commit:second.commit,hashesVerified:true,rawLogHashesVerified:second.rawLogIndex.length,unchangedReusePaths:true,inputHashes:second.hashes,compileLinkLine:line,runLine:runline,target,originalGraphemeResult:grapheme.split('\n').filter(x=>x.includes('GraphemeBreakTest17')||x.includes('empty')),normalFailureSymbolsVerified:true};
+fs.writeFileSync(root+'/execution-evidence.json',JSON.stringify(report,null,2)+'\n');
+for(const file of ['retest-execute.sh','retest-execution.log','retest-run-transitive.trace.log','retest-final-state.log','retest-native-probe/logs/adapter-owned-ffi-relink.log','native-probe/logs/grapheme-conformance.log','native-probe/logs/normal-build-clean.log'])run('cat',[base+'/'+file]);
+console.log('Verified current fixed-file/input hashes, six raw log hashes, unchanged conformance inputs; actual fresh target consumer compile/link and Run current project lines exist. Numeric statuses assessed with trace in verification.md.');

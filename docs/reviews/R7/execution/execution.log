@@ -1,0 +1,85 @@
++ /workspace/work/r7-independent-test/execute.sh:8: date -u +%Y-%m-%dT%H:%M:%SZ
+2026-11-09T15:24:02Z
++ /workspace/work/r7-independent-test/execute.sh:9: git -C /workspace/work/r7-independent-test/repo rev-parse HEAD
+9a5c7034d245a053ff4614c3b7f594689a5b1389
++ /workspace/work/r7-independent-test/execute.sh:10: git -C /workspace/work/r7-independent-test/repo status --short
++ /workspace/work/r7-independent-test/execute.sh:11: sha256sum /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c  /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
+2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e  /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
++ /workspace/work/r7-independent-test/execute.sh:12: cd /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native
++ /workspace/work/r7-independent-test/execute.sh:12: sed '/  logs\//d' SHA256SUMS
++ /workspace/work/r7-independent-test/execute.sh:12: sha256sum -c
+README.md: OK
+generate-conformance.mjs: OK
+metadata.json: OK
+run-native.sh: OK
+run-transitive.sh: OK
+templates/consumer-main.cj: OK
+templates/consumer-middle.cj: OK
+templates/hook-probe.cj: OK
+templates/middle-lib.cj: OK
+unicode-ffi.patch: OK
++ /workspace/work/r7-independent-test/execute.sh:13: printf 'handoff_checksum_exit=%s\n' 0
+handoff_checksum_exit=0
++ /workspace/work/r7-independent-test/execute.sh:14: source /workspace/work/validation/sdk/cangjie/envsetup.sh
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:9: return 0
++++ /workspace/work/validation/sdk/cangjie/envsetup.sh:114: _cj_detect_shell_name
++++ /workspace/work/validation/sdk/cangjie/envsetup.sh:18: '[' -n '' ']'
++++ /workspace/work/validation/sdk/cangjie/envsetup.sh:22: '[' -n '5.2.37(1)-release' ']'
++++ /workspace/work/validation/sdk/cangjie/envsetup.sh:23: printf '%s\n' bash
++++ /workspace/work/validation/sdk/cangjie/envsetup.sh:24: return 0
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:114: shell_name=bash
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:117: case "$shell_name" in
++++ /workspace/work/validation/sdk/cangjie/envsetup.sh:143: _cj_script_dir_from_path /workspace/work/validation/sdk/cangjie/envsetup.sh
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:143: script_dir=/workspace/work/validation/sdk/cangjie
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:144: '[' -z /workspace/work/validation/sdk/cangjie ']'
++++ /workspace/work/validation/sdk/cangjie/envsetup.sh:176: uname -s
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:176: sys_name=Linux
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:177: '[' Linux = HarmonyOS ']'
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:180: sys_name=
++++ /workspace/work/validation/sdk/cangjie/envsetup.sh:184: uname -m
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:184: hw_arch=x86_64
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:185: '[' x86_64 = '' ']'
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:188: hw_arch=_x86_64
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:227: '[' -n '' ']'
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:233: export CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:233: CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:234: export PATH=/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:234: PATH=/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:235: export LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:235: LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:238: unset hw_arch
+++ /workspace/work/validation/sdk/cangjie/envsetup.sh:239: unset sys_name
++ /workspace/work/r7-independent-test/execute.sh:15: printf 'sdk_source_exit=%s\n' 0
+sdk_source_exit=0
++ /workspace/work/r7-independent-test/execute.sh:16: command -v cjc cjpm node gcc ar bash tar unzip rg sha256sum
+/workspace/work/validation/sdk/cangjie/bin/cjc
+/workspace/work/validation/sdk/cangjie/tools/bin/cjpm
+/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node
+/usr/bin/gcc
+/usr/bin/ar
+/usr/bin/bash
+/usr/bin/tar
+/usr/bin/unzip
+/usr/local/bin/rg
+/usr/bin/sha256sum
++ /workspace/work/r7-independent-test/execute.sh:17: cjc --version
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
++ /workspace/work/r7-independent-test/execute.sh:18: cjpm --version
+Cangjie Project Manager: 1.2.0
++ /workspace/work/r7-independent-test/execute.sh:19: printf 'CANGJIE_HOME=%s\nPATH=%s\nLD_LIBRARY_PATH=%s\n' /workspace/work/validation/sdk/cangjie /workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin /workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+PATH=/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin
+LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
++ /workspace/work/r7-independent-test/execute.sh:20: bash -x /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-native.sh /workspace/work/r7-independent-test/native-probe /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
++ /workspace/work/r7-independent-test/execute.sh:21: native_status=0
++ /workspace/work/r7-independent-test/execute.sh:22: printf 'run_native_exit=%s\n' 0
+run_native_exit=0
++ /workspace/work/r7-independent-test/execute.sh:23: [[ 0 == 0 ]]
++ /workspace/work/r7-independent-test/execute.sh:24: bash -x /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh /workspace/work/r7-independent-test/native-probe /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ /workspace/work/r7-independent-test/execute.sh:25: transitive_status=1
++ /workspace/work/r7-independent-test/execute.sh:26: printf 'run_transitive_exit=%s\n' 1
+run_transitive_exit=1
++ /workspace/work/r7-independent-test/execute.sh:28: date -u +%Y-%m-%dT%H:%M:%SZ
+2026-11-09T15:26:27Z

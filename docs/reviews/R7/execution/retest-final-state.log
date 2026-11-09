@@ -1,0 +1,37 @@
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ cmp - /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/cjpm.toml
++ printf 'official_unicode_manifest_cmp_exit=0\n'
+official_unicode_manifest_cmp_exit=0
++ cat /workspace/work/r7-independent-test/retest-native-probe/consumer/cjpm.toml /workspace/work/r7-independent-test/retest-native-probe/middle/cjpm.toml /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj
+[package]
+cjc-version = "1.2.0"
+name = "native_probe"
+version = "0.0.1"
+src-dir = "src"
+output-type = "executable"
+[dependencies]
+native_adapter = { path = "../middle" }
+[package]
+cjc-version = "1.2.0"
+name = "native_adapter"
+version = "0.0.1"
+src-dir = "src"
+output-type = "static"
+[dependencies]
+unicode = { path = "../unicode-0.1.0" }
+
+[ffi.c]
+unicodedata = { path = "../unicode-0.1.0/lib" }
+package native_probe
+import native_adapter.countGraphemes
+main(): Int64 {
+ if (countGraphemes("中é👩‍💻❤️🇨🇳") != 5) { return 1 }
+ println("PASS transitive FFI through intermediate static adapter")
+ return 0
+}
+
+// Recompile consumer to verify adapter-owned ffi flags.
++ sha256sum /workspace/work/r7-independent-test/report.md /workspace/work/r7-independent-test/results.json
+f8c80bc345a6e20af076277d8a470c6e6b524180e1690a8ada8d3c2ad7df04f2  /workspace/work/r7-independent-test/report.md
+7e17cd3899ca26daa43c36c7208a8f42d3063effc18ddcb37479c740085ba763  /workspace/work/r7-independent-test/results.json
++ git -C /workspace/work/r7-independent-test/repo status --porcelain

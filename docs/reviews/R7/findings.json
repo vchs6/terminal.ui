@@ -1,0 +1,161 @@
+[
+  {
+    "id": "R7-IR-001",
+    "round_id": "R7",
+    "revision": "9a5c7034d245a053ff4614c3b7f594689a5b1389",
+    "category": "code_quality",
+    "target": "docs/tasks.md:3,28; docs/development/proposal.md:7,95",
+    "contract_ref": "AGENTS.md §3/13.1; ENGINEERING_TASK_DECOMPOSITION.md §7 DQ-08",
+    "acceptance_ref": "AC-044,AC-045",
+    "claim": "当前任务/提案入口仍宣称只有文档授权或不授权产品实施，与同版本 Linux 实施授权冲突，留下重新等待授权的错误门槛。",
+    "severity": "minor",
+    "status": "verified",
+    "reproducer": {
+      "setup": "固定提交且 Linux 具体 L3 的契约/DQ 前置已经满足。",
+      "actions": [
+        "读取 docs/tasks.md Global Constraints 和顶部执行提示",
+        "读取整体提案当前状态与 P1 门槛",
+        "与 AGENTS §3/13.1 比较授权判断"
+      ],
+      "expected": "现行入口统一说明 Linux 实施已有授权，只等待真实任务准入；发布未授权。",
+      "observed": "当前入口仍写仅授权文档、不授权框架实现、后续获授权，未标为被替代的历史条款。"
+    },
+    "evidence_refs": [
+      "9a5c7034d245a053ff4614c3b7f594689a5b1389:docs/tasks.md:28",
+      "9a5c7034d245a053ff4614c3b7f594689a5b1389:docs/development/proposal.md:7",
+      "independent-review.md#r7-ir-001授权旧条款仍在当前规范入口生效minoropen"
+    ],
+    "fix_criteria": "统一现行提案/任务授权条款及阶段门槛，历史范围明确注明已被替代；保留 planned/pending 与发布未授权。",
+    "fix_revision": "e2c122de616207c9e5166a9c89416233b8b81268",
+    "verification": {
+      "revision": "e2c122de616207c9e5166a9c89416233b8b81268",
+      "result": "verified",
+      "scope": "仅设计与固定文档证据引用复核，不代替原生运行或产品验收",
+      "evidence_refs": [
+        "re-review.md"
+      ],
+      "observed": "原反例全部清除，现行入口明确 Linux 已授权与实际准入/发布边界。"
+    },
+    "history": [
+      {
+        "revision": "9a5c7034d245a053ff4614c3b7f594689a5b1389",
+        "status": "open",
+        "note": "初审发现，完整反例保留 independent-review.md"
+      },
+      {
+        "revision": "f50d60d2553e0f0f8e37cd1dc95ef23a72fff0b3",
+        "status": "confirmed",
+        "verification": {
+          "revision": "f50d60d2553e0f0f8e37cd1dc95ef23a72fff0b3",
+          "result": "failed",
+          "method": "固定提交差异及原反例位置静态复核",
+          "evidence_refs": [
+            "independent-review.md#修复复核一"
+          ],
+          "observed": "顶部及 Global Constraints 已改；整体提案 P1 第95行与 docs/tasks.md 第220行仍保留后续实施授权门槛。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "R7-IR-002",
+    "round_id": "R7",
+    "revision": "9a5c7034d245a053ff4614c3b7f594689a5b1389",
+    "category": "code_quality",
+    "target": "openspec/changes/refine-terminal-ui-contracts/tasks.md:183–198",
+    "contract_ref": "ENGINEERING_TASK_DECOMPOSITION.md §3.1/4/5; DQ-02/DQ-11",
+    "acceptance_ref": "AC-044,AC-045",
+    "claim": "TASK-044 把 Linux 顺序文档、原生构建/FFI 调查、许可来源调查三个可独立交付验收的结果合成单一 L3，并隐含为三个 L4。",
+    "severity": "major",
+    "status": "verified",
+    "reproducer": {
+      "setup": "读取 TASK-044 的 objective、acceptance、L4 与 R7/input.md 的实际分工。",
+      "actions": [
+        "分别列出 DAG 修订、原生探针、许可调查的输入/工具/交付物/验收",
+        "考虑许可证源暂不可访问而 DAG 与原生构建已经完成的情形"
+      ],
+      "expected": "三个独立结果可各自表达完成或受阻，并由有明确归属的集成结果引用。",
+      "observed": "只有一个 TASK-044 状态和复合 AC-044，三个独立交付隐藏在 L4 中。"
+    },
+    "evidence_refs": [
+      "9a5c7034d245a053ff4614c3b7f594689a5b1389:openspec/changes/refine-terminal-ui-contracts/tasks.md:187",
+      "9a5c7034d245a053ff4614c3b7f594689a5b1389:openspec/changes/refine-terminal-ui-contracts/tasks.md:198",
+      "9a5c7034d245a053ff4614c3b7f594689a5b1389:docs/reviews/R7/input.md:9"
+    ],
+    "fix_criteria": "拆分为独立 L3，分别明确验收与证据；保留 TASK-044 的替代/集成映射并使 TASK-045 覆盖全部交付。复用有效证据，无需重复编译或解决许可争议才可完成调查。",
+    "fix_revision": "f50d60d2553e0f0f8e37cd1dc95ef23a72fff0b3",
+    "verification": {
+      "revision": "e2c122de616207c9e5166a9c89416233b8b81268",
+      "result": "verified",
+      "scope": "仅设计与固定文档证据引用复核，不代替原生运行或产品验收",
+      "evidence_refs": [
+        "re-review.md"
+      ],
+      "observed": "TASK-044/046/047 拆分保留，TASK-045 消费三项交付，AC/任务映射一致。"
+    },
+    "history": [
+      {
+        "revision": "9a5c7034d245a053ff4614c3b7f594689a5b1389",
+        "status": "open",
+        "note": "初审发现，完整反例保留 independent-review.md"
+      },
+      {
+        "revision": "f50d60d2553e0f0f8e37cd1dc95ef23a72fff0b3",
+        "status": "verified",
+        "verification": {
+          "revision": "f50d60d2553e0f0f8e37cd1dc95ef23a72fff0b3",
+          "result": "verified",
+          "method": "固定差异核对 TASK-044/046/047/045、AC-044/046/047 及 docs/tasks.md 映射",
+          "evidence_refs": [
+            "independent-review.md#修复复核一"
+          ],
+          "observed": "044仅顺序，046原生构建调查，047许可来源调查；045消费三项固定交付，已有结果可各自验收。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "R7-IR-003",
+    "round_id": "R7",
+    "revision": "9a5c7034d245a053ff4614c3b7f594689a5b1389",
+    "category": "code_quality",
+    "target": "TASK-044/045 skill_evidence_refs -> docs/reviews/R7/input.md:7",
+    "contract_ref": "AGENTS.md §10.2; ENGINEERING_TASK_DECOMPOSITION.md §3.3/8 DQ-13",
+    "acceptance_ref": "AC-044,AC-045",
+    "claim": "被引用输入文件只列技能名，尚不能定位来源/版本、可用性及实际使用或有效复用记录，不能独立判断 DQ-13 pass。未据此断言实际没有使用。",
+    "severity": "minor",
+    "status": "verified",
+    "reproducer": {
+      "setup": "仅持有受审固定提交及 TASK-044/045 的 skill_evidence_refs。",
+      "actions": [
+        "跟随唯一引用到 R7/input.md",
+        "尝试定位技能版本、安装/复用、可用性及适用使用证据"
+      ],
+      "expected": "能恢复实际所用技能的来源/版本和准入证据，按阶段区分已使用与待使用。",
+      "observed": "只有使用名称列表，没有可核验的具体记录或指向既有检查的复用链接。"
+    },
+    "evidence_refs": [
+      "9a5c7034d245a053ff4614c3b7f594689a5b1389:openspec/changes/refine-terminal-ui-contracts/tasks.md:192",
+      "9a5c7034d245a053ff4614c3b7f594689a5b1389:openspec/changes/refine-terminal-ui-contracts/tasks.md:213",
+      "9a5c7034d245a053ff4614c3b7f594689a5b1389:docs/reviews/R7/input.md:7"
+    ],
+    "fix_criteria": "链接既有或新增的来源版本、可用性及实际使用/复用证据，按阶段标注未触发技能；无需重复安装或运行有效检查。",
+    "fix_revision": "e2c122de616207c9e5166a9c89416233b8b81268",
+    "verification": {
+      "revision": "e2c122de616207c9e5166a9c89416233b8b81268",
+      "result": "verified",
+      "scope": "仅设计与固定文档证据引用复核，不代替原生运行或产品验收",
+      "evidence_refs": [
+        "re-review.md"
+      ],
+      "observed": "R7/input.md 链接 skills.md；后者定位固定本地锁、来源/版本、R5可用性复用及本轮实际使用，并区分无semver的云技能。"
+    },
+    "history": [
+      {
+        "revision": "9a5c7034d245a053ff4614c3b7f594689a5b1389",
+        "status": "needs_evidence",
+        "note": "初审发现，完整反例保留 independent-review.md"
+      }
+    ]
+  }
+]

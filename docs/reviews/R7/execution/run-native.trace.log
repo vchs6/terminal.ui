@@ -1,0 +1,39 @@
++ set -euo pipefail
++ probe_work=/workspace/work/r7-independent-test/native-probe
+++ realpath /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ cjp_input=/workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
+++ realpath /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
++ ucd_input=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
++++ dirname /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-native.sh
+++ cd /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native
+++ pwd
++ script_dir=/workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native
++ [[ /workspace/work/r7-independent-test/native-probe = /* ]]
++ [[ ! -e /workspace/work/r7-independent-test/native-probe ]]
++ mkdir -p /workspace/work/r7-independent-test/native-probe/logs /workspace/work/r7-independent-test/native-probe/consumer/src
++ cjc --version
++ cjpm --version
++ gcc --version
++ head -1
++ ar --version
++ head -1
++ uname -srm
++ node --version
++ printf '%s  %s\n' d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp 2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
++ sha256sum -c
++ tar tf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ rg '/build.cj$|/lib/.*\.(a|so)$' /workspace/work/r7-independent-test/native-probe/logs/archive-files.txt
++ tar xf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp -C /workspace/work/r7-independent-test/native-probe
++ native_root=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj /workspace/work/r7-independent-test/native-probe/consumer/src/main.cj
++ cat
++ rg 'undefined reference' /workspace/work/r7-independent-test/native-probe/logs/normal-build-clean.log
++ mkdir -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/UCD /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/memmap /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib
++ unzip -q /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip -d /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/UCD
++ /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/generator/target/generate /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/UCD /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/memmap
++ node - /workspace/work/r7-independent-test/native-probe/consumer/cjpm.toml /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib
++ printf '\n[ffi.c]\nunicodedata = { path = "./lib" }\n'
++ node - /workspace/work/r7-independent-test/native-probe/consumer/cjpm.toml
++ node /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/generate-conformance.mjs /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicodedata/UCD /workspace/work/r7-independent-test/native-probe/conformance
++ printf 'PASS isolated Linux native build, transitive FFI, Unicode17 GraphemeBreakTest; empty input still needs adapter\n'
+PASS isolated Linux native build, transitive FFI, Unicode17 GraphemeBreakTest; empty input still needs adapter

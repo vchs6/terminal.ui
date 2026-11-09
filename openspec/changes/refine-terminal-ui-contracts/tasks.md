@@ -173,10 +173,10 @@ R5完成记录只覆盖原范围。R6独立审查64418db53921895e43fe7d928f80650
 
 ## 6. Linux-first risk amendment R7
 
-- [ ] 6.1 TASK-044：落实Linux优先依赖顺序；验收AC-044：规格/任务无环且非Linux不阻塞Linux，全部Linux功能前置闭合。
-- [ ] 6.3 TASK-046：验证Linux Unicode原生构建路线；验收AC-046：根因、固定输入、干净构建、FFI传递与分段用例有独立复验，不冒充产品集成。
-- [ ] 6.4 TASK-047：核对依赖许可来源；验收AC-047：确切包/上游许可文本对应、差异及剩余发布门槛可复核，不作法律授权认定。
-- [ ] 6.2 TASK-045：独立审核本轮顺序与风险证据，修复并复核必需发现；验收AC-045：固定版本和可定位发现，产品仍pending，结论仅design_reviewed。
+- [x] 6.1 TASK-044：落实Linux优先依赖顺序；验收AC-044：规格/任务无环且非Linux不阻塞Linux，全部Linux功能前置闭合。
+- [x] 6.3 TASK-046：验证Linux Unicode原生构建路线；验收AC-046：根因、固定输入、干净构建、FFI传递与分段用例有独立复验，不冒充产品集成。
+- [x] 6.4 TASK-047：核对依赖许可来源；验收AC-047：确切包/上游许可文本对应、差异及剩余发布门槛可复核，不作法律授权认定。
+- [x] 6.2 TASK-045：独立审核本轮顺序与风险证据，修复并复核必需发现；验收AC-045：固定版本和可定位发现，产品仍pending，结论仅design_reviewed。
 
 ### TASK-044
 
@@ -195,7 +195,7 @@ R5完成记录只覆盖原范围。R6独立审查64418db53921895e43fe7d928f80650
 | decision_refs / compatibility | D-018 / 现有产品未实现；保留未来required目标及0.0.0 |
 | quality_governance | 平台和字符算法保持单一职责；只退役当前四后端先汇合的依赖顺序，不删除历史审核；无平行内核或新运行依赖 |
 | risks / blockers | 上游许可及干净产品制品尚待验证；准确记录不等于已解决这些外部条件 |
-| status / evidence_refs | in_progress / docs/reviews/R7 |
+| status / evidence_refs | completed / docs/reviews/R7/verification/verification.md |
 
 L4：1.根据用户裁决核对当前授权及阶段范围；2.同步Linux顺序和任务依赖；3.执行静态一致性与独立审查修复，确认全部Linux前置闭合且非Linux后置。
 
@@ -216,7 +216,7 @@ L4：1.根据用户裁决核对当前授权及阶段范围；2.同步Linux顺序
 | decision_refs / compatibility | D-018 / 不取消未来平台、不缩减Linux必需功能 |
 | quality_governance | 不修改历史R5/R6证据，不为通过而取消许可/产品验收门槛 |
 | risks / blockers | 外部授权不能由AI审核代签；不足明确保留 |
-| status / evidence_refs | planned / docs/reviews/R7 |
+| status / evidence_refs | completed / docs/reviews/R7/re-review.md及verification/verification.md |
 
 L4：1.固定受审版本与独立输入；2.复现发现并修复或有依据说明；3.独立复核最终版本，登记实际验收结果。
 
@@ -237,7 +237,7 @@ L4：1.固定受审版本与独立输入；2.复现发现并修复或有依据�
 | decision_refs / compatibility | D-016、D-018 / 不修改主库依赖或产品API，不取消未来平台 |
 | quality_governance | 复用原库生成器与数据，不复制平行算法；FFI归适配边界，不修改共享cache |
 | risks / blockers | 只验证Linux x86_64；规范化全量、真实会话及正式制品尚未完成 |
-| status / evidence_refs | in_progress / docs/reviews/R7 |
+| status / evidence_refs | completed / docs/reviews/R7/verification/verification.md |
 
 L4：1.以正常build复现并定位原生缺失；2.最小验证FFI及官方分段向量；3.固定脚本交独立执行与验收，保留未解决项。
 
@@ -258,6 +258,6 @@ L4：1.以正常build复现并定位原生缺失；2.最小验证FFI及官方分
 | decision_refs / compatibility | D-016、D-018 / 不修改主库依赖或产品API，不取消未来平台 |
 | quality_governance | 完整授权文本与数据归属各有来源，证据保留原文，不把元数据变成法律认定 |
 | risks / blockers | 上游声明冲突无法由代理代签；最终制品归属材料仍须检查 |
-| status / evidence_refs | in_progress / docs/reviews/R7 |
+| status / evidence_refs | completed / docs/reviews/R7/verification/verification.md |
 
 L4：1.取确切包及上游许可原文；2.比对固定版本内容并检查声明冲突；3.交独立验收核对来源和门槛，登记可关闭及未关闭部分。

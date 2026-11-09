@@ -1,0 +1,2031 @@
+Independent acceptance verification; fixed e2c122de616207c9e5166a9c89416233b8b81268
+Initial exploratory reads were read-only; this log records substantive checks and numeric exits.
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","rev-parse","HEAD"]
+e2c122de616207c9e5166a9c89416233b8b81268
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["node","--version"]
+v24.22.1
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["/workspace/work/terminal.ui/node_modules/.bin/openspec","--version"]
+1.14.3
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["npm","run","check"]
+
+> cjtui-development@0.0.0 check
+> node scripts/check-repository.mjs && openspec validate --all --strict --no-interactive
+
+Repository/configuration/links/task mapping checks passed; no product capability verified.
+✓ spec/development-workflow
+✓ spec/distribution
+✓ change/refine-terminal-ui-contracts
+✓ spec/terminal-output
+✓ spec/terminal-session
+✓ spec/theme-config
+✓ spec/ui-construction
+✓ spec/ui-runtime
+Totals: 8 passed, 0 failed (8 items)
+Note: OpenSpec collects anonymous usage stats. Opt out: OPENSPEC_TELEMETRY=0 or openspec config set telemetry.enabled false
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo/docs/reviews/R7/evidence/native] ["sha256sum","-c","SHA256SUMS"]
+README.md: OK
+generate-conformance.mjs: OK
+logs/adapter-owned-ffi-relink.log: OK
+logs/consumer-native-link.log: OK
+logs/dependency-ffi-transitive.log: OK
+logs/dependency-script-hook-markers.log: OK
+logs/dependency-script-hooks.log: OK
+logs/generator-build.log: OK
+logs/generator-run.log: OK
+logs/grapheme-conformance.log: OK
+logs/intermediate-ffi-sequential.log: OK
+logs/native-output-sha256.txt: OK
+logs/native-symbols.txt: OK
+logs/node-generator-equivalence.log: OK
+logs/normal-build-clean.log: OK
+metadata.json: OK
+run-native.sh: OK
+run-transitive.sh: OK
+templates/consumer-main.cj: OK
+templates/consumer-middle.cj: OK
+templates/hook-probe.cj: OK
+templates/middle-lib.cj: OK
+unicode-ffi.patch: OK
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo/docs/reviews/R7/evidence/licenses] ["sha256sum","-c","SHA256SUMS"]
+README.md: OK
+evidence-index.json: OK
+evidence/ansies/LICENSE: OK
+evidence/ansies/README.OpenSource: OK
+evidence/ansies/package-README.md.txt: OK
+evidence/ansies/package-cjpm.toml: OK
+evidence/bitarray/LICENSE: OK
+evidence/bitarray/LICENSE-APACHE: OK
+evidence/bitarray/LICENSE-MIT: OK
+evidence/bitarray/package-README.md.txt: OK
+evidence/bitarray/package-cjpm.toml: OK
+evidence/unicode/LICENSE: OK
+evidence/unicode/README.OpenSource: OK
+evidence/unicode/package-README.md.txt: OK
+evidence/unicode/package-cjpm.toml: OK
+evidence/unicodewidth/COPYRIGHT: OK
+evidence/unicodewidth/LICENSE: OK
+evidence/unicodewidth/LICENSE-APACHE: OK
+evidence/unicodewidth/LICENSE-MIT: OK
+evidence/unicodewidth/README.OpenSource: OK
+evidence/unicodewidth/package-README.md.txt: OK
+evidence/unicodewidth/package-cjpm.toml: OK
+source-differences.diff: OK
+ucd17-ReadMe.txt: OK
+unicode-license-fetch.json: OK
+unicode-license-v3.txt: OK
+unicode-terms.html: OK
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["bash","-n","docs/reviews/R7/evidence/native/run-native.sh","docs/reviews/R7/evidence/native/run-transitive.sh"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["node","--check","docs/reviews/R7/evidence/native/generate-conformance.mjs"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","show","9a5c7034d245a053ff4614c3b7f594689a5b1389:docs/development/tools.lock.json"]
+{
+  "openspec": "1.14.3",
+  "superpowers": {
+    "repository": "https://github.com/obra/superpowers.git",
+    "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+    "version": "7.0.0"
+  },
+  "sdk": {
+    "version": "1.2.0",
+    "platform": "linux-x64",
+    "url": "https://cangjie-lang.cn/v1/files/auth/downLoad?nsId=142267&fileName=cangjie-sdk-linux-x64-1.2.0.tar.gz&objectKey=6ab1e26eece1f87ff5befa73",
+    "sha256": "8c5fd944cd9cc51ee63d4a240e3ecc4f540345dae1468e8b47c927ecf2ba998f",
+    "source": "https://cangjie-lang.cn/download/1.2.0"
+  }
+}
+
+exit=0
+TOOL_UNCHANGED docs/development/tools.lock.json sha256=e9ea398741b4a2668c6e7b66e0dcb408708583601fd8e7bbec5445793cd3d355
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","show","9a5c7034d245a053ff4614c3b7f594689a5b1389:package-lock.json"]
+{
+  "name": "cjtui-development",
+  "version": "0.0.0",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "cjtui-development",
+      "version": "0.0.0",
+      "devDependencies": {
+        "@fission-ai/openspec": "1.14.3",
+        "smol-toml": "1.4.2"
+      },
+      "engines": {
+        "node": ">=20.19.0"
+      }
+    },
+    "node_modules/@fission-ai/openspec": {
+      "version": "1.14.3",
+      "resolved": "https://registry.npmjs.org/@fission-ai/openspec/-/openspec-1.14.3.tgz",
+      "integrity": "sha512-ALFW1d5bSm6t27Kmcle93SDFuqUc8fLwy5ZdBfIiNffo0Yk9AEOJxw6xDqBv38eMM7l7TeOZBB/7C08luxYGfg==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/core": "^12.0.0",
+        "@inquirer/prompts": "^8.5.2",
+        "brace-expansion": "^5.0.12",
+        "chalk": "^5.6.2",
+        "commander": "^14.0.0",
+        "cross-spawn": "7.0.6",
+        "diff": "^9.0.0",
+        "ora": "^9.4.1",
+        "picomatch": "^4.0.4",
+        "tinyglobby": "^0.2.17",
+        "yaml": "^2.8.3",
+        "zod": "^4.4.3"
+      },
+      "bin": {
+        "openspec": "bin/openspec.js"
+      },
+      "engines": {
+        "node": ">=20.19.0"
+      }
+    },
+    "node_modules/@inquirer/ansi": {
+      "version": "2.0.9",
+      "resolved": "https://registry.npmjs.org/@inquirer/ansi/-/ansi-2.0.9.tgz",
+      "integrity": "sha512-0Ywt3S8tqM6TWUcsRlBFQ1x+X3/o8kktX0ZiKAnByYb9GFDknnOhse1PVtfiD2BXPI8ar+BWx9PV9R0lQIcygw==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      }
+    },
+    "node_modules/@inquirer/checkbox": {
+      "version": "5.2.6",
+      "resolved": "https://registry.npmjs.org/@inquirer/checkbox/-/checkbox-5.2.6.tgz",
+      "integrity": "sha512-XkOardciF3tow2NUlY6/Qjk1QqYa+6WpmVLTpxXl97Uv4erczDEZ+xg1j6LqBf0ekcRSUiICQA4nQXHHkVKQ9w==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/ansi": "^2.0.9",
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/figures": "^2.0.9",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/confirm": {
+      "version": "6.3.3",
+      "resolved": "https://registry.npmjs.org/@inquirer/confirm/-/confirm-6.3.3.tgz",
+      "integrity": "sha512-ImOBgpl/sJTFp8naeSkNu4S0Sf8F8pxv3/CUx+LoBAdQvCVqFz6rSB2A/oZYsJge3+yphbEDxEkfaRNYq1OU0A==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/core": {
+      "version": "12.0.4",
+      "resolved": "https://registry.npmjs.org/@inquirer/core/-/core-12.0.4.tgz",
+      "integrity": "sha512-M5fB67y7jPObI45vhD82RskWwCSm0scOvenV/I6K8tIi2gfr9DXqQqJ+iw+Wi6SgapikdOiJibYzz1gW47fsDg==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/ansi": "^2.0.9",
+        "@inquirer/figures": "^2.0.9",
+        "@inquirer/type": "4.2.0",
+        "cli-width": "^4.1.0",
+        "fast-wrap-ansi": "^0.2.0",
+        "mute-stream": "^3.0.0",
+        "signal-exit": "^4.1.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/editor": {
+      "version": "5.3.4",
+      "resolved": "https://registry.npmjs.org/@inquirer/editor/-/editor-5.3.4.tgz",
+      "integrity": "sha512-imzxQDfw26NpcJAubMj/dE5RjU9Mp80IcT+FzsD6YoxXmL8L1QYnAFdCNv7ccGWh//73+0YP+1kfhwnExdl2VQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/external-editor": "^3.0.6",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/expand": {
+      "version": "5.1.6",
+      "resolved": "https://registry.npmjs.org/@inquirer/expand/-/expand-5.1.6.tgz",
+      "integrity": "sha512-JfiLKi7qGuHmcQO/DqR10UFEp054Y1FXZaszP5ZEfHhgHeuFoT5nNFQIXFhed/5/p07SbsV2tIJFwG/dg5+NmQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/external-editor": {
+      "version": "3.0.6",
+      "resolved": "https://registry.npmjs.org/@inquirer/external-editor/-/external-editor-3.0.6.tgz",
+      "integrity": "sha512-rWmw6WG8JZ7LMn/srXEylYGhL6EXXJeROE7/4x4GREh6NgzqJBDbIgpNGsYoLPfobeb4VZtEYzPGnT5EFNYhiQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "chardet": "^2.1.1",
+        "iconv-lite": "^0.7.2"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/figures": {
+      "version": "2.0.9",
+      "resolved": "https://registry.npmjs.org/@inquirer/figures/-/figures-2.0.9.tgz",
+      "integrity": "sha512-EAWgUTGQ/Umgga51dE3B2PUHbufuXarDfg86uVgoSgNHNNQnyFKcOrQLWVqYMghuSyHh8+2HUH0Js9cTC1WAdg==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      }
+    },
+    "node_modules/@inquirer/input": {
+      "version": "5.1.7",
+      "resolved": "https://registry.npmjs.org/@inquirer/input/-/input-5.1.7.tgz",
+      "integrity": "sha512-Icrs9tuMBCxGI+lFYNO71VFOnqGO8IIrLIGqnTGh07X8jZ2la9QLAYxXcikHZQjjVhIZUtU2xyH89DVN/pPhVg==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/number": {
+      "version": "4.2.4",
+      "resolved": "https://registry.npmjs.org/@inquirer/number/-/number-4.2.4.tgz",
+      "integrity": "sha512-C6g80U4U2+w2Vxa1CB0MN3a2WnQIfzLSUG0lduO3Au9GsirJsKATZkOwZPK+vZ1BlAlz+/Z5ParfQCS9E0svmg==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/password": {
+      "version": "5.2.3",
+      "resolved": "https://registry.npmjs.org/@inquirer/password/-/password-5.2.3.tgz",
+      "integrity": "sha512-1Uo2qfI2K3wXbfunMpvwAzoZPIUf5iEETwDGqRVbswoorXGqYQJ/bfIJFeLj+pxjq+e2UFPNOmx+fsIl4Urigw==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/ansi": "^2.0.9",
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/prompts": {
+      "version": "8.7.3",
+      "resolved": "https://registry.npmjs.org/@inquirer/prompts/-/prompts-8.7.3.tgz",
+      "integrity": "sha512-DHK20kO+H5k/XcJQpHQUpVQbMYHHhZchlGWhZVMUV4WIuRuBW5744hipOtriE1vMqPLgnIyXFMHWKkIbTepa4Q==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/checkbox": "^5.2.6",
+        "@inquirer/confirm": "^6.3.3",
+        "@inquirer/editor": "^5.3.4",
+        "@inquirer/expand": "^5.1.6",
+        "@inquirer/input": "^5.1.7",
+        "@inquirer/number": "^4.2.4",
+        "@inquirer/password": "^5.2.3",
+        "@inquirer/rawlist": "^5.3.6",
+        "@inquirer/search": "^4.3.4",
+        "@inquirer/select": "^5.2.6"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/rawlist": {
+      "version": "5.3.6",
+      "resolved": "https://registry.npmjs.org/@inquirer/rawlist/-/rawlist-5.3.6.tgz",
+      "integrity": "sha512-2exExhQ5xTBqfN/rRlZkvM1Gm3b0eiLcWe2NqxWxe7qYmnU4M3j/n9TwzfPUb+Q7dAAz9TmBtDWWdF3jbp4ZLA==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/search": {
+      "version": "4.3.4",
+      "resolved": "https://registry.npmjs.org/@inquirer/search/-/search-4.3.4.tgz",
+      "integrity": "sha512-xsk0UeFP04jsbEeFMzghjUaH2aHXyt+WykSajQzq/8qyBNHsgGYHea/sFwv5T08kW7Sp+KDX8aF124zPUIs1Ww==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/figures": "^2.0.9",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/select": {
+      "version": "5.2.6",
+      "resolved": "https://registry.npmjs.org/@inquirer/select/-/select-5.2.6.tgz",
+      "integrity": "sha512-jFu7CFghlr0vpi/326a4wz6BGkJH9X3H/iIu+ahyV2Ja52ktqQE3fC9BYP47JKeSPQYGUv5xquE2Vp9PbepZ3g==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "@inquirer/ansi": "^2.0.9",
+        "@inquirer/core": "^12.0.4",
+        "@inquirer/figures": "^2.0.9",
+        "@inquirer/type": "4.2.0"
+      },
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/@inquirer/type": {
+      "version": "4.2.0",
+      "resolved": "https://registry.npmjs.org/@inquirer/type/-/type-4.2.0.tgz",
+      "integrity": "sha512-2rnHX8RPo4glJYqnFc/v3nQeIhDcjyRRyaT7MGcfL/8xv/8K03SXYoA2tX06WVSKywWOE/ncbG3dtuzLjR5TCQ==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=23.5.0 || ^22.13.0 || ^20.17.0"
+      },
+      "peerDependencies": {
+        "@types/node": ">=18"
+      },
+      "peerDependenciesMeta": {
+        "@types/node": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/ansi-regex": {
+      "version": "6.4.0",
+      "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-6.4.0.tgz",
+      "integrity": "sha512-KzTVk2tCWAHtYrvvvaP8bJKJq2pVinhLcGEQdtLIYPbmNGNyYe8QwNaTUYQp2J7/vIsUKt5QCqAfUkYyG9DkOw==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/ansi-regex?sponsor=1"
+      }
+    },
+    "node_modules/balanced-match": {
+      "version": "4.0.4",
+      "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-4.0.4.tgz",
+      "integrity": "sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": "18 || 20 || >=22"
+      }
+    },
+    "node_modules/brace-expansion": {
+      "version": "5.0.12",
+      "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-5.0.12.tgz",
+      "integrity": "sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "balanced-match": "^4.0.2"
+      },
+      "engines": {
+        "node": "20 || >=22"
+      }
+    },
+    "node_modules/chalk": {
+      "version": "5.6.2",
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-5.6.2.tgz",
+      "integrity": "sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": "^12.17.0 || ^14.13 || >=16.0.0"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/chalk?sponsor=1"
+      }
+    },
+    "node_modules/chardet": {
+      "version": "2.2.0",
+      "resolved": "https://registry.npmjs.org/chardet/-/chardet-2.2.0.tgz",
+      "integrity": "sha512-rddelWYNPRrXq6PtNEN2S3f6t9ILzvqaN5pVgi4kqt9jHQaXIial9PznB5iSPVlQSLNaaH22ItWz3EJtQ10+OA==",
+      "dev": true,
+      "license": "MIT"
+    },
+    "node_modules/cli-cursor": {
+      "version": "5.0.0",
+      "resolved": "https://registry.npmjs.org/cli-cursor/-/cli-cursor-5.0.0.tgz",
+      "integrity": "sha512-aCj4O5wKyszjMmDT4tZj93kxyydN/K5zPWSCe6/0AV/AA1pqe5ZBIw0a2ZfPQV7lL5/yb5HsUreJ6UFAF1tEQw==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "restore-cursor": "^5.0.0"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/cli-spinners": {
+      "version": "3.4.0",
+      "resolved": "https://registry.npmjs.org/cli-spinners/-/cli-spinners-3.4.0.tgz",
+      "integrity": "sha512-bXfOC4QcT1tKXGorxL3wbJm6XJPDqEnij2gQ2m7ESQuE+/z9YFIWnl/5RpTiKWbMq3EVKR4fRLJGn6DVfu0mpw==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=18.20"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/cli-width": {
+      "version": "4.1.0",
+      "resolved": "https://registry.npmjs.org/cli-width/-/cli-width-4.1.0.tgz",
+      "integrity": "sha512-ouuZd4/dm2Sw5Gmqy6bGyNNNe1qt9RpmxveLSO7KcgsTnU7RXfsw+/bukWGo1abgBiMAic068rclZsO4IWmmxQ==",
+      "dev": true,
+      "license": "ISC",
+      "engines": {
+        "node": ">= 12"
+      }
+    },
+    "node_modules/commander": {
+      "version": "14.0.3",
+      "resolved": "https://registry.npmjs.org/commander/-/commander-14.0.3.tgz",
+      "integrity": "sha512-H+y0Jo/T1RZ9qPP4Eh1pkcQcLRglraJaSLoyOtHxu6AapkjWVCy2Sit1QQ4x3Dng8qDlSsZEet7g5Pq06MvTgw==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=20"
+      }
+    },
+    "node_modules/cross-spawn": {
+      "version": "7.0.6",
+      "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
+      "integrity": "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "path-key": "^3.1.0",
+        "shebang-command": "^2.0.0",
+        "which": "^2.0.1"
+      },
+      "engines": {
+        "node": ">= 8"
+      }
+    },
+    "node_modules/diff": {
+      "version": "9.0.0",
+      "resolved": "https://registry.npmjs.org/diff/-/diff-9.0.0.tgz",
+      "integrity": "sha512-svtcdpS8CgJyqAjEQIXdb3OjhFVVYjzGAPO8WGCmRbrml64SPw/jJD4GoE98aR7r25A0XcgrK3F02yw9R/vhQw==",
+      "dev": true,
+      "license": "BSD-3-Clause",
+      "engines": {
+        "node": ">=0.3.1"
+      }
+    },
+    "node_modules/fast-string-truncated-width": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/fast-string-truncated-width/-/fast-string-truncated-width-3.0.3.tgz",
+      "integrity": "sha512-0jjjIEL6+0jag3l2XWWizO64/aZVtpiGE3t0Zgqxv0DPuxiMjvB3M24fCyhZUO4KomJQPj3LTSUnDP3GpdwC0g==",
+      "dev": true,
+      "license": "MIT"
+    },
+    "node_modules/fast-string-width": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/fast-string-width/-/fast-string-width-3.0.2.tgz",
+      "integrity": "sha512-gX8LrtNEI5hq8DVUfRQMbr5lpaS4nMIWV+7XEbXk2b8kiQIizgnlr12B4dA3ZEx3308ze0O4Q1R+cHts8kyUJg==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "fast-string-truncated-width": "^3.0.2"
+      }
+    },
+    "node_modules/fast-wrap-ansi": {
+      "version": "0.2.2",
+      "resolved": "https://registry.npmjs.org/fast-wrap-ansi/-/fast-wrap-ansi-0.2.2.tgz",
+      "integrity": "sha512-7F2Fl+TjRSenLqlU3UjSH0iyqopqoZIu7eZVpEirP2g1GtWa2G/ecEmBdgz31+Mxr+ELclgg6sokpSFIQiZ02Q==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "fast-string-width": "^3.0.2"
+      }
+    },
+    "node_modules/fdir": {
+      "version": "6.5.0",
+      "resolved": "https://registry.npmjs.org/fdir/-/fdir-6.5.0.tgz",
+      "integrity": "sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=12.0.0"
+      },
+      "peerDependencies": {
+        "picomatch": "^3 || ^4"
+      },
+      "peerDependenciesMeta": {
+        "picomatch": {
+          "optional": true
+        }
+      }
+    },
+    "node_modules/get-east-asian-width": {
+      "version": "1.7.0",
+      "resolved": "https://registry.npmjs.org/get-east-asian-width/-/get-east-asian-width-1.7.0.tgz",
+      "integrity": "sha512-XjH1AECxf0giL2V1aU8vKyRR2ppRUb5c0EvT7zuJTokQ74bNo52zOtghqdWIqrhUD79fo3x0WfKZdOqxF6LG1Q==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/iconv-lite": {
+      "version": "0.7.3",
+      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.7.3.tgz",
+      "integrity": "sha512-IKXpvIzjnC9XTAUbVBcMfGS0EPaIXtW6v+zr+RRp+hqULEpo0owZax6wyRwPOJbWbzjYspQwusTsfVr0ifh4uQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "safer-buffer": ">= 2.1.2 < 3.0.0"
+      },
+      "engines": {
+        "node": ">=0.10.0"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/express"
+      }
+    },
+    "node_modules/is-interactive": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/is-interactive/-/is-interactive-2.0.0.tgz",
+      "integrity": "sha512-qP1vozQRI+BMOPcjFzrjXuQvdak2pHNUMZoeG2eRbiSqyvbEf/wQtEOTOX1guk6E3t36RkaqiSt8A/6YElNxLQ==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/is-unicode-supported": {
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/is-unicode-supported/-/is-unicode-supported-2.1.0.tgz",
+      "integrity": "sha512-mE00Gnza5EEB3Ds0HfMyllZzbBrmLOX3vfWoj9A9PEnTfratQ/BcaJOuMhnkhjXvb2+FkY3VuHqtAGpTPmglFQ==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/isexe": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz",
+      "integrity": "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==",
+      "dev": true,
+      "license": "ISC"
+    },
+    "node_modules/log-symbols": {
+      "version": "7.0.1",
+      "resolved": "https://registry.npmjs.org/log-symbols/-/log-symbols-7.0.1.tgz",
+      "integrity": "sha512-ja1E3yCr9i/0hmBVaM0bfwDjnGy8I/s6PP4DFp+yP+a+mrHO4Rm7DtmnqROTUkHIkqffC84YY7AeqX6oFk0WFg==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "is-unicode-supported": "^2.0.0",
+        "yoctocolors": "^2.1.1"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/mimic-function": {
+      "version": "5.0.1",
+      "resolved": "https://registry.npmjs.org/mimic-function/-/mimic-function-5.0.1.tgz",
+      "integrity": "sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/mute-stream": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/mute-stream/-/mute-stream-3.0.0.tgz",
+      "integrity": "sha512-dkEJPVvun4FryqBmZ5KhDo0K9iDXAwn08tMLDinNdRBNPcYEDiWYysLcc6k3mjTMlbP9KyylvRpd4wFtwrT9rw==",
+      "dev": true,
+      "license": "ISC",
+      "engines": {
+        "node": "^20.17.0 || >=22.9.0"
+      }
+    },
+    "node_modules/onetime": {
+      "version": "7.0.0",
+      "resolved": "https://registry.npmjs.org/onetime/-/onetime-7.0.0.tgz",
+      "integrity": "sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "mimic-function": "^5.0.0"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/ora": {
+      "version": "9.4.1",
+      "resolved": "https://registry.npmjs.org/ora/-/ora-9.4.1.tgz",
+      "integrity": "sha512-6VlU9MLXbjVQD04AZCMX28hVtA5bUoadvUqO76MUCVA0ilwJbMiHsITRPfyVm6p/BC0Av/BXMujx39WCe1LEqw==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "chalk": "^5.6.2",
+        "cli-cursor": "^5.0.0",
+        "cli-spinners": "^3.2.0",
+        "is-interactive": "^2.0.0",
+        "is-unicode-supported": "^2.1.0",
+        "log-symbols": "^7.0.1",
+        "stdin-discarder": "^0.3.2",
+        "string-width": "^8.1.0"
+      },
+      "engines": {
+        "node": ">=20"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/path-key": {
+      "version": "3.1.1",
+      "resolved": "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz",
+      "integrity": "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=8"
+      }
+    },
+    "node_modules/picomatch": {
+      "version": "4.0.7",
+      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-4.0.7.tgz",
+      "integrity": "sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/jonschlinkert"
+      }
+    },
+    "node_modules/restore-cursor": {
+      "version": "5.1.0",
+      "resolved": "https://registry.npmjs.org/restore-cursor/-/restore-cursor-5.1.0.tgz",
+      "integrity": "sha512-oMA2dcrw6u0YfxJQXm342bFKX/E4sG9rbTzO9ptUcR/e8A33cHuvStiYOwH7fszkZlZ1z/ta9AAoPk2F4qIOHA==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "onetime": "^7.0.0",
+        "signal-exit": "^4.1.0"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/safer-buffer": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
+      "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==",
+      "dev": true,
+      "license": "MIT"
+    },
+    "node_modules/shebang-command": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-2.0.0.tgz",
+      "integrity": "sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "shebang-regex": "^3.0.0"
+      },
+      "engines": {
+        "node": ">=8"
+      }
+    },
+    "node_modules/shebang-regex": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/shebang-regex/-/shebang-regex-3.0.0.tgz",
+      "integrity": "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=8"
+      }
+    },
+    "node_modules/signal-exit": {
+      "version": "4.1.0",
+      "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-4.1.0.tgz",
+      "integrity": "sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==",
+      "dev": true,
+      "license": "ISC",
+      "engines": {
+        "node": ">=14"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
+    "node_modules/smol-toml": {
+      "version": "1.4.2",
+      "resolved": "https://registry.npmjs.org/smol-toml/-/smol-toml-1.4.2.tgz",
+      "integrity": "sha512-rInDH6lCNiEyn3+hH8KVGFdbjc099j47+OSgbMrfDYX1CmXLfdKd7qi6IfcWj2wFxvSVkuI46M+wPGYfEOEj6g==",
+      "dev": true,
+      "license": "BSD-3-Clause",
+      "engines": {
+        "node": ">= 18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/cyyynthia"
+      }
+    },
+    "node_modules/stdin-discarder": {
+      "version": "0.3.2",
+      "resolved": "https://registry.npmjs.org/stdin-discarder/-/stdin-discarder-0.3.2.tgz",
+      "integrity": "sha512-eCPu1qRxPVkl5605OTWF8Wz40b4Mf45NY5LQmVPQ599knfs5QhASUm9GbJ5BDMDOXgrnh0wyEdvzmL//YMlw0A==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/string-width": {
+      "version": "8.3.0",
+      "resolved": "https://registry.npmjs.org/string-width/-/string-width-8.3.0.tgz",
+      "integrity": "sha512-ZbmZM0JCihQN91dWnxoipT2KOEyHqEyfRXUyjuRhW8b/xnqPDoq4gWEVApTVa9db2wN8mmoikgFBbjh71+cGeQ==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "get-east-asian-width": "^1.5.0",
+        "strip-ansi": "^7.1.2"
+      },
+      "engines": {
+        "node": ">=20"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/strip-ansi": {
+      "version": "7.2.0",
+      "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.2.0.tgz",
+      "integrity": "sha512-yDPMNjp4WyfYBkHnjIRLfca1i6KMyGCtsVgoKe/z1+6vukgaENdgGBZt+ZmKPc4gavvEZ5OgHfHdrazhgNyG7w==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "ansi-regex": "^6.2.2"
+      },
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/chalk/strip-ansi?sponsor=1"
+      }
+    },
+    "node_modules/tinyglobby": {
+      "version": "0.2.17",
+      "resolved": "https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.17.tgz",
+      "integrity": "sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==",
+      "dev": true,
+      "license": "MIT",
+      "dependencies": {
+        "fdir": "^6.5.0",
+        "picomatch": "^4.0.4"
+      },
+      "engines": {
+        "node": ">=12.0.0"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/SuperchupuDev"
+      }
+    },
+    "node_modules/which": {
+      "version": "2.0.2",
+      "resolved": "https://registry.npmjs.org/which/-/which-2.0.2.tgz",
+      "integrity": "sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==",
+      "dev": true,
+      "license": "ISC",
+      "dependencies": {
+        "isexe": "^2.0.0"
+      },
+      "bin": {
+        "node-which": "bin/node-which"
+      },
+      "engines": {
+        "node": ">= 8"
+      }
+    },
+    "node_modules/yaml": {
+      "version": "2.9.1",
+      "resolved": "https://registry.npmjs.org/yaml/-/yaml-2.9.1.tgz",
+      "integrity": "sha512-3NxN8+78OdzbT7C/WjGsyfPAtJaN3FNDsWxv7Y7mcDsT/oOmgW8BpyQQFFBnvZE3j9Y2Sdz1ULFLezL7Eb2yFw==",
+      "dev": true,
+      "license": "ISC",
+      "bin": {
+        "yaml": "bin.mjs"
+      },
+      "engines": {
+        "node": ">= 14.6"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/eemeli"
+      }
+    },
+    "node_modules/yoctocolors": {
+      "version": "2.2.0",
+      "resolved": "https://registry.npmjs.org/yoctocolors/-/yoctocolors-2.2.0.tgz",
+      "integrity": "sha512-xYqdZFUK/VYazNl/oCDYN+3WloWQwMfZxBoiNt6qNyk+xfOdi598muWE42rNZFp1kNOiqW936q5RhUdnpqElSg==",
+      "dev": true,
+      "license": "MIT",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/zod": {
+      "version": "4.6.7",
+      "resolved": "https://registry.npmjs.org/zod/-/zod-4.6.7.tgz",
+      "integrity": "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==",
+      "dev": true,
+      "license": "MIT",
+      "funding": {
+        "url": "https://github.com/sponsors/colinhacks"
+      }
+    }
+  }
+}
+
+exit=0
+TOOL_UNCHANGED package-lock.json sha256=468214cca6138f31ff3746f28fbcf5b56053af0ef7769a899a6d76015c911175
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","show","9a5c7034d245a053ff4614c3b7f594689a5b1389:scripts/setup-development.mjs"]
+import {readFileSync, existsSync, mkdirSync, lstatSync, symlinkSync, realpathSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {execFileSync} from 'node:child_process';
+const root = resolve(import.meta.dirname, '..');
+const lock = JSON.parse(readFileSync(resolve(root, 'docs/development/tools.lock.json')));
+const run = (cmd, args, cwd = root) => execFileSync(cmd, args, {cwd, stdio: 'inherit', env: {...process.env, OPENSPEC_TELEMETRY: '0'}});
+const vendor = resolve(root, '.dev-tools/superpowers');
+mkdirSync(resolve(root, '.dev-tools'), {recursive: true});
+if (!existsSync(vendor)) run('git', ['clone', lock.superpowers.repository, vendor]);
+const remote = execFileSync('git', ['remote', 'get-url', 'origin'], {cwd: vendor, encoding: 'utf8'}).trim();
+if (remote !== lock.superpowers.repository) throw new Error('Superpowers origin differs from tools.lock.json');
+if (execFileSync('git', ['status', '--porcelain'], {cwd: vendor, encoding: 'utf8'}).trim()) throw new Error('Refusing to overwrite modified Superpowers checkout');
+run('git', ['fetch', '--depth', '1', 'origin', lock.superpowers.revision], vendor);
+run('git', ['checkout', '--detach', lock.superpowers.revision], vendor);
+const target = resolve(vendor, 'skills');
+const link = resolve(root, '.agents/skills/superpowers');
+mkdirSync(resolve(root, '.agents/skills'), {recursive: true});
+try {
+  const stat = lstatSync(link);
+  if (!stat.isSymbolicLink() || realpathSync(link) !== realpathSync(target)) throw new Error('Refusing to replace existing skill entry');
+} catch (error) {
+  if (error.code !== 'ENOENT') throw error;
+  symlinkSync(target, link, process.platform === 'win32' ? 'junction' : 'dir');
+}
+for (const name of ['using-superpowers', 'brainstorming', 'writing-plans', 'verification-before-completion']) {
+  const text = readFileSync(resolve(link, name, 'SKILL.md'), 'utf8');
+  if (!text.includes('name: ' + name)) throw new Error('Unreadable skill: ' + name);
+}
+const cli = resolve(root, 'node_modules/.bin/openspec');
+run(cli, ['--version']);
+if (existsSync(resolve(root, 'openspec/config.yaml'))) run(cli, ['update']);
+else run(cli, ['init', '--tools', 'codex', '--language', 'zh-CN', '--no-animation']);
+console.log('Development tools installed; skills are readable via .agents/skills. Reload agent discovery if needed, then explicitly invoke applicable skills. Installation is not evidence of their use.');
+
+exit=0
+TOOL_UNCHANGED scripts/setup-development.mjs sha256=4173fe6b3cec9e45005d8d58ec3fc476e77b8b92313db4a72a1a30e271139718
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","status","--short"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/bitarray] ["git","init","-q"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/bitarray] ["git","fetch","--depth=1","https://atomgit.com/vchuoshen6/libbitarray.git","c6c5a40a5ed2a51199cb3a8b9702c01a8da1e694"]
+From https://atomgit.com/vchuoshen6/libbitarray
+ * branch            c6c5a40a5ed2a51199cb3a8b9702c01a8da1e694 -> FETCH_HEAD
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/bitarray] ["git","checkout","--detach","FETCH_HEAD"]
+HEAD is now at c6c5a40 添加许可证和示例程序等。
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/bitarray] ["git","rev-parse","HEAD"]
+c6c5a40a5ed2a51199cb3a8b9702c01a8da1e694
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicode] ["git","init","-q"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicode] ["git","fetch","--depth=1","https://gitcode.com/vchuoshen6/libunicode.git","a12b0d8009e3111cc3f98563026a5b2dbfaf149f"]
+From https://gitcode.com/vchuoshen6/libunicode
+ * branch            a12b0d8009e3111cc3f98563026a5b2dbfaf149f -> FETCH_HEAD
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicode] ["git","checkout","--detach","FETCH_HEAD"]
+HEAD is now at a12b0d8 创建初始版本库
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicode] ["git","rev-parse","HEAD"]
+a12b0d8009e3111cc3f98563026a5b2dbfaf149f
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicodewidth] ["git","init","-q"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicodewidth] ["git","fetch","--depth=1","https://atomgit.com/cj-awesome/unicodewidth4cj.git","b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5"]
+From https://atomgit.com/cj-awesome/unicodewidth4cj
+ * branch            b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5 -> FETCH_HEAD
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicodewidth] ["git","checkout","--detach","FETCH_HEAD"]
+HEAD is now at b3d9c8c !4 merge sts-1.1.3 into feat/unicodewidth4cj-1.1.3
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicodewidth] ["git","rev-parse","HEAD"]
+b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/ansies] ["git","init","-q"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/ansies] ["git","fetch","--depth=1","https://github.com/cangjielanguage-sig/ansies4cj.git","dac6fe9ab1407cd533153e98b091cda0d8610713"]
+From https://github.com/cangjielanguage-sig/ansies4cj
+ * branch            dac6fe9ab1407cd533153e98b091cda0d8610713 -> FETCH_HEAD
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/ansies] ["git","checkout","--detach","FETCH_HEAD"]
+HEAD is now at dac6fe9 重构核心/API/扩展包结构，新增 Query/Response 对偶与参数组合器,整功能函数归集
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/ansies] ["git","rev-parse","HEAD"]
+dac6fe9ab1407cd533153e98b091cda0d8610713
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["rg","-n","后续获授权|只有后续实施授权|不授权框架、产品示例","docs/tasks.md","docs/development/proposal.md"]
+
+exit=1
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","diff","--name-only","533bb9bc645c82cac523a319d0e34ec325fbcc99","HEAD","--","src","examples","benchmarks","tests"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","rev-parse","HEAD"]
+e2c122de616207c9e5166a9c89416233b8b81268
+
+exit=0
+check-contract exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["tar","xf","/workspace/work/validation/replay-dependencies/archives/bitarray-0.1.0.cjp","-C","/workspace/work/r7-acceptance/packages"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/bitarray] ["git","rev-parse","HEAD"]
+c6c5a40a5ed2a51199cb3a8b9702c01a8da1e694
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["tar","xf","/workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp","-C","/workspace/work/r7-acceptance/packages"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicode] ["git","rev-parse","HEAD"]
+a12b0d8009e3111cc3f98563026a5b2dbfaf149f
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["tar","xf","/workspace/work/validation/replay-dependencies/archives/unicodewidth-0.1.113.cjp","-C","/workspace/work/r7-acceptance/packages"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/unicodewidth] ["git","rev-parse","HEAD"]
+b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["tar","xf","/workspace/work/validation/replay-dependencies/archives/ansies-1.3.113.cjp","-C","/workspace/work/r7-acceptance/packages"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/upstreams/ansies] ["git","rev-parse","HEAD"]
+dac6fe9ab1407cd533153e98b091cda0d8610713
+
+exit=0
+check-provenance exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","diff","9a5c7034d245a053ff4614c3b7f594689a5b1389","HEAD","--","docs/reviews/R7/evidence/native/run-native.sh","docs/reviews/R7/evidence/native/generate-conformance.mjs","docs/reviews/R7/evidence/native/templates"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-execute.sh"]
+#!/usr/bin/env bash
+set -euxo pipefail
+base=/workspace/work/r7-independent-test
+repo="$base/repo"
+original="$base/native-probe"
+probe="$base/retest-native-probe"
+evidence=docs/reviews/R7/evidence/native
+date -u '+%Y-%m-%dT%H:%M:%SZ'
+git -C "$repo" rev-parse HEAD
+git -C "$repo" status --porcelain
+# Prove unchanged test/native source generation scope before reuse.
+git -C "$repo" diff --exit-code 9a5c7034d245a053ff4614c3b7f594689a5b1389 e2c122de616207c9e5166a9c89416233b8b81268 -- "$evidence/run-native.sh" "$evidence/generate-conformance.mjs" "$evidence/templates"
+sha256sum "$repo/$evidence/run-native.sh" "$repo/$evidence/run-transitive.sh" "$repo/$evidence/generate-conformance.mjs" "$repo/$evidence/templates/"* /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+[[ ! -e "$probe" ]]
+mkdir -p "$probe/logs" "$probe/consumer/src"
+# Reuse only this independent execution role's unchanged source/native outputs.
+cp -a "$original/unicode-0.1.0" "$probe/unicode-0.1.0"
+cp "$original/logs/grapheme-conformance.log" "$probe/logs/grapheme-conformance.log"
+# Restore run-native completion state; never inherit failed adapter-owned state.
+tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml > "$probe/unicode-0.1.0/cjpm.toml"
+printf '\n[ffi.c]\nunicodedata = { path = "./lib" }\n' >> "$probe/unicode-0.1.0/cjpm.toml"
+cp "$repo/$evidence/templates/consumer-main.cj" "$probe/consumer/src/main.cj"
+cat > "$probe/consumer/cjpm.toml" <<'TOML'
+[package]
+cjc-version = "1.2.0"
+name = "native_probe"
+version = "0.0.1"
+src-dir = "src"
+output-type = "executable"
+[dependencies]
+unicode = { path = "../unicode-0.1.0" }
+TOML
+cat "$probe/unicode-0.1.0/cjpm.toml" "$probe/consumer/cjpm.toml"
+[[ ! -e "$probe/middle" && ! -e "$probe/consumer/target" ]]
+sha256sum "$original/unicode-0.1.0/lib/libunicodedata.a" "$probe/unicode-0.1.0/lib/libunicodedata.a"
+cmp "$original/unicode-0.1.0/lib/libunicodedata.a" "$probe/unicode-0.1.0/lib/libunicodedata.a"
+source /workspace/work/validation/sdk/cangjie/envsetup.sh
+cjc --version
+cjpm --version
+printf 'CANGJIE_HOME=%s\nLD_LIBRARY_PATH=%s\n' "$CANGJIE_HOME" "$LD_LIBRARY_PATH"
+set +e
+bash -x "$repo/$evidence/run-transitive.sh" "$probe" /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp > "$base/retest-run-transitive.trace.log" 2>&1
+status=$?
+set -e
+printf 'run_transitive_exit=%s\n' "$status"
+date -u '+%Y-%m-%dT%H:%M:%SZ'
+exit "$status"
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-execution.log"]
++ base=/workspace/work/r7-independent-test
++ repo=/workspace/work/r7-independent-test/repo
++ original=/workspace/work/r7-independent-test/native-probe
++ probe=/workspace/work/r7-independent-test/retest-native-probe
++ evidence=docs/reviews/R7/evidence/native
++ date -u +%Y-%m-%dT%H:%M:%SZ
+2026-11-09T15:31:05Z
++ git -C /workspace/work/r7-independent-test/repo rev-parse HEAD
+e2c122de616207c9e5166a9c89416233b8b81268
++ git -C /workspace/work/r7-independent-test/repo status --porcelain
++ git -C /workspace/work/r7-independent-test/repo diff --exit-code 9a5c7034d245a053ff4614c3b7f594689a5b1389 e2c122de616207c9e5166a9c89416233b8b81268 -- docs/reviews/R7/evidence/native/run-native.sh docs/reviews/R7/evidence/native/generate-conformance.mjs docs/reviews/R7/evidence/native/templates
++ sha256sum /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-native.sh /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/generate-conformance.mjs /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-middle.cj /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/hook-probe.cj /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/middle-lib.cj /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+4470e67f35e5dafe8f6910d737f88345c792043c75a8df967ef54b80815a2742  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-native.sh
+613c25077512af6ccfe2c11bed0228ed4d457e9bbfabf45cd28417ea0e0a9050  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh
+202453714f7fe5a3f35d5bc2eb7a67765c8864f9d06d9ccdb2be579e2ba2ac0f  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/generate-conformance.mjs
+ca37136319c522dcfdf4b51241f9ec70ec39a6b44c7cf7378d3a6af4321a19d5  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj
+33f28fdcd17a656369b3ce97bc5a012adb371003e91759fa5b3ba1c2d3c56d3e  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-middle.cj
+3696978c2e16b14d508aacd198a01cfab31b59c0d42f0ff4f92768e2ecb0e8cb  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/hook-probe.cj
+3c856740fd0006e4fb3d5b080618dcd9e11ca4bfb406c9a4abaa9ec913843d44  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/middle-lib.cj
+d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c  /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
+2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e  /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe ]]
++ mkdir -p /workspace/work/r7-independent-test/retest-native-probe/logs /workspace/work/r7-independent-test/retest-native-probe/consumer/src
++ cp -a /workspace/work/r7-independent-test/native-probe/unicode-0.1.0 /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0
++ cp /workspace/work/r7-independent-test/native-probe/logs/grapheme-conformance.log /workspace/work/r7-independent-test/retest-native-probe/logs/grapheme-conformance.log
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ printf '\n[ffi.c]\nunicodedata = { path = "./lib" }\n'
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj
++ cat
++ cat /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/cjpm.toml /workspace/work/r7-independent-test/retest-native-probe/consumer/cjpm.toml
+[package]
+  cjc-version = "1.1.0"
+  name = "unicode"
+  description = "Cangjie Unicode Library"
+  version = "0.1.0"
+  authors = ["vchuoshen6"]
+  repository = "https://gitcode.com/vchuoshen6/libunicode.git"
+  homepage = "https://gitcode.com/vchuoshen6/libunicode"
+  documentation = "https://gitcode.com/vchuoshen6/libunicode"
+  tag = ["unicode"]
+  category = ["Utility"]
+  license = ["MulanPSL-2.0"]
+  include = ["unicode", "unicodedata", "generator", "doc", "lib"]
+  target-dir = ""
+  src-dir = "unicode"
+  output-type = "static"
+  compile-option = ""
+  override-compile-option = ""
+  link-option = "-Llib -lunicodedata"
+
+[dependencies]
+
+[ffi.c]
+unicodedata = { path = "./lib" }
+[package]
+cjc-version = "1.2.0"
+name = "native_probe"
+version = "0.0.1"
+src-dir = "src"
+output-type = "executable"
+[dependencies]
+unicode = { path = "../unicode-0.1.0" }
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe/middle ]]
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe/consumer/target ]]
++ sha256sum /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib/libunicodedata.a /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a
+96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03  /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib/libunicodedata.a
+96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03  /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a
++ cmp /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib/libunicodedata.a /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a
++ source /workspace/work/validation/sdk/cangjie/envsetup.sh
+++ return 0
++++ _cj_detect_shell_name
++++ '[' -n '' ']'
++++ '[' -n '5.2.37(1)-release' ']'
++++ printf '%s\n' bash
++++ return 0
+++ shell_name=bash
+++ case "$shell_name" in
++++ _cj_script_dir_from_path /workspace/work/validation/sdk/cangjie/envsetup.sh
+++ script_dir=/workspace/work/validation/sdk/cangjie
+++ '[' -z /workspace/work/validation/sdk/cangjie ']'
++++ uname -s
+++ sys_name=Linux
+++ '[' Linux = HarmonyOS ']'
+++ sys_name=
++++ uname -m
+++ hw_arch=x86_64
+++ '[' x86_64 = '' ']'
+++ hw_arch=_x86_64
+++ '[' -n '' ']'
+++ export CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+++ CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+++ export PATH=/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin
+++ PATH=/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin
+++ export LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+++ LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+++ unset hw_arch
+++ unset sys_name
++ cjc --version
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
++ cjpm --version
+Cangjie Project Manager: 1.2.0
++ printf 'CANGJIE_HOME=%s\nLD_LIBRARY_PATH=%s\n' /workspace/work/validation/sdk/cangjie /workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
++ set +e
++ bash -x /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh /workspace/work/r7-independent-test/retest-native-probe /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ status=0
++ set -e
++ printf 'run_transitive_exit=%s\n' 0
+run_transitive_exit=0
++ date -u +%Y-%m-%dT%H:%M:%SZ
+2026-11-09T15:33:23Z
++ exit 0
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-run-transitive.trace.log"]
++ set -euo pipefail
+++ realpath /workspace/work/r7-independent-test/retest-native-probe
++ probe_work=/workspace/work/r7-independent-test/retest-native-probe
+++ realpath /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ cjp_input=/workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++++ dirname /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh
+++ cd /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native
+++ pwd
++ script_dir=/workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native
++ [[ -f /workspace/work/r7-independent-test/retest-native-probe/logs/grapheme-conformance.log ]]
++ [[ -f /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a ]]
++ printf '%s  %s\n' d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ sha256sum -c
++ mkdir -p /workspace/work/r7-independent-test/retest-native-probe/middle/src
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/middle-lib.cj /workspace/work/r7-independent-test/retest-native-probe/middle/src/lib.cj
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-middle.cj /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj
++ cat
++ cat
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ printf '\n[ffi.c]\nunicodedata = { path = "../unicode-0.1.0/lib" }\n'
+++ mktemp -d /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.XXXXXX
++ owner_target=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main ]]
++ [[ -x /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main ]]
++ rg 'Compiling package.*native_probe.*-lunicodedata' /workspace/work/r7-independent-test/retest-native-probe/logs/adapter-owned-ffi-relink.log
++ rg -F /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main /workspace/work/r7-independent-test/retest-native-probe/logs/adapter-owned-ffi-relink.log
++ printf 'PASS independent consumer -> static adapter -> official unicode; adapter owns native FFI\n'
+PASS independent consumer -> static adapter -> official unicode; adapter owns native FFI
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-final-state.log"]
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ cmp - /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/cjpm.toml
++ printf 'official_unicode_manifest_cmp_exit=0\n'
+official_unicode_manifest_cmp_exit=0
++ cat /workspace/work/r7-independent-test/retest-native-probe/consumer/cjpm.toml /workspace/work/r7-independent-test/retest-native-probe/middle/cjpm.toml /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj
+[package]
+cjc-version = "1.2.0"
+name = "native_probe"
+version = "0.0.1"
+src-dir = "src"
+output-type = "executable"
+[dependencies]
+native_adapter = { path = "../middle" }
+[package]
+cjc-version = "1.2.0"
+name = "native_adapter"
+version = "0.0.1"
+src-dir = "src"
+output-type = "static"
+[dependencies]
+unicode = { path = "../unicode-0.1.0" }
+
+[ffi.c]
+unicodedata = { path = "../unicode-0.1.0/lib" }
+package native_probe
+import native_adapter.countGraphemes
+main(): Int64 {
+ if (countGraphemes("中é👩‍💻❤️🇨🇳") != 5) { return 1 }
+ println("PASS transitive FFI through intermediate static adapter")
+ return 0
+}
+
+// Recompile consumer to verify adapter-owned ffi flags.
++ sha256sum /workspace/work/r7-independent-test/report.md /workspace/work/r7-independent-test/results.json
+f8c80bc345a6e20af076277d8a470c6e6b524180e1690a8ada8d3c2ad7df04f2  /workspace/work/r7-independent-test/report.md
+7e17cd3899ca26daa43c36c7208a8f42d3063effc18ddcb37479c740085ba763  /workspace/work/r7-independent-test/results.json
++ git -C /workspace/work/r7-independent-test/repo status --porcelain
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-native-probe/logs/adapter-owned-ffi-relink.log"]
++ printf 'Fresh adapter-owned build target: %s\n' /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF
+Fresh adapter-owned build target: /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF
++ cd /workspace/work/r7-independent-test/retest-native-probe/consumer
++ cjpm run --target-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF --verbose
+Compiling package `unicode.constants`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/constants --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.constants.a
+Compiling package `unicode.utf`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/utf --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.utf.a
+Compiling package `unicode.types`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/types --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.types.a
+Compiling package `unicode`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.a
+Compiling package `native_adapter`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/middle/src --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/native_adapter/ --output-type=staticlib -o=libnative_adapter.a
+[33mwarning[0m: unsecure character:\u{FE0F}
+ [36m==>[0m /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj:4:42:
+  [36m| [0m
+[36m4[0m [36m| [0m if (countGraphemes("中é👩‍💻❤️🇨🇳") != 5) { return 1 }[0m
+  [36m| [0m                             [33m^ unsecure character:\u{FE0F}[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+1 warning generated, 1 warning printed.
+Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/ -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/native_adapter/ -lnative_adapter -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main
+Compiling package `unicode.test`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/test --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.test.a
+   Finished `build` profile compilation
+   Executable files at `/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin`
+Run current project: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main
+PASS transitive FFI through intermediate static adapter
+
+cjpm run finished
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/native-probe/logs/grapheme-conformance.log"]
++ cd /workspace/work/r7-independent-test/native-probe/conformance
++ cjpm run --verbose
+Compiling package `unicode.constants`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/constants --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.constants.a
+Compiling package `unicode.types`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/types --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.types.a
+Compiling package `unicode.utf`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/utf --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.utf.a
+Compiling package `unicode`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.a
+Compiling package `grapheme_conformance`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/conformance/src --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main
+Compiling package `unicode.test`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/test --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.test.a
+   Finished `build` profile compilation
+   Executable files at `/workspace/work/r7-independent-test/native-probe/conformance/target/release/bin`
+Run current project: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH /workspace/work/r7-independent-test/native-probe/conformance/target/release/bin/main
+GraphemeBreakTest17 raw total=766 failed=0
+EMPTY raw=one cluster isEmpty=true; adapter must return zero without invoking iterator
+
+cjpm run finished
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/native-probe/logs/normal-build-clean.log"]
++ cd /workspace/work/r7-independent-test/native-probe/consumer
++ cjpm build --verbose
+Compiling package `unicode.constants`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/constants --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.constants.a
+Compiling package `unicode.utf`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/utf --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.utf.a
+Compiling package `unicode.types`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/types --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.types.a
+Compiling package `unicode`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.a
+[33mwarning[0m: unsecure character:\u{FE0F}
+ [36m==>[0m /workspace/work/r7-independent-test/native-probe/consumer/src/main.cj:6:49:
+  [36m| [0m
+[36m6[0m [36m| [0m let it = GraphemeIterator("中é👩‍💻❤️🇨🇳")[0m
+  [36m| [0m                                    [33m^ unsecure character:\u{FE0F}[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+1 warning generated, 1 warning printed.
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x20): undefined reference to `getDecompSequence'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x28): undefined reference to `free_utf16array'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x38): undefined reference to `getDecompSequence'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x40): undefined reference to `free_utf16array'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x48): undefined reference to `getCodepointProperty'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x58): undefined reference to `getCombinSequences'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x60): undefined reference to `free_utf16array'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x68): undefined reference to `getDecompSequence'
+[31merror[0m: '/usr/bin/ld' '-o' '/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/main' '-z' 'noexecstack' '-m' 'elf_x86_64' '--hash-style=both' '-dynamic-linker' '/lib64/ld-linux-x86-64.so.2' '-pie' '/lib/x86_64-linux-gnu/Scrt1.o' '/lib/x86_64-linux-gnu/crti.o' '/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o' '-L/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode' '-L/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative' '-L/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative' '-L/lib/gcc/x86_64-linux-gnu/14' '-T' '/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/cjld.lds' '/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/cjstart.o' '/tmp/cangjie-tmp-28xCXqQMHLv-8b1e0253/native_probe.o' '-lunicode' '-lunicode.utf' '-lunicode.types' '-lunicode.constants' '--start-group' '-l:libcangjie-std-collection.a' '-l:libcangjie-std-convert.a' '-l:libcangjie-std-core.a' '-l:libcangjie-std-math.a' '--end-group' '-l:libcangjie-runtime.so' '-lboundscheck' '-lm' '-lc' '-lclang_rt-builtins' '/lib/gcc/x86_64-linux-gnu/14/crtendS.o' '/lib/x86_64-linux-gnu/crtn.o' : command failed with exit code 1 (use -V to see invocation)
+Error: failed to compile package `native_probe`, return code is 1
+Error: cjpm build failed
+Compiling package `native_probe`: cjc -p /workspace/work/r7-independent-test/native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants --output-type=exe -o=main
+Compiling package `unicode.test`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/test --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.test.a
+
+exit=0
+check-execution exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["curl","-fsSL","--max-time","60","--retry","1","-w","%{http_code} %{url_effective}\n","-o","/workspace/work/r7-acceptance/unicode-official/unicode-license-v3.txt","https://www.unicode.org/license.txt"]
+200 https://www.unicode.org/license.txt
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["curl","-fsSL","--max-time","60","--retry","1","-w","%{http_code} %{url_effective}\n","-o","/workspace/work/r7-acceptance/unicode-official/unicode-terms.html","https://www.unicode.org/terms_of_use.html"]
+200 https://www.unicode.org/copyright.html
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["curl","-fsSL","--max-time","60","--retry","1","-w","%{http_code} %{url_effective}\n","-o","/workspace/work/r7-acceptance/unicode-official/ucd17-ReadMe.txt","https://www.unicode.org/Public/17.0.0/ucd/ReadMe.txt"]
+200 https://www.unicode.org/Public/17.0.0/ucd/ReadMe.txt
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["unzip","-p","/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip","ReadMe.txt"]
+# Unicode Character Database
+# Date: 2025-08-15
+# © 2025 Unicode®, Inc.
+# Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the U.S. and other countries.
+# For terms of use and license, see https://www.unicode.org/terms_of_use.html
+#
+# For documentation, see the following:
+# NamesList.html
+# UAX #38, "Unicode Han Database (Unihan)"
+# UAX #42, "Unicode Character Database in XML"
+# UAX #44, "Unicode Character Database"
+# UTS #51, "Unicode Emoji"
+# UAX #57, "Unicode Egyptian Hieroglyph Database"
+#
+# The UAXes and UTS #51 can be accessed at https://www.unicode.org/versions/Unicode17.0.0/
+
+This directory contains final data files
+for the Unicode Character Database, for Version 17.0.0 of the Unicode Standard.
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["curl","-sSL","--max-time","60","-w","%{http_code} %{url_effective}\n","-o","/workspace/work/r7-acceptance/unicode-official/ucd17-license-response.txt","https://www.unicode.org/Public/17.0.0/ucd/LICENSE.txt"]
+404 https://www.unicode.org/Public/17.0.0/ucd/LICENSE.txt
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/unicode-official] ["rg","-n","Data Files|License v3|/Public/|COPYRIGHT|2026|2025|permission notice","unicode-terms.html","unicode-license-v3.txt","ucd17-ReadMe.txt"]
+ucd17-ReadMe.txt:2:# Date: 2025-08-15
+ucd17-ReadMe.txt:3:# © 2025 Unicode®, Inc.
+unicode-terms.html:62:	<p>“Unicode Products” includes the Unicode website and its content, Data Files, Software, the Unicode Standard, all other Unicode standards, specifications, technical reports, technical notes, annexes, code charts, data files, software, publications, webinars, videos, course materials, online and in-person events, and all other Unicode products and services made available via this website or any other channel of distribution, including but not limited to Github, Maven, YouTube, and other third-party sites where Unicode maintains and provides products, materials, and services.</p>
+unicode-terms.html:65:	<p>“Unicode Data Files” or "Data Files" include all computer data files under the following directories:</p>
+unicode-terms.html:67:		<li><a href="https://www.unicode.org/Public/">https://www.unicode.org/Public/</a>
+unicode-terms.html:85:		<a href="https://www.unicode.org/Public/PROGRAMS/">https://www.unicode.org/Public/PROGRAMS/</a>
+unicode-terms.html:88:		<a href="https://www.unicode.org/Public/cldr/">https://www.unicode.org/Public/cldr/</a>
+unicode-terms.html:109:	<li><p>All Unicode Data Files and Unicode Software are subject to the terms and conditions of the free and open-source 
+unicode-terms.html:110:	<a href="https://www.unicode.org/license.txt">Unicode License v3</a>, unless otherwise indicated by specific restriction, permission, or license identified at the point of release or in such software, data file, or other documentation.</p>
+unicode-terms.html:124:	<li><p><span style="text-decoration: underline">Restricted Rights Legend</span>. Any Unicode Data Files or Software that are licensed to the United States of America, its agencies and/or instrumentalities under these Terms of Use is commercial technical data or commercial computer software developed exclusively at private expense as defined in FAR 2.101, or DFARS 252.227-7014, as applicable. For Unicode Data Files, use, duplication, or disclosure by the Government is subject to restrictions as set forth in DFARS 202.227-7015 Technical Data, Commercial and Items and these Terms of Use. For Unicode Software, in accordance with FAR 12-212 or DFARS 227-7202, as applicable, use, duplication or disclosure by the Government is subject to the restrictions set forth in these Terms of Use.</p>
+unicode-license-v3.txt:3:COPYRIGHT AND PERMISSION NOTICE
+unicode-license-v3.txt:5:Copyright © 1991-2026 Unicode, Inc.
+unicode-license-v3.txt:14:copy of data files and any associated documentation (the "Data Files") or
+unicode-license-v3.txt:16:Data Files or Software without restriction, including without limitation
+unicode-license-v3.txt:18:copies of the Data Files or Software, and to permit persons to whom the
+unicode-license-v3.txt:19:Data Files or Software are furnished to do so, provided that either (a)
+unicode-license-v3.txt:20:this copyright and permission notice appear with all copies of the Data
+unicode-license-v3.txt:21:Files or Software, or (b) this copyright and permission notice appear in
+unicode-license-v3.txt:29:IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE
+unicode-license-v3.txt:38:dealings in these Data Files or Software without prior written
+
+exit=0
+check-unicode-source exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","diff","9a5c7034d245a053ff4614c3b7f594689a5b1389","HEAD","--","docs/reviews/R7/evidence/native/run-native.sh","docs/reviews/R7/evidence/native/generate-conformance.mjs","docs/reviews/R7/evidence/native/templates"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-execute.sh"]
+#!/usr/bin/env bash
+set -euxo pipefail
+base=/workspace/work/r7-independent-test
+repo="$base/repo"
+original="$base/native-probe"
+probe="$base/retest-native-probe"
+evidence=docs/reviews/R7/evidence/native
+date -u '+%Y-%m-%dT%H:%M:%SZ'
+git -C "$repo" rev-parse HEAD
+git -C "$repo" status --porcelain
+# Prove unchanged test/native source generation scope before reuse.
+git -C "$repo" diff --exit-code 9a5c7034d245a053ff4614c3b7f594689a5b1389 e2c122de616207c9e5166a9c89416233b8b81268 -- "$evidence/run-native.sh" "$evidence/generate-conformance.mjs" "$evidence/templates"
+sha256sum "$repo/$evidence/run-native.sh" "$repo/$evidence/run-transitive.sh" "$repo/$evidence/generate-conformance.mjs" "$repo/$evidence/templates/"* /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+[[ ! -e "$probe" ]]
+mkdir -p "$probe/logs" "$probe/consumer/src"
+# Reuse only this independent execution role's unchanged source/native outputs.
+cp -a "$original/unicode-0.1.0" "$probe/unicode-0.1.0"
+cp "$original/logs/grapheme-conformance.log" "$probe/logs/grapheme-conformance.log"
+# Restore run-native completion state; never inherit failed adapter-owned state.
+tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml > "$probe/unicode-0.1.0/cjpm.toml"
+printf '\n[ffi.c]\nunicodedata = { path = "./lib" }\n' >> "$probe/unicode-0.1.0/cjpm.toml"
+cp "$repo/$evidence/templates/consumer-main.cj" "$probe/consumer/src/main.cj"
+cat > "$probe/consumer/cjpm.toml" <<'TOML'
+[package]
+cjc-version = "1.2.0"
+name = "native_probe"
+version = "0.0.1"
+src-dir = "src"
+output-type = "executable"
+[dependencies]
+unicode = { path = "../unicode-0.1.0" }
+TOML
+cat "$probe/unicode-0.1.0/cjpm.toml" "$probe/consumer/cjpm.toml"
+[[ ! -e "$probe/middle" && ! -e "$probe/consumer/target" ]]
+sha256sum "$original/unicode-0.1.0/lib/libunicodedata.a" "$probe/unicode-0.1.0/lib/libunicodedata.a"
+cmp "$original/unicode-0.1.0/lib/libunicodedata.a" "$probe/unicode-0.1.0/lib/libunicodedata.a"
+source /workspace/work/validation/sdk/cangjie/envsetup.sh
+cjc --version
+cjpm --version
+printf 'CANGJIE_HOME=%s\nLD_LIBRARY_PATH=%s\n' "$CANGJIE_HOME" "$LD_LIBRARY_PATH"
+set +e
+bash -x "$repo/$evidence/run-transitive.sh" "$probe" /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp > "$base/retest-run-transitive.trace.log" 2>&1
+status=$?
+set -e
+printf 'run_transitive_exit=%s\n' "$status"
+date -u '+%Y-%m-%dT%H:%M:%SZ'
+exit "$status"
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-execution.log"]
++ base=/workspace/work/r7-independent-test
++ repo=/workspace/work/r7-independent-test/repo
++ original=/workspace/work/r7-independent-test/native-probe
++ probe=/workspace/work/r7-independent-test/retest-native-probe
++ evidence=docs/reviews/R7/evidence/native
++ date -u +%Y-%m-%dT%H:%M:%SZ
+2026-11-09T15:31:05Z
++ git -C /workspace/work/r7-independent-test/repo rev-parse HEAD
+e2c122de616207c9e5166a9c89416233b8b81268
++ git -C /workspace/work/r7-independent-test/repo status --porcelain
++ git -C /workspace/work/r7-independent-test/repo diff --exit-code 9a5c7034d245a053ff4614c3b7f594689a5b1389 e2c122de616207c9e5166a9c89416233b8b81268 -- docs/reviews/R7/evidence/native/run-native.sh docs/reviews/R7/evidence/native/generate-conformance.mjs docs/reviews/R7/evidence/native/templates
++ sha256sum /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-native.sh /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/generate-conformance.mjs /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-middle.cj /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/hook-probe.cj /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/middle-lib.cj /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+4470e67f35e5dafe8f6910d737f88345c792043c75a8df967ef54b80815a2742  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-native.sh
+613c25077512af6ccfe2c11bed0228ed4d457e9bbfabf45cd28417ea0e0a9050  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh
+202453714f7fe5a3f35d5bc2eb7a67765c8864f9d06d9ccdb2be579e2ba2ac0f  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/generate-conformance.mjs
+ca37136319c522dcfdf4b51241f9ec70ec39a6b44c7cf7378d3a6af4321a19d5  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj
+33f28fdcd17a656369b3ce97bc5a012adb371003e91759fa5b3ba1c2d3c56d3e  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-middle.cj
+3696978c2e16b14d508aacd198a01cfab31b59c0d42f0ff4f92768e2ecb0e8cb  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/hook-probe.cj
+3c856740fd0006e4fb3d5b080618dcd9e11ca4bfb406c9a4abaa9ec913843d44  /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/middle-lib.cj
+d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c  /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
+2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e  /workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe ]]
++ mkdir -p /workspace/work/r7-independent-test/retest-native-probe/logs /workspace/work/r7-independent-test/retest-native-probe/consumer/src
++ cp -a /workspace/work/r7-independent-test/native-probe/unicode-0.1.0 /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0
++ cp /workspace/work/r7-independent-test/native-probe/logs/grapheme-conformance.log /workspace/work/r7-independent-test/retest-native-probe/logs/grapheme-conformance.log
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ printf '\n[ffi.c]\nunicodedata = { path = "./lib" }\n'
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-main.cj /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj
++ cat
++ cat /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/cjpm.toml /workspace/work/r7-independent-test/retest-native-probe/consumer/cjpm.toml
+[package]
+  cjc-version = "1.1.0"
+  name = "unicode"
+  description = "Cangjie Unicode Library"
+  version = "0.1.0"
+  authors = ["vchuoshen6"]
+  repository = "https://gitcode.com/vchuoshen6/libunicode.git"
+  homepage = "https://gitcode.com/vchuoshen6/libunicode"
+  documentation = "https://gitcode.com/vchuoshen6/libunicode"
+  tag = ["unicode"]
+  category = ["Utility"]
+  license = ["MulanPSL-2.0"]
+  include = ["unicode", "unicodedata", "generator", "doc", "lib"]
+  target-dir = ""
+  src-dir = "unicode"
+  output-type = "static"
+  compile-option = ""
+  override-compile-option = ""
+  link-option = "-Llib -lunicodedata"
+
+[dependencies]
+
+[ffi.c]
+unicodedata = { path = "./lib" }
+[package]
+cjc-version = "1.2.0"
+name = "native_probe"
+version = "0.0.1"
+src-dir = "src"
+output-type = "executable"
+[dependencies]
+unicode = { path = "../unicode-0.1.0" }
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe/middle ]]
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe/consumer/target ]]
++ sha256sum /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib/libunicodedata.a /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a
+96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03  /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib/libunicodedata.a
+96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03  /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a
++ cmp /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib/libunicodedata.a /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a
++ source /workspace/work/validation/sdk/cangjie/envsetup.sh
+++ return 0
++++ _cj_detect_shell_name
++++ '[' -n '' ']'
++++ '[' -n '5.2.37(1)-release' ']'
++++ printf '%s\n' bash
++++ return 0
+++ shell_name=bash
+++ case "$shell_name" in
++++ _cj_script_dir_from_path /workspace/work/validation/sdk/cangjie/envsetup.sh
+++ script_dir=/workspace/work/validation/sdk/cangjie
+++ '[' -z /workspace/work/validation/sdk/cangjie ']'
++++ uname -s
+++ sys_name=Linux
+++ '[' Linux = HarmonyOS ']'
+++ sys_name=
++++ uname -m
+++ hw_arch=x86_64
+++ '[' x86_64 = '' ']'
+++ hw_arch=_x86_64
+++ '[' -n '' ']'
+++ export CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+++ CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+++ export PATH=/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin
+++ PATH=/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin
+++ export LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+++ LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+++ unset hw_arch
+++ unset sys_name
++ cjc --version
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
++ cjpm --version
+Cangjie Project Manager: 1.2.0
++ printf 'CANGJIE_HOME=%s\nLD_LIBRARY_PATH=%s\n' /workspace/work/validation/sdk/cangjie /workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
+CANGJIE_HOME=/workspace/work/validation/sdk/cangjie
+LD_LIBRARY_PATH=/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib
++ set +e
++ bash -x /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh /workspace/work/r7-independent-test/retest-native-probe /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ status=0
++ set -e
++ printf 'run_transitive_exit=%s\n' 0
+run_transitive_exit=0
++ date -u +%Y-%m-%dT%H:%M:%SZ
+2026-11-09T15:33:23Z
++ exit 0
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-run-transitive.trace.log"]
++ set -euo pipefail
+++ realpath /workspace/work/r7-independent-test/retest-native-probe
++ probe_work=/workspace/work/r7-independent-test/retest-native-probe
+++ realpath /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ cjp_input=/workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++++ dirname /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/run-transitive.sh
+++ cd /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native
+++ pwd
++ script_dir=/workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native
++ [[ -f /workspace/work/r7-independent-test/retest-native-probe/logs/grapheme-conformance.log ]]
++ [[ -f /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib/libunicodedata.a ]]
++ printf '%s  %s\n' d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp
++ sha256sum -c
++ mkdir -p /workspace/work/r7-independent-test/retest-native-probe/middle/src
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/middle-lib.cj /workspace/work/r7-independent-test/retest-native-probe/middle/src/lib.cj
++ cp /workspace/work/r7-independent-test/repo/docs/reviews/R7/evidence/native/templates/consumer-middle.cj /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj
++ cat
++ cat
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ printf '\n[ffi.c]\nunicodedata = { path = "../unicode-0.1.0/lib" }\n'
+++ mktemp -d /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.XXXXXX
++ owner_target=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF
++ [[ ! -e /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main ]]
++ [[ -x /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main ]]
++ rg 'Compiling package.*native_probe.*-lunicodedata' /workspace/work/r7-independent-test/retest-native-probe/logs/adapter-owned-ffi-relink.log
++ rg -F /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main /workspace/work/r7-independent-test/retest-native-probe/logs/adapter-owned-ffi-relink.log
++ printf 'PASS independent consumer -> static adapter -> official unicode; adapter owns native FFI\n'
+PASS independent consumer -> static adapter -> official unicode; adapter owns native FFI
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-final-state.log"]
++ tar -xOf /workspace/work/validation/replay-dependencies/archives/unicode-0.1.0.cjp unicode-0.1.0/cjpm.toml
++ cmp - /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/cjpm.toml
++ printf 'official_unicode_manifest_cmp_exit=0\n'
+official_unicode_manifest_cmp_exit=0
++ cat /workspace/work/r7-independent-test/retest-native-probe/consumer/cjpm.toml /workspace/work/r7-independent-test/retest-native-probe/middle/cjpm.toml /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj
+[package]
+cjc-version = "1.2.0"
+name = "native_probe"
+version = "0.0.1"
+src-dir = "src"
+output-type = "executable"
+[dependencies]
+native_adapter = { path = "../middle" }
+[package]
+cjc-version = "1.2.0"
+name = "native_adapter"
+version = "0.0.1"
+src-dir = "src"
+output-type = "static"
+[dependencies]
+unicode = { path = "../unicode-0.1.0" }
+
+[ffi.c]
+unicodedata = { path = "../unicode-0.1.0/lib" }
+package native_probe
+import native_adapter.countGraphemes
+main(): Int64 {
+ if (countGraphemes("中é👩‍💻❤️🇨🇳") != 5) { return 1 }
+ println("PASS transitive FFI through intermediate static adapter")
+ return 0
+}
+
+// Recompile consumer to verify adapter-owned ffi flags.
++ sha256sum /workspace/work/r7-independent-test/report.md /workspace/work/r7-independent-test/results.json
+f8c80bc345a6e20af076277d8a470c6e6b524180e1690a8ada8d3c2ad7df04f2  /workspace/work/r7-independent-test/report.md
+7e17cd3899ca26daa43c36c7208a8f42d3063effc18ddcb37479c740085ba763  /workspace/work/r7-independent-test/results.json
++ git -C /workspace/work/r7-independent-test/repo status --porcelain
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/retest-native-probe/logs/adapter-owned-ffi-relink.log"]
++ printf 'Fresh adapter-owned build target: %s\n' /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF
+Fresh adapter-owned build target: /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF
++ cd /workspace/work/r7-independent-test/retest-native-probe/consumer
++ cjpm run --target-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF --verbose
+Compiling package `unicode.constants`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/constants --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.constants.a
+Compiling package `unicode.utf`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/utf --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.utf.a
+Compiling package `unicode.types`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/types --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.types.a
+Compiling package `unicode`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.a
+Compiling package `native_adapter`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/middle/src --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/native_adapter/ --output-type=staticlib -o=libnative_adapter.a
+[33mwarning[0m: unsecure character:\u{FE0F}
+ [36m==>[0m /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj:4:42:
+  [36m| [0m
+[36m4[0m [36m| [0m if (countGraphemes("中é👩‍💻❤️🇨🇳") != 5) { return 1 }[0m
+  [36m| [0m                             [33m^ unsecure character:\u{FE0F}[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+1 warning generated, 1 warning printed.
+Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/ -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/native_adapter/ -lnative_adapter -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main
+Compiling package `unicode.test`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/test --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.test.a
+   Finished `build` profile compilation
+   Executable files at `/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin`
+Run current project: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main
+PASS transitive FFI through intermediate static adapter
+
+cjpm run finished
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/native-probe/logs/grapheme-conformance.log"]
++ cd /workspace/work/r7-independent-test/native-probe/conformance
++ cjpm run --verbose
+Compiling package `unicode.constants`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/constants --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.constants.a
+Compiling package `unicode.types`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/types --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.types.a
+Compiling package `unicode.utf`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/utf --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.utf.a
+Compiling package `unicode`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.a
+Compiling package `grapheme_conformance`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/conformance/src --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main
+Compiling package `unicode.test`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/test --import-path=/workspace/work/r7-independent-test/native-probe/conformance/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/conformance/target/release/unicode/ --output-type=staticlib -o=libunicode.test.a
+   Finished `build` profile compilation
+   Executable files at `/workspace/work/r7-independent-test/native-probe/conformance/target/release/bin`
+Run current project: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH /workspace/work/r7-independent-test/native-probe/conformance/target/release/bin/main
+GraphemeBreakTest17 raw total=766 failed=0
+EMPTY raw=one cluster isEmpty=true; adapter must return zero without invoking iterator
+
+cjpm run finished
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["cat","/workspace/work/r7-independent-test/native-probe/logs/normal-build-clean.log"]
++ cd /workspace/work/r7-independent-test/native-probe/consumer
++ cjpm build --verbose
+Compiling package `unicode.constants`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/constants --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.constants.a
+Compiling package `unicode.utf`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/utf --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.utf.a
+Compiling package `unicode.types`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/types --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.types.a
+Compiling package `unicode`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.a
+[33mwarning[0m: unsecure character:\u{FE0F}
+ [36m==>[0m /workspace/work/r7-independent-test/native-probe/consumer/src/main.cj:6:49:
+  [36m| [0m
+[36m6[0m [36m| [0m let it = GraphemeIterator("中é👩‍💻❤️🇨🇳")[0m
+  [36m| [0m                                    [33m^ unsecure character:\u{FE0F}[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+1 warning generated, 1 warning printed.
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x20): undefined reference to `getDecompSequence'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x28): undefined reference to `free_utf16array'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x38): undefined reference to `getDecompSequence'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x40): undefined reference to `free_utf16array'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x48): undefined reference to `getCodepointProperty'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x58): undefined reference to `getCombinSequences'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x60): undefined reference to `free_utf16array'
+/usr/bin/ld: /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/libunicode.a(unicode.o):(.data+0x68): undefined reference to `getDecompSequence'
+[31merror[0m: '/usr/bin/ld' '-o' '/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/main' '-z' 'noexecstack' '-m' 'elf_x86_64' '--hash-style=both' '-dynamic-linker' '/lib64/ld-linux-x86-64.so.2' '-pie' '/lib/x86_64-linux-gnu/Scrt1.o' '/lib/x86_64-linux-gnu/crti.o' '/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o' '-L/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode' '-L/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative' '-L/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative' '-L/lib/gcc/x86_64-linux-gnu/14' '-T' '/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/cjld.lds' '/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/cjstart.o' '/tmp/cangjie-tmp-28xCXqQMHLv-8b1e0253/native_probe.o' '-lunicode' '-lunicode.utf' '-lunicode.types' '-lunicode.constants' '--start-group' '-l:libcangjie-std-collection.a' '-l:libcangjie-std-convert.a' '-l:libcangjie-std-core.a' '-l:libcangjie-std-math.a' '--end-group' '-l:libcangjie-runtime.so' '-lboundscheck' '-lm' '-lc' '-lclang_rt-builtins' '/lib/gcc/x86_64-linux-gnu/14/crtendS.o' '/lib/x86_64-linux-gnu/crtn.o' : command failed with exit code 1 (use -V to see invocation)
+Error: failed to compile package `native_probe`, return code is 1
+Error: cjpm build failed
+Compiling package `native_probe`: cjc -p /workspace/work/r7-independent-test/native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants --output-type=exe -o=main
+Compiling package `unicode.test`: cjc -p /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/unicode/test --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ --output-type=staticlib -o=libunicode.test.a
+
+exit=0
+check-execution including numeric statuses and conformance content hash exit=0
+ACTUAL_TOOL_VERSION @fission-ai/openspec=1.14.3; equals package.json; exit=0
+ACTUAL_TOOL_VERSION smol-toml=1.4.2; equals package.json; exit=0
+
+$ [cwd=/workspace/work/r7-acceptance] ["rg","-n","^无。|unicodewidth4cj is dual|cfgif4cj contributors|The Rust Project Developers","upstreams/bitarray/README.md","upstreams/bitarray/LICENSE","upstreams/bitarray/LICENSE-MIT","packages/bitarray-0.1.0/README.md","upstreams/unicodewidth/LICENSE","upstreams/unicodewidth/LICENSE-MIT"]
+packages/bitarray-0.1.0/README.md:156:无。
+upstreams/bitarray/LICENSE-MIT:1:Copyright (c) 2015 The Rust Project Developers
+upstreams/bitarray/LICENSE:1:unicodewidth4cj is dual-licensed under either the MIT License or the Apache License 2.0, at your option.
+upstreams/bitarray/LICENSE:5:Copyright (c) 2026 cfgif4cj contributors
+upstreams/unicodewidth/LICENSE:1:unicodewidth4cj is dual-licensed under either the MIT License or the Apache License 2.0, at your option.
+upstreams/unicodewidth/LICENSE:5:Copyright (c) 2026 cfgif4cj contributors
+upstreams/unicodewidth/LICENSE-MIT:1:Copyright (c) 2015 The Rust Project Developers
+upstreams/bitarray/README.md:156:无。
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance] ["rg","-n","version =|license =","upstreams/ansies/cjpm.toml","packages/ansies-1.3.113/cjpm.toml"]
+packages/ansies-1.3.113/cjpm.toml:2:  cjc-version = "1.0.0"
+packages/ansies-1.3.113/cjpm.toml:11:  version = "1.3.113"
+packages/ansies-1.3.113/cjpm.toml:15:  license = ["MulanPSL-2.0"]
+upstreams/ansies/cjpm.toml:2:  cjc-version = "1.0.0"
+upstreams/ansies/cjpm.toml:11:  version = "1.3.105"
+upstreams/ansies/cjpm.toml:15:  license = ["MulanPSL2"]
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance] ["rg","-n","import bitarray|PartitionedBitArray","packages/ansies-1.3.113/src"]
+packages/ansies-1.3.113/src/api/text_style.cj:4: * @brief 样式聚合 — 基于 PartitionedBitArray 的 TextStyle 实现
+packages/ansies-1.3.113/src/api/text_style.cj:9:import bitarray.{BitArray, PartitionedBitArray, BitSegment}
+packages/ansies-1.3.113/src/api/text_style.cj:58:    private var pba: PartitionedBitArray
+packages/ansies-1.3.113/src/api/text_style.cj:137:        pba = PartitionedBitArray(BitArray(x))
+packages/ansies-1.3.113/src/api/text_style.cj:149:        pba = PartitionedBitArray(BitArray(64))
+
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance] ["cat","packages/unicode-0.1.0/unicode/unicodewidth.cj"]
+package unicode
+
+public func width(char: Rune): Int8 {
+    Codepoint(UInt32(char.position())).width
+}
+
+public func width(value: String): Int64 {
+    var width = 0
+    let ss = GraphemeIterator(value)  //cjlint-ignore !G.VAR.02
+    while(true) {
+        match(ss.next()) {
+            case None => break
+            case Some(g) => width += Int64(g.width)
+        }
+    }
+    width
+}
+
+public interface UnicodeWidth {
+    func width(): Int64
+}
+
+// cjlint-ignore -start !G.ITF.02 description
+extend Rune <: UnicodeWidth {  
+    public func width(): Int64 {
+        Int64(width(this))
+    }
+}
+
+extend String <: UnicodeWidth {  
+    public func width(): Int64 {
+        width(this)
+    }
+}
+// cjlint-ignore -end description
+exit=0
+
+$ [cwd=/workspace/work/r7-acceptance/repo] ["git","status","--short"]
+
+exit=0
+
+Substantive custom commands executed with numeric status above:
+node /workspace/work/r7-acceptance/check-contract.mjs > contract.log 2>&1
+node /workspace/work/r7-acceptance/check-provenance.mjs > provenance.log 2>&1
+node /workspace/work/r7-acceptance/check-unicode-source.mjs > unicode-source.log 2>&1
+node /workspace/work/r7-acceptance/check-execution.mjs > execution-check.log 2>&1
+Initial preparation (observed tool exit 0): git clone --no-hardlinks /workspace/work/terminal.ui /workspace/work/r7-acceptance/repo; git -C /workspace/work/r7-acceptance/repo checkout --detach e2c122de616207c9e5166a9c89416233b8b81268. Semicolon here separates transcript descriptions, not shell code executed by this script.

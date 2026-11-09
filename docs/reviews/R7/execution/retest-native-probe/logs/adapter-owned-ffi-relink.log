@@ -1,0 +1,26 @@
++ printf 'Fresh adapter-owned build target: %s\n' /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF
+Fresh adapter-owned build target: /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF
++ cd /workspace/work/r7-independent-test/retest-native-probe/consumer
++ cjpm run --target-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF --verbose
+Compiling package `unicode.constants`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/constants --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.constants.a
+Compiling package `unicode.utf`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/utf --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.utf.a
+Compiling package `unicode.types`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/types --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.types.a
+Compiling package `unicode`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.a
+Compiling package `native_adapter`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/middle/src --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/native_adapter/ --output-type=staticlib -o=libnative_adapter.a
+[33mwarning[0m: unsecure character:\u{FE0F}
+ [36m==>[0m /workspace/work/r7-independent-test/retest-native-probe/consumer/src/main.cj:4:42:
+  [36m| [0m
+[36m4[0m [36m| [0m if (countGraphemes("中é👩‍💻❤️🇨🇳") != 5) { return 1 }[0m
+  [36m| [0m                             [33m^ unsecure character:\u{FE0F}[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+1 warning generated, 1 warning printed.
+Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/ -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/native_adapter/ -lnative_adapter -L /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main
+Compiling package `unicode.test`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/unicode/test --import-path=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/unicode/ --output-type=staticlib -o=libunicode.test.a
+   Finished `build` profile compilation
+   Executable files at `/workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin`
+Run current project: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/retest-native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH /workspace/work/r7-independent-test/retest-native-probe/adapter-owned-target.lQE8CF/release/bin/main
+PASS transitive FFI through intermediate static adapter
+
+cjpm run finished

@@ -1,0 +1,18 @@
++ cd /workspace/work/r7-independent-test/native-probe/consumer
++ cjpm run --build-args=-i --verbose
+[33mwarning[0m: unsecure character:\u{FE0F}
+ [36m==>[0m /workspace/work/r7-independent-test/native-probe/consumer/src/main.cj:6:49:
+  [36m| [0m
+[36m6[0m [36m| [0m let it = GraphemeIterator("中é👩‍💻❤️🇨🇳")[0m
+  [36m| [0m                                    [33m^ unsecure character:\u{FE0F}[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+1 warning generated, 1 warning printed.
+Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main
+   Finished `build` profile compilation
+   Executable files at `/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin`
+Run current project: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH /workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/main
+PASS native segmentation and NFD; five clusters
+
+cjpm run finished

@@ -1,0 +1,147 @@
+{
+  "role": "independent test execution; not overall acceptance",
+  "commit": "9a5c7034d245a053ff4614c3b7f594689a5b1389",
+  "clone": "git clone --no-hardlinks",
+  "repo": "/workspace/work/r7-independent-test/repo",
+  "scratch": "/workspace/work/r7-independent-test/native-probe",
+  "startUtc": "2026-11-09T15:24:02Z",
+  "endUtc": "2026-11-09T15:26:27Z",
+  "environment": [
+    "Cangjie Compiler: 1.2.0 (cjnative)",
+    "Target: x86_64-unknown-linux-gnu",
+    "Cangjie Project Manager: 1.2.0",
+    "gcc (Debian 14.2.0-19) 14.2.0",
+    "GNU ar (GNU Binutils for Debian) 2.44",
+    "Linux 6.18.57 x86_64",
+    "v24.22.1"
+  ],
+  "sdkEnv": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+  "inputHashes": {
+    "unicode": "d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c",
+    "ucd": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e"
+  },
+  "generatedHashes": {
+    "officialGraphemeFile": "e2d134d2c52919bace503ebb6a551c1855fe1a1faec18478c78fff254a1793ec",
+    "testSource": "08eee34893b887f996786649cb4e2ec05a7ed3f55c6a58082e2a7b81d07aef71"
+  },
+  "commands": {
+    "setup": "execute.sh",
+    "finalChecks": "final-checks.sh",
+    "runNativeExit": 0,
+    "runTransitiveExit": 1,
+    "finalChecksExit": 0
+  },
+  "stages": [
+    {
+      "stage": "clean normal consumer build",
+      "command": "(cd consumer && cjpm build --verbose)",
+      "exit": 1,
+      "status": "expected failure",
+      "evidence": "native-probe/logs/normal-build-clean.log",
+      "detail": "Compiler reports return code 1; four missing native symbols; the enclosing conditional correctly accepts this failure."
+    },
+    {
+      "stage": "shipped generator build",
+      "command": "(cd unicode-0.1.0/generator && cjpm build)",
+      "exit": 0,
+      "status": "observed success",
+      "evidence": "native-probe/logs/generator-build.log"
+    },
+    {
+      "stage": "shipped generator execution",
+      "command": "unicode-0.1.0/generator/target/generate UCD memmap",
+      "exit": 0,
+      "status": "observed success",
+      "evidence": "native-probe/logs/generator-run.log"
+    },
+    {
+      "stage": "native compilation/archive",
+      "command": "gcc -fPIC -O2 -I../include -c library.c; gcc -fPIC -c data.S; ar rcs libunicodedata.a library.o data.o",
+      "exit": 0,
+      "status": "observed success",
+      "evidence": "native-probe/logs/native-build.log",
+      "detail": "Seven tables generated; library.c, data.S independently match input archive bytes."
+    },
+    {
+      "stage": "explicit consumer link and run",
+      "command": "(cd consumer && cjpm run --build-args=\"-i\" --verbose)",
+      "exit": 0,
+      "status": "observed success",
+      "cases": 2,
+      "evidence": "native-probe/logs/consumer-native-link.log",
+      "detail": "One five-cluster segmentation fixture and one NFD é -> e + U+0301 fixture."
+    },
+    {
+      "stage": "dependency-owned ffi consumer link and run",
+      "command": "(cd consumer && cjpm run --build-args=\"-i\" --verbose)",
+      "exit": 0,
+      "status": "observed success",
+      "cases": 2,
+      "evidence": "native-probe/logs/dependency-ffi-transitive.log"
+    },
+    {
+      "stage": "official grapheme conformance",
+      "command": "(cd conformance && cjpm run --verbose)",
+      "exit": 0,
+      "status": "observed success",
+      "cases": 766,
+      "failed": 0,
+      "evidence": "native-probe/logs/grapheme-conformance.log",
+      "detail": "Every generated expected boundary and code point checked. Additional raw empty probe yields one empty cluster, separately from 766 official cases."
+    },
+    {
+      "stage": "static adapter with dependency-owned ffi",
+      "command": "(cd consumer && cjpm run --build-args=\"-i\" --verbose)",
+      "exit": 0,
+      "status": "observed success",
+      "cases": 1,
+      "evidence": "native-probe/logs/intermediate-ffi.log"
+    },
+    {
+      "stage": "adapter-owned ffi rebuild/run command",
+      "command": "(cd consumer && cjpm run --build-args=\"-i\" --verbose)",
+      "exit": 0,
+      "status": "relink evidence missing",
+      "evidence": "native-probe/logs/adapter-owned-ffi-relink.log",
+      "detail": "Existing binary runs successfully; no compile/link command appears, so this cannot establish adapter-owned ffi linking."
+    },
+    {
+      "stage": "adapter-owned ffi actual relink assertion",
+      "command": "rg 'Compiling package.*native_probe.*-lunicodedata' logs/adapter-owned-ffi-relink.log",
+      "exit": 1,
+      "status": "unexpected failure",
+      "evidence": "run-transitive.trace.log"
+    }
+  ],
+  "ffiLinkLines": [
+    "/workspace/work/r7-independent-test/native-probe/logs/intermediate-ffi.log:Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/native_adapter/ -lnative_adapter -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main",
+    "/workspace/work/r7-independent-test/native-probe/logs/dependency-ffi-transitive.log:Compiling package `native_probe`: LD_LIBRARY_PATH=/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib:$LD_LIBRARY_PATH cjc -p /workspace/work/r7-independent-test/native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants -L /workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib -lunicodedata --output-type=exe -o=main",
+    "/workspace/work/r7-independent-test/native-probe/logs/consumer-native-link.log:Compiling package `native_probe`: cjc -p /workspace/work/r7-independent-test/native-probe/consumer/src --import-path=/workspace/work/r7-independent-test/native-probe/consumer/target/release --no-sub-pkg --output-dir=/workspace/work/r7-independent-test/native-probe/consumer/target/release/bin/ -L /workspace/work/r7-independent-test/native-probe/consumer/target/release/unicode/ -lunicode -lunicode.utf -lunicode.types -lunicode.constants --link-options \"-L/workspace/work/r7-independent-test/native-probe/unicode-0.1.0/lib -lunicodedata\" --output-type=exe -o=main"
+  ],
+  "findings": [
+    {
+      "id": "ITE-001",
+      "status": "observed reproduction failure",
+      "description": "run-transitive.sh does not force the claimed adapter-owned ffi relink in this new directory. Its own final assertion fails. The second cjpm run reused a binary linked during the preceding dependency-owned ffi stage.",
+      "cause": "Undetermined; source append and binary mtime fall within the same second (15:26:26). This is an observation, not proof of timestamp-resolution root cause."
+    }
+  ],
+  "limits": [
+    "No product integration, build hook, clean distributed cjp lifecycle, normalization conformance or other platform execution performed.",
+    "No author logs or build outputs were used as test results; author logs inside cloned repository were not opened. Fixed README and metadata were read only as handoff context.",
+    "No fixed scripts edited; no repository edits, commits or pushes. No repeated run of unchanged failure.",
+    "Per-command numeric codes for successful nested commands are inferred from fixed scripts set -e continuation; the two script codes and final check code are captured explicitly. Clean failure code 1 is also reported by the compiler in its raw log."
+  ],
+  "fixedHandoffHashes": {
+    "run-native.sh": "4470e67f35e5dafe8f6910d737f88345c792043c75a8df967ef54b80815a2742",
+    "run-transitive.sh": "0a9fe38e1916314d4f23f06f159e398d78b3a60ec23d6b76e9b712e8a861324f",
+    "generate-conformance.mjs": "202453714f7fe5a3f35d5bc2eb7a67765c8864f9d06d9ccdb2be579e2ba2ac0f",
+    "templates/consumer-main.cj": "ca37136319c522dcfdf4b51241f9ec70ec39a6b44c7cf7378d3a6af4321a19d5",
+    "templates/consumer-middle.cj": "33f28fdcd17a656369b3ce97bc5a012adb371003e91759fa5b3ba1c2d3c56d3e",
+    "templates/middle-lib.cj": "3c856740fd0006e4fb3d5b080618dcd9e11ca4bfb406c9a4abaa9ec913843d44"
+  },
+  "reusableScope": {
+    "runNative": "Full successful run-native stage for identical script/generator/templates/input bytes/SDK/environment. Includes shipped generator, seven tables, native archive, explicit consumer link, dependency-owned FFI link, 766 grapheme vectors and separate empty observation.",
+    "runTransitive": "Intermediate static-adapter stage succeeded with dependency-owned FFI. Adapter-owned FFI fresh link is not established; only affected path needs rerun after fixed handoff."
+  }
+}
