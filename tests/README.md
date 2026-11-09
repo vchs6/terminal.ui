@@ -118,3 +118,9 @@ TDD and verification-before-completion skills were applied to establish real RED
 and distinguish compiler syntax checks from behavioral results. OpenSpec apply state
 was read for the existing `implement-linux-first-slice` change; the coordinator updates
 authoritative task state, since this test author is restricted to tests/test documentation.
+
+Native bridge ownership/setup-signal module regressions have a separate entry:
+`./tests/native-session/run.sh`. They link the actual product C and control external
+syscalls; they are white-box C tests, distinct from the public consumers and real
+PTY suite above. See [native-session/README.md](native-session/README.md) for the
+contract, controlled interleaving, and evidence limits.
