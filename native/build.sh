@@ -24,6 +24,8 @@ else
     fi
 fi
 verify "$ucd_sha" "$ucd"
+gcc -fPIC -O2 -c "$root/native/cjtui_terminal.c" -o "$cache/cjtui_terminal.o"
+ar rcs "$root/native/libcjtui_terminal.a" "$cache/cjtui_terminal.o"
 if [[ -f "$root/native/libunicodedata.a" && -f "$cache/native-ready" ]] && (cd "$root" && sha256sum -c "$cache/native-ready"); then
     exit 0
 fi

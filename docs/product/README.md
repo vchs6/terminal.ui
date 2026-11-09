@@ -1,13 +1,16 @@
 # 产品说明
 
-cjtui 的目标是让应用使用组件块、属性链、仓颉状态和回调构造终端界面，不要求应用手工刷新或发送 ANSI。
+cjtui 0.0.0 的首个切片提供 Linux ANSI TTY 文本界面：`Text`、`Row`、`Column` 组件块及前景色、背景色和粗体属性，Unicode 字符网格、纯文本与 ANSI 快照、键盘回调和终端尺寸变化时重排。普通应用无需发送 ANSI 或手动刷新。
 
-当前开发版本：0.0.0；状态：planned。新框架、示例和基准尚未实现，尚无可供安装的发行版。仓库名为 terminal.ui，CJPM 模块名统一为 cjtui；产品从需求和公开契约开始开发。
+使用仓颉 SDK 1.2.0，在 Linux ANSI 终端中从源码运行最小示例：
 
-计划交付：主库、最小应用与组合应用示例、可重复执行的基准项目，以及安装、构造语法、API、主题、终端能力和已知限制说明。相关内容验证后再补充，不提供尚不能运行的安装或调用命令。
+```sh
+cd examples/minimal
+cjpm run
+```
 
-依赖：ansies 1.3.113、unicode 0.1.0、unicodewidth 0.1.113（中心仓）；兼容性待验证。候选构建基线为仓颉 SDK 1.2.0，当前无产品构建通过声明。
+按 `q` 退出，Ctrl-C 取消；程序需要实际 TTY。构建依赖及可选离线 Unicode 数据输入见 [原生构建](native-build.md)。
 
-必需平台目标：Linux、Windows、macOS、HarmonyOS。当前未实现平台后端，尚无跨平台产品可运行声明；具体版本、架构、终端宿主及能力范围以未来经过验收的矩阵为准。
+首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、响应式状态、多层合成、主题、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
 
-实施顺序：当前先完成支持 ANSI 转义序列的 Linux 终端全部约定能力和验收，再考虑 Windows、macOS、HarmonyOS；后者保留为后续必需目标，不作为 Linux 阶段前置条件。Linux 阶段通过不等于完整跨平台支持。
+低层可用 `Frame(width, height)` 和 `put(x, y, text, style: Style(...))` 写入网格，`cellAt` 查询，`toPlainText` 和 `toAnsi` 导出完整快照。负尺寸与越界查询报错；写入按边界裁剪，拒绝除换行外的控制字符。`render(root, width, height)` 使用同一网格渲染组件树。`Application(root).onKey { event => ... }.run()` 负责终端会话；文本按 Unicode 字符提供，`stop()` 可从回调退出。

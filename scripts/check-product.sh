@@ -11,6 +11,7 @@ cjpm check
 if [[ "$mode" == slice ]]; then
   cjpm build
   cjpm test
+  ./tests/run-slice.sh all
 fi
 # Check all projects actually introduced; future projects stay pending in the plan.
 while IFS= read -r manifest; do
