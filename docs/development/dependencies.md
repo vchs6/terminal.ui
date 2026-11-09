@@ -21,7 +21,7 @@ unicode0.1.0直接CJPM依赖在本环境链接失败，缺少libunicodedata符�
 
 CJPM在本环境直接联网失败；隔离验证脚本通过本地HTTP relay使用继承代理/CA连接官方中心仓，未改写下载内容，实际cjp按索引SHA256核对。本relay只是本轮网络环境工具，不是产品运行依赖。
 
-unicodewidth数据表标识Unicode17.0.0；unicode原生数据来源及版本见重跑脚本。字符簇、宽度与终端字体的差异由策略/矩阵明确；本轮未执行官方完整一致性测试，不声称支持完整IME、BiDi或所有字形。word boundary/line breaking不是unicode包已实现能力，相关编辑/换行需要单独契约和验证。
+unicodewidth数据表标识Unicode17.0.0；unicode原生数据来源及版本见重跑脚本。字符簇、宽度与终端字体的差异由策略/矩阵明确；R5未执行官方完整一致性测试；R7补跑Unicode17官方GraphemeBreakTest的766条分段用例全部通过，仍非规范化全量/编辑换行/字体一致性证明，不声称支持完整IME、BiDi或所有字形。word boundary/line breaking不是unicode包已实现能力，相关编辑/换行需要单独契约和验证。
 
 ## 3. 许可证与发布门槛
 
@@ -33,4 +33,10 @@ CJPM制品规则依据：[官方1.2.0手册](https://cj-docs.gitcode.com/zh/1.2.
 
 ## 4. 跨平台集成门槛
 
-REQ-011要求Linux、Windows、macOS、HarmonyOS。现有日志仅Linux x64/SDK1.2.0；其他目标的仓颉标准库/运行库、CJPM依赖、unicode原生生成/汇编归档及链接必须分别验证。不得将Linux生成归档或仅存在交叉编译target当作通过。尤其要核对Windows COFF、macOS Mach-O与鸿蒙目标ABI、C/ASM工具链及沙箱文件/终端权限；此处是调查维度，不是已判兼容或不兼容。TASK-003/004提供每个目标可复现消费方法，缺证目标保持pending并阻止完整跨平台发行结论。
+REQ-011要求Linux、Windows、macOS、HarmonyOS。现有日志仅Linux x64/SDK1.2.0；其他目标的仓颉标准库/运行库、CJPM依赖、unicode原生生成/汇编归档及链接必须分别验证。不得将Linux生成归档或仅存在交叉编译target当作通过。尤其要核对Windows COFF、macOS Mach-O与鸿蒙目标ABI、C/ASM工具链及沙箱文件/终端权限；此处是调查维度，不是已判兼容或不兼容。TASK-003/004当前先提供Linux可复现消费方法；其他目标在Linux全部功能验收后调查和实施。缺证目标保持pending并阻止完整跨平台发行结论，不阻塞Linux阶段构建、功能实施或其独立验收。
+
+## 5. Linux优先风险复核（R7）
+
+普通build同样缺少libunicodedata，根因为官方包无自动原生构建脚本，而非探针使用skip-script。固定源码/UCD17生成原生库后，在依赖副本补FFI声明以及由中间静态适配库自行拥有 `[ffi.c]` 两种路径已运行；后者保持unicode官方清单原样且可传递到独立消费者，作为推荐集成边界。这不表示中心仓原包已自带该集成。主库清单本轮不改；正式构建、FFI传递与干净制品归TASK-003/023。详见[风险处置](../reviews/R7/risks.md)。
+
+本轮已取得固定上游许可证原文及Unicode数据许可来源；unicodewidth全包仅换行差异，ansies/unicode仍有版本/文件对应边界，bitarray声明冲突仍待核实。许可正文找到不等于最终分发许可通过，见[来源与差异](../reviews/R7/evidence/licenses/README.md)。

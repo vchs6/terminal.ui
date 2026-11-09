@@ -1,0 +1,21 @@
+[package]
+  cjc-version = "1.1.0"
+  name = "unicode"
+  description = "Cangjie Unicode Library"
+  version = "0.1.0"
+  authors = ["vchuoshen6"]
+  repository = "https://gitcode.com/vchuoshen6/libunicode.git"
+  homepage = "https://gitcode.com/vchuoshen6/libunicode"
+  documentation = "https://gitcode.com/vchuoshen6/libunicode"
+  tag = ["unicode"]
+  category = ["Utility"]
+  license = ["MulanPSL-2.0"]
+  include = ["unicode", "unicodedata", "generator", "doc", "lib"]
+  target-dir = ""
+  src-dir = "unicode"
+  output-type = "static"
+  compile-option = ""
+  override-compile-option = ""
+  link-option = "-Llib -lunicodedata"
+
+[dependencies]

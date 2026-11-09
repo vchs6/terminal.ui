@@ -87,3 +87,12 @@
 
 - **WHEN** 某必需目标不支持剪贴板、窗口标题或图片图标
 - **THEN** 核心字符UI仍按平台契约运行，可选操作明确报告能力，不因此取消该OS目标。
+
+### Requirement: Linux-first implementation phase
+
+框架 SHALL 先完成支持 ANSI 转义序列的 Linux 终端全部约定能力和验收，再考虑 Windows、macOS、HarmonyOS 的实施。后者仍为后续必需目标，但 MUST NOT 作为 Linux 阶段会话集成、制品或整体验收的前置条件。当前平台及依赖调查先冻结 Linux；Linux 通过 MUST NOT 被报告为完整跨平台支持。
+
+#### Scenario: Linux progresses independently
+
+- **WHEN** Linux 后端和共同核心已满足当前阶段前置，而其他 OS 尚未实施
+- **THEN** 继续 Linux 组件、M1/M2、编辑、主题、示例、基准、制品及整体验收；其他 OS 保持 pending，并在 Linux 全部完成后推进。

@@ -84,17 +84,17 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 | classification / basis | decision；产品交互目标明确，需用证据确定可承诺的平台与终端边界 |
 | openspec_change_ref / planning_gaps | null / 具体实施变更尚未启动，当前仅规划 |
 | requirement_refs / workflow_ref | REQ-003、REQ-004、REQ-007 / 项目规划 docs/tasks.md |
-| objective / deliverables | Linux/Windows/macOS/HarmonyOS的OS/SDK/CPU/ABI/终端宿主矩阵、输入/尺寸/恢复及权限边界证据；OpenHarmony单列 |
+| objective / deliverables | 当前Linux ANSI终端的OS/SDK/CPU/ABI/宿主矩阵、输入/尺寸/恢复及权限证据；其他OS在Linux全部验收后再调查 |
 | scope / impact | 平台适配设计及docs/decisions；不实现正式内核；四平台目标由REQ-011确定，调查不得静默取消目标 |
 | inputs / depends_on | docs/requirements.md、docs/architecture.md、目标环境说明 / 无 |
-| preconditions | 后续用户明确授权调查；实际所需工具和技能可用 |
+| preconditions | 用户已授权Linux优先及风险调查；实际所需工具和技能可用 |
 | acceptance / verification | AC-001：形成 OS、终端、TTY/非 TTY、输入、缩放和模式恢复支持矩阵及限制证据；记录实测方法、结果和不可承诺项 |
 | required_skills | using-superpowers、brainstorming、verification-before-completion；涉及环境失败时使用 systematic-debugging |
 | skill_evidence_refs / decision_refs | 启动时记录安装与实际使用证据；架构 D-001 及平台适配约束 |
 | compatibility | 不假设对任何现有产品/API 的兼容义务；变更产品目标须裁决 |
 | quality_governance | 平台契约归平台适配模块；不建立重复输入/输出内核；不涉及替换退役，兼容例外不适用 |
 | risks | 模式恢复、非 TTY 或特定输入序列不能可靠支持；必须记录限制而非猜测通过 |
-| status / blockers | planned / 当前未授权实施调查 |
+| status / blockers | planned / Linux风险先行证据见R7，尚未完成本任务全部产品契约调查 |
 | evidence_refs | 尚无该任务执行证据；SDK 可启动不等于终端契约成立 |
 
 L4：
@@ -114,14 +114,14 @@ L4：
 | objective / deliverables | 可复现的最小编译实验和语法路线结论 |
 | scope / impact | 实验目录及构造契约；不扩展组件库，不以手工转换替代真实语法 |
 | inputs / depends_on | TASK-001 平台调查结论、AGENTS 第 2/4 节、SDK 1.2.0 / TASK-001 |
-| preconditions | 后续用户明确授权实施；所列前置交付及技能环境可用 |
+| preconditions | Linux范围已获实施授权；所列前置交付、具体变更及技能环境仍须满足 |
 | acceptance / verification | AC-002：分别证明组件块、链、状态、条件/列表、自定义组件与回调；记录失败定位与限制；以交付物、可复现命令和 Battle 结论核验 |
 | required_skills | using-superpowers、brainstorming、writing-plans；涉及编译实验时按任务识别 systematic-debugging、verification-before-completion |
 | skill_evidence_refs / decision_refs | 启动时记录实际安装/调用证据；现有 D-001–005 见 docs/architecture.md |
 | compatibility | 不假设现有产品/API 的兼容义务；若改变明确用户目标须另裁决 |
 | quality_governance | 权威归属为对应产品契约；不新增平行内核；本任务为新增调查或设计，不涉及替换退役或兼容例外 |
 | risks | 工具限制、源码事实与文档不一致；出现失败保留真实证据 |
-| status / blockers | planned / 本轮不授权实施；另受上列依赖约束 |
+| status / blockers | planned / Linux实施已授权，尚待上列前置契约与具体变更准入 |
 | evidence_refs | 尚无任务执行证据；环境配置不等于本任务完成 |
 
 L4：
@@ -140,14 +140,14 @@ L4：
 | objective / deliverables | 版本解析证据、能力缺口矩阵及必要适配设计 |
 | scope / impact | 依赖解析、文本/输出适配契约；不复制第三方内核或修改产品范围 |
 | inputs / depends_on | docs/development/central-packages.json、根 cjpm.toml、TASK-001 / TASK-001 |
-| preconditions | 后续用户明确授权实施；所列前置交付及技能环境可用 |
+| preconditions | Linux范围已获实施授权；所列前置交付、具体变更及技能环境仍须满足 |
 | acceptance / verification | AC-003：固定ansies、unicode、unicodewidth及传递依赖可解析；按分段/规范化、唯一宽度及ANSI职责验证，覆盖原生构建/干净消费、缺口和许可来源；以交付物、可复现命令和 Battle 结论核验 |
 | required_skills | using-superpowers、brainstorming、writing-plans；涉及编译实验时按任务识别 systematic-debugging、verification-before-completion |
 | skill_evidence_refs / decision_refs | 启动时记录实际安装/调用证据；现有 D-001–005 见 docs/architecture.md |
 | compatibility | 不假设现有产品/API 的兼容义务；若改变明确用户目标须另裁决 |
 | quality_governance | 权威归属为对应产品契约；不新增平行内核；本任务为新增调查或设计，不涉及替换退役或兼容例外 |
 | risks | 工具限制、源码事实与文档不一致；出现失败保留真实证据 |
-| status / blockers | planned / 本轮不授权实施；另受上列依赖约束 |
+| status / blockers | planned / Linux实施已授权，尚待上列前置契约与具体变更准入 |
 | evidence_refs | 尚无任务执行证据；环境配置不等于本任务完成 |
 
 L4：
@@ -166,14 +166,14 @@ L4：
 | objective / deliverables | 精确语法/API 契约和后续任务输入 |
 | scope / impact | docs/ui-construction.md 用户构造设计、OpenSpec 设计/API 契约；不实现正式内核 |
 | inputs / depends_on | TASK-002 编译路线、TASK-003 缺口矩阵、U1–U5 / TASK-002,TASK-003 |
-| preconditions | 后续用户明确授权实施；所列前置交付及技能环境可用 |
+| preconditions | Linux范围已获实施授权；所列前置交付、具体变更及技能环境仍须满足 |
 | acceptance / verification | AC-004：U1–U5 设计稿均可映射至语法规则、签名、模块归属和验收，不以设计稿冒充运行；以交付物、可复现命令和 Battle 结论核验 |
 | required_skills | using-superpowers、brainstorming、writing-plans；涉及编译实验时按任务识别 systematic-debugging、verification-before-completion |
 | skill_evidence_refs / decision_refs | 启动时记录实际安装/调用证据；现有 D-001–005 见 docs/architecture.md |
 | compatibility | 不假设现有产品/API 的兼容义务；若改变明确用户目标须另裁决 |
 | quality_governance | 权威归属为对应产品契约；不新增平行内核；本任务为新增调查或设计，不涉及替换退役或兼容例外 |
 | risks | 工具限制、源码事实与文档不一致；出现失败保留真实证据 |
-| status / blockers | planned / 本轮不授权实施；另受上列依赖约束 |
+| status / blockers | planned / Linux实施已授权，尚待上列前置契约与具体变更准入 |
 | evidence_refs | 尚无任务执行证据；环境配置不等于本任务完成 |
 
 L4：
@@ -203,10 +203,10 @@ L4：
 | TASK-017 / WP-004 | REQ-003 | 键盘导航和有效焦点；输入路由和焦点契约验证 | TASK-015 | AC-017：禁用、卸载和空焦点集合有确定行为，无失效引用 |
 | TASK-018 / WP-004 | REQ-003 | 覆盖层嵌套与关闭恢复；覆盖层公共接口及嵌套场景验证 | TASK-012,TASK-016,TASK-017 | AC-018：父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态 |
 | TASK-019 / WP-004 | REQ-003 | 菜单与状态条组合行为；公共组件和 U2/U4 验证 | TASK-013,TASK-017,TASK-018 | AC-019：水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合 |
-| TASK-020 / WP-004 | REQ-004、REQ-011 | 应用退出与终端模式恢复；四目标后端的统一入口和会话集成证据 | TASK-008,TASK-017,TASK-038,TASK-039,TASK-040,TASK-041 | AC-020：正常退出、异常和取消均恢复光标及终端模式 |
+| TASK-020 / WP-004 | REQ-004、REQ-011 | 应用退出与终端模式恢复；当前Linux会话集成，其他平台后续扩展 | TASK-008,TASK-017,TASK-041 | AC-020：正常退出、异常和取消均恢复光标及终端模式 |
 | TASK-021 / WP-005 | REQ-001 | M1的U1–U5示例基线，不含四主题完整展示或M2；供TASK-027复用 | TASK-010,TASK-019,TASK-020 | AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判 |
 | TASK-022 / WP-005 | REQ-004 | 交付可重复渲染基准项目；独立 benchmarks/rendering 项目与产品基准方法 | TASK-008,TASK-011,TASK-016 | AC-022：固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果 |
-| TASK-023 / WP-005 | REQ-006、REQ-008、REQ-011 | 验证最终源码制品可独立使用；包含四主题/展示、M2及混合操作交付的真实制品；不自动上传 | TASK-021,TASK-022,TASK-027,TASK-031,TASK-032 | AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整 |
+| TASK-023 / WP-005 | REQ-006、REQ-008、REQ-011 | 验证最终源码制品可独立使用；包含四主题/展示、M2及混合操作交付的真实制品；不自动上传 | TASK-009,TASK-021,TASK-022,TASK-027,TASK-030,TASK-031,TASK-032 | AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整 |
 | TASK-024 / WP-005 | REQ-001–011（REQ-010按可选能力矩阵） | 整体验收与发行准备；整体验收、发行检查与归档准备结论 | TASK-023 | AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败 |
 
 所有候选的范围限于标题行为及其调用方、回归与产品文档；不包含无关重构。实现负责人先补齐 canonical_owner、旧路径处置与兼容例外、实际必需技能、L4 输入和输出；每项代码变更遵循 AGENTS 第 10.5 节。
@@ -426,7 +426,7 @@ L4在进入ready前按冻结契约展开，不具备直接编码准入。TASK-02
 
 ## 8. 必需跨平台后端候选
 
-四OS至少各一个冻结且验收通过的配置；不是各平台所有版本/CPU/终端的无条件保证。四个后端不互相依赖，先共用TASK-001/003/004的调查与契约，TASK-020汇合会话集成，再经021/027及023/024最终验收。具体配置由调查冻结，未满足前不能宣称已支持。
+先完成ANSI Linux全部功能、M1/M2和TASK-023/024阶段验收，再考虑其他平台。TASK-020当前只依赖Linux后端TASK-041及共同前置，038/039/040不阻塞Linux；其他后端在Linux全量验收后再启动并逐目标扩展相同验收。最终四OS各至少一个冻结且通过的配置，才可声称完整跨平台支持；不是对所有版本/CPU/终端的无条件保证。
 
 - [ ] 8.1 TASK-038：Windows平台会话适配；验收AC-038：Windows终端输入/输出/尺寸/模式及取消恢复，目标原生依赖可构建链接。
 
@@ -440,7 +440,7 @@ L4在进入ready前按冻结契约展开，不具备直接编码准入。TASK-02
 | openspec_change_ref / planning_gaps | null；未启动该产品变更 / Windows目标版本/CPU/ABI/SDK、终端宿主/权限及精确平台接口尚未冻结 |
 | objective / deliverables | Windows后端及可运行字符会话证据、依赖构建/链接配置与公开限制 |
 | scope / impact | 单一OS平台适配及必要调用方/回归；不复制UI/业务、不实现GUI/PTY/Shell或替代OS目标 |
-| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004 |
+| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004、TASK-024（Linux阶段全部验收后） |
 | preconditions / status | 前置证据、合法目标环境、具体变更、技能/DQ准入和产品实施授权 / planned |
 | acceptance / verification | AC-038：Windows终端输入/输出/尺寸/模式及取消恢复，目标原生依赖可构建链接；至少同一核心场景的键盘/Unicode/布局/固定或变化尺寸、完整/部分输出及正常/取消/异常清理可判定；无目标环境记insufficient_evidence |
 | required_skills / skill_evidence_refs | ready前确定实现/测试/审查及平台环境技能 / 当前无后端执行证据 |
@@ -462,7 +462,7 @@ L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直
 | openspec_change_ref / planning_gaps | null；未启动该产品变更 / macOS目标版本/CPU/ABI/SDK、终端宿主/权限及精确平台接口尚未冻结 |
 | objective / deliverables | macOS后端及可运行字符会话证据、依赖构建/链接配置与公开限制 |
 | scope / impact | 单一OS平台适配及必要调用方/回归；不复制UI/业务、不实现GUI/PTY/Shell或替代OS目标 |
-| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004 |
+| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004、TASK-024（Linux阶段全部验收后） |
 | preconditions / status | 前置证据、合法目标环境、具体变更、技能/DQ准入和产品实施授权 / planned |
 | acceptance / verification | AC-039：macOS字符终端输入/输出/尺寸/模式及取消恢复，目标原生依赖可构建链接；至少同一核心场景的键盘/Unicode/布局/固定或变化尺寸、完整/部分输出及正常/取消/异常清理可判定；无目标环境记insufficient_evidence |
 | required_skills / skill_evidence_refs | ready前确定实现/测试/审查及平台环境技能 / 当前无后端执行证据 |
@@ -484,7 +484,7 @@ L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直
 | openspec_change_ref / planning_gaps | null；未启动该产品变更 / HarmonyOS目标版本/CPU/ABI/SDK、终端宿主/权限及精确平台接口尚未冻结 |
 | objective / deliverables | HarmonyOS后端及可运行字符会话证据、依赖构建/链接配置与公开限制 |
 | scope / impact | 单一OS平台适配及必要调用方/回归；不复制UI/业务、不实现GUI/PTY/Shell或替代OS目标 |
-| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004 |
+| inputs / depends_on | 目标矩阵、依赖消费契约及平台适配接口 / TASK-001、TASK-003、TASK-004、TASK-024（Linux阶段全部验收后） |
 | preconditions / status | 前置证据、合法目标环境、具体变更、技能/DQ准入和产品实施授权 / planned |
 | acceptance / verification | AC-040：HarmonyOS实际字符终端宿主可交互运行、权限/尺寸/恢复及目标原生依赖通过；交叉编译或OpenHarmony/SSH客户端不替代；至少同一核心场景的键盘/Unicode/布局/固定或变化尺寸、完整/部分输出及正常/取消/异常清理可判定；无目标环境记insufficient_evidence |
 | required_skills / skill_evidence_refs | ready前确定实现/测试/审查及平台环境技能 / 当前无后端执行证据 |
@@ -518,3 +518,5 @@ L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直
 
 
 R6跨平台规格补充的TASK-042（AC-042）、TASK-043（AC-043）状态仅在[变更tasks.md](../openspec/changes/refine-terminal-ui-contracts/tasks.md)；R5已完成任务保持历史结论，不覆盖到新增平台契约。
+
+R7 Linux优先及风险调查TASK-044（AC-044）、独立审核TASK-045（AC-045）的状态仅在同一变更tasks.md。风险调查不完成产品TASK-001/003/004或041。旧R6四后端先汇合顺序由用户后续Linux优先裁决替代；历史检查脚本只适用于其受审版本，当前使用R7核对。

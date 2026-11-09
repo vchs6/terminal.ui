@@ -59,3 +59,8 @@ CJPM 配置 SHALL 使用 include/exclude 限定产品范围，排除治理规范
 
 - **WHEN** 字符依赖需要生成数据和C/ASM归档
 - **THEN** 用目标工具链/ABI生成并链接，运行分段/宽度样本；不能直接复用Linux归档并声称鸿蒙或其他平台已通过。
+
+#### Scenario: Linux phase deliverable
+
+- **WHEN** 当前为 Linux 优先实施阶段
+- **THEN** 按 Linux 冻结配置验证全部功能、M1/M2、示例、主题、基准及干净制品；非 Linux 缺证不阻塞该阶段验收，但未验证平台不声称已支持，发布授权及许可门槛不被绕过。

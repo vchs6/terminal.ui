@@ -170,3 +170,50 @@ L4：1.核对官方工具链/宿主资料与现有边界，检查来源能证明
 L4：1.固定版本并独立审查；2.核实/修复或有依据驳回发现；3.复核版本和检查结果，记录真实结论。
 
 R5完成记录只覆盖原范围。R6独立审查64418db53921895e43fe7d928f806507908cd087结论design_reviewed；此前R5结论不外推，R6结果见docs/reviews/R6/result.md；未来产品TASK-038–041仍planned。
+
+## 6. Linux-first risk amendment R7
+
+- [ ] 6.1 TASK-044：落实Linux优先依赖顺序并验证依赖风险根因、可行处理和剩余门槛；验收AC-044：规格/任务无环且非Linux不阻塞Linux，原生构建和许可结论有固定来源与可复现证据，不伪称风险全部消除。
+- [ ] 6.2 TASK-045：独立审核本轮顺序与风险证据，修复并复核必需发现；验收AC-045：固定版本和可定位发现，产品仍pending，结论仅design_reviewed。
+
+### TASK-044
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3 / WP-001 / investigation-documentation |
+| classification / basis | execution：用户指定Linux优先；decision：原生构建与许可风险按证据选择处理 |
+| requirement_refs / workflow_ref | REQ-007、REQ-011、REQ-004/005、NFR-07 / 本文件 |
+| openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / 无本轮调查准入缺口；完整产品集成不在本任务范围 |
+| objective / deliverables | Linux优先规格/任务闭合；隔离干净原生构建证据、许可来源和风险处置表 |
+| scope / impact | 长期契约与场景、任务/验收映射、治理、R7证据；不实现产品、不发布 |
+| inputs / depends_on | 用户后续明确顺序和风险处理要求、533bb9b基线、固定依赖及SDK / 无 |
+| preconditions | 已有授权与工具可用；子代理隔离工作，不改历史依赖缓存 |
+| acceptance / verification | AC-044：npm run check、依赖无环/投影一致检查；可复现命令、失败根因与处理边界明确；许可有证据不足则保持发布阻塞，不假装风险关闭 |
+| required_skills / skill_evidence_refs | OpenSpec update-change/sync-specs、systematic-debugging、dispatching-parallel-agents、verification-before-completion / R7/input.md |
+| decision_refs / compatibility | D-018 / 现有产品未实现；保留未来required目标及0.0.0 |
+| quality_governance | 平台和字符算法保持单一职责；只退役当前四后端先汇合的依赖顺序，不删除历史审核；无平行内核或新运行依赖 |
+| risks / blockers | 上游许可及干净产品制品尚待验证；准确记录不等于已解决这些外部条件 |
+| status / evidence_refs | in_progress / docs/reviews/R7 |
+
+L4：1.核对实际包与工具，定位构建失败并隔离验证；2.核对授权来源，明确已解决/可处理/阻塞与解除条件；3.同步Linux顺序和任务依赖，执行静态一致性与独立审查修复。
+
+### TASK-045
+
+| 字段 | 定义 |
+|---|---|
+| level / parent / type | L3 / WP-001 / verification |
+| classification / basis | execution；已有独立审查要求，覆盖本次增量 |
+| requirement_refs / workflow_ref | REQ-007、REQ-011、AC-044 / 本文件 |
+| openspec_change_ref / planning_gaps | refine-terminal-ui-contracts / TASK-044交付后固定输入 |
+| objective / deliverables | R7独立发现、DQ检查与修复复核结论 |
+| scope / impact | Linux顺序、依赖事实和风险边界；不审为产品运行通过 |
+| inputs / depends_on | 固定受审commit及R7证据 / TASK-044 |
+| preconditions | 独立审核者未参与撰写，不继承作者过程上下文 |
+| acceptance / verification | AC-045：DQ01–14、本轮目标/证据/任务一致；必需缺陷修复复核，结论仅design_reviewed |
+| required_skills / skill_evidence_refs | requesting/receiving-code-review、verification-before-completion / R7/input.md |
+| decision_refs / compatibility | D-018 / 不取消未来平台、不缩减Linux必需功能 |
+| quality_governance | 不修改历史R5/R6证据，不为通过而取消许可/产品验收门槛 |
+| risks / blockers | 外部授权不能由AI审核代签；不足明确保留 |
+| status / evidence_refs | planned / docs/reviews/R7 |
+
+L4：1.固定受审版本与独立输入；2.复现发现并修复或有依据说明；3.独立复核最终版本，登记实际验收结果。
