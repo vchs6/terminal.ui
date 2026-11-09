@@ -15,70 +15,100 @@ public class KeyEvent {
     init(code: String) { this.code = code; this.text = "" }
 }
 func readByte(timeout: Int32): Int32 { unsafe { cjt_read(timeout) } }
-var discardSequence: Int32 = 0
-var discardEscaped = false
-func nextKey(first: Int32): ?KeyEvent {
-    if (discardSequence != 0) {
-        if (discardSequence == 1 && first >= 64 && first <= 126) { discardSequence = 0 }
-        if (discardSequence == 2) {
-            if (first == 7 || (discardEscaped && first == 92)) { discardSequence = 0 }
-            discardEscaped = first == 27
-        }
-        return None
-    }
-    if (first == 3) { return KeyEvent("interrupt") }
-    if (first == 13 || first == 10) { return KeyEvent("enter") }
-    if (first == 127 || first == 8) { return KeyEvent("backspace") }
-    if (first == 27) {
-        let next = readByte(35)
-        if (next == -1) { return KeyEvent("escape") }
-        if (next == 93 || next == 80 || next == 94 || next == 95) {
-            var escaped = false
-            for (_ in 0..256) {
-                let b = readByte(35)
-                if (b < 0) { discardSequence = 2; discardEscaped = escaped; return None }
-                if (b == 7 || (escaped && b == 92)) { return None }
-                escaped = b == 27
-            }
-            discardSequence = 2; discardEscaped = escaped
-            return None
-        }
-        if (next != 91 && next != 79) { return None }
-        var intermediate = false
-        for (_ in 0..32) {
-            let b = readByte(35)
-            if (b < 0) { discardSequence = 1; return None }
-            if (b >= 64 && b <= 126) {
-                if (intermediate) { return None }
-                match (b) {
-                    case 65 => return KeyEvent("up")
-                    case 66 => return KeyEvent("down")
-                    case 67 => return KeyEvent("right")
-                    case 68 => return KeyEvent("left")
-                    case _ => return None
-                }
-            }
-            intermediate = true
-        }
-        discardSequence = 1
-        return None
-    }
-    if (first < 32 || first == 127) { return None }
-    if (first < 128) { return KeyEvent("text", String(Rune(UInt32(first)))) }
-    var count: Int32 = 0
+// The parser keeps only bounded state across polls and never forwards control payloads.
+class InputDecoder {
+    var state: Int64 = 0 // normal, ESC, CSI, string, string-ESC, ESC intermediate
+    var parameter = false
+    var stringRemaining: Int32 = 0
+    var stringC2 = false
+    var remaining: Int32 = 0
     var code: UInt32 = 0
     var minimum: UInt32 = 0
-    if (first >= 194 && first <= 223) { count = 1; code = UInt32(first & 31); minimum = 128 }
-    else if (first >= 224 && first <= 239) { count = 2; code = UInt32(first & 15); minimum = 2048 }
-    else if (first >= 240 && first <= 244) { count = 3; code = UInt32(first & 7); minimum = 65536 }
-    else { return None }
-    for (_ in 0..count) {
-        let b = readByte(100)
-        if (b < 128 || b > 191) { return None }
-        code = (code << 6) | UInt32(b & 63)
+    func timeout(): ?KeyEvent {
+        if (state == 1) { state = 0; return KeyEvent("escape") }
+        None
     }
-    if (code < minimum || code > 0x10ffff || (code >= 0xd800 && code <= 0xdfff) || (code >= 128 && code < 160)) { return None }
-    KeyEvent("text", String(Rune(code)))
+    func feed(first: Int32): ?KeyEvent {
+        if (first == 3) { state = 0; remaining = 0; return KeyEvent("interrupt") }
+        if (state == 3) {
+            if (first == 7 || first == 27) {
+                state = if (first == 7) { 0 } else { 4 }
+                stringRemaining = 0; stringC2 = false
+            } else if (stringRemaining > 0 && first >= 128 && first <= 191) {
+                if (stringC2 && first == 0x9c) { state = 0 }
+                stringRemaining--; stringC2 = false
+            } else {
+                stringRemaining = 0; stringC2 = false
+                if (first == 0x9c) { state = 0 }
+                else if (first >= 194 && first <= 223) { stringRemaining = 1; stringC2 = first == 194 }
+                else if (first >= 224 && first <= 239) { stringRemaining = 2 }
+                else if (first >= 240 && first <= 244) { stringRemaining = 3 }
+            }
+            return None
+        }
+        if (state == 4) {
+            if (first == 92 || first == 7) { state = 0 }
+            else if (first != 27) { state = 3; stringRemaining = 0; stringC2 = false }
+            return None
+        }
+        if (state == 2) {
+            if (first >= 64 && first <= 126) {
+                state = 0
+                if (!parameter) {
+                    match (first) {
+                        case 65 => return KeyEvent("up")
+                        case 66 => return KeyEvent("down")
+                        case 67 => return KeyEvent("right")
+                        case 68 => return KeyEvent("left")
+                        case _ => ()
+                    }
+                }
+            } else if (first == 27) { state = 1 }
+            else { parameter = true }
+            return None
+        }
+        if (state == 5) {
+            if (first >= 48 && first <= 126) { state = 0 }
+            else if (first == 27) { state = 1 }
+            return None
+        }
+        if (state == 1) {
+            state = 0
+            if (first == 91 || first == 79) { state = 2; parameter = false }
+            else if (first == 93 || first == 80 || first == 88 || first == 94 || first == 95) { state = 3; stringRemaining = 0; stringC2 = false }
+            else if (first >= 32 && first <= 47) { state = 5 }
+            else if (first == 27) { state = 1 }
+            return None
+        }
+        if (remaining > 0) {
+            if (first >= 128 && first <= 191) {
+                code = (code << 6) | UInt32(first & 63)
+                remaining--
+                if (remaining != 0) { return None }
+                if (code < minimum || code > 0x10ffff || (code >= 0xd800 && code <= 0xdfff)) { return None }
+                if (code >= 128 && code < 160) {
+                    if (code == 0x90 || code == 0x98 || code == 0x9d || code == 0x9e || code == 0x9f) { state = 3; stringRemaining = 0; stringC2 = false }
+                    else if (code == 0x9b) { state = 2; parameter = false }
+                    return None
+                }
+                return KeyEvent("text", String(Rune(code)))
+            }
+            remaining = 0
+            // A malformed prefix must not consume the next independent byte.
+            return feed(first)
+        }
+        if (first == 27) { state = 1; return None }
+        if (first == 13 || first == 10) { return KeyEvent("enter") }
+        if (first == 127 || first == 8) { return KeyEvent("backspace") }
+        if (first < 32) { return None }
+        if (first < 128) { return KeyEvent("text", String(Rune(UInt32(first)))) }
+        if (first >= 194 && first <= 223) { remaining = 1; code = UInt32(first & 31); minimum = 128 }
+        else if (first >= 224 && first <= 239) { remaining = 2; code = UInt32(first & 15); minimum = 2048 }
+        else if (first >= 240 && first <= 244) { remaining = 3; code = UInt32(first & 7); minimum = 65536 }
+        else if (first == 0x90 || first == 0x98 || first == 0x9d || first == 0x9e || first == 0x9f) { state = 3; stringRemaining = 0; stringC2 = false }
+        else if (first == 0x9b) { state = 2; parameter = false }
+        None
+    }
 }
 func writeScreen(value: String): Unit {
     unsafe {
@@ -99,8 +129,8 @@ public class Application {
     public func run(): Unit {
         if (unsafe { cjt_open() } != 0) { throw Exception("Linux ANSI TTY required") }
         running = true
-        discardSequence = 0; discardEscaped = false
         try {
+            let decoder = InputDecoder()
             var baseline: ?Frame = None
             var previousWidth: Int64 = -1
             var previousHeight: Int64 = -1
@@ -120,11 +150,10 @@ public class Application {
                 let value = readByte(100)
                 if (value == -2) { running = false; continue }
                 if (value == -3) { throw Exception("terminal input failed") }
-                if (value >= 0) {
-                    match (nextKey(value)) {
-                        case Some(event) => if (event.code == "interrupt") { running = false } else { handler(event) }
-                        case None => ()
-                    }
+                let event = if (value >= 0) { decoder.feed(value) } else { decoder.timeout() }
+                match (event) {
+                    case Some(key) => if (key.code == "interrupt") { running = false } else { handler(key) }
+                    case None => ()
                 }
             }
         } finally {

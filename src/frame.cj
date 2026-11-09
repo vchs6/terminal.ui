@@ -91,7 +91,7 @@ public class Frame {
         var cx = x
         var cy = y
         for (cluster in clusters) {
-            if (cluster == "\n" || cluster == "\r\n") { cx = x; cy++; continue }
+            if (cluster == "\n" || cluster == "\r\n") { cx = x; if (cy < Int64.Max) { cy++ }; continue }
             let w = displayWidth(cluster, ambiguousWide: ambiguousWide)
             if (w <= 0) { continue }
             if (cy >= 0 && cy < height && cx >= 0 && cx < width && w <= width - cx) {
@@ -99,7 +99,7 @@ public class Frame {
                 cells[index(cx, cy)] = Cell(cluster, w, false, style)
                 for (i in 1..w) { cells[index(cx + i, cy)] = Cell("", 0, true, style) }
             }
-            cx += w
+            if (cx > Int64.Max - w) { cx = Int64.Max } else { cx += w }
         }
     }
     public func toPlainText(): String {
