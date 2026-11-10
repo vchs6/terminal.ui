@@ -21,13 +21,13 @@
 
 ## Shared L3 fields
 
-level=L3，goal=G001，classification=execution，workflow_ref=本tasks，change_ref=fix-uncertain-glyph-advance。163/165/166/167 parentWP005/REQ007，164 parentWP002/REQ004005，并追踪原009/041而非L3嵌套。共同preconditions=独立preflight无Important+对应上游实际fixedSHA+共享写屏障；status全部planned，evidence_refs=[]，planning_gaps为待实际交付的test/product/执行artifact。必需skills TDD/仓颉coding/verification（代码角色），systematic-debugging已用于根因、SDD/review（相应角色）；工具来源复用AGENTS14/R11实际记录，按角色落盘真实使用。兼容=既有public签名/离线bytes/Frame预算不变；quality必要性actualrowcorruption，canonical_owner=GlyphRenderPolicy/projectTerminalGlyph/TerminalRenderProfile/Frame原full-diff，旧路径由统一投影承接不并存，复杂度仅两不可变policy+逐簇scalar和+有界row投影。风险/影响见design，工具与最终命令ready前固定。
+level=L3，goal=G001，classification=execution，workflow_ref=本tasks，change_ref=fix-uncertain-glyph-advance。163/165/166/167 parentWP005/REQ007，164 parentWP002/REQ004005，并追踪原009/041而非L3嵌套。共同preconditions=独立preflight无Important+对应上游实际fixedSHA+共享写屏障；实际状态以上方逐项任务及最终验收为准；最初准入时status为planned、evidence_refs为空，现固定交付与证据见下方完成记录。必需skills TDD/仓颉coding/verification（代码角色），systematic-debugging已用于根因、SDD/review（相应角色）；工具来源复用AGENTS14/R11实际记录，按角色落盘真实使用。兼容=既有public签名/离线bytes/Frame预算不变；quality必要性actualrowcorruption，canonical_owner=GlyphRenderPolicy/projectTerminalGlyph/TerminalRenderProfile/Frame原full-diff，旧路径由统一投影承接不并存，复杂度仅两不可变policy+逐簇scalar和+有界row投影。风险/影响见design，工具与最终命令ready前固定。
 
 - [x] TASK-163（testing）：独立formal测试/行为RED，tests/glyph_advance/正常消费者+同package临时copy测试+真实host回归oracle；保留old83物理FAIL。
-- [ ] TASK-164（implementation）：src/{glyph_render_policy,terminal_glyph_projection,terminal_render_profile,terminal_capabilities,frame}.cj及必要纯row helper/产品说明；只A002–005最小子接口，fixedproduct-only commit。
-- [ ] TASK-165（verification）：完整BASE→fixed技术diff独立spec/quality双verdict，核Gowner/离线/Color/style/列等价；不读作者自评、不重复有效套件。
-- [ ] TASK-166（testing）：fixedsource163、受影响回归、normalbundle/清包与实际两host原图/DSR/row4保持/恢复。
-- [ ] TASK-167（acceptance）：独立原件/hash/源码包/真实效果判断R14T083001关闭和有限投影范围；root机械集成→原083限定复验/084，不停Linux。
+- [x] TASK-164（implementation）：src/{glyph_render_policy,terminal_glyph_projection,terminal_render_profile,terminal_capabilities,frame}.cj及必要纯row helper/产品说明；只A002–005最小子接口，fixedproduct-only commit。
+- [x] TASK-165（verification）：完整BASE→fixed技术diff独立spec/quality双verdict，核Gowner/离线/Color/style/列等价；不读作者自评、不重复有效套件。
+- [x] TASK-166（testing）：fixedsource163、受影响回归、normalbundle/清包与实际两host原图/DSR/row4保持/恢复。
+- [x] TASK-167（acceptance）：独立原件/hash/源码包/真实效果判断R14T083001关闭和有限投影范围；root机械集成→原083限定复验/084，不停Linux。
 
 ## L4
 
@@ -41,4 +41,8 @@ level=L3，goal=G001，classification=execution，workflow_ref=本tasks，change
 
 167.a独立核实际newsource/integratedsource、所有原件/副本hash/真exit/strictJSON与原PNG，不机械重跑suite；167.b判A001–006及actualR14T083001，unknown策略不说font全证；167.c记录纯G子接口给094/Theme/M2，原094/041/010/Linux不提前关闭；167.d交root映射本163–167状态及R14 source/受影响范围，083/084独立角色据当前源与复用事实继续。
 
-DQ候选自查：独立目标/输入/输出/paths/上下游单向，163→164→165→166→167→083/084→149→094，094消费该纯owner而非反向前置，无L3重叠状态；Glyph原全部native/preset/M2任务仍原权威。独立preflight尚未通过，不准入164。
+DQ候选自查：独立目标/输入/输出/paths/上下游单向，163→164→165→166→167→083/084→149→094，094消费该纯owner而非反向前置，无L3重叠状态；Glyph原全部native/preset/M2任务仍原权威。该句为初始准入约束：独立preflight通过与163固定前不准入164；现163–167已按顺序完成，见下方实际完成记录。
+
+## 实际完成记录
+
+163–167有限范围已由[独立167最终验收](../../../docs/reviews/R23/acceptance/report.md)确认PASS，0 open C/I/M；产品199f000（集成b08c92d）、正式测试614d0a2（集成23ac7aa）、修后colors设施0d46c35（集成216bb9f）。[166实际测试与80张原PNG](../../../docs/reviews/R23/execution/report.md)及[165双审](../../../docs/reviews/R23/code-review/report.md)分别独立；旧R14真实FAIL和CRF001初审FAIL保留。R14T083001只在该固定两宿主/字体配置及有限矩阵CLOSED_VERIFIED，不承诺任意host/font。原083/084由各自后续独立角色收尾，完整094/041/010/M2/Linux不随本件关闭。
