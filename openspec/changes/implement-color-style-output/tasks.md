@@ -35,7 +35,7 @@ Files：src/style/color.cj/style.cj/new color_mode.cj、src/color_mapping.cj（�
 | 061 testing | design冻结/96b基线 / 无 | tests/colors、实际例子PTY、差分静默fixture、runner与RED / AC061 | Sol/high；TDD/verification/cangjie-coding；独立golden及事件握手，不看作者 |
 | 006 implementation | 061冻结 + 已完成050/R9 + dependency-api事实 / 061 | 单共享输出路径及公开示例 / AC006 | Terra/high；TDD/debugging/verification/cangjie-coding；整数映射/属性完整性/字节兼容/写后提交 |
 | 062 verification | fixed完整技术diff/design/tests / 006 | spec+quality verdict/findings及复核 / AC062 | 实际可用Codex gpt-5.6-terra/high；review/verification；不重复已证同源suite，新反例才probe；最多3轮复核/60min |
-| 063 testing | reviewed fixed source/tests/environment / 062 | command/result/raw/hash/实际cjp消费 / AC063 | Sol/medium；verification/debugging；build后直接binary、无私有flags、真实TTY恢复；正常bundle不skip |
+| 063 testing | reviewed fixed source/tests/environment / 062 | command/result/raw/hash/实际cjp消费 / AC063 | 实际可用Codex gpt-5.6-terra/medium；verification/debugging；build后直接binary、无私有flags、真实TTY恢复；正常bundle不skip |
 | 064 acceptance | 原始执行及独立review/固定代码 / 063 | 逐AC映射及最终metadata核对 / AC064 | Sol/high；verification；按内容hash复用有效证据，no完整框架claim |
 
 061L4：公共API预期→RED→freeze；062L4：读契约/diff→独立反例→固定修复复核；063L4：fresh clone→全入口/新PTY→正常bundle+clean消费→原始交接；064L4：核真实合同/raw/source→有限结论→核最终集成。基础package/API调查已独立完成，主仓源和共享缓存未动；必要工具已可用，不重装。
