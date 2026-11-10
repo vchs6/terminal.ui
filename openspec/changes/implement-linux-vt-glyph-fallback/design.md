@@ -138,3 +138,5 @@ Frame.toPlainText/writePlainText/toAnsi/writeAnsi不新增必需参数，不查�
 为消除正式独立测试依赖未指定构造形状，根cjtui包内`class GlyphRenderPolicy`固定三个package可见生产工厂：`static func unicode(): GlyphRenderPolicy`、`static func ascii(): GlyphRenderPolicy`、`static func mapped(bitmap: Array<UInt8>): GlyphRenderPolicy`。它们也是真实设备/离线解析路径的构造入口，不是测试hook；不向消费者公开policy/bitmap。mapped只接受8192字节，否则IllegalArgumentException，成功冻结防御复制，调用方之后修改原数组不改变policy。其它字段/构造内部形状由实现按职责决定。
 
 `projectTerminalGlyph`的width=0返回空、width<0抛IllegalArgumentException；正width由已验证Frame的起始Cell提供，并受所属Frame配置的maxCells实际预算约束。不能假设所有合法复杂簇width<=2，也不能新增固定宽度上界拒绝既有合法Frame。093所谓超预算拒绝指真实Frame尺寸/配置预算，不要求对私有helper传Int64.Max分配字符串或构造不可达OOM。现有控制安全仍由Frame文本验证负责；此工厂不绕过原Unicode/宽簇权威。
+
+现包内`TerminalRenderProfile.init`在所有旧参数之后追加`glyphPolicy!: GlyphRenderPolicy = GlyphRenderPolicy.unicode()`，保存同名只读`let glyphPolicy: GlyphRenderPolicy`。旧纯snapshotProfile及颜色调用因默认值保持兼容，设备profile实际显式传入本会话解析策略。这是唯一生产profile归属，不是专属测试接口；合法同包测试可固定策略直接验证Frame投影后差分，真实PTY与实际VT仍不可被该单测替代。
