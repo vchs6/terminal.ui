@@ -253,6 +253,8 @@ R016：headless中显式dispatch未prevent的interrupt，在该dispatch最外安
 
 R017：SDK Exception无可用suppressed/cause附加API，不能只把额外清理失败写stderr。新增单文件`public class UICleanupException <: Exception`，`public let primary:Exception`、`public prop cleanupFailures:Array<Exception>{get}`、`public init(primary:Exception,cleanupFailures:Array<Exception>)`；构造复制数组，getter返回副本。附加列表只含primary之后的清理失败；message以前primary.message起，按实际清理顺序以分号追加每条附加message，最后追加cleanup failures数量，不丢首错。框架无附加失败时仍抛原对象/类型；仅清理失败取首个作primary，其后作附加。有附加才包装；若已有UICleanupException，展开到最内primary并按顺序拼接旧/新附加，不反复嵌套。构造本身允许空列表，但框架不为无附加错误做空包装。native close仍在非抛finally执行；任何已有primary再遇restore失败，将Exception("terminal restore failed")追加为附加并聚合保留原对象。仅业务primary+restore时消息仍以“原message; terminal restore failed”为前缀，再附加清理计数，保留D027组合形状而非要求整串逐byte相同；无其他首错且只有restore一错仍直接抛该原错。stderr可辅助，不是唯一诊断返回通道。
 
+R018（原约束澄清，不新增功能范围）：UI owner须同时识别线程生命期和session生命期；允许复用的数值Thread.id不能替代线程生命期身份，ThreadLocal生成的唯一owner标识或等效不复用Thread对象身份可行。普通事件/post/lifecycle回调中snapshot/dispatch/dispose的同session重入报LifecycleReentry，typed getter仍ReentrantEvaluation，异session先WrongUIContext；batch按原约定允许嵌套。cleanup可post指仍活动session的子树卸载，整个session结束后post按3.2返回false，无不可执行的“下一turn”。R009要求节点保留Content/Style/Layout等失效分类，Binding类别不能替代常量setter/实际属性结果更新的节点失效记录；M1可全量生成但不能丢掉这些元数据。R011空闲只查尺寸/队列/渲染profile等常数级信号，不扫描所有bindings、不复制Frame、不运行全帧diff；外部snapshot仍返回独立Frame，内部设备入口应跳过未变化目标的重算/复制/比较。此不要求提前实现M2局部布局绘制，也不为验证增加私有hook。
+
 ### 编译实证来源
 
 主代理冻结前读取`/workspace/work/linux-source-audit/{report.md,supplement/report.md,names/report.md}`和`/workspace/work/linux-build-recon/report.md`。这些是开发证据，不是正式产品通过；随本轮归档选取源码/raw/hash，无SDK/cache/二进制混入产品。独立preflight核合同与任务，正式测试取得缺API RED，然后产品正常CJPM编译验证全部精确API。TOML证据供后续主题使用，本变更不增TOML依赖。
