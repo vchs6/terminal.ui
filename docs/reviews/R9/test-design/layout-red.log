@@ -1,0 +1,62 @@
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+[31merror[0m: undeclared identifier 'Rect'
+  [36m==>[0m /workspace/work/layout-tests/repo/tests/layout/src/main.cj:23:13:
+   [36m| [0m
+[36m23[0m [36m| [0m    let r = Rect(-2, -3, 4, 5)[0m
+   [36m| [0m            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Rect'
+  [36m==>[0m /workspace/work/layout-tests/repo/tests/layout/src/main.cj:25:19:
+   [36m| [0m
+[36m25[0m [36m| [0m    let extreme = Rect(Int64.Min, Int64.Max, Int64.Max, 0)[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Rect'
+  [36m==>[0m /workspace/work/layout-tests/repo/tests/layout/src/main.cj:27:18:
+   [36m| [0m
+[36m27[0m [36m| [0m    illegal({ => Rect(0, 0, -1, 1); () }, "Rect negative width rejected")[0m
+   [36m| [0m                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Rect'
+  [36m==>[0m /workspace/work/layout-tests/repo/tests/layout/src/main.cj:28:18:
+   [36m| [0m
+[36m28[0m [36m| [0m    illegal({ => Rect(0, 0, 1, -1); () }, "Rect negative height rejected")[0m
+   [36m| [0m                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'width' is not a member of class 'Component'
+  [36m==>[0m /workspace/work/layout-tests/repo/tests/layout/src/main.cj:29:26:
+   [36m| [0m
+[36m29[0m [36m| [0m    plain(Text("abcdef").width(3).height(1), 6, 2, "abc   \n      ", "fixed root uses outer size")[0m
+   [36m| [0m                         [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'width' is not a member of class 'Component'
+  [36m==>[0m /workspace/work/layout-tests/repo/tests/layout/src/main.cj:30:26:
+   [36m| [0m
+[36m30[0m [36m| [0m    plain(Text("abcdef").width(0), 6, 1, "      ", "explicit zero is not auto")[0m
+   [36m| [0m                         [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'height' is not a member of class 'Component'
+  [36m==>[0m /workspace/work/layout-tests/repo/tests/layout/src/main.cj:31:26:
+   [36m| [0m
+[36m31[0m [36m| [0m    plain(Text("abcdef").height(0), 6, 2, "      \n      ", "zero height draws nothing")[0m
+   [36m| [0m                         [31m^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'width' is not a member of class 'Component'
+  [36m==>[0m /workspace/work/layout-tests/repo/tests/layout/src/main.cj:32:26:
+   [36m| [0m
+[36m32[0m [36m| [0m    plain(Text("abcdef").width(1).widthAuto(), 6, 1, "abcdef", "widthAuto clears fixed root")[0m
+   [36m| [0m                         [31m^^^^^ [0m
+   [36m| [0m
+
+68 errors generated, 8 errors printed.
+Error: failed to compile package `layout_contract`, return code is 1
+Error: cjpm build failed

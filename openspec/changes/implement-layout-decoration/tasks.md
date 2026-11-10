@@ -20,7 +20,7 @@
 
 ## 1. Test contract
 
-- [ ] 1.1 TASK-054：独立冻结layout/decoration消费者及回归、真实RED与runner；验收AC-054：缺新API时失败，正常/边界/错误及golden可执行，旧断言不削弱。
+- [x] 1.1 TASK-054：独立冻结layout/decoration消费者及回归、真实RED与runner；验收AC-054：缺新API时失败，正常/边界/错误及golden可执行，旧断言不削弱。
 
 ## 2. Layout
 

@@ -33,3 +33,7 @@ Ruling: layout example uses d to toggle border/shadow and q to exit, making the 
 Layout-only test artifact73448b644a551d6abc64a68d696c20a01aa7df8f integrated asdfcfdfd0fb9161d688efc1ed7bee3b58e200a651. Independent author reports actual API-absence RED exit1 (68 errors) on SDK1.2.0, raw retained outside repository until complete evidence import. R8 assertion sources unchanged. Layout author instructed to confirm RED then implement from this fixed artifact. TASK054 remains open until decoration tests freeze.
 
 Ruling: example PTY starts rounded/shadow enabled; d disables both then restores; sizes48×14→23×9→8×4→48×14, q exits. Tests inspect rendered geometry/decoration/restoration rather than business wording. Generated consumer cjpm.lock is omitted consistently with existing R8 projects; independent test author owns its removal.
+
+TASK054 frozen in three test commits73448b6/bc38a80/af4bfb3, integrated through87a45d4. Independent author's baseline all executes every R8 case then reaches missing-layout API RED; separate final decoration RED and actual public width probe retained under docs/reviews/R9/test-design. Source/test behavior GREEN remains future execution evidence.
+
+TASK011 author09773a4de01b2b32f6a80ab9a7cdd001cdb58ea8 integrated asba868f891a4d45e68deac93e140c1b59f27fd9a4. Author development logs imported separately, never substitute independent gates. Local task review /root/layout_task_review Astra/high consumes fixed code/tests/design/diff only, no author thought/self-assessment. Task011 checkbox remains open pending review.

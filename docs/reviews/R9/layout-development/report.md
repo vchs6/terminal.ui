@@ -1,0 +1,10 @@
+# TASK-011 implementation handoff
+
+- Source commit: `09773a4de01b2b32f6a80ab9a7cdd001cdb58ea8` on `task011-layout`; parent and frozen test base `7ce8c945791fced240ea4107ba60f36d01b487bd`. Repository: `/workspace/work/layout-implementation/repo`.
+- Scope: Rect, Alignment, component layout setters, one recursive measurement record and layout/paint via existing Frame; public layout description. No decoration, tests, native, or application changes. Independent review remains required.
+- SDK: Cangjie compiler and CJPM 1.2.0. Cache copied to `/workspace/work/layout-implementation/cache`, configured per project; shared cache was not changed.
+- RED: on frozen test base `dfcfdfd0fb9161d688efc1ed7bee3b58e200a651`, `tests/run-slice.sh layout` failed compilation with missing Rect and Component width/height, 68 errors. Raw `/workspace/work/layout-implementation/red.log`.
+- After implementation, `tests/run-slice.sh all` at dfcfdfd test base exited 0, including native session, native smoke, contract, coordinates, integration, and layout. Raw `/workspace/work/layout-implementation/suite.log`. Zero-width background guard was added during this run before remaining tests; its effects are limited to an empty visible region. This run predates the additional frozen layout assertion.
+- On test base `7ce8c94`, `tests/run-slice.sh layout` exited 0 including near-equal extreme weights yielding ABB. Raw `/workspace/work/layout-implementation/final-layout.log`. Compiler emitted two warnings for unused Rect expressions in frozen tests. Source and product docs match source commit above.
+- Reproduce: source `/workspace/work/validation/sdk/cangjie/envsetup.sh`; export `CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip`; configure each CJPM project's ignored `cangjie-repo.toml` with an isolated copy of the cache and registry `http://127.0.0.1:18972`; run `tests/run-slice.sh layout` (the older all suite was run before decoration tests were added). `git diff --check` passed before commit.
+- Self-testing is development evidence only, not independent review or acceptance.
