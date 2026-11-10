@@ -1,0 +1,388 @@
+error: undeclared type name 'ListItem'
+ ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/stateful_row.cj:6:15:
+  | 
+6 |     let item: ListItem<RowData>
+  |               ^ 
+  | 
+
+error: undeclared type name 'ListItem'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/stateful_row.cj:10:16:
+   | 
+10 |     init(item: ListItem<RowData>, log: FixtureLog) {
+   |                ^ 
+   | 
+
+error: 'children' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/assertions.cj:14:25:
+   | 
+14 |     let actual = parent.children()
+   |                         ^^^^^^^^ 
+   | 
+
+error: undeclared identifier 'If'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/conditional_cases.cj:13:9:
+   | 
+13 |         If({ => show.get() }, { =>
+   |         ^ 
+   | 
+
+error: undeclared identifier 'If'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/conditional_cases.cj:55:9:
+   | 
+55 |         If({ => show.get() }, { => Text("D") })
+   |         ^ 
+   | 
+
+error: undeclared identifier 'If'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/conditional_cases.cj:76:9:
+   | 
+76 |         If({ => show.get() }, { =>
+   |         ^ 
+   | 
+
+error: undeclared identifier 'ForEach'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/identity_cases.cj:12:9:
+   | 
+12 |         ForEach<RowData>({ => data.get() }, { value => value.id }, { item =>
+   |         ^ 
+   | 
+
+error: undeclared identifier 'ForEach'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/identity_cases.cj:45:9:
+   | 
+45 |         ForEach<String>({ => left.get() }, { value => value }, { item =>
+   |         ^ 
+   | 
+
+error: undeclared identifier 'ForEach'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/identity_cases.cj:49:9:
+   | 
+49 |         ForEach<String>({ => right.get() }, { value => value }, { item => r.add(Text({ => item.value })) })
+   |         ^ 
+   | 
+
+error: undeclared identifier 'ForEach'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:30:9:
+   | 
+30 |         ForEach<String>({ => data.get() }, { value => value }, { item =>
+   |         ^ 
+   | 
+
+error: 'children' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:50:22:
+   | 
+50 |     check(ref(fresh).children().size == 1, "failed collector does not leak children")
+   |                      ^^^^^^^^ 
+   | 
+
+error: undeclared identifier 'ForEach'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:58:9:
+   | 
+58 |         ForEach<String>({ => data.get() }, { value => value }, { item =>
+   |         ^ 
+   | 
+
+error: undeclared identifier 'If'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:103:13:
+    | 
+103 |             If({ => show.get() }, { =>
+    |             ^ 
+    | 
+
+error: undeclared identifier 'ForEach'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:132:13:
+    | 
+132 |             ForEach<String>({ =>
+    |             ^ 
+    | 
+
+error: undeclared identifier 'ForEach'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:156:9:
+    | 
+156 |         ForEach<String>({ => data.get() }, { value => value }, { item =>
+    |         ^ 
+    | 
+
+error: undeclared identifier 'If'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:178:9:
+    | 
+178 |         If({ => show.get() }, { =>
+    |         ^ 
+    | 
+
+error: undeclared identifier 'ForEach'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:200:9:
+    | 
+200 |         ForEach<String>({ => data.get() }, { value => value }, { item =>
+    |         ^ 
+    | 
+
+error: undeclared identifier 'If'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:237:17:
+    | 
+237 |                 If({ =>
+    |                 ^ 
+    | 
+
+error: undeclared identifier 'ForEach'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:241:17:
+    | 
+241 |                 ForEach<String>({ =>
+    |                 ^ 
+    | 
+
+error: undeclared identifier 'ForEach'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:270:9:
+    | 
+270 |         ForEach<String>({ => ["A"] }, { value =>
+    |         ^ 
+    | 
+
+error: undeclared identifier 'ForEach'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/lifecycle_cases.cj:291:9:
+    | 
+291 |         ForEach<String>({ => data.get() }, { value => value }, { item =>
+    |         ^ 
+    | 
+
+error: 'append' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_cases.cj:64:34:
+   | 
+64 |     f.app.batch({ => ref(f.root).append(tail) })
+   |                                  ^^^^^^ 
+   | 
+
+error: 'moveToEnd' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_cases.cj:69:34:
+   | 
+69 |     f.app.batch({ => ref(f.root).moveToEnd(a) })
+   |                                  ^^^^^^^^^ 
+   | 
+
+error: 'remove' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_cases.cj:86:34:
+   | 
+86 |     f.app.batch({ => ref(f.root).remove(a) })
+   |                                  ^^^^^^ 
+   | 
+
+error: 'insertBefore' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_cases.cj:105:21:
+    | 
+105 |         ref(f.root).insertBefore(b, x)
+    |                     ^^^^^^^^^^^^ 
+    | 
+
+error: 'children' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_cases.cj:109:28:
+    | 
+109 |     let copy = ref(f.root).children()
+    |                            ^^^^^^^^ 
+    | 
+
+error: 'moveBefore' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_cases.cj:113:21:
+    | 
+113 |         ref(f.root).moveBefore(a, a)
+    |                     ^^^^^^^^^^ 
+    | 
+
+error: 'moveBefore' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_cases.cj:114:21:
+    | 
+114 |         ref(f.root).moveBefore(b, c)
+    |                     ^^^^^^^^^^ 
+    | 
+
+error: 'moveToEnd' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_cases.cj:115:21:
+    | 
+115 |         ref(f.root).moveToEnd(c)
+    |                     ^^^^^^^^^ 
+    | 
+
+error: 'remove' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_cases.cj:129:12:
+    | 
+129 |         rr.remove(a)
+    |            ^^^^^^ 
+    | 
+
+error: undeclared identifier 'ForEach'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_fixture.cj:18:13:
+   | 
+18 |             ForEach<String>({ => data.get() }, { value => value }, { item =>
+   |             ^ 
+   | 
+
+error: 'insertBefore' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/slot_fixture.cj:29:34:
+   | 
+29 |         app.batch({ => ref(root).insertBefore(ref(rows[1]), x) })
+   |                                  ^^^^^^^^^^^^ 
+   | 
+
+error: undeclared identifier 'ForEach'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:10:13:
+   | 
+10 |             ForEach<String>({ => if (empty) { [""] } else { ["A", "A"] } }, { value => value }, { item =>
+   |             ^ 
+   | 
+
+error: undeclared identifier 'ForEach'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:28:9:
+   | 
+28 |         ForEach<String>({ => data.get() }, { value => value }, { item =>
+   |         ^ 
+   | 
+
+error: undeclared identifier 'ForEach'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:52:13:
+   | 
+52 |             ForEach<String>({ => ["A"] }, { value => value }, { _ =>
+   |             ^ 
+   | 
+
+error: undeclared identifier 'If'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:61:28:
+   | 
+61 |     let root = Column({ => If({ => true }, { => Text("A"); Text("B") }) })
+   |                            ^ 
+   | 
+
+error: 'remove' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:76:16:
+   | 
+76 |             rr.remove(a)
+   |                ^^^^^^ 
+   | 
+
+error: 'insertBefore' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:77:16:
+   | 
+77 |             rr.insertBefore(a, x)
+   |                ^^^^^^^^^^^^ 
+   | 
+
+error: 'append' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:92:34:
+   | 
+92 |         app.batch({ => ref(root).append(left); ref(root).append(right) })
+   |                                  ^^^^^^ 
+   | 
+
+error: 'append' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:92:58:
+   | 
+92 |         app.batch({ => ref(root).append(left); ref(root).append(right) })
+   |                                                          ^^^^^^ 
+   | 
+
+error: 'children' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:95:20:
+   | 
+95 |         let l = lr.children()[0]
+   |                    ^^^^^^^^ 
+   | 
+
+error: 'children' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:96:20:
+   | 
+96 |         let r = rr.children()[0]
+   |                    ^^^^^^^^ 
+   | 
+
+error: 'moveBefore' is not a member of class 'NodeRef'
+  ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:99:64:
+   | 
+99 |             expectUI("CrossParentMove", { => app.batch({ => rr.moveBefore(l, r) }) })
+   |                                                                ^^^^^^^^^^ 
+   | 
+
+error: 'insertBefore' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:101:60:
+    | 
+101 |             expectUI("StaleAnchor", { => app.batch({ => rr.insertBefore(l, x) }) })
+    |                                                            ^^^^^^^^^^^^ 
+    | 
+
+error: 'append' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:116:45:
+    | 
+116 |         if (!pending) { f.app.batch({ => rr.append(x) }) }
+    |                                             ^^^^^^ 
+    | 
+
+error: 'append' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:117:61:
+    | 
+117 |         expectUI("AlreadyMounted", { => f.app.batch({ => rr.append(x); rr.append(x) }) })
+    |                                                             ^^^^^^ 
+    | 
+
+error: 'append' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:117:75:
+    | 
+117 |         expectUI("AlreadyMounted", { => f.app.batch({ => rr.append(x); rr.append(x) }) })
+    |                                                                           ^^^^^^ 
+    | 
+
+error: 'append' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:126:30:
+    | 
+126 |     app.batch({ => ref(root).append(child) })
+    |                              ^^^^^^ 
+    | 
+
+error: 'append' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:130:41:
+    | 
+130 |     expectSomeUI({ => app.batch({ => cr.append(root) }) })
+    |                                         ^^^^^^ 
+    | 
+
+error: 'append' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:138:55:
+    | 
+138 |     expectUI("InvalidParent", { => f.app.batch({ => a.append(Text("X")) }) })
+    |                                                       ^^^^^^ 
+    | 
+
+error: 'remove' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:145:57:
+    | 
+145 |     expectUI("StaleReference", { => g.app.batch({ => rr.remove(old); rr.moveToEnd(old) }) })
+    |                                                         ^^^^^^ 
+    | 
+
+error: 'moveToEnd' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:145:73:
+    | 
+145 |     expectUI("StaleReference", { => g.app.batch({ => rr.remove(old); rr.moveToEnd(old) }) })
+    |                                                                         ^^^^^^^^^ 
+    | 
+
+error: 'append' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:155:57:
+    | 
+155 |     expectUI("CapacityExceeded", { => app.batch({ => rr.append(Text("A")); rr.append(Text("B")) }) })
+    |                                                         ^^^^^^ 
+    | 
+
+error: 'append' is not a member of class 'NodeRef'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:155:79:
+    | 
+155 |     expectUI("CapacityExceeded", { => app.batch({ => rr.append(Text("A")); rr.append(Text("B")) }) })
+    |                                                                               ^^^^^^ 
+    | 
+
+error: undeclared identifier 'ForEach'
+   ==> /workspace/work/dynamic-tests/source/tests/dynamic/src/validation_cases.cj:162:9:
+    | 
+162 |         ForEach<String>({ => data.get() }, { value => value }, { item =>
+    |         ^ 
+    | 
+
+55 errors generated, 55 errors printed.
+Error: failed to compile package `dynamic_contract`, return code is 1
+Error: cjpm build failed

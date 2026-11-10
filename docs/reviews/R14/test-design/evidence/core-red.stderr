@@ -1,0 +1,59 @@
+[31merror[0m: undeclared type name 'AnsiTextException'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/assertions.cj:17:36:
+   [36m| [0m
+[36m17[0m [36m| [0m    try { action() } catch (error: AnsiTextException) { actual[0] = error.code }[0m
+   [36m| [0m                                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'TextSpan'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/values.cj:32:42:
+   [36m| [0m
+[36m32[0m [36m| [0m    check(RichText("") == RichText(Array<TextSpan>()) && RichText("AB") ==[0m
+   [36m| [0m                                         [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextStylePatch'
+ [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/graphemes.cj:7:15:
+  [36m| [0m
+[36m7[0m [36m| [0m    let red = TextStylePatch(foreground: Some(Color.Red), bold: Some(true))[0m
+  [36m| [0m              [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextStylePatch'
+ [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/graphemes.cj:8:16:
+  [36m| [0m
+[36m8[0m [36m| [0m    let blue = TextStylePatch(foreground: Some(Color.Blue), italic: Some(true))[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'RichText'
+ [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/graphemes.cj:9:17:
+  [36m| [0m
+[36m9[0m [36m| [0m    let value = RichText([TextSpan("e", style: red), TextSpan("\u{301}👩", style: blue),[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'RichText'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/graphemes.cj:25:20:
+   [36m| [0m
+[36m25[0m [36m| [0m    clip.put(0, 0, RichText([TextSpan("A"), TextSpan("界", style: red)]))[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RichText'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/graphemes.cj:26:20:
+   [36m| [0m
+[36m26[0m [36m| [0m    clip.put(2, 0, RichText("Z"))[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RichText'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/graphemes.cj:30:20:
+   [36m| [0m
+[36m30[0m [36m| [0m    edge.put(1, 0, RichText([TextSpan("界", style: red)]))[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+38 errors generated, 8 errors printed.
+Error: failed to compile package `rich_text_contract`, return code is 1
+Error: cjpm build failed

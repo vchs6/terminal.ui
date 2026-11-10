@@ -132,3 +132,9 @@ Frame.toPlainText/writePlainText/toAnsi/writeAnsi不新增必需参数，不查�
 旧无参数Application/render/snapshot消费者继续编译、默认未知模拟器画面保持；knownVT的自动显示由本需求改善。Theme085冻结API/fixtures不改；新增模式场景是追加验收而非降低现断言。无用户持久数据迁移。
 
 本增量覆盖原AC041中glyph子接口、真实fd探测/降级与有限输出兼容。真实VT必须留版本/视口/字体map来源/受检SHA/原始日志/PNG+hash；正常权限/映射失败是各自明确分支。未知PTY保留Unicode需用真实VTE/xterm或已有有效证据，换TERM不算真实实现。输入/resize/恢复/故障/全组件/M2/制品及全部宿主的完整AC041仍由后续最终汇合判定；缺环境记insufficient_evidence。
+
+## G010 包内纯策略工厂与测试构造边界（最终补充）
+
+为消除正式独立测试依赖未指定构造形状，根cjtui包内`class GlyphRenderPolicy`固定三个package可见生产工厂：`static func unicode(): GlyphRenderPolicy`、`static func ascii(): GlyphRenderPolicy`、`static func mapped(bitmap: Array<UInt8>): GlyphRenderPolicy`。它们也是真实设备/离线解析路径的构造入口，不是测试hook；不向消费者公开policy/bitmap。mapped只接受8192字节，否则IllegalArgumentException，成功冻结防御复制，调用方之后修改原数组不改变policy。其它字段/构造内部形状由实现按职责决定。
+
+`projectTerminalGlyph`的width=0返回空、width<0抛IllegalArgumentException；正width由已验证Frame的起始Cell提供，并受所属Frame配置的maxCells实际预算约束。不能假设所有合法复杂簇width<=2，也不能新增固定宽度上界拒绝既有合法Frame。093所谓超预算拒绝指真实Frame尺寸/配置预算，不要求对私有helper传Int64.Max分配字符串或构造不可达OOM。现有控制安全仍由Frame文本验证负责；此工厂不绕过原Unicode/宽簇权威。

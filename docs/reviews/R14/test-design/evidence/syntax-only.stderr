@@ -1,0 +1,84 @@
+[31merror[0m: inconsistent element type for array literal
+  [36m==>[0m /workspace/work/rich-text-tests/syntax-only/src/control_strings.cj:31:19:
+   [36m| [0m
+[36m31[0m [36m| [0m    for (intro in [UInt8(0x90), 0x98, 0x9d, 0x9e, 0x9f]) {[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: Traces:
+The types 'Int64' and 'UInt8' do not have the smallest common supertype
+
+
+[31merror[0m: inconsistent element type for array literal
+  [36m==>[0m /workspace/work/rich-text-tests/syntax-only/src/invalid_utf8.cj:29:23:
+   [36m| [0m
+[36m29[0m [36m| [0m        invalidSplits([UInt8(0x1b), 0x5d, 0x78].concat(bytes).concat([UInt8(0x07)]), "invalid UTF8 in OSC")[0m
+   [36m| [0m                      [31m^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: Traces:
+The types 'Int64' and 'UInt8' do not have the smallest common supertype
+
+
+[31merror[0m: inconsistent element type for array literal
+  [36m==>[0m /workspace/work/rich-text-tests/syntax-only/src/invalid_utf8.cj:30:23:
+   [36m| [0m
+[36m30[0m [36m| [0m        invalidSplits([UInt8(0x1b), 0x50, 0x78].concat(bytes).concat([UInt8(0x1b), 0x5c]), "invalid UTF8 in DCS")[0m
+   [36m| [0m                      [31m^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: Traces:
+The types 'Int64' and 'UInt8' do not have the smallest common supertype
+
+
+[31merror[0m: inconsistent element type for array literal
+  [36m==>[0m /workspace/work/rich-text-tests/syntax-only/src/invalid_utf8.cj:32:37:
+   [36m| [0m
+[36m32[0m [36m| [0m    for (pending in [[UInt8(0xc2)], [UInt8(0xe2), 0x82], [UInt8(0xf0), 0x9f, 0x92]]) {[0m
+   [36m| [0m                                    [31m^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: Traces:
+The types 'Int64' and 'UInt8' do not have the smallest common supertype
+
+
+[31merror[0m: inconsistent element type for array literal
+  [36m==>[0m /workspace/work/rich-text-tests/syntax-only/src/invalid_utf8.cj:32:58:
+   [36m| [0m
+[36m32[0m [36m| [0m    for (pending in [[UInt8(0xc2)], [UInt8(0xe2), 0x82], [UInt8(0xf0), 0x9f, 0x92]]) {[0m
+   [36m| [0m                                                         [31m^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: Traces:
+The types 'Int64' and 'UInt8' do not have the smallest common supertype
+
+
+[31merror[0m: inconsistent element type for array literal
+  [36m==>[0m /workspace/work/rich-text-tests/syntax-only/src/invalid_utf8.cj:34:23:
+   [36m| [0m
+[36m34[0m [36m| [0m        invalidSplits([UInt8(0x1b), 0x5d].concat(pending), "finish rejects truncated UTF8 in control string")[0m
+   [36m| [0m                      [31m^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: Traces:
+The types 'Int64' and 'UInt8' do not have the smallest common supertype
+
+
+[31merror[0m: inconsistent element type for array literal
+  [36m==>[0m /workspace/work/rich-text-tests/syntax-only/src/utf8.cj:15:34:
+   [36m| [0m
+[36m15[0m [36m| [0m    for (tail in [[UInt8(0x9c)], [UInt8(0xc2), 0x9c], [UInt8(0x1b), 0x5c]]) {[0m
+   [36m| [0m                                 [31m^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: Traces:
+The types 'Int64' and 'UInt8' do not have the smallest common supertype
+
+
+[31merror[0m: inconsistent element type for array literal
+  [36m==>[0m /workspace/work/rich-text-tests/syntax-only/src/utf8.cj:15:55:
+   [36m| [0m
+[36m15[0m [36m| [0m    for (tail in [[UInt8(0x9c)], [UInt8(0xc2), 0x9c], [UInt8(0x1b), 0x5c]]) {[0m
+   [36m| [0m                                                      [31m^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: Traces:
+The types 'Int64' and 'UInt8' do not have the smallest common supertype
+
+
+13 errors generated, 8 errors printed.
+23 warnings generated, 0 warning printed.
+Error: failed to compile package `rich_text_contract`, return code is 1
+Error: cjpm build failed

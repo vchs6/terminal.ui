@@ -1,0 +1,41 @@
+Found 1 layered-document match(es) for 'Array slice':
+
+### 1. std.core.struct.array.slice [api-member L6] score=2310
+- `slice(start: Int64, len: Int64): Array<T>`
+- 获取数组切片。
+- package: `std.core`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/core/structs/array/slice.md
+Found 1 layered-document match(es) for 'String fromUtf8':
+
+### 1. std.core.struct.string.fromutf8 [api-member L6] score=2310
+- `static fromUtf8(utf8Data: Array<UInt8>): String`
+- 根据 UTF-8 编码的字节数组构造一个字符串。
+- package: `std.core`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/core/structs/string/fromutf8.md
+Found 1 layered-document match(es) for 'ArrayList toArray':
+
+### 1. std.collection.class.arraylist.toarray [api-member L6] score=2130
+- `toArray(): Array<T>`
+- 返回一个数组，其中包含此列表中按正确顺序排列的所有元素。
+- package: `std.collection`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/collection/classes/arraylist/toarray.md
+Found 1 layered-document match(es) for 'Array concat':
+
+### 1. std.core.struct.array.concat [api-member L6] score=2310
+- `concat(other: Array<T>): Array<T>`
+- 该函数将创建一个新的数组，数组内容是当前数组后面串联 other 指向的数组。
+- package: `std.core`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/core/structs/array/concat.md
+Found 1 layered-document match(es) for 'spawn future get Duration':
+
+### 1. language.concurrency.6-访问线程.6-1-future-线程句柄 [guide-leaf L5] score=560
+- `spawn` 返回 `Future<T>`，其中 `T` 匹配 Lambda 返回类型
+- match: | `get(timeout)` | 带超时阻塞；超时抛出 `TimeoutException`。若 `timeout <= Duration.Zero`，行为同 `get()` |
+- match: public func get(timeout: Duration): T
+- match: | `get()` | 阻塞直到线程完成；返回结果。重新抛出线程中的异常 |
+- match: - `get()` 的位置决定并发性：放在其他工作前串行化执行；放在之后允许并行
+- path: references/language/concurrency/6-访问线程/6-1-future-线程句柄.md

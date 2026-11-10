@@ -1,0 +1,1192 @@
+diff --git a/tests/dynamic/README.md b/tests/dynamic/README.md
+new file mode 100644
+index 0000000..3e81c7e
+--- /dev/null
++++ b/tests/dynamic/README.md
+@@ -0,0 +1,91 @@
++# 动态结构公共契约测试（TASK-076）
++
++独立消费者包 `dynamic_contract`，只导入公开 `cjtui.*`。依据
++`openspec/changes/implement-reactive-runtime/design.md` 第 4 节及第 6 节
++R001–R018（第 6 节优先），初始契约输入为 `a947857`，正式 RED 的固定 A+B 输入为
++`c3d743d2dd5cb125e4ca435b2842d1b10c501281`。每个测试类型单独文件；
++旧测试和产品源码不变。测试作者指定 Sol/high，实际具体模型和 effort 无可核验元数据。
++
++## 运行
++
++```bash
++source /workspace/work/validation/sdk/cangjie/envsetup.sh
++tests/dynamic/run.sh
++```
++
++SDK 必须为 1.2.0；依赖使用根包原有清单。调用方可通过忽略的
++`cangjie-repo.toml` 指定自己的 registry/cache。脚本先 `cjpm build`，随后直接执行
++`target/release/bin/main`，不使用可能隐藏退出状态的 `cjpm run`。超时返回非零。
++本单元不改 `tests/run-slice.sh`；共享入口由主代理在 A+B 接线固定后顺序集成。
++
++## 手工 golden
++
++`sequence` 只比较公开 `children()` 快照的 NodeRef 身份；`picture` 比较公开
++`Application.snapshot(...).toPlainText()` 与直接写出的完整字符帧。
++所有期望均手工写定，未调用协调器、渲染器或产品排序函数生成。
++以下每行各自从 `A X B C` 初态开始，空后补项除外：
++
++| 操作 | 手工期望 |
++|---|---|
++| 数据重排为 C/B/A | C X B A |
++| 删除 A，数据为 B/C | B X C |
++| 清空数据 | X |
++| 空组后加入 D/E | X D E |
++| 数据为 D/A/B/C | D X A B C |
++
++测试以 `NodeRef.sameNode/isValid`、组件 `reference`、完整帧和公开 `stats`
++观察行为；不读取内部 marker、RuntimeNode、布局节点或私有队列。
++人工插入元素从公共 NodeRef API 挂载。计数和清理 trace 是用户回调产生的观察值，
++没有替代产品协调或调度的 fake runtime/stub。
++
++## 行为矩阵与预期捕获的错误
++
++| 用例 | 捕获的错误行为 |
++|---|---|
++| slot-reorder/delete/empty-refill/overflow | 按 key 拖动 manual、漏删、错误溢出位置、空组 marker 丢失 |
++| marker-exterior | 协调只搜索 marker 内节点；空后仍从已移动的旧槽补项 |
++| manual-remove-rebuild | remove 修改业务数据、自发重建、Structure 不重建或旧 ref 复活 |
++| deferred-reads-noops | pending 操作伪造已提交读取、返回 children 可回写、no-op 改身份 |
++| commands-before-reconciliation | 先协调后命令，导致“改数据再 remove”保留错误最终结果 |
++| key-new-value-local-state | 同 key 缓存旧 T、按位置转移状态、保留 key 重复 body/build、删后复活 |
++| multiple-groups-manual-order | key 全局去重、组互相吞节点、manual 相对次序改变 |
++| conditional-lifetimes | If 多一层容器、分支未卸载、旧订阅保留、分支重入复用旧代际 |
++| empty-conditional-plain-flow | 空 If 分支非法，或把普通 if/for 当作响应式构造 |
++| unmount-group-parent | 删除组父节点未撤销后代引用/订阅/owner 工作，或重入时沿用旧数据 |
++| invalid-keys/invalid-update-no-partial-body | 未先验证完整 key 数组，错误前半构造新增 key |
++| root-counts | ForEach 允许零/多根，If 允许多根 |
++| stale-anchor | 本批先 remove 的 anchor 被降级为 append |
++| cross-parent-foreign-anchor | 跨父 move 或外父 anchor 被接受 |
++| duplicate-insert-cycle | 待提交预留/已挂载描述可重复插入，祖先可形成循环 |
++| leaf-parent-removed-move | Text 叶子拥有孩子，或删除后仍可 move |
++| structure-limits | 命令预算和动态 mountedNodes 上界不执行，失败仍半挂载 |
++| owner-post-cancel | 已卸载 key 的 owner 工作运行，或连同无 owner 工作一起误取消 |
++| failed-body-collector | 构造失败前半挂载，原异常吞掉，collector 泄漏到新 session |
++| cleanup-continues | 第一个 cleanup 异常中止余下清理，父早于子，重复清理 |
++| lifecycle-reentry | onMount/cleanup 直接改树得到允许 |
++| evaluation-reentry/body-reentry | items/key/body 求值允许结构重入 |
++| lifecycle-post-next-turn | cleanup 无法 post，或在同 turn 递归提交 |
++| dynamic-mount-failure | 新 key onMount 异常未停止/清理 session，重复执行已登记 cleanup |
++| recursive-structure-boundaries | condition/items/key/body 中 snapshot/dispatch 递归进入 UI |
++| observable-write-from-key | key getter 写 Observable 被接受，或误报为结构操作错误 |
++| synchronous-structural-loop | 生命周期引发的同步结构循环不受稳定轮数限制，或超限漏清理 |
++
++结构异常按契约终止 session，因此错误用例检查引用失效和公开资源计数归零，
++不会在失败后要求 session 继续存活。祖先循环的 `AlreadyMounted` 与 `InvalidParent`
++校验优先级未冻结，该例只要求 UIException 拒绝；其他指定错误码精确比较。
++原有 `build/measure/paint` 的累计数字不用于猜测动态实现的内部结构。
++
++## 证据边界
++
++正式 RED 使用上述固定 A+B 基线：根包 `cjpm build` 实际 exit 0；动态消费者
++`cd tests/dynamic && cjpm build` 实际 exit 1，完整打印的 55 条诊断均为缺少
++`If`、`ForEach`、`ListItem` 或 NodeRef 的 `children/append/insertBefore/moveBefore/
++moveToEnd/remove`。未生成消费者可执行文件，因此没有运行时通过声明。
++
++编写期间发现并修正测试自身的局部 `var` 逃逸捕获和泛型 `None` 歧义：使用仅测试的
++`MutableBox` 引用盒及明确 `Option<T>.None`。另在仓库外独立 scratch 对相同消费者源码
++增加缺 C 的声明形状，编译为静态归档以检查被缺接口遮蔽的类型错误；该临时声明全部为
++throw 哨兵，从未执行、不进入本提交，也不作为产品 GREEN 或验收证据。
++
++原始 stdout/stderr、实际 exit、UTC、命令、源码及 hash 由主代理归档到 TASK-076
++证据目录。测试作者开发检查不代替 TASK-078/079/080 独立审核、执行与验收。
+diff --git a/tests/dynamic/cjpm.toml b/tests/dynamic/cjpm.toml
+new file mode 100644
+index 0000000..d517fd8
+--- /dev/null
++++ b/tests/dynamic/cjpm.toml
+@@ -0,0 +1,17 @@
++[package]
++  cjc-version = "1.2.0"
++  name = "dynamic_contract"
++  organization = ""
++  description = "Public dynamic child sequence contract tests"
++  version = "0.0.0"
++  target-dir = "target"
++  src-dir = "src"
++  script-dir = ""
++  output-type = "executable"
++  compile-option = "--error-count-limit all --diagnostic-format noColor"
++  override-compile-option = ""
++  link-option = ""
++  package-configuration = {}
++
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/tests/dynamic/run.sh b/tests/dynamic/run.sh
+new file mode 100755
+index 0000000..243974e
+--- /dev/null
++++ b/tests/dynamic/run.sh
+@@ -0,0 +1,6 @@
++#!/usr/bin/env bash
++set -euo pipefail
++cd "$(dirname "$0")"
++# Caller sources SDK 1.2.0 and selects an isolated CJPM cache/registry if needed.
++cjpm build
++timeout 60s target/release/bin/main
+diff --git a/tests/dynamic/src/assertions.cj b/tests/dynamic/src/assertions.cj
+new file mode 100644
+index 0000000..f53abe7
+--- /dev/null
++++ b/tests/dynamic/src/assertions.cj
+@@ -0,0 +1,46 @@
++package dynamic_contract
++
++import cjtui.*
++
++func check(value: Bool, name: String): Unit {
++    if (!value) { throw Exception("FAIL: ${name}") }
++}
++
++func ref(component: Component): NodeRef {
++    component.reference().getOrThrow({ => Exception("expected mounted component") })
++}
++
++func sequence(parent: NodeRef, expected: Array<NodeRef>, name: String): Unit {
++    let actual = parent.children()
++    check(actual.size == expected.size, "${name}: direct child count")
++    for (i in 0..expected.size) {
++        check(actual[i].sameNode(expected[i]), "${name}: child identity at ${i}")
++    }
++}
++
++func picture(app: Application, width: Int64, height: Int64, expected: String, name: String): Unit {
++    let actual = app.snapshot(width, height).toPlainText()
++    check(actual == expected, "${name}: frame [${actual}] expected [${expected}]")
++}
++
++func expectUI(code: String, action: () -> Unit): Unit {
++    var caught = false
++    try { action() } catch (error: UIException) {
++        caught = true
++        check(error.code == code, "error code ${error.code}, expected ${code}")
++    }
++    check(caught, "expected UIException(${code})")
++}
++
++func expectSomeUI(action: () -> Unit): Unit {
++    var caught = false
++    try { action() } catch (_: UIException) { caught = true }
++    check(caught, "expected structural UIException")
++}
++
++func dead(app: Application, refs: Array<NodeRef>, name: String): Unit {
++    for (node in refs) { check(!node.isValid(), "${name}: invalidated ref") }
++    let stats = app.stats()
++    check(stats.mountedNodes == 0 && stats.activeBindings == 0 && stats.subscriptions == 0 &&
++        stats.pendingPosts == 0, "${name}: no retained runtime resources")
++}
+diff --git a/tests/dynamic/src/conditional_cases.cj b/tests/dynamic/src/conditional_cases.cj
+new file mode 100644
+index 0000000..16df601
+--- /dev/null
++++ b/tests/dynamic/src/conditional_cases.cj
+@@ -0,0 +1,111 @@
++package dynamic_contract
++
++import cjtui.*
++import std.collection.*
++
++func conditionalLifetimes(): Unit {
++    let show = Observable<Bool>(true)
++    let label = Observable<String>("A")
++    let branches = ArrayList<Component>()
++    let log = FixtureLog()
++    let root = Column({ =>
++        Text("P")
++        If({ => show.get() }, { =>
++            log.bodies.add("then")
++            branches.add(Text({ => label.get() }).onMount({ _ =>
++                log.mounts.add("then")
++                { => log.cleanups.add("then") }
++            }))
++        }, elseBody: { =>
++            log.bodies.add("else")
++            branches.add(Text("N").onMount({ _ =>
++                log.mounts.add("else")
++                { => log.cleanups.add("else") }
++            }))
++        })
++        Text("Q")
++    })
++    let app = Application(root)
++    app.startHeadless()
++    picture(app, 1, 5, "P\nA\nQ\n \n ", "If is a direct sibling without a layout box")
++    check(ref(root).children().size == 3, "If marker hidden from public children")
++    let a = ref(branches[0])
++    show.set(false)
++    picture(app, 1, 5, "P\nN\nQ\n \n ", "If switches branch")
++    check(!a.isValid() && log.trace() == "then,", "If unmounts old branch exactly once")
++    let subscriptions = app.stats().subscriptions
++    label.set("B")
++    picture(app, 1, 5, "P\nN\nQ\n \n ", "unmounted branch binding detached")
++    check(app.stats().subscriptions == subscriptions, "inactive branch has no revived subscription")
++    let n = ref(branches[1])
++    show.set(true)
++    picture(app, 1, 5, "P\nB\nQ\n \n ", "If reconstructs and reads latest value")
++    check(!n.isValid() && !ref(branches[2]).sameNode(a), "branch re-entry is a new generation")
++    check(log.bodies.size == 3 && log.mounts.size == 3, "one body and mount per branch activation")
++    app.dispose()
++    check(log.trace() == "then,else,then,", "conditional cleanup once per mounted branch")
++}
++
++func emptyConditionalAndPlainControlFlow(): Unit {
++    let show = Observable<Bool>(false)
++    let plain = MutableBox<Bool>(true)
++    let root = Column({ =>
++        if (plain.value) { Text("S") }
++        for (_ in 0..1) { Text("F") }
++        If({ => show.get() }, { => Text("D") })
++    })
++    let app = Application(root)
++    app.startHeadless()
++    picture(app, 1, 4, "S\nF\n \n ", "empty If branch legal")
++    plain.value = false
++    show.set(true)
++    picture(app, 1, 4, "S\nF\nD\n ", "plain if/for build once, explicit If reacts")
++    check(ref(root).children().size == 3, "plain and dynamic direct children")
++    show.set(false)
++    picture(app, 1, 4, "S\nF\n \n ", "default else is empty")
++    app.dispose()
++}
++
++func unmountingGroupParentReleasesDescendants(): Unit {
++    let show = Observable<Bool>(true)
++    let data = Observable<Array<String>>(["A", "B"])
++    let parents = ArrayList<Component>()
++    let rows = ArrayList<Component>()
++    let log = FixtureLog()
++    let root = Column({ =>
++        If({ => show.get() }, { =>
++            parents.add(Column({ =>
++                ForEach<String>({ => data.get() }, { value => value }, { item =>
++                    log.bodies.add(item.key)
++                    rows.add(Text(item.value).onMount({ _ => { => log.cleanups.add(item.key) } }))
++                })
++            }))
++        })
++    })
++    let app = Application(root)
++    app.startHeadless()
++    let rr = ref(root)
++    let oldParent = ref(parents[0])
++    let a = ref(rows[0])
++    let b = ref(rows[1])
++    let subscriptions = app.stats().subscriptions
++    let ownerRuns = MutableBox<Int64>(0)
++    app.onKeyEvent({ _ =>
++        check(app.post(a, { => ownerRuns.value++ }), "descendant owner post accepted before parent removal")
++        show.set(false)
++    })
++    app.dispatch(rr, KeyEvent("test"))
++    data.set(["C"])
++    picture(app, 1, 4, " \n \n \n ", "removing group parent removes all nested list children")
++    check(ownerRuns.value == 0 && !oldParent.isValid() && !a.isValid() && !b.isValid(),
++        "parent unmount revokes entire descendant subtree and owner queue")
++    check(ref(root).children().isEmpty() && app.stats().mountedNodes == 1 &&
++        app.stats().subscriptions < subscriptions, "nested dynamic subscriptions released with parent")
++    check(log.cleanups.size == 2 && log.bodies.size == 2, "inactive group does no work when data changes")
++    show.set(true)
++    picture(app, 1, 4, "C\n \n \n ", "re-entered parent constructs latest list data")
++    check(parents.size == 2 && !ref(parents[1]).sameNode(oldParent) && log.bodies.size == 3,
++        "new parent and descendants receive fresh identity")
++    app.dispose()
++    check(log.cleanups.size == 3, "nested list cleanup once per mounted key")
++}
+diff --git a/tests/dynamic/src/fixture_failure.cj b/tests/dynamic/src/fixture_failure.cj
+new file mode 100644
+index 0000000..b86b1f2
+--- /dev/null
++++ b/tests/dynamic/src/fixture_failure.cj
+@@ -0,0 +1,5 @@
++package dynamic_contract
++
++class FixtureFailure <: Exception {
++    init(message: String) { super(message) }
++}
+diff --git a/tests/dynamic/src/fixture_log.cj b/tests/dynamic/src/fixture_log.cj
+new file mode 100644
+index 0000000..09acdb2
+--- /dev/null
++++ b/tests/dynamic/src/fixture_log.cj
+@@ -0,0 +1,16 @@
++package dynamic_contract
++
++import std.collection.*
++
++class FixtureLog {
++    let bodies = ArrayList<String>()
++    let mounts = ArrayList<String>()
++    let cleanups = ArrayList<String>()
++    var builds: Int64 = 0
++
++    func trace(): String {
++        var result = ""
++        for (entry in cleanups) { result += entry + "," }
++        result
++    }
++}
+diff --git a/tests/dynamic/src/identity_cases.cj b/tests/dynamic/src/identity_cases.cj
+new file mode 100644
+index 0000000..202976e
+--- /dev/null
++++ b/tests/dynamic/src/identity_cases.cj
+@@ -0,0 +1,77 @@
++package dynamic_contract
++
++import cjtui.*
++import std.collection.*
++
++// Detects retaining the initial T, rebuilding surviving keys, or transferring local state by index.
++func retainedKeyGetsNewValue(): Unit {
++    let data = Observable<Array<RowData>>([RowData("a", "A"), RowData("b", "B")])
++    let rows = ArrayList<StatefulRow>()
++    let log = FixtureLog()
++    let root = Column({ =>
++        ForEach<RowData>({ => data.get() }, { value => value.id }, { item =>
++            log.bodies.add(item.key)
++            let row = StatefulRow(item, log)
++            rows.add(row)
++        })
++    })
++    let app = Application(root)
++    app.startHeadless()
++    let a = ref(rows[0])
++    let b = ref(rows[1])
++    rows[0].local.set(7)
++    picture(app, 5, 3, "A:7  \nB:0  \n     ", "local state before new T")
++    data.set([RowData("b", "Bee"), RowData("a", "Ay")])
++    picture(app, 5, 3, "Bee:0\nAy:7 \n     ", "new object updates ListItem.value and retains local state")
++    sequence(ref(root), [b, a], "new T preserves keyed identity")
++    check(log.bodies.size == 2 && log.builds == 2, "surviving key body and build each once")
++    check(rows[0].item.key == "a" && rows[0].item.value.label == "Ay", "retained ListItem key/value")
++    data.set([RowData("b", "Bee")])
++    picture(app, 5, 3, "Bee:0\n     \n     ", "delete stateful row")
++    check(!a.isValid(), "stateful removal invalidates old ref")
++    data.set([RowData("a", "New"), RowData("b", "Bee")])
++    picture(app, 5, 3, "New:0\nBee:0\n     ", "same deleted key creates fresh local state")
++    check(rows.size == 3 && !ref(rows[2]).sameNode(a) && !a.isValid(), "deleted key ref never revives")
++    app.dispose()
++}
++
++// Detects globally keyed groups, or group rebuilding that deletes/moves manual and other-group nodes.
++func multipleGroupsAndManualOrder(): Unit {
++    let left = Observable<Array<String>>(["A", "B"])
++    let right = Observable<Array<String>>(["A", "B"])
++    let l = ArrayList<Component>()
++    let r = ArrayList<Component>()
++    let root = Column({ =>
++        ForEach<String>({ => left.get() }, { value => value }, { item =>
++            l.add(Text({ => if (item.value == "A") { "a" } else if (item.value == "B") { "b" } else { "c" } }))
++        })
++        Text("S")
++        ForEach<String>({ => right.get() }, { value => value }, { item => r.add(Text({ => item.value })) })
++    })
++    let app = Application(root)
++    app.startHeadless()
++    let lrA = ref(l[0])
++    let lrB = ref(l[1])
++    let rrA = ref(r[0])
++    let rrB = ref(r[1])
++    let separator = ref(root).children()[2]
++    check(!lrA.sameNode(rrA), "same string key is scoped by group")
++    let x = Text("X")
++    let y = Text("Y")
++    app.batch({ =>
++        ref(root).insertBefore(lrB, x)
++        ref(root).insertBefore(rrB, y)
++        ref(root).moveBefore(rrA, lrA)
++    })
++    picture(app, 1, 9, "A\na\nX\nb\nS\nY\nB\n \n ", "interleaved groups before updates")
++    app.batch({ =>
++        left.set(["B", "A", "C"])
++        right.set(["B", "A"])
++    })
++    picture(app, 1, 9, "B\nb\nX\na\nc\nS\nY\nA\n ", "each group replaces only its own slots")
++    sequence(ref(root), [rrB, lrB, ref(x), lrA, ref(l[2]), separator, ref(y), rrA], "multiple group identities")
++    left.set([])
++    picture(app, 1, 9, "B\nX\nS\nY\nA\n \n \n \n ", "remove one group preserves manual order and other group")
++    check(rrA.isValid() && rrB.isValid(), "other group retains same-key refs")
++    app.dispose()
++}
+diff --git a/tests/dynamic/src/lifecycle_cases.cj b/tests/dynamic/src/lifecycle_cases.cj
+new file mode 100644
+index 0000000..209e9b0
+--- /dev/null
++++ b/tests/dynamic/src/lifecycle_cases.cj
+@@ -0,0 +1,304 @@
++package dynamic_contract
++
++import cjtui.*
++import std.collection.*
++
++func ownerPostCancelledOnDynamicUnmount(): Unit {
++    let f = SlotFixture()
++    let a = ref(f.rows[0])
++    let rr = ref(f.root)
++    let ownerRuns = MutableBox<Int64>(0)
++    let sessionRuns = MutableBox<Int64>(0)
++    f.app.onKeyEvent({ _ =>
++        check(f.app.post(a, { => ownerRuns.value++ }), "owner post accepted while mounted")
++        check(f.app.post({ => sessionRuns.value++ }), "session post accepted")
++        f.items.set(["B", "C"])
++    })
++    f.app.dispatch(rr, KeyEvent("test"))
++    check(!a.isValid(), "dispatch boundary unmounts removed key")
++    check(!f.app.post(a, { => ownerRuns.value++ }), "stale owner post rejected")
++    picture(f.app, 1, 4, "B\nC\n \n ", "owner cancellation with remaining list")
++    check(ownerRuns.value == 0 && sessionRuns.value == 1, "owner work cancelled, independent session work runs")
++    check(f.app.stats().pendingPosts == 0, "cancelled owner does not retain queue entry")
++    f.app.dispose()
++}
++
++func failedBodyReleasesAndRestoresCollector(): Unit {
++    let data = Observable<Array<String>>(["A"])
++    let log = FixtureLog()
++    let root = Column({ =>
++        ForEach<String>({ => data.get() }, { value => value }, { item =>
++            if (item.key == "C") { throw FixtureFailure("body-C") }
++            Text(item.value).onMount({ _ => log.mounts.add(item.key); { => log.cleanups.add(item.key) } })
++        })
++    })
++    let app = Application(root)
++    app.startHeadless()
++    let rr = ref(root)
++    let a = rr.children()[0]
++    data.set(["A", "B", "C"])
++    var caught = false
++    try { app.snapshot(1, 4) } catch (_: FixtureFailure) { caught = true }
++    check(caught, "body failure retains original user exception type")
++    check(log.mounts.size == 1 && log.trace() == "A,", "failed group does not half mount B; old A cleans once")
++    dead(app, [rr, a], "body failure cleanup")
++    app.dispose()
++    let fresh = Column({ => Text("Z") })
++    let next = Application(fresh)
++    next.startHeadless()
++    picture(next, 1, 2, "Z\n ", "collector restored after dynamic body failure")
++    check(ref(fresh).children().size == 1, "failed collector does not leak children")
++    next.dispose()
++}
++
++func cleanupContinuesAfterFailure(): Unit {
++    let data = Observable<Array<String>>(["A", "B"])
++    let log = FixtureLog()
++    let root = Column({ =>
++        ForEach<String>({ => data.get() }, { value => value }, { item =>
++            Column({ => Text(item.value).onMount({ _ => { => log.cleanups.add("child" + item.key) } }) })
++                .onMount({ _ => { =>
++                    log.cleanups.add("parent" + item.key)
++                    if (item.key == "A") { throw FixtureFailure("cleanup-A") }
++                } })
++        })
++    }).onMount({ _ => { => log.cleanups.add("root") } })
++    let app = Application(root)
++    app.startHeadless()
++    let rr = ref(root)
++    let children = rr.children()
++    data.set([])
++    var caught = false
++    try { app.snapshot(1, 3) } catch (_: FixtureFailure) { caught = true }
++    check(caught, "cleanup failure is reported")
++    check(log.cleanups.size == 5, "all child, item, and root cleanups attempted")
++    var childA: Int64 = -1
++    var parentA: Int64 = -1
++    var childB: Int64 = -1
++    var parentB: Int64 = -1
++    var rootIndex: Int64 = -1
++    for (i in 0..log.cleanups.size) {
++        match (log.cleanups[i]) {
++            case "childA" => childA = i
++            case "parentA" => parentA = i
++            case "childB" => childB = i
++            case "parentB" => parentB = i
++            case "root" => rootIndex = i
++            case _ => throw Exception("unexpected cleanup entry")
++        }
++    }
++    check(childA >= 0 && childA < parentA && childB >= 0 && childB < parentB &&
++        rootIndex > parentA && rootIndex > parentB, "cleanup children before their parents")
++    dead(app, [rr, children[0], children[1]], "cleanup exception release")
++    app.dispose()
++    check(log.cleanups.size == 5, "cleanup exceptions never cause double cleanup")
++}
++
++func lifecycleStructureReentry(): Unit {
++    for (duringMount in [true, false]) {
++        let currentRoot = MutableBox<?Component>(Option<Component>.None)
++        let mountedRoot = MutableBox<?NodeRef>(Option<NodeRef>.None)
++        let show = Observable<Bool>(true)
++        let root = Column({ =>
++            If({ => show.get() }, { =>
++                Text("A").onMount({ _ =>
++                    if (duringMount) { ref(currentRoot.value.getOrThrow()).append(Text("X")) }
++                    { =>
++                        if (!duringMount) { mountedRoot.value.getOrThrow().append(Text("X")) }
++                    }
++                })
++            })
++        })
++        currentRoot.value = Some(root)
++        let app = Application(root)
++        if (duringMount) {
++            expectUI("LifecycleReentry", { => app.startHeadless() })
++        } else {
++            app.startHeadless()
++            mountedRoot.value = Some(ref(root))
++            show.set(false)
++            expectUI("LifecycleReentry", { => app.snapshot(1, 3) })
++        }
++        dead(app, [], "lifecycle direct structure rejected")
++        app.dispose()
++    }
++}
++
++func evaluationStructureReentry(): Unit {
++    for (fromKey in [true, false]) {
++        let armed = Observable<Bool>(false)
++        let current = MutableBox<?NodeRef>(Option<NodeRef>.None)
++        let root = Column({ =>
++            ForEach<String>({ =>
++                if (!fromKey && armed.get()) { current.value.getOrThrow().append(Text("X")) }
++                ["A"]
++            }, { value =>
++                if (fromKey && armed.get()) { current.value.getOrThrow().append(Text("X")) }
++                value
++            }, { item => Text(item.value) })
++        })
++        let app = Application(root)
++        app.startHeadless()
++        let rr = ref(root)
++        current.value = Some(rr)
++        armed.set(true)
++        rr.notify(ChangeKind.Structure)
++        expectUI("ReentrantStructure", { => app.snapshot(1, 3) })
++        dead(app, [rr], "structure/key getter reentry")
++        app.dispose()
++    }
++}
++
++func bodyStructureReentry(): Unit {
++    let data = Observable<Array<String>>(["A"])
++    let current = MutableBox<?NodeRef>(Option<NodeRef>.None)
++    let root = Column({ =>
++        ForEach<String>({ => data.get() }, { value => value }, { item =>
++            if (item.key == "B") { current.value.getOrThrow().append(Text("X")) }
++            Text(item.value)
++        })
++    })
++    let app = Application(root)
++    app.startHeadless()
++    let rr = ref(root)
++    current.value = Some(rr)
++    data.set(["A", "B"])
++    expectUI("ReentrantStructure", { => app.snapshot(1, 3) })
++    dead(app, [rr], "new-key body collector cannot mutate mounted tree")
++    app.dispose()
++}
++
++func lifecycleCanPostNextTurn(): Unit {
++    let show = Observable<Bool>(true)
++    let currentApp = MutableBox<?Application>(Option<Application>.None)
++    let parent = MutableBox<?NodeRef>(Option<NodeRef>.None)
++    let accepted = MutableBox<Bool>(false)
++    let x = Text("X")
++    let root = Column({ =>
++        If({ => show.get() }, { =>
++            Text("A").onMount({ _ => { =>
++                accepted.value = currentApp.value.getOrThrow().post(parent.value.getOrThrow(), { => parent.value.getOrThrow().append(x) })
++            } })
++        })
++    })
++    let app = Application(root)
++    currentApp.value = Some(app)
++    app.startHeadless()
++    parent.value = Some(ref(root))
++    show.set(false)
++    picture(app, 1, 3, " \n \n ", "cleanup post is deferred beyond current turn")
++    check(accepted.value && x.reference().isNone(), "cleanup can post without immediate structural recursion")
++    picture(app, 1, 3, "X\n \n ", "next turn commits cleanup-posted child")
++    sequence(ref(root), [ref(x)], "posted child shares same physical sequence")
++    app.dispose()
++}
++
++func dynamicMountFailureCleansSession(): Unit {
++    let data = Observable<Array<String>>(["A"])
++    let log = FixtureLog()
++    let root = Column({ =>
++        ForEach<String>({ => data.get() }, { value => value }, { item =>
++            Text(item.value).onMount({ _ =>
++                log.mounts.add(item.key)
++                if (item.key == "B") { throw FixtureFailure("mount-B") }
++                { => log.cleanups.add(item.key) }
++            })
++        })
++    })
++    let app = Application(root)
++    app.startHeadless()
++    let rr = ref(root)
++    let a = rr.children()[0]
++    data.set(["A", "B", "C"])
++    var caught = false
++    try { app.snapshot(1, 4) } catch (_: FixtureFailure) { caught = true }
++    check(caught, "dynamic onMount failure preserves original exception")
++    check(log.trace() == "A,", "only registered cleanup runs after onMount throws")
++    dead(app, [rr, a], "dynamic onMount failure cleanup")
++    app.dispose()
++    check(log.trace() == "A,", "failed dynamic mount cleanup once")
++}
++
++func recursiveStructureBoundaries(): Unit {
++    for (entry in ["snapshot", "dispatch"]) {
++        for (context in ["condition", "items", "key", "body"]) {
++            let armed = Observable<Bool>(false)
++            let data = Observable<Array<String>>(["A"])
++            let session = MutableBox<?Application>(Option<Application>.None)
++            let target = MutableBox<?NodeRef>(Option<NodeRef>.None)
++            let reenter: () -> Unit = { =>
++                if (entry == "snapshot") {
++                    session.value.getOrThrow().snapshot(1, 4)
++                } else {
++                    session.value.getOrThrow().dispatch(target.value.getOrThrow(), KeyEvent("test"))
++                }
++            }
++            let root = Column({ =>
++                If({ =>
++                    if (context == "condition" && armed.get()) { reenter() }
++                    true
++                }, { => Text("I") })
++                ForEach<String>({ =>
++                    if (context == "items" && armed.get()) { reenter() }
++                    data.get()
++                }, { value =>
++                    if (context == "key" && armed.get()) { reenter() }
++                    value
++                }, { item =>
++                    if (context == "body" && armed.get()) { reenter() }
++                    Text(item.value)
++                })
++            })
++            let app = Application(root)
++            session.value = Some(app)
++            app.startHeadless()
++            let rr = ref(root)
++            target.value = Some(rr)
++            armed.set(true)
++            data.set(["B"])
++            expectUI("ReentrantStructure", { => app.snapshot(1, 4) })
++            dead(app, [rr], "${entry} from ${context} must not recursively enter UI")
++            app.dispose()
++        }
++    }
++}
++
++func observableWriteFromKeyRejected(): Unit {
++    let armed = Observable<Bool>(false)
++    let other = Observable<Int64>(0)
++    let root = Column({ =>
++        ForEach<String>({ => ["A"] }, { value =>
++            if (armed.get()) { other.set(1) }
++            value
++        }, { item => Text(item.value) })
++    })
++    let app = Application(root)
++    app.startHeadless()
++    let rr = ref(root)
++    armed.set(true)
++    rr.notify(ChangeKind.Structure)
++    expectUI("ReentrantEvaluation", { => app.snapshot(1, 3) })
++    check(other.get() == 0, "rejected Observable write does not change value")
++    dead(app, [rr], "Observable write uses evaluation error even inside key getter")
++    app.dispose()
++}
++
++func synchronousStructuralLoopIsBounded(): Unit {
++    let data = Observable<Array<String>>(["A"])
++    let mounts = MutableBox<Int64>(0)
++    let cleanups = MutableBox<Int64>(0)
++    let root = Column({ =>
++        ForEach<String>({ => data.get() }, { value => value }, { item =>
++            Text(item.value).onMount({ _ =>
++                mounts.value++
++                data.set(if (item.key == "A") { ["B"] } else { ["A"] })
++                { => cleanups.value++ }
++            })
++        })
++    })
++    let app = Application(root, limits: RuntimeLimits(stabilizationPasses: 3))
++    expectUI("UnstableUpdate", { => app.startHeadless() })
++    check(mounts.value > 1 && mounts.value == cleanups.value, "synchronous mounting loop bounded and all effects released")
++    dead(app, [], "unstable structural loop cleanup")
++    app.dispose()
++}
+diff --git a/tests/dynamic/src/main.cj b/tests/dynamic/src/main.cj
+new file mode 100644
+index 0000000..ffe9cfc
+--- /dev/null
++++ b/tests/dynamic/src/main.cj
+@@ -0,0 +1,42 @@
++package dynamic_contract
++
++func runCase(name: String, test: () -> Unit): Unit {
++    test()
++    println("PASS: ${name}")
++}
++
++main(): Int64 {
++    runCase("slot-reorder", slotReorder)
++    runCase("slot-delete", slotDelete)
++    runCase("slot-empty-refill", slotEmptyAndRefill)
++    runCase("slot-overflow", slotPrependOverflow)
++    runCase("marker-exterior", moveOutsideMarker)
++    runCase("manual-remove-rebuild", manualRemoveAndRebuild)
++    runCase("deferred-reads-noops", deferredReadsAndNoops)
++    runCase("commands-before-reconciliation", commandsPrecedeReconciliation)
++    runCase("key-new-value-local-state", retainedKeyGetsNewValue)
++    runCase("multiple-groups-manual-order", multipleGroupsAndManualOrder)
++    runCase("conditional-lifetimes", conditionalLifetimes)
++    runCase("empty-conditional-plain-flow", emptyConditionalAndPlainControlFlow)
++    runCase("unmount-group-parent", unmountingGroupParentReleasesDescendants)
++    runCase("invalid-keys", invalidKeysBeforeBodies)
++    runCase("invalid-update-no-partial-body", invalidUpdateHasNoPartialBodies)
++    runCase("root-counts", dynamicRootCounts)
++    runCase("stale-anchor", staleAnchorAfterRemove)
++    runCase("cross-parent-foreign-anchor", crossParentAndForeignAnchor)
++    runCase("duplicate-insert-cycle", duplicateInsertionAndCycles)
++    runCase("leaf-parent-removed-move", leafParentAndRemovedMove)
++    runCase("structure-limits", structureLimits)
++    runCase("owner-post-cancel", ownerPostCancelledOnDynamicUnmount)
++    runCase("failed-body-collector", failedBodyReleasesAndRestoresCollector)
++    runCase("cleanup-continues", cleanupContinuesAfterFailure)
++    runCase("lifecycle-reentry", lifecycleStructureReentry)
++    runCase("evaluation-reentry", evaluationStructureReentry)
++    runCase("body-reentry", bodyStructureReentry)
++    runCase("lifecycle-post-next-turn", lifecycleCanPostNextTurn)
++    runCase("dynamic-mount-failure", dynamicMountFailureCleansSession)
++    runCase("recursive-structure-boundaries", recursiveStructureBoundaries)
++    runCase("observable-write-from-key", observableWriteFromKeyRejected)
++    runCase("synchronous-structural-loop", synchronousStructuralLoopIsBounded)
++    0
++}
+diff --git a/tests/dynamic/src/mutable_box.cj b/tests/dynamic/src/mutable_box.cj
+new file mode 100644
+index 0000000..2231008
+--- /dev/null
++++ b/tests/dynamic/src/mutable_box.cj
+@@ -0,0 +1,7 @@
++package dynamic_contract
++
++// Cangjie escaping closures capture a let reference, not a mutable local slot.
++class MutableBox<T> {
++    var value: T
++    init(value: T) { this.value = value }
++}
+diff --git a/tests/dynamic/src/row_data.cj b/tests/dynamic/src/row_data.cj
+new file mode 100644
+index 0000000..d116a35
+--- /dev/null
++++ b/tests/dynamic/src/row_data.cj
+@@ -0,0 +1,10 @@
++package dynamic_contract
++
++class RowData {
++    let id: String
++    let label: String
++    init(id: String, label: String) {
++        this.id = id
++        this.label = label
++    }
++}
+diff --git a/tests/dynamic/src/slot_cases.cj b/tests/dynamic/src/slot_cases.cj
+new file mode 100644
+index 0000000..1b507c5
+--- /dev/null
++++ b/tests/dynamic/src/slot_cases.cj
+@@ -0,0 +1,136 @@
++package dynamic_contract
++
++import cjtui.*
++
++// Detects keyed movement that drags X with A/B rather than replacing owned slots.
++func slotReorder(): Unit {
++    let f = SlotFixture()
++    let x = f.manualX()
++    let a = ref(f.rows[0])
++    let b = ref(f.rows[1])
++    let c = ref(f.rows[2])
++    let xr = ref(x)
++    sequence(ref(f.root), [a, xr, b, c], "A X B C initial")
++    picture(f.app, 1, 6, "A\nX\nB\nC\n \n ", "manual insertion")
++    f.items.set(["C", "B", "A"])
++    picture(f.app, 1, 6, "C\nX\nB\nA\n \n ", "C X B A slot reorder")
++    sequence(ref(f.root), [c, xr, b, a], "C X B A identities")
++    f.app.dispose()
++    dead(f.app, [a, b, c, xr], "reorder dispose")
++}
++
++func slotDelete(): Unit {
++    let f = SlotFixture()
++    let x = f.manualX()
++    let a = ref(f.rows[0])
++    let b = ref(f.rows[1])
++    let c = ref(f.rows[2])
++    f.items.set(["B", "C"])
++    picture(f.app, 1, 6, "B\nX\nC\n \n \n ", "B X C deletion")
++    sequence(ref(f.root), [b, ref(x), c], "B X C identities")
++    check(!a.isValid(), "deleted A invalid")
++    f.app.dispose()
++}
++
++func slotEmptyAndRefill(): Unit {
++    let f = SlotFixture()
++    let x = f.manualX()
++    let old = [ref(f.rows[0]), ref(f.rows[1]), ref(f.rows[2])]
++    f.items.set([])
++    picture(f.app, 1, 6, "X\n \n \n \n \n ", "empty keeps X")
++    sequence(ref(f.root), [ref(x)], "empty excludes group marker")
++    for (node in old) { check(!node.isValid(), "empty invalidates declared nodes") }
++    f.items.set(["D", "E"])
++    picture(f.app, 1, 6, "X\nD\nE\n \n \n ", "refill before stable marker")
++    sequence(ref(f.root), [ref(x), ref(f.rows[3]), ref(f.rows[4])], "X D E identities")
++    f.app.dispose()
++}
++
++func slotPrependOverflow(): Unit {
++    let f = SlotFixture()
++    let x = f.manualX()
++    let a = ref(f.rows[0])
++    let b = ref(f.rows[1])
++    let c = ref(f.rows[2])
++    f.items.set(["D", "A", "B", "C"])
++    picture(f.app, 1, 6, "D\nX\nA\nB\nC\n ", "D X A B C overflow")
++    sequence(ref(f.root), [ref(f.rows[3]), ref(x), a, b, c], "D X A B C identities")
++    f.app.dispose()
++}
++
++func moveOutsideMarker(): Unit {
++    let f = SlotFixture()
++    let tail = Text("T")
++    f.app.batch({ => ref(f.root).append(tail) })
++    let a = ref(f.rows[0])
++    let b = ref(f.rows[1])
++    let c = ref(f.rows[2])
++    let tr = ref(tail)
++    f.app.batch({ => ref(f.root).moveToEnd(a) })
++    picture(f.app, 1, 7, "B\nC\nT\nA\n \n \n ", "move declared A beyond marker and T")
++    f.items.set(["C", "B", "A", "D"])
++    picture(f.app, 1, 7, "C\nB\nT\nA\nD\n \n ", "whole parent owned slots include marker exterior")
++    sequence(ref(f.root), [c, b, tr, a, ref(f.rows[3])], "exterior overflow identities")
++    f.items.set([])
++    picture(f.app, 1, 7, "T\n \n \n \n \n \n ", "exterior declared nodes all removed")
++    f.items.set(["E"])
++    picture(f.app, 1, 7, "E\nT\n \n \n \n \n ", "empty refill returns before marker before T")
++    f.app.dispose()
++}
++
++func manualRemoveAndRebuild(): Unit {
++    let f = SlotFixture()
++    let a = ref(f.rows[0])
++    let b = ref(f.rows[1])
++    let c = ref(f.rows[2])
++    f.app.batch({ => ref(f.root).remove(a) })
++    picture(f.app, 1, 5, "B\nC\n \n \n ", "manual remove does not immediately re-create")
++    check(!a.isValid() && f.rows.size == 3, "manual removal unmounts once")
++    check(f.items.get().size == 3 && f.items.get()[0] == "A", "manual remove leaves business data")
++    ref(f.root).notify(ChangeKind.Structure)
++    picture(f.app, 1, 5, "A\nB\nC\n \n ", "Structure reconstructs still declared key")
++    let replacement = ref(f.rows[3])
++    check(!replacement.sameNode(a) && !a.isValid(), "re-created A has new identity")
++    sequence(ref(f.root), [replacement, b, c], "reconstructed A and surviving B C")
++    f.app.dispose()
++}
++
++func deferredReadsAndNoops(): Unit {
++    let f = SlotFixture()
++    let a = ref(f.rows[0])
++    let b = ref(f.rows[1])
++    let c = ref(f.rows[2])
++    let x = Text("X")
++    f.app.batch({ =>
++        ref(f.root).insertBefore(b, x)
++        check(x.reference().isNone(), "pending insertion publishes no provisional ref")
++        sequence(ref(f.root), [a, b, c], "children reads committed sequence inside batch")
++    })
++    let copy = ref(f.root).children()
++    copy[0] = c
++    sequence(ref(f.root), [a, ref(x), b, c], "returned child array is independent")
++    f.app.batch({ =>
++        ref(f.root).moveBefore(a, a)
++        ref(f.root).moveBefore(b, c)
++        ref(f.root).moveToEnd(c)
++    })
++    sequence(ref(f.root), [a, ref(x), b, c], "validated no-op moves")
++    f.app.dispose()
++}
++
++func commandsPrecedeReconciliation(): Unit {
++    let f = SlotFixture()
++    let rr = ref(f.root)
++    let a = ref(f.rows[0])
++    let b = ref(f.rows[1])
++    let c = ref(f.rows[2])
++    f.app.batch({ =>
++        f.items.set(["C", "B", "A"])
++        rr.remove(a)
++        sequence(rr, [a, b, c], "pending state and commands leave committed reads unchanged")
++    })
++    picture(f.app, 1, 4, "C\nB\nA\n ", "explicit remove runs before pending latest structure getter")
++    check(!a.isValid() && f.rows.size == 4, "A is removed then reconstructed from still-present key")
++    sequence(rr, [c, b, ref(f.rows[3])], "reconciliation after explicit commands")
++    f.app.dispose()
++}
+diff --git a/tests/dynamic/src/slot_fixture.cj b/tests/dynamic/src/slot_fixture.cj
+new file mode 100644
+index 0000000..396142a
+--- /dev/null
++++ b/tests/dynamic/src/slot_fixture.cj
+@@ -0,0 +1,32 @@
++package dynamic_contract
++
++import cjtui.*
++import std.collection.*
++
++class SlotFixture {
++    let items: Observable<Array<String>>
++    let rows: ArrayList<Component>
++    let root: Component
++    let app: Application
++
++    init() {
++        let data = Observable<Array<String>>(["A", "B", "C"])
++        let built = ArrayList<Component>()
++        items = data
++        rows = built
++        root = Column({ =>
++            ForEach<String>({ => data.get() }, { value => value }, { item =>
++                let row = Text({ => item.value })
++                built.add(row)
++            })
++        })
++        app = Application(root)
++        app.startHeadless()
++    }
++
++    func manualX(): Component {
++        let x = Text("X")
++        app.batch({ => ref(root).insertBefore(ref(rows[1]), x) })
++        x
++    }
++}
+diff --git a/tests/dynamic/src/stateful_row.cj b/tests/dynamic/src/stateful_row.cj
+new file mode 100644
+index 0000000..0f8c4bf
+--- /dev/null
++++ b/tests/dynamic/src/stateful_row.cj
+@@ -0,0 +1,21 @@
++package dynamic_contract
++
++import cjtui.*
++
++class StatefulRow <: Component {
++    let item: ListItem<RowData>
++    let local = Observable<Int64>(0)
++    let log: FixtureLog
++
++    init(item: ListItem<RowData>, log: FixtureLog) {
++        super()
++        this.item = item
++        this.log = log
++        finishConstruction()
++    }
++
++    public override func build(): Unit {
++        log.builds++
++        Text({ => "${item.value.label}:${local.get()}" })
++    }
++}
+diff --git a/tests/dynamic/src/validation_cases.cj b/tests/dynamic/src/validation_cases.cj
+new file mode 100644
+index 0000000..3bd07dc
+--- /dev/null
++++ b/tests/dynamic/src/validation_cases.cj
+@@ -0,0 +1,175 @@
++package dynamic_contract
++
++import cjtui.*
++import std.collection.*
++
++func invalidKeysBeforeBodies(): Unit {
++    for (empty in [false, true]) {
++        let log = FixtureLog()
++        let root = Column({ =>
++            ForEach<String>({ => if (empty) { [""] } else { ["A", "A"] } }, { value => value }, { item =>
++                log.bodies.add(item.key)
++                Text(item.value)
++            })
++        })
++        let app = Application(root)
++        expectUI(if (empty) { "InvalidKey" } else { "DuplicateKey" }, { => app.startHeadless() })
++        check(log.bodies.isEmpty(), "all keys validated before any body")
++        dead(app, [], "invalid initial keys")
++        app.dispose()
++    }
++}
++
++func invalidUpdateHasNoPartialBodies(): Unit {
++    let data = Observable<Array<String>>(["A"])
++    let log = FixtureLog()
++    let rows = ArrayList<Component>()
++    let root = Column({ =>
++        ForEach<String>({ => data.get() }, { value => value }, { item =>
++            log.bodies.add(item.key)
++            rows.add(Text(item.value).onMount({ _ =>
++                log.mounts.add(item.key)
++                { => log.cleanups.add(item.key) }
++            }))
++        })
++    })
++    let app = Application(root)
++    app.startHeadless()
++    let a = ref(rows[0])
++    let rr = ref(root)
++    data.set(["B", "B", "A"])
++    expectUI("DuplicateKey", { => app.snapshot(1, 4) })
++    check(log.bodies.size == 1 && log.mounts.size == 1, "duplicate update cannot partially construct B")
++    check(log.trace() == "A,", "duplicate failure cleans existing mount once")
++    dead(app, [a, rr], "invalid update terminates session")
++    app.dispose()
++    check(log.trace() == "A,", "dispose after failure does not repeat cleanup")
++}
++
++func dynamicRootCounts(): Unit {
++    for (count in [0, 2]) {
++        let root = Column({ =>
++            ForEach<String>({ => ["A"] }, { value => value }, { _ =>
++                for (_ in 0..count) { Text("A") }
++            })
++        })
++        let app = Application(root)
++        expectUI("ConstructionRootCount", { => app.startHeadless() })
++        dead(app, [], "ForEach requires one root per key")
++        app.dispose()
++    }
++    let root = Column({ => If({ => true }, { => Text("A"); Text("B") }) })
++    let app = Application(root)
++    expectUI("ConstructionRootCount", { => app.startHeadless() })
++    dead(app, [], "If rejects multiple roots")
++    app.dispose()
++}
++
++func staleAnchorAfterRemove(): Unit {
++    let f = SlotFixture()
++    let a = ref(f.rows[0])
++    let rr = ref(f.root)
++    let mounts = MutableBox<Int64>(0)
++    let x = Text("X").onMount({ _ => mounts.value++; { => } })
++    expectUI("StaleAnchor", { =>
++        f.app.batch({ =>
++            rr.remove(a)
++            rr.insertBefore(a, x)
++        })
++    })
++    check(mounts.value == 0 && x.reference().isNone(), "stale anchor does not degrade to append")
++    dead(f.app, [rr, a], "stale anchor failure")
++    f.app.dispose()
++}
++
++func crossParentAndForeignAnchor(): Unit {
++    for (moving in [true, false]) {
++        let left = Column({ => Text("L") })
++        let right = Column({ => Text("R") })
++        let root = Column({ => })
++        let app = Application(root)
++        app.startHeadless()
++        app.batch({ => ref(root).append(left); ref(root).append(right) })
++        let lr = ref(left)
++        let rr = ref(right)
++        let l = lr.children()[0]
++        let r = rr.children()[0]
++        let x = Text("X")
++        if (moving) {
++            expectUI("CrossParentMove", { => app.batch({ => rr.moveBefore(l, r) }) })
++        } else {
++            expectUI("StaleAnchor", { => app.batch({ => rr.insertBefore(l, x) }) })
++        }
++        check(x.reference().isNone(), "foreign anchor has no new mount")
++        dead(app, [lr, rr, l, r], "cross parent failure")
++        app.dispose()
++    }
++}
++
++func duplicateInsertionAndCycles(): Unit {
++    for (pending in [true, false]) {
++        let f = SlotFixture()
++        let rr = ref(f.root)
++        let mounts = MutableBox<Int64>(0)
++        let cleanups = MutableBox<Int64>(0)
++        let x = Text("X").onMount({ _ => mounts.value++; { => cleanups.value++ } })
++        if (!pending) { f.app.batch({ => rr.append(x) }) }
++        expectUI("AlreadyMounted", { => f.app.batch({ => rr.append(x); rr.append(x) }) })
++        check(mounts.value <= 1 && mounts.value == cleanups.value, "duplicate reservation never mounts same description twice")
++        dead(f.app, [rr], "duplicate insert cleanup")
++        f.app.dispose()
++    }
++    let child = Column({ => Text("A") })
++    let root = Column({ => })
++    let app = Application(root)
++    app.startHeadless()
++    app.batch({ => ref(root).append(child) })
++    let rr = ref(root)
++    let cr = ref(child)
++    // Validation priority between already mounted and cycle is deliberately unspecified.
++    expectSomeUI({ => app.batch({ => cr.append(root) }) })
++    dead(app, [rr, cr], "ancestor cycle rejected")
++    app.dispose()
++}
++
++func leafParentAndRemovedMove(): Unit {
++    let f = SlotFixture()
++    let a = ref(f.rows[0])
++    expectUI("InvalidParent", { => f.app.batch({ => a.append(Text("X")) }) })
++    dead(f.app, [a], "Text cannot own children")
++    f.app.dispose()
++
++    let g = SlotFixture()
++    let rr = ref(g.root)
++    let old = ref(g.rows[0])
++    expectUI("StaleReference", { => g.app.batch({ => rr.remove(old); rr.moveToEnd(old) }) })
++    dead(g.app, [rr, old], "move after earlier remove")
++    g.app.dispose()
++}
++
++func structureLimits(): Unit {
++    let root = Column({ => })
++    let app = Application(root, limits: RuntimeLimits(structuralOpsPerBatch: 1))
++    app.startHeadless()
++    let rr = ref(root)
++    expectUI("CapacityExceeded", { => app.batch({ => rr.append(Text("A")); rr.append(Text("B")) }) })
++    dead(app, [rr], "structural command budget")
++    app.dispose()
++
++    let data = Observable<Array<String>>(["A"])
++    let log = FixtureLog()
++    let tree = Column({ =>
++        ForEach<String>({ => data.get() }, { value => value }, { item =>
++            Text(item.value).onMount({ _ => log.mounts.add(item.key); { => log.cleanups.add(item.key) } })
++        })
++    })
++    let limited = Application(tree, limits: RuntimeLimits(mountedNodes: 2))
++    limited.startHeadless()
++    let tr = ref(tree)
++    let a = tr.children()[0]
++    data.set(["A", "B"])
++    expectUI("CapacityExceeded", { => limited.snapshot(1, 4) })
++    check(log.mounts.size == 1 && log.trace() == "A,", "node limit does not half mount added key")
++    dead(limited, [tr, a], "dynamic node limit")
++    limited.dispose()
++}

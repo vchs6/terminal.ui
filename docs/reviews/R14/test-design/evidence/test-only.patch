@@ -1,0 +1,960 @@
+From e6b3229a947ed0143d91616a8bd158e0e72474cd Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E6=9D=A8=E5=96=9C=E6=95=8F?= <yangximin@gmail.com>
+Date: Tue, 10 Nov 2026 14:41:24 +0000
+Subject: [PATCH 1/2] test: freeze initial rich text public core goldens
+
+---
+ tests/rich-text/README.md         | 24 ++++++++++++++++
+ tests/rich-text/cjpm.toml         | 16 +++++++++++
+ tests/rich-text/run.sh            |  5 ++++
+ tests/rich-text/src/assertions.cj | 26 +++++++++++++++++
+ tests/rich-text/src/graphemes.cj  | 35 ++++++++++++++++++++++
+ tests/rich-text/src/main.cj       |  8 ++++++
+ tests/rich-text/src/values.cj     | 48 +++++++++++++++++++++++++++++++
+ 7 files changed, 162 insertions(+)
+ create mode 100644 tests/rich-text/README.md
+ create mode 100644 tests/rich-text/cjpm.toml
+ create mode 100755 tests/rich-text/run.sh
+ create mode 100644 tests/rich-text/src/assertions.cj
+ create mode 100644 tests/rich-text/src/graphemes.cj
+ create mode 100644 tests/rich-text/src/main.cj
+ create mode 100644 tests/rich-text/src/values.cj
+
+diff --git a/tests/rich-text/README.md b/tests/rich-text/README.md
+new file mode 100644
+index 0000000..a6e9725
+--- /dev/null
++++ b/tests/rich-text/README.md
+@@ -0,0 +1,24 @@
++# TASK-081 rich text public consumer
++
++Execution task; frozen API/semantics: `openspec/changes/implement-rich-text/design.md`
++at `7a33ddc7fb93da3f30007e49538cb00821a2d81b`. Required skills actually read:
++TDD, verification-before-completion, local Cangjie Coding (`CangjieSkills/SKILL`);
++its `search_docs.py` was used before implementation. Requested role Sol/high;
++actual serving model is not independently exposed or attested.
++
++Source SDK 1.2.0 `envsetup.sh`, configure an ignored private `cangjie-repo.toml`
++as documented in `tests/README.md`, then run `tests/rich-text/run.sh`.
++The script uses ordinary `cjpm build`, then directly executes the resulting binary
++so assertion exits propagate. No terminal, private APIs, product stubs, dependency
++source edits, compiler rescue flags, or decoder-derived expected values are used.
++`tests/run-slice.sh` integration is deliberately left to sequential integration.
++
++Initial core assertions use hand-written patch, normalized span and Cell goldens:
++None versus explicit reset, independent style fields, CRLF across spans, combining,
++ZWJ/flag first-scalar styles, clipping/overwrite, defensive arrays, strict String
++compatibility and whole-value validation. Failure of missing public APIs is RED,
++never a test pass. Additional decoder and runtime tests follow the same contract.
++
++Independent evidence is kept outside this clone in `../evidence`: UTC, source,
++commands, stdout/stderr and real exit codes. Author runs are development evidence;
++independent execution and acceptance remain separate tasks.
+diff --git a/tests/rich-text/cjpm.toml b/tests/rich-text/cjpm.toml
+new file mode 100644
+index 0000000..4399db2
+--- /dev/null
++++ b/tests/rich-text/cjpm.toml
+@@ -0,0 +1,16 @@
++[package]
++  cjc-version = "1.2.0"
++  name = "rich_text_contract"
++  organization = ""
++  description = "nothing here"
++  version = "0.0.0"
++  target-dir = ""
++  script-dir = ""
++  output-type = "executable"
++  compile-option = ""
++  override-compile-option = ""
++  link-option = ""
++  package-configuration = {}
++
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/tests/rich-text/run.sh b/tests/rich-text/run.sh
+new file mode 100755
+index 0000000..47a4cd1
+--- /dev/null
++++ b/tests/rich-text/run.sh
+@@ -0,0 +1,5 @@
++#!/usr/bin/env bash
++set -euo pipefail
++cd "$(dirname "$0")/../.."
++(cd tests/rich-text && cjpm build)
++TERM=dumb COLORTERM= timeout 60s tests/rich-text/target/release/bin/main </dev/null
+diff --git a/tests/rich-text/src/assertions.cj b/tests/rich-text/src/assertions.cj
+new file mode 100644
+index 0000000..ea8d90b
+--- /dev/null
++++ b/tests/rich-text/src/assertions.cj
+@@ -0,0 +1,26 @@
++package rich_text_contract
++
++import cjtui.*
++
++func check(value: Bool, name: String): Unit {
++    if (!value) { throw Exception("FAIL: ${name}") }
++}
++
++func illegal(action: () -> Unit, name: String): Unit {
++    let caught = [false]
++    try { action() } catch (_: IllegalArgumentException) { caught[0] = true }
++    check(caught[0], name)
++}
++
++func ansiError(expected: String, action: () -> Unit, name: String): Unit {
++    let actual = ["no exception"]
++    try { action() } catch (error: AnsiTextException) { actual[0] = error.code }
++    check(actual[0] == expected, "${name}: ${actual[0]}, expected ${expected}")
++}
++
++func cell(frame: Frame, x: Int64, y: Int64, glyph: String, width: Int64,
++    continuation: Bool, style: Style, name: String): Unit {
++    let actual = frame.cellAt(x, y)
++    check(actual.grapheme == glyph && actual.width == width && actual.continuation == continuation &&
++        actual.style == style && !actual.isTransparent, name)
++}
+diff --git a/tests/rich-text/src/graphemes.cj b/tests/rich-text/src/graphemes.cj
+new file mode 100644
+index 0000000..3677868
+--- /dev/null
++++ b/tests/rich-text/src/graphemes.cj
+@@ -0,0 +1,35 @@
++package rich_text_contract
++
++import cjtui.*
++
++// Literal cells, including continuation metadata: no product width/segmentation oracle.
++func graphemeContract(): Unit {
++    let red = TextStylePatch(foreground: Some(Color.Red), bold: Some(true))
++    let blue = TextStylePatch(foreground: Some(Color.Blue), italic: Some(true))
++    let value = RichText([TextSpan("e", style: red), TextSpan("\u{301}👩", style: blue),
++        TextSpan("\u{200d}💻🇨", style: red), TextSpan("🇳\r", style: blue), TextSpan("\n界")])
++    let frame = Frame(8, 2)
++    let base = Style(background: Color.Green, dim: true)
++    frame.put(0, 0, value, style: base)
++    let r = Style(foreground: Color.Red, background: Color.Green, bold: true, dim: true)
++    let b = Style(foreground: Color.Blue, background: Color.Green, dim: true, italic: true)
++    cell(frame, 0, 0, "e\u{301}", 1, false, r, "combining cluster takes first scalar patch")
++    cell(frame, 1, 0, "👩\u{200d}💻", 2, false, b, "ZWJ cluster spans patch boundary")
++    cell(frame, 2, 0, "", 0, true, b, "ZWJ continuation style")
++    cell(frame, 3, 0, "🇨🇳", 2, false, r, "flag uses first regional indicator patch")
++    cell(frame, 4, 0, "", 0, true, r, "flag continuation style")
++    cell(frame, 0, 1, "界", 2, false, base, "CRLF across spans is one line break")
++    cell(frame, 1, 1, "", 0, true, base, "CJK continuation")
++    check(frame.toPlainText() == "e\u{301}👩\u{200d}💻🇨🇳   \n界      ", "whole-document literal picture")
++    let clip = Frame(3, 1)
++    clip.put(0, 0, RichText([TextSpan("A"), TextSpan("界", style: red)]))
++    clip.put(2, 0, RichText("Z"))
++    check(clip.toPlainText() == "A Z", "overwrite continuation clears entire old wide cluster")
++    cell(clip, 1, 0, " ", 1, false, Style(), "wide lead cleared")
++    let edge = Frame(2, 1)
++    edge.put(1, 0, RichText([TextSpan("界", style: red)]))
++    check(edge.toPlainText() == "  ", "right edge never writes half wide cluster")
++    edge.put(-1, 0, RichText("界A"))
++    check(edge.toPlainText() == " A", "left edge clips entire wide cluster")
++    println("PASS: cross-span graphemes and literal Frame cells")
++}
+diff --git a/tests/rich-text/src/main.cj b/tests/rich-text/src/main.cj
+new file mode 100644
+index 0000000..b3746c4
+--- /dev/null
++++ b/tests/rich-text/src/main.cj
+@@ -0,0 +1,8 @@
++package rich_text_contract
++
++main(): Int64 {
++    valueContract()
++    graphemeContract()
++    println("PASS: rich text public core contract")
++    return 0
++}
+diff --git a/tests/rich-text/src/values.cj b/tests/rich-text/src/values.cj
+new file mode 100644
+index 0000000..96d594c
+--- /dev/null
++++ b/tests/rich-text/src/values.cj
+@@ -0,0 +1,48 @@
++package rich_text_contract
++
++import cjtui.*
++
++// Catches None treated as reset, whole-style resolution, per-span validation,
++// retained mutable arrays, and equality that drops style.
++func valueContract(): Unit {
++    let base = Style(foreground: Color.Red, background: Color.Blue, bold: true, dim: true,
++        italic: true, underline: true, inverse: true, strikethrough: true)
++    check(TextStylePatch().resolve(base) == base, "unset inherits all base fields")
++    let reset = TextStylePatch(foreground: Some(Color.Default), background: Some(Color.Default),
++        bold: Some(false), dim: Some(false), italic: Some(false), underline: Some(false),
++        inverse: Some(false), strikethrough: Some(false))
++    check(reset.resolve(base) == Style(), "explicit Default and false replace every field")
++    check(TextStylePatch(foreground: Some(Color.Green), bold: Some(false)).resolve(base) ==
++        Style(foreground: Color.Green, background: Color.Blue, dim: true, italic: true,
++            underline: true, inverse: true, strikethrough: true), "patch resolves fields independently")
++    check(TextStylePatch() != reset, "unset differs from explicit reset")
++    let red = TextStylePatch(foreground: Some(Color.Red))
++    let source = [TextSpan(""), TextSpan("A", style: red), TextSpan("", style: reset),
++        TextSpan("B", style: red), TextSpan("C")]
++    let value = RichText(source)
++    check(value.spans.size == 2 && value.spans[0] == TextSpan("AB", style: red) &&
++        value.spans[1] == TextSpan("C"), "empty spans removed and adjacent equal patches merged")
++    source[1] = TextSpan("evil")
++    let view = value.spans
++    view[0] = TextSpan("evil")
++    check(value.toPlainText() == "ABC" && value.spans[0] == TextSpan("AB", style: red),
++        "RichText input and getter arrays are snapshots")
++    check(value == RichText([TextSpan("AB", style: red), TextSpan("C")]), "normalized equality")
++    check(value != RichText("ABC"), "equality retains patch semantics")
++    check(RichText("") == RichText(Array<TextSpan>()) && RichText("AB") ==
++        RichText([TextSpan("A"), TextSpan("B")]), "String constructor shares normalization")
++    let crlf = RichText([TextSpan("A\r", style: red), TextSpan("\nB")])
++    check(crlf.toPlainText() == "A\r\nB", "validate concatenated CRLF across spans")
++    illegal({ => RichText([TextSpan("A\r"), TextSpan("B")]); () }, "lone CR rejected after concatenate")
++    for (bad in ["\u{1b}[31m", "\t", "\u{7}", "\u{7f}", "\u{9b}", "\r"]) {
++        illegal({ => RichText(bad); () }, "RichText remains strict plain text")
++        illegal({ => validatePlainText(bad) }, "public shared strict validator")
++        illegal({ => Text(bad); () }, "String Text does not accept ANSI")
++        let frame = Frame(3, 1)
++        frame.put(0, 0, "OLD")
++        illegal({ => frame.put(0, 0, "A" + bad) }, "String Frame does not accept controls")
++        check(frame.toPlainText() == "OLD", "String validation is atomic before Frame write")
++    }
++    validatePlainText("e\u{301}\r\n界")
++    println("PASS: rich text values and strict compatibility")
++}
+-- 
+2.52.0
+
+
+From 6d3ae1353f32f7b191bae65257081ea6fca47703 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E6=9D=A8=E5=96=9C=E6=95=8F?= <yangximin@gmail.com>
+Date: Tue, 10 Nov 2026 14:54:55 +0000
+Subject: [PATCH 2/2] test: freeze rich text decoder safety and integration
+ matrix
+
+---
+ tests/rich-text/README.md                 | 28 +++++++
+ tests/rich-text/src/aliases.cj            | 44 +++++++++++
+ tests/rich-text/src/assertions.cj         |  6 ++
+ tests/rich-text/src/bindings.cj           | 67 +++++++++++++++++
+ tests/rich-text/src/component.cj          | 45 +++++++++++
+ tests/rich-text/src/control_strings.cj    | 55 ++++++++++++++
+ tests/rich-text/src/decoded_stream.cj     | 24 ++++++
+ tests/rich-text/src/decoder_assertions.cj | 54 ++++++++++++++
+ tests/rich-text/src/invalid_utf8.cj       | 37 +++++++++
+ tests/rich-text/src/limits.cj             | 91 +++++++++++++++++++++++
+ tests/rich-text/src/main.cj               | 11 ++-
+ tests/rich-text/src/sgr.cj                | 67 +++++++++++++++++
+ tests/rich-text/src/unsupported.cj        | 33 ++++++++
+ tests/rich-text/src/utf8.cj               | 39 ++++++++++
+ 14 files changed, 600 insertions(+), 1 deletion(-)
+ create mode 100644 tests/rich-text/src/aliases.cj
+ create mode 100644 tests/rich-text/src/bindings.cj
+ create mode 100644 tests/rich-text/src/component.cj
+ create mode 100644 tests/rich-text/src/control_strings.cj
+ create mode 100644 tests/rich-text/src/decoded_stream.cj
+ create mode 100644 tests/rich-text/src/decoder_assertions.cj
+ create mode 100644 tests/rich-text/src/invalid_utf8.cj
+ create mode 100644 tests/rich-text/src/limits.cj
+ create mode 100644 tests/rich-text/src/sgr.cj
+ create mode 100644 tests/rich-text/src/unsupported.cj
+ create mode 100644 tests/rich-text/src/utf8.cj
+
+diff --git a/tests/rich-text/README.md b/tests/rich-text/README.md
+index a6e9725..6575f7e 100644
+--- a/tests/rich-text/README.md
++++ b/tests/rich-text/README.md
+@@ -22,3 +22,31 @@ never a test pass. Additional decoder and runtime tests follow the same contract
+ Independent evidence is kept outside this clone in `../evidence`: UTC, source,
+ commands, stdout/stderr and real exit codes. Author runs are development evidence;
+ independent execution and acceptance remain separate tasks.
++
++The complete matrix additionally covers:
++
++| Files | Independent expectations |
++| --- | --- |
++| `sgr.cj` | All 16 foreground/background colors, indexed/RGB endpoints, all six enables, selective disables, top-level empty resets, unset/reset distinction, atomic unsupported/malformed sequences and leftmost semantic fault |
++| `utf8.cj`, `invalid_utf8.cj` | Every two-block byte boundary plus fully bytewise feeds, raw and UTF-8 C1, non-control UTF-8 continuations resembling CSI/ST, absolute byte offsets, CRLF, isolated controls, overlong/surrogate/out-of-range/truncated UTF-8 and permanent closure |
++| `limits.cj` | Defaults and valid/invalid bounds, 63/64/65 fields for SGR and non-SGR CSI, operand/empty-field counts, fourth-digit immediate failure for any final, 4095/4096/4097 original-byte boundaries, terminator-byte accounting, same-byte resource precedence, first-error preservation and incomplete residuals |
++| `control_strings.cj`, `unsupported.cj` | OSC/DCS/SOS/PM/APC in ESC/raw-C1/UTF8-C1 forms; BEL/ST rules; bounded and overlong isolation across embedded CSI, ESC, CAN/SUB and UTF-8 continuation; unknown operations never execute; malformed framing, cancellation and finish |
++| `aliases.cj` | Defensive batch/result arrays, no retained mutable pending CSI/UTF8 chunks, subsequent feeds cannot mutate an old batch |
++| `component.cj`, `bindings.cj` | Exact Cell styles; high-level explicit attributes override span fields while Frame base yields to span; shared grapheme/layout path; typed getter/constant constructor and setter overloads; String/RichText replacements detach subscriptions; equal normalized values avoid frames; style-only changes paint without measure |
++
++For successful streams the accumulator compares concatenated normalized spans and
++ordered diagnostic `(kind, offset)` pairs against author literals. It never compares
++one decoder run to another as an expected-value oracle. Each small stream exercises
++every cut, empty chunks and bytewise feeds. Long boundary streams use bytewise feeds
++and selected cuts around the limit. Invalid UTF-8 tests assert the same error code
++and closed state only: successful prefix batches can differ by split, as specified.
++
++`InputTooLarge` requires an unrepresentable cumulative Int64 input size and cannot
++be exercised economically through this public consumer. No test hook or fabricated
++offset is added. Bounded-memory complexity also requires independent source review;
++functional isolation tests are not claimed as a direct memory-bound proof.
++
++A separate ignored, non-repository declaration-only scratch package was compiled
++solely to detect consumer language errors before new APIs exist. Its callable bodies
++throw, it is never run, and its build is not evidence that the product works. The
++formal consumer remains dependent on the real `cjtui` package, with no scratch path.
+diff --git a/tests/rich-text/src/aliases.cj b/tests/rich-text/src/aliases.cj
+new file mode 100644
+index 0000000..c6a616e
+--- /dev/null
++++ b/tests/rich-text/src/aliases.cj
+@@ -0,0 +1,44 @@
++package rich_text_contract
++
++import cjtui.*
++
++func aliasContract(): Unit {
++    let decoder = AnsiTextDecoder()
++    let batch = decoder.feed("A\u{7}B\tC".toArray())
++    let spans = batch.spans
++    check(!spans.isEmpty(), "batch owns safe output")
++    let original = RichText(spans)
++    spans[0] = TextSpan("evil")
++    check(RichText(batch.spans) == original, "batch spans getter returns copy")
++    let issues = batch.diagnostics
++    check(issues.size == 2 && issues[0].offset == 1 && issues[1].offset == 3, "two distinct issue objects")
++    issues[0] = issues[1]
++    check(batch.diagnostics[0].offset == 1, "batch diagnostics getter returns copy")
++    decoder.feed("D".toArray())
++    decoder.finish()
++    check(RichText(batch.spans) == original && batch.diagnostics[0].offset == 1, "later feed retains no batch aliases")
++    let result = parseAnsiText("A\u{7}B\tC")
++    let diagnostics = result.diagnostics
++    diagnostics[0] = diagnostics[1]
++    check(result.diagnostics[0].offset == 1 && result.text.toPlainText() == "ABC", "result diagnostics defensive copy")
++    let pending = AnsiTextDecoder()
++    let bytes = "\u{1b}[3".toArray()
++    pending.feed(bytes)
++    bytes[0] = UInt8(0x58)
++    bytes[2] = UInt8(0x39)
++    let actual = DecodedStream()
++    actual.append(pending.feed("1mX".toArray()))
++    actual.append(pending.finish())
++    actual.verify(RichText([TextSpan("X", style: TextStylePatch(foreground: Some(Color.Red)))]), [],
++        "pending CSI does not retain mutable caller chunk")
++    let unicode = AnsiTextDecoder()
++    let prefix: Array<UInt8> = [UInt8(0xe7), UInt8(0x95)]
++    unicode.feed(prefix)
++    prefix[0] = UInt8(0x41)
++    prefix[1] = UInt8(0x42)
++    let text = DecodedStream()
++    text.append(unicode.feed([UInt8(0x8c)]))
++    text.append(unicode.finish())
++    text.verify(RichText("界"), [], "pending UTF8 does not retain caller array")
++    println("PASS: decoder batch/result/chunk array ownership")
++}
+diff --git a/tests/rich-text/src/assertions.cj b/tests/rich-text/src/assertions.cj
+index ea8d90b..d44c35e 100644
+--- a/tests/rich-text/src/assertions.cj
++++ b/tests/rich-text/src/assertions.cj
+@@ -24,3 +24,9 @@ func cell(frame: Frame, x: Int64, y: Int64, glyph: String, width: Int64,
+     check(actual.grapheme == glyph && actual.width == width && actual.continuation == continuation &&
+         actual.style == style && !actual.isTransparent, name)
+ }
++
++func uiError(expected: String, action: () -> Unit, name: String): Unit {
++    let actual = ["no exception"]
++    try { action() } catch (error: UIException) { actual[0] = error.code }
++    check(actual[0] == expected, "${name}: ${actual[0]}, expected ${expected}")
++}
+diff --git a/tests/rich-text/src/bindings.cj b/tests/rich-text/src/bindings.cj
+new file mode 100644
+index 0000000..93d5dcd
+--- /dev/null
++++ b/tests/rich-text/src/bindings.cj
+@@ -0,0 +1,67 @@
++package rich_text_contract
++
++import cjtui.*
++
++func bindingContract(): Unit {
++    let old = Observable<String>("old")
++    let next = Observable<RichText>(RichText([TextSpan("new", style: TextStylePatch(foreground: Some(Color.Red)))]))
++    let last = Observable<String>("last")
++    let calls = [Int64(0)]
++    let target = Text({ => old.get() })
++    let app = Application(target)
++    app.startHeadless()
++    check(app.snapshot(5, 1).toPlainText() == "old  " && app.stats().subscriptions == 1, "String getter mounted")
++    let worker = spawn {
++        uiError("WrongUIContext", { => target.text(RichText("bad")); () }, "mounted RichText setter is UI-owned")
++        uiError("WrongUIContext", { => target.text({ => RichText("bad") }); () }, "mounted RichText getter setter is UI-owned")
++    }
++    worker.get(Duration.second * 5)
++    target.text({ => calls[0]++; next.get() })
++    let first = app.snapshot(5, 1)
++    check(first.toPlainText() == "new  " && first.cellAt(0, 0).style.foreground == Color.Red &&
++        app.stats().subscriptions == 1, "RichText getter replaces String subscription")
++    let count = calls[0]
++    old.set("stale")
++    app.snapshot(5, 1)
++    check(calls[0] == count, "String dependency detached after typed replacement")
++    let stable = app.stats()
++    next.set(RichText([TextSpan("n", style: TextStylePatch(foreground: Some(Color.Red))),
++        TextSpan("ew", style: TextStylePatch(foreground: Some(Color.Red)))]))
++    app.snapshot(5, 1)
++    check(app.stats().frames == stable.frames && app.stats().measures == stable.measures &&
++        app.stats().paints == stable.paints, "equal normalized RichText target generates no frame/layout/paint")
++    let beforeStyle = app.stats()
++    next.set(RichText([TextSpan("new", style: TextStylePatch(foreground: Some(Color.Blue)))]))
++    let blue = app.snapshot(5, 1)
++    check(blue.cellAt(0, 0).style.foreground == Color.Blue && app.stats().paints > beforeStyle.paints &&
++        app.stats().frames > beforeStyle.frames && app.stats().measures == beforeStyle.measures,
++        "style-only span mutation paints without layout")
++    let beforeText = app.stats()
++    next.set(RichText("Z\nQ"))
++    check(app.snapshot(5, 1).toPlainText() == "Z    " && app.stats().measures > beforeText.measures,
++        "content and line changes trigger layout at unchanged viewport and clear old cells")
++    check(app.snapshot(5, 2).toPlainText() == "Z    \nQ    ", "typed multiline survives resize")
++    target.text({ => last.get() })
++    check(app.snapshot(5, 1).toPlainText() == "last " && app.stats().subscriptions == 1,
++        "String getter replaces RichText and releases old dependency")
++    let beforeOld = app.stats().frames
++    next.set(RichText("stale"))
++    app.snapshot(5, 1)
++    check(app.stats().frames == beforeOld, "old RichText dependency cannot update String getter")
++    target.text(RichText("fixed"))
++    check(app.snapshot(5, 1).toPlainText() == "fixed" && app.stats().subscriptions == 0,
++        "RichText constant removes String getter")
++    target.text({ => next.get() })
++    check(app.snapshot(5, 1).toPlainText() == "stale" && app.stats().subscriptions == 1,
++        "RichText getter replaces constant")
++    target.text("plain")
++    check(app.snapshot(5, 1).toPlainText() == "plain" && app.stats().subscriptions == 0,
++        "String constant removes RichText getter")
++    app.dispose()
++    check(app.stats().subscriptions == 0 && app.stats().activeBindings == 0, "dispose releases typed text state")
++    let initial = Application(Text({ => next.get() }))
++    initial.startHeadless()
++    check(initial.snapshot(5, 1).toPlainText() == "stale", "RichText getter constructor public overload")
++    initial.dispose()
++    println("PASS: String/RichText binding replacement and invalidation")
++}
+diff --git a/tests/rich-text/src/component.cj b/tests/rich-text/src/component.cj
+new file mode 100644
+index 0000000..13109c2
+--- /dev/null
++++ b/tests/rich-text/src/component.cj
+@@ -0,0 +1,45 @@
++package rich_text_contract
++
++import cjtui.*
++
++func componentContract(): Unit {
++    let rich = RichText([TextSpan("e", style: TextStylePatch(foreground: Some(Color.Red), bold: Some(true))),
++        TextSpan("\u{301}", style: TextStylePatch(foreground: Some(Color.Blue))), TextSpan("界")])
++    let high = render(Column { Text(rich).foreground(Color.Green).bold(false) }
++        .background(Color.Blue).dim(true), 4, 1)
++    let expected = Style(foreground: Color.Green, background: Color.Blue, bold: false, dim: true)
++    cell(high, 0, 0, "e\u{301}", 1, false, expected, "component explicit fields outrank span patch")
++    cell(high, 1, 0, "界", 2, false, expected, "inherited fields still fill unset span")
++    cell(high, 2, 0, "", 0, true, expected, "component wide continuation style")
++    let low = Frame(4, 1)
++    low.put(0, 0, rich, style: Style(foreground: Color.Green, background: Color.Blue, dim: true))
++    cell(low, 0, 0, "e\u{301}", 1, false, Style(foreground: Color.Red, background: Color.Blue, bold: true, dim: true),
++        "Frame base has lower precedence than span")
++    let same = render(Text(rich).background(Color.Blue).dim(true), 4, 1)
++    let sameLow = Frame(4, 1)
++    sameLow.put(0, 0, rich, style: Style(background: Color.Blue, dim: true))
++    for (x in 0..3) {
++        let a = same.cellAt(x, 0)
++        let b = sameLow.cellAt(x, 0)
++        check(a.grapheme == b.grapheme && a.width == b.width && a.continuation == b.continuation && a.style == b.style,
++            "same base high and low paths agree for cell ${x}")
++    }
++    // Explicit false must suppress only the chosen attribute, retaining the other span fields.
++    let selective = render(Text(RichText([TextSpan("X", style: TextStylePatch(foreground: Some(Color.Red),
++        background: Some(Color.Yellow), bold: Some(true), italic: Some(true), underline: Some(true),
++        inverse: Some(true), strikethrough: Some(true)))] )).foreground(Color.Cyan).bold(false), 1, 1)
++    cell(selective, 0, 0, "X", 1, false, Style(foreground: Color.Cyan, background: Color.Yellow,
++        italic: true, underline: true, inverse: true, strikethrough: true), "explicit override preserves other span attributes")
++    check(render(Text(RichText([TextSpan("A\r"), TextSpan("\nB")])), 2, 2).toPlainText() == "A \nB ",
++        "component whole-document CRLF measurement and paint")
++    check(render(Row { Text(RichText("界")); Text("X") }, 3, 1).toPlainText() == "界X",
++        "typed measurement shares ordinary layout")
++    let wrapped = render(Text(RichText([TextSpan("A界", style: TextStylePatch(foreground: Some(Color.Red))),
++        TextSpan("B")])).width(2), 2, 2)
++    // Existing Text clips by rows rather than enabling a new rich-text-only wrapping policy.
++    check(wrapped.toPlainText() == "A \n  ", "typed text keeps String overflow policy")
++    let nonText = Column { Text("x") }
++    uiError("InvalidProperty", { => nonText.text(RichText("bad")); () }, "RichText setter rejects non-Text")
++    uiError("InvalidProperty", { => nonText.text({ => RichText("bad") }); () }, "RichText getter rejects non-Text")
++    println("PASS: component/Frame precedence and shared measurement")
++}
+diff --git a/tests/rich-text/src/control_strings.cj b/tests/rich-text/src/control_strings.cj
+new file mode 100644
+index 0000000..ff7ecdf
+--- /dev/null
++++ b/tests/rich-text/src/control_strings.cj
+@@ -0,0 +1,55 @@
++package rich_text_contract
++
++import cjtui.*
++
++func controlStringContract(): Unit {
++    let green = RichText([TextSpan("AB", style: TextStylePatch(foreground: Some(Color.Green)))])
++    // All control strings: OSC has BEL or ST; DCS/SOS/PM/APC have only ST.
++    let introductions = ["\u{1b}]", "\u{1b}P", "\u{1b}X", "\u{1b}^", "\u{1b}_",
++        "\u{9d}", "\u{90}", "\u{98}", "\u{9e}", "\u{9f}"]
++    for (i in 0..introductions.size) {
++        let intro = introductions[i]
++        let osc = i == 0 || i == 5
++        let terminators = if (osc) { ["\u{7}", "\u{1b}\\", "\u{9c}"] } else { ["\u{1b}\\", "\u{9c}"] }
++        for (terminator in terminators) {
++            let payload = if (osc) { "secretҜ\u{1b}[31m\u{18}\u{1a}\u{1b}Ztail" }
++                else { "secretҜ\u{7}\u{1b}[31m\u{18}\u{1a}\u{1b}Ztail" }
++            ansiCase("\u{1b}[32mA" + intro + payload + terminator + "B", green,
++                [(AnsiTextIssue.UnsupportedSequence, 6)], "bounded nested control string ${i}")
++            ansiCase("\u{1b}[32mA" + intro + payload + terminator + "B", green,
++                [(AnsiTextIssue.SequenceTooLong, 6)], "overlong string retains isolation ${i}",
++                limits: AnsiTextLimits(maxSequenceBytes: 8))
++        }
++        ansiCase("A" + intro + "payload\u{18}\u{1a}\u{1b}[31m", RichText("A"),
++            [(AnsiTextIssue.IncompleteSequence, 1)], "finish discards unfinished control payload ${i}")
++        ansiCase("A" + intro + "payload\u{18}\u{1a}\u{1b}[31m", RichText("A"),
++            [(AnsiTextIssue.SequenceTooLong, 1), (AnsiTextIssue.IncompleteSequence, 1)],
++            "overlong unfinished string reports only first resource plus incomplete ${i}",
++            limits: AnsiTextLimits(maxSequenceBytes: 4))
++    }
++    // Raw C1 forms exercise scalar-boundary framing independently of String input.
++    for (intro in [UInt8(0x90), UInt8(0x98), UInt8(0x9d), UInt8(0x9e), UInt8(0x9f)]) {
++        everySplit([UInt8(0x41), intro, UInt8(0x78), UInt8(0x1b), UInt8(0x5b), UInt8(0x33), UInt8(0x31), UInt8(0x6d), UInt8(0x18), UInt8(0x1a), UInt8(0x9c), UInt8(0x42)],
++            RichText("AB"), [(AnsiTextIssue.UnsupportedSequence, 1)], "raw C1 string ${intro}")
++    }
++    ansiCase("A\u{1b}Ppayload\u{7}LEAK\u{1b}\\B", RichText("AB"),
++        [(AnsiTextIssue.UnsupportedSequence, 1)], "DCS BEL cannot end isolation")
++    ansiCase("A\u{1b}]payload\u{1b}\u{1b}\\B", RichText("AB"),
++        [(AnsiTextIssue.UnsupportedSequence, 1)], "nested ESC still recognizes following ST")
++    let long = AnsiTextDecoder()
++    let actual = DecodedStream()
++    actual.append(long.feed(("A\u{1b}P" + repeated("x", 4094)).toArray()))
++    let firstOver = long.feed(repeated("x", 1024).toArray())
++    check(firstOver.diagnostics.size == 1 && firstOver.diagnostics[0].kind == AnsiTextIssue.SequenceTooLong &&
++        firstOver.diagnostics[0].offset == 1, "large DCS reports once after exact budget")
++    actual.append(firstOver)
++    for (_ in 0..128) {
++        let drained = long.feed((repeated("x", 1024) + "\u{1b}[31m\u{18}\u{1a}\u{7}").toArray())
++        check(drained.spans.isEmpty() && drained.diagnostics.isEmpty(), "long failed DCS stays isolated across later feeds")
++        actual.append(drained)
++    }
++    actual.append(long.feed("\u{1b}\\Z".toArray()))
++    actual.append(long.finish())
++    actual.verify(RichText("AZ"), [(AnsiTextIssue.SequenceTooLong, 1)], "long control string drain does not leak")
++    println("PASS: OSC/DCS/SOS/PM/APC bounded drain and legal terminators")
++}
+diff --git a/tests/rich-text/src/decoded_stream.cj b/tests/rich-text/src/decoded_stream.cj
+new file mode 100644
+index 0000000..433b0f1
+--- /dev/null
++++ b/tests/rich-text/src/decoded_stream.cj
+@@ -0,0 +1,24 @@
++package rich_text_contract
++
++import cjtui.*
++import std.collection.ArrayList
++
++// Test accumulator only: no parsing, style resolution, width or escape logic.
++class DecodedStream {
++    let spans = ArrayList<TextSpan>()
++    let issues = ArrayList<AnsiTextDiagnostic>()
++
++    func append(batch: AnsiTextBatch): Unit {
++        for (span in batch.spans) { spans.add(span) }
++        for (issue in batch.diagnostics) { issues.add(issue) }
++    }
++
++    func verify(expected: RichText, expectedIssues: Array<(AnsiTextIssue, Int64)>, name: String): Unit {
++        check(RichText(spans.toArray()) == expected, "${name}: normalized literal spans")
++        check(issues.size == expectedIssues.size, "${name}: issue count ${issues.size}/${expectedIssues.size}")
++        for (i in 0..expectedIssues.size) {
++            check(issues[i].kind == expectedIssues[i][0] && issues[i].offset == expectedIssues[i][1],
++                "${name}: diagnostic ${i} kind and absolute byte offset")
++        }
++    }
++}
+diff --git a/tests/rich-text/src/decoder_assertions.cj b/tests/rich-text/src/decoder_assertions.cj
+new file mode 100644
+index 0000000..764cbba
+--- /dev/null
++++ b/tests/rich-text/src/decoder_assertions.cj
+@@ -0,0 +1,54 @@
++package rich_text_contract
++
++import cjtui.*
++
++func repeated(value: String, count: Int64): String {
++    var result = ""
++    for (_ in 0..count) { result += value }
++    result
++}
++
++func resetPatch(): TextStylePatch {
++    TextStylePatch(foreground: Some(Color.Default), background: Some(Color.Default),
++        bold: Some(false), dim: Some(false), italic: Some(false), underline: Some(false),
++        inverse: Some(false), strikethrough: Some(false))
++}
++
++func decodeCuts(bytes: Array<UInt8>, cuts: Array<Int64>, expected: RichText,
++    issues: Array<(AnsiTextIssue, Int64)>, name: String, limits!: AnsiTextLimits = AnsiTextLimits()): Unit {
++    let decoder = AnsiTextDecoder(limits: limits)
++    let actual = DecodedStream()
++    var start = 0
++    for (end in cuts) {
++        actual.append(decoder.feed(bytes.slice(start, end - start)))
++        start = end
++    }
++    actual.append(decoder.feed(bytes.slice(start, bytes.size - start)))
++    actual.append(decoder.finish())
++    actual.verify(expected, issues, name)
++    ansiError("DecoderClosed", { => decoder.feed(Array<UInt8>()); () }, "${name}: feed after finish")
++    ansiError("DecoderClosed", { => decoder.finish(); () }, "${name}: finish after finish")
++}
++
++// Each expected result is supplied by the test author, never by another decoder call.
++// Enumerate every two-chunk boundary, plus an entirely bytewise stream and empty chunks.
++func everySplit(bytes: Array<UInt8>, expected: RichText, issues: Array<(AnsiTextIssue, Int64)>, name: String,
++    limits!: AnsiTextLimits = AnsiTextLimits()): Unit {
++    for (cut in 0..(bytes.size + 1)) {
++        decodeCuts(bytes, [cut], expected, issues, "${name} split ${cut}", limits: limits)
++    }
++    let byteCuts = Array<Int64>(bytes.size + 1, {i => i})
++    decodeCuts(bytes, byteCuts, expected, issues, "${name} bytewise", limits: limits)
++    decodeCuts(bytes, [0, 0, bytes.size, bytes.size], expected, issues, "${name} empty chunks", limits: limits)
++}
++
++func ansiCase(source: String, expected: RichText, issues: Array<(AnsiTextIssue, Int64)>, name: String,
++    limits!: AnsiTextLimits = AnsiTextLimits()): Unit {
++    everySplit(source.toArray(), expected, issues, name, limits: limits)
++    let result = parseAnsiText(source, limits: limits)
++    check(result.text == expected && result.diagnostics.size == issues.size, "${name}: one-shot literal golden")
++    for (i in 0..issues.size) {
++        check(result.diagnostics[i].kind == issues[i][0] && result.diagnostics[i].offset == issues[i][1],
++            "${name}: one-shot issue ${i}")
++    }
++}
+diff --git a/tests/rich-text/src/invalid_utf8.cj b/tests/rich-text/src/invalid_utf8.cj
+new file mode 100644
+index 0000000..4956377
+--- /dev/null
++++ b/tests/rich-text/src/invalid_utf8.cj
+@@ -0,0 +1,37 @@
++package rich_text_contract
++
++import cjtui.*
++
++// Exception streams deliberately assert only code and fail-close. Prefix batches
++// already delivered before the failure may differ with chunk boundaries by contract.
++func invalidSplits(bytes: Array<UInt8>, name: String): Unit {
++    for (cut in 0..(bytes.size + 1)) {
++        let decoder = AnsiTextDecoder()
++        let actual = ["no exception"]
++        try {
++            decoder.feed(bytes.slice(0, cut))
++            decoder.feed(bytes.slice(cut, bytes.size - cut))
++            decoder.finish()
++        } catch (error: AnsiTextException) { actual[0] = error.code }
++        check(actual[0] == "InvalidUtf8", "${name}: same error code at split ${cut}")
++        ansiError("DecoderClosed", { => decoder.feed("safe".toArray()); () }, "invalid UTF8 permanently closes feed")
++        ansiError("DecoderClosed", { => decoder.finish(); () }, "invalid UTF8 permanently closes finish")
++    }
++}
++
++func invalidUtf8Contract(): Unit {
++    let invalid: Array<Array<UInt8>> = [[UInt8(0xff)], [UInt8(0xc0), UInt8(0xaf)], [UInt8(0xc1), UInt8(0xbf)], [UInt8(0xe0), UInt8(0x80), UInt8(0x80)],
++        [UInt8(0xed), UInt8(0xa0), UInt8(0x80)], [UInt8(0xf0), UInt8(0x80), UInt8(0x80), UInt8(0x80)], [UInt8(0xf4), UInt8(0x90), UInt8(0x80), UInt8(0x80)],
++        [UInt8(0xf5), UInt8(0x80), UInt8(0x80), UInt8(0x80)], [UInt8(0xe2), UInt8(0x28), UInt8(0xa1)], [UInt8(0xd2), UInt8(0x41)], [UInt8(0xa0)], [UInt8(0xbf)]]
++    for (bytes in invalid) {
++        invalidSplits(bytes, "invalid scalar")
++        invalidSplits([UInt8(0x41)].concat(bytes), "valid prefix then invalid scalar")
++        invalidSplits([UInt8(0x1b), UInt8(0x5d), UInt8(0x78)].concat(bytes).concat([UInt8(0x07)]), "invalid UTF8 in OSC")
++        invalidSplits([UInt8(0x1b), UInt8(0x50), UInt8(0x78)].concat(bytes).concat([UInt8(0x1b), UInt8(0x5c)]), "invalid UTF8 in DCS")
++    }
++    for (pending in [[UInt8(0xc2)], [UInt8(0xe2), UInt8(0x82)], [UInt8(0xf0), UInt8(0x9f), UInt8(0x92)]]) {
++        invalidSplits(pending, "finish rejects truncated UTF8")
++        invalidSplits([UInt8(0x1b), UInt8(0x5d)].concat(pending), "finish rejects truncated UTF8 in control string")
++    }
++    println("PASS: InvalidUtf8 error codes and permanent closure for every split")
++}
+diff --git a/tests/rich-text/src/limits.cj b/tests/rich-text/src/limits.cj
+new file mode 100644
+index 0000000..61ec746
+--- /dev/null
++++ b/tests/rich-text/src/limits.cj
+@@ -0,0 +1,91 @@
++package rich_text_contract
++
++import cjtui.*
++
++func limitContract(): Unit {
++    check(AnsiTextLimits().maxSequenceBytes == 4096 && AnsiTextLimits().maxParameters == 64,
++        "published default limits use maxParameters for all CSI")
++    for (value in [Int64(-1), 0, 1048577]) {
++        illegal({ => AnsiTextLimits(maxSequenceBytes: value); () }, "sequence limit range")
++    }
++    for (value in [Int64(-1), 0, 4097]) {
++        illegal({ => AnsiTextLimits(maxParameters: value); () }, "parameter limit range")
++    }
++    let ceiling = AnsiTextLimits(maxSequenceBytes: 1048576, maxParameters: 4096)
++    check(ceiling.maxSequenceBytes == 1048576 && ceiling.maxParameters == 4096, "inclusive upper limits")
++    for (fields in [Int64(63), 64, 65]) {
++        let params = repeated(";", fields - 1)
++        let expected = if (fields <= 64) { RichText([TextSpan("X", style: resetPatch())]) } else { RichText("X") }
++        let issues: Array<(AnsiTextIssue, Int64)> = if (fields <= 64) { [] } else { [(AnsiTextIssue.SequenceTooLong, 0)] }
++        ansiCase("\u{1b}[${params}mX", expected, issues, "63/64/65 SGR fields ${fields}")
++        let unknownIssues = if (fields <= 64) { [(AnsiTextIssue.UnsupportedSequence, Int64(0))] }
++            else { [(AnsiTextIssue.SequenceTooLong, Int64(0))] }
++        ansiCase("\u{1b}[${params}KX", RichText("X"), unknownIssues, "parameter limit applies to non-m ${fields}")
++    }
++    // Extended color operands and empty fields all consume parameter slots.
++    ansiCase("\u{1b}[38;2;1;2;3mX", RichText("X"), [(AnsiTextIssue.SequenceTooLong, 0)],
++        "RGB operand field budget", limits: AnsiTextLimits(maxParameters: 4))
++    ansiCase("\u{1b}[;mX", RichText("X"), [(AnsiTextIssue.SequenceTooLong, 0)],
++        "empty fields consume budget", limits: AnsiTextLimits(maxParameters: 1))
++    ansiCase("\u{1b}[mX", RichText([TextSpan("X", style: resetPatch())]), [],
++        "no parameter is one implicit zero", limits: AnsiTextLimits(maxParameters: 1))
++    for (finalByte in ["m", "K"]) {
++        ansiCase("\u{1b}[123${finalByte}X", RichText("X"), [(AnsiTextIssue.UnsupportedSequence, 0)],
++            "three-digit token allowed ${finalByte}")
++        ansiCase("\u{1b}[0000${finalByte}X", RichText("X"), [(AnsiTextIssue.SequenceTooLong, 0)],
++            "four-digit token resource before final ${finalByte}")
++    }
++    // At 4095/4096/4097 the introducer and terminating BEL are included.
++    for (length in [Int64(4095), 4096, 4097]) {
++        let bytes = ("A\u{1b}]" + repeated("x", length - 3) + "\u{7}B").toArray()
++        let kind = if (length <= 4096) { AnsiTextIssue.UnsupportedSequence } else { AnsiTextIssue.SequenceTooLong }
++        decodeCuts(bytes, [0, 1, 2, 3, 4095, 4096], RichText("AB"), [(kind, 1)], "sequence bytes ${length}")
++        decodeCuts(bytes, Array<Int64>(bytes.size + 1, {i => i}), RichText("AB"), [(kind, 1)],
++            "sequence bytes ${length} bytewise")
++    }
++    let red = RichText([TextSpan("X", style: TextStylePatch(foreground: Some(Color.Red)))])
++    everySplit([UInt8(0x9b), UInt8(0x33), UInt8(0x31), UInt8(0x6d), UInt8(0x58)], red, [], "raw CSI actual bytes four",
++        limits: AnsiTextLimits(maxSequenceBytes: 4))
++    everySplit([UInt8(0xc2), UInt8(0x9b), UInt8(0x33), UInt8(0x31), UInt8(0x6d), UInt8(0x58)], RichText("X"),
++        [(AnsiTextIssue.SequenceTooLong, 0)], "UTF8 CSI actual bytes five", limits: AnsiTextLimits(maxSequenceBytes: 4))
++    ansiCase("\u{1b}[31mX", RichText("X"), [(AnsiTextIssue.SequenceTooLong, 0)],
++        "ESC CSI actual bytes five", limits: AnsiTextLimits(maxSequenceBytes: 4))
++    ansiCase("\u{1b}[1mX", RichText([TextSpan("X", style: TextStylePatch(bold: Some(true)))]), [],
++        "terminator exactly at byte budget", limits: AnsiTextLimits(maxSequenceBytes: 4))
++    ansiCase("\u{1b}[1mX", RichText("X"), [(AnsiTextIssue.SequenceTooLong, 0)],
++        "terminator exceeds byte budget", limits: AnsiTextLimits(maxSequenceBytes: 3))
++    // Resource fault on the same byte wins over malformed ordering/control.
++    ansiCase("\u{1b}[\tmX", RichText("X"), [(AnsiTextIssue.SequenceTooLong, 0)],
++        "resource before syntax on same byte", limits: AnsiTextLimits(maxSequenceBytes: 2))
++    ansiCase("\u{1b}[1 2" + repeated("0", 10) + "mX", RichText("X"),
++        [(AnsiTextIssue.MalformedSequence, 0)], "first malformed not overwritten by later resource",
++        limits: AnsiTextLimits(maxSequenceBytes: 8))
++    // Resource issue is delivered immediately, once; finish can add incomplete.
++    let digits = AnsiTextDecoder()
++    let batch = digits.feed("A\u{1b}[1234".toArray())
++    check(batch.diagnostics.size == 1 && batch.diagnostics[0].kind == AnsiTextIssue.SequenceTooLong &&
++        batch.diagnostics[0].offset == 1, "fourth digit reports before any final")
++    check(digits.feed("5;9999".toArray()).diagnostics.isEmpty(), "already failed CSI not reported again")
++    let ending = digits.finish()
++    check(ending.diagnostics.size == 1 && ending.diagnostics[0].kind == AnsiTextIssue.IncompleteSequence &&
++        ending.diagnostics[0].offset == 1, "finish adds incomplete to resource-failed residual")
++    let fields = AnsiTextDecoder(limits: AnsiTextLimits(maxParameters: 2))
++    check(fields.feed("\u{1b}[1;2".toArray()).diagnostics.isEmpty(), "at field budget remains pending")
++    let over = fields.feed(";".toArray())
++    check(over.diagnostics.size == 1 && over.diagnostics[0].kind == AnsiTextIssue.SequenceTooLong,
++        "first excess semicolon reports immediately before unknown final")
++    check(fields.feed("KX".toArray()).diagnostics.isEmpty(), "unknown final cannot replace first resource issue")
++    fields.finish()
++    for (length in [Int64(4095), 4096, 4097]) {
++        let bytes = ("A\u{1b}[" + repeated(" ", length - 3) + "KB").toArray()
++        let kind = if (length <= 4096) { AnsiTextIssue.UnsupportedSequence } else { AnsiTextIssue.SequenceTooLong }
++        decodeCuts(bytes, Array<Int64>(bytes.size + 1, {i => i}), RichText("AB"), [(kind, 1)],
++            "unknown CSI byte boundary ${length}")
++    }
++    everySplit([UInt8(0x9d), UInt8(0x78), UInt8(0x9c), UInt8(0x58)], RichText("X"),
++        [(AnsiTextIssue.UnsupportedSequence, 0)], "raw C1 OSC and ST actual bytes",
++        limits: AnsiTextLimits(maxSequenceBytes: 4))
++    ansiCase("\u{9d}x\u{9c}X", RichText("X"), [(AnsiTextIssue.SequenceTooLong, 0)],
++        "UTF8 C1 OSC and ST actual bytes", limits: AnsiTextLimits(maxSequenceBytes: 4))
++    println("PASS: all-CSI count/token/byte boundaries and immediate first faults")
++}
+diff --git a/tests/rich-text/src/main.cj b/tests/rich-text/src/main.cj
+index b3746c4..4ff2b54 100644
+--- a/tests/rich-text/src/main.cj
++++ b/tests/rich-text/src/main.cj
+@@ -3,6 +3,15 @@ package rich_text_contract
+ main(): Int64 {
+     valueContract()
+     graphemeContract()
+-    println("PASS: rich text public core contract")
++    sgrContract()
++    utf8Contract()
++    limitContract()
++    controlStringContract()
++    unsupportedContract()
++    invalidUtf8Contract()
++    aliasContract()
++    componentContract()
++    bindingContract()
++    println("PASS: rich text public contract")
+     return 0
+ }
+diff --git a/tests/rich-text/src/sgr.cj b/tests/rich-text/src/sgr.cj
+new file mode 100644
+index 0000000..9ce6b49
+--- /dev/null
++++ b/tests/rich-text/src/sgr.cj
+@@ -0,0 +1,67 @@
++package rich_text_contract
++
++import cjtui.*
++
++func sgrContract(): Unit {
++    ansiCase("", RichText(""), [], "empty stream")
++    ansiCase("A\u{1b}[31mR\u{1b}[0mZ", RichText([TextSpan("A"),
++        TextSpan("R", style: TextStylePatch(foreground: Some(Color.Red))), TextSpan("Z", style: resetPatch())]),
++        [], "unset then red then explicit reset")
++    let colors = [Color.Black, Color.Red, Color.Green, Color.Yellow, Color.Blue, Color.Magenta, Color.Cyan, Color.White,
++        Color.BrightBlack, Color.BrightRed, Color.BrightGreen, Color.BrightYellow, Color.BrightBlue,
++        Color.BrightMagenta, Color.BrightCyan, Color.BrightWhite]
++    for (i in 0..16) {
++        let fg = if (i < 8) { 30 + i } else { 90 + i - 8 }
++        let bg = if (i < 8) { 40 + i } else { 100 + i - 8 }
++        ansiCase("\u{1b}[${fg};${bg}mX", RichText([TextSpan("X",
++            style: TextStylePatch(foreground: Some(colors[i]), background: Some(colors[i])))]), [],
++            "all sixteen foreground/background colors ${i}")
++    }
++    let enable = ["1", "2", "3", "4", "7", "9"]
++    let patches = [TextStylePatch(bold: Some(true)), TextStylePatch(dim: Some(true)),
++        TextStylePatch(italic: Some(true)), TextStylePatch(underline: Some(true)),
++        TextStylePatch(inverse: Some(true)), TextStylePatch(strikethrough: Some(true))]
++    for (i in 0..enable.size) {
++        ansiCase("\u{1b}[${enable[i]}mX", RichText([TextSpan("X", style: patches[i])]), [], "enable SGR ${enable[i]}")
++    }
++    let off = ["22", "23", "24", "27", "29", "39", "49"]
++    let offPatches = [TextStylePatch(bold: Some(false), dim: Some(false)), TextStylePatch(italic: Some(false)),
++        TextStylePatch(underline: Some(false)), TextStylePatch(inverse: Some(false)),
++        TextStylePatch(strikethrough: Some(false)), TextStylePatch(foreground: Some(Color.Default)),
++        TextStylePatch(background: Some(Color.Default))]
++    for (i in 0..off.size) {
++        ansiCase("\u{1b}[${off[i]}mX", RichText([TextSpan("X", style: offPatches[i])]), [], "disable/reset SGR ${off[i]}")
++    }
++    for (sgr in ["", "0", ";", "0;", ";0"]) {
++        ansiCase("\u{1b}[${sgr}mX", RichText([TextSpan("X", style: resetPatch())]), [], "empty top fields reset ${sgr}")
++    }
++    for (channel in [0, 1, 127, 255]) {
++        ansiCase("\u{1b}[38;5;${channel};48;5;${channel}mX", RichText([TextSpan("X",
++            style: TextStylePatch(foreground: Some(Color.Indexed(UInt8(channel))),
++                background: Some(Color.Indexed(UInt8(channel)))))]), [], "indexed endpoints ${channel}")
++    }
++    ansiCase("\u{1b}[38;2;0;128;255;48;2;255;1;0mX", RichText([TextSpan("X",
++        style: TextStylePatch(foreground: Some(Color.Rgb(0, 128, 255)),
++            background: Some(Color.Rgb(255, 1, 0))))]), [], "RGB typed channels")
++    ansiCase("\u{1b}[1;2;3;4;7;9;22;23;24;27;29mX", RichText([TextSpan("X",
++        style: TextStylePatch(bold: Some(false), dim: Some(false), italic: Some(false),
++            underline: Some(false), inverse: Some(false), strikethrough: Some(false)))]), [], "on then off atomic mapping")
++    ansiCase("\u{1b}[;31mX", RichText([TextSpan("X", style: TextStylePatch(foreground: Some(Color.Red),
++        background: Some(Color.Default), bold: Some(false), dim: Some(false), italic: Some(false),
++        underline: Some(false), inverse: Some(false), strikethrough: Some(false)))]), [], "reset then red in same sequence")
++    // Unknown/invalid suffix must discard even valid leading operations.
++    let unknown = ["1;999", "31:1", "?31", "31 ", "38;3;1", "48;4", "1;999;38;5;"]
++    for (params in unknown) {
++        ansiCase("\u{1b}[32mA\u{1b}[${params}mB", RichText([TextSpan("AB",
++            style: TextStylePatch(foreground: Some(Color.Green)))]),
++            [(AnsiTextIssue.UnsupportedSequence, 6)], "atomic unsupported ${params}")
++    }
++    let malformed = ["38", "48", "38;5", "48;2;1;2", "38;5;", "38;2;1;;3", "48;;1", "38;5;256",
++        "48;2;1;999;3", "38;2;1;2;", "38;5;;999"]
++    for (params in malformed) {
++        ansiCase("\u{1b}[32mA\u{1b}[1;${params}mB", RichText([TextSpan("AB",
++            style: TextStylePatch(foreground: Some(Color.Green)))]),
++            [(AnsiTextIssue.MalformedSequence, 6)], "atomic malformed ${params}")
++    }
++    println("PASS: complete SGR whitelist, reset and atomic first-error goldens")
++}
+diff --git a/tests/rich-text/src/unsupported.cj b/tests/rich-text/src/unsupported.cj
+new file mode 100644
+index 0000000..f0c6ea2
+--- /dev/null
++++ b/tests/rich-text/src/unsupported.cj
+@@ -0,0 +1,33 @@
++package rich_text_contract
++
++import cjtui.*
++
++func unsupportedContract(): Unit {
++    for (sequence in ["\u{1b}[2J", "\u{1b}[3;4H", "\u{1b}[2K", "\u{1b}[?25h", "\u{1b}[6n", "\u{1b}(B",
++        "\u{1b}7", "\u{1b}[1$m", "\u{1b}[1:2m"]) {
++        ansiCase("A" + sequence + "B", RichText("AB"), [(AnsiTextIssue.UnsupportedSequence, 1)],
++            "unknown control stripped without terminal action")
++    }
++    for (sequence in ["\u{1b}[1 2m", "\u{1b}[1\tm", "\u{1b}[1\u{18}2m", "\u{1b}(\u{1}B"]) {
++        ansiCase("A" + sequence + "B", RichText("AB"), [(AnsiTextIssue.MalformedSequence, 1)],
++            "malformed control drained to final")
++    }
++    ansiCase("A\u{1b}[12\u{1b}[31mB", RichText([TextSpan("A"),
++        TextSpan("B", style: TextStylePatch(foreground: Some(Color.Red)))]),
++        [(AnsiTextIssue.MalformedSequence, 1)], "new ESC cancels non-string residual then starts sequence")
++    ansiCase("A\u{1b}[1234\u{1b}[31mB", RichText([TextSpan("A"),
++        TextSpan("B", style: TextStylePatch(foreground: Some(Color.Red)))]),
++        [(AnsiTextIssue.SequenceTooLong, 1)], "new ESC does not duplicate existing first fault")
++    ansiCase("A\u{1b}[1 2\u{1b}[31mB", RichText([TextSpan("A"),
++        TextSpan("B", style: TextStylePatch(foreground: Some(Color.Red)))]),
++        [(AnsiTextIssue.MalformedSequence, 1)], "new ESC does not duplicate prior syntax fault")
++    ansiCase("A\u{1b}[1 2", RichText("A"),
++        [(AnsiTextIssue.MalformedSequence, 1), (AnsiTextIssue.IncompleteSequence, 1)],
++        "finish adds incomplete after first syntax fault")
++    for (residual in ["\u{1b}", "\u{1b}(", "\u{1b}[", "\u{1b}[31", "\u{9b}31"]) {
++        ansiCase("A" + residual, RichText("A"), [(AnsiTextIssue.IncompleteSequence, 1)],
++            "finish consumes residual and closes")
++    }
++    ansiCase("A\r", RichText("A"), [(AnsiTextIssue.UnsupportedSequence, 1)], "finish discards lone CR")
++    println("PASS: unknown and malformed escape framing and finish")
++}
+diff --git a/tests/rich-text/src/utf8.cj b/tests/rich-text/src/utf8.cj
+new file mode 100644
+index 0000000..14e96ee
+--- /dev/null
++++ b/tests/rich-text/src/utf8.cj
+@@ -0,0 +1,39 @@
++package rich_text_contract
++
++import cjtui.*
++
++func utf8Contract(): Unit {
++    let red = RichText([TextSpan("X", style: TextStylePatch(foreground: Some(Color.Red)))])
++    everySplit([UInt8(0x9b), UInt8(0x33), UInt8(0x31), UInt8(0x6d), UInt8(0x58)], red, [], "raw C1 CSI")
++    everySplit([UInt8(0xc2), UInt8(0x9b), UInt8(0x33), UInt8(0x31), UInt8(0x6d), UInt8(0x58)], red, [], "UTF8 C1 CSI")
++    ansiCase("қ31mЖ\u{1b}[31m界👩\u{200d}💻", RichText([TextSpan("қ31mЖ"),
++        TextSpan("界👩\u{200d}💻", style: TextStylePatch(foreground: Some(Color.Red)))]), [],
++        "D2 9B continuation remains text and never CSI")
++    // U+049C = D2 9C, so its continuation must not terminate this OSC.
++    everySplit([UInt8(0x41), UInt8(0x1b), UInt8(0x5d), UInt8(0xd2), UInt8(0x9c), UInt8(0x58), UInt8(0x07), UInt8(0x42)], RichText("AB"),
++        [(AnsiTextIssue.UnsupportedSequence, 1)], "OSC UTF8 continuation is not ST")
++    for (tail in [[UInt8(0x9c)], [UInt8(0xc2), UInt8(0x9c)], [UInt8(0x1b), UInt8(0x5c)]]) {
++        let bytes = [UInt8(0x41), UInt8(0x9d), UInt8(0x78)].concat(tail).concat([UInt8(0x42)])
++        everySplit(bytes, RichText("AB"), [(AnsiTextIssue.UnsupportedSequence, 1)], "all ST scalar forms")
++    }
++    ansiCase("界\u{9b}2JX\u{7}Y", RichText("界XY"),
++        [(AnsiTextIssue.UnsupportedSequence, 3), (AnsiTextIssue.UnsupportedSequence, 8)], "absolute offsets count UTF8 bytes")
++    ansiCase("A\r\nB\rC\tD\u{8}E\u{7f}F\u{85}G", RichText("A\r\nBCDEFG"),
++        [(AnsiTextIssue.UnsupportedSequence, 4), (AnsiTextIssue.UnsupportedSequence, 6),
++         (AnsiTextIssue.UnsupportedSequence, 8), (AnsiTextIssue.UnsupportedSequence, 10),
++         (AnsiTextIssue.UnsupportedSequence, 12)], "CRLF and rejected scalar controls")
++    for (value in 0..32) {
++        if (value == 10 || value == 13 || value == 27) { continue }
++        everySplit([UInt8(0x41), UInt8(value), UInt8(0x42)], RichText("AB"),
++            [(AnsiTextIssue.UnsupportedSequence, 1)], "all isolated C0 ${value}")
++    }
++    for (value in 128..160) {
++        // Introducers begin incomplete sequences; tested separately with their own rules.
++        if (value == 144 || value == 152 || value == 155 || value == 157 || value == 158 || value == 159) { continue }
++        everySplit([UInt8(0x41), UInt8(value), UInt8(0x42)], RichText("AB"),
++            [(AnsiTextIssue.UnsupportedSequence, 1)], "all isolated raw C1 ${value}")
++        everySplit([UInt8(0x41), UInt8(0xc2), UInt8(value), UInt8(0x42)], RichText("AB"),
++            [(AnsiTextIssue.UnsupportedSequence, 1)], "all isolated UTF8 C1 ${value}")
++    }
++    println("PASS: every UTF8/C1 split, scalar boundaries and literal byte offsets")
++}
+-- 
+2.52.0
+

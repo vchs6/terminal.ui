@@ -1,0 +1,17 @@
+[31merror[0m: expected a func name after keyword 'func', found keyword 'with'
+ [36m==>[0m /workspace/work/theme-tests/declaration-only-scratch/lib/src/style/style_rule.cj:2:78:
+  [36m| [0m
+[36m2[0m [36m| [0mpublic struct StyleRule <: Equatable<StyleRule> {public init(){} public func with<T>(key:StyleKey<T>,value:StyleValue<T>,state!:VisualState=VisualState.Normal):StyleRule {throw Exception("DECLARATION ONLY")} public operator func ==(other:StyleRule):Bool {throw Exception("DECLARATION ONLY")} }[0m
+  [36m| [0m                                                                        [36m~~~~[0m [31m^^^^ expected a func name here[0m
+  [36m| [0m                                                                        [36m|[0m
+  [36m| [0m                                                                        [36mafter keyword 'func'[0m
+  [36m| [0m
+[32mhelp[0m: you could escape keyword as a func name using '`':
+  [36m| [0m
+[36m2[0m [36m| [0mpublic struct StyleRule <: Equatable<StyleRule> {public init(){} public func `with`<T>(key:StyleKey<T>,value:StyleValue<T>,state!:VisualState=VisualState.Normal):StyleRule {throw Exception("DECLARATION ONLY")} public operator func ==(other:StyleRule):Bool {throw Exception("DECLARATION ONLY")} }[0m
+  [36m| [0m                                                                             [32m~~~~~~ [0m
+  [36m| [0m
+
+1 error generated, 1 error printed.
+Error: failed to compile package `cjtui.style`, return code is 1
+Error: cjpm build failed

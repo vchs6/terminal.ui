@@ -1,0 +1,59 @@
+[31merror[0m: undeclared type name 'ListItem'
+ [36m==>[0m /workspace/work/dynamic-tests/source/tests/dynamic/src/stateful_row.cj:6:15:
+  [36m| [0m
+[36m6[0m [36m| [0m    let item: ListItem<RowData>[0m
+  [36m| [0m              [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'ListItem'
+  [36m==>[0m /workspace/work/dynamic-tests/source/tests/dynamic/src/stateful_row.cj:10:16:
+   [36m| [0m
+[36m10[0m [36m| [0m    init(item: ListItem<RowData>, log: FixtureLog) {[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'children' is not a member of class 'NodeRef'
+  [36m==>[0m /workspace/work/dynamic-tests/source/tests/dynamic/src/assertions.cj:14:25:
+   [36m| [0m
+[36m14[0m [36m| [0m    let actual = parent.children()[0m
+   [36m| [0m                        [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'If'
+  [36m==>[0m /workspace/work/dynamic-tests/source/tests/dynamic/src/conditional_cases.cj:13:9:
+   [36m| [0m
+[36m13[0m [36m| [0m        If({ => show.get() }, { =>[0m
+   [36m| [0m        [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'If'
+  [36m==>[0m /workspace/work/dynamic-tests/source/tests/dynamic/src/conditional_cases.cj:55:9:
+   [36m| [0m
+[36m55[0m [36m| [0m        If({ => show.get() }, { => Text("D") })[0m
+   [36m| [0m        [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'If'
+  [36m==>[0m /workspace/work/dynamic-tests/source/tests/dynamic/src/conditional_cases.cj:76:9:
+   [36m| [0m
+[36m76[0m [36m| [0m        If({ => show.get() }, { =>[0m
+   [36m| [0m        [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ForEach'
+  [36m==>[0m /workspace/work/dynamic-tests/source/tests/dynamic/src/identity_cases.cj:12:9:
+   [36m| [0m
+[36m12[0m [36m| [0m        ForEach<RowData>({ => data.get() }, { value => value.id }, { item =>[0m
+   [36m| [0m        [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ForEach'
+  [36m==>[0m /workspace/work/dynamic-tests/source/tests/dynamic/src/identity_cases.cj:45:9:
+   [36m| [0m
+[36m45[0m [36m| [0m        ForEach<String>({ => left.get() }, { value => value }, { item =>[0m
+   [36m| [0m        [31m^ [0m
+   [36m| [0m
+
+63 errors generated, 8 errors printed.
+Error: failed to compile package `dynamic_contract`, return code is 1
+Error: cjpm build failed

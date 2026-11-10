@@ -1,0 +1,60 @@
+[31merror[0m: undeclared type name 'AnsiTextException'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/assertions.cj:17:36:
+   [36m| [0m
+[36m17[0m [36m| [0m    try { action() } catch (error: AnsiTextException) { actual[0] = error.code }[0m
+   [36m| [0m                                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'RichText'
+ [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/bindings.cj:7:27:
+  [36m| [0m
+[36m7[0m [36m| [0m    let next = Observable<RichText>(RichText([TextSpan("new", style: TextStylePatch(foreground: Some(Color.Red)))]))[0m
+  [36m| [0m                          [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'TextSpan'
+ [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/decoded_stream.cj:8:27:
+  [36m| [0m
+[36m8[0m [36m| [0m    let spans = ArrayList<TextSpan>()[0m
+  [36m| [0m                          [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'AnsiTextDiagnostic'
+ [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/decoded_stream.cj:9:28:
+  [36m| [0m
+[36m9[0m [36m| [0m    let issues = ArrayList<AnsiTextDiagnostic>()[0m
+  [36m| [0m                           [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'AnsiTextBatch'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/decoded_stream.cj:11:24:
+   [36m| [0m
+[36m11[0m [36m| [0m    func append(batch: AnsiTextBatch): Unit {[0m
+   [36m| [0m                       [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'RichText'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/decoded_stream.cj:16:27:
+   [36m| [0m
+[36m16[0m [36m| [0m    func verify(expected: RichText, expectedIssues: Array<(AnsiTextIssue, Int64)>, name: String): Unit {[0m
+   [36m| [0m                          [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'AnsiTextIssue'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/decoded_stream.cj:16:60:
+   [36m| [0m
+[36m16[0m [36m| [0m    func verify(expected: RichText, expectedIssues: Array<(AnsiTextIssue, Int64)>, name: String): Unit {[0m
+   [36m| [0m                                                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'TextStylePatch'
+  [36m==>[0m /workspace/work/rich-text-tests/source/tests/rich-text/src/decoder_assertions.cj:11:20:
+   [36m| [0m
+[36m11[0m [36m| [0mfunc resetPatch(): TextStylePatch {[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+115 errors generated, 8 errors printed.
+9 warnings generated, 0 warning printed.
+Error: failed to compile package `rich_text_contract`, return code is 1
+Error: cjpm build failed
