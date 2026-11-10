@@ -9,3 +9,5 @@ Ruling F001：maxCells只限制正面积总单元数，保留零面积极值构�
 主代理补齐shared admission、preflight逐角色/接口、AC067–070、005/007唯一状态转移。当前待独立复核ready；/root/frame_test_author已在独立clone/cache完成旧产品正常build0，尚未写最终tests或产品，等冻结SHA。框架自身代码未改。
 
 独立契约定向复核 spec READY / plan READY，S1/S2/P1/P2全部关闭，原报告与recheck归档docs/reviews/R11/frame-contract。DQ14项/skills实际source receipt已定位。067可开始独立冻结tests；005/007仍等待067固定RED产物后编码。
+
+F003主代理规格澄清：审核确认8834441按原共同“透明跳过”文字实现，无作者缺陷；但copy/resized作为数据复制必须保留opaque帧显式clear出的透明孔，后续M2/层缓存不能丢这个metadata。固定例lowerABC/sourceX透明Z，copy/resized与source合成都须XBZ。先由独立test加单一新回归证当前RED，再产品最小修改/限定复核，不弱化旧tests。原全片审核PASS只覆盖初稿规则，最终verdict待F003增量。

@@ -15,8 +15,8 @@ Frame 构造为 `public init(width: Int64, height: Int64, ambiguousWide!: Bool =
 | 签名 | 契约 |
 | --- | --- |
 | `public func clear(rect: Rect, transparent!: Bool = false): Unit` | 清除矩形与帧的交集。被触及的旧宽字符整体清除；明确 transparent 参数决定整个被清除簇的空单元类型；不透明空格使用 Style() |
-| `public func copy(rect: Rect): Frame` | 返回指定宽高独立帧；保持原宽度策略、默认空白类型和资源预算。矩形超出源的部分按默认空白填充；不共享可变 cells |
-| `public func resized(width: Int64, height: Int64): Frame` | 返回新帧，原点不变，复制交集且遵守宽簇裁剪；新区域按原默认空白类型填充，保留资源预算与宽度策略 |
+| `public func copy(rect: Rect): Frame` | 返回指定宽高独立帧；保持原宽度策略、默认空白类型和资源预算。矩形超出源的部分按默认空白填充；不共享可变 cells，交集内保留每个源单元的透明位 |
+| `public func resized(width: Int64, height: Int64): Frame` | 返回新帧，原点不变，复制交集且遵守宽簇裁剪；新区域按原默认空白类型填充，交集内保留透明位，保留资源预算与宽度策略 |
 | `public func composite(layer: Frame, x!: Int64 = 0, y!: Int64 = 0): Unit` | layer 局部原点放到目标 x/y，只改交集；透明跳过，不透明空格与背景覆盖；后调用的层在上方；不同实例时源保持不变；自身操作用开始时读取快照 |
 | `public func writePlainText(path: String): Unit` | 将完整 toPlainText 的 UTF-8 字节写文件，无 BOM/额外尾 LF/ESC；失败抛出标准文件异常 |
 | `public func writeAnsi(path: String, colorMode!: ColorMode = ColorMode.TrueColor): Unit` | 将完整纯快照 toAnsi 的 UTF-8 写文件，不探测终端；编码/初尾 reset 与现有导出一致；失败抛出文件异常 |
@@ -32,7 +32,7 @@ Rect 已负责非负宽高；x/y 允许负数。计算交集用现有饱和有�
 - 普通 Frame 初始为空格、width=1、continuation=false、Style()、isTransparent=false；透明 Frame 初始相同但 isTransparent=true。
 - put、fillRect、边框及阴影写入的实际单元均不透明，包括 Style() 的空格；不以默认色或空格猜透明。put 原本的越界省略和定位语义不变。
 - 透明单元始终规范化为空格、width=1、continuation=false、Style()；不能藏残留宽簇或样式。覆盖旧簇时 clearAt 用帧默认空白类型，clear(rect, transparent:...) 则用此次显式类型。
-- copy/resized/composite 只完整复制可见的源簇。若源簇被左/右边界切断，交集中被该簇占用的源不透明单元变为同源 Style 的单列不透明空格；绝不复制孤立 continuation。透明仍跳过。
+- copy/resized/composite 只完整复制可见的源簇。若源簇被左/右边界切断，交集中被该簇占用的源不透明单元变为同源 Style 的单列不透明空格；绝不复制孤立 continuation。composite 的透明源跳过；copy/resized 则保留源透明位，不能把 opaque 默认帧显式 clear 出的透明孔重新变为不透明。
 - 目标已有宽簇与实际写入单元相交时，整簇先清除，再写入源；簇伙伴可以位于几何交集外，清除后按目标默认空白类型规范化，保持唯一宽簇不变量。
 - 自身合成及重叠偏移须读取操作开始时源快照，不出现边读边写的拖影。不同 ambiguousWide 策略的帧合成在任何修改前抛 IllegalArgumentException；copy/resized 保留策略。
 - 任何源/目标尺寸零时安全完成；普通有限尺寸纯文本包含完整列的空格，行间 LF、无尾 LF。透明帧单独导出时以默认空格扁平化，ANSI 不产生透明专用控制序列。
@@ -44,3 +44,7 @@ Rect 已负责非负宽高；x/y 允许负数。计算交集用现有饱和有�
 独立 public consumer 覆盖透明/不透明样式空格、层次、负偏移/极值、宽簇左右切断、目标簇两侧覆盖、自身重叠、独立副本、透明 clear、扩缩、策略不匹配和文件错误。手算固定网格，不以同一 compositor 生成期望。旧 contract/coordinates/colors/layout/decoration 做受影响回归；最终全 Linux 集成再执行全入口与 release。
 
 TASK-005/007 的完整 Frame 层 AC 可在独立验证后关闭；TASK-010 这里只交文件原语，实际应用可见覆盖层的捕获在 TASK-018 后汇合，原 AC 保持待验。没有像素后端或普通命令行一次性输出模式。
+
+### Ruling F003：复制与合成的透明语义
+
+copy/resized 是源数据复制，完整源交集包括 isTransparent；composite 是叠放，透明不覆盖目标。这一澄清替代初稿将三者共同描述为“透明跳过”的歧义，避免 opaque 默认层 clear 出的孔在复制后封闭。例：底层ABC、源层XYZ将中间clear透明，原层与其完整copy/同尺寸resized分别合成均须XBZ，而不是X空格Z。既有正常/透明默认帧字节和原断言不变，由独立新用例先证当前实现RED再修最小共享路径。
