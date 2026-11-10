@@ -3,3 +3,7 @@
 主代理采用独立interaction合同及I001–010：同Canvas/focus/viewport/overlay公开primitive，三有限单元098–112，原017/037/018完整AC仍待实现。根默认纵滚两pass兼容及通用viewport默认动作由root收敛，不是用户额外点选。现全为planned，独立SDK签名微验证及preflight待开展，产品等共享屏障，不并行写权威源。使用brainstorming/writing-plans/SDD、OpenSpec new/status/validate，不重复已有用户授权确认。
 
 独立SDK微验证识别ScrollAxes.None污染裸Option None构造；主代理I013改最终值Off无alias，正常consumer裸None微编译0，不转嫁消费者修代码。widgets/input独立设计发现离线禁用外观和公共服务装配缺口，主代理I011统一readonly NodeRef.application，I012统一resolver实际disabled/focus OR声明态；新增集成测试边界，回原preflight最终限定核。根状态仍planned，产品未准入。
+
+独立interaction_preflight Astra/high最终a0eae999 design_reviewed/execution_ready=false，无Critical/Important；Off及I011正常SDKshape consumer build/link/run0（非产品功能），I012与Theme既有矩阵/状态优先兼容。两处旧None文本Minor已机械修Off，报告de5312b85f05d9240826a05f97d9a7aa37d04fdb225017a1d7179aded8b5398d归R17/preflight；105原件hash外部保留，不复制整source snapshot。执行DQ03/06/10/13仍等080/084/088接受源及interface-map/角色证据，正式产品未准入。
+
+正式测试准备前root发现初始焦点未明：I014明确基础域初始稳定后首eligible、空域后加候选同规则，C takeFocus空层保持None/activeTarget层保留，不抢base。此是有限初态工程裁决，需限定复核再冻结098，不影响现C产品。

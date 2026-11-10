@@ -399,3 +399,5 @@ DQ06/10/13保持not_checked：实际080/084/088验收与固定源、完整签名
 ### A追加公共集成边界
 
 098测试/099产品/100审核/101执行/102验收同时消费I011–013：NodeRef.application只读同会话服务入口、统一resolver自动disabled/focus并与声明状态OR合成、ScrollAxes.Off保持裸Option None源码兼容。A hand-written detached/ancestor-disabled/后链覆盖/focus+selected样例必须实际验证，不能等widgets再用私有节点补洞。Off签名微验证只是语言事实，不是B滚动已实现。
+
+I014补冻初始基础域首eligible自动焦点，None后新增候选与显式takeFocus空层保留例外，098/108各补手写期望；正式test冻结前单独preflight限定核，不以隐式选择让实现者自由决定。

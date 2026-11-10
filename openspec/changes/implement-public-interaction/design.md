@@ -4,7 +4,7 @@
 
 ## Governing decisions
 
-以下I001–I013优先于正文历史“推荐/建议”字样；被比较的替代方案不再供实现者自由选择。来源为主代理2026-11-10明确采纳，未改变用户范围。
+以下I001–I014优先于正文历史“推荐/建议”字样；被比较的替代方案不再供实现者自由选择。来源为主代理2026-11-10明确采纳，未改变用户范围。
 
 - I001：采用原草稿A1–A4；Canvas分别跟踪measure/draw，M1全局render保持完整参考；默认动作Target/Ancestor两槽、框架默认居中；只读guard包含Component.reference；selected由唯一resolver解析；caret仅聚焦Canvas自身。
 - I002：B1经主代理复核REQ003.11/architecture后修订为Application根未显式声明viewport时默认Vertical兜底；root.viewport(Off)关闭，显式其他axes优先。普通非root Column默认Off，ScrollView默认Vertical；公开指南主体ScrollView、固定菜单/状态条不滚。B2自然基准用于显式viewport与隐式根发生未承接overflow后的第二pass；B3接受变化Bool/边界钳制保持。不得因viewport改变业务显隐。
@@ -426,3 +426,9 @@ Theme原VisualStates仍只表达外观，不修改业务enabled、焦点或选�
 ## I013 轴关闭值的源码兼容修正
 
 ScrollAxes的关闭值最终为Off（不是未实现草稿None），其余Vertical/Horizontal/Both不变。SDK1.2独立正常consumer已实证根包导出的None构造会使既有裸Option None用法报multiple constructor；Off保留关闭语义且原裸None正常编译，不要求应用为新增轴枚举重写Option值。此阶段尚无该轴产品/正式测试，故不提供冲突None兼容alias。所有本变更axes表与示例以Off为准，Option.None含义不变。
+
+## I014 基础域初始焦点与空层保留
+
+startHeadless/run完成初始挂载与同步稳定后，在首次目标帧之前自动选择基础域物理前序的首个eligible候选；全空保持None。onMount自身不因这一步重新调用，stop已请求则不再选焦点。此前没有焦点且普通结构/显隐/启用变化产生候选时，也在安全边界选首个；已有有效焦点仍按A规则保持/失效回退，不因新增或重排抢焦点。焦点变化照常使只读查询/样式依赖失效，返回初始headless边界前稳定到一致。
+
+C的显式takeFocus空交互层是例外：仍保持focusedNode=None及该层activeTarget，不自动抢回基础域。该层随后产生eligible孩子时选该层内首个；Tab或显式requestFocus仍按当前域导航，成功离层后遵原目标层规则。Passive从不设此保留。此补充只冻结原来未明确的初态，不增加autofocus配置或改变应用数据/显隐。098增加初态/后增候选，108增加空层保留/后增候选的手工期望。

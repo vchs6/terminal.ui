@@ -1,6 +1,6 @@
 # 标准控件公共组合设计候选
 
-**全部新增签名未编译验证；产品 planned，验证 pending；等待主代理 freeze 与独立 preflight。** 本件消费未来公共合同，不声称 Canvas/focus/viewport/overlay/Theme 已在产品可调用。原独立来源和字节hash保留/workspace/work/widgets-contract-draft/provenance.json。粗输入/workspace/work/widgets-contract/root-decisions.md 是主代理工程建议，不是用户选定签名，正文推荐仍待正式采纳。
+**新增签名已有独立SDK shape编译事实；产品 planned，产品验证 pending；执行依赖尚未接受。** 本件消费未来公共合同，不声称 Canvas/focus/viewport/overlay/Theme 已在产品可调用。原独立来源和字节hash归同目录provenance.json（仅历史输入，不是产品通过）。粗输入/workspace/work/widgets-contract/root-decisions.md 是主代理工程建议，不是用户选定签名，正文推荐仍待正式采纳。
 
 ## 1. 权威与边界
 
@@ -51,7 +51,7 @@ public func SplitPane(axis!: SplitAxis = SplitAxis.Horizontal,
 
 enabled 没有单独构造参数，使用既有未来公共 `.enabled(Bool)` / `.enabled(() -> Bool)` 唯一行为槽；默认 true。焦点默认 Button/Checkbox/Radio/MenuItem 为 true，其他为 false，可通过相同公开 `.focusable` 后写替换。样式/布局继续返回 Component 接受公用链式重载，未列 checked/selected/fraction setter；动态值改变通过 getter 读取模型。重挂载/重排不能私自改 checked/selected。
 
-SplitAxis 是构造时不可变布局选择，不提供 getter；运行时改变轴用公开 If 切换两种构造并遵守卸载代际，不承诺同根换 kind。Horizontal=左右 Row，Vertical=上下 Column，嵌套任意。推荐具名 `axis` 放在 body 后以保留 `SplitPane { ... }` 组件块使用方式；最终原始语法能否正确绑定尾随块，须正常 SDK+现宏验证，不能靠手工改写源码证明语法通过。
+SplitAxis 是构造时不可变布局选择，不提供 getter；运行时改变轴用公开 If 切换两种构造并遵守卸载代际，不承诺同根换 kind。Horizontal=左右 Row，Vertical=上下 Column，嵌套任意。最终具名axis在前、具名body在最后；W007已由正常SDK和现宏证实SplitPane原始尾随块绑定，不能回用旧body先axis后失败顺序。
 
 ## 3. W002：caption、外观与主题
 

@@ -27,3 +27,9 @@ Frame已正常推送6a7b240（远端/本地一致、clean）。当前继续[reac
 独立交互草案/workspace/work/interaction-contract-draft整理为A/B/C正式候选：098–102公共Canvas/focus(父017)、103–107viewport(父037)、108–112overlay(父018)。主代理采纳原推荐，ScrollView默认Vertical、普通Column不隐式滚动；Tab/backtab最小解码进入A。完整输入/编辑草案/workspace/work/input-contract-draft继续，113–117归一化输入/paste/EOF子接口、118–122编辑，原稳定028编辑/030可选会话/020恢复/019菜单编号保持，不按主代理口误重编号。上述皆未冻结/未实施，不提前关闭父AC。M2草案/workspace/work/m2-contract-draft完成，待主代理正式收敛；完整Linux剩余仍连续执行。
 
 Runtime A+B最终075有限PASS已机械集成（产品0912436，R12/acceptance，AC071–075 passed）。原VTE metadata保留并追加strict JSON projection，原hash不变。076动态32组test-only已集成bc91577/真缺API RED，077可立即fresh Terra/high产品实施；不要重派测试/重跑A+B全suite。Rich测试已集成3f60142+7ba2cd4，Theme测试105337d；三者RED证据归R13/R14/R15，各自产品屏障不变。Glyph G010最终6d30da4独立补preflight ready，093作者glyph_test_author正写，R16。Interaction候选d10eb13已独立preflight中；M2/session/input/widgets草稿处于各自目录，尚未产品准入。
+
+环境于本轮恢复：filesystem/原进程与raw保留、旧agents丢失。按cloud-runtime status确认新环境ready/enforced，恢复SDD ledger不重派已完成工作。077原产品167集成266，DYN-F001独立初审FAIL；先独立10c4ee3补两回归RED再fix216集成5de，当前原审者复核round1，079/080仍待。远端main仍1d2af2c已验A+B；未推known-failing C候选。089准备83fac077965bbf0ba573e81463486e4fdb344125已交，尚未集成、async-only强RED等088；不要重写。
+
+已新增正式候选：Glyph最终a0eae999无未决Important且正式093测试daf2a252已集成901b06a（产品等080/084）；交互最终a0eae999独立design_reviewed，I011 application/I012自动行为态/I013 Off已收敛；Session最终d065719无未决Important（S007 pop ledger/S012深层copy），Input F002–005最终88ed5f7四PF独立verified；M2 M011/M012及Widgets W007候选c7328d0，M2三finding已verified，widgets只provenance minor刚机械修。全是设计/测试准备，不是产品实现。各原件目录保留，R16/R17等主代理归档中。
+
+真实host补证：库存sshd+ssh -T+remote util-linux script真PTY，独立SSH正/负OSC52及title stack12原始PNG/158非秘密hash，目录/workspace/work/session-extension-recon/ssh，report3dc9d9e13ac3f49d095b8e59cbb4b4f022ddf74bae0df1588dc6a57f38f0e755；不冒充ssh -tt库存成功，gid5权限失败保留，不能复制private keys。实际VT S004四精确序列补探针无grid/cursor副作用、无支持确认，/workspace/work/linux-vt-product-probe/osc-probe 58hash/6PNG；root最初污染假设被真实结果否定，Session Unknown合同未变。两补项仍协议环境事实，非产品151/最终041 PASS。
