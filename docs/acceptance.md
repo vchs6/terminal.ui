@@ -64,3 +64,12 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-051 | REQ-007 | TASK-051 | 独立代码/契约审核及修复复核 ；实际证据：[代码复核](reviews/R8/whole-review/re-review-2.md)及[入口复核](reviews/R8/whole-review/entry-review.md) | passed |
 | AC-052 | REQ-007 | TASK-052 | 独立构建/测试/PTY执行原始证据 ；实际证据：[独立执行原始结果](reviews/R8/execution/slice-results.json) | passed |
 | AC-053 | REQ-001–007 | TASK-053 | 首片交付与最终集成，未完功能明确 ；实际证据：[独立验收](reviews/R8/verification/verification.md)及[最终集成](reviews/R8/verification/final-integration.md) | passed |
+
+## 布局与装饰质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-054 | REQ-003/007 | TASK-054 | 独立布局/装饰测试与RED | pending |
+| AC-055 | REQ-007 | TASK-055 | 固定代码契约/质量审核及修复复核 | pending |
+| AC-056 | REQ-003/006/007 | TASK-056 | fresh slice/真实例子/clean包消费原始证据 | pending |
+| AC-057 | REQ-003/007 | TASK-057 | 有限合同验收和最终集成 | pending |

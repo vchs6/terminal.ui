@@ -55,8 +55,8 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 - [ ] 2.10 TASK-010：完整彩色与纯文本快照；验收 AC-010：含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告。
 ## 3. WP-003
 
-- [ ] 3.11 TASK-011：横纵与弹性尺寸协商；验收 AC-011：窄屏、零尺寸和非整除弹性分配有确定结果。
-- [ ] 3.12 TASK-012：圆角边框与阴影绘制区域；验收 AC-012：阴影只扩展绘制；移动/缩小清旧区，服从祖先裁剪。
+- TASK-011：状态/准入/实际依赖已转至 [布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)，保留原AC-011和需求映射。
+- TASK-012：状态/准入/实际依赖已转至 [布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)，保留原AC-012和需求映射。
 - [ ] 3.13 TASK-013：主题、样式复用及显式复位；验收 AC-013：四级优先顺序和继承/复位行为明确，运行时仅样式变化也更新。
 - [ ] 3.14 TASK-014：自定义组件跨容器复用；验收 AC-014：同组件用于普通容器与弹窗无需修改内核。
 ## 4. WP-004
@@ -524,3 +524,5 @@ R7 Linux顺序TASK-044（AC-044）、原生构建TASK-046（AC-046）、许可�
 ## 首个Linux产品切片
 
 用户要求停止停留于文档并交付代码。TASK-048测试契约、049正式构建、050首个运行切片、051独立审核、052独立测试执行、053独立验收的唯一状态在[切片tasks](../openspec/changes/implement-linux-first-slice/tasks.md)。这是既有产品任务的有限实现切片，不将001–004、005–032等全量任务直接勾完。
+
+Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-layout-decoration](../openspec/changes/implement-layout-decoration/tasks.md)；TASK-054测试、055审核、056执行、057验收同变更记录。其余原任务/状态不因此完成。
