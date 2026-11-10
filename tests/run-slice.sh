@@ -18,6 +18,10 @@ case "${1:-all}" in
     (cd tests/coordinate-boundary && cjpm build)
     tests/coordinate-boundary/target/release/bin/main
     ;;
+  layout)
+    (cd tests/layout && cjpm build)
+    timeout 30s tests/layout/target/release/bin/main
+    ;;
   integration)
     (cd tests/integration/fixture && cjpm build)
     node tests/integration/pty.mjs "${SLICE_SESSION_BIN:-tests/integration/fixture/target/release/bin/main}"
@@ -28,6 +32,7 @@ case "${1:-all}" in
     "$0" contract
     "$0" coordinates
     "$0" integration
+    "$0" layout
     ;;
-  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|integration|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|integration|all]" >&2; exit 2 ;;
 esac

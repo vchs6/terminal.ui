@@ -138,3 +138,27 @@ so existing CI slice checks include them. They link the actual product C and con
 syscalls; they are white-box C tests, distinct from the public consumers and real
 PTY suite above. See [native-session/README.md](native-session/README.md) for the
 contract, controlled interleaving, and evidence limits.
+
+## Layout and decoration contract (TASK-054)
+
+Binding input: `implement-layout-decoration/design.md` at product revision
+`86b088f`. This is an execution task: public API and behavior are already frozen;
+only independent consumers and runners are added. The existing R8 consumers and
+assertions remain unchanged. TDD and verification-before-completion skills apply.
+
+```sh
+./tests/run-slice.sh layout
+```
+
+`tests/layout` is an independent public Cangjie consumer. Its literal snapshots are
+hand-derived from the design, not from product output. It catches wrong largest
+remainders/ties, fixed/gap deductions, infeasible minimum allocation, overflow in
+integer multiply/divide, invalid setter rollback, viewport constraints, padding,
+axis alignment, zero dimensions, and complete validation of clipped text. The
+runner builds then executes the binary directly under a 30-second bound; timeout,
+compiler failure, and nonzero binary status fail. `all` includes this consumer after
+all retained R8 modes. Missing APIs at the binding input must produce genuine RED.
+
+For exact fractions: eight columns with weights 1:2:3 allocate 1:3:4 (remainders
+2/6, 4/6, 0); ten columns allocate 2:3:5. An infeasible 8:4 minimum in six available
+columns first clamps to 6:4, then allocates 4:2. These are specification fixtures.
