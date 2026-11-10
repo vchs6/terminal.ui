@@ -40,3 +40,5 @@ deliverables：081 tests/rich-text/cjpm.toml、src/main.cj及单实体helper、r
 L4：081先手算span/Cell/字节golden，全部byte切分、组合簇、4095/4096/4097和63/64/65、ST/BEL、C1/UTF8非法、所有SGR及原String拒绝，再旧库正常build和直接consumer缺API RED，冻结test-only。009先typed不可变值/共享簇映射，再有界decoder，随后Frame/组件绑定集成；固定新测试及受影响旧断言，product-only提交。082检查baseline至固定产品与tests/spec，不读作者自评，双verdict；发现缺陷回对应测试/实现作者修。083独立cache/配置正常构建并直接binary实际exit，按相关内容复用旧有效证据，普通bundle不skip，解包consumer只改manifest路径，记录环境/源/hash/UTC。084只核原件/副本/制品/hash/实际执行与原AC，不机械重跑suite；文档与状态单权威。本增量证据归R14（R13保留动态结构）。
 
 preflight：081自洽性=公共不依赖实现golden；009=先验证整值再写Frame，控制流无透传；082/083/084各自固定输入和独立结论。081→009共用精确design，009→runtime只加typed内容/getter，不建新Runtime；009→082→083→084无环且上游等待明确。shared frame/layout文件只允许前一runtime作者已完成后再改。原AC009状态需转移到此tasks，docs/tasks只留引用；尚未获得独立DQ准入不得产品实施。详细DQ01–14由独立preflight核。
+
+正式081准入：独立preflight固定7a33ddc最终ready，无剩余Important；原009状态已转本表、AC081–084在docs/acceptance唯一维护。DQ13来源/安装记录复用[已验证开发技能](../../../docs/reviews/R11/skills.json)，主代理实际本次使用cloud using/brainstorming/writing-plans/SDD及preflight，过程见progress；作者按其职责实际读TDD/cangjie-coding/search_docs并在交接记录调用。用户仓颉工具固定277f2e1、rules40bacab，Skill使用不引入产品依赖。此准入仅081测试，009产品仍严格等固定tests与runtime/shared文件屏障。

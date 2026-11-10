@@ -1,0 +1,32 @@
+[31merror[0m: undeclared type name 'RuntimeStats'
+ [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/session/src/main.cj:7:57:
+  [36m| [0m
+[36m7[0m [36m| [0mfunc writeStats(directory: String, name: String, value: RuntimeStats): Unit {[0m
+  [36m| [0m                                                        [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function declaration for function call 'writeTo'
+ [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/session/src/main.cj:8:10:
+  [36m| [0m
+[36m8[0m [36m| [0m    File.writeTo(directory + "/" + name,[0m
+  [36m| [0m         [31m^ [0m
+  [36m| [0m
+[34mnote[0m: found function member of 'Class-File'
+   [36m==>[0m (package std.fs)file.cj:393:24:
+[34mnote[0m: found function member of 'Class-File'
+   [36m==>[0m (package std.fs)file.cj:402:24:
+
+[31merror[0m: mismatched types
+  [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/session/src/main.cj:23:14:
+   [36m| [0m
+[36m23[0m [36m| [0m          Text({ =>[0m
+   [36m| [0m [31m_[0m[31m_____________^[0m
+[36m24[0m [36m| [0m[31m|[0m             if (mode == "bind") { throw Exception("CJTUI_BIND_SENTINEL") }[0m
+   [36m| [0m[31m|[0m ...[0m
+[36m26[0m [36m| [0m[31m|[0m         })[0m
+   [36m| [0m[31m|[0m[31m_[0m[31m________^ expected 'Struct-String', found '() -> Struct-String'[0m
+   [36m| [0m
+
+3 errors generated, 3 errors printed.
+Error: failed to compile package `runtime_session`, return code is 1
+Error: cjpm build failed

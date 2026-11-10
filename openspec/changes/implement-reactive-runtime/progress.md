@@ -33,3 +33,7 @@ Ruling：保留末次stats累计但dispose当前存量归0，明确用于资源�
 独立preflight最终a947857 ready/design_reviewed，DQ01–14 pass，两历史Important已由R015验证关闭，无剩余Critical/Important；原件见`docs/reviews/R12/preflight`。071作者runtime_test_author指定Sol/high已获明确frozen与开工，自有`/workspace/work/runtime-tests/source`，只A+B正式测试；产品072仍未准入。语言supplement/names源码/raw已按原件复制R12/language，planning-evidence.json记录来源/副本/hash，未重跑探针。仓库OpenSpec1.14.3实际list/status/apply报告ready、0/10，planning_complete不代表产品完成。
 
 071作者获得旧库正常build0、消费者missingAPI真实RED1，并独立声明-only scratch语法编译0（从未运行、非产品证据）；等待首个core test-only固定SHA，宏fixtures继续同合同覆盖。作者发现headless interrupt停止清理的确切时点未定，主代理R016明确dispatch返回前安全UI清理；后台stop仍只是请求，绝不后台cleanup。076作者独立C测试准备，无A+B基线故尚未正式RED；其错误码歧义由R016区分属性求值ReentrantEvaluation和结构上下文ReentrantStructure。此为限定合同澄清，回原preflight独立核，不重跑旧调查。
+
+071完整测试固定原62facc4→489d329→ae8520c，main投影9cd654c→9bea05f→6f62eb5；core/macro正向/session真missingAPI RED1、旧库build0，测试源码/raw/报告见R12/test-design。只语法声明scratch从未执行，macro负向不得因缺包假通过。主代理机械完成071交付，实际AC071仍等075独立验收；072在R016限定ready及core固定后正式准入，已收到全部最终tests。实现者runtime_implementer指定Terra/high、自有source/cache，当前开发core/宏正向通过，PTY发现边界退出错误正定点修复；这些仅开发自测，不等于073–075完成。
+
+076独立dynamic_test_author已准备32组手工golden/公共API草稿，静态语法/旧库build0仅环境证据，无A+B新基线故还未missingC RED/正式冻结；恢复时直接唤回该角色，不重复另派。后续richtext合同独立ready，081测试正在准备，009产品仍等072–075及共享文件屏障；不同时改同一Component/Layout权威。

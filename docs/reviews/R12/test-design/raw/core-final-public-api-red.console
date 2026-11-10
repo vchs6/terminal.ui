@@ -1,0 +1,696 @@
+[31merror[0m: undeclared type name 'UIException'
+  [36m==>[0m src/assertions.cj:17:36:
+   [36m| [0m
+[36m17[0m [36m| [0m    try { action() } catch (error: UIException) { actual = error.code }[0m
+   [36m| [0m                                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+  [36m==>[0m src/assertions.cj:33:33:
+   [36m| [0m
+[36m33[0m [36m| [0mfunc ref(component: Component): NodeRef { component.reference().getOrThrow() }[0m
+   [36m| [0m                                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+ [36m==>[0m src/cleanup.cj:7:22:
+  [36m| [0m
+[36m7[0m [36m| [0m    let first = Box<?NodeRef>(Option<NodeRef>.None)[0m
+  [36m| [0m                     [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+ [36m==>[0m src/cleanup.cj:7:38:
+  [36m| [0m
+[36m7[0m [36m| [0m    let first = Box<?NodeRef>(Option<NodeRef>.None)[0m
+  [36m| [0m                                     [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+ [36m==>[0m src/cleanup.cj:8:23:
+  [36m| [0m
+[36m8[0m [36m| [0m    let second = Box<?NodeRef>(Option<NodeRef>.None)[0m
+  [36m| [0m                      [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+ [36m==>[0m src/cleanup.cj:8:39:
+  [36m| [0m
+[36m8[0m [36m| [0m    let second = Box<?NodeRef>(Option<NodeRef>.None)[0m
+  [36m| [0m                                      [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'Observable'
+ [36m==>[0m src/counting_panel.cj:6:16:
+  [36m| [0m
+[36m6[0m [36m| [0m    let value: Observable<String>[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'Observable'
+ [36m==>[0m src/counting_panel.cj:8:17:
+  [36m| [0m
+[36m8[0m [36m| [0m    init(value: Observable<String>) {[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'UIKeyEvent'
+  [36m==>[0m src/events.cj:11:22:
+   [36m| [0m
+[36m11[0m [36m| [0m    let saved = Box<?UIKeyEvent>(Option<UIKeyEvent>.None)[0m
+   [36m| [0m                     [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'UIKeyEvent'
+  [36m==>[0m src/events.cj:11:41:
+   [36m| [0m
+[36m11[0m [36m| [0m    let saved = Box<?UIKeyEvent>(Option<UIKeyEvent>.None)[0m
+   [36m| [0m                                        [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: super class 'Component' is not inheritable
+ [36m==>[0m src/broken_panel.cj:5:22:
+  [36m| [0m
+[36m5[0m [36m| [0mclass BrokenPanel <: Component {[0m
+  [36m| [0m                     [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: super class 'Component' is not inheritable
+ [36m==>[0m src/counting_panel.cj:5:24:
+  [36m| [0m
+[36m5[0m [36m| [0mclass CountingPanel <: Component {[0m
+  [36m| [0m                       [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: super class 'Component' is not inheritable
+ [36m==>[0m src/double_finish.cj:5:23:
+  [36m| [0m
+[36m5[0m [36m| [0mclass DoubleFinish <: Component {[0m
+  [36m| [0m                      [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'reference' is not a member of class 'Component'
+  [36m==>[0m src/assertions.cj:33:53:
+   [36m| [0m
+[36m33[0m [36m| [0mfunc ref(component: Component): NodeRef { component.reference().getOrThrow() }[0m
+   [36m| [0m                                                    [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'stats' is not a member of class 'Application'
+  [36m==>[0m src/assertions.cj:36:17:
+   [36m| [0m
+[36m36[0m [36m| [0m    let s = app.stats()[0m
+   [36m| [0m                [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+ [36m==>[0m src/bindings.cj:8:18:
+  [36m| [0m
+[36m8[0m [36m| [0m    let choose = Observable<Bool>(true)[0m
+  [36m| [0m                 [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+ [36m==>[0m src/bindings.cj:9:16:
+  [36m| [0m
+[36m9[0m [36m| [0m    let left = Observable<String>("L")[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+  [36m==>[0m src/bindings.cj:10:17:
+   [36m| [0m
+[36m10[0m [36m| [0m    let right = Observable<String>("R")[0m
+   [36m| [0m                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+  [36m==>[0m src/bindings.cj:54:17:
+   [36m| [0m
+[36m54[0m [36m| [0m    let first = Observable<String>("old")[0m
+   [36m| [0m                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+  [36m==>[0m src/bindings.cj:55:18:
+   [36m| [0m
+[36m55[0m [36m| [0m    let second = Observable<String>("new")[0m
+   [36m| [0m                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: mismatched types
+  [36m==>[0m src/bindings.cj:62:14:
+   [36m| [0m
+[36m62[0m [36m| [0m        Text({ => otherCalls.value++; "U" })[0m
+   [36m| [0m             [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 'Struct-String', found '() -> Struct-String'[0m
+   [36m| [0m
+
+[31merror[0m: 'text' is not a member of class 'Component'
+  [36m==>[0m src/bindings.cj:69:12:
+   [36m| [0m
+[36m69[0m [36m| [0m    target.text("fixed")[0m
+   [36m| [0m           [31m^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'text' is not a member of class 'Component'
+  [36m==>[0m src/bindings.cj:74:12:
+   [36m| [0m
+[36m74[0m [36m| [0m    target.text({ => chosenCalls.value++; plain.value })[0m
+   [36m| [0m           [31m^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: mismatched types
+   [36m==>[0m src/bindings.cj:102:37:
+    [36m| [0m
+[36m102[0m [36m| [0m    let natural = Text("XYZ").width({ => 1 }).widthAuto().height({ => 1 }).heightAuto()[0m
+    [36m| [0m                                    [31m^^^^^^^^ expected 'Int64', found '() -> Int64'[0m
+    [36m| [0m
+
+[31merror[0m: 'text' is not a member of class 'Component'
+   [36m==>[0m src/bindings.cj:104:34:
+    [36m| [0m
+[36m104[0m [36m| [0m    let all = Column { Text("x").text({ => "y" }).textAlign({ => Alignment.End }).width(5) }[0m
+    [36m| [0m                                 [31m^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: mismatched types
+   [36m==>[0m src/bindings.cj:118:41:
+    [36m| [0m
+[36m118[0m [36m| [0m    illegal({ => render(Text("x").width({ => -1 }), 2, 1); () }, "negative bound layout rejected")[0m
+    [36m| [0m                                        [31m^^^^^^^^^ expected 'Int64', found '() -> Int64'[0m
+    [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+   [36m==>[0m src/bindings.cj:124:20:
+    [36m| [0m
+[36m124[0m [36m| [0m    let observed = Observable<Box<String>>(model)[0m
+    [36m| [0m                   [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+   [36m==>[0m src/bindings.cj:141:17:
+    [36m| [0m
+[36m141[0m [36m| [0m    let value = Observable<String>("old")[0m
+    [36m| [0m                [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: there is no non-parameter constructor in super class, please invoke super call explicitly
+ [36m==>[0m src/broken_panel.cj:7:5:
+  [36m| [0m
+[36m7[0m [36m| [0m    init() { finishConstruction() }[0m
+  [36m| [0m    [31m^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'finishConstruction'
+ [36m==>[0m src/broken_panel.cj:7:14:
+  [36m| [0m
+[36m7[0m [36m| [0m    init() { finishConstruction() }[0m
+  [36m| [0m             [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'onMount' is not a member of class 'Component'
+  [36m==>[0m src/cleanup.cj:11:21:
+   [36m| [0m
+[36m11[0m [36m| [0m        Text("one").onMount({ owner =>[0m
+   [36m| [0m                    [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'onMount' is not a member of class 'Component'
+  [36m==>[0m src/cleanup.cj:21:21:
+   [36m| [0m
+[36m21[0m [36m| [0m        Text("two").onMount({ owner => second.value = Some(owner); { => trace.value += "2"; throw Exception("CLEANUP_TWO") } })[0m
+   [36m| [0m                    [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'startHeadless' is not a member of class 'Application'
+  [36m==>[0m src/cleanup.cj:25:9:
+   [36m| [0m
+[36m25[0m [36m| [0m    app.startHeadless()[0m
+   [36m| [0m        [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'post' is not a member of class 'Application'
+  [36m==>[0m src/cleanup.cj:26:15:
+   [36m| [0m
+[36m26[0m [36m| [0m    check(app.post(first.value.getOrThrow(), { => trace.value += "BAD" }), "owner work queued before cleanup")[0m
+   [36m| [0m              [31m^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispose' is not a member of class 'Application'
+  [36m==>[0m src/cleanup.cj:28:15:
+   [36m| [0m
+[36m28[0m [36m| [0m    try { app.dispose() } catch (error: Exception) { failure = error.message }[0m
+   [36m| [0m              [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispose' is not a member of class 'Application'
+  [36m==>[0m src/cleanup.cj:34:9:
+   [36m| [0m
+[36m34[0m [36m| [0m    app.dispose()[0m
+   [36m| [0m        [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'onMount' is not a member of class 'Component'
+  [36m==>[0m src/cleanup.cj:38:20:
+   [36m| [0m
+[36m38[0m [36m| [0m        Text("ok").onMount({ _ => { => completed.value++ } })[0m
+   [36m| [0m                   [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'onMount' is not a member of class 'Component'
+  [36m==>[0m src/cleanup.cj:39:22:
+   [36m| [0m
+[36m39[0m [36m| [0m        Text("fail").onMount({ _ => throw Exception("MOUNT_SENTINEL") })[0m
+   [36m| [0m                     [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'snapshot' is not a member of class 'Application'
+ [36m==>[0m src/contexts.cj:8:38:
+  [36m| [0m
+[36m8[0m [36m| [0m    code("SessionInactive", { => app.snapshot(1, 1); () }, "snapshot rejects inactive session")[0m
+  [36m| [0m                                     [31m^^^^^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: 'startHeadless' is not a member of class 'Application'
+ [36m==>[0m src/contexts.cj:9:9:
+  [36m| [0m
+[36m9[0m [36m| [0m    app.startHeadless()[0m
+  [36m| [0m        [31m^^^^^^^^^^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: 'snapshot' is not a member of class 'Application'
+  [36m==>[0m src/contexts.cj:12:41:
+   [36m| [0m
+[36m12[0m [36m| [0m        code("WrongUIContext", { => app.snapshot(1, 1); () }, "snapshot rejects another thread")[0m
+   [36m| [0m                                        [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'startHeadless' is not a member of class 'Application'
+  [36m==>[0m src/contexts.cj:17:12:
+   [36m| [0m
+[36m17[0m [36m| [0m    second.startHeadless()[0m
+   [36m| [0m           [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'batch' is not a member of class 'Application'
+  [36m==>[0m src/contexts.cj:18:37:
+   [36m| [0m
+[36m18[0m [36m| [0m    code("WrongUIContext", { => app.batch({ => second.batch({ => }) }) }, "active callback cannot enter another session")[0m
+   [36m| [0m                                    [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispose' is not a member of class 'Application'
+  [36m==>[0m src/contexts.cj:19:12:
+   [36m| [0m
+[36m19[0m [36m| [0m    second.dispose()[0m
+   [36m| [0m           [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispose' is not a member of class 'Application'
+  [36m==>[0m src/contexts.cj:20:9:
+   [36m| [0m
+[36m20[0m [36m| [0m    app.dispose()[0m
+   [36m| [0m        [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RuntimeLimits'
+  [36m==>[0m src/contexts.cj:22:14:
+   [36m| [0m
+[36m22[0m [36m| [0m        { => RuntimeLimits(pendingPosts: 0) },[0m
+   [36m| [0m             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RuntimeLimits'
+  [36m==>[0m src/contexts.cj:23:14:
+   [36m| [0m
+[36m23[0m [36m| [0m        { => RuntimeLimits(mountedNodes: 0) },[0m
+   [36m| [0m             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RuntimeLimits'
+  [36m==>[0m src/contexts.cj:24:14:
+   [36m| [0m
+[36m24[0m [36m| [0m        { => RuntimeLimits(bindingsPerNode: 0) },[0m
+   [36m| [0m             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RuntimeLimits'
+  [36m==>[0m src/contexts.cj:25:14:
+   [36m| [0m
+[36m25[0m [36m| [0m        { => RuntimeLimits(dependenciesPerBinding: 0) },[0m
+   [36m| [0m             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RuntimeLimits'
+  [36m==>[0m src/contexts.cj:26:14:
+   [36m| [0m
+[36m26[0m [36m| [0m        { => RuntimeLimits(structuralOpsPerBatch: 0) },[0m
+   [36m| [0m             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RuntimeLimits'
+  [36m==>[0m src/contexts.cj:27:14:
+   [36m| [0m
+[36m27[0m [36m| [0m        { => RuntimeLimits(stabilizationPasses: 0) },[0m
+   [36m| [0m             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RuntimeLimits'
+  [36m==>[0m src/contexts.cj:28:14:
+   [36m| [0m
+[36m28[0m [36m| [0m        { => RuntimeLimits(treeDepth: 0) }[0m
+   [36m| [0m             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'RuntimeLimits'
+  [36m==>[0m src/contexts.cj:30:20:
+   [36m| [0m
+[36m30[0m [36m| [0m    let allNamed = RuntimeLimits(pendingPosts: 2, mountedNodes: 10, bindingsPerNode: 4,[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: extra argument given for parameter list '(Class-Component, Enum-ColorMode)' in call
+  [36m==>[0m src/contexts.cj:32:35:
+   [36m| [0m
+[36m32[0m [36m| [0m    let explicitMode = Application(Text("ok"), colorMode: ColorMode.TrueColor, limits: allNamed)[0m
+   [36m| [0m                                  [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 2 arguments, found 3[0m
+   [36m| [0m
+[34mnote[0m: found candidate
+  [36m==>[0m (package cjtui)application.cj:12:12:
+
+[31merror[0m: unknown named argument prefix 'limits:'
+  [36m==>[0m src/contexts.cj:36:43:
+   [36m| [0m
+[36m36[0m [36m| [0m        Application(Column { Text("x") }, limits: RuntimeLimits(mountedNodes: 1)).startHeadless()[0m
+   [36m| [0m                                          [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'limits:'
+  [36m==>[0m src/contexts.cj:39:54:
+   [36m| [0m
+[36m39[0m [36m| [0m        Application(Column { Column { Text("x") } }, limits: RuntimeLimits(treeDepth: 1)).startHeadless()[0m
+   [36m| [0m                                                     [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+  [36m==>[0m src/contexts.cj:41:13:
+   [36m| [0m
+[36m41[0m [36m| [0m    let a = Observable<String>("a")[0m
+   [36m| [0m            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+  [36m==>[0m src/contexts.cj:42:13:
+   [36m| [0m
+[36m42[0m [36m| [0m    let b = Observable<String>("b")[0m
+   [36m| [0m            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'limits:'
+  [36m==>[0m src/contexts.cj:44:53:
+   [36m| [0m
+[36m44[0m [36m| [0m        Application(Text({ => a.get() + b.get() }), limits: RuntimeLimits(dependenciesPerBinding: 1)).startHeadless()[0m
+   [36m| [0m                                                    [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'limits:'
+  [36m==>[0m src/contexts.cj:48:13:
+   [36m| [0m
+[36m48[0m [36m| [0m            limits: RuntimeLimits(bindingsPerNode: 1)).startHeadless()[0m
+   [36m| [0m            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'snapshot' is not a member of class 'Application'
+  [36m==>[0m src/contexts.cj:54:64:
+   [36m| [0m
+[36m54[0m [36m| [0m    let recursiveRoot = Text({ => recursive.value.getOrThrow().snapshot(1, 1); "x" })[0m
+   [36m| [0m                                                               [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'startHeadless' is not a member of class 'Application'
+  [36m==>[0m src/contexts.cj:56:67:
+   [36m| [0m
+[36m56[0m [36m| [0m    code("ReentrantEvaluation", { => recursive.value.getOrThrow().startHeadless() }, "getter cannot recursively snapshot")[0m
+   [36m| [0m                                                                  [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'key' is not a member of class 'Component'
+  [36m==>[0m src/contexts.cj:58:40:
+   [36m| [0m
+[36m58[0m [36m| [0m        Application(Column { Text("A").key("same"); Text("B").key("same") }).startHeadless()[0m
+   [36m| [0m                                       [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'key' is not a member of class 'Component'
+  [36m==>[0m src/contexts.cj:58:63:
+   [36m| [0m
+[36m58[0m [36m| [0m        Application(Column { Text("A").key("same"); Text("B").key("same") }).startHeadless()[0m
+   [36m| [0m                                                              [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'key' is not a member of class 'Component'
+  [36m==>[0m src/contexts.cj:60:39:
+   [36m| [0m
+[36m60[0m [36m| [0m    code("InvalidKey", { => Text("A").key(""); () }, "empty explicit key rejected")[0m
+   [36m| [0m                                      [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+  [36m==>[0m src/contexts.cj:65:19:
+   [36m| [0m
+[36m65[0m [36m| [0m    let uiValue = Observable<String>("U")[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+  [36m==>[0m src/contexts.cj:66:23:
+   [36m| [0m
+[36m66[0m [36m| [0m    let workerValue = Observable<String>("W")[0m
+   [36m| [0m                      [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+  [36m==>[0m src/continuous_updates.cj:11:17:
+   [36m| [0m
+[36m11[0m [36m| [0m    let value = Observable<Int64>(0)[0m
+   [36m| [0m                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: there is no non-parameter constructor in super class, please invoke super call explicitly
+ [36m==>[0m src/counting_panel.cj:8:5:
+  [36m| [0m
+[36m8[0m [36m| [0m    init(value: Observable<String>) {[0m
+  [36m| [0m    [31m^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'finishConstruction'
+  [36m==>[0m src/counting_panel.cj:10:9:
+   [36m| [0m
+[36m10[0m [36m| [0m        finishConstruction()[0m
+   [36m| [0m        [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: there is no non-parameter constructor in super class, please invoke super call explicitly
+ [36m==>[0m src/double_finish.cj:6:5:
+  [36m| [0m
+[36m6[0m [36m| [0m    init() { finishConstruction(); finishConstruction() }[0m
+  [36m| [0m    [31m^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'finishConstruction'
+ [36m==>[0m src/double_finish.cj:6:14:
+  [36m| [0m
+[36m6[0m [36m| [0m    init() { finishConstruction(); finishConstruction() }[0m
+  [36m| [0m             [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'finishConstruction'
+ [36m==>[0m src/double_finish.cj:6:36:
+  [36m| [0m
+[36m6[0m [36m| [0m    init() { finishConstruction(); finishConstruction() }[0m
+  [36m| [0m                                   [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'onKeyCapture' is not a member of class 'Component'
+  [36m==>[0m src/events.cj:15:41:
+   [36m| [0m
+[36m15[0m [36m| [0m            leaf.value = Some(Text("x").onKeyCapture({ event => trace.value += "Tc" })[0m
+   [36m| [0m                                        [31m^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'startHeadless' is not a member of class 'Application'
+  [36m==>[0m src/events.cj:34:13:
+   [36m| [0m
+[36m34[0m [36m| [0m    session.startHeadless()[0m
+   [36m| [0m            [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispatch' is not a member of class 'Application'
+  [36m==>[0m src/events.cj:36:13:
+   [36m| [0m
+[36m36[0m [36m| [0m    session.dispatch(target, KeyEvent("text", text: "a"))[0m
+   [36m| [0m            [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispatch' is not a member of class 'Application'
+  [36m==>[0m src/events.cj:43:13:
+   [36m| [0m
+[36m43[0m [36m| [0m    session.dispatch(target, KeyEvent("text", text: "b"))[0m
+   [36m| [0m            [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispatch' is not a member of class 'Application'
+  [36m==>[0m src/events.cj:46:13:
+   [36m| [0m
+[36m46[0m [36m| [0m    session.dispatch(target, KeyEvent("interrupt"))[0m
+   [36m| [0m            [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispatch' is not a member of class 'Application'
+  [36m==>[0m src/events.cj:49:13:
+   [36m| [0m
+[36m49[0m [36m| [0m    session.dispatch(target, KeyEvent("text", text: "h"))[0m
+   [36m| [0m            [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispatch' is not a member of class 'Application'
+  [36m==>[0m src/events.cj:52:42:
+   [36m| [0m
+[36m52[0m [36m| [0m    code("InvalidProperty", { => session.dispatch(target, KeyEvent("text", text: "z")) }, "hidden ancestor excludes target")[0m
+   [36m| [0m                                         [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'visible' is not a member of class 'Component'
+  [36m==>[0m src/events.cj:54:31:
+   [36m| [0m
+[36m54[0m [36m| [0m    parent.value.getOrThrow().visible(true)[0m
+   [36m| [0m                              [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'visible' is not a member of class 'Component'
+  [36m==>[0m src/events.cj:55:29:
+   [36m| [0m
+[36m55[0m [36m| [0m    leaf.value.getOrThrow().visible(false)[0m
+   [36m| [0m                            [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispatch' is not a member of class 'Application'
+  [36m==>[0m src/events.cj:56:42:
+   [36m| [0m
+[36m56[0m [36m| [0m    code("InvalidProperty", { => session.dispatch(target, KeyEvent("text")) }, "hidden target excluded")[0m
+   [36m| [0m                                         [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'visible' is not a member of class 'Component'
+  [36m==>[0m src/events.cj:57:29:
+   [36m| [0m
+[36m57[0m [36m| [0m    leaf.value.getOrThrow().visible(true)[0m
+   [36m| [0m                            [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispatch' is not a member of class 'Application'
+  [36m==>[0m src/events.cj:59:13:
+   [36m| [0m
+[36m59[0m [36m| [0m    session.dispatch(target, KeyEvent("interrupt"))[0m
+   [36m| [0m            [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dispose' is not a member of class 'Application'
+  [36m==>[0m src/events.cj:62:13:
+   [36m| [0m
+[36m62[0m [36m| [0m    session.dispose()[0m
+   [36m| [0m            [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+ [36m==>[0m src/export.cj:6:17:
+  [36m| [0m
+[36m6[0m [36m| [0m    let value = Observable<String>("one")[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+ [36m==>[0m src/lifetime.cj:7:17:
+  [36m| [0m
+[36m7[0m [36m| [0m    let value = Observable<String>("A")[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching constructor for call 'CountingPanel'
+ [36m==>[0m src/lifetime.cj:8:16:
+  [36m| [0m
+[36m8[0m [36m| [0m    let root = CountingPanel(value)[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'startHeadless' is not a member of class 'Application'
+  [36m==>[0m src/lifetime.cj:56:58:
+   [36m| [0m
+[36m56[0m [36m| [0m    failsWith("BUILD_SENTINEL", { => Application(broken).startHeadless() }, "build exception reaches consumer")[0m
+   [36m| [0m                                                         [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'reference' is not a member of class 'BrokenPanel'
+  [36m==>[0m src/lifetime.cj:57:42:
+   [36m| [0m
+[36m57[0m [36m| [0m    check(broken.attempts == 1 && broken.reference().isNone(), "failed construction has no active reference")[0m
+   [36m| [0m                                         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'startHeadless' is not a member of class 'Application'
+  [36m==>[0m src/lifetime.cj:58:57:
+   [36m| [0m
+[36m58[0m [36m| [0m    code("ConstructionFailed", { => Application(broken).startHeadless() }, "failed instance is never retried")[0m
+   [36m| [0m                                                        [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+ [36m==>[0m src/scheduler.cj:8:17:
+  [36m| [0m
+[36m8[0m [36m| [0m    let value = Observable<String>("0")[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'limits:'
+  [36m==>[0m src/scheduler.cj:10:33:
+   [36m| [0m
+[36m10[0m [36m| [0m    let app = Application(root, limits: RuntimeLimits(pendingPosts: 2))[0m
+   [36m| [0m                                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+  [36m==>[0m src/scheduler.cj:41:24:
+   [36m| [0m
+[36m41[0m [36m| [0m    let failingValue = Observable<String>("before")[0m
+   [36m| [0m                       [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+ [36m==>[0m src/visibility.cj:6:17:
+  [36m| [0m
+[36m6[0m [36m| [0m    let shown = Observable<Bool>(true)[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'Observable'
+ [36m==>[0m src/visibility.cj:7:17:
+  [36m| [0m
+[36m7[0m [36m| [0m    let value = Observable<String>("A")[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'override' function 'build' does not have an overridden function in its supertype
+ [36m==>[0m src/broken_panel.cj:8:5:
+  [36m| [0m
+[36m8[0m [36m| [0m    public override func build(): Unit {[0m
+  [36m| [0m    [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'override' function 'build' does not have an overridden function in its supertype
+  [36m==>[0m src/counting_panel.cj:12:5:
+   [36m| [0m
+[36m12[0m [36m| [0m    public override func build(): Unit {[0m
+   [36m| [0m    [31m^ [0m
+   [36m| [0m
+
+99 errors generated, 99 errors printed.

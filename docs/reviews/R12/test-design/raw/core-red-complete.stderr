@@ -1,0 +1,59 @@
+[31merror[0m: undeclared type name 'UIException'
+  [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/src/assertions.cj:17:36:
+   [36m| [0m
+[36m17[0m [36m| [0m    try { action() } catch (error: UIException) { actual = error.code }[0m
+   [36m| [0m                                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+  [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/src/assertions.cj:33:33:
+   [36m| [0m
+[36m33[0m [36m| [0mfunc ref(component: Component): NodeRef { component.reference().getOrThrow() }[0m
+   [36m| [0m                                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+ [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/src/cleanup.cj:7:22:
+  [36m| [0m
+[36m7[0m [36m| [0m    let first = Box<?NodeRef>(Option<NodeRef>.None)[0m
+  [36m| [0m                     [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+ [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/src/cleanup.cj:7:38:
+  [36m| [0m
+[36m7[0m [36m| [0m    let first = Box<?NodeRef>(Option<NodeRef>.None)[0m
+  [36m| [0m                                     [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+ [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/src/cleanup.cj:8:23:
+  [36m| [0m
+[36m8[0m [36m| [0m    let second = Box<?NodeRef>(Option<NodeRef>.None)[0m
+  [36m| [0m                      [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'NodeRef'
+ [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/src/cleanup.cj:8:39:
+  [36m| [0m
+[36m8[0m [36m| [0m    let second = Box<?NodeRef>(Option<NodeRef>.None)[0m
+  [36m| [0m                                      [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'Observable'
+ [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/src/counting_panel.cj:6:16:
+  [36m| [0m
+[36m6[0m [36m| [0m    let value: Observable<String>[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'Observable'
+ [36m==>[0m /workspace/work/runtime-tests/source/tests/runtime/src/counting_panel.cj:8:17:
+  [36m| [0m
+[36m8[0m [36m| [0m    init(value: Observable<String>) {[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+98 errors generated, 8 errors printed.
+Error: failed to compile package `runtime_contract`, return code is 1
+Error: cjpm build failed

@@ -113,3 +113,14 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-078 | REQ-007 | TASK-078 | C增量及运行时跨界独立spec/quality审查 | pending |
 | AC-079 | REQ-002/006/007 | TASK-079 | 独立动态矩阵、相关回归、正常公开包消费 | pending |
 | AC-080 | REQ-001/002/007 | TASK-080 | 原AC015/016/032完整证据及元数据，014仍等018 | pending |
+
+## 有界富文本质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-081 | REQ-001/005/007 | TASK-081 | 独立typed文本/逐byte分块/手工样式golden与真实缺API RED | pending |
+| AC-082 | REQ-007 | TASK-082 | 固定完整富文本技术diff的spec/quality独立审核 | pending |
+| AC-083 | REQ-005/006/007 | TASK-083 | 独立新矩阵、受影响回归、正常源码包与公开消费 | pending |
+| AC-084 | REQ-001/005/007 | TASK-084 | 原AC009和有限文本集成证据/最终metadata，010可见层仍待验 | pending |
+
+富文本行为和支持任务状态见[具体变更](../openspec/changes/implement-rich-text/tasks.md)，pending不是产品通过。

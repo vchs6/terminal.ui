@@ -7,3 +7,5 @@
 独立rich_text_preflight指出成员receiver、验证包方向、原始byte/参数计数、首故障诊断、SGR空operand，以及异常流已交付前缀不可能分块等价的缺口。主代理已逐项落实候选：public validatePlainText下沉text+根薄委托、成员签名分节、原始bytes含intro/terminator、含empty/operand字段数、每序列首错即报且finish可额外Incomplete、资源先于同byte语法、语义左到右首错、38/48空operand拒绝、成功完整流才归一化等价。AnsiTextIssue增加Equatable供公开typed诊断比较。待审查者最终限定核对；尚未派测试或产品。
 
 固定4a7b955复核只余“final前不能知道是否SGR”的限额歧义。主代理将字段明确命名maxParameters，全部CSI参数区适用字段数/连续decimal-run≤3的有界限制，到超限byte即判TooLong，不待final，不让未知final覆盖首错。修正RichText验证函数名为下沉唯一validatePlainText。本项是候选冻结前澄清，无已发布兼容变更。
+
+独立preflight最终7a33ddc ready，design hash656b827e9f40727aa71badb780be86d35cf24199c6cf65de5ef67f2041cf67d4，剩余Important0。DQ12原009转移/081–084AC单引用、DQ13技能来源/使用链接在本次正式准入补齐，不改变功能API；081作者rich_text_test_author指定Sol/high已按冻结合同开工，独立/workspace/work/rich-text-tests/source，不改run-slice并发接线，先纯核心missingAPI RED，runtime相关consumer等固定新输入。009产品尚未准入。

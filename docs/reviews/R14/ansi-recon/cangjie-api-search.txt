@@ -1,0 +1,64 @@
+Found 2 layered-document match(es) for 'String fromUtf8':
+
+### 1. std.core.struct.string.fromutf8 [api-member L6] score=2310
+- `static fromUtf8(utf8Data: Array<UInt8>): String`
+- 根据 UTF-8 编码的字节数组构造一个字符串。
+- package: `std.core`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/core/structs/string/fromutf8.md
+
+### 2. std.core.struct.string.fromutf8unchecked [api-member L6] score=2310
+- `unsafe static fromUtf8Unchecked(utf8Data: Array<UInt8>): String`
+- 根据字节数组构造一个字符串。
+- match: # String.fromUtf8Unchecked
+- match: public unsafe static func fromUtf8Unchecked(utf8Data: Array<UInt8>): String
+- match: 相较于 fromUtf8 函数，fromUtf8Unchecked 并没有针对于字节数组进行 UTF-8 相关规则的检查，所以它所构建的字符串并不一定保证是合法的，甚至出现非预期的异常，如果不是某些场景下的性能考虑，请优先使用安全的 fromUtf8 函数。
+- package: `std.core`
+- path: references/api/std/core/structs/string/fromutf8unchecked.md
+Found 2 layered-document match(es) for 'ArrayList remove':
+
+### 1. std.collection.class.arraylist.remove [api-member L6] score=2510
+- `remove(at!: Int64): T`
+- `remove(range: Range<Int64>): Unit`
+- 删除此 ArrayList 中指定位置的元素。
+- package: `std.collection`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/collection/classes/arraylist/remove.md
+
+### 2. std.collection.class.arraylist [api-type L5] score=990
+- `ArrayList<T> <: List<T>`
+- 提供可变长度的数组的功能。
+- match: | [`remove(at!: Int64): T`](remove.md) | 删除此 ArrayList 中指定位置的元素。 |
+- match: | [`remove(range: Range<Int64>): Unit`](remove.md) | 删除此 ArrayList 中 Range 范围所包含的所有元素。 |
+- package: `std.collection`
+- path: references/api/std/collection/classes/arraylist/index.md
+Found 2 layered-document match(es) for 'enum associated value':
+Note: the returned results collectively did not match query term(s): associated; verify the spelling or try a narrower query.
+
+### 1. std.ast.enum.tokenkind.value-enum [api-member L6] score=1370
+- `ENUM`
+- 构造一个表示 `enum` 的枚举实例。
+- package: `std.ast`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/ast/enums/tokenkind/value-enum.md
+
+### 2. std.core.enum.annotationkind.value-type [api-member L6] score=1370
+- `Type`
+- 类型声明（class、struct、enum、interface）。
+- package: `std.core`
+- path: references/api/std/core/enums/annotationkind/value-type.md
+Found 2 layered-document match(es) for 'String runes':
+
+### 1. std.core.struct.string.runes [api-member L6] score=2010
+- `runes(): Iterator<Rune>`
+- 获取字符串的 Rune 迭代器。
+- package: `std.core`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/core/structs/string/runes.md
+
+### 2. std.core.struct.string [api-type L5] score=1170
+- `String <: Collection<Byte> & Comparable<String> & Hashable & ToString`
+- 该结构体表示仓颉字符串，提供了构造、查找、拼接等一系列字符串操作。
+- match: | [`runes(): Iterator<Rune>`](runes.md) | 获取字符串的 Rune 迭代器。 |
+- package: `std.core`
+- path: references/api/std/core/structs/string/index.md
