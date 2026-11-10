@@ -1,0 +1,21 @@
+{
+  "scope": "Independent TASK148 test-facility headless record-key correction; not TASK149 product review",
+  "base": "e9121c9768291b65fae56ca9b0f38b9bb6c3ee1f",
+  "reviewed_commit": "47d267fe802dcb817b4f95247eac18a4a30c2fab",
+  "spec_compliance_verdict": "PASS",
+  "code_quality_verdict": "PASS",
+  "counts": {"critical": 0, "important": 0, "minor": 0},
+  "findings": [],
+  "confirmed_facility_defect": {
+    "key": "headless.title",
+    "capability_fields": 5,
+    "operation_fields": 6,
+    "fixed": "Capability snapshot uses headless.capabilities.*, operation keys and all public record field expectations remain unchanged; parseResults rejects shape-changing overwrite."
+  },
+  "limits": [
+    "Same-shape duplicates retain existing last-value behavior; this is not per-invocation validation.",
+    "Fixture/control PASS is not fresh product/headless runtime or GUI PASS.",
+    "S007 additions and TASK149 source/implementation are outside this fixed review."
+  ],
+  "evidence": ["report.md", "reviewed-hashes.json", "audit.json", "fixed.diff"]
+}

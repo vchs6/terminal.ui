@@ -1,0 +1,398 @@
+diff --git a/tests/session_extensions/README.md b/tests/session_extensions/README.md
+index 9467f4f..5535c3f 100644
+--- a/tests/session_extensions/README.md
++++ b/tests/session_extensions/README.md
+@@ -57,10 +57,25 @@ The suite deliberately inspects healthy zero-byte reopens and same-process parti
+ 
+ Reuse the independently frozen private Xorg/XTerm398, VTE0.80.1, tmux3.5a and screen4.09.01 launch/config/clipboard observation mechanisms from the recon handoff; replace the protocol child with this actual normal CJ consumer. Preserve original raw evidence and choose fresh run directories. Required permission controls are XTerm default denied vs SetSelection enabled and title-disabled, VTE dynamic-title mode, tmux default/clipboard-on/outer-denied/passthrough-off/on, screen default/passthrough. Compare the **specified target** (pane title vs outer caption), not interchangeable title values. Declare stack only for an intentionally selected complete path; application declaration never changes SentUnconfirmed to Applied.
+ 
+ `observations.json` contains actual clipboard-before/after hex, title map initial/A/B/restored, icon property before/after SHA256, exact termios before/after and exitCode. Manifest `expected` holds independently chosen expected values from that profile's frozen configuration, not values copied from observation. Include measured dimensions/time, binary+source SHA, original configs, actual PNG hashes/capture command/window ID and native-grid path. A capture from a private X server may read only its self-owned seed/payload; no user's clipboard is inspected. Actual host screenshots are never rendered from ANSI or synthesized by this suite. If a host has no native-grid export (current VTE recon), retain that limitation and obtain evidence before claiming this strict host oracle passed.
+ 
+ For SSH, reuse the private stock sshd readiness handoff's real `ssh -T` + remote `script` PTY topology, fixed keys via the existing launcher only, without reading/copying private keys. Add `ssh` object `{topology, remoteTty, remoteGrid, clientLog, remoteCommand}` to the manifest. The oracle requires real publickey auth, negotiated kex, exit status, actual remote PTY/grid and the recorded script command. Loopback is explicitly loopback; no claim of arbitrary remote network/resize/Wayland coverage. The host-only SSH reports never count as this product consumer passing.
+ 
+ ## Boundaries and open execution work
+ 
+ This task freezes tests and old-product RED, not future-product GREEN or AC030 acceptance. Impossible public inputs (an unknown enum route, Int64-overflow Array allocation, >90,000 generated wire after the stricter payload caps) are not fabricated through private encoder calls. Those constants are bounded by reachable maximum wire assertions; unreachable enum outcomes are compile-consumed. Heap/OOM coverage is the existing native allocation seam only. Host execution, SSH product evidence, resize/disconnect, independent code review and acceptance are separate roles. This suite does not replace R10 or the full AC008/020/030/041 scope.
++
++## Headless record namespaces
++
++The headless capability snapshot uses `headless.capabilities.*`; operation
++results retain `headless.copy/title/restore/icon`. The original `headless.title`
++capability/result key collision is preserved in `fixtures/headless-key-collision.tsv`
++as fixture-only evidence. `node tests/session_extensions/key_selftest.mjs` checks
++the original collision and both5-field/6-field orderings, then renames only those
++capability keys in the original records to verify unchanged field expectations.
++`parseResults` rejects a duplicate key that changes pipe-delimited record shape;
++legitimate same-shape getter/mount repeats retain the original last-value
++behavior. It does not validate every repeated invocation separately or reject
++all duplicate keys. The control checks that behavior against the real supplied
++fixture. Its PASS is solely an oracle/record-namespace check, not product or
++headless runtime GREEN. Normal `selftest` includes this control.
+diff --git a/tests/session_extensions/fixtures/headless-key-collision.tsv b/tests/session_extensions/fixtures/headless-key-collision.tsv
+new file mode 100644
+index 0000000..80813b0
+--- /dev/null
++++ b/tests/session_extensions/fixtures/headless-key-collision.tsv
+@@ -0,0 +1,223 @@
++inactive	CopyLocalText|Failed|0|SessionInactive|-1|NotNeeded
++inactive.session	0
++inactive.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++inactive.steps	0
++inactive.copy	CopyLocalText|Failed|0|SessionInactive|-1|NotNeeded
++inactive.copy.session	0
++inactive.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++inactive.copy.steps	0
++inactive.title	SetHostTitle|Failed|0|SessionInactive|-1|NotNeeded
++inactive.title.session	0
++inactive.title.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++inactive.title.steps	0
++inactive.restore	RestoreHostTitle|Failed|0|SessionInactive|-1|NotNeeded
++inactive.restore.session	0
++inactive.restore.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++inactive.restore.steps	0
++inactive.icon	SetHostImageIcon|Failed|0|SessionInactive|-1|NotNeeded
++inactive.icon.session	0
++inactive.icon.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++inactive.icon.steps	0
++getter	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++getter.session	4
++getter.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++getter.steps	0
++getter.copy	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++getter.copy.session	4
++getter.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++getter.copy.steps	0
++getter.title	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++getter.title.session	4
++getter.title.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++getter.title.steps	0
++getter.restore	RestoreHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++getter.restore.session	4
++getter.restore.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++getter.restore.steps	0
++getter.icon	SetHostImageIcon|Failed|0|InvalidContext|-1|NotNeeded
++getter.icon.session	4
++getter.icon.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++getter.icon.steps	0
++mount	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++mount.session	4
++mount.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++mount.steps	0
++mount.copy	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++mount.copy.session	4
++mount.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++mount.copy.steps	0
++mount.title	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++mount.title.session	4
++mount.title.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++mount.title.steps	0
++mount.restore	RestoreHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++mount.restore.session	4
++mount.restore.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++mount.restore.steps	0
++mount.icon	SetHostImageIcon|Failed|0|InvalidContext|-1|NotNeeded
++mount.icon.session	4
++mount.icon.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++mount.icon.steps	0
++headless.id	4
++headless.clipboard	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++headless.title	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++headless.titleStack	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++headless.imageIcon	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++headless.copy	CopyLocalText|Unsupported|0|NoDevice|-1|NotNeeded
++headless.copy.session	4
++headless.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++headless.copy.steps	0
++headless.title	SetHostTitle|Unsupported|0|NoDevice|-1|NotNeeded
++headless.title.session	4
++headless.title.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++headless.title.steps	0
++headless.restore	RestoreHostTitle|Unsupported|0|NoDevice|-1|NotNeeded
++headless.restore.session	4
++headless.restore.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++headless.restore.steps	0
++headless.icon	SetHostImageIcon|Unsupported|0|NoImageAdapter|-1|NotNeeded
++headless.icon.session	4
++headless.icon.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++headless.icon.steps	0
++worker	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++worker.session	4
++worker.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++worker.steps	0
++worker.0	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++worker.0.session	4
++worker.0.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++worker.0.steps	0
++worker.1	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++worker.1.session	4
++worker.1.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++worker.1.steps	0
++worker.2	RestoreHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++worker.2.session	4
++worker.2.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++worker.2.steps	0
++worker.3	SetHostImageIcon|Failed|0|InvalidContext|-1|NotNeeded
++worker.3.session	4
++worker.3.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++worker.3.steps	0
++cross.session	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++cross.session.session	7
++cross.session.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++cross.session.steps	0
++cross.session.copy	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++cross.session.copy.session	7
++cross.session.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++cross.session.copy.steps	0
++cross.session.title	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++cross.session.title.session	7
++cross.session.title.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++cross.session.title.steps	0
++cross.session.restore	RestoreHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++cross.session.restore.session	7
++cross.session.restore.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++cross.session.restore.steps	0
++cross.session.icon	SetHostImageIcon|Failed|0|InvalidContext|-1|NotNeeded
++cross.session.icon.session	7
++cross.session.icon.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++cross.session.icon.steps	0
++batch	CopyLocalText|Unsupported|0|NoDevice|-1|NotNeeded
++batch.session	4
++batch.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++batch.steps	0
++post.1	CopyLocalText|Unsupported|0|NoDevice|-1|NotNeeded
++post.1.session	4
++post.1.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++post.1.steps	0
++post.2	CopyLocalText|Unsupported|0|NoDevice|-1|NotNeeded
++post.2.session	4
++post.2.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++post.2.steps	0
++post.3	CopyLocalText|Unsupported|0|NoDevice|-1|NotNeeded
++post.3.session	4
++post.3.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++post.3.steps	0
++clean.copy	CopyLocalText|Unsupported|0|NoDevice|-1|NotNeeded
++clean.copy.session	4
++clean.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++clean.copy.steps	0
++cleanup.context	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.session	4
++cleanup.context.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++cleanup.context.steps	0
++cleanup.context.copy	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.copy.session	4
++cleanup.context.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++cleanup.context.copy.steps	0
++cleanup.context.title	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.title.session	4
++cleanup.context.title.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++cleanup.context.title.steps	0
++cleanup.context.restore	RestoreHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.restore.session	4
++cleanup.context.restore.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++cleanup.context.restore.steps	0
++cleanup.context.icon	SetHostImageIcon|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.icon.session	4
++cleanup.context.icon.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++cleanup.context.icon.steps	0
++cleanup.count	0
++getter	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++getter.session	9
++getter.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++getter.steps	0
++getter.copy	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++getter.copy.session	9
++getter.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++getter.copy.steps	0
++getter.title	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++getter.title.session	9
++getter.title.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++getter.title.steps	0
++getter.restore	RestoreHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++getter.restore.session	9
++getter.restore.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++getter.restore.steps	0
++getter.icon	SetHostImageIcon|Failed|0|InvalidContext|-1|NotNeeded
++getter.icon.session	9
++getter.icon.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++getter.icon.steps	0
++mount	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++mount.session	9
++mount.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++mount.steps	0
++mount.copy	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++mount.copy.session	9
++mount.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++mount.copy.steps	0
++mount.title	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++mount.title.session	9
++mount.title.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++mount.title.steps	0
++mount.restore	RestoreHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++mount.restore.session	9
++mount.restore.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++mount.restore.steps	0
++mount.icon	SetHostImageIcon|Failed|0|InvalidContext|-1|NotNeeded
++mount.icon.session	9
++mount.icon.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++mount.icon.steps	0
++cleanup.context	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.session	9
++cleanup.context.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++cleanup.context.steps	0
++cleanup.context.copy	CopyLocalText|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.copy.session	9
++cleanup.context.copy.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc52-c
++cleanup.context.copy.steps	0
++cleanup.context.title	SetHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.title.session	9
++cleanup.context.title.cap	Unsupported|KnownUnavailable|NoDevice|Direct|osc2
++cleanup.context.title.steps	0
++cleanup.context.restore	RestoreHostTitle|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.restore.session	9
++cleanup.context.restore.cap	Unsupported|KnownUnavailable|NoDevice|Direct|xterm-title-stack-window
++cleanup.context.restore.steps	0
++cleanup.context.icon	SetHostImageIcon|Failed|0|InvalidContext|-1|NotNeeded
++cleanup.context.icon.session	9
++cleanup.context.icon.cap	Unsupported|KnownUnavailable|NoImageAdapter|Direct|none
++cleanup.context.icon.steps	0
++completed	yes
+diff --git a/tests/session_extensions/key_selftest.mjs b/tests/session_extensions/key_selftest.mjs
+new file mode 100644
+index 0000000..d73fabc
+--- /dev/null
++++ b/tests/session_extensions/key_selftest.mjs
+@@ -0,0 +1,36 @@
++// Fixture-only key/shape controls; no product runtime success claim.
++import assert from 'node:assert/strict';
++import { readFileSync } from 'node:fs';
++import { parseResults, verifyHeadless } from './oracle.mjs';
++const raw=readFileSync(new URL('./fixtures/headless-key-collision.tsv',import.meta.url),'utf8');
++assert.throws(()=>parseResults(raw),/duplicate.*record shape/,'actual historical capability/result collision cannot silently overwrite');
++for(const text of [
++ 'same\tUnsupported|KnownUnavailable|NoDevice|Direct|osc2\nsame\tSetHostTitle|Unsupported|0|NoDevice|-1|NotNeeded\n',
++ 'same\tSetHostTitle|Unsupported|0|NoDevice|-1|NotNeeded\nsame\tUnsupported|KnownUnavailable|NoDevice|Direct|osc2\n'
++]) assert.throws(()=>parseResults(text),/duplicate.*record shape/);
++const capabilityKeys=new Set(['headless.id','headless.clipboard','headless.title','headless.titleStack','headless.imageIcon']);
++const renamed=raw.split('\n').map(line=>{
++ const tab=line.indexOf('\t');if(tab<0)return line;
++ const key=line.slice(0,tab),value=line.slice(tab+1);
++ if(capabilityKeys.has(key)&&(key!=='headless.title'||value.split('|').length===5))
++  return 'headless.capabilities.'+key.slice('headless.'.length)+'\t'+value;
++ return line;
++}).join('\n');
++const rows=parseResults(renamed);
++verifyHeadless(rows,Buffer.alloc(0));
++assert(rows.get('headless.capabilities.title').startsWith('Unsupported|KnownUnavailable|NoDevice|'));
++assert(rows.get('headless.title').startsWith('SetHostTitle|Unsupported|0|NoDevice|'));
++// Existing getter/mount observations legitimately repeat. Retain the original
++// same-shape last-value behavior; this is not per-invocation semantic validation.
++const grouped=new Map();
++for(const line of renamed.trim().split('\n')) {
++ const tab=line.indexOf('\t'),key=line.slice(0,tab),value=line.slice(tab+1);
++ grouped.set(key,[...(grouped.get(key)??[]),value]);
++}
++const repeated=[...grouped].filter(([,values])=>values.length>1);
++assert(repeated.length>0,'real supplied fixture includes repeated observations');
++for(const [key,values] of repeated) {
++ assert.equal(new Set(values.map(value=>value.split('|').length)).size,1);
++ assert.equal(rows.get(key),values.at(-1),'same-shape last-value behavior preserved');
++}
++console.log(`PASS fixture-only record keys: cross-shape negatives=3; distinct capability/operation namespaces; same-shape last-wins keys=${repeated.length}; no product run`);
+diff --git a/tests/session_extensions/oracle.mjs b/tests/session_extensions/oracle.mjs
+index 55557ba..76d8c39 100644
+--- a/tests/session_extensions/oracle.mjs
++++ b/tests/session_extensions/oracle.mjs
+@@ -5,21 +5,24 @@ export const hex = text => Buffer.from(text, 'hex');
+ export function wrap(inner, route = 'Direct') {
+   if (route === 'TmuxPassthrough') return Buffer.concat([hex('1b50746d75783b'), Buffer.from([...inner].flatMap(b => b === 27 ? [27, 27] : [b])), hex('1b5c')]);
+   if (route === 'ScreenPassthrough') return Buffer.concat([hex('1b50'), inner, hex('1b5c')]);
+   assert.equal(route, 'Direct'); return inner;
+ }
+ export function parseResults(text) {
+   const rows = new Map();
+   for (const line of text.trim().split('\n')) {
+     if (!line) continue;
+     const tab = line.indexOf('\t'); assert(tab > 0, `invalid row ${line}`);
+-    rows.set(line.slice(0, tab), line.slice(tab + 1));
++    const key=line.slice(0,tab),value=line.slice(tab+1),previous=rows.get(key);
++    assert(previous===undefined || previous.split('|').length===value.split('|').length,
++      `${key}: duplicate key changes record shape`);
++    rows.set(key,value);
+   }
+   return rows;
+ }
+ export function assertResult(rows, key, want) {
+   assert(rows.has(key), `missing result ${key}`);
+   const names = ['operation', 'status', 'bytes', 'issue', 'offset', 'restore'];
+   const values = rows.get(key).split('|'); assert.equal(values.length, 6, key);
+   const actual = Object.fromEntries(names.map((name, i) => [name, ['bytes', 'offset'].includes(name) ? Number(values[i]) : values[i]]));
+   for (const [field, expected] of Object.entries(want)) assert.deepEqual(actual[field], expected, `${key}.${field}`);
+   return actual;
+@@ -45,21 +48,21 @@ export function verifyHeadless(rows, wire) {
+   assertResult(rows, 'inactive', { ...fail('SessionInactive'), operation: 'CopyLocalText' });
+   assert.equal(rows.get('inactive.session'), '0');
+   for (const key of ['mount','getter','cleanup.context','worker','cross.session']) assertResult(rows, key, fail('InvalidContext'));
+   for (const key of ['headless.copy','batch','clean.copy','post.1','post.2','post.3']) unavailable(rows, key, 'CopyLocalText', 'NoDevice');
+   unavailable(rows, 'headless.restore', 'RestoreHostTitle', 'NoDevice');
+   for (const key of ['mount','getter','cleanup.context','cross.session']) for (const op of ['copy','title','restore','icon']) assertResult(rows,`${key}.${op}`,fail('InvalidContext'));
+   for(let i=0;i<4;i++) assertResult(rows,`worker.${i}`,fail('InvalidContext'));
+   for(const op of ['copy','title','restore','icon']) assertResult(rows,`inactive.${op}`,fail('SessionInactive'));
+   unavailable(rows, 'headless.title', 'SetHostTitle', 'NoDevice');
+   unavailable(rows, 'headless.icon', 'SetHostImageIcon', 'NoImageAdapter');
+-  for (const name of ['clipboard','title','titleStack']) assert(rows.get(`headless.${name}`).startsWith('Unsupported|KnownUnavailable|NoDevice|'), `headless ${name}`);
++  for (const name of ['clipboard','title','titleStack']) assert(rows.get(`headless.capabilities.${name}`).startsWith('Unsupported|KnownUnavailable|NoDevice|'), `headless ${name}`);
+   assert.equal(rows.get('cleanup.count'), '0');
+ }
+ export function verifyLive(rows, wire, native, scenario, route, offset = 0, allWire = wire) {
+   for(const forbidden of ['\x1b]0;','\x1b]1;','\x1b]52;c;?']) assert(!allWire.includes(Buffer.from(forbidden)),'no icon-name/both-title/clipboard-query protocol');
+   common(rows); assert.equal(rows.get('disposed'), 'yes', 'UI dispose happens');
+   assertResult(rows, 'after.inactive', fail('SessionInactive'));
+   assert.equal(rows.get('after.id'), rows.get('live.id'), 'last immutable snapshot retained');
+   for (const name of ['clipboard','title','titleStack']) {
+     const declared = (name === 'clipboard' && ['declared','policy-reverse'].includes(scenario)) || (name === 'title' && ['declared','policy-independent'].includes(scenario)) || (name === 'titleStack' && /^(ledger|fault-(save|set|restore))/.test(scenario));
+     const disabled = scenario === 'disabled' || (name === 'clipboard' && scenario === 'policy-independent') || (name === 'title' && scenario === 'policy-reverse');
+diff --git a/tests/session_extensions/selftest.mjs b/tests/session_extensions/selftest.mjs
+index 3434071..d61eb11 100644
+--- a/tests/session_extensions/selftest.mjs
++++ b/tests/session_extensions/selftest.mjs
+@@ -44,10 +44,12 @@ for (const [tag,args,want,all] of [
+   assertWire(existsSync(wire)?readFileSync(wire):Buffer.alloc(0),want,tag);
+   assertWire(readFileSync(every),all,tag+' all output');checks++;
+ }
+ console.log(`PASS fixture-selftest checks=${checks} deliberate-negative-controls=${negative} artifacts=${dir}`);
+ const {verifyObservation,hostText}=await import('./host-oracle.mjs');
+ const expected={seedHex:'53454544',clipboardApplied:false,title:{initial:'original',A:'A',B:'B',restored:'original'}};
+ const observed={clipboardBeforeHex:'53454544',clipboardAfterHex:'53454544',title:{...expected.title},iconBeforeSha256:'a'.repeat(64),iconAfterSha256:'a'.repeat(64),termiosBefore:'same',termiosAfter:'same',exitCode:0};
+ verifyObservation(observed,expected);
+ for(const bad of [{...observed,clipboardAfterHex:Buffer.from(hostText).toString('hex')},{...observed,title:{...observed.title,restored:'B'}},{...observed,iconAfterSha256:'b'.repeat(64)},{...observed,termiosAfter:'raw'}]) assert.throws(()=>verifyObservation(bad,expected));
+ console.log('PASS host observation oracle: permission-negative/title/icon/termios controls=4; synthetic observations only, no product/host PASS');
++
++await import('./key_selftest.mjs');
+diff --git a/tests/session_extensions/src/headless.cj b/tests/session_extensions/src/headless.cj
+index 7a3ca9c..87038d3 100644
+--- a/tests/session_extensions/src/headless.cj
++++ b/tests/session_extensions/src/headless.cj
+@@ -11,21 +11,21 @@ func headless(): Unit {
+     }).onMount({ _ =>
+         let app = held[0].getOrThrow()
+         result("mount", app.setHostTitle("mount")); contextOperations(app, "mount")
+         { => result("cleanup.context", app.copyLocalText("cleanup")); contextOperations(app, "cleanup.context") }
+     })
+     let app = Application(root)
+     held[0] = Some(app)
+     check(app.sessionCapabilities().isNone(), "no capability snapshot before first run")
+     result("inactive", app.copyLocalText("x")); contextOperations(app, "inactive")
+     app.startHeadless()
+-    capabilities("headless", app)
++    capabilities("headless.capabilities", app)
+     let firstId = app.sessionCapabilities().getOrThrow().sessionId
+     result("headless.copy", app.copyLocalText("text"))
+     result("headless.title", app.setHostTitle("title"))
+     result("headless.restore", app.restoreHostTitle())
+     result("headless.icon", app.setHostImageIcon([0u8]))
+     let snapshotReader = spawn { app.sessionCapabilities().getOrThrow().sessionId }
+     check(snapshotReader.get(Duration.second * 5) == firstId, "capability getter is safe across threads")
+     let worker = spawn { [app.copyLocalText("wrong thread"), app.setHostTitle("thread"), app.restoreHostTitle(), app.setHostImageIcon([0u8])] }
+     let workerValues = worker.get(Duration.second * 5)
+     result("worker", workerValues[0])

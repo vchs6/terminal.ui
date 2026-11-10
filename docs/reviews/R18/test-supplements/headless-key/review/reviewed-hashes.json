@@ -1,0 +1,123 @@
+{
+  "summary": {
+    "base": "e9121c9768291b65fae56ca9b0f38b9bb6c3ee1f",
+    "fixed": "47d267fe802dcb817b4f95247eac18a4a30c2fab",
+    "parent": "e9121c9768291b65fae56ca9b0f38b9bb6c3ee1f",
+    "changed": [
+      "tests/session_extensions/README.md",
+      "tests/session_extensions/fixtures/headless-key-collision.tsv",
+      "tests/session_extensions/key_selftest.mjs",
+      "tests/session_extensions/oracle.mjs",
+      "tests/session_extensions/selftest.mjs",
+      "tests/session_extensions/src/headless.cj"
+    ],
+    "diff_package_matches": true,
+    "fixture_sha256": "cc778a8f355f0a702c4112c57e224f1b9dcdf44064d23c4fce32386e380ab1fd",
+    "recorded_origin_sha256": "cc778a8f355f0a702c4112c57e224f1b9dcdf44064d23c4fce32386e380ab1fd",
+    "original_copies_match": true,
+    "collisions": [
+      {
+        "key": "headless.title",
+        "values": [
+          "Unsupported|KnownUnavailable|NoDevice|Direct|osc2",
+          "SetHostTitle|Unsupported|0|NoDevice|-1|NotNeeded"
+        ],
+        "shapes": [
+          5,
+          6
+        ]
+      }
+    ],
+    "same_shape_repeated_keys": 60,
+    "old_selftest_exit": 1,
+    "fixed_selftest_exit": 0,
+    "record_serializer_unchanged": true,
+    "non_test_changes": []
+  },
+  "source": [
+    {
+      "file": "tests/session_extensions/README.md",
+      "sha256": "bf7e79acce1405e6a38bb042ce604fe12f8893d65ee0a2b67a73d30f17eb9dd1"
+    },
+    {
+      "file": "tests/session_extensions/fixtures/headless-key-collision.tsv",
+      "sha256": "cc778a8f355f0a702c4112c57e224f1b9dcdf44064d23c4fce32386e380ab1fd"
+    },
+    {
+      "file": "tests/session_extensions/key_selftest.mjs",
+      "sha256": "dd3a184539d4ceba5ce1a0321bd1a976abc18e91bb4e5e9f9c136cf28481120d"
+    },
+    {
+      "file": "tests/session_extensions/oracle.mjs",
+      "sha256": "8f6412eae64bed86c8d7b463d33ff0515d495e72934a48dbaa2cd7bd888e3569"
+    },
+    {
+      "file": "tests/session_extensions/selftest.mjs",
+      "sha256": "5034c3bfbc3d7f007a5299ff8fa9c50c3e4b26ed85d61613de9393acf97fe99d"
+    },
+    {
+      "file": "tests/session_extensions/src/headless.cj",
+      "sha256": "39c2926da34b81816688ac5be6566e6f06d197b552f45225abc6ccb3f32869ea"
+    },
+    {
+      "file": "tests/session_extensions/src/record.cj",
+      "sha256": "2dbd81947644db2737ea303369a8c92459629753286c566dc3962e9a6fb7a5b2"
+    },
+    {
+      "file": "tests/session_extensions/fixtures/wire.json",
+      "sha256": "33820142ccbd0a8627ad109e30765eae74dffc03db3fa2369fe589ff8689a3f7"
+    },
+    {
+      "file": "openspec/changes/implement-session-extensions/design.md",
+      "sha256": "46c6b199510d7aa4ee2ce62ccf56883f8120009be1d4060421b306dba3c91a73"
+    }
+  ],
+  "copies": [
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/original-results.tsv",
+      "sha256": "cc778a8f355f0a702c4112c57e224f1b9dcdf44064d23c4fce32386e380ab1fd"
+    },
+    {
+      "file": "/workspace/work/session-extension-implementation/raw/session-focus-1/000-headless-Direct-0/results.tsv",
+      "sha256": "cc778a8f355f0a702c4112c57e224f1b9dcdf44064d23c4fce32386e380ab1fd"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/origin.json",
+      "sha256": "25aa3c28f8312236b8ed5ffdfaad61ead2384b865e20de13d7b44893e673125f"
+    },
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/old-collision.json",
+      "sha256": "e502df8719d354c251b01af9a31d3942b5fd350291ada4dc3f04c9049e2473d8"
+    },
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/original-results.tsv",
+      "sha256": "cc778a8f355f0a702c4112c57e224f1b9dcdf44064d23c4fce32386e380ab1fd"
+    },
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/old-selftest-red/execution.json",
+      "sha256": "359ea61087a22f04907b94f2d993acc1708fd99f1255ed3e6ccd4f2e25fb9300"
+    },
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/old-selftest-red/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/old-selftest-red/stderr",
+      "sha256": "ca4ba76138f9e1e01ce8474882c4797f03dab9f44cdbe98d6ed31bdc9d83bdcf"
+    },
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/fixed-selftest/execution.json",
+      "sha256": "1e77c51065d8850b551a9e5faa13ab1878fd11c76d362bec768402104eab91ba"
+    },
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/fixed-selftest/stdout",
+      "sha256": "ba2285e7ce1faa5ee13b924bf77373f264cdf1ee92445d0d7a7b6ebe87b0025d"
+    },
+    {
+      "file": "/workspace/work/session-safe-pop-tests/raw/headless-key/fixed-selftest/stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

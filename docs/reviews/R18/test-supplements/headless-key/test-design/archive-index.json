@@ -1,0 +1,82 @@
+{
+  "note": "Fixed47d267fe802dcb817b4f95247eac18a4a30c2fab/root52959f3 headless-key fixture correction only. Separate headless.capabilities namespace from operation headless.title;3 cross-shape negative controls and60 same-shape last-wins keys. Does not reject every duplicate or verify every repeated call independently. Not149 product PASS.",
+  "copies": [
+    {
+      "source": "/workspace/work/session-safe-pop-tests/key-report.md",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R18/test-supplements/headless-key/test-design/key-report.md",
+      "relative_path": "key-report.md",
+      "sha256": "371326164576ed06801e611b774ac13bfaff0d7b0fe4764beef145691407c9f5"
+    },
+    {
+      "source": "/workspace/work/session-safe-pop-tests/raw/headless-key/fixed-selftest/execution.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R18/test-supplements/headless-key/test-design/raw/headless-key/fixed-selftest/execution.json",
+      "relative_path": "raw/headless-key/fixed-selftest/execution.json",
+      "sha256": "1e77c51065d8850b551a9e5faa13ab1878fd11c76d362bec768402104eab91ba"
+    },
+    {
+      "source": "/workspace/work/session-safe-pop-tests/raw/headless-key/fixed-selftest/stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R18/test-supplements/headless-key/test-design/raw/headless-key/fixed-selftest/stderr",
+      "relative_path": "raw/headless-key/fixed-selftest/stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/session-safe-pop-tests/raw/headless-key/fixed-selftest/stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R18/test-supplements/headless-key/test-design/raw/headless-key/fixed-selftest/stdout",
+      "relative_path": "raw/headless-key/fixed-selftest/stdout",
+      "sha256": "ba2285e7ce1faa5ee13b924bf77373f264cdf1ee92445d0d7a7b6ebe87b0025d"
+    },
+    {
+      "source": "/workspace/work/session-safe-pop-tests/raw/headless-key/old-collision.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R18/test-supplements/headless-key/test-design/raw/headless-key/old-collision.json",
+      "relative_path": "raw/headless-key/old-collision.json",
+      "sha256": "e502df8719d354c251b01af9a31d3942b5fd350291ada4dc3f04c9049e2473d8"
+    },
+    {
+      "source": "/workspace/work/session-safe-pop-tests/raw/headless-key/old-selftest-red/execution.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R18/test-supplements/headless-key/test-design/raw/headless-key/old-selftest-red/execution.json",
+      "relative_path": "raw/headless-key/old-selftest-red/execution.json",
+      "sha256": "359ea61087a22f04907b94f2d993acc1708fd99f1255ed3e6ccd4f2e25fb9300"
+    },
+    {
+      "source": "/workspace/work/session-safe-pop-tests/raw/headless-key/old-selftest-red/stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R18/test-supplements/headless-key/test-design/raw/headless-key/old-selftest-red/stderr",
+      "relative_path": "raw/headless-key/old-selftest-red/stderr",
+      "sha256": "ca4ba76138f9e1e01ce8474882c4797f03dab9f44cdbe98d6ed31bdc9d83bdcf"
+    },
+    {
+      "source": "/workspace/work/session-safe-pop-tests/raw/headless-key/old-selftest-red/stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R18/test-supplements/headless-key/test-design/raw/headless-key/old-selftest-red/stdout",
+      "relative_path": "raw/headless-key/old-selftest-red/stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/session-safe-pop-tests/raw/headless-key/origin.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R18/test-supplements/headless-key/test-design/raw/headless-key/origin.json",
+      "relative_path": "raw/headless-key/origin.json",
+      "sha256": "25aa3c28f8312236b8ed5ffdfaad61ead2384b865e20de13d7b44893e673125f"
+    }
+  ],
+  "original_manifest_and_omission_mapping": [
+    {
+      "source": "/workspace/work/session-safe-pop-tests/raw/headless-key/original-results.tsv",
+      "sha256": "cc778a8f355f0a702c4112c57e224f1b9dcdf44064d23c4fce32386e380ab1fd",
+      "archive": null,
+      "existing_repository_artifact": "/workspace/work/terminal.ui/tests/session_extensions/fixtures/headless-key-collision.tsv",
+      "omission_reason": "Identical self-owned formal fixture already delivered in tests/session_extensions/fixtures; not duplicated"
+    },
+    {
+      "source": "/workspace/work/session-extension-implementation/raw/session-focus-1/000-headless-Direct-0/results.tsv",
+      "sha256": "cc778a8f355f0a702c4112c57e224f1b9dcdf44064d23c4fce32386e380ab1fd",
+      "archive": null,
+      "existing_repository_artifact": "/workspace/work/terminal.ui/tests/session_extensions/fixtures/headless-key-collision.tsv",
+      "omission_reason": "Original supplied product TSV used only as fixture collision data/provenance, not independent149 execution; not copied from external source"
+    }
+  ],
+  "fixed_control_source": {
+    "existing_repository_artifact": "/workspace/work/terminal.ui/tests/session_extensions/key_selftest.mjs",
+    "sha256": "dd3a184539d4ceba5ce1a0321bd1a976abc18e91bb4e5e9f9c136cf28481120d",
+    "fixed_commit": "47d267fe802dcb817b4f95247eac18a4a30c2fab",
+    "note": "Original source retained in formal tests; full exact source also present in independent review fixed.diff; no WIP source copied."
+  },
+  "issues": []
+}
