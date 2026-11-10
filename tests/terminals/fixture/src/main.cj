@@ -7,15 +7,29 @@ import std.fs.*
 // This normal consumer deliberately has no color override or capability branch.
 // The onKey diagnostic is evidence only; device adaptation remains Application's job.
 main(): Int64 {
-    let evidenceDirectory = getVariable("CJTUI_TERMINAL_EVIDENCE").getOrThrow()
-    let rich = [Text("AUTO RGB 1,128,254").foreground(Color.Rgb(1, 128, 254)).background(Color.Rgb(250, 0, 0))]
-    let marker = [Text("EVENT-FENCE")]
+    let rich = [Text("")]
+    let marker = [Text("")]
     let root = Column {
-        rich[0]
+        rich[0] = Text("AUTO RGB 1,128,254").foreground(Color.Rgb(1, 128, 254)).background(Color.Rgb(250, 0, 0))
         Text("Unicode: 中文 e\u{301} 👩‍💻")
-        marker[0]
+        marker[0] = Text("EVENT-FENCE")
         Text("Resize edge: 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     }
+    if (getVariable("CJTUI_TERMINAL_VALIDATE") == Some("1")) {
+        let plain = render(root, 80, 8).toPlainText()
+        for (text in ["AUTO RGB 1,128,254", "Unicode: 中文", "EVENT-FENCE", "Resize edge:"]) {
+            if (!plain.contains(text)) { throw Exception("missing terminal fixture scene text: ${text}") }
+        }
+        rich[0].foreground(Color.Green)
+        marker[0].bold()
+        let updated = render(root, 80, 8)
+        if (updated.cellAt(0, 0).style.foreground != Color.Green || !updated.cellAt(0, 2).style.bold) {
+            throw Exception("terminal fixture callback references are detached from the scene")
+        }
+        println("PASS terminal fixture scene and callback references")
+        return 0
+    }
+    let evidenceDirectory = getVariable("CJTUI_TERMINAL_EVIDENCE").getOrThrow()
     let app = Application(root)
     let serial = [0]
     let color = [0]
