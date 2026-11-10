@@ -1,0 +1,20 @@
+{
+  "target": "96a8c4b8fde11c44487718c8ebcecca01d058830",
+  "baseline": "96bdb9b7c5b1f58c5ec223a0475be3d86cfae660",
+  "additional_test_delta": "226886a80ae848b3806a4e855c2ca33b7249328d",
+  "model_dispatch": "gpt-6-astra/high",
+  "spec_verdict": "fail",
+  "quality_verdict": "changes_required",
+  "findings": [
+    {"id":"F1","severity":"Important","priority":"P1","status":"open","owner":"product","path":"src/color_mapping.cj","line":103,"summary":"Unknown positive NCV bits retain all six attributes on colored styles; ncv19 probe confirms."},
+    {"id":"F2","severity":"Important","priority":"P1","status":"open","owner":"product","path":"src/application.cj","line":39,"summary":"Capability detection after successful open occurs outside required restoration try/finally."},
+    {"id":"F3","severity":"Important","priority":"P1","status":"closed_source_review_226886a","owner":"tests","path":"tests/capabilities/pty.mjs","line":10,"summary":"Original harness cwd doubled binary/database default paths."},
+    {"id":"F4","severity":"Important","priority":"P1","status":"closed_source_review_226886a","owner":"tests","path":"tests/capabilities/pty.mjs","line":117,"summary":"Original override-auto call passed object instead of key input action."},
+    {"id":"F5","severity":"Important","priority":"P1","status":"open","owner":"tests","path":"tests/terminals/fixture/src/main.cj","line":11,"summary":"Rich and fence Text nodes are constructed outside Column and never attached; scoped probe confirms two children only."},
+    {"id":"F6","severity":"Important","priority":"P2","status":"open","owner":"tests","path":"tests/terminals/verify-sgr.mjs","line":47,"summary":"Actual verifier accepts Basic8 with bright SGR91 and unknown diagnostic provenance; incomplete NCV/support checks."},
+    {"id":"F7","severity":"Important","priority":"P2","status":"open","owner":"tests","path":"tests/terminals/run.sh","line":75,"summary":"Callback file acks do not fence PTY recorder bytes or completed resize rendering."},
+    {"id":"M1","severity":"Minor","status":"open","owner":"product","path":"src/terminal_capabilities.cj","line":39,"summary":"Packed ABI and NCV use scattered numeric shifts/masks instead of required named constants on both sides."},
+    {"id":"M2","severity":"Minor","status":"open","owner":"product","path":"src/color_mapping.cj","line":93,"summary":"Unused projectStyle and Frame.changesSince remain after profile path replacement; localized row-encoding duplication."}
+  ],
+  "limits": ["No whole-suite repetition", "No full package/bundle/clean-consumer run", "No real terminal screenshot or termios certification", "No actual detection-exception injection", "Pending fixture/capture delta unreviewed"]
+}
