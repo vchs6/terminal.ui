@@ -151,3 +151,25 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-097 | REQ-004/005/007/011 | TASK-097 | 有限字形子接口证据与metadata，完整041和主题ellipsis仍待汇合 | pending |
 
 状态权威仅见[字形适配变更](../openspec/changes/implement-linux-vt-glyph-fallback/tasks.md)，候选微验证不是产品验收。
+
+## 公共交互质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-098 | REQ-003/004/007/009 | TASK-098 | 独立Canvas/focus/事件/caret测试与真实RED | pending |
+| AC-099 | REQ-003/004/007/009 | TASK-099 | 公共受控绘制与键盘目标实现 | pending |
+| AC-100 | REQ-003/004/007/009 | TASK-100 | A固定源码独立spec/quality | pending |
+| AC-101 | REQ-003/004/007/009 | TASK-101 | A独立执行/真实TTY/正常包消费 | pending |
+| AC-102 | REQ-003/004/007/009 | TASK-102 | A有限验收/metadata，不提前关闭完整交互 | pending |
+| AC-103 | REQ-003/004/007/009 | TASK-103 | 独立viewport/root fallback/滚动golden与RED | pending |
+| AC-104 | REQ-003/004/007/009 | TASK-104 | 单viewport坐标/滚动/ensureVisible实现 | pending |
+| AC-105 | REQ-003/004/007/009 | TASK-105 | B固定源码独立spec/quality | pending |
+| AC-106 | REQ-003/004/007/009 | TASK-106 | B独立执行/滚动回归与公开包消费 | pending |
+| AC-107 | REQ-003/004/007/009 | TASK-107 | 原037完整证据与metadata | pending |
+| AC-108 | REQ-003/004/007/009 | TASK-108 | 独立多层/模态/透明/focus恢复golden与RED | pending |
+| AC-109 | REQ-003/004/007/009 | TASK-109 | 同Runtime覆盖层/宿主/输入域实现 | pending |
+| AC-110 | REQ-003/004/007/009 | TASK-110 | C固定源码独立spec/quality | pending |
+| AC-111 | REQ-003/004/007/009 | TASK-111 | C独立真实终端/层集成与公开制品消费 | pending |
+| AC-112 | REQ-003/004/007/009 | TASK-112 | 原018和014跨弹窗证据及metadata | pending |
+
+唯一任务状态与精确前置见[交互变更](../openspec/changes/implement-public-interaction/tasks.md)，规划不作实现通过。

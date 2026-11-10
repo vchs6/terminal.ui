@@ -548,3 +548,5 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 主题样式支持TASK085–092唯一状态在[implement-theme-styles](../openspec/changes/implement-theme-styles/tasks.md)，稳定013/025/026/027同变更；独立preflight仍核候选，全部产品AC待实际实现，027完整展示需全部控件依赖后补L4。
 
 Linux VT自动字形子接口支持TASK093–097唯一状态在[字形适配变更](../openspec/changes/implement-linux-vt-glyph-fallback/tasks.md)，追踪原041但不转移其全量验收；产品等080/084，097后主题013消费生成标记策略，真实ellipsis布局仍由013/085追加/088验收。
+
+公共交互支持TASK098–112唯一状态在[public-interaction tasks](../openspec/changes/implement-public-interaction/tasks.md)：A绘制/焦点追踪017、B纵横视口追踪037、C覆盖层追踪018；独立preflight与正式签名微验证前均planned，原父状态仍以完整AC关闭。
