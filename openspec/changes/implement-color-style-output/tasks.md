@@ -46,7 +46,7 @@ Preflight接口对：061→006（命名/模式/golden完全由design，未读实
 
 用户新增明确约束：正常应用声明丰富Color/Style，由渲染自动识别终端并降级；不能要求程序员选择能力。测试须实际跨不同终端实现，报告附真实运行效果图并标来源。D029显式默认Basic16被此用户裁决覆盖；原187e126实现/审核/测试保留为可选手动override子路径证据，不外推自动默认已完成。006/061/062重新打开等待新契约与增量，063当前old冷入口可自然完成但不再启动旧包阶段，064保持pending。
 
-- [ ] 4.1 TASK-065：自动能力来源及实际跨终端宿主/截图的独立验证；AC065：用实际探针冻结能力来源/未知降级、可运行宿主矩阵与真实PNG证据要求，不把环境变量仿真当跨终端。
+- [x] 4.1 TASK-065：自动能力来源及实际跨终端宿主/截图的独立验证；AC065：用实际探针冻结能力来源/未知降级、可运行宿主矩阵与真实PNG证据要求，不把环境变量仿真当跨终端。
 
 065为L3 investigation，父WP001及本change；inputs为用户新裁决、旧shared颜色/输出路径；depends_on无实现前置。独立auto-capability-recon和cross-terminal-recon分别处理API/能力来源与测试宿主，目录隔离，Codex5.6/high，主代理汇总契约。deliverable为隔离探针/raw/建议与可运行环境，不改主产品/冻结断言。技能brainstorming/writing-plans/cangjie-coding/verification，环境技能若读取缺失如实记录fallback；L4：调查API/宿主→实际probe/截图→主冻结设计/独立测试增量→产品实现→062delta review→063真实matrix/pack→064验收。风险：terminfo全局状态/环境提示可信度/不支持查询/真实console缺失；不得捏造能力或补产品GUI依赖，不发送上游消息。新需求优先于原默认工程选择，日后无需再次问是否继续。
 

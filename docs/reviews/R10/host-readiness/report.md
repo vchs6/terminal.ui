@@ -43,12 +43,12 @@ Each launch was followed by `xwininfo` for its window ID and `import -window <wi
 input focus on the real X11 terminal window, injects `p` plus Return using
 `XTestFakeKeyEvent`, and invokes `XResizeWindow`. It does not write a PTY
 slave. Its source SHA-256 is
-`e2cbf4798f2916800d07fd0c3141e34478502714e6c7774032bf32369204d532` and
+`814e5dfb7f16a6f310a6997149021f3f820288824fa55e70abe82cbb06aee1a6` and
 the compiled probe SHA-256 is
-`1d5ab7a80f34f389734f4ce19ad58f98cbf21c85f01cd14a36d467da3c45f9e2`.
+`c9a72418bc2c92f6609c21aa3aaa816c0e688469ebe4e4ee81215b08668c4d16`.
 
 `probes/run-control-probe.sh` (SHA-256
-`b9d58ed47b499d4050e8a251f544d54fa995cbf542d8867ac111f73716fe3727`)
+`4b382a9c181a4edb591e3c7760d3543059df48f9683cec3744cd3e02238fe407`)
 launches an isolated Xorg server and one real host. It waits for the child
 ready record and a viewable X11 window, then waits for both a child input
 acknowledgement and a SIGWINCH acknowledgement before it captures the
@@ -57,9 +57,9 @@ short polling interval is only a timeout-bounded wait mechanism.
 
 | profile | actual host configuration | child capability and control evidence | X11 geometry before → after | PNG and SHA-256 |
 | --- | --- | --- | --- | --- |
-| `xterm-default-recorded-stable` | xterm 398 default (`TERM=xterm`) | XTEST `2.2`; `input_ack=p`; `resize_ack=34 120` from `ready_tty_size=28 100` | `1004x536` → `1204x650` | `raw/control-xterm-default-recorded-stable-after.png` `2bd72292c056931d2a46c34c972beb017dadd67dce5de013003a125d7d57d9d8` |
-| `xterm-256color-stable` | xterm 398 with `-tn xterm-256color` | XTEST `2.2`; `input_ack=p`; `resize_ack=34 120` from `ready_tty_size=28 100` | `1004x536` → `1204x650` | `raw/control-xterm-256color-stable-after.png` `0dac5b934fa6763d969c43d3fb5c7fb7485201e5c4dac9cf3d08abc91cc91f81` |
-| `xfce-vte-stable` | XFCE Terminal/VTE (`TERM=xterm-256color`, `COLORTERM=truecolor`) | XTEST `2.2`; `input_ack=p`; `resize_ack=34 120` from `ready_tty_size=28 100` | `1017x561` → `1217x675` | `raw/control-xfce-vte-stable-after.png` `13f9e9e5ecc66c28fd9f5a512941e3664f8b4d5000ac2c20ec7796f2e5ceba6d` |
+| `xterm-default-recorded-graceful` | xterm 398 default (`TERM=xterm`) | XTEST `2.2`; `input_ack=p`; `resize_ack=34 120` from `ready_tty_size=28 100` | `1004x536` → `1204x650` | `raw/control-xterm-default-recorded-graceful-after.png` `6fb7a5a6581980684acda2843d1041ddbdaa47ca0ac3efbb3d7aaaa112484d83` |
+| `xterm-256color-final` | xterm 398 with `-tn xterm-256color` | XTEST `2.2`; `input_ack=p`; `resize_ack=34 120` from `ready_tty_size=28 100` | `1004x536` → `1204x650` | `raw/control-xterm-256color-final-after.png` `7a94390a5b9bf563058609d6d4a6345de75e8d13cda71a3329f6625fa8fbab1b` |
+| `xfce-vte-final` | XFCE Terminal/VTE (`TERM=xterm-256color`, `COLORTERM=truecolor`) | XTEST `2.2`; `input_ack=p`; `resize_ack=34 120` from `ready_tty_size=28 100` | `1017x561` → `1217x675` | `raw/control-xfce-vte-final-after.png` `60b57a5f1a470ea64b06b45ca56a0be27e56da6515d5dcd5548c694fceb0705f` |
 
 Every row has `before`, `after`, `child`, `inject`, and `tree` raw files
 under `raw/control-<profile>-*`; the before/after records both say
@@ -68,19 +68,25 @@ SIGWINCH line, and the application acknowledgement. This establishes three
 usable host profiles across two independent terminal implementations. It does
 not establish framework Auto-mode behavior.
 
-For the first xterm row, util-linux `script 2.41.5` was additionally used as
-a transparent inner-PTY recorder:
+For the first xterm row, `probes/scene-recorder-wrapper.sh` (SHA-256
+`fbe45ee4d89360676a6150d3912a98dc1512aa881e7d0cacfaf5be420aa4fcb6`)
+records outer-PTY state and invokes util-linux `script 2.41.5` as a transparent
+inner-PTY recorder. `probes/scene-control.sh` is the inner app scene (SHA-256
+`c5570930452b98e3836d2d2d95ee98b9fe2060bafcc445d000b996ac298c171f`):
 
 ```sh
-script --quiet --flush --return --log-out raw/control-xterm-default-recorded-stable-ansi.log \
+script --quiet --flush --return --log-out raw/control-xterm-default-recorded-graceful-ansi.log \
   --command '/bin/sh probes/scene-control.sh'
 ```
 
 The raw log SHA-256 is
-`be8b760bf10c77f1696fb726469c6e0af34577c6d8bdf8530b41a98db41d7813`.
+`ed635792921fbd8dc2fbc4c9a825d67d759deb15d55d476b20aba25ec18e92c2`.
 It contains the actual ESC `CSI 1;36m` bytes, `TERM="xterm"`, the controlling
 TTY, `COLUMNS="100"`, `LINES="28"`, the input echo, the SIGWINCH output, and
-`COMMAND_EXIT_CODE="0"`. This recorder is test infrastructure only and does
+`COMMAND_EXIT_CODE="0"`. The inner record contains matching ready, resize, and
+exit termios values; `raw/control-xterm-default-recorded-graceful-outer.txt`
+records outer termios at `28x100` and orderly exit at `34x120`. This recorder
+is test infrastructure only and does
 not substitute for a terminal host or the original PNG. On this util-linux
 version, do not append the historical `/dev/null` positional argument when
 using `--log-out`; it rejects that form as an unexpected argument.
