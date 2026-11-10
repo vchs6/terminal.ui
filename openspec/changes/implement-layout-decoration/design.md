@@ -78,3 +78,11 @@ Single为┌─┐│└┘，Rounded角╭╮╰╯，Double为╔═╗║╚�
 2026-11-10用户要求包划分与一个软件实体一个文件。本片增加TASK058，在装饰完成后、最终审核前按职责整理现有混合定义；属于代码组织不改变产品行为。style包容纳Color/Style/BorderStyle，geometry包容纳Rect，text包容纳Unicode薄适配；目录和package声明一致，每个类型独立小写下划线文件。框架协作类型仍属cjtui包（Frame、Cell、Component、Alignment、LayoutNode、KeyEvent、InputDecoder、Application各一文件），不为每个类型发明单独包。根包通过明确public import重新导出既有公开符号，保持import cjtui.*消费者与示例无需改动。纯函数按绘制/布局/原生桥职责组织，不再复制实体定义；Frame成员集中其实体文件。
 
 不能借整理引入新功能、第二内核、依赖或对外暴露内部状态；可见性/重新导出先用SDK最小实验确认。使用用户提供CangjieSkills固定277f2e1234ca5217496966887243c679653887a8的cangjie-coding，包/文件名依据其cjlint G.NAM.01/.02（小写下划线），类型大驼峰。只格式化实际改动的产品源码，测试不改。源码移动使最终包与全量执行使用整理后固定版本，不能仅凭此前自测通过。
+
+## D-027: normal source-bundle cleanup correctness
+
+独立执行正常cjpm bundle时SDK1.2.0 mandatory G.ERR.04在Application.run finally内throw处真实失败。必须修产品路径，不能skip lint或吞掉恢复失败。新增TASK060独立回归、TASK059实现，随后055定点复核、056继续固定源执行/打包，057验收。
+
+run成功取得会话所有权后，任何正常stop/中断/业务Exception路径均须恰一次清理：finally仅置running=false并调用close/记录结果，不在finally抛异常。清理完成后，正常结束+close成功返回；正常结束+close失败报告terminal restore failed；业务Exception+close成功传播原异常；双失败必须同时保留业务异常信息和terminal restore failed，不能仅以清理异常覆盖业务错误，也不能隐瞒恢复错误。打开失败不关闭他人会话。对终端原生恢复机制/输入/渲染不改，不引入产品测试hook。SDK不可恢复Error不新增可恢复承诺，finally仍执行清理。
+
+最小必要独立测试可在测试链接中wrap cjt_close，先真正关闭再注入失败返回，验证双错误以及真实termios恢复；仅测试库，不改变产品FFI。实现范围Application.run及必要异常组合，不借机重排输入/布局/接口。原完整425冷套件保留；新固定源补跑生命周期回归、原session/integration与实际layout PTY及正常bundle/clean消费。纯Unicode/Frame/layout/decor路径及环境未变的结果按内容hash复用，不因单一会话修复重复无关数字消费者。

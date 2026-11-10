@@ -528,3 +528,5 @@ R7 Linux顺序TASK-044（AC-044）、原生构建TASK-046（AC-046）、许可�
 Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-layout-decoration](../openspec/changes/implement-layout-decoration/tasks.md)；TASK-054测试、055审核、056执行、057验收同变更记录。其余原任务/状态不因此完成。
 
 用户新增源码组织TASK-058（AC-058）随[布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)独立实施，复用其最终审核/执行，不新增平行状态。
+
+正常bundle阻塞修复TASK-059/060状态与准入见[布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)，独立060测试→059代码→055定点复核→056受影响验证→057验收。

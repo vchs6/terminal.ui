@@ -50,7 +50,7 @@ L4：1.确认独立装饰RED；2.共享路径实现并接入布局树；3.自测
 
 ## 4. Quality gates
 
-- [x] 4.1 TASK-055：独立代码审核及修复复核；验收AC-055：契约/质量双passed，必需发现有实际反例和闭合版本。
+- [ ] 4.1 TASK-055：独立代码审核及修复复核；验收AC-055：契约/质量双passed，必需发现有实际反例和闭合版本。
 - [ ] 4.2 TASK-056：独立执行完整slice、新示例PTY、clean cjp消费；验收AC-056：fresh实际退出、raw/sha完整，不采用作者自测。
 - [ ] 4.3 TASK-057：独立合同验收及最终集成；验收AC-057：证据/源码/状态一致，技术源未变，完整项目未虚标完成。
 
@@ -68,3 +68,15 @@ L4：1.确认独立装饰RED；2.共享路径实现并接入布局树；3.自测
 | 057 acceptance | 固定源码与各独立交付 / 056 | 逐项映射和最终集成 / AC057 | 不复述数量代验收；verification；source和证据一致、剩余范围明确 |
 
 054 L4：按contract写期望→真实RED→冻结提交；055 L4：固定diff→独立反例→作者修复后复核；056 L4：fresh clone→运行→原始交接；057 L4：核合同/raw/source→判有限范围→核最终元数据。所有必要前置/验收/技能/风险/质量及旧路径去向可定位，DQ01–14按该有限单一目标审查。任务实际状态仅复选框，不另维护状态表。
+
+## Pack-blocker repair admission
+
+- [ ] 5.1 TASK-060：独立生命周期回归设计/真实RED；AC-060：正常/业务错误与close成功/失败组合、真实termios、原断言保留。
+- [ ] 5.2 TASK-059：修复D027 finally抛异常及双错误丢失；AC-059：不绕过SDK门禁，清理恰一次、错误不丢、标准bundle继续。
+
+| task / type | inputs / depends_on | deliverable / acceptance | quality / skills / risks |
+|---|---|---|---|
+| 060 testing | D027和实际bundle.log / 056失败 | 冻结独立生命周期fixture/runner与RED / AC060 | Sol/high、TDD/debugging/verification；真实PTY与只测试wrap，不改产品 |
+| 059 implementation | D027及冻结060 / 060 | Application.run必要异常处理 / AC059 | Sol/high、debugging/TDD/verification；原始异常和恢复错误均保留、不改公开API |
+
+059/060层级L3，父WP001/验证支持；单一异常清理结果，原路径同任务替换、不保留旧finally throw。L4：实际失败/独立probe→冻结回归→修产品→055定点审核→056补受影响会话和制品→057核证。无新平台/依赖/用户决策需求。审核复核只针对修复及影响，最大3轮/60min；此前布局/装饰/组织审核仍有效。
