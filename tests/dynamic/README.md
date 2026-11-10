@@ -89,3 +89,29 @@ throw 哨兵，从未执行、不进入本提交，也不作为产品 GREEN 或�
 
 原始 stdout/stderr、实际 exit、UTC、命令、源码及 hash 由主代理归档到 TASK-076
 证据目录。测试作者开发检查不代替 TASK-078/079/080 独立审核、执行与验收。
+
+## 深层构造失败补充（TASK-076 回归）
+
+固定产品候选 `167c2a3f701b8718e90fe7d9b78050af5665a23b` 上新增两组，原有
+32 组断言与期望保持不变。`nested_validation_cases.cj` 只通过公共 API 观察：
+
+| 用例 | 正常消费者触发方式 | 手工 cleanup 期望 |
+|---|---|---|
+| manual-nested-duplicate-before-commit | batch 先 append 含重复 key 内层 ForEach 的 Column，再 remove 旧孩子 | `old:stopped,root:stopped,` |
+| replacement-nested-duplicate-before-commit | 外层 ForEach 数据 old→new，new Column 含重复 key 内层 ForEach | `old-text:stopped,old-row:stopped,root:stopped,` |
+
+期望依据 design 4.3 的完整描述隔离 build/校验、构造失败不改该 group 已提交树，
+以及 R012 的错误后整树 token 撤销先于 cleanup。`stopped` 是 cleanup 回调内通过
+父 NodeRef.isValid() 观察到 false；若仍有效，记录实际公开 children 数并使断言失败。
+这里不要求错误后继续读取已失效树，也不要求 session 存活或整个 batch 业务回滚。
+正常子树卸载时父节点可以有效；本用例的无效新描述不能先触发这种正常卸载。
+
+两组均精确要求 DuplicateKey、重复 key 的 inner body 和新子树 onMount 无副作用、
+业务写入不回滚、旧引用最终失效、当前资源四项归零，以及 dispose 不重复 cleanup。
+断言先累计再报告；第一组 RED 也会继续执行第二组，最终进程返回非零。
+不使用私有树、假 runtime、skip 或仅声明替身。
+
+独立补充的命令、UTC、源码 hash、stdout/stderr、实际退出码及既有证据复用边界见
+工作区外层 `dynamic-regression-tests/report.md` 与 `raw/`。这些是测试作者 RED 证据，
+不代表 TASK-079/080 已执行或产品 GREEN。历史声明-only scratch 未执行、未计 GREEN，
+不进入本次 Git 提交；本次补充未使用声明-only scratch。

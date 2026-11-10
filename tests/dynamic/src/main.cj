@@ -38,5 +38,7 @@ main(): Int64 {
     runCase("recursive-structure-boundaries", recursiveStructureBoundaries)
     runCase("observable-write-from-key", observableWriteFromKeyRejected)
     runCase("synchronous-structural-loop", synchronousStructuralLoopIsBounded)
-    0
+    let manualNested = runNestedCase("manual-nested-duplicate-before-commit", manualNestedDuplicateBeforeCommit)
+    let replacementNested = runNestedCase("replacement-nested-duplicate-before-commit", replacementNestedDuplicateBeforeCommit)
+    if (manualNested && replacementNested) { 0 } else { 1 }
 }
