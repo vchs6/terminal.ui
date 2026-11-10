@@ -1,0 +1,25 @@
+Script started on 2026-11-10 22:56:37+00:00 [COMMAND="/usr/bin/python3 /workspace/work/vte-grid-capture-recon/scripts/scene.py /workspace/work/vte-grid-capture-recon/raw/attempt1" TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="100" LINES="28"]
+Traceback (most recent call last):
+  File "/workspace/work/vte-grid-capture-recon/scripts/scene.py", line 10, in <module>
+    record('child', {'pid':os.getpid(), 'tty':os.ttyname(0), 'TERM':os.environ.get('TERM'),
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     'rowsCols':list(struct.unpack('HHHH',fcntl.ioctl(0,termios.TIOCGWINSZ,b'\0'*8)))[:2],
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     'utc':utc(), 'termiosBefore':before})
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/vte-grid-capture-recon/scripts/scene.py", line 7, in record
+    (p / (name + '.json')).write_text(json.dumps(value, ensure_ascii=False, indent=2))
+                                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/usr/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bytes is not JSON serializable
+
+Script done on 2026-11-10 22:56:37+00:00 [COMMAND_EXIT_CODE="1"]

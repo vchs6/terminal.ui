@@ -1,0 +1,131 @@
+{
+  "kind": "vte-native-current-text-development-facility-v1",
+  "utc": "2026-11-10T23:06:18.404621+00:00",
+  "facilityVerdict": "usable-instrumented-native-viewport-text-candidate",
+  "productTested": false,
+  "strict148OracleModified": false,
+  "strict148OracleRun": false,
+  "nativeGridCompleteCellAttributes": false,
+  "host": {
+    "name": "XFCE Terminal",
+    "version": "1.1.4-1",
+    "vteVersion": "0.80.1",
+    "gtkVersion": "3.24.49-3",
+    "display": ":181",
+    "windowId": "0x200003",
+    "terminalPid": 1476117,
+    "grid": [
+      100,
+      28
+    ],
+    "pixels": [
+      1017,
+      561
+    ],
+    "binaryIdentity": "raw/provenance.json"
+  },
+  "instrumentation": {
+    "kind": "private GTK module inside real XFCE",
+    "source": "scripts/native-module.c",
+    "compileAndLoad": "raw/final-module/status.json",
+    "moduleSha256": "4a918852c20504998e884ef570e816860e456b37e07c47edb794d7c801b6d3cf",
+    "sourceSha256": "18fa276e05e4a57c6b2506ee47ced4fa4c373ce489da8e23a69c90b653f1e2bb",
+    "widgetPath": "/TerminalWindow/GtkBox/GtkNotebook/TerminalScreen/GtkScrolledWindow/TerminalWidget",
+    "candidateCount": 1,
+    "binaryCopiedOrArchived": false,
+    "moduleElfRetained": false
+  },
+  "nativeExport": {
+    "api": "vte_terminal_get_text",
+    "format": "UTF-8 visible viewport text, 28 newline-terminated rows for fixed samples; trailing spaces omitted; no cell/style attributes",
+    "phases": [
+      {
+        "phase": "normal",
+        "path": "raw/final-module/native-0-visible.txt",
+        "metadata": "raw/final-module/native-0-meta.json",
+        "png": "raw/final-module/normal.png",
+        "utc": "2026-11-10T23:03:27Z"
+      },
+      {
+        "phase": "alternate",
+        "path": "raw/final-module/native-1-visible.txt",
+        "metadata": "raw/final-module/native-1-meta.json",
+        "png": "raw/final-module/alternate.png",
+        "utc": "2026-11-10T23:03:27Z"
+      },
+      {
+        "phase": "restored",
+        "path": "raw/final-module/native-2-visible.txt",
+        "metadata": "raw/final-module/native-2-meta.json",
+        "png": "raw/final-module/restored.png",
+        "utc": "2026-11-10T23:03:28Z"
+      },
+      {
+        "phase": "scrollback",
+        "path": "raw/final-module/native-3-visible.txt",
+        "metadata": "raw/final-module/native-3-meta.json",
+        "png": "raw/final-module/scrollback.png",
+        "utc": "2026-11-10T23:03:28Z"
+      }
+    ]
+  },
+  "controls": {
+    "baseline": "raw/final-baseline",
+    "instrumented": "raw/final-module",
+    "fourPngFilesByteIdentical": true,
+    "beforeAfterReadPngIdentical": true,
+    "titleIconPropertiesUnchanged": true,
+    "actualPtyPayloadByteIdentical": true,
+    "privateClipboardOwnerBeforeAfter": 0,
+    "clipboardContentsRead": false,
+    "nonemptyClipboardControlPerformed": false,
+    "verification": "raw/verification.json",
+    "assertions": 76
+  },
+  "rejectedAlternatives": [
+    {
+      "api": "vte_terminal_write_contents_sync",
+      "reason": "includes scrollback and NUL cells; not viewport equivalent",
+      "evidence": "raw/final-module/native-3-contents.txt"
+    },
+    {
+      "api": "vte_terminal_get_text_range using Gtk adjustment top",
+      "reason": "incorrect blank range on actual alternate screen",
+      "evidence": "raw/final-module/native-1-range.txt"
+    },
+    {
+      "path": "XFCE GUI Save contents",
+      "reason": "actual native dialog opened, automation did not complete file save",
+      "evidence": "raw/attempt2 to raw/attempt5"
+    }
+  ],
+  "limits": [
+    "instrumented host observation, not an uninstrumented export API",
+    "fixed self-owned samples only; not complete 151 host matrix",
+    "no complete native per-cell attributes export",
+    "no product binary or public CJ consumer executed",
+    "no product pass or acceptance decision",
+    "no 148 requirement downgrade"
+  ],
+  "cleanup": {
+    "finalHostChildXorgExits": [
+      0,
+      0,
+      0
+    ],
+    "termiosRestored": true,
+    "privateHomeModuleRemoved": true,
+    "displaySocketRemoved": true
+  },
+  "reuse": {
+    "sampleHarness": "scripts/run.py",
+    "readOnlyObserver": "scripts/native-module.c",
+    "offlineVerification": "scripts/verify.py",
+    "launchEnvironment": {
+      "VTE_RECON_MODE": "module",
+      "VTE_RECON_RUN": "fresh-unique-name"
+    },
+    "request": "write phase integer to private capture directory/native-request; wait for native-N-meta.json",
+    "actualConsumerRequiredFor151": true
+  }
+}

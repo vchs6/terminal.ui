@@ -1,0 +1,37 @@
+{
+  "utcStart": "2026-11-10T22:56:37.257608+00:00",
+  "xorgPid": 1445669,
+  "xorgArgv": [
+    "Xorg",
+    "-displayfd",
+    "4",
+    "-config",
+    "/workspace/work/vte-grid-capture-recon/raw/attempt1/xorg-dummy.conf",
+    "-nolisten",
+    "tcp",
+    "-noreset",
+    "-logfile",
+    "/workspace/work/vte-grid-capture-recon/raw/attempt1/xorg.log"
+  ],
+  "privateHome": "/tmp/vte-grid-fq592nku",
+  "display": ":0",
+  "hostArgv": [
+    "dbus-run-session",
+    "--",
+    "xfce4-terminal",
+    "--disable-server",
+    "--geometry=100x28+20+20",
+    "--initial-title=VTE_NATIVE_GRID_OWNED",
+    "--dynamic-title-mode=replace",
+    "--command=script --quiet --flush --return --log-out /workspace/work/vte-grid-capture-recon/raw/attempt1/outer-ansi.bin --command '/usr/bin/python3 /workspace/work/vte-grid-capture-recon/scripts/scene.py /workspace/work/vte-grid-capture-recon/raw/attempt1'"
+  ],
+  "env": {
+    "DISPLAY": ":0",
+    "HOME": "/tmp/vte-grid-fq592nku",
+    "XDG_CONFIG_HOME": "/tmp/vte-grid-fq592nku/config",
+    "XDG_CACHE_HOME": "/tmp/vte-grid-fq592nku/cache",
+    "XDG_RUNTIME_DIR": "/tmp/vte-grid-fq592nku/runtime",
+    "LC_ALL": "C.UTF-8",
+    "NO_AT_BRIDGE": "1"
+  }
+}
