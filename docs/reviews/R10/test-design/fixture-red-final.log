@@ -1,0 +1,28 @@
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/session/src/main.cj:14:59:
+   [36m| [0m
+[36m14[0m [36m| [0m        dynamic[0] = Text("RGB-DYNAMIC").foreground(Color.Rgb(250, 0, 0))[0m
+   [36m| [0m                                                          [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: extra argument given for parameter list '(Class-Component)' in call
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/session/src/main.cj:17:26:
+   [36m| [0m
+[36m17[0m [36m| [0m    let app = Application(root, colorMode: ColorMode.Basic16)[0m
+   [36m| [0m                         [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 1 argument, found 2[0m
+   [36m| [0m
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui)application.cj:7:12:
+
+[33mwarning[0m: unused import 'std.fs.*'
+ [36m==>[0m /workspace/work/color-tests/repo/tests/colors/session/src/main.cj:4:1:
+  [36m| [0m
+[36m4[0m [36m| [0mimport std.fs.*[0m
+  [36m| [0m[33m^^^^^^^^^^^^^^^ unused import[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+2 errors generated, 2 errors printed.
+1 warning generated, 1 warning printed.
+Error: failed to compile package `color_session`, return code is 1
+Error: cjpm build failed

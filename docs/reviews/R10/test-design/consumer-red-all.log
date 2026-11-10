@@ -1,0 +1,522 @@
+[33mwarning[0m: '--error-count-limit' is specified multiple times. The last one is chosen.
+[31merror[0m: undeclared type name 'ColorMode'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:13:30:
+   [36m| [0m
+[36m13[0m [36m| [0mfunc one(style: Style, mode: ColorMode): String {[0m
+   [36m| [0m                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'ColorMode'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:21:28:
+   [36m| [0m
+[36m21[0m [36m| [0mfunc color(c: Color, mode: ColorMode, code: String, name: String): Unit {[0m
+   [36m| [0m                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+ [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:9:14:
+  [36m| [0m
+[36m9[0m [36m| [0mlet modes = [ColorMode.Basic16, ColorMode.Indexed256, ColorMode.TrueColor, ColorMode.Monochrome][0m
+  [36m| [0m             [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+ [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:9:33:
+  [36m| [0m
+[36m9[0m [36m| [0mlet modes = [ColorMode.Basic16, ColorMode.Indexed256, ColorMode.TrueColor, ColorMode.Monochrome][0m
+  [36m| [0m                                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+ [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:9:55:
+  [36m| [0m
+[36m9[0m [36m| [0mlet modes = [ColorMode.Basic16, ColorMode.Indexed256, ColorMode.TrueColor, ColorMode.Monochrome][0m
+  [36m| [0m                                                      [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+ [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:9:76:
+  [36m| [0m
+[36m9[0m [36m| [0mlet modes = [ColorMode.Basic16, ColorMode.Indexed256, ColorMode.TrueColor, ColorMode.Monochrome][0m
+  [36m| [0m                                                                           [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'BrightBlack' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:11:11:
+   [36m| [0m
+[36m11[0m [36m| [0m    Color.BrightBlack, Color.BrightRed, Color.BrightGreen, Color.BrightYellow, Color.BrightBlue,[0m
+   [36m| [0m          [31m^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightRed' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:11:30:
+   [36m| [0m
+[36m11[0m [36m| [0m    Color.BrightBlack, Color.BrightRed, Color.BrightGreen, Color.BrightYellow, Color.BrightBlue,[0m
+   [36m| [0m                             [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightGreen' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:11:47:
+   [36m| [0m
+[36m11[0m [36m| [0m    Color.BrightBlack, Color.BrightRed, Color.BrightGreen, Color.BrightYellow, Color.BrightBlue,[0m
+   [36m| [0m                                              [31m^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightYellow' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:11:66:
+   [36m| [0m
+[36m11[0m [36m| [0m    Color.BrightBlack, Color.BrightRed, Color.BrightGreen, Color.BrightYellow, Color.BrightBlue,[0m
+   [36m| [0m                                                                 [31m^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightBlue' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:11:86:
+   [36m| [0m
+[36m11[0m [36m| [0m    Color.BrightBlack, Color.BrightRed, Color.BrightGreen, Color.BrightYellow, Color.BrightBlue,[0m
+   [36m| [0m                                                                                     [31m^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightMagenta' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:12:11:
+   [36m| [0m
+[36m12[0m [36m| [0m    Color.BrightMagenta, Color.BrightCyan, Color.BrightWhite][0m
+   [36m| [0m          [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightCyan' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:12:32:
+   [36m| [0m
+[36m12[0m [36m| [0m    Color.BrightMagenta, Color.BrightCyan, Color.BrightWhite][0m
+   [36m| [0m                               [31m^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightWhite' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:12:50:
+   [36m| [0m
+[36m12[0m [36m| [0m    Color.BrightMagenta, Color.BrightCyan, Color.BrightWhite][0m
+   [36m| [0m                                                 [31m^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: extra argument given for parameter list '()' in call
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:16:13:
+   [36m| [0m
+[36m16[0m [36m| [0m    f.toAnsi(colorMode: mode)[0m
+   [36m| [0m            [31m^^^^^^^^^^^^^^^^^ expected 0 arguments, found 1[0m
+   [36m| [0m
+[34mnote[0m: found candidate
+   [36m==>[0m (package cjtui)frame.cj:247:17:
+
+[31merror[0m: 'BrightBlack' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:26:55:
+   [36m| [0m
+[36m26[0m [36m| [0m        Color.Magenta, Color.Cyan, Color.White, Color.BrightBlack, Color.BrightRed, Color.BrightGreen,[0m
+   [36m| [0m                                                      [31m^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightRed' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:26:74:
+   [36m| [0m
+[36m26[0m [36m| [0m        Color.Magenta, Color.Cyan, Color.White, Color.BrightBlack, Color.BrightRed, Color.BrightGreen,[0m
+   [36m| [0m                                                                         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightGreen' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:26:91:
+   [36m| [0m
+[36m26[0m [36m| [0m        Color.Magenta, Color.Cyan, Color.White, Color.BrightBlack, Color.BrightRed, Color.BrightGreen,[0m
+   [36m| [0m                                                                                          [31m^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightYellow' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:27:15:
+   [36m| [0m
+[36m27[0m [36m| [0m        Color.BrightYellow, Color.BrightBlue, Color.BrightMagenta, Color.BrightCyan, Color.BrightWhite,[0m
+   [36m| [0m              [31m^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightBlue' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:27:35:
+   [36m| [0m
+[36m27[0m [36m| [0m        Color.BrightYellow, Color.BrightBlue, Color.BrightMagenta, Color.BrightCyan, Color.BrightWhite,[0m
+   [36m| [0m                                  [31m^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightMagenta' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:27:53:
+   [36m| [0m
+[36m27[0m [36m| [0m        Color.BrightYellow, Color.BrightBlue, Color.BrightMagenta, Color.BrightCyan, Color.BrightWhite,[0m
+   [36m| [0m                                                    [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightCyan' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:27:74:
+   [36m| [0m
+[36m27[0m [36m| [0m        Color.BrightYellow, Color.BrightBlue, Color.BrightMagenta, Color.BrightCyan, Color.BrightWhite,[0m
+   [36m| [0m                                                                         [31m^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'BrightWhite' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:27:92:
+   [36m| [0m
+[36m27[0m [36m| [0m        Color.BrightYellow, Color.BrightBlue, Color.BrightMagenta, Color.BrightCyan, Color.BrightWhite,[0m
+   [36m| [0m                                                                                           [31m^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Indexed' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:28:15:
+   [36m| [0m
+[36m28[0m [36m| [0m        Color.Indexed(0), Color.Indexed(255), Color.Rgb(0, 0, 0), Color.Rgb(255, 255, 255),[0m
+   [36m| [0m              [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Indexed' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:28:33:
+   [36m| [0m
+[36m28[0m [36m| [0m        Color.Indexed(0), Color.Indexed(255), Color.Rgb(0, 0, 0), Color.Rgb(255, 255, 255),[0m
+   [36m| [0m                                [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:28:53:
+   [36m| [0m
+[36m28[0m [36m| [0m        Color.Indexed(0), Color.Indexed(255), Color.Rgb(0, 0, 0), Color.Rgb(255, 255, 255),[0m
+   [36m| [0m                                                    [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:28:73:
+   [36m| [0m
+[36m28[0m [36m| [0m        Color.Indexed(0), Color.Indexed(255), Color.Rgb(0, 0, 0), Color.Rgb(255, 255, 255),[0m
+   [36m| [0m                                                                        [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:29:15:
+   [36m| [0m
+[36m29[0m [36m| [0m        Color.Rgb(255, 0, 0), Color.Rgb(0, 255, 0), Color.Rgb(0, 0, 255)][0m
+   [36m| [0m              [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:29:37:
+   [36m| [0m
+[36m29[0m [36m| [0m        Color.Rgb(255, 0, 0), Color.Rgb(0, 255, 0), Color.Rgb(0, 0, 255)][0m
+   [36m| [0m                                    [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:29:59:
+   [36m| [0m
+[36m29[0m [36m| [0m        Color.Rgb(255, 0, 0), Color.Rgb(0, 255, 0), Color.Rgb(0, 0, 255)][0m
+   [36m| [0m                                                          [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'dim' is not a member of struct 'Style'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:39:31:
+   [36m| [0m
+[36m39[0m [36m| [0m    check(!none.bold && !none.dim && !none.italic && !none.underline && !none.inverse && !none.strikethrough, "all six attributes default false")[0m
+   [36m| [0m                              [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'strikethrough' is not a member of struct 'Style'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:39:96:
+   [36m| [0m
+[36m39[0m [36m| [0m    check(!none.bold && !none.dim && !none.italic && !none.underline && !none.inverse && !none.strikethrough, "all six attributes default false")[0m
+   [36m| [0m                                                                                               [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'italic' is not a member of struct 'Style'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:39:44:
+   [36m| [0m
+[36m39[0m [36m| [0m    check(!none.bold && !none.dim && !none.italic && !none.underline && !none.inverse && !none.strikethrough, "all six attributes default false")[0m
+   [36m| [0m                                           [31m^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'underline' is not a member of struct 'Style'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:39:60:
+   [36m| [0m
+[36m39[0m [36m| [0m    check(!none.bold && !none.dim && !none.italic && !none.underline && !none.inverse && !none.strikethrough, "all six attributes default false")[0m
+   [36m| [0m                                                           [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'inverse' is not a member of struct 'Style'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:39:79:
+   [36m| [0m
+[36m39[0m [36m| [0m    check(!none.bold && !none.dim && !none.italic && !none.underline && !none.inverse && !none.strikethrough, "all six attributes default false")[0m
+   [36m| [0m                                                                              [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'dim:'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:41:15:
+   [36m| [0m
+[36m41[0m [36m| [0m        Style(dim: true), Style(italic: true), Style(underline: true), Style(inverse: true), Style(strikethrough: true)][0m
+   [36m| [0m              [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'italic:'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:41:33:
+   [36m| [0m
+[36m41[0m [36m| [0m        Style(dim: true), Style(italic: true), Style(underline: true), Style(inverse: true), Style(strikethrough: true)][0m
+   [36m| [0m                                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'underline:'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:41:54:
+   [36m| [0m
+[36m41[0m [36m| [0m        Style(dim: true), Style(italic: true), Style(underline: true), Style(inverse: true), Style(strikethrough: true)][0m
+   [36m| [0m                                                     [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'inverse:'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:41:78:
+   [36m| [0m
+[36m41[0m [36m| [0m        Style(dim: true), Style(italic: true), Style(underline: true), Style(inverse: true), Style(strikethrough: true)][0m
+   [36m| [0m                                                                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'strikethrough:'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:41:100:
+   [36m| [0m
+[36m41[0m [36m| [0m        Style(dim: true), Style(italic: true), Style(underline: true), Style(inverse: true), Style(strikethrough: true)][0m
+   [36m| [0m                                                                                                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:47:17:
+   [36m| [0m
+[36m47[0m [36m| [0m    check(Color.Rgb(1, 2, 3) == Color.Rgb(1, 2, 3) && Color.Indexed(42) == Color.Indexed(42), "separately constructed payload equality")[0m
+   [36m| [0m                [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:47:39:
+   [36m| [0m
+[36m47[0m [36m| [0m    check(Color.Rgb(1, 2, 3) == Color.Rgb(1, 2, 3) && Color.Indexed(42) == Color.Indexed(42), "separately constructed payload equality")[0m
+   [36m| [0m                                      [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Indexed' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:47:61:
+   [36m| [0m
+[36m47[0m [36m| [0m    check(Color.Rgb(1, 2, 3) == Color.Rgb(1, 2, 3) && Color.Indexed(42) == Color.Indexed(42), "separately constructed payload equality")[0m
+   [36m| [0m                                                            [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Indexed' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:47:82:
+   [36m| [0m
+[36m47[0m [36m| [0m    check(Color.Rgb(1, 2, 3) == Color.Rgb(1, 2, 3) && Color.Indexed(42) == Color.Indexed(42), "separately constructed payload equality")[0m
+   [36m| [0m                                                                                 [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:54:36:
+   [36m| [0m
+[36m54[0m [36m| [0m            let code = if (mode == ColorMode.Monochrome) { "" } else { fg }[0m
+   [36m| [0m                                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:57:82:
+   [36m| [0m
+[36m57[0m [36m| [0m            check(one(Style(background: named[i]), mode) == expected(if (mode == ColorMode.Monochrome) { "" } else { bg }), "named background ${i}")[0m
+   [36m| [0m                                                                                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:62:23:
+   [36m| [0m
+[36m62[0m [36m| [0m        for (mode in [ColorMode.Indexed256, ColorMode.TrueColor]) {[0m
+   [36m| [0m                      [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:62:45:
+   [36m| [0m
+[36m62[0m [36m| [0m        for (mode in [ColorMode.Indexed256, ColorMode.TrueColor]) {[0m
+   [36m| [0m                                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Indexed' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:64:47:
+   [36m| [0m
+[36m64[0m [36m| [0m            check(one(Style(background: Color.Indexed(UInt8(i))), mode) == expected(esc + "48;5;${i}m"), "indexed background ${i}")[0m
+   [36m| [0m                                              [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:82:22:
+   [36m| [0m
+[36m82[0m [36m| [0m    for (c in [Color.Rgb(0, 0, 0), Color.Rgb(255, 0, 0), Color.Rgb(0, 255, 0), Color.Rgb(0, 0, 255), Color.Rgb(255, 255, 255)]) {[0m
+   [36m| [0m                     [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:82:42:
+   [36m| [0m
+[36m82[0m [36m| [0m    for (c in [Color.Rgb(0, 0, 0), Color.Rgb(255, 0, 0), Color.Rgb(0, 255, 0), Color.Rgb(0, 0, 255), Color.Rgb(255, 255, 255)]) {[0m
+   [36m| [0m                                         [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:82:64:
+   [36m| [0m
+[36m82[0m [36m| [0m    for (c in [Color.Rgb(0, 0, 0), Color.Rgb(255, 0, 0), Color.Rgb(0, 255, 0), Color.Rgb(0, 0, 255), Color.Rgb(255, 255, 255)]) {[0m
+   [36m| [0m                                                               [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:82:86:
+   [36m| [0m
+[36m82[0m [36m| [0m    for (c in [Color.Rgb(0, 0, 0), Color.Rgb(255, 0, 0), Color.Rgb(0, 255, 0), Color.Rgb(0, 0, 255), Color.Rgb(255, 255, 255)]) {[0m
+   [36m| [0m                                                                                     [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:82:108:
+   [36m| [0m
+[36m82[0m [36m| [0m    for (c in [Color.Rgb(0, 0, 0), Color.Rgb(255, 0, 0), Color.Rgb(0, 255, 0), Color.Rgb(0, 0, 255), Color.Rgb(255, 255, 255)]) {[0m
+   [36m| [0m                                                                                                           [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Rgb' is not a member of enum 'Color'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:90:39:
+   [36m| [0m
+[36m90[0m [36m| [0m    check(one(Style(background: Color.Rgb(0, 255, 255)), ColorMode.TrueColor) == expected(esc + "48;2;0;255;255m"), "RGB background distinct exact channels")[0m
+   [36m| [0m                                      [31m^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:90:58:
+   [36m| [0m
+[36m90[0m [36m| [0m    check(one(Style(background: Color.Rgb(0, 255, 255)), ColorMode.TrueColor) == expected(esc + "48;2;0;255;255m"), "RGB background distinct exact channels")[0m
+   [36m| [0m                                                         [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: extra arguments given for parameter list '(Enum-Color, Enum-Color, Bool)' in call
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:93:21:
+   [36m| [0m
+[36m93[0m [36m| [0m      let full = Style(foreground: Color.Rgb(1, 128, 254), background: Color.Indexed(17), bold: true,[0m
+   [36m| [0m [31m_[0m[31m____________________^[0m
+[36m94[0m [36m| [0m[31m|[0m         dim: true, italic: true, underline: true, inverse: true, strikethrough: true)[0m
+   [36m| [0m[31m|[0m[31m_[0m[31m____________________________________________________________________________________^ expected 3 arguments, found 8[0m
+   [36m| [0m
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)style.cj:7:12:
+
+[31merror[0m: undeclared identifier 'ColorMode'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:96:21:
+   [36m| [0m
+[36m96[0m [36m| [0m    check(one(full, ColorMode.TrueColor) == expected(esc + "38;2;1;128;254m" + esc + "48;5;17m" + attributes), "exact color then six-attribute order and reset bytes")[0m
+   [36m| [0m                    [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ColorMode'
+  [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:97:21:
+   [36m| [0m
+[36m97[0m [36m| [0m    check(one(full, ColorMode.Monochrome) == expected(attributes), "Monochrome preserves all six attributes")[0m
+   [36m| [0m                    [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: extra argument given for parameter list '()' in call
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:103:28:
+    [36m| [0m
+[36m103[0m [36m| [0m    let outputs = [f.toAnsi(colorMode: ColorMode.Basic16), f.toAnsi(colorMode: ColorMode.Indexed256),[0m
+    [36m| [0m                           [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 0 arguments, found 1[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+   [36m==>[0m (package cjtui)frame.cj:247:17:
+
+[31merror[0m: extra argument given for parameter list '()' in call
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:103:68:
+    [36m| [0m
+[36m103[0m [36m| [0m    let outputs = [f.toAnsi(colorMode: ColorMode.Basic16), f.toAnsi(colorMode: ColorMode.Indexed256),[0m
+    [36m| [0m                                                                   [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 0 arguments, found 1[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+   [36m==>[0m (package cjtui)frame.cj:247:17:
+
+[31merror[0m: extra argument given for parameter list '()' in call
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:104:17:
+    [36m| [0m
+[36m104[0m [36m| [0m        f.toAnsi(colorMode: ColorMode.TrueColor), f.toAnsi(colorMode: ColorMode.Monochrome)][0m
+    [36m| [0m                [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 0 arguments, found 1[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+   [36m==>[0m (package cjtui)frame.cj:247:17:
+
+[31merror[0m: extra argument given for parameter list '()' in call
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:104:59:
+    [36m| [0m
+[36m104[0m [36m| [0m        f.toAnsi(colorMode: ColorMode.TrueColor), f.toAnsi(colorMode: ColorMode.Monochrome)][0m
+    [36m| [0m                                                          [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 0 arguments, found 1[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+   [36m==>[0m (package cjtui)frame.cj:247:17:
+
+[31merror[0m: extra argument given for parameter list '()' in call
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:114:51:
+    [36m| [0m
+[36m114[0m [36m| [0m    for (mode in modes) { check(Frame(0, 1).toAnsi(colorMode: mode) == "" && Frame(1, 0).toAnsi(colorMode: mode) == "", "zero-area mode output empty") }[0m
+    [36m| [0m                                                  [31m^^^^^^^^^^^^^^^^^ expected 0 arguments, found 1[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+   [36m==>[0m (package cjtui)frame.cj:247:17:
+
+[31merror[0m: extra arguments given for parameter list '(Enum-Color, Enum-Color, Bool)' in call
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:117:21:
+    [36m| [0m
+[36m117[0m [36m| [0m      let full = Style(foreground: Color.Red, background: Color.Blue, bold: true, dim: true, italic: true,[0m
+    [36m| [0m [31m_[0m[31m____________________^[0m
+[36m118[0m [36m| [0m[31m|[0m         underline: true, inverse: true, strikethrough: true)[0m
+    [36m| [0m[31m|[0m[31m_[0m[31m___________________________________________________________^ expected 3 arguments, found 8[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)style.cj:7:12:
+
+[31merror[0m: 'dim' is not a member of class 'Component'
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:121:62:
+    [36m| [0m
+[36m121[0m [36m| [0m        .foreground(Color.Red).background(Color.Blue).bold().dim().italic().underline().inverse().strikethrough()[0m
+    [36m| [0m                                                             [31m^^^ [0m
+    [36m| [0m
+
+[31merror[0m: extra arguments given for parameter list '(Enum-Color, Enum-Color, Bool)' in call
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:124:28:
+    [36m| [0m
+[36m124[0m [36m| [0m      let borderStyle = Style(foreground: Color.Green, background: Color.Blue, bold: true, dim: true, italic: true,[0m
+    [36m| [0m [31m_[0m[31m___________________________^[0m
+[36m125[0m [36m| [0m[31m|[0m         underline: true, inverse: true, strikethrough: true)[0m
+    [36m| [0m[31m|[0m[31m_[0m[31m___________________________________________________________^ expected 3 arguments, found 8[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)style.cj:7:12:
+
+[31merror[0m: extra argument given for parameter list '()' in call
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:127:31:
+    [36m| [0m
+[36m127[0m [36m| [0m    let result = child[0].bold(false).dim(false).italic(false).underline(false).inverse(false).strikethrough(false)[0m
+    [36m| [0m                              [31m^^^^^^^ expected 0 arguments, found 1[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+  [36m==>[0m (package cjtui)component.cj:51:17:
+
+[31merror[0m: extra argument given for parameter list '()' in call
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:132:18:
+    [36m| [0m
+[36m132[0m [36m| [0m    child[0].bold(true).dim(true).italic(true).underline(true).inverse(true).strikethrough(true).foreground(Color.Red)[0m
+    [36m| [0m                 [31m^^^^^^ expected 0 arguments, found 1[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+  [36m==>[0m (package cjtui)component.cj:51:17:
+
+[31merror[0m: 'italic' is not a member of class 'Component'
+   [36m==>[0m /workspace/work/color-tests/repo/tests/colors/src/main.cj:141:61:
+    [36m| [0m
+[36m141[0m [36m| [0m    let nested = render(Column { Row { Text("X"); Text("Y").italic() }.italic(false) }.italic(), 2, 1)[0m
+    [36m| [0m                                                            [31m^^^^^^ [0m
+    [36m| [0m
+
+70 errors generated, 70 errors printed.
+Error: failed to compile package `color_contract`, return code is 1
+Error: cjpm build failed
