@@ -29,3 +29,7 @@ Ruling: retain the checked-in OpenSpec progress file as the sole recovery ledger
 Dispatched independent test author /root/layout_test_author (Sol/high) and layout implementer /root/layout_implementer (Terra/high, prepare-only until frozen test artifact). Both use fresh clones; no cross-role edits.
 
 Ruling: layout example uses d to toggle border/shadow and q to exit, making the already-required demonstration testable; product API unaffected. Plan/configuration/link checks and strict OpenSpec all pass at8f0f0b5; this is documentation evidence only.
+
+Layout-only test artifact73448b644a551d6abc64a68d696c20a01aa7df8f integrated asdfcfdfd0fb9161d688efc1ed7bee3b58e200a651. Independent author reports actual API-absence RED exit1 (68 errors) on SDK1.2.0, raw retained outside repository until complete evidence import. R8 assertion sources unchanged. Layout author instructed to confirm RED then implement from this fixed artifact. TASK054 remains open until decoration tests freeze.
+
+Ruling: example PTY starts rounded/shadow enabled; d disables both then restores; sizes48×14→23×9→8×4→48×14, q exits. Tests inspect rendered geometry/decoration/restoration rather than business wording. Generated consumer cjpm.lock is omitted consistently with existing R8 projects; independent test author owns its removal.
