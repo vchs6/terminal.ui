@@ -28,6 +28,13 @@ intentional fence row. Resize waits for the actual inner PTY grid to change befo
 another action/fence pair, so a pre-resize callback cannot fence a later resize.
 Raw fence offsets, columns, style, and timestamps are stored per action.
 
+Application exit results come from both inner and outer recorder `exit_status`
+fields. Each must occur exactly once, contain a legal status, and agree: q,
+Ctrl-C and ordinary-example runs require zero; callback-exception runs require
+nonzero. The terminal host's wait status is independent evidence in
+`host-wait-status.txt` and `exit-verification.json`; it need not mirror the
+application and cannot establish that an application exception occurred.
+
 For the unmodified ordinary `examples/colors` program, use the same host matrix:
 
 ```sh

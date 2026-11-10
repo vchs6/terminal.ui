@@ -29,7 +29,7 @@ profiles=${*:-"xterm-default xterm-256color xfce-vte"}
 scenarios=${CJTUI_TERMINAL_SCENARIOS-"q exception interrupt"}
 if test "$scene" = example; then scenarios=q; fi
 fixture_sha=$(sha256sum "$fixture/src/main.cj" | awk '{print $1}')
-harness_sha=$(sha256sum "$tdir/run.sh" "$tdir/verify-sgr.mjs" "$tdir/outer-recorder.sh" "$tdir/inner-recorder.sh" "$tdir/x11-xtest-interrupt.c" "$tdir/wait-output.mjs" "$tdir/wait-fence.mjs" | sha256sum | awk '{print $1}')
+harness_sha=$(sha256sum "$tdir/run.sh" "$tdir/verify-sgr.mjs" "$tdir/verify-exit.mjs" "$tdir/outer-recorder.sh" "$tdir/inner-recorder.sh" "$tdir/x11-xtest-interrupt.c" "$tdir/wait-output.mjs" "$tdir/wait-fence.mjs" | sha256sum | awk '{print $1}')
 source_commit=$(git -C "$root" rev-parse HEAD)
 fixture_commit=$(git -C "$root" log -1 --format=%H -- "$scene_source")
 (cd "$root" && git ls-files -z -- "${scene_source%/src/main.cj}" | xargs -0 sha256sum) > "$evidence/consumer-source-sha256.txt"
@@ -153,7 +153,9 @@ run() {
   esac
   fi
   wait_field "$dir/inner-tty.txt" exit_status; wait_field "$dir/outer-tty.txt" exit_status; wait_host_exit
-  set +e; wait "$hostpid"; status=$?; set -e; if test "$expected" = 0; then test "$status" -eq 0; else test "$status" -ne 0; fi
+  set +e; wait "$hostpid"; status=$?; set -e
+  printf '%s\n' "$status" > "$dir/host-wait-status.txt"
+  node "$tdir/verify-exit.mjs" "$dir/inner-tty.txt" "$dir/outer-tty.txt" "$dir/host-wait-status.txt" "$expected" > "$dir/exit-verification.json"
   wait_file "$dir/inner-tty.txt" 'inner restoration'; test "$(termios "$dir/outer-tty.txt" ready)" = "$(termios "$dir/outer-tty.txt" exit)"; test "$(termios "$dir/inner-tty.txt" ready)" = "$(termios "$dir/inner-tty.txt" exit)"
   if test "$scene" = example; then
     test -n "$(termios "$dir/outer-tty.txt" exit)"; test -n "$(termios "$dir/inner-tty.txt" exit)"
