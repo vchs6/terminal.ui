@@ -1,0 +1,8 @@
+FAIL runtime PTY hidden-cross-session: AssertionError [ERR_ASSERTION]: hidden legacy callback cannot enter a different same-thread headless session
++ actual - expected
+
++ 'accepted'
+- 'WrongUIContext'
+
+    at session (file:///workspace/work/runtime-tests/source/tests/runtime/session/pty.mjs:112:49)
+    at async file:///workspace/work/runtime-tests/source/tests/runtime/session/pty.mjs:138:11

@@ -1,0 +1,5 @@
+An exception has occurred:
+Exception: FAIL: snapshot in same-session cleanup reports LifecycleReentry before inactive checks
+	 at runtime_contract::check(Bool, std.core::String)(/workspace/work/runtime-tests/source/tests/runtime/src/assertions.cj:6)
+	 at runtime_contract::cleanupSameSessionReentry()(/workspace/work/runtime-tests/source/tests/runtime/src/review_regressions.cj:136)
+	 at runtime_contract::main()(/workspace/work/runtime-tests/source/tests/runtime/src/main.cj:7)

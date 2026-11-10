@@ -1,0 +1,7 @@
+cleanup-same snapshot=SessionInactive dispatch=SessionInactive dispose=LifecycleReentry post=false posted-runs=0 cleanups=2 valid=false
+PASS: same-session reentry attempts do not interrupt remaining cleanup
+PASS: same-session cleanup boundary releases all current resources
+PASS: post during entire-session cleanup returns false and does not execute
+PASS: cleanup restores TLS for a later unrelated legal boundary: got [B ], want [B ]
+PASS: cleaned application can establish a later session after lifecycle boundary: got [A ], want [A ]
+PASS: rejected cleanup post cannot leak into remount

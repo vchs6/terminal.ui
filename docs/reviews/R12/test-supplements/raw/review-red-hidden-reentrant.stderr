@@ -1,0 +1,8 @@
+FAIL runtime PTY hidden-reentrant: AssertionError [ERR_ASSERTION]: hidden legacy callback cannot recursively enter app.snapshot
++ actual - expected
+
++ 'accepted'
+- 'LifecycleReentry'
+
+    at session (file:///workspace/work/runtime-tests/source/tests/runtime/session/pty.mjs:114:45)
+    at async file:///workspace/work/runtime-tests/source/tests/runtime/session/pty.mjs:138:11

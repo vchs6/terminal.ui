@@ -1,0 +1,8 @@
+PASS: unrelated B starts normally: got [B  ], want [B  ]
+PASS: owner A starts with an active Observable binding: got [A  ], want [A  ]
+PASS: cross-session post is accepted before its callback runs
+PASS: later owner work is queued before callback failure
+PASS: B rejects the callback/getter's cross-session entry
+PASS: B precondition rejection does not dispose its resources
+PASS: unrelated B remains usable after A's failed callback/getter: got [B2 ], want [B2 ]
+cross-owner kind=post extra=false error=another session owns the active callback A-valid=true cleanup=0 mounted=1 bindings=1 subscriptions=1 posts=0 queued-runs=0 B-valid=true

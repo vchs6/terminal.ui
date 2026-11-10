@@ -1,0 +1,28 @@
+[31merror[0m: invalid left-hand expression of assignment '='
+  [36m==>[0m /workspace/work/runtime-tests/syntax-only/cleanup_aggregation.cj:25:73:
+   [36m| [0m
+[36m25[0m [36m| [0m    (aggregate.cleanupFailures[0] as MarkedFailure).getOrThrow().marker = 12[0m
+   [36m| [0m    [36m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m [31m^ [0m
+   [36m| [0m    [36m|[0m
+   [36m| [0m    [36mcannot assign to this expression[0m
+   [36m| [0m
+
+[31merror[0m: invalid left-hand expression of assignment '='
+  [36m==>[0m /workspace/work/runtime-tests/syntax-only/cleanup_aggregation.cj:65:62:
+   [36m| [0m
+[36m65[0m [36m| [0m    (aggregate.primary as MarkedFailure).getOrThrow().marker = 21[0m
+   [36m| [0m    [36m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m [31m^ [0m
+   [36m| [0m    [36m|[0m
+   [36m| [0m    [36mcannot assign to this expression[0m
+   [36m| [0m
+
+[31merror[0m: invalid left-hand expression of assignment '='
+  [36m==>[0m /workspace/work/runtime-tests/syntax-only/cleanup_aggregation.cj:88:62:
+   [36m| [0m
+[36m88[0m [36m| [0m    (aggregate.primary as MarkedFailure).getOrThrow().marker = 22[0m
+   [36m| [0m    [36m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m [31m^ [0m
+   [36m| [0m    [36m|[0m
+   [36m| [0m    [36mcannot assign to this expression[0m
+   [36m| [0m
+
+3 errors generated, 3 errors printed.
