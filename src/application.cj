@@ -85,6 +85,7 @@ public class Application {
     }
     public func dispose(): Unit {
         if (let Some(value) <- readSession()) {
+            value.requireOwner()
             if (value.inLifecycle || value.inCallback || value.batchDepth > 0) {
                 throw UIException("LifecycleReentry", "dispose requires an outer UI boundary")
             }

@@ -52,14 +52,20 @@ class RuntimeSession {
         threadNonce = uiThreadIdentity().nonce
         id = uniqueRuntimeId()
     }
-    func requireContext(): Unit {
-        if (let Some(other) <- activeSession.get()) {
-            if (other.id != id) { throw UIException("WrongUIContext", "another session owns the active callback") }
+    func requireOwner(): Unit {
+        if (let Some(current) <- activeSession.get()) {
+            if (current.id != id) { throw UIException("WrongUIContext", "another session owns the active callback") }
         }
-        if (evaluating.get().isSome()) { throw UIException("ReentrantEvaluation", "cannot enter UI during getter") }
-        if (!active) { throw UIException("SessionInactive", "session is inactive") }
         if (Thread.currentThread.id != threadId || uiThreadIdentity().nonce != threadNonce) {
             throw UIException("WrongUIContext", "wrong UI thread")
+        }
+    }
+    func requireContext(): Unit {
+        requireOwner()
+        if (evaluating.get().isSome()) { throw UIException("ReentrantEvaluation", "cannot enter UI during getter") }
+        if (!active) {
+            if (inLifecycle) { throw UIException("LifecycleReentry", "operation during cleanup") }
+            throw UIException("SessionInactive", "session is inactive")
         }
     }
     func requireBoundary(): Unit {
