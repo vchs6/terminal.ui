@@ -1,0 +1,12 @@
+[package]
+  cjc-version = "1.2.0"
+  name = "session_extensions"
+  version = "0.0.0"
+  src-dir = "src"
+  compile-option = "--error-count-limit all"
+  output-type = "executable"
+  link-option = "--wrap=write --wrap=cjt_buffer_write --wrap=cjt_buffer_add --wrap=cjt_open --wrap=cjt_close --wrap=poll"
+[dependencies]
+cjtui = { path = "../.." }
+[ffi.c]
+session_fault = { path = "./native" }
