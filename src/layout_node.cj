@@ -38,19 +38,24 @@ class LayoutNode {
             naturalW = greater(naturalW, w)
             naturalH = lines.size
         } else {
-            for (child in c.children) {
-                if (!child.isVisible) { continue }
-                let n = LayoutNode(child, session);
-                n.measure();
-                children.add(n)
-                let cw = greater(child.fixedW ?? n.naturalW, child.minW)
-                let ch = greater(child.fixedH ?? n.naturalH, child.minH)
-                if (c.kind == 1) {
-                    naturalW = greater(naturalW, cw)
-                    naturalH = sat(naturalH, ch)
-                } else {
-                    naturalW = sat(naturalW, cw)
-                    naturalH = greater(naturalH, ch)
+            for (entry in c.readMount().getOrThrow().sequence) {
+                if (let ChildEntry.MountedChild(runtimeChild) <- entry) {
+                    let child = runtimeChild.component
+                    if (!child.isVisible) {
+                        continue
+                    }
+                    let n = LayoutNode(child, session);
+                    n.measure();
+                    children.add(n)
+                    let cw = greater(child.fixedW ?? n.naturalW, child.minW)
+                    let ch = greater(child.fixedH ?? n.naturalH, child.minH)
+                    if (c.kind == 1) {
+                        naturalW = greater(naturalW, cw)
+                        naturalH = sat(naturalH, ch)
+                    } else {
+                        naturalW = sat(naturalW, cw)
+                        naturalH = greater(naturalH, ch)
+                    }
                 }
             }
             for (_ in 1..children.size) {

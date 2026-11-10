@@ -19,7 +19,8 @@ public open class Component {
     var isVisible = true
     let kind: Int64
     var value: String
-    let children = ArrayList<Component>()
+    let descriptionId = uniqueRuntimeId()
+    let declarations = ArrayList<ChildDeclaration>()
     var fg: ?Color = None
     var bg: ?Color = None
     var isBold: ?Bool = None

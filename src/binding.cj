@@ -20,10 +20,17 @@ class Binding {
     var dirtySequence: Int64 = 0
     var active = false
     init(component: Component, name: String, category: ChangeKind, getter: () -> Unit) {
-        this.component = component; this.name = name; this.category = category; this.getter = getter
+        this.component = component
+        this.name = name
+        this.category = category
+        this.getter = getter
     }
     func read(source: ObservableSource, version: Int64): Unit {
-        for (entry in dependencies) { if (entry.source.id == source.id) { return } }
+        for (entry in dependencies) {
+            if (entry.source.id == source.id) {
+                return
+            }
+        }
         if (let Some(node) <- component.readMount()) {
             if (dependencies.size >= node.session.limits.dependenciesPerBinding) {
                 throw UIException("CapacityExceeded", "dependency limit exceeded")
@@ -33,31 +40,58 @@ class Binding {
     }
     func invalidate(deferred!: Bool = false): Unit {
         ownerLock.lock()
-        try { if (let Some(session) <- owner) { session.invalidate(this, deferred: deferred) } } finally { ownerLock.unlock() }
+        try {
+            if (let Some(session) <- owner) {
+                session.invalidate(this, deferred: deferred)
+            }
+        } finally {
+            ownerLock.unlock()
+        }
     }
     func evaluate(): Unit {
-        for (entry in dependencies) { entry.source.unsubscribe(this) }
+        for (entry in dependencies) {
+            entry.source.unsubscribe(this)
+        }
         dependencies.clear()
         let previous = evaluating.get()
         evaluating.set(Some(this))
-        try { getter() } finally { evaluating.set(previous) }
-        for (entry in dependencies) { entry.source.subscribe(this, entry.version) }
+        try {
+            if (category == ChangeKind.Structure) {
+                inStructure(getter)
+            } else {
+                getter()
+            }
+        } finally {
+            evaluating.set(previous)
+        }
+        for (entry in dependencies) {
+            entry.source.subscribe(this, entry.version)
+        }
         ownerLock.lock()
         try {
             if (let Some(session) <- owner) {
                 session.publishDependencyCount(this, dependencies.size)
             }
-        } finally { ownerLock.unlock() }
+        } finally {
+            ownerLock.unlock()
+        }
     }
     func dispose(): Unit {
         ownerLock.lock()
         try {
             if (let Some(session) <- owner) {
                 session.deactivateBinding(this)
-                owner = None; node = None
-            } else { active = false }
-        } finally { ownerLock.unlock() }
-        for (entry in dependencies) { entry.source.unsubscribe(this) }
+                owner = None
+                node = None
+            } else {
+                active = false
+            }
+        } finally {
+            ownerLock.unlock()
+        }
+        for (entry in dependencies) {
+            entry.source.unsubscribe(this)
+        }
         dependencies.clear()
     }
 }

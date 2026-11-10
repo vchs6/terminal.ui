@@ -11,7 +11,7 @@ cjpm run
 
 按 `q` 退出，Ctrl-C 取消；程序需要实际 TTY。构建依赖及可选离线 Unicode 数据输入见 [原生构建](native-build.md)。
 
-首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、动态条件与列表、主题、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
+首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、主题、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
 
 低层可用 `Frame(width, height)` 和 `put(x, y, text, style: Style(...))` 写入网格，`cellAt` 查询，`toPlainText` 和 `toAnsi` 导出完整快照。负尺寸与越界查询报错；写入按边界裁剪，拒绝除换行外的控制字符。`render(root, width, height)` 使用同一网格渲染组件树。`Application(root).onKey { event => ... }.run()` 负责终端会话；文本按 Unicode 字符提供，`stop()` 可从回调退出。
 
@@ -34,4 +34,18 @@ cjpm run
 
 可观察状态与持久组件示例位于 `examples/reactive`。在 SDK 1.2.0 环境中运行 `cd examples/reactive && cjpm run`；按任意键递增，Ctrl-C 退出。源码同时导入 `cjtui`、`cjtui.*` 和 `cjtui.macros.*`，使用 `@Component`、带显式类型和初值的 `@State` 与 `@Bind` 声明绑定。普通表达式按初值求取；对自动更新的属性使用 `@Bind(expr)` 或类型明确的 `{ => expr }` getter。
 
-`Observable<T>` 可由多个视图共享；`set` 和 `notify` 可从后台线程调用，框架在 UI 会话处理绑定。终端循环在无阻塞用户回调时最多每 100 毫秒检查一次更新。可变对象内部的更改由应用同步，并显式调用 `notify`。`Application.post` 将回调投递到会话，`batch` 合并 UI 变更；`startHeadless`、`snapshot` 和 `dispose` 支持无终端消费。`visible(false)` 保留节点与状态但不占布局。`render` 是无终端的完整帧导出，脱离活动会话导出时不运行挂载副作用。当前动态结构、焦点和覆盖层仍在开发。
+`Observable<T>` 可由多个视图共享；`set` 和 `notify` 可从后台线程调用，框架在 UI 会话处理绑定。终端循环在无阻塞用户回调时最多每 100 毫秒检查一次更新。可变对象内部的更改由应用同步，并显式调用 `notify`。`Application.post` 将回调投递到会话，`batch` 合并 UI 变更；`startHeadless`、`snapshot` 和 `dispose` 支持无终端消费。`visible(false)` 保留节点与状态但不占布局。`render` 是无终端的完整帧导出，脱离活动会话导出时不运行挂载副作用。焦点和覆盖层仍在开发。
+
+
+`If(condition, thenBody, elseBody: ...)` 和 `ForEach<T>(items, key, body)` 提供响应式条件与列表；普通 `if` / `for` 只在组件首次构造时执行。它们没有额外布局盒，生成的组件直接进入父节点。`If` 活跃分支可以为空，最多一个根；`ForEach` 每个 key 必须有一个根，复合项使用 `Column` 或 `Row`。key 必须非空且在本组唯一；框架保留数据顺序，不推断排序或数据保留规则。
+
+列表 body 接收 `ListItem<T>`，其中 `key` 固定，`value` 是只读可观察值槽。使用 `Text({ => item.value.name })` 一类 getter，在相同 key 的数据对象替换后自动更新；保留项的节点身份与局部状态不变。删除再加入同一 key 会创建新节点。
+
+在 UI 事件、`post` 或 `app.batch` 中，可通过父组件的 `reference()` 调用 `children()`、`append(child)`、`insertBefore(anchor, child)`、`moveBefore(childRef, anchor)`、`moveToEnd(childRef)` 和 `remove(childRef)`。`children()` 返回已提交直接孩子的独立快照，不暴露内部 marker；批内新插入组件的 `reference()` 要等提交后取得。插入描述须未挂载，同父移动保留身份，跨父移动被拒绝。生命周期回调如需修改结构，通过 `post` 安排下一轮。
+
+显式命令先提交，再协调本轮失效的动态组。协调按组当前占用的物理槽位依数据顺序替换，手动节点与其他组的相对次序保持。例如 `A X B C` 中 `X` 为手动节点，列表反转后为 `C X B A`，删除 `A` 后为 `B X C`；清空后剩 `X`，再加入 `D/E` 为 `X D E`。手动移除声明节点不会修改业务数据，只有后续数据失效或父引用 `notify(ChangeKind.Structure)` 才按最新数据重建。
+
+`examples/dynamic` 是公开 API 的可运行混合构造示例：`cjpm run` 启动终端应用，`target/release/bin/main --smoke` 在无终端模式执行插入、重排及快照。结构错误会停止并清理当前会话；批次保留已完成副作用，不承诺业务事务回滚。`RuntimeLimits` 的节点数、深度、结构操作与稳定轮数预算同样约束动态内容。
+
+
+结构 API 的失败通过 `UIException.code` 区分：旧引用为 `StaleReference`，失效或外父锚点为 `StaleAnchor`，跨父移动为 `CrossParentMove`，重复挂载或预留为 `AlreadyMounted`，叶子父节点为 `InvalidParent`。动态构造的空 key、重复 key、根数不符分别为 `InvalidKey`、`DuplicateKey`、`ConstructionRootCount`；预算超限为 `CapacityExceeded`，同步更新不稳定为 `UnstableUpdate`。错误 UI 域为 `WrongUIContext`，结构求值重入为 `ReentrantStructure`，求值中写可观察状态为 `ReentrantEvaluation`，生命周期中直接改树为 `LifecycleReentry`。应用 getter、body、事件或挂载回调抛出的普通异常保留原对象与类型；若清理还发生附加失败，使用 `UICleanupException` 聚合报告。
