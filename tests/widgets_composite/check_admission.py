@@ -5,8 +5,10 @@ import subprocess
 import sys
 from pathlib import Path
 
+# These are TASK158's actual upstream prerequisites. TASK159 is the target
+# implementation and must remain absent for a meaningful pre-implementation RED.
 NEEDED = ("runtime080", "rich084", "theme088", "glyph097", "interaction_a102",
-          "viewport107", "overlay112", "keyboard117", "small157", "composite159")
+          "viewport107", "overlay112", "keyboard117", "small157")
 
 
 def main(path, repo):
