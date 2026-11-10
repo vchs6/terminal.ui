@@ -2,34 +2,9 @@
   "scope": "independent readiness/reconnaissance, not framework Auto acceptance",
   "files": [
     {
-      "path": "report.md",
-      "bytes": 9541,
-      "sha256": "5677203b16d1742d57dd8dec176f2d9200987c4e1021ebbe5038f7fdcc3e43a4"
-    },
-    {
-      "path": "probes/scene-vte-testhost.sh",
-      "bytes": 630,
-      "sha256": "b367867dd4a2845c847c0c4f1fce23a1ced08dc51fa11f8158fe3b7e94f1a17e"
-    },
-    {
-      "path": "probes/scene-xterm.sh",
-      "bytes": 615,
-      "sha256": "d135b892accac61fc4460cf8cfc567fcf1ae03e7cf090b954511f693413297c2"
-    },
-    {
       "path": "probes/run-control-probe.sh",
       "bytes": 6612,
       "sha256": "4b382a9c181a4edb591e3c7760d3543059df48f9683cec3744cd3e02238fe407"
-    },
-    {
-      "path": "probes/vte-testhost.c",
-      "bytes": 4694,
-      "sha256": "00c39357b1479cfa8c6835b7c92e5e3b107ced6ea452a9dae45c75f198590dc0"
-    },
-    {
-      "path": "probes/scene-vte.sh",
-      "bytes": 632,
-      "sha256": "5493d16fc20d0181ab13cb9eb4eacdb3151166c6ea9ca84808079d3897ec133b"
     },
     {
       "path": "probes/scene-control.sh",
@@ -42,6 +17,26 @@
       "sha256": "fbe45ee4d89360676a6150d3912a98dc1512aa881e7d0cacfaf5be420aa4fcb6"
     },
     {
+      "path": "probes/scene-vte-testhost.sh",
+      "bytes": 630,
+      "sha256": "b367867dd4a2845c847c0c4f1fce23a1ced08dc51fa11f8158fe3b7e94f1a17e"
+    },
+    {
+      "path": "probes/scene-vte.sh",
+      "bytes": 632,
+      "sha256": "5493d16fc20d0181ab13cb9eb4eacdb3151166c6ea9ca84808079d3897ec133b"
+    },
+    {
+      "path": "probes/scene-xterm.sh",
+      "bytes": 615,
+      "sha256": "d135b892accac61fc4460cf8cfc567fcf1ae03e7cf090b954511f693413297c2"
+    },
+    {
+      "path": "probes/vte-testhost.c",
+      "bytes": 4694,
+      "sha256": "00c39357b1479cfa8c6835b7c92e5e3b107ced6ea452a9dae45c75f198590dc0"
+    },
+    {
       "path": "probes/x11-xtest-inject.c",
       "bytes": 4159,
       "sha256": "814e5dfb7f16a6f310a6997149021f3f820288824fa55e70abe82cbb06aee1a6"
@@ -52,89 +47,14 @@
       "sha256": "224b8d18426890cfd7bb4a2e7b313e2873720920cf30aac2418e0e6ed0f16119"
     },
     {
-      "path": "raw/control-xterm-256color-before.txt",
-      "bytes": 2048,
-      "sha256": "64ba1e511e815562c037fc7b9e272a26b5cf4f949aabe5271a5a3400a1706d31"
+      "path": "raw/control-xfce-vte-after.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "raw/control-xterm-256color-final-inject.txt",
-      "bytes": 70,
-      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
-    },
-    {
-      "path": "raw/control-xfce-vte-reacquire-tree.txt",
-      "bytes": 488,
-      "sha256": "616c74b0fba7544b1546cbdf401bac6a4916778f7d86c62c8b11bc38582ad1db"
-    },
-    {
-      "path": "raw/control-xterm-default-child.txt",
-      "bytes": 111,
-      "sha256": "8607eb3a4555348ecb41ef18532f98f51fffd5ce43052828e01561262887cbc2"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-outer-after.png",
-      "bytes": 24330,
-      "sha256": "80e78f13061688b069b0281bb4e43c3ff81e68827af712a34a99035e5f823a71"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-graceful-outer.txt",
-      "bytes": 287,
-      "sha256": "cc6e6abdcf88d623955642503f1bd7590d204976a2ddea447358b23e2e9171a3"
-    },
-    {
-      "path": "raw/vte-testhost-child.txt",
-      "bytes": 99,
-      "sha256": "f346d4b1f84878a726124483bf2e84b12deea9b27acfda5a6cbf9131761bad64"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-outer-tree-after.txt",
-      "bytes": 341,
-      "sha256": "7188180f77651fc9a017ba6e9f16e5f10391d5c51bf6f7b9edfd450b202d2bf9"
-    },
-    {
-      "path": "raw/xwininfo-vte-testhost.txt",
-      "bytes": 306,
-      "sha256": "e756707317937106e21c48282b89bca19ad423c28eca3e0f3f69dd34e74b97a6"
-    },
-    {
-      "path": "raw/control-xterm-256color-tree.txt",
-      "bytes": 327,
-      "sha256": "b48d862d7cfc403a393901685fac9d8a0422cd91d0d5128db1c315e58e384d47"
-    },
-    {
-      "path": "raw/xwininfo-vte-actual.txt",
-      "bytes": 472,
-      "sha256": "667ea05977072fd9ca437d91376e6df5e15e77d2f5208b5413256928eacc5e14"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-stable-ansi.log",
-      "bytes": 478,
-      "sha256": "be8b760bf10c77f1696fb726469c6e0af34577c6d8bdf8530b41a98db41d7813"
-    },
-    {
-      "path": "raw/control-xterm-default-after.txt",
-      "bytes": 2045,
-      "sha256": "dc79fb3dabed86f85660de9335c10a60548f9479e61027e6f07d244e4808dd01"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-stable-child.txt",
-      "bytes": 127,
-      "sha256": "1dfb9253e9c2232c4d6b2eefb7c6c3bb24094b6f78cceb6eeeec5adeb22a7966"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-graceful-child.txt",
-      "bytes": 459,
-      "sha256": "f2fd7fb48993ce7e071a112310bcee10dadadbd5c6362bb7b78c416f490e87fb"
-    },
-    {
-      "path": "raw/control-xfce-vte-final-child.txt",
-      "bytes": 370,
-      "sha256": "4ebc0c25c421d64f6ee59838c433572f0055f720fe7ef253c06dd86f3a338ee2"
-    },
-    {
-      "path": "raw/xwininfo-xterm-actual.txt",
-      "bytes": 317,
-      "sha256": "25757233ba0147b24db6a122a7e5fe8ca8abf6bee165a3eb1b8ad19c30e61639"
+      "path": "raw/control-xfce-vte-before.txt",
+      "bytes": 1843,
+      "sha256": "8294840a04844d55284c81e60d9dafdeefcf29fce7ae7258cdafb6e2e883ea75"
     },
     {
       "path": "raw/control-xfce-vte-child.txt",
@@ -142,19 +62,134 @@
       "sha256": "62aac3b2f6bec351ccc705e2a6f1d2f279fa6cb200607418bfbb4863155a6dfd"
     },
     {
-      "path": "raw/control-xterm-default-recorded-outer-after.txt",
-      "bytes": 2060,
-      "sha256": "b2e3a68cf1e59e639fc84f1f56b326216f9f1f2ab29ef3e864eb8e9155dd6a74"
+      "path": "raw/control-xfce-vte-final-after.png",
+      "bytes": 27094,
+      "sha256": "60b57a5f1a470ea64b06b45ca56a0be27e56da6515d5dcd5548c694fceb0705f"
     },
     {
-      "path": "raw/control-xterm-default-recorded-tree.txt",
-      "bytes": 335,
-      "sha256": "af9e8dbbba76e8056bd77102d186a6ac8cf3f13b13fe3444297d8acefe8d8401"
+      "path": "raw/control-xfce-vte-final-after.txt",
+      "bytes": 1847,
+      "sha256": "3113474c85348d15f2411ee887b8c5d45da8cc78be7865fc355e22e2fb6ff427"
     },
     {
-      "path": "raw/control-xterm-default-tree.txt",
-      "bytes": 326,
-      "sha256": "7a6690f6371b8ef54c8b49b88c1594e4f822eea5b80e114b157f28c626e4a206"
+      "path": "raw/control-xfce-vte-final-before.txt",
+      "bytes": 1849,
+      "sha256": "f19c023905dee5f8236e6a9f3c4d927973b3b8563cb73e030a09f4ef08892c18"
+    },
+    {
+      "path": "raw/control-xfce-vte-final-child.txt",
+      "bytes": 370,
+      "sha256": "4ebc0c25c421d64f6ee59838c433572f0055f720fe7ef253c06dd86f3a338ee2"
+    },
+    {
+      "path": "raw/control-xfce-vte-final-inject.txt",
+      "bytes": 70,
+      "sha256": "7997c3077ec09ce4cce5d61642211e944744d5b3b023d1ebfc440c270aea4a89"
+    },
+    {
+      "path": "raw/control-xfce-vte-final-tree-after.txt",
+      "bytes": 484,
+      "sha256": "01c3577d89cbd6566c8be25d28fc05f257e57f533a0ad9f94fe90fffd7ddad18"
+    },
+    {
+      "path": "raw/control-xfce-vte-final-tree.txt",
+      "bytes": 484,
+      "sha256": "62b911deb5d8e58c5507e8c98cdd280f8e047ba3104b0a59acf99736043a6944"
+    },
+    {
+      "path": "raw/control-xfce-vte-inject.txt",
+      "bytes": 70,
+      "sha256": "7997c3077ec09ce4cce5d61642211e944744d5b3b023d1ebfc440c270aea4a89"
+    },
+    {
+      "path": "raw/control-xfce-vte-reacquire-before.txt",
+      "bytes": 1853,
+      "sha256": "73b30b9325959a6e538523ff17a36c19a5b5bc66c8cedd9e125e064d7c8d01ca"
+    },
+    {
+      "path": "raw/control-xfce-vte-reacquire-child.txt",
+      "bytes": 134,
+      "sha256": "793bfb7b2ad101dacadeba20ec9be76726366060c068b7806ab877daed500b04"
+    },
+    {
+      "path": "raw/control-xfce-vte-reacquire-inject.txt",
+      "bytes": 70,
+      "sha256": "7997c3077ec09ce4cce5d61642211e944744d5b3b023d1ebfc440c270aea4a89"
+    },
+    {
+      "path": "raw/control-xfce-vte-reacquire-tree-after.txt",
+      "bytes": 166,
+      "sha256": "4349e83e8f4d12cb80c046d949d28703773b107be5140fe1594965845d6cdff6"
+    },
+    {
+      "path": "raw/control-xfce-vte-reacquire-tree.txt",
+      "bytes": 488,
+      "sha256": "616c74b0fba7544b1546cbdf401bac6a4916778f7d86c62c8b11bc38582ad1db"
+    },
+    {
+      "path": "raw/control-xfce-vte-stable-after.png",
+      "bytes": 27343,
+      "sha256": "13f9e9e5ecc66c28fd9f5a512941e3664f8b4d5000ac2c20ec7796f2e5ceba6d"
+    },
+    {
+      "path": "raw/control-xfce-vte-stable-after.txt",
+      "bytes": 1848,
+      "sha256": "b4d99f8b09cc2933ca3c5cb072208d941eae8ad682b33805196f924bb3168846"
+    },
+    {
+      "path": "raw/control-xfce-vte-stable-before.txt",
+      "bytes": 1850,
+      "sha256": "a866df91407cda42d538052158b1886c58ced2a39c8140b05d8f36d1c19a3b9a"
+    },
+    {
+      "path": "raw/control-xfce-vte-stable-child.txt",
+      "bytes": 131,
+      "sha256": "40f08be6b55fccf6050b131010a2f42913d3f4896ac674cc1a1b2521b0326f51"
+    },
+    {
+      "path": "raw/control-xfce-vte-stable-inject.txt",
+      "bytes": 70,
+      "sha256": "7997c3077ec09ce4cce5d61642211e944744d5b3b023d1ebfc440c270aea4a89"
+    },
+    {
+      "path": "raw/control-xfce-vte-stable-tree-after.txt",
+      "bytes": 485,
+      "sha256": "f22e64d4033d5a08e2e7933e3e2c4840796d1b8dca300208dc8d0307ae5adaa5"
+    },
+    {
+      "path": "raw/control-xfce-vte-stable-tree.txt",
+      "bytes": 485,
+      "sha256": "924d7b933820bed2071155ee7665e598ec5d4acaf2b664b20cdbc63907184d71"
+    },
+    {
+      "path": "raw/control-xfce-vte-tree.txt",
+      "bytes": 478,
+      "sha256": "4eadf590c96d186e5de104143fbd37348d0016bc90e64fb13c68bafde19f86c1"
+    },
+    {
+      "path": "raw/control-xfce-vte-wm-before.txt",
+      "bytes": 1846,
+      "sha256": "d4d50c854ebe310505166c234c4d6bedfd4d03c36d2a104d8a5f798bccec67a8"
+    },
+    {
+      "path": "raw/control-xfce-vte-wm-child.txt",
+      "bytes": 127,
+      "sha256": "34fc2eef01a9a000f806c15c79a61e42e53f04b8ce9693e3800006f92c2d44a7"
+    },
+    {
+      "path": "raw/control-xfce-vte-wm-inject.txt",
+      "bytes": 70,
+      "sha256": "3f0d790d29a3cb8acc6927a32217cc0d8375fa41f28f81ea30fb3062d1ab4683"
+    },
+    {
+      "path": "raw/control-xfce-vte-wm-tree-after.txt",
+      "bytes": 166,
+      "sha256": "4349e83e8f4d12cb80c046d949d28703773b107be5140fe1594965845d6cdff6"
+    },
+    {
+      "path": "raw/control-xfce-vte-wm-tree.txt",
+      "bytes": 600,
+      "sha256": "85747de4bb69481a05bab27cdef27cdbf87b057aead610bd71d9a84ef9e7e9ac"
     },
     {
       "path": "raw/control-xterm-256color-after.png",
@@ -167,334 +202,9 @@
       "sha256": "22ee1d6cc2013546d78ceecd25564236dbef80ea61775db137d4e80ae98bd998"
     },
     {
-      "path": "raw/control-xfce-vte-tree.txt",
-      "bytes": 478,
-      "sha256": "4eadf590c96d186e5de104143fbd37348d0016bc90e64fb13c68bafde19f86c1"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-before.txt",
-      "bytes": 2056,
-      "sha256": "947b3237415ec9a566758438ce1733098789b11f0b6efd2dbd1ea27e3def13b6"
-    },
-    {
-      "path": "raw/control-xfce-vte-stable-after.png",
-      "bytes": 27343,
-      "sha256": "13f9e9e5ecc66c28fd9f5a512941e3664f8b4d5000ac2c20ec7796f2e5ceba6d"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-ansi.log",
-      "bytes": 471,
-      "sha256": "033ee44e1ef665168ae48f7536ecd6b827ca6c839ef8b09e80c39a3f52ea0474"
-    },
-    {
-      "path": "raw/control-xfce-vte-wm-before.txt",
-      "bytes": 1846,
-      "sha256": "d4d50c854ebe310505166c234c4d6bedfd4d03c36d2a104d8a5f798bccec67a8"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-outer-before.txt",
-      "bytes": 2062,
-      "sha256": "7d9d171efa3ddcaf871763a6aeb8659d9c2c18af2427b995403a348f6b95eb45"
-    },
-    {
-      "path": "raw/control-xfce-vte-stable-tree-after.txt",
-      "bytes": 485,
-      "sha256": "f22e64d4033d5a08e2e7933e3e2c4840796d1b8dca300208dc8d0307ae5adaa5"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-stable-before.txt",
-      "bytes": 2063,
-      "sha256": "7a730e8cf5b2cfeb59ed4d6518291c6cc5a3ab5b98f50afa7d400c6da108df56"
-    },
-    {
-      "path": "raw/vte-actual.png",
-      "bytes": 18869,
-      "sha256": "870c6f39642a0580b9db49a8c5fe240e3dde98f1b5196b8be2c383a5ee292919"
-    },
-    {
-      "path": "raw/control-xfce-vte-wm-tree-after.txt",
-      "bytes": 166,
-      "sha256": "4349e83e8f4d12cb80c046d949d28703773b107be5140fe1594965845d6cdff6"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-graceful-inject.txt",
-      "bytes": 137,
-      "sha256": "0c301a0c63c1c178e71bfe949459088a3127855a544e90ebfd1b626b563804c9"
-    },
-    {
-      "path": "raw/control-xfce-vte-final-inject.txt",
-      "bytes": 70,
-      "sha256": "7997c3077ec09ce4cce5d61642211e944744d5b3b023d1ebfc440c270aea4a89"
-    },
-    {
-      "path": "raw/xwininfo-xterm-actual-window.txt",
-      "bytes": 2038,
-      "sha256": "6ae9c216af7e4facadd9d371d9e36919d30631e6991434e4a1497de66aa23667"
-    },
-    {
-      "path": "raw/control-xterm-256color-final-after.png",
-      "bytes": 24907,
-      "sha256": "7a94390a5b9bf563058609d6d4a6345de75e8d13cda71a3329f6625fa8fbab1b"
-    },
-    {
-      "path": "raw/control-xfce-vte-reacquire-tree-after.txt",
-      "bytes": 166,
-      "sha256": "4349e83e8f4d12cb80c046d949d28703773b107be5140fe1594965845d6cdff6"
-    },
-    {
-      "path": "raw/control-xterm-256color-final-child.txt",
-      "bytes": 367,
-      "sha256": "38f95fd032cfb2af36bfedcb51b15763c1b6e27fed779d282f4e22f75c2e3f96"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-tree-after.txt",
-      "bytes": 335,
-      "sha256": "30cfd5d0bedae45a1e93a4ce122e98d345aaf5ed24dc673800b4436d0301de4b"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-graceful-tree.txt",
-      "bytes": 344,
-      "sha256": "8ca51bf59590d0a13a0f0ba4e37b1c92b62c4e6312e6bfb9baad27763f89a53e"
-    },
-    {
-      "path": "raw/control-xfce-vte-stable-before.txt",
-      "bytes": 1850,
-      "sha256": "a866df91407cda42d538052158b1886c58ced2a39c8140b05d8f36d1c19a3b9a"
-    },
-    {
-      "path": "raw/control-xfce-vte-reacquire-inject.txt",
-      "bytes": 70,
-      "sha256": "7997c3077ec09ce4cce5d61642211e944744d5b3b023d1ebfc440c270aea4a89"
-    },
-    {
-      "path": "raw/control-xfce-vte-wm-tree.txt",
-      "bytes": 600,
-      "sha256": "85747de4bb69481a05bab27cdef27cdbf87b057aead610bd71d9a84ef9e7e9ac"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-outer-tree.txt",
-      "bytes": 341,
-      "sha256": "495c2b9e0ca18228518f4826ecde058fae01ddad9f2bf8c0ecbd07023e68a39e"
-    },
-    {
-      "path": "raw/control-xterm-256color-final-after.txt",
-      "bytes": 2052,
-      "sha256": "e525c75db21bc6202e6dfa10c82c0c34ed22bf91aa9118db002a03fa211a0145"
-    },
-    {
-      "path": "raw/control-xfce-vte-final-before.txt",
-      "bytes": 1849,
-      "sha256": "f19c023905dee5f8236e6a9f3c4d927973b3b8563cb73e030a09f4ef08892c18"
-    },
-    {
-      "path": "raw/control-xfce-vte-final-tree-after.txt",
-      "bytes": 484,
-      "sha256": "01c3577d89cbd6566c8be25d28fc05f257e57f533a0ad9f94fe90fffd7ddad18"
-    },
-    {
-      "path": "raw/control-xterm-256color-stable-child.txt",
-      "bytes": 128,
-      "sha256": "db2f82725f8d06645b46b205727c6a485c9286dee00bce40d1326e5e4e0ef06e"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-outer-outer.txt",
-      "bytes": 141,
-      "sha256": "1a7537375947fcebf7d33d3e00a18de8535c810825392737e31c06aaeff55c86"
-    },
-    {
-      "path": "raw/control-xfce-vte-reacquire-before.txt",
-      "bytes": 1853,
-      "sha256": "73b30b9325959a6e538523ff17a36c19a5b5bc66c8cedd9e125e064d7c8d01ca"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-stable-tree.txt",
-      "bytes": 342,
-      "sha256": "cf779f3c0d72f4594bf5776ed8f861095c309f54db05a8cbf1d2ff75b4f7a66d"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-final-child.txt",
-      "bytes": 540,
-      "sha256": "ec056f0ab586805a8a2d3b7c8684e0b77e04d9346316493205234a70d70993f2"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-stable-after.png",
-      "bytes": 24504,
-      "sha256": "2bd72292c056931d2a46c34c972beb017dadd67dce5de013003a125d7d57d9d8"
-    },
-    {
-      "path": "raw/control-xfce-vte-stable-tree.txt",
-      "bytes": 485,
-      "sha256": "924d7b933820bed2071155ee7665e598ec5d4acaf2b664b20cdbc63907184d71"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-final-tree-after.txt",
-      "bytes": 341,
-      "sha256": "ecc4a2173aa6f146729b888d26c56b8ada0a132179824550d789395cce74e302"
-    },
-    {
-      "path": "raw/xterm-actual-child.txt",
-      "bytes": 82,
-      "sha256": "53a9e773cd8a57eb7b91d9882b21b261836a214bc50b07ef0d01bfbcf3d0f47c"
-    },
-    {
-      "path": "raw/control-xfce-vte-stable-child.txt",
-      "bytes": 131,
-      "sha256": "40f08be6b55fccf6050b131010a2f42913d3f4896ac674cc1a1b2521b0326f51"
-    },
-    {
-      "path": "raw/vte-actual-root.png",
-      "bytes": 263,
-      "sha256": "f3bdcc59f1a08b8f599bc2d653ce1bdeaafc2bfdc23eaa6d15fe20b7bd6f5101"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-outer-child.txt",
-      "bytes": 331,
-      "sha256": "b35ac99e80650176810351345139c21c47de1cec7bedcb243a90e665e35100b8"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-inject.txt",
-      "bytes": 70,
-      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-outer-ansi.log",
-      "bytes": 411,
-      "sha256": "532695cd6d5aaa7c4b1838d837010732aae3c78f3fecd00e565fbbcc2ab58566"
-    },
-    {
-      "path": "raw/control-xterm-256color-final-before.txt",
-      "bytes": 2054,
-      "sha256": "945e6e162e87c4552b665c747315464aa73bf5741d2a3008178feb60ebed6d77"
-    },
-    {
-      "path": "raw/control-xterm-256color-stable-inject.txt",
-      "bytes": 70,
-      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-stable-after.txt",
-      "bytes": 2061,
-      "sha256": "80f742a74e73609228a1dfa563be241b2eb8edb7fdfcd280f58d37281d57a370"
-    },
-    {
-      "path": "raw/vte-testhost-grid.txt",
-      "bytes": 274,
-      "sha256": "a5d91c79078e72df7776ba10b5197e663d0cdad4d045ca9bca983f8c51f3705d"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-final-ansi.log",
-      "bytes": 477,
-      "sha256": "1619970a1a5ff9f810decf65a0464d82d39916744e533d91513aef261f3bb26a"
-    },
-    {
-      "path": "raw/control-xterm-256color-stable-after.txt",
-      "bytes": 2053,
-      "sha256": "269c0e334ff14974e6d856f829540c696e41b08de35a83e0348d88e96d09bc93"
-    },
-    {
-      "path": "raw/xterm-actual.png",
-      "bytes": 14667,
-      "sha256": "38dc9a7516f43c91aad6e9d3ae9ecb93098d845ef99dbb2230f08bd587facc4f"
-    },
-    {
-      "path": "raw/vte-actual-child.txt",
-      "bytes": 107,
-      "sha256": "31ff813d20122d35e43bedf7974b8d240b30c997bd08d02da6ad0c5906058fe4"
-    },
-    {
-      "path": "raw/control-xfce-vte-after.txt",
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-graceful-ansi.log",
-      "bytes": 527,
-      "sha256": "ed635792921fbd8dc2fbc4c9a825d67d759deb15d55d476b20aba25ec18e92c2"
-    },
-    {
-      "path": "raw/control-xfce-vte-stable-after.txt",
-      "bytes": 1848,
-      "sha256": "b4d99f8b09cc2933ca3c5cb072208d941eae8ad682b33805196f924bb3168846"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-after.png",
-      "bytes": 24219,
-      "sha256": "3175e12ac8fe3a3a7223b072e73d3f4d296f30935e28958d98046430bae7f05b"
-    },
-    {
-      "path": "raw/control-xterm-default-inject.txt",
-      "bytes": 70,
-      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-final-before.txt",
-      "bytes": 2062,
-      "sha256": "416b043b78727ee06a1d689832cc3bd1c77f4f09ec4c96afc9ab8256b0c6d02e"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-final-after.png",
-      "bytes": 24397,
-      "sha256": "187261d49a2e813bc554e473f98225909e26a5457bfbc13fca5eaaf596312967"
-    },
-    {
-      "path": "raw/control-xterm-default-before.txt",
-      "bytes": 2047,
-      "sha256": "3179c7d1ff0c6dbc9bd313a609d6963f28c276220033cf46f6543b8f278da500"
-    },
-    {
-      "path": "raw/control-xfce-vte-final-after.png",
-      "bytes": 27094,
-      "sha256": "60b57a5f1a470ea64b06b45ca56a0be27e56da6515d5dcd5548c694fceb0705f"
-    },
-    {
-      "path": "raw/control-xterm-256color-final-tree-after.txt",
-      "bytes": 333,
-      "sha256": "ada22e7c18635fb807fac617868348396c23371624ccdb20846324f2f42bdb22"
-    },
-    {
-      "path": "raw/control-xfce-vte-final-after.txt",
-      "bytes": 1847,
-      "sha256": "3113474c85348d15f2411ee887b8c5d45da8cc78be7865fc355e22e2fb6ff427"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-graceful-before.txt",
-      "bytes": 2065,
-      "sha256": "3c06e8d83c4c038474481fa6ee4e42cb36d4826f821b49fdc2f4989134120203"
-    },
-    {
-      "path": "raw/control-xfce-vte-reacquire-child.txt",
-      "bytes": 134,
-      "sha256": "793bfb7b2ad101dacadeba20ec9be76726366060c068b7806ab877daed500b04"
-    },
-    {
-      "path": "raw/control-xterm-256color-stable-tree-after.txt",
-      "bytes": 334,
-      "sha256": "2e26d0e4c181a0068ac33f015ce32af525266c5e5ff162969380a470d9aa518c"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-graceful-after.txt",
-      "bytes": 2063,
-      "sha256": "05b0593a7f47ffcdbde42e651ea7a54d3baea16b87dd8257101603822dbf4aa5"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-graceful-after.png",
-      "bytes": 24537,
-      "sha256": "6fb7a5a6581980684acda2843d1041ddbdaa47ca0ac3efbb3d7aaaa112484d83"
-    },
-    {
-      "path": "raw/control-xterm-default-after.png",
-      "bytes": 23927,
-      "sha256": "7377873352125ee4f1c21eccf6a1f11f2d9f0391df4bf062ceb0632b6919d566"
-    },
-    {
-      "path": "raw/control-xfce-vte-stable-inject.txt",
-      "bytes": 70,
-      "sha256": "7997c3077ec09ce4cce5d61642211e944744d5b3b023d1ebfc440c270aea4a89"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-final-tree.txt",
-      "bytes": 341,
-      "sha256": "cf07fadaaa8255b17858487ce91e23639b8c9de8490b747b66e9c37f9132932d"
+      "path": "raw/control-xterm-256color-before.txt",
+      "bytes": 2048,
+      "sha256": "64ba1e511e815562c037fc7b9e272a26b5cf4f949aabe5271a5a3400a1706d31"
     },
     {
       "path": "raw/control-xterm-256color-child.txt",
@@ -502,64 +212,34 @@
       "sha256": "3debdd791f307c74a5948e0818fb3e1c7f8fc7054a216197db07ca1516302ce3"
     },
     {
-      "path": "raw/control-xfce-vte-wm-inject.txt",
-      "bytes": 70,
-      "sha256": "3f0d790d29a3cb8acc6927a32217cc0d8375fa41f28f81ea30fb3062d1ab4683"
+      "path": "raw/control-xterm-256color-final-after.png",
+      "bytes": 24907,
+      "sha256": "7a94390a5b9bf563058609d6d4a6345de75e8d13cda71a3329f6625fa8fbab1b"
     },
     {
-      "path": "raw/control-xfce-vte-final-tree.txt",
-      "bytes": 484,
-      "sha256": "62b911deb5d8e58c5507e8c98cdd280f8e047ba3104b0a59acf99736043a6944"
+      "path": "raw/control-xterm-256color-final-after.txt",
+      "bytes": 2052,
+      "sha256": "e525c75db21bc6202e6dfa10c82c0c34ed22bf91aa9118db002a03fa211a0145"
     },
     {
-      "path": "raw/control-xterm-default-recorded-final-after.txt",
-      "bytes": 2060,
-      "sha256": "ec1c404077c830a5d29d480eae460fb8d9c321331d6e500a065397014f245c0d"
-    },
-    {
-      "path": "raw/control-xterm-256color-stable-tree.txt",
-      "bytes": 334,
-      "sha256": "124da7bedcc7e771abd623ac9a00fad6b4f3c7d4b354c9867c4d2dd2560ecb06"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-child.txt",
-      "bytes": 120,
-      "sha256": "e19ebdf0ea222928c628de2cc3463aba1a657b1945b65dbf8878afa7e51aa64a"
-    },
-    {
-      "path": "raw/control-xterm-256color-stable-after.png",
-      "bytes": 24980,
-      "sha256": "0dac5b934fa6763d969c43d3fb5c7fb7485201e5c4dac9cf3d08abc91cc91f81"
-    },
-    {
-      "path": "raw/xwininfo-vte-actual-window.txt",
-      "bytes": 1837,
-      "sha256": "b34737d3f0712eaedc740343484d1505573e26bfcc2c7ecb6cf2649ebe00f912"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-final-inject.txt",
-      "bytes": 70,
-      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
-    },
-    {
-      "path": "raw/control-xfce-vte-inject.txt",
-      "bytes": 70,
-      "sha256": "7997c3077ec09ce4cce5d61642211e944744d5b3b023d1ebfc440c270aea4a89"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-after.txt",
+      "path": "raw/control-xterm-256color-final-before.txt",
       "bytes": 2054,
-      "sha256": "8841c9eb88ddd2133866a82edd835227a54e2e5011a5c41f352c50cf37bfcd27"
+      "sha256": "945e6e162e87c4552b665c747315464aa73bf5741d2a3008178feb60ebed6d77"
     },
     {
-      "path": "raw/control-xterm-default-recorded-graceful-tree-after.txt",
-      "bytes": 344,
-      "sha256": "52465a6e7581d930793650b5e2a83329bf8fb5f523067920f23e0301fa7702d6"
+      "path": "raw/control-xterm-256color-final-child.txt",
+      "bytes": 367,
+      "sha256": "38f95fd032cfb2af36bfedcb51b15763c1b6e27fed779d282f4e22f75c2e3f96"
     },
     {
-      "path": "raw/control-xterm-256color-inject.txt",
+      "path": "raw/control-xterm-256color-final-inject.txt",
       "bytes": 70,
       "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
+    },
+    {
+      "path": "raw/control-xterm-256color-final-tree-after.txt",
+      "bytes": 333,
+      "sha256": "ada22e7c18635fb807fac617868348396c23371624ccdb20846324f2f42bdb22"
     },
     {
       "path": "raw/control-xterm-256color-final-tree.txt",
@@ -567,24 +247,19 @@
       "sha256": "70b2f85db3e5e588086b46c7af90fddfd7394ba1b662c9199e239d7f508ecd23"
     },
     {
-      "path": "raw/control-xterm-default-recorded-stable-inject.txt",
+      "path": "raw/control-xterm-256color-inject.txt",
       "bytes": 70,
       "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
     },
     {
-      "path": "raw/control-xfce-vte-before.txt",
-      "bytes": 1843,
-      "sha256": "8294840a04844d55284c81e60d9dafdeefcf29fce7ae7258cdafb6e2e883ea75"
+      "path": "raw/control-xterm-256color-stable-after.png",
+      "bytes": 24980,
+      "sha256": "0dac5b934fa6763d969c43d3fb5c7fb7485201e5c4dac9cf3d08abc91cc91f81"
     },
     {
-      "path": "raw/control-xfce-vte-wm-child.txt",
-      "bytes": 127,
-      "sha256": "34fc2eef01a9a000f806c15c79a61e42e53f04b8ce9693e3800006f92c2d44a7"
-    },
-    {
-      "path": "raw/control-xterm-default-recorded-stable-tree-after.txt",
-      "bytes": 342,
-      "sha256": "fa3f46a3871677fda975ed87fdfd53ce0118e3e0facedb3082370342b4ef073a"
+      "path": "raw/control-xterm-256color-stable-after.txt",
+      "bytes": 2053,
+      "sha256": "269c0e334ff14974e6d856f829540c696e41b08de35a83e0348d88e96d09bc93"
     },
     {
       "path": "raw/control-xterm-256color-stable-before.txt",
@@ -592,9 +267,334 @@
       "sha256": "fedb1fbeda29fed61eb306b5aca110431bb1ec131c4bfc2ba7afc688d198cf2d"
     },
     {
+      "path": "raw/control-xterm-256color-stable-child.txt",
+      "bytes": 128,
+      "sha256": "db2f82725f8d06645b46b205727c6a485c9286dee00bce40d1326e5e4e0ef06e"
+    },
+    {
+      "path": "raw/control-xterm-256color-stable-inject.txt",
+      "bytes": 70,
+      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
+    },
+    {
+      "path": "raw/control-xterm-256color-stable-tree-after.txt",
+      "bytes": 334,
+      "sha256": "2e26d0e4c181a0068ac33f015ce32af525266c5e5ff162969380a470d9aa518c"
+    },
+    {
+      "path": "raw/control-xterm-256color-stable-tree.txt",
+      "bytes": 334,
+      "sha256": "124da7bedcc7e771abd623ac9a00fad6b4f3c7d4b354c9867c4d2dd2560ecb06"
+    },
+    {
+      "path": "raw/control-xterm-256color-tree.txt",
+      "bytes": 327,
+      "sha256": "b48d862d7cfc403a393901685fac9d8a0422cd91d0d5128db1c315e58e384d47"
+    },
+    {
+      "path": "raw/control-xterm-default-after.png",
+      "bytes": 23927,
+      "sha256": "7377873352125ee4f1c21eccf6a1f11f2d9f0391df4bf062ceb0632b6919d566"
+    },
+    {
+      "path": "raw/control-xterm-default-after.txt",
+      "bytes": 2045,
+      "sha256": "dc79fb3dabed86f85660de9335c10a60548f9479e61027e6f07d244e4808dd01"
+    },
+    {
+      "path": "raw/control-xterm-default-before.txt",
+      "bytes": 2047,
+      "sha256": "3179c7d1ff0c6dbc9bd313a609d6963f28c276220033cf46f6543b8f278da500"
+    },
+    {
+      "path": "raw/control-xterm-default-child.txt",
+      "bytes": 111,
+      "sha256": "8607eb3a4555348ecb41ef18532f98f51fffd5ce43052828e01561262887cbc2"
+    },
+    {
+      "path": "raw/control-xterm-default-inject.txt",
+      "bytes": 70,
+      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-after.png",
+      "bytes": 24219,
+      "sha256": "3175e12ac8fe3a3a7223b072e73d3f4d296f30935e28958d98046430bae7f05b"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-after.txt",
+      "bytes": 2054,
+      "sha256": "8841c9eb88ddd2133866a82edd835227a54e2e5011a5c41f352c50cf37bfcd27"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-ansi.log",
+      "bytes": 471,
+      "sha256": "033ee44e1ef665168ae48f7536ecd6b827ca6c839ef8b09e80c39a3f52ea0474"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-before.txt",
+      "bytes": 2056,
+      "sha256": "947b3237415ec9a566758438ce1733098789b11f0b6efd2dbd1ea27e3def13b6"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-child.txt",
+      "bytes": 120,
+      "sha256": "e19ebdf0ea222928c628de2cc3463aba1a657b1945b65dbf8878afa7e51aa64a"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-final-after.png",
+      "bytes": 24397,
+      "sha256": "187261d49a2e813bc554e473f98225909e26a5457bfbc13fca5eaaf596312967"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-final-after.txt",
+      "bytes": 2060,
+      "sha256": "ec1c404077c830a5d29d480eae460fb8d9c321331d6e500a065397014f245c0d"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-final-ansi.log",
+      "bytes": 477,
+      "sha256": "1619970a1a5ff9f810decf65a0464d82d39916744e533d91513aef261f3bb26a"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-final-before.txt",
+      "bytes": 2062,
+      "sha256": "416b043b78727ee06a1d689832cc3bd1c77f4f09ec4c96afc9ab8256b0c6d02e"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-final-child.txt",
+      "bytes": 540,
+      "sha256": "ec056f0ab586805a8a2d3b7c8684e0b77e04d9346316493205234a70d70993f2"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-final-inject.txt",
+      "bytes": 70,
+      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-final-tree-after.txt",
+      "bytes": 341,
+      "sha256": "ecc4a2173aa6f146729b888d26c56b8ada0a132179824550d789395cce74e302"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-final-tree.txt",
+      "bytes": 341,
+      "sha256": "cf07fadaaa8255b17858487ce91e23639b8c9de8490b747b66e9c37f9132932d"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-graceful-after.png",
+      "bytes": 24537,
+      "sha256": "6fb7a5a6581980684acda2843d1041ddbdaa47ca0ac3efbb3d7aaaa112484d83"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-graceful-after.txt",
+      "bytes": 2063,
+      "sha256": "05b0593a7f47ffcdbde42e651ea7a54d3baea16b87dd8257101603822dbf4aa5"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-graceful-ansi.log",
+      "bytes": 527,
+      "sha256": "ed635792921fbd8dc2fbc4c9a825d67d759deb15d55d476b20aba25ec18e92c2"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-graceful-before.txt",
+      "bytes": 2065,
+      "sha256": "3c06e8d83c4c038474481fa6ee4e42cb36d4826f821b49fdc2f4989134120203"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-graceful-child.txt",
+      "bytes": 459,
+      "sha256": "f2fd7fb48993ce7e071a112310bcee10dadadbd5c6362bb7b78c416f490e87fb"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-graceful-inject.txt",
+      "bytes": 137,
+      "sha256": "0c301a0c63c1c178e71bfe949459088a3127855a544e90ebfd1b626b563804c9"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-graceful-outer.txt",
+      "bytes": 287,
+      "sha256": "cc6e6abdcf88d623955642503f1bd7590d204976a2ddea447358b23e2e9171a3"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-graceful-tree-after.txt",
+      "bytes": 344,
+      "sha256": "52465a6e7581d930793650b5e2a83329bf8fb5f523067920f23e0301fa7702d6"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-graceful-tree.txt",
+      "bytes": 344,
+      "sha256": "8ca51bf59590d0a13a0f0ba4e37b1c92b62c4e6312e6bfb9baad27763f89a53e"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-inject.txt",
+      "bytes": 70,
+      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-outer-after.png",
+      "bytes": 24330,
+      "sha256": "80e78f13061688b069b0281bb4e43c3ff81e68827af712a34a99035e5f823a71"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-outer-after.txt",
+      "bytes": 2060,
+      "sha256": "b2e3a68cf1e59e639fc84f1f56b326216f9f1f2ab29ef3e864eb8e9155dd6a74"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-outer-ansi.log",
+      "bytes": 411,
+      "sha256": "532695cd6d5aaa7c4b1838d837010732aae3c78f3fecd00e565fbbcc2ab58566"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-outer-before.txt",
+      "bytes": 2062,
+      "sha256": "7d9d171efa3ddcaf871763a6aeb8659d9c2c18af2427b995403a348f6b95eb45"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-outer-child.txt",
+      "bytes": 331,
+      "sha256": "b35ac99e80650176810351345139c21c47de1cec7bedcb243a90e665e35100b8"
+    },
+    {
       "path": "raw/control-xterm-default-recorded-outer-inject.txt",
       "bytes": 70,
       "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-outer-outer.txt",
+      "bytes": 141,
+      "sha256": "1a7537375947fcebf7d33d3e00a18de8535c810825392737e31c06aaeff55c86"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-outer-tree-after.txt",
+      "bytes": 341,
+      "sha256": "7188180f77651fc9a017ba6e9f16e5f10391d5c51bf6f7b9edfd450b202d2bf9"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-outer-tree.txt",
+      "bytes": 341,
+      "sha256": "495c2b9e0ca18228518f4826ecde058fae01ddad9f2bf8c0ecbd07023e68a39e"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-stable-after.png",
+      "bytes": 24504,
+      "sha256": "2bd72292c056931d2a46c34c972beb017dadd67dce5de013003a125d7d57d9d8"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-stable-after.txt",
+      "bytes": 2061,
+      "sha256": "80f742a74e73609228a1dfa563be241b2eb8edb7fdfcd280f58d37281d57a370"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-stable-ansi.log",
+      "bytes": 478,
+      "sha256": "be8b760bf10c77f1696fb726469c6e0af34577c6d8bdf8530b41a98db41d7813"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-stable-before.txt",
+      "bytes": 2063,
+      "sha256": "7a730e8cf5b2cfeb59ed4d6518291c6cc5a3ab5b98f50afa7d400c6da108df56"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-stable-child.txt",
+      "bytes": 127,
+      "sha256": "1dfb9253e9c2232c4d6b2eefb7c6c3bb24094b6f78cceb6eeeec5adeb22a7966"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-stable-inject.txt",
+      "bytes": 70,
+      "sha256": "12caef7f1b2a155587c77eff88182025a28009e3ea0537e9b3fa767e66b9019b"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-stable-tree-after.txt",
+      "bytes": 342,
+      "sha256": "fa3f46a3871677fda975ed87fdfd53ce0118e3e0facedb3082370342b4ef073a"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-stable-tree.txt",
+      "bytes": 342,
+      "sha256": "cf779f3c0d72f4594bf5776ed8f861095c309f54db05a8cbf1d2ff75b4f7a66d"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-tree-after.txt",
+      "bytes": 335,
+      "sha256": "30cfd5d0bedae45a1e93a4ce122e98d345aaf5ed24dc673800b4436d0301de4b"
+    },
+    {
+      "path": "raw/control-xterm-default-recorded-tree.txt",
+      "bytes": 335,
+      "sha256": "af9e8dbbba76e8056bd77102d186a6ac8cf3f13b13fe3444297d8acefe8d8401"
+    },
+    {
+      "path": "raw/control-xterm-default-tree.txt",
+      "bytes": 326,
+      "sha256": "7a6690f6371b8ef54c8b49b88c1594e4f822eea5b80e114b157f28c626e4a206"
+    },
+    {
+      "path": "raw/vte-actual-child.txt",
+      "bytes": 107,
+      "sha256": "31ff813d20122d35e43bedf7974b8d240b30c997bd08d02da6ad0c5906058fe4"
+    },
+    {
+      "path": "raw/vte-actual-root.png",
+      "bytes": 263,
+      "sha256": "f3bdcc59f1a08b8f599bc2d653ce1bdeaafc2bfdc23eaa6d15fe20b7bd6f5101"
+    },
+    {
+      "path": "raw/vte-actual.png",
+      "bytes": 18869,
+      "sha256": "870c6f39642a0580b9db49a8c5fe240e3dde98f1b5196b8be2c383a5ee292919"
+    },
+    {
+      "path": "raw/vte-testhost-child.txt",
+      "bytes": 99,
+      "sha256": "f346d4b1f84878a726124483bf2e84b12deea9b27acfda5a6cbf9131761bad64"
+    },
+    {
+      "path": "raw/vte-testhost-grid.txt",
+      "bytes": 274,
+      "sha256": "a5d91c79078e72df7776ba10b5197e663d0cdad4d045ca9bca983f8c51f3705d"
+    },
+    {
+      "path": "raw/xterm-actual-child.txt",
+      "bytes": 82,
+      "sha256": "53a9e773cd8a57eb7b91d9882b21b261836a214bc50b07ef0d01bfbcf3d0f47c"
+    },
+    {
+      "path": "raw/xterm-actual.png",
+      "bytes": 14667,
+      "sha256": "38dc9a7516f43c91aad6e9d3ae9ecb93098d845ef99dbb2230f08bd587facc4f"
+    },
+    {
+      "path": "raw/xwininfo-vte-actual-window.txt",
+      "bytes": 1837,
+      "sha256": "b34737d3f0712eaedc740343484d1505573e26bfcc2c7ecb6cf2649ebe00f912"
+    },
+    {
+      "path": "raw/xwininfo-vte-actual.txt",
+      "bytes": 472,
+      "sha256": "667ea05977072fd9ca437d91376e6df5e15e77d2f5208b5413256928eacc5e14"
+    },
+    {
+      "path": "raw/xwininfo-vte-testhost.txt",
+      "bytes": 306,
+      "sha256": "e756707317937106e21c48282b89bca19ad423c28eca3e0f3f69dd34e74b97a6"
+    },
+    {
+      "path": "raw/xwininfo-xterm-actual-window.txt",
+      "bytes": 2038,
+      "sha256": "6ae9c216af7e4facadd9d371d9e36919d30631e6991434e4a1497de66aa23667"
+    },
+    {
+      "path": "raw/xwininfo-xterm-actual.txt",
+      "bytes": 317,
+      "sha256": "25757233ba0147b24db6a122a7e5fe8ca8abf6bee165a3eb1b8ad19c30e61639"
+    },
+    {
+      "path": "report.md",
+      "bytes": 9991,
+      "sha256": "1cf1b12045332ecaac631dd3efef3ec55f8bcd6f3ba2f9f3495eecb0a0582dc1"
     }
   ]
 }
