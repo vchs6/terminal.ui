@@ -1,0 +1,25 @@
+PASS: original: exact source text [X Z]
+PASS: original: flags false/true/false with normalized hole
+PASS: original: column 0 transparent flag equals original
+PASS: original: column 1 transparent flag equals original
+PASS: original: column 2 transparent flag equals original
+PASS: original over ABC: [XBZ], expected [XBZ]
+PASS: copy: exact source text [X Z]
+FAIL: copy: flags false/true/false with normalized hole
+PASS: copy: column 0 transparent flag equals original
+FAIL: copy: column 1 transparent flag equals original
+PASS: copy: column 2 transparent flag equals original
+FAIL: copy over ABC: [X Z], expected [XBZ]
+PASS: same-size resized: exact source text [X Z]
+FAIL: same-size resized: flags false/true/false with normalized hole
+PASS: same-size resized: column 0 transparent flag equals original
+FAIL: same-size resized: column 1 transparent flag equals original
+PASS: same-size resized: column 2 transparent flag equals original
+FAIL: same-size resized over ABC: [X Z], expected [XBZ]
+FAIL: grown resized: source hole remains transparent
+PASS: grown resized: new columns and rows inherit opaque source default
+FAIL: grown resized over lower: [X Z  
+     ], expected [XBZ  /     ]
+PASS: mutating copied/resized cells cannot mutate original hole or text
+PASS: copy and resized own independent mutable cells
+PASS: mutating original cannot mutate existing copies

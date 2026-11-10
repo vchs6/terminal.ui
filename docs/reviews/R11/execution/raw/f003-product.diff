@@ -1,0 +1,37 @@
+diff --git a/src/frame.cj b/src/frame.cj
+index 41a3929..f1fa22b 100644
+--- a/src/frame.cj
++++ b/src/frame.cj
+@@ -221,16 +221,19 @@ public class Frame {
+         let result = Frame(rect.width, rect.height, ambiguousWide: ambiguousWide, transparent: transparent,
+             maxCells: maxCells)
+         if (rect.x != Int64.Min && rect.y != Int64.Min) {
+-            result.composite(this, x: -rect.x, y: -rect.y)
++            result.transfer(this, -rect.x, -rect.y, false)
+         }
+         result
+     }
+     public func resized(width: Int64, height: Int64): Frame {
+         let result = Frame(width, height, ambiguousWide: ambiguousWide, transparent: transparent, maxCells: maxCells)
+-        result.composite(this)
++        result.transfer(this, 0, 0, false)
+         result
+     }
+     public func composite(layer: Frame, x!: Int64 = 0, y!: Int64 = 0): Unit {
++        transfer(layer, x, y, true)
++    }
++    private func transfer(layer: Frame, x: Int64, y: Int64, skipTransparent: Bool): Unit {
+         if (ambiguousWide != layer.ambiguousWide) {
+             throw IllegalArgumentException("incompatible width policy")
+         }
+@@ -251,6 +254,10 @@ public class Frame {
+             while (col < columns) {
+                 let cell = source[row * columns + col]
+                 if (cell.isTransparent) {
++                    if (!skipTransparent) {
++                        clearAt(dx + col, dy + row, transparent)
++                        cells[index(dx + col, dy + row)] = cell
++                    }
+                     col++
+                     continue
+                 }

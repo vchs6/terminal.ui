@@ -1,0 +1,10 @@
+# Contract: 277841d445329662cc0f8ba14d293bf651a635a8 (F003 clarification).
+# Product: 883444195725224985f29060253017432abaa7f3, unchanged source.
+# Original frozen tests: b4684be2919473586d01e7a9e6654f9e42b544b4 (tests diff empty at product input).
+source /workspace/work/validation/sdk/cangjie/envsetup.sh
+export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+cd /workspace/work/frame-tests/validation
+(cd tests/composition && cjpm build) > build.stdout 2> build.stderr
+# Actual status stored in build.exit. Only after build=0:
+CJTUI_COMPOSITION_CASE=transparent-hole timeout 30s tests/composition/target/release/bin/main > red.stdout 2> red.stderr
+# Actual direct timeout/binary status stored in red.exit; no cjpm run wrapper.

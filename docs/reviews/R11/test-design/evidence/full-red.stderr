@@ -1,0 +1,59 @@
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/boundaries.cj:16:19:
+   [36m| [0m
+[36m16[0m [36m| [0m            if (c.isTransparent) {[0m
+   [36m| [0m                  [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/boundaries.cj:22:33:
+   [36m| [0m
+[36m22[0m [36m| [0m                        !leader.isTransparent && leader.style == c.style && c.grapheme == "" && c.width == 0[0m
+   [36m| [0m                                [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/boundaries.cj:27:65:
+   [36m| [0m
+[36m27[0m [36m| [0m                    valid = valid && next.continuation && !next.isTransparent && next.style == c.style[0m
+   [36m| [0m                                                                [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/boundaries.cj:36:29:
+   [36m| [0m
+[36m36[0m [36m| [0m    let frame = Frame(6, 3, transparent: true)[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'clear' is not a member of class 'Frame'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/boundaries.cj:58:12:
+   [36m| [0m
+[36m58[0m [36m| [0m    opaque.clear(Rect(0, 0, 1, 1), transparent: true)[0m
+   [36m| [0m           [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'clear' is not a member of class 'Frame'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/boundaries.cj:64:12:
+   [36m| [0m
+[36m64[0m [36m| [0m    opaque.clear(Rect(1, 0, 0, 1), transparent: true)[0m
+   [36m| [0m           [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/boundaries.cj:76:10:
+   [36m| [0m
+[36m76[0m [36m| [0m    left.composite(source, x: -2)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/boundaries.cj:78:66:
+   [36m| [0m
+[36m78[0m [36m| [0m    check(left.cellAt(0, 0).style == style && !left.cellAt(0, 0).isTransparent,[0m
+   [36m| [0m                                                                 [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+81 errors generated, 8 errors printed.
+Error: failed to compile package `composition_contract`, return code is 1
+Error: cjpm build failed

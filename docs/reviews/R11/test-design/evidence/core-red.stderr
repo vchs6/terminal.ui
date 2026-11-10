@@ -1,0 +1,59 @@
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/main.cj:17:39:
+   [36m| [0m
+[36m17[0m [36m| [0m        cell.style == Style() && cell.isTransparent == transparent[0m
+   [36m| [0m                                      [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/main.cj:23:29:
+   [36m| [0m
+[36m23[0m [36m| [0m    let layer = Frame(4, 2, transparent: true)[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/main.cj:29:10:
+   [36m| [0m
+[36m29[0m [36m| [0m    base.composite(layer)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/main.cj:31:66:
+   [36m| [0m
+[36m31[0m [36m| [0m    check(base.cellAt(2, 1).style == style && !base.cellAt(2, 1).isTransparent,[0m
+   [36m| [0m                                                                 [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/main.cj:36:29:
+   [36m| [0m
+[36m36[0m [36m| [0m    let upper = Frame(1, 1, transparent: true)[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/main.cj:38:10:
+   [36m| [0m
+[36m38[0m [36m| [0m    base.composite(upper, x: 1)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/main.cj:42:10:
+   [36m| [0m
+[36m42[0m [36m| [0m    base.composite(layer)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'copy' is not a member of class 'Frame'
+  [36m==>[0m /workspace/work/frame-tests/repo/tests/composition/src/main.cj:50:26:
+   [36m| [0m
+[36m50[0m [36m| [0m    let leftCut = source.copy(Rect(2, 0, 3, 1))[0m
+   [36m| [0m                         [31m^^^^ [0m
+   [36m| [0m
+
+16 errors generated, 8 errors printed.
+Error: failed to compile package `composition_contract`, return code is 1
+Error: cjpm build failed

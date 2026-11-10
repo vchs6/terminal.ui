@@ -1,0 +1,577 @@
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m tests/composition/src/boundaries.cj:16:19:
+   [36m| [0m
+[36m16[0m [36m| [0m            if (c.isTransparent) {[0m
+   [36m| [0m                  [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m tests/composition/src/boundaries.cj:22:33:
+   [36m| [0m
+[36m22[0m [36m| [0m                        !leader.isTransparent && leader.style == c.style && c.grapheme == "" && c.width == 0[0m
+   [36m| [0m                                [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m tests/composition/src/boundaries.cj:27:65:
+   [36m| [0m
+[36m27[0m [36m| [0m                    valid = valid && next.continuation && !next.isTransparent && next.style == c.style[0m
+   [36m| [0m                                                                [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+  [36m==>[0m tests/composition/src/boundaries.cj:36:29:
+   [36m| [0m
+[36m36[0m [36m| [0m    let frame = Frame(6, 3, transparent: true)[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'clear' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/boundaries.cj:58:12:
+   [36m| [0m
+[36m58[0m [36m| [0m    opaque.clear(Rect(0, 0, 1, 1), transparent: true)[0m
+   [36m| [0m           [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'clear' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/boundaries.cj:64:12:
+   [36m| [0m
+[36m64[0m [36m| [0m    opaque.clear(Rect(1, 0, 0, 1), transparent: true)[0m
+   [36m| [0m           [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/boundaries.cj:76:10:
+   [36m| [0m
+[36m76[0m [36m| [0m    left.composite(source, x: -2)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m tests/composition/src/boundaries.cj:78:66:
+   [36m| [0m
+[36m78[0m [36m| [0m    check(left.cellAt(0, 0).style == style && !left.cellAt(0, 0).isTransparent,[0m
+   [36m| [0m                                                                 [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/boundaries.cj:82:11:
+   [36m| [0m
+[36m82[0m [36m| [0m    right.composite(source, x: 3)[0m
+   [36m| [0m          [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'copy' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/boundaries.cj:89:22:
+   [36m| [0m
+[36m89[0m [36m| [0m    let cut = source.copy(Rect(0, 0, 2, 1))[0m
+   [36m| [0m                     [31m^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'copy' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/boundaries.cj:93:24:
+   [36m| [0m
+[36m93[0m [36m| [0m    let whole = source.copy(Rect(1, 0, 2, 1))[0m
+   [36m| [0m                       [31m^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:101:12:
+    [36m| [0m
+[36m101[0m [36m| [0m    target.composite(upper, x: 1)[0m
+    [36m| [0m           [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+   [36m==>[0m tests/composition/src/boundaries.cj:104:31:
+    [36m| [0m
+[36m104[0m [36m| [0m    let skipped = Frame(1, 1, transparent: true)[0m
+    [36m| [0m                              [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:106:12:
+    [36m| [0m
+[36m106[0m [36m| [0m    target.composite(skipped, x: 2)[0m
+    [36m| [0m           [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+   [36m==>[0m tests/composition/src/boundaries.cj:108:32:
+    [36m| [0m
+[36m108[0m [36m| [0m    let crossing = Frame(4, 1, transparent: true)[0m
+    [36m| [0m                               [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:120:10:
+    [36m| [0m
+[36m120[0m [36m| [0m    grid.composite(rows, x: -1, y: -1)[0m
+    [36m| [0m         [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: extra argument given for parameter list '(Int64, Int64, Bool)' in call
+   [36m==>[0m tests/composition/src/boundaries.cj:126:23:
+    [36m| [0m
+[36m126[0m [36m| [0m    let source = Frame(2, 1, transparent: true, maxCells: 12)[0m
+    [36m| [0m                      [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected 3 arguments, found 4[0m
+    [36m| [0m
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui)frame.cj:8:12:
+
+[31merror[0m: 'copy' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:149:23:
+    [36m| [0m
+[36m149[0m [36m| [0m    let copied = wide.copy(Rect(0, 0, 3, 1))[0m
+    [36m| [0m                      [31m^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'resized' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:150:24:
+    [36m| [0m
+[36m150[0m [36m| [0m    let resized = wide.resized(4, 1)[0m
+    [36m| [0m                       [31m^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:158:25:
+    [36m| [0m
+[36m158[0m [36m| [0m    illegal({ => target.composite(wide); () }, "policy mismatch rejected")[0m
+    [36m| [0m                        [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:160:25:
+    [36m| [0m
+[36m160[0m [36m| [0m    illegal({ => target.composite(Frame(0, 0, ambiguousWide: true)); () },[0m
+    [36m| [0m                        [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:162:30:
+    [36m| [0m
+[36m162[0m [36m| [0m    illegal({ => Frame(0, 0).composite(wide, x: Int64.Max); () },[0m
+    [36m| [0m                             [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:164:25:
+    [36m| [0m
+[36m164[0m [36m| [0m    illegal({ => target.composite(wide, x: Int64.Min); () },[0m
+    [36m| [0m                        [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:173:10:
+    [36m| [0m
+[36m173[0m [36m| [0m    down.composite(down, y: 1)[0m
+    [36m| [0m         [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:177:8:
+    [36m| [0m
+[36m177[0m [36m| [0m    up.composite(up, y: -1)[0m
+    [36m| [0m       [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:181:10:
+    [36m| [0m
+[36m181[0m [36m| [0m    wide.composite(wide, x: 1)[0m
+    [36m| [0m         [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+   [36m==>[0m tests/composition/src/boundaries.cj:183:35:
+    [36m| [0m
+[36m183[0m [36m| [0m    let transparent = Frame(5, 1, transparent: true)[0m
+    [36m| [0m                                  [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+   [36m==>[0m tests/composition/src/boundaries.cj:197:30:
+    [36m| [0m
+[36m197[0m [36m| [0m    illegal({ => Frame(1, 1, maxCells: 0); () }, "zero budget rejected")[0m
+    [36m| [0m                             [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+   [36m==>[0m tests/composition/src/boundaries.cj:198:30:
+    [36m| [0m
+[36m198[0m [36m| [0m    illegal({ => Frame(0, 0, maxCells: -1); () }, "negative budget rejected even for empty frame")[0m
+    [36m| [0m                             [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+   [36m==>[0m tests/composition/src/boundaries.cj:199:30:
+    [36m| [0m
+[36m199[0m [36m| [0m    illegal({ => Frame(2, 2, maxCells: 3); () }, "positive area budget rejected before allocation")[0m
+    [36m| [0m                             [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+   [36m==>[0m tests/composition/src/boundaries.cj:201:38:
+    [36m| [0m
+[36m201[0m [36m| [0m    illegal({ => Frame(Int64.Max, 2, maxCells: Int64.Max); () }, "overflowing product rejected before allocation")[0m
+    [36m| [0m                                     [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+   [36m==>[0m tests/composition/src/boundaries.cj:202:29:
+    [36m| [0m
+[36m202[0m [36m| [0m    let small = Frame(3, 1, maxCells: 3)[0m
+    [36m| [0m                            [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:211:15:
+    [36m| [0m
+[36m211[0m [36m| [0m        frame.composite(layer, x: extreme)[0m
+    [36m| [0m              [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:212:15:
+    [36m| [0m
+[36m212[0m [36m| [0m        frame.composite(layer, y: extreme)[0m
+    [36m| [0m              [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'clear' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:213:15:
+    [36m| [0m
+[36m213[0m [36m| [0m        frame.clear(Rect(extreme, extreme, Int64.Max, Int64.Max), transparent: true)[0m
+    [36m| [0m              [31m^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'copy' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:215:29:
+    [36m| [0m
+[36m215[0m [36m| [0m        let outside = frame.copy(Rect(extreme, extreme, 2, 1))[0m
+    [36m| [0m                            [31m^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'clear' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:218:11:
+    [36m| [0m
+[36m218[0m [36m| [0m    frame.clear(Rect(-1, -1, Int64.Max, Int64.Max), transparent: true)[0m
+    [36m| [0m          [31m^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'clear' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:222:15:
+    [36m| [0m
+[36m222[0m [36m| [0m        empty.clear(Rect(Int64.Min, Int64.Min, Int64.Max, Int64.Max))[0m
+    [36m| [0m              [31m^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:223:15:
+    [36m| [0m
+[36m223[0m [36m| [0m        empty.composite(layer, x: Int64.Min, y: Int64.Max)[0m
+    [36m| [0m              [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:224:15:
+    [36m| [0m
+[36m224[0m [36m| [0m        frame.composite(empty)[0m
+    [36m| [0m              [31m^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'copy' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:226:21:
+    [36m| [0m
+[36m226[0m [36m| [0m        check(empty.copy(Rect(0, 0, 0, Int64.Max)).toAnsi() == "", "zero-area extreme copy short circuits")[0m
+    [36m| [0m                    [31m^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'resized' is not a member of class 'Frame'
+   [36m==>[0m tests/composition/src/boundaries.cj:227:21:
+    [36m| [0m
+[36m227[0m [36m| [0m        check(empty.resized(Int64.Max, 0).toPlainText() == "", "zero-height extreme resize exports empty text")[0m
+    [36m| [0m                    [31m^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+   [36m==>[0m tests/composition/src/boundaries.cj:229:23:
+    [36m| [0m
+[36m229[0m [36m| [0m    check(Frame(0, 4, maxCells: 3).toPlainText() == "\n\n\n", "zero-width LF length allowed exactly at budget")[0m
+    [36m| [0m                      [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+   [36m==>[0m tests/composition/src/boundaries.cj:230:30:
+    [36m| [0m
+[36m230[0m [36m| [0m    illegal({ => Frame(0, 5, maxCells: 3).toPlainText(); () }, "zero-width LF length over budget rejected")[0m
+    [36m| [0m                             [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+   [36m==>[0m tests/composition/src/boundaries.cj:232:23:
+    [36m| [0m
+[36m232[0m [36m| [0m    check(Frame(0, 5, maxCells: 3).toAnsi() == "", "zero-width ANSI remains empty regardless of text LF budget")[0m
+    [36m| [0m                      [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+  [36m==>[0m tests/composition/src/files.cj:26:29:
+   [36m| [0m
+[36m26[0m [36m| [0m    let layer = Frame(4, 2, transparent: true)[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:31:10:
+   [36m| [0m
+[36m31[0m [36m| [0m    base.composite(layer)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writePlainText' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:33:10:
+   [36m| [0m
+[36m33[0m [36m| [0m    base.writePlainText(directory + "/plain-created.txt")[0m
+   [36m| [0m         [31m^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writePlainText' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:34:10:
+   [36m| [0m
+[36m34[0m [36m| [0m    base.writePlainText(directory + "/plain-replaced.txt")[0m
+   [36m| [0m         [31m^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writeAnsi' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:35:10:
+   [36m| [0m
+[36m35[0m [36m| [0m    base.writeAnsi(directory + "/ansi-default.txt")[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writeAnsi' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:36:10:
+   [36m| [0m
+[36m36[0m [36m| [0m    base.writeAnsi(directory + "/ansi-true.txt", colorMode: ColorMode.TrueColor)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writeAnsi' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:37:10:
+   [36m| [0m
+[36m37[0m [36m| [0m    base.writeAnsi(directory + "/ansi-basic8.txt", colorMode: ColorMode.Basic8)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writeAnsi' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:38:10:
+   [36m| [0m
+[36m38[0m [36m| [0m    base.writeAnsi(directory + "/ansi-mono.txt", colorMode: ColorMode.Monochrome)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+  [36m==>[0m tests/composition/src/files.cj:39:35:
+   [36m| [0m
+[36m39[0m [36m| [0m    let transparent = Frame(2, 1, transparent: true)[0m
+   [36m| [0m                                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writePlainText' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:43:11:
+   [36m| [0m
+[36m43[0m [36m| [0m    empty.writePlainText(directory + "/empty-plain.txt")[0m
+   [36m| [0m          [31m^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writeAnsi' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:44:11:
+   [36m| [0m
+[36m44[0m [36m| [0m    empty.writeAnsi(directory + "/empty-ansi.txt")[0m
+   [36m| [0m          [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+  [36m==>[0m tests/composition/src/files.cj:45:17:
+   [36m| [0m
+[36m45[0m [36m| [0m    Frame(0, 4, maxCells: 3).writePlainText(directory + "/zero-width-plain.txt")[0m
+   [36m| [0m                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+  [36m==>[0m tests/composition/src/files.cj:46:17:
+   [36m| [0m
+[36m46[0m [36m| [0m    Frame(0, 5, maxCells: 3).writeAnsi(directory + "/zero-width-ansi.txt")[0m
+   [36m| [0m                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writePlainText' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:47:27:
+   [36m| [0m
+[36m47[0m [36m| [0m    fileFailure({ => base.writePlainText(directory + "/missing-parent/plain.txt") },[0m
+   [36m| [0m                          [31m^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writeAnsi' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:49:27:
+   [36m| [0m
+[36m49[0m [36m| [0m    fileFailure({ => base.writeAnsi(directory + "/missing-parent/ansi.txt") },[0m
+   [36m| [0m                          [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writePlainText' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:51:27:
+   [36m| [0m
+[36m51[0m [36m| [0m    fileFailure({ => base.writePlainText(directory + "/existing-directory") },[0m
+   [36m| [0m                          [31m^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writeAnsi' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:53:27:
+   [36m| [0m
+[36m53[0m [36m| [0m    fileFailure({ => base.writeAnsi(directory + "/existing-directory") },[0m
+   [36m| [0m                          [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+  [36m==>[0m tests/composition/src/files.cj:55:30:
+   [36m| [0m
+[36m55[0m [36m| [0m    illegal({ => Frame(0, 5, maxCells: 3).writePlainText(directory + "/budget-sentinel.txt") },[0m
+   [36m| [0m                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'maxCells:'
+  [36m==>[0m tests/composition/src/files.cj:57:30:
+   [36m| [0m
+[36m57[0m [36m| [0m    illegal({ => Frame(0, 5, maxCells: 3).writePlainText(directory + "/budget-created.txt") },[0m
+   [36m| [0m                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writePlainText' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:60:32:
+   [36m| [0m
+[36m60[0m [36m| [0m        writeFailure({ => base.writePlainText("/dev/full") }, "plain actual write failure propagates from /dev/full")[0m
+   [36m| [0m                               [31m^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'writeAnsi' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/files.cj:61:32:
+   [36m| [0m
+[36m61[0m [36m| [0m        writeFailure({ => base.writeAnsi("/dev/full") }, "ANSI actual write failure propagates from /dev/full")[0m
+   [36m| [0m                               [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m tests/composition/src/main.cj:17:39:
+   [36m| [0m
+[36m17[0m [36m| [0m        cell.style == Style() && cell.isTransparent == transparent[0m
+   [36m| [0m                                      [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+  [36m==>[0m tests/composition/src/main.cj:23:29:
+   [36m| [0m
+[36m23[0m [36m| [0m    let layer = Frame(4, 2, transparent: true)[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:29:10:
+   [36m| [0m
+[36m29[0m [36m| [0m    base.composite(layer)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'isTransparent' is not a member of struct 'Cell'
+  [36m==>[0m tests/composition/src/main.cj:31:66:
+   [36m| [0m
+[36m31[0m [36m| [0m    check(base.cellAt(2, 1).style == style && !base.cellAt(2, 1).isTransparent,[0m
+   [36m| [0m                                                                 [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+  [36m==>[0m tests/composition/src/main.cj:36:29:
+   [36m| [0m
+[36m36[0m [36m| [0m    let upper = Frame(1, 1, transparent: true)[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:38:10:
+   [36m| [0m
+[36m38[0m [36m| [0m    base.composite(upper, x: 1)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:42:10:
+   [36m| [0m
+[36m42[0m [36m| [0m    base.composite(layer)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'copy' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:50:26:
+   [36m| [0m
+[36m50[0m [36m| [0m    let leftCut = source.copy(Rect(2, 0, 3, 1))[0m
+   [36m| [0m                         [31m^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'resized' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:55:27:
+   [36m| [0m
+[36m55[0m [36m| [0m    let rightCut = source.resized(2, 1)[0m
+   [36m| [0m                          [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: unknown named argument prefix 'transparent:'
+  [36m==>[0m tests/composition/src/main.cj:59:30:
+   [36m| [0m
+[36m59[0m [36m| [0m    let target = Frame(5, 1, transparent: true)[0m
+   [36m| [0m                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'clear' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:66:12:
+   [36m| [0m
+[36m66[0m [36m| [0m    source.clear(Rect(2, 0, 1, 1), transparent: true)[0m
+   [36m| [0m           [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'clear' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:70:12:
+   [36m| [0m
+[36m70[0m [36m| [0m    source.clear(Rect(0, 0, 1, 1))[0m
+   [36m| [0m           [31m^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'copy' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:77:25:
+   [36m| [0m
+[36m77[0m [36m| [0m    let copied = source.copy(Rect(0, 0, 5, 1))[0m
+   [36m| [0m                        [31m^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'resized' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:80:24:
+   [36m| [0m
+[36m80[0m [36m| [0m    let grown = source.resized(7, 1)[0m
+   [36m| [0m                       [31m^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:84:12:
+   [36m| [0m
+[36m84[0m [36m| [0m    source.composite(source, x: 1)[0m
+   [36m| [0m           [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'composite' is not a member of class 'Frame'
+  [36m==>[0m tests/composition/src/main.cj:88:10:
+   [36m| [0m
+[36m88[0m [36m| [0m    left.composite(left, x: -1)[0m
+   [36m| [0m         [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+82 errors generated, 82 errors printed.

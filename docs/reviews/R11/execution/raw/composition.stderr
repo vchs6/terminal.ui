@@ -1,0 +1,21 @@
++previous_exit=0 command: set -euo pipefail
+++previous_exit=0 command: dirname tests/composition/run.sh
++previous_exit=0 command: cd tests/composition/../..
++previous_exit=0 command: cd tests/composition
++previous_exit=0 command: cjpm build
++previous_exit=0 command: [[ -n /workspace/work/frame-execution/artifacts ]]
++previous_exit=0 command: mkdir -p /workspace/work/frame-execution/artifacts
+++previous_exit=0 command: mktemp -d /workspace/work/frame-execution/artifacts/run.XXXXXXXX
++previous_exit=0 command: artifacts=/workspace/work/frame-execution/artifacts/run.80htWDRC
++previous_exit=0 command: export CJTUI_COMPOSITION_ARTIFACTS=/workspace/work/frame-execution/artifacts/run.80htWDRC
++previous_exit=0 command: CJTUI_COMPOSITION_ARTIFACTS=/workspace/work/frame-execution/artifacts/run.80htWDRC
++previous_exit=0 command: mkdir /workspace/work/frame-execution/artifacts/run.80htWDRC/existing-directory
++previous_exit=0 command: node --input-type=module - /workspace/work/frame-execution/artifacts/run.80htWDRC
++previous_exit=0 command: [[ -c /dev/full ]]
++previous_exit=0 command: export CJTUI_COMPOSITION_DEV_FULL=1
++previous_exit=0 command: CJTUI_COMPOSITION_DEV_FULL=1
++previous_exit=0 command: printf 'Composition artifacts: %s\n' /workspace/work/frame-execution/artifacts/run.80htWDRC
++previous_exit=0 command: TERM=dumb
++previous_exit=0 command: COLORTERM=
++previous_exit=0 command: timeout 30s tests/composition/target/release/bin/main
++previous_exit=0 command: node tests/composition/verify-files.mjs /workspace/work/frame-execution/artifacts/run.80htWDRC

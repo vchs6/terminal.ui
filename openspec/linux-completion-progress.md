@@ -11,3 +11,5 @@
 独立构建/解析调查 /root/linux_build_recon（指定 Sol/high）进行正常宏 CJPM bundle/干净消费和中心仓 TOML/官方 stdx API 验证。宏 package 自动识别已通过，不需要私人 cjc flags。旧 registry relay18972失效，调查者用独立18973，不修改他人缓存/服务。
 
 L001–L004 裁决见总计划。近期先冻结 Frame 原语：它只消费已验 Unicode/Style/Frame 输入，和完整宏/主题/焦点后续工作无循环。任务状态只由具体 change 与 docs/tasks.md 维护；AC 最终结果只由 docs/acceptance.md 维护。只追加各阶段实际交接，绝不在恢复时重复派已完成任务。
+
+Frame阶段最终5c2a7e7已实现并独立review/execution/功能验收，准备最终metadata。新增运行时架构草稿 /workspace/work/linux-runtime-contract/design-draft.md 待主代理正式冻结；宏带参/泛型/接口/WeakRef补证 /workspace/work/linux-source-audit/supplement/report.md 已通过，early-return原生允许但宏必须显式拒绝/处理。额外宿主 /workspace/work/linux-console-hosts/report.md 已准备真实QEMU Linux内核VT80×25+tmux/screen；仅环境探针，不是产品pass，后续固定源必须真实运行。完成本Frame后继续runtime，不结束全Linux工作。

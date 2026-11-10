@@ -1,0 +1,32 @@
+cjpm build success
+PASS: transparent construction normalizes blank metadata
+PASS: ordinary construction remains opaque
+PASS: transparent blanks skip; opaque styled blank covers: got [aXcd
+ef h], want [aXcd
+ef h]
+PASS: styled blank retains opacity and background
+PASS: different source stays unchanged: got [ X  
+    ], want [ X  
+    ]
+PASS: source metadata unchanged
+PASS: later layers appear above earlier layers: got [aYcd
+ef h], want [aYcd
+ef h]
+PASS: Style default space is explicitly opaque
+PASS: opaque default space is not guessed transparent: got [ Xcd
+ef h], want [ Xcd
+ef h]
+PASS: copy cuts source continuation into a styled blank: got [ bc], want [ bc]
+PASS: clipped source fragment keeps exact style and opacity
+PASS: resize cuts source leader into a styled blank: got [a ], want [a ]
+PASS: right cut does not retain a wide leader
+PASS: writing target continuation clears leader outside intersection: got [a Xbc], want [a Xbc]
+PASS: target partner cleanup uses default transparency
+PASS: clear continuation clears the whole old cluster: got [a  bc], want [a  bc]
+PASS: explicit transparent clear resets both cells and style
+PASS: clear defaults to opaque Style blank
+PASS: copy has no shared mutable cells: got [abcde], want [abcde]
+PASS: resized growth uses source default blanks: got [abcde  ], want [abcde  ]
+PASS: resize has no shared mutable cells: got [abcde], want [abcde]
+PASS: rightward self overlap reads initial source snapshot: got [aabcd], want [aabcd]
+PASS: leftward self overlap reads initial source snapshot: got [bcdee], want [bcdee]

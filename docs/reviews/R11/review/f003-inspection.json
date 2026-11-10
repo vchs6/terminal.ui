@@ -1,0 +1,376 @@
+{
+  "revision": "5c2a7e7d956b5d8c0284e96514276608616bf8a6",
+  "previous": "883444195725224985f29060253017432abaa7f3",
+  "diff": {
+    "path": "/workspace/work/terminal.ui/.superpowers/sdd/frame-composition/f003-scoped-review.diff",
+    "sha256": "506e81f7c87f1964c37c2d184631d934231b8f26f346c077318ef5b0d15af5f4"
+  },
+  "checks": [
+    {
+      "command": [
+        "git",
+        "apply",
+        "--reverse",
+        "--check",
+        "/workspace/work/terminal.ui/.superpowers/sdd/frame-composition/f003-scoped-review.diff"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "883444195725224985f29060253017432abaa7f3",
+        "5c2a7e7d956b5d8c0284e96514276608616bf8a6",
+        "--",
+        "AGENTS.md",
+        "cjpm.toml",
+        "tests/contract",
+        "tests/coordinates",
+        "tests/colors",
+        "tests/layout",
+        "tests/decoration",
+        "tests/composition/src/boundaries.cj",
+        "tests/composition/src/files.cj",
+        "tests/composition/run.sh",
+        "tests/composition/verify-files.mjs"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "raw": [
+    {
+      "source": "/workspace/work/frame-implementation/f003-red.stdout",
+      "copy": "/workspace/work/frame-review/raw/f003-red.stdout",
+      "sha256": "d4e84d5ca16b0e88369e7f908f98f70de4e47315fa8aceb058cae9d9d3097ed0"
+    },
+    {
+      "source": "/workspace/work/frame-implementation/f003-red.stderr",
+      "copy": "/workspace/work/frame-review/raw/f003-red.stderr",
+      "sha256": "9d93db045c76b3520130b9dbe1901caa2e129696393ada7b4d22ccc6002b75b8"
+    },
+    {
+      "source": "/workspace/work/frame-implementation/f003-red.exit",
+      "copy": "/workspace/work/frame-review/raw/f003-red.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "source": "/workspace/work/frame-implementation/f003-green.stdout",
+      "copy": "/workspace/work/frame-review/raw/f003-green.stdout",
+      "sha256": "3a6f03d5938cb69b2a28a2a5cb52bc2de41827b510c9f9c77e914eccc5b53f4c"
+    },
+    {
+      "source": "/workspace/work/frame-implementation/f003-green.stderr",
+      "copy": "/workspace/work/frame-review/raw/f003-green.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/frame-implementation/f003-green.exit",
+      "copy": "/workspace/work/frame-review/raw/f003-green.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/commands.txt",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/commands.txt",
+      "sha256": "15f065a8da93db651edae8eb1722a88deaab608295089b82afb996a98e772cb0"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/build.stdout",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/build.stderr",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/build.exit",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/red.stdout",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/red.stdout",
+      "sha256": "1a62cad3d3162d10f81dffbfc41b84ab1168344fc56d8244b6a7c0079ec04ccb"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/red.stderr",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/red.stderr",
+      "sha256": "df24baf029fa581fd417001c87380c6bd7c8297551d2db1e55a96afcf69cd01d"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/red.exit",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/red.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/test.sha",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/test.sha",
+      "sha256": "06c9d33b0c1617c017add1f5ee3e71d000cd59844a38f2774e817c1b697cabab"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/product-source.sha256",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/product-source.sha256",
+      "sha256": "57c5b056aa8d186daeee208d66fb45f38cd2f05fedf454d7e6a26055d2444f55"
+    },
+    {
+      "source": "/workspace/work/frame-tests/evidence/f003/tests.sha256",
+      "copy": "/workspace/work/frame-review/raw/f003-test-author/tests.sha256",
+      "sha256": "e024a306a858c0f7310cc2e1e021416ea2a194e83e9e613d0070f8119a7fa06f"
+    }
+  ],
+  "counts": [
+    {
+      "name": "f003-red",
+      "pass": 131,
+      "fail": 8,
+      "skip": 0,
+      "exit": "1"
+    },
+    {
+      "name": "f003-green",
+      "pass": 165,
+      "fail": 0,
+      "skip": 0,
+      "exit": "0"
+    }
+  ],
+  "author_equivalence": [
+    {
+      "path": "docs/product/README.md",
+      "sha256": "f32acba8e80af72aad9beb66dd102361557d135fffc327d36ac060dafec300e5",
+      "author_sha256": "f32acba8e80af72aad9beb66dd102361557d135fffc327d36ac060dafec300e5",
+      "equal": true
+    },
+    {
+      "path": "src/frame.cj",
+      "sha256": "774961a1a3cec534b591cd632c644d54a4f0d42075ba783ec5ab2cab232ba100",
+      "author_sha256": "774961a1a3cec534b591cd632c644d54a4f0d42075ba783ec5ab2cab232ba100",
+      "equal": true
+    },
+    {
+      "path": "tests/composition/src/main.cj",
+      "sha256": "b91b118674cd7bb5025bfb21cf0c34609e31d506b2dd59e0200efa455aba5a1e",
+      "author_sha256": "b91b118674cd7bb5025bfb21cf0c34609e31d506b2dd59e0200efa455aba5a1e",
+      "equal": true
+    },
+    {
+      "path": "tests/composition/src/transparency_holes.cj",
+      "sha256": "fb0ed755385a4cd48eddb23748195e7ff5a40359bb98d7cd0a25dc01de7bbc4b",
+      "author_sha256": "fb0ed755385a4cd48eddb23748195e7ff5a40359bb98d7cd0a25dc01de7bbc4b",
+      "equal": true
+    },
+    {
+      "path": "tests/README.md",
+      "sha256": "451624db46b4b2aa2f11aade82618d804e8605b88d88015cb88a0e7a7432576b",
+      "author_sha256": "451624db46b4b2aa2f11aade82618d804e8605b88d88015cb88a0e7a7432576b",
+      "equal": true
+    }
+  ],
+  "product-source.sha256": [
+    {
+      "path": "native/build.sh",
+      "expected": "85b5e23cffc9bd421d8c49bc54a162cda76220b27847d95c494cb9eb838d1476",
+      "actual": "85b5e23cffc9bd421d8c49bc54a162cda76220b27847d95c494cb9eb838d1476",
+      "equal": true
+    },
+    {
+      "path": "native/cjtui_capabilities.c",
+      "expected": "e1a3a8148562f0b31c5924e8526505a662873f13dc0779f0ced770957d19d7e2",
+      "actual": "e1a3a8148562f0b31c5924e8526505a662873f13dc0779f0ced770957d19d7e2",
+      "equal": true
+    },
+    {
+      "path": "native/cjtui_terminal.c",
+      "expected": "f870938439c7b330cab29ed8478f748b228617a471b0a6cbe3b0f18d2b17b5d3",
+      "actual": "f870938439c7b330cab29ed8478f748b228617a471b0a6cbe3b0f18d2b17b5d3",
+      "equal": true
+    },
+    {
+      "path": "src/alignment.cj",
+      "expected": "b8525afb51b0ab899e040b81af986055ffb6d00b54f251f7622620e643422fa2",
+      "actual": "b8525afb51b0ab899e040b81af986055ffb6d00b54f251f7622620e643422fa2",
+      "equal": true
+    },
+    {
+      "path": "src/ansi_encoding.cj",
+      "expected": "b22feed06490dd619ab7efde176e8eef170d8e3b5555d52d32c37180733aed28",
+      "actual": "b22feed06490dd619ab7efde176e8eef170d8e3b5555d52d32c37180733aed28",
+      "equal": true
+    },
+    {
+      "path": "src/application.cj",
+      "expected": "8974cd4fc0957f573f006e3dea1a0e2663a50b4b56c69ee82c158eda519afd57",
+      "actual": "8974cd4fc0957f573f006e3dea1a0e2663a50b4b56c69ee82c158eda519afd57",
+      "equal": true
+    },
+    {
+      "path": "src/cell.cj",
+      "expected": "8b67e195b40d700aeb5f394d6f41ba968c5f7488fd2f3cacd19a66e1f26c1dfe",
+      "actual": "8b67e195b40d700aeb5f394d6f41ba968c5f7488fd2f3cacd19a66e1f26c1dfe",
+      "equal": true
+    },
+    {
+      "path": "src/color_mapping.cj",
+      "expected": "58f2c372bb8705ac1cf4cea93a225e93aa6f60713d8072f43d32892825264219",
+      "actual": "58f2c372bb8705ac1cf4cea93a225e93aa6f60713d8072f43d32892825264219",
+      "equal": true
+    },
+    {
+      "path": "src/component.cj",
+      "expected": "7b2a3fbcdcd37f7544beb7fb184ebd67ff8f18fefc01ac0788fdad4b4197e6fc",
+      "actual": "7b2a3fbcdcd37f7544beb7fb184ebd67ff8f18fefc01ac0788fdad4b4197e6fc",
+      "equal": true
+    },
+    {
+      "path": "src/drawing_geometry.cj",
+      "expected": "2a31e0eb8dc6e1f3e8557c11374db5068ffa1fa9e3ebd6f79ec08794b59cba05",
+      "actual": "2a31e0eb8dc6e1f3e8557c11374db5068ffa1fa9e3ebd6f79ec08794b59cba05",
+      "equal": true
+    },
+    {
+      "path": "src/exports.cj",
+      "expected": "5784af8fd48e08d6228b4a226f06f6dcabbcc1a77b8a9845f85cd2d2f01ec806",
+      "actual": "5784af8fd48e08d6228b4a226f06f6dcabbcc1a77b8a9845f85cd2d2f01ec806",
+      "equal": true
+    },
+    {
+      "path": "src/frame.cj",
+      "expected": "9befaf79cdd74a6c974aeb1664d24f11933e71890c56a220ce6ca838896ca246",
+      "actual": "9befaf79cdd74a6c974aeb1664d24f11933e71890c56a220ce6ca838896ca246",
+      "equal": true
+    },
+    {
+      "path": "src/geometry/rect.cj",
+      "expected": "f12793359eae47d415f263b0e35cacea2019388fd06de08b48e60b9e9896c641",
+      "actual": "f12793359eae47d415f263b0e35cacea2019388fd06de08b48e60b9e9896c641",
+      "equal": true
+    },
+    {
+      "path": "src/input_decoder.cj",
+      "expected": "775c44e3c6404b85624e9358700061bd26a5716c486db6b16b40de3c65b8dec7",
+      "actual": "775c44e3c6404b85624e9358700061bd26a5716c486db6b16b40de3c65b8dec7",
+      "equal": true
+    },
+    {
+      "path": "src/key_event.cj",
+      "expected": "7117386aa54b62c41fbb1ae770fc17f2807cbd9283aba759dbb86a6fd04a60ee",
+      "actual": "7117386aa54b62c41fbb1ae770fc17f2807cbd9283aba759dbb86a6fd04a60ee",
+      "equal": true
+    },
+    {
+      "path": "src/layout.cj",
+      "expected": "139ed5027cbd5c9850252adf1a55e0826d6f98895987fd56ae1c5220f5a81c5f",
+      "actual": "139ed5027cbd5c9850252adf1a55e0826d6f98895987fd56ae1c5220f5a81c5f",
+      "equal": true
+    },
+    {
+      "path": "src/layout_node.cj",
+      "expected": "034273d4cba2fd6f77ad1ece516becf81bf34f2fa3ae3e71f4f9b91061f75987",
+      "actual": "034273d4cba2fd6f77ad1ece516becf81bf34f2fa3ae3e71f4f9b91061f75987",
+      "equal": true
+    },
+    {
+      "path": "src/style/border_style.cj",
+      "expected": "6cda8b6e130d33ff2e98d161eca3f00ad6456fecfd0acf2f8a5c2927f6b7b250",
+      "actual": "6cda8b6e130d33ff2e98d161eca3f00ad6456fecfd0acf2f8a5c2927f6b7b250",
+      "equal": true
+    },
+    {
+      "path": "src/style/color.cj",
+      "expected": "bfe06ae333ffe2545b96d5dd31af287ca9d2ff06b747f5681813a1d9642a673e",
+      "actual": "bfe06ae333ffe2545b96d5dd31af287ca9d2ff06b747f5681813a1d9642a673e",
+      "equal": true
+    },
+    {
+      "path": "src/style/color_mode.cj",
+      "expected": "23fbbfffb32f36db1e515f6e2bc59a64e41cc18c55255bc13543cddd42460b53",
+      "actual": "23fbbfffb32f36db1e515f6e2bc59a64e41cc18c55255bc13543cddd42460b53",
+      "equal": true
+    },
+    {
+      "path": "src/style/style.cj",
+      "expected": "b13e2800efbee0107300fac04c9ada25c2672e2d1ec0334c0507e2391f50261b",
+      "actual": "b13e2800efbee0107300fac04c9ada25c2672e2d1ec0334c0507e2391f50261b",
+      "equal": true
+    },
+    {
+      "path": "src/terminal_bridge.cj",
+      "expected": "bdbea8338ac9484ca0f576803b0f6d89de463ec27ec656998a02ac1666900715",
+      "actual": "bdbea8338ac9484ca0f576803b0f6d89de463ec27ec656998a02ac1666900715",
+      "equal": true
+    },
+    {
+      "path": "src/terminal_capabilities.cj",
+      "expected": "4a55e747ba8284e9796d5f64593cf7e6222a539b16714a75150ad7a0b0b2378c",
+      "actual": "4a55e747ba8284e9796d5f64593cf7e6222a539b16714a75150ad7a0b0b2378c",
+      "equal": true
+    },
+    {
+      "path": "src/terminal_render_profile.cj",
+      "expected": "efd995fbbf0380d04146e63edae0fadce6a8e202e5ad258f53959efa480c32b8",
+      "actual": "efd995fbbf0380d04146e63edae0fadce6a8e202e5ad258f53959efa480c32b8",
+      "equal": true
+    },
+    {
+      "path": "src/text/unicode.cj",
+      "expected": "2bd5f0fbae84ddcb38d7dc4e639fd7b04e6b1c45465d17c9ef763ec56c70a15c",
+      "actual": "2bd5f0fbae84ddcb38d7dc4e639fd7b04e6b1c45465d17c9ef763ec56c70a15c",
+      "equal": true
+    },
+    {
+      "path": "src/text_validation.cj",
+      "expected": "7ae937ea12783654c7c5bbccd8761f5dad24d78f2e126c85d94c577286d7c6d0",
+      "actual": "7ae937ea12783654c7c5bbccd8761f5dad24d78f2e126c85d94c577286d7c6d0",
+      "equal": true
+    }
+  ],
+  "tests.sha256": [
+    {
+      "path": "tests/composition/src/boundaries.cj",
+      "expected": "43396ca3f30500f5f1d113f7911f8fa89c91495defd2e4a84d69258a9a10e421",
+      "actual": "43396ca3f30500f5f1d113f7911f8fa89c91495defd2e4a84d69258a9a10e421",
+      "equal": true
+    },
+    {
+      "path": "tests/composition/src/files.cj",
+      "expected": "28f9f5f502aad0172c640bd972217f592cac530570b90e4a60dfef609e748892",
+      "actual": "28f9f5f502aad0172c640bd972217f592cac530570b90e4a60dfef609e748892",
+      "equal": true
+    },
+    {
+      "path": "tests/composition/src/main.cj",
+      "expected": "b91b118674cd7bb5025bfb21cf0c34609e31d506b2dd59e0200efa455aba5a1e",
+      "actual": "b91b118674cd7bb5025bfb21cf0c34609e31d506b2dd59e0200efa455aba5a1e",
+      "equal": true
+    },
+    {
+      "path": "tests/composition/src/transparency_holes.cj",
+      "expected": "fb0ed755385a4cd48eddb23748195e7ff5a40359bb98d7cd0a25dc01de7bbc4b",
+      "actual": "fb0ed755385a4cd48eddb23748195e7ff5a40359bb98d7cd0a25dc01de7bbc4b",
+      "equal": true
+    },
+    {
+      "path": "tests/README.md",
+      "expected": "451624db46b4b2aa2f11aade82618d804e8605b88d88015cb88a0e7a7432576b",
+      "actual": "451624db46b4b2aa2f11aade82618d804e8605b88d88015cb88a0e7a7432576b",
+      "equal": true
+    }
+  ]
+}

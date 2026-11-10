@@ -1,0 +1,14 @@
+import {execFileSync} from 'node:child_process';
+import {readFileSync,writeFileSync,existsSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {parse} from './repo/node_modules/smol-toml/dist/index.js';
+const base='/workspace/work/frame-execution',archive=base+'/repo/target/cjtui-0.0.0.cjp';
+const entries=execFileSync('tar',['-tzf',archive],{encoding:'utf8'}).trim().split('\n');
+const types=execFileSync('tar',['-tvzf',archive],{encoding:'utf8'});
+const rootManifest=entries.find(x=>/^[^/]+\/cjpm.toml$/.test(x)||x==='cjpm.toml'),prefix=rootManifest.slice(0,-9);
+const hash=data=>createHash('sha256').update(data).digest('hex');
+const records=entries.filter(x=>!x.endsWith('/')).map(path=>{const data=execFileSync('tar',['-xOzf',archive,path]);const rel=path.slice(prefix.length);const source=base+'/repo/'+rel;return {path,sha256:hash(data),sourceEqual:existsSync(source)?hash(readFileSync(source))===hash(data):null};});
+const manifests=entries.filter(x=>x.endsWith('cjpm.toml')).map(path=>({path,manifest:parse(execFileSync('tar',['-xOzf',archive,path],{encoding:'utf8'}))}));
+writeFileSync(base+'/raw/package-audit.json',JSON.stringify({entries:records,manifests,allRegularOrDirectory:types.trim().split('\n').every(x=>/^[-d]/.test(x))},null,2));writeFileSync(base+'/raw/package-entries.txt',types);
+if(records.some(x=>x.sourceEqual===false))throw Error('Package/source mismatch');
+console.log('Audited actual archive entries and every manifest; source equality confirmed. Full checker result remains separate.');

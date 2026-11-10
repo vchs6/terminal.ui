@@ -1,0 +1,47 @@
+{
+  "task": "TASK-070",
+  "fixedSource": "5c2a7e7d956b5d8c0284e96514276608616bf8a6",
+  "classification": "execution",
+  "functionalContractVerdict": "PASS",
+  "overallTaskVerdict": "PENDING_FINAL_PROJECTION",
+  "ac": {
+    "AC-005": "passed",
+    "AC-007": "passed",
+    "AC-067": "passed",
+    "AC-068": "passed",
+    "AC-069": "passed_scoped_delivery",
+    "AC-070": "functional_contract_passed_final_projection_pending",
+    "AC-010": "pending_with_file_primitives_passed"
+  },
+  "fullRelease": {
+    "verdict": "failed",
+    "actualExit": 1,
+    "reason": "Incomplete product bundle: examples/composition/cjpm.toml"
+  },
+  "allLinux": "not_complete_not_accepted",
+  "pending": [
+    "main evidence copy/hash/reference projection",
+    "final authoritative task/AC/product/progress metadata consistency",
+    "application-layer visible overlay capture for complete AC-010",
+    "remaining Linux completion plan"
+  ],
+  "findings": [],
+  "identity": {
+    "requestedModel": "Astra",
+    "requestedReasoning": "high",
+    "actualBackendVerified": false,
+    "subagentsSpawned": 0,
+    "productOrTestsModified": false,
+    "featureSuitesRerun": false
+  },
+  "evidence": [
+    "facts.json",
+    "package-boundary.json",
+    "raw/audit.stdout",
+    "raw/audit.exit",
+    "raw/package-boundary.stdout",
+    "raw/package-boundary.exit",
+    "raw/red-source-check.json"
+  ],
+  "report": "report.md"
+}

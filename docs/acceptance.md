@@ -8,9 +8,9 @@
 | AC-002 | REQ-001 | 验证仓颉声明式语法可编译性 | TASK-002 | 分别证明组件块、链、状态、条件/列表、自定义组件与回调；记录失败定位与限制；证据待实施时链接 | pending |
 | AC-003 | REQ-004、REQ-005、REQ-011 | 验证中心仓依赖与 SDK 适配边界 | TASK-003 | 固定ansies、unicode、unicodewidth及传递依赖可解析；当前先Linux核对分段/规范化、唯一宽度、ANSI、目标原生构建/干净消费与许可来源；其他OS后续扩展；证据待实施时链接 | pending |
 | AC-004 | REQ-001,REQ-002 | 冻结首个公共构造切片契约 | TASK-004 | U1–U5 设计稿均可映射至语法规则、签名、模块归属和验收，不以设计稿冒充运行；证据待实施时链接 | pending |
-| AC-005 | REQ-004 | 字符簇写入和边缘裁剪 | TASK-005 | 中文、组合符和 emoji 在边缘写入/覆盖/裁剪无半宽字符或孤立延续单元；证据待实施时链接 | pending |
+| AC-005 | REQ-004 | 字符簇写入和边缘裁剪 | TASK-005 | 中文、组合符和 emoji 在边缘写入/覆盖/裁剪无半宽字符或孤立延续单元；[R11证据](reviews/R11/result.md) | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
 | AC-006 | REQ-005 | 结构化样式映射与 ANSI 编码 | TASK-006 | 默认/16/256/真彩色按能力映射，组件不直接发序列；[R10报告](reviews/R10/README.md) | passed（有限；[R10验收](reviews/R10/acceptance/report.md)） |
-| AC-007 | REQ-004 | 完整目标帧与覆盖合成 | TASK-007 | 透明单元和带样式空格有区别，前后层按确定规则合成；证据待实施时链接 | pending |
+| AC-007 | REQ-004 | 完整目标帧与覆盖合成 | TASK-007 | 透明单元和带样式空格有区别，前后层按确定规则合成；[R11证据](reviews/R11/result.md) | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
 | AC-008 | REQ-004 | 差分提交与写失败恢复 | TASK-008 | 无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错；证据待实施时链接 | pending |
 | AC-009 | REQ-005 | 有界增量 ANSI 输入适配 | TASK-009 | 跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传；证据待实施时链接 | pending |
 | AC-010 | REQ-005 | 完整彩色与纯文本快照 | TASK-010 | 含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告；证据待实施时链接 | pending |
@@ -92,7 +92,7 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-067 | REQ-004/005/007 | TASK-067 | 固定公共消费者、独立网格/字节期望及真实缺API RED原件 | pending |
-| AC-068 | REQ-007 | TASK-068 | 固定完整技术diff的spec/quality双结论，无未决必需缺陷 | pending |
-| AC-069 | REQ-004/005/006/007 | TASK-069 | 独立新消费者/受影响旧回归/正常bundle及公开消费的实际退出与原始证据 | pending |
+| AC-067 | REQ-004/005/007 | TASK-067 | 固定公共消费者、独立网格/字节期望及真实缺API RED原件 | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
+| AC-068 | REQ-007 | TASK-068 | 固定完整技术diff的spec/quality双结论，无未决必需缺陷 | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
+| AC-069 | REQ-004/005/006/007 | TASK-069 | 独立新消费者/受影响旧回归/正常bundle及公开消费的实际退出与原始证据 | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
 | AC-070 | REQ-004/005/007 | TASK-070 | AC005/007与文件原语有限验收及最终内容/元数据核对，不提升完整AC010/Linux | pending |
