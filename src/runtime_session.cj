@@ -56,9 +56,8 @@ class RuntimeSession {
         if (let Some(current) <- activeSession.get()) {
             if (current.id != id) { throw UIException("WrongUIContext", "another session owns the active callback") }
         }
-        if (Thread.currentThread.id != threadId || uiThreadIdentity().nonce != threadNonce) {
-            throw UIException("WrongUIContext", "wrong UI thread")
-        }
+        if (Thread.currentThread.id != threadId) { throw UIException("WrongUIContext", "wrong UI thread") }
+        if (uiThreadIdentity().nonce != threadNonce) { throw UIException("WrongUIContext", "wrong UI thread") }
     }
     func requireContext(): Unit {
         requireOwner()
@@ -103,7 +102,8 @@ class RuntimeSession {
     func recordFrame(): Unit { lock.lock(); try { frames++ } finally { lock.unlock() } }
     func addNode(node: RuntimeNode): Unit { lock.lock(); try { nodes.add(node) } finally { lock.unlock() } }
     func inActiveDomain(): Bool {
-        if (Thread.currentThread.id != threadId || uiThreadIdentity().nonce != threadNonce) { return false }
+        if (Thread.currentThread.id != threadId) { return false }
+        if (uiThreadIdentity().nonce != threadNonce) { return false }
         match (activeSession.get()) { case Some(session) => session.id == id; case None => false }
     }
     func markDirtyLocked(binding: Binding, deferred: Bool): Unit {
@@ -117,7 +117,8 @@ class RuntimeSession {
         try { invalidationSequence } finally { lock.unlock() }
     }
     func invalidate(binding: Binding, deferred!: Bool = false): Unit {
-        let later = deferred || !inActiveDomain()
+        var later = deferred
+        if (!later) { later = !inActiveDomain() }
         lock.lock()
         try { if (active && binding.active) { markDirtyLocked(binding, later) } } finally { lock.unlock() }
     }
