@@ -58,6 +58,40 @@ export function verifyHeadless(rows, wire) {
   for (const name of ['clipboard','title','titleStack']) assert(rows.get(`headless.capabilities.${name}`).startsWith('Unsupported|KnownUnavailable|NoDevice|'), `headless ${name}`);
   assert.equal(rows.get('cleanup.count'), '0');
 }
+// S007: complete save owns a scope even when set fails before its first byte.
+function verifySafeSetCleanup(rows,wire,native,route,allWire) {
+  const save=wrap(hex(golden.saveHex),route),pop=wrap(hex(golden.popHex),route);
+  const expected=Buffer.concat([save,pop]);
+  assertWire(wire,expected,'saved scope after zero-byte set failure: one safe cleanup pop');
+  assertResult(rows,'fault',{operation:'SetHostTitle',status:'Failed',bytes:save.length,issue:'WriteFailed',offset:-1});
+  assert.equal(rows.get('fault.steps'),'2','complete save and failed set are distinct actual steps');
+  assert.equal(rows.get('fault.step0'),`SaveHostTitle|SentUnconfirmed|${save.length}|NoIssue`);
+  assert.equal(rows.get('fault.step1'),'SetHostTitle|Failed|0|WriteFailed');
+  assertResult(rows,'cancelled.after',{operation:'CopyLocalText',status:'Failed',bytes:0,issue:'Cancelled',offset:-1});
+  assert.equal(rows.get('cleanup.count'),'1','exactly one owned scope cleanup result');
+  for(const key of ['cleanup.0','cleanup.again']) {
+    assertResult(rows,key,{operation:'RestoreHostTitle',status:'SentUnconfirmed',bytes:pop.length,issue:'NoIssue',offset:-1,restore:'RestoreSentUnconfirmed'});
+    assert.equal(rows.get(key+'.steps'),'1','cleanup/requery retains one actual restore step');
+    assert.equal(rows.get(key+'.step0'),`RestoreHostTitle|SentUnconfirmed|${pop.length}|NoIssue`);
+  }
+  const primary=rows.get('run.primary')??rows.get('run.error');
+  assert(primary&&primary.length,'first device error remains observable');
+  for(const later of ['SESSION_LATE_CALLBACK_SENTINEL','SESSION_UI_CLEANUP_SENTINEL','terminal restore failed','ASSERT:','POST_AFTER_DEVICE_FAULT'])
+    assert(!primary.includes(later),'later callback/cleanup errors cannot replace first device error');
+  const events=native.trim().split('\n').map(line=>line.split('\t'));
+  const close=events.findIndex(event=>event[0]==='close');
+  assert(close>=0,'real native close recorded after optional cleanup');
+  assert.equal(events[close][1],'0','actual native cleanup succeeds even when its return is later injected');
+  const before=events.slice(0,close);
+  assert.deepEqual(before.filter(e=>e[0]==='sequence').map(e=>Number(e[1])),[1,2,3],'save, failed set, cleanup pop before first close');
+  assert.deepEqual(before.filter(e=>e[0]==='fault'),[['fault','2','0']],'selected second sequence fails at byte0');
+  assert.deepEqual(before.filter(e=>e[0]==='sequence-result').map(e=>e.slice(1).map(Number)),[[0,save.length],[-1,0],[0,pop.length]]);
+  const writes=before.filter(e=>e[0]==='write');
+  assert.equal(writes.reduce((n,e)=>n+Number(e[2]),0),expected.length,'no extra screen/control bytes before close');
+  for(const [sequence,count] of [[1,save.length],[2,0],[3,pop.length]])
+    assert.equal(writes.filter(e=>Number(e[1])===sequence).reduce((n,e)=>n+Number(e[2]),0),count);
+  assertWire(allWire.subarray(0,expected.length),expected,'all pre-close output is exactly save plus pop');
+}
 export function verifyLive(rows, wire, native, scenario, route, offset = 0, allWire = wire) {
   for(const forbidden of ['\x1b]0;','\x1b]1;','\x1b]52;c;?']) assert(!allWire.includes(Buffer.from(forbidden)),'no icon-name/both-title/clipboard-query protocol');
   common(rows); assert.equal(rows.get('disposed'), 'yes', 'UI dispose happens');
@@ -151,7 +185,8 @@ export function verifyLive(rows, wire, native, scenario, route, offset = 0, allW
       assert(rows.get('run.error') && !rows.get('run.error').startsWith('SESSION_LATE_CALLBACK_SENTINEL'),'device error priority');
       const steps=Number(rows.get('fault.steps')); assert(steps>0,'write failure has actual step'); assert(rows.get(`fault.step${steps-1}`).endsWith('|WriteFailed'),'step issue remains WriteFailed');
       if(partial) { assertWire(allWire,Buffer.concat([prefix,frame.subarray(0,offset)]),'partial failure stops all control/frame output'); assert.equal(rows.get('reopen.refused'),'true'); assert.match(rows.get('reopen.error'),/ParserUnsynchronized/); }
-      else { assert.equal(rows.get('reopen.refused'),'false','zero byte failure permits a later run'); assert(wire.subarray(0,prefix.length).equals(prefix)); }
+      else { assert.equal(rows.get('reopen.refused'),'false','zero byte failure permits a later run'); assert(wire.subarray(0,prefix.length).equals(prefix));
+        if(isSet) verifySafeSetCleanup(rows,wire,native,route,allWire); }
       assert(!native.includes('poll-after-fault'),'no next poll after failed callback');
       const closes=native.trim().split('\n').filter(l=>l.startsWith('close\t')); assert(closes.length>=1,'native close always occurs');
       if (partial && scenario !== 'fault-title-unicode') assert.equal(rows.get('cleanup.count'),isSet||isRestore?'1':'0','bounded title diagnostic');

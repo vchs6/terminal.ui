@@ -53,3 +53,4 @@ for(const bad of [{...observed,clipboardAfterHex:Buffer.from(hostText).toString(
 console.log('PASS host observation oracle: permission-negative/title/icon/termios controls=4; synthetic observations only, no product/host PASS');
 
 await import('./key_selftest.mjs');
+await import('./safe_pop_selftest.mjs');

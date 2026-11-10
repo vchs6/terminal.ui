@@ -13,3 +13,5 @@ for(const route of ['Direct','TmuxPassthrough','ScreenPassthrough']) {
 for(const offset of [1,2,5]) sessionCases.push({scenario:'fault-screen',route:'Direct',offset});
 sessionCases.push({scenario:'fault-copy',route:'Direct',offset:1,uiFail:true,closeFail:true,callbackFail:true});
 sessionCases.push({scenario:'ledger-error',route:'Direct',uiFail:true,closeFail:true});
+// Safe owned title scope must still pop despite later callback/UI cleanup errors.
+sessionCases.push({scenario:'fault-set',route:'Direct',offset:0,uiFail:true,callbackFail:true});
