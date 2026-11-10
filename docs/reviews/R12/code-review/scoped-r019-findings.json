@@ -1,0 +1,20 @@
+{
+  "task": "TASK-073",
+  "scope": "R019 atomic terminal dimensions and resize oracle",
+  "candidate": "0912436b647f701e1de607fe03ce1bfba6a9bbf4",
+  "baseline": "c3d743d2dd5cb125e4ca435b2842d1b10c501281",
+  "product": "61ce9e5edc4cb047155165c87596b5afd58fa6b5",
+  "tests": "dddbdd9",
+  "requested_model": "Astra/high",
+  "actual_model": "not independently verifiable",
+  "spec_verdict": "PASS",
+  "quality_verdict": "PASS",
+  "critical_count": 0,
+  "important_count": 0,
+  "findings": [],
+  "limitations": [
+    "Bounded R019 review, not independent TASK-074/TASK-075 or full Linux completion",
+    "No unrelated suite rerun; existing raw PTY evidence re-inspected",
+    "C ABI probe uses test-local ioctl injection, not a real PTY"
+  ]
+}

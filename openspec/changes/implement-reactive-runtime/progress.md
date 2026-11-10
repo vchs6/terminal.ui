@@ -49,3 +49,5 @@ Task072 fix round1/5：F001–006已独立关闭；相邻owner错误出口F007�
 074独立runtime_execution指定Sol/medium在c3源完成core255 PASS、宏正向、15negative有效复用审计、12PTY、六组旧Frame/布局回归、正常bundle/干净root-core-macro-reactive消费、XTerm/VTE两个实际宿主PNG/input/resize/恢复及CPU，唯旧application-lifecycle resize-success原样失败，总074 FAIL，075不得提前开始。独立resize_root_cause按systematic-debugging隔离确认双缺陷：产品两query能混pair；GNU stty两TIOCSWINSZ会真的产生中间24×3；两种raw与原306B完全相同，不能凭旧日志唯一归因；完整旧帧inflight也合法。R019冻结内部原子尺寸快照与正确settled oracle；先独立测试/真实RED，后产品作者修，再限定审核/受影响执行，不重跑无关已有效证据，不修改旧失败为通过。
 
 R019独立test-only原dddbdd9已集成6d703bf：真实App coherence强RED1、合法inflight0、修订两legacy settled fixture旧产品0，原失败未覆盖。产品原61ce9e5已集成0912436，仅native/bridge/App三文件，开发root/native/ABI/coherence/inflight/两resize/正常bundle均0；不以自测替代独立074。073原审者正在限定复核，074随后只重验受影响native/resize/新源码包，复用无关同源宏/runtime/Frame有效证据；075尚未准入。
+
+R019独立限定073最终spec/quality PASS，无Critical/Important；独立C probe覆盖0/1/65535组合/单GET/axis/error，重解析原始PTY验证强RED及合法inflight/最终grid/termios。报告及失败历史按原字节归R12/code-review，archive-index逐文件hash。074已在原固定0912436准入限定复验，不因main后加C/Rich/theme测试改变运行源。
