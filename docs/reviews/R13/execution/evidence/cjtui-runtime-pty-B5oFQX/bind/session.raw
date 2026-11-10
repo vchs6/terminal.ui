@@ -1,0 +1,13 @@
+An exception has occurred:
+Exception: CJTUI_BIND_SENTINEL
+	 at runtime_session::main::lambda.0::lambda.0()(/workspace/work/dynamic-execution/source/tests/runtime/session/src/main.cj:24)
+	 at cjtui::Component::text::lambda.0()(/workspace/work/dynamic-execution/source/src/component.cj:336)
+	 at cjtui::Binding::evaluate()(/workspace/work/dynamic-execution/source/src/binding.cj:62)
+	 at cjtui::RuntimeSession::evaluateReady(Int64)(/workspace/work/dynamic-execution/source/src/runtime_session.cj:864)
+	 at cjtui::RuntimeSession::stabilize(Int64, Bool)(/workspace/work/dynamic-execution/source/src/runtime_session.cj:762)
+	 at cjtui::RuntimeSession::start::lambda.0()(/workspace/work/dynamic-execution/source/src/runtime_session.cj:893)
+	 at cjtui::RuntimeSession::enter<...>(() -> T0)(/workspace/work/dynamic-execution/source/src/runtime_session.cj:108)
+	 at cjtui::RuntimeSession::start()(/workspace/work/dynamic-execution/source/src/runtime_session.cj:877)
+	 at cjtui::Application::startHeadless()(/workspace/work/dynamic-execution/source/src/application.cj:78)
+	 at cjtui::Application::run()(/workspace/work/dynamic-execution/source/src/application.cj:186)
+	 at runtime_session::main()(/workspace/work/dynamic-execution/source/tests/runtime/session/src/main.cj:69)

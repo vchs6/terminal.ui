@@ -7,3 +7,7 @@
 093作者指出包内policy构造形状未冻会留下待填adapter；主代理G010固定实际生产也使用的unicode/ascii/mapped三个包内工厂及8192防御复制，无新增public API。澄清helper width负/零和Frame资源预算，不虚构所有簇最多两列或人为Int64.Max OOM用例；回原独立preflight限定复核后正式测试冻结。
 
 G010 final6d30da4独立限定ready/design_reviewed，无新Important；093 glyph-only最小消费者真实RED7项而旧rootbuild0，无Rich/Theme混淆。G011 fad6301精确nativeError分支，原preflight只核此新增表；测试冻结按最终版本，不让测试作者猜errno。
+
+G011原限定审查识别成功空map reason与G003冲突，已a0eae999修复并独立finalready/design_reviewed，GLYPH-G011-001 verified；首次发现与最终补充R16/preflight均保留。093按此最终合同冻结，最终产品仍等080/084。
+
+093正式test-only原daf2a252已集成901b06a（17files/935lines），最终合同a0eae999，独立旧root正常build0、glyph-only真缺API RED1及internal/public/rich/session真实缺实现RED；readonly negative缺类型仍未计通过，声明-only no-run未执行不计GREEN。原件/manifest/hash归R16/test-design；shared runner未碰。094产品仍等080/084及最终正式角色准入，真实glyph设备GREEN/VT等096。

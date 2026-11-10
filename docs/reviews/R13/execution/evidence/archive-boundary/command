@@ -1,0 +1,1 @@
+node scripts/check-bundle.mjs target/cjtui-0.0.0.cjp 

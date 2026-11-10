@@ -1,0 +1,2261 @@
+# Review package: 1d2af2c1aefa140e2f2f2fb11c20dd6e7b749531..167c2a3f701b8718e90fe7d9b78050af5665a23b
+
+## Commits
+167c2a3 feat: reconcile dynamic groups in one physical child sequence
+
+## Files changed
+ docs/product/README.md         |  18 +-
+ examples/dynamic/cjpm.toml     |   8 +
+ examples/dynamic/src/main.cj   |  58 +++
+ src/binding.cj                 |  56 ++-
+ src/child_declaration.cj       |   7 +
+ src/child_entry.cj             |   6 +
+ src/component.cj               |   3 +-
+ src/component_collector.cj     |  58 ++-
+ src/conditional_declaration.cj |  19 +
+ src/conditional_group.cj       |  65 +++
+ src/dynamic_declaration.cj     |   5 +
+ src/dynamic_group.cj           | 102 +++++
+ src/foreach_declaration.cj     |  19 +
+ src/foreach_group.cj           |  89 ++++
+ src/layout_node.cj             |  31 +-
+ src/list_item.cj               |  18 +
+ src/node_ref.cj                |  60 ++-
+ src/observable.cj              |  36 +-
+ src/runtime_node.cj            |  21 +-
+ src/runtime_session.cj         | 986 +++++++++++++++++++++++++++++++++++------
+ src/structural_command.cj      |  17 +
+ 21 files changed, 1503 insertions(+), 179 deletions(-)
+
+## Diff
+diff --git a/docs/product/README.md b/docs/product/README.md
+index 5e53330..12580ae 100644
+--- a/docs/product/README.md
++++ b/docs/product/README.md
+@@ -4,21 +4,21 @@ cjtui 0.0.0 的首个切片提供 Linux ANSI TTY 文本界面：`Text`、`Row`
+ 
+ 使用仓颉 SDK 1.2.0，在 Linux ANSI 终端中从源码运行最小示例：
+ 
+ ```sh
+ cd examples/minimal
+ cjpm run
+ ```
+ 
+ 按 `q` 退出，Ctrl-C 取消；程序需要实际 TTY。构建依赖及可选离线 Unicode 数据输入见 [原生构建](native-build.md)。
+ 
+-首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、动态条件与列表、主题、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
++首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、主题、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
+ 
+ 低层可用 `Frame(width, height)` 和 `put(x, y, text, style: Style(...))` 写入网格，`cellAt` 查询，`toPlainText` 和 `toAnsi` 导出完整快照。负尺寸与越界查询报错；写入按边界裁剪，拒绝除换行外的控制字符。`render(root, width, height)` 使用同一网格渲染组件树。`Application(root).onKey { event => ... }.run()` 负责终端会话；文本按 Unicode 字符提供，`stop()` 可从回调退出。
+ 
+ 低层帧支持 `Frame(width, height, transparent: true)` 创建透明底层，`composite` 按偏移叠加：透明单元跳过，带样式空格覆盖。`clear`、`copy` 和 `resized` 保持宽字符完整；截断的宽字符片段变为保留样式的空格。复制和缩放保留源单元的透明位，新增区域使用源帧的默认空白类型。`writePlainText(path)` 和 `writeAnsi(path)` 写入完整 UTF-8 快照，已有文件会被截断；文件错误向调用方传播。正面积默认最多 1048576 单元，可通过 `maxCells` 显式调整；零面积保留，零宽文本的换行数量也受预算限制。不同字符宽度策略的帧不能合成。
+ 
+ 布局可通过组件属性链设置 `width`、`height`、`minWidth`、`minHeight`、`layoutWeight`、`padding`；`widthAuto`、`heightAuto` 清除固定尺寸。`Row` 和 `Column` 还支持 `gap`、`alignItems` 和 `justifyContent`，`Text` 支持逐行 `textAlign`。尺寸与间距以字符列和行为单位，必须非负；实际视口及祖先内容区域限制绘制。正权重在容器主轴上分配剩余空间，余数按最大余数及声明顺序确定。`Alignment` 提供 `Start`、`Center`、`End`、`Stretch`，其中 `Stretch` 仅用于交叉轴对齐。显式背景填充组件外框；文本、裁剪及宽字符使用同一 Frame 规则。
+ 
+ 组件可通过 `border(BorderStyle.Rounded)`、`borderColor(Color.Cyan)` 和 `shadow()` 设置字符装饰；`border(BorderStyle.None)` 与 `shadow(enabled: false)` 分别移除效果。边框占外框每边一行或一列，阴影仅扩展绘制范围、不改变布局，并受祖先内容区裁剪。阴影可指定正负偏移及完整 `Style`。未设置边框颜色时使用节点有效前景色；显式背景包含边框与内边距。`BorderStyle` 还提供 `Single`、`Double` 和 `Ascii`；终端宽度策略无法以一列显示某个边框字符时整套回退 ASCII。阴影字符 `░` 非一列时回退 `.`，这不代表检测了字体覆盖。
+ 
+ 低层 `Frame.fillRect`、`drawBorder` 和 `drawShadow` 使用相同字符宽度、样式和裁剪规则；填充写入带样式的空格，边框按原矩形几何裁剪。`examples/layout` 展示标题、加权面板和底栏；按 `d` 切换边框及阴影，按 `q` 退出，终端改变尺寸时自动重排。
+@@ -27,11 +27,25 @@ cjpm run
+ 
+ 颜色等级包括 `Basic8`、`Basic16`、`Indexed256`、`TrueColor` 和 `Monochrome`。降级使用固定名义调色板的 RGB 平方距离，距离相同时选择较小索引；实际终端可能使用自定义调色板。`Frame.toAnsi()` 默认导出完整真彩色及六种属性的离线快照，也可通过 `colorMode` 指定颜色预览；网格保留原始颜色和样式。
+ 
+ 文本属性包括 `bold`、`dim`、`italic`、`underline`、`inverse` 和 `strikethrough`。组件属性链如 `.italic()` 启用属性，`.italic(false)` 显式关闭继承值；`Style` 对应参数默认为 false。文本、显式背景和边框继承这些属性，阴影使用传入的完整 Style。
+ 
+ `examples/colors` 展示命名色、索引色、RGB 和文本属性；在终端中按 `c` 循环三种 RGB 样例，按 `t` 切换属性，按 `q` 退出。
+ 
+ 
+ 可观察状态与持久组件示例位于 `examples/reactive`。在 SDK 1.2.0 环境中运行 `cd examples/reactive && cjpm run`；按任意键递增，Ctrl-C 退出。源码同时导入 `cjtui`、`cjtui.*` 和 `cjtui.macros.*`，使用 `@Component`、带显式类型和初值的 `@State` 与 `@Bind` 声明绑定。普通表达式按初值求取；对自动更新的属性使用 `@Bind(expr)` 或类型明确的 `{ => expr }` getter。
+ 
+-`Observable<T>` 可由多个视图共享；`set` 和 `notify` 可从后台线程调用，框架在 UI 会话处理绑定。终端循环在无阻塞用户回调时最多每 100 毫秒检查一次更新。可变对象内部的更改由应用同步，并显式调用 `notify`。`Application.post` 将回调投递到会话，`batch` 合并 UI 变更；`startHeadless`、`snapshot` 和 `dispose` 支持无终端消费。`visible(false)` 保留节点与状态但不占布局。`render` 是无终端的完整帧导出，脱离活动会话导出时不运行挂载副作用。当前动态结构、焦点和覆盖层仍在开发。
++`Observable<T>` 可由多个视图共享；`set` 和 `notify` 可从后台线程调用，框架在 UI 会话处理绑定。终端循环在无阻塞用户回调时最多每 100 毫秒检查一次更新。可变对象内部的更改由应用同步，并显式调用 `notify`。`Application.post` 将回调投递到会话，`batch` 合并 UI 变更；`startHeadless`、`snapshot` 和 `dispose` 支持无终端消费。`visible(false)` 保留节点与状态但不占布局。`render` 是无终端的完整帧导出，脱离活动会话导出时不运行挂载副作用。焦点和覆盖层仍在开发。
++
++
++`If(condition, thenBody, elseBody: ...)` 和 `ForEach<T>(items, key, body)` 提供响应式条件与列表；普通 `if` / `for` 只在组件首次构造时执行。它们没有额外布局盒，生成的组件直接进入父节点。`If` 活跃分支可以为空，最多一个根；`ForEach` 每个 key 必须有一个根，复合项使用 `Column` 或 `Row`。key 必须非空且在本组唯一；框架保留数据顺序，不推断排序或数据保留规则。
++
++列表 body 接收 `ListItem<T>`，其中 `key` 固定，`value` 是只读可观察值槽。使用 `Text({ => item.value.name })` 一类 getter，在相同 key 的数据对象替换后自动更新；保留项的节点身份与局部状态不变。删除再加入同一 key 会创建新节点。
++
++在 UI 事件、`post` 或 `app.batch` 中，可通过父组件的 `reference()` 调用 `children()`、`append(child)`、`insertBefore(anchor, child)`、`moveBefore(childRef, anchor)`、`moveToEnd(childRef)` 和 `remove(childRef)`。`children()` 返回已提交直接孩子的独立快照，不暴露内部 marker；批内新插入组件的 `reference()` 要等提交后取得。插入描述须未挂载，同父移动保留身份，跨父移动被拒绝。生命周期回调如需修改结构，通过 `post` 安排下一轮。
++
++显式命令先提交，再协调本轮失效的动态组。协调按组当前占用的物理槽位依数据顺序替换，手动节点与其他组的相对次序保持。例如 `A X B C` 中 `X` 为手动节点，列表反转后为 `C X B A`，删除 `A` 后为 `B X C`；清空后剩 `X`，再加入 `D/E` 为 `X D E`。手动移除声明节点不会修改业务数据，只有后续数据失效或父引用 `notify(ChangeKind.Structure)` 才按最新数据重建。
++
++`examples/dynamic` 是公开 API 的可运行混合构造示例：`cjpm run` 启动终端应用，`target/release/bin/main --smoke` 在无终端模式执行插入、重排及快照。结构错误会停止并清理当前会话；批次保留已完成副作用，不承诺业务事务回滚。`RuntimeLimits` 的节点数、深度、结构操作与稳定轮数预算同样约束动态内容。
++
++
++结构 API 的失败通过 `UIException.code` 区分：旧引用为 `StaleReference`，失效或外父锚点为 `StaleAnchor`，跨父移动为 `CrossParentMove`，重复挂载或预留为 `AlreadyMounted`，叶子父节点为 `InvalidParent`。动态构造的空 key、重复 key、根数不符分别为 `InvalidKey`、`DuplicateKey`、`ConstructionRootCount`；预算超限为 `CapacityExceeded`，同步更新不稳定为 `UnstableUpdate`。错误 UI 域为 `WrongUIContext`，结构求值重入为 `ReentrantStructure`，求值中写可观察状态为 `ReentrantEvaluation`，生命周期中直接改树为 `LifecycleReentry`。应用 getter、body、事件或挂载回调抛出的普通异常保留原对象与类型；若清理还发生附加失败，使用 `UICleanupException` 聚合报告。
+diff --git a/examples/dynamic/cjpm.toml b/examples/dynamic/cjpm.toml
+new file mode 100644
+index 0000000..06be3f0
+--- /dev/null
++++ b/examples/dynamic/cjpm.toml
+@@ -0,0 +1,8 @@
++[package]
++  cjc-version = "1.2.0"
++  name = "dynamic_example"
++  version = "0.0.0"
++  output-type = "executable"
++
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/examples/dynamic/src/main.cj b/examples/dynamic/src/main.cj
+new file mode 100644
+index 0000000..e33fc78
+--- /dev/null
++++ b/examples/dynamic/src/main.cj
+@@ -0,0 +1,58 @@
++package dynamic_example
++
++import cjtui.*
++import std.env.getCommandLine
++
++main(): Int64 {
++    let items = Observable<Array<String>>(["A", "B", "C"])
++    let show = Observable<Bool>(true)
++    let root = Column {
++        Text("r: reverse   e: empty/refill   i: insert manual   v: toggle   q: quit")
++        If({=> show.get()}, {=> Text("Declared and manual children share one sequence")})
++        ForEach<String>({=> items.get()}, {value => value}, {
++            item => Text({=> item.value}).foreground(Color.Cyan)
++        })
++    }
++    let app = Application(root)
++    app.onKey {
++        event => if (event.text == "q") {
++            app.stop()
++        } else if (event.text == "r") {
++            items.set(["C", "B", "A"])
++        } else if (event.text == "e") {
++            items.set(if (items.get().isEmpty()) {
++                ["D", "E"]
++            } else {
++                []
++            })
++        } else if (event.text == "v") {
++            show.set(!show.get())
++        } else if (event.text == "i") {
++            let parent = root.reference().getOrThrow()
++            let children = parent.children()
++            let manual = Text("manual").foreground(Color.Yellow)
++            if (children.size > 2) {
++                parent.insertBefore(children[2], manual)
++            } else {
++                parent.append(manual)
++            }
++        }
++    }
++    if (getCommandLine().contains("--smoke")) {
++        app.startHeadless()
++        try {
++            app.batch {
++                =>
++                    let parent = root.reference().getOrThrow()
++                    parent.insertBefore(parent.children()[3], Text("manual"))
++                    items.set(["C", "B", "A"])
++            }
++            app.snapshot(72, 8)
++        } finally {
++            app.dispose()
++        }
++    } else {
++        app.run()
++    }
++    0
++}
+diff --git a/src/binding.cj b/src/binding.cj
+index 8d709df..70ac6c5 100644
+--- a/src/binding.cj
++++ b/src/binding.cj
+@@ -13,51 +13,85 @@ class Binding {
+     let getter: () -> Unit
+     let dependencies = ArrayList<BindingDependency>()
+     let ownerLock = Mutex()
+     var owner: ?RuntimeSession = None
+     var node: ?RuntimeNode = None
+     var publishedDependencies: Int64 = 0
+     var dirty = true
+     var dirtySequence: Int64 = 0
+     var active = false
+     init(component: Component, name: String, category: ChangeKind, getter: () -> Unit) {
+-        this.component = component; this.name = name; this.category = category; this.getter = getter
++        this.component = component
++        this.name = name
++        this.category = category
++        this.getter = getter
+     }
+     func read(source: ObservableSource, version: Int64): Unit {
+-        for (entry in dependencies) { if (entry.source.id == source.id) { return } }
++        for (entry in dependencies) {
++            if (entry.source.id == source.id) {
++                return
++            }
++        }
+         if (let Some(node) <- component.readMount()) {
+             if (dependencies.size >= node.session.limits.dependenciesPerBinding) {
+                 throw UIException("CapacityExceeded", "dependency limit exceeded")
+             }
+         }
+         dependencies.add(BindingDependency(source, version))
+     }
+     func invalidate(deferred!: Bool = false): Unit {
+         ownerLock.lock()
+-        try { if (let Some(session) <- owner) { session.invalidate(this, deferred: deferred) } } finally { ownerLock.unlock() }
++        try {
++            if (let Some(session) <- owner) {
++                session.invalidate(this, deferred: deferred)
++            }
++        } finally {
++            ownerLock.unlock()
++        }
+     }
+     func evaluate(): Unit {
+-        for (entry in dependencies) { entry.source.unsubscribe(this) }
++        for (entry in dependencies) {
++            entry.source.unsubscribe(this)
++        }
+         dependencies.clear()
+         let previous = evaluating.get()
+         evaluating.set(Some(this))
+-        try { getter() } finally { evaluating.set(previous) }
+-        for (entry in dependencies) { entry.source.subscribe(this, entry.version) }
++        try {
++            if (category == ChangeKind.Structure) {
++                inStructure(getter)
++            } else {
++                getter()
++            }
++        } finally {
++            evaluating.set(previous)
++        }
++        for (entry in dependencies) {
++            entry.source.subscribe(this, entry.version)
++        }
+         ownerLock.lock()
+         try {
+             if (let Some(session) <- owner) {
+                 session.publishDependencyCount(this, dependencies.size)
+             }
+-        } finally { ownerLock.unlock() }
++        } finally {
++            ownerLock.unlock()
++        }
+     }
+     func dispose(): Unit {
+         ownerLock.lock()
+         try {
+             if (let Some(session) <- owner) {
+                 session.deactivateBinding(this)
+-                owner = None; node = None
+-            } else { active = false }
+-        } finally { ownerLock.unlock() }
+-        for (entry in dependencies) { entry.source.unsubscribe(this) }
++                owner = None
++                node = None
++            } else {
++                active = false
++            }
++        } finally {
++            ownerLock.unlock()
++        }
++        for (entry in dependencies) {
++            entry.source.unsubscribe(this)
++        }
+         dependencies.clear()
+     }
+ }
+diff --git a/src/child_declaration.cj b/src/child_declaration.cj
+new file mode 100644
+index 0000000..7f11227
+--- /dev/null
++++ b/src/child_declaration.cj
+@@ -0,0 +1,7 @@
++package cjtui
++
++// Immutable construction descriptions. Live ordering belongs to RuntimeNode.sequence.
++enum ChildDeclaration {
++    | DeclaredComponent(Component)
++    | DeclaredGroup(DynamicDeclaration)
++}
+diff --git a/src/child_entry.cj b/src/child_entry.cj
+new file mode 100644
+index 0000000..47cf0e3
+--- /dev/null
++++ b/src/child_entry.cj
+@@ -0,0 +1,6 @@
++package cjtui
++
++enum ChildEntry {
++    | MountedChild(RuntimeNode)
++    | GroupMarker(DynamicGroup)
++}
+diff --git a/src/component.cj b/src/component.cj
+index 0d7c25d..1b18903 100644
+--- a/src/component.cj
++++ b/src/component.cj
+@@ -12,21 +12,22 @@ public open class Component {
+     var failed = false
+     var mounted: ?RuntimeNode = None
+     var explicitKey: ?String = None
+     let bindings = ArrayList<Binding>()
+     var mountEffect: ?(NodeRef) -> (() -> Unit) = None
+     var keyHandler: ?(UIKeyEvent) -> Unit = None
+     var captureHandler: ?(UIKeyEvent) -> Unit = None
+     var isVisible = true
+     let kind: Int64
+     var value: String
+-    let children = ArrayList<Component>()
++    let descriptionId = uniqueRuntimeId()
++    let declarations = ArrayList<ChildDeclaration>()
+     var fg: ?Color = None
+     var bg: ?Color = None
+     var isBold: ?Bool = None
+     var isDim: ?Bool = None
+     var isItalic: ?Bool = None
+     var isUnderline: ?Bool = None
+     var isInverse: ?Bool = None
+     var isStrikethrough: ?Bool = None
+     var fixedW: ?Int64 = None
+     var fixedH: ?Int64 = None
+diff --git a/src/component_collector.cj b/src/component_collector.cj
+index 4ec540a..57df7e4 100644
+--- a/src/component_collector.cj
++++ b/src/component_collector.cj
+@@ -1,21 +1,65 @@
+ package cjtui
+ 
+ import std.collection.ArrayList
+ 
+-let collector = ThreadLocal<ArrayList<Component>>()
++let collector = ThreadLocal<ArrayList<ChildDeclaration>>()
++let structureEvaluation = ThreadLocal<Bool>()
+ 
+-func collectChildren(parent: Component, body: () -> Unit): Unit {
++func inStructure<T>(action: () -> T): T {
++    let previous = structureEvaluation.get()
++    structureEvaluation.set(Some(true))
++    try {
++        action()
++    } finally {
++        structureEvaluation.set(previous)
++    }
++}
++
++func collectDeclarations(body: () -> Unit): Array<ChildDeclaration> {
+     let previous = collector.get()
+-    let next = ArrayList<Component>()
++    let previousBinding = evaluating.get()
++    let next = ArrayList<ChildDeclaration>()
+     collector.set(Some(next))
++    evaluating.set(Option<Binding>.None)
+     try {
+-        body()
+-        for (child in next) { parent.children.add(child) }
++        inStructure(body);
++        next.toArray()
+     } finally {
+-        collector.set(previous)
++        collector.set(previous);
++        evaluating.set(previousBinding)
++    }
++}
++
++func collectChildren(parent: Component, body: () -> Unit): Unit {
++    let declarations = collectDeclarations(body)
++    parent.declarations.add(all: declarations)
++}
++
++func collectDynamicRoot(body: () -> Unit, required: Bool): ?Component {
++    let declarations = collectDeclarations(body)
++    if (declarations.size > 1 || (required && declarations.size != 1)) {
++        throw UIException("ConstructionRootCount", "dynamic body must declare one component root")
++    }
++    if (declarations.isEmpty()) {
++        return None
++    }
++    match (declarations[0]) {
++        case ChildDeclaration.DeclaredComponent(component) => Some(component)
++        case ChildDeclaration.DeclaredGroup(_) => throw UIException("ConstructionRootCount",
++            "dynamic root must be a component")
+     }
+ }
+ 
+ func attach(component: Component): Unit {
+-    if (let Some(current) <- collector.get()) { current.add(component) }
++    if (let Some(current) <- collector.get()) {
++        current.add(ChildDeclaration.DeclaredComponent(component))
++    }
++}
++
++func attachGroup(group: DynamicDeclaration): Unit {
++    if (let Some(current) <- collector.get()) {
++        current.add(ChildDeclaration.DeclaredGroup(group))
++    } else {
++        throw UIException("InvalidParent", "dynamic group requires a component construction body")
++    }
+ }
+diff --git a/src/conditional_declaration.cj b/src/conditional_declaration.cj
+new file mode 100644
+index 0000000..3f90804
+--- /dev/null
++++ b/src/conditional_declaration.cj
+@@ -0,0 +1,19 @@
++package cjtui
++
++class ConditionalDeclaration <: DynamicDeclaration {
++    let condition: () -> Bool
++    let thenBody: () -> Unit
++    let elseBody: () -> Unit
++    init(condition: () -> Bool, thenBody: () -> Unit, elseBody: () -> Unit) {
++        this.condition = condition
++        this.thenBody = thenBody
++        this.elseBody = elseBody
++    }
++    public override func create(parent: RuntimeNode): DynamicGroup {
++        ConditionalGroup(parent, condition, thenBody, elseBody)
++    }
++}
++
++public func If(condition: () -> Bool, thenBody: () -> Unit, elseBody!: () -> Unit = {=>}): Unit {
++    attachGroup(ConditionalDeclaration(condition, thenBody, elseBody))
++}
+diff --git a/src/conditional_group.cj b/src/conditional_group.cj
+new file mode 100644
+index 0000000..a5d7fc6
+--- /dev/null
++++ b/src/conditional_group.cj
+@@ -0,0 +1,65 @@
++package cjtui
++
++import std.collection.ArrayList
++
++class ConditionalGroup <: DynamicGroup {
++    let condition: () -> Bool
++    let thenBody: () -> Unit
++    let elseBody: () -> Unit
++    var branch: ?Bool = None
++    init(parent: RuntimeNode, condition: () -> Bool, thenBody: () -> Unit, elseBody: () -> Unit) {
++        super(parent)
++        this.condition = condition
++        this.thenBody = thenBody
++        this.elseBody = elseBody
++    }
++    public override func prepare(): Unit {
++        let selected = condition()
++        if (branch == Some(selected)) {
++            if (!owned().isEmpty()) {
++                return
++            }
++            // An empty branch is stable; a manually removed root is rebuilt on coordination.
++            if (emptyBranch) {
++                return
++            }
++        }
++        let component = collectDynamicRoot(if (selected) {
++            thenBody
++        } else {
++            elseBody
++        }, false)
++        let additions = ArrayList<Component>()
++        if (let Some(root) <- component) {
++            additions.add(root)
++        }
++        parent.session.preflight(additions.toArray(), Some(parent), retiring: owned())
++        plan = Some(
++            {
++                =>
++                    parent.session.useStructuralOps(if (owned().isEmpty() && additions.isEmpty()) {
++                        0
++                    } else {
++                        1
++                    })
++                    parent.session.preflight(additions.toArray(), Some(parent), retiring: owned())
++                    parent.session.replacing(
++                        owned(),
++                        {
++                            =>
++                                let next = ArrayList<RuntimeNode>()
++                                if (let Some(root) <- component) {
++                                    let node = parent.session.mount(root, Some(parent), parent.depth + 1)
++                                    node.groupId = id
++                                    next.add(node)
++                                }
++                                branch = Some(selected)
++                                emptyBranch = component.isNone()
++                                replace(next.toArray())
++                        }
++                    )
++            }
++        )
++    }
++    var emptyBranch = false
++}
+diff --git a/src/dynamic_declaration.cj b/src/dynamic_declaration.cj
+new file mode 100644
+index 0000000..fd2d3ad
+--- /dev/null
++++ b/src/dynamic_declaration.cj
+@@ -0,0 +1,5 @@
++package cjtui
++
++abstract class DynamicDeclaration {
++    public func create(parent: RuntimeNode): DynamicGroup
++}
+diff --git a/src/dynamic_group.cj b/src/dynamic_group.cj
+new file mode 100644
+index 0000000..9173874
+--- /dev/null
++++ b/src/dynamic_group.cj
+@@ -0,0 +1,102 @@
++package cjtui
++
++import std.collection.{ArrayList, HashSet}
++
++abstract class DynamicGroup {
++    let id = uniqueRuntimeId()
++    let parent: RuntimeNode
++    var plan: ?() -> Unit = None
++    init(parent: RuntimeNode) {
++        this.parent = parent
++    }
++    public func prepare(): Unit
++    public open func forget(_: String): Unit {}
++    func owned(): Array<RuntimeNode> {
++        let result = ArrayList<RuntimeNode>()
++        for (entry in parent.sequence) {
++            if (let ChildEntry.MountedChild(node) <- entry) {
++                if (node.groupId == id) {
++                    result.add(node)
++                }
++            }
++        }
++        result.toArray()
++    }
++    func commit(): Unit {
++        if (let Some(action) <- plan) {
++            plan = None
++            action()
++        }
++    }
++    // Replace owned slots in their current physical order. Other entries stay in order,
++    // including markers and nodes moved from other groups.
++    func replace(next: Array<RuntimeNode>): Unit {
++        let old = owned()
++        var changed = old.size != next.size
++        for (i in 0..old.size) {
++            if (i < next.size && old[i].id != next[i].id) {
++                changed = true
++            }
++        }
++        if (!changed) {
++            return
++        }
++        let result = ArrayList<ChildEntry>()
++        var slot: Int64 = 0
++        var last: Int64 = -1
++        for (i in 0..parent.sequence.size) {
++            if (let ChildEntry.MountedChild(node) <- parent.sequence[i]) {
++                if (node.groupId == id) {
++                    last = i
++                }
++            }
++        }
++        for (i in 0..parent.sequence.size) {
++            let entry = parent.sequence[i]
++            var own = false
++            if (let ChildEntry.MountedChild(node) <- entry) {
++                own = node.groupId == id
++            }
++            if (own) {
++                if (slot < next.size) {
++                    result.add(ChildEntry.MountedChild(next[slot]));
++                    slot++
++                }
++                if (i == last) {
++                    while (slot < next.size) {
++                        result.add(ChildEntry.MountedChild(next[slot]));
++                        slot++
++                    }
++                }
++            } else {
++                if (last < 0) {
++                    if (let ChildEntry.GroupMarker(group) <- entry) {
++                        if (group.id == id) {
++                            while (slot < next.size) {
++                                result.add(ChildEntry.MountedChild(next[slot]));
++                                slot++
++                            }
++                        }
++                    }
++                }
++                result.add(entry)
++            }
++        }
++        parent.sequence.clear()
++        parent.sequence.add(all: result)
++        let removed = ArrayList<RuntimeNode>()
++        let retained = HashSet<Int64>()
++        for (node in next) {
++            retained.add(node.id)
++        }
++        for (node in old) {
++            if (!retained.contains(node.id)) {
++                forget(node.groupKey);
++                removed.add(node)
++            }
++        }
++        parent.session.publish(next, removed.toArray())
++        parent.session.markChanged(parent, ChangeKind.Structure)
++        parent.session.unmount(removed.toArray())
++    }
++}
+diff --git a/src/foreach_declaration.cj b/src/foreach_declaration.cj
+new file mode 100644
+index 0000000..8cf32ab
+--- /dev/null
++++ b/src/foreach_declaration.cj
+@@ -0,0 +1,19 @@
++package cjtui
++
++class ForEachDeclaration<T> <: DynamicDeclaration {
++    let items: () -> Array<T>
++    let key: (T) -> String
++    let body: (ListItem<T>) -> Unit
++    init(items: () -> Array<T>, key: (T) -> String, body: (ListItem<T>) -> Unit) {
++        this.items = items
++        this.key = key
++        this.body = body
++    }
++    public override func create(parent: RuntimeNode): DynamicGroup {
++        ForEachGroup<T>(parent, items, key, body)
++    }
++}
++
++public func ForEach<T>(items: () -> Array<T>, key: (T) -> String, body: (ListItem<T>) -> Unit): Unit {
++    attachGroup(ForEachDeclaration<T>(items, key, body))
++}
+diff --git a/src/foreach_group.cj b/src/foreach_group.cj
+new file mode 100644
+index 0000000..b76407a
+--- /dev/null
++++ b/src/foreach_group.cj
+@@ -0,0 +1,89 @@
++package cjtui
++
++import std.collection.{ArrayList, HashMap, HashSet}
++
++class ForEachGroup<T> <: DynamicGroup {
++    let items: () -> Array<T>
++    let key: (T) -> String
++    let body: (ListItem<T>) -> Unit
++    // A typed cell index, never a source of child order or retention.
++    let cells = HashMap<String, ListItem<T>>()
++    init(parent: RuntimeNode, items: () -> Array<T>, key: (T) -> String, body: (ListItem<T>) -> Unit) {
++        super(parent)
++        this.items = items
++        this.key = key
++        this.body = body
++    }
++    public override func forget(key: String): Unit {
++        cells.remove(key)
++    }
++    public override func prepare(): Unit {
++        let values = items().clone()
++        let keys = ArrayList<String>()
++        let uniqueKeys = HashSet<String>()
++        let previous = HashMap<String, RuntimeNode>()
++        for (node in owned()) {
++            previous[node.groupKey] = node
++        }
++        for (value in values) {
++            let itemKey = key(value)
++            if (itemKey.isEmpty()) {
++                throw UIException("InvalidKey", "list key cannot be empty")
++            }
++            if (!uniqueKeys.add(itemKey)) {
++                throw UIException("DuplicateKey", "duplicate list key")
++            }
++            keys.add(itemKey)
++        }
++        let additions = ArrayList<Component>()
++        let addedCells = ArrayList<ListItem<T>>()
++        for (i in 0..keys.size) {
++            if (previous.get(keys[i]).isNone()) {
++                let item = ListItem<T>(keys[i], values[i])
++                let component = collectDynamicRoot({=> body(item)}, true).getOrThrow()
++                additions.add(component);
++                addedCells.add(item)
++            }
++        }
++        let retiring = ArrayList<RuntimeNode>()
++        for (node in owned()) {
++            if (!uniqueKeys.contains(node.groupKey)) {
++                retiring.add(node)
++            }
++        }
++        parent.session.preflight(additions.toArray(), Some(parent), retiring: retiring.toArray())
++        plan = Some(
++            {
++                =>
++                    let old = owned()
++                    parent.session.useStructuralOps(parent.session.groupCost(old, keys.toArray()))
++                    parent.session.preflight(additions.toArray(), Some(parent), retiring: retiring.toArray())
++                    parent.session.replacing(
++                        retiring.toArray(),
++                        {
++                            =>
++                                let next = ArrayList<RuntimeNode>()
++                                var added: Int64 = 0
++                                for (i in 0..keys.size) {
++                                    match (previous.get(keys[i])) {
++                                        case Some(node) =>
++                                            cells[keys[i]].update(values[i])
++                                            next.add(node)
++                                        case None =>
++                                            let node = parent
++                                                .session
++                                                .mount(additions[added], Some(parent), parent.depth + 1)
++                                            node.groupId = id
++                                            node.groupKey = keys[i]
++                                            cells[keys[i]] = addedCells[added]
++                                            added++
++                                            next.add(node)
++                                    }
++                                }
++                                replace(next.toArray())
++                        }
++                    )
++            }
++        )
++    }
++}
+diff --git a/src/layout_node.cj b/src/layout_node.cj
+index f0cf156..f23272b 100644
+--- a/src/layout_node.cj
++++ b/src/layout_node.cj
+@@ -31,33 +31,38 @@ class LayoutNode {
+                 } else {
+                     line.add(g);
+                     w = sat(w, displayWidth(g))
+                 }
+             }
+             lines.add(line);
+             widths.add(w);
+             naturalW = greater(naturalW, w)
+             naturalH = lines.size
+         } else {
+-            for (child in c.children) {
+-                if (!child.isVisible) { continue }
+-                let n = LayoutNode(child, session);
+-                n.measure();
+-                children.add(n)
+-                let cw = greater(child.fixedW ?? n.naturalW, child.minW)
+-                let ch = greater(child.fixedH ?? n.naturalH, child.minH)
+-                if (c.kind == 1) {
+-                    naturalW = greater(naturalW, cw)
+-                    naturalH = sat(naturalH, ch)
+-                } else {
+-                    naturalW = sat(naturalW, cw)
+-                    naturalH = greater(naturalH, ch)
++            for (entry in c.readMount().getOrThrow().sequence) {
++                if (let ChildEntry.MountedChild(runtimeChild) <- entry) {
++                    let child = runtimeChild.component
++                    if (!child.isVisible) {
++                        continue
++                    }
++                    let n = LayoutNode(child, session);
++                    n.measure();
++                    children.add(n)
++                    let cw = greater(child.fixedW ?? n.naturalW, child.minW)
++                    let ch = greater(child.fixedH ?? n.naturalH, child.minH)
++                    if (c.kind == 1) {
++                        naturalW = greater(naturalW, cw)
++                        naturalH = sat(naturalH, ch)
++                    } else {
++                        naturalW = sat(naturalW, cw)
++                        naturalH = greater(naturalH, ch)
++                    }
+                 }
+             }
+             for (_ in 1..children.size) {
+                 if (c.kind == 1) {
+                     naturalH = sat(naturalH, c.spacing)
+                 } else {
+                     naturalW = sat(naturalW, c.spacing)
+                 }
+             }
+         }
+diff --git a/src/list_item.cj b/src/list_item.cj
+new file mode 100644
+index 0000000..1f80045
+--- /dev/null
++++ b/src/list_item.cj
+@@ -0,0 +1,18 @@
++package cjtui
++
++public class ListItem<T> {
++    public let key: String
++    private let slot: Observable<T>
++    init(key: String, value: T) {
++        this.key = key
++        slot = Observable<T>(value)
++    }
++    public prop value: T {
++        get() {
++            slot.get()
++        }
++    }
++    func update(value: T): Unit {
++        slot.set(value)
++    }
++}
+diff --git a/src/node_ref.cj b/src/node_ref.cj
+index df20680..fd8f5fe 100644
+--- a/src/node_ref.cj
++++ b/src/node_ref.cj
+@@ -1,31 +1,81 @@
+ package cjtui
+ 
++import std.collection.ArrayList
+ import std.ref.{WeakRef, CleanupPolicy}
+ 
+ public class NodeRef {
+     private let node: WeakRef<RuntimeNode>
+     private let sessionId: Int64
+     private let nodeId: Int64
+     init(node: RuntimeNode) {
+         this.node = WeakRef<RuntimeNode>(node, CleanupPolicy.EAGER)
+         sessionId = node.session.id
+         nodeId = node.id
+     }
+     public func isValid(): Bool {
+-        match (node.value) { case Some(value) => value.session.isValid(value); case None => false }
++        match (node.value) {
++            case Some(value) => value.session.isValid(value);
++            case None => false
++        }
++    }
++    public func sameNode(other: NodeRef): Bool {
++        sessionId == other.sessionId && nodeId == other.nodeId
++    }
++    func belongsTo(session: RuntimeSession): Bool {
++        sessionId == session.id
+     }
+-    public func sameNode(other: NodeRef): Bool { sessionId == other.sessionId && nodeId == other.nodeId }
+-    func belongsTo(session: RuntimeSession): Bool { sessionId == session.id }
+     func resolve(): RuntimeNode {
+         match (node.value) {
+-            case Some(value) => if (value.session.isValid(value)) { return value }
++            case Some(value) =>
++                if (value.session.isValid(value)) {
++                    return value
++                }
+             case None => ()
+         }
+         throw UIException("StaleReference", "node is no longer mounted")
+     }
+     public func notify(change: ChangeKind): Unit {
+-        if (evaluating.get().isSome()) { throw UIException("ReentrantEvaluation", "node notification during evaluation") }
++        if (structureEvaluation.get().isSome()) {
++            throw UIException("ReentrantStructure", "node notification during structure evaluation")
++        }
++        if (evaluating.get().isSome()) {
++            throw UIException("ReentrantEvaluation", "node notification during evaluation")
++        }
+         let value = resolve()
+         value.session.notify(value, change)
+     }
++    private func structureSession(): RuntimeSession {
++        match (node.value) {
++            case Some(value) =>
++                value.session.requireStructure();
++                value.session
++            case None => throw UIException("StaleReference", "node is no longer mounted")
++        }
++    }
++    public func children(): Array<NodeRef> {
++        let value = resolve()
++        value.session.requireContext()
++        let result = ArrayList<NodeRef>()
++        for (entry in value.sequence) {
++            if (let ChildEntry.MountedChild(child) <- entry) {
++                result.add(child.reference())
++            }
++        }
++        result.toArray()
++    }
++    public func insertBefore(anchor: NodeRef, child: Component): Unit {
++        structureSession().enqueue(StructuralCommand(0, this, Option<NodeRef>.None, Some(child), Some(anchor)))
++    }
++    public func append(child: Component): Unit {
++        structureSession().enqueue(StructuralCommand(0, this, Option<NodeRef>.None, Some(child), Option<NodeRef>.None))
++    }
++    public func moveBefore(child: NodeRef, anchor: NodeRef): Unit {
++        structureSession().enqueue(StructuralCommand(1, this, Some(child), Option<Component>.None, Some(anchor)))
++    }
++    public func moveToEnd(child: NodeRef): Unit {
++        structureSession().enqueue(StructuralCommand(1, this, Some(child), Option<Component>.None, Option<NodeRef>.None))
++    }
++    public func remove(child: NodeRef): Unit {
++        structureSession().enqueue(StructuralCommand(2, this, Some(child), Option<Component>.None, Option<NodeRef>.None))
++    }
+ }
+diff --git a/src/observable.cj b/src/observable.cj
+index e774869..dc86156 100644
+--- a/src/observable.cj
++++ b/src/observable.cj
+@@ -1,26 +1,48 @@
+ package cjtui
+ 
+ public class Observable<T> <: ObservableSource {
+     private var value: T
+-    public init(initial: T) { value = initial }
++    public init(initial: T) {
++        value = initial
++    }
+     public func get(): T {
+         lock.lock()
+         var result: T = value
+         var readVersion: Int64 = 0
+-        try { result = value; readVersion = version } finally { lock.unlock() }
+-        if (let Some(binding) <- evaluating.get()) { binding.read(this, readVersion) }
++        try {
++            result = value
++            readVersion = version
++        } finally {
++            lock.unlock()
++        }
++        if (let Some(binding) <- evaluating.get()) {
++            binding.read(this, readVersion)
++        }
+         result
+     }
+     public func set(value: T): Unit {
+-        if (evaluating.get().isSome()) { throw UIException("ReentrantEvaluation", "observable write during evaluation") }
++        if (evaluating.get().isSome() || structureEvaluation.get().isSome()) {
++            throw UIException("ReentrantEvaluation", "observable write during evaluation")
++        }
+         lock.lock()
+-        try { this.value = value; version++ } finally { lock.unlock() }
++        try {
++            this.value = value
++            version++
++        } finally {
++            lock.unlock()
++        }
+         emit()
+     }
+     public func notify(): Unit {
+-        if (evaluating.get().isSome()) { throw UIException("ReentrantEvaluation", "observable write during evaluation") }
++        if (evaluating.get().isSome() || structureEvaluation.get().isSome()) {
++            throw UIException("ReentrantEvaluation", "observable write during evaluation")
++        }
+         lock.lock()
+-        try { version++ } finally { lock.unlock() }
++        try {
++            version++
++        } finally {
++            lock.unlock()
++        }
+         emit()
+     }
+ }
+diff --git a/src/runtime_node.cj b/src/runtime_node.cj
+index 042217a..0839c95 100644
+--- a/src/runtime_node.cj
++++ b/src/runtime_node.cj
+@@ -1,22 +1,37 @@
+ package cjtui
+ 
+ import std.collection.ArrayList
+ 
+ class RuntimeNode {
+     let component: Component
+     let session: RuntimeSession
+     let id: Int64
+     let parent: ?RuntimeNode
+-    let children = ArrayList<RuntimeNode>()
++    let sequence = ArrayList<ChildEntry>()
++    let depth: Int64
++    var groupId: Int64 = 0
++    var groupKey = ""
++    var effectStarted = false
++    var bindingCount: Int64 = 0
+     // Retained separately so later incremental rendering can distinguish effects.
+     var contentDirty = true
+     var styleDirty = true
+     var layoutDirty = true
+     var pendingChange: ?PendingNodeChange = None
+     var valid = true
++    var committed = false
+     var cleanup: ?() -> Unit = None
+     init(component: Component, session: RuntimeSession, id: Int64, parent: ?RuntimeNode) {
+-        this.component = component; this.session = session; this.id = id; this.parent = parent
++        this.component = component
++        this.session = session
++        this.id = id
++        this.parent = parent
++        depth = match (parent) {
++            case Some(node) => node.depth + 1;
++            case None => 0
++        }
++    }
++    func reference(): NodeRef {
++        NodeRef(this)
+     }
+-    func reference(): NodeRef { NodeRef(this) }
+ }
+diff --git a/src/runtime_session.cj b/src/runtime_session.cj
+index ad3837a..f3256fb 100644
+--- a/src/runtime_session.cj
++++ b/src/runtime_session.cj
+@@ -1,373 +1,1099 @@
+ package cjtui
+ 
+-import std.collection.ArrayList
++import std.collection.{ArrayList, HashSet}
+ import std.sync.Mutex
+ import std.ref.{WeakRef, CleanupPolicy}
+ 
+ let runtimeIdLock = Mutex()
+ var nextRuntimeId: Int64 = 1
++
+ func uniqueRuntimeId(): Int64 {
+     runtimeIdLock.lock()
+-    try { let result = nextRuntimeId; nextRuntimeId++; result } finally { runtimeIdLock.unlock() }
++    try {
++        let result = nextRuntimeId;
++        nextRuntimeId++;
++        result
++    } finally {
++        runtimeIdLock.unlock()
++    }
+ }
++
+ let activeSession = ThreadLocal<RuntimeSession>()
+ 
+ class RuntimeSession {
+     let root: Component
+     let limits: RuntimeLimits
+     let id: Int64
+     let threadId: Int64
+     let threadNonce: Int64
+     let temporary: Bool
+     let application: ?WeakRef<Application>
+     let lock = Mutex()
+     let nodes = ArrayList<RuntimeNode>()
+     let bindings = ArrayList<Binding>()
+     let pendingBindings = ArrayList<Binding>()
+     let pendingNodes = ArrayList<PendingNodeChange>()
+     let posts = ArrayList<QueuedAction>()
++    let commands = ArrayList<StructuralCommand>()
++    var structuralOps: Int64 = 0
++    var committing = false
++    var mountingCredit: Int64 = 0
+     var active = true
+     var acceptingPosts = false
+     var changed = true
+     var stopping = false
+     var invalidationSequence: Int64 = 0
+     var batchDepth: Int64 = 0
+     var inLifecycle = false
+     var inCallback = false
+     var builds: Int64 = 0
+     var measures: Int64 = 0
+     var paints: Int64 = 0
+     var frames: Int64 = 0
+     var cached: ?Frame = None
+     var cachedWidth: Int64 = -1
+     var cachedHeight: Int64 = -1
+     init(root: Component, limits: RuntimeLimits, temporary!: Bool = false,
+         application!: ?Application = Option<Application>.None) {
+-        this.root = root; this.limits = limits; this.temporary = temporary
++        this.root = root
++        this.limits = limits
++        this.temporary = temporary
+         this.application = match (application) {
+             case Some(app) => Some(WeakRef<Application>(app, CleanupPolicy.EAGER))
+             case None => None
+         }
+         threadId = Thread.currentThread.id
+         threadNonce = uiThreadIdentity().nonce
+         id = uniqueRuntimeId()
+     }
+     func requireOwner(): Unit {
+         if (let Some(current) <- activeSession.get()) {
+-            if (current.id != id) { throw UIException("WrongUIContext", "another session owns the active callback") }
++            if (current.id != id) {
++                throw UIException("WrongUIContext", "another session owns the active callback")
++            }
++        }
++        if (Thread.currentThread.id != threadId) {
++            throw UIException("WrongUIContext", "wrong UI thread")
++        }
++        if (uiThreadIdentity().nonce != threadNonce) {
++            throw UIException("WrongUIContext", "wrong UI thread")
+         }
+-        if (Thread.currentThread.id != threadId) { throw UIException("WrongUIContext", "wrong UI thread") }
+-        if (uiThreadIdentity().nonce != threadNonce) { throw UIException("WrongUIContext", "wrong UI thread") }
+     }
+     func requireContext(): Unit {
+         requireOwner()
+-        if (evaluating.get().isSome()) { throw UIException("ReentrantEvaluation", "cannot enter UI during getter") }
++        if (structureEvaluation.get().isSome()) {
++            throw UIException("ReentrantStructure", "cannot enter UI during structure evaluation")
++        }
++        if (evaluating.get().isSome()) {
++            throw UIException("ReentrantEvaluation", "cannot enter UI during getter")
++        }
+         if (!active) {
+-            if (inLifecycle) { throw UIException("LifecycleReentry", "operation during cleanup") }
++            if (inLifecycle) {
++                throw UIException("LifecycleReentry", "operation during cleanup")
++            }
+             throw UIException("SessionInactive", "session is inactive")
+         }
+     }
+     func requireBoundary(): Unit {
+         requireContext()
+         if (inLifecycle || inCallback || batchDepth > 0) {
+             throw UIException("LifecycleReentry", "operation requires an outer UI boundary")
+         }
+     }
+     func enter<T>(action: () -> T): T {
+         requireContext()
+         let previous = activeSession.get()
+         activeSession.set(Some(this))
+-        try { action() } finally { activeSession.set(previous) }
++        try {
++            action()
++        } finally {
++            activeSession.set(previous)
++        }
+     }
+     func isValid(node: RuntimeNode): Bool {
+         lock.lock()
+-        try { active && node.valid } finally { lock.unlock() }
++        try {
++            active && node.valid && node.committed
++        } finally {
++            lock.unlock()
++        }
+     }
+     func markNodeDirtyLocked(node: RuntimeNode, change: ChangeKind): Unit {
+-        if (change == ChangeKind.Content || change == ChangeKind.All) { node.contentDirty = true }
+-        if (change == ChangeKind.Style || change == ChangeKind.All) { node.styleDirty = true }
+-        if (change == ChangeKind.Content || change == ChangeKind.Layout || change == ChangeKind.Structure || change == ChangeKind.All) {
++        if (change == ChangeKind.Content || change == ChangeKind.All) {
++            node.contentDirty = true
++        }
++        if (change == ChangeKind.Style || change == ChangeKind.All) {
++            node.styleDirty = true
++        }
++        if (change == ChangeKind.Content || change == ChangeKind.Layout || change == ChangeKind.Structure || change == ChangeKind
++            .All) {
+             node.layoutDirty = true
+             var parent = node.parent
+-            while (let Some(ancestor) <- parent) { ancestor.layoutDirty = true; parent = ancestor.parent }
++            while (let Some(ancestor) <- parent) {
++                ancestor.layoutDirty = true
++                parent = ancestor.parent
++            }
+         }
+     }
+     func markChanged(node: RuntimeNode, change: ChangeKind): Unit {
+         lock.lock()
+-        try { if (active && node.valid) { markNodeDirtyLocked(node, change); changed = true } } finally { lock.unlock() }
++        try {
++            if (active && node.valid) {
++                markNodeDirtyLocked(node, change);
++                changed = true
++            }
++        } finally {
++            lock.unlock()
++        }
++    }
++    func recordBuild(): Unit {
++        lock.lock();
++        try {
++            builds++
++        } finally {
++            lock.unlock()
++        }
++    }
++    func recordMeasure(): Unit {
++        lock.lock();
++        try {
++            measures++
++        } finally {
++            lock.unlock()
++        }
++    }
++    func recordPaint(): Unit {
++        lock.lock();
++        try {
++            paints++
++        } finally {
++            lock.unlock()
++        }
++    }
++    func recordFrame(): Unit {
++        lock.lock();
++        try {
++            frames++
++        } finally {
++            lock.unlock()
++        }
++    }
++    func addNode(node: RuntimeNode): Unit {
++        lock.lock();
++        try {
++            nodes.add(node)
++        } finally {
++            lock.unlock()
++        }
+     }
+-    func recordBuild(): Unit { lock.lock(); try { builds++ } finally { lock.unlock() } }
+-    func recordMeasure(): Unit { lock.lock(); try { measures++ } finally { lock.unlock() } }
+-    func recordPaint(): Unit { lock.lock(); try { paints++ } finally { lock.unlock() } }
+-    func recordFrame(): Unit { lock.lock(); try { frames++ } finally { lock.unlock() } }
+-    func addNode(node: RuntimeNode): Unit { lock.lock(); try { nodes.add(node) } finally { lock.unlock() } }
+     func inActiveDomain(): Bool {
+-        if (Thread.currentThread.id != threadId) { return false }
+-        if (uiThreadIdentity().nonce != threadNonce) { return false }
+-        match (activeSession.get()) { case Some(session) => session.id == id; case None => false }
++        if (Thread.currentThread.id != threadId) {
++            return false
++        }
++        if (uiThreadIdentity().nonce != threadNonce) {
++            return false
++        }
++        match (activeSession.get()) {
++            case Some(session) => session.id == id;
++            case None => false
++        }
+     }
+     func markDirtyLocked(binding: Binding, deferred: Bool): Unit {
+         var sequence: Int64 = 0
+-        if (deferred) { invalidationSequence++; sequence = invalidationSequence }
+-        if (!binding.dirty) { binding.dirtySequence = sequence; binding.dirty = true; pendingBindings.add(binding) }
+-        else if (sequence < binding.dirtySequence) { binding.dirtySequence = sequence }
++        if (deferred) {
++            invalidationSequence++;
++            sequence = invalidationSequence
++        }
++        if (!binding.dirty) {
++            binding.dirtySequence = sequence
++            binding.dirty = true
++            pendingBindings.add(binding)
++        } else if (sequence < binding.dirtySequence) {
++            binding.dirtySequence = sequence
++        }
+     }
+     func cutoff(): Int64 {
+         lock.lock()
+-        try { invalidationSequence } finally { lock.unlock() }
++        try {
++            invalidationSequence
++        } finally {
++            lock.unlock()
++        }
+     }
+     func invalidate(binding: Binding, deferred!: Bool = false): Unit {
+         var later = deferred
+-        if (!later) { later = !inActiveDomain() }
++        if (!later) {
++            later = !inActiveDomain()
++        }
+         lock.lock()
+-        try { if (active && binding.active) { markDirtyLocked(binding, later) } } finally { lock.unlock() }
++        try {
++            if (active && binding.active) {
++                markDirtyLocked(binding, later)
++            }
++        } finally {
++            lock.unlock()
++        }
+     }
+     func publishDependencyCount(binding: Binding, count: Int64): Unit {
+         lock.lock()
+-        try { binding.publishedDependencies = count } finally { lock.unlock() }
++        try {
++            binding.publishedDependencies = count
++        } finally {
++            lock.unlock()
++        }
+     }
+     func deactivateBinding(binding: Binding): Unit {
+         lock.lock()
+-        try { binding.active = false; binding.publishedDependencies = 0 } finally { lock.unlock() }
++        try {
++            if (binding.active) {
++                if (let Some(node) <- binding.node) {
++                    node.bindingCount--
++                }
++            }
++            binding.active = false
++            binding.publishedDependencies = 0
++        } finally {
++            lock.unlock()
++        }
+     }
+     func addBinding(binding: Binding): Unit {
+         requireContext()
+-        if (binding.component.bindings.size > limits.bindingsPerNode) { throw UIException("CapacityExceeded", "binding limit exceeded") }
++        let ownerNode = binding.component.readMount().getOrThrow()
++        if (ownerNode.bindingCount >= limits.bindingsPerNode) {
++            throw UIException("CapacityExceeded", "binding limit exceeded")
++        }
++        ownerNode.bindingCount++
+         binding.ownerLock.lock()
+         try {
+             lock.lock()
+             try {
+-                binding.owner = Some(this); binding.node = binding.component.readMount()
+-                binding.active = true; binding.dirty = true; binding.dirtySequence = 0
++                binding.owner = Some(this)
++                binding.node = binding.component.readMount()
++                binding.active = true
++                binding.dirty = true
++                binding.dirtySequence = 0
+                 pendingBindings.add(binding)
+-            } finally { lock.unlock() }
+-        } finally { binding.ownerLock.unlock() }
++            } finally {
++                lock.unlock()
++            }
++        } finally {
++            binding.ownerLock.unlock()
++        }
+         lock.lock()
+-        try { bindings.add(binding) } finally { lock.unlock() }
++        try {
++            bindings.add(binding)
++        } finally {
++            lock.unlock()
++        }
+     }
+     func removeBinding(binding: Binding): Unit {
+         binding.dispose()
+         lock.lock()
+         try {
+             var index: Int64 = 0
+             while (index < bindings.size) {
+-                if (bindings[index].id == binding.id) { bindings.remove(at: index) } else { index++ }
++                if (bindings[index].id == binding.id) {
++                    bindings.remove(at: index)
++                } else {
++                    index++
++                }
+             }
+             index = 0
+             while (index < pendingBindings.size) {
+-                if (pendingBindings[index].id == binding.id) { pendingBindings.remove(at: index) } else { index++ }
++                if (pendingBindings[index].id == binding.id) {
++                    pendingBindings.remove(at: index)
++                } else {
++                    index++
++                }
+             }
+-        } finally { lock.unlock() }
++        } finally {
++            lock.unlock()
++        }
+     }
+     func notify(node: RuntimeNode, change: ChangeKind): Unit {
+         let later = !inActiveDomain()
+         lock.lock()
+         try {
+-            if (!active || !node.valid) { throw UIException("StaleReference", "node is no longer mounted") }
++            if (!active || !node.valid) {
++                throw UIException("StaleReference", "node is no longer mounted")
++            }
+             if (change != ChangeKind.Bindings) {
+                 var sequence: Int64 = 0
+-                if (later) { invalidationSequence++; sequence = invalidationSequence }
++                if (later) {
++                    invalidationSequence++;
++                    sequence = invalidationSequence
++                }
+                 match (node.pendingChange) {
+                     case Some(pending) =>
+-                        if (sequence < pending.sequence) { pending.sequence = sequence }
++                        if (sequence < pending.sequence) {
++                            pending.sequence = sequence
++                        }
+                         pending.include(change)
+                     case None =>
+                         let pending = PendingNodeChange(node, sequence)
+-                        pending.include(change); node.pendingChange = Some(pending); pendingNodes.add(pending)
++                        pending.include(change);
++                        node.pendingChange = Some(pending)
++                        pendingNodes.add(pending)
+                 }
+             }
+-            for (binding in node.component.bindings) {
+-                if (change == ChangeKind.All || change == ChangeKind.Bindings || binding.category == change) { markDirtyLocked(binding, later) }
++            for (binding in bindings) {
++                if (binding.component.descriptionId != node.component.descriptionId) {
++                    continue
++                }
++                if (change == ChangeKind.All || change == ChangeKind.Bindings || binding.category == change) {
++                    markDirtyLocked(binding, later)
++                }
++            }
++        } finally {
++            lock.unlock()
++        }
++    }
++    // Prepare every static description before publishing nodes or invoking mount effects.
++    func preflight(components: Array<Component>, parent: ?RuntimeNode, retiring!: Array<RuntimeNode> = []): Unit {
++        let seen = HashSet<Int64>()
++        let depth = match (parent) {
++            case Some(node) => node.depth + 1;
++            case None => 0
++        }
++        inStructure({
++            => for (component in components) {
++                prepareTree(component, depth, seen)
+             }
+-        } finally { lock.unlock() }
++        })
++        if (nodes.size + seen.size - subtreeCount(retiring) > limits.mountedNodes) {
++            throw UIException("CapacityExceeded", "node limit exceeded")
++        }
++    }
++    func subtreeCount(roots: Array<RuntimeNode>): Int64 {
++        let descendants = ArrayList<RuntimeNode>()
++        for (root in roots) {
++            collectSubtree(root, descendants)
++        }
++        descendants.size
++    }
++    // Staged additions are not in the parent's sequence yet. Retiring nodes provide
++    // capacity until the atomic sequence replacement, before any lifecycle callbacks.
++    func replacing<T>(retiring: Array<RuntimeNode>, action: () -> T): T {
++        let previous = mountingCredit
++        mountingCredit += subtreeCount(retiring)
++        try {
++            action()
++        } finally {
++            mountingCredit = previous
++        }
++    }
++    func prepareTree(component: Component, depth: Int64, seen: HashSet<Int64>): Unit {
++        if (depth > limits.treeDepth) {
++            throw UIException("CapacityExceeded", "tree depth exceeded")
++        }
++        if (component.readMount().isSome() || component.mounting) {
++            throw UIException("AlreadyMounted", "component already mounted or reserved")
++        }
++        if (component.failed) {
++            throw UIException("ConstructionFailed", "component construction failed")
++        }
++        if (!seen.add(component.descriptionId)) {
++            throw UIException("AlreadyMounted", "duplicate component or construction cycle")
++        }
++        if (!component.built) {
++            try {
++                collectChildren(component, {=> component.build()})
++                component.built = true
++                recordBuild()
++            } catch (error: Exception) {
++                component.failed = true
++                throw error
++            }
++        }
++        let keys = HashSet<String>()
++        for (entry in component.declarations) {
++            if (let ChildDeclaration.DeclaredComponent(child) <- entry) {
++                if (let Some(key) <- child.explicitKey) {
++                    if (!keys.add(key)) {
++                        throw UIException("DuplicateKey", "duplicate sibling key")
++                    }
++                }
++                prepareTree(child, depth + 1, seen)
++            }
++        }
+     }
+     func mount(component: Component, parent: ?RuntimeNode, depth: Int64): RuntimeNode {
+-        if (depth > limits.treeDepth || nodes.size >= limits.mountedNodes) { throw UIException("CapacityExceeded", "node limit exceeded") }
++        if (depth > limits.treeDepth || nodes.size - mountingCredit >= limits.mountedNodes) {
++            throw UIException("CapacityExceeded", "node limit exceeded")
++        }
+         component.reserveMount()
+-        var node: ?RuntimeNode = None
++        let created = RuntimeNode(component, this, uniqueRuntimeId(), parent)
+         try {
+-            if (!component.built) {
+-                try {
+-                    collectChildren(component, { => component.build() })
+-                    component.built = true
+-                    recordBuild()
+-                } catch (error: Exception) { component.failed = true; throw error }
+-            }
+-            let created = RuntimeNode(component, this, nodes.size + 1, parent)
+             addNode(created)
+             component.publishMount(created, temporary)
+-            node = Some(created)
+-        } finally { component.releaseMount() }
+-        let mountedNode = node.getOrThrow()
+-        if (component.bindings.size > limits.bindingsPerNode) { throw UIException("CapacityExceeded", "binding limit exceeded") }
+-        for (binding in component.bindings) { addBinding(binding) }
+-        let keys = ArrayList<String>()
+-        for (child in component.children) {
+-            if (let Some(key) <- child.explicitKey) {
+-                for (previous in keys) { if (previous == key) { throw UIException("DuplicateKey", "duplicate sibling key") } }
+-                keys.add(key)
++        } finally {
++            component.releaseMount()
++        }
++        for (binding in component.bindings) {
++            addBinding(binding)
++        }
++        for (entry in component.declarations) {
++            match (entry) {
++                case ChildDeclaration.DeclaredComponent(child) => created
++                    .sequence
++                    .add(ChildEntry.MountedChild(mount(child, Some(created), depth + 1)))
++                case ChildDeclaration.DeclaredGroup(declaration) =>
++                    let group = declaration.create(created)
++                    created.sequence.add(ChildEntry.GroupMarker(group))
++                    addBinding(Binding(component, "group${group.id}", ChangeKind.Structure, {=> group.prepare()}))
++            }
++        }
++        created
++    }
++    func requireStructure(): Unit {
++        requireOwner()
++        if (inLifecycle) {
++            throw UIException("LifecycleReentry", "structure operation during lifecycle")
++        }
++        if (structureEvaluation.get().isSome() || evaluating.get().isSome() || committing) {
++            throw UIException("ReentrantStructure", "structure operation during evaluation or commit")
++        }
++        if (!active) {
++            throw UIException("StaleReference", "node session is inactive")
++        }
++    }
++    func enqueue(command: StructuralCommand): Unit {
++        requireStructure()
++        if (batchDepth == 0) {
++            try {
++                enter(
++                    {
++                        =>
++                        recordCommand(command);
++                        stabilize(cutoff())
++                    }
++                )
++            } catch (error: Exception) {
++                throw closeFailure(error)
++            }
++        } else {
++            recordCommand(command)
++        }
++    }
++    func recordCommand(command: StructuralCommand): Unit {
++        let parent = command.parent.resolve()
++        if (parent.component.kind == 0) {
++            throw UIException("InvalidParent", "text cannot own children")
++        }
++        if (let Some(component) <- command.description) {
++            if (component.readMount().isSome() || component.mounting) {
++                throw UIException("AlreadyMounted", "component already mounted")
++            }
++            for (pending in commands) {
++                if (let Some(reserved) <- pending.description) {
++                    if (reserved.descriptionId == component.descriptionId) {
++                        throw UIException("AlreadyMounted", "description already reserved")
++                    }
++                }
++            }
++        }
++        commands.add(command)
++    }
++    func useStructuralOps(count: Int64): Unit {
++        if (count > limits.structuralOpsPerBatch - structuralOps) {
++            throw UIException("CapacityExceeded", "structural operation limit exceeded")
++        }
++        structuralOps += count
++    }
++    func groupCost(old: Array<RuntimeNode>, keys: Array<String>): Int64 {
++        var cost: Int64 = 0
++        for (i in 0..old.size) {
++            if (i >= keys.size || old[i].groupKey != keys[i]) {
++                cost++
+             }
+-            mountedNode.children.add(mount(child, Some(mountedNode), depth + 1))
+         }
+-        mountedNode
++        if (keys.size > old.size) {
++            cost += keys.size - old.size
++        }
++        cost
++    }
++    func indexOf(parent: RuntimeNode, child: RuntimeNode): Int64 {
++        for (i in 0..parent.sequence.size) {
++            if (let ChildEntry.MountedChild(node) <- parent.sequence[i]) {
++                if (node.id == child.id) {
++                    return i
++                }
++            }
++        }
++        -1
++    }
++    func commandAnchor(parent: RuntimeNode, anchor: ?NodeRef): Int64 {
++        if (let Some(reference) <- anchor) {
++            if (!reference.isValid() || !reference.belongsTo(this)) {
++                throw UIException("StaleAnchor", "anchor is no longer a direct child")
++            }
++            let index = indexOf(parent, reference.resolve())
++            if (index < 0) {
++                throw UIException("StaleAnchor", "anchor is not a direct child")
++            }
++            return index
++        }
++        parent.sequence.size
++    }
++    func commitCommand(command: StructuralCommand): Unit {
++        let parent = command.parent.resolve()
++        if (parent.session.id != id) {
++            throw UIException("WrongUIContext", "parent belongs to another session")
++        }
++        if (parent.component.kind == 0) {
++            throw UIException("InvalidParent", "text cannot own children")
++        }
++        if (command.kind == 0) {
++            let index = commandAnchor(parent, command.anchor)
++            let component = command.description.getOrThrow()
++            preflight([component], Some(parent))
++            useStructuralOps(1)
++            let node = mount(component, Some(parent), parent.depth + 1)
++            parent.sequence.add(ChildEntry.MountedChild(node), at: index)
++            publish([node], [])
++        } else {
++            let child = command.child.getOrThrow().resolve()
++            let index = indexOf(parent, child)
++            if (index < 0) {
++                throw UIException(if (command.kind == 1) {
++                    "CrossParentMove"
++                } else {
++                    "InvalidParent"
++                }, "node is not a direct child of parent")
++            }
++            if (command.kind == 1) {
++                let anchor = commandAnchor(parent, command.anchor)
++                if (index == anchor || index + 1 == anchor) {
++                    return
++                }
++                useStructuralOps(1)
++                let entry = parent.sequence.remove(at: index)
++                parent.sequence.add(entry, at: if (index < anchor) {
++                    anchor - 1
++                } else {
++                    anchor
++                })
++            } else {
++                useStructuralOps(1)
++                parent.sequence.remove(at: index)
++                for (entry in parent.sequence) {
++                    if (let ChildEntry.GroupMarker(group) <- entry) {
++                        if (group.id == child.groupId) {
++                            group.forget(child.groupKey)
++                        }
++                    }
++                }
++                unmount([child])
++            }
++        }
++        markChanged(parent, ChangeKind.Structure)
++    }
++    // Publish generation validity at the sequence commit point. Background stats and
++    // isValid never expose staged additions or count retiring and replacement nodes twice.
++    func publish(added: Array<RuntimeNode>, retiring: Array<RuntimeNode>): Unit {
++        let newNodes = ArrayList<RuntimeNode>()
++        let oldNodes = ArrayList<RuntimeNode>()
++        for (node in added) {
++            collectSubtree(node, newNodes)
++        }
++        for (node in retiring) {
++            collectSubtree(node, oldNodes)
++        }
++        lock.lock()
++        try {
++            for (node in oldNodes) {
++                node.valid = false
++                node.pendingChange = None
++            }
++            for (node in newNodes) {
++                node.committed = true
++            }
++        } finally {
++            lock.unlock()
++        }
++    }
++    func collectSubtree(node: RuntimeNode, result: ArrayList<RuntimeNode>): Unit {
++        result.add(node)
++        for (entry in node.sequence) {
++            if (let ChildEntry.MountedChild(child) <- entry) {
++                collectSubtree(child, result)
++            }
++        }
++    }
++    func unmount(roots: Array<RuntimeNode>): Unit {
++        let removed = ArrayList<RuntimeNode>()
++        for (node in roots) {
++            collectSubtree(node, removed)
++        }
++        lock.lock()
++        try {
++            for (node in removed) {
++                node.valid = false
++                node.pendingChange = None
++            }
++        } finally {
++            lock.unlock()
++        }
++        for (node in removed) {
++            node.component.clearMount()
++        }
++        let removedBindings = ArrayList<Binding>()
++        for (binding in bindings) {
++            if (let Some(owner) <- binding.node) {
++                if (!owner.valid) {
++                    removedBindings.add(binding)
++                }
++            }
++        }
++        for (binding in removedBindings) {
++            removeBinding(binding)
++        }
++        lock.lock()
++        try {
++            var i: Int64 = 0
++            while (i < nodes.size) {
++                if (!nodes[i].valid) {
++                    nodes.remove(at: i)
++                } else {
++                    i++
++                }
++            }
++            i = 0
++            while (i < posts.size) {
++                var cancelled = false
++                if (let Some(owner) <- posts[i].owner) {
++                    cancelled = !owner.isValid()
++                }
++                if (cancelled) {
++                    posts.remove(at: i)
++                } else {
++                    i++
++                }
++            }
++            i = 0
++            while (i < pendingNodes.size) {
++                if (!pendingNodes[i].node.valid) {
++                    pendingNodes.remove(at: i)
++                } else {
++                    i++
++                }
++            }
++        } finally {
++            lock.unlock()
++        }
++        var failure: ?Exception = None
++        var i = removed.size
++        while (i > 0) {
++            i--
++            let node = removed[i]
++            if (let Some(cleanup) <- node.cleanup) {
++                node.cleanup = None
++                inLifecycle = true
++                try {
++                    cleanup()
++                } catch (error: Exception) {
++                    match (failure) {
++                        case None => failure = Some(error)
++                        case Some(first) => failure = Some(aggregateCleanup(first, error))
++                    }
++                } finally {
++                    inLifecycle = false
++                }
++            }
++        }
++        for (node in removed) {
++            node.component.releaseMount();
++            node.sequence.clear()
++        }
++        if (let Some(error) <- failure) {
++            throw error
++        }
++    }
++    func hasReady(cutoff: Int64): Bool {
++        lock.lock()
++        try {
++            for (binding in pendingBindings) {
++                if (binding.active && binding.dirty && binding.dirtySequence <= cutoff) {
++                    return true
++                }
++            }
++            for (pending in pendingNodes) {
++                if (pending.sequence <= cutoff) {
++                    return true
++                }
++            }
++            false
++        } finally {
++            lock.unlock()
++        }
+     }
+     func stabilize(cutoff: Int64): Unit {
++        structuralOps = 0
++        var passes: Int64 = 0
++        while (true) {
++            if (passes >= limits.stabilizationPasses) {
++                throw UIException("UnstableUpdate", "synchronous update failed to stabilize")
++            }
++            passes++
++            committing = true
++            try {
++                let readyCommands = commands.toArray()
++                commands.clear()
++                for (command in readyCommands) {
++                    commitCommand(command)
++                }
++            } finally {
++                committing = false
++            }
++            evaluateReady(cutoff)
++            // Plans are prepared under dependency tracking, committed after evaluation has
++            // restored its guards. Lifecycle writes can therefore schedule the next pass.
++            let groups = ArrayList<DynamicGroup>()
++            for (node in nodes) {
++                for (entry in node.sequence) {
++                    if (let ChildEntry.GroupMarker(group) <- entry) {
++                        if (group.plan.isSome()) {
++                            groups.add(group)
++                        }
++                    }
++                }
++            }
++            committing = true
++            try {
++                for (group in groups) {
++                    if (group.parent.valid) {
++                        group.commit()
++                    }
++                }
++            } finally {
++                committing = false
++            }
++            if (hasReady(cutoff)) {
++                continue
++            }
++            if (!temporary) {
++                let pendingEffects = ArrayList<RuntimeNode>()
++                for (node in nodes) {
++                    if (!node.effectStarted) {
++                        pendingEffects.add(node)
++                    }
++                }
++                for (node in pendingEffects) {
++                    if (!node.valid) {
++                        continue
++                    }
++                    node.effectStarted = true
++                    if (let Some(effect) <- node.component.mountEffect) {
++                        inLifecycle = true
++                        try {
++                            node.cleanup = Some(effect(node.reference()))
++                        } finally {
++                            inLifecycle = false
++                        }
++                    }
++                }
++            }
++            if (!hasReady(cutoff) && commands.isEmpty()) {
++                return
++            }
++        }
++    }
++    func evaluateReady(cutoff: Int64): Unit {
+         let ready = ArrayList<Binding>()
+         let laterBindings = ArrayList<Binding>()
+         let laterNodes = ArrayList<PendingNodeChange>()
+         lock.lock()
+         try {
+             for (pending in pendingNodes) {
+                 if (pending.sequence <= cutoff) {
+                     pending.node.pendingChange = None
+                     if (pending.node.valid) {
+-                        if (pending.content) { markNodeDirtyLocked(pending.node, ChangeKind.Content) }
+-                        if (pending.style) { markNodeDirtyLocked(pending.node, ChangeKind.Style) }
+-                        if (pending.layout) { markNodeDirtyLocked(pending.node, ChangeKind.Layout) }
++                        if (pending.content) {
++                            markNodeDirtyLocked(pending.node, ChangeKind.Content)
++                        }
++                        if (pending.style) {
++                            markNodeDirtyLocked(pending.node, ChangeKind.Style)
++                        }
++                        if (pending.layout) {
++                            markNodeDirtyLocked(pending.node, ChangeKind.Layout)
++                        }
+                         changed = true
+                     }
+-                } else { laterNodes.add(pending) }
++                } else {
++                    laterNodes.add(pending)
++                }
+             }
+             pendingNodes.clear()
+-            for (pending in laterNodes) { pendingNodes.add(pending) }
++            for (pending in laterNodes) {
++                pendingNodes.add(pending)
++            }
+             for (binding in pendingBindings) {
+                 if (binding.active && binding.dirty && binding.dirtySequence <= cutoff) {
+                     binding.dirty = false
+-                    if (let Some(node) <- binding.node) { markNodeDirtyLocked(node, binding.category) }
++                    if (let Some(node) <- binding.node) {
++                        markNodeDirtyLocked(node, binding.category)
++                    }
+                     ready.add(binding)
+-                } else if (binding.active && binding.dirty) { laterBindings.add(binding) }
++                } else if (binding.active && binding.dirty) {
++                    laterBindings.add(binding)
++                }
+             }
+             pendingBindings.clear()
+-            for (binding in laterBindings) { pendingBindings.add(binding) }
+-        } finally { lock.unlock() }
+-        for (binding in ready) { if (binding.active) { binding.evaluate() } }
++            for (binding in laterBindings) {
++                pendingBindings.add(binding)
++            }
++        } finally {
++            lock.unlock()
++        }
++        for (binding in ready) {
++            if (binding.active) {
++                binding.evaluate()
++            }
++        }
+     }
+     func needsWork(): Bool {
+         lock.lock()
+-        try { changed || !posts.isEmpty() || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || stopping }
+-        finally { lock.unlock() }
++        try {
++            changed || !posts.isEmpty() || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || stopping
++        } finally {
++            lock.unlock()
++        }
+     }
+     func start(): Unit {
+-        enter({ =>
+-            let turnCutoff = cutoff()
+-            mount(root, Option<RuntimeNode>.None, 0)
+-            stabilize(turnCutoff)
+-            if (!temporary) {
+-                lock.lock()
+-                try { acceptingPosts = true } finally { lock.unlock() }
+-                for (node in nodes) {
+-                    if (let Some(effect) <- node.component.mountEffect) {
+-                        inLifecycle = true
+-                        try { node.cleanup = Some(effect(node.reference())) } finally { inLifecycle = false }
++        enter(
++            {
++                =>
++                    let turnCutoff = cutoff()
++                    preflight([root], Option<RuntimeNode>.None)
++                    let mounted = mount(root, Option<RuntimeNode>.None, 0)
++                    publish([mounted], [])
++                    if (!temporary) {
++                        lock.lock()
++                        try {
++                            acceptingPosts = true
++                        } finally {
++                            lock.unlock()
++                        }
+                     }
+-                }
++                    stabilize(turnCutoff)
+             }
+-        })
++        )
+     }
+     func post(owner: ?NodeRef, action: () -> Unit): Bool {
+-        if (evaluating.get().isSome()) { throw UIException("ReentrantEvaluation", "post during evaluation") }
++        if (evaluating.get().isSome()) {
++            throw UIException("ReentrantEvaluation", "post during evaluation")
++        }
+         if (let Some(ref) <- owner) {
+-            if (!ref.belongsTo(this) || !ref.isValid()) { return false }
++            if (!ref.belongsTo(this) || !ref.isValid()) {
++                return false
++            }
+         }
+         lock.lock()
+         try {
+-            if (!active || !acceptingPosts || stopping || posts.size >= limits.pendingPosts) { return false }
+-            if (let Some(ref) <- owner) { if (!ref.isValid()) { return false } }
+-            posts.add(QueuedAction(owner, action)); true
+-        } finally { lock.unlock() }
++            if (!active || !acceptingPosts || stopping || posts.size >= limits.pendingPosts) {
++                return false
++            }
++            if (let Some(ref) <- owner) {
++                if (!ref.isValid()) {
++                    return false
++                }
++            }
++            posts.add(QueuedAction(owner, action));
++            true
++        } finally {
++            lock.unlock()
++        }
++    }
++    func requestStop(): Unit {
++        lock.lock();
++        try {
++            stopping = true
++        } finally {
++            lock.unlock()
++        }
++    }
++    func isStopping(): Bool {
++        lock.lock();
++        try {
++            stopping
++        } finally {
++            lock.unlock()
++        }
+     }
+-    func requestStop(): Unit { lock.lock(); try { stopping = true } finally { lock.unlock() } }
+-    func isStopping(): Bool { lock.lock(); try { stopping } finally { lock.unlock() } }
+     func pump(): Unit {
+         let turn = ArrayList<QueuedAction>()
+         var turnCutoff: Int64 = 0
+         lock.lock()
+         try {
+             turnCutoff = invalidationSequence
+-            for (post in posts) { turn.add(post) }
++            for (post in posts) {
++                turn.add(post)
++            }
+             posts.clear()
+-        } finally { lock.unlock() }
++        } finally {
++            lock.unlock()
++        }
+         for (item in turn) {
+             var run = true
+-            if (let Some(owner) <- item.owner) { run = owner.isValid() }
++            if (let Some(owner) <- item.owner) {
++                run = owner.isValid()
++            }
+             if (run) {
+-                inCallback = true; batchDepth++
+-                try { item.action() } finally { batchDepth--; inCallback = false }
++                inCallback = true
++                batchDepth++
++                try {
++                    item.action()
++                } finally {
++                    batchDepth--;
++                    inCallback = false
++                }
++                stabilize(turnCutoff)
+             }
+         }
+         stabilize(turnCutoff)
+     }
+     func produce(width: Int64, height: Int64, force: Bool): Frame {
+         lock.lock()
+         var dirtyFrame = false
+-        try { dirtyFrame = changed } finally { lock.unlock() }
++        try {
++            dirtyFrame = changed
++        } finally {
++            lock.unlock()
++        }
+         if (force || dirtyFrame || width != cachedWidth || height != cachedHeight || cached.isNone()) {
+             lock.lock()
+             try {
+-                for (node in nodes) { node.contentDirty = false; node.styleDirty = false; node.layoutDirty = false }
+-            } finally { lock.unlock() }
++                for (node in nodes) {
++                    node.contentDirty = false
++                    node.styleDirty = false
++                    node.layoutDirty = false
++                }
++            } finally {
++                lock.unlock()
++            }
+             let frame = renderLayout(root, width, height, this)
+-            recordFrame(); cached = Some(frame); cachedWidth = width; cachedHeight = height
++            recordFrame();
++            cached = Some(frame)
++            cachedWidth = width
++            cachedHeight = height
+             lock.lock()
+-            try { changed = false } finally { lock.unlock() }
++            try {
++                changed = false
++            } finally {
++                lock.unlock()
++            }
+         }
+         cached.getOrThrow().copy(Rect(0, 0, width, height))
+     }
+     func stats(): RuntimeStats {
+         lock.lock()
+         try {
++            var mountedCount: Int64 = 0
++            for (node in nodes) {
++                if (node.valid && node.committed) {
++                    mountedCount++
++                }
++            }
+             var activeBindings: Int64 = 0
+             var subscriptions: Int64 = 0
+-            for (binding in bindings) { if (binding.active) { activeBindings++; subscriptions += binding.publishedDependencies } }
+-            RuntimeStats(if (active) { nodes.size } else { 0 }, activeBindings, subscriptions, posts.size,
+-                builds, measures, paints, frames)
+-        } finally { lock.unlock() }
++            for (binding in bindings) {
++                if (binding.active) {
++                    if (let Some(node) <- binding.node) {
++                        if (node.valid && node.committed) {
++                            activeBindings++
++                            subscriptions += binding.publishedDependencies
++                        }
++                    }
++                }
++            }
++            RuntimeStats(if (active) {
++                mountedCount
++            } else {
++                0
++            }, activeBindings, subscriptions, posts.size, builds, measures, paints, frames)
++        } finally {
++            lock.unlock()
++        }
+     }
+     func notifyClosed(): Unit {
+         if (let Some(weak) <- application) {
+-            if (let Some(app) <- weak.value) { app.sessionClosed(this) }
++            if (let Some(app) <- weak.value) {
++                app.sessionClosed(this)
++            }
+         }
+     }
+     func closeFailure(primary: Exception): Exception {
+         var result = primary
+-        try { close() } catch (cleanup: Exception) { result = aggregateCleanup(result, cleanup) }
++        try {
++            close()
++        } catch (cleanup: Exception) {
++            result = aggregateCleanup(result, cleanup)
++        }
+         notifyClosed()
+         result
+     }
+     func closeStopped(): Unit {
+-        try { close() } finally { notifyClosed() }
++        try {
++            close()
++        } finally {
++            notifyClosed()
++        }
+     }
+     func close(): Unit {
+-        if (!active) { return }
++        if (!active) {
++            return
++        }
+         lock.lock()
+         try {
+             active = false
+             acceptingPosts = false
+-            posts.clear(); pendingBindings.clear(); pendingNodes.clear()
+-            for (node in nodes) { node.valid = false; node.pendingChange = None }
+-        } finally { lock.unlock() }
+-        for (node in nodes) { node.component.clearMount() }
+-        for (binding in bindings) { binding.dispose() }
++            posts.clear();
++            pendingBindings.clear();
++            pendingNodes.clear();
++            commands.clear()
++            for (node in nodes) {
++                node.valid = false
++                node.pendingChange = None
++            }
++        } finally {
++            lock.unlock()
++        }
++        for (node in nodes) {
++            node.component.clearMount()
++        }
++        for (binding in bindings) {
++            binding.dispose()
++        }
+         var failure: ?Exception = None
+         let previousSession = activeSession.get()
+         activeSession.set(Some(this))
+         try {
+             var i = nodes.size
+             while (i > 0) {
+                 i--
+                 if (let Some(cleanup) <- nodes[i].cleanup) {
+                     nodes[i].cleanup = None
+                     inLifecycle = true
+-                    try { cleanup() } catch (error: Exception) {
++                    try {
++                        cleanup()
++                    } catch (error: Exception) {
+                         match (failure) {
+                             case None => failure = Some(error)
+                             case Some(first) => failure = Some(aggregateCleanup(first, error))
+                         }
+-                    } finally { inLifecycle = false }
++                    } finally {
++                        inLifecycle = false
++                    }
+                 }
+             }
+-        } finally { activeSession.set(previousSession) }
+-        for (node in nodes) { node.component.releaseMount() }
+-        if (let Some(error) <- failure) { throw error }
++        } finally {
++            activeSession.set(previousSession)
++        }
++        for (node in nodes) {
++            node.component.releaseMount()
++        }
++        if (let Some(error) <- failure) {
++            throw error
++        }
+     }
+ }
+diff --git a/src/structural_command.cj b/src/structural_command.cj
+new file mode 100644
+index 0000000..45e5c3d
+--- /dev/null
++++ b/src/structural_command.cj
+@@ -0,0 +1,17 @@
++package cjtui
++
++class StructuralCommand {
++    // insert, move, remove; absent anchor means the physical end.
++    let kind: Int64
++    let parent: NodeRef
++    let child: ?NodeRef
++    let description: ?Component
++    let anchor: ?NodeRef
++    init(kind: Int64, parent: NodeRef, child: ?NodeRef, description: ?Component, anchor: ?NodeRef) {
++        this.kind = kind
++        this.parent = parent
++        this.child = child
++        this.description = description
++        this.anchor = anchor
++    }
++}

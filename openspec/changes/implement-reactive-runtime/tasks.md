@@ -27,10 +27,10 @@
 - [x] TASK-074（WP005/testing）：独立运行A+B新用例、受影响回归、正常bundle/纯公开包消费及真实TTY清理。
 - [x] TASK-075（WP005/acceptance）：有限合同证据及元数据核对，不提前关闭列表/弹窗父AC。
 - [x] TASK-076（WP005/testing）：固定C槽位表、混合/失效/边界独立测试与RED。
-- [ ] TASK-077（WP004/implementation）：实现If/ForEach/ListItem和NodeRef混合操作，唯一子序列。
-- [ ] TASK-078（WP005/verification）：固定C增量和整体运行时跨界spec/quality独立审核。
-- [ ] TASK-079（WP005/testing）：独立C矩阵、A+B相关回归和正常源码制品消费。
-- [ ] TASK-080（WP005/acceptance）：AC015/016/032符合原范围才关闭，014仍等018；主代理集成后继续Linux。
+- [x] TASK-077（WP004/implementation）：实现If/ForEach/ListItem和NodeRef混合操作，唯一子序列。
+- [x] TASK-078（WP005/verification）：固定C增量和整体运行时跨界spec/quality独立审核。
+- [x] TASK-079（WP005/testing）：独立C矩阵、A+B相关回归和正常源码制品消费。
+- [x] TASK-080（WP005/acceptance）：AC015/016/032符合原范围才关闭，014仍等018；主代理集成后继续Linux。
 
 ## Shared L3 admission card
 

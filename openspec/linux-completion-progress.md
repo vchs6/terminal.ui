@@ -33,3 +33,9 @@ Runtime A+B最终075有限PASS已机械集成（产品0912436，R12/acceptance�
 已新增正式候选：Glyph最终a0eae999无未决Important且正式093测试daf2a252已集成901b06a（产品等080/084）；交互最终a0eae999独立design_reviewed，I011 application/I012自动行为态/I013 Off已收敛；Session最终d065719无未决Important（S007 pop ledger/S012深层copy），Input F002–005最终88ed5f7四PF独立verified；M2 M011/M012及Widgets W007候选c7328d0，M2三finding已verified，widgets只provenance minor刚机械修。全是设计/测试准备，不是产品实现。各原件目录保留，R16/R17等主代理归档中。
 
 真实host补证：库存sshd+ssh -T+remote util-linux script真PTY，独立SSH正/负OSC52及title stack12原始PNG/158非秘密hash，目录/workspace/work/session-extension-recon/ssh，report3dc9d9e13ac3f49d095b8e59cbb4b4f022ddf74bae0df1588dc6a57f38f0e755；不冒充ssh -tt库存成功，gid5权限失败保留，不能复制private keys。实际VT S004四精确序列补探针无grid/cursor副作用、无支持确认，/workspace/work/linux-vt-product-probe/osc-probe 58hash/6PNG；root最初污染假设被真实结果否定，Session Unknown合同未变。两补项仍协议环境事实，非产品151/最终041 PASS。
+
+2026-11-10：TASK078 scoped-r1独立双PASS（DYN-F001关闭），079固定216b2ab独立执行PASS，080 Astra/high有限PASS，原AC015/016/032原文范围充分。627执行清单文件与18验收文件、两个严格JSON最终Xorg-artifact投影已验证；原Xorg捕获后正常退出只追加日志prefix证据保留，不修改原件。root正在机械归R13并登记状态，不重复套件。新TASK009 rich_text_implementation_resume Sol/high（仓颉语言适用，AGENTS13.2）从9bc493f独立实施，正式081测试3f60142/7ba2cd4已固定。环境恢复仅重建代理连接，保留原文件/relay/有效证据。
+
+TASK089 async测试准备原83fac077已机械集成179c851，78路径/22场景；真实async-only RED必须等088基础Theme，故089不勾选、026不准入。TASK148独立Sol/high session_test_author准备正式消费者与真实旧产品RED；有限宿主协议只作事实输入。新的cursor_protocol_design Astra/high仅外部候选设计：依据真实VT不回显隐查询/不支持save-restore，root选择Unknown保留显隐、已知才管理并恢复，详细输入兼容待候选及独立审查，不实施/不提前验A或020。
+
+Task076–080 complete：独立080 PASS与716份原始归档逐字节/hash再核后，root登记AC076–080及原AC015/016/032 passed；任务077–080勾选。R13执行含627清单项+manifest本体，验收含18项+manifest本体；另加archive-index两文件，清楚区别计数，20原始PNG保留。原FAIL/正式RED不改；两个最终Xorg-artifact投影独立保存且链接原件。未关闭014/018/008/020/Linux总目标。现在持续TASK009。

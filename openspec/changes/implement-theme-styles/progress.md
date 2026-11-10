@@ -9,3 +9,7 @@ TOML正常依赖/官方stdx/干净路径消费实证复用R11/build-recon，不�
 独立theme_preflight首轮固定aca55fc发现3 Important（Theme跨包读取桥、Classic seed fill影响旧反显空白、wrap零宽/超宽行高）及DQ12索引Minor。主代理T014/T015新增纯只读Theme defaults/role/named/source路径桥，精确行高表，并把global seed仅background的填底色与本地background完整Style fill区分；无Classic特殊renderer、preset字节不变。docs/tasks原013/025/026/027状态转本tasks，新增085–092映射/AC唯一行齐全。待固定修文后独立定点复核，未派主题正式测试/产品。
 
 独立preflight d4a92238最终ready、DQ01–14闭合，仅085准入，013/025仍等080+084实际输入，027planned。085作者theme_test_author指定Sol/high独立source/privatecache已开工，旧库正常build0、新values消费者真实RED1缺cjtui.theme；声明-only静态发现with为关键字。主代理T016改成员为withValue（未实现无alias义务），非EOF/CommentStart/token和KeyStart/table声明计数精确化；原失败保存。作者用真实上游Lexer核65536/65537token、16384/16385decl及variables/styles4096预算未交叉撞，仍未运行产品或声明GREEN。此限定语法/计数修文回原preflight核，不重做已通过方案讨论。
+
+085测试原74b1a5ac已集成105337d（47files，20Cj消费者+16负例），旧rootbuild0、仅缺cjtui.theme真实RED1，声明-only静态不运行/非GREEN，证据R15/test-design；foundation013产品屏障080/084+glyph097仍未满足。089同独立Sol/high作者在theme-load-tests先准备异步独立手工期望/真实I/O竞争，async-only RED等基础088后，不拿当前缺包冒充特定功能失败。容量/单candidate内部不变量由090源码审核联合黑盒语义核，不加测试专用公开计数。FIFO非普通文件支持不可静默当需求，必要用合法测试进程read gate做真实普通文件握手，不造fakeworker。
+
+089准备原83fac077已集成179c851，仅准备交付；实际async-only RED仍等088，089/026/092不得提前完成。

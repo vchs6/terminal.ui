@@ -1,0 +1,1037 @@
+diff --git a/tests/glyphs/.gitignore b/tests/glyphs/.gitignore
+new file mode 100644
+index 0000000..8d863cc
+--- /dev/null
++++ b/tests/glyphs/.gitignore
+@@ -0,0 +1 @@
++**/cjpm.lock
+diff --git a/tests/glyphs/README.md b/tests/glyphs/README.md
+new file mode 100644
+index 0000000..6dd284b
+--- /dev/null
++++ b/tests/glyphs/README.md
+@@ -0,0 +1,66 @@
++# TASK-093 glyph contract tests
++
++独立测试资产；生产实现与真正产品 GREEN 由后续固定产品/独立执行提供。本目录不修改产品、其他冻结 suite、Theme085 fixtures 或任务状态。冻结合同 `a0eae9998f8f72410148c1845840fde591e23d9b` 的 G001–G011（从初始 `d504ca6` 补充包内工厂/profile 和精确 errno 分支）。
++
++## 正常执行
++
++```bash
++source /workspace/work/validation/sdk/cangjie/envsetup.sh
++# 根目录和四个consumer可各自配置cangjie-repo.toml；复制种子到自己的cache，勿改共享seed。
++# [repository.cache] path = "/absolute/own/cache"
++# [repository.home] registry = "http://127.0.0.1:18973"
++cjpm build
++mkdir -p /tmp/glyph-logical-files
++CJTUI_GLYPH_FILES=/tmp/glyph-logical-files tests/glyphs/run.sh all
++```
++
++入口可单独选 `api`、`public`、`negative`、`internal`、`rich`、`session`。`public` 单独运行时必须设置存在的 `CJTUI_GLYPH_FILES`。所有 CJPM 构建/测试均走正常 build.cj，不使用 skip-script/skip-build。`all` 故障即停止；RED 取证分别调用各入口。
++
++`api` 是最小正常跨包消费者，只引用 glyph 新 API 与已存在 Text/Application/Frame/ColorMode；缺 RichText/Theme 不可能成为此项 RED 的原因。`rich` 单独消费 RichText 前置 API，不能拿其缺失代替 glyph 专用 RED。二者的清单由 SDK1.2 `cjpm init` 生成后追加路径依赖，最终执行真实 binary。
++
++`internal` 在独立临时目录复制真实生产 src/native/build.cj/manifest，加上本目录的同根 package `_test.cj`，再执行正常 `cjpm test`。未公开包内状态、没有环境注入 policy、没有替代投影/宽度/布局实现。生产工厂为 `GlyphRenderPolicy.unicode()/ascii()/mapped(bitmap)`；profile 为原 init 尾追加 `glyphPolicy!`。
++
++`negative` 是正常路径依赖消费者，检查六个 diagnostic 字段不能写。缺类型/依赖不会被误计为负例通过。
++
++## 独立预期
++
++| 范围 | 固定断言 |
++|---|---|
++| G002/G003 | 两个原构造、默认 Auto、三值相等、setter 返回原 receiver、getter 保留请求值、run 前/headless/offline diagnostics None |
++| G005 | 单可打印 ASCII/单 BMP mapped 且宽1放行；é/e+acute/中/文/emoji/VS/ZWJ、0/1/2/4列、负宽拒绝；整簇等宽问号；`?` 缺失用空格 |
++| bitmap | 8192 长度，0/8191/8193拒绝，成功复制后输入修改不影响策略；高位 BMP 最后一 byte；空map；所有 BMP 成员 mapped 仍不证明组合簇 |
++| 装饰 | 三组角→`+`、横→`-`、竖→`|`；专用 ASCII 不 mapped→`?`；shadow 通用占位；实际 Frame encoder 与逻辑导出 |
++| G006 | generatedEllipsis 的 -1/0/1/2/3/5列、…mapped/missing、ambiguousWide=false/true；调用真实 displayWidth 验证…分别1/2列；字面…缺字仅一个`?` |
++| G007 | offline Unicode→Ascii→Unicode 缓存失效；设备 setter 独立 wake、布局 measure 增加、同值输出静默；挂载数保留、默认 snapshot 不受设备配置/最近诊断污染 |
++| G008 | 中→文、中→?? 原簇/续格结构不同但投影相同零字节；颜色与 glyph 同时等价；新旧各自profile；宽→窄完整行清残留；相同投影profile变更静默 |
++| G009 | render/snapshot默认及显式三mode仍保留业务Unicode；plain/ANSI File完整快照；原簇跨RichText span组合/ZWJ保持；裁剪/覆盖与Frame maxCells边界 |
++
++预期字符串直接手写在测试中，不从产品输出生成 golden。源文本 `é é 中文 😀 ✈️ 👩‍💻 …` 手算19列；固定 SDK 现有 displayWidth 的独立实算也为19，wide为20。public 的30列行补11空格；PTY的32列行补13空格。内部 Bitmap 手填 ASCII 32–126、é、组合 acute、ZWJ、…、✈、中、文、VS16、FFFD 位；没有复制 Unicode 数据表/算法。
++
++## 真实PTY与原生故障边界
++
++`session/native/glyph_syscall_wrap.c` 只属于测试 executable，使用现 syscall 符号的合法 link-wrap：fstat/isatty/ioctl/malloc/calloc/free/write。生产库不读取 `CJTUI_GLYPH_TEST_*`，不添加公开 hook。实际 fd0/fd1 都是 Linux PTY，只有测试 wrapper 为 fd1 反馈合成具体VT身份/映射；VT查询若误用stdin即失败。其它终端打开/输入/尺寸/恢复走真实 syscall。
++
++正常 map 手写104个 pair：95个可打印ASCII、é/…/中/文/acute/ZWJ/VS16/✈和重复é；entryCount 是 pair 数104，不是去重后103。最大65535 pair仍允许重复。验证一次262140 bytes临时分配、一次capacity65535读取、读取后free；更新/override/snapshot不重探。
++
++| native scenario | diagnostics |
++|---|---|
++| real PTY（TERM=dumb 或 linux） | unknown/not-concrete-linux-vt，保Unicode；换TERM不算真实VT |
++| mapped、minor63、65535重复pair | nativeVt=true/mapKnown=true/linux-vt-unimap，errno0；Auto保é/…，宽簇及组合占位 |
++| empty、no-question | known成功，reason ascii-fallback-unavailable；`?`不可映射则空格保列 |
++| alias tty0/console/tty、minor64、非字符设备 | unknown/not-concrete-linux-vt，不读map |
++| isatty false | unknown/not-tty，nativeError0 |
++| fstat/VT_GETMODE/KDGETMODE失败 | unknown/vt-query-failed，原EIO5/EACCES13 |
++| graphics mode | unknown/not-text-mode，nativeError0，不读map |
++| map读取失败 | nativeVt=true/mapKnown=false/linux-vt-unavailable/map-query-failed，EACCES13；Auto保守Ascii |
++| 临时分配失败 | nativeVt=true/mapKnown=false/linux-vt-unavailable/map-allocation-failed，nativeError0；Unicode override仍保Unicode且保留原诊断 |
++
++`write` wrapper 在真实 stdout write 成功后逐字节保存已成功写出的相同内容，不改变真实写入结果；UI输入回调报告作为刷新 fence，零字节断言基于 fence 前后此文件精确长度，不靠等待一段时间猜测输出完成。退出后还核对 capture 与 script 实际 PTY stream 完全相等。报告保留 raw、stderr、syscall trace、profile、实际exit和termios前后值。
++
++合成分支是 syscall 行为验证，不是 Linux VT视觉证据。真正具体VT/真实VTE或xterm、font来源、PNG/hash、宿主矩阵及制品检查属于096。此 suite 的真实PTY仅证明未知PTY/实际运行/恢复分支。
++
++## 明确边界
++
++本增量只测实际投影、policy、marker函数与上下文/缓存接线。没有 TextOverflow 前缀布局断言；不能把 `generatedEllipsis` 函数测试称为“完整 ellipsis 排版通过”。Theme013完成后由085追加先预留三列的实际布局/绘制测试。
++
++允许的 declaration-only 语法隔离若需要，应放仓库外、仅编译不运行、不提交、不计产品GREEN。正式RED来自未补声明的旧产品正常构建和真实消费者/同包测试。test-only固定提交和原始命令/exit/UTC/sourcehash在093交付报告中关联；实现作者不得修改这些冻结预期。
+diff --git a/tests/glyphs/api/cjpm.toml b/tests/glyphs/api/cjpm.toml
+new file mode 100644
+index 0000000..2522504
+--- /dev/null
++++ b/tests/glyphs/api/cjpm.toml
+@@ -0,0 +1,16 @@
++[package]
++  cjc-version = "1.2.0"
++  name = "glyph_api"
++  organization = ""
++  description = "nothing here"
++  version = "1.0.0"
++  target-dir = ""
++  script-dir = ""
++  output-type = "executable"
++  compile-option = ""
++  override-compile-option = ""
++  link-option = ""
++  package-configuration = {}
++
++[dependencies]
++cjtui = { path = "../../.." }
+diff --git a/tests/glyphs/api/src/main.cj b/tests/glyphs/api/src/main.cj
+new file mode 100644
+index 0000000..fd36c55
+--- /dev/null
++++ b/tests/glyphs/api/src/main.cj
+@@ -0,0 +1,34 @@
++package glyph_api
++
++import cjtui.*
++
++// Keep this consumer free of future RichText/Theme names: its RED diagnoses G002.
++main(): Int64 {
++    if (GlyphMode.Auto == GlyphMode.Ascii || GlyphMode.Ascii == GlyphMode.Unicode ||
++        GlyphMode.Unicode == GlyphMode.Auto || GlyphMode.Ascii != GlyphMode.Ascii) {
++        throw Exception("three distinct Equatable modes")
++    }
++    let app = Application(Text("é中文"), glyphMode: GlyphMode.Auto)
++    if (app.glyphMode() != GlyphMode.Auto) { throw Exception("default/requested mode") }
++    let receiver: Application = app.glyphMode(GlyphMode.Ascii)
++    if (receiver.glyphMode() != GlyphMode.Ascii) { throw Exception("setter/getter") }
++    receiver.glyphMode(GlyphMode.Unicode)
++    if (app.glyphMode() != GlyphMode.Unicode) { throw Exception("setter must return same receiver") }
++    let legacy = Application(Text("legacy"))
++    let legacyColored = Application(Text("legacy"), colorMode: ColorMode.Basic8)
++    if (legacy.glyphMode() != GlyphMode.Auto || legacyColored.glyphMode() != GlyphMode.Auto) {
++        throw Exception("both existing constructors default Auto")
++    }
++    let colored = Application(Text("x"), colorMode: ColorMode.Basic8, glyphMode: GlyphMode.Unicode)
++    if (colored.glyphMode() != GlyphMode.Unicode) { throw Exception("second existing constructor") }
++    if (app.terminalGlyphCapabilities().isSome()) { throw Exception("must not probe before run") }
++    app.startHeadless()
++    try {
++        app.snapshot(8, 1, glyphMode: GlyphMode.Ascii)
++        app.snapshot(8, 1)
++    } finally { app.dispose() }
++    render(Text("x"), 1, 1, glyphMode: GlyphMode.Auto)
++    render(Text("x"), 1, 1)
++    println("PASS glyph public API")
++    return 0
++}
+diff --git a/tests/glyphs/internal/glyph_frame_test.cj b/tests/glyphs/internal/glyph_frame_test.cj
+new file mode 100644
+index 0000000..a39091b
+--- /dev/null
++++ b/tests/glyphs/internal/glyph_frame_test.cj
+@@ -0,0 +1,76 @@
++package cjtui
++
++import std.unittest.*
++import std.unittest.testmacro.*
++
++@Test
++func glyph_device_diff_compares_projected_rows(): Unit {
++    let profile = TerminalRenderProfile(colorMode: ColorMode.Monochrome,
++        glyphPolicy: GlyphRenderPolicy.ascii())
++    let old = Frame(4, 1)
++    old.put(0, 0, "中")
++    let sameWidth = Frame(4, 1)
++    sameWidth.put(0, 0, "文")
++    glyphCheck(sameWidth.changesSinceForTerminal(old, profile, profile) == "",
++        "中 to 文 same projected question columns is silent")
++    let differentStructure = Frame(4, 1)
++    differentStructure.put(0, 0, "??")
++    glyphCheck(differentStructure.changesSinceForTerminal(old, profile, profile) == "",
++        "中 to two independent question cells is silent")
++    let short = Frame(4, 1)
++    short.put(0, 0, "A")
++    glyphCheck(short.changesSinceForTerminal(old, profile, profile) == "\u{1b}[0m\u{1b}[1;1HA   \u{1b}[0m",
++        "wide to narrow emits complete row clearing continuation and trailing columns")
++}
++
++@Test
++func glyph_color_and_glyph_equivalence_is_silent(): Unit {
++    let profile = TerminalRenderProfile(colorMode: ColorMode.Monochrome,
++        glyphPolicy: GlyphRenderPolicy.ascii())
++    let old = Frame(2, 1)
++    old.put(0, 0, "中", style: Style(foreground: Color.Red))
++    let current = Frame(2, 1)
++    current.put(0, 0, "文", style: Style(foreground: Color.Blue))
++    glyphCheck(current.changesSinceForTerminal(old, profile, profile) == "",
++        "simultaneously color-equivalent and glyph-equivalent changes emit zero bytes")
++}
++
++@Test
++func glyph_diff_projects_old_and_new_with_their_own_profiles(): Unit {
++    let ascii = TerminalRenderProfile(colorMode: ColorMode.Monochrome,
++        glyphPolicy: GlyphRenderPolicy.ascii())
++    let unicode = TerminalRenderProfile(colorMode: ColorMode.Monochrome,
++        glyphPolicy: GlyphRenderPolicy.unicode())
++    let frame = Frame(2, 1)
++    frame.put(0, 0, "é")
++    glyphCheck(frame.changesSinceForTerminal(frame, unicode, ascii) == "\u{1b}[0m\u{1b}[1;1H? \u{1b}[0m",
++        "same logical frame Unicode to Ascii changes output")
++    glyphCheck(frame.changesSinceForTerminal(frame, ascii, unicode) == "\u{1b}[0m\u{1b}[1;1Hé \u{1b}[0m",
++        "reverse profile switch uses old baseline profile")
++    let plain = Frame(2, 1)
++    plain.put(0, 0, "A")
++    glyphCheck(plain.changesSinceForTerminal(plain, unicode, ascii) == "",
++        "profile changes with equal projected bytes are silent")
++}
++
++@Test
++func glyph_frame_encoder_decorations_and_logical_exports(): Unit {
++    let profile = TerminalRenderProfile(colorMode: ColorMode.Monochrome,
++        glyphPolicy: GlyphRenderPolicy.ascii())
++    let frame = Frame(5, 3)
++    frame.drawBorder(Rect(0, 0, 5, 3), border: BorderStyle.Rounded)
++    frame.put(1, 1, "中")
++    glyphCheck(frame.toPlainText() == "╭───╮\n│中 │\n╰───╯", "logical Unicode border and content preserved")
++    glyphCheck(frame.toAnsiForTerminal(profile) == "\u{1b}[0m\u{1b}[1;1H+---+\u{1b}[2;1H|?? |\u{1b}[3;1H+---+\u{1b}[0m",
++        "actual terminal encoder projects border and whole wide cluster once")
++    glyphCheck(frame.toAnsi().contains("╭───╮") && frame.toAnsi().contains("│中 │"),
++        "public ANSI export ignores device glyph profile")
++    let zero = Frame(0, 0)
++    glyphCheck(zero.toAnsiForTerminal(profile) == "", "zero-size actual encoder")
++    let bounded = Frame(4, 1, maxCells: 4)
++    bounded.put(0, 0, "中中")
++    glyphCheck(bounded.toAnsiForTerminal(profile) == "\u{1b}[0m\u{1b}[1;1H????\u{1b}[0m", "exact Frame resource boundary")
++    var rejected = false
++    try { Frame(5, 1, maxCells: 4) } catch (_: IllegalArgumentException) { rejected = true }
++    glyphCheck(rejected, "over-budget rejected at real Frame boundary")
++}
+diff --git a/tests/glyphs/internal/glyph_projection_test.cj b/tests/glyphs/internal/glyph_projection_test.cj
+new file mode 100644
+index 0000000..c6bc00f
+--- /dev/null
++++ b/tests/glyphs/internal/glyph_projection_test.cj
+@@ -0,0 +1,116 @@
++package cjtui
++
++import std.unittest.*
++import std.unittest.testmacro.*
++
++func glyphCheck(value: Bool, name: String): Unit {
++    if (!value) { throw Exception("FAIL ${name}") }
++}
++
++func glyphBitmap(): Array<UInt8> {
++    let bitmap = Array<UInt8>(8192, repeat: 0u8)
++    // Independent little-bit BMP coverage: ASCII space..tilde, é, 中, 文, …,
++    // combining acute, VS16, ZWJ. The members do not establish cluster support.
++    for (index in 4..16) { bitmap[index] = 255u8 }
++    bitmap[15] = 127u8
++    bitmap[29] = 2u8       // U+00E9 = 29*8 + 1
++    bitmap[96] = 2u8       // U+0301 = 96*8 + 1
++    bitmap[1025] = 32u8    // U+200D = 1025*8 + 5
++    bitmap[1028] = 64u8    // U+2026 = 1028*8 + 6
++    bitmap[1249] = 1u8     // U+2708 = 1249*8 + 0
++    bitmap[2501] = 32u8    // U+4E2D = 2501*8 + 5
++    bitmap[3248] = 128u8   // U+6587 = 3248*8 + 7
++    bitmap[8129] = 128u8
++    bitmap[8191] = 32u8    // U+FFFD = 8191*8 + 5, highest bitmap byte
++    return bitmap
++}
++
++@Test
++func glyph_projection_modes(): Unit {
++    let unicode = GlyphRenderPolicy.unicode()
++    let ascii = GlyphRenderPolicy.ascii()
++    let mapped = GlyphRenderPolicy.mapped(glyphBitmap())
++    // Every expected string below is literal, never generated by the product.
++    for ((text, width, expectedAscii, expectedMapped) in [
++        ("A", 1, "A", "A"), (" ", 1, " ", " "), ("~", 1, "~", "~"),
++        ("é", 1, "?", "é"), ("ö", 1, "?", "?"), ("e\u{301}", 1, "?", "?"),
++        ("中文", 4, "????", "????"), ("中", 2, "??", "??"), ("文", 2, "??", "??"),
++        ("😀", 2, "??", "??"), ("✈", 1, "?", "✈"), ("✈\u{fe0f}", 2, "??", "??"), ("👩‍💻", 2, "??", "??"),
++        ("\u{fffd}", 1, "?", "\u{fffd}"),
++        ("…", 1, "?", "…"), ("░", 1, "?", "?"), ("A", 2, "??", "??"),
++        ("\u{301}", 0, "", "")
++    ]) {
++        glyphCheck(projectTerminalGlyph(text, width, ascii) == expectedAscii, "Ascii literal projection ${text}")
++        glyphCheck(projectTerminalGlyph(text, width, mapped) == expectedMapped, "mapped literal projection ${text}")
++        glyphCheck(projectTerminalGlyph(text, width, unicode) == if (width == 0) { "" } else { text },
++            "Unicode exact cluster and width0 ${text}")
++    }
++    var rejected = false
++    try { projectTerminalGlyph("A", -1, ascii) } catch (_: IllegalArgumentException) { rejected = true }
++    glyphCheck(rejected, "negative width rejected")
++}
++
++@Test
++func glyph_bitmap_bounds_and_ownership(): Unit {
++    for (size in [0, 8191, 8193]) {
++        var rejected = false
++        try { GlyphRenderPolicy.mapped(Array<UInt8>(size, repeat: 0u8)) }
++        catch (_: IllegalArgumentException) { rejected = true }
++        glyphCheck(rejected, "bitmap exact8192 ${size}")
++    }
++    let bitmap = glyphBitmap()
++    let policy = GlyphRenderPolicy.mapped(bitmap)
++    bitmap[29] = 0u8
++    glyphCheck(projectTerminalGlyph("é", 1, policy) == "é", "bitmap is frozen defensive copy")
++    let empty = GlyphRenderPolicy.mapped(Array<UInt8>(8192, repeat: 0u8))
++    glyphCheck(projectTerminalGlyph("é", 1, empty) == " ", "known empty map uses invisible column placeholder")
++    glyphCheck(projectTerminalGlyph("中", 2, empty) == "  ", "known empty map preserves wide columns")
++    let onlyQuestion = Array<UInt8>(8192, repeat: 0u8)
++    onlyQuestion[7] = 128u8
++    let questions = GlyphRenderPolicy.mapped(onlyQuestion)
++    glyphCheck(projectTerminalGlyph("A", 1, questions) == "?", "ASCII is checked when map known")
++    glyphCheck(projectTerminalGlyph("…", 1, questions) == "?", "literal missing ellipsis is one column")
++    glyphCheck(projectTerminalGlyph("┌", 1, questions) == "?", "border fallback then generic placeholder")
++}
++
++@Test
++func glyph_border_group_reuse(): Unit {
++    let ascii = GlyphRenderPolicy.ascii()
++    for (corner in ["┌", "┐", "└", "┘", "╭", "╮", "╰", "╯", "╔", "╗", "╚", "╝"]) {
++        glyphCheck(projectTerminalGlyph(corner, 1, ascii) == "+", "border corner ${corner}")
++    }
++    for (horizontal in ["─", "═"]) {
++        glyphCheck(projectTerminalGlyph(horizontal, 1, ascii) == "-", "border horizontal ${horizontal}")
++    }
++    for (vertical in ["│", "║"]) {
++        glyphCheck(projectTerminalGlyph(vertical, 1, ascii) == "|", "border vertical ${vertical}")
++    }
++    let bitmap = glyphBitmap()
++    bitmap[5] = bitmap[5] & 247u8 // remove '+' while '?' remains mapped
++    glyphCheck(projectTerminalGlyph("╭", 1, GlyphRenderPolicy.mapped(bitmap)) == "?",
++        "missing specialized fallback uses question")
++}
++
++@Test
++func glyph_generated_marker_function_only(): Unit {
++    glyphCheck(displayWidth("…", ambiguousWide: false) == 1, "actual shared ambiguous narrow width")
++    glyphCheck(displayWidth("…", ambiguousWide: true) == 2, "actual shared ambiguous wide width")
++    let unicode = GlyphRenderPolicy.unicode()
++    let ascii = GlyphRenderPolicy.ascii()
++    let mapped = GlyphRenderPolicy.mapped(glyphBitmap())
++    let missingMap = glyphBitmap()
++    missingMap[1028] = 0u8
++    let missing = GlyphRenderPolicy.mapped(missingMap)
++    for ((columns, dots, unicodeMarker) in [(-1, "", ""), (0, "", ""), (1, ".", "…"),
++        (2, "..", "…"), (3, "...", "…"), (5, "...", "…")]) {
++        glyphCheck(generatedEllipsis(unicode, columns, ambiguousWide: false) == unicodeMarker, "Unicode marker ${columns}")
++        glyphCheck(generatedEllipsis(mapped, columns, ambiguousWide: false) == unicodeMarker, "mapped marker ${columns}")
++        glyphCheck(generatedEllipsis(ascii, columns, ambiguousWide: false) == dots, "Ascii marker ${columns}")
++        glyphCheck(generatedEllipsis(missing, columns, ambiguousWide: false) == dots, "missing marker ${columns}")
++        for (policy in [unicode, ascii, mapped, missing]) {
++            glyphCheck(generatedEllipsis(policy, columns, ambiguousWide: true) == dots,
++                "ambiguousWide true must choose dots ${columns}")
++        }
++    }
++    glyphCheck(projectTerminalGlyph("…", 1, ascii) == "?", "literal ellipsis remains one question, never three dots")
++}
+diff --git a/tests/glyphs/negative.sh b/tests/glyphs/negative.sh
+new file mode 100755
+index 0000000..8585a0a
+--- /dev/null
++++ b/tests/glyphs/negative.sh
+@@ -0,0 +1,20 @@
++#!/usr/bin/env bash
++set -euo pipefail
++root=$(cd "$(dirname "$0")/../.." && pwd)
++scratch=$(mktemp -d "${TMPDIR:-/tmp}/glyph-readonly.XXXXXXXX")
++trap 'rm -rf "$scratch"' EXIT
++cjpm init --name glyph_readonly --path "$scratch" --type=executable
++cat >> "$scratch/cjpm.toml" <<EOF_MANIFEST
++cjtui = { path = "$root" }
++EOF_MANIFEST
++if [[ -f "$root/cangjie-repo.toml" ]]; then cp "$root/cangjie-repo.toml" "$scratch/"; fi
++cp "$root/tests/glyphs/negative/write_capabilities.cj.txt" "$scratch/src/main.cj"
++if (cd "$scratch" && cjpm build > compile.txt 2>&1); then
++  cat "$scratch/compile.txt"; echo 'FAIL capabilities fields were writable' >&2; exit 1
++fi
++cat "$scratch/compile.txt"
++if rg -q "undeclared.*TerminalGlyphCapabilities|no such package|failed to (resolve|download)" "$scratch/compile.txt"; then
++  echo 'FAIL negative consumer blocked before immutability check' >&2; exit 1
++fi
++rg -q 'immutable|reassign|constant|cannot.*assign|left.*assign' "$scratch/compile.txt"
++echo 'PASS public capabilities snapshot is immutable'
+diff --git a/tests/glyphs/negative/write_capabilities.cj.txt b/tests/glyphs/negative/write_capabilities.cj.txt
+new file mode 100644
+index 0000000..edf24ed
+--- /dev/null
++++ b/tests/glyphs/negative/write_capabilities.cj.txt
+@@ -0,0 +1,11 @@
++package glyph_readonly
++import cjtui.*
++func mutate(value: TerminalGlyphCapabilities): Unit {
++    value.nativeVt = false
++    value.mapKnown = false
++    value.entryCount = 0
++    value.source = "fabricated"
++    value.reason = ""
++    value.nativeError = 0
++}
++main(): Int64 { 0 }
+diff --git a/tests/glyphs/pty.mjs b/tests/glyphs/pty.mjs
+new file mode 100644
+index 0000000..fabcbfc
+--- /dev/null
++++ b/tests/glyphs/pty.mjs
+@@ -0,0 +1,181 @@
++#!/usr/bin/env node
++import assert from 'node:assert/strict';
++import { spawn } from 'node:child_process';
++import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import { join, resolve } from 'node:path';
++import { fileURLToPath } from 'node:url';
++
++const root = fileURLToPath(new URL('../..', import.meta.url));
++const binary = resolve(root, 'tests/glyphs/session/target/release/bin/main');
++const artifacts = resolve(process.env.CJTUI_GLYPH_ARTIFACTS ?? await mkdtemp(join(tmpdir(), 'glyph-pty-')));
++await mkdir(artifacts, { recursive: true });
++const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
++const quote = value => `'${value.replaceAll("'", "'\\''")}'`;
++const read = async path => { try { return await readFile(path, 'utf8'); } catch { return ''; } };
++async function until(predicate, label) {
++  const end = Date.now() + 10000;
++  while (Date.now() < end) { if (await predicate()) return; await delay(10); }
++  throw Error(`timeout ${label}`);
++}
++function report(text) {
++  return Object.fromEntries(text.trim().split('\n').map(line => {
++    const split = line.indexOf('='); assert(split > 0, `report ${line}`);
++    return [line.slice(0, split), line.slice(split + 1)];
++  }));
++}
++function rows(bytes) {
++  const text = bytes.toString('utf8');
++  return [...text.matchAll(/\x1b\[(\d+);1H([^\x1b]*(?:\x1b\[[0-9;]*m[^\x1b]*)*)/gu)]
++    .map(match => ({ row: Number(match[1]), text: match[2].replaceAll(/\x1b\[[0-9;]*m/gu, '') }));
++}
++class Session {
++  async start(name, scenario, mode = 'Auto', term = 'dumb') {
++    this.name = name; this.scenario = scenario; this.directory = join(artifacts, name);
++    await mkdir(this.directory, { recursive: true });
++    this.path = join(this.directory, 'report.txt'); this.tracePath = join(this.directory, 'syscalls.txt');
++    this.capturePath = join(this.directory, 'stdout-write.raw');
++    this.raw = Buffer.alloc(0); this.stderr = ''; this.serial = 0; this.finished = false;
++    const wrapper = join(this.directory, 'session.sh');
++    await writeFile(wrapper, '#!/bin/sh\nstty rows 6 cols 32\nstty -g > "$2/before"\n"$1" < /dev/tty &\np=$!\necho "$p" > "$2/pid"\nwait "$p"\nr=$?\nstty -g > "$2/after"\nexit "$r"\n');
++    this.child = spawn('script', ['--quiet', '--return', '--flush', '--command',
++      `sh ${quote(wrapper)} ${quote(binary)} ${quote(this.directory)}`, '/dev/null'], {
++      stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, TERM: term, COLORTERM: '',
++        CJTUI_GLYPH_MODE: mode, CJTUI_GLYPH_REPORT: this.path,
++        CJTUI_GLYPH_TEST_NATIVE: scenario, CJTUI_GLYPH_TEST_TRACE: this.tracePath,
++        CJTUI_GLYPH_TEST_CAPTURE: this.capturePath }
++    });
++    this.child.stdout.on('data', value => { this.raw = Buffer.concat([this.raw, value]); });
++    this.child.stderr.on('data', value => { this.stderr += value; });
++    this.child.on('error', error => { this.error = error; this.finished = true; });
++    this.child.on('close', (code, signal) => { this.code = code; this.signal = signal; this.finished = true; });
++    await until(async () => rows(Buffer.from(await read(this.capturePath))).some(row => row.row === 6), `${name} initial complete frame`);
++    return this.sync();
++  }
++  async sync(action = '') {
++    this.serial++;
++    this.child.stdin.write(action + 'p');
++    await until(async () => (await read(this.path)).includes(`serial=${this.serial}\n`), `${this.name} UI fence`);
++    // Input callback p is reached after the next safe refresh following action.
++    return report(await read(this.path));
++  }
++  async delta(action) {
++    const before = (await readFile(this.capturePath)).length;
++    const state = await this.sync(action);
++    return { state, bytes: (await readFile(this.capturePath)).subarray(before) };
++  }
++  async close() {
++    this.child.stdin.write('q');
++    await until(() => this.finished, `${this.name} exit`);
++    if (this.error) throw this.error;
++    assert.equal(this.code, 0, `${this.name} direct application exit`);
++    assert.equal(this.signal, null);
++    assert.deepEqual(this.raw, await readFile(this.capturePath), 'PTY stream equals successfully written actual stdout bytes');
++    assert.equal((await read(join(this.directory, 'after'))).trim(),
++      (await read(join(this.directory, 'before'))).trim(), `${this.name} termios restored`);
++    const retained = report(await read(this.path));
++    assert.equal(retained.serial, String(this.serial), 'diagnostic retained after run cleanup');
++    await this.persist();
++  }
++  async persist() {
++    await writeFile(join(this.directory, 'stdout.raw'), this.raw);
++    await writeFile(join(this.directory, 'stderr.txt'), this.stderr);
++    await writeFile(join(this.directory, 'result.json'), JSON.stringify({ code: this.code, signal: this.signal,
++      scenario: this.scenario, report: await read(this.path) }, null, 2));
++  }
++  async abort() {
++    await this.persist();
++    if (!this.finished) this.child.kill('SIGKILL');
++    this.child.stdin.destroy();
++  }
++}
++const known = { nativeVt: 'true', mapKnown: 'true', entryCount: '104', source: 'linux-vt-unimap', reason: '', nativeError: '0' };
++const unknown = { nativeVt: 'false', mapKnown: 'false', entryCount: '0', source: 'unknown', nativeError: '0' };
++const failedMap = { nativeVt: 'true', mapKnown: 'false', entryCount: '0', source: 'linux-vt-unavailable' };
++function expectProfile(actual, expected, label) {
++  for (const [key, value] of Object.entries(expected)) assert.equal(actual[key], value, `${label} ${key}`);
++}
++const original = 'é e\u0301 中文 😀 ✈\ufe0f 👩‍💻 …';
++const projected = 'é ? ???? ?? ?? ?? …';
++const ascii = '? ? ???? ?? ?? ?? ?';
++const cases = [
++  ['real-pty-auto', 'real', 'Auto', { ...unknown, reason: 'not-concrete-linux-vt' }, original],
++  ['real-pty-term-linux', 'real', 'Auto', { ...unknown, reason: 'not-concrete-linux-vt' }, original, 'linux'],
++  ['real-pty-ascii', 'real', 'Ascii', { ...unknown, reason: 'not-concrete-linux-vt' }, ascii],
++  ['mapped', 'mapped', 'Auto', known, projected],
++  ['minor63', 'minor63', 'Auto', known, projected],
++  ['max-duplicates', 'max', 'Auto', { ...known, entryCount: '65535' }, projected],
++  ['mapped-unicode-override', 'mapped', 'Unicode', known, original],
++  ['mapped-ascii-override', 'mapped', 'Ascii', known, ascii],
++  ['empty-map', 'empty', 'Auto', { ...known, entryCount: '0', reason: 'ascii-fallback-unavailable' }, ' '.repeat(19)],
++  ['question-missing', 'no-question', 'Auto', { ...known, reason: 'ascii-fallback-unavailable' }, 'é ' + ' '.repeat(16) + '…'],
++  ['border-fallback-missing', 'no-border', 'Auto', known, projected],
++  ['map-read-fail', 'map-fail', 'Auto', { ...failedMap, reason: 'map-query-failed', nativeError: '13' }, ascii],
++  ['allocation-fail', 'alloc-fail', 'Auto', { ...failedMap, reason: 'map-allocation-failed', nativeError: '0' }, ascii],
++  ['allocation-fail-unicode', 'alloc-fail', 'Unicode', { ...failedMap, reason: 'map-allocation-failed', nativeError: '0' }, original],
++  ['fstat-fail', 'fstat-fail', 'Auto', { ...unknown, reason: 'vt-query-failed', nativeError: '5' }, original],
++  ['vt-query-fail', 'vt-fail', 'Auto', { ...unknown, reason: 'vt-query-failed', nativeError: '13' }, original],
++  ['kd-query-fail', 'kd-fail', 'Auto', { ...unknown, reason: 'vt-query-failed', nativeError: '5' }, original],
++  ['graphics', 'graphics', 'Auto', { ...unknown, reason: 'not-text-mode' }, original],
++  ...['alias-tty0', 'alias-console', 'alias-tty', 'minor64', 'regular'].map(scenario =>
++    [scenario, scenario, 'Auto', { ...unknown, reason: 'not-concrete-linux-vt' }, original]),
++  ['not-tty', 'not-tty', 'Auto', { ...unknown, reason: 'not-tty' }, original]
++];
++let active;
++try {
++  for (const [name, scenario, mode, expected, content, term] of cases) {
++    active = new Session();
++    const state = await active.start(name, scenario, mode, term);
++    expectProfile(state, expected, name); assert.equal(state.mode, mode);
++    const second = rows(await readFile(active.capturePath)).find(row => row.row === 2);
++    assert(second, `${name} content row exists`);
++    assert.equal(second.text, content + ' '.repeat(13), `${name} full 32-column content row`);
++    const border = rows(await readFile(active.capturePath)).find(row => row.row === 3);
++    const unicodeBorder = mode === 'Unicode' || (mode === 'Auto' && expected.nativeVt === 'false');
++    const expectedBorder = unicodeBorder ? '╭───╮' : scenario === 'empty' ? '     ' :
++      scenario === 'no-border' ? '?????' : '+---+';
++    assert.equal(border?.text, expectedBorder + ' '.repeat(27), `${name} actual shared border fallback`);
++    const trace = await read(active.tracePath);
++    assert(!/ioctl fd=(?!1\b)/u.test(trace), `${name} glyph probes actual stdout only`);
++    if (expected.nativeVt === 'false') assert(!trace.includes('unimap capacity='), `${name} unknown identity never reads map`);
++    if (expected.nativeVt === 'true') {
++      assert.equal((trace.match(/fstat fd=1\n/gu) ?? []).length, 1, `${name} concrete identity from actual stdout`);
++      assert.equal((trace.match(/allocate bytes=262140\n/gu) ?? []).length, 1, `${name} single bounded allocation`);
++      if (scenario === 'alloc-fail') {
++        assert(!trace.includes('unimap capacity='), `${name} allocation failure never reads map`);
++      } else {
++        assert.equal((trace.match(/unimap capacity=65535\n/gu) ?? []).length, 1, `${name} bounded one map read`);
++        assert.equal((trace.match(/free pairs\n/gu) ?? []).length, 1, `${name} temporary pairs freed even on query failure`);
++      }
++    }
++    if (name === 'mapped') {
++      const mounted = state.mounted;
++      assert.equal((await active.delta('v')).bytes.length, 0, '中→文 projected equality is byte-silent');
++      assert.equal((await active.delta('t')).bytes.length, 0, '中→?? raw continuation shape equality is byte-silent');
++      const narrow = await active.delta('n');
++      assert.deepEqual(rows(narrow.bytes), [{ row: 1, text: 'A' + ' '.repeat(31) }], 'wide→narrow complete row clears stale cells');
++      const switched = await active.delta('a');
++      assert(rows(switched.bytes).some(row => row.row === 2 && row.text === ascii + ' '.repeat(13)), 'setter alone wakes actual run and updates profile');
++      assert(Number(switched.state.measures) > Number(narrow.state.measures), 'setter invalidates layout policy cache');
++      assert.equal(switched.state.mounted, mounted, 'setter preserves runtime node identities/count');
++      const unchanged = await active.delta('a');
++      assert.equal(unchanged.bytes.length, 0, 'same selected mode setter does no output');
++      assert.equal(unchanged.state.frames, switched.state.frames, 'same mode setter does not dirty layout cache');
++      assert(rows((await active.delta('u')).bytes).some(row => row.row === 2 && row.text === original + ' '.repeat(13)), 'Unicode switch reprojects original logical source');
++      assert(rows((await active.delta('o')).bytes).some(row => row.row === 2 && row.text === projected + ' '.repeat(13)), 'Auto restored after explicit overrides');
++    }
++    if (name === 'real-pty-ascii') {
++      assert.equal((await active.delta('v')).bytes.length, 0, 'real PTY Ascii equivalent glyph diff');
++      assert.equal((await active.delta('b')).bytes.length, 0, 'real PTY simultaneous equivalent color and glyph diff');
++    }
++    await active.close();
++    expectProfile(report(await read(active.path)), expected, `${name} retained diagnostic after headless/offline export`);
++    assert((await read(active.path + '.snapshot')).includes(original), `${name} last run/device override never pollutes default offline snapshot`);
++    const finalTrace = await read(active.tracePath);
++    if (expected.mapKnown === 'true') assert.equal((finalTrace.match(/unimap capacity=/gu) ?? []).length, 1,
++      `${name} mode, snapshot and cell refresh never redetect map`);
++    active = null;
++    console.log(`PASS ${name}`);
++  }
++  console.log(`PASS glyph PTY/syscall branch suite; artifacts=${artifacts}`);
++} finally { if (active) await active.abort(); }
+diff --git a/tests/glyphs/public/cjpm.toml b/tests/glyphs/public/cjpm.toml
+new file mode 100644
+index 0000000..a7853f1
+--- /dev/null
++++ b/tests/glyphs/public/cjpm.toml
+@@ -0,0 +1,16 @@
++[package]
++  cjc-version = "1.2.0"
++  name = "glyph_public"
++  organization = ""
++  description = "nothing here"
++  version = "1.0.0"
++  target-dir = ""
++  script-dir = ""
++  output-type = "executable"
++  compile-option = ""
++  override-compile-option = ""
++  link-option = ""
++  package-configuration = {}
++
++[dependencies]
++cjtui = { path = "../../.." }
+diff --git a/tests/glyphs/public/src/main.cj b/tests/glyphs/public/src/main.cj
+new file mode 100644
+index 0000000..848b3c3
+--- /dev/null
++++ b/tests/glyphs/public/src/main.cj
+@@ -0,0 +1,83 @@
++package glyph_public
++
++import cjtui.*
++import std.fs.File
++import std.env.*
++
++func check(value: Bool, name: String): Unit {
++    if (!value) { throw Exception("FAIL ${name}") }
++    println("PASS ${name}")
++}
++
++func fields(value: TerminalGlyphCapabilities): Unit {
++    let nativeVt: Bool = value.nativeVt
++    let known: Bool = value.mapKnown
++    let count: Int64 = value.entryCount
++    let source: String = value.source
++    let reason: String = value.reason
++    let nativeError: Int64 = value.nativeError
++    check(nativeVt == nativeVt && known == known && count >= 0 && source == source &&
++        reason == reason && nativeError >= 0, "readable public diagnostic snapshot")
++}
++
++main(): Int64 {
++    let original = "é e\u{301} 中文 😀 ✈\u{fe0f} 👩‍💻 …"
++    let expected = original + "           " // 19 display columns + 11 padding = 30.
++    check(displayWidth(original) == 19, "independent source column count")
++    let root = Text(original)
++    for (mode in [GlyphMode.Auto, GlyphMode.Unicode, GlyphMode.Ascii]) {
++        check(render(root, 30, 1, glyphMode: mode).toPlainText() == expected,
++            "offline mode keeps all business graphemes")
++    }
++    check(render(root, 30, 1).toPlainText() == expected, "render default Unicode")
++    let app = Application(root, limits: RuntimeLimits(), glyphMode: GlyphMode.Ascii)
++    check(app.glyphMode() == GlyphMode.Ascii, "constructor stores requested override")
++    check(app.terminalGlyphCapabilities().isNone(), "None before run")
++    app.startHeadless()
++    try {
++        app.snapshot(30, 1, glyphMode: GlyphMode.Unicode)
++        let samePolicyFrames = app.stats().frames
++        app.snapshot(30, 1, glyphMode: GlyphMode.Unicode)
++        app.snapshot(30, 1, glyphMode: GlyphMode.Auto)
++        check(app.stats().frames == samePolicyFrames, "equal offline policy content reuses cache, independent of object identity")
++        let beforeAscii = app.stats().frames
++        app.snapshot(30, 1, glyphMode: GlyphMode.Ascii)
++        check(app.stats().frames > beforeAscii, "offline Ascii policy invalidates cached logical Frame")
++        let beforeUnicode = app.stats().frames
++        app.snapshot(30, 1, glyphMode: GlyphMode.Unicode)
++        check(app.stats().frames > beforeUnicode, "offline Unicode policy invalidates Ascii cache")
++        for (mode in [GlyphMode.Unicode, GlyphMode.Ascii, GlyphMode.Auto, GlyphMode.Unicode]) {
++            check(app.snapshot(30, 1, glyphMode: mode).toPlainText() == expected,
++                "alternating offline modes preserve original Unicode")
++        }
++        let mounted = app.stats().mountedNodes
++        app.batch({ => app.glyphMode(GlyphMode.Unicode); () })
++        check(app.glyphMode() == GlyphMode.Unicode, "UI-domain setter")
++        check(app.snapshot(30, 1).toPlainText() == expected, "device setting cannot pollute default snapshot")
++        check(app.stats().mountedNodes == mounted, "mode switch preserves mounted nodes")
++        check(app.terminalGlyphCapabilities().isNone(), "headless and snapshot never probe")
++        let frame = app.snapshot(30, 1, glyphMode: GlyphMode.Ascii)
++        let directory = getVariable("CJTUI_GLYPH_FILES").getOrThrow()
++        let plain = directory + "/logical.txt"
++        let ansi = directory + "/logical.ansi"
++        frame.writePlainText(plain)
++        frame.writeAnsi(ansi)
++        check(String.fromUtf8(File.readFrom(plain)) == expected, "File complete logical Unicode plain snapshot")
++        let saved = String.fromUtf8(File.readFrom(ansi))
++        check(saved == frame.toAnsi() && saved.contains(original), "File complete logical Unicode ANSI snapshot")
++        check(saved.contains("\u{1b}[1;1H"), "ANSI export contains independent full-frame positioning")
++    } finally { app.dispose() }
++    let frame = Frame(4, 1)
++    frame.put(0, 0, "中")
++    frame.put(1, 0, "A")
++    check(frame.toPlainText() == " A  ", "overwriting continuation clears whole cluster")
++    frame.put(3, 0, "中")
++    check(frame.toPlainText() == " A  ", "right clipping drops whole wide cluster")
++    let zero = Frame(0, 0)
++    check(zero.toPlainText() == "" && zero.toAnsi() == "", "zero resource boundary")
++    var rejected = false
++    try { Frame(1048577, 1) } catch (_: IllegalArgumentException) { rejected = true }
++    check(rejected, "existing Frame cell resource cap")
++    println("PASS glyph offline contract")
++    return 0
++}
+diff --git a/tests/glyphs/rich/cjpm.toml b/tests/glyphs/rich/cjpm.toml
+new file mode 100644
+index 0000000..30363f8
+--- /dev/null
++++ b/tests/glyphs/rich/cjpm.toml
+@@ -0,0 +1,16 @@
++[package]
++  cjc-version = "1.2.0"
++  name = "glyph_rich"
++  organization = ""
++  description = "nothing here"
++  version = "1.0.0"
++  target-dir = ""
++  script-dir = ""
++  output-type = "executable"
++  compile-option = ""
++  override-compile-option = ""
++  link-option = ""
++  package-configuration = {}
++
++[dependencies]
++cjtui = { path = "../../.." }
+diff --git a/tests/glyphs/rich/src/main.cj b/tests/glyphs/rich/src/main.cj
+new file mode 100644
+index 0000000..3bf56bb
+--- /dev/null
++++ b/tests/glyphs/rich/src/main.cj
+@@ -0,0 +1,25 @@
++package glyph_rich
++
++import cjtui.*
++
++func check(value: Bool, name: String): Unit {
++    if (!value) { throw Exception("FAIL ${name}") }
++    println("PASS ${name}")
++}
++
++main(): Int64 {
++    let content = RichText([
++        TextSpan("e", style: TextStylePatch(foreground: Some(Color.Red))),
++        TextSpan("\u{301}中👩", style: TextStylePatch(foreground: Some(Color.Blue))),
++        TextSpan("‍💻", style: TextStylePatch(bold: Some(true)))
++    ])
++    for (mode in [GlyphMode.Unicode, GlyphMode.Auto, GlyphMode.Ascii]) {
++        let frame = render(Text(content), 6, 1, glyphMode: mode)
++        check(frame.toPlainText() == "e\u{301}中👩‍💻 ", "offline RichText Unicode logical source")
++        check(frame.cellAt(0, 0).grapheme == "e\u{301}" && frame.cellAt(0, 0).width == 1,
++            "combining cluster survives cross-span boundary")
++        check(frame.cellAt(3, 0).grapheme == "👩‍💻" && frame.cellAt(4, 0).continuation,
++            "ZWJ cluster survives cross-span boundary")
++    }
++    return 0
++}
+diff --git a/tests/glyphs/run.sh b/tests/glyphs/run.sh
+new file mode 100755
+index 0000000..9a033e4
+--- /dev/null
++++ b/tests/glyphs/run.sh
+@@ -0,0 +1,41 @@
++#!/usr/bin/env bash
++set -euo pipefail
++root=$(cd "$(dirname "$0")/../.." && pwd)
++mode=${1:-all}
++build_consumer() {
++  (cd "$root/tests/glyphs/$1" && cjpm build)
++  if [[ "$1" != session ]]; then "$root/tests/glyphs/$1/target/release/bin/main"; fi
++}
++internal() (
++  # Real production sources + legal package-local @Test files, never source edits.
++  scratch=$(mktemp -d "${TMPDIR:-/tmp}/cjtui-glyph-internal.XXXXXXXX")
++  trap 'rm -rf "$scratch"' EXIT
++  cp -a "$root/src" "$root/native" "$root/cjpm.toml" "$root/build.cj" "$scratch/"
++  if [[ -d "$root/.cjtui-build" ]]; then cp -a "$root/.cjtui-build" "$scratch/"; fi
++  if [[ -f "$root/cangjie-repo.toml" ]]; then cp "$root/cangjie-repo.toml" "$scratch/"; fi
++  cp "$root/tests/glyphs/internal/"*_test.cj "$scratch/src/"
++  (cd "$scratch" && cjpm test --no-color)
++)
++session() {
++  local native="$root/tests/glyphs/session/native"
++  gcc -std=c11 -Wall -Wextra -Werror -fPIC -O2 -c "$native/glyph_syscall_wrap.c" -o "$native/glyph_syscall_wrap.o"
++  ar rcs "$native/libglyph_syscall_wrap.a" "$native/glyph_syscall_wrap.o"
++  build_consumer session
++  node "$root/tests/glyphs/pty.mjs"
++}
++case "$mode" in
++  api|public|rich) build_consumer "$mode" ;;
++  negative) "$root/tests/glyphs/negative.sh" ;;
++  internal) internal ;;
++  session) session ;;
++  all)
++    export CJTUI_GLYPH_FILES=${CJTUI_GLYPH_FILES:-$(mktemp -d "${TMPDIR:-/tmp}/cjtui-glyph-files.XXXXXXXX")}
++    build_consumer api
++    build_consumer public
++    "$root/tests/glyphs/negative.sh"
++    internal
++    build_consumer rich
++    session
++    ;;
++  *) echo "usage: $0 [api|public|negative|internal|rich|session|all]" >&2; exit 2 ;;
++esac
+diff --git a/tests/glyphs/session/cjpm.toml b/tests/glyphs/session/cjpm.toml
+new file mode 100644
+index 0000000..d72d39d
+--- /dev/null
++++ b/tests/glyphs/session/cjpm.toml
+@@ -0,0 +1,19 @@
++[package]
++  cjc-version = "1.2.0"
++  name = "glyph_session"
++  organization = ""
++  description = "nothing here"
++  version = "1.0.0"
++  target-dir = ""
++  script-dir = ""
++  output-type = "executable"
++  compile-option = ""
++  override-compile-option = ""
++  link-option = "--wrap=fstat --wrap=isatty --wrap=ioctl --wrap=malloc --wrap=calloc --wrap=free --wrap=write"
++  package-configuration = {}
++
++[dependencies]
++cjtui = { path = "../../.." }
++
++[ffi.c]
++glyph_syscall_wrap = { path = "./native" }
+diff --git a/tests/glyphs/session/native/glyph_syscall_wrap.c b/tests/glyphs/session/native/glyph_syscall_wrap.c
+new file mode 100644
+index 0000000..736ea95
+--- /dev/null
++++ b/tests/glyphs/session/native/glyph_syscall_wrap.c
+@@ -0,0 +1,154 @@
++#define _GNU_SOURCE
++#include <errno.h>
++#include <fcntl.h>
++#include <linux/kd.h>
++#include <linux/vt.h>
++#include <stdarg.h>
++#include <stdint.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <sys/stat.h>
++#include <sys/sysmacros.h>
++#include <sys/ioctl.h>
++#include <unistd.h>
++
++/* Test executable only: link-wrap real libc syscalls. No product hooks/overrides.
++ * Unrelated ioctl requests and normal terminal open/read/restore stay real.
++ * fd0 is a real PTY; only fd1 receives synthetic concrete-VT metadata. */
++int __real_fstat(int, struct stat *);
++int __real_isatty(int);
++int __real_ioctl(int, unsigned long, ...);
++void *__real_malloc(size_t);
++void *__real_calloc(size_t, size_t);
++void __real_free(void *);
++ssize_t __real_write(int, const void *, size_t);
++static int stdout_tty_calls;
++static int after_text_mode;
++static void *pair_allocation;
++
++static const char *scenario(void) {
++    const char *value = getenv("CJTUI_GLYPH_TEST_NATIVE");
++    return value == NULL ? "real" : value;
++}
++static int is_case(const char *value) { return strcmp(scenario(), value) == 0; }
++static void trace(const char *format, ...) {
++    const char *path = getenv("CJTUI_GLYPH_TEST_TRACE");
++    if (path == NULL) return;
++    int saved = errno;
++    int fd = open(path, O_CREAT | O_WRONLY | O_APPEND, 0600);
++    if (fd >= 0) {
++        char line[200];
++        va_list args;
++        va_start(args, format);
++        int size = vsnprintf(line, sizeof line, format, args);
++        va_end(args);
++        if (size > 0 && (size_t)size < sizeof line) (void)write(fd, line, (size_t)size);
++        (void)close(fd);
++    }
++    errno = saved;
++}
++int __wrap_fstat(int fd, struct stat *result) {
++    if (is_case("real") || fd != STDOUT_FILENO) return __real_fstat(fd, result);
++    trace("fstat fd=%d\n", fd);
++    if (is_case("fstat-fail")) { errno = EIO; return -1; }
++    int status = __real_fstat(fd, result);
++    if (status != 0) return status;
++    result->st_mode = (result->st_mode & ~S_IFMT) | S_IFCHR;
++    result->st_rdev = makedev(4, 1);
++    if (is_case("alias-tty0")) result->st_rdev = makedev(4, 0);
++    if (is_case("alias-console")) result->st_rdev = makedev(5, 1);
++    if (is_case("alias-tty")) result->st_rdev = makedev(5, 0);
++    if (is_case("minor64")) result->st_rdev = makedev(4, 64);
++    if (is_case("minor63")) result->st_rdev = makedev(4, 63);
++    if (is_case("regular")) result->st_mode = (result->st_mode & ~S_IFMT) | S_IFREG;
++    return 0;
++}
++int __wrap_isatty(int fd) {
++    if (fd == STDOUT_FILENO) stdout_tty_calls++;
++    // cjt_open must first succeed on the actual PTY; only the later probe fails.
++    if (is_case("not-tty") && fd == STDOUT_FILENO && stdout_tty_calls > 1) {
++        trace("isatty fd=1 false\n"); errno = ENOTTY; return 0;
++    }
++    return __real_isatty(fd);
++}
++static unsigned short mapped_code(unsigned int i) {
++    if (i < 95) return (unsigned short)(32 + i);
++    static const unsigned short extras[] = {0x00e9, 0x2026, 0x4e2d, 0x6587, 0x0301, 0x200d, 0xfe0f, 0x2708, 0x00e9};
++    return extras[i - 95];
++}
++int __wrap_ioctl(int fd, unsigned long request, ...) {
++    va_list args;
++    va_start(args, request);
++    void *data = va_arg(args, void *);
++    va_end(args);
++    if (is_case("real") || (request != VT_GETMODE && request != KDGETMODE && request != GIO_UNIMAP))
++        return __real_ioctl(fd, request, data);
++    trace("ioctl fd=%d request=%lu\n", fd, request);
++    if (fd != STDOUT_FILENO) { errno = EBADF; return -1; }
++    if (request == VT_GETMODE) {
++        if (is_case("vt-fail")) { errno = EACCES; return -1; }
++        memset(data, 0, sizeof(struct vt_mode));
++        return 0;
++    }
++    if (request == KDGETMODE) {
++        if (is_case("kd-fail")) { errno = EIO; return -1; }
++        *(int *)data = is_case("graphics") ? KD_GRAPHICS : KD_TEXT;
++        after_text_mode = !is_case("graphics");
++        return 0;
++    }
++    struct unimapdesc *map = data;
++    trace("unimap capacity=%u\n", (unsigned)map->entry_ct);
++    if (is_case("map-fail")) { errno = EACCES; return -1; }
++    unsigned int count = is_case("empty") ? 0 : is_case("max") ? 65535 : 104;
++    if (map->entry_ct < count) { errno = ENOMEM; return -1; }
++    for (unsigned int i = 0; i < count; i++) {
++        unsigned short code = mapped_code(i % 104);
++        if (is_case("no-question") && code == '?') code = 'A';
++        if (is_case("no-border") && (code == '+' || code == '-' || code == '|')) code = 'A';
++        map->entries[i].unicode = code;
++        map->entries[i].fontpos = (unsigned short)(i % 256);
++    }
++    map->entry_ct = (unsigned short)count;
++    return 0;
++}
++static void *allocate_pairs(size_t size, int zeroed, size_t count, size_t item_size) {
++    int candidate = after_text_mode && size == 65535u * sizeof(struct unipair);
++    if (candidate) {
++        trace("allocate bytes=%zu\n", size);
++        if (is_case("alloc-fail")) { after_text_mode = 0; errno = ENOMEM; return NULL; }
++    }
++    void *value = zeroed ? __real_calloc(count, item_size) : __real_malloc(size);
++    if (candidate) pair_allocation = value;
++    return value;
++}
++void *__wrap_malloc(size_t size) { return allocate_pairs(size, 0, 0, 0); }
++void *__wrap_calloc(size_t count, size_t size) {
++    if (size != 0 && count > SIZE_MAX / size) return __real_calloc(count, size);
++    return allocate_pairs(count * size, 1, count, size);
++}
++void __wrap_free(void *value) {
++    if (value != NULL && value == pair_allocation) { trace("free pairs\n"); pair_allocation = NULL; }
++    __real_free(value);
++}
++ssize_t __wrap_write(int fd, const void *buffer, size_t size) {
++    ssize_t actual = __real_write(fd, buffer, size);
++    int saved = errno;
++    const char *path = getenv("CJTUI_GLYPH_TEST_CAPTURE");
++    if (fd == STDOUT_FILENO && actual > 0 && path != NULL) {
++        int capture = open(path, O_CREAT | O_WRONLY | O_APPEND, 0600);
++        if (capture >= 0) {
++            const unsigned char *bytes = buffer;
++            size_t offset = 0;
++            while (offset < (size_t)actual) {
++                ssize_t n = __real_write(capture, bytes + offset, (size_t)actual - offset);
++                if (n > 0) offset += (size_t)n;
++                else if (n < 0 && errno == EINTR) continue;
++                else break;
++            }
++            (void)close(capture);
++        }
++    }
++    errno = saved;
++    return actual;
++}
+diff --git a/tests/glyphs/session/src/main.cj b/tests/glyphs/session/src/main.cj
+new file mode 100644
+index 0000000..4ad8ea6
+--- /dev/null
++++ b/tests/glyphs/session/src/main.cj
+@@ -0,0 +1,60 @@
++package glyph_session
++
++import cjtui.*
++import std.env.*
++import std.fs.File
++
++func modeName(value: GlyphMode): String {
++    match (value) { case GlyphMode.Auto => "Auto"; case GlyphMode.Unicode => "Unicode"; case GlyphMode.Ascii => "Ascii" }
++}
++
++func save(app: Application, serial: Int64): Unit {
++    let capabilities = app.terminalGlyphCapabilities().getOrThrow()
++    let report = "nativeVt=${capabilities.nativeVt}\nmapKnown=${capabilities.mapKnown}\n" +
++        "entryCount=${capabilities.entryCount}\nsource=${capabilities.source}\nreason=${capabilities.reason}\n" +
++        "nativeError=${capabilities.nativeError}\nmode=${modeName(app.glyphMode())}\nserial=${serial}\n" +
++        "frames=${app.stats().frames}\nmeasures=${app.stats().measures}\nmounted=${app.stats().mountedNodes}\n"
++    File.writeTo(getVariable("CJTUI_GLYPH_REPORT").getOrThrow(), report.toArray())
++}
++
++main(): Int64 {
++    let text = Observable<String>("中")
++    let foreground = Observable<Color>(Color.Red)
++    let root = Column {
++        Text({ => text.value }).foreground({ => foreground.value })
++        Text("é e\u{301} 中文 😀 ✈\u{fe0f} 👩‍💻 …")
++        Text("BOX").border(BorderStyle.Rounded)
++    }
++    let app = Application(root)
++    match (getVariable("CJTUI_GLYPH_MODE")) {
++        case Some("Ascii") => app.glyphMode(GlyphMode.Ascii)
++        case Some("Unicode") => app.glyphMode(GlyphMode.Unicode)
++        case _ => ()
++    }
++    var serial: Int64 = 0
++    app.onKey { event =>
++        match (event.text) {
++            case "p" => serial++; save(app, serial)
++            case "v" => text.value = "文"
++            case "t" => text.value = "??"
++            case "n" => text.value = "A"
++            case "c" => foreground.value = Color.Blue
++            case "b" => text.value = "文"; foreground.value = Color.Blue
++            case "a" => app.glyphMode(GlyphMode.Ascii)
++            case "u" => app.glyphMode(GlyphMode.Unicode)
++            case "o" => app.glyphMode(GlyphMode.Auto)
++            case "q" => app.stop()
++            case _ => ()
++        }
++    }.run()
++    // Retained diagnostics remain readable after cleanup and fd lifetime ends.
++    // snapshot requires an outer UI boundary: never call it inside onKey.
++    app.startHeadless()
++    try {
++        let logical = app.snapshot(32, 6).toPlainText()
++        File.writeTo(getVariable("CJTUI_GLYPH_REPORT").getOrThrow() + ".snapshot", logical.toArray())
++        app.snapshot(32, 6, glyphMode: GlyphMode.Ascii)
++    } finally { app.dispose() }
++    save(app, serial)
++    return 0
++}

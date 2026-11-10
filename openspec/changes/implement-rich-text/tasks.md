@@ -21,7 +21,7 @@
 
 ## Tasks
 
-- [ ] TASK-081（WP005/testing）：冻结tests/rich-text公共消费者、字节分块/手工样式golden/错误与真实RED。
+- [x] TASK-081（WP005/testing）：冻结tests/rich-text公共消费者、字节分块/手工样式golden/错误与真实RED。
 - [ ] TASK-009（WP002/implementation）：有界decoder/typed文本/Frame及组件一体集成，固定产品提交。
 - [ ] TASK-082（WP005/verification）：固定完整技术diff独立spec/quality审核。
 - [ ] TASK-083（WP005/testing）：独立新矩阵、受影响帧/布局/runtime回归、正常bundle/公开包消费者。
@@ -29,7 +29,7 @@
 
 ## Shared admission / L3 cards
 
-各项为L3；081/082/083/084父WP005/REQ007，009父WP002/REQ005。classification execution：用户已定ANSI仅文本样式/框架自动降级，主代理据已验依赖缺口选最小边界；change本目录，workflow本tasks。必要skills：主代理brainstorming/writing-plans/SDD，作者TDD/仓颉coding/调试/verification，审核review，验收verification；实际使用归progress。指定模型081 Sol/high，产品Terra/high，审核/验收Astra/high，执行Sol/medium，实际serving未暴露时不伪证。
+各项为L3；081/082/083/084父WP005/REQ007，009父WP002/REQ005。classification execution：用户已定ANSI仅文本样式/框架自动降级，主代理据已验依赖缺口选最小边界；change本目录，workflow本tasks。必要skills：主代理brainstorming/writing-plans/SDD，作者TDD/仓颉coding/调试/verification，审核review，验收verification；实际使用归progress。指定模型081 Sol/high，产品Sol/high（AGENTS13.2：适合仓颉语言任务），审核/验收Astra/high，执行Sol/medium，实际serving未暴露时不伪证。
 
 inputs：Frame5c2a7e7后同源已验输入、颜色R10、现严格Text、ansies真实API探针`/workspace/work/text-contract-audit`、runtime已冻结合同a947857。081等独立preflight ready后写测试；009等081固定与runtime A+B产品已集成（072–075），不越过相关并发写屏障。082→083→084按固定产品顺序。009原TASK003/006只消费已证明公共依赖与颜色，不提前关闭完整003。010仍由docs/tasks原状态保持。
 

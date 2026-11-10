@@ -1,0 +1,10 @@
+[31merror[0m: COMPONENT_INIT_RETURN: direct constructor return is unsupported
+ [36m==>[0m /workspace/work/runtime-implementation/source/tests/runtime/macros/negative/init-return/src/fixture.cj:9:23:
+  [36m| [0m
+[36m9[0m [36m| [0m    init(early: Bool) { if (early) { return } }[0m
+  [36m| [0m                      [31m^^^^^^^^^^^^^^^^^^^^^^^^^ remove return[0m
+  [36m| [0m
+
+1 error generated, 1 error printed.
+Error: failed to compile package `runtime_macro_init_return`, return code is 1
+Error: cjpm build failed

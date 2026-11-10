@@ -1,0 +1,29 @@
+[
+  {
+    "id": "GLYPH-G011-001",
+    "round_id": "glyph-g011-preflight-fad6301",
+    "revision": "fad6301e8c284e6db0c6689186da756959b59c1f",
+    "category": "rendering",
+    "target": "G011 successful bounded map diagnostic row",
+    "contract_ref": "design.md G003/G011",
+    "acceptance_ref": "AC-093 native empty-map diagnostics",
+    "claim": "Successful empty map requires both empty reason under G011 and ascii-fallback-unavailable under G003.",
+    "severity": "major",
+    "priority": "Important",
+    "status": "confirmed",
+    "reproducer": {
+      "setup": "Confirmed text VT with successful GIO_UNIMAP entryCount=0",
+      "actions": [
+        "Apply G003 and G011 diagnostic mapping"
+      ],
+      "expected": "One consistent diagnostic preserving missing ASCII fallback",
+      "observed": "G003 requires ascii-fallback-unavailable; G011 requires empty reason"
+    },
+    "evidence_refs": [
+      "g011-input/design.md",
+      "g011-input/design.diff"
+    ],
+    "fix_revision": null,
+    "verification": null
+  }
+]

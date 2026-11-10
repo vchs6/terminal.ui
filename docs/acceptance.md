@@ -18,8 +18,8 @@
 | AC-012 | REQ-003 | 圆角边框与阴影绘制区域 | TASK-012 | 阴影只扩展绘制；移动/缩小清旧区，服从祖先裁剪；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
 | AC-013 | REQ-001 | 主题、样式复用及显式复位 | TASK-013 | 四级优先顺序和继承/复位行为明确，运行时仅样式变化也更新；证据待实施时链接 | pending |
 | AC-014 | REQ-001 | 自定义组件跨容器复用 | TASK-014 | 同组件用于普通容器与弹窗无需修改内核；证据待实施时链接 | pending |
-| AC-015 | REQ-002 | 稳定身份与卸载订阅释放 | TASK-015 | 列表重排保留正确局部状态，卸载后订阅和引用失效；证据待实施时链接 | pending |
-| AC-016 | REQ-002 | 状态批处理与 UI 调度 | TASK-016 | 后台状态经过调度，批量修改合并刷新，长短文本切换无残留；证据待实施时链接 | pending |
+| AC-015 | REQ-002 | 稳定身份与卸载订阅释放 | TASK-015 | 列表重排保留正确局部状态，卸载后订阅和引用失效；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
+| AC-016 | REQ-002 | 状态批处理与 UI 调度 | TASK-016 | 后台状态经过调度，批量修改合并刷新，长短文本切换无残留；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
 | AC-017 | REQ-003 | 键盘导航和有效焦点 | TASK-017 | 禁用、卸载和空焦点集合有确定行为，无失效引用；证据待实施时链接 | pending |
 | AC-018 | REQ-003 | 覆盖层嵌套与关闭恢复 | TASK-018 | 父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态；证据待实施时链接 | pending |
 | AC-019 | REQ-003 | 菜单与状态条组合行为 | TASK-019 | 水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合；证据待实施时链接 | pending |
@@ -35,7 +35,7 @@
 | AC-029 | REQ-001.8、REQ-009 | 按钮标签与选择进度基础组件 | TASK-029 | 标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致；产品证据待实现 | pending |
 | AC-030 | REQ-010 | 可选会话能力与本地剪贴板通道 | TASK-030 | SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心；产品证据待实现 | pending |
 | AC-031 | REQ-004.8 | M2局部布局绘制及基线对照 | TASK-031 | 局部负载减少无关工作，移动/遮挡/宽字符/resize与M1帧结果一致，记录CPU/分配/输出及大范围退化；产品证据待实现 | pending |
-| AC-032 | REQ-001.9、REQ-002.7/.8 | 混合子元素操作与定向通知集成 | TASK-032 | 声明A/B/C中插X融合排序位置；显式移动/移除、无效锚点/卸载/重入操作有诊断；定向通知合批无手动flush；产品证据待实现 | pending |
+| AC-032 | REQ-001.9、REQ-002.7/.8 | 混合子元素操作与定向通知集成 | TASK-032 | 声明A/B/C中插X融合排序位置；显式移动/移除、无效锚点/卸载/重入操作有诊断；定向通知合批无手动flush；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
 | AC-033 | REQ-007 | 本轮规格与追踪一致性 | TASK-033 |R5最终严格检查与覆盖记录；实际证据：R5/validation-final.txt、check-consistency.mjs及re-review.md| passed |
 | AC-034 | REQ-001 | SDK语言隔离调查交付 | TASK-034 |R5语言正负例、重跑及闭包/收集边界；不替代AC-002/004完整验收；实际证据：R5/evidence/README.md语言正负例；主代理重跑退出0| passed |
 | AC-035 | REQ-007 | 独立设计审核 | TASK-035 |R5受审版本、findings及修复独立复核；仅design_reviewed；实际证据：R5/re-review.md：5项发现verified，固定修复版本070623f1014a48bd559364747550c48332c16201| design_reviewed |
@@ -108,11 +108,11 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-073 | REQ-007 | TASK-073 | 固定技术diff的独立spec/quality审查；见[R12有限验收](reviews/R12/acceptance/report.md) | passed |
 | AC-074 | REQ-002/004/006/007 | TASK-074 | 独立执行、真实退出/TTY恢复、正常bundle与公开消费；见[R12有限验收](reviews/R12/acceptance/report.md) | passed |
 | AC-075 | REQ-001/002/007 | TASK-075 | A+B有限证据与最终元数据核对，原父AC不提前完成；见[R12有限验收](reviews/R12/acceptance/report.md) | passed |
-| AC-076 | REQ-002/007 | TASK-076 | 动态/混合槽位独立golden与真实RED | pending |
-| AC-077 | REQ-001/002 | TASK-077 | If/ForEach与手动操作共享唯一子序列 | pending |
-| AC-078 | REQ-007 | TASK-078 | C增量及运行时跨界独立spec/quality审查 | pending |
-| AC-079 | REQ-002/006/007 | TASK-079 | 独立动态矩阵、相关回归、正常公开包消费 | pending |
-| AC-080 | REQ-001/002/007 | TASK-080 | 原AC015/016/032完整证据及元数据，014仍等018 | pending |
+| AC-076 | REQ-002/007 | TASK-076 | 动态/混合槽位独立golden与真实RED | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
+| AC-077 | REQ-001/002 | TASK-077 | If/ForEach与手动操作共享唯一子序列 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
+| AC-078 | REQ-007 | TASK-078 | C增量及运行时跨界独立spec/quality审查 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
+| AC-079 | REQ-002/006/007 | TASK-079 | 独立动态矩阵、相关回归、正常公开包消费 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
+| AC-080 | REQ-001/002/007 | TASK-080 | 原AC015/016/032完整证据及元数据，014仍等018 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
 
 ## 有界富文本质量验收
 

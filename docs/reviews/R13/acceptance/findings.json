@@ -1,0 +1,21 @@
+{
+  "task": "TASK-080",
+  "verdict": "PASS_FINITE",
+  "acceptance": {"AC-076":"passed","AC-077":"passed","AC-078":"passed_finite","AC-079":"passed_finite","AC-080":"passed_finite","AC-015":"passed_original_scope","AC-016":"passed_original_scope","AC-032":"passed_original_scope"},
+  "metadata_readiness": "verified_projection_prepared_pending_root_mechanical_archive",
+  "unresolved_required_behavior_findings": [],
+  "findings": [{
+    "id": "DYN-A001",
+    "category": "evidence_metadata",
+    "severity": "minor",
+    "status": "resolved_by_additive_verified_projection_pending_archive",
+    "description": "Both real-host metadata artifacts maps hashed xorg.log and xorg.stdout before Xorg appended its final successful-shutdown line. Original metadata has four stale final-artifact hashes.",
+    "impact": "No source, binary, PNG, ANSI stage, grid, termios or exit evidence mismatch; execution top-level manifest hashes final original logs correctly.",
+    "proof": "raw/metadata-prefix-audit.json",
+    "remediation": "Preserve originals. Archive metadata/*-metadata.final-artifacts.json and projection-provenance.json; only artifacts.xorg.log and artifacts.xorg.stdout change per projection. Capture timestamp unchanged.",
+    "requires_product_change_or_suite_rerun": false
+  }],
+  "historical_findings": [{"id":"DYN-F001","original_revision":"167c2a3f701b8718e90fe7d9b78050af5665a23b","original_verdict":"FAIL","fixed_revision":"216b2ab5f2315f4be19467b7e49f4047aec78ab9","status":"verified_closed","formal_reds":2,"fixed_groups":34}],
+  "not_closed": ["AC-014 / TASK-018 cross-popup","AC-001–004","AC-008","AC-010","AC-017","full release","all Linux","other platforms"],
+  "next": "Root mechanical archive/status projection, then continue RichText and remaining Linux dependencies."
+}

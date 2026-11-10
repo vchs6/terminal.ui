@@ -13,7 +13,7 @@
 ## Global constraints
 
 - 用户本次明确要求完成全部 Linux 工作，延续自主技术裁决、独立角色及 direct-main 授权；不在单个有限增量结束后把全阶段任务搁置。
-- 主代理只负责契约、计划、调度、集成和分歧处理；测试编写、产品实现、审核、执行与验收各自独立上下文/目录。使用 Sol 测试、Terra 实现、Astra 整片审核/验收、Sol medium 确定命令执行，按实际可用模型记录指定配置。
+- 主代理只负责契约、计划、调度、集成和分歧处理；测试编写、产品实现、审核、执行与验收各自独立上下文/目录。使用 Sol 测试、Terra 或适合仓颉语言的 Sol 实现、Astra 整片审核/验收、Sol medium 确定命令执行，按实际可用模型记录指定配置。
 - 每个仓颉类、结构体、接口、枚举单独文件，按职责与 package 组织；保留已冻结公共调用，废弃私有路径明确退役，不增加第二渲染/宽度/ANSI 内核。
 - 既有 R8/R9/R10 有效证据按相关内容、环境、依赖及范围复用；功能变化补受影响测试，阶段集成与最终 release 执行完整必要检查，不因文档提交机械重复冷套件。
 - 产品不依赖 JS/TS、GUI、Shell 执行、完整终端模拟器或 CSS 引擎。测试宿主/采集工具仅为开发验证依赖。
@@ -51,4 +51,4 @@ TASK-006、011、012 及既有支持任务保持已验范围，不重新实现�
 
 ## 当前执行入口
 
-当前：[持久运行时](../openspec/changes/implement-reactive-runtime/tasks.md)（A+B验收后直接继续动态结构C）；帧合成已完成。后续已准备[富文本](../openspec/changes/implement-rich-text/tasks.md)及[主题](../openspec/changes/implement-theme-styles/tasks.md)合同与独立测试，按共享文件屏障集成。全阶段恢复日志：[Linux 总执行日志](../openspec/linux-completion-progress.md)。日志仅记录交接与裁决，不建立第二份任务状态。
+当前：[富文本](../openspec/changes/implement-rich-text/tasks.md)（081固定测试已交付，009产品作者实施中）；动态结构C独立080验收通过，原始失败/修复/跨宿主PNG/最终metadata投影已归档R13，帧合成已完成。后续已准备[富文本](../openspec/changes/implement-rich-text/tasks.md)及[主题](../openspec/changes/implement-theme-styles/tasks.md)合同与独立测试，按共享文件屏障集成。全阶段恢复日志：[Linux 总执行日志](../openspec/linux-completion-progress.md)。日志仅记录交接与裁决，不建立第二份任务状态。

@@ -1,0 +1,17 @@
+[33mwarning[0m: unused variable:'event'
+  [36m==>[0m /workspace/work/dynamic-execution/source/tests/runtime/src/events.cj:15:56:
+   [36m| [0m
+[36m15[0m [36m| [0m            leaf.value = Some(Text("x").onKeyCapture({ event => trace.value += "Tc" })[0m
+   [36m| [0m                                                       [33m^^^^^ unused variable[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused expression
+  [36m==>[0m /workspace/work/dynamic-execution/source/tests/runtime/src/review_regressions.cj:19:13:
+   [36m| [0m
+[36m19[0m [36m| [0m            try { other.snapshot(2, 1) } catch (error: UIException) { observed.value = error.code }[0m
+   [36m| [0m            [33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unused expression[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+2 warnings generated, 2 warnings printed.

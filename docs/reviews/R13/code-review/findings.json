@@ -1,0 +1,45 @@
+[
+  {
+    "id": "DYN-F001",
+    "round_id": "R13/TASK-078",
+    "revision": "167c2a3f701b8718e90fe7d9b78050af5665a23b",
+    "category": "construction",
+    "target": "Nested dynamic subtree insertion and group replacement",
+    "contract_ref": "implement-reactive-runtime/design.md sections 4.1, 4.3; R007; R013",
+    "acceptance_ref": "TASK-078; TASK-077 no partial construction; REQ-002/009 dynamic runtime",
+    "claim": "Preflight ignores DeclaredGroup, so invalid nested dynamic content is published and old nodes or later commands execute before its construction validation fails.",
+    "severity": "major",
+    "code_review_severity": "Important",
+    "status": "confirmed",
+    "location": {"path": "src/runtime_session.cj", "line": 408},
+    "related_locations": [
+      {"path": "src/runtime_session.cj", "line": 440},
+      {"path": "src/runtime_session.cj", "line": 549},
+      {"path": "src/runtime_session.cj", "line": 740},
+      {"path": "src/foreach_group.cj", "line": 54},
+      {"path": "src/dynamic_group.cj", "line": 85}
+    ],
+    "reproducer": {
+      "setup": "Normal SDK1.2.0/CJPM public consumer in /workspace/work/dynamic-review/probe against detached fixed candidate",
+      "actions": [
+        "Batch append a Column containing ForEach with duplicate keys, then remove an already mounted old child.",
+        "Separately replace an outer ForEach old key with a new Column containing the duplicate-key ForEach."
+      ],
+      "expected": "New subtree validation throws before publication/retirement or later commands; old cleanup runs during failed-session teardown and observes invalid parent.",
+      "observed": "Both report DuplicateKey only after old cleanup sees a valid parent and one committed replacement child. Normal build exits 0; direct binary exits 1.",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh; cd /workspace/work/dynamic-review/probe; cjpm build; timeout 30s target/release/bin/main"
+    },
+    "evidence_refs": [
+      "probe/src/main.cj",
+      "probe/src/ref_box.cj",
+      "raw/probe-build-corrected.meta",
+      "raw/probe-build-corrected.log",
+      "raw/probe-run.meta",
+      "raw/probe-run.log",
+      "sourcehash.txt",
+      "evidence-manifest.sha256"
+    ],
+    "fix_revision": null,
+    "verification": null
+  }
+]

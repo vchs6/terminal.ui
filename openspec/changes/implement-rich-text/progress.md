@@ -9,3 +9,7 @@
 固定4a7b955复核只余“final前不能知道是否SGR”的限额歧义。主代理将字段明确命名maxParameters，全部CSI参数区适用字段数/连续decimal-run≤3的有界限制，到超限byte即判TooLong，不待final，不让未知final覆盖首错。修正RichText验证函数名为下沉唯一validatePlainText。本项是候选冻结前澄清，无已发布兼容变更。
 
 独立preflight最终7a33ddc ready，design hash656b827e9f40727aa71badb780be86d35cf24199c6cf65de5ef67f2041cf67d4，剩余Important0。DQ12原009转移/081–084AC单引用、DQ13技能来源/使用链接在本次正式准入补齐，不改变功能API；081作者rich_text_test_author指定Sol/high已按冻结合同开工，独立/workspace/work/rich-text-tests/source，不改run-slice并发接线，先纯核心missingAPI RED，runtime相关consumer等固定新输入。009产品尚未准入。
+
+2026-11-10：TASK078 scoped-r1独立双PASS（DYN-F001关闭），079固定216b2ab独立执行PASS，080 Astra/high有限PASS，原AC015/016/032原文范围充分。627执行清单文件与18验收文件、两个严格JSON最终Xorg-artifact投影已验证；原Xorg捕获后正常退出只追加日志prefix证据保留，不修改原件。root正在机械归R13并登记状态，不重复套件。新TASK009 rich_text_implementation_resume Sol/high（仓颉语言适用，AGENTS13.2）从9bc493f独立实施，正式081测试3f60142/7ba2cd4已固定。环境恢复仅重建代理连接，保留原文件/relay/有效证据。
+
+TASK089 async测试准备原83fac077已机械集成179c851，78路径/22场景；真实async-only RED必须等088基础Theme，故089不勾选、026不准入。TASK148独立Sol/high session_test_author准备正式消费者与真实旧产品RED；有限宿主协议只作事实输入。新的cursor_protocol_design Astra/high仅外部候选设计：依据真实VT不回显隐查询/不支持save-restore，root选择Unknown保留显隐、已知才管理并恢复，详细输入兼容待候选及独立审查，不实施/不提前验A或020。
