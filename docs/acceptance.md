@@ -124,3 +124,18 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-084 | REQ-001/005/007 | TASK-084 | 原AC009和有限文本集成证据/最终metadata，010可见层仍待验 | pending |
 
 富文本行为和支持任务状态见[具体变更](../openspec/changes/implement-rich-text/tasks.md)，pending不是产品通过。
+
+## 主题样式质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-085 | REQ-008/007 | TASK-085 | 基础typed resolver/schema/布局/预置独立golden与真实RED | pending |
+| AC-086 | REQ-008/007 | TASK-086 | 013/025固定完整技术diff独立双审 | pending |
+| AC-087 | REQ-008/007 | TASK-087 | 独立基础矩阵/回归/正常bundle与SDK+stdx公开消费 | pending |
+| AC-088 | REQ-008/007 | TASK-088 | 原AC013/025及最终metadata，027全部展示仍待验 | pending |
+| AC-089 | REQ-008/007 | TASK-089 | 异步主题请求/淘汰/关闭/事务独立测试与真实RED | pending |
+| AC-090 | REQ-008/007 | TASK-090 | 固定load增量及跨界独立spec/quality | pending |
+| AC-091 | REQ-008/007 | TASK-091 | 独立乱序/失败/资源/重载与公开制品消费 | pending |
+| AC-092 | REQ-008/007 | TASK-092 | 原AC026及集成metadata，不提前关闭027/Linux | pending |
+
+具体准入和唯一任务状态见[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)；候选/配置文件不是实现通过。

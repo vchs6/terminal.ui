@@ -421,3 +421,11 @@ StyleKey<T>增加公开只读`name:String`（固定lowerCamelCase键名、无公
 
 候选/绑定结果相等比较必须包含source explicit mask与fill意图，不能只比8字段Style：例如base本为Default，当前文本span为红，新增组件显式foreground(Default)会改变最终画面，虽base颜色数值未变也必须标paint。Inherited来源不当本组件explicit；反之显式Reset必须压过span。preset固定设计输入在fixtures/themes，产品输出解析值逐字段相等而非要求SDK格式化后字节同一；产品可编辑TOML应直接复制设计输入字节，不擅自换值。
 
+T014（独立preflight只读桥/行高修订）：Theme新增纯只读方法`textDefaults():StyleRule`、`decorationDefaults():StyleRule`、`spacingDefaults():StyleRule`、`componentRule(role:ThemeRole):StyleRule`、`namedStyle(name:String):?StyleRule`；缺角色返回空rule，named未找到（含不合法名字）返回None，由Component.styles负责名字/缺失诊断。增加只读`sourcePath:?String`与`sourceName:String`：readFile的path为请求时冻结绝对路径、sourceName同绝对路径；parse的path=None、sourceName为参数（即使看似路径也不作文件来源）；preset path=None、sourceName为`<preset:dark>`等固定slug标签。以上返回不可变值/防别名，root无需反向导入或窥私有map即可resolver/reload。
+
+wrap的自然行高精确规则：分配内容宽度0时，每个硬行仍占1行，包括空硬行；内容全裁剪，不依文字长度新增软行。正宽而单簇宽大于可用宽时，该簇独占一个裁剪视觉行，下个正宽簇另起行；不在末尾额外生成空软行。宽1下`A中B`为A/空/B三行，`中`为一个空视觉行，`中\n`为两行。零宽簇不单独新增软行（仍保留硬行至少1）；显式height/minHeight及祖先可用空间最后按原约束裁剪。Row弹性后按实际分配宽重测相关text高度，Column按分配横向内容宽测；不得凭未约束自然宽直接沿用旧高度。
+
+T015（独立preflight Classic兼容修订）：背景填充区分无fill、根全局种子background fill、节点本地background fill三种来源，不能只记Bool后无条件使用节点最终Style。逻辑根仅因global[text].background获得fill时，使用`Style(background:已解析种子background)`填根分配盒（其余7字段框架默认），不继承根组件显式/复用/role的foreground/inverse/underline等；它是背景底色，不把文本效果扩散到空白。非background的全局seed文本效果仍正常用于实际文字/边框，不自行增加空白效果。
+
+若本节点在显式/复用/本role主题来源声明background Value或Reset，则本地fill优先，按该节点完整最终Style填盒，保持旧`.background(...).inverse(...)`等行为。继承background不自行fill。global seed fill只在可见根按其分配盒/clip绘制，隐藏根不绘制；无额外“Classic renderer”分支。于是Classic文件保留background="default"仍使`Text("x").inverse(true)`宽3仅x反显、其余2格默认，underline同理；Root本地background声明仍可令全盒有该效果。新fill来源/独立fillStyle纳入缓存相等与dirty比较，不覆盖span局部背景。
+

@@ -57,7 +57,7 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 
 - TASK-011：状态/准入/实际依赖已转至 [布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)，保留原AC-011和需求映射。
 - TASK-012：状态/准入/实际依赖已转至 [布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)，保留原AC-012和需求映射。
-- [ ] 3.13 TASK-013：主题、样式复用及显式复位；验收 AC-013：四级优先顺序和继承/复位行为明确，运行时仅样式变化也更新。
+- TASK-013：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-013与需求映射。
 - [ ] 3.14 TASK-014：自定义组件跨容器复用；验收 AC-014：同组件用于普通容器与弹窗无需修改内核。
 ## 4. WP-004
 
@@ -227,9 +227,9 @@ GOV-001 治理修订的任务状态见 [已归档变更](../openspec/changes/arc
 
 新增项均为planned，不是本轮实施清单。所属L1仍为G-001。WP-002/003/004/005原有职责分别扩展至下列稳定编号。TASK-001/003的调查输入扩展至本地剪贴板/标题/图片图标能力和unicodewidth候选；R5探针不满足其完整产品验收。TASK-004冻结范围纳入REQ-001–010；TASK-021只交付M1的U1–U5示例基线；四主题及完整组件展示由后续TASK-027交付，复用而不反向成为TASK-021前置。TASK-023负责新增交付的制品集成，TASK-024负责全部必需需求及M2的整体验收。通用滚动另由TASK-037交付。
 
-- [ ] 6.1 TASK-025：分类主题配置解析与诊断；验收 AC-025：合法单文件主题形成结构化配置；未知字段/非法值/坏引用带位置错误，不执行代码。
-- [ ] 6.2 TASK-026：应用主动主题重载与原子替换；验收 AC-026：有效重载同批次生效；失败保留旧主题，旧请求不覆盖较新请求，状态/焦点保留。
-- [ ] 6.3 TASK-027：四套预置主题及统一组件展示；验收 AC-027：深/浅/高对比/经典主题用同一展示应用，覆盖组件状态、受限色和窄屏；制品独立运行。
+- TASK-025：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-025与需求映射。
+- TASK-026：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-026与需求映射。
+- TASK-027：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-027与需求映射。
 - [ ] 6.4 TASK-028：基础输入编辑与标准快捷操作；验收 AC-028：单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交。
 - [ ] 6.5 TASK-029：按钮标签与选择进度基础组件；验收 AC-029：标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致。
 - [ ] 6.6 TASK-030：可选会话能力与本地剪贴板通道；验收 AC-030：SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心。
@@ -544,3 +544,5 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 当前用户要求完成全部 Linux；[总执行计划](linux-completion-plan.md)与[恢复日志](../openspec/linux-completion-progress.md)协调全部稳定任务，不维护第二份完成复选框。TASK-067–070（测试/审核/执行/验收支持）唯一状态在[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，对应 AC-067–070。TASK-010 仍由本表维护；文件原语在该增量交付，实际可见覆盖层快照在018后汇合，不提前标完整通过。
 
 有界富文本支持TASK081–084唯一状态在[implement-rich-text](../openspec/changes/implement-rich-text/tasks.md)，对应AC081–084；原009状态同变更，010仍保持实际可见层前置。
+
+主题样式支持TASK085–092唯一状态在[implement-theme-styles](../openspec/changes/implement-theme-styles/tasks.md)，稳定013/025/026/027同变更；独立preflight仍核候选，全部产品AC待实际实现，027完整展示需全部控件依赖后补L4。
