@@ -1,0 +1,27 @@
+package theme_integration_contract
+import cjtui.*
+func decorationCascade(): Unit {
+    let bordered=theme("[text]\nforeground=\"red\"\n[decoration]\nborder=\"ascii\"\nborder_foreground=\"green\"\n")
+    let reset=Text("x").foreground(Color.Blue).setStyle(StyleKeys.borderForeground,StyleValue<Color>.Reset)
+    styleAt(picture(reset,bordered,3,3),0,0,Style(foreground:Color.Blue),"border foreground Reset derives final text foreground, not lower green")
+    let terminal=Text("x").foreground(Color.Blue).setStyle(StyleKeys.borderForeground,StyleValue<Color>.Value(Color.Default))
+    styleAt(picture(terminal,bordered,3,3),0,0,Style(),"border foreground Value(Default) differs from derived Reset")
+    let shadows=theme("[text]\nforeground=\"red\"\nbold=true\n[decoration]\nshadow_enabled=true\nshadow_offset_x=1\nshadow_offset_y=1\nshadow_foreground=\"green\"\nshadow_background=\"yellow\"\nshadow_bold=true\nshadow_dim=true\nshadow_italic=true\nshadow_underline=true\nshadow_inverse=true\nshadow_strikethrough=true\n")
+    let reuse=StyleRule().withValue(StyleKeys.shadowBackground,StyleValue<Color>.Value(Color.Blue))
+        .withValue(StyleKeys.shadowBold,StyleValue<Bool>.Value(false))
+        .withValue(StyleKeys.shadowItalic,StyleValue<Bool>.Reset)
+    let node=Text("x").width(2).height(1).styles([StyleUse.Inline(reuse)])
+        .setStyle(StyleKeys.shadowInverse,StyleValue<Bool>.Value(false))
+        .setStyle(StyleKeys.shadowUnderline,StyleValue<Bool>.Reset)
+    let drawn=picture(node,shadows,4,3)
+    styleAt(drawn,1,1,Style(foreground:Color.Green,background:Color.Blue,dim:true,strikethrough:true),"shadow eight fields use the same per-property source/reset cascade")
+    styleAt(drawn,0,0,Style(foreground:Color.Red,bold:true),"shadow declaration does not pollute text body")
+    let convenience=Text("x").width(2).height(1).foreground(Color.Red).shadow(offsetX:1,offsetY:1,style:Style(foreground:Color.Cyan,bold:true),enabled:true)
+    let convenient=classic(convenience,4,3)
+    styleAt(convenient,0,0,Style(foreground:Color.Red),"shadow Style defaults do not overwrite body style slots")
+    styleAt(convenient,1,1,Style(foreground:Color.Cyan,bold:true),"shadow convenience writes its own complete style")
+    let extremes=theme("[decoration]\nshadow_enabled=true\nshadow_offset_x=9223372036854775807\nshadow_offset_y=-9223372036854775808\n")
+    check(picture(Text("x"),extremes,3,2).toPlainText()=="x  \n   ","extreme theme shadow offsets clip safely before coordinate addition")
+    let noInherited=Column {Text("x").width(1).height(1)}.width(3).height(3).padding(1).shadow(offsetX:1,offsetY:1,enabled:true)
+    check(classic(noInherited,5,5).cellAt(2,2).grapheme==" ","child does not inherit parent shadow declaration")
+}

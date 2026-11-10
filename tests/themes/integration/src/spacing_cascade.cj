@@ -1,0 +1,27 @@
+package theme_integration_contract
+import cjtui.*
+func spacingCascade(): Unit {
+    let widths=theme("[spacing]\nwidth=2\n")
+    check(picture(Text("ABCDE").width(4).widthAuto(),widths,5,1).toPlainText()=="AB   ","widthAuto clears explicit declaration and reveals theme width")
+    check(picture(Text("ABCDE").setStyle(StyleKeys.width,StyleValue<Dimension>.Value(Dimension.Auto)),widths,5,1).toPlainText()=="ABCDE","Value(Auto) terminates lower fixed width")
+    check(picture(Text("ABCDE").setStyle(StyleKeys.width,StyleValue<Dimension>.Reset),widths,5,1).toPlainText()=="ABCDE","Reset width uses framework Auto and ignores theme")
+    grid(Column {Text("X").setStyle(StyleKeys.height,StyleValue<Dimension>.Value(Dimension.Cells(1))).setStyle(StyleKeys.minHeight,StyleValue<Int64>.Value(3));Text("Z")},1,4,"X\n \n \nZ","minimum can enlarge fixed height before viewport clipping")
+    let allPadding=theme("[spacing]\npadding_left=2\npadding_top=2\npadding_right=2\npadding_bottom=2\n")
+    let zero=Text("X").padding(left:0,top:0,right:0,bottom:0)
+    check(picture(zero,allPadding,3,1).toPlainText()=="X  ","asymmetric convenience explicitly writes zero on all four sides")
+    let partial=Text("X").setStyle(StyleKeys.paddingTop,StyleValue<Int64>.Reset)
+        .setStyle(StyleKeys.paddingLeft,StyleValue<Int64>.Value(0))
+        .setStyle(StyleKeys.paddingRight,StyleValue<Int64>.Value(0))
+        .setStyle(StyleKeys.paddingBottom,StyleValue<Int64>.Value(0))
+    check(picture(partial,allPadding,3,1).toPlainText()=="X  ","padding Reset terminates lower theme value")
+    let alignment=theme("[components.row.spacing]\njustify_content=\"end\"\nalign_items=\"end\"\ngap=1\n")
+    check(picture(Row {Text("A");Text("B")},alignment,5,2).toPlainText()=="     \n  A B","theme main/cross alignment and gap reach actual layout")
+    let alignReset=Row {Text("A");Text("B")}.setStyle(StyleKeys.justifyContent,StyleValue<Alignment>.Reset)
+        .setStyle(StyleKeys.alignItems,StyleValue<Alignment>.Reset)
+        .setStyle(StyleKeys.gap,StyleValue<Int64>.Value(0))
+    check(picture(alignReset,alignment,5,2).toPlainText()=="AB   \n     ","per-field layout Reset/Value(0) override theme")
+    let weight=theme("[components.text.spacing]\nweight=1\n")
+    check(picture(Row {Text("AAAAAA");Text("BBBBBB")},weight,5,1).toPlainText()=="AAABB","theme weights feed existing exact remainder allocation")
+    let spacing=theme("[components.text.text]\nalign=\"end\"\nwrap=\"grapheme\"\noverflow=\"ellipsis\"\n")
+    check(picture(Text("A\nBC"),spacing,3,2).toPlainText()=="  A\n BC","all text layout keys feed public primitive without affecting logical text")
+}

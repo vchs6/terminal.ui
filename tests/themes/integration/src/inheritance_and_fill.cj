@@ -1,0 +1,47 @@
+package theme_integration_contract
+import cjtui.*
+func inheritanceAndFill(): Unit {
+    let seed = theme("[text]\nforeground=\"white\"\nbackground=\"blue\"\nbold=true\n")
+    let tree = Column { Text("A"); Text("B").themeRole(ThemeRole.Label) }.foreground(Color.Red)
+    let frame = picture(tree,seed,3,2)
+    styleAt(frame,0,0,Style(foreground:Color.Red,background:Color.Blue,bold:true),"root global text is a seed; parent explicit foreground inherits")
+    styleAt(frame,2,0,Style(background:Color.Blue),"root seed fill carries only background, not seed bold or root foreground")
+    let role = theme("[text]\nforeground=\"white\"\n[components.text.text]\nforeground=\"blue\"\n")
+    check(picture(Column { Text("A") }.foreground(Color.Red),role,2,1).cellAt(0,0).style.foreground==Color.Blue,"child role rule overrides inherited parent explicit value")
+    let resetChild = Column { Text("A").setStyle(StyleKeys.foreground,StyleValue<Color>.Reset) }.foreground(Color.Red)
+    check(picture(resetChild,seed,1,1).cellAt(0,0).style.foreground==Color.Default,"child Reset does not inherit or revisit seed")
+    let bgOnly = picture(Text("x").foreground(Color.Red).inverse(true).underline(true),seed,3,1)
+    styleAt(bgOnly,0,0,Style(foreground:Color.Red,background:Color.Blue,bold:true,inverse:true,underline:true),"seed effects apply to text")
+    styleAt(bgOnly,1,0,Style(background:Color.Blue),"seed fill excludes full final node style")
+    for (value in [Text("x").inverse(true), Text("x").underline(true)]) {
+        let compatible=classic(value,3,1)
+        styleAt(compatible,1,0,Style(),"Classic text effect leaves trailing blank default")
+        styleAt(compatible,2,0,Style(),"Classic default background remains background-only fill")
+    }
+    let local=picture(Text("x").background(Color.Default).inverse(true),seed,3,1)
+    styleAt(local,2,0,Style(foreground:Color.White,bold:true,inverse:true),"local background Value(Default) fills with complete node style")
+    let resetBg=picture(Text("x").inverse(true).setStyle(StyleKeys.background,StyleValue<Color>.Reset),seed,3,1)
+    styleAt(resetBg,2,0,Style(foreground:Color.White,bold:true,inverse:true),"local background Reset is real full-style fill")
+    let bgRule=StyleRule().withValue(StyleKeys.background,StyleValue<Color>.Value(Color.Cyan))
+    styleAt(picture(Text("x").inverse(true).styles([StyleUse.Inline(bgRule)]),seed,3,1),2,0,Style(foreground:Color.White,background:Color.Cyan,bold:true,inverse:true),"reusable local background also selects complete-style fill")
+    let roleBg=theme("[text]\nforeground=\"white\"\nbackground=\"blue\"\n[components.text.text]\nbackground=\"yellow\"\n")
+    styleAt(picture(Text("x").foreground(Color.Red).inverse(true),roleBg,3,1),2,0,Style(foreground:Color.Red,background:Color.Yellow,inverse:true),"role background is local fill, not root seed fill")
+    let inherited = picture(Column { Text("x").inverse(false).width(3) }.background(Color.Blue).inverse(true),theme(""),3,1)
+    styleAt(inherited,0,0,Style(background:Color.Blue),"inherited background styles text")
+    styleAt(inherited,2,0,Style(background:Color.Blue,inverse:true),"inherited background does not refill child blank with child's inverse false")
+    let hidden = picture(Text("x").visible(false),seed,3,1)
+    styleAt(hidden,0,0,Style(),"hidden root suppresses seed fill")
+    let clipped = picture(Text("x").width(1),seed,3,1)
+    styleAt(clipped,2,0,Style(),"root seed fill respects root allocated box")
+    let bound=Observable<StyleValue<Color>>(StyleValue<Color>.Unset)
+    let c=Text("x").inverse(true).setStyle(StyleKeys.background,{=>bound.get()})
+    let app=Application(c,theme:Theme.preset(ThemePreset.Classic)); app.startHeadless()
+    try {
+        styleAt(app.snapshot(3,1),2,0,Style(),"initial seed-owned fill")
+        app.batch({=>bound.set(StyleValue<Color>.Value(Color.Default))})
+        styleAt(app.snapshot(3,1),2,0,Style(inverse:true),"same resolved background but local-fill source invalidates cached frame")
+        app.batch({=>bound.set(StyleValue<Color>.Unset)})
+        styleAt(app.snapshot(3,1),2,0,Style(),"returning to seed-fill source restores blanks")
+    } finally { app.dispose() }
+    grid(Column { Text("x") }.border(BorderStyle.Ascii).padding(1),5,5,"+---+\n|   |\n| x |\n|   |\n+---+","border and padding do not inherit into child")
+}

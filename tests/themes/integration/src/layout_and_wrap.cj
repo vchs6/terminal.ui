@@ -1,0 +1,28 @@
+package theme_integration_contract
+import cjtui.*
+func layoutAndWrap(): Unit {
+    grid(Text("ABCD").padding(left:1,top:1,right:2,bottom:1),7,3,"       \n ABCD  \n       ","asymmetric padding consumes each independent side")
+    grid(Text("AB").padding(left:1,top:0,right:1,bottom:0).wrap(TextWrap.Grapheme),3,2," A \n B ","padding reduces actual wrap content width")
+    grid(Column { Text("ABCD").wrap(TextWrap.Grapheme); Text("Z") },2,3,"AB\nCD\nZ ","Column allocated cross width affects natural height and sibling position")
+    grid(Column { Row { Text("ABCD").wrap(TextWrap.Grapheme).layoutWeight(1); Text("q").width(1) }; Text("Z") },3,3,"ABq\nCD \nZ  ","Row flex allocation remeasures text before parent natural height")
+    grid(Column { Text("ABC\n\nD").width(0).wrap(TextWrap.Grapheme); Text("Z") },2,4,"  \n  \n  \nZ ","zero content width keeps exactly one row per hard line")
+    grid(Column { Text("A中B").width(1).wrap(TextWrap.Grapheme); Text("Z") },1,4,"A\n \nB\nZ","oversize grapheme owns one clipped line and advances")
+    grid(Column { Text("中").width(1).wrap(TextWrap.Grapheme); Text("Z") },1,2," \nZ","oversize final grapheme creates no extra soft row")
+    grid(Column { Text("中\n").width(1).wrap(TextWrap.Grapheme); Text("Z") },1,3," \n \nZ","final hard empty line remains")
+    grid(Column { Text("AB\r\nCD").width(1).wrap(TextWrap.Grapheme); Text("Z") },1,5,"A\nB\nC\nD\nZ","CRLF is one hard line delimiter")
+    grid(Column { Text("e\u{301}X").width(1).wrap(TextWrap.Grapheme); Text("Z") },1,3,"e\u{301}\nX\nZ","combining sequence remains one grapheme")
+    let zeroCluster=classic(Column {Text("\u{301}AB").width(1).wrap(TextWrap.Grapheme);Text("Z")},1,4)
+    check(zeroCluster.cellAt(0,2).grapheme=="Z" && zeroCluster.cellAt(0,3).grapheme==" ","ordinary zero-width cluster adds no soft line")
+    grid(Column { Text("ABCD").width(2).height(1).wrap(TextWrap.Grapheme); Text("Z") },2,2,"AB\nZ ","explicit height clips wrapped rows before sibling")
+    grid(Text("ABCD").wrap(TextWrap.Grapheme).minHeight(99),2,2,"AB\nCD","viewport clips minimum without virtual canvas")
+    grid(Text("A中B").overflow(TextOverflow.Ellipsis),3,1,"A …","ellipsis reserves rightmost marker and clips whole wide grapheme")
+    grid(Text("e\u{301}XYZ").overflow(TextOverflow.Ellipsis),2,1,"e\u{301}…","ellipsis preserves complete combining grapheme")
+    grid(Text("中X").overflow(TextOverflow.Ellipsis),1,1,"…","one-column ellipsis discards complete oversized grapheme")
+    grid(Text("AB").overflow(TextOverflow.Ellipsis),2,1,"AB","exact-width text has no ellipsis")
+    grid(Text("ABCD").wrap(TextWrap.Grapheme).overflow(TextOverflow.Ellipsis),2,1,"AB","ellipsis does not signal vertically hidden wrapped rows")
+    grid(Text("中X").wrap(TextWrap.Grapheme).overflow(TextOverflow.Ellipsis),1,2,"…\nX","wrapped oversized line still horizontally clipped and ellipsized")
+    grid(Text("AB").wrap(TextWrap.None).overflow(TextOverflow.Clip),1,1,"A","Clip preserves old truncation")
+    grid(Text("ABC").padding(left:Int64.Max,top:Int64.Max,right:Int64.Max,bottom:Int64.Max),3,2,"   \n   ","asymmetric extreme insets saturate without overflow")
+    let text=Text("x").wrap(TextWrap.Grapheme).overflow(TextOverflow.Ellipsis)
+    check(classic(text,0,2).toPlainText()=="\n","zero width wrap/ellipsis terminates without paint")
+}
