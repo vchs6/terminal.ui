@@ -130,3 +130,11 @@ and use the same viewport/getters/heap setting for later comparisons. CPU-mode
 initial-frame readiness allows 30 seconds; that interval is excluded from the
 CPU sample. An earlier 1024×1024 default-heap attempt failed before a CPU window
 could be established and is not a CPU baseline.
+
+R018's same-session cleanup boundary has a focused regression:
+`CJTUI_RUNTIME_CASE=cleanup-same-session tests/runtime/target/release/bin/main`.
+All snapshot/dispatch/dispose attempts must report LifecycleReentry even though
+the target and session tokens are already revoked; post returns false without
+running or leaking into remount. The case observes all three outcomes before
+asserting, checks remaining cleanup/resources, then exercises later legal B and
+remounted A boundaries to detect leaked TLS ownership. Existing assertions remain.

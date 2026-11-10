@@ -4,6 +4,7 @@ import std.env.*
 
 main(): Int64 {
     match (getVariable("CJTUI_RUNTIME_CASE")) {
+        case Some("cleanup-same-session") => cleanupSameSessionReentry(); return 0
         case Some("cleanup-context") => cleanupCannotEnterAnotherSession(); return 0
         case Some("owner-render") => ownerRenderFailureDisposes(false); return 0
         case Some("owner-render-cleanup") => ownerRenderFailureDisposes(true); return 0
@@ -27,6 +28,7 @@ main(): Int64 {
     cleanupCannotEnterAnotherSession()
     ownerRenderFailureDisposes(false)
     ownerRenderFailureDisposes(true)
+    cleanupSameSessionReentry()
     println("PASS: runtime public A+B contract")
     return 0
 }

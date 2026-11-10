@@ -80,3 +80,60 @@ func ownerRenderFailureDisposes(extraCleanupFailure: Bool): Unit {
     app.dispose()
     check(cleanups.value == 1, "owner render failure cleanup is not replayed by dispose")
 }
+
+func cleanupBoundaryCode(action: () -> Unit): String {
+    var result = "accepted"
+    try { action() } catch (error: UIException) { result = error.code }
+    result
+}
+
+// R018: closing-session callbacks still own an active lifecycle boundary even
+// after references and queue tokens have been revoked. Reentry wins over stale
+// target/session-inactive checks; post remains a non-throwing false rejection.
+func cleanupSameSessionReentry(): Unit {
+    let holder = Box<?Application>(Option<Application>.None)
+    let target = Box<?NodeRef>(Option<NodeRef>.None)
+    let snapshotCode = Box<String>("not called")
+    let dispatchCode = Box<String>("not called")
+    let disposeCode = Box<String>("not called")
+    let postAccepted = Box<Bool>(true)
+    let postedRuns = Box<Int64>(0)
+    let cleanups = Box<Int64>(0)
+    let probeEnabled = Box<Bool>(true)
+    let other = Application(Text("B"))
+    other.startHeadless()
+    let root = Column {
+        Text("A").onMount({ owner =>
+            target.value = Some(owner)
+            { =>
+                cleanups.value++
+                if (probeEnabled.value) {
+                    let session = holder.value.getOrThrow()
+                    snapshotCode.value = cleanupBoundaryCode({ => session.snapshot(2, 1); () })
+                    dispatchCode.value = cleanupBoundaryCode({ => session.dispatch(target.value.getOrThrow(), KeyEvent("text")) })
+                    disposeCode.value = cleanupBoundaryCode({ => session.dispose() })
+                    postAccepted.value = session.post({ => postedRuns.value++ })
+                }
+            }
+        })
+    }.onMount({ _ => { => cleanups.value++ } })
+    let app = Application(root)
+    holder.value = Some(app)
+    app.startHeadless()
+    let old = ref(root)
+    app.dispose()
+    println("cleanup-same snapshot=${snapshotCode.value} dispatch=${dispatchCode.value} dispose=${disposeCode.value} post=${postAccepted.value} posted-runs=${postedRuns.value} cleanups=${cleanups.value} valid=${old.isValid()}")
+    check(cleanups.value == 2 && !old.isValid(), "same-session reentry attempts do not interrupt remaining cleanup")
+    emptyStats(app, "same-session cleanup boundary releases all current resources")
+    check(!postAccepted.value && postedRuns.value == 0, "post during entire-session cleanup returns false and does not execute")
+    picture(other.snapshot(2, 1), "B ", "cleanup restores TLS for a later unrelated legal boundary")
+    probeEnabled.value = false
+    app.startHeadless()
+    picture(app.snapshot(2, 1), "A ", "cleaned application can establish a later session after lifecycle boundary")
+    app.dispose()
+    other.dispose()
+    check(postedRuns.value == 0 && cleanups.value == 4, "rejected cleanup post cannot leak into remount")
+    check(snapshotCode.value == "LifecycleReentry", "snapshot in same-session cleanup reports LifecycleReentry before inactive checks")
+    check(dispatchCode.value == "LifecycleReentry", "dispatch in cleanup reports LifecycleReentry before revoked target checks")
+    check(disposeCode.value == "LifecycleReentry", "dispose in cleanup reports LifecycleReentry instead of silently succeeding")
+}
