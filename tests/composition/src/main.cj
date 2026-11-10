@@ -1,6 +1,7 @@
 package composition_contract
 
 import cjtui.*
+import std.env.*
 
 func check(value: Bool, name: String): Unit {
     if (!value) { throw Exception("FAIL: ${name}") }
@@ -90,6 +91,10 @@ func independentAndSelfCopy(): Unit {
 }
 
 main(): Int64 {
+    if (getVariable("CJTUI_COMPOSITION_CASE") == Some("transparent-hole")) {
+        transparentHoleCopies()
+        return 0
+    }
     transparencyAndOrder()
     clustersAndClear()
     independentAndSelfCopy()
@@ -98,6 +103,7 @@ main(): Int64 {
     copiesResizeAndPolicy()
     overlaps()
     budgetAndExtrema()
+    transparentHoleCopies()
     files()
     return 0
 }

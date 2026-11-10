@@ -367,3 +367,22 @@ file bytes must still follow the public argument/default without probing a termi
 The frozen RED is product implementation admission, not acceptance or a claim of
 GREEN. Product author findings are routed through the coordinator; expected
 results cannot be changed merely to fit the implementation.
+
+F003 clarification (`277841d445329662cc0f8ba14d293bf651a635a8`) adds an
+independent regression for explicit transparent holes in an opaque-default source.
+`copy`/`resized` preserve source data and opacity; only `composite` skips transparent
+source cells. The hand-derived scene `XYZ`, middle cell cleared transparent, must
+compose over `ABC` as `XBZ` for original/full copy/same-size resize. Growth keeps
+that hole and uses opaque default blanks outside the original area. Mutations of
+each frame must remain independent. Existing assertions and goldens are retained;
+the new check also runs in the normal composition consumer.
+
+To run only this precise regression, build normally and execute directly:
+
+```sh
+(cd tests/composition && cjpm build)
+CJTUI_COMPOSITION_CASE=transparent-hole timeout 30s tests/composition/target/release/bin/main
+```
+
+This focused invocation does not execute the other composition/file cases. It
+records every hole/copy/resize assertion before returning a failing binary status.
