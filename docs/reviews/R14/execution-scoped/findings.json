@@ -1,0 +1,70 @@
+{
+  "task": "TASK083",
+  "status": "PASS_FINITE",
+  "old_finding": {
+    "id": "R14T083001",
+    "original_status": "FAIL retained",
+    "original_product": "91c22f82adcd2412d9509b9872ff63450ba81af9",
+    "evidence": "/workspace/work/rich-text-execution/evidence/gui-visible-finding.json",
+    "new_product_status": "CLOSED_VERIFIED_IN_FINITE_SCOPE"
+  },
+  "scoped_observation": {
+    "status": "PHYSICALLY_RESOLVED_166_AND_INDEPENDENTLY_ACCEPTED_167",
+    "new_product": "199f00076c1a79cfa6d0be92e7be09366e1a06af",
+    "actual_app_gui": {
+      "hosts": [
+        "XTerm398",
+        "XFCE1.1.4/VTE0.80.1"
+      ],
+      "stages": [
+        "initial",
+        "green",
+        "red",
+        "resized",
+        "resized-green"
+      ],
+      "row4_unchanged_incremental": 6,
+      "original_example_source_unchanged": true,
+      "app_exit_0": true,
+      "termios_restored": true
+    },
+    "native_dsr_replay": {
+      "kind": "separate native replay of actual app frame bytes",
+      "green_red_prefix": [
+        3,
+        12
+      ],
+      "green_red_end": [
+        3,
+        100
+      ],
+      "complete_reply": true
+    },
+    "formal_163_exit": 0,
+    "normal_bundle_exit": 0,
+    "lint_advisory_warnings": 315
+  },
+  "blocking_pending": [],
+  "known_out_of_scope": {
+    "whole_archive_boundary_exit": 1,
+    "missing": [
+      "examples/composition/cjpm.toml",
+      "benchmarks/rendering/cjpm.toml"
+    ],
+    "release_claim": false
+  },
+  "evidence_manifest": "/workspace/work/rich-text-execution-scoped/reusematrix.json",
+  "author_report_read": false,
+  "product_or_test_edit": false,
+  "cold_suites_run": false,
+  "final_acceptance": {
+    "task_167": "PASS_FINITE",
+    "critical": 0,
+    "important": 0,
+    "minor": 0,
+    "CRF001": "ADDRESSED_VERIFIED",
+    "corrected_colors_fixture_sha": "0d46c35456db148f08bd407825a4fd559467249a",
+    "corrected_colors_actual_exit": 0,
+    "R14T083001": "CLOSED_VERIFIED_IN_FINITE_SCOPE"
+  }
+}

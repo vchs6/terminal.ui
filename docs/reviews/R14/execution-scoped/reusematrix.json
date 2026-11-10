@@ -1,0 +1,270 @@
+{
+  "task": "TASK083 scoped independent execution reconciliation",
+  "status": "PASS_FINITE_R14T083001_CLOSED_VERIFIED",
+  "old_product": "91c22f82adcd2412d9509b9872ff63450ba81af9",
+  "new_product": "199f00076c1a79cfa6d0be92e7be09366e1a06af",
+  "source_diff": "git diff --name-status old new -- src native examples/rich-text cjpm.toml cjpm.lock tests/rich-text tests/colors tests/runtime tests/macro",
+  "source": [
+    {
+      "path": "cjpm.toml",
+      "original083_sha256": "954ef0330af9800631eada31a74163e81525d76e0b845cd36644660bb7774b52",
+      "new166_sha256": "954ef0330af9800631eada31a74163e81525d76e0b845cd36644660bb7774b52",
+      "relation": "same"
+    },
+    {
+      "path": "examples/rich-text/cjpm.toml",
+      "original083_sha256": "c06fe56096441776b0baa5484496705ec7dddc6c0c6f75783d49ec535c9ed6ad",
+      "new166_sha256": "c06fe56096441776b0baa5484496705ec7dddc6c0c6f75783d49ec535c9ed6ad",
+      "relation": "same"
+    },
+    {
+      "path": "examples/rich-text/src/main.cj",
+      "original083_sha256": "dff0d2bca92115d1d2c2f1d9c8412e2cb94d95844ec33c5af6037144437fb8b3",
+      "new166_sha256": "dff0d2bca92115d1d2c2f1d9c8412e2cb94d95844ec33c5af6037144437fb8b3",
+      "relation": "same"
+    },
+    {
+      "path": "src/rich_text_clusters.cj",
+      "original083_sha256": "b5070a44e25cbf6262fcbbfb942ec703a45e37ee587c128c3c4900520c1bc3b4",
+      "new166_sha256": "b5070a44e25cbf6262fcbbfb942ec703a45e37ee587c128c3c4900520c1bc3b4",
+      "relation": "same"
+    },
+    {
+      "path": "src/text/rich_text.cj",
+      "original083_sha256": "c7c2ea1a6f93916952598eaef8836b7c8e6f3e01eb772eddd2af383e2ba6e47f",
+      "new166_sha256": "c7c2ea1a6f93916952598eaef8836b7c8e6f3e01eb772eddd2af383e2ba6e47f",
+      "relation": "same"
+    },
+    {
+      "path": "src/frame.cj",
+      "original083_sha256": "74fa0cd55371560578807860b0793a23409f80a825e8e122fba0890f0ecd2382",
+      "new166_sha256": "0fa3d84e07af777361cd3eb9e990fae87104da06da3c3fd09972cf1eeafbdfe0",
+      "relation": "changed"
+    },
+    {
+      "path": "src/terminal_capabilities.cj",
+      "original083_sha256": "4a55e747ba8284e9796d5f64593cf7e6222a539b16714a75150ad7a0b0b2378c",
+      "new166_sha256": "2a1772cadc5255a996855179d5eaf950dc8f6ad259ad5e69f3eb715d2e0c0a6f",
+      "relation": "changed"
+    },
+    {
+      "path": "src/terminal_render_profile.cj",
+      "original083_sha256": "efd995fbbf0380d04146e63edae0fadce6a8e202e5ad258f53959efa480c32b8",
+      "new166_sha256": "7bc43434dba17aa52915c783911d491e4a20f9faf9a649ff7fee34b00b8827a8",
+      "relation": "changed"
+    },
+    {
+      "path": "src/glyph_render_policy.cj",
+      "original083_sha256": null,
+      "new166_sha256": "350095aacddcd006d3cd014ba9c5cce477911ec8b22ed671457707f07d7a2e53",
+      "relation": "added"
+    },
+    {
+      "path": "src/terminal_glyph_projection.cj",
+      "original083_sha256": null,
+      "new166_sha256": "8434ea14a07af5c59a4a91724a6aeec2c53fa287737a2cd8946c38a62a5c7707",
+      "relation": "added"
+    },
+    {
+      "path": "src/terminal_projected_row.cj",
+      "original083_sha256": null,
+      "new166_sha256": "93ca78942310ee6dd8dbd40de50f165cd475f90013b1f6a262ac71620d850116",
+      "relation": "added"
+    }
+  ],
+  "source_counts": {
+    "existing_src_equal": 67,
+    "existing_src_changed": 3,
+    "new_src": 3,
+    "native_equal": 3,
+    "example_equal": 2
+  },
+  "old_to_new_check_matrix": [
+    {
+      "check": "rich decoder and 11+98 CSI UTF8",
+      "disposition": "REUSED_OLD_083",
+      "basis": "same decoder hashes; unchanged rich contract source; new formal suite also exits 0"
+    },
+    {
+      "check": "typed spans/layout/decorations/composition/core",
+      "disposition": "REUSED_WITH_AFFECTED_BRIDGE",
+      "basis": "unchanged owners; any Frame device output uses new 163/166 full-diff and GUI"
+    },
+    {
+      "check": "macro positive/15 negatives",
+      "disposition": "REUSED_OLD_083",
+      "basis": "macro source/fixtures unchanged; old raw negative exits and diagnostics preserved"
+    },
+    {
+      "check": "runtime session/termios/resize",
+      "disposition": "REUSED_WITH_NEW_GUI",
+      "basis": "unchanged native/runtime; new actual GUI q/resize and termios exit 0"
+    },
+    {
+      "check": "Frame full/diff and terminal profile",
+      "disposition": "NEW_163_166",
+      "basis": "changed source; formal 163 actual command exit 0 and new GUI/DSR"
+    },
+    {
+      "check": "original rich example physical XTerm/VTE",
+      "disposition": "NEW_166_ACCEPTED_167",
+      "basis": "unchanged packaged example, actual GUI row4 preserved; independent 167 PASS finite and R14T083001 closed verified"
+    },
+    {
+      "check": "colors/device projection",
+      "disposition": "NEW_166_CORRECTED_CRF001_PASS",
+      "basis": "0d46 reviewed fixture; final stop, resize and actual199 colors commands exit0; old 3138 exit0 historical only"
+    },
+    {
+      "check": "normal linted bundle and clean packaged consumer",
+      "disposition": "NEW_166",
+      "basis": "normal command exits 0; 315 advisory lint warnings retained"
+    },
+    {
+      "check": "whole archive composition/benchmark",
+      "disposition": "KNOWN_OUT_OF_SCOPE_FAIL",
+      "basis": "checker exit 1 remains; whole Linux gate separate"
+    }
+  ],
+  "new166_manifest_verified_command": "sha256sum -c /workspace/work/glyph-advance-execution/artifacts.sha256 --status",
+  "new166_manifest_verified_exit": 0,
+  "new166_selected_artifacts": [
+    {
+      "path": "scope.json",
+      "sha256": "6b9925b6d25ac38b2d58061742b4bc4830ab9dde0a69e990bf808b83b39951fd",
+      "manifest_sha256": "6b9925b6d25ac38b2d58061742b4bc4830ab9dde0a69e990bf808b83b39951fd",
+      "matches_manifest": true
+    },
+    {
+      "path": "verification.json",
+      "sha256": "3f3d89934083068d68b583e6bfbd2b1a157fedbced15225af66433bbf841228d",
+      "manifest_sha256": "3f3d89934083068d68b583e6bfbd2b1a157fedbced15225af66433bbf841228d",
+      "matches_manifest": true
+    },
+    {
+      "path": "sourcehashes.json",
+      "sha256": "cfbf4445fde5bc857da608d7ec1b70267f9f90bb537ae78ca5d2ff4a3418e33b",
+      "manifest_sha256": "cfbf4445fde5bc857da608d7ec1b70267f9f90bb537ae78ca5d2ff4a3418e33b",
+      "matches_manifest": true
+    },
+    {
+      "path": "command-results.json",
+      "sha256": "ff8ad9d3a5345869321caa94cf78430399fe2475e8d0139d4cea687fe21a1a23",
+      "manifest_sha256": "ff8ad9d3a5345869321caa94cf78430399fe2475e8d0139d4cea687fe21a1a23",
+      "matches_manifest": true
+    },
+    {
+      "path": "reuse-proof.json",
+      "sha256": "a07ae2d6e8682cc649161da9ad7810b61615f533654615776655346191a26871",
+      "manifest_sha256": "a07ae2d6e8682cc649161da9ad7810b61615f533654615776655346191a26871",
+      "matches_manifest": true
+    },
+    {
+      "path": "dependency-reuse-proof.json",
+      "sha256": "b1bd2e3de02f273f2b977a7aeadfa37b90e00193a68e4066e736f684bac974b4",
+      "manifest_sha256": "b1bd2e3de02f273f2b977a7aeadfa37b90e00193a68e4066e736f684bac974b4",
+      "matches_manifest": true
+    },
+    {
+      "path": "scene-bytes-audit.json",
+      "sha256": "f595aa24594716c14aad4462335024a63541e28b124c921141dc93aa448864e3",
+      "manifest_sha256": "f595aa24594716c14aad4462335024a63541e28b124c921141dc93aa448864e3",
+      "matches_manifest": true
+    },
+    {
+      "path": "original-images.json",
+      "sha256": "1ac50c54cda09e3306c49a1296225a0712dc5ad2f99055b279c87372092f0822",
+      "manifest_sha256": "1ac50c54cda09e3306c49a1296225a0712dc5ad2f99055b279c87372092f0822",
+      "matches_manifest": true
+    },
+    {
+      "path": "gui/rich/xterm-default/q/metadata.json",
+      "sha256": "88b7c62c0f0fbc689c125164b70da58008ada0562e9978f83654b5af09e7aefd",
+      "manifest_sha256": "88b7c62c0f0fbc689c125164b70da58008ada0562e9978f83654b5af09e7aefd",
+      "matches_manifest": true
+    },
+    {
+      "path": "gui/rich/xfce-vte/q/metadata.json",
+      "sha256": "abf9481a72dc666ce40e9e1ba17ea1d30b97d6918713db823997720119468620",
+      "manifest_sha256": "abf9481a72dc666ce40e9e1ba17ea1d30b97d6918713db823997720119468620",
+      "matches_manifest": true
+    },
+    {
+      "path": "raw/21-rich-verify/stdout",
+      "sha256": "e4a9eb55d96ec653f98b1edf11e85e4cf9786f32767ab9a2061e47f8d33635c4",
+      "manifest_sha256": "e4a9eb55d96ec653f98b1edf11e85e4cf9786f32767ab9a2061e47f8d33635c4",
+      "matches_manifest": true
+    },
+    {
+      "path": "raw/23-rich-dsr-verify/stdout",
+      "sha256": "481da5a26631aec5b8b8bc3aa84bc684144062d94c21772a592c7f3294e1fba9",
+      "manifest_sha256": "481da5a26631aec5b8b8bc3aa84bc684144062d94c21772a592c7f3294e1fba9",
+      "matches_manifest": true
+    },
+    {
+      "path": "gui/rich-dsr/frame-origins.json",
+      "sha256": "bfab152028f3d8a8f8501b1008a7cf73683e6b1edc1707490f500bd720eb4186",
+      "manifest_sha256": "bfab152028f3d8a8f8501b1008a7cf73683e6b1edc1707490f500bd720eb4186",
+      "matches_manifest": true
+    },
+    {
+      "path": "raw/25-exact-styles-audit/stdout",
+      "sha256": "d4c59a5921928750422929c07f10d7810b1d74cde24d9388628bd3561642e698",
+      "manifest_sha256": "d4c59a5921928750422929c07f10d7810b1d74cde24d9388628bd3561642e698",
+      "matches_manifest": true
+    },
+    {
+      "path": "colors-test-overlay.json",
+      "sha256": "5c1ac12c4d7bb7b87f5f5c44f30aa0f872b16dcfbbb4db3f203cb0be2b40ff7f",
+      "manifest_sha256": "5c1ac12c4d7bb7b87f5f5c44f30aa0f872b16dcfbbb4db3f203cb0be2b40ff7f",
+      "matches_manifest": true
+    }
+  ],
+  "old083_evidence": {
+    "report_sha256": "ef9c197c5db1c047149b5e08b09067b132889a6daab96261decbd28863a8e851",
+    "visible_finding_sha256": "60757a38a6cac0a7c4d31df52f53ddb269659225691e9b471da5124b65ff4b53",
+    "source_inventory_sha256": "c352991f3cc2112abdcb01ac3b61b797a176d24c520a4d94367508c5fc0a7d05",
+    "execution_summary_sha256": "1e13f223857834c732118088ca3872c0342ad0b6c33595f8399784c25b192073"
+  },
+  "new166_manifest_sha256": "ae0dc6befbad005a60bd6507a5ea2e1ddd6f1b1e45428b271658ef1d58b31a05",
+  "new166_final_color_fixture_sha": "0d46c35456db148f08bd407825a4fd559467249a",
+  "final_color_commands": [
+    {
+      "name": "26-final-stop-controls",
+      "command": "node tests/colors/stop_oracle_test.mjs",
+      "exit": 0,
+      "stdout_sha256": "18aff50f5e04b43f3f527752b6917cf15eb872fc1105347fb4f2425319a60959",
+      "source": "/workspace/work/glyph-advance-execution/raw/26-final-stop-controls"
+    },
+    {
+      "name": "27-final-resize-controls",
+      "command": "node tests/colors/resize_oracle_test.mjs",
+      "exit": 0,
+      "stdout_sha256": "a9f5df3ded160104dfc9326b4bdeac4dc4b4a885c2d2e03a4066d8853889e30e",
+      "source": "/workspace/work/glyph-advance-execution/raw/27-final-resize-controls"
+    },
+    {
+      "name": "28-final-colors-actual",
+      "command": "node tests/colors/pty.mjs fixture example",
+      "exit": 0,
+      "stdout_sha256": "64206e81573a732cf5ee457ab9f96d404b94dab09577f840f8b14aae417d3b9c",
+      "source": "/workspace/work/glyph-advance-execution/raw/28-final-colors-actual"
+    }
+  ],
+  "independent_167": {
+    "verdict": "PASS_FINITE",
+    "product_sha": "199f00076c1a79cfa6d0be92e7be09366e1a06af9",
+    "R14T083001": "CLOSED_VERIFIED_IN_FINITE_SCOPE",
+    "findings_sha256": "54ab881036ea41b740cb4ceaca960b75abdf7e57ea83b2a4de80098d2223dc43",
+    "artifacts_manifest_sha256": "2f873a060dfaae4423291a78d2444b685c6143eec424d2f8b9187ccab15df3f3",
+    "artifacts_manifest_verified_exit": 0
+  },
+  "independent_crf001": {
+    "fixture_sha": "0d46c35456db148f08bd407825a4fd559467249a",
+    "test_contract_verdict": "PASS",
+    "code_quality_verdict": "PASS",
+    "findings_sha256": "4679e0daec561318972c01f43e91099651f2f27ee2c5a21a24a964a82087eb98",
+    "artifacts_manifest_sha256": "3d398ec0b969ef7189308f6c2c9fe2f0b03507019b116c3c5786fe7d2e8d7dd2",
+    "artifacts_manifest_verified_exit": 0
+  }
+}
