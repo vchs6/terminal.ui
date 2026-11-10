@@ -40,6 +40,14 @@ L4：1.读取冻结测试并确认RED；2.实现一次measure/arrange/paint和�
 **Files:** src/decoration.cj及Frame共享入口、Component布局绘制接入、examples/layout及产品说明。**Interfaces:** 已交付Rect/layout与design装饰表，不能另建字符/屏幕内核。
 L4：1.确认独立装饰RED；2.共享路径实现并接入布局树；3.自测公开示例和针对回归，提交固定版本交整片审核。
 
+## 3b. User-directed source organization
+
+### Task 4: TASK-058 package and entity files
+
+- [ ] 3.2 TASK-058：按D026整理产品包/源码，每类型单文件，保持公开API；验收AC-058：实体/文件/包声明检查、外部消费者和最终源码包均正常。
+
+**Inputs/depends_on:** 最新用户约束、D026、冻结测试 / TASK012。**Deliverable:** style/geometry/text包和cjtui实体文件，根public import，说明；**Scope:** 仅源码移动/必要imports/可见性与格式，不改测试/native/依赖/行为。独立Sol/high（多文件包协作）实现，TDD/cangjie-coding/verification；先SDK probe确认包/可见性，再整理和针对layout/decor构建，最终055审核和056全量复用。旧混合定义同时移除，不保留平行路径。风险：重新导出/内部访问/制品子包；用原外部消费者与cjp校验。L4：固定源和包probe→单实体文件/包重排→公共消费者构建→提交整片审核；不新增产品功能测试。
+
 ## 4. Quality gates
 
 - [ ] 4.1 TASK-055：独立代码审核及修复复核；验收AC-055：契约/质量双passed，必需发现有实际反例和闭合版本。
@@ -55,7 +63,7 @@ L4：1.确认独立装饰RED；2.共享路径实现并接入布局树；3.自测
 | 054 testing | design与c502基线 / 无 | tests/layout、tests/decoration、runner和RED / AC054 | 独立golden，不读作者；TDD/verification；SDK签名若矛盾先报主代理 |
 | 011 implementation | 已验R8 Frame及冻结layout tests / 054、已完成050 | 单一布局实现/文档 / AC011 | 不反复度量、不绕过共享Style；TDD/verification；数值/窄屏见design |
 | 012 implementation | 已审核011及冻结decor tests / 011 | 装饰/共享低层API/示例 / AC012 | 撤换旧draw路径，不复制Unicode/缓冲；TDD/verification；clip与透明见design |
-| 055 verification | 固定code/tests/spec / 012（011另有局部审核） | findings/复核 / AC055 | 冷上下文，最多3轮复核/60min；request/receive-review及verification |
+| 055 verification | 固定code/tests/spec / 012、058（011另有局部审核） | findings/复核 / AC055 | 冷上下文，最多3轮复核/60min；request/receive-review及verification |
 | 056 testing | 固定已审核提交 / 055 | 命令/实际结果/raw/hash/例子 / AC056 | 不改产品/测试；verification/debugging；未变结果按AGENTS11复用 |
 | 057 acceptance | 固定源码与各独立交付 / 056 | 逐项映射和最终集成 / AC057 | 不复述数量代验收；verification；source和证据一致、剩余范围明确 |
 

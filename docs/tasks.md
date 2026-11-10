@@ -526,3 +526,5 @@ R7 Linux顺序TASK-044（AC-044）、原生构建TASK-046（AC-046）、许可�
 用户要求停止停留于文档并交付代码。TASK-048测试契约、049正式构建、050首个运行切片、051独立审核、052独立测试执行、053独立验收的唯一状态在[切片tasks](../openspec/changes/implement-linux-first-slice/tasks.md)。这是既有产品任务的有限实现切片，不将001–004、005–032等全量任务直接勾完。
 
 Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-layout-decoration](../openspec/changes/implement-layout-decoration/tasks.md)；TASK-054测试、055审核、056执行、057验收同变更记录。其余原任务/状态不因此完成。
+
+用户新增源码组织TASK-058（AC-058）随[布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)独立实施，复用其最终审核/执行，不新增平行状态。

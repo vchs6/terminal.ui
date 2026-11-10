@@ -72,3 +72,9 @@ Single为┌─┐│└┘，Rounded角╭╮╰╯，Double为╔═╗║╚�
 ## Risks / Trade-offs
 
 窄屏min可能不可满足→actual尺寸+确定裁剪/比例降级，不改业务显隐。大整数→安全算术/有界可见迭代，不能截断。背景新增框填充语义→显式记录，旧glyph继承及全部R8断言不变。装饰绕过裁剪/宽字→共享Frame路径与独立反例。将来M2/覆盖层→本片不另建绘制内核，布局框与绘制扩展仍分离。
+
+## D-026: user-directed Cangjie source organization
+
+2026-11-10用户要求包划分与一个软件实体一个文件。本片增加TASK058，在装饰完成后、最终审核前按职责整理现有混合定义；属于代码组织不改变产品行为。style包容纳Color/Style/BorderStyle，geometry包容纳Rect，text包容纳Unicode薄适配；目录和package声明一致，每个类型独立小写下划线文件。框架协作类型仍属cjtui包（Frame、Cell、Component、Alignment、LayoutNode、KeyEvent、InputDecoder、Application各一文件），不为每个类型发明单独包。根包通过明确public import重新导出既有公开符号，保持import cjtui.*消费者与示例无需改动。纯函数按绘制/布局/原生桥职责组织，不再复制实体定义；Frame成员集中其实体文件。
+
+不能借整理引入新功能、第二内核、依赖或对外暴露内部状态；可见性/重新导出先用SDK最小实验确认。使用用户提供CangjieSkills固定277f2e1234ca5217496966887243c679653887a8的cangjie-coding，包/文件名依据其cjlint G.NAM.01/.02（小写下划线），类型大驼峰。只格式化实际改动的产品源码，测试不改。源码移动使最终包与全量执行使用整理后固定版本，不能仅凭此前自测通过。
