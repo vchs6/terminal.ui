@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "stage": "final-integration-metadata-verified",
+  "candidate": "91ff22479c75ed152bbe647585e2827878ee7d40",
+  "tested_technical_sha": "40aa4db6c2b7673bb3e8c9a80fdb5b4e385cb940",
+  "previous_acceptance_integration": "7ba5a4bde3c362de4de48c6d57cfc18f1d384125",
+  "acceptance_scope": [
+    "AC-011",
+    "AC-012",
+    "AC-054",
+    "AC-055",
+    "AC-056",
+    "AC-057",
+    "AC-058",
+    "AC-059",
+    "AC-060"
+  ],
+  "acceptance_artifact_files": 373,
+  "executor_artifact_files": 199,
+  "executor_checksum_entries": 200,
+  "tested_input_hashes": 87,
+  "technical_changes": false,
+  "unrelated_acceptance_rows_unchanged": true,
+  "functional_tests_repeated": false,
+  "metadata_command": "npm run check",
+  "metadata_exit": 0,
+  "openspec": {
+    "passed": 10,
+    "failed": 0
+  },
+  "full_release": {
+    "exit": 1,
+    "passed": false,
+    "missing": [
+      "examples/composition/cjpm.toml",
+      "benchmarks/rendering/cjpm.toml"
+    ]
+  },
+  "remaining_closeout": {
+    "allowed": true,
+    "changes": [
+      "AC-057 pending to passed with final signoff reference",
+      "change task4.3 unchecked to checked",
+      "copy/register this signoff and bounded summary/state completion",
+      "run repository/OpenSpec metadata check"
+    ],
+    "conditions": [
+      "no source/test/native/dependency/build/packaging input changes",
+      "preserve signed historical artifact bytes and unrelated task/AC states"
+    ],
+    "future_commit_not_yet_inspected": true
+  },
+  "supersedes": "The metadata-pending marker in the immutable original acceptance snapshot; its technical verdict/evidence bytes stay unchanged.",
+  "log": "logs/final-integration.log",
+  "metadata_log": "logs/final-integration-metadata.log"
+}

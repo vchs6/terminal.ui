@@ -32,3 +32,5 @@ cjpm run
 ```
 
 本轮证据覆盖Linux x86_64、SDK1.2.0和真实PTY，属于完整框架的一次增量。完整发行checker实际仍退出1，缺composition示例及rendering基准，未标通过。滚动、完整控件、主题配置、响应式/通知、覆盖层、M2与Windows/macOS/HarmonyOS等仍按原任务继续；不以本轮替代完整Linux或跨平台验收。
+
+最终[独立集成核对](verification/final-integration.md)通过：91ff224候选与技术受检版本一致，验收/执行证据逐字节相同，状态及总结未超出本轮范围，仓库和OpenSpec严格检查通过。随后仅复制本核对记录、关闭AC057/任务4.3并登记完成，不改技术内容。AC011/012/054–060均为本有限增量passed，完整发行仍未通过。
