@@ -81,6 +81,12 @@ func fillsAndSharedClusters(): Unit {
     check(wideShadow.cellAt(1, 0).continuation && wideShadow.cellAt(0, 0).width == 2, "subsequent text covers decoration through same Frame path")
 }
 func shadowsAndExtrema(): Unit {
+    for (empty in [Frame(0, 0), Frame(0, Int64.Max), Frame(Int64.Max, 0)]) {
+        empty.fillRect(Rect(Int64.Min, Int64.Min, Int64.Max, Int64.Max))
+        empty.drawBorder(Rect(0, 0, Int64.Max, Int64.Max))
+        empty.drawShadow(Rect(0, 0, Int64.Max, Int64.Max))
+        check(empty.toAnsi() == "", "empty frame with extreme other axis performs no virtual-area iteration")
+    }
     let f = Frame(5, 3)
     f.drawShadow(Rect(1, 0, 3, 2))
     snapshot(f, "     \n    ░\n  ░░░", "positive shadow is shifted rectangle minus original")
