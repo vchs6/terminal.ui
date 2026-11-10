@@ -1,0 +1,32 @@
+[33mwarning[0m: possibly confusing line terminator
+  [36m==>[0m /workspace/work/color-api-recon/probe/src/main.cj:60:95:
+   [36m| [0m
+[36m60[0m [36m| [0m          println("map." + color.toString() + "|base=" + converter.toBaseColor(color).toString()[0m
+   [36m| [0m                                                                                               [36m~[33m^ [0m
+   [36m| [0m [36m_[0m[36m_____________________________________________________________________________________________|[0m
+[36m61[0m [36m| [0m[36m|[0m             + "|indexed=" + converter.toIndexedColor(color).toString()[0m
+   [36m| [0m[36m|[0m[36m_[0m[36m____________~ possibly confusing line terminator between ')' and '+'[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+[33mwarning[0m: possibly confusing line terminator
+  [36m==>[0m /workspace/work/color-api-recon/probe/src/main.cj:61:71:
+   [36m| [0m
+[36m61[0m [36m| [0m              + "|indexed=" + converter.toIndexedColor(color).toString()[0m
+   [36m| [0m                                                                       [36m~[33m^ [0m
+   [36m| [0m [36m_[0m[36m_____________________________________________________________________|[0m
+[36m62[0m [36m| [0m[36m|[0m             + "|rgb=" + converter.toTrueColor(color).toString())[0m
+   [36m| [0m[36m|[0m[36m_[0m[36m____________~ possibly confusing line terminator between ')' and '+'[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff parser`
+
+[33mwarning[0m: unreachable pattern
+  [36m==>[0m /workspace/work/color-api-recon/probe/src/main.cj:53:14:
+   [36m| [0m
+[36m53[0m [36m| [0m        case _ => throw Exception("wrong color")[0m
+   [36m| [0m             [33m^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+3 warnings generated, 3 warnings printed.
+cjpm build success
