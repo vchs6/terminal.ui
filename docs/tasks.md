@@ -41,18 +41,18 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 
 ## 1. WP-001
 
-- [ ] 1.1 TASK-001：产品平台与终端支持契约调查；验收 AC-001：形成 OS、终端、TTY/非 TTY、输入、缩放和模式恢复支持矩阵及限制证据。
-- [ ] 1.2 TASK-002：验证仓颉声明式语法可编译性；验收 AC-002：分别证明组件块、链、状态、条件/列表、自定义组件与回调；记录失败定位与限制。
-- [ ] 1.3 TASK-003：验证中心仓依赖与 SDK 适配边界；验收 AC-003：固定ansies、unicode、unicodewidth及传递依赖可解析；按分段/规范化、唯一宽度及ANSI职责验证，覆盖原生构建/干净消费、缺口和许可来源。
-- [ ] 1.4 TASK-004：冻结首个公共构造切片契约；验收 AC-004：U1–U5 设计稿均可映射至语法规则、签名、模块归属和验收，不以设计稿冒充运行。
+- 1.1 TASK-001：产品平台与终端支持契约调查；验收 AC-001：形成 OS、终端、TTY/非 TTY、输入、缩放和模式恢复支持矩阵及限制证据。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
+- 1.2 TASK-002：验证仓颉声明式语法可编译性；验收 AC-002：分别证明组件块、链、状态、条件/列表、自定义组件与回调；记录失败定位与限制。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
+- 1.3 TASK-003：验证中心仓依赖与 SDK 适配边界；验收 AC-003：固定ansies、unicode、unicodewidth及传递依赖可解析；按分段/规范化、唯一宽度及ANSI职责验证，覆盖原生构建/干净消费、缺口和许可来源。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
+- 1.4 TASK-004：冻结首个公共构造切片契约；验收 AC-004：U1–U5 设计稿均可映射至语法规则、签名、模块归属和验收，不以设计稿冒充运行。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
 ## 2. WP-002
 
 - TASK-005：状态/准入/实际依赖转至[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，保留 AC-005 及需求映射。
 - TASK-006：状态/准入/实际依赖转至[颜色与样式变更](../openspec/changes/implement-color-style-output/tasks.md)，保留原AC-006及需求映射。
 - TASK-007：状态/准入/实际依赖转至[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，保留 AC-007 及需求映射。
-- [ ] 2.8 TASK-008：差分提交与写失败恢复；验收 AC-008：无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错。
+- 2.8 TASK-008：差分提交与写失败恢复；验收 AC-008：无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
 - TASK-009：状态/准入/实际依赖转至[富文本变更](../openspec/changes/implement-rich-text/tasks.md)，保留原AC-009和需求映射。
-- [ ] 2.10 TASK-010：完整彩色与纯文本快照；验收 AC-010：含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告。
+- 2.10 TASK-010：完整彩色与纯文本快照；验收 AC-010：含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
 ## 3. WP-003
 
 - TASK-011：状态/准入/实际依赖已转至 [布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)，保留原AC-011和需求映射。
@@ -66,17 +66,19 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 - [ ] 4.17 TASK-017：键盘导航和有效焦点；验收 AC-017：禁用、卸载和空焦点集合有确定行为，无失效引用。
 - [ ] 4.18 TASK-018：覆盖层嵌套与关闭恢复；验收 AC-018：父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态。
 - TASK-019：状态/准入/实际依赖转至[标准控件变更](../openspec/changes/implement-standard-widgets/tasks.md)，保留原AC-019与需求映射。
-- [ ] 4.20 TASK-020：应用退出与终端模式恢复；验收 AC-020：正常退出、异常和取消均恢复光标及终端模式。
+- 4.20 TASK-020：应用退出与终端模式恢复；验收 AC-020：正常退出、异常和取消均恢复光标及终端模式。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
 ## 5. WP-005
 
-- [ ] 5.21 TASK-021：交付 U1–U5 公开接口示例；验收 AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判。
+- 5.21 TASK-021：交付 U1–U5 公开接口示例；验收 AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
 - TASK-022：状态/准入/实际依赖转至[M2变更](../openspec/changes/implement-incremental-rendering/tasks.md)，保留原AC-022与需求映射。
-- [ ] 5.23 TASK-023：验证最终源码制品可独立使用；验收 AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整。
-- [ ] 5.24 TASK-024：整体验收与发行准备；验收 AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败。
+- 5.23 TASK-023：验证最终源码制品可独立使用；验收 AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
+- 5.24 TASK-024：整体验收与发行准备；验收 AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
 
 ## 近期 L3 任务卡
 
 ### TASK-001：产品平台与终端支持契约调查
+
+以下为原任务定义的只读历史；唯一执行状态与当前收尾步骤已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)。不在本文维护第二份status。
 
 | 字段 | 定义 |
 |---|---|
@@ -105,6 +107,8 @@ L4：
 
 ### TASK-002：验证仓颉声明式语法可编译性
 
+以下为原任务定义的只读历史；唯一执行状态与当前收尾步骤已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)。不在本文维护第二份status。
+
 | 字段 | 定义 |
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation 或 design |
@@ -131,6 +135,8 @@ L4：
 3. TASK-002.S3：比较现有语言能力/宏与必要的仓颉前端并完成决策 Battle。检查结果：冻结采用路线、源码形式与构建命令；目标变更交用户裁决。
 ### TASK-003：验证中心仓依赖与 SDK 适配边界
 
+以下为原任务定义的只读历史；唯一执行状态与当前收尾步骤已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)。不在本文维护第二份status。
+
 | 字段 | 定义 |
 |---|---|
 | level / parent / type | L3 / WP-001 / investigation 或 design |
@@ -156,6 +162,8 @@ L4：
 2. TASK-003.S2：分别核对unicode分段/规范化、unicodewidth唯一宽度和ansies生成/解析；检查原生数据构建、显式链接、空串适配、Unicode数据及传递许可来源。检查结果：API/行为/缺口矩阵包含三项直接依赖及bitarray，干净消费可复现，未决许可不能记通过。
 3. TASK-003.S3：验证必要最小适配并核对传递许可证。检查结果：形成映射、限制与回归输入集合，不以文档声明替代运行证据。
 ### TASK-004：冻结首个公共构造切片契约
+
+以下为原任务定义的只读历史；唯一执行状态与当前收尾步骤已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)。不在本文维护第二份status。
 
 | 字段 | 定义 |
 |---|---|
@@ -191,9 +199,9 @@ L4：
 | TASK-005 / WP-002 | REQ-004 | 字符簇写入和边缘裁剪；统一文本适配与对应回归 | TASK-003,TASK-004 | AC-005：中文、组合符和 emoji 在边缘写入/覆盖/裁剪无半宽字符或孤立延续单元 |
 | TASK-006 / WP-002 | REQ-005 | 结构化样式映射与 ANSI 编码；ansies 薄适配与编码矩阵 | 已完成TASK-050/R9，TASK-061；实际准入见颜色样式变更 | AC-006：默认/16/256/真彩色按能力映射，组件不直接发序列 |
 | TASK-007 / WP-002 | REQ-004 | 完整目标帧与覆盖合成；合成帧实现与独立屏幕断言 | TASK-005,TASK-006 | AC-007：透明单元和带样式空格有区别，前后层按确定规则合成 |
-| TASK-008 / WP-002 | REQ-004 | 差分提交与写失败恢复；差分后端及故障注入证据 | TASK-007 | AC-008：无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错 |
+| TASK-008 / WP-002 | REQ-004 | 差分提交与写失败恢复；差分后端及故障注入证据  状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)；| TASK-007 | AC-008：无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错 |
 | TASK-009 / WP-002 | REQ-005 | 有界增量 ANSI 输入适配；受限解析适配与负向输入证据 | TASK-003,TASK-006 | AC-009：跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传 |
-| TASK-010 / WP-002 | REQ-005 | 完整彩色与纯文本快照；文件导出 API 与独立消费验证 | TASK-007,TASK-009 | AC-010：含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告 |
+| TASK-010 / WP-002 | REQ-005 | 完整彩色与纯文本快照；文件导出 API 与独立消费验证  状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)；| TASK-007,TASK-009 | AC-010：含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告 |
 | TASK-011 / WP-003 | REQ-003 | 横纵与弹性尺寸协商；容器尺寸算法与边界回归 | 已完成TASK-050、TASK-054；当前准入见布局装饰变更 | AC-011：窄屏、零尺寸和非整除弹性分配有确定结果 |
 | TASK-012 / WP-003 | REQ-003 | 圆角边框与阴影绘制区域；装饰实现与残留场景证据 | TASK-011、TASK-054；不以覆盖层007为本片前置 | AC-012：阴影只扩展绘制；移动/缩小清旧区，服从祖先裁剪 |
 | TASK-013 / WP-003 | REQ-001 | 主题、样式复用及显式复位；主题 API 与冲突优先级证据 | TASK-006,TASK-011 | AC-013：四级优先顺序和继承/复位行为明确，运行时仅样式变化也更新 |
@@ -203,11 +211,11 @@ L4：
 | TASK-017 / WP-004 | REQ-003 | 键盘导航和有效焦点；输入路由和焦点契约验证 | TASK-015 | AC-017：禁用、卸载和空焦点集合有确定行为，无失效引用 |
 | TASK-018 / WP-004 | REQ-003 | 覆盖层嵌套与关闭恢复；覆盖层公共接口及嵌套场景验证 | TASK-012,TASK-016,TASK-017 | AC-018：父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态 |
 | TASK-019 / WP-004 | REQ-003 | 菜单与状态条组合行为；公共组件和 U2/U4 验证 | TASK-013,TASK-017,TASK-018 | AC-019：水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合 |
-| TASK-020 / WP-004 | REQ-004、REQ-011 | 应用退出与终端模式恢复；当前Linux会话集成，其他平台后续扩展 | TASK-008,TASK-017,TASK-041 | AC-020：正常退出、异常和取消均恢复光标及终端模式 |
-| TASK-021 / WP-005 | REQ-001 | M1的U1–U5示例基线，不含四主题完整展示或M2；供TASK-027复用 | TASK-010,TASK-019,TASK-020 | AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判 |
+| TASK-020 / WP-004 | REQ-004、REQ-011 | 应用退出与终端模式恢复；当前Linux会话集成，其他平台后续扩展  状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)；| TASK-008,TASK-017,TASK-041 | AC-020：正常退出、异常和取消均恢复光标及终端模式 |
+| TASK-021 / WP-005 | REQ-001 | M1的U1–U5示例基线，不含四主题完整展示或M2；供TASK-027复用  状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)；| TASK-010,TASK-019,TASK-020 | AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判 |
 | TASK-022 / WP-005 | REQ-004 | 交付可重复渲染基准项目；独立 benchmarks/rendering 项目与产品基准方法 | TASK-008,TASK-011,TASK-016 | AC-022：固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果 |
-| TASK-023 / WP-005 | REQ-006、REQ-008、REQ-011 | 验证最终源码制品可独立使用；包含四主题/展示、M2及混合操作交付的真实制品；不自动上传 | TASK-009,TASK-021,TASK-022,TASK-027,TASK-030,TASK-031,TASK-032 | AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整 |
-| TASK-024 / WP-005 | REQ-001–011（REQ-010按可选能力矩阵） | 整体验收与发行准备；整体验收、发行检查与归档准备结论 | TASK-023 | AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败 |
+| TASK-023 / WP-005 | REQ-006、REQ-008、REQ-011 | 验证最终源码制品可独立使用；包含四主题/展示、M2及混合操作交付的真实制品；不自动上传  状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)；| TASK-009,TASK-021,TASK-022,TASK-027,TASK-030,TASK-031,TASK-032 | AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整 |
+| TASK-024 / WP-005 | REQ-001–011（REQ-010按可选能力矩阵） | 整体验收与发行准备；整体验收、发行检查与归档准备结论  状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)；| TASK-023 | AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败 |
 
 所有候选的范围限于标题行为及其调用方、回归与产品文档；不包含无关重构。实现负责人先补齐 canonical_owner、旧路径处置与兼容例外、实际必需技能、L4 输入和输出；每项代码变更遵循 AGENTS 第 10.5 节。
 
@@ -494,9 +502,11 @@ L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直
 
 L4及精确实现文件/命令在ready前依冻结契约细化，当前不能直接编码。
 
-- [ ] 8.4 TASK-041：Linux平台会话适配；验收AC-041：Linux字符终端（含固定视口无图形控制台）及模拟终端输入/输出/尺寸/恢复，目标原生依赖通过。
+- 8.4 TASK-041：Linux平台会话适配；验收AC-041：Linux字符终端（含固定视口无图形控制台）及模拟终端输入/输出/尺寸/恢复，目标原生依赖通过。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
 
 ### TASK-041：Linux平台会话适配
+
+以下为原任务定义的只读历史；唯一执行状态与当前收尾步骤已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)。不在本文维护第二份status。
 
 | 字段 | 定义 |
 |---|---|
@@ -556,3 +566,5 @@ Linux VT自动字形子接口支持TASK093–097唯一状态在[字形适配变�
 输入/编辑支持TASK113–122唯一状态在[linux-input-editing tasks](../openspec/changes/implement-linux-input-editing/tasks.md)，028同变更；归一化键盘/paste关联017/020/030/041子接口，152有限会话writer先于114，完整父项仍按实际汇合，019菜单/029小控件不混编号。
 
 M2支持TASK123–147唯一状态在[incremental-rendering tasks](../openspec/changes/implement-incremental-rendering/tasks.md)，稳定031/022同变更；完整功能M1基线在全部组件/主题/输入/示例后固定，旧idle优化不冒称M2。控件支持TASK153–162唯一状态在[standard-widgets tasks](../openspec/changes/implement-standard-widgets/tasks.md)，稳定029/019同变更，SplitPane只公共Row/Column封装支持既有011，不重开已验布局；两控件单元均等117完整键盘。
+
+Linux收尾原001/002/003/004/008/010/020/021/023/024/041的唯一复选框/状态在[complete-linux-integration tasks](../openspec/changes/complete-linux-integration/tasks.md)。原027继续theme，022/031继续incremental-rendering，030继续session/extensions与input的原父汇合；AC事实仍只在acceptance维护。规划preflight已独立复核59bea180，不等于产品ready或passed。

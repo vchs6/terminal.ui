@@ -4,7 +4,7 @@
 
 用户授权完成Linux全部已约定能力，保留0.0.0、SDK1.2.0、原生仓颉组件块/宏/尾随Lambda、唯一Component/RuntimeNode/LayoutNode/Frame/Style/Unicode/ansies路径。全部函数签名沿各正式design；本变更不造新公共API。开发工具不进入产品依赖。
 
-本变更候选承接原008/010/020/021/023/024的执行细化与001–004/041最终证据汇合；原027仍以implement-theme-styles/tasks.md为状态权威。原030只按152+117+122与真实host/paste/cut汇合，不重开实现链。现阶段不转移原状态、不标ready；独立preflight通过后root机械映射唯一入口。docs/acceptance.md始终唯一AC台账。
+本变更承接原008/010/020/021/023/024的执行细化与001–004/041各自最终证据汇合；原027仍以implement-theme-styles/tasks.md为状态权威。原030只按152+117+122与真实host/paste/cut汇合，不重开实现链。独立规划preflight59bea180通过后，root已机械将上述原任务唯一状态转本tasks；均仍planned，不标ready。docs/acceptance.md始终唯一AC台账。
 
 顺序：已接受运行时→富文本084→有限Session152→Glyph097→Theme088/092→交互A102/B107/C112→键盘117→编辑122→控件157/162→本变更008/010/020/021及主题027的完整M1交付→冻结M1库/依赖/SDK/native→M2 123–147→最终平台041/源cjp023/完整Linux024。相互无关的只读探针和测试准备可并行，缺上游功能的准备不算完整RED/准入。共享源仅一个产品作者顺序修改。
 

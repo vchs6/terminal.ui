@@ -57,3 +57,9 @@
 必要性：原字段无法区分Unset/Reset/默认且无主题配置/切换；canonical owner唯一StyleRule声明、resolver解析、Theme不可变数据、Runtime绑定/身份/调度、LayoutNode/Frame画面。旧字段如保留仅作解析缓存，不保留第二级联；Style不改成可选。新增source mask/fill intent有span/背景真实用途，预算扫描是上游测得资源缺口的薄适配，不写TOML/Unicode内核。兼容：旧普通链/默认Classic画面保持；新四边padding/排版来自明确公共构造要求。无持久schema升级，v1未知字段明确诊断，不自动改写用户文件。复杂度：partial状态/typed键/loader队列是明确需求必要状态；不新增CSS/selector/脚本/层级include、自动watcher/新语言runtime或通用插件系统。
 
 preflight逐项：085/013/025接口同design/fixtures；013和025同代码周期避免双resolver，026基于已独立可用基础，不互相前置；085/089 run-slice顺序接线；086/087/088与090/091/092都是固定输入/独立职责；027未来控件依赖保留且planned。共享Component/Layout写屏障明确，不让多产品作者并行改同一权威。Review focus全部映射085/089或027后续，parser预算/继承/request/richtext边界先裁决，文件职责/退役/兼容/证据/状态单权威齐全。独立DQ检查缺口解决前只准备合同，不派正式产品。
+
+### TASK027完整M1 showcase L4（独立质量角色，唯一状态仍本文件）
+
+正式范围消费[Linux收尾C006](../complete-linux-integration/design.md)并沿本theme T001–T016，新增字段不重复定义API。实际输入=092/084/097/112/117/122/157/162及完整021；021不反等027，027完成后才冻结124的完整功能M1库。全部实际输入/测试/命令/hash未齐前planned，不因preflight推定ready。
+
+027.a独立Sol/high测试作者在tests/theme_showcase/普通consumer手写同业务/尺寸四主题全部基本组件和focused/selected/disabled预期、切换后节点/编辑选择/undo/焦点/滚动不丢、非法文件旧主题保持、主动reload原子成功；实际缺showcase/行为RED与工具自检后冻结test-only。027.b独立Sol/high或Terra/high作者在已定examples/theme_showcase/和产品themes/README用公开API实施，无theme特判内核；四preset canonical bytes沿已冻fixture。027.c独立Astra/high固定完整diff双verdict，不读作者自评。027.d独立Sol/medium正常CJPM build→直接smoke与真实键操作，至少一真实GUI同一场景四套原PNG/完整grid/style/version/config/source/time/hash；跨host自动降级沿C008完整矩阵，不用TERM假实现。027.e独立Astra/high逐原AC027完整组件/状态/窄屏/切换保持/可见层快照/主题分发核原件与source/cjp，root仅机械集成，不把基础四文本图当全showcase。CLI tests/theme_showcase/run.sh为开发测试入口，实际product project启动文档在examples/theme_showcase/README.md；入ready前固定具体命令与正式源。

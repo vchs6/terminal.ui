@@ -11,7 +11,7 @@
 
 主代理只契约/集成；测试编写Sol/high、产品Sol/high或Terra/high、独立审核和复杂验收Astra/high、确定命令执行Sol/medium，各自目录和上下文，固定输入，不交接产品作者推理/自评。纯证据索引和AC投影由原验收职责承接，不另造五角色。任何真实产品/示例/发行检查行为变化须测试作者先给真实反例，再产品作者修，独立审核、独立执行、独立验收；若没有源码缺口则按实际证据关闭，不造无谓代码。
 
-一个实体一文件，纯函数内聚；无第二renderer/parser/Unicode表/runtime。未变code/deps/env/config/scope证据按AGENTS11.1复用，不能因新任务/文档再冷跑。真实新增/受影响失败必须验证。正常bundle与repositorycheck不是完整release。所有required需有独立证据；不publish。当前全部候选planned，仅规划，不与原tasks建立第二完成台账；独立preflight后root机械指定唯一状态入口。
+一个实体一文件，纯函数内聚；无第二renderer/parser/Unicode表/runtime。未变code/deps/env/config/scope证据按AGENTS11.1复用，不能因新任务/文档再冷跑。真实新增/受影响失败必须验证。正常bundle与repositorycheck不是完整release。所有required需有独立证据；不publish。独立规划preflight59bea180已通过，原001/002/003/004/008/010/020/021/023/024/041唯一状态现由本文件承接；全部仍planned，不等于产品ready。docs/tasks只保留原范围/依赖与引用，AC只在docs/acceptance维护。
 
 ## Review Focus
 
@@ -93,4 +93,4 @@ L4 024.a：验收者Astra/high核最终source/package/deps与各原件hash、真
 
 自查：C002–C009各有明确原任务/输入/输出/路径/独立角色/原AC，接口不扩张，001/002/003/004/041各自独立状态/文件/原AC，汇合组无状态且共享证据；027/022/031/030仍原权威，不重复。M1→M2→最终矩阵无完整041前置循环；021→027单向；各补充consumer只能消费已实际存在上游。
 
-下一步独立preflight按工程DQ逐项核候选、与原34AC/各正式design/现发行脚本的一致性。尚未获得结论，不能据此直接开始本change产品；当前Rich等原有已准入工作继续。若固定合同需要新公共API，回root单独精确化/preflight，不能以收尾名义随意扩展。
+独立preflight初df9612e两Important/一Minor与最终59bea180限定复核已闭合，原件在/workspace/work/linux-closeout-preflight。根已机械迁移唯一状态，所有卡仍planned，不据规划结论直接开始本change产品；当前Rich等原有已准入工作继续。若固定合同需要新公共API，回root单独精确化/preflight，不能以收尾名义随意扩展。

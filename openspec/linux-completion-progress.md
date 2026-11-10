@@ -45,3 +45,5 @@ Task076–080 complete：独立080 PASS与716份原始归档逐字节/hash再核
 root已采纳I015异步一次600ms、唯一decoder/writer、Unknown不改显隐、只读cursorVisibilityStatus诊断和最小Linux单调FFI。152提前为A实际writer前置；F006明确未来键盘继承和deadline/100msidle区别。仅formal候选，独立限定preflight后设计准入，当前A未实施。
 
 2026-11-10 df9612e：I015/F006/L006与complete-linux-integration候选已固定，repository/OpenSpec22项通过（仅元数据）。cursor_i015_preflight与linux_closeout_preflight分别Astra/high独立限定设计核，不读作者自评；实际A/收尾产品未准入。原scope audit /workspace/work/linux-final-scope-audit/report.md/mapping.json覆盖34原项，无套件/产品通过结论。TASK113 keyboard_test_preparation Sol/high仅prepare，真实puremissingAPI RED可先做，完整focus/modal/152等未具备则不关闭113/不准入114。当前唯一产品作者仍TASK009 Sol/high，首次开发rich11组GREEN不代替082–084。
+
+59bea180独立linux_closeout_preflight限定规划通过，LC-PF001快照glyphMode、002五独立原结果/文件/状态、003021WP005/原010020M1边全部verified。root机械迁移001/002/003/004/008/010/020/021/023/024/041唯一状态到complete-linux-integration/tasks；全部planned，未改AC事实/未准入未来产品。027仍theme唯一状态，追加C006完整独立测试/实现/审核/执行/验收L4；无重复M2/Session链。I015与F007限定Astra设计核无Important，实际A/完整113仍缺152/084/088等产品输入。
