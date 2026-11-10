@@ -5,7 +5,7 @@
 **Goal:** 交付用户与内置组件同权的公共绘制/焦点、统一视口与owner覆盖层。
 **Architecture:** 单Component/RuntimeNode/LayoutNode/Frame/样式resolver；两类绘制依赖、统一UI边界、普通子序列与层所有权关系区分。
 **Tech Stack:** 仓颉SDK1.2.0、既有Unicode/Unicodewidth/ansies与主题088冻结依赖；无新运行时。
-**Spec:** design.md（I001–I010优先）及specs/ui-runtime、ui-construction、terminal-output；源需求REQ001/003/009。
+**Spec:** design.md（I001–I013优先）及specs/ui-runtime、ui-construction、terminal-output；源需求REQ001/003/009。
 
 ## Global constraints
 
@@ -31,8 +31,8 @@
 
 本节与每张任务卡合并才构成完整L3定义，适用于098–112，无省略字段：
 
-- `level=L3; goal=G-001; classification=execution`：用户目标已定、I001–I010收敛工程选择；若签名实证迫使外部行为变化，先修合同/preflight，不由实现者自由补约。
-- `openspec_change_ref=implement-public-interaction; workflow_ref=本tasks.md; decision_refs=design I001–I010`。具体`parent/parent_task/requirement_refs/type/inputs/depends_on/deliverables/acceptance/steps`见各卡。
+- `level=L3; goal=G-001; classification=execution`：用户目标已定、I001–I013收敛工程选择；若签名实证迫使外部行为变化，先修合同/preflight，不由实现者自由补约。
+- `openspec_change_ref=implement-public-interaction; workflow_ref=本tasks.md; decision_refs=design I001–I013`。具体`parent/parent_task/requirement_refs/type/inputs/depends_on/deliverables/acceptance/steps`见各卡。
 - `preconditions`：通用admission、该卡全部依赖、固定hash和角色隔离成立。`status=planned; evidence_refs=[]; blockers=admission及该卡依赖尚未由本角色核验完成`。不是实施授权缺失，不重复索要用户许可。
 - `required_skills`：测试=TDD/verification；产品=TDD/SDD/verification，遇故障再systematic-debugging；审查=requesting-code-review及verification（反馈修复用receiving-code-review）；执行/验收=verification，失败按需systematic-debugging。所有角色按实际工作使用已读AGENTS的仓颉参考及OpenSpec apply工作流。已具备的技能来源复用仓库固定记录；`skill_evidence_refs`进入ready时记录实际发现/读取/适用版本到`docs/reviews/interaction/<A|B|C>/<task-id>/skills.json`，不能将安装当实际使用。
 - `compatibility`：现Text/Row/Column/Frame/Style/KeyEvent/UIKeyEvent入口、事件过期、跨session、native恢复保留；本变更可观察新增/退役仅design列出的设备目标、统一默认、viewport/layer桥接。无发布ABI或旧widgets入口兼容承诺，兼容例外为空。
@@ -220,7 +220,7 @@
 
 **Deliverables/files:** 文件表Unit B产品源/公共例子/文档及product-only提交；正常构建和必要自验raw/hash归docs/reviews/interaction/B/TASK-104/self-check/；更新API实际编译状态须有公开消费者证据。
 
-**Acceptance/verification:** 冻结公开测试和受影响原回归通过，正常lint/build不skip；无B之外的控件/协议扩范围，不更改测试或规范迎合实现；退役规则：viewport offset/坐标/clip保持节点唯一权威，不给ScrollView另保存副本；普通非root Column/显式None保原flex；隐式root先旧布局、有未承接overflow才B2第二pass，最多两pass。
+**Acceptance/verification:** 冻结公开测试和受影响原回归通过，正常lint/build不skip；无B之外的控件/协议扩范围，不更改测试或规范迎合实现；退役规则：viewport offset/坐标/clip保持节点唯一权威，不给ScrollView另保存副本；普通非root Column/显式Off保原flex；隐式root先旧布局、有未承接overflow才B2第二pass，最多两pass。
 
 **L4:**
 
@@ -244,7 +244,7 @@
 **L4:**
 
 - [ ] 2.3.1 TASK-105.S1：锁定base/product/test/contract hash，逐公开接口核对design本单位与B-01–B-04、上游交叉及错误优先级，交可达反例而非泛泛建议。
-- [ ] 2.3.2 TASK-105.S2：检查文件职责/单Runtime/单resolver/Frame/宽簇、生命周期与资源上限；核对退役安排“viewport offset/坐标/clip保持节点唯一权威，不给ScrollView另保存副本；普通非root Column/显式None保原flex；隐式root先旧布局、有未承接overflow才B2第二pass，最多两pass。”。
+- [ ] 2.3.2 TASK-105.S2：检查文件职责/单Runtime/单resolver/Frame/宽簇、生命周期与资源上限；核对退役安排“viewport offset/坐标/clip保持节点唯一权威，不给ScrollView另保存副本；普通非root Column/显式Off保原flex；隐式root先旧布局、有未承接overflow才B2第二pass，最多两pass。”。
 - [ ] 2.3.3 TASK-105.S3：输出spec/quality双verdict与发现严重度；发现回主代理，不私改代码/断言。收到新固定修复后仅复核受影响diff和相关失败证据，保留前次记录。
 
 ### TASK-106: 独立执行与正常制品消费

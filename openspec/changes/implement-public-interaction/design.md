@@ -4,10 +4,10 @@
 
 ## Governing decisions
 
-以下I001–I010优先于正文历史“推荐/建议”字样；被比较的替代方案不再供实现者自由选择。来源为主代理2026-11-10明确采纳，未改变用户范围。
+以下I001–I013优先于正文历史“推荐/建议”字样；被比较的替代方案不再供实现者自由选择。来源为主代理2026-11-10明确采纳，未改变用户范围。
 
 - I001：采用原草稿A1–A4；Canvas分别跟踪measure/draw，M1全局render保持完整参考；默认动作Target/Ancestor两槽、框架默认居中；只读guard包含Component.reference；selected由唯一resolver解析；caret仅聚焦Canvas自身。
-- I002：B1经主代理复核REQ003.11/architecture后修订为Application根未显式声明viewport时默认Vertical兜底；root.viewport(Off)关闭，显式其他axes优先。普通非root Column默认None，ScrollView默认Vertical；公开指南主体ScrollView、固定菜单/状态条不滚。B2自然基准用于显式viewport与隐式根发生未承接overflow后的第二pass；B3接受变化Bool/边界钳制保持。不得因viewport改变业务显隐。
+- I002：B1经主代理复核REQ003.11/architecture后修订为Application根未显式声明viewport时默认Vertical兜底；root.viewport(Off)关闭，显式其他axes优先。普通非root Column默认Off，ScrollView默认Vertical；公开指南主体ScrollView、固定菜单/状态条不滚。B2自然基准用于显式viewport与隐式根发生未承接overflow后的第二pass；B3接受变化Bool/边界钳制保持。不得因viewport改变业务显隐。
 - I003：采用C1–C5：同Runtime所有权边/宿主记录；modal截断下层app/legacy但未阻止interrupt仍退出全应用；surface填充意图；Modal无anchor，锚点离开clip关闭非modal；nonmodal不trap、Passive不夺焦点、空takeFocus层可成为activeTarget。
 - I004：域外焦点请求及显式dispatch错误名统一FocusOutsideDomain；删除DomainViolation备选名。其他新增错误名以正文表为准，不能按实现方便自由替换。
 - I005：稳定父项A=TASK-017、B=TASK-037、C=TASK-018；支持编号098–112各五角色按A→B→C。TASK-028仍文本编辑，019菜单/状态条、029基础widgets、020退出恢复、030可选会话能力，不重编号、不借基础通过关闭这些完整任务。
@@ -229,7 +229,7 @@ viewport 是通用节点能力，不是 ScrollView 私有 kind；可用于 Colum
 
 NodeRef 挂载代际拥有唯一 offset，不能再让 ScrollView 的业务 Observable 保存第二份可相互覆盖的 offset。query 是不可变、可跟踪的最后提交布局快照，不隐式 measure。挂载后尚无布局时返回 width/height/content/offset全0与当前 axes，之后自动失效。关闭/重建节点归零，key重排/同父move保留。axes 关闭某轴时该轴 offset 归0，其余轴保留钳制。
 
-**默认纵向裁决B1/I009**：Application根没有任何viewport常量/getter声明时有效axes为Vertical；`.viewport(ScrollAxes.Off)`显式关闭，显式Vertical/Horizontal/Both或getter结果优先。声明“未设”与显式None必须分别保存，不以枚举默认None丢失presence。普通非root Column默认None，ScrollView默认Vertical。公开指南将可变长度主体置于ScrollView、固定菜单/状态条留普通布局；同时保留裸根长内容的兜底，不以指南代替默认行为。无新增Application rootScrollAxes选项。detached `render`临时Runtime没有隐式根viewport；mounted `render`完整M1消费已有session的有效viewport/offset/层栈，保持R004同输入等价，不pump第二session、不访问M2缓存。
+**默认纵向裁决B1/I009**：Application根没有任何viewport常量/getter声明时有效axes为Vertical；`.viewport(ScrollAxes.Off)`显式关闭，显式Vertical/Horizontal/Both或getter结果优先。声明“未设”与显式Off必须分别保存，不以枚举默认Off丢失presence。普通非root Column默认Off，ScrollView默认Vertical。公开指南将可变长度主体置于ScrollView、固定菜单/状态条留普通布局；同时保留裸根长内容的兜底，不以指南代替默认行为。无新增Application rootScrollAxes选项。detached `render`临时Runtime没有隐式根viewport；mounted `render`完整M1消费已有session的有效viewport/offset/层栈，保持R004同输入等价，不pump第二session、不访问M2缓存。
 
 #### B.2 extent、clip、实际尺寸
 
