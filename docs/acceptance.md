@@ -76,3 +76,12 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-058 | REQ-007 / 用户源码组织约束 | TASK-058 | 包/实体文件一致，公开消费者及制品无回归；[R9证据](reviews/R9/result.md) | passed |
 | AC-059 | REQ-004.7/007 | TASK-059 | 非throwing finally，业务/恢复错误均可见，标准bundle；[R9证据](reviews/R9/result.md) | passed |
 | AC-060 | REQ-004.7/007 | TASK-060 | 独立生命周期组合回归及真实RED/termios；[R9证据](reviews/R9/result.md) | passed |
+
+## 颜色与样式增量质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-061 | REQ-001/005/007 | TASK-061 | 独立颜色/属性/输出模式测试及真实RED | pending |
+| AC-062 | REQ-007 | TASK-062 | 固定技术diff的spec/quality独立审核 | pending |
+| AC-063 | REQ-005/006/007 | TASK-063 | cold全入口/真实PTY/标准bundle/clean消费者 | pending |
+| AC-064 | REQ-005/007 | TASK-064 | 有限合同与最终集成独立验收 | pending |
