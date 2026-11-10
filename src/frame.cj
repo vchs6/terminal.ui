@@ -45,11 +45,15 @@ public class Frame {
         }
     }
     public func put(x: Int64, y: Int64, text: String, style!: Style = Style()): Unit {
-        validateText(text)
-        let clusters = graphemeClusters(text)
+        put(x, y, RichText(text), style: style)
+    }
+    public func put(x: Int64, y: Int64, value: RichText, style!: Style = Style()): Unit {
+        let clusters = richTextClusters(value)
         var cx = x
         var cy = y
-        for (cluster in clusters) {
+        for (span in clusters) {
+            let cluster = span.text
+            let resolved = span.style.resolve(style)
             if (cluster == "\n" || cluster == "\r\n") {
                 cx = x
                 if (cy < Int64.Max) {
@@ -65,9 +69,9 @@ public class Frame {
                 for (i in 0..w) {
                     clearAt(cx + i, cy, transparent)
                 }
-                cells[index(cx, cy)] = Cell(cluster, w, false, style)
+                cells[index(cx, cy)] = Cell(cluster, w, false, resolved)
                 for (i in 1..w) {
-                    cells[index(cx + i, cy)] = Cell("", 0, true, style)
+                    cells[index(cx + i, cy)] = Cell("", 0, true, resolved)
                 }
             }
             if (cx > Int64.Max - w) {

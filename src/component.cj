@@ -18,7 +18,7 @@ public open class Component {
     var captureHandler: ?(UIKeyEvent) -> Unit = None
     var isVisible = true
     let kind: Int64
-    var value: String
+    var value: RichText
     let descriptionId = uniqueRuntimeId()
     let declarations = ArrayList<ChildDeclaration>()
     var fg: ?Color = None
@@ -149,7 +149,7 @@ public open class Component {
         textAlignment = v
         this
     }
-    public init() { this.kind = 1; this.value = "" }
+    public init() { this.kind = 1; this.value = RichText("") }
     public open func build(): Unit {}
     protected func finishConstruction(): Unit {
         if (constructionFinished) { throw UIException("ConstructionAlreadyFinished", "construction already finished") }
@@ -200,7 +200,7 @@ public open class Component {
     public func onKeyCapture(handler: (UIKeyEvent) -> Unit): Component { checkDefinitionChange(); captureHandler = Some(handler); this }
     init(kind: Int64, value: String) {
         this.kind = kind
-        this.value = value
+        this.value = RichText(value)
     }
     public func border(value: BorderStyle): Component {
         removeBinding("border")
@@ -328,12 +328,39 @@ public open class Component {
         bind("visible", ChangeKind.Layout, { => let next = value(); if (isVisible != next) { isVisible = next; markChanged(ChangeKind.Layout) } })
     }
     public func text(value: String): Component {
-        if (kind != 0) { throw UIException("InvalidProperty", "text applies only to Text") }
-        removeBinding("text"); this.value = value; markChanged(ChangeKind.Content); this
+        text(RichText(value))
     }
     public func text(value: () -> String): Component {
-        if (kind != 0) { throw UIException("InvalidProperty", "text applies only to Text") }
-        bind("text", ChangeKind.Content, { => let next = value(); if (this.value != next) { this.value = next; markChanged(ChangeKind.Content) } })
+        if (kind != 0) {
+            throw UIException("InvalidProperty", "text applies only to Text")
+        }
+        bind("text", ChangeKind.Content, {=> updateText(RichText(value()))})
+    }
+    public func text(value: RichText): Component {
+        if (kind != 0) {
+            throw UIException("InvalidProperty", "text applies only to Text")
+        }
+        removeBinding("text")
+        updateText(value)
+        this
+    }
+    public func text(value: () -> RichText): Component {
+        if (kind != 0) {
+            throw UIException("InvalidProperty", "text applies only to Text")
+        }
+        bind("text", ChangeKind.Content, {=> updateText(value())})
+    }
+    private func updateText(next: RichText): Unit {
+        if (this.value == next) {
+            return
+        }
+        let change = if (this.value.toPlainText() == next.toPlainText()) {
+            ChangeKind.Style
+        } else {
+            ChangeKind.Content
+        }
+        this.value = next
+        markChanged(change)
     }
     public func width(value: () -> Int64): Component {
         bind("width", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (fixedW != next) { fixedW = next; markChanged(ChangeKind.Layout) } })
@@ -398,11 +425,32 @@ public open class Component {
 }
 
 public func Text(value: String): Component {
-    let c = Component(0, value); attach(c); c
+    let c = Component(0, value);
+    attach(c);
+    c
 }
+
 public func Text(value: () -> String): Component {
-    let c = Component(0, ""); c.text(value); attach(c); c
+    let c = Component(0, "");
+    c.text(value);
+    attach(c);
+    c
 }
+
+public func Text(value: RichText): Component {
+    let c = Component(0, "");
+    c.text(value);
+    attach(c);
+    c
+}
+
+public func Text(value: () -> RichText): Component {
+    let c = Component(0, "");
+    c.text(value);
+    attach(c);
+    c
+}
+
 func container(kind: Int64, body: () -> Unit): Component {
     let c = Component(kind, "")
     collectChildren(c, body)

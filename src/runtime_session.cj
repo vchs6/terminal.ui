@@ -51,6 +51,7 @@ class RuntimeSession {
     var paints: Int64 = 0
     var frames: Int64 = 0
     var cached: ?Frame = None
+    var measuredLayout: ?LayoutNode = None
     var cachedWidth: Int64 = -1
     var cachedHeight: Int64 = -1
     init(root: Component, limits: RuntimeLimits, temporary!: Bool = false,
@@ -127,6 +128,7 @@ class RuntimeSession {
         }
         if (change == ChangeKind.Content || change == ChangeKind.Layout || change == ChangeKind.Structure || change == ChangeKind
             .All) {
+            measuredLayout = None
             node.layoutDirty = true
             var parent = node.parent
             while (let Some(ancestor) <- parent) {
@@ -844,9 +846,8 @@ class RuntimeSession {
             for (binding in pendingBindings) {
                 if (binding.active && binding.dirty && binding.dirtySequence <= cutoff) {
                     binding.dirty = false
-                    if (let Some(node) <- binding.node) {
-                        markNodeDirtyLocked(node, binding.category)
-                    }
+                    // The property setter owns actual invalidation after evaluating.
+                    // Explicit NodeRef notifications are handled above.
                     ready.add(binding)
                 } else if (binding.active && binding.dirty) {
                     laterBindings.add(binding)

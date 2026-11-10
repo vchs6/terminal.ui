@@ -98,6 +98,10 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
     let ir = lesser(right, sat(ix, innerW));
     let ib = lesser(bottom, sat(iy, innerH))
     if (c.kind == 0) {
+        let clusters = richTextClusters(c.value)
+        var clusterIndex: Int64 = 0
+        let explicit = TextStylePatch(foreground: c.fg, background: c.bg, bold: c.isBold, dim: c.isDim,
+            italic: c.isItalic, underline: c.isUnderline, inverse: c.isInverse, strikethrough: c.isStrikethrough)
         for (i in 0..n.lines.size) {
             let cy = sat(iy, i)
             let free = if (n.widths[i] < innerW) {
@@ -107,11 +111,16 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
             }
             var cx = sat(ix, offset(c.textAlignment, free))
             for (g in n.lines[i]) {
+                let textStyle = explicit.resolve(clusters[clusterIndex].style.resolve(inherited))
+                clusterIndex++
                 let gw = displayWidth(g)
                 if (cy < ib && cx < ir && gw <= ir - cx) {
-                    frame.put(cx, cy, g, style: style)
+                    frame.put(cx, cy, g, style: textStyle)
                 }
                 cx = sat(cx, gw)
+            }
+            if (i + 1 < n.lines.size) {
+                clusterIndex++
             }
         }
         return
@@ -275,8 +284,18 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
 func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession): Frame {
     let frame = Frame(width, height)
     if (!root.isVisible) { return frame }
-    let node = LayoutNode(root, session);
-    node.measure()
+    // Public render may target a mounted subtree in the same session.
+    // Only the application root owns this reusable measurement.
+    let sessionRoot = root.descriptionId == session.root.descriptionId
+    let node = if (sessionRoot && session.measuredLayout.isSome()) {
+        session.measuredLayout.getOrThrow()
+    } else {
+        let measured = LayoutNode(root, session)
+        measured.measure()
+        if (sessionRoot) { session.measuredLayout = Some(measured) }
+        measured
+    }
+
     let w = lesser(width, greater(root.fixedW ?? width, root.minW))
     let h = lesser(height, greater(root.fixedH ?? height, root.minH))
     paint(node, frame, 0, 0, w, h, 0, 0, width, height, Style())

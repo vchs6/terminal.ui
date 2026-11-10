@@ -49,3 +49,8 @@ cjpm run
 
 
 结构 API 的失败通过 `UIException.code` 区分：旧引用为 `StaleReference`，失效或外父锚点为 `StaleAnchor`，跨父移动为 `CrossParentMove`，重复挂载或预留为 `AlreadyMounted`，叶子父节点为 `InvalidParent`。动态构造的空 key、重复 key、根数不符分别为 `InvalidKey`、`DuplicateKey`、`ConstructionRootCount`；预算超限为 `CapacityExceeded`，同步更新不稳定为 `UnstableUpdate`。错误 UI 域为 `WrongUIContext`，结构求值重入为 `ReentrantStructure`，求值中写可观察状态为 `ReentrantEvaluation`，生命周期中直接改树为 `LifecycleReentry`。应用 getter、body、事件或挂载回调抛出的普通异常保留原对象与类型；若清理还发生附加失败，使用 `UICleanupException` 聚合报告。
+
+`RichText`、`TextSpan` 和 `TextStylePatch` 提供不可变富文本；`parseAnsiText` 或增量
+`AnsiTextDecoder` 显式将有界 ANSI 输入转换为安全文本及诊断，普通 String 入口仍严格
+拒绝控制字符。整篇字符簇、布局、绑定与 Frame 路径共享，组件显式属性逐字段覆盖 span。
+API、样式优先级、限制及错误见[富文本说明](rich-text.md)，示例见 `examples/rich-text`。

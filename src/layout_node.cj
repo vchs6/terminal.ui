@@ -18,10 +18,10 @@ class LayoutNode {
         session.recordMeasure()
         let c = component
         if (c.kind == 0) {
-            validateText(c.value)
             var line = ArrayList<String>()
             var w: Int64 = 0
-            for (g in graphemeClusters(c.value)) {
+            for (span in richTextClusters(c.value)) {
+                let g = span.text
                 if (g == "\n" || g == "\r\n") {
                     lines.add(line);
                     widths.add(w);
