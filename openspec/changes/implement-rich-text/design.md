@@ -58,7 +58,7 @@ public func text(value: () -> RichText): Component
 public func put(x: Int64, y: Int64, value: RichText, style!: Style = Style()): Unit
 ```
 
-patch None=未设置，Some(Color.Default)/Some(false)=显式值，非主题Reset。resolve逐字段patch值优先base。TextSpan为惰性数据片段，不自行分段或单独执行换行合法性检查；RichText拷贝spans并按拼接全文调用现validateText，允许跨span的CR+LF，禁止任何其他非法控制。空span消除，邻接相同patch合并，故RichText等价比较为规范化span序列（不是忽略样式比较纯文字）。String构造等价一个无patch span；spans getter返回副本，改输入/返回数组不改变RichText。
+patch None=未设置，Some(Color.Default)/Some(false)=显式值，非主题Reset。resolve逐字段patch值优先base。TextSpan为惰性数据片段，不自行分段或单独执行换行合法性检查；RichText拷贝spans并按拼接全文调用唯一validatePlainText，允许跨span的CR+LF，禁止任何其他非法控制。空span消除，邻接相同patch合并，故RichText等价比较为规范化span序列（不是忽略样式比较纯文字）。String构造等价一个无patch span；spans getter返回副本，改输入/返回数组不改变RichText。
 
 ## 3. 样式、字符簇和绘制
 
@@ -73,8 +73,8 @@ Frame.put(RichText)在任何写入前验证全值，通过同一Frame内部整�
 ```cangjie
 public class AnsiTextLimits {
     public let maxSequenceBytes: Int64
-    public let maxSgrParameters: Int64
-    public init(maxSequenceBytes!: Int64 = 4096, maxSgrParameters!: Int64 = 64)
+    public let maxParameters: Int64
+    public init(maxSequenceBytes!: Int64 = 4096, maxParameters!: Int64 = 64)
 }
 public enum AnsiTextIssue <: Equatable<AnsiTextIssue> {
     UnsupportedSequence | MalformedSequence | SequenceTooLong | IncompleteSequence
@@ -106,7 +106,7 @@ public func parseAnsiText(value: String, limits!: AnsiTextLimits = AnsiTextLimit
 
 Batch/Result/Diagnostic无公开构造，由decoder产生；数组均防别名修改。单decoder单调用线程拥有，非线程安全；无线程/日志/设备/组件依赖。feed可任意大，返回安全spans/本批逐事件diagnostics，不存全文或过去issue。finish消费残留、返回末批并关闭；此后feed/finish抛AnsiTextException(code:"DecoderClosed")。无reset；新文本用新decoder。parseAnsiText共享decoder逻辑、合并全部batch为不可变RichText，不自行解析第二遍。
 
-limits正数且maxSequenceBytes≤1048576、maxSgrParameters≤4096，违反抛IllegalArgumentException。单SGR十进制token最多3digits，超过为SequenceTooLong；所有计数/offset防Int64溢出，输入累计offset无法表示时fail-close抛AnsiTextException(code:"InputTooLarge")。资源上限是状态限制，不是业务全文大小。maxSequenceBytes按原始输入byte计，包含实际introducer和终止符：rawC1计1byte、UTF8C1计2bytes、ESC[计2bytes，不按规范7bit后的长度。maxSgrParameters按分号分隔字段数计，含空字段及38/48操作数；ESC[m计一个隐式0。
+limits正数且maxSequenceBytes≤1048576、maxParameters≤4096，违反抛IllegalArgumentException。所有CSI参数区连续十进制digit-run最多3digits（包括最终非m的CSI），第四digit到达即SequenceTooLong；所有计数/offset防Int64溢出，输入累计offset无法表示时fail-close抛AnsiTextException(code:"InputTooLarge")。资源上限是状态限制，不是业务全文大小。maxSequenceBytes按原始输入byte计，包含实际introducer和终止符：rawC1计1byte、UTF8C1计2bytes、ESC[计2bytes，不按规范7bit后的长度。maxParameters适用于全部CSI，按分号分隔字段数计（含空字段及38/48操作数），超出的第一个分号到达即判超限，不等待final确定是否SGR；ESC[m计一个隐式0。未知final不能覆盖先前资源首错。例ESC[1234在第四digit即TooLong，无论后续K或m；其余完整未知CSI仍Unsupported。
 
 offset为从decoder第一个输入byte开始0基绝对位置，sequence问题指introducer首byte；孤立控制指该控制首byte。对所有feed及finish成功完成的同一完整流，不同分块归一化后内容/样式/issue(kind,offset)等价，允许batch run切分不同。异常流要求相同错误code与永久关闭，但之前成功batch已交付前缀可因分块不同，不承诺前缀等价或回滚（如A后非法byte整块失败不交付A，拆块可能先交付A）。无需回显原始设备payload。
 
@@ -137,7 +137,7 @@ OSC由BEL或ST结束；DCS/SOS/PM/APC只有ST结束，BEL不能释放payload。S
 
 UTF8有至多3尾bytes，合法scalar用SDK String.fromUtf8检查；无pending UTF8时才识别rawC1。合法多字节里的80–9F continuation永远是该字符数据（如D2 9B不是CSI）。UTF8编码C1按同control规则，跨块等价。控制串内也识别scalar边界以免把continuation9C误当结束，不需要存payload。非法UTF8/finish不完整UTF8抛AnsiTextException(code:"InvalidUtf8")并永久关闭decoder，本次batch不交付，之前已交付batch不回滚；一次parse整体失败无可用Result。不得unsafe造String或把非法byte重解释为控制后的正文。
 
-decoder保留状态O(maxSequenceBytes+maxSgrParameters+常数)，不留无限控制payload/诊断。输出/诊断batch内存O本次输入；后续feed不持有调用者chunk/batch。饱和计数只用于已超限隔离，不能整数回绕。
+decoder保留状态O(maxSequenceBytes+maxParameters+常数)，不留无限控制payload/诊断。输出/诊断batch内存O本次输入；后续feed不持有调用者chunk/batch。饱和计数只用于已超限隔离，不能整数回绕。
 
 ## 7. 兼容、职责与退出
 
