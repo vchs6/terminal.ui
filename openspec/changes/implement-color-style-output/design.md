@@ -68,3 +68,43 @@ examples/colors为独立公开API示例：16色、索引色、RGB及六属性，
 跨终端验收以不同真实实现运行相同应用和用例为准，至少覆盖有意义的不同终端内核/能力等级；环境提示分支测试单列，不替代真实宿主证据。候选xterm、VTE及可用终端层由环境probe决定，实际Linux console无设备时明确pending，不能冒充已测。每个host验证自动能力来源与降级、原色/属性、可见/静默刷新、Unicode、resize、退出与termios；矩阵写明实现、版本、配置、后端、受检SHA及结果。
 
 报告PNG必须由实际运行窗口/终端内核捕获，记录终端/版本/字符网格尺寸/场景/受检代码SHA/采集时间/原始日志和图片hash。保留原始图，不用绘制或生成图代替运行效果，不根据截图单独判定输入、刷新或清理正确。截图工具和GUI宿主只属测试环境，不成为产品依赖。
+
+## D031–D033: revised automatic-device implementation contract
+
+此节依据用户新裁决和TASK065实际探针，覆盖前述历史手动默认/API/例子条目。原16/256/RGB名义映射、六属性模型、原色保留、ansies编码、有效diff和旧调用兼容继续适用。
+
+### Automatic application and pure snapshots
+
+ColorMode新增Basic8，属于具体输出等级；不新增Auto枚举值。Basic8候选仅名义表0..7，Bright命名色也按该参考RGB匹配8色，不额外用bold模拟亮色。已有4具体mode不改。
+
+Application提供两个公开构造重载：init(root: Component)默认自动；init(root: Component, colorMode!: ColorMode)是可选高级颜色override（命名参数必填无默认，SDK1.2已验证）。现有colorMode(value)仍设override，新增colorModeAuto(): Application清override，均返回同receiver。普通App/示例无需这些能力选择调用。
+
+新增只读public struct TerminalCapabilities，独立src/terminal_capabilities.cj、package cjtui。公开只读字段：colorMode: ColorMode（已解析，unknown映射Monochrome）、colorKnown: Bool、terminfoKnown: Bool、supportsBold/supportsDim/supportsItalic/supportsUnderline/supportsInverse/supportsStrikethrough: Bool、noColorVideo: Int64（未声明为-1）、source: String、reason: String。构造仅包内使用，不给用户设置检测结果。Application新增terminalCapabilities(): ?TerminalCapabilities，首次成功取得会话并检测前None，之后返回最后一次会话检测快照，仅为可选诊断，不参与应用必需流程。
+
+每次run成功open后，在已有try/finally内自动检测一次；检测失败返回保守profile，不抛出、不跳过D027清理。profile在本次session内固定；colorModeAuto复用该检测值，下一次run重新检测。手动override仅覆盖颜色等级，属性仍按自动profile约束。新旧有效mode与同一profile投影后比较，仅实际变化行输出；成功完整写后才提交rawFrame+实际mode。原始Style/Cell不改，投影缓存按run保留而非每单元重复最近邻。这里run表示相邻样式run，不是第二持久状态。
+
+Frame.toAnsi(colorMode!: ColorMode = ColorMode.TrueColor)现在明确为无设备目标的纯完整彩色快照：默认保留RGB和六属性，不查询TTY/环境、不悄悄因导出主机变色。显式mode只用于离线颜色预览，仍不裁六属性。旧8色/bold默认字节不变。实际Application设备输出调用共享内部profile投影/编码，不另建Frame或ANSI内核。
+
+### Linux capability sources and safe optional adapter
+
+native新增小型可选探测模块，通过glibc dlmopen(LM_ID_NEWLM, libtinfo.so.6, RTLD_NOW|RTLD_LOCAL)在私有namespace加载一次，私有handle+mutex复用。不得直接base namespace setupterm污染宿主ncurses，不要求程序员加锁/初始化。当前Linux/glibc实测通过；其它libc、缺函数/库/符号/条目等均保守失败。只支持已验证.so.6，不泛称全部ABI。不得用shell/tput子进程、完整自写terminfo parser或产品GUI依赖。动态加载符号采用可选绑定，不给普通消费者增加私有链接flags；必要native archive对象由现有build hook正常构建。仅测试宿主允许GUI/recorder。
+
+TERM从环境读取，必须非空、非dumb、长度<=128，字符仅ASCII字母数字及_+.-，否则返回unknown/Monochrome且无属性，分别reason term-unset/term-dumb/term-invalid。TERM是查表键，不把它叫物理硬件探测。COLORTERM大小写无关仅truecolor/24bit视为宿主直接色声明；其它值不推测。合法TERM的可选terminfo读取成功时，colors小于8→Monochrome，8..15→Basic8，16..255→Basic16，>=256→Indexed256；colors>=16777216或RGB/Tc布尔flag==1→TrueColor。COLORTERM的强直接色声明也可升级为TrueColor，记明来源，不据此声明字体/所有属性；即使terminfo不可用，合法非dumb TERM+有效COLORTERM仍可确认声明的颜色支持，属性未知则裁掉。来源是宿主声明/数据库，不保证恶意或错误宿主配置真实。
+
+颜色无确认来源时colorKnown=false、colorMode=Monochrome；成功条目即使无colors也可colorKnown=true/Monochrome。terminfoKnown只表示该条目查询成功。source固定为terminfo、terminfo+COLORTERM、COLORTERM或unknown。reason成功为空；失败分类为term-unset、term-dumb、term-invalid、unsupported-platform、terminfo-library-unavailable、terminfo-symbol-unavailable、terminfo-entry-unavailable、terminfo-database-unavailable。若有COLORTERM颜色证据但terminfo失败，保留失败reason和source=COLORTERM，不能把属性未知写成支持。
+
+six属性分别查bold/dim/sitm/smul/rev/smxx。只接受已验证标准SGR能力（各自1/2/3/4/7/9；可去除合法ncurses padding后精确对应），缺失、invalid、未知/参数化/非对应序列都不支持；不透传任意terminfo字符串，实际编码仍ansies。smxx仅是条目确有SGR9时支持的strikeout扩展。reset继续SGR0，禁止库reset(BOLD)21m。
+
+设备输出先映射颜色，再裁不支持属性；有显式非Default前/背景时执行颜色优先NCV策略：ncv位2裁underline、4裁inverse、16裁dim、32裁bold；未声明(-1)或0无额外限制。若正ncv还含未建模位，彩色组合保守裁全部六属性，不宣称未知组合安全。无显式颜色（含Monochrome投影）仍按单项能力保留属性。raw Style所有值不变。
+
+### Private ABI and failure visibility
+
+私有FFI唯一入口int64_t cjt_capabilities_detect(void)，返回非负位字，不存第二全局可变检测结果。位0..2等级：0unknown、1mono、2Basic8、3Basic16、4Indexed256、5TrueColor；位3..8依次六支持属性；位9terminfoKnown，位10有效COLORTERM声明；位11..15reason：0none/1unset/2dumb/3invalid/4platform/5library/6symbol/7entry/8database；位16..47保存非负ncv数值，位48标ncv已声明，否则解码-1，其余位0。C/Cangjie使用具名常量和共享文档，不散落魔法数。等级0之外颜色视为known，source由位9/10和等级推导；invalidTERM时忽略COLORTERM。C侧未知/错误不得输出终端控制或fatal退出，释放每次临时TERMINAL且私有namespace状态恢复。
+
+### Revised examples, tests and real-terminal matrix
+
+examples/colors默认Application(root)，删除必需的mode判断/选择流程。c循环三种样例RGB（1,128,254）→（250,0,0）→（238,238,238）→首项；t继续已有六属性逐项开启/关闭示范；q退出。能力选择只在高级override fixture中存在，不作为正常例子。至少一行包含中文、组合符和emoji以观察终端文字布局，不能承诺宿主字体字形覆盖。
+
+独立测试先冻结新增Auto/Basic8/profile/纯快照预期和真实RED：采用测试terminfo数据库夹具覆盖8/16/256/direct/unknown、六能力裁剪、NCV18及未知位、非SGR能力不透传、原色保留、default profile和diagnostic来源、显式override及回Auto、无效变化静默；合成条目只算分支测试。保留原显式映射/属性/handshake断言，修改默认snapshot和普通example相关预期必须标用户裁决，不降低其它门槛。私有namespace与外部cur_term隔离用独立native检验证据，不能改产品加test hook；可在测试链接wrap已存在动态加载符号覆盖失败，原库/cache不改。
+
+正式跨终端使用相同无override二进制/应用：真实XFCE/VTE默认truecolor声明、真实xterm默认TERM=xterm，以及可行xterm -tn xterm-256color额外配置。后两项是一种实现的两配置，报告不算三独立内核。每项验证实际声明来源/profile、SGR和降级、关键文本/刷新、resize、q/CtrlC/错误恢复及termios；采用Xorg中真实窗口PNG，原始字节可由宿主内script透明TTY记录，不能变成产品PTY后端。真实物理Linux console、tmux/screen无环境的项保持pending，不由TERM=linux的合成夹具代替。截图标窗口/版本/尺寸/阶段/受检SHA/时间/hash，旧shell scene宿主probe图只证明环境可用，不能当框架Auto效果图。
