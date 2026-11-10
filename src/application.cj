@@ -197,8 +197,7 @@ public class Application {
             var previousWidth: Int64 = -1
             var previousHeight: Int64 = -1
             while (running && !current().isStopping()) {
-                let width = Int64(unsafe { cjt_size(0) })
-                let height = Int64(unsafe { cjt_size(1) })
+                let (width, height) = readTerminalSize()
                 if (width < 0 || height < 0) {
                     throw Exception("terminal size unavailable")
                 }

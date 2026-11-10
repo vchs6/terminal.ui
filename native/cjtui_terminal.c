@@ -1,6 +1,7 @@
 #define _POSIX_C_SOURCE 200809L
 #include <errno.h>
 #include <stdatomic.h>
+#include <stdint.h>
 #include <poll.h>
 #include <signal.h>
 #include <stdlib.h>
@@ -52,10 +53,15 @@ int cjt_close(void) {
     atomic_store(&active, 0);
     return result;
 }
-int cjt_size(int axis) {
+int64_t cjt_size_snapshot(void) {
     struct winsize ws;
     if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) < 0) return -1;
-    return axis ? ws.ws_row : ws.ws_col;
+    return (int64_t)(((uint64_t)ws.ws_col << 32) | (uint64_t)ws.ws_row);
+}
+int cjt_size(int axis) {
+    int64_t size = cjt_size_snapshot();
+    if (size < 0) return -1;
+    return axis ? (int)((uint64_t)size & UINT64_C(0xffffffff)) : (int)((uint64_t)size >> 32);
 }
 int cjt_read(int timeout) {
     struct pollfd pfd = { STDIN_FILENO, POLLIN, 0 };

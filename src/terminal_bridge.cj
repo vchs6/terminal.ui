@@ -5,7 +5,7 @@ foreign {
 
     func cjt_close(): Int32
 
-    func cjt_size(axis: Int32): Int32
+    func cjt_size_snapshot(): Int64
 
     func cjt_read(timeout: Int32): Int32
 
@@ -16,6 +16,13 @@ foreign {
     func cjt_buffer_write(): Int32
 
     func cjt_capabilities_detect(): Int64
+}
+
+func readTerminalSize(): (Int64, Int64) {
+    let size = unsafe { cjt_size_snapshot() }
+    if (size < 0) { return (-1, -1) }
+    let dimensionBase: Int64 = 4294967296
+    (size / dimensionBase, size % dimensionBase)
 }
 
 func readByte(timeout: Int32): Int32 {
