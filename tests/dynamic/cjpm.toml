@@ -1,0 +1,17 @@
+[package]
+  cjc-version = "1.2.0"
+  name = "dynamic_contract"
+  organization = ""
+  description = "Public dynamic child sequence contract tests"
+  version = "0.0.0"
+  target-dir = "target"
+  src-dir = "src"
+  script-dir = ""
+  output-type = "executable"
+  compile-option = "--error-count-limit all --diagnostic-format noColor"
+  override-compile-option = ""
+  link-option = ""
+  package-configuration = {}
+
+[dependencies]
+cjtui = { path = "../.." }
