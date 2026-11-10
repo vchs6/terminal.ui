@@ -104,10 +104,12 @@ func glyph_generated_marker_function_only(): Unit {
     for ((columns, dots, unicodeMarker) in [(-1, "", ""), (0, "", ""), (1, ".", "…"),
         (2, "..", "…"), (3, "...", "…"), (5, "...", "…")]) {
         glyphCheck(generatedEllipsis(unicode, columns, ambiguousWide: false) == unicodeMarker, "Unicode marker ${columns}")
+        glyphCheck(generatedEllipsis(GlyphRenderPolicy.conservativeUnicode(), columns,
+            ambiguousWide: false) == unicodeMarker, "G012 conservative marker remains Unicode ${columns}")
         glyphCheck(generatedEllipsis(mapped, columns, ambiguousWide: false) == unicodeMarker, "mapped marker ${columns}")
         glyphCheck(generatedEllipsis(ascii, columns, ambiguousWide: false) == dots, "Ascii marker ${columns}")
         glyphCheck(generatedEllipsis(missing, columns, ambiguousWide: false) == dots, "missing marker ${columns}")
-        for (policy in [unicode, ascii, mapped, missing]) {
+        for (policy in [unicode, ascii, mapped, missing, GlyphRenderPolicy.conservativeUnicode()]) {
             glyphCheck(generatedEllipsis(policy, columns, ambiguousWide: true) == dots,
                 "ambiguousWide true must choose dots ${columns}")
         }

@@ -37,6 +37,8 @@ main(): Int64 {
             case "p" => serial++; save(app, serial)
             case "v" => text.value = "文"
             case "t" => text.value = "??"
+            case "z" => text.value = "👩\u{200d}💻"
+            case "h" => text.value = "❤\u{fe0f}"
             case "n" => text.value = "A"
             case "c" => foreground.value = Color.Blue
             case "b" => text.value = "文"; foreground.value = Color.Blue

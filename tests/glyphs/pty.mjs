@@ -96,11 +96,15 @@ function expectProfile(actual, expected, label) {
   for (const [key, value] of Object.entries(expected)) assert.equal(actual[key], value, `${label} ${key}`);
 }
 const original = 'é e\u0301 中文 😀 ✈\ufe0f 👩‍💻 …';
+// G012/A003 hand golden: model-consistent clusters stay raw; VS16 and ZWJ
+// disagreement becomes the same two stored columns. Offline/Unicode stays raw.
+const conservative = 'é e\u0301 中文 😀 ?? ?? …';
 const projected = 'é ? ???? ?? ?? ?? …';
 const ascii = '? ? ???? ?? ?? ?? ?';
 const cases = [
-  ['real-pty-auto', 'real', 'Auto', { ...unknown, reason: 'not-concrete-linux-vt' }, original],
-  ['real-pty-term-linux', 'real', 'Auto', { ...unknown, reason: 'not-concrete-linux-vt' }, original, 'linux'],
+  ['real-pty-auto', 'real', 'Auto', { ...unknown, reason: 'not-concrete-linux-vt' }, conservative],
+  ['real-pty-term-linux', 'real', 'Auto', { ...unknown, reason: 'not-concrete-linux-vt' }, conservative, 'linux'],
+  ['real-pty-unicode', 'real', 'Unicode', { ...unknown, reason: 'not-concrete-linux-vt' }, original],
   ['real-pty-ascii', 'real', 'Ascii', { ...unknown, reason: 'not-concrete-linux-vt' }, ascii],
   ['mapped', 'mapped', 'Auto', known, projected],
   ['minor63', 'minor63', 'Auto', known, projected],
@@ -113,13 +117,13 @@ const cases = [
   ['map-read-fail', 'map-fail', 'Auto', { ...failedMap, reason: 'map-query-failed', nativeError: '13' }, ascii],
   ['allocation-fail', 'alloc-fail', 'Auto', { ...failedMap, reason: 'map-allocation-failed', nativeError: '0' }, ascii],
   ['allocation-fail-unicode', 'alloc-fail', 'Unicode', { ...failedMap, reason: 'map-allocation-failed', nativeError: '0' }, original],
-  ['fstat-fail', 'fstat-fail', 'Auto', { ...unknown, reason: 'vt-query-failed', nativeError: '5' }, original],
-  ['vt-query-fail', 'vt-fail', 'Auto', { ...unknown, reason: 'vt-query-failed', nativeError: '13' }, original],
-  ['kd-query-fail', 'kd-fail', 'Auto', { ...unknown, reason: 'vt-query-failed', nativeError: '5' }, original],
-  ['graphics', 'graphics', 'Auto', { ...unknown, reason: 'not-text-mode' }, original],
+  ['fstat-fail', 'fstat-fail', 'Auto', { ...unknown, reason: 'vt-query-failed', nativeError: '5' }, conservative],
+  ['vt-query-fail', 'vt-fail', 'Auto', { ...unknown, reason: 'vt-query-failed', nativeError: '13' }, conservative],
+  ['kd-query-fail', 'kd-fail', 'Auto', { ...unknown, reason: 'vt-query-failed', nativeError: '5' }, conservative],
+  ['graphics', 'graphics', 'Auto', { ...unknown, reason: 'not-text-mode' }, conservative],
   ...['alias-tty0', 'alias-console', 'alias-tty', 'minor64', 'regular'].map(scenario =>
-    [scenario, scenario, 'Auto', { ...unknown, reason: 'not-concrete-linux-vt' }, original]),
-  ['not-tty', 'not-tty', 'Auto', { ...unknown, reason: 'not-tty' }, original]
+    [scenario, scenario, 'Auto', { ...unknown, reason: 'not-concrete-linux-vt' }, conservative]),
+  ['not-tty', 'not-tty', 'Auto', { ...unknown, reason: 'not-tty' }, conservative]
 ];
 let active;
 try {
@@ -167,6 +171,29 @@ try {
     if (name === 'real-pty-ascii') {
       assert.equal((await active.delta('v')).bytes.length, 0, 'real PTY Ascii equivalent glyph diff');
       assert.equal((await active.delta('b')).bytes.length, 0, 'real PTY simultaneous equivalent color and glyph diff');
+    }
+    if (name === 'real-pty-auto') {
+      const mounted = state.mounted;
+      assert.deepEqual(rows((await active.delta('z')).bytes), [{ row: 1, text: '??' + ' '.repeat(30) }],
+        'G012 unknown Auto projects ZWJ as exactly two columns');
+      assert.equal((await active.delta('h')).bytes.length, 0, 'ZWJ to VS16 equal projected columns is silent');
+      assert.equal((await active.delta('t')).bytes.length, 0, 'VS16 to literal question cells is silent');
+      assert.equal((await active.delta('z')).bytes.length, 0, 'literal questions to wide ZWJ is silent');
+      const explicit = await active.delta('u');
+      assert(rows(explicit.bytes).some(row => row.row === 1 && row.text === '👩‍💻' + ' '.repeat(30)),
+        'explicit Unicode restores raw ZWJ on unknown PTY');
+      assert(rows(explicit.bytes).some(row => row.row === 2 && row.text === original + ' '.repeat(13)),
+        'explicit Unicode keeps original VS16 and ZWJ');
+      const restored = await active.delta('o');
+      assert(rows(restored.bytes).some(row => row.row === 1 && row.text === '??' + ' '.repeat(30)),
+        'Auto restores conservative profile using previous Unicode baseline');
+      assert(rows(restored.bytes).some(row => row.row === 2 && row.text === conservative + ' '.repeat(13)),
+        'Auto conservative source row returns');
+      assert(Number(restored.state.measures) > Number(explicit.state.measures), 'Auto setter invalidates layout cache');
+      assert.equal(restored.state.mounted, mounted, 'G012 mode changes preserve mounted identity count');
+      const unchanged = await active.delta('o');
+      assert.equal(unchanged.bytes.length, 0, 'same Auto setter emits zero bytes');
+      assert.equal(unchanged.state.frames, restored.state.frames, 'same Auto setter does not dirty layout');
     }
     await active.close();
     expectProfile(report(await read(active.path)), expected, `${name} retained diagnostic after headless/offline export`);

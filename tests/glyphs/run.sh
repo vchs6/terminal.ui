@@ -13,7 +13,11 @@ internal() (
   cp -a "$root/src" "$root/native" "$root/cjpm.toml" "$root/build.cj" "$scratch/"
   if [[ -d "$root/.cjtui-build" ]]; then cp -a "$root/.cjtui-build" "$scratch/"; fi
   if [[ -f "$root/cangjie-repo.toml" ]]; then cp "$root/cangjie-repo.toml" "$scratch/"; fi
-  cp "$root/tests/glyphs/internal/"*_test.cj "$scratch/src/"
+  if [[ "${1:-full}" == conservative ]]; then
+    cp "$root/tests/glyphs/internal/glyph_conservative_test.cj" "$scratch/src/"
+  else
+    cp "$root/tests/glyphs/internal/"*_test.cj "$scratch/src/"
+  fi
   (cd "$scratch" && cjpm test --no-color)
 )
 session() {
@@ -27,6 +31,7 @@ case "$mode" in
   api|public|rich) build_consumer "$mode" ;;
   negative) "$root/tests/glyphs/negative.sh" ;;
   internal) internal ;;
+  internal-conservative) internal conservative ;;
   session) session ;;
   all)
     export CJTUI_GLYPH_FILES=${CJTUI_GLYPH_FILES:-$(mktemp -d "${TMPDIR:-/tmp}/cjtui-glyph-files.XXXXXXXX")}
@@ -37,5 +42,5 @@ case "$mode" in
     build_consumer rich
     session
     ;;
-  *) echo "usage: $0 [api|public|negative|internal|rich|session|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [api|public|negative|internal|internal-conservative|rich|session|all]" >&2; exit 2 ;;
 esac

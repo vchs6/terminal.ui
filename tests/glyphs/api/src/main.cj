@@ -2,6 +2,18 @@ package glyph_api
 
 import cjtui.*
 
+// The readonly negative gate first compiles this real positive consumer.
+// Reading all six fields must be legal before rejected writes can prove readonly.
+func readableGlyphCapabilities(value: TerminalGlyphCapabilities): String {
+    let nativeVt: Bool = value.nativeVt
+    let mapKnown: Bool = value.mapKnown
+    let entryCount: Int64 = value.entryCount
+    let source: String = value.source
+    let reason: String = value.reason
+    let nativeError: Int64 = value.nativeError
+    return "${nativeVt}/${mapKnown}/${entryCount}/${source}/${reason}/${nativeError}"
+}
+
 // Keep this consumer free of future RichText/Theme names: its RED diagnoses G002.
 main(): Int64 {
     if (GlyphMode.Auto == GlyphMode.Ascii || GlyphMode.Ascii == GlyphMode.Unicode ||
@@ -22,6 +34,10 @@ main(): Int64 {
     let colored = Application(Text("x"), colorMode: ColorMode.Basic8, glyphMode: GlyphMode.Unicode)
     if (colored.glyphMode() != GlyphMode.Unicode) { throw Exception("second existing constructor") }
     if (app.terminalGlyphCapabilities().isSome()) { throw Exception("must not probe before run") }
+    match (app.terminalGlyphCapabilities()) {
+        case Some(value) => println(readableGlyphCapabilities(value))
+        case None => ()
+    }
     app.startHeadless()
     try {
         app.snapshot(8, 1, glyphMode: GlyphMode.Ascii)
