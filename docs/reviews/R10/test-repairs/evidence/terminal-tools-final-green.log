@@ -1,0 +1,26 @@
+✔ accepts frozen Basic8 host and three nominal sample mappings (63.134228ms)
+✔ rejects Basic8 bright foreground and background (97.074274ms)
+✔ rejects unknown provenance, missing fields, invalid booleans and host mismatch (199.011538ms)
+✔ rejects wrong nominal sample projection even inside supported color class (60.567039ms)
+✔ applies combined NCV bits in colored context and preserves legal uncolored attributes (183.633161ms)
+✔ rejects unsupported attribute and missing expected foreground/background mapping (89.969073ms)
+✔ accepts indexed and direct profiles with literal expected mappings (67.977213ms)
+✔ accepts complete fence after prior business output and records its exact interval (55.631791ms)
+✔ quiet interval accepts only intentional fence bytes (77.456024ms)
+✔ rejects ack without device bytes (233.454743ms)
+✔ rejects partial fence row (222.289757ms)
+✔ rejects old unchanged fence style (222.045586ms)
+✔ waits for recorder to deliver full final reset (90.869253ms)
+✔ accepts new complete CUP row and reports exact byte range (168.530204ms)
+✔ fails on incomplete row (236.308323ms)
+✔ fails on no byte growth (235.328599ms)
+✔ fails on non-CUP noise (235.164007ms)
+✔ waits for delayed final reset before accepting output (195.924517ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1140.056802

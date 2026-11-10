@@ -1,0 +1,21 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: non-ascii: colorMode
++ actual - expected
+
++ 'TrueColor'
+- 'Monochrome'
+
+    at profile (file:///workspace/work/auto-harness-repair/tests/capabilities/.focused-nonascii.mjs:74:63)
+    at file:///workspace/work/auto-harness-repair/tests/capabilities/.focused-nonascii.mjs:78:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'TrueColor',
+  expected: 'Monochrome',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1
