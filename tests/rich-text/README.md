@@ -50,3 +50,15 @@ A separate ignored, non-repository declaration-only scratch package was compiled
 solely to detect consumer language errors before new APIs exist. Its callable bodies
 throw, it is never run, and its build is not evidence that the product works. The
 formal consumer remains dependent on the real `cjtui` package, with no scratch path.
+
+Round1 regression `csi_utf8_first_fault.cj` retains all existing expectations and adds
+literal public-API checks for a UTF8 lead inside an already-open ASCII CSI. The
+lead is immediately outside parameter/intermediate/final ranges; at byte budgets
+3 and 4 it reports `MalformedSequence` in the prefix batch, and a later resource
+crossing cannot replace that first issue. Budget 2 retains same-byte resource
+priority. Whole feeds, every two-chunk cut, bytewise and empty chunks check literal
+output and offsets (including a multibyte text prefix), drain/no SGR restart,
+incomplete residuals, invalid UTF8 and permanent closure. Normal UTF8 C1 CSI/SGR
+and an ordinary continuation resembling C1 remain valid. The new group collects
+failures across cases before failing the consumer, so its first RED does not hide
+later checks. No expected value is obtained from another decoder run.

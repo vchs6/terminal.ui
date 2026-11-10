@@ -12,6 +12,7 @@ main(): Int64 {
     aliasContract()
     componentContract()
     bindingContract()
+    csiUtf8FirstFaultContract()
     println("PASS: rich text public contract")
     return 0
 }
