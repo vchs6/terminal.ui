@@ -173,3 +173,15 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-112 | REQ-003/004/007/009 | TASK-112 | 原018和014跨弹窗证据及metadata | pending |
 
 唯一任务状态与精确前置见[交互变更](../openspec/changes/implement-public-interaction/tasks.md)，规划不作实现通过。
+
+## 可选会话能力质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-148 | REQ-010/007 | TASK-148 | 独立固定wire/权限/故障/metadata用例与真实RED | pending |
+| AC-149 | REQ-010/007 | TASK-149 | 同一writer复制标题/安全降级及结果实现 | pending |
+| AC-150 | REQ-010/007 | TASK-150 | 固定会话增量独立spec/quality审核 | pending |
+| AC-151 | REQ-010/007 | TASK-151 | 独立真实host与SSH/模式恢复/正常制品消费 | pending |
+| AC-152 | REQ-010/007 | TASK-152 | 030有限会话结果及metadata，粘贴等完整父AC按实际汇合 | pending |
+
+唯一任务状态见[会话扩展变更](../openspec/changes/implement-session-extensions/tasks.md)，不把协议环境探针当产品成功。
