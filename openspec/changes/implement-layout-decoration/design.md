@@ -67,7 +67,7 @@ Single为┌─┐│└┘，Rounded角╭╮╰╯，Double为╔═╗║╚�
 
 ## Deliverable / verification
 
-新增examples/layout真实程序，使用公开Component链构造有标题/主体/底栏、两个加权面板与圆角/阴影；可用UI回调切换阴影/边框观察旧区域清除，q退出，resize自动重排，不直接写ANSI/全屏坐标/flush。布局和装饰各自独立Cangjie外部消费者测试，runner仍build后直接binary。所有R8回归保留。独立执行actual例子与resize/切换/退出，cold源码包消费。公开API、Frame极值、裁剪/宽簇、整数余量和背景styled-space由独立测试作者冻结golden。
+新增examples/layout真实程序，使用公开Component链构造有标题/主体/底栏、两个加权面板与圆角/阴影；可用UI回调按d切换阴影/边框观察旧区域清除，q退出，resize自动重排，不直接写ANSI/全屏坐标/flush。布局和装饰各自独立Cangjie外部消费者测试，runner仍build后直接binary。所有R8回归保留。独立执行actual例子与resize/切换/退出，cold源码包消费。公开API、Frame极值、裁剪/宽簇、整数余量和背景styled-space由独立测试作者冻结golden。
 
 ## Risks / Trade-offs
 

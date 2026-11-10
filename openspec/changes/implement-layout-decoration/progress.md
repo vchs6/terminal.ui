@@ -27,3 +27,5 @@ Execution continues through authorized implementation in this turn; do not conve
 Ruling: retain the checked-in OpenSpec progress file as the sole recovery ledger and link it from the skill workspace, avoiding duplicate status. Local Superpowers7 scripts use a task-basename scratch path; this plan has its own unused directory now. Independent clones satisfy already-authorized isolation; no baseline tests repeat because c502 source/deps/environment are unchanged before this slice. Read subagent-driven-development and using-git-worktrees skills; no new permission gate introduced.
 
 Dispatched independent test author /root/layout_test_author (Sol/high) and layout implementer /root/layout_implementer (Terra/high, prepare-only until frozen test artifact). Both use fresh clones; no cross-role edits.
+
+Ruling: layout example uses d to toggle border/shadow and q to exit, making the already-required demonstration testable; product API unaffected. Plan/configuration/link checks and strict OpenSpec all pass at8f0f0b5; this is documentation evidence only.
