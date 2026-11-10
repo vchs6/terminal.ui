@@ -27,6 +27,8 @@ class RuntimeSession {
     let threadId: Int64
     let threadNonce: Int64
     let temporary: Bool
+    let extensions: SessionExtensionState
+    private var firstDeviceFailure: ?Exception = None
     let application: ?WeakRef<Application>
     let lock = Mutex()
     let nodes = ArrayList<RuntimeNode>()
@@ -55,7 +57,8 @@ class RuntimeSession {
     var cachedWidth: Int64 = -1
     var cachedHeight: Int64 = -1
     init(root: Component, limits: RuntimeLimits, temporary!: Bool = false,
-        application!: ?Application = Option<Application>.None) {
+        application!: ?Application = Option<Application>.None, sessionOptions!: SessionOptions = SessionOptions(),
+        device!: Bool = false) {
         this.root = root
         this.limits = limits
         this.temporary = temporary
@@ -66,6 +69,7 @@ class RuntimeSession {
         threadId = Thread.currentThread.id
         threadNonce = uiThreadIdentity().nonce
         id = uniqueRuntimeId()
+        extensions = SessionExtensionState(id, sessionOptions, device)
     }
     func requireOwner(): Unit {
         if (let Some(current) <- activeSession.get()) {
@@ -478,8 +482,8 @@ class RuntimeSession {
                 enter(
                     {
                         =>
-                        recordCommand(command);
-                        stabilize(cutoff())
+                            recordCommand(command);
+                            stabilize(cutoff())
                     }
                 )
             } catch (error: Exception) {
@@ -742,6 +746,7 @@ class RuntimeSession {
         }
     }
     func stabilize(cutoff: Int64, resetStructuralOps!: Bool = true): Unit {
+        throwDeviceFailure()
         if (resetStructuralOps) {
             structuralOps = 0
         }
@@ -928,6 +933,26 @@ class RuntimeSession {
             lock.unlock()
         }
     }
+    func recordDeviceFailure(): Unit {
+        if (firstDeviceFailure.isNone()) {
+            firstDeviceFailure = Some(SessionDeviceException(unsafe { cjt_output_unsafe() } != 0))
+        }
+        requestStop()
+    }
+    func prioritizeFailure(error: Exception): Exception {
+        if (let Some(first) <- firstDeviceFailure) {
+            if ((cleanupPrimary(error) as SessionDeviceException).isSome()) {
+                return error
+            }
+            return aggregateCleanup(first, error)
+        }
+        error
+    }
+    func throwDeviceFailure(): Unit {
+        if (let Some(error) <- firstDeviceFailure) {
+            throw error
+        }
+    }
     func isStopping(): Bool {
         lock.lock();
         try {
@@ -950,6 +975,9 @@ class RuntimeSession {
             lock.unlock()
         }
         for (item in turn) {
+            if (isStopping()) {
+                break
+            }
             var run = true
             if (let Some(owner) <- item.owner) {
                 run = owner.isValid()
@@ -1039,7 +1067,7 @@ class RuntimeSession {
         }
     }
     func closeFailure(primary: Exception): Exception {
-        var result = primary
+        var result = prioritizeFailure(primary)
         try {
             close()
         } catch (cleanup: Exception) {
@@ -1107,6 +1135,14 @@ class RuntimeSession {
         }
         for (node in nodes) {
             node.component.releaseMount()
+        }
+        try {
+            extensions.close(this)
+        } catch (error: Exception) {
+            match (failure) {
+                case None => failure = Some(error)
+                case Some(first) => failure = Some(aggregateCleanup(first, error))
+            }
         }
         if (let Some(error) <- failure) {
             throw error

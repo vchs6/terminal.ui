@@ -13,6 +13,9 @@ static struct termios saved;
 static struct sigaction old_winch, old_int, old_term;
 static volatile sig_atomic_t interrupted;
 static atomic_int active;
+/* A partial control stream cannot be resynchronized by reopening a device. */
+static atomic_int output_unsafe;
+static int64_t emitted_bytes;
 static unsigned char *buffer;
 static size_t length, capacity;
 static void handle_signal(int sig) { if (sig == SIGINT || sig == SIGTERM) interrupted = sig; }
@@ -20,7 +23,9 @@ int cjt_open(void) {
     struct sigaction action = {0};
     struct termios raw;
     int expected = 0;
+    if (atomic_load(&output_unsafe)) return -2;
     if (!atomic_compare_exchange_strong(&active, &expected, 1)) return -1;
+    if (atomic_load(&output_unsafe)) goto fail;
     if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO)) goto fail;
     if (tcgetattr(STDIN_FILENO, &saved) < 0) goto fail;
     interrupted = 0;
@@ -78,6 +83,7 @@ int cjt_read(int timeout) {
 }
 void cjt_buffer_clear(void) { length = 0; }
 int cjt_buffer_add(int byte) {
+    if (length >= INT64_MAX) return -1;
     if (length == capacity) {
         size_t next = capacity ? capacity * 2 : 1024;
         if (next < capacity) return -1;
@@ -88,11 +94,16 @@ int cjt_buffer_add(int byte) {
 }
 int cjt_buffer_write(void) {
     size_t at = 0;
+    emitted_bytes = 0;
+    if (atomic_load(&output_unsafe)) return -1;
     while (at < length) {
         ssize_t n = write(STDOUT_FILENO, buffer + at, length - at);
-        if (n > 0) { at += (size_t)n; continue; }
+        if (n > 0) { at += (size_t)n; emitted_bytes = (int64_t)at; continue; }
         if (n < 0 && errno == EINTR && !interrupted) continue;
+        if (at) atomic_store(&output_unsafe, 1);
         return -1;
     }
     return 0;
 }
+int64_t cjt_buffer_emitted(void) { return emitted_bytes; }
+int cjt_output_unsafe(void) { return atomic_load(&output_unsafe); }
