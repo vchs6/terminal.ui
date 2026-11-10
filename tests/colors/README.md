@@ -38,7 +38,13 @@ hand-authored structured literals. Returning100x40 must equal the original full
 styled grid. Existing14 handshake-acknowledged exact-byte actions, RGB cycles,
 six attribute toggles, direct application exit0 and exact termios restoration
 remain enforced. Session completion waits for stdio close and propagates any
-parser error received before close, including after target completion. The existing100ms no-output interval only checks that an
+parser error received before close, including after target completion. It then
+finalizes UTF-8/escape/row/resize state, requires the final rendering reset, and
+compares the final styled grid with the last grid validated by the caller. The
+fixture captures this checkpoint after its exact-byte action assertion; the
+example uses its original100x40 golden after the final resize. No fresh
+unvalidated snapshot can replace that checkpoint at shutdown. The
+existing100ms no-output interval only checks that an
 already complete target remains settled; row completion still uses actual CUP
 boundaries/reset, and no added sleep hides old output or relaxes correctness.
 An old frame, partial target, or last frame at the old size cannot satisfy the
@@ -48,6 +54,7 @@ Run deterministic controls separately:
 
 ```sh
 node tests/colors/resize_oracle_test.mjs
+node tests/colors/stop_oracle_test.mjs
 ```
 
 They load the **exact historical Screen implementation** from fixed91 Git history
@@ -60,6 +67,16 @@ reject malformed row width, third width, the now-impossible100x12 pair under an
 atomic two-state transition, oversized height, old-only/partial/old-final
 unsettled streams, and wrong target style. No product hook, runtime edit, new
 terminal model or modified business example is involved.
+
+The stop controls send late bytes through actual Node child stdout and wait for
+real stdio close through the same Session.stop method. They reject incomplete
+rows, incomplete ESC, complete wrong-style rows, truncated UTF-8 and unreset
+style. Quiet q/exit0, shutdown SGR0 and an identical complete styled row are
+positive controls: shutdown output is permitted when it is complete, reset and
+leaves the last verified grid intact. Equal before/after marker files in these
+controls are deliberately synthetic; they prove only oracle behavior. Actual
+product q/termios restoration remains covered by the normal PTY sessions.
+Set `CJTUI_COLOR_STOP_ARTIFACTS` to retain their per-case bytes/observations.
 
 Artifacts are selected by `CJTUI_COLOR_ARTIFACTS`; each actual resize records the
 old/target pair, verified native readback and all accepted complete frame pairs.

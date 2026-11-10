@@ -126,6 +126,12 @@ export class Screen {
     }
   }
   snapshot() { assert.equal(this.pending, '', 'no incomplete escape'); assert.equal(this.row, null, 'row completed by reset'); return structuredClone(this.rows); }
+  finalize() {
+    assert.equal(this.decoder.end(), '', 'no incomplete UTF-8 at stream close');
+    assert(!this.transition && !this.frame, 'no incomplete resize frame at stream close');
+    assert.deepEqual(this.style, freshStyle(), 'rendering style reset at stream close');
+    return this.snapshot();
+  }
 }
 class Session {
   constructor(name, binary, w, h) { this.name = name; this.binary = resolve(binary); this.w = w; this.h = h; this.raw = Buffer.alloc(0); this.stderr = ''; this.screen = new Screen(w, h); this.finished = false; this.lastBytes = 0; }
@@ -161,12 +167,16 @@ class Session {
     await writeFile(join(this.dir, `resize-${w}x${h}-frames.json`), JSON.stringify(this.screen.resizeFrames, null, 2));
     return rows;
   }
-  async stop() {
+  async stop(expectedGrid) {
+    assert(Array.isArray(expectedGrid), 'stop requires the last verified grid');
+    const verified = structuredClone(expectedGrid);
+    assert.deepEqual(this.screen.snapshot(), verified, 'screen still equals last verified grid before quit');
     this.child.stdin.write('q'); await until(() => this.finished, `${this.name} q exit`);
     if (this.error) throw this.error;
     assert.equal(this.code, 0, 'direct binary successful exit'); assert.equal(this.signal, null);
     const before = (await read(join(this.dir, 'before'))).trim(), after = (await read(join(this.dir, 'after'))).trim();
     assert(before && after, 'termios snapshots exist'); assert.equal(after, before, 'exact termios restored');
+    assert.deepEqual(this.screen.finalize(), verified, 'final screen equals last verified grid after stdio close');
   }
   async save() {
     await writeFile(join(this.dir, 'session.raw'), this.raw); await writeFile(join(this.dir, 'stderr.txt'), this.stderr);
@@ -178,7 +188,7 @@ class Session {
 const rowBytes = (row, text, codes = '', w = 32) => `\x1b[0m\x1b[${row};1H${codes ? `\x1b[0m${codes}${text}\x1b[0m` : text}${' '.repeat(w - width(text))}\x1b[0m`;
 async function fixture() {
   const s = new Session('public-fixture', process.env.CJTUI_COLOR_FIXTURE_BIN ?? 'tests/colors/session/target/release/bin/main', 32, 6);
-  let serial = 0;
+  let serial = 0, verifiedGrid;
   try {
     await s.start(); await s.settle(0, 'fixture first complete frame');
     assert(s.raw.toString().includes('\x1b[91mRGB-DYNAMIC'), 'explicit default Basic16 wins over truecolor environment');
@@ -192,6 +202,7 @@ async function fixture() {
       assert(!s.error, s.error?.message);
       const fence = rowBytes(4, 'EVENT-FENCE', serial % 2 ? '\x1b[1m' : '');
       assert.equal(s.raw.subarray(offset).toString(), expected + fence, name);
+      verifiedGrid = s.screen.snapshot();
       await writeFile(join(s.dir, `action-${serial}-${key}.raw`), s.raw.subarray(offset));
     }
     await action('x', '', '250→249 red projects to same Basic16; no color row update');
@@ -209,7 +220,7 @@ async function fixture() {
     await action('r', '', 'Basic16→TrueColor indexed basic alias and uncolored/named lines silent');
     await action('d', rowBytes(3, 'RGB-DYNAMIC'), 'explicit Default clears current foreground');
     await action('b', '', 'TrueColor→Basic16 with only default/named colors silent');
-    await s.stop(); console.log('PASS colors fixture: 14 handshake-acknowledged actions, exact row bytes, termios restored');
+    await s.stop(verifiedGrid); console.log('PASS colors fixture: 14 handshake-acknowledged actions, exact row bytes, termios restored');
   } finally { await s.save(); }
 }
 const cells = rows => rows.flatMap(row => row.cells);
@@ -267,7 +278,7 @@ async function example() {
     const restored = await s.resize(100, 40);
     assert.deepEqual(restored, initial, 'resize back restores actual full example with modes unchanged');
     for (const [name, value] of Object.entries({ initial, red, gray, styled, restored })) await writeFile(join(s.dir, `${name}.json`), JSON.stringify(value, null, 2));
-    await s.stop(); console.log('PASS actual colors example: automatic RGB sample cycle, all six t attributes, resize and exact termios');
+    await s.stop(initial); console.log('PASS actual colors example: automatic RGB sample cycle, all six t attributes, resize and exact termios');
   } finally { await s.save(); }
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
