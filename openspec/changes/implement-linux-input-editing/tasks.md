@@ -106,3 +106,7 @@ preflight需逐DQ01–14核：任务号/L2/原AC不改名；两结果可分别�
 * 后续原017/018/019/020/027/028/030/037/041/024按原AC汇合；本件不归档全Linux或发布产品。
 
 主代理F001最终采用上列工程候选并确定152→114，不提前关闭完整父030；行为外观态消费交互I012，无私有控件补洞。原028全量状态在本变更按122独立验收后投影，docs/tasks仅编号映射。
+
+### Preflight补冻覆盖
+
+F002–F005为113/118正式golden输入：raw/UTF8 C1全split及03非paste取消、diagnostic→焦点提交→pastebegin顺序、EOF callback收尾、编辑通知内snapshot与同editor重入、无效dispatch参数保留session、copy/cut互斥issue表与CtrlV提示、初态/remount0及同文本选区折叠/redo保留/selectionRevision边界。114/119按同一通道实现，115/120固定源码审这些不变量，116/121独立执行可达路径；不可达计数上限以诚实源码证明，不造运行次数。

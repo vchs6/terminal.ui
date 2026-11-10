@@ -135,7 +135,7 @@ public class TextEditLimits {
 }
 public enum TextEditIssue <: Equatable<TextEditIssue> {
     | MultilinePasteRejected | ControlCharacterRejected | InputTooLarge
-    | ClipboardUnavailable | CutUnconfirmed | CutStale | ConcurrentValueChanged
+    | ClipboardUnavailable | PasteFromTerminalRequired | CutUnconfirmed | CutStale | ConcurrentValueChanged
     public operator func ==(other: TextEditIssue): Bool
 }
 public class TextEditSnapshot {
@@ -263,3 +263,55 @@ cut在同步copy前捕获节点代际、sessionId、全文源版本/编辑revisi
 执行顺序明确：有限会话148–152先于114，让唯一writer/partial unsafe门成为输入模式输出的实际前置；152本身不提前关闭完整030 paste/cut，故无语义环。114其余前置为080/交互102/107/112及113正式测试，119再等117、118、088/092、084、080、交互及152。共享源仅一个产品作者。新模式回归由116/121及最后Linux汇合覆盖。
 
 消费交互最终I001–013（ScrollAxes.Off、I011应用只读服务、I012自动行为外观态）和会话S001–012最终合同，以主仓各change为权威，原独立绝对路径仅来源记录。Keyboard backtab规范继承交互既有code，兼容旧无modifier注入，Tab+shift别名不生成重复事件。所有新签名未实施，实际SDK微编译及独立preflight后才能固定正式测试准入；无需再向用户请求同目标确认。
+
+## F002 C1字节矩阵与诊断边界（INPUT-PF-001）
+
+K002“有效UTF8标量→text”仅指非C0/DEL/C1控制标量。下表在真实UTF8标量边界同时适用于单raw C1字节和对应U+0080–009F的完整UTF8编码；raw引导占1byte，UTF8引导占2byte，都按实际原始byte计预算/offset。有效多字节标量中的80–9F续字节永远不是C1。已有raw/UTF8 C1 CSI与控制串兼容保留。
+
+| C1 | normal / 非string ESC序列中行为 | string / paste中行为 |
+|---|---|---|
+| 9B CSI | 相当于CSI引导，按K002导航矩阵；取消尚未完整非string序列并从当前C1首byte开始 | string中只作丢弃payload；paste中按原始payload |
+| 90 DCS、98 SOS、9D OSC、9E PM、9F APC | 进入相应受隔离控制串，首引导即一份UnsupportedSequence | string中不嵌套；paste中为payload |
+| 9C ST | normal/非string中一份UnsupportedSequence且丢弃，不产text；终止当前非string错误序列后恢复normal | 真标量边界终止控制串；paste中为payload |
+| 其余C1（含8F） | 一份UnsupportedSequence且不产text；不新承诺C1 SS3，7位ESC O仍按K002 | string只丢弃；paste为payload |
+
+CSI的200~/201~只有精确7位ESC [版本有paste意义，raw/UTF8 C1版本按不支持CSI完成序列诊断，不进入paste。未标记/未知协议粘贴不能被宣称原子粘贴。OSC由BEL或ST终止，DCS/SOS/PM/APC仅ST；ESC非ST、CAN/SUB及其它payload不释放串。控制串不缓存payload；首Unsupported之后至终止不重复Unsupported/SequenceTooLong，finish仍可另给IncompleteInput；其长度计数饱和，不为已丢弃payload分配内存。普通非string序列仍按K002首Malformed/SequenceTooLong一次并drain。
+
+唯一键盘取消特例：不在paste或paste-drain时，raw0x03取消当前非paste解码状态（丢弃已收集片段）、发interrupt(ctrl=true)，其后字节作为新输入；这保留已有CtrlC退出优先。paste及其drain里的0x03始终数据/丢弃，不发interrupt。终端外部SIGINT/SIGTERM仍不成为可拦截UI按键。
+
+## F003 回调阶段、流内顺序与非法注入（INPUT-PF-002）
+
+KeyboardDecoder纯值批次的events与diagnostics各按发生顺序排列，不承诺这两个数组之间的交错编码。实际设备适配必须复用同一状态转移的内部有序通知（含原始stream位置），在消费后续byte/paste-start之前按流内顺序派发已经形成的event/diagnostic并完成其安全UI批次，不能先整read解完再倒推paste目标。诊断只有kind/offset，不把payload作为快捷键或文本。
+
+onKeyboardIssue在所属Application owner UI普通callback域，自动包一个batch；没有UIKeyEvent target/capture/default，无prevent/consume语义，也不穿透转发原输入。该应用级诊断可在modal期间报告协议错误，但没有键盘payload或下层业务shortcut。handler允许Observable写入、正常focus/结构命令/post，末尾安全稳定提交；后续byte/paste开始捕获能看到已提交焦点。snapshot/dispatch/dispose等递归边界仍按R018拒绝，stop可请求；handler抛错保持原异常、清理当前session，后续输入不投递。
+
+EOF先调用finish，在仍active的UI域依上述顺序报告末尾diagnostics并完成其批次，然后requestStop并cleanup；不再生成设备目标帧，不发末尾半事件。handler中post仍只是排队，随后EOF关闭会取消未运行项；不承诺post成功就执行。外部signal/stop直接清理取消paste，不额外执行合成键盘诊断回调。
+
+成功编辑先条件提交源值，再发布该编辑的本地text/selection/revision/history，之后同步onChange一次，callback.snapshot可见这份已提交本地状态；无并发写时Observable.get同值，有并发业务写时不能保证仍同值。onSubmit看到最近稳定的本地文本且不改数据；onIssue在拒绝/no-op决定之后执行，拒绝本身不新增历史。callback可写Observable业务源（后续安全稳定按外部变更处理）、操作其它视图及post；同一editor自己的onChange/onSubmit/onIssue同步通知栈期间禁止再次调用其变更/undo/redo/copy/cut方法，报LifecycleReentry，只读snapshot/isValid允许。要再次编辑可post下一turn；不以无限递归回调实现用户输入。
+
+显式dispatch先检查原owner/阶段，再在任何用户回调/业务副作用前验证保留code组合；无效组合抛IllegalArgumentException，外层直接调用的参数拒绝不结束健康session。若异常发生在用户已运行callback内且未捕获，仍沿原callback失败清理，不绕过R007/R018。decoder自己产生的事件必须始终满足同一校验。
+
+## F004 copy/cut结果与issue精确映射（INPUT-PF-003）
+
+controller.copy/cut无非空选区时返回Option.None，零会话输出、无issue/历史/数据变化；有选区时返回Some(实际SessionResult)，不得合成Applied。copy的Applied或SentUnconfirmed不报issue，Unsupported/Unknown/Failed报ClipboardUnavailable一次。copy不因源变化删除数据；正常外部变更仍按E001处理。
+
+cut优先按结果分支，最多一个cut issue：
+
+| 结果 | 本次cut行为 |
+|---|---|
+| Applied且节点/session/源版本/两revision/selection身份仍匹配，条件提交成功 | 删除捕获选区，一条undo，一次onChange，无cut issue |
+| Applied但任一身份/版本不符或最终条件写竞争 | 不删除，CutStale一次 |
+| SentUnconfirmed（不论同时是否有外部写） | 不删除，CutUnconfirmed一次 |
+| Unsupported/Unknown/Failed（不论同时是否有外部写） | 不删除，ClipboardUnavailable一次 |
+
+不叠加ConcurrentValueChanged到cut结果；外部写的正常同步/历史清理不是cut自身删除。设备fatal Failed仍由S008停止并抛首个设备错误，issue或后续callback异常不能盖掉首错，仍保留附加失败。CtrlV/ShiftInsert到达编辑器时发PasteFromTerminalRequired一次并消费，零剪贴板查询；如果终端已转换为paste事件则只走paste，不额外报该issue。
+
+CtrlC无选区不消费、让原interrupt默认退出；CtrlInsert无选区消费但无输出；CtrlX/ShiftDelete无选区同样消费但无输出/issue。显式replaceSelection(ifUnchanged:Some(snapshot))不匹配返回false，不自行onIssue、不由该方法修改源/本地选区/历史，报告迟到结果由调用应用决定；已有外部源失效仍在正常后续安全边界投影。未传guard的普通编辑若源条件提交竞争，按E001刷新外部值并报ConcurrentValueChanged一次。
+
+## F005 编辑初态、无文本变化与revision（INPUT-PF-004）
+
+首次挂载与每次重挂载均anchor=caret=0、revision=0、selectionRevision=0、undo/redo空、viewport初始offset=0；先验证原业务初值，不触发onChange。后续focus/显式controller操作可改变局部选区，业务值不因挂载改变。旧快照由私有mount/source身份隔离，不能仅因两revision重置就匹配新挂载。
+
+把非空选区替换成相同文本导致全文不变时，仍按插入末端重分/吸附并折叠选区；若anchor/caret实际变化，selectionRevision推进，绘制/光标相应失效。返回false（仅表示全文未变），不调用Observable.set、不推进text revision、不onChange、不新增历史、不清redo。完全无文本/选区变化的空操作也不推进revision。普通select/selectAll仅实际选区变化推进selectionRevision。外部同值set/notify仍按E001推进text revision并清历史，若钳制没有改变选区数值则selectionRevision不动。
+
+两个UInt64局部revision都不得回卷；任何操作需要推进但已Max时，在该操作业务写入/局部状态发布之前报UIException CapacityExceeded，沿既有会话错误边界处理。不可达超大计数场景可由固定源码不变量或实际生产pure helper同包边界证明，不能伪造已运行2^64次或新增public测试setter。现Observable内部Int64源版本不改成这两个编辑计数。
