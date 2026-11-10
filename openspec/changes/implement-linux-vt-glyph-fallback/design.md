@@ -140,3 +140,22 @@ Frame.toPlainText/writePlainText/toAnsi/writeAnsi不新增必需参数，不查�
 `projectTerminalGlyph`的width=0返回空、width<0抛IllegalArgumentException；正width由已验证Frame的起始Cell提供，并受所属Frame配置的maxCells实际预算约束。不能假设所有合法复杂簇width<=2，也不能新增固定宽度上界拒绝既有合法Frame。093所谓超预算拒绝指真实Frame尺寸/配置预算，不要求对私有helper传Int64.Max分配字符串或构造不可达OOM。现有控制安全仍由Frame文本验证负责；此工厂不绕过原Unicode/宽簇权威。
 
 现包内`TerminalRenderProfile.init`在所有旧参数之后追加`glyphPolicy!: GlyphRenderPolicy = GlyphRenderPolicy.unicode()`，保存同名只读`let glyphPolicy: GlyphRenderPolicy`。旧纯snapshotProfile及颜色调用因默认值保持兼容，设备profile实际显式传入本会话解析策略。这是唯一生产profile归属，不是专属测试接口；合法同包测试可固定策略直接验证Frame投影后差分，真实PTY与实际VT仍不可被该单测替代。
+
+## G011 原生诊断分支精确映射
+
+为使独立原生测试不猜测errno分类，以下表细化G003/G004；nativeError只承载表中异常读取返回的errno，不把正常识别结果或分配器errno冒充syscall异常。
+
+| 观测 | source / reason | nativeVt / mapKnown / nativeError |
+|---|---|---|
+| isatty(stdout)==0 | unknown / not-tty | false / false / 0 |
+| fstat失败 | unknown / vt-query-failed | false / false / 原errno |
+| 已是TTY但设备号/具体VT判据不符（含别名） | unknown / not-concrete-linux-vt | false / false / 0 |
+| VT_GETMODE或KDGETMODE失败 | unknown / vt-query-failed | false / false / 原errno |
+| KDGETMODE成功但非KD_TEXT | unknown / not-text-mode | false / false / 0 |
+| 已确证文本VT后，临时内存分配失败 | linux-vt-unavailable / map-allocation-failed | true / false / 0 |
+| 同fd GIO_UNIMAP返回-1 | linux-vt-unavailable / map-query-failed | true / false / 原errno |
+| map数据长度等内部校验不符 | linux-vt-unavailable / map-invalid | true / false / 0 |
+| 完整有界map成功（可0条） | linux-vt-unimap / 空reason | true / true / 0 |
+| 编译目标无该实现 | unknown / unsupported-platform | false / false / 0 |
+
+失败entryCount=0，成功为实际pair数而非bitmap置位数；重复unicode映射不会把读取失败伪装成成功。仅对已确证文本VT尝试分配/读取map，未知PTY不得触发该读取。
