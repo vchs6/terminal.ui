@@ -6,6 +6,8 @@ import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { StringDecoder } from 'node:string_decoder';
+import { fileURLToPath } from 'node:url';
+import { atomicResize, prepareTerminalSizeTool } from '../support/terminal_frames.mjs';
 
 const artifacts = resolve(process.env.CJTUI_COLOR_ARTIFACTS ?? await mkdtemp(join(tmpdir(), 'cjtui-colors-')));
 await mkdir(artifacts, { recursive: true });
@@ -33,14 +35,45 @@ function width(text) {
   return count;
 }
 const freshStyle = () => ({ fg: 'default', bg: 'default', attributes: [] });
-class Screen {
+export class Screen {
   constructor(w, h) { this.decoder = new StringDecoder('utf8'); this.pending = ''; this.style = freshStyle(); this.updates = []; this.resize(w, h); }
   resize(w, h) { this.w = w; this.h = h; this.rows = Array.from({ length: h }, () => ({ text: ' '.repeat(w), cells: [] })); this.row = null; this.text = ''; this.cells = []; }
+  beginResize(w, h) {
+    assert(!this.transition, 'one resize transition at a time');
+    this.snapshot();
+    this.transition = { old: [this.w, this.h], target: [w, h] };
+    this.frame = null; this.resizeFrames = [];
+  }
+  targetComplete(w, h) {
+    const last = this.resizeFrames?.at(-1);
+    return last?.width === w && last?.height === h && this.frame === null &&
+      this.w === w && this.h === h && this.row === null && this.pending === '';
+  }
+  finishResize(w, h) {
+    assert(this.targetComplete(w, h), 'resize requires a complete final target, not an old/partial frame');
+    this.transition = null;
+    return this.snapshot();
+  }
   flush() {
     if (this.row === null) return;
+    if (this.transition && this.row === 0) {
+      assert(!this.frame, 'previous resize frame must contain every row');
+      const pair = [this.transition.old, this.transition.target].find(([w]) => w === width(this.text));
+      assert(pair, `resize frame width${width(this.text)} must belong to old or target pair`);
+      [this.w, this.h] = pair;
+      this.rows = Array.from({ length: this.h }, () => ({ text: ' '.repeat(this.w), cells: [] }));
+      this.frame = { width: this.w, height: this.h, next: 0 };
+    }
     assert.equal(width(this.text), this.w, `complete row ${this.row + 1}: ${JSON.stringify(this.text)}`);
     this.rows[this.row] = { text: this.text, cells: this.cells };
     this.updates.push({ row: this.row + 1, text: this.text, cells: this.cells });
+    if (this.frame) {
+      assert.equal(this.row, this.frame.next++, 'resize full repaint contains sequential rows');
+      if (this.frame.next === this.frame.height) {
+        this.resizeFrames.push({ width: this.frame.width, height: this.frame.height, rows: structuredClone(this.rows) });
+        this.frame = null;
+      }
+    }
     this.row = null; this.text = ''; this.cells = [];
   }
   sgr(parameters) {
@@ -61,7 +94,9 @@ class Screen {
       } else assert.fail(`unsupported SGR ${n}: output must use reset0 and declared six attributes/colors`);
     }
     // End-of-row SGR0 is the transport barrier; no timing guess marks row completion.
-    if (parameters === '0' && this.row !== null && width(this.text) === this.w) this.flush();
+    if (parameters === '0' && this.row !== null &&
+      (width(this.text) === this.w || (this.transition && this.row === 0 &&
+       [this.transition.old[0], this.transition.target[0]].includes(width(this.text))))) this.flush();
   }
   feed(bytes) {
     this.pending += this.decoder.write(bytes);
@@ -75,6 +110,7 @@ class Screen {
           assert.equal(m[2], 'H', 'public example outputs only CUP and SGR'); this.flush();
           const [row, col] = m[1].split(';').map(Number);
           assert.equal(col, 1, 'complete rows start at column1');
+          if (this.transition && row === 1) assert(!this.frame, 'previous resize frame must be complete');
           assert(row >= 1 && row <= this.h, `row ${row} inside actual height${this.h}`);
           this.row = row - 1;
         }
@@ -103,7 +139,7 @@ class Session {
     this.child.stdout.on('data', bytes => { this.raw = Buffer.concat([this.raw, bytes]); this.lastBytes = Date.now(); try { this.screen.feed(bytes); } catch (e) { this.error ??= e; } });
     this.child.stderr.on('data', bytes => { this.stderr += bytes.toString(); });
     this.child.on('error', e => { this.error ??= e; this.finished = true; });
-    this.child.on('exit', (code, signal) => { this.code = code; this.signal = signal; this.finished = true; });
+    this.child.on('close', (code, signal) => { this.code = code; this.signal = signal; this.finished = true; });
     await until(async () => { this.pid = Number((await read(join(this.dir, 'pid'))).trim()); return this.pid > 0; }, `${this.name} pid`);
   }
   async wait(predicate, name) { await until(() => { if (this.error) throw this.error; assert(!this.finished, `application exited before ${name}: ${this.code}; ${this.stderr}`); return predicate(); }, name); }
@@ -112,14 +148,22 @@ class Session {
     return this.screen.snapshot();
   }
   async resize(w, h) {
-    const before = this.screen.updates.length; this.screen.snapshot(); this.screen.resize(w, h);
+    this.screen.beginResize(w, h);
     const tty = (await read(join(this.dir, 'tty'))).trim();
-    const r = spawnSync('stty', ['-F', tty, 'rows', `${h}`, 'cols', `${w}`], { encoding: 'utf8' });
-    assert.equal(r.status, 0, r.stderr); process.kill(this.pid, 'SIGWINCH');
-    return this.settle(before, `resize ${w}x${h}`);
+    const readback = atomicResize(tty, w, h);
+    await writeFile(join(this.dir, `resize-${w}x${h}.json`), JSON.stringify({
+      old: this.screen.transition.old, target: [w, h], successfulSets: 1, readback
+    }));
+    process.kill(this.pid, 'SIGWINCH');
+    await this.wait(() => this.screen.targetComplete(w, h) && Date.now() - this.lastBytes >= 100,
+      `complete settled resize ${w}x${h}`);
+    const rows = this.screen.finishResize(w, h);
+    await writeFile(join(this.dir, `resize-${w}x${h}-frames.json`), JSON.stringify(this.screen.resizeFrames, null, 2));
+    return rows;
   }
   async stop() {
     this.child.stdin.write('q'); await until(() => this.finished, `${this.name} q exit`);
+    if (this.error) throw this.error;
     assert.equal(this.code, 0, 'direct binary successful exit'); assert.equal(this.signal, null);
     const before = (await read(join(this.dir, 'before'))).trim(), after = (await read(join(this.dir, 'after'))).trim();
     assert(before && after, 'termios snapshots exist'); assert.equal(after, before, 'exact termios restored');
@@ -172,6 +216,32 @@ const cells = rows => rows.flatMap(row => row.cells);
 const text = rows => rows.map(row => row.text).join('\n');
 const selections = rows => cells(rows).flatMap(c => [c.fg, c.bg]);
 const foregrounds = rows => cells(rows).map(c => c.fg);
+export function expectedResize(w) {
+  const row = chunks => ({
+    text: chunks.map(([text]) => text).join(''),
+    cells: chunks.flatMap(([text, fg = 'default', attributes = []]) =>
+      [...new Intl.Segmenter('en', { granularity: 'grapheme' }).segment(text)].map(({ segment }) =>
+        ({ text: segment, fg, bg: 'default', attributes })))
+  });
+  if (w === 8) return [
+    row([['cjtui co']]), row([['Black ', 'named:30'], ['Re', 'named:31']]),
+    row([['Bright b', 'named:90']]), row([['Indexed ', 'indexed:33']])
+  ];
+  assert.equal(w, 31, 'only the two hand-authored resize targets');
+  return [
+    row([['cjtui colors' + ' '.repeat(19)]]),
+    row([['Black ', 'named:30'], ['Red ', 'named:31'], ['Green ', 'named:32'],
+      ['Yellow ', 'named:33'], ['Blue ', 'named:34'], ['Mag', 'named:35']]),
+    row([['Bright black ', 'named:90'], ['red ', 'named:91'], ['green ', 'named:92'],
+      ['yellow ', 'named:93'], ['b', 'named:94']]),
+    row([['Indexed 33', 'indexed:33'], [' '.repeat(21)]]),
+    row([['RGB 1,128,254', 'rgb:1,128,254'], [' '.repeat(18)]]),
+    row([['Bold dim italic underline inver', 'default', [1, 2, 3, 4, 7, 9]]]),
+    row([['中文 e\u0301 emoji 😀' + ' '.repeat(16)]]),
+    row([['c: RGB sample   t: text attribu']]),
+    ...Array.from({ length: 4 }, () => row([[' '.repeat(31)]]))
+  ];
+}
 async function example() {
   const s = new Session('actual-example', process.env.CJTUI_COLOR_EXAMPLE_BIN ?? 'examples/colors/target/release/bin/main', 100, 40);
   try {
@@ -192,19 +262,24 @@ async function example() {
     assert.deepEqual(unstyled, gray, 'second t restores exact automatic rich-color text and style');
     const basic = await key('c', 'c→first RGB sample');
     assert.deepEqual(basic, initial, 'third c restores the first RGB sample without changing the automatic profile');
-    await s.resize(31, 12); await s.resize(8, 4);
+    assert.deepEqual(await s.resize(31, 12), expectedResize(31), '31x12 exact complete clipped text/style target');
+    assert.deepEqual(await s.resize(8, 4), expectedResize(8), '8x4 exact complete clipped text/style target');
     const restored = await s.resize(100, 40);
     assert.deepEqual(restored, initial, 'resize back restores actual full example with modes unchanged');
     for (const [name, value] of Object.entries({ initial, red, gray, styled, restored })) await writeFile(join(s.dir, `${name}.json`), JSON.stringify(value, null, 2));
     await s.stop(); console.log('PASS actual colors example: automatic RGB sample cycle, all six t attributes, resize and exact termios');
   } finally { await s.save(); }
 }
-let failures = 0;
-for (const command of ['script', 'stty']) assert.equal(spawnSync(command, ['--version']).status, 0, `${command} available`);
-const selected = process.argv.slice(2);
-for (const name of selected) assert(['fixture', 'example'].includes(name), `unknown test ${name}`);
-for (const [name, run] of [['fixture', fixture], ['example', example]]) if (!selected.length || selected.includes(name)) {
-  try { await run(); } catch (error) { failures++; console.error(`FAIL colors ${name}: ${error.stack}`); }
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+  prepareTerminalSizeTool();
+  let failures = 0;
+  for (const command of ['script', 'stty']) assert.equal(spawnSync(command, ['--version']).status, 0, `${command} available`);
+  const selected = process.argv.slice(2);
+  for (const name of selected) assert(['fixture', 'example'].includes(name), `unknown test ${name}`);
+  for (const [name, run] of [['fixture', fixture], ['example', example]]) if (!selected.length || selected.includes(name)) {
+    try { await run(); } catch (error) { failures++; console.error(`FAIL colors ${name}: ${error.stack}`); }
+  }
+  console.log(`Color PTY artifacts=${artifacts}; failures=${failures}`);
+  if (failures) process.exitCode = 1;
+
 }
-console.log(`Color PTY artifacts=${artifacts}; failures=${failures}`);
-if (failures) process.exitCode = 1;
