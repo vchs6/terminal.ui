@@ -13,6 +13,8 @@ main(): Int64 {
     contextsAndLimits()
     routedEvents()
     failureCleanup()
+    cleanupExceptionPublicContract()
+    runtimeCleanupAggregation()
     exportWithoutEffects()
     println("PASS: runtime public A+B contract")
     return 0

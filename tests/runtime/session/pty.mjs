@@ -96,6 +96,10 @@ async function session(mode) {
     if (fails) assert.notEqual(code, 0, 'runtime errors reach direct binary exit');
     else assert.equal(code, 0, 'normal stop succeeds');
     if (mode.startsWith('callback')) assert(combined.includes('CJTUI_CALLBACK_SENTINEL'), 'primary callback failure survives cleanup/restore errors');
+    if (mode.startsWith('callback-cleanup')) assert(errorText.includes('CJTUI_CALLBACK_SENTINEL') &&
+      errorText.includes('CJTUI_CLEANUP_SENTINEL'), 'returned exception message retains primary and additional cleanup failure');
+    if (mode === 'callback-cleanup-close') assert(errorText.includes('terminal restore failed') && errorText.includes('2'),
+      'returned aggregate message retains restore failure and two additional failures after the real close fence');
     if (mode === 'cleanup') assert(combined.includes('CJTUI_CLEANUP_SENTINEL'), 'cleanup-only primary failure survives close');
     if (mode === 'mount') assert(combined.includes('CJTUI_MOUNT_SENTINEL'), 'mount failure reaches the caller');
     if (mode === 'bind') assert(combined.includes('CJTUI_BIND_SENTINEL'), 'binding failure reaches the caller');

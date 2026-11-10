@@ -80,3 +80,12 @@ use deterministic Condition handshakes. Session raw bytes, stderr, before/after
 termios, close records, callback acknowledgements, and result JSON remain in the
 fresh directory printed by the harness. This author freezes missing-API RED;
 the independent execution role supplies actual implementation/TTY results.
+
+R017 supplement is frozen from design at `987dfde`: the public
+`UICleanupException` constructor preserves the primary exception object/type,
+defends both array boundaries, reports messages/counts/order, and flattens prior
+aggregates. Additional runtime cases check mount plus two cleanup failures,
+cleanup-only primary selection, and original exception identity/type when no
+additional failure exists. Existing assertions remain unchanged. The PTY dual
+cleanup/restore case also requires those failures in the returned exception
+message after actual close, rather than only in stderr.
