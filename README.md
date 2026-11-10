@@ -2,7 +2,7 @@
 
 采用仓颉语言及约定范围的 ArkUI 声明式语法，面向终端应用提供组件组合、状态绑定、布局、主题与多层界面能力。
 
-**当前提供 Linux ANSI TTY 的首个可运行文本界面切片；完整框架仍在开发。**
+**当前提供 Linux ANSI TTY 文本界面、横纵/弹性布局与字符装饰；完整框架仍在开发。**
 
 - 产品范围与当前状态：[产品说明](docs/product/README.md)。
 - 仓颉包名：`cjtui`；当前开发版本 `0.0.0`，未发布。
@@ -11,6 +11,17 @@
 - ANSI 与 Unicode 采用仓颉中心仓 `ansies`、`unicode`、`unicodewidth`；首片通过这三个依赖提供 ANSI 与 Unicode 处理。
 
 发布制品包含主库源码、示例项目、基准项目、产品文档与许可证。开发流程资料仅在源码仓库维护。
+
+## 运行示例
+
+加载仓颉SDK1.2.0后，在真实Linux ANSI TTY中运行：
+
+```sh
+cd examples/layout
+cjpm run
+```
+
+`d`切换边框/阴影，`q`退出；窗口改变尺寸自动重排。最小入口见`examples/minimal`。
 
 ## 项目文档
 
