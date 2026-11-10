@@ -1,0 +1,36 @@
+{
+  "frames": [
+    {"case":"label-constant","width":4,"height":1,"plain":"ok  "},
+    {"case":"checkbox-false-empty","width":4,"height":1,"plain":"[ ] "},
+    {"case":"checkbox-true-label","width":5,"height":1,"plain":"[x] Y"},
+    {"case":"radio-false-empty","width":3,"height":1,"plain":"( )"},
+    {"case":"radio-true-label","width":5,"height":1,"plain":"(*) Y"},
+    {"case":"progress-zero","width":20,"height":1,"plain":"--------------------"},
+    {"case":"progress-half","width":20,"height":1,"plain":"==========----------"},
+    {"case":"progress-full","width":20,"height":1,"plain":"===================="},
+    {"case":"progress-half-width-one","width":1,"height":1,"plain":"-"},
+    {"case":"progress-half-height-two","width":20,"height":2,"plain":"==========----------\n                    "}
+  ],
+  "events": [
+    {"case":"button-enter","key":"enter","callbacks":1},
+    {"case":"button-space","key":"text:ASCII-space","callbacks":1},
+    {"case":"button-alt-space","key":"alt+text:ASCII-space","callbacks":0},
+    {"case":"button-paste-space","key":"paste:ASCII-space","callbacks":0},
+    {"case":"capture-prevent","trace":["capture","target-skipped"],"callbacks":0},
+    {"case":"capture-stop-only","trace":["capture-stop","target"],"callbacks":1},
+    {"case":"checkbox-rejected","initial":"[ ]","requests":[true],"final":"[ ]"},
+    {"case":"radio-already-selected","initial":"(*)","requests":[],"final":"(*)"}
+  ],
+  "errors": [
+    {"case":"caption-LF","code":"IllegalArgumentException"},
+    {"case":"caption-CR","code":"IllegalArgumentException"},
+    {"case":"caption-U+2028","code":"IllegalArgumentException"},
+    {"case":"caption-U+2029","code":"IllegalArgumentException"},
+    {"case":"caption-ESC","code":"IllegalArgumentException"},
+    {"case":"caption-TAB","code":"IllegalArgumentException"},
+    {"case":"progress-NaN","code":"InvalidProperty"},
+    {"case":"progress-infinity","code":"InvalidProperty"},
+    {"case":"progress-below-zero-at-zero-width","code":"InvalidProperty"},
+    {"case":"progress-above-one-at-zero-width","code":"InvalidProperty"}
+  ]
+}
