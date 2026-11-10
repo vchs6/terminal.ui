@@ -25,6 +25,9 @@ main(): Int64 {
             "CJTUI_RUNTIME_READY"
         })
         Text("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        if (mode == "idle-cpu") {
+            for (_ in 0..2048) { Text({ => "pure-getter" }) }
+        }
     }.onKeyCapture({ _ => counts[0]++ }).onKey({ _ => counts[1]++ })
     let app = Application(root, colorMode: ColorMode.Basic16)
     let otherRoot = Text("other")

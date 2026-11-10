@@ -8,6 +8,7 @@ import { join, resolve } from 'node:path';
 const binary = resolve(process.argv[2] ?? 'tests/runtime/session/target/release/bin/main');
 const modes = ['idle', 'callback', 'cleanup', 'callback-cleanup', 'callback-cleanup-close', 'mount', 'bind', 'hidden', 'prevent', 'ctrlc'];
 modes.push('hidden-cross-session', 'hidden-reentrant');
+const optionalModes = ['idle-cpu'];
 const selected = process.argv.slice(3);
 const parent = process.env.CJTUI_RUNTIME_ARTIFACTS ?? tmpdir();
 await mkdir(parent, { recursive: true });
@@ -24,11 +25,38 @@ async function until(predicate, name, ms = 7000) {
   throw new Error(`timeout: ${name}`);
 }
 
+async function processCpuTicks(pid) {
+  const stat = await readFile(`/proc/${pid}/stat`, 'utf8');
+  const fields = stat.slice(stat.lastIndexOf(') ') + 2).trim().split(/\s+/);
+  return { user: Number(fields[11]), system: Number(fields[12]) };
+}
+
+async function measureIdleCpu(pid, directory) {
+  const clock = spawnSync('getconf', ['CLK_TCK'], { encoding: 'utf8' });
+  assert.equal(clock.status, 0, 'getconf CLK_TCK is available for CPU accounting');
+  const ticksPerSecond = Number(clock.stdout.trim());
+  assert(ticksPerSecond > 0);
+  const startNs = process.hrtime.bigint();
+  const before = await processCpuTicks(pid);
+  await delay(2000);
+  const after = await processCpuTicks(pid);
+  const wallSeconds = Number(process.hrtime.bigint() - startNs) / 1e9;
+  const userTicks = after.user - before.user, systemTicks = after.system - before.system;
+  assert(userTicks >= 0 && systemTicks >= 0, 'live process CPU counters are monotonic');
+  const cpuSeconds = (userTicks + systemTicks) / ticksPerSecond;
+  const result = { pid, viewport: [512, 256], extraPureGetters: 2048, ticksPerSecond,
+    runtimeHeapSetting: process.env.cjHeapSize ?? null,
+    before, after, userTicks, systemTicks, wallSeconds, cpuSeconds,
+    cpuEquivalentCores: cpuSeconds / wallSeconds, absolutePassThreshold: null };
+  await writeFile(join(directory, 'idle-cpu.json'), JSON.stringify(result, null, 2));
+  console.log(`MEASUREMENT idle-cpu ${JSON.stringify(result)}`);
+}
+
 async function session(mode) {
   const dir = join(artifacts, mode);
   await mkdir(dir, { recursive: true });
   const wrapper = join(dir, 'session.sh');
-  await writeFile(wrapper, '#!/bin/sh\nstty rows 5 cols 24\nstty -g > "$2/before"\n"$1" < /dev/tty &\np=$!\necho "$p" > "$2/pid"\nwait "$p"\nstatus=$?\nstty -g > "$2/after"\nexit "$status"\n');
+  await writeFile(wrapper, '#!/bin/sh\nif [ "$CJTUI_RUNTIME_MODE" = idle-cpu ]; then stty rows 256 cols 512; else stty rows 5 cols 24; fi\nstty -g > "$2/before"\n"$1" < /dev/tty &\np=$!\necho "$p" > "$2/pid"\nwait "$p"\nstatus=$?\nstty -g > "$2/after"\nexit "$status"\n');
   const failClose = mode.endsWith('-close');
   const child = spawn('script', ['--quiet', '--return', '--flush', '--command',
     `sh ${quote(wrapper)} ${quote(binary)} ${quote(dir)}`, '/dev/null'], {
@@ -45,14 +73,15 @@ async function session(mode) {
   try {
     await until(async () => { pid = Number((await read(join(dir, 'pid'))).trim()); return pid > 0; }, `${mode} actual PID`);
     if (mode !== 'mount' && mode !== 'bind') {
-      await until(() => output.includes(Buffer.from('CJTUI_RUNTIME_READY')), `${mode} first real frame`);
+      await until(() => output.includes(Buffer.from('CJTUI_RUNTIME_READY')), `${mode} first real frame`, mode === 'idle-cpu' ? 30000 : 7000);
       assert(output.includes(Buffer.from('\x1b[')), 'real Application draws ANSI into the PTY');
-      if (mode === 'idle') {
+      if (mode === 'idle' || mode === 'idle-cpu') {
         child.stdin.write('a');
         await until(async () => (await read(join(dir, 'a'))).length > 0, 'first public stats acknowledgement');
         // A measured idle interval exercises at least three 100ms poll windows.
         // File acknowledgements, rather than this timer, order input processing.
-        await delay(360);
+        if (mode === 'idle-cpu') await measureIdleCpu(pid, dir);
+        else await delay(360);
         child.stdin.write('b');
         await until(async () => (await read(join(dir, 'b'))).length > 0, 'second public stats acknowledgement');
         const before = (await read(join(dir, 'a'))).split(',').map(Number);
@@ -133,7 +162,7 @@ async function session(mode) {
 let failures = 0;
 try {
   for (const command of ['script', 'stty']) assert.equal(spawnSync(command, ['--version']).status, 0, `${command} available`);
-  for (const mode of selected) assert(modes.includes(mode), `unknown mode: ${mode}`);
+  for (const mode of selected) assert([...modes, ...optionalModes].includes(mode), `unknown mode: ${mode}`);
   for (const mode of selected.length ? selected : modes) {
     try { await session(mode); }
     catch (error) { failures++; console.error(`FAIL runtime PTY ${mode}: ${error.stack}`); }

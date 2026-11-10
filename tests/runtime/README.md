@@ -108,3 +108,25 @@ The real PTY hidden legacy path must retain business callback execution and
 default Ctrl-C while enforcing normal callback context/reentry rules and exact
 terminal restoration. Each focused case runs independently so one RED cannot
 hide evidence for the other failure exits. Existing assertions are retained.
+
+Opt-in idle CPU evidence uses the same actual PTY fixture, outside default `all`:
+
+```sh
+./tests/runtime/session/run.sh idle-cpu
+```
+
+It requests a 512×256 viewport and 2048 extra pure getter nodes. After the first
+frame and a public callback acknowledgement, it samples the actual application
+PID's `/proc/PID/stat` user/system CPU ticks over an input-free two-second
+window. Raw counters, clock-tick rate, wall duration and CPU-equivalent cores
+are saved in `idle-cpu.json`. There is no absolute CPU pass threshold. Initialization
+precedes the acknowledgement, while ordinary poll/GC/copy/diff work during the
+window is included. This measures whole-process CPU on one host/configuration,
+not attribution to a particular internal loop, thread-ID reuse, RSS, or a portable
+performance guarantee. The original public idle counters remain checked.
+The SDK `cjHeapSize` environment setting is recorded in each sample; the intended
+comparison uses the default heap with that variable unset. Run samples sequentially
+and use the same viewport/getters/heap setting for later comparisons. CPU-mode
+initial-frame readiness allows 30 seconds; that interval is excluded from the
+CPU sample. An earlier 1024×1024 default-heap attempt failed before a CPU window
+could be established and is not a CPU baseline.
