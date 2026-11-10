@@ -568,3 +568,5 @@ Linux VT自动字形子接口支持TASK093–097唯一状态在[字形适配变�
 M2支持TASK123–147唯一状态在[incremental-rendering tasks](../openspec/changes/implement-incremental-rendering/tasks.md)，稳定031/022同变更；完整功能M1基线在全部组件/主题/输入/示例后固定，旧idle优化不冒称M2。控件支持TASK153–162唯一状态在[standard-widgets tasks](../openspec/changes/implement-standard-widgets/tasks.md)，稳定029/019同变更，SplitPane只公共Row/Column封装支持既有011，不重开已验布局；两控件单元均等117完整键盘。
 
 Linux收尾原001/002/003/004/008/010/020/021/023/024/041的唯一复选框/状态在[complete-linux-integration tasks](../openspec/changes/complete-linux-integration/tasks.md)。原027继续theme，022/031继续incremental-rendering，030继续session/extensions与input的原父汇合；AC事实仍只在acceptance维护。规划preflight已独立复核59bea180，不等于产品ready或passed。
+
+实际终端宽度冲突修复TASK163–167唯一状态在[fix-uncertain-glyph-advance tasks](../openspec/changes/fix-uncertain-glyph-advance/tasks.md)。R14T083001原实际GUI失败保留；同一G005/G007/G010私有owner的纯子接口先行，完整094 native/map/publicAPI仍后置，不造084↔094环。全部当前planned，独立preflight/正式RED/实现/审核/执行/验收按该change，不因仅逻辑grid通过关闭物理失败或041/Linux。

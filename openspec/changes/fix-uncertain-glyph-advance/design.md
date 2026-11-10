@@ -19,9 +19,9 @@
 
 ## A003 精确保守规则与边界
 
-Unicode policy原样返回正宽簇。conservativeUnicode按已经存在的grapheme逐scalar枚举，用现唯一 `displayWidth(scalar.toString())`（unicodewidth同版本默认ambiguousWide=false）求非负和；只有sum恰等于已存Cell.width才原样输出，否则返回width个可打印ASCII?。width0仍跳过。当前Frame宽度政策为false，不新增公共宽度模式/Unicode表/分簇算法；不重新分段grapheme。checked/saturating相加，超过width可提前判不等，不能回绕后误放行；正常调用正宽预算与Frame一致。Frame已有完整文本安全验证继续是控制安全边界，不造unsafe String。
+Unicode policy原样返回正宽簇。conservativeUnicode按已经存在的grapheme逐scalar枚举，用现唯一 `displayWidth(scalar.toString())`（unicodewidth同版本默认ambiguousWide=false）求非负和；只有sum恰等于已存Cell.width才原样输出，否则返回width个可打印ASCII?。width0仍跳过。当前device/runtime采用false；公开Frame已有ambiguousWide!:Bool，包含true的构造/格网/离线Unicode行为原样保留。本conservative设备admission固定用默认false逐scalar和与所存Cell.width比较，不强改Frame参数、不重新计算Cell.width；直接同包profile用于Frame(true)时，若二者不等仍按其已存列数fallback。不新增公共宽度模式/Unicode表/分簇算法，不重新分段grapheme。checked/saturating相加，超过width可提前判不等，不能回绕后误放行；正常调用正宽预算与Frame一致。Frame已有完整文本安全验证继续是控制安全边界，不造unsafe String。
 
-例：e+0301 sum1=logical1保留；界/单👩/单💻 sum2=2保留；🇨🇳按唯一库逐scalar和与logical2相同则保留（以真实库实测为准，不硬编码旗帜规则）；👩‍💻 sum4!=2→??；❤️/☀️/1️⃣ sum1!=2→??。最终golden先由独立测试作者验证实际依赖scalar值，若不同回root精确化，不能硬编码emoji清单适配示例。测试必须区分模型一致/不一致与实际host已测事实，不声称所有Font/Unicode版本宽度皆可靠。
+例：e+0301 sum1=logical1保留；界/单👩/单💻 sum2=2保留；🇨🇳按唯一库逐scalar和与logical2相同则保留（以真实库实测为准，不硬编码旗帜规则）；👩‍💻 sum4!=2→??；❤️/☀️/1️⃣ sum1!=2→??。最终golden先由独立测试作者验证实际依赖scalar值，若不同回root精确化，不能硬编码emoji清单适配示例。测试必须区分模型一致/不一致与实际host已测事实：sum相等只表示两种库计算在当前cell预算上一致，不证明未知host每个单scalar或字体的推进，不声称所有Font/Unicode版本宽度皆可靠。受支持实际配置以真实host/version/config证据冻结。
 
 样式/逻辑列数不变；不删除VS/ZWJ/重音，不NFC/NFD、不音译、不禁用全部emoji。替代是整簇原子可见呈现，不改Component/RichText/Frame.cellAt/toPlainText原业务Unicode。普通应用不写终端分支。显式离线Unicode和未来GlyphMode.Unicode仍直出canonical宽度数据；这不是对不相容host物理形状的证明。默认Auto不要求调用者覆盖。
 
