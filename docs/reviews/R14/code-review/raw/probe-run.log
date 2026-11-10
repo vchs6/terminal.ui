@@ -1,0 +1,6 @@
+prefix ESC [ C2 (non-ASCII lead): diagnostics=0
+continuation A0 then final m: diagnostics=1
+  SequenceTooLong offset=0
+finish: diagnostics=0
+whole ESC [ C2 A0 m (budget 4): diagnostics=1
+  MalformedSequence offset=0

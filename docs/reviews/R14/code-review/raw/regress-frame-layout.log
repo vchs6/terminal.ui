@@ -1,0 +1,690 @@
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+PASS: negative width
+PASS: negative height
+PASS: zero area ANSI
+PASS: zero area cellAt
+PASS: zero area ANSI
+PASS: zero area cellAt
+PASS: zero area ANSI
+PASS: zero area cellAt
+PASS: frame dimensions
+PASS: negative cellAt
+PASS: right cellAt
+PASS: bottom cellAt
+PASS: combining cell
+PASS: wide leading cell
+PASS: wide continuation
+PASS: wide leading cell
+PASS: wide continuation
+PASS: wide leading cell
+PASS: wide continuation
+PASS: full columns plain snapshot
+PASS: overwrite continuation clears old cluster
+PASS: overwrite leading clears continuation
+PASS: right clipped wide omitted
+PASS: left clipped wide omitted but following text positioned
+PASS: wide write covers old narrow
+PASS: standalone zero width and empty ignored
+PASS: LF and CRLF restore original x
+PASS: frame ambiguous policy
+PASS: reject C0 0
+PASS: reject C0 1
+PASS: reject C0 2
+PASS: reject C0 3
+PASS: reject C0 4
+PASS: reject C0 5
+PASS: reject C0 6
+PASS: reject C0 7
+PASS: reject C0 8
+PASS: reject C0 9
+PASS: reject C0 11
+PASS: reject C0 12
+PASS: reject C0 14
+PASS: reject C0 15
+PASS: reject C0 16
+PASS: reject C0 17
+PASS: reject C0 18
+PASS: reject C0 19
+PASS: reject C0 20
+PASS: reject C0 21
+PASS: reject C0 22
+PASS: reject C0 23
+PASS: reject C0 24
+PASS: reject C0 25
+PASS: reject C0 26
+PASS: reject C0 27
+PASS: reject C0 28
+PASS: reject C0 29
+PASS: reject C0 30
+PASS: reject C0 31
+PASS: reject C1 128
+PASS: reject C1 129
+PASS: reject C1 130
+PASS: reject C1 131
+PASS: reject C1 132
+PASS: reject C1 133
+PASS: reject C1 134
+PASS: reject C1 135
+PASS: reject C1 136
+PASS: reject C1 137
+PASS: reject C1 138
+PASS: reject C1 139
+PASS: reject C1 140
+PASS: reject C1 141
+PASS: reject C1 142
+PASS: reject C1 143
+PASS: reject C1 144
+PASS: reject C1 145
+PASS: reject C1 146
+PASS: reject C1 147
+PASS: reject C1 148
+PASS: reject C1 149
+PASS: reject C1 150
+PASS: reject C1 151
+PASS: reject C1 152
+PASS: reject C1 153
+PASS: reject C1 154
+PASS: reject C1 155
+PASS: reject C1 156
+PASS: reject C1 157
+PASS: reject C1 158
+PASS: reject C1 159
+PASS: reject lone CR
+PASS: reject CSI injection
+PASS: reject OSC injection
+PASS: component text cannot inject
+PASS: style fields
+PASS: style value equality
+PASS: style only update changes ANSI
+PASS: ANSI reset and absolute initial position
+PASS: ANSI row positioning and final reset
+PASS: ANSI snapshot never scrolls with newline
+PASS: plain retains spaces no final LF or ESC
+PASS: blocks if for custom function and layout
+PASS: explicit child overrides inherited color
+PASS: ancestor style inheritance
+PASS: standalone multiline Text root
+PASS: actual size clips ancestor wide glyph
+PASS: construction exception propagated
+PASS: construction context clean after nested exception
+PASS: standalone root clean after exception
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+PASS: extreme x=9223372036854775807 clips without exception and preserves frame
+PASS: extreme x=-9223372036854775808 clips without exception and preserves frame
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+[33mwarning[0m: unused expression
+  [36m==>[0m /workspace/work/rich-text-implementation/source/tests/layout/src/main.cj:27:18:
+   [36m| [0m
+[36m27[0m [36m| [0m    illegal({ => Rect(0, 0, -1, 1); () }, "Rect negative width rejected")[0m
+   [36m| [0m                 [33m^^^^^^^^^^^^^^^^^ unused expression[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused expression
+  [36m==>[0m /workspace/work/rich-text-implementation/source/tests/layout/src/main.cj:28:18:
+   [36m| [0m
+[36m28[0m [36m| [0m    illegal({ => Rect(0, 0, 1, -1); () }, "Rect negative height rejected")[0m
+   [36m| [0m                 [33m^^^^^^^^^^^^^^^^^ unused expression[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+2 warnings generated, 2 warnings printed.
+cjpm build success
+PASS: Rect preserves signed origin and nonnegative extents
+PASS: Rect permits extrema and empty geometry
+PASS: Rect negative width rejected
+PASS: Rect negative height rejected
+PASS: actual viewport: fixed root uses outer size
+PASS: fixed root uses outer size: got [abc   
+      ], want [abc   
+      ]
+PASS: actual viewport: explicit zero is not auto
+PASS: explicit zero is not auto: got [      ], want [      ]
+PASS: actual viewport: zero height draws nothing
+PASS: zero height draws nothing: got [      
+      ], want [      
+      ]
+PASS: actual viewport: widthAuto clears fixed root
+PASS: widthAuto clears fixed root: got [abcdef], want [abcdef]
+PASS: actual viewport: heightAuto clears fixed root
+PASS: heightAuto clears fixed root: got [A 
+B ], want [A 
+B ]
+PASS: actual viewport: root min cannot enlarge actual viewport
+PASS: root min cannot enlarge actual viewport: got [ABC], want [ABC]
+PASS: actual viewport: nonflex minimum reserves outer space
+PASS: nonflex minimum reserves outer space: got [A  B  ], want [A  B  ]
+PASS: actual viewport: minimum can exceed fixed request
+PASS: minimum can exceed fixed request: got [ABCDZ ], want [ABCDZ ]
+PASS: actual viewport: extreme fixed child converges to ancestor
+PASS: extreme fixed child converges to ancestor: got [ABC], want [ABC]
+PASS: actual viewport: nonflex overflow preserves order and clips suffix
+PASS: nonflex overflow preserves order and clips suffix: got [ABC], want [ABC]
+PASS: actual viewport: equal remainders resolve in declaration order
+PASS: equal remainders resolve in declaration order: got [AAABBBCC], want [AAABBBCC]
+PASS: actual viewport: largest remainder wins over earlier child
+PASS: largest remainder wins over earlier child: got [ABBBCCCC], want [ABBBCCCC]
+PASS: actual viewport: non-tied exact ratio rounding
+PASS: non-tied exact ratio rounding: got [AABBBCCCCC], want [AABBBCCCCC]
+PASS: actual viewport: fixed and gaps deducted before flex
+PASS: fixed and gaps deducted before flex: got [AA BB CCCC], want [AA BB CCCC]
+PASS: actual viewport: flex minimum precedes weight remainder
+PASS: flex minimum precedes weight remainder: got [AAAAAABBBB], want [AAAAAABBBB]
+PASS: actual viewport: infeasible minima use clamped minimum ratio rather than weights
+PASS: infeasible minima use clamped minimum ratio rather than weights: got [AAAABB], want [AAAABB]
+PASS: actual viewport: positive weights replace fixed and natural main size
+PASS: positive weights replace fixed and natural main size: got [AAABBB], want [AAABBB]
+PASS: actual viewport: zero weight remains nonflex
+PASS: zero weight remains nonflex: got [AABBBB], want [AABBBB]
+PASS: actual viewport: column uses same largest remainder allocation
+PASS: column uses same largest remainder allocation: got [A
+A
+A
+B
+B], want [A
+A
+A
+B
+B]
+PASS: actual viewport: integer multiply-divide survives product overflow
+PASS: integer multiply-divide survives product overflow: got [AAAABBB], want [AAAABBB]
+PASS: actual viewport: near-equal extreme remainders remain exact beyond float precision
+PASS: near-equal extreme remainders remain exact beyond float precision: got [ABB], want [ABB]
+PASS: actual viewport: extreme skew preserves exact remainder
+PASS: extreme skew preserves exact remainder: got [AAAAAAA], want [AAAAAAA]
+PASS: actual viewport: minimum clamp precedes safe sum
+PASS: minimum clamp precedes safe sum: got [AAAAABBBB], want [AAAAABBBB]
+PASS: unrepresentable weight sum diagnosed
+PASS: actual viewport: extreme occupied extent saturates without wrapping
+PASS: extreme occupied extent saturates without wrapping: got [A  ], want [A  ]
+PASS: actual viewport: padding applies to text and consumes outer box
+PASS: padding applies to text and consumes outer box: got [       
+ ABCDE 
+ FGHIJ 
+       ], want [       
+ ABCDE 
+ FGHIJ 
+       ]
+PASS: actual viewport: container padding does not inherit into child
+PASS: container padding does not inherit into child: got [    
+ A  
+ B  
+    ], want [    
+ A  
+ B  
+    ]
+PASS: actual viewport: insets consume left top first at tiny viewport
+PASS: insets consume left top first at tiny viewport: got [ ], want [ ]
+PASS: actual viewport: extreme padding is bounded
+PASS: extreme padding is bounded: got [   
+   ], want [   
+   ]
+PASS: actual viewport: gap has no leading or trailing allocation
+PASS: gap has no leading or trailing allocation: got [A  B    ], want [A  B    ]
+PASS: actual viewport: main center floors odd free space
+PASS: main center floors odd free space: got [  AB   ], want [  AB   ]
+PASS: actual viewport: main end consumes remaining space
+PASS: main end consumes remaining space: got [     AB], want [     AB]
+PASS: actual viewport: column main alignment
+PASS: column main alignment: got [ 
+ 
+A
+B], want [ 
+ 
+A
+B]
+PASS: actual viewport: cross center floors odd remaining space
+PASS: cross center floors odd remaining space: got [   
+A  
+   
+   ], want [   
+A  
+   
+   ]
+PASS: actual viewport: cross end aligns bottom
+PASS: cross end aligns bottom: got [   
+   
+A  ], want [   
+   
+A  ]
+PASS: actual viewport: stretch affects only auto cross sizes
+PASS: stretch affects only auto cross sizes: got [     A
+ B    ], want [     A
+ B    ]
+PASS: actual viewport: text aligns every line separately
+PASS: text aligns every line separately: got [  A   
+ BCD  ], want [  A   
+ BCD  ]
+PASS: actual viewport: text end handles CRLF
+PASS: text end handles CRLF: got [     A
+   BCD], want [     A
+   BCD]
+PASS: actual viewport: overlong end-aligned text clips from original start
+PASS: overlong end-aligned text clips from original start: got [ABC], want [ABC]
+PASS: actual viewport: child clipping keeps wide cluster whole
+PASS: child clipping keeps wide cluster whole: got [ Z ], want [ Z ]
+PASS: actual viewport: nested ancestor content clips descendants
+PASS: nested ancestor content clips descendants: got [AB  
+Q   ], want [AB  
+Q   ]
+PASS: actual viewport: zero-width viewport shape
+PASS: zero-width viewport shape: got [
+], want [
+]
+PASS: actual viewport: zero-height viewport shape
+PASS: zero-height viewport shape: got [], want []
+PASS: negative width setter immediate
+PASS: negative height setter immediate
+PASS: negative minWidth immediate
+PASS: negative minHeight immediate
+PASS: negative weight immediate
+PASS: negative padding immediate
+PASS: stretch text alignment immediate
+PASS: gap on Text immediate
+PASS: alignItems on Text immediate
+PASS: justifyContent on Text immediate
+PASS: actual viewport: rejected setters retain all old settings and chain mutates original
+PASS: rejected setters retain all old settings and chain mutates original: got [ABC  
+     ], want [ABC  
+     ]
+PASS: negative gap immediate
+PASS: stretch justification immediate
+PASS: textAlign on container immediate
+PASS: actual viewport: container retains settings after rejected calls
+PASS: container retains settings after rejected calls: got [   A B], want [   A B]
+PASS: zero-size text still validates controls
+PASS: fully clipped text still validates controls
+PASS: zero-size text still validates controls
+PASS: fully clipped text still validates controls
+PASS: zero-size text still validates controls
+PASS: fully clipped text still validates controls
+PASS: zero-size text still validates controls
+PASS: fully clipped text still validates controls
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+PASS: default single border: got [┌──┐
+│  │
+└──┘], want [┌──┐
+│  │
+└──┘]
+PASS: rounded corners: got [╭──╮
+│  │
+╰──╯], want [╭──╮
+│  │
+╰──╯]
+PASS: double border: got [╔══╗
+║  ║
+╚══╝], want [╔══╗
+║  ║
+╚══╝]
+PASS: explicit ASCII border: got [+--+
+|  |
++--+], want [+--+
+|  |
++--+]
+PASS: empty border leaves existing cells intact: got [abc
+def], want [abc
+def]
+PASS: empty border leaves existing cells intact: got [abc
+def], want [abc
+def]
+PASS: empty border leaves existing cells intact: got [abc
+def], want [abc
+def]
+PASS: empty border leaves existing cells intact: got [abc
+def], want [abc
+def]
+PASS: empty border leaves existing cells intact: got [abc
+def], want [abc
+def]
+PASS: None is transparent: got [abc
+def], want [abc
+def]
+PASS: one-cell border uses ASCII plus: got [+], want [+]
+PASS: one-cell border uses ASCII plus: got [+], want [+]
+PASS: one-cell border uses ASCII plus: got [+], want [+]
+PASS: one-cell border uses ASCII plus: got [+], want [+]
+PASS: width-one border has no overlapping corners: got [║
+║
+║], want [║
+║
+║]
+PASS: height-one border has no corners: got [────], want [────]
+PASS: non-column-one border glyph triggers whole-set ASCII fallback: got [+--+
+|  |
++--+], want [+--+
+|  |
++--+]
+PASS: clip original border geometry without inventing new corners: got [  │ 
+  │ 
+──┘ ], want [  │ 
+  │ 
+──┘ ]
+PASS: fill writes opaque styled spaces: got [a  d
+e  h], want [a  d
+e  h]
+PASS: fill retains complete style
+PASS: default fill explicitly resets cell style
+PASS: fill over continuation clears full old cluster: got [  X ], want [  X ]
+PASS: fill shares Frame continuation cleanup
+PASS: border overwriting wide continuation preserves adjacent cluster: got [ +中], want [ +中]
+PASS: border shares Frame width and style rules
+PASS: shadow over continuation clears original leading cell: got [ ░X ], want [ ░X ]
+PASS: shadow shares cleanup and exact style
+PASS: subsequent text covers decoration through same Frame path
+PASS: empty frame with extreme other axis performs no virtual-area iteration
+PASS: empty frame with extreme other axis performs no virtual-area iteration
+PASS: empty frame with extreme other axis performs no virtual-area iteration
+PASS: positive shadow is shifted rectangle minus original: got [     
+    ░
+  ░░░], want [     
+    ░
+  ░░░]
+PASS: negative offsets expose top and left only: got [░░░  
+░    
+     ], want [░░░  
+░    
+     ]
+PASS: zero offset and empty shadows write nothing: got [abc
+def], want [abc
+def]
+PASS: actual public width policy keeps light shade one column
+PASS: nonambiguous shadow glyph does not spuriously fall back: got [ ░ ], want [ ░ ]
+PASS: huge offscreen original edges do not become viewport border: got [   
+   ], want [   
+   ]
+PASS: huge thin border iterates only visible cells: got [───
+   ], want [───
+   ]
+PASS: huge fill completes after clipping: got [   
+   ], want [   
+   ]
+PASS: huge fill reaches visible far corner
+PASS: negative extreme right edge stays outside
+PASS: extreme offset uses mathematical geometry before clipping: got [░░░
+░░░], want [░░░
+░░░]
+PASS: overflowing shifted endpoints stay offscreen: got [░░░
+░░░], want [░░░
+░░░]
+PASS: component border reserves content insets: got [╭───╮
+│X  │
+╰───╯], want [╭───╮
+│X  │
+╰───╯]
+PASS: border and padding share outer inset path: got [┌─────┐
+│     │
+│ X   │
+│     │
+└─────┘], want [┌─────┐
+│     │
+│ X   │
+│     │
+└─────┘]
+PASS: tiny component never writes content over border: got [+], want [+]
+PASS: tiny vertical component keeps border only: got [║
+║
+║], want [║
+║
+║]
+PASS: borderColor changes border without changing text
+PASS: unset borderColor follows effective node foreground
+PASS: shadow expands paint without affecting sibling layout; unset empty areas stay transparent: got [A  B 
+   ░ 
+ ░░░ ], want [A  B 
+   ░ 
+ ░░░ ]
+PASS: disabled shadow clears previous target area on next complete render: got [A  B 
+     
+     ], want [A  B 
+     
+     ]
+PASS: zero-offset component shadow remains invisible: got [A  B 
+     
+     ], want [A  B 
+     
+     ]
+PASS: child shadow obeys ancestor content clip on every side: got [      
+ A    
+      
+      ], want [      
+ A    
+      
+      ]
+PASS: explicit Default background fills later sibling and covers shadow: got [A  B 
+     
+ ░░░ ], want [A  B 
+     
+ ░░░ ]
+PASS: explicit background fills border padding and content space
+PASS: unset background leaves unused allocation untouched
+PASS: shadow uses complete explicit style without inheriting parent
+PASS: border initial frame: got [┌──┐
+│X │
+└──┘], want [┌──┐
+│X │
+└──┘]
+PASS: removing border restores content space and clears old border: got [X   
+    
+    ], want [X   
+    
+    ]
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+Composition artifacts: /tmp/cjtui-composition.BHEh1HcS
+PASS: transparent construction normalizes blank metadata
+PASS: ordinary construction remains opaque
+PASS: transparent blanks skip; opaque styled blank covers: got [aXcd
+ef h], want [aXcd
+ef h]
+PASS: styled blank retains opacity and background
+PASS: different source stays unchanged: got [ X  
+    ], want [ X  
+    ]
+PASS: source metadata unchanged
+PASS: later layers appear above earlier layers: got [aYcd
+ef h], want [aYcd
+ef h]
+PASS: Style default space is explicitly opaque
+PASS: opaque default space is not guessed transparent: got [ Xcd
+ef h], want [ Xcd
+ef h]
+PASS: copy cuts source continuation into a styled blank: got [ bc], want [ bc]
+PASS: clipped source fragment keeps exact style and opacity
+PASS: resize cuts source leader into a styled blank: got [a ], want [a ]
+PASS: right cut does not retain a wide leader
+PASS: writing target continuation clears leader outside intersection: got [a Xbc], want [a Xbc]
+PASS: target partner cleanup uses default transparency
+PASS: clear continuation clears the whole old cluster: got [a  bc], want [a  bc]
+PASS: explicit transparent clear resets both cells and style
+PASS: clear defaults to opaque Style blank
+PASS: copy has no shared mutable cells: got [abcde], want [abcde]
+PASS: resized growth uses source default blanks: got [abcde  ], want [abcde  ]
+PASS: resize has no shared mutable cells: got [abcde], want [abcde]
+PASS: rightward self overlap reads initial source snapshot: got [aabcd], want [aabcd]
+PASS: leftward self overlap reads initial source snapshot: got [bcdee], want [bcdee]
+PASS: fill writes opaque styled spaces on a transparent frame
+PASS: border writes opaque cells on a transparent frame
+PASS: shadow writes opaque cells on a transparent frame
+PASS: unused allocation stays transparent
+PASS: default clear overrides transparent frame default for complete touched cluster
+PASS: clear does not mutate default blank kind used by subsequent put
+PASS: transparent clear touching leader resets partner outside rectangle
+PASS: explicit transparent clear does not change opaque default
+PASS: zero-width clear is a no-op: got [ XAB], want [ XAB]
+PASS: draw/put/clear: complete clusters and normalized transparency
+PASS: opaque frame explicit transparent clear: complete clusters and normalized transparency
+PASS: negative offset clips source wide continuation into styled blank: got [ bcxy], want [ bcxy]
+PASS: left clipped composite fragment is opaque with exact source style
+PASS: right target edge clips source wide leader into styled blank: got [uvwa ], want [uvwa ]
+PASS: right clipped composite fragment keeps style and one column
+PASS: clipping never mutates source: got [a中bc], want [a中bc]
+PASS: source cluster metadata stays unchanged
+PASS: copy right boundary clips source leader: got [a ], want [a ]
+PASS: copy right fragment retains style and opacity
+PASS: copy retains a complete source cluster: got [中], want [中]
+PASS: complete copied source has its continuation
+PASS: writing target leader clears continuation outside intersection: got [aX bc], want [aX bc]
+PASS: target partner uses target blank kind and Style default
+PASS: transparent intersection never clears an existing target cluster: got [a中bc], want [a中bc]
+PASS: source cluster crossing two old clusters clears both outside partners: got [ 中 ], want [ 中 ]
+PASS: both crossed target partners normalize to target default
+PASS: negative x/y preserve source-local coordinates: got [EF3
+456], want [EF3
+456]
+PASS: clipped operations: complete clusters and normalized transparency
+PASS: clipped operations: complete clusters and normalized transparency
+PASS: clipped operations: complete clusters and normalized transparency
+PASS: clipped operations: complete clusters and normalized transparency
+PASS: clipped operations: complete clusters and normalized transparency
+PASS: clipped operations: complete clusters and normalized transparency
+PASS: clipped operations: complete clusters and normalized transparency
+PASS: copy preserves requested origin and pads out-of-source area: got [    
+ AB 
+    ], want [    
+ AB 
+    ]
+PASS: copy outside padding inherits default transparency
+PASS: resize growth keeps original origin: got [AB  
+    ], want [AB  
+    ]
+PASS: resize growth inherits transparent default
+PASS: source mutation cannot affect existing copy: got [    
+ AB 
+    ], want [    
+ AB 
+    ]
+PASS: source mutation cannot affect resized frame: got [AB  
+    ], want [AB  
+    ]
+PASS: copy/resize retain default blank kind for future cluster cleanup
+PASS: copy/resize retain default blank kind for future cluster cleanup
+PASS: copy retains original explicit cell budget
+PASS: resized frame retains original explicit cell budget
+PASS: copy/resize retain ambiguous-wide policy for future writes
+PASS: copy/resize retain ambiguous-wide policy for future writes
+PASS: policy mismatch rejected
+PASS: policy mismatch rejected before target mutation: got [abc], want [abc]
+PASS: empty source policy mismatch rejected before no-op
+PASS: empty destination policy mismatch rejected before no-op
+PASS: offscreen policy mismatch rejected before clipping
+PASS: all rejected policy operations leave target unchanged: got [abc], want [abc]
+PASS: copy/resize: complete clusters and normalized transparency
+PASS: copy/resize: complete clusters and normalized transparency
+PASS: copy/resize: complete clusters and normalized transparency
+PASS: copy/resize: complete clusters and normalized transparency
+PASS: downward self overlap snapshots rows: got [ab
+ab
+cd], want [ab
+ab
+cd]
+PASS: upward self overlap snapshots rows: got [cd
+ef
+ef], want [cd
+ef
+ef]
+PASS: self overlap snapshots wide cluster before partner cleanup: got [ 中ab], want [ 中ab]
+PASS: self overlap snapshots opacity and leaves transparent holes: got [AAB  ], want [AAB  ]
+PASS: self overlap preserves original transparent holes
+PASS: zero-offset self copy preserves content: got [AAB  ], want [AAB  ]
+PASS: self overlap: complete clusters and normalized transparency
+PASS: self overlap: complete clusters and normalized transparency
+PASS: self overlap: complete clusters and normalized transparency
+PASS: self overlap: complete clusters and normalized transparency
+PASS: negative width rejected
+PASS: negative height rejected
+PASS: zero budget rejected
+PASS: negative budget rejected even for empty frame
+PASS: positive area budget rejected before allocation
+PASS: default positive-area allocation budget enforced
+PASS: overflowing product rejected before allocation
+PASS: copy checks destination budget
+PASS: resize checks destination budget
+PASS: resize checks negative dimensions
+PASS: extreme geometry remains outside without overflow or virtual loops: got [abc
+def], want [abc
+def]
+PASS: extreme copy origin pads bounded result: got [  ], want [  ]
+PASS: extreme geometry remains outside without overflow or virtual loops: got [abc
+def], want [abc
+def]
+PASS: extreme copy origin pads bounded result: got [  ], want [  ]
+PASS: huge clear clips to actual bounded target: got [   
+   ], want [   
+   ]
+PASS: huge clear reaches far visible corner
+PASS: zero-area extrema preserve legacy ANSI empty contract
+PASS: zero-area extreme copy short circuits
+PASS: zero-height extreme resize exports empty text
+PASS: zero-area extrema preserve legacy ANSI empty contract
+PASS: zero-area extreme copy short circuits
+PASS: zero-height extreme resize exports empty text
+PASS: zero-width LF length allowed exactly at budget
+PASS: zero-width LF length over budget rejected
+PASS: zero-width extreme text fails before virtual iteration
+PASS: zero-width ANSI remains empty regardless of text LF budget
+PASS: original: exact source text [X Z]
+PASS: original: flags false/true/false with normalized hole
+PASS: original: column 0 transparent flag equals original
+PASS: original: column 1 transparent flag equals original
+PASS: original: column 2 transparent flag equals original
+PASS: original over ABC: [XBZ], expected [XBZ]
+PASS: copy: exact source text [X Z]
+PASS: copy: flags false/true/false with normalized hole
+PASS: copy: column 0 transparent flag equals original
+PASS: copy: column 1 transparent flag equals original
+PASS: copy: column 2 transparent flag equals original
+PASS: copy over ABC: [XBZ], expected [XBZ]
+PASS: same-size resized: exact source text [X Z]
+PASS: same-size resized: flags false/true/false with normalized hole
+PASS: same-size resized: column 0 transparent flag equals original
+PASS: same-size resized: column 1 transparent flag equals original
+PASS: same-size resized: column 2 transparent flag equals original
+PASS: same-size resized over ABC: [XBZ], expected [XBZ]
+PASS: grown resized: source hole remains transparent
+PASS: grown resized: new columns and rows inherit opaque source default
+PASS: grown resized over lower: [XBZ  
+     ], expected [XBZ  /     ]
+PASS: mutating copied/resized cells cannot mutate original hole or text
+PASS: copy and resized own independent mutable cells
+PASS: mutating original cannot mutate existing copies
+PASS: F003 explicit transparent holes survive data copy and resize
+PASS: file scene is full composed grid with wide and combining clusters: got [中CD
+ é  ], want [中CD
+ é  ]
+PASS: plain file missing parent throws standard file exception
+PASS: ANSI file missing parent throws standard file exception
+PASS: plain directory target throws standard file exception
+PASS: ANSI directory target throws standard file exception
+PASS: plain LF budget rejected before opening existing target
+PASS: plain LF budget rejected before creating target
+PASS: plain actual write failure propagates from /dev/full
+PASS: ANSI actual write failure propagates from /dev/full
+PASS: file scene: complete clusters and normalized transparency
+PASS: plain-created.txt: exact independently authored UTF-8 bytes
+PASS: plain-replaced.txt: exact independently authored UTF-8 bytes
+PASS: ansi-default.txt: exact independently authored UTF-8 bytes
+PASS: ansi-true.txt: exact independently authored UTF-8 bytes
+PASS: ansi-basic8.txt: exact independently authored UTF-8 bytes
+PASS: ansi-mono.txt: exact independently authored UTF-8 bytes
+PASS: transparent-plain.txt: exact independently authored UTF-8 bytes
+PASS: transparent-ansi.txt: exact independently authored UTF-8 bytes
+PASS: empty-plain.txt: exact independently authored UTF-8 bytes
+PASS: empty-ansi.txt: exact independently authored UTF-8 bytes
+PASS: zero-width-plain.txt: exact independently authored UTF-8 bytes
+PASS: zero-width-ansi.txt: exact independently authored UTF-8 bytes
+PASS: budget-sentinel.txt: exact independently authored UTF-8 bytes
+PASS: missing-parent: not created
+PASS: budget-created.txt: not created

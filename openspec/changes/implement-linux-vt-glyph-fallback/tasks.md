@@ -102,3 +102,5 @@
 ## DQ / preflight checklist
 
 本草稿只检查到planned：稳定编号/父项、scope/inputs/deps/deliverables/AC、文件职责、mode精确签名、native资源确值、原文/生成标记/投影三边界、旧路径迁移、失败策略及有限验收均可定位。ready需主代理冻结、独立preflight、080/084及093固定输入满足。所有checkbox不勾选；status/evidence随实际角色填入，不提前伪造通过。
+
+G012前置修订候选：094消费fix-uncertain-glyph-advance已接受167纯owner+原084，而不是反向阻塞R14。093测试作者在实际094前按最终G012补conservative deviceAuto期望，旧纯unicode/ascii/mapped及native矩阵不改，先固定正式test-only。G005/G007/G010仅一份GlyphRenderPolicy/projectTerminalGlyph，164已交子接口由094扩展，禁止复制。原094/095/096/097状态不因新补丁通过。

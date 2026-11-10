@@ -159,3 +159,9 @@ Frame.toPlainText/writePlainText/toAnsi/writeAnsi不新增必需参数，不查�
 | 编译目标无该实现 | unknown / unsupported-platform | false / false / 0 |
 
 失败entryCount=0，成功为实际pair数而非bitmap置位数；重复unicode映射不会把读取失败伪装成成功。仅对已确证文本VT尝试分配/读取map，未知PTY不得触发该读取。
+
+## G012 实测物理推进冲突的保守Unicode策略（新候选，需独立核）
+
+TASK083 R14T083001及独立DSR表明GUI未知PTY无条件Unicode直出不能保持网格。以fix-uncertain-glyph-advance/design A001–008为本处精确补充：GlyphRenderPolicy同一私有类增加conservativeUnicode工厂；Auto未知PTY改选它，条件为逐scalar唯一displayWidth和等于canonical Cell.width才原样，否则整簇width个?；normal单emoji/CJK/组合和模型一致者保留，非全局emoji4/非禁所有emoji。显式Unicode/Ascii与已证VT map策略仍原G003；离线Unicode不变，检测facts不被策略override改写。G005统一投影列比较由早期164先行，完整094复用/扩展该owner而不重写；G006保守policy的ellipsis仍按当前实际ambiguous宽度判断，不能误当Ascii或绕过width。
+
+原未知PTY无条件Unicode条款与当前事实冲突的部分由G012覆盖；原096/097仍必须actualnativeVT/全部093原scope，不能靠此提前通过。093旧test-only仍保留历史，正式actual094前由原测试角色依本候选最终接受内容增补/明确deviceAuto期望，不由产品作者改。尚待独立preflight与163–167实际交付，产品未通过。

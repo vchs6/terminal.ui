@@ -270,7 +270,7 @@ scrollTo 输入非负，负值 IllegalArgumentException；超最大值钳制。s
 
 先处理业务/结构提交与依赖稳定，再布局/钳制，再执行 pending ensureVisible。显式滚动之后同 turn 的 focus/ensureVisible 意图按调用次序确定；最后一个确保可见请求可覆盖早先滚动，不能让下一帧自动每次重新确保旧 focus 而阻止用户手动滚动。focus获得时框架产生一次确保请求；新的caret逻辑位置由事件明确调用ensureVisible。viewport尺寸改变时，框架使用最近完成帧保存的、仍属于有效聚焦Canvas的caret局部1×1 rect，布局后产生一次确保请求；同turn有显式新caret ensure时该显式意图覆盖旧帧位置。节点换代/失焦/卸载清除旧记录，旧rect落在缩短后的extent外则丢弃而不报业务命令错误。每帧重绘不会重复产生。paint 中不准 ensureVisible；编辑默认动作变更 caret 后在同一事件请求，框架布局完成后用最新几何计算。
 
-标准viewport默认键固定为：up/down 一行，PageUp/PageDown `max(1,viewportHeight-1)` 行；Horizontal/Both 允许 left/right 一列；Home/End 对竖轴先到首尾，纯Horizontal则首尾列。更复杂 CtrlHome/CtrlEnd 留键盘合同。每节点用户Ancestor先运行，未prevent才尝试这些标准键；没有该轴/无法变化则不消费，让祖先尝试；任一viewport变化即 preventDefault，不把剩余距离再交外层。输入自己的 Target 默认如果已处理 PageDown，必须 preventDefault，外层绝不再滚。
+标准viewport默认键固定为：up/down 一行，PageUp/PageDown（精确KeyEvent.code为`pageup`/`pagedown`，与input K002表一致）`max(1,viewportHeight-1)` 行；Horizontal/Both 允许 left/right 一列；Home/End 对竖轴先到首尾，纯Horizontal则首尾列。更复杂 CtrlHome/CtrlEnd 留键盘合同。每节点用户Ancestor先运行，未prevent才尝试这些标准键；没有该轴/无法变化则不消费，让祖先尝试；任一viewport变化即 preventDefault，不把剩余距离再交外层。输入自己的 Target 默认如果已处理 PageDown，必须 preventDefault，外层绝不再滚。
 
 #### B.4 ensureVisible 的精确含义
 

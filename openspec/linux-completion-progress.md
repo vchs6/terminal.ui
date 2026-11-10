@@ -51,3 +51,7 @@ root已采纳I015异步一次600ms、唯一decoder/writer、Unknown不改显隐�
 TASK009固定原034685d已集成d8c5be0（local，082/083/084未通过不推新产品checkpoint）；082独立真实probe确认CSI nonASCII lead先出现但延迟到完整scalar才判语法，后byte资源可能抢首错。root核design5/6 ASCII边界与首个问题立即报，裁定C2已是非法CSIbyte，当时Malformed；后续UTF8验证继续、samebyte资源优先不变。按SDD fix-loop准备round1/5，独立Sol/high formalregression先实际RED，再原产品作者修，根不改产品/tests。完整Linux任务继续。
 
 TASK148独立Sol/high正式test-only4093a7ab已集成c24f796，19files1071行，正常旧9bc库实际missingAPI RED1、声明syntax仅compile0从未运行、native夹具22checks和11负控0；277未来产品配置尚未执行，不投影AC148/030通过。113准备b7bb95b集成9137972，真实puremissingAPI RED1，但focus/modal/EOF/152上游缺失，113不勾/114不准入。098 fresh独立interaction_a_test_preparation Sol/high只准备A，084/088/152仍屏障。唯一Rich产品009原034685d独立082双FAIL，R14-T082-001 Important，先独立正式回归RED，再同原产品作者round1；根不改代码/测试。
+
+TASK009 round1原91c22f8/main27f9c8c独立082限定双PASS、R14T082001关闭，083已开始固定源独立执行（rootbuild/check、rich98+旧11、runtime/dynamic/session/macropositive和受影响Frame/layout等实际0，包/GUI仍在执行，尚非083PASS）。098 preparedb004fe597已集成但不关闭098；103/108独立Sol/high测试准备而非产品准入。完整Linux目标持续，下一产品149仍严格等084。
+
+TASK083独立实际FAIL R14T083001，两真实GUI t delta仅CUP第3行却第4行AN被擦；原物理PNG推翻width2逻辑模型PASS。root先读systematic-debugging，独立terminal_width_recon Sol/high完整DSR+实际重放/单变量验证👩ZWJ💻 host4/canonical2，VS16 host1/canonical2，不能全局改4/改示例/减少固定padding/永久全重绘。root候选fix-uncertain-glyph-advance 163–167：提前同一G005/G007/G010私有owner，默认device conservativeUnicode按唯一逐scalar宽度和与Cell.width一致才直出，否则整簇等宽?；逻辑/离线Unicode不改、不新生产查询、不要求程序员分支。G012/L007修未知PTY旧假设，094完整native/map/publicAPI仍后置，避免084↔094循环。当前候选待独立preflight和正式163，083/084不通过、Session149不准入；完整Linux仍活动。

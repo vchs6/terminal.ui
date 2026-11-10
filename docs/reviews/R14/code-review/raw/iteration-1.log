@@ -1,0 +1,31 @@
+[31merror[0m: expected '(' or '<', found '{'
+  [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_batch.cj:10:46:
+   [36m| [0m
+[36m10[0m [36m| [0m    public prop spans: Array<TextSpan> { get { content.clone() } }[0m
+   [36m| [0m                                             [31m^ expected '(' or '<' here[0m
+   [36m| [0m
+
+[31merror[0m: expected '(' or '<', found '{'
+  [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_result.cj:10:62:
+   [36m| [0m
+[36m10[0m [36m| [0m    public prop diagnostics: Array<AnsiTextDiagnostic> { get { issues.clone() } }[0m
+   [36m| [0m                                                             [31m^ expected '(' or '<' here[0m
+   [36m| [0m
+
+[31merror[0m: expected '(' or '<', found '{'
+  [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_batch.cj:11:62:
+   [36m| [0m
+[36m11[0m [36m| [0m    public prop diagnostics: Array<AnsiTextDiagnostic> { get { issues.clone() } }[0m
+   [36m| [0m                                                             [31m^ expected '(' or '<' here[0m
+   [36m| [0m
+
+[31merror[0m: expected '(' or '<', found '{'
+  [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/rich_text.cj:24:46:
+   [36m| [0m
+[36m24[0m [36m| [0m    public prop spans: Array<TextSpan> { get { content.clone() } }[0m
+   [36m| [0m                                             [31m^ expected '(' or '<' here[0m
+   [36m| [0m
+
+4 errors generated, 4 errors printed.
+Error: failed to compile package `cjtui.text`, return code is 1
+Error: cjpm build failed

@@ -1,0 +1,59 @@
+[31merror[0m: invalid binary operator '!=' on type 'Enum-AnsiTextState' and 'Enum-AnsiTextState'
+  [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_decoder.cj:72:23:
+   [36m| [0m
+[36m72[0m [36m| [0m            if (state != AnsiTextState.Text) { countByte(output) }[0m
+   [36m| [0m                      [31m^^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: you may want to implement 'operator func !=(right: Enum-AnsiTextState)' for type 'Enum-AnsiTextState'
+
+[31merror[0m: invalid subscript operator [] on type 'Class-Iterator<Rune>' with index type 'Int64'
+  [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_decoder.cj:80:36:
+   [36m| [0m
+[36m80[0m [36m| [0m                    let n = UInt32(text.runes()[0])[0m
+   [36m| [0m                                   [31m^^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: you may want to implement 'operator func [](index0: Int64)' for type 'Class-Iterator<Rune>'
+
+[31merror[0m: invalid binary operator '==' on type 'Enum-AnsiTextState' and 'Enum-AnsiTextState'
+  [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_decoder.cj:95:19:
+   [36m| [0m
+[36m95[0m [36m| [0m        if (state == AnsiTextState.ControlString) {[0m
+   [36m| [0m                  [31m^^ [0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: you may want to implement 'operator func ==(right: Enum-AnsiTextState)' for type 'Enum-AnsiTextState'
+
+[31merror[0m: invalid binary operator '!=' on type 'Enum-AnsiTextState' and 'Enum-AnsiTextState'
+   [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_decoder.cj:108:23:
+    [36m| [0m
+[36m108[0m [36m| [0m            if (state != AnsiTextState.Text) { issue(output, AnsiTextIssue.MalformedSequence) }[0m
+    [36m| [0m                      [31m^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: you may want to implement 'operator func !=(right: Enum-AnsiTextState)' for type 'Enum-AnsiTextState'
+
+[31merror[0m: invalid binary operator '==' on type 'Enum-AnsiTextState' and 'Enum-AnsiTextState'
+   [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_decoder.cj:112:19:
+    [36m| [0m
+[36m112[0m [36m| [0m        if (state == AnsiTextState.Escape) { escape(n, output); return }[0m
+    [36m| [0m                  [31m^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: you may want to implement 'operator func ==(right: Enum-AnsiTextState)' for type 'Enum-AnsiTextState'
+
+[31merror[0m: invalid binary operator '==' on type 'Enum-AnsiTextState' and 'Enum-AnsiTextState'
+   [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_decoder.cj:113:19:
+    [36m| [0m
+[36m113[0m [36m| [0m        if (state == AnsiTextState.Csi) { controlSequence(n, output); return }[0m
+    [36m| [0m                  [31m^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: you may want to implement 'operator func ==(right: Enum-AnsiTextState)' for type 'Enum-AnsiTextState'
+
+[31merror[0m: invalid binary operator '!=' on type 'Enum-AnsiTextState' and 'Enum-AnsiTextState'
+   [36m==>[0m /workspace/work/rich-text-implementation/source/src/text/ansi_text_decoder.cj:239:19:
+    [36m| [0m
+[36m239[0m [36m| [0m        if (state != AnsiTextState.Text) {[0m
+    [36m| [0m                  [31m^^ [0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: you may want to implement 'operator func !=(right: Enum-AnsiTextState)' for type 'Enum-AnsiTextState'
+
+7 errors generated, 7 errors printed.
+Error: failed to compile package `cjtui.text`, return code is 1
+Error: cjpm build failed

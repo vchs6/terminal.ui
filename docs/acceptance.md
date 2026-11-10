@@ -251,3 +251,13 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-162 | REQ-001/003/004/007 | TASK-162 | 原019完整证据与metadata | pending |
 
 唯一任务状态见[具体变更](../openspec/changes/implement-standard-widgets/tasks.md)，规划和探针不代表产品已完成。
+
+| ID | 需求 | 任务 | 验收证据 | 状态 |
+| --- | --- | --- | --- | --- |
+| AC-163 | REQ-004/005/007/011 | TASK-163 | 独立保守投影golden、真实旧GUI/新API RED及源hash | pending |
+| AC-164 | REQ-004/005 | TASK-164 | 同一私有Glyph policy与canonical终端投影、离线Unicode保留 | pending |
+| AC-165 | REQ-007 | TASK-165 | 固定技术diff独立spec/quality | pending |
+| AC-166 | REQ-004/005/007/011 | TASK-166 | 实际两GUI DSR/原PNG/未改行及包消费复验 | pending |
+| AC-167 | REQ-004/005/007/011 | TASK-167 | R14T083001及有限G纯子接口独立验收 | pending |
+
+163–167唯一状态在[projection tasks](../openspec/changes/fix-uncertain-glyph-advance/tasks.md)，本候选不代表实现/验收。

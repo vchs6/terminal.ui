@@ -1,0 +1,4 @@
+TASK082 review clarification, relayed by root after examining frozen design sections 5/6:
+CSI parameter bytes are 30–3F, intermediate 20–2F, final 40–7E. The first syntax/resource fault must be reported immediately and only a fault on the same byte receives resource priority. A C2 lead byte within an already-open CSI belongs to none of those byte classes. Its later A0 continuation crossing the byte budget cannot replace the already-known earlier syntax fault. This applies only to an already-open ASCII-framed sequence, not UTF-8 encoded C1 introducers in normal text.
+UTF-8 validation must continue; invalid/incomplete UTF-8 still ultimately throws InvalidUtf8 and permanently closes the decoder. Early syntax diagnosis must not release remaining bytes as text or reinterpret continuation bytes as C1.
+This clarification confirms the existing frozen contract; it does not add unknown-SGR semantics or authorize product/test edits by the reviewer.

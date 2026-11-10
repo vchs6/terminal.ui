@@ -9,3 +9,7 @@
 正式测试准备前root发现初始焦点未明：I014明确基础域初始稳定后首eligible、空域后加候选同规则，C takeFocus空层保持None/activeTarget层保留，不抢base。此是有限初态工程裁决，需限定复核再冻结098，不影响现C产品。
 
 root已采纳I015异步一次600ms、唯一decoder/writer、Unknown不改显隐、只读cursorVisibilityStatus诊断和最小Linux单调FFI。152提前为A实际writer前置；F006明确未来键盘继承和deadline/100msidle区别。仅formal候选，独立限定preflight后设计准入，当前A未实施。
+
+098独立Sol/high仅prepare原b004fe597（base d8c5be0）已集成main；35testpaths/20CJ，正常basebuild0、consumer112缺Theme/A API=BLOCKED不算strongRED，shape20源compile0从未运行，native真实PTY/clock/writer夹具selftest0四负控，94向量70驱动24待集成recipe。084/088/152/interface-map实际屏障未齐，098不勾选、099未准入。103 viewport_test_preparation和108 overlay_test_preparation Sol/high各独立目录继续仅准备，测试正式路径分别interaction_b/interaction_c；不复制内核、不假早期API通过。
+
+103准备者询问B Page大小写与wrap来源。root核input K002已有pageup/pagedown精确code并给B同文注记；物理解码仍114/117而非B新增。Theme T004已有TextWrap/Grapheme便捷成员且仅静态Text合法，当前缺actual088只记上游BLOCKED，不是新公共API缺口。

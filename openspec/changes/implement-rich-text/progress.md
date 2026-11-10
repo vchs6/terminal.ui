@@ -20,3 +20,7 @@ TASK009 BASE9bc493fe9c1943b8608be0969c0b2d5e4cfdd924, currentauthor /root/rich_t
 After009fixed: generate fullBASE..HEADreviewpackage, freshAstra/high082 noauthorselfassessment, thenSol/medium083 independentactualchecks/normalbundle/cleanpublicconsumer and actualrunPNG asaffected;084 Astra/high independentacceptance. Rootreceivesfindings→formaltestauthor→sameproductauthorfixloop; nevereditproduct/tests. After084 route Session149–152 (148testsbeingprepared) beforeGlyph andTheme; originalallLinuxtask remainsactive.
 
 TASK009固定原034685d已集成d8c5be0（local，082/083/084未通过不推新产品checkpoint）；082独立真实probe确认CSI nonASCII lead先出现但延迟到完整scalar才判语法，后byte资源可能抢首错。root核design5/6 ASCII边界与首个问题立即报，裁定C2已是非法CSIbyte，当时Malformed；后续UTF8验证继续、samebyte资源优先不变。按SDD fix-loop准备round1/5，独立Sol/high formalregression先实际RED，再原产品作者修，根不改产品/tests。完整Linux任务继续。
+
+TASK009 fix round1/5正式准入：R14-T082-001 Important，独立回归cc556f4（parent034685d）仅184行helper/main一call/README；真实产品build0、consumerbuild0/directRED1，旧11组全PASS、新98cases56failedchecks，旧源/原断言不改/构建与交付hash一致。root已机械集成，现派原rich_text_implementation_resume Sol/high只修正式finding、正常UTF8/C1/drain/永久关闭保持；修后限定审核再083/084，不停Linux。
+
+Task009 fix round1/5：1 addressed、0open；R14-T082-001由原082限定独立复核关闭，spec/quality双PASS，原034685d→91c22f8仅decoder+6行（main27f9c8c同源），正式cc556f4新98cases全部0失败/旧11组PASS、正常bundle与清包consumer开发0，原FAIL/RED保留。083 rich_text_execution Sol/medium正以固定91独立执行新矩阵/受影响回归/正常包/新清包与两真实GUI，不读作者自评；084未准入、009/082暂不勾选直到完整有限验收。
