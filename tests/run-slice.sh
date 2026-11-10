@@ -37,6 +37,7 @@ case "${1:-all}" in
     ;;
   capabilities) tests/capabilities/run.sh ;;
   composition) tests/composition/run.sh ;;
+  runtime) tests/runtime/run.sh ;;
   layout-integration)
     (cd examples/layout && cjpm build)
     node tests/integration/layout-pty.mjs "${LAYOUT_SESSION_BIN:-examples/layout/target/release/bin/main}"
@@ -60,6 +61,7 @@ case "${1:-all}" in
     "$0" colors-integration
     "$0" capabilities
     "$0" composition
+    "$0" runtime
     ;;
-  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|all]" >&2; exit 2 ;;
 esac

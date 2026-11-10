@@ -1,5 +1,9 @@
 # Linux first-slice independent tests (TASK-048)
 
+Persistent reactive runtime A+B consumers (TASK-071):
+`./tests/run-slice.sh runtime`. Their frozen contract, literal expectations,
+controlled concurrency, and scope are documented in [runtime/README.md](runtime/README.md).
+
 Frozen input: `openspec/changes/implement-linux-first-slice/design.md` at
 `09f3e513cd62fb16ae85633c11ee2d3e15bb7d52`; all expected results come from that contract.
 This is execution work, scoped to independent consumers and test facilities. There was
