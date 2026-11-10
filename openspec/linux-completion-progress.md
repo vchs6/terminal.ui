@@ -43,3 +43,5 @@ Task076–080 complete：独立080 PASS与716份原始归档逐字节/hash再核
 独立linux_final_scope_audit指出041最终全组件/M2验收与M2 Admission原完整041形成语义环。root以L005显式采用已定L002分阶段输入：124要求完整功能M1库与已冻设备子接口，原041完整AC在M2后最终汇合，仍pending；不减少008/020实际M1恢复前置。
 
 root已采纳I015异步一次600ms、唯一decoder/writer、Unknown不改显隐、只读cursorVisibilityStatus诊断和最小Linux单调FFI。152提前为A实际writer前置；F006明确未来键盘继承和deadline/100msidle区别。仅formal候选，独立限定preflight后设计准入，当前A未实施。
+
+2026-11-10 df9612e：I015/F006/L006与complete-linux-integration候选已固定，repository/OpenSpec22项通过（仅元数据）。cursor_i015_preflight与linux_closeout_preflight分别Astra/high独立限定设计核，不读作者自评；实际A/收尾产品未准入。原scope audit /workspace/work/linux-final-scope-audit/report.md/mapping.json覆盖34原项，无套件/产品通过结论。TASK113 keyboard_test_preparation Sol/high仅prepare，真实puremissingAPI RED可先做，完整focus/modal/152等未具备则不关闭113/不准入114。当前唯一产品作者仍TASK009 Sol/high，首次开发rich11组GREEN不代替082–084。
