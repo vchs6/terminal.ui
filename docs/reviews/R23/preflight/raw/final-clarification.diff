@@ -1,0 +1,26 @@
+diff --git a/docs/tasks.md b/docs/tasks.md
+index 629b2ee..6ddd9c4 100644
+--- a/docs/tasks.md
++++ b/docs/tasks.md
+@@ -568,3 +568,5 @@ Linux VT自动字形子接口支持TASK093–097唯一状态在[字形适配变
+ M2支持TASK123–147唯一状态在[incremental-rendering tasks](../openspec/changes/implement-incremental-rendering/tasks.md)，稳定031/022同变更；完整功能M1基线在全部组件/主题/输入/示例后固定，旧idle优化不冒称M2。控件支持TASK153–162唯一状态在[standard-widgets tasks](../openspec/changes/implement-standard-widgets/tasks.md)，稳定029/019同变更，SplitPane只公共Row/Column封装支持既有011，不重开已验布局；两控件单元均等117完整键盘。
+ 
+ Linux收尾原001/002/003/004/008/010/020/021/023/024/041的唯一复选框/状态在[complete-linux-integration tasks](../openspec/changes/complete-linux-integration/tasks.md)。原027继续theme，022/031继续incremental-rendering，030继续session/extensions与input的原父汇合；AC事实仍只在acceptance维护。规划preflight已独立复核59bea180，不等于产品ready或passed。
++
++实际终端宽度冲突修复TASK163–167唯一状态在[fix-uncertain-glyph-advance tasks](../openspec/changes/fix-uncertain-glyph-advance/tasks.md)。R14T083001原实际GUI失败保留；同一G005/G007/G010私有owner的纯子接口先行，完整094 native/map/publicAPI仍后置，不造084↔094环。全部当前planned，独立preflight/正式RED/实现/审核/执行/验收按该change，不因仅逻辑grid通过关闭物理失败或041/Linux。
+diff --git a/openspec/changes/fix-uncertain-glyph-advance/design.md b/openspec/changes/fix-uncertain-glyph-advance/design.md
+index 12000d7..b0b6ccf 100644
+--- a/openspec/changes/fix-uncertain-glyph-advance/design.md
++++ b/openspec/changes/fix-uncertain-glyph-advance/design.md
+@@ -19,9 +19,9 @@
+ 
+ ## A003 精确保守规则与边界
+ 
+-Unicode policy原样返回正宽簇。conservativeUnicode按已经存在的grapheme逐scalar枚举，用现唯一 `displayWidth(scalar.toString())`（unicodewidth同版本默认ambiguousWide=false）求非负和；只有sum恰等于已存Cell.width才原样输出，否则返回width个可打印ASCII?。width0仍跳过。当前Frame宽度政策为false，不新增公共宽度模式/Unicode表/分簇算法；不重新分段grapheme。checked/saturating相加，超过width可提前判不等，不能回绕后误放行；正常调用正宽预算与Frame一致。Frame已有完整文本安全验证继续是控制安全边界，不造unsafe String。
++Unicode policy原样返回正宽簇。conservativeUnicode按已经存在的grapheme逐scalar枚举，用现唯一 `displayWidth(scalar.toString())`（unicodewidth同版本默认ambiguousWide=false）求非负和；只有sum恰等于已存Cell.width才原样输出，否则返回width个可打印ASCII?。width0仍跳过。当前device/runtime采用false；公开Frame已有ambiguousWide!:Bool，包含true的构造/格网/离线Unicode行为原样保留。本conservative设备admission固定用默认false逐scalar和与所存Cell.width比较，不强改Frame参数、不重新计算Cell.width；直接同包profile用于Frame(true)时，若二者不等仍按其已存列数fallback。不新增公共宽度模式/Unicode表/分簇算法，不重新分段grapheme。checked/saturating相加，超过width可提前判不等，不能回绕后误放行；正常调用正宽预算与Frame一致。Frame已有完整文本安全验证继续是控制安全边界，不造unsafe String。
+ 
+-例：e+0301 sum1=logical1保留；界/单👩/单💻 sum2=2保留；🇨🇳按唯一库逐scalar和与logical2相同则保留（以真实库实测为准，不硬编码旗帜规则）；👩‍💻 sum4!=2→??；❤️/☀️/1️⃣ sum1!=2→??。最终golden先由独立测试作者验证实际依赖scalar值，若不同回root精确化，不能硬编码emoji清单适配示例。测试必须区分模型一致/不一致与实际host已测事实，不声称所有Font/Unicode版本宽度皆可靠。
++例：e+0301 sum1=logical1保留；界/单👩/单💻 sum2=2保留；🇨🇳按唯一库逐scalar和与logical2相同则保留（以真实库实测为准，不硬编码旗帜规则）；👩‍💻 sum4!=2→??；❤️/☀️/1️⃣ sum1!=2→??。最终golden先由独立测试作者验证实际依赖scalar值，若不同回root精确化，不能硬编码emoji清单适配示例。测试必须区分模型一致/不一致与实际host已测事实：sum相等只表示两种库计算在当前cell预算上一致，不证明未知host每个单scalar或字体的推进，不声称所有Font/Unicode版本宽度皆可靠。受支持实际配置以真实host/version/config证据冻结。
+ 
+ 样式/逻辑列数不变；不删除VS/ZWJ/重音，不NFC/NFD、不音译、不禁用全部emoji。替代是整簇原子可见呈现，不改Component/RichText/Frame.cellAt/toPlainText原业务Unicode。普通应用不写终端分支。显式离线Unicode和未来GlyphMode.Unicode仍直出canonical宽度数据；这不是对不相容host物理形状的证明。默认Auto不要求调用者覆盖。
+ 

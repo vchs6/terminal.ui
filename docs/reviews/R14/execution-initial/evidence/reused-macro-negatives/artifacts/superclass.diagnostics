@@ -1,0 +1,18 @@
+error: only one super class may appear in supertype list of class 'Bad'
+ ==> /workspace/work/runtime-implementation/source/tests/runtime/macros/negative/superclass/src/fixture.cj:8:14:
+  | 
+8 | class Bad <: Base { public func build(): Unit { Text("bad") } }
+  |              ^ 
+  | 
+note: the error originates in the macro `Component` (consider using `--debug-macro` for more info)
+ ==> /workspace/work/runtime-implementation/source/tests/runtime/macros/negative/superclass/src/fixture.cj:7:1:
+  | 
+7 |   @Component
+  |  _^
+8 | | class Bad <: Base { public func build(): Unit { Text("bad") } }
+  | |_______________________________________________________________^
+  | 
+
+1 error generated, 1 error printed.
+Error: failed to compile package `runtime_macro_superclass`, return code is 1
+Error: cjpm build failed

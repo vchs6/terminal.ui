@@ -1,0 +1,81 @@
+{
+  "id": "R14T083001",
+  "status": "FAIL observable GUI untouched row",
+  "source_commit": "91c22f82adcd2412d9509b9872ff63450ba81af9",
+  "observed_at_utc": "2026-11-10T20:53:42.184823+00:00",
+  "fact": "Original XTerm398 and XFCE/VTE screenshots after t show line4 starts two blanks then SI styles, with S under cursor block; initial/full resize screenshots line4 is complete ANSI styles. Raw delta addresses row3 only. Logical parser assuming width2 passes, so it cannot establish actual host untouched rows.",
+  "hypothesis": "Actual host ZWJ cluster presentation may advance4 columns while product width policy2 and row padding emits a full nominal row; excess2 columns wrap and erase next row. Not yet verified by cursor report.",
+  "evidence": [
+    {
+      "profile": "xterm-default",
+      "stage": "green",
+      "png": "evidence/gui-rich/xterm-default/q/example-green.png",
+      "png_sha256": "fa2359adbb17e7a11e7d9e28588751876c823272b4dc627a92b7497c245a0ff4",
+      "raw_sha256": "6363400900ee20c0b5133a9a4edc3a1614750770d055d651c43bb3b971590f1a",
+      "only_cup_rows": [
+        3
+      ],
+      "raw_contains_zwj_emoji": true
+    },
+    {
+      "profile": "xterm-default",
+      "stage": "red",
+      "png": "evidence/gui-rich/xterm-default/q/example-red.png",
+      "png_sha256": "5e6033684e3ffcb4a5d04cfb3bea1dd4c12fca20c3fe798dff5b57d07290ed6a",
+      "raw_sha256": "a09f104bf4416b748c52d476252361e5a33ef38836dd6c6fcb44784c8345b3eb",
+      "only_cup_rows": [
+        3
+      ],
+      "raw_contains_zwj_emoji": true
+    },
+    {
+      "profile": "xterm-default",
+      "stage": "resized-green",
+      "png": "evidence/gui-rich/xterm-default/q/example-resized-green.png",
+      "png_sha256": "03eb3b718b7ce174bbb67c6e6953a42599500a9012cceb46420f1b9250052c17",
+      "raw_sha256": "3f06f3a51c474042b6db7e51dce1736ab17b1b36bce9966f0fc2558fb9f2bccb",
+      "only_cup_rows": [
+        3
+      ],
+      "raw_contains_zwj_emoji": true
+    },
+    {
+      "profile": "xfce-vte",
+      "stage": "green",
+      "png": "evidence/gui-rich/xfce-vte/q/example-green.png",
+      "png_sha256": "89d43b3ad00c30d40a9a00861c512320af870529c452c3bd28d266e98e635d15",
+      "raw_sha256": "6363400900ee20c0b5133a9a4edc3a1614750770d055d651c43bb3b971590f1a",
+      "only_cup_rows": [
+        3
+      ],
+      "raw_contains_zwj_emoji": true
+    },
+    {
+      "profile": "xfce-vte",
+      "stage": "red",
+      "png": "evidence/gui-rich/xfce-vte/q/example-red.png",
+      "png_sha256": "74463f1cac8aa471b40aaa912754f37428ab473bc291556558ba6d9424ade3db",
+      "raw_sha256": "a09f104bf4416b748c52d476252361e5a33ef38836dd6c6fcb44784c8345b3eb",
+      "only_cup_rows": [
+        3
+      ],
+      "raw_contains_zwj_emoji": true
+    },
+    {
+      "profile": "xfce-vte",
+      "stage": "resized-green",
+      "png": "evidence/gui-rich/xfce-vte/q/example-resized-green.png",
+      "png_sha256": "9d35e0a17b83c1c91887a908bc0bf4263b8396b983601f921c75677a306b2c1a",
+      "raw_sha256": "3f06f3a51c474042b6db7e51dce1736ab17b1b36bce9966f0fc2558fb9f2bccb",
+      "only_cup_rows": [
+        3
+      ],
+      "raw_contains_zwj_emoji": true
+    }
+  ],
+  "action": "Reported to root; no product/formal-test edits; no final TASK083 PASS claim",
+  "failed_hosts": [
+    "xterm-default",
+    "xfce-vte"
+  ]
+}

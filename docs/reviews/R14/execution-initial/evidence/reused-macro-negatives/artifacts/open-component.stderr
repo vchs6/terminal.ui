@@ -1,0 +1,10 @@
+[31merror[0m: COMPONENT_MODIFIER: open or abstract component unsupported
+ [36m==>[0m /workspace/work/runtime-implementation/source/tests/runtime/macros/negative/open-component/src/fixture.cj:8:1:
+  [36m| [0m
+[36m8[0m [36m| [0mopen class Bad { public func build(): Unit { Text("bad") } }[0m
+  [36m| [0m[31m^^^^ remove the modifier[0m
+  [36m| [0m
+
+1 error generated, 1 error printed.
+Error: failed to compile package `runtime_macro_open_component`, return code is 1
+Error: cjpm build failed

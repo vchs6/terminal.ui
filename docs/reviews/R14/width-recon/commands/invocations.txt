@@ -1,0 +1,6 @@
+Phase1: git -C /workspace/work/terminal.ui show 91c22f82:<path>; freeze files listed in source-hashes.sha256
+Phase2: python3 /workspace/work/terminal-width-recon/commands/run.py >commands/run.stdout 2>commands/run.stderr
+Phase3: bash /workspace/work/terminal-width-recon/commands/product-width.sh >commands/product-width.stdout 2>commands/product-width.stderr
+Phase4: native logging enriched with per-query offsets/full termios; python3 /workspace/work/terminal-width-recon/commands/run.py >commands/run2.stdout 2>commands/run2.stderr
+Compile-native (driver): cc -O2 -Wall -Wextra -Werror source/width_probe.c -o source/width_probe
+Exact host/Xorg argv: raw/<profile>/metadata.json; exact CJC argv: commands/product-width-command.txt

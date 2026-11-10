@@ -55,4 +55,4 @@ full生成与changesSinceForTerminal共享该语义。允许每行临时有界�
 
 ## A008 尚待独立preflight
 
-本草稿待独立核实际scalar宽度API事实/中日韩flags示例、共享G005/G007/G010owner、profile旧调用兼容、canonical投影列与Style/结构/预算、离线Unicode语义、094/083依赖无环、正式TDD/真实host证据设计。配置/测试/产品SHA未实际产生时planned，不虚构ready或既有GUI失败解决。
+独立glyph_advance_preflight已对固定1113ba18完成上述接口/DQ检查，design_reviewed无Critical/Important，真实publicconsumer证scalar事实。163已准独立正式测试；164仍严格等固定163测试与真实RED，其他实际source/执行SHA未交付前planned。该设计结论不等于R14物理GUI失败已解决。

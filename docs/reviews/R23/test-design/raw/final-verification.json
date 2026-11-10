@@ -1,0 +1,126 @@
+[
+  {
+    "name": "final-fixture-controls",
+    "argv": [
+      "bash",
+      "tests/glyph_advance/run.sh",
+      "fixture-controls"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "start_utc": "2026-11-10T21:40:22.157765+00:00",
+    "end_utc": "2026-11-10T21:40:22.557479+00:00",
+    "exit": 0,
+    "expected_exit": 0
+  },
+  {
+    "name": "final-physical-old",
+    "argv": [
+      "bash",
+      "tests/glyph_advance/run.sh",
+      "physical-old"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "start_utc": "2026-11-10T21:40:22.557844+00:00",
+    "end_utc": "2026-11-10T21:40:22.985633+00:00",
+    "exit": 1,
+    "expected_exit": 1
+  },
+  {
+    "name": "final-fresh-zwj-oracle",
+    "argv": [
+      "python3",
+      "tests/glyph_advance/physical/verify_replay.py",
+      "--replay",
+      "tests/glyph_advance/physical/fixtures/fresh-zwj-replay",
+      "--kind",
+      "zwj"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "start_utc": "2026-11-10T21:40:22.986206+00:00",
+    "end_utc": "2026-11-10T21:40:23.107068+00:00",
+    "exit": 1,
+    "expected_exit": 1
+  },
+  {
+    "name": "final-vs16-oracle",
+    "argv": [
+      "python3",
+      "tests/glyph_advance/physical/verify_replay.py",
+      "--replay",
+      "tests/glyph_advance/physical/fixtures/public-vs16-replay",
+      "--kind",
+      "vs16"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "start_utc": "2026-11-10T21:40:23.107397+00:00",
+    "end_utc": "2026-11-10T21:40:23.224278+00:00",
+    "exit": 1,
+    "expected_exit": 1
+  },
+  {
+    "name": "final-vs16-capture-oracle",
+    "argv": [
+      "python3",
+      "tests/glyph_advance/physical/verify_capture.py",
+      "--captures",
+      "tests/glyph_advance/physical/fixtures/public-vs16-capture",
+      "--kind",
+      "vs16"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "start_utc": "2026-11-10T21:40:23.224630+00:00",
+    "end_utc": "2026-11-10T21:40:23.358793+00:00",
+    "exit": 1,
+    "expected_exit": 1
+  },
+  {
+    "name": "final-shell-syntax",
+    "argv": [
+      "bash",
+      "-n",
+      "tests/glyph_advance/run.sh",
+      "tests/glyph_advance/physical/capture.sh"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "start_utc": "2026-11-10T21:40:23.359073+00:00",
+    "end_utc": "2026-11-10T21:40:23.361092+00:00",
+    "exit": 0,
+    "expected_exit": 0
+  },
+  {
+    "name": "final-python-syntax",
+    "argv": [
+      "python3",
+      "-m",
+      "py_compile",
+      "tests/glyph_advance/physical/capture_metadata.py",
+      "tests/glyph_advance/physical/oracle.py",
+      "tests/glyph_advance/physical/replay.py",
+      "tests/glyph_advance/physical/verify_capture.py",
+      "tests/glyph_advance/physical/verify_replay.py"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "start_utc": "2026-11-10T21:40:23.361391+00:00",
+    "end_utc": "2026-11-10T21:40:23.391316+00:00",
+    "exit": 0,
+    "expected_exit": 0
+  },
+  {
+    "name": "final-native-compile",
+    "argv": [
+      "cc",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "tests/glyph_advance/physical/replay_probe.c",
+      "-o",
+      "/tmp/glyph-advance-replay-final"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "start_utc": "2026-11-10T21:40:23.391591+00:00",
+    "end_utc": "2026-11-10T21:40:23.489422+00:00",
+    "exit": 0,
+    "expected_exit": 0
+  }
+]

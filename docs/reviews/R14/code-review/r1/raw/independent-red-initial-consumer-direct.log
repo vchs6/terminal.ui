@@ -1,0 +1,119 @@
+PASS: rich text values and strict compatibility
+PASS: cross-span graphemes and literal Frame cells
+PASS: complete SGR whitelist, reset and atomic first-error goldens
+PASS: every UTF8/C1 split, scalar boundaries and literal byte offsets
+PASS: all-CSI count/token/byte boundaries and immediate first faults
+PASS: OSC/DCS/SOS/PM/APC bounded drain and legal terminators
+PASS: unknown and malformed escape framing and finish
+PASS: InvalidUtf8 error codes and permanent closure for every split
+PASS: decoder batch/result/chunk array ownership
+PASS: component/Frame precedence and shared measurement
+PASS: String/RichText binding replacement and invalidation
+FAIL: CSI UTF8 ESC [ C2 budget 3: immediate malformed: issue count 0/1
+FAIL: CSI UTF8 budget 3: valid scalar tail and final drain without second resource: issue count 1/0
+FAIL: CSI UTF8 ESC [ C2 budget 4: immediate malformed: issue count 0/1
+FAIL: CSI UTF8 budget 4: valid scalar tail and final drain without second resource: issue count 1/0
+PASS: CSI UTF8 same-byte resource priority
+FAIL: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 3 cuts case 0: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 3 cuts case 1: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 3 cuts case 2: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 3 cuts case 3: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 3 cuts case 4: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 3 cuts case 5: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 3 cuts case 6: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 3 cuts case 7: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 3 cuts case 8: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 0: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 1: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 2: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 3: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 4: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 5: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 6: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 7: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 8: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 9: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 10: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 11: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 absolute introducer offset after UTF8 text budget 3 cuts case 12: issue 0 expected MalformedSequence@4, actual SequenceTooLong@4
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 0: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 1: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 2: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 3: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 4: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 5: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 6: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 7: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 8: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 9: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 3 cuts case 10: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 0: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 1: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 2: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 3: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 4: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 5: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 6: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 7: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 8: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 9: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+FAIL: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 3 cuts case 10: issue 0 expected MalformedSequence@0, actual SequenceTooLong@0
+PASS: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 4 cuts case 0
+PASS: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 4 cuts case 1
+PASS: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 4 cuts case 2
+PASS: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 4 cuts case 3
+PASS: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 4 cuts case 4
+PASS: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 4 cuts case 5
+PASS: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 4 cuts case 6
+PASS: CSI UTF8 valid non-ASCII scalar stays in CSI drain budget 4 cuts case 7
+PASS: CSI UTF8 valid non-ASCII scalar stays in CSI drainAn exception has occurred:
+Exception: FAIL: CSI UTF8 first-fault regression
+	 at rich_text_contract::check(Bool, std.core::String)(/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/assertions.cj:6)
+	 at rich_text_contract::csiUtf8FirstFaultContract()(/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/csi_utf8_first_fault.cj:182)
+	 at rich_text_contract::main()(/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/main.cj:15)
+ budget 4 cuts case 8
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 0
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 1
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 2
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 3
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 4
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 5
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 6
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 7
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 8
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 9
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 10
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 11
+PASS: CSI UTF8 absolute introducer offset after UTF8 text budget 4 cuts case 12
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 0
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 1
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 2
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 3
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 4
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 5
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 6
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 7
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 8
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 9
+PASS: CSI UTF8 UTF8 C1 inside failed CSI cannot restart SGR budget 4 cuts case 10
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 0
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 1
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 2
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 3
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 4
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 5
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 6
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 7
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 8
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 9
+PASS: CSI UTF8 non-C1 continuation inside failed CSI cannot release body budget 4 cuts case 10
+FAIL: CSI UTF8 failure prefix before invalid UTF8: issue count 0/1
+FAIL: CSI UTF8 failure prefix before invalid UTF8: issue count 0/1
+FAIL: CSI UTF8 incomplete sequence prefix: issue count 0/1
+FAIL: CSI UTF8 complete scalar still quarantined: issue count 1/0
+FAIL: CSI UTF8 failure prefix before invalid UTF8: issue count 0/1
+FAIL: CSI UTF8 failure prefix before invalid UTF8: issue count 0/1
+FAIL: CSI UTF8 incomplete sequence prefix: issue count 0/1
+FAIL: CSI UTF8 complete scalar still quarantined: issue count 1/0
+PASS: CSI UTF8 normal UTF8 C1 introducer and ordinary continuation
+CSI UTF8 first-fault regression failures: 56

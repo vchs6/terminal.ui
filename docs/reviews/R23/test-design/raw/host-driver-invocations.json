@@ -1,0 +1,76 @@
+[
+  {
+    "argv": [
+      "python3",
+      "tests/glyph_advance/physical/replay.py",
+      "--captures",
+      "/workspace/work/glyph-advance-tests/source/tests/glyph_advance/physical/fixtures/original083",
+      "--kind",
+      "zwj",
+      "--out",
+      "/workspace/work/glyph-advance-tests/raw/old-fresh-replay"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "actual_driver_exit": 0,
+    "exit_source": "functions exec/write_stdin process completion",
+    "first_host_started_utc": "2026-11-10T21:31:16.980560+00:00",
+    "last_host_ended_utc": "2026-11-10T21:31:21.655441+00:00",
+    "time_scope": "host metadata brackets, not reconstructed wrapper start/end",
+    "raw_directory": "/workspace/work/glyph-advance-tests/raw/old-fresh-replay"
+  },
+  {
+    "argv": [
+      "python3",
+      "tests/glyph_advance/physical/replay.py",
+      "--captures",
+      "/workspace/work/glyph-advance-tests/raw/old-vs16-gui",
+      "--kind",
+      "vs16",
+      "--out",
+      "/workspace/work/glyph-advance-tests/raw/old-vs16-replay"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "actual_driver_exit": 0,
+    "exit_source": "functions exec/write_stdin process completion",
+    "first_host_started_utc": "2026-11-10T21:33:00.462123+00:00",
+    "last_host_ended_utc": "2026-11-10T21:33:05.130274+00:00",
+    "time_scope": "host metadata brackets, not reconstructed wrapper start/end",
+    "raw_directory": "/workspace/work/glyph-advance-tests/raw/old-vs16-replay"
+  },
+  {
+    "argv": [
+      "bash",
+      "tests/glyph_advance/physical/capture.sh",
+      "xterm-default",
+      "xfce-vte"
+    ],
+    "cwd": "/workspace/work/glyph-advance-tests/source",
+    "actual_driver_exit": 0,
+    "exit_source": "functions exec/write_stdin process completion",
+    "env": {
+      "CJTUI_ADVANCE_HOST": "1",
+      "CJTUI_ADVANCE_FIXTURE_DIR": "/workspace/work/glyph-advance-tests/source/tests/glyph_advance/public",
+      "CJTUI_TERMINAL_EXAMPLE_BIN": "/workspace/work/glyph-advance-tests/source/tests/glyph_advance/public/target/release/bin/main",
+      "CJTUI_ADVANCE_GUI_KEY": "/tmp/glyph-advance-gui-key",
+      "CJTUI_TERMINAL_CAPTURE_DIR": "/workspace/work/glyph-advance-tests/raw/old-vs16-gui"
+    },
+    "capture_utc_by_host": {
+      "xterm-default": {
+        "initial": "2026-11-10T21:32:16Z",
+        "green": "2026-11-10T21:32:16Z",
+        "red": "2026-11-10T21:32:17Z",
+        "resized": "2026-11-10T21:32:17Z",
+        "resized-green": "2026-11-10T21:32:17Z"
+      },
+      "xfce-vte": {
+        "initial": "2026-11-10T21:32:21Z",
+        "green": "2026-11-10T21:32:21Z",
+        "red": "2026-11-10T21:32:22Z",
+        "resized": "2026-11-10T21:32:22Z",
+        "resized-green": "2026-11-10T21:32:22Z"
+      }
+    },
+    "time_scope": "actual screenshot capture UTC and post-exit metadata UTC; no wrapper start time was retained",
+    "raw_directory": "/workspace/work/glyph-advance-tests/raw/old-vs16-gui"
+  }
+]

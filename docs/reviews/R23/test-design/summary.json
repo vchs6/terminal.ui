@@ -1,0 +1,163 @@
+{
+  "task": "TASK163",
+  "status": "formal_tests_fixed_actual_physical_RED",
+  "base": "91c22f82adcd2412d9509b9872ff63450ba81af9",
+  "contract": "1113ba186bc0ff72fd4c6c91a0e17fc3f19c69c5",
+  "test_only_sha": "614d0a2f0e33e54ecc07bd783eaeb0b9957ca557",
+  "test_manifest_sha256": "37dde6bf38f220d9188379a06a233e138bf7161acb8a754b8b14cb7194fbcfeb",
+  "test_only_files": 240,
+  "artifact_manifest_entries_excluding_self": 239,
+  "fixture_original_entries": 220,
+  "original_PNG_count": 70,
+  "full_raw_DSR_count": 136,
+  "public_executed_PASS_checks": 34,
+  "private_declared_test_groups": 9,
+  "old_existing_device_executed_tests": 1,
+  "old_existing_device_framework_result": {
+    "passed": 0,
+    "error": 1,
+    "failed": 0,
+    "cause": "Explicit expected device byte assertion; normal CJPM test compiled and executed"
+  },
+  "full_new_API_missing_diagnostics": {
+    "undeclared_projectTerminalGlyph": 11,
+    "unknown_named_glyphPolicy": 6,
+    "undeclared_GlyphRenderPolicy": 4,
+    "missing_profile_glyphPolicy": 3
+  },
+  "physical_old_oracle_observations": 16,
+  "real_fixture_causal_controls": {
+    "accepted": 8,
+    "rejected": 4
+  },
+  "fresh_product_byte_replay_observations": {
+    "ZWJ_failures": 4,
+    "VS16_failures": 4
+  },
+  "commands": {
+    "old-root-build": {
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/glyph-advance-tests/source",
+      "start_utc": "2026-11-10T21:23:12.186318+00:00",
+      "end_utc": "2026-11-10T21:24:24.613093+00:00",
+      "exit": 0
+    },
+    "old-public-final": {
+      "argv": [
+        "bash",
+        "tests/glyph_advance/run.sh",
+        "public"
+      ],
+      "cwd": "/workspace/work/glyph-advance-tests/source",
+      "start_utc": "2026-11-10T21:31:09.391066+00:00",
+      "end_utc": "2026-11-10T21:31:55.893042+00:00",
+      "exit": 0
+    },
+    "old-existing-device": {
+      "argv": [
+        "bash",
+        "tests/glyph_advance/run.sh",
+        "existing-device"
+      ],
+      "cwd": "/workspace/work/glyph-advance-tests/source",
+      "start_utc": "2026-11-10T21:31:55.893636+00:00",
+      "end_utc": "2026-11-10T21:32:49.973925+00:00",
+      "exit": 1
+    },
+    "old-internal-final": {
+      "argv": [
+        "bash",
+        "tests/glyph_advance/run.sh",
+        "internal"
+      ],
+      "cwd": "/workspace/work/glyph-advance-tests/source",
+      "env": {
+        "CJTUI_ADVANCE_ALL_ERRORS": "1"
+      },
+      "start_utc": "2026-11-10T21:34:15.769476+00:00",
+      "end_utc": "2026-11-10T21:35:09.627669+00:00",
+      "exit": 1
+    },
+    "final-fixture-controls": {
+      "name": "final-fixture-controls",
+      "argv": [
+        "bash",
+        "tests/glyph_advance/run.sh",
+        "fixture-controls"
+      ],
+      "cwd": "/workspace/work/glyph-advance-tests/source",
+      "start_utc": "2026-11-10T21:40:22.157765+00:00",
+      "end_utc": "2026-11-10T21:40:22.557479+00:00",
+      "exit": 0,
+      "expected_exit": 0
+    },
+    "final-physical-old": {
+      "name": "final-physical-old",
+      "argv": [
+        "bash",
+        "tests/glyph_advance/run.sh",
+        "physical-old"
+      ],
+      "cwd": "/workspace/work/glyph-advance-tests/source",
+      "start_utc": "2026-11-10T21:40:22.557844+00:00",
+      "end_utc": "2026-11-10T21:40:22.985633+00:00",
+      "exit": 1,
+      "expected_exit": 1
+    },
+    "final-fresh-zwj-oracle": {
+      "name": "final-fresh-zwj-oracle",
+      "argv": [
+        "python3",
+        "tests/glyph_advance/physical/verify_replay.py",
+        "--replay",
+        "tests/glyph_advance/physical/fixtures/fresh-zwj-replay",
+        "--kind",
+        "zwj"
+      ],
+      "cwd": "/workspace/work/glyph-advance-tests/source",
+      "start_utc": "2026-11-10T21:40:22.986206+00:00",
+      "end_utc": "2026-11-10T21:40:23.107068+00:00",
+      "exit": 1,
+      "expected_exit": 1
+    },
+    "final-vs16-oracle": {
+      "name": "final-vs16-oracle",
+      "argv": [
+        "python3",
+        "tests/glyph_advance/physical/verify_replay.py",
+        "--replay",
+        "tests/glyph_advance/physical/fixtures/public-vs16-replay",
+        "--kind",
+        "vs16"
+      ],
+      "cwd": "/workspace/work/glyph-advance-tests/source",
+      "start_utc": "2026-11-10T21:40:23.107397+00:00",
+      "end_utc": "2026-11-10T21:40:23.224278+00:00",
+      "exit": 1,
+      "expected_exit": 1
+    },
+    "final-vs16-capture-oracle": {
+      "name": "final-vs16-capture-oracle",
+      "argv": [
+        "python3",
+        "tests/glyph_advance/physical/verify_capture.py",
+        "--captures",
+        "tests/glyph_advance/physical/fixtures/public-vs16-capture",
+        "--kind",
+        "vs16"
+      ],
+      "cwd": "/workspace/work/glyph-advance-tests/source",
+      "start_utc": "2026-11-10T21:40:23.224630+00:00",
+      "end_utc": "2026-11-10T21:40:23.358793+00:00",
+      "exit": 1,
+      "expected_exit": 1
+    }
+  },
+  "product_changed": false,
+  "old_tests_changed": false,
+  "new_product_physical_pass": false,
+  "verified_utc": "2026-11-10T21:41:42.112748+00:00"
+}

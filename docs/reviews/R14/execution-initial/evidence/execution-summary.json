@@ -1,0 +1,365 @@
+{
+  "verified_at_utc": "2026-11-10T20:54:31.801746+00:00",
+  "fresh_results": [
+    {
+      "name": "bundle-warning-audit",
+      "exit": 0,
+      "start": "2026-11-10T20:49:15Z",
+      "end": "2026-11-10T20:49:15Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "python3 commands/audit-bundle-warnings.py",
+      "stdout_sha256": "7b55bd70efad37e7c725d9871f54785a2f4e01afed28363c6cdf50796be8b2e1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clean-dependency-check",
+      "exit": 0,
+      "start": "2026-11-10T20:50:12Z",
+      "end": "2026-11-10T20:50:12Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "python3 commands/check-clean-dependencies.py",
+      "stdout_sha256": "5dc10325048f7037133c360de5a9b99a93e53ed0616c3cb1ccc05b95ae1c8d35",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "versions",
+      "exit": 0,
+      "start": "2026-11-10T20:37:11Z",
+      "end": "2026-11-10T20:37:11Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "bash -c cjc\\ --version\\;\\ cjpm\\ --version\\;\\ node\\ --version\\;\\ gcc\\ --version\\;\\ uname\\ -a",
+      "stdout_sha256": "f7738552bccac9faf098ca9533fa3f4ac396d216abade69bd0873b278fc45491",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "root-build",
+      "exit": 0,
+      "start": "2026-11-10T20:37:11Z",
+      "end": "2026-11-10T20:38:23Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "cjpm build",
+      "stdout_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "root-check",
+      "exit": 0,
+      "start": "2026-11-10T20:38:23Z",
+      "end": "2026-11-10T20:38:23Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "cjpm check",
+      "stdout_sha256": "d6c857617545ecf52e3d66a4ab63d6a39333f58e06c26f32b1f3bd24ad6ebd12",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "rich-build",
+      "exit": 0,
+      "start": "2026-11-10T20:38:23Z",
+      "end": "2026-11-10T20:39:10Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "bash -c cd\\ tests/rich-text\\ \\&\\&\\ cjpm\\ build",
+      "stdout_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "rich-direct",
+      "exit": 0,
+      "start": "2026-11-10T20:39:10Z",
+      "end": "2026-11-10T20:39:11Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "env TERM=dumb COLORTERM= timeout 60s tests/rich-text/target/release/bin/main",
+      "stdout_sha256": "28e6b836219f504ec8d7351a84f0b67123d20e627cd2e004052d8573b08d81a8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "dynamic-build",
+      "exit": 0,
+      "start": "2026-11-10T20:39:11Z",
+      "end": "2026-11-10T20:39:58Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "bash -c cd\\ tests/dynamic\\ \\&\\&\\ cjpm\\ build",
+      "stdout_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "dynamic-direct",
+      "exit": 0,
+      "start": "2026-11-10T20:39:58Z",
+      "end": "2026-11-10T20:39:58Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "env TERM=dumb COLORTERM= timeout 45s tests/dynamic/target/release/bin/main",
+      "stdout_sha256": "9a7f38dbf5a60d5322eb44496c8163fe3696a849122fb2e015b78950837a9545",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "core-build",
+      "exit": 0,
+      "start": "2026-11-10T20:39:58Z",
+      "end": "2026-11-10T20:40:41Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "bash -c cd\\ tests/runtime\\ \\&\\&\\ cjpm\\ build",
+      "stdout_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "stderr_sha256": "67d4508217173b3ed0b7e66c56946563e46044e16b4704cfb2216f161beb9803"
+    },
+    {
+      "name": "core-direct",
+      "exit": 0,
+      "start": "2026-11-10T20:40:41Z",
+      "end": "2026-11-10T20:40:41Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "env TERM=dumb COLORTERM= timeout 45s tests/runtime/target/release/bin/main",
+      "stdout_sha256": "671540a775a3d1b20c408b95fea18954917b67510ccd2adb5af19e6009174951",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "runtime-session",
+      "exit": 0,
+      "start": "2026-11-10T20:40:41Z",
+      "end": "2026-11-10T20:41:29Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "tests/runtime/session/run.sh",
+      "stdout_sha256": "853ce27d464067a2dc88bf1f0688cd2a76f39d588f5873a91984f20010c9ed96",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "macro-positive-build",
+      "exit": 0,
+      "start": "2026-11-10T20:41:29Z",
+      "end": "2026-11-10T20:42:18Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "bash -c cd\\ tests/runtime/macros/positive\\ \\&\\&\\ cjpm\\ build",
+      "stdout_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "stderr_sha256": "e8bf076b9fb5417ce218cdc6c608e5e90d4c46099fe83c3daf65fd68e6d1de87"
+    },
+    {
+      "name": "macro-positive-direct",
+      "exit": 0,
+      "start": "2026-11-10T20:42:18Z",
+      "end": "2026-11-10T20:42:18Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "env TERM=dumb COLORTERM= timeout 45s tests/runtime/macros/positive/target/release/bin/main",
+      "stdout_sha256": "b0a8c1fc36aca5f27254e48756cce1b6b5f8d533babfdea5a1f8b0df1b38ac80",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "contract",
+      "exit": 0,
+      "start": "2026-11-10T20:42:18Z",
+      "end": "2026-11-10T20:43:04Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "tests/run-slice.sh contract",
+      "stdout_sha256": "704c5498949ed91a96e3f8f3633ef20252f9dfe22b2cabbc37537c20bfdaf27f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "coordinates",
+      "exit": 0,
+      "start": "2026-11-10T20:43:04Z",
+      "end": "2026-11-10T20:43:50Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "tests/run-slice.sh coordinates",
+      "stdout_sha256": "7efbff069d3c45084c704191326c46727103dcd1eee20402f5c7c71a525e0df5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "layout",
+      "exit": 0,
+      "start": "2026-11-10T20:43:50Z",
+      "end": "2026-11-10T20:44:37Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "tests/run-slice.sh layout",
+      "stdout_sha256": "3c63cbef0a59a5a3716ecf337866aeb8931ed98d14648826e95a791c2b601ddb",
+      "stderr_sha256": "e8afb204dd1c4490bbfc526c136de7ebc6e475ea775b8620c3081fee3f5e2ac9"
+    },
+    {
+      "name": "decoration",
+      "exit": 0,
+      "start": "2026-11-10T20:44:37Z",
+      "end": "2026-11-10T20:45:25Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "tests/run-slice.sh decoration",
+      "stdout_sha256": "b75fdf94f8f6f8d4f9c6eabbf4c17672e0cde7e67f1c021d001509fc091e0961",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "composition",
+      "exit": 0,
+      "start": "2026-11-10T20:45:25Z",
+      "end": "2026-11-10T20:46:19Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "tests/run-slice.sh composition",
+      "stdout_sha256": "64f5718da915b329b40b5a628b90ea6bb9d2f38d5a5145ae08b8295ad4a1d882",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "colors",
+      "exit": 0,
+      "start": "2026-11-10T20:46:19Z",
+      "end": "2026-11-10T20:47:07Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "tests/run-slice.sh colors",
+      "stdout_sha256": "e9a82b20e6d781a4c7e71a90676bb6da1bbd5c444d49ee0f942e8dc0b278c49f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "rich-example-build",
+      "exit": 0,
+      "start": "2026-11-10T20:47:07Z",
+      "end": "2026-11-10T20:47:56Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "bash -c cd\\ examples/rich-text\\ \\&\\&\\ cjpm\\ build",
+      "stdout_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "rich-example-smoke",
+      "exit": 0,
+      "start": "2026-11-10T20:47:56Z",
+      "end": "2026-11-10T20:47:56Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "env TERM=dumb COLORTERM= timeout 45s examples/rich-text/target/release/bin/main --smoke",
+      "stdout_sha256": "23f528067fd6e5cd6a31293eef107909d059d4f96add79f7f5c30acc56dc550c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "bundle",
+      "exit": 0,
+      "start": "2026-11-10T20:47:56Z",
+      "end": "2026-11-10T20:48:50Z",
+      "cwd": "/workspace/work/rich-text-execution/source",
+      "command": "cjpm bundle",
+      "stdout_sha256": "a4720818898e3cbb4b0f869076ad6badce779210e25538fe9974e9a91f999960",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clean-prepare",
+      "exit": 0,
+      "start": "2026-11-10T20:48:50Z",
+      "end": "2026-11-10T20:48:50Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "python3 commands/prepare-clean.py",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clean-root-build",
+      "exit": 0,
+      "start": "2026-11-10T20:48:50Z",
+      "end": "2026-11-10T20:49:59Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "bash -c cd\\ \\\"\\$1\\\"\\ \\&\\&\\ cjpm\\ build bash /workspace/work/rich-text-execution/clean-product/cjtui-0.0.0",
+      "stdout_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clean-root-check",
+      "exit": 0,
+      "start": "2026-11-10T20:49:59Z",
+      "end": "2026-11-10T20:50:00Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "bash -c cd\\ \\\"\\$1\\\"\\ \\&\\&\\ cjpm\\ check bash /workspace/work/rich-text-execution/clean-product/cjtui-0.0.0",
+      "stdout_sha256": "d6c857617545ecf52e3d66a4ab63d6a39333f58e06c26f32b1f3bd24ad6ebd12",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clean-rich-build",
+      "exit": 0,
+      "start": "2026-11-10T20:50:00Z",
+      "end": "2026-11-10T20:50:43Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "bash -c cd\\ clean-consumers/tests/rich-text\\ \\&\\&\\ cjpm\\ build",
+      "stdout_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clean-rich-direct",
+      "exit": 0,
+      "start": "2026-11-10T20:50:43Z",
+      "end": "2026-11-10T20:50:44Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "env TERM=dumb COLORTERM= timeout 60s clean-consumers/tests/rich-text/target/release/bin/main",
+      "stdout_sha256": "28e6b836219f504ec8d7351a84f0b67123d20e627cd2e004052d8573b08d81a8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clean-example-build",
+      "exit": 0,
+      "start": "2026-11-10T20:50:44Z",
+      "end": "2026-11-10T20:51:41Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "bash -c cd\\ \\\"\\$1/examples/rich-text\\\"\\ \\&\\&\\ cjpm\\ build bash /workspace/work/rich-text-execution/clean-product/cjtui-0.0.0",
+      "stdout_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "clean-example-smoke",
+      "exit": 0,
+      "start": "2026-11-10T20:51:41Z",
+      "end": "2026-11-10T20:51:41Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "env TERM=dumb COLORTERM= timeout 45s /workspace/work/rich-text-execution/clean-product/cjtui-0.0.0/examples/rich-text/target/release/bin/main --smoke",
+      "stdout_sha256": "23f528067fd6e5cd6a31293eef107909d059d4f96add79f7f5c30acc56dc550c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "gui-rich-command",
+      "exit": 0,
+      "start": "2026-11-10T20:51:56Z",
+      "end": "2026-11-10T20:52:02Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "commands/gui-rich.sh xterm-default xfce-vte",
+      "stdout_sha256": "e169bc45606edc21f10f77ab94d1151d6b49184000b2bf91413c6d25dea30251",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "gui-grid",
+      "exit": 0,
+      "start": "2026-11-10T20:52:07Z",
+      "end": "2026-11-10T20:52:07Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "node commands/verify-rich-grid.mjs",
+      "stdout_sha256": "80d8528638ef3b6bbe6e91356a5a25d0d4b8079ec0e29ccd2d3e1cd196649936",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "gui-finalize",
+      "exit": 0,
+      "start": "2026-11-10T20:52:16Z",
+      "end": "2026-11-10T20:52:16Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "python3 commands/finalize-gui.py",
+      "stdout_sha256": "1dbcc472944fa035440db5d0fef8e0e5c98dc3acc5d19e15507a200fef78e33e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "provenance",
+      "exit": 0,
+      "start": "2026-11-10T20:41:20Z",
+      "end": "2026-11-10T20:41:21Z",
+      "cwd": "/workspace/work/rich-text-execution",
+      "command": "python3 commands/audit-provenance.py",
+      "stdout_sha256": "18c4ee5330524707cf043eb5e41906dabe4b5c5cf42da59ffdec844f188ec5f5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "whole-archive-boundary",
+      "exit": 1,
+      "classification": "known future whole-product scope failure; not TASK083 rich package consumer failure"
+    }
+  ],
+  "rich_old_groups": 11,
+  "rich_new_cases": 98,
+  "rich_failures": 0,
+  "clean_rich_old_groups": 11,
+  "clean_rich_new_cases": 98,
+  "clean_rich_failures": 0,
+  "macro_negative_reused_cases": 15,
+  "actual_gui_hosts": 2,
+  "gui_stages_per_host": 5,
+  "actual_gui_visible_failed_hosts": 2,
+  "overall_verdict": "FAIL",
+  "blocking_finding": "R14T083001",
+  "raw_model_grid_pass_is_not_actual_host_pass": true,
+  "source_unchanged": true,
+  "strict_json": true
+}

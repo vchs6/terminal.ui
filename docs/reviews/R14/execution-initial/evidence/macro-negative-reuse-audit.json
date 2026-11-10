@@ -1,0 +1,127 @@
+{
+  "baseline": "f07ff63303071764ea4acef5ba547d617e9d9a7c",
+  "source_diff": [],
+  "cases": [
+    {
+      "name": "init-return",
+      "actual_exit": 1,
+      "diagnostic_sha256": "8e5ba87e0d1ad8088ceb63b44c851ff1cf24fea6abb45631f1e8f99e8450ab27",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "return|constructor|init",
+      "matched": true
+    },
+    {
+      "name": "open-component",
+      "actual_exit": 1,
+      "diagnostic_sha256": "cbe6e0dd944177d962e6994a8b119eb495cf438c07928c93eee35e7af66c31b2",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "open|component|Component",
+      "matched": true
+    },
+    {
+      "name": "abstract-component",
+      "actual_exit": 1,
+      "diagnostic_sha256": "34f29b173e2700b9af0513b0756d947805408962260cf3cbd1b0ff03d5c2eb05",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "abstract|component|Component",
+      "matched": true
+    },
+    {
+      "name": "superclass",
+      "actual_exit": 1,
+      "diagnostic_sha256": "463db766fe25b1e9b55e398868558e1bdb1a0ae8bd140db724819e3fada58c7b",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "super|inherit|Base|component|Component",
+      "matched": true
+    },
+    {
+      "name": "delegating-init",
+      "actual_exit": 1,
+      "diagnostic_sha256": "085de6aea1802806c44ea7933bdeed621943976b4565ebd34421217e51f5e894",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "delegat|this|constructor|init",
+      "matched": true
+    },
+    {
+      "name": "state-let",
+      "actual_exit": 1,
+      "diagnostic_sha256": "a0b28d38812e67c3e13ec9f5137ea53b80dd6934cac18f2232baa461fc108f86",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "State|state|let|var|mutable",
+      "matched": true
+    },
+    {
+      "name": "state-static",
+      "actual_exit": 1,
+      "diagnostic_sha256": "43b6258e0afac2fd46c252be5dd4509e6c9cfbd272b75155b88ccb7fc6a2112b",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "State|state|static|instance",
+      "matched": true
+    },
+    {
+      "name": "state-no-type",
+      "actual_exit": 1,
+      "diagnostic_sha256": "8ada5caced2dc571ca317e1e72f2e6d5319cad371661d913f642de193ef62708",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "State|state|type|explicit",
+      "matched": true
+    },
+    {
+      "name": "state-no-initial",
+      "actual_exit": 1,
+      "diagnostic_sha256": "8032e01fc507ed7c168dbaa434f5facbedf99b26a7b8b3065f345fc1f874a9f1",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "State|state|initial|value",
+      "matched": true
+    },
+    {
+      "name": "state-duplicate",
+      "actual_exit": 1,
+      "diagnostic_sha256": "ffb8381300fb3e73d124f217357b24f87fc2baf0160f734321eee896d6ec1328",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "State|state|repeat|duplicate",
+      "matched": true
+    },
+    {
+      "name": "state-nonmember",
+      "actual_exit": 1,
+      "diagnostic_sha256": "d4a82f89b78beb8f6c46ef05f9020f2f2bf7936744b08db284e508eda0f8065a",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "State|state|member|instance",
+      "matched": true
+    },
+    {
+      "name": "finish-call",
+      "actual_exit": 1,
+      "diagnostic_sha256": "82f36fa0e1aae173574ec8a56bd4d86332d5e4a1e34621700c6454098034c149",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "finishConstruction|reserved|explicit|conflict",
+      "matched": true
+    },
+    {
+      "name": "finish-name",
+      "actual_exit": 1,
+      "diagnostic_sha256": "fea7f18e88190b19e153e746320f9c44a8c76d4f88596374d7eec7ba5e199067",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "finishConstruction|reserved|conflict|override",
+      "matched": true
+    },
+    {
+      "name": "state-private",
+      "actual_exit": 1,
+      "diagnostic_sha256": "1efe59cc9339a44fdb7ea0d6c9e741412d75565ba70136a126837edaae38aaa5",
+      "expected_location": "main.cj",
+      "expected_pattern": "hidden|private|accessible",
+      "matched": true
+    },
+    {
+      "name": "bind-type",
+      "actual_exit": 1,
+      "diagnostic_sha256": "2000954ba2c335e9b7fdb7cf919e95522193e8b451e25a8d7bea1b9a35054046",
+      "expected_location": "fixture.cj",
+      "expected_pattern": "String|Int|match|type",
+      "matched": true
+    }
+  ],
+  "reason": "unchanged macro parser/expander and negative fixtures; same SDK1.2.0, OS ABI and source dependency versions; positive public consumer freshly executed for changed product integration"
+}

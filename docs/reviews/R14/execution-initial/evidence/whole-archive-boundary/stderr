@@ -1,0 +1,11 @@
+file:///workspace/work/rich-text-execution/source/scripts/check-bundle.mjs:20
+for (const p of required) if (!paths.includes(p)) throw new Error('Incomplete product bundle: '+p);
+                                                        ^
+
+Error: Incomplete product bundle: examples/composition/cjpm.toml
+    at file:///workspace/work/rich-text-execution/source/scripts/check-bundle.mjs:20:57
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.22.1

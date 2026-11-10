@@ -1,0 +1,1736 @@
+{
+  "note": "Additive scoped-r1 independent code review only. Initial FAIL archive remains untouched. Scoped review conclusions do not overwrite physical execution failure or claim full task acceptance.",
+  "copies": [
+    {
+      "source": "/workspace/work/rich-text-review/scoped-r1.md",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/scoped-r1.md",
+      "relative_path": "scoped-r1.md",
+      "sha256": "73aa0b90190b63038b18cd10b7e25d24bdb6b89f5dd689b216ee20fcb2de6a65"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/scoped-r1-findings.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/scoped-r1-findings.json",
+      "relative_path": "scoped-r1-findings.json",
+      "sha256": "a08a1d7abeb7aab36f63099b75535cf9c7cb05dbd40fe17ecefe5d6354235ceb"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/scoped-r1-sourcehashes.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/scoped-r1-sourcehashes.json",
+      "relative_path": "scoped-r1-sourcehashes.json",
+      "sha256": "7034a1414ff49b5e2a6be4e9b5a2f0464da5300067e2a5a96e4747fe12e34146"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/scoped-r1-SHA256SUMS",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/scoped-r1-SHA256SUMS",
+      "relative_path": "scoped-r1-SHA256SUMS",
+      "sha256": "3b66cef45a55e6fab4155eac1c94815f03529d6b4d378bc474da17f4b9e8b4fe"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/scoped-r1-manifest-verification.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/scoped-r1-manifest-verification.log",
+      "relative_path": "scoped-r1-manifest-verification.log",
+      "sha256": "da7ace2197b5ac96443ddedd57a76183a8ff607427fa572e600c1a5a3b7893a5"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/audit.mjs",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/audit.mjs",
+      "relative_path": "r1/audit.mjs",
+      "sha256": "6e3a2b895bbfa66c417aa80cb3f6e1ff26618c446536b9d28d38e01811d7b603"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/audit.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/audit.log",
+      "relative_path": "r1/raw/audit.log",
+      "sha256": "35eb30a35c3c751f08478bbf5d348928658ee90aa5933abad47856ff74451932"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/clean-consumer-manifest.diff",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/clean-consumer-manifest.diff",
+      "relative_path": "r1/raw/clean-consumer-manifest.diff",
+      "sha256": "318bc22930b03daf5f9db4848c5dd4c1e123b716dd7f1ab2ea67cebcc25c4ef8"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/clean-consumer-source.diff",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/clean-consumer-source.diff",
+      "relative_path": "r1/raw/clean-consumer-source.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/clean-product-source.diff",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/clean-product-source.diff",
+      "relative_path": "r1/raw/clean-product-source.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/clean-source-comparison.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/clean-source-comparison.log",
+      "relative_path": "r1/raw/clean-source-comparison.log",
+      "sha256": "54daab5ecf77b0b1e7478a7e65f55b5c87731a75d31cb594de369f7072b6b1ed"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/environment-check.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/environment-check.log",
+      "relative_path": "r1/raw/environment-check.log",
+      "sha256": "cb834b15f2388b7bd990dae4c34ce2e95540c8056462eaa3b2a1e0fd8f7ea018"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/final-artifact-check.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/final-artifact-check.log",
+      "relative_path": "r1/raw/final-artifact-check.log",
+      "sha256": "d8dbf14be79d1b5f2f0ae1c8d475484a2df4067b171bccc5e4eadee43d08218c"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/final-artifacts.sha256",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/final-artifacts.sha256",
+      "relative_path": "r1/raw/final-artifacts.sha256",
+      "sha256": "69b38828071cdf85325d1ef00456794da6819c262c0d728cb4cf1950c48ff9cf"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/formal-test-check.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/formal-test-check.log",
+      "relative_path": "r1/raw/formal-test-check.log",
+      "sha256": "d21fab6822176bab87d93e07f24b91fb3e9dc24f8a23c8f7c1c411e552d469ce"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/formal-tests.sha256",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/formal-tests.sha256",
+      "relative_path": "r1/raw/formal-tests.sha256",
+      "sha256": "47800fafce7a08fcd71915c07e85a22d8dcabcd90ab470c06ef1acc66e16c54b"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/independent-red-commands.md",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-commands.md",
+      "relative_path": "r1/raw/independent-red-commands.md",
+      "sha256": "b985a4081e0406d22d503361cd7d9bf9dbca1f295002b0502c08f64017772de1"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/independent-red-initial-consumer-build.exit",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-initial-consumer-build.exit",
+      "relative_path": "r1/raw/independent-red-initial-consumer-build.exit",
+      "sha256": "19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/independent-red-initial-consumer-build.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-initial-consumer-build.log",
+      "relative_path": "r1/raw/independent-red-initial-consumer-build.log",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/independent-red-initial-consumer-direct.exit",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-initial-consumer-direct.exit",
+      "relative_path": "r1/raw/independent-red-initial-consumer-direct.exit",
+      "sha256": "cf205dbb8cea84897b488abcc281bf96698d5e94b1096b16657b4caba9082a22"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/independent-red-initial-consumer-direct.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-initial-consumer-direct.log",
+      "relative_path": "r1/raw/independent-red-initial-consumer-direct.log",
+      "sha256": "05c7bf31df475a73f80292e9964e257de796da7faf03bf46eba7185f4b40c36c"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/independent-red-regression-final.sha256",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-regression-final.sha256",
+      "relative_path": "r1/raw/independent-red-regression-final.sha256",
+      "sha256": "cee116a7ddfcf116f4862d6f3a17bbe45f97b4824f9ceaf46c496c070c7e8336"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/independent-red-source-final.sha256",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-source-final.sha256",
+      "relative_path": "r1/raw/independent-red-source-final.sha256",
+      "sha256": "fbf7c303e39a92513e49681f511137b173cb48d0f2f6bb90cc3be6d3b0f0742b"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/integrated-source-diff.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/integrated-source-diff.log",
+      "relative_path": "r1/raw/integrated-source-diff.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/log-audit.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/log-audit.json",
+      "relative_path": "r1/raw/log-audit.json",
+      "sha256": "53f2cb762fa0c1dccc78176d33a315214cb31b864cbaf5003b99ce3d8f7648c4"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/prior-evidence-preserved.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/prior-evidence-preserved.log",
+      "relative_path": "r1/raw/prior-evidence-preserved.log",
+      "sha256": "fdf71aaeb696c3556a3c1be4ac8eb49c7ad4dcb5a5d2eb99cbe832b95a05af50"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/product-fix.diff",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/product-fix.diff",
+      "relative_path": "r1/raw/product-fix.diff",
+      "sha256": "29110a07c1e9502419347460d1a0e29f421ae7412b9c083a3800eade3c3b90df"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/r1-bundle.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-bundle.log",
+      "relative_path": "r1/raw/r1-bundle.log",
+      "sha256": "6c47240693c4cbe130231a254b8cb062db0b67484c3e2bb695d72e8a2080092f"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/r1-bundle.meta",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-bundle.meta",
+      "relative_path": "r1/raw/r1-bundle.meta",
+      "sha256": "2479794670ff27a5b8b794d5c75b599d3378db29d5bc93304c9ca88aa80a9c60"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/r1-clean-consumer.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-clean-consumer.log",
+      "relative_path": "r1/raw/r1-clean-consumer.log",
+      "sha256": "042357d12609b55349088ad56386a6f2013db5c1ebb5d52a630772c32438478d"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/r1-clean-consumer.meta",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-clean-consumer.meta",
+      "relative_path": "r1/raw/r1-clean-consumer.meta",
+      "sha256": "ae386652dbcd7537b44ae6ba4f4df7d56a5c006eafdd771c2563454eced14525"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/r1-green.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-green.log",
+      "relative_path": "r1/raw/r1-green.log",
+      "sha256": "042357d12609b55349088ad56386a6f2013db5c1ebb5d52a630772c32438478d"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/r1-green.meta",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-green.meta",
+      "relative_path": "r1/raw/r1-green.meta",
+      "sha256": "7ddc527cceeaa2925357f516b101dbf43ace8e297a7ebb1fcf5a7b8d1d738674"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/r1-red.log",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-red.log",
+      "relative_path": "r1/raw/r1-red.log",
+      "sha256": "f060eff6c04eb40027d035fc86a371a3a37dfbfbbba27d9cc24bfac7dae4f30e"
+    },
+    {
+      "source": "/workspace/work/rich-text-review/r1/raw/r1-red.meta",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-red.meta",
+      "relative_path": "r1/raw/r1-red.meta",
+      "sha256": "5f7bb653ceb32843011dc988e9fa71f91c5411caaea71323d0513a7493cfbc21"
+    }
+  ],
+  "manifest_reference_mapping": [
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/audit.mjs",
+      "external_path": "/workspace/work/rich-text-review/r1/audit.mjs",
+      "sha256": "6e3a2b895bbfa66c417aa80cb3f6e1ff26618c446536b9d28d38e01811d7b603",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/audit.mjs",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/audit.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/audit.log",
+      "sha256": "35eb30a35c3c751f08478bbf5d348928658ee90aa5933abad47856ff74451932",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/audit.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/clean-consumer-manifest.diff",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/clean-consumer-manifest.diff",
+      "sha256": "318bc22930b03daf5f9db4848c5dd4c1e123b716dd7f1ab2ea67cebcc25c4ef8",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/clean-consumer-manifest.diff",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/clean-consumer-source.diff",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/clean-consumer-source.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/clean-consumer-source.diff",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/clean-product-source.diff",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/clean-product-source.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/clean-product-source.diff",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/clean-source-comparison.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/clean-source-comparison.log",
+      "sha256": "54daab5ecf77b0b1e7478a7e65f55b5c87731a75d31cb594de369f7072b6b1ed",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/clean-source-comparison.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/environment-check.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/environment-check.log",
+      "sha256": "cb834b15f2388b7bd990dae4c34ce2e95540c8056462eaa3b2a1e0fd8f7ea018",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/environment-check.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/final-artifact-check.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/final-artifact-check.log",
+      "sha256": "d8dbf14be79d1b5f2f0ae1c8d475484a2df4067b171bccc5e4eadee43d08218c",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/final-artifact-check.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/final-artifacts.sha256",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/final-artifacts.sha256",
+      "sha256": "69b38828071cdf85325d1ef00456794da6819c262c0d728cb4cf1950c48ff9cf",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/final-artifacts.sha256",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/formal-test-check.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/formal-test-check.log",
+      "sha256": "d21fab6822176bab87d93e07f24b91fb3e9dc24f8a23c8f7c1c411e552d469ce",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/formal-test-check.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/formal-tests.sha256",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/formal-tests.sha256",
+      "sha256": "47800fafce7a08fcd71915c07e85a22d8dcabcd90ab470c06ef1acc66e16c54b",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/formal-tests.sha256",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/independent-red-commands.md",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/independent-red-commands.md",
+      "sha256": "b985a4081e0406d22d503361cd7d9bf9dbca1f295002b0502c08f64017772de1",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-commands.md",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/independent-red-initial-consumer-build.exit",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/independent-red-initial-consumer-build.exit",
+      "sha256": "19eaf43821a7660ec323a87c8457bf74823beb296c39f5e01aa8a683aa50f061",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-initial-consumer-build.exit",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/independent-red-initial-consumer-build.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/independent-red-initial-consumer-build.log",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-initial-consumer-build.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/independent-red-initial-consumer-direct.exit",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/independent-red-initial-consumer-direct.exit",
+      "sha256": "cf205dbb8cea84897b488abcc281bf96698d5e94b1096b16657b4caba9082a22",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-initial-consumer-direct.exit",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/independent-red-initial-consumer-direct.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/independent-red-initial-consumer-direct.log",
+      "sha256": "05c7bf31df475a73f80292e9964e257de796da7faf03bf46eba7185f4b40c36c",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-initial-consumer-direct.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/independent-red-regression-final.sha256",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/independent-red-regression-final.sha256",
+      "sha256": "cee116a7ddfcf116f4862d6f3a17bbe45f97b4824f9ceaf46c496c070c7e8336",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-regression-final.sha256",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/independent-red-source-final.sha256",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/independent-red-source-final.sha256",
+      "sha256": "fbf7c303e39a92513e49681f511137b173cb48d0f2f6bb90cc3be6d3b0f0742b",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/independent-red-source-final.sha256",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/integrated-source-diff.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/integrated-source-diff.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/integrated-source-diff.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/log-audit.json",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/log-audit.json",
+      "sha256": "53f2cb762fa0c1dccc78176d33a315214cb31b864cbaf5003b99ce3d8f7648c4",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/log-audit.json",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/prior-evidence-preserved.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/prior-evidence-preserved.log",
+      "sha256": "fdf71aaeb696c3556a3c1be4ac8eb49c7ad4dcb5a5d2eb99cbe832b95a05af50",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/prior-evidence-preserved.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/product-fix.diff",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/product-fix.diff",
+      "sha256": "29110a07c1e9502419347460d1a0e29f421ae7412b9c083a3800eade3c3b90df",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/product-fix.diff",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/r1-bundle.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/r1-bundle.log",
+      "sha256": "6c47240693c4cbe130231a254b8cb062db0b67484c3e2bb695d72e8a2080092f",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-bundle.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/r1-bundle.meta",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/r1-bundle.meta",
+      "sha256": "2479794670ff27a5b8b794d5c75b599d3378db29d5bc93304c9ca88aa80a9c60",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-bundle.meta",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/r1-clean-consumer.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/r1-clean-consumer.log",
+      "sha256": "042357d12609b55349088ad56386a6f2013db5c1ebb5d52a630772c32438478d",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-clean-consumer.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/r1-clean-consumer.meta",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/r1-clean-consumer.meta",
+      "sha256": "ae386652dbcd7537b44ae6ba4f4df7d56a5c006eafdd771c2563454eced14525",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-clean-consumer.meta",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/r1-green.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/r1-green.log",
+      "sha256": "042357d12609b55349088ad56386a6f2013db5c1ebb5d52a630772c32438478d",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-green.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/r1-green.meta",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/r1-green.meta",
+      "sha256": "7ddc527cceeaa2925357f516b101dbf43ace8e297a7ebb1fcf5a7b8d1d738674",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-green.meta",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/r1-red.log",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/r1-red.log",
+      "sha256": "f060eff6c04eb40027d035fc86a371a3a37dfbfbbba27d9cc24bfac7dae4f30e",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-red.log",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "r1/raw/r1-red.meta",
+      "external_path": "/workspace/work/rich-text-review/r1/raw/r1-red.meta",
+      "sha256": "5f7bb653ceb32843011dc988e9fa71f91c5411caaea71323d0513a7493cfbc21",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/r1/raw/r1-red.meta",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "scoped-r1-findings.json",
+      "external_path": "/workspace/work/rich-text-review/scoped-r1-findings.json",
+      "sha256": "a08a1d7abeb7aab36f63099b75535cf9c7cb05dbd40fe17ecefe5d6354235ceb",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/scoped-r1-findings.json",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "scoped-r1-sourcehashes.json",
+      "external_path": "/workspace/work/rich-text-review/scoped-r1-sourcehashes.json",
+      "sha256": "7034a1414ff49b5e2a6be4e9b5a2f0464da5300067e2a5a96e4747fe12e34146",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/scoped-r1-sourcehashes.json",
+      "omission_reason": null
+    },
+    {
+      "manifest": "scoped-r1-SHA256SUMS",
+      "original_path": "scoped-r1.md",
+      "external_path": "/workspace/work/rich-text-review/scoped-r1.md",
+      "sha256": "73aa0b90190b63038b18cd10b7e25d24bdb6b89f5dd689b216ee20fcb2de6a65",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R14/code-review/scoped-r1.md",
+      "omission_reason": null
+    },
+    {
+      "manifest": "r1/raw/final-artifacts.sha256",
+      "original_path": "/workspace/work/rich-text-implementation/round1/cjtui-0.0.0.cjp",
+      "external_path": "/workspace/work/rich-text-implementation/round1/cjtui-0.0.0.cjp",
+      "sha256": "df716e0eb7539b23420e59ee795edf254fd2695fc2d859367173f3c2cad33a42",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/final-artifacts.sha256",
+      "original_path": "src/text/ansi_text_decoder.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/src/text/ansi_text_decoder.cj",
+      "sha256": "02d431d9fb1f6f56cf6f5449b6570d9beabeca9102d4c11f16ed57647f484307",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/final-artifacts.sha256",
+      "original_path": "tests/rich-text/target/release/bin/main",
+      "external_path": "/workspace/work/rich-text-review/tests/rich-text/target/release/bin/main",
+      "sha256": "550a9c25b2d527e5d5339f75ca81ad02c919fe9d4cc378387cb67cda453e5c51",
+      "external_exists": false,
+      "external_hash_matches_now": null,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/final-artifacts.sha256",
+      "original_path": "/workspace/work/rich-text-implementation/round1/clean/consumer/target/release/bin/main",
+      "external_path": "/workspace/work/rich-text-implementation/round1/clean/consumer/target/release/bin/main",
+      "sha256": "a055b0cd9dbdb61dd9843fc0b390e60c6f3a9f49bb06e7d7a810a5058ef41fde",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/README.md",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/README.md",
+      "sha256": "a7ddc3be7809cb4943cad672d064e2c50e07681bb483f3b834ba75004d9fe8f8",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/cjpm.toml",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/cjpm.toml",
+      "sha256": "20fcf93dc39f6aa63e9db761890b338262d3bf14e5893eccc5870abac452f9be",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/run.sh",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/run.sh",
+      "sha256": "c46c549fae72e002d08f3fa18183ba4628f8d33f37af8bef4c9a210cac6f9053",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/aliases.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/aliases.cj",
+      "sha256": "c437fdadb43a853f230063243d10625187d3641e73793ef651f8f480bab2b7e4",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/assertions.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/assertions.cj",
+      "sha256": "83e46139f6623e19f3d624092bd6a9f9511d8663e6f3032e1ae0c7c52862ab06",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/bindings.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/bindings.cj",
+      "sha256": "9d36c3347a419dcac6cd0caa237f96e44a75a232ecc8f049ae3a3abd8e44d34a",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/component.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/component.cj",
+      "sha256": "da7c7ff69d4ca92e320a63b181f790b8156f5d9529f4b545d4c46f012d101016",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/control_strings.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/control_strings.cj",
+      "sha256": "1a863f22625ca2473132c6edf0798876a663bd3a329e8b1e6686dfc99a9929b5",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/csi_utf8_first_fault.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/csi_utf8_first_fault.cj",
+      "sha256": "783ca4a4c95d6d88ac77d14149160b814b488ff4316a6b0d8ed326dc17676e8f",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/decoded_stream.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/decoded_stream.cj",
+      "sha256": "4692de27fd2441dfb4d1378c941c7e6aa6ff2b1c0e7c54daf9ba2952b864177d",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/decoder_assertions.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/decoder_assertions.cj",
+      "sha256": "2fcc73029751bef19d83b6c01fa4f52945240a7d20327524d4176b7dea5173d5",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/graphemes.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/graphemes.cj",
+      "sha256": "53506b65c5289cf703181a7006b5e6aa485fcadaf923c9368f950c21a58bae9a",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/invalid_utf8.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/invalid_utf8.cj",
+      "sha256": "8d7c705d8d6180fe6aa2e6e7be17b7853e08f95ee45926ccbdddbde3b76c5ce1",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/limits.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/limits.cj",
+      "sha256": "4a315ed2e121ee66b0feb19c7217f26b3ed2628a7da32aa763757bdacb9bf196",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/main.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/main.cj",
+      "sha256": "e94af3f63a068bb08a8ac60ec65fe9ffe18c7eccd4257de68131c7582142dd4c",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/sgr.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/sgr.cj",
+      "sha256": "2de674ad76026d51a16dbb4319ff16a6a1c5076f509c4457b6218e44ff8d970a",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/unsupported.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/unsupported.cj",
+      "sha256": "505779996925d72e26b192f548e28cd8114c855fa1ccec69ebe71eee6614a721",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/utf8.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/utf8.cj",
+      "sha256": "d4219adf18c869e9a5fa802e4183de4f0f0c61d6eb92616c6cfc86cca9935daa",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/formal-tests.sha256",
+      "original_path": "tests/rich-text/src/values.cj",
+      "external_path": "/workspace/work/rich-text-review/r1/source/tests/rich-text/src/values.cj",
+      "sha256": "a6352d8516ca3e7a0ff5460c455f957e582ba13609e5638bca7613900afe8891",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-regression-final.sha256",
+      "original_path": "tests/rich-text/src/csi_utf8_first_fault.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/csi_utf8_first_fault.cj",
+      "sha256": "783ca4a4c95d6d88ac77d14149160b814b488ff4316a6b0d8ed326dc17676e8f",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-regression-final.sha256",
+      "original_path": "tests/rich-text/src/main.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/main.cj",
+      "sha256": "e94af3f63a068bb08a8ac60ec65fe9ffe18c7eccd4257de68131c7582142dd4c",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-regression-final.sha256",
+      "original_path": "tests/rich-text/README.md",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/README.md",
+      "sha256": "a7ddc3be7809cb4943cad672d064e2c50e07681bb483f3b834ba75004d9fe8f8",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "native/build.sh",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/native/build.sh",
+      "sha256": "85b5e23cffc9bd421d8c49bc54a162cda76220b27847d95c494cb9eb838d1476",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "native/cjtui_capabilities.c",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/native/cjtui_capabilities.c",
+      "sha256": "e1a3a8148562f0b31c5924e8526505a662873f13dc0779f0ced770957d19d7e2",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "native/cjtui_terminal.c",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/native/cjtui_terminal.c",
+      "sha256": "9dd26b1295fdc164a541063d79ca325daaef4da774c9ffdfb371c4bf21fc7b42",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/.gitkeep",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/alignment.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/alignment.cj",
+      "sha256": "b8525afb51b0ab899e040b81af986055ffb6d00b54f251f7622620e643422fa2",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/ansi_encoding.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/ansi_encoding.cj",
+      "sha256": "b22feed06490dd619ab7efde176e8eef170d8e3b5555d52d32c37180733aed28",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/application.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/application.cj",
+      "sha256": "c3308b6b691aa077782814991c90914bc22080a22a5b9ba1380baf087dc09997",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/binding.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/binding.cj",
+      "sha256": "80ee17b32fc9dfadcf0d25d2c0a05e25ce016e3b251d20829b8c73b2d804cc98",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/binding_dependency.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/binding_dependency.cj",
+      "sha256": "ac8d656fc10c8963846342c6d8e53e2bfbb70a56515606ddc551c352b1e3532a",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/cell.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/cell.cj",
+      "sha256": "8b67e195b40d700aeb5f394d6f41ba968c5f7488fd2f3cacd19a66e1f26c1dfe",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/change_kind.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/change_kind.cj",
+      "sha256": "78c92929387c6fad55a7a953c87766a37c9f999c7bb576eb6a63fb92d6795eac",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/child_declaration.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/child_declaration.cj",
+      "sha256": "f2088f99af760305306bf832d48b9aa3b86b0d92d78de16962073c67a662d526",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/child_entry.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/child_entry.cj",
+      "sha256": "83bb5bce3215ecb4cbfefb57eb736161a63c38e075dd1e237edd6856151ec1da",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/color_mapping.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/color_mapping.cj",
+      "sha256": "58f2c372bb8705ac1cf4cea93a225e93aa6f60713d8072f43d32892825264219",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/component.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/component.cj",
+      "sha256": "e3f6e2f88279bd865c78c9b5cb9761e3afa476db8bddf3edd155cfe76a9b86e0",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/component_collector.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/component_collector.cj",
+      "sha256": "91da3af3815921771ef53b948a645d902659bb0fe11b3321209682602f7bc062",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/conditional_declaration.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/conditional_declaration.cj",
+      "sha256": "128281f2235a076abab4eec447355d48560d2f6f5c48cd5d715af8a3327ec02d",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/conditional_group.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/conditional_group.cj",
+      "sha256": "cf1074a63b90eac3d26b5c778132108b0fed7a6de4b0b6dcc8d69ebb4ea24755",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/drawing_geometry.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/drawing_geometry.cj",
+      "sha256": "2a31e0eb8dc6e1f3e8557c11374db5068ffa1fa9e3ebd6f79ec08794b59cba05",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/dynamic_declaration.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/dynamic_declaration.cj",
+      "sha256": "34288e4f7d5bfc6188dc9bdd52c7123b1dd8a5a22482fd48e32332b1bd8c7fd4",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/dynamic_group.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/dynamic_group.cj",
+      "sha256": "c4955b8c322c5d24b11eb212cfe7ddf5962a106a6bc82d93aadcae8a97634217",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/exports.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/exports.cj",
+      "sha256": "529f39e090aff30db315cc45c617fcf367517cea4aa72202d2f8a094c2eeac78",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/foreach_declaration.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/foreach_declaration.cj",
+      "sha256": "99fe8a3070fdcccaf55aeb434bbfbec2fcd436848d4edb188a107ee997a8303f",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/foreach_group.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/foreach_group.cj",
+      "sha256": "3cd6361f2ffed81ba1e5cf2383f898a2a243107c62cafeac19485d6866dc60b2",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/frame.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/frame.cj",
+      "sha256": "74fa0cd55371560578807860b0793a23409f80a825e8e122fba0890f0ecd2382",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/geometry/rect.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/geometry/rect.cj",
+      "sha256": "f12793359eae47d415f263b0e35cacea2019388fd06de08b48e60b9e9896c641",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/input_decoder.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/input_decoder.cj",
+      "sha256": "81efc8f94112b4c33b904188d6fccda36d0997b2aafd6a8e689b51920b4e1dc1",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/key_event.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/key_event.cj",
+      "sha256": "8443523e2e9d2707cde8393b1e518ccae301b2cfeefe168721d7d5a35308ea65",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/layout.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/layout.cj",
+      "sha256": "a204d343666d79647af888af60d9e1ac620d3cd701cc70ba02f5bb41c48efec0",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/layout_node.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/layout_node.cj",
+      "sha256": "1c4134474f0c7b71e1a255fb3bb5d1b3164c24726f52b2990b70c710a043eb6e",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/list_item.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/list_item.cj",
+      "sha256": "45289c3ddaed90c620fb4c9051d0698a33ad091b706702a614a1967b747086e4",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/macros/bind_macro.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/macros/bind_macro.cj",
+      "sha256": "b16928c7577816a1eeb12b8a31a73c5ddf02c3b0d9b60a5989c30f17c8f7c420",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/macros/component_macro.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/macros/component_macro.cj",
+      "sha256": "9e6a116776accfbbd3d626ce14100b0873245c0bfc824a3bb06ad45fc9014f05",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/macros/constructor_return_visitor.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/macros/constructor_return_visitor.cj",
+      "sha256": "36630999f75520d9234b3d4f909b7bbc010225a14d3cedb2215157051a767f52",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/macros/state_macro.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/macros/state_macro.cj",
+      "sha256": "934f18649f5b8ef91b808db68fbefb7eb0251618abfa0592391e96e478f4b869",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/node_ref.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/node_ref.cj",
+      "sha256": "a1ba8bdca9693231064075b16184af794d5288ae1de8e34acb879a74e4ad7672",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/observable.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/observable.cj",
+      "sha256": "9dfb578e88a75548fc76785dad65bd70d8a4ff0eaf2309d58a7ba68651a9758b",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/observable_source.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/observable_source.cj",
+      "sha256": "898d36caed711fddb8eefd31a3ac8eee14ebec1aad628db55bd0165b4afb8d7a",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/pending_node_change.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/pending_node_change.cj",
+      "sha256": "abe9418459b78eb199fb532e3e7bcb7c60639851a282082dca19ba42036e7a60",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/queued_action.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/queued_action.cj",
+      "sha256": "2af732f1850230e8005766d6c4a895eaee7eb30d72dd3663f0cb2d53aa1753f5",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/rich_text_clusters.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/rich_text_clusters.cj",
+      "sha256": "b5070a44e25cbf6262fcbbfb942ec703a45e37ee587c128c3c4900520c1bc3b4",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/runtime_limits.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/runtime_limits.cj",
+      "sha256": "f44156ffc8803d8b16c8fd7ea455d15478b064e6beed9281597b13c6bae58b83",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/runtime_node.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/runtime_node.cj",
+      "sha256": "d2d0fc8a2bab685ec7546990b56a829f907f7dcb37c7e1818d869398c920bea7",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/runtime_session.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/runtime_session.cj",
+      "sha256": "48d3536af1bc851bbd710c354d0009b8b606687dfb6e91d85a7f9d66386d1f60",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/runtime_stats.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/runtime_stats.cj",
+      "sha256": "84082f03df45963bb2c2eb8da154653e553fd7b7bc7df1b711522265bdbb3a9b",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/structural_command.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/structural_command.cj",
+      "sha256": "339539b81afaf31bfc53659e5be7fc03dfbddbcf58a2b4f0aac4a7e66045806e",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/style/border_style.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/style/border_style.cj",
+      "sha256": "6cda8b6e130d33ff2e98d161eca3f00ad6456fecfd0acf2f8a5c2927f6b7b250",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/style/color.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/style/color.cj",
+      "sha256": "bfe06ae333ffe2545b96d5dd31af287ca9d2ff06b747f5681813a1d9642a673e",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/style/color_mode.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/style/color_mode.cj",
+      "sha256": "23fbbfffb32f36db1e515f6e2bc59a64e41cc18c55255bc13543cddd42460b53",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/style/style.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/style/style.cj",
+      "sha256": "4625095afe74a62b42d37195a50b1ff3ddb0fe1d8dbf785fe01cf6223b27a847",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/style/text_style_patch.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/style/text_style_patch.cj",
+      "sha256": "7e66a8a2d2887057a670e9b39444b010517e99f850d52dfd0d97945eb4f59a1f",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/terminal_bridge.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/terminal_bridge.cj",
+      "sha256": "28305e193d076a450aae270f7347b43f7bbd86aae864f0f0a46e50cd9947cbe9",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/terminal_capabilities.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/terminal_capabilities.cj",
+      "sha256": "4a55e747ba8284e9796d5f64593cf7e6222a539b16714a75150ad7a0b0b2378c",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/terminal_render_profile.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/terminal_render_profile.cj",
+      "sha256": "efd995fbbf0380d04146e63edae0fadce6a8e202e5ad258f53959efa480c32b8",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text.cj",
+      "sha256": "986d73578f2fc0a2b1922abfdd2ae975ea13afb7655ad73e26cdff08c0bdee0d",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text_batch.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text_batch.cj",
+      "sha256": "ce2d53ca218882fe03e301f619793c006814e0538c6ba8ed7b529fcbc625ca00",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text_decoder.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text_decoder.cj",
+      "sha256": "07fb9cff1e3ea1c5d32a001787f04d412404aa1da21ef441e809e1defd609e76",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text_diagnostic.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text_diagnostic.cj",
+      "sha256": "ed3ad2cb93022e011b79aca706f103296fed6f5d430552d16f53217d81787933",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text_exception.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text_exception.cj",
+      "sha256": "339de4adb79806c8776d38b9e7fec76cc74e8f5b7529a4bd56234509cfaf7a0c",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text_issue.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text_issue.cj",
+      "sha256": "3f0084c8e4564c56fb8c906ccdcd977056d90025db55d66586e4b6f815b26173",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text_limits.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text_limits.cj",
+      "sha256": "e4f2abe90e9f28662c50d9d8c3a4f1954cd7a43bb72d0555b386123c394ef3ae",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text_output.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text_output.cj",
+      "sha256": "d74e3bcbc81b55ccf819ecb11439aed9fbbd0ed11b8d96efd546380a1ef95125",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text_result.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text_result.cj",
+      "sha256": "f9d0ed270bc609f80cde117cc852b41872edeb60cd31be359f039922c18a7df7",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/ansi_text_state.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/ansi_text_state.cj",
+      "sha256": "f29f4fb43fd00d188b89e403b6bdb02dcd35a7ced8b349f38d0e6f9057cc0d3d",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/rich_text.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/rich_text.cj",
+      "sha256": "c7c2ea1a6f93916952598eaef8836b7c8e6f3e01eb772eddd2af383e2ba6e47f",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/text_span.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/text_span.cj",
+      "sha256": "040ac64a6d195ccc2a66f7175f7019955ea28a3e2f087a71086e69221dafe380",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/unicode.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/unicode.cj",
+      "sha256": "2bd5f0fbae84ddcb38d7dc4e639fd7b04e6b1c45465d17c9ef763ec56c70a15c",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text/validation.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text/validation.cj",
+      "sha256": "cf7bd3c7a141cb617804451a5e4ac538d26167ba2992b39eabfc46bb4910a980",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/text_validation.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/text_validation.cj",
+      "sha256": "b14b891ea790790c9177949cfe4fe8e24d04f1114da5fdec664eefddd0df0e41",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/ui_cleanup_exception.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/ui_cleanup_exception.cj",
+      "sha256": "e94605384f3495df6c7303fd866cddbfc20b987db398a7794d9d27f4372cfc09",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/ui_exception.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/ui_exception.cj",
+      "sha256": "8425f5b85afd477063a63ea00fd117a7a140c5c676d97f94fa1259e2eec31a91",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/ui_key_event.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/ui_key_event.cj",
+      "sha256": "d7c22acd58f73140cb631b283bad469d199b61e73c26c63d39f3a287f2c6990c",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "src/ui_thread_identity.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/src/ui_thread_identity.cj",
+      "sha256": "49a0562b1adae0110e35746d60465bce6a3266e04fa932c1678f7e912c1ad032",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/README.md",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/README.md",
+      "sha256": "a7ddc3be7809cb4943cad672d064e2c50e07681bb483f3b834ba75004d9fe8f8",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/cjpm.toml",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/cjpm.toml",
+      "sha256": "20fcf93dc39f6aa63e9db761890b338262d3bf14e5893eccc5870abac452f9be",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/run.sh",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/run.sh",
+      "sha256": "c46c549fae72e002d08f3fa18183ba4628f8d33f37af8bef4c9a210cac6f9053",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/aliases.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/aliases.cj",
+      "sha256": "c437fdadb43a853f230063243d10625187d3641e73793ef651f8f480bab2b7e4",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/assertions.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/assertions.cj",
+      "sha256": "83e46139f6623e19f3d624092bd6a9f9511d8663e6f3032e1ae0c7c52862ab06",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/bindings.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/bindings.cj",
+      "sha256": "9d36c3347a419dcac6cd0caa237f96e44a75a232ecc8f049ae3a3abd8e44d34a",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/component.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/component.cj",
+      "sha256": "da7c7ff69d4ca92e320a63b181f790b8156f5d9529f4b545d4c46f012d101016",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/control_strings.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/control_strings.cj",
+      "sha256": "1a863f22625ca2473132c6edf0798876a663bd3a329e8b1e6686dfc99a9929b5",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/csi_utf8_first_fault.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/csi_utf8_first_fault.cj",
+      "sha256": "783ca4a4c95d6d88ac77d14149160b814b488ff4316a6b0d8ed326dc17676e8f",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/decoded_stream.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/decoded_stream.cj",
+      "sha256": "4692de27fd2441dfb4d1378c941c7e6aa6ff2b1c0e7c54daf9ba2952b864177d",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/decoder_assertions.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/decoder_assertions.cj",
+      "sha256": "2fcc73029751bef19d83b6c01fa4f52945240a7d20327524d4176b7dea5173d5",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/graphemes.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/graphemes.cj",
+      "sha256": "53506b65c5289cf703181a7006b5e6aa485fcadaf923c9368f950c21a58bae9a",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/invalid_utf8.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/invalid_utf8.cj",
+      "sha256": "8d7c705d8d6180fe6aa2e6e7be17b7853e08f95ee45926ccbdddbde3b76c5ce1",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/limits.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/limits.cj",
+      "sha256": "4a315ed2e121ee66b0feb19c7217f26b3ed2628a7da32aa763757bdacb9bf196",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/main.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/main.cj",
+      "sha256": "e94af3f63a068bb08a8ac60ec65fe9ffe18c7eccd4257de68131c7582142dd4c",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/sgr.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/sgr.cj",
+      "sha256": "2de674ad76026d51a16dbb4319ff16a6a1c5076f509c4457b6218e44ff8d970a",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/unsupported.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/unsupported.cj",
+      "sha256": "505779996925d72e26b192f548e28cd8114c855fa1ccec69ebe71eee6614a721",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/utf8.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/utf8.cj",
+      "sha256": "d4219adf18c869e9a5fa802e4183de4f0f0c61d6eb92616c6cfc86cca9935daa",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    },
+    {
+      "manifest": "r1/raw/independent-red-source-final.sha256",
+      "original_path": "tests/rich-text/src/values.cj",
+      "external_path": "/workspace/work/rich-text-regression-tests/source/tests/rich-text/src/values.cj",
+      "sha256": "a6352d8516ca3e7a0ff5460c455f957e582ba13609e5638bca7613900afe8891",
+      "external_exists": true,
+      "external_hash_matches_now": true,
+      "archive": null,
+      "omission_reason": "Retained externally: unselected frozen source/library/SDK/checkout/config/compiled artifact; original manifest preserved."
+    }
+  ],
+  "explicit_exclusions": [],
+  "checks": {
+    "byte_identical_originals": 35,
+    "strict_json": 3,
+    "strict_jsonl": 0,
+    "relative_markdown_links": 0,
+    "elf_static_archive_copied": 0
+  },
+  "issues": []
+}

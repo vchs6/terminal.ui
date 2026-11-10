@@ -23,7 +23,7 @@
 
 level=L3，goal=G001，classification=execution，workflow_ref=本tasks，change_ref=fix-uncertain-glyph-advance。163/165/166/167 parentWP005/REQ007，164 parentWP002/REQ004005，并追踪原009/041而非L3嵌套。共同preconditions=独立preflight无Important+对应上游实际fixedSHA+共享写屏障；status全部planned，evidence_refs=[]，planning_gaps为待实际交付的test/product/执行artifact。必需skills TDD/仓颉coding/verification（代码角色），systematic-debugging已用于根因、SDD/review（相应角色）；工具来源复用AGENTS14/R11实际记录，按角色落盘真实使用。兼容=既有public签名/离线bytes/Frame预算不变；quality必要性actualrowcorruption，canonical_owner=GlyphRenderPolicy/projectTerminalGlyph/TerminalRenderProfile/Frame原full-diff，旧路径由统一投影承接不并存，复杂度仅两不可变policy+逐簇scalar和+有界row投影。风险/影响见design，工具与最终命令ready前固定。
 
-- [ ] TASK-163（testing）：独立formal测试/行为RED，tests/glyph_advance/正常消费者+同package临时copy测试+真实host回归oracle；保留old83物理FAIL。
+- [x] TASK-163（testing）：独立formal测试/行为RED，tests/glyph_advance/正常消费者+同package临时copy测试+真实host回归oracle；保留old83物理FAIL。
 - [ ] TASK-164（implementation）：src/{glyph_render_policy,terminal_glyph_projection,terminal_render_profile,terminal_capabilities,frame}.cj及必要纯row helper/产品说明；只A002–005最小子接口，fixedproduct-only commit。
 - [ ] TASK-165（verification）：完整BASE→fixed技术diff独立spec/quality双verdict，核Gowner/离线/Color/style/列等价；不读作者自评、不重复有效套件。
 - [ ] TASK-166（testing）：fixedsource163、受影响回归、normalbundle/清包与实际两host原图/DSR/row4保持/恢复。

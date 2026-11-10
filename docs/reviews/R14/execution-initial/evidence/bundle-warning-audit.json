@@ -1,0 +1,2286 @@
+{
+  "bundle_exit": 0,
+  "lint_enabled": true,
+  "warning_count": 317,
+  "by_rule": {
+    "G.OPR.01": 7,
+    "G.ERR.01": 96,
+    "G.VAR.02": 100,
+    "G.FUN.01": 29,
+    "G.EXP.07": 11,
+    "G.ERR.03": 9,
+    "G.NAM.05": 37,
+    "G.NAM.04": 8,
+    "G.NAM.01": 20
+  },
+  "by_file": {
+    "\u001b[0J\u001b7\u001b[;r\u001b8\u001b[?25hsrc/alignment.cj": 1,
+    "src/application.cj": 34,
+    "src/binding.cj": 3,
+    "src/change_kind.cj": 1,
+    "src/color_mapping.cj": 8,
+    "src/component.cj": 25,
+    "src/component_collector.cj": 8,
+    "src/conditional_declaration.cj": 1,
+    "src/dynamic_group.cj": 4,
+    "src/foreach_declaration.cj": 1,
+    "src/foreach_group.cj": 4,
+    "src/frame.cj": 32,
+    "src/input_decoder.cj": 1,
+    "src/layout.cj": 19,
+    "src/layout_node.cj": 3,
+    "src/node_ref.cj": 4,
+    "src/observable.cj": 2,
+    "src/rich_text_clusters.cj": 3,
+    "src/runtime_limits.cj": 2,
+    "src/runtime_session.cj": 60,
+    "src/terminal_bridge.cj": 2,
+    "src/terminal_capabilities.cj": 52,
+    "src/terminal_render_profile.cj": 2,
+    "src/ui_cleanup_exception.cj": 1,
+    "src/ui_key_event.cj": 1,
+    "src/ui_thread_identity.cj": 2,
+    "src/style/border_style.cj": 2,
+    "src/style/color.cj": 1,
+    "src/style/color_mode.cj": 2,
+    "src/style/style.cj": 3,
+    "src/style/text_style_patch.cj": 3,
+    "src/geometry/rect.cj": 2,
+    "src/text/ansi_text.cj": 1,
+    "src/text/ansi_text_batch.cj": 1,
+    "src/text/ansi_text_decoder.cj": 8,
+    "src/text/ansi_text_diagnostic.cj": 1,
+    "src/text/ansi_text_exception.cj": 1,
+    "src/text/ansi_text_issue.cj": 2,
+    "src/text/ansi_text_limits.cj": 2,
+    "src/text/ansi_text_output.cj": 2,
+    "src/text/ansi_text_result.cj": 1,
+    "src/text/ansi_text_state.cj": 2,
+    "src/text/rich_text.cj": 2,
+    "src/text/text_span.cj": 1,
+    "src/text/unicode.cj": 2,
+    "src/text/validation.cj": 2
+  },
+  "warnings": [
+    {
+      "file": "\u001b[0J\u001b7\u001b[;r\u001b8\u001b[?25hsrc/alignment.cj",
+      "line": 6,
+      "column": 5,
+      "rule": "G.OPR.01",
+      "message": "Avoid overloading the operator '==' that violates usage habits."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 50,
+      "column": 80,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 53,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'snapshot' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 74,
+      "column": 37,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 90,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 99,
+      "column": 34,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 100,
+      "column": 46,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 101,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'turnCutoff' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 117,
+      "column": 46,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 122,
+      "column": 38,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 127,
+      "column": 46,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 129,
+      "column": 54,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 133,
+      "column": 50,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 136,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'event' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 137,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'turnCutoff' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 169,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'turnCutoff' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 176,
+      "column": 38,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 179,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'run' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 181,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 194,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'decoder' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 195,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'baseline' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 196,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'baselineProfile' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 197,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previousWidth' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 198,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previousHeight' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 202,
+      "column": 21,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 208,
+      "column": 17,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'profile' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 209,
+      "column": 17,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'work' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 210,
+      "column": 41,
+      "rule": "G.EXP.07",
+      "message": "'width' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 210,
+      "column": 67,
+      "rule": "G.EXP.07",
+      "message": "'height' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 214,
+      "column": 25,
+      "rule": "G.EXP.07",
+      "message": "'width' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 214,
+      "column": 51,
+      "rule": "G.EXP.07",
+      "message": "'height' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 231,
+      "column": 21,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 240,
+      "column": 72,
+      "rule": "G.ERR.03",
+      "message": "Avoid using the getOrThrow() function of the Option type."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 262,
+      "column": 21,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/application.cj",
+      "line": 268,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/binding.cj",
+      "line": 6,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'evaluating' recommend to use all capital letters"
+    },
+    {
+      "file": "src/binding.cj",
+      "line": 36,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/binding.cj",
+      "line": 56,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previous' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/change_kind.cj",
+      "line": 5,
+      "column": 5,
+      "rule": "G.OPR.01",
+      "message": "Avoid overloading the operator '==' that violates usage habits."
+    },
+    {
+      "file": "src/color_mapping.cj",
+      "line": 28,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'distance' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/color_mapping.cj",
+      "line": 35,
+      "column": 13,
+      "rule": "G.EXP.07",
+      "message": "'d' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/color_mapping.cj",
+      "line": 93,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'ncvUnderline' recommend to use all capital letters"
+    },
+    {
+      "file": "src/color_mapping.cj",
+      "line": 94,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'ncvInverse' recommend to use all capital letters"
+    },
+    {
+      "file": "src/color_mapping.cj",
+      "line": 95,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'ncvDim' recommend to use all capital letters"
+    },
+    {
+      "file": "src/color_mapping.cj",
+      "line": 96,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'ncvBold' recommend to use all capital letters"
+    },
+    {
+      "file": "src/color_mapping.cj",
+      "line": 97,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'ncvKnownMask' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/color_mapping.cj",
+      "line": 97,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'ncvKnownMask' recommend to use all capital letters"
+    },
+    {
+      "file": "src/component.cj",
+      "line": 50,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 115,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 125,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 135,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 145,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 155,
+      "column": 37,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 172,
+      "column": 32,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 175,
+      "column": 64,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 183,
+      "column": 49,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 184,
+      "column": 27,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 195,
+      "column": 42,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 314,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 335,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 341,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 349,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 384,
+      "column": 101,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 387,
+      "column": 89,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 390,
+      "column": 122,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 393,
+      "column": 117,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component.cj",
+      "line": 427,
+      "column": 1,
+      "rule": "G.NAM.04",
+      "message": "Function name 'Text' recommend to use lower camel case"
+    },
+    {
+      "file": "src/component.cj",
+      "line": 433,
+      "column": 1,
+      "rule": "G.NAM.04",
+      "message": "Function name 'Text' recommend to use lower camel case"
+    },
+    {
+      "file": "src/component.cj",
+      "line": 440,
+      "column": 1,
+      "rule": "G.NAM.04",
+      "message": "Function name 'Text' recommend to use lower camel case"
+    },
+    {
+      "file": "src/component.cj",
+      "line": 447,
+      "column": 1,
+      "rule": "G.NAM.04",
+      "message": "Function name 'Text' recommend to use lower camel case"
+    },
+    {
+      "file": "src/component.cj",
+      "line": 460,
+      "column": 1,
+      "rule": "G.NAM.04",
+      "message": "Function name 'Column' recommend to use lower camel case"
+    },
+    {
+      "file": "src/component.cj",
+      "line": 461,
+      "column": 1,
+      "rule": "G.NAM.04",
+      "message": "Function name 'Row' recommend to use lower camel case"
+    },
+    {
+      "file": "src/component_collector.cj",
+      "line": 5,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'collector' recommend to use all capital letters"
+    },
+    {
+      "file": "src/component_collector.cj",
+      "line": 6,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'structureEvaluation' recommend to use all capital letters"
+    },
+    {
+      "file": "src/component_collector.cj",
+      "line": 9,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previous' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/component_collector.cj",
+      "line": 19,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previous' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/component_collector.cj",
+      "line": 20,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previousBinding' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/component_collector.cj",
+      "line": 41,
+      "column": 9,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component_collector.cj",
+      "line": 48,
+      "column": 51,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/component_collector.cj",
+      "line": 63,
+      "column": 9,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/conditional_declaration.cj",
+      "line": 17,
+      "column": 1,
+      "rule": "G.NAM.04",
+      "message": "Function name 'If' recommend to use lower camel case"
+    },
+    {
+      "file": "src/dynamic_group.cj",
+      "line": 33,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'replace' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/dynamic_group.cj",
+      "line": 45,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'slot' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/dynamic_group.cj",
+      "line": 54,
+      "column": 9,
+      "rule": "G.FUN.01",
+      "message": "The maximum depth of nested code blocks in a function is recommended to be no more than 4 levels."
+    },
+    {
+      "file": "src/dynamic_group.cj",
+      "line": 65,
+      "column": 21,
+      "rule": "G.EXP.07",
+      "message": "'i' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/foreach_declaration.cj",
+      "line": 17,
+      "column": 1,
+      "rule": "G.NAM.04",
+      "message": "Function name 'ForEach' recommend to use lower camel case"
+    },
+    {
+      "file": "src/foreach_group.cj",
+      "line": 20,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'prepare' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/foreach_group.cj",
+      "line": 31,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/foreach_group.cj",
+      "line": 34,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/foreach_group.cj",
+      "line": 43,
+      "column": 74,
+      "rule": "G.ERR.03",
+      "message": "Avoid using the getOrThrow() function of the Option type."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 17,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 31,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 52,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'cx' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 53,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'cy' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 56,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'resolved' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 87,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'fillClipped' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 91,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'x0' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 93,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'x1' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 104,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'borderClipped' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 104,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'borderClipped' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 141,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'lastX' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 142,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'lastY' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 143,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'x0' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 145,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'x1' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 184,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'shadowClipped' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 195,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'x0' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 197,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'x1' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 199,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'glyph' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 214,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'x0' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 216,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'x1' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 242,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 253,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'source' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 290,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 315,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'oldProjected' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 316,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'newProjected' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 331,
+      "column": 21,
+      "rule": "G.EXP.07",
+      "message": "'style' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 335,
+      "column": 21,
+      "rule": "G.EXP.07",
+      "message": "'style' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 354,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previous' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 356,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'projected' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 360,
+      "column": 21,
+      "rule": "G.EXP.07",
+      "message": "'style' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 382,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'projected' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/frame.cj",
+      "line": 386,
+      "column": 25,
+      "rule": "G.EXP.07",
+      "message": "'style' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/input_decoder.cj",
+      "line": 19,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'feed' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 66,
+      "column": 1,
+      "rule": "G.FUN.01",
+      "message": "The function 'paint' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 66,
+      "column": 1,
+      "rule": "G.FUN.01",
+      "message": "The function 'paint' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 101,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'clusters' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 102,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'clusterIndex' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 103,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'explicit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 106,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'cy' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 112,
+      "column": 13,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'cx' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 114,
+      "column": 17,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'textStyle' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 133,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'cross' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 141,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'remainders' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 159,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 165,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 178,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'pool' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 185,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'denominator' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 232,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'cursor' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 291,
+      "column": 31,
+      "rule": "G.ERR.03",
+      "message": "Avoid using the getOrThrow() function of the Option type."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 311,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 313,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'turnCutoff' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/layout.cj",
+      "line": 323,
+      "column": 38,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/layout_node.cj",
+      "line": 17,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'measure' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/layout_node.cj",
+      "line": 20,
+      "column": 9,
+      "rule": "G.FUN.01",
+      "message": "The maximum depth of nested code blocks in a function is recommended to be no more than 4 levels."
+    },
+    {
+      "file": "src/layout_node.cj",
+      "line": 41,
+      "column": 40,
+      "rule": "G.ERR.03",
+      "message": "Avoid using the getOrThrow() function of the Option type."
+    },
+    {
+      "file": "src/node_ref.cj",
+      "line": 35,
+      "column": 9,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/node_ref.cj",
+      "line": 39,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/node_ref.cj",
+      "line": 42,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/node_ref.cj",
+      "line": 52,
+      "column": 26,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/observable.cj",
+      "line": 25,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/observable.cj",
+      "line": 38,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/rich_text_clusters.cj",
+      "line": 10,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'spanIndex' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/rich_text_clusters.cj",
+      "line": 11,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'consumed' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/rich_text_clusters.cj",
+      "line": 12,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'boundary' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_limits.cj",
+      "line": 13,
+      "column": 102,
+      "rule": "G.FUN.01",
+      "message": "The function 'treeDepth.6' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/runtime_limits.cj",
+      "line": 16,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 7,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'runtimeIdLock' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 7,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'runtimeIdLock' recommend to use all capital letters"
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 7,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'runtimeIdLock' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 8,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'nextRuntimeId' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 21,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'activeSession' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 21,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'activeSession' recommend to use all capital letters"
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 21,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'activeSession' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 73,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 77,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 80,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 86,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 89,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 93,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 95,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 101,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 106,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previous' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 263,
+      "column": 54,
+      "rule": "G.ERR.03",
+      "message": "Avoid using the getOrThrow() function of the Option type."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 265,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 318,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'later' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 322,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 369,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 382,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previous' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 392,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 395,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 398,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 401,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 413,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'keys' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 418,
+      "column": 25,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 427,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 465,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 468,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 471,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 486,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 495,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 499,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 504,
+      "column": 25,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 513,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 542,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 546,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 552,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'commitCommand' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 555,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 558,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 560,
+      "column": 9,
+      "rule": "G.FUN.01",
+      "message": "The maximum depth of nested code blocks in a function is recommended to be no more than 4 levels."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 562,
+      "column": 48,
+      "rule": "G.ERR.03",
+      "message": "Avoid using the getOrThrow() function of the Option type."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 569,
+      "column": 38,
+      "rule": "G.ERR.03",
+      "message": "Avoid using the getOrThrow() function of the Option type."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 572,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 595,
+      "column": 29,
+      "rule": "G.EXP.07",
+      "message": "'id' is constant, please put it on the right of comparison operators."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 608,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'newNodes' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 609,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'oldNodes' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 637,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'unmount' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 744,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'stabilize' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 748,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'passes' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 749,
+      "column": 9,
+      "rule": "G.FUN.01",
+      "message": "The maximum depth of nested code blocks in a function is recommended to be no more than 4 levels."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 751,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 819,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'laterBindings' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 820,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'laterNodes' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 900,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 1002,
+      "column": 15,
+      "rule": "G.ERR.03",
+      "message": "Avoid using the getOrThrow() function of the Option type."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 1058,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'close' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/runtime_session.cj",
+      "line": 1084,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'previousSession' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_bridge.cj",
+      "line": 37,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/terminal_bridge.cj",
+      "line": 41,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 35,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capModeMask' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 35,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capModeMask' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 36,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capModeBasic8' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 36,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capModeBasic8' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 37,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capModeBasic16' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 37,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capModeBasic16' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 38,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capModeIndexed256' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 38,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capModeIndexed256' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 39,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capModeTrueColor' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 39,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capModeTrueColor' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 40,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capBoldBit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 40,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capBoldBit' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 41,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capDimBit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 41,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capDimBit' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 42,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capItalicBit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 42,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capItalicBit' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 43,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capUnderlineBit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 43,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capUnderlineBit' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 44,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capInverseBit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 44,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capInverseBit' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 45,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capStrikeBit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 45,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capStrikeBit' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 46,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capTerminfoBit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 46,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capTerminfoBit' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 47,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capColorTermBit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 47,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capColorTermBit' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 48,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonShift' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 48,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonShift' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 49,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonMask' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 49,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonMask' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 50,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capNcvShift' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 50,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capNcvShift' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 51,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capNcvMask' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 51,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capNcvMask' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 52,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capNcvPresentBit' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 52,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capNcvPresentBit' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 53,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonUnset' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 53,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonUnset' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 54,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonDumb' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 54,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonDumb' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 55,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonInvalid' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 55,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonInvalid' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 56,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonPlatform' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 56,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonPlatform' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 57,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonLibrary' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 57,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonLibrary' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 58,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonSymbol' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 58,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonSymbol' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 59,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonEntry' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 59,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonEntry' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 60,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'capReasonDatabase' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/terminal_capabilities.cj",
+      "line": 60,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'capReasonDatabase' recommend to use all capital letters"
+    },
+    {
+      "file": "src/terminal_render_profile.cj",
+      "line": 13,
+      "column": 104,
+      "rule": "G.FUN.01",
+      "message": "The function 'supportsStrikethrough.6' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/terminal_render_profile.cj",
+      "line": 14,
+      "column": 32,
+      "rule": "G.FUN.01",
+      "message": "The function 'noColorVideo.7' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/ui_cleanup_exception.cj",
+      "line": 29,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'description' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/ui_key_event.cj",
+      "line": 14,
+      "column": 47,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/ui_thread_identity.cj",
+      "line": 7,
+      "column": 1,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'currentUIThread' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/ui_thread_identity.cj",
+      "line": 7,
+      "column": 1,
+      "rule": "G.NAM.05",
+      "message": "Immutable global or static variable name 'currentUIThread' recommend to use all capital letters"
+    },
+    {
+      "file": "src/style/border_style.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.style' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/style/border_style.cj",
+      "line": 6,
+      "column": 5,
+      "rule": "G.OPR.01",
+      "message": "Avoid overloading the operator '==' that violates usage habits."
+    },
+    {
+      "file": "src/style/color.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.style' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/style/color_mode.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.style' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/style/color_mode.cj",
+      "line": 6,
+      "column": 5,
+      "rule": "G.OPR.01",
+      "message": "Avoid overloading the operator '==' that violates usage habits."
+    },
+    {
+      "file": "src/style/style.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.style' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/style/style.cj",
+      "line": 13,
+      "column": 95,
+      "rule": "G.FUN.01",
+      "message": "The function 'inverse.6' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/style/style.cj",
+      "line": 14,
+      "column": 32,
+      "rule": "G.FUN.01",
+      "message": "The function 'strikethrough.7' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/style/text_style_patch.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.style' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/style/text_style_patch.cj",
+      "line": 13,
+      "column": 76,
+      "rule": "G.FUN.01",
+      "message": "The function 'inverse.6' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/style/text_style_patch.cj",
+      "line": 13,
+      "column": 106,
+      "rule": "G.FUN.01",
+      "message": "The function 'strikethrough.7' is recommended to have no more than 5 parameters."
+    },
+    {
+      "file": "src/geometry/rect.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.geometry' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/geometry/rect.cj",
+      "line": 10,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/text/ansi_text.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_batch.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_decoder.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_decoder.cj",
+      "line": 35,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/text/ansi_text_decoder.cj",
+      "line": 42,
+      "column": 9,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/text/ansi_text_decoder.cj",
+      "line": 75,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'feed' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/text/ansi_text_decoder.cj",
+      "line": 99,
+      "column": 55,
+      "rule": "G.ERR.03",
+      "message": "Avoid using the getOrThrow() function of the Option type."
+    },
+    {
+      "file": "src/text/ansi_text_decoder.cj",
+      "line": 131,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'scalar' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/text/ansi_text_decoder.cj",
+      "line": 232,
+      "column": 21,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'raw' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/text/ansi_text_decoder.cj",
+      "line": 257,
+      "column": 5,
+      "rule": "G.FUN.01",
+      "message": "The function 'applySgr' is recommended to have no more than 50 lines of code."
+    },
+    {
+      "file": "src/text/ansi_text_diagnostic.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_exception.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_issue.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_issue.cj",
+      "line": 6,
+      "column": 5,
+      "rule": "G.OPR.01",
+      "message": "Avoid overloading the operator '==' that violates usage habits."
+    },
+    {
+      "file": "src/text/ansi_text_limits.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_limits.cj",
+      "line": 8,
+      "column": 13,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    },
+    {
+      "file": "src/text/ansi_text_output.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_output.cj",
+      "line": 20,
+      "column": 9,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'text' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/text/ansi_text_result.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_state.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/ansi_text_state.cj",
+      "line": 6,
+      "column": 5,
+      "rule": "G.OPR.01",
+      "message": "Avoid overloading the operator '==' that violates usage habits."
+    },
+    {
+      "file": "src/text/rich_text.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/rich_text.cj",
+      "line": 38,
+      "column": 5,
+      "rule": "G.OPR.01",
+      "message": "Avoid overloading the operator '==' that violates usage habits."
+    },
+    {
+      "file": "src/text/text_span.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/unicode.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/unicode.cj",
+      "line": 12,
+      "column": 5,
+      "rule": "G.VAR.02",
+      "message": "Prefer variable 'iterator' to follow the principle of minimizing scope."
+    },
+    {
+      "file": "src/text/validation.cj",
+      "line": 1,
+      "column": 15,
+      "rule": "G.NAM.01",
+      "message": "The name of the 'cjtui.text' package must correspond to the directory where the source code resides."
+    },
+    {
+      "file": "src/text/validation.cj",
+      "line": 11,
+      "column": 17,
+      "rule": "G.ERR.01",
+      "message": "The exception types that may be thrown should be described in the API comments."
+    }
+  ],
+  "assessment": "Actual advisory CJPM lint diagnostics retained. Includes package-directory heuristics, API exception comments, length/scope/style and usage advice; project conventions do not promote these advisory heuristics into new gates. Not a claim of lint-clean source. No warnings suppressed or product fixes made by executor."
+}
