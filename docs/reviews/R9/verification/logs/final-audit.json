@@ -1,0 +1,681 @@
+{
+  "fixed": "40aa4db6c2b7673bb3e8c9a80fdb5b4e385cb940",
+  "integrated": "7ba5a4bde3c362de4de48c6d57cfc18f1d384125",
+  "source_entries": 87,
+  "scope": "Linux layout/decor slice and Application lifecycle regression; not complete product/release",
+  "commands": {
+    "root-build": {
+      "command": "cjpm build",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/repo"
+    },
+    "root-check": {
+      "command": "cjpm check",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/repo"
+    },
+    "lifecycle": {
+      "command": "bash tests/run-slice.sh application-lifecycle",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/repo"
+    },
+    "native-session": {
+      "command": "bash tests/run-slice.sh native-session",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/repo"
+    },
+    "integration": {
+      "command": "bash tests/run-slice.sh integration",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/repo"
+    },
+    "layout-integration": {
+      "command": "bash tests/run-slice.sh layout-integration",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/repo"
+    },
+    "bundle": {
+      "command": "cjpm bundle",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/repo"
+    },
+    "slice-boundary-runtime-audit": {
+      "command": "node /workspace/work/layout-execution/check-final-slice-package.mjs /workspace/work/layout-execution/final-40aa4db/cjtui-0.0.0.cjp /workspace/work/layout-execution/repo",
+      "exit": 0,
+      "cwd": "/workspace"
+    },
+    "clean-build": {
+      "command": "cjpm build",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/final-40aa4db/unpacked/cjtui-0.0.0"
+    },
+    "clean-check": {
+      "command": "cjpm check",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/final-40aa4db/unpacked/cjtui-0.0.0"
+    },
+    "consumer-build": {
+      "command": "cjpm build",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/final-40aa4db/consumer"
+    },
+    "consumer-direct": {
+      "command": "timeout 30s target/release/bin/main",
+      "exit": 0,
+      "cwd": "/workspace/work/layout-execution/final-40aa4db/consumer"
+    }
+  },
+  "manifest_normalization": {
+    "original_package": {
+      "cjc-version": "1.2.0",
+      "name": "cjtui",
+      "description": "Declarative terminal UI framework for Cangjie",
+      "version": "0.0.0",
+      "target-dir": "target",
+      "src-dir": "src",
+      "output-type": "static",
+      "compile-option": "",
+      "override-compile-option": "",
+      "link-option": "",
+      "repository": "https://github.com/vchs6/terminal.ui",
+      "license": [
+        "MulanPSL-2.0"
+      ],
+      "include": [
+        "/build.cj",
+        "/native",
+        "/third_party/licenses",
+        "/src",
+        "/examples",
+        "/benchmarks",
+        "/docs/product",
+        "/LICENSE",
+        "/NOTICE",
+        "/CHANGELOG.md"
+      ],
+      "exclude": [
+        "/openspec",
+        "/docs/development",
+        "/docs/decisions",
+        "/docs/reviews",
+        "/docs/requirements.md",
+        "/docs/ui-construction.md",
+        "/docs/architecture.md",
+        "/docs/tasks.md",
+        "/docs/acceptance.md",
+        "/AGENTS.md",
+        "/BATTLE_PROTOCOL.md",
+        "/ENGINEERING_TASK_DECOMPOSITION.md",
+        "/CONTRIBUTING.md",
+        "/scripts",
+        "/tests",
+        "/node_modules",
+        "/package.json",
+        "/package-lock.json",
+        "**/*.a",
+        "**/*.o",
+        "/.cjtui-build",
+        "**/build-script-cache",
+        "**/target",
+        "**/cjpm.lock",
+        "**/cangjie-repo.toml"
+      ]
+    },
+    "packaged_package": {
+      "cjc-version": "1.2.0",
+      "name": "cjtui",
+      "description": "Declarative terminal UI framework for Cangjie",
+      "version": "0.0.0",
+      "target-dir": "target",
+      "src-dir": "src",
+      "output-type": "static",
+      "compile-option": "",
+      "override-compile-option": "",
+      "link-option": "",
+      "repository": "https://github.com/vchs6/terminal.ui",
+      "license": [
+        "MulanPSL-2.0"
+      ],
+      "include": [
+        "/build.cj",
+        "/native",
+        "/third_party/licenses",
+        "/src",
+        "/examples",
+        "/benchmarks",
+        "/docs/product",
+        "/LICENSE",
+        "/NOTICE",
+        "/CHANGELOG.md"
+      ],
+      "exclude": [
+        "/openspec",
+        "/docs/development",
+        "/docs/decisions",
+        "/docs/reviews",
+        "/docs/requirements.md",
+        "/docs/ui-construction.md",
+        "/docs/architecture.md",
+        "/docs/tasks.md",
+        "/docs/acceptance.md",
+        "/AGENTS.md",
+        "/BATTLE_PROTOCOL.md",
+        "/ENGINEERING_TASK_DECOMPOSITION.md",
+        "/CONTRIBUTING.md",
+        "/scripts",
+        "/tests",
+        "/node_modules",
+        "/package.json",
+        "/package-lock.json",
+        "**/*.a",
+        "**/*.o",
+        "/.cjtui-build",
+        "**/build-script-cache",
+        "**/target",
+        "**/cjpm.lock",
+        "**/cangjie-repo.toml"
+      ]
+    }
+  },
+  "archive": {
+    "sha256": "12ffc2f4591acfbd1ffe06ea12a55648af642f284d34b92134389c691d462c42",
+    "bytes": 42253,
+    "files": 54,
+    "nonmanifest_files_equal_git": 53,
+    "source_files": [
+      {
+        "path": "examples/layout/src/main.cj",
+        "sha256": "87999d29296a3c8d2cfe6c76ac7e62a98c69b90e7c2c1318922d8f38b342f51c"
+      },
+      {
+        "path": "examples/layout/cjpm.toml",
+        "sha256": "77169d29ae13be7467e9aec17b251abc5ce5b5fe6ff97afec0e9655952d19e2f"
+      },
+      {
+        "path": "examples/minimal/src/main.cj",
+        "sha256": "6887f6e6a8c8412017e8cd4b6c715cf10c2f11ce40c893d3de59fff44476a296"
+      },
+      {
+        "path": "examples/minimal/cjpm.toml",
+        "sha256": "d301a62d68caaa94a7bccf19ea1fb9072309f8bfacfde7b1c0779055acd43f03"
+      },
+      {
+        "path": "src/input_decoder.cj",
+        "sha256": "775c44e3c6404b85624e9358700061bd26a5716c486db6b16b40de3c65b8dec7"
+      },
+      {
+        "path": "src/alignment.cj",
+        "sha256": "b8525afb51b0ab899e040b81af986055ffb6d00b54f251f7622620e643422fa2"
+      },
+      {
+        "path": "src/terminal_bridge.cj",
+        "sha256": "7d20fcf10415fcff841481160f6c2789682b4c0999bc0ff0ed4181764b2c16da"
+      },
+      {
+        "path": "src/text/unicode.cj",
+        "sha256": "2bd5f0fbae84ddcb38d7dc4e639fd7b04e6b1c45465d17c9ef763ec56c70a15c"
+      },
+      {
+        "path": "src/cell.cj",
+        "sha256": "442a51a52270415415989a1c02c7ba1edabc968e86b124a6fc7b7af9e3012af0"
+      },
+      {
+        "path": "src/layout.cj",
+        "sha256": "755b438ceab4b92589b3704c42d4c83ccbab8b04a79a15d2476b5be8d0f5b69a"
+      },
+      {
+        "path": "src/layout_node.cj",
+        "sha256": "034273d4cba2fd6f77ad1ece516becf81bf34f2fa3ae3e71f4f9b91061f75987"
+      },
+      {
+        "path": "src/geometry/rect.cj",
+        "sha256": "f12793359eae47d415f263b0e35cacea2019388fd06de08b48e60b9e9896c641"
+      },
+      {
+        "path": "src/frame.cj",
+        "sha256": "f9d2d083aaaa0954df16f45c0b8aeb828538b55f35768fad8643c0aff99cf9f0"
+      },
+      {
+        "path": "src/drawing_geometry.cj",
+        "sha256": "2a31e0eb8dc6e1f3e8557c11374db5068ffa1fa9e3ebd6f79ec08794b59cba05"
+      },
+      {
+        "path": "src/exports.cj",
+        "sha256": "0d164ed12eeb0e6d8d1ca705a90d04b28cb8cce34d5c8744ca1dd137cf29e58c"
+      },
+      {
+        "path": "src/key_event.cj",
+        "sha256": "7117386aa54b62c41fbb1ae770fc17f2807cbd9283aba759dbb86a6fd04a60ee"
+      },
+      {
+        "path": "src/ansi_encoding.cj",
+        "sha256": "3bbf4a09849fe51e7f5a772dc0ac9438bc3810964164a4b007a84a311254922b"
+      },
+      {
+        "path": "src/application.cj",
+        "sha256": "c6f4853ca2131c45bd53008d57c9f5500fe121b12e7a0949ee3efc11b230d502"
+      },
+      {
+        "path": "src/style/color.cj",
+        "sha256": "271ca635f11936d9d111baaa345ed8d6e5767777219e22ac0358a814105e56ef"
+      },
+      {
+        "path": "src/style/style.cj",
+        "sha256": "27875b1d63c28e6d9af0fc40ab8d72c3b7523677a21b047cff0f258d9313b3d0"
+      },
+      {
+        "path": "src/style/border_style.cj",
+        "sha256": "6cda8b6e130d33ff2e98d161eca3f00ad6456fecfd0acf2f8a5c2927f6b7b250"
+      },
+      {
+        "path": "src/text_validation.cj",
+        "sha256": "7ae937ea12783654c7c5bbccd8761f5dad24d78f2e126c85d94c577286d7c6d0"
+      },
+      {
+        "path": "src/component.cj",
+        "sha256": "8778842350440fafea7923e1152de6f9829a90a90d1b9c35333964deb2436826"
+      },
+      {
+        "path": "docs/product/native-build.md",
+        "sha256": "353f732ac0b85e1628ac34640734f28d80fb1d7d20a0bb760eb6906c7d024177"
+      },
+      {
+        "path": "docs/product/README.md",
+        "sha256": "e21e7188a10c89397f40c0b19a6bbe73b1e7b31ccd20b092491b6f8bc940d8f6"
+      },
+      {
+        "path": "third_party/licenses/ansies/package-README.md.txt",
+        "sha256": "46b894ffbb402c7c43d65e91d282593a3c1940800e64e995d3195ac820724d29"
+      },
+      {
+        "path": "third_party/licenses/ansies/LICENSE",
+        "sha256": "3ff90416cfa7c39fa712549d388be9f6a6c9f08b56a5df3b8a19727978eae0a5"
+      },
+      {
+        "path": "third_party/licenses/ansies/package-cjpm.toml",
+        "sha256": "554516e616d2c76aaad5d55dbea69980be62959b13cad910be964e9240b6478e"
+      },
+      {
+        "path": "third_party/licenses/ansies/README.OpenSource",
+        "sha256": "b077416cdd0bb7d739c7fed04f8089ae37a8090a0c7c9a821d43232c6cd54040"
+      },
+      {
+        "path": "third_party/licenses/unicodewidth/LICENSE-MIT",
+        "sha256": "7b63ecd5f1902af1b63729947373683c32745c16a10e8e6292e2e2dcd7e90ae0"
+      },
+      {
+        "path": "third_party/licenses/unicodewidth/COPYRIGHT",
+        "sha256": "23860c2a7b5d96b21569afedf033469bab9fe14a1b24a35068b8641c578ce24d"
+      },
+      {
+        "path": "third_party/licenses/unicodewidth/package-README.md.txt",
+        "sha256": "a34af89dd95578079c87b7141579300c54680b1f1578a55dee58f8a327267170"
+      },
+      {
+        "path": "third_party/licenses/unicodewidth/LICENSE-APACHE",
+        "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+      },
+      {
+        "path": "third_party/licenses/unicodewidth/LICENSE",
+        "sha256": "57a0e7f3270c6b6b341aa5080207063c77b2639ed5da56e0f7e0bbcc1e34b02b"
+      },
+      {
+        "path": "third_party/licenses/unicodewidth/package-cjpm.toml",
+        "sha256": "f5819f0562ef4079f76b2d68e09f4d67806fbd68e0e410e51817a15df5cce36e"
+      },
+      {
+        "path": "third_party/licenses/unicodewidth/README.OpenSource",
+        "sha256": "6c0a7fe96d19fc8367c3e524a5e4d5ab2316f6aab981e59539ab657135798754"
+      },
+      {
+        "path": "third_party/licenses/UNICODE-DATA-LICENSE.txt",
+        "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+      },
+      {
+        "path": "third_party/licenses/bitarray/LICENSE-MIT",
+        "sha256": "7b63ecd5f1902af1b63729947373683c32745c16a10e8e6292e2e2dcd7e90ae0"
+      },
+      {
+        "path": "third_party/licenses/bitarray/package-README.md.txt",
+        "sha256": "a2f3df0ecb73a59cbd84c7a0b1c47f436081452383f31c7326ff6628fa6dd183"
+      },
+      {
+        "path": "third_party/licenses/bitarray/LICENSE-APACHE",
+        "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+      },
+      {
+        "path": "third_party/licenses/bitarray/LICENSE",
+        "sha256": "57a0e7f3270c6b6b341aa5080207063c77b2639ed5da56e0f7e0bbcc1e34b02b"
+      },
+      {
+        "path": "third_party/licenses/bitarray/package-cjpm.toml",
+        "sha256": "f3a0c41d07823621d5abd3c4783694b8b081daad534313ee71e4054a1b862915"
+      },
+      {
+        "path": "third_party/licenses/unicode/package-README.md.txt",
+        "sha256": "111341f3db05e67aa9c38ed4fb9c5840d5c254d19e9bd44253fd7b6e09cef651"
+      },
+      {
+        "path": "third_party/licenses/unicode/LICENSE",
+        "sha256": "3ff90416cfa7c39fa712549d388be9f6a6c9f08b56a5df3b8a19727978eae0a5"
+      },
+      {
+        "path": "third_party/licenses/unicode/package-cjpm.toml",
+        "sha256": "42049dd08985115f3c6c6c7e26acb385c9fc48d59b7556e78bb1d7cf42a54dbc"
+      },
+      {
+        "path": "third_party/licenses/unicode/README.OpenSource",
+        "sha256": "1e962fe7c70199c241e4a2241eaf1d61af8bc1fbf32c3af1a4f333749c37949e"
+      },
+      {
+        "path": "native/build.sh",
+        "sha256": "77677c3921f7c3388cf0bdea851c11f8216e2a2e95217163692f4725279dcddc"
+      },
+      {
+        "path": "native/cjtui_terminal.c",
+        "sha256": "f870938439c7b330cab29ed8478f748b228617a471b0a6cbe3b0f18d2b17b5d3"
+      },
+      {
+        "path": "README.md",
+        "sha256": "4d21078c0f90dd628bdddb29acdd727f12b096c3d6cc3c425563cd314b8dc99d"
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "9f2bea7a0f3311ab915c19351fca4e9cc0270925c7abd60f5a2a62b66fc179a1"
+      },
+      {
+        "path": "NOTICE",
+        "sha256": "7350d4646d307851a0625c09fb8c9a5ea48ec4df185446aa89832de86c404991"
+      },
+      {
+        "path": "build.cj",
+        "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9"
+      },
+      {
+        "path": "CHANGELOG.md",
+        "sha256": "89ad24c112c9711505cde45324c54985174330fcb63c90838504c1e8ddcae540"
+      }
+    ],
+    "manifest": {
+      "dependencies": {
+        "ansies": {
+          "version": "1.3.113"
+        },
+        "unicode": {
+          "version": "0.1.0"
+        },
+        "unicodewidth": {
+          "version": "0.1.113"
+        }
+      },
+      "package": {
+        "cjc-version": "1.2.0",
+        "name": "cjtui",
+        "description": "Declarative terminal UI framework for Cangjie",
+        "version": "0.0.0",
+        "target-dir": "target",
+        "src-dir": "src",
+        "output-type": "static",
+        "compile-option": "",
+        "override-compile-option": "",
+        "link-option": "",
+        "repository": "https://github.com/vchs6/terminal.ui",
+        "license": [
+          "MulanPSL-2.0"
+        ],
+        "include": [
+          "/build.cj",
+          "/native",
+          "/third_party/licenses",
+          "/src",
+          "/examples",
+          "/benchmarks",
+          "/docs/product",
+          "/LICENSE",
+          "/NOTICE",
+          "/CHANGELOG.md"
+        ],
+        "exclude": [
+          "/openspec",
+          "/docs/development",
+          "/docs/decisions",
+          "/docs/reviews",
+          "/docs/requirements.md",
+          "/docs/ui-construction.md",
+          "/docs/architecture.md",
+          "/docs/tasks.md",
+          "/docs/acceptance.md",
+          "/AGENTS.md",
+          "/BATTLE_PROTOCOL.md",
+          "/ENGINEERING_TASK_DECOMPOSITION.md",
+          "/CONTRIBUTING.md",
+          "/scripts",
+          "/tests",
+          "/node_modules",
+          "/package.json",
+          "/package-lock.json",
+          "**/*.a",
+          "**/*.o",
+          "/.cjtui-build",
+          "**/build-script-cache",
+          "**/target",
+          "**/cjpm.lock",
+          "**/cangjie-repo.toml"
+        ]
+      },
+      "ffi": {
+        "c": {
+          "unicodedata": {
+            "path": "./native"
+          },
+          "cjtui_terminal": {
+            "path": "./native"
+          }
+        }
+      }
+    },
+    "manifests": [
+      {
+        "path": "examples/layout/cjpm.toml",
+        "data": {
+          "package": {
+            "cjc-version": "1.2.0",
+            "name": "cjtui_layout",
+            "version": "0.0.0",
+            "src-dir": "src",
+            "output-type": "executable"
+          },
+          "dependencies": {
+            "cjtui": {
+              "path": "../.."
+            }
+          }
+        }
+      },
+      {
+        "path": "examples/minimal/cjpm.toml",
+        "data": {
+          "package": {
+            "cjc-version": "1.2.0",
+            "name": "cjtui_minimal",
+            "version": "0.0.0",
+            "src-dir": "src",
+            "output-type": "executable"
+          },
+          "dependencies": {
+            "cjtui": {
+              "path": "../.."
+            }
+          }
+        }
+      },
+      {
+        "path": "cjpm.toml",
+        "data": {
+          "dependencies": {
+            "ansies": {
+              "version": "1.3.113"
+            },
+            "unicode": {
+              "version": "0.1.0"
+            },
+            "unicodewidth": {
+              "version": "0.1.113"
+            }
+          },
+          "package": {
+            "cjc-version": "1.2.0",
+            "name": "cjtui",
+            "description": "Declarative terminal UI framework for Cangjie",
+            "version": "0.0.0",
+            "target-dir": "target",
+            "src-dir": "src",
+            "output-type": "static",
+            "compile-option": "",
+            "override-compile-option": "",
+            "link-option": "",
+            "repository": "https://github.com/vchs6/terminal.ui",
+            "license": [
+              "MulanPSL-2.0"
+            ],
+            "include": [
+              "/build.cj",
+              "/native",
+              "/third_party/licenses",
+              "/src",
+              "/examples",
+              "/benchmarks",
+              "/docs/product",
+              "/LICENSE",
+              "/NOTICE",
+              "/CHANGELOG.md"
+            ],
+            "exclude": [
+              "/openspec",
+              "/docs/development",
+              "/docs/decisions",
+              "/docs/reviews",
+              "/docs/requirements.md",
+              "/docs/ui-construction.md",
+              "/docs/architecture.md",
+              "/docs/tasks.md",
+              "/docs/acceptance.md",
+              "/AGENTS.md",
+              "/BATTLE_PROTOCOL.md",
+              "/ENGINEERING_TASK_DECOMPOSITION.md",
+              "/CONTRIBUTING.md",
+              "/scripts",
+              "/tests",
+              "/node_modules",
+              "/package.json",
+              "/package-lock.json",
+              "**/*.a",
+              "**/*.o",
+              "/.cjtui-build",
+              "**/build-script-cache",
+              "**/target",
+              "**/cjpm.lock",
+              "**/cangjie-repo.toml"
+            ]
+          },
+          "ffi": {
+            "c": {
+              "unicodedata": {
+                "path": "./native"
+              },
+              "cjtui_terminal": {
+                "path": "./native"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "ordinary_consumer": true
+  },
+  "full_release": {
+    "status": "expected_nonzero_incomplete_full_release",
+    "exit": 1,
+    "passed": false,
+    "missing": [
+      "examples/composition/cjpm.toml",
+      "benchmarks/rendering/cjpm.toml"
+    ]
+  },
+  "evidence_copies": {
+    "files": 199,
+    "sha256sums_entries": 200
+  },
+  "contract_copies": [
+    {
+      "path": "whole-review/review.md",
+      "sha256": "94caf871ce015e1867efdf9c031b55584ecb6432a4a42043898423aee3b2f3f8",
+      "bytes": 12279
+    },
+    {
+      "path": "whole-review/findings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "path": "whole-review/whole-technical-review.diff",
+      "sha256": "31ece713e87c90f90a6fc47a7001e9ed170e3895d11b52a0c10ac403ba5cfbdf",
+      "bytes": 115959
+    },
+    {
+      "path": "whole-review/verification.log",
+      "sha256": "aae330d462e6fd91f7fc31a546a874a90e0a7af86bb34025c69ef63266f19387",
+      "bytes": 7293
+    },
+    {
+      "path": "whole-review/structure-check.log",
+      "sha256": "d01be78a921b55cf0cf2b05be92cff009dfd299f10563c4fdfdbaf6ba970ca87",
+      "bytes": 6906
+    },
+    {
+      "path": "layout-review/review.md",
+      "sha256": "e394045d9a5c9d6be0ffc3beb83ba5becb9bcf1b015d65b04b757c3638cf466d",
+      "bytes": 7648
+    },
+    {
+      "path": "layout-review/findings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "path": "test-design/report.md",
+      "sha256": "8056822551d5d19e6428a62e894af3eeec2201f597a1d88eb724ba6a7019c1fc",
+      "bytes": 9400
+    },
+    {
+      "path": "test-design/layout-red.log",
+      "sha256": "c5ec6cfa794d829bbe05d7040d457affcb8037b7d5b9951c2002608ed06d71d0",
+      "bytes": 2759
+    },
+    {
+      "path": "test-design/decoration-final-red.log",
+      "sha256": "22eb538ceae73f7a35e7b3f0de3bc136b13beaa4a1ad019981d5a4a2084ae331",
+      "bytes": 3039
+    },
+    {
+      "path": "test-design/decoration-capture-failure.log",
+      "sha256": "3b8a86a3ac40fdc4d15d379379ad5ea2d1bc8419db95b872d656e9a95f400aef",
+      "bytes": 1041
+    },
+    {
+      "path": "test-design/capture-red.log",
+      "sha256": "eb2915e693ff9a63ccd4e9e0a1a7e508aa8718f03bd487d05dcda88356d8353c",
+      "bytes": 670
+    },
+    {
+      "path": "test-design/capture-green.log",
+      "sha256": "b7e17b8e7d31944e8071c5757cbbe2548f43cd3321ea0cd3e226c377044b270c",
+      "bytes": 98
+    },
+    {
+      "path": "lifecycle-test/lifecycle-report.md",
+      "sha256": "e742881cd283f30a76381e5e38e52fc259d5051a43dc79ef2585d32cfad78dd2",
+      "bytes": 5525
+    }
+  ]
+}

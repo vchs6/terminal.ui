@@ -1,0 +1,137 @@
+{
+  "status": "partial-audited-final-pending",
+  "fixed": "40aa4db6c2b7673bb3e8c9a80fdb5b4e385cb940",
+  "source_entries": 87,
+  "checks": {
+    "lifecycle": {
+      "exit": 0,
+      "command": "bash tests/run-slice.sh application-lifecycle"
+    },
+    "native-session": {
+      "exit": 0,
+      "command": "bash tests/run-slice.sh native-session"
+    },
+    "root-build": {
+      "exit": 0,
+      "command": "cjpm build"
+    },
+    "root-check": {
+      "exit": 0,
+      "command": "cjpm check"
+    }
+  },
+  "cases": [
+    {
+      "mode": "q-success",
+      "code": 0,
+      "signal": null,
+      "passed": true,
+      "exact_termios": true,
+      "real_close_calls": 1,
+      "business_marker": false,
+      "restore_marker": false,
+      "raw_sha256": "1ac5b2b4bc60b1aee4a5b8b239ef4b5cb3fce386476a6387dfe36b7d8256569d"
+    },
+    {
+      "mode": "q-close-failure",
+      "code": 1,
+      "signal": null,
+      "passed": true,
+      "exact_termios": true,
+      "real_close_calls": 1,
+      "business_marker": false,
+      "restore_marker": true,
+      "raw_sha256": "66274b2cbea5f77d1a8665928924b666cd19f587536abddd8c754b481472eb11"
+    },
+    {
+      "mode": "callback-success",
+      "code": 1,
+      "signal": null,
+      "passed": true,
+      "exact_termios": true,
+      "real_close_calls": 1,
+      "business_marker": true,
+      "restore_marker": false,
+      "raw_sha256": "2e6689cd32e758e0cfbe06c92076e300d24189197f05c17e9d3b26ae3af2667b"
+    },
+    {
+      "mode": "callback-close-failure",
+      "code": 1,
+      "signal": null,
+      "passed": true,
+      "exact_termios": true,
+      "real_close_calls": 1,
+      "business_marker": true,
+      "restore_marker": true,
+      "raw_sha256": "5a2ac90b42505dcda74cef7005d25c5abfad04e54167b7644b82f793e1e93779"
+    },
+    {
+      "mode": "ctrl-c-success",
+      "code": 0,
+      "signal": null,
+      "passed": true,
+      "exact_termios": true,
+      "real_close_calls": 1,
+      "business_marker": false,
+      "restore_marker": false,
+      "raw_sha256": "1ac5b2b4bc60b1aee4a5b8b239ef4b5cb3fce386476a6387dfe36b7d8256569d"
+    },
+    {
+      "mode": "resize-success",
+      "code": 0,
+      "signal": null,
+      "passed": true,
+      "exact_termios": true,
+      "real_close_calls": 1,
+      "business_marker": false,
+      "restore_marker": false,
+      "raw_sha256": "9b7c1e1891b34f9842e2a4afd55501257b2a8cf64da738cd3e7400523a2b7dbd"
+    }
+  ],
+  "redCases": [
+    {
+      "mode": "q-success",
+      "code": 0,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "mode": "q-close-failure",
+      "code": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "mode": "callback-success",
+      "code": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "mode": "callback-close-failure",
+      "code": 1,
+      "signal": null,
+      "passed": false,
+      "error": "original callback exception remains explicitly observable"
+    },
+    {
+      "mode": "ctrl-c-success",
+      "code": 0,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "mode": "resize-success",
+      "code": 0,
+      "signal": null,
+      "passed": true
+    }
+  ],
+  "review": {
+    "spec": "passed",
+    "quality": "passed",
+    "fixed": "40aa4db6c2b7673bb3e8c9a80fdb5b4e385cb940",
+    "diff_sha256": "919094a488182162faac9b9fe1dfcb6d00aa5fecf73d70e50f0dc9e964a2face"
+  },
+  "inventory": "frozen-resumed-partial/inventory.json"
+}

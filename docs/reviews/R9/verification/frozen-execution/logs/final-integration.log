@@ -1,0 +1,24 @@
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: x86_64-unknown-linux-gnu
+Cangjie Project Manager: 1.2.0
+cjpm build success
+PASS non-TTY: no ESC
+PASS PTY q: exit=0, termios restored, bytes=182
+PASS PTY ctrl-c: exit=0, termios restored, bytes=182
+PASS PTY sigint: exit=0, termios restored, bytes=182
+PASS PTY sigterm: exit=0, termios restored, bytes=182
+PASS PTY resize: exit=0, termios restored, bytes=256
+PASS PTY exception: exit=1, termios restored, bytes=574
+SEND PTY osc-ctrl-c: prefix=1b5d303b78797a78797a, then Ctrl-C=03
+PASS PTY osc-ctrl-c: exit=0, termios restored, bytes=182
+SEND PTY utf8-ctrl-c: prefix=c2, then Ctrl-C=03
+PASS PTY utf8-ctrl-c: exit=0, termios restored, bytes=182
+SEND PTY utf8-fragmented: e4b8ad, one byte per write, 160ms apart; then q
+OBSERVED PTY utf8-fragmented: [{"code":"text","text":"中"},{"code":"text","text":"q"}]
+PASS PTY utf8-fragmented: exit=0, termios restored, bytes=232
+SEND PTY sos-ignore: 1b587365637265741b5c; then q
+OBSERVED PTY sos-ignore: [{"code":"text","text":"q"}]
+PASS PTY sos-ignore: exit=0, termios restored, bytes=206
+SEND PTY sos-escape-utf8: 1b581be4b89c7365637265741b5c; then q
+OBSERVED PTY sos-escape-utf8: [{"code":"text","text":"q"}]
+PASS PTY sos-escape-utf8: exit=0, termios restored, bytes=206

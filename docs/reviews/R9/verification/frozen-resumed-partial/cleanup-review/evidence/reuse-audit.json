@@ -1,0 +1,308 @@
+{
+  "revision": "40aa4db6c2b7673bb3e8c9a80fdb5b4e385cb940",
+  "baseline": "dabd60b8a7216531d37582ff623aa50ed263a1b6",
+  "technical_diff_sha256": "919094a488182162faac9b9fe1dfcb6d00aa5fecf73d70e50f0dc9e964a2face",
+  "green_source_comparison": {
+    "revision": "d8334844e462fe8377116f6b3f5d3cf82ac6abd6",
+    "paths": [
+      "src",
+      "native",
+      "build.cj",
+      "cjpm.toml",
+      "tests"
+    ],
+    "identical": true
+  },
+  "old_test_paths_unchanged": [
+    "tests/contract",
+    "tests/coordinate-boundary",
+    "tests/native-smoke",
+    "tests/native-session",
+    "tests/integration",
+    "tests/layout",
+    "tests/decoration"
+  ],
+  "products_changed": [
+    "src/application.cj"
+  ],
+  "evidence_reuse_only": true,
+  "cases": [
+    {
+      "phase": "red",
+      "mode": "q-success",
+      "result": {
+        "mode": "q-success",
+        "code": 0,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=0",
+      "business_marker": false,
+      "restore_marker": false,
+      "dir": "/workspace/work/cleanup-scoped-review/repo/docs/reviews/R9/lifecycle-test/lifecycle-red-artifacts/q-success",
+      "files": {
+        "result.json": "e837f4f3ecb3af4878594e10bb39ab32500e99929a78c1a51f39202105f65b58",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "d70bc9c09985d418f3951308a18542373e15988eb4b564309e927c031789021e",
+        "session.raw": "1ac5b2b4bc60b1aee4a5b8b239ef4b5cb3fce386476a6387dfe36b7d8256569d",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "red",
+      "mode": "q-close-failure",
+      "result": {
+        "mode": "q-close-failure",
+        "code": 1,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=1",
+      "business_marker": false,
+      "restore_marker": true,
+      "dir": "/workspace/work/cleanup-scoped-review/repo/docs/reviews/R9/lifecycle-test/lifecycle-red-artifacts/q-close-failure",
+      "files": {
+        "result.json": "f68eedf9ed47ac0ceeb1dca0a9b59865b90317c4f615b370b15f559a3769e665",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "80f556406681278fb32b3fbd3345c28483f69936af0d3d567f2feb6ccb88cec8",
+        "session.raw": "c60daa622a69c317d5a5ae6e68a42ef4e15dd2374cdb2ffdd2e090d1339b7202",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "red",
+      "mode": "callback-success",
+      "result": {
+        "mode": "callback-success",
+        "code": 1,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=0",
+      "business_marker": true,
+      "restore_marker": false,
+      "dir": "/workspace/work/cleanup-scoped-review/repo/docs/reviews/R9/lifecycle-test/lifecycle-red-artifacts/callback-success",
+      "files": {
+        "result.json": "1d443709eaa9e70a55f4e2e2b3df1a9f2464efe65fecf8d2c550d0660c8c6d67",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "d70bc9c09985d418f3951308a18542373e15988eb4b564309e927c031789021e",
+        "session.raw": "7ba9599382e87ffcd38f9b48d126f26c0c4ceb6eae62880a7b318a58973a41d2",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "red",
+      "mode": "callback-close-failure",
+      "result": {
+        "mode": "callback-close-failure",
+        "code": 1,
+        "signal": null,
+        "passed": false,
+        "error": "original callback exception remains explicitly observable"
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=1",
+      "business_marker": false,
+      "restore_marker": true,
+      "dir": "/workspace/work/cleanup-scoped-review/repo/docs/reviews/R9/lifecycle-test/lifecycle-red-artifacts/callback-close-failure",
+      "files": {
+        "result.json": "d2923fb39ceef2b1d2202da556bfff8cd7d7f9d4e5b5cacf3ac2e15cee7d1bcf",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "80f556406681278fb32b3fbd3345c28483f69936af0d3d567f2feb6ccb88cec8",
+        "session.raw": "c60daa622a69c317d5a5ae6e68a42ef4e15dd2374cdb2ffdd2e090d1339b7202",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "red",
+      "mode": "ctrl-c-success",
+      "result": {
+        "mode": "ctrl-c-success",
+        "code": 0,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=0",
+      "business_marker": false,
+      "restore_marker": false,
+      "dir": "/workspace/work/cleanup-scoped-review/repo/docs/reviews/R9/lifecycle-test/lifecycle-red-artifacts/ctrl-c-success",
+      "files": {
+        "result.json": "374fbd60d0b3de0d5c4bcaa03c465fb803b8baad613e378ffc68293d7a85da78",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "d70bc9c09985d418f3951308a18542373e15988eb4b564309e927c031789021e",
+        "session.raw": "1ac5b2b4bc60b1aee4a5b8b239ef4b5cb3fce386476a6387dfe36b7d8256569d",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "red",
+      "mode": "resize-success",
+      "result": {
+        "mode": "resize-success",
+        "code": 0,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=0",
+      "business_marker": false,
+      "restore_marker": false,
+      "dir": "/workspace/work/cleanup-scoped-review/repo/docs/reviews/R9/lifecycle-test/lifecycle-red-artifacts/resize-success",
+      "files": {
+        "result.json": "30b93db5e0a44d37d086e796707084a3ce3441176e8b1990082af2c854e85cb4",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "d70bc9c09985d418f3951308a18542373e15988eb4b564309e927c031789021e",
+        "session.raw": "9b7c1e1891b34f9842e2a4afd55501257b2a8cf64da738cd3e7400523a2b7dbd",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "green",
+      "mode": "q-success",
+      "result": {
+        "mode": "q-success",
+        "code": 0,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=0",
+      "business_marker": false,
+      "restore_marker": false,
+      "dir": "/workspace/work/application-cleanup-fix/artifacts/task060-green/q-success",
+      "files": {
+        "result.json": "e837f4f3ecb3af4878594e10bb39ab32500e99929a78c1a51f39202105f65b58",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "d70bc9c09985d418f3951308a18542373e15988eb4b564309e927c031789021e",
+        "session.raw": "1ac5b2b4bc60b1aee4a5b8b239ef4b5cb3fce386476a6387dfe36b7d8256569d",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "green",
+      "mode": "q-close-failure",
+      "result": {
+        "mode": "q-close-failure",
+        "code": 1,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=1",
+      "business_marker": false,
+      "restore_marker": true,
+      "dir": "/workspace/work/application-cleanup-fix/artifacts/task060-green/q-close-failure",
+      "files": {
+        "result.json": "f68eedf9ed47ac0ceeb1dca0a9b59865b90317c4f615b370b15f559a3769e665",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "80f556406681278fb32b3fbd3345c28483f69936af0d3d567f2feb6ccb88cec8",
+        "session.raw": "344dd7ec26291dc3af601684e1ec3e6469c68fb0421b42fabbf386b0cf2c79df",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "green",
+      "mode": "callback-success",
+      "result": {
+        "mode": "callback-success",
+        "code": 1,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=0",
+      "business_marker": true,
+      "restore_marker": false,
+      "dir": "/workspace/work/application-cleanup-fix/artifacts/task060-green/callback-success",
+      "files": {
+        "result.json": "1d443709eaa9e70a55f4e2e2b3df1a9f2464efe65fecf8d2c550d0660c8c6d67",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "d70bc9c09985d418f3951308a18542373e15988eb4b564309e927c031789021e",
+        "session.raw": "d901913890a6dcfe1f4f7463edad982ff74c3756219b6ae1db193c3e2f690db2",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "green",
+      "mode": "callback-close-failure",
+      "result": {
+        "mode": "callback-close-failure",
+        "code": 1,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=1",
+      "business_marker": true,
+      "restore_marker": true,
+      "dir": "/workspace/work/application-cleanup-fix/artifacts/task060-green/callback-close-failure",
+      "files": {
+        "result.json": "07fcea36e4b52988202f27e8a0b79ee77bc0f1a6beabdfde67064152b45451a8",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "80f556406681278fb32b3fbd3345c28483f69936af0d3d567f2feb6ccb88cec8",
+        "session.raw": "6ca776970217887835429b7e4b3910f76f3b246e2ba891c81726503cf740561a",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "green",
+      "mode": "ctrl-c-success",
+      "result": {
+        "mode": "ctrl-c-success",
+        "code": 0,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=0",
+      "business_marker": false,
+      "restore_marker": false,
+      "dir": "/workspace/work/application-cleanup-fix/artifacts/task060-green/ctrl-c-success",
+      "files": {
+        "result.json": "374fbd60d0b3de0d5c4bcaa03c465fb803b8baad613e378ffc68293d7a85da78",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "d70bc9c09985d418f3951308a18542373e15988eb4b564309e927c031789021e",
+        "session.raw": "1ac5b2b4bc60b1aee4a5b8b239ef4b5cb3fce386476a6387dfe36b7d8256569d",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "green",
+      "mode": "resize-success",
+      "result": {
+        "mode": "resize-success",
+        "code": 0,
+        "signal": null,
+        "passed": true
+      },
+      "exact_termios": true,
+      "close_record": "real_result=0 injected=0",
+      "business_marker": false,
+      "restore_marker": false,
+      "dir": "/workspace/work/application-cleanup-fix/artifacts/task060-green/resize-success",
+      "files": {
+        "result.json": "30b93db5e0a44d37d086e796707084a3ce3441176e8b1990082af2c854e85cb4",
+        "before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+        "close-record.txt": "d70bc9c09985d418f3951308a18542373e15988eb4b564309e927c031789021e",
+        "session.raw": "9b7c1e1891b34f9842e2a4afd55501257b2a8cf64da738cd3e7400523a2b7dbd",
+        "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ]
+}

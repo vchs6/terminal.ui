@@ -1,0 +1,66 @@
+{
+  "revision": "40aa4db6c2b7673bb3e8c9a80fdb5b4e385cb940",
+  "checks": [
+    {
+      "command": [
+        "node",
+        "--check",
+        "tests/application-lifecycle/pty.mjs"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-n",
+        "tests/application-lifecycle/run.sh",
+        "tests/run-slice.sh"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsyntax-only",
+        "tests/application-lifecycle/native/close_wrap.c"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "dabd",
+        "HEAD",
+        "--",
+        "src",
+        "tests",
+        "openspec/changes/implement-layout-decoration/design.md"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

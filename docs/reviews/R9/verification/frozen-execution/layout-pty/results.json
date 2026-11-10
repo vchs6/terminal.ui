@@ -1,0 +1,130 @@
+{
+  "passed": true,
+  "actualBinary": "repo/examples/layout/target/release/bin/main",
+  "invocation": "node tests/integration/layout-pty.mjs examples/layout/target/release/bin/main (inside unmodified tests/run-slice.sh all)",
+  "runnerExit": 0,
+  "actualExampleExit": 0,
+  "forcedSignal": null,
+  "initialSize": [
+    48,
+    14
+  ],
+  "resizeSequence": [
+    [
+      23,
+      9
+    ],
+    [
+      8,
+      4
+    ],
+    [
+      48,
+      14
+    ]
+  ],
+  "decorationToggle": "d off/on at normal and tiny sizes",
+  "exactRestore": true,
+  "idleNoUpdates": true,
+  "exactTermiosRestore": true,
+  "raw": "session.raw",
+  "frames": [
+    {
+      "path": "01-initial-48x14.txt",
+      "bytes": 917,
+      "sha256": "a4b56634dd9a22bfa26e558b38e17ef6e831f1a9800e90ac04f6a36066af90b9"
+    },
+    {
+      "path": "02-disabled-48x14.txt",
+      "bytes": 685,
+      "sha256": "6ead54d674a919b36a5285d3ebd5b7f390df6a62722ae86d3c94c245583d92c1"
+    },
+    {
+      "path": "03-restored-48x14.txt",
+      "bytes": 917,
+      "sha256": "a4b56634dd9a22bfa26e558b38e17ef6e831f1a9800e90ac04f6a36066af90b9"
+    },
+    {
+      "path": "04-resize-23x9.txt",
+      "bytes": 323,
+      "sha256": "fa3e910f7d90063e435993f9ddf9c7f7f744e8885ea26a873d308920291d1f5f"
+    },
+    {
+      "path": "05-resize-8x4.txt",
+      "bytes": 35,
+      "sha256": "a813a04ad9cfeb7e5fed37f55b1f1c0183f4edffb34103b75c0b25507ef9c40c"
+    },
+    {
+      "path": "06-disabled-8x4.txt",
+      "bytes": 35,
+      "sha256": "a813a04ad9cfeb7e5fed37f55b1f1c0183f4edffb34103b75c0b25507ef9c40c"
+    },
+    {
+      "path": "07-resize-back-48x14.txt",
+      "bytes": 917,
+      "sha256": "a4b56634dd9a22bfa26e558b38e17ef6e831f1a9800e90ac04f6a36066af90b9"
+    },
+    {
+      "path": "stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "termios.txt",
+      "bytes": 187,
+      "sha256": "a3fa354d3aa2d21455a18cf1f5a0b1c466071eb366fefb64c687cfb8537b6d8f"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "01-initial-48x14.txt",
+      "bytes": 917,
+      "sha256": "a4b56634dd9a22bfa26e558b38e17ef6e831f1a9800e90ac04f6a36066af90b9"
+    },
+    {
+      "path": "02-disabled-48x14.txt",
+      "bytes": 685,
+      "sha256": "6ead54d674a919b36a5285d3ebd5b7f390df6a62722ae86d3c94c245583d92c1"
+    },
+    {
+      "path": "03-restored-48x14.txt",
+      "bytes": 917,
+      "sha256": "a4b56634dd9a22bfa26e558b38e17ef6e831f1a9800e90ac04f6a36066af90b9"
+    },
+    {
+      "path": "04-resize-23x9.txt",
+      "bytes": 323,
+      "sha256": "fa3e910f7d90063e435993f9ddf9c7f7f744e8885ea26a873d308920291d1f5f"
+    },
+    {
+      "path": "05-resize-8x4.txt",
+      "bytes": 35,
+      "sha256": "a813a04ad9cfeb7e5fed37f55b1f1c0183f4edffb34103b75c0b25507ef9c40c"
+    },
+    {
+      "path": "06-disabled-8x4.txt",
+      "bytes": 35,
+      "sha256": "a813a04ad9cfeb7e5fed37f55b1f1c0183f4edffb34103b75c0b25507ef9c40c"
+    },
+    {
+      "path": "07-resize-back-48x14.txt",
+      "bytes": 917,
+      "sha256": "a4b56634dd9a22bfa26e558b38e17ef6e831f1a9800e90ac04f6a36066af90b9"
+    },
+    {
+      "path": "session.raw",
+      "bytes": 3595,
+      "sha256": "63149ac67c9e3aca0ce839ca46b4eea11245dc710514d54cefddffcb8e1693b4"
+    },
+    {
+      "path": "stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "termios.txt",
+      "bytes": 187,
+      "sha256": "a3fa354d3aa2d21455a18cf1f5a0b1c466071eb366fefb64c687cfb8537b6d8f"
+    }
+  ]
+}

@@ -14,8 +14,8 @@
 | AC-008 | REQ-004 | 差分提交与写失败恢复 | TASK-008 | 无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错；证据待实施时链接 | pending |
 | AC-009 | REQ-005 | 有界增量 ANSI 输入适配 | TASK-009 | 跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传；证据待实施时链接 | pending |
 | AC-010 | REQ-005 | 完整彩色与纯文本快照 | TASK-010 | 含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告；证据待实施时链接 | pending |
-| AC-011 | REQ-003 | 横纵与弹性尺寸协商 | TASK-011 | 窄屏、零尺寸和非整除弹性分配有确定结果；证据待实施时链接 | pending |
-| AC-012 | REQ-003 | 圆角边框与阴影绘制区域 | TASK-012 | 阴影只扩展绘制；移动/缩小清旧区，服从祖先裁剪；证据待实施时链接 | pending |
+| AC-011 | REQ-003 | 横纵与弹性尺寸协商 | TASK-011 | 窄屏、零尺寸和非整除弹性分配有确定结果；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
+| AC-012 | REQ-003 | 圆角边框与阴影绘制区域 | TASK-012 | 阴影只扩展绘制；移动/缩小清旧区，服从祖先裁剪；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
 | AC-013 | REQ-001 | 主题、样式复用及显式复位 | TASK-013 | 四级优先顺序和继承/复位行为明确，运行时仅样式变化也更新；证据待实施时链接 | pending |
 | AC-014 | REQ-001 | 自定义组件跨容器复用 | TASK-014 | 同组件用于普通容器与弹窗无需修改内核；证据待实施时链接 | pending |
 | AC-015 | REQ-002 | 稳定身份与卸载订阅释放 | TASK-015 | 列表重排保留正确局部状态，卸载后订阅和引用失效；证据待实施时链接 | pending |
@@ -69,10 +69,10 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-054 | REQ-003/007 | TASK-054 | 独立布局/装饰测试与RED | pending |
-| AC-055 | REQ-007 | TASK-055 | 固定代码契约/质量审核及修复复核 | pending |
-| AC-056 | REQ-003/006/007 | TASK-056 | fresh slice/真实例子/clean包消费原始证据 | pending |
+| AC-054 | REQ-003/007 | TASK-054 | 独立布局/装饰测试与RED；[R9证据](reviews/R9/result.md) | passed |
+| AC-055 | REQ-007 | TASK-055 | 固定代码契约/质量审核及修复复核；[R9证据](reviews/R9/result.md) | passed |
+| AC-056 | REQ-003/006/007 | TASK-056 | fresh slice/真实例子/clean包消费原始证据；[R9证据](reviews/R9/result.md) | passed |
 | AC-057 | REQ-003/007 | TASK-057 | 有限合同验收和最终集成 | pending |
-| AC-058 | REQ-007 / 用户源码组织约束 | TASK-058 | 包/实体文件一致，公开消费者及制品无回归 | pending |
-| AC-059 | REQ-004.7/007 | TASK-059 | 非throwing finally，业务/恢复错误均可见，标准bundle | pending |
-| AC-060 | REQ-004.7/007 | TASK-060 | 独立生命周期组合回归及真实RED/termios | pending |
+| AC-058 | REQ-007 / 用户源码组织约束 | TASK-058 | 包/实体文件一致，公开消费者及制品无回归；[R9证据](reviews/R9/result.md) | passed |
+| AC-059 | REQ-004.7/007 | TASK-059 | 非throwing finally，业务/恢复错误均可见，标准bundle；[R9证据](reviews/R9/result.md) | passed |
+| AC-060 | REQ-004.7/007 | TASK-060 | 独立生命周期组合回归及真实RED/termios；[R9证据](reviews/R9/result.md) | passed |

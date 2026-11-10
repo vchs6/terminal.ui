@@ -1,0 +1,74 @@
+{
+  "task": "TASK056",
+  "status": "blocked_on_normal_bundle",
+  "testedCommit": "425626a1b6556b16837cb0744d5a5f46ebd54814",
+  "productOrTestEdits": false,
+  "sdk": "Cangjie 1.2.0",
+  "source": "/workspace/work/layout-execution/repo",
+  "dependencyCache": "/workspace/work/layout-execution/cache",
+  "sharedCacheModified": false,
+  "registry": "http://127.0.0.1:18972",
+  "ucdArchive": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+  "scope": "Linux layout/decor slice, not complete product/release",
+  "environmentPreparation": [
+    {
+      "stage": "npm-ci",
+      "exit": 254,
+      "cause": "default npm cache /home/agent/.npm is outside writable roots",
+      "log": "logs/npm-ci.log"
+    },
+    {
+      "stage": "npm-ci-workspace-cache",
+      "exit": 0,
+      "cache": "/workspace/work/layout-execution/npm-cache",
+      "log": "logs/npm-ci-workspace-cache.log"
+    }
+  ],
+  "requiredStages": [
+    "scripts/check-product.sh slice",
+    "actual layout PTY included once in all",
+    "cjpm bundle local only",
+    "unchanged full-release check-bundle.mjs",
+    "implemented slice package boundary",
+    "clean extracted root build/check",
+    "ordinary external consumer build/direct executable"
+  ],
+  "packageCommit": "dabd60b8a7216531d37582ff623aa50ed263a1b6",
+  "technicalEquivalence": "technical-equivalence.json",
+  "slice": {
+    "exit": 0,
+    "log": "logs/slice.log",
+    "started": "2026-11-10T01:17:29Z",
+    "finished": "2026-11-10T01:27:47Z",
+    "actualEntrypoint": "bash scripts/check-product.sh slice",
+    "rootCjpmTestLocalCases": 0,
+    "rootBuildBeforeCheck": true,
+    "directConsumers": true,
+    "allStages": [
+      "native-session",
+      "native-smoke",
+      "contract",
+      "coordinates",
+      "integration",
+      "layout",
+      "decoration",
+      "layout-integration"
+    ],
+    "layoutPty": "layout-pty/results.json"
+  },
+  "bundle": {
+    "command": "cjpm bundle",
+    "exit": 1,
+    "log": "logs/bundle.log",
+    "blocker": "SDK cjlint mandatory G.ERR.04: src/application.cj:74 throws in finally",
+    "artifactProduced": false,
+    "action": "Stopped and reported to primary; no source/test edits, no skip-lint retry"
+  },
+  "pending": [
+    "local cjp generation",
+    "full-release boundary checker actual run",
+    "slice package source boundary",
+    "clean package build/check",
+    "ordinary consumer build/directrun"
+  ]
+}

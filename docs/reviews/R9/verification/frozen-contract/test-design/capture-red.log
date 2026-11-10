@@ -1,0 +1,16 @@
+[31merror[0m: lambda capturing mutable variables needs to be called directly
+ [36m==>[0m /workspace/work/layout-tests/capture-probe/src/main.cj:9:15:
+  [36m| [0m
+[36m9[0m [36m| [0m    construct { panel = Value() }[0m
+  [36m| [0m              [31m^^^^^^^^^^^^^^^^^^^ [0m
+  [36m| [0m
+[34mnote[0m: 'panel' is mutable
+ [36m==>[0m /workspace/work/layout-tests/capture-probe/src/main.cj:9:17:
+  [36m| [0m
+[36m9[0m [36m| [0m    construct { panel = Value() }[0m
+  [36m| [0m                [34m^^^^^ [0m
+  [36m| [0m
+
+1 error generated, 1 error printed.
+Error: failed to compile package `capture_probe`, return code is 1
+Error: cjpm build failed
