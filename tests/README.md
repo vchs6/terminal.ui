@@ -321,3 +321,7 @@ changes product code nor restores the terminal. It establishes that the pre-exis
 base-namespace entry remains `cap-16` while the product query uses its own namespace.
 Synthetic TERM entries are not real-host evidence; TASK-066 owns terminal-emulator
 matrix runs and screenshots.
+
+The capability harness checks util-linux `script` and GNU `stty` with `--version`,
+and ncurses `tic` with its supported `-V` option. Every probe must exit zero;
+missing or failing tools remain test failures.

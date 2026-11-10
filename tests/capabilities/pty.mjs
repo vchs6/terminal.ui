@@ -74,7 +74,7 @@ function profile(result, expected, name) {
 }
 let failures = 0;
 try {
-  for (const command of ['script', 'stty', 'tic']) assert.equal(spawnSync(command, ['--version']).status, 0, `${command} available`);
+  for (const [command, argument] of [['script', '--version'], ['stty', '--version'], ['tic', '-V']]) assert.equal(spawnSync(command, [argument]).status, 0, `${command} available`);
   const cases = [
     ['eight', { TERM: 'cap-8' }, { colorMode: 'Basic8', colorKnown: true, terminfoKnown: true, source: 'terminfo', reason: '', noColorVideo: -1 }],
     ['mono', { TERM: 'cap-mono' }, { colorMode: 'Monochrome', colorKnown: true, terminfoKnown: true, source: 'terminfo', reason: '', noColorVideo: -1 }],
