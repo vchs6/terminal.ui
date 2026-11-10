@@ -37,3 +37,5 @@ Ruling：保留末次stats累计但dispose当前存量归0，明确用于资源�
 071完整测试固定原62facc4→489d329→ae8520c，main投影9cd654c→9bea05f→6f62eb5；core/macro正向/session真missingAPI RED1、旧库build0，测试源码/raw/报告见R12/test-design。只语法声明scratch从未执行，macro负向不得因缺包假通过。主代理机械完成071交付，实际AC071仍等075独立验收；072在R016限定ready及core固定后正式准入，已收到全部最终tests。实现者runtime_implementer指定Terra/high、自有source/cache，当前开发core/宏正向通过，PTY发现边界退出错误正定点修复；这些仅开发自测，不等于073–075完成。
 
 076独立dynamic_test_author已准备32组手工golden/公共API草稿，静态语法/旧库build0仅环境证据，无A+B新基线故还未missingC RED/正式冻结；恢复时直接唤回该角色，不重复另派。后续richtext合同独立ready，081测试正在准备，009产品仍等072–075及共享文件屏障；不同时改同一Component/Layout权威。
+
+072发现SDK Exception不能附加suppressed/cause，旧清理额外错误仅stderr不足，主代理R017引入UICleanupException公开保留primary原对象/有序附加列表及数组防御复制。主代理先下达编码导致作者提前写入未编译R017，后又误指示保留；读TDD实际铁律后纠正为仅删除该新类型/聚合改动、恢复先前core已通过临时路径，不保留参考副本。作者已确认删除，相关中断验证exit130不计通过；其他A+B代码/测试/证据保留。此真实时序不反写成先RED。071作者独立补R017测试/旧库真实缺API RED，原preflight限定复核；重新准入后从测试/合同重写。后续R017选择所有双失败均公开保留primary对象，D027原消息组合为前缀、计数追加末尾，不保留旧丢对象实现。
