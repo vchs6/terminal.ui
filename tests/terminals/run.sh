@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # TASK-066 real-host collection for the public no-override fixture.
 set -eu
 root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
