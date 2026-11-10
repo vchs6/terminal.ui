@@ -71,7 +71,7 @@ L4：1.确认独立装饰RED；2.共享路径实现并接入布局树；3.自测
 
 ## Pack-blocker repair admission
 
-- [ ] 5.1 TASK-060：独立生命周期回归设计/真实RED；AC-060：正常/业务错误与close成功/失败组合、真实termios、原断言保留。
+- [x] 5.1 TASK-060：独立生命周期回归设计/真实RED；AC-060：正常/业务错误与close成功/失败组合、真实termios、原断言保留。
 - [ ] 5.2 TASK-059：修复D027 finally抛异常及双错误丢失；AC-059：不绕过SDK门禁，清理恰一次、错误不丢、标准bundle继续。
 
 | task / type | inputs / depends_on | deliverable / acceptance | quality / skills / risks |
