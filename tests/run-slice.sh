@@ -22,6 +22,14 @@ case "${1:-all}" in
     (cd tests/layout && cjpm build)
     timeout 30s tests/layout/target/release/bin/main
     ;;
+  decoration)
+    (cd tests/decoration && cjpm build)
+    timeout 30s tests/decoration/target/release/bin/main
+    ;;
+  layout-integration)
+    (cd examples/layout && cjpm build)
+    node tests/integration/layout-pty.mjs "${LAYOUT_SESSION_BIN:-examples/layout/target/release/bin/main}"
+    ;;
   integration)
     (cd tests/integration/fixture && cjpm build)
     node tests/integration/pty.mjs "${SLICE_SESSION_BIN:-tests/integration/fixture/target/release/bin/main}"
@@ -33,6 +41,8 @@ case "${1:-all}" in
     "$0" coordinates
     "$0" integration
     "$0" layout
+    "$0" decoration
+    "$0" layout-integration
     ;;
-  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|integration|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|integration|all]" >&2; exit 2 ;;
 esac

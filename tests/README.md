@@ -162,3 +162,38 @@ all retained R8 modes. Missing APIs at the binding input must produce genuine RE
 For exact fractions: eight columns with weights 1:2:3 allocate 1:3:4 (remainders
 2/6, 4/6, 0); ten columns allocate 2:3:5. An infeasible 8:4 minimum in six available
 columns first clamps to 6:4, then allocates 4:2. These are specification fixtures.
+
+```sh
+./tests/run-slice.sh decoration
+./tests/run-slice.sh layout-integration
+```
+
+`tests/decoration` independently checks literal borders (including zero/one-cell
+and ambiguous-width cases), signed shadow set difference, original-rectangle
+clipping, huge bounded geometry, styled-space fill, wide-cluster cleanup through
+all three low-level operations, component insets, transparent unused allocation,
+explicit Default background, paint order, ancestor clipping, and clearing on
+border/shadow removal. `░` is narrow under the current public width policy even
+with ambiguousWide enabled; the conditional dot fallback cannot be forced through
+this public policy. Border glyphs are ambiguous and their whole-set ASCII fallback
+is executable. No artificial width API or product test hook is introduced.
+
+`layout-integration` builds the actual `examples/layout` application and runs it in
+a real Linux PTY. Its agreed public interaction is: initially rounded borders and
+visible shadow, d toggles both off/on, q exits. The harness starts at 48x14, compares
+the complete frame after d/off/on, resizes to 23x9 then 8x4, toggles there, and
+returns to 48x14. It checks no stale decoration, deterministic restored geometry,
+full actual-width output rows with bounded cursor addresses, idle silence, normal
+exit, and exact termios restoration. It does not bind titles or business text.
+The small screen reader consumes the existing Linux backend's CUP/SGR full-row
+output, with independent terminal-column accounting for ordinary Latin/CJK/emoji
+content; it is a test facility rather than a full terminal emulator. A future
+backend that changes the supported encoding must update this facility deliberately.
+
+Set `CJTUI_LAYOUT_PTY_ARTIFACTS=/absolute/output/directory` to retain raw bytes,
+frame snapshots, stderr, and termios evidence in a chosen directory. Otherwise a
+new temporary artifact directory is retained and printed. A timeout fails; SIGKILL
+is used only to clean up a failing session. The fixture is never replaced by a
+fake terminal application. `LAYOUT_SESSION_BIN` can select a compatible actual
+example binary after the ordinary example build. The default `all` mode includes
+both new consumers and actual example PTY after all original R8 modes.

@@ -48,6 +48,7 @@ func proportion(): Unit {
     plain(Row { Text("AA").layoutWeight(0); Text("BBBBBB").layoutWeight(1) }, 6, 1, "AABBBB", "zero weight remains nonflex")
     plain(Column { Text("A\nA\nA\nA\nA").layoutWeight(1); Text("B\nB\nB\nB\nB").layoutWeight(1) }, 1, 5, "A\nA\nA\nB\nB", "column uses same largest remainder allocation")
     plain(Row { Text("AAAAAAAA").layoutWeight(Int64.Max / 2); Text("BBBBBBBB").layoutWeight(Int64.Max / 2) }, 7, 1, "AAAABBB", "integer multiply-divide survives product overflow")
+    plain(Row { Text("AAA").layoutWeight(Int64.Max / 2 - 1); Text("BBB").layoutWeight(Int64.Max / 2) }, 3, 1, "ABB", "near-equal extreme remainders remain exact beyond float precision")
     plain(Row { Text("AAAAAAAA").layoutWeight(Int64.Max - 1); Text("BBBBBBBB").layoutWeight(1) }, 7, 1, "AAAAAAA", "extreme skew preserves exact remainder")
     plain(Row { Text("AAAAAAAAA").minWidth(Int64.Max).layoutWeight(1); Text("BBBBBBBBB").minWidth(Int64.Max).layoutWeight(1) }, 9, 1, "AAAAABBBB", "minimum clamp precedes safe sum")
     rejected({ => render(Row { Text("A").layoutWeight(Int64.Max); Text("B").layoutWeight(1) }, 5, 1); () }, "unrepresentable weight sum diagnosed")
