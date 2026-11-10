@@ -16,6 +16,12 @@ public class Component {
     var minW: Int64 = 0
     var minH: Int64 = 0
     var weight: Int64 = 0
+    var borderStyle: BorderStyle = BorderStyle.None
+    var borderFg: ?Color = None
+    var shadowEnabled = false
+    var shadowX: Int64 = 1
+    var shadowY: Int64 = 1
+    var shadowStyle = Style()
     var pad: Int64 = 0
     var spacing: Int64 = 0
     var align: Alignment = Alignment.Start
@@ -35,6 +41,11 @@ public class Component {
     public func justifyContent(v: Alignment): Component { if (kind == 0 || v == Alignment.Stretch) { throw IllegalArgumentException("invalid justification") }; justify = v; this }
     public func textAlign(v: Alignment): Component { if (kind != 0 || v == Alignment.Stretch) { throw IllegalArgumentException("invalid text alignment") }; textAlignment = v; this }
     init(kind: Int64, value: String) { this.kind = kind; this.value = value }
+    public func border(value: BorderStyle): Component { borderStyle = value; this }
+    public func borderColor(value: Color): Component { borderFg = value; this }
+    public func shadow(offsetX!: Int64 = 1, offsetY!: Int64 = 1, style!: Style = Style(), enabled!: Bool = true): Component {
+        shadowX = offsetX; shadowY = offsetY; shadowStyle = style; shadowEnabled = enabled; this
+    }
     public func foreground(value: Color): Component { fg = value; this }
     public func background(value: Color): Component { bg = value; this }
     public func bold(): Component { isBold = true; this }

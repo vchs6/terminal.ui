@@ -102,6 +102,58 @@ public class Frame {
             if (cx > Int64.Max - w) { cx = Int64.Max } else { cx += w }
         }
     }
+    public func fillRect(rect: Rect, style!: Style = Style()): Unit {
+        fillClipped(rect, style, 0, 0, width, height)
+    }
+    func fillClipped(rect: Rect, style: Style, left: Int64, top: Int64, right: Int64, bottom: Int64): Unit {
+        if (width == 0 || height == 0) { return }
+        let x0 = greater(left, greater(0, rect.x)); let y0 = greater(top, greater(0, rect.y))
+        let x1 = lesser(right, lesser(width, signedAdd(rect.x, rect.width)))
+        let y1 = lesser(bottom, lesser(height, signedAdd(rect.y, rect.height)))
+        for (y in y0..greater(y0, y1)) { for (x in x0..greater(x0, x1)) { put(x, y, " ", style: style) } }
+    }
+    public func drawBorder(rect: Rect, border!: BorderStyle = BorderStyle.Single, style!: Style = Style()): Unit {
+        borderClipped(rect, border, style, 0, 0, width, height)
+    }
+    func borderClipped(rect: Rect, border: BorderStyle, style: Style, left: Int64, top: Int64, right: Int64, bottom: Int64): Unit {
+        if (border == BorderStyle.None || rect.width == 0 || rect.height == 0 || width == 0 || height == 0) { return }
+        var tl = "┌"; var tr = "┐"; var bl = "└"; var br = "┘"; var horizontal = "─"; var vertical = "│"
+        if (border == BorderStyle.Rounded) { tl = "╭"; tr = "╮"; bl = "╰"; br = "╯" }
+        if (border == BorderStyle.Double) { tl = "╔"; tr = "╗"; bl = "╚"; br = "╝"; horizontal = "═"; vertical = "║" }
+        if (border == BorderStyle.Ascii || displayWidth(tl, ambiguousWide: ambiguousWide) != 1 || displayWidth(tr, ambiguousWide: ambiguousWide) != 1 || displayWidth(bl, ambiguousWide: ambiguousWide) != 1 || displayWidth(br, ambiguousWide: ambiguousWide) != 1 || displayWidth(horizontal, ambiguousWide: ambiguousWide) != 1 || displayWidth(vertical, ambiguousWide: ambiguousWide) != 1) {
+            tl = "+"; tr = "+"; bl = "+"; br = "+"; horizontal = "-"; vertical = "|"
+        }
+        let lastX = signedAdd(rect.x, rect.width - 1); let lastY = signedAdd(rect.y, rect.height - 1)
+        let x0 = greater(left, greater(0, rect.x)); let y0 = greater(top, greater(0, rect.y))
+        let x1 = lesser(right, lesser(width, signedAdd(rect.x, rect.width)))
+        let y1 = lesser(bottom, lesser(height, signedAdd(rect.y, rect.height)))
+        for (y in y0..greater(y0, y1)) { for (x in x0..greater(x0, x1)) {
+            var glyph = ""
+            if (rect.width == 1 && rect.height == 1) { glyph = "+" }
+            else if (rect.width == 1) { glyph = vertical }
+            else if (rect.height == 1) { glyph = horizontal }
+            else if (y == rect.y) { glyph = if (x == rect.x) { tl } else if (x == lastX) { tr } else { horizontal } }
+            else if (y == lastY) { glyph = if (x == rect.x) { bl } else if (x == lastX) { br } else { horizontal } }
+            else if (x == rect.x || x == lastX) { glyph = vertical }
+            if (!glyph.isEmpty()) { put(x, y, glyph, style: style) }
+        } }
+    }
+    public func drawShadow(rect: Rect, offsetX!: Int64 = 1, offsetY!: Int64 = 1, style!: Style = Style()): Unit {
+        shadowClipped(rect, offsetX, offsetY, style, 0, 0, width, height)
+    }
+    func shadowClipped(rect: Rect, dx: Int64, dy: Int64, style: Style, left: Int64, top: Int64, right: Int64, bottom: Int64): Unit {
+        if (rect.width == 0 || rect.height == 0 || width == 0 || height == 0 || (dx == 0 && dy == 0)) { return }
+        // A negatively overflowing origin plus any representable extent remains offscreen.
+        if ((dx < 0 && rect.x < Int64.Min - dx) || (dy < 0 && rect.y < Int64.Min - dy)) { return }
+        let sx = signedAdd(rect.x, dx); let sy = signedAdd(rect.y, dy)
+        let x0 = greater(left, greater(0, sx)); let y0 = greater(top, greater(0, sy))
+        let x1 = lesser(right, lesser(width, signedAdd(sx, rect.width)))
+        let y1 = lesser(bottom, lesser(height, signedAdd(sy, rect.height)))
+        let glyph = if (displayWidth("░", ambiguousWide: ambiguousWide) == 1) { "░" } else { "." }
+        for (y in y0..greater(y0, y1)) { for (x in x0..greater(x0, x1)) {
+            if (!(containsAxis(rect.x, rect.width, x) && containsAxis(rect.y, rect.height, y))) { put(x, y, glyph, style: style) }
+        } }
+    }
     public func toPlainText(): String {
         var out = ""
         for (y in 0..height) {

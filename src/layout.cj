@@ -59,8 +59,9 @@ class LayoutNode {
                 if (c.kind == 1) { naturalH = sat(naturalH, c.spacing) } else { naturalW = sat(naturalW, c.spacing) }
             }
         }
-        naturalW = sat(sat(naturalW, c.pad), c.pad)
-        naturalH = sat(sat(naturalH, c.pad), c.pad)
+        let inset = sat(c.pad, if (c.borderStyle == BorderStyle.None) { 0 } else { 1 })
+        naturalW = sat(sat(naturalW, inset), inset)
+        naturalH = sat(sat(naturalH, inset), inset)
     }
 }
 // Exact quotient and remainder for a*b/d, where 0 <= a <= d and b >= 0.
@@ -79,17 +80,19 @@ func mulDiv(a: Int64, b: Int64, d: Int64): (Int64, Int64) {
     }
     (q, r)
 }
-func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipR: Int64, clipB: Int64, inherited: Style): Unit {
+func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64, clipR: Int64, clipB: Int64, inherited: Style): Unit {
     let c = n.component
     let style = Style(foreground: c.fg ?? inherited.foreground, background: c.bg ?? inherited.background, bold: c.isBold ?? inherited.bold)
     let right = lesser(clipR, sat(x, w)); let bottom = lesser(clipB, sat(y, h))
-    if (c.bg != None && x < right && y < bottom) {
-        var yy = y
-        while (yy < bottom) { var xx = x; while (xx < right) { frame.put(xx, yy, " ", style: style); xx++ }; yy++ }
-    }
-    let leftPad = lesser(c.pad, w); let topPad = lesser(c.pad, h)
-    let innerW = w - leftPad - lesser(c.pad, w - leftPad)
-    let innerH = h - topPad - lesser(c.pad, h - topPad)
+    let rect = Rect(x, y, w, h)
+    if (c.shadowEnabled) { frame.shadowClipped(rect, c.shadowX, c.shadowY, c.shadowStyle, clipL, clipT, clipR, clipB) }
+    if (c.bg != Option<Color>.None) { frame.fillClipped(rect, style, clipL, clipT, clipR, clipB) }
+    let borderStyle = Style(foreground: c.borderFg ?? style.foreground, background: style.background, bold: style.bold)
+    frame.borderClipped(rect, c.borderStyle, borderStyle, clipL, clipT, clipR, clipB)
+    let inset = sat(c.pad, if (c.borderStyle == BorderStyle.None) { 0 } else { 1 })
+    let leftPad = lesser(inset, w); let topPad = lesser(inset, h)
+    let innerW = w - leftPad - lesser(inset, w - leftPad)
+    let innerH = h - topPad - lesser(inset, h - topPad)
     let ix = sat(x, leftPad); let iy = sat(y, topPad)
     let ir = lesser(right, sat(ix, innerW)); let ib = lesser(bottom, sat(iy, innerH))
     if (c.kind == 0) {
@@ -160,13 +163,13 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
         let minimum = if (c.kind == 2) { cc.minH } else { cc.minW }
         let natural = if (c.kind == 2) { child.naturalH } else { child.naturalW }
         var crossSize = lesser(cross, greater(fixed ?? natural, minimum))
-        if (c.align == Alignment.Stretch && fixed == None) { crossSize = cross }
+        if (c.align == Alignment.Stretch && fixed == Option<Int64>.None) { crossSize = cross }
         let crossOffset = offset(c.align, cross - crossSize)
         let cx = if (c.kind == 2) { sat(ix, cursor) } else { sat(ix, crossOffset) }
         let cy = if (c.kind == 2) { sat(iy, crossOffset) } else { sat(iy, cursor) }
         let cw = if (c.kind == 2) { sizes[i] } else { crossSize }
         let ch = if (c.kind == 2) { crossSize } else { sizes[i] }
-        paint(child, frame, cx, cy, cw, ch, ir, ib, style)
+        paint(child, frame, cx, cy, cw, ch, greater(clipL, ix), greater(clipT, iy), ir, ib, style)
         cursor = sat(cursor, sizes[i]); if (i + 1 < count) { cursor = sat(cursor, c.spacing) }
     }
 }
@@ -175,6 +178,6 @@ public func render(root: Component, width: Int64, height: Int64): Frame {
     let node = LayoutNode(root); node.measure()
     let w = lesser(width, greater(root.fixedW ?? width, root.minW))
     let h = lesser(height, greater(root.fixedH ?? height, root.minH))
-    paint(node, frame, 0, 0, w, h, width, height, Style())
+    paint(node, frame, 0, 0, w, h, 0, 0, width, height, Style())
     frame
 }
