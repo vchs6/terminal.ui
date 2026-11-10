@@ -18,7 +18,7 @@ func headless(): Unit {
     check(app.sessionCapabilities().isNone(), "no capability snapshot before first run")
     result("inactive", app.copyLocalText("x")); contextOperations(app, "inactive")
     app.startHeadless()
-    capabilities("headless", app)
+    capabilities("headless.capabilities", app)
     let firstId = app.sessionCapabilities().getOrThrow().sessionId
     result("headless.copy", app.copyLocalText("text"))
     result("headless.title", app.setHostTitle("title"))

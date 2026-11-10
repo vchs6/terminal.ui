@@ -51,3 +51,5 @@ const observed={clipboardBeforeHex:'53454544',clipboardAfterHex:'53454544',title
 verifyObservation(observed,expected);
 for(const bad of [{...observed,clipboardAfterHex:Buffer.from(hostText).toString('hex')},{...observed,title:{...observed.title,restored:'B'}},{...observed,iconAfterSha256:'b'.repeat(64)},{...observed,termiosAfter:'raw'}]) assert.throws(()=>verifyObservation(bad,expected));
 console.log('PASS host observation oracle: permission-negative/title/icon/termios controls=4; synthetic observations only, no product/host PASS');
+
+await import('./key_selftest.mjs');

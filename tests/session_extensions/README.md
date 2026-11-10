@@ -64,3 +64,18 @@ For SSH, reuse the private stock sshd readiness handoff's real `ssh -T` + remote
 ## Boundaries and open execution work
 
 This task freezes tests and old-product RED, not future-product GREEN or AC030 acceptance. Impossible public inputs (an unknown enum route, Int64-overflow Array allocation, >90,000 generated wire after the stricter payload caps) are not fabricated through private encoder calls. Those constants are bounded by reachable maximum wire assertions; unreachable enum outcomes are compile-consumed. Heap/OOM coverage is the existing native allocation seam only. Host execution, SSH product evidence, resize/disconnect, independent code review and acceptance are separate roles. This suite does not replace R10 or the full AC008/020/030/041 scope.
+
+## Headless record namespaces
+
+The headless capability snapshot uses `headless.capabilities.*`; operation
+results retain `headless.copy/title/restore/icon`. The original `headless.title`
+capability/result key collision is preserved in `fixtures/headless-key-collision.tsv`
+as fixture-only evidence. `node tests/session_extensions/key_selftest.mjs` checks
+the original collision and both5-field/6-field orderings, then renames only those
+capability keys in the original records to verify unchanged field expectations.
+`parseResults` rejects a duplicate key that changes pipe-delimited record shape;
+legitimate same-shape getter/mount repeats retain the original last-value
+behavior. It does not validate every repeated invocation separately or reject
+all duplicate keys. The control checks that behavior against the real supplied
+fixture. Its PASS is solely an oracle/record-namespace check, not product or
+headless runtime GREEN. Normal `selftest` includes this control.

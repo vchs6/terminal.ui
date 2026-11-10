@@ -12,7 +12,10 @@ export function parseResults(text) {
   for (const line of text.trim().split('\n')) {
     if (!line) continue;
     const tab = line.indexOf('\t'); assert(tab > 0, `invalid row ${line}`);
-    rows.set(line.slice(0, tab), line.slice(tab + 1));
+    const key=line.slice(0,tab),value=line.slice(tab+1),previous=rows.get(key);
+    assert(previous===undefined || previous.split('|').length===value.split('|').length,
+      `${key}: duplicate key changes record shape`);
+    rows.set(key,value);
   }
   return rows;
 }
@@ -52,7 +55,7 @@ export function verifyHeadless(rows, wire) {
   for(const op of ['copy','title','restore','icon']) assertResult(rows,`inactive.${op}`,fail('SessionInactive'));
   unavailable(rows, 'headless.title', 'SetHostTitle', 'NoDevice');
   unavailable(rows, 'headless.icon', 'SetHostImageIcon', 'NoImageAdapter');
-  for (const name of ['clipboard','title','titleStack']) assert(rows.get(`headless.${name}`).startsWith('Unsupported|KnownUnavailable|NoDevice|'), `headless ${name}`);
+  for (const name of ['clipboard','title','titleStack']) assert(rows.get(`headless.capabilities.${name}`).startsWith('Unsupported|KnownUnavailable|NoDevice|'), `headless ${name}`);
   assert.equal(rows.get('cleanup.count'), '0');
 }
 export function verifyLive(rows, wire, native, scenario, route, offset = 0, allWire = wire) {
