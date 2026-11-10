@@ -1,0 +1,180 @@
+package cjtui
+import std.collection.ArrayList
+
+public struct Rect {
+    public let x: Int64
+    public let y: Int64
+    public let width: Int64
+    public let height: Int64
+    public init(x: Int64, y: Int64, width: Int64, height: Int64) {
+        if (width < 0 || height < 0) { throw IllegalArgumentException("negative rectangle size") }
+        this.x = x; this.y = y; this.width = width; this.height = height
+    }
+}
+public enum Alignment <: Equatable<Alignment> {
+    | Start | Center | End | Stretch
+    public operator func ==(other: Alignment): Bool {
+        match ((this, other)) {
+            case (Start, Start) | (Center, Center) | (End, End) | (Stretch, Stretch) => true
+            case _ => false
+        }
+    }
+}
+func sat(a: Int64, b: Int64): Int64 { if (a > Int64.Max - b) { Int64.Max } else { a + b } }
+func lesser(a: Int64, b: Int64): Int64 { if (a < b) { a } else { b } }
+func greater(a: Int64, b: Int64): Int64 { if (a > b) { a } else { b } }
+func offset(a: Alignment, free: Int64): Int64 {
+    if (a == Alignment.End) { free } else if (a == Alignment.Center) { free / 2 } else { 0 }
+}
+class LayoutNode {
+    let component: Component
+    let children = ArrayList<LayoutNode>()
+    let lines = ArrayList<ArrayList<String>>()
+    let widths = ArrayList<Int64>()
+    var naturalW: Int64 = 0
+    var naturalH: Int64 = 0
+    init(c: Component) { component = c }
+    func measure(): Unit {
+        let c = component
+        if (c.kind == 0) {
+            validateText(c.value)
+            var line = ArrayList<String>()
+            var w: Int64 = 0
+            for (g in graphemeClusters(c.value)) {
+                if (g == "\n" || g == "\r\n") {
+                    lines.add(line); widths.add(w); naturalW = greater(naturalW, w)
+                    line = ArrayList<String>(); w = 0
+                } else { line.add(g); w = sat(w, displayWidth(g)) }
+            }
+            lines.add(line); widths.add(w); naturalW = greater(naturalW, w); naturalH = lines.size
+        } else {
+            for (child in c.children) {
+                let n = LayoutNode(child); n.measure(); children.add(n)
+                let cw = greater(child.fixedW ?? n.naturalW, child.minW)
+                let ch = greater(child.fixedH ?? n.naturalH, child.minH)
+                if (c.kind == 1) { naturalW = greater(naturalW, cw); naturalH = sat(naturalH, ch) }
+                else { naturalW = sat(naturalW, cw); naturalH = greater(naturalH, ch) }
+            }
+            for (_ in 1..children.size) {
+                if (c.kind == 1) { naturalH = sat(naturalH, c.spacing) } else { naturalW = sat(naturalW, c.spacing) }
+            }
+        }
+        naturalW = sat(sat(naturalW, c.pad), c.pad)
+        naturalH = sat(sat(naturalH, c.pad), c.pad)
+    }
+}
+// Exact quotient and remainder for a*b/d, where 0 <= a <= d and b >= 0.
+func mulDiv(a: Int64, b: Int64, d: Int64): (Int64, Int64) {
+    if (a == d) { return (b, 0) }
+    var q: Int64 = 0
+    var r: Int64 = 0
+    var bit: Int64 = 4611686018427387904
+    while (bit > 0) {
+        q *= 2
+        if (r >= d - r) { r -= d - r; q++ } else { r += r }
+        if ((b / bit) % 2 == 1) {
+            if (r >= d - a) { r -= d - a; q++ } else { r += a }
+        }
+        bit /= 2
+    }
+    (q, r)
+}
+func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipR: Int64, clipB: Int64, inherited: Style): Unit {
+    let c = n.component
+    let style = Style(foreground: c.fg ?? inherited.foreground, background: c.bg ?? inherited.background, bold: c.isBold ?? inherited.bold)
+    let right = lesser(clipR, sat(x, w)); let bottom = lesser(clipB, sat(y, h))
+    if (c.bg != None && x < right && y < bottom) {
+        var yy = y
+        while (yy < bottom) { var xx = x; while (xx < right) { frame.put(xx, yy, " ", style: style); xx++ }; yy++ }
+    }
+    let leftPad = lesser(c.pad, w); let topPad = lesser(c.pad, h)
+    let innerW = w - leftPad - lesser(c.pad, w - leftPad)
+    let innerH = h - topPad - lesser(c.pad, h - topPad)
+    let ix = sat(x, leftPad); let iy = sat(y, topPad)
+    let ir = lesser(right, sat(ix, innerW)); let ib = lesser(bottom, sat(iy, innerH))
+    if (c.kind == 0) {
+        for (i in 0..n.lines.size) {
+            let cy = sat(iy, i)
+            let free = if (n.widths[i] < innerW) { innerW - n.widths[i] } else { 0 }
+            var cx = sat(ix, offset(c.textAlignment, free))
+            for (g in n.lines[i]) {
+                let gw = displayWidth(g)
+                if (cy < ib && cx < ir && gw <= ir - cx) { frame.put(cx, cy, g, style: style) }
+                cx = sat(cx, gw)
+            }
+        }
+        return
+    }
+    let mainSize = if (c.kind == 2) { innerW } else { innerH }
+    let cross = if (c.kind == 2) { innerH } else { innerW }
+    let count = n.children.size
+    let sizes = Array<Int64>(count, repeat: 0)
+    let bases = Array<Int64>(count, repeat: 0)
+    let remainders = Array<Int64>(count, repeat: 0)
+    var occupied: Int64 = 0
+    var totalWeight: Int64 = 0
+    var totalBase: Int64 = 0
+    var flexCount: Int64 = 0
+    for (i in 0..count) {
+        let child = n.children[i]; let cc = child.component
+        if (i > 0) { occupied = sat(occupied, c.spacing) }
+        let minimum = if (c.kind == 2) { cc.minW } else { cc.minH }
+        if (cc.weight > 0) {
+            if (totalWeight > Int64.Max - cc.weight) { throw IllegalArgumentException("weight sum overflow") }
+            totalWeight += cc.weight; flexCount++
+            bases[i] = lesser(minimum, mainSize)
+            if (totalBase > Int64.Max - bases[i]) { throw IllegalArgumentException("minimum sum overflow") }
+            totalBase += bases[i]
+        } else {
+            let desired = if (c.kind == 2) { cc.fixedW ?? child.naturalW } else { cc.fixedH ?? child.naturalH }
+            sizes[i] = lesser(mainSize, greater(desired, minimum)); occupied = sat(occupied, sizes[i])
+        }
+    }
+    let pool = if (occupied < mainSize) { mainSize - occupied } else { 0 }
+    if (flexCount > 0) {
+        let useMin = totalBase > pool
+        let denominator = if (useMin) { totalBase } else { totalWeight }
+        let amount = if (useMin) { pool } else { pool - totalBase }
+        var used: Int64 = 0
+        for (i in 0..count) {
+            let cc = n.children[i].component
+            if (cc.weight > 0) {
+                let basis = if (useMin) { bases[i] } else { cc.weight }
+                let (share, rem) = mulDiv(basis, amount, denominator)
+                sizes[i] = share + if (useMin) { 0 } else { bases[i] }
+                remainders[i] = rem; used += share
+            }
+        }
+        var remaining = amount - used
+        while (remaining > 0) {
+            var best: Int64 = -1
+            for (i in 0..count) { if (n.children[i].component.weight > 0 && remainders[i] >= 0 && (best < 0 || remainders[i] > remainders[best])) { best = i } }
+            sizes[best]++; remainders[best] = -1; remaining--
+        }
+    }
+    let free = if (flexCount == 0 && occupied < mainSize) { mainSize - occupied } else { 0 }
+    var cursor = offset(c.justify, free)
+    for (i in 0..count) {
+        let child = n.children[i]; let cc = child.component
+        let fixed = if (c.kind == 2) { cc.fixedH } else { cc.fixedW }
+        let minimum = if (c.kind == 2) { cc.minH } else { cc.minW }
+        let natural = if (c.kind == 2) { child.naturalH } else { child.naturalW }
+        var crossSize = lesser(cross, greater(fixed ?? natural, minimum))
+        if (c.align == Alignment.Stretch && fixed == None) { crossSize = cross }
+        let crossOffset = offset(c.align, cross - crossSize)
+        let cx = if (c.kind == 2) { sat(ix, cursor) } else { sat(ix, crossOffset) }
+        let cy = if (c.kind == 2) { sat(iy, crossOffset) } else { sat(iy, cursor) }
+        let cw = if (c.kind == 2) { sizes[i] } else { crossSize }
+        let ch = if (c.kind == 2) { crossSize } else { sizes[i] }
+        paint(child, frame, cx, cy, cw, ch, ir, ib, style)
+        cursor = sat(cursor, sizes[i]); if (i + 1 < count) { cursor = sat(cursor, c.spacing) }
+    }
+}
+public func render(root: Component, width: Int64, height: Int64): Frame {
+    let frame = Frame(width, height)
+    let node = LayoutNode(root); node.measure()
+    let w = lesser(width, greater(root.fixedW ?? width, root.minW))
+    let h = lesser(height, greater(root.fixedH ?? height, root.minH))
+    paint(node, frame, 0, 0, w, h, width, height, Style())
+    frame
+}

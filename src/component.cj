@@ -11,6 +11,29 @@ public class Component {
     var fg: ?Color = None
     var bg: ?Color = None
     var isBold: ?Bool = None
+    var fixedW: ?Int64 = None
+    var fixedH: ?Int64 = None
+    var minW: Int64 = 0
+    var minH: Int64 = 0
+    var weight: Int64 = 0
+    var pad: Int64 = 0
+    var spacing: Int64 = 0
+    var align: Alignment = Alignment.Start
+    var justify: Alignment = Alignment.Start
+    var textAlignment: Alignment = Alignment.Start
+    func nonnegative(v: Int64): Unit { if (v < 0) { throw IllegalArgumentException("negative layout value") } }
+    public func width(v: Int64): Component { nonnegative(v); fixedW = v; this }
+    public func height(v: Int64): Component { nonnegative(v); fixedH = v; this }
+    public func widthAuto(): Component { fixedW = None; this }
+    public func heightAuto(): Component { fixedH = None; this }
+    public func minWidth(v: Int64): Component { nonnegative(v); minW = v; this }
+    public func minHeight(v: Int64): Component { nonnegative(v); minH = v; this }
+    public func layoutWeight(v: Int64): Component { nonnegative(v); weight = v; this }
+    public func padding(v: Int64): Component { nonnegative(v); pad = v; this }
+    public func gap(v: Int64): Component { nonnegative(v); if (kind == 0) { throw IllegalArgumentException("gap on text") }; spacing = v; this }
+    public func alignItems(v: Alignment): Component { if (kind == 0) { throw IllegalArgumentException("alignment on text") }; align = v; this }
+    public func justifyContent(v: Alignment): Component { if (kind == 0 || v == Alignment.Stretch) { throw IllegalArgumentException("invalid justification") }; justify = v; this }
+    public func textAlign(v: Alignment): Component { if (kind != 0 || v == Alignment.Stretch) { throw IllegalArgumentException("invalid text alignment") }; textAlignment = v; this }
     init(kind: Int64, value: String) { this.kind = kind; this.value = value }
     public func foreground(value: Color): Component { fg = value; this }
     public func background(value: Color): Component { bg = value; this }
@@ -33,54 +56,3 @@ func container(kind: Int64, body: () -> Unit): Component {
 }
 public func Column(body: () -> Unit): Component { container(1, body) }
 public func Row(body: () -> Unit): Component { container(2, body) }
-func measure(c: Component): (Int64, Int64) {
-    if (c.kind == 0) {
-        var w: Int64 = 0
-        var maxWidth: Int64 = 0
-        var h: Int64 = 1
-        for (g in graphemeClusters(c.value)) {
-            if (g == "\n" || g == "\r\n") { if (w > maxWidth) { maxWidth = w }; w = 0; h++ }
-            else { w += displayWidth(g) }
-        }
-        if (w > maxWidth) { maxWidth = w }
-        return (maxWidth, h)
-    }
-    var w: Int64 = 0
-    var h: Int64 = 0
-    for (child in c.children) {
-        let (cw, ch) = measure(child)
-        if (c.kind == 1) { if (cw > w) { w = cw }; h += ch }
-        else { w += cw; if (ch > h) { h = ch } }
-    }
-    (w, h)
-}
-func draw(c: Component, frame: Frame, x: Int64, y: Int64, right: Int64, bottom: Int64, inherited: Style): Unit {
-    let style = Style(foreground: c.fg ?? inherited.foreground, background: c.bg ?? inherited.background, bold: c.isBold ?? inherited.bold)
-    if (c.kind == 0) {
-        // Validate the complete string, including clipped text.
-        validateText(c.value)
-        var cx = x
-        var cy = y
-        for (g in graphemeClusters(c.value)) {
-            if (g == "\n" || g == "\r\n") { cx = x; cy++; continue }
-            let w = displayWidth(g)
-            if (cx >= x && cy >= y && cy < bottom && cx < right && w <= right - cx) { frame.put(cx, cy, g, style: style) }
-            cx += w
-        }
-        return
-    }
-    var cx = x
-    var cy = y
-    for (child in c.children) {
-        let (w, h) = measure(child)
-        let cr = if (cx + w < right) { cx + w } else { right }
-        let cb = if (cy + h < bottom) { cy + h } else { bottom }
-        draw(child, frame, cx, cy, cr, cb, style)
-        if (c.kind == 1) { cy += h } else { cx += w }
-    }
-}
-public func render(root: Component, width: Int64, height: Int64): Frame {
-    let result = Frame(width, height)
-    draw(root, result, 0, 0, width, height, Style())
-    result
-}
