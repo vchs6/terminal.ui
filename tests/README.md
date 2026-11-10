@@ -342,6 +342,28 @@ under a 30-second limit. Compiler/linker errors, assertion failure and timeout
 all fail. `all` includes the new mode after existing modes and retains every old
 assertion. The initial frozen consumer covers explicit transparency/styled spaces,
 layer ordering, clipped wide clusters, target-partner cleanup, transparent clear,
-independent copy/resize and overlapping self-composition. More edge/file cases are
-frozen separately before independent execution; this initial RED is the product
-implementation admission artifact, not acceptance or a claim of GREEN.
+independent copy/resize and overlapping self-composition. The second frozen increment adds both-axis/extreme clipping, complete-cluster
+invariants, copy padding, future-write policy preservation, explicit-clear/default
+blank distinctions, self-overlap in both axes, and allocation/export budgets.
+Zero-area legacy extreme dimensions are retained; only positive-area allocation
+is bounded. No test attempts a huge valid allocation.
+
+File expectations are independently authored literal UTF-8/CUP/SGR bytes in
+`composition/verify-files.mjs`, including a composed CJK/combining scene, default
+TrueColor, explicit TrueColor/Basic8/Monochrome, standalone transparency, zero-width
+LFs and zero-height snapshots. Fresh missing files test creation; 1024-byte
+prefills prove exact replacement and truncation, including empty files. Missing
+parents and directory targets must throw `std.fs.FSException`. When Linux provides
+`/dev/full`, both writers must propagate its real write failure. This is actual
+I/O, not a permissions simulation. LF-budget errors must occur before opening or
+creating a target. No atomic-write or persistence guarantee is asserted.
+
+Artifacts are retained in a fresh temporary directory printed by the runner.
+Set `CJTUI_COMPOSITION_ARTIFACTS=/absolute/output/parent` to retain each run under
+that parent. A new child directory prevents stale files from passing checks.
+The consumer runs with `TERM=dumb` and empty `COLORTERM`; exact TrueColor
+file bytes must still follow the public argument/default without probing a terminal.
+
+The frozen RED is product implementation admission, not acceptance or a claim of
+GREEN. Product author findings are routed through the coordinator; expected
+results cannot be changed merely to fit the implementation.

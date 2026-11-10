@@ -93,5 +93,11 @@ main(): Int64 {
     transparencyAndOrder()
     clustersAndClear()
     independentAndSelfCopy()
+    opacityAndExplicitClear()
+    clippingAndSourceOwnership()
+    copiesResizeAndPolicy()
+    overlaps()
+    budgetAndExtrema()
+    files()
     return 0
 }
