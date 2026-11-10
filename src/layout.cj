@@ -65,6 +65,7 @@ func mulDiv(a: Int64, b: Int64, d: Int64): (Int64, Int64) {
 
 func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
     clipR: Int64, clipB: Int64, inherited: Style): Unit {
+    n.session.recordPaint()
     let c = n.component
     let style = Style(foreground: c.fg ?? inherited.foreground, background: c.bg ?? inherited.background,
         bold: c.isBold ?? inherited.bold, dim: c.isDim ?? inherited.dim, italic: c.isItalic ?? inherited.italic,
@@ -271,12 +272,32 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
     }
 }
 
-public func render(root: Component, width: Int64, height: Int64): Frame {
+func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession): Frame {
     let frame = Frame(width, height)
-    let node = LayoutNode(root);
+    if (!root.isVisible) { return frame }
+    let node = LayoutNode(root, session);
     node.measure()
     let w = lesser(width, greater(root.fixedW ?? width, root.minW))
     let h = lesser(height, greater(root.fixedH ?? height, root.minH))
     paint(node, frame, 0, 0, w, h, 0, 0, width, height, Style())
     frame
+}
+
+public func render(root: Component, width: Int64, height: Int64): Frame {
+    if (let Some(node) <- root.readMount()) {
+        let session = node.session
+        session.requireBoundary()
+        let turnCutoff = session.cutoff()
+        return session.enter({ =>
+            session.stabilize(turnCutoff)
+            let frame = renderLayout(root, width, height, session)
+            session.recordFrame()
+            frame
+        })
+    }
+    let session = RuntimeSession(root, RuntimeLimits(), temporary: true)
+    try {
+        session.start()
+        return session.produce(width, height, true)
+    } finally { session.close() }
 }

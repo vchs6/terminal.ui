@@ -1,6 +1,6 @@
 package cjtui.style
 
-public struct Style <: Equatable<Style> {
+public struct Style <: Equatable<Style> { // cjlint-ignore !G.ENU.01 The public Style type and qualified ChangeKind.Style are distinct.
     public let foreground: Color
     public let background: Color
     public let bold: Bool

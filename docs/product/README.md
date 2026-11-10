@@ -11,7 +11,7 @@ cjpm run
 
 按 `q` 退出，Ctrl-C 取消；程序需要实际 TTY。构建依赖及可选离线 Unicode 数据输入见 [原生构建](native-build.md)。
 
-首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、响应式状态、多层合成、主题、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
+首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、动态条件与列表、主题、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
 
 低层可用 `Frame(width, height)` 和 `put(x, y, text, style: Style(...))` 写入网格，`cellAt` 查询，`toPlainText` 和 `toAnsi` 导出完整快照。负尺寸与越界查询报错；写入按边界裁剪，拒绝除换行外的控制字符。`render(root, width, height)` 使用同一网格渲染组件树。`Application(root).onKey { event => ... }.run()` 负责终端会话；文本按 Unicode 字符提供，`stop()` 可从回调退出。
 
@@ -30,3 +30,8 @@ cjpm run
 文本属性包括 `bold`、`dim`、`italic`、`underline`、`inverse` 和 `strikethrough`。组件属性链如 `.italic()` 启用属性，`.italic(false)` 显式关闭继承值；`Style` 对应参数默认为 false。文本、显式背景和边框继承这些属性，阴影使用传入的完整 Style。
 
 `examples/colors` 展示命名色、索引色、RGB 和文本属性；在终端中按 `c` 循环三种 RGB 样例，按 `t` 切换属性，按 `q` 退出。
+
+
+可观察状态与持久组件示例位于 `examples/reactive`。在 SDK 1.2.0 环境中运行 `cd examples/reactive && cjpm run`；按任意键递增，Ctrl-C 退出。源码同时导入 `cjtui`、`cjtui.*` 和 `cjtui.macros.*`，使用 `@Component`、带显式类型和初值的 `@State` 与 `@Bind` 声明绑定。普通表达式按初值求取；对自动更新的属性使用 `@Bind(expr)` 或类型明确的 `{ => expr }` getter。
+
+`Observable<T>` 可由多个视图共享；`set` 和 `notify` 可从后台线程调用，框架在 UI 会话处理绑定。终端循环在无阻塞用户回调时最多每 100 毫秒检查一次更新。可变对象内部的更改由应用同步，并显式调用 `notify`。`Application.post` 将回调投递到会话，`batch` 合并 UI 变更；`startHeadless`、`snapshot` 和 `dispose` 支持无终端消费。`visible(false)` 保留节点与状态但不占布局。`render` 是无终端的完整帧导出，脱离活动会话导出时不运行挂载副作用。当前动态结构、焦点和覆盖层仍在开发。

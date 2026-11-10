@@ -131,7 +131,7 @@ class InputDecoder {
                     }
                     return None
                 }
-                return KeyEvent("text", String(Rune(code)))
+                return KeyEvent("text", text: String(Rune(code)))
             }
             remaining = 0
             // A malformed prefix must not consume the next independent byte.
@@ -151,7 +151,7 @@ class InputDecoder {
             return None
         }
         if (first < 128) {
-            return KeyEvent("text", String(Rune(UInt32(first))))
+            return KeyEvent("text", text: String(Rune(UInt32(first))))
         }
         if (first >= 194 && first <= 223) {
             remaining = 1

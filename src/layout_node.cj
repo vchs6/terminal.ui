@@ -3,16 +3,19 @@ package cjtui
 import std.collection.ArrayList
 
 class LayoutNode {
+    let session: RuntimeSession
     let component: Component
     let children = ArrayList<LayoutNode>()
     let lines = ArrayList<ArrayList<String>>()
     let widths = ArrayList<Int64>()
     var naturalW: Int64 = 0
     var naturalH: Int64 = 0
-    init(c: Component) {
+    init(c: Component, session: RuntimeSession) {
+        this.session = session
         component = c
     }
     func measure(): Unit {
+        session.recordMeasure()
         let c = component
         if (c.kind == 0) {
             validateText(c.value)
@@ -36,7 +39,8 @@ class LayoutNode {
             naturalH = lines.size
         } else {
             for (child in c.children) {
-                let n = LayoutNode(child);
+                if (!child.isVisible) { continue }
+                let n = LayoutNode(child, session);
                 n.measure();
                 children.add(n)
                 let cw = greater(child.fixedW ?? n.naturalW, child.minW)
