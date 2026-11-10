@@ -1,0 +1,59 @@
+# Theme styles implementation plan
+
+> For agentic workers: REQUIRED SUB-SKILL superpowers:subagent-driven-development，按依赖连续完成后继续Linux总计划。
+
+**Goal:** typed逐属性样式、完整分类TOML、四主题及安全显式加载。
+**Architecture:** Style最终值不改，presence-aware声明→唯一resolver→现Runtime/LayoutNode/Frame；上游Lexer预算预检+Parser，不做CSS或第二TOML解析器。
+**Tech Stack:** SDK1.2.0，cangjie_toml0.2.3+官方stdx1.2.0-beta.02.1及现依赖，产品0.0.0。
+**Spec:** design1–10（10节主代理最终裁决优先）、fixtures/themes固定字节、REQ001/002/008；完整027展示等基础控件。
+
+## Global constraints
+
+测试作者/产品作者/审核/执行/验收角色独立，主代理只契约/集成；一Cj实体一文件。公共原API/旧像素语义保留，统一Component/Style/LayoutNode/Frame/Unicode/ANSI。正式产品等runtime C和richtext固定通过，禁止并行写同一权威文件。模板TOML设计输入不是已实现产品；固定hash不得实现时偷偷换值。第三方许可按用户裁决保留原件，不自设声明冲突门；不publish。
+
+## Review focus
+
+1. Unset/Value/Reset、状态、多named来源以及父继承不能混为一个resolved值丢来源。
+2. 失败/淘汰/旧session主题请求不可改当前已接受值，latest失败不能让旧合法意图复活。
+3. Lexer有效路径含table+dotted+inline，不被字符串/quoted键内字符误计；小文件也必须在Parser前限预算。
+4. wrap按分配宽测量、ellipsis整簇，四边pad/极端阴影仍保持原帧/约束，不只改paint漏高度。
+5. 提交不得调用业务getter/build/mount，不重建NodeRef/编辑/焦点；背景填充与span背景区分。
+
+## Tasks
+
+- [ ] TASK-085（WP005/testing）：冻结基础typed resolver/schema/布局/四preset公共测试、固定期望与缺API RED。
+- [ ] TASK-013（WP003/implementation）：typed声明/来源解析、继承/复位、完整布局属性及wrap/ellipsis接入。
+- [ ] TASK-025（WP006/implementation）：同一主题值的完整TOML schema、上游Lexer预算/Parser、四预置及普通依赖/制品配置；与013共享必要同一产品周期，不建第二resolver。
+- [ ] TASK-086（WP005/verification）：013/025固定技术diff独立spec/quality审核。
+- [ ] TASK-087（WP005/testing）：基础主题独立执行、原回归/正常bundle、干净stdx/路径消费和实际四主题样例。
+- [ ] TASK-088（WP005/acceptance）：原AC013/025完整基础范围和制品/元数据独立验收；027完整组件展示仍不关闭。
+- [ ] TASK-089（WP005/testing）：冻结ThemeRequest/latest-wins/失效/worker有界/UI提交独立测试与真实RED。
+- [ ] TASK-026（WP006/implementation）：显式load/reload、有界worker/候选信箱/原子UI提交/可观察结果，保留节点与业务状态。
+- [ ] TASK-090（WP005/verification）：固定异步加载增量与基础跨界独立spec/quality审核。
+- [ ] TASK-091（WP005/testing）：独立乱序/失败/关闭/同源重载、受影响回归及正常制品公开消费。
+- [ ] TASK-092（WP005/acceptance）：原AC026、元数据与集成独立核对，继续控件/027整展示。
+- [ ] TASK-027（WP006/implementation）：全部基本组件可用后交付四主题统一showcase、窄屏/状态组合/Unicode与ASCII真实跨宿主截图，复用前述主题代码；状态不靠提前几段文字就关闭。
+
+## L3 admission / inputs / roles
+
+各项为L3；013父WP003/REQ001，025/026/027父WP006/REQ008，085–092父WP005/REQ007。classification execution：用户已定主题目标，design10记录可逆工程细化而非改变目标；workflow本tasks，change本目录。必需技能主代理brainstorming/writing-plans/SDD，作者TDD/仓颉coding/search_docs/systematic-debugging/verification，审核review，验收verification，实际记录progress，来源复用R11/skills.json与AGENTS14固定工具，不把安装当实际使用。指定模型测试Sol/high，产品Terra/high，审核/验收Astra/high，执行Sol/medium，serving不可核验时只记指定配置。
+
+085准入等独立builder/DQ01–14通过本合同/固定presets；只公共消费者，不改产品。013/025产品等085及runtime080+richtext084固定源，原011/012/006已验接口与R11正常TOML/stdx、额外parser资源实证可复用。013原004消费本design完整子接口，014后续复用不构成反向前置。025原003消费已验中心仓精确版本，完整003仍最终汇合。086→087→088顺序；089可在合同冻结后准备、真实RED等基础固定；026等088/089，090→091→092；027等全部019/028/029/037等控件与026完成。Linux父AC不能因本增量提前全过。
+
+## File ownership / L4
+
+085创建tests/themes公共独立项目/按实体helper/run.sh/README，run-slice等其他固定接线后顺序追加。先手工逐字段来源/状态/reset/继承/fill/富文本golden，再配置全字段合法/非法/位置/Rune边界/资源cases、实际wrap高度与四边padding网格、四preset与固定fixtures等价；旧产品正常build后consumer真缺API RED，固定test-only。不可由resolver或parser产生自己的预期。
+
+013/025改Component声明槽与bindings目标、Runtime节点解析缓存、唯一LayoutNode测量/paint、src/exports.cj及cjpm/dependency环境说明；新增src/style的StyleValue/VisualState/VisualStates/StyleKey/StyleKeys/StyleRule/StyleUse/TextWrap/TextOverflow/Dimension各实体文件，src/theme的ThemeRole/ThemePreset/Theme/ThemeLocation/ThemeDiagnostic/ThemeException及独立pure解析/预算函数，跨包不得新增内部可变表公开以解编译。若根与子包依赖成环，先报并按单向依赖调整职责，不用root↔theme互导。styles键闭集与typed accessor、完整resolved来源mask/fill→继承/状态→wrap/ellipsis/four pad→Lexer+schema→preset/产品可编辑themes→正常stdx清单/文档； product-only固定提交，不改冻结测试或原断言。precise ThemeRequest/ThemeResult/ThemeInfo/ThemeSource接口在026实施，此前Theme及Application theme构造支持足以独立使用基础主题，不出伪成功load实现。
+
+086只固定base..product+tests+contract审spec/quality，无未决Critical/Important；发现具体反例回主代理→独立测试RED→原作者修→定点复核。087自有SDK/cache/忽略registry与官方stdx配置，普通build/directbinary真exit，适用旧结果按内容复用；正常bundle不skip，干净解包例子/同测试源consumer只改manifest path，SDK/stdx前置写清，不能借作者私有target/cjo。088逐原件/hash/制品/AC，文档投影机械核，不重跑相同suite。
+
+089创建tests/theme-loading（可复用theme值fixture，预期独立），以真实同步握手/FIFO或有界任务控制验证旧慢/新快/新失败不复活、同文件外改无自动动作、reload源冻结、SessionClosed/无文件、queued旧session不污染、worker最多1+最新pending、请求终态不改、应用state/refs不变、失败候选活树引用/布局预检、R017清理围栏兼容。先基础产品真实缺load API RED，固定test-only，不用sleep/假future绕过。026新增ThemeSource/ThemeRequest/ThemeResult/ThemeInfo/有界loader各单实体，与Application/Runtime安全UI信箱集成；锁外IO/Parser/用户代码，主锁排序、session令牌/结果可观察、候选先验证后提交；固定产品。090–092同前审核/执行/验收角色分离，另核最新失败保旧、外部snapshot与全局M1一致、资源释放，不仅报用例数。
+
+027正式文件examples/theme_showcase独立公共项目和产品说明，所有组件同一数据/逻辑切换4主题，状态/窄屏/装饰退化/可见层导出不设主题特殊渲染kind；跨真实宿主原始PNG+版本/config/grid/source/time/hash/raw。具体控件调用/布局在其依赖可用后作为本任务L4补齐并单独测试/审核/执行/验收，当前为planned不可直接编码，不伪造ready。预置文件字节已冻结不等于展示已交付。
+
+## Quality / old path / DQ
+
+必要性：原字段无法区分Unset/Reset/默认且无主题配置/切换；canonical owner唯一StyleRule声明、resolver解析、Theme不可变数据、Runtime绑定/身份/调度、LayoutNode/Frame画面。旧字段如保留仅作解析缓存，不保留第二级联；Style不改成可选。新增source mask/fill intent有span/背景真实用途，预算扫描是上游测得资源缺口的薄适配，不写TOML/Unicode内核。兼容：旧普通链/默认Classic画面保持；新四边padding/排版来自明确公共构造要求。无持久schema升级，v1未知字段明确诊断，不自动改写用户文件。复杂度：partial状态/typed键/loader队列是明确需求必要状态；不新增CSS/selector/脚本/层级include、自动watcher/新语言runtime或通用插件系统。
+
+preflight逐项：085/013/025接口同design/fixtures；013和025同代码周期避免双resolver，026基于已独立可用基础，不互相前置；085/089 run-slice顺序接线；086/087/088与090/091/092都是固定输入/独立职责；027未来控件依赖保留且planned。共享Component/Layout写屏障明确，不让多产品作者并行改同一权威。Review focus全部映射085/089或027后续，parser预算/继承/request/richtext边界先裁决，文件职责/退役/兼容/证据/状态单权威齐全。独立DQ检查缺口解决前只准备合同，不派正式产品。
