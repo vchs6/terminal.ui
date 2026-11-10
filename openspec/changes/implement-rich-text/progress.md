@@ -1,0 +1,7 @@
+# SDD ledger — plan: openspec/changes/implement-rich-text/tasks.md
+
+主代理基于独立text-contract-audit提出正式候选。只读依赖探针已证明parseCSIParams接受不完整/错误final/private/colon，必须先完整框定再复用；四种Text重载在SDK1.2真实独立stub语言探针通过，但不是正式产品API编译通过。原始证据尚在独立目录，后续选取归档。本文候选待独立builder/preflight，产品等runtime A+B交付和081固定测试，不能把并行合同准备当已完成009。
+
+主代理裁决：显式component字段覆盖span，span覆盖基础Style；TextSpan惰性，RichText拼接后统一validate/分簇，允许跨span CRLF；所有值防数组别名；UTF8非法fail-close；SGR限额与关闭状态精确code；超限控制串持续隔离直到合法终止符。无用户新问题，都是既有目标下可逆工程选择。完整Linux目标保持活动。
+
+独立rich_text_preflight指出成员receiver、验证包方向、原始byte/参数计数、首故障诊断、SGR空operand，以及异常流已交付前缀不可能分块等价的缺口。主代理已逐项落实候选：public validatePlainText下沉text+根薄委托、成员签名分节、原始bytes含intro/terminator、含empty/operand字段数、每序列首错即报且finish可额外Incomplete、资源先于同byte语法、语义左到右首错、38/48空operand拒绝、成功完整流才归一化等价。AnsiTextIssue增加Equatable供公开typed诊断比较。待审查者最终限定核对；尚未派测试或产品。
