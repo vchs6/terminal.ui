@@ -130,12 +130,12 @@ func components(): Unit {
     check(color.cellAt(0, 0).style.foreground == Color.Red && color.cellAt(1, 1).style.foreground == Color.Green, "borderColor changes border without changing text")
     let inherited = render(Column { Text("X").border(BorderStyle.Single) }.foreground(Color.Cyan), 5, 3)
     check(inherited.cellAt(0, 0).style.foreground == Color.Cyan, "unset borderColor follows effective node foreground")
-    var panel = Text("")
-    let root = Row { panel = Text("A").width(3).height(2).shadow(); Text("B").width(1).height(2) }
+    let panel = [Text("")]
+    let root = Row { panel[0] = Text("A").width(3).height(2).shadow(); Text("B").width(1).height(2) }
     snapshot(render(root, 5, 3), "A  B \n   ░ \n ░░░ ", "shadow expands paint without affecting sibling layout; unset empty areas stay transparent")
-    panel.shadow(enabled: false)
+    panel[0].shadow(enabled: false)
     snapshot(render(root, 5, 3), "A  B \n     \n     ", "disabled shadow clears previous target area on next complete render")
-    panel.shadow(offsetX: 0, offsetY: 0)
+    panel[0].shadow(offsetX: 0, offsetY: 0)
     snapshot(render(root, 5, 3), "A  B \n     \n     ", "zero-offset component shadow remains invisible")
     let clipped = Column { Text("A").width(3).height(2).shadow(offsetX: -1, offsetY: 1) }.padding(1)
     snapshot(render(clipped, 6, 4), "      \n A    \n      \n      ", "child shadow obeys ancestor content clip on every side")
