@@ -85,6 +85,12 @@ func replacementAndNotify(): Unit {
     plain.value = "C"
     r.notify(ChangeKind.Bindings)
     picture(app.snapshot(3, 2), "C  \nU  ", "Bindings notify rereads saved getter")
+    let beforePost = chosenCalls.value
+    plain.value = "D"
+    let notifier = spawn { r.notify(ChangeKind.Content) }
+    notifier.get(Duration.second * 5)
+    check(chosenCalls.value == beforePost, "background NodeRef notify executes no getter")
+    picture(app.snapshot(3, 2), "D  \nU  ", "background NodeRef notify delivers targeted invalidation")
     check(otherCalls.value == unrelated, "targeted notify does not sweep sibling getter")
     let stable = app.stats()
     let frozenCalls = chosenCalls.value
@@ -111,6 +117,24 @@ func replacementAndNotify(): Unit {
     illegal({ => Text("x").width(-1); () }, "negative constant layout remains rejected")
     illegal({ => render(Text("x").width({ => -1 }), 2, 1); () }, "negative bound layout rejected")
     picture(render(Text("ok"), 2, 1), "ok", "invalid getter leaves no collector residue")
+}
+
+func manualObservableNotification(): Unit {
+    let model = Box<String>("A")
+    let observed = Observable<Box<String>>(model)
+    let first = Application(Text({ => observed.get().value }))
+    let second = Application(Text({ => observed.get().value }))
+    first.startHeadless()
+    second.startHeadless()
+    picture(first.snapshot(2, 1), "A ", "mutable-slot first view initial value")
+    picture(second.snapshot(2, 1), "A ", "mutable-slot second view initial value")
+    model.value = "B"
+    picture(first.snapshot(2, 1), "A ", "ordinary object field mutation has no deep observation promise")
+    observed.notify()
+    picture(first.snapshot(2, 1), "B ", "Observable notify rereads mutable slot in first view")
+    picture(second.snapshot(2, 1), "B ", "Observable notify invalidates all current views")
+    first.dispose()
+    second.dispose()
 }
 
 func subscriptionRace(): Unit {

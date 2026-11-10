@@ -4,6 +4,7 @@ main(): Int64 {
     constructionAndLifetime()
     collectorRecovery()
     observableBindings()
+    manualObservableNotification()
     replacementAndNotify()
     subscriptionRace()
     continuousBackgroundUpdates()
