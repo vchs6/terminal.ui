@@ -1,0 +1,36 @@
+# Synthetic database entries for automatic-capability branch tests only.
+# They are not evidence of a physical terminal implementation.
+cap-8|cjtui synthetic eight-color terminal,
+	use=xterm-256color,
+	colors#8,
+
+cap-mono|cjtui synthetic known monochrome terminal,
+	use=xterm-256color,
+	colors#0,
+
+cap-16|cjtui synthetic sixteen-color terminal,
+	use=xterm-256color,
+	colors#16,
+
+cap-256|cjtui synthetic indexed terminal,
+	use=xterm-256color,
+	colors#256,
+
+cap-direct|cjtui synthetic direct-color terminal,
+	use=xterm-256color,
+	RGB,
+
+cap-ncv18|cjtui synthetic color-priority ncv 18 terminal,
+	use=xterm-256color,
+	colors#8,
+	ncv#18,
+
+cap-ncv-unknown|cjtui synthetic ncv with unmodelled bit terminal,
+	use=xterm-256color,
+	colors#8,
+	ncv#19,
+
+cap-nonsgr|cjtui synthetic unsafe bold capability terminal,
+	use=xterm-256color,
+	colors#8,
+	bold=\E[99m,

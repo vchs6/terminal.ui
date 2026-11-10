@@ -26,7 +26,8 @@ binary, so a nonzero assertion exit reaches the caller. SDK 1.2.0 `cjpm run` its
 can return zero after a failing consumer; its wrapper status is not sufficient evidence.
 
 If the environment uses an existing official offline cache, create an **untracked**
-`cangjie-repo.toml` in each consumer directory (including `tests/integration/fixture`):
+`cangjie-repo.toml` in each consumer directory (including `tests/integration/fixture`,
+`tests/capabilities`, and `tests/capabilities/session`):
 
 ```toml
 [repository.cache]
@@ -236,13 +237,14 @@ source-text assertions do not replace running that packaging command.
 
 ## Capability-aware colors and six text attributes (TASK-061)
 
-Binding input: `implement-color-style-output/design.md` at
-`f3329d2f9308c7242aea22266d5ab45d781e03b1`. Existing R8/R9/060 tests and
+Binding input: `implement-color-style-output/design.md` D031–D033 at
+`6e09a4f`. Existing R8/R9/060 tests and
 assertions are retained. New modes also run after those checks in `all`:
 
 ```sh
 ./tests/run-slice.sh colors
 ./tests/run-slice.sh colors-integration
+./tests/run-slice.sh capabilities
 # After the ordinary builds, directly select one real PTY scenario:
 node tests/colors/pty.mjs fixture
 node tests/colors/pty.mjs example
@@ -273,8 +275,9 @@ Basic16/Indexed256-equivalent changes, Monochrome-only color changes, indexed
 aliases, and mode changes that leave plain/named rows unchanged.
 
 The other PTY scenario executes the actual `examples/colors` binary. It checks
-initial Basic16 despite truecolor environment hints, `c` cycling through
-Indexed256, TrueColor, Monochrome, and Basic16, `t` changing each of the six
+the default automatic direct-color profile under the controlled truecolor declaration,
+`c` cycling the documented RGB samples `(1,128,254)`, `(250,0,0)`, and
+`(238,238,238)` without selecting a capability override, `t` changing each of the six
 attributes and round-tripping, actual-size resize 100x40→31x12→8x4→100x40,
 normal q status, and exact before/after termios. Its screen reader observes CUP
 and SGR bytes with independent column accounting; it is test support, not a
@@ -297,3 +300,24 @@ failure baseline/mode commit ordering remains an independent review obligation
 because the public application API supplies no writer injection hook. Normal
 bundle and clean package-consumer execution are separate integration obligations;
 no source scan or PTY assertion substitutes for them.
+
+## Automatic terminal capabilities (TASK-061 delta)
+
+```sh
+./tests/run-slice.sh capabilities
+```
+
+`tests/capabilities` adds an ordinary public consumer for `Basic8`, automatic
+`Application(root)`, `TerminalCapabilities`, `colorModeAuto()`, and pure
+`Frame.toAnsi()` defaults. It must fail to compile against the frozen pre-Auto
+consumer revision; that RED is intentional. Once the public API exists, its second
+consumer compiles the test-local dynamic-loader wrapper, builds normally, and runs
+under real Linux PTYs. `tic` produces a temporary synthetic terminfo database for
+branch coverage only: it covers known monochrome/8/16/256/direct profiles,
+COLORTERM-only, unset/dumb/invalid TERM, standard-six SGR evidence, NCV 18 and an
+unknown NCV bit, unsafe terminfo strings, explicit override then Auto restoration,
+private namespace isolation, and a test-link `dlmopen` failure. The wrapper neither
+changes product code nor restores the terminal. It establishes that the pre-existing
+base-namespace entry remains `cap-16` while the product query uses its own namespace.
+Synthetic TERM entries are not real-host evidence; TASK-066 owns terminal-emulator
+matrix runs and screenshots.

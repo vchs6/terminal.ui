@@ -1,0 +1,13 @@
+[package]
+cjc-version = "1.2.0"
+name = "capability_session"
+version = "0.0.0"
+src-dir = "src"
+output-type = "executable"
+link-option = "--wrap=dlmopen"
+
+[dependencies]
+cjtui = { path = "../../.." }
+
+[ffi.c]
+capability_test_native = { path = "./native" }

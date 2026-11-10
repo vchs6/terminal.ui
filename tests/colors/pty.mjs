@@ -171,34 +171,32 @@ async function fixture() {
 const cells = rows => rows.flatMap(row => row.cells);
 const text = rows => rows.map(row => row.text).join('\n');
 const selections = rows => cells(rows).flatMap(c => [c.fg, c.bg]);
+const foregrounds = rows => cells(rows).map(c => c.fg);
 async function example() {
   const s = new Session('actual-example', process.env.CJTUI_COLOR_EXAMPLE_BIN ?? 'examples/colors/target/release/bin/main', 100, 40);
   try {
     await s.start(); const initial = await s.settle(0, 'actual colors first frame');
     assert(selections(initial).some(c => /^named:9[0-7]$/.test(c)), 'actual example includes bright colors');
-    assert(!selections(initial).some(c => /^(indexed|rgb):/.test(c)), 'initial Basic16 regardless of TERM/COLORTERM');
+    assert(foregrounds(initial).includes('rgb:1,128,254'), 'normal example starts with its first rich RGB sample under automatic direct-color profile');
     async function key(k, name) { const before = s.screen.updates.length; s.child.stdin.write(k); return s.settle(before, name); }
-    const indexed = await key('c', 'c→Indexed256');
-    assert(selections(indexed).some(c => c.startsWith('indexed:')), 'first c exposes indexed colors');
-    assert(!selections(indexed).some(c => c.startsWith('rgb:')), 'Indexed256 contains no RGB selection');
-    const rgb = await key('c', 'c→TrueColor');
-    assert(selections(rgb).some(c => c.startsWith('rgb:')), 'second c exposes truecolor');
-    const mono = await key('c', 'c→Monochrome');
-    assert(selections(mono).every(c => c === 'default'), 'third c removes all foreground/background selections');
+    const red = await key('c', 'c→second RGB sample');
+    assert(foregrounds(red).includes('rgb:250,0,0'), 'first c advances the normal example to RGB(250, 0, 0) without an override');
+    const gray = await key('c', 'c→third RGB sample');
+    assert(foregrounds(gray).includes('rgb:238,238,238'), 'second c advances the normal example to RGB(238, 238, 238) without an override');
     const styled = await key('t', 't toggles actual example six attributes');
     for (const n of [1, 2, 3, 4, 7, 9]) {
       const count = rows => cells(rows).filter(c => c.text.trim() && c.attributes.includes(n)).reduce((sum, c) => sum + width(c.text), 0);
-      assert.notEqual(count(styled), count(mono), `t changes attribute SGR${n} on visible example text`);
+      assert.notEqual(count(styled), count(gray), `t changes attribute SGR${n} on visible example text`);
     }
     const unstyled = await key('t', 't restores six attributes');
-    assert.deepEqual(unstyled, mono, 'second t restores exact monochrome text and style');
-    const basic = await key('c', 'c→Basic16 completes cycle');
-    assert.deepEqual(basic, initial, 'fourth c restores initial complete screen');
+    assert.deepEqual(unstyled, gray, 'second t restores exact automatic rich-color text and style');
+    const basic = await key('c', 'c→first RGB sample');
+    assert.deepEqual(basic, initial, 'third c restores the first RGB sample without changing the automatic profile');
     await s.resize(31, 12); await s.resize(8, 4);
     const restored = await s.resize(100, 40);
     assert.deepEqual(restored, initial, 'resize back restores actual full example with modes unchanged');
-    for (const [name, value] of Object.entries({ initial, indexed, rgb, mono, styled, restored })) await writeFile(join(s.dir, `${name}.json`), JSON.stringify(value, null, 2));
-    await s.stop(); console.log('PASS actual colors example: Basic16→Indexed256→TrueColor→Monochrome→Basic16, all six t attributes, resize and exact termios');
+    for (const [name, value] of Object.entries({ initial, red, gray, styled, restored })) await writeFile(join(s.dir, `${name}.json`), JSON.stringify(value, null, 2));
+    await s.stop(); console.log('PASS actual colors example: automatic RGB sample cycle, all six t attributes, resize and exact termios');
   } finally { await s.save(); }
 }
 let failures = 0;

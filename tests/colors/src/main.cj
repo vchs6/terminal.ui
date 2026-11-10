@@ -109,8 +109,12 @@ func encodingAndCells(): Unit {
         "effective style run emitted once and default cell resets every attribute")
     let old = Frame(2, 1)
     old.put(0, 0, "X", style: Style(foreground: Color.Red, background: Color.Blue, bold: true))
-    check(old.toAnsi() == reset + esc + "1;1H" + reset + esc + "31m" + esc + "44m" + esc + "1mX" + reset + " " + reset,
-        "legacy 8color bold default bytes unchanged")
+    check(old.toAnsi(colorMode: ColorMode.Basic16) == reset + esc + "1;1H" + reset + esc + "31m" + esc + "44m" + esc + "1mX" + reset + " " + reset,
+        "explicit Basic16 legacy 8color bold bytes unchanged")
+    let snapshot = Frame(1, 1)
+    snapshot.put(0, 0, "X", style: Style(foreground: Color.Rgb(1, 128, 254), bold: true))
+    check(snapshot.toAnsi() == reset + esc + "1;1H" + reset + esc + "38;2;1;128;254m" + esc + "1mX" + reset + reset,
+        "default snapshot is the pure TrueColor projection")
     for (mode in modes) { check(Frame(0, 1).toAnsi(colorMode: mode) == "" && Frame(1, 0).toAnsi(colorMode: mode) == "", "zero-area mode output empty") }
 }
 func componentAttributeCases(): Unit {
