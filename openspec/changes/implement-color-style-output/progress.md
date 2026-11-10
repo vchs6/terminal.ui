@@ -25,3 +25,5 @@ Frozen contractf3329d2f9308c7242aea22266d5ab45d781e03b1 passes repository/OpenSp
 | 062 self | spec andquality, concretecounterexamples | coherent finite reviewbudget |
 | 063 self | coldentry+publicPTY+normalcjp+consumer | completefinite scope, fullreleasechecker remainsunpassed |
 | 064 self | perAC evidence plus finalmetadata | no testcounts/fullframeworksubstitution |
+
+061 secondfrozen2bc683ee41c55195714d88f88cec3e8403e53428 adds realcolors/14fence-stepPTY and SDK testsyntaxcorrection; callerexpectations unchanged. Testauthor languageprobe confirms escaped mutablelocal and mixedmatch-return issues fixed by letArray/Unitstatements, originalfailure retained. SDK1.2 implementation evidence also rejects positionaldefaultBool; design corrected to zeroarg/Bool overloads for sixComponent modifiers, preserving specified actualcalls. No business decision/API call-form change, no approval needed; languagefacts recorded engineeringreference. Product author will retain original diagnostic.

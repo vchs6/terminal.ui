@@ -20,7 +20,7 @@ src/style/color.cj继续public enum Color <: Equatable<Color>，保留Default/Bl
 
 Style增加public只读Bool dim/italic/underline/inverse/strikethrough；init除既有foreground!/background!/bold!外追加同名命名可选Bool（默认false）；Eq包含全部字段。原有默认值和参数保持。六属性统一为bold、dim、italic、underline、inverse、strikethrough。
 
-Component既有bold改为bold(value: Bool = true): Component，保留.bold()；增加dim/italic/underline/inverse/strikethrough同签名Bool默认true，返回同一receiver。false是显式关闭，覆盖父文本属性；未设置继续继承。颜色属性接口不变。所有六属性均按现有文本继承规则传播到文本、显式背景及边框；borderColor只换前景，不丢其他属性。阴影仍只用传入完整Style，不额外继承。padding/gap/布局/边框/阴影不因此继承。
+Component保留bold(): Component，新增bold(value: Bool): Component；其余dim/italic/underline/inverse/strikethrough各提供零参和一个Bool位置参的同名重载，均返回同一receiver。零参相当于true。SDK1.2不支持普通位置参数默认值，不能将伪签名value: Bool = true当作有效源码；实际调用仍为.bold()/.bold(false)等。false是显式关闭，覆盖父文本属性；未设置继续继承。颜色属性接口不变。所有六属性均按现有文本继承规则传播到文本、显式背景及边框；borderColor只换前景，不丢其他属性。阴影仍只用传入完整Style，不额外继承。padding/gap/布局/边框/阴影不因此继承。
 
 Frame.toAnsi(colorMode!: ColorMode = ColorMode.Basic16): String；不改构造/put/cellAt/toPlainText，逻辑单元保留原Style。toPlainText不受模式影响。空尺寸仍返回空ANSI，宽簇规则不变。
 
