@@ -1,0 +1,49 @@
+[31merror[0m: expected identifier or pattern after 'let', found keyword 'foreign'
+  [36m==>[0m /workspace/work/overlay-tests/source/tests/interaction_c/src/entry_errors.cj:60:9:
+   [36m| [0m
+[36m60[0m [36m| [0m    let foreign = node(otherRoot)[0m
+   [36m| [0m    [36m~~~[0m [31m^^^^^^^ expected identifier or pattern here[0m
+   [36m| [0m
+[32mhelp[0m: escape the keyword `foreign` to use it as an identifier:
+   [36m| [0m
+[36m60[0m [36m| [0m    let `foreign` = node(otherRoot)[0m
+   [36m| [0m        [32m~~~~~~~~~ [0m
+   [36m| [0m
+
+[31merror[0m: unclosed delimiter: '('
+  [36m==>[0m /workspace/work/overlay-tests/source/tests/interaction_c/src/entry_errors.cj:63:48:
+   [36m| [0m
+[36m63[0m [36m| [0m            options: OverlayOptions(host: Some(foreign))); () }, "E12 foreign-session host rejected")[0m
+   [36m| [0m                                   [36m~[0m           [31m^ expected ')' here[0m
+   [36m| [0m                                   [36m|[0m
+   [36m| [0m                                   [36mto match this opening '('[0m
+   [36m| [0m
+
+[31merror[0m: expected expression after '(', found keyword 'foreign'
+  [36m==>[0m /workspace/work/overlay-tests/source/tests/interaction_c/src/entry_errors.cj:63:48:
+   [36m| [0m
+[36m63[0m [36m| [0m            options: OverlayOptions(host: Some(foreign))); () }, "E12 foreign-session host rejected")[0m
+   [36m| [0m                                               [31m^^^^^^^ expected expression here[0m
+   [36m| [0m
+
+[31merror[0m: expected declaration, found ')'
+  [36m==>[0m /workspace/work/overlay-tests/source/tests/interaction_c/src/entry_errors.cj:63:55:
+   [36m| [0m
+[36m63[0m [36m| [0m            options: OverlayOptions(host: Some(foreign))); () }, "E12 foreign-session host rejected")[0m
+   [36m| [0m                                                      [31m^ expected declaration here[0m
+   [36m| [0m
+
+[31merror[0m: expected ';' or '<NL>', found '('
+  [36m==>[0m /workspace/work/overlay-tests/source/tests/interaction_c/src/entry_errors.cj:63:60:
+   [36m| [0m
+[36m63[0m [36m| [0m            options: OverlayOptions(host: Some(foreign))); () }, "E12 foreign-session host rejected")[0m
+   [36m| [0m                                                           [31m^ expected ';' or '<NL>' here[0m
+   [36m| [0m
+
+[31merror[0m: expected expression or declaration, found '}'
+  [36m==>[0m /workspace/work/overlay-tests/source/tests/interaction_c/src/entry_errors.cj:63:63:
+   [36m| [0m
+[36m63[0m [36m| [0m            options: OverlayOptions(host: Some(foreign))); () }, "E12 foreign-session host rejected")[0m
+   [36m| [0m                                                              [31m^ expected expression or declaration here[0m
+   [36m| [0m
+
