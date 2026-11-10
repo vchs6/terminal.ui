@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+const base='/workspace/work/layout-execution';
+const dir=base+'/final-40aa4db/layout-pty';
+const log=fs.readFileSync(base+'/logs/final-layout-integration.log','utf8');
+assert(log.includes('PASS layout PTY: exit=0, d clears/restores, 48x14→23x9→8x4→48x14, termios restored;'));
+const names=['01-initial-48x14','02-disabled-48x14','03-restored-48x14','04-resize-23x9','05-resize-8x4','06-disabled-8x4','07-resize-back-48x14'];
+const frames=Object.fromEntries(names.map(n=>[n,fs.readFileSync(dir+'/'+n+'.txt','utf8')]));
+assert.equal(frames[names[0]],frames[names[2]]);
+assert.equal(frames[names[0]],frames[names[6]]);
+for(const n of [names[1],names[5]]) assert(!/[┌┐└┘─│╭╮╰╯╔╗╚╝═║░]/u.test(frames[n]));
+const termios=fs.readFileSync(dir+'/termios.txt','utf8').trim().split('\n');
+assert.equal(termios[0].slice(7),termios[1].slice(6));
+const artifacts=fs.readdirSync(dir).filter(n=>n!=='results.json').map(path=>({path,bytes:fs.statSync(dir+'/'+path).size,sha256:crypto.createHash('sha256').update(fs.readFileSync(dir+'/'+path)).digest('hex')}));
+const result={passed:true,actualBinary:'repo/examples/layout/target/release/bin/main',invocation:'node tests/integration/layout-pty.mjs examples/layout/target/release/bin/main (inside unmodified tests/run-slice.sh layout-integration)',runnerExit:0,actualExampleExit:0,forcedSignal:null,initialSize:[48,14],resizeSequence:[[23,9],[8,4],[48,14]],decorationToggle:'d off/on at normal and tiny sizes',exactRestore:true,idleNoUpdates:true,exactTermiosRestore:true,raw:'session.raw',frames:artifacts.filter(a=>a.path.endsWith('.txt')),artifacts};
+fs.writeFileSync(dir+'/results.json',JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify(result,null,2));

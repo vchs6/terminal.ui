@@ -1,0 +1,43 @@
+{
+  "command": "bash tests/run-slice.sh application-lifecycle",
+  "runnerExit": 0,
+  "scenarios": [
+    {
+      "mode": "callback-close-failure",
+      "code": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "mode": "callback-success",
+      "code": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "mode": "ctrl-c-success",
+      "code": 0,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "mode": "q-close-failure",
+      "code": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "mode": "q-success",
+      "code": 0,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "mode": "resize-success",
+      "code": 0,
+      "signal": null,
+      "passed": true
+    }
+  ],
+  "passed": true
+}
