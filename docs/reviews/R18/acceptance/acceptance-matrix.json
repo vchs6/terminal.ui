@@ -1,0 +1,494 @@
+{
+  "task": "TASK152",
+  "finalVerdict": "PASS within frozen finite Session increment",
+  "rows": [
+    {
+      "id": "P01",
+      "contract": "AC151/152；来源链",
+      "requiredFacts": "固定产品、测试、合同与实际构建内容一致；补充包含47 namespace修复",
+      "evidenceRule": "commit/tree、实际源码 inventory、依赖/SDK/config、编译命令/cwd/UTC/exit及native/consumer/CJP hash；不能仅读报告SHA",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/scope/product-source.json",
+        "/workspace/work/session-extension-execution/scope/formal-tests.json",
+        "/workspace/work/session-extension-execution/scope/contracts.json",
+        "/workspace/work/session-extension-execution/scope/sdk-files.json",
+        "/workspace/work/session-extension-execution/scope/seed-files.json",
+        "/workspace/work/session-extension-execution/scope/configs.json"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P02",
+      "contract": "AC149/151；S002/S011",
+      "requiredFacts": "正常公共消费者能使用7入口、全部字段/枚举，既有裸None兼容",
+      "evidenceRule": "普通CJPM消费者源码与构建原件；实际直接执行binary的exit，不以cjpm包装退出替代",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/build/execution.json",
+        "/workspace/work/session-extension-execution/raw/formal-all/execution.json"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P03",
+      "contract": "REQ010.4；S003",
+      "requiredFacts": "首次无snapshot、open后mount前建立、关闭后保留、每run新id；跨线程getter安全",
+      "evidenceRule": "headless与真实TTY public记录、生命周期断言；能力getter不输出",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/000-headless-Direct-0/results.tsv"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P04",
+      "contract": "REQ010.4；S003",
+      "requiredFacts": "Auto真实TTY为Unknown/NoEvidence；声明仅ExplicitConfiguration；完整发送均SentUnconfirmed",
+      "evidenceRule": "Auto/declared与TERM/TMUX/STY假线索负控；不得出现Applied/RestoreConfirmed/VerifiedAdapter生产结果",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix",
+        "/workspace/work/session-extension-execution/raw/hosts2/xterm-default/consumer/results.tsv",
+        "/workspace/work/session-extension-execution/raw/hosts2/xterm-enabled/consumer/results.tsv"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P05",
+      "contract": "REQ010.1–4；S003",
+      "requiredFacts": "无请求不发可选控制；Disabled/NoDevice合法请求零输出且核心继续",
+      "evidenceRule": "no-request、headless、逐项policy独立组合的wire+public记录；非法输入优先于disabled",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/000-headless-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/004-disabled-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/010-no-request-Direct-0"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P06",
+      "contract": "REQ010.1；S004",
+      "requiredFacts": "copy空串/Unicode/换行/NUL/ESC/C1保持原始UTF8，仅进入RFC4648数据",
+      "evidenceRule": "手写golden、全部三路由实际wire、标准padding/无换行；固定selection c/BEL、无问号查询",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/001-wire-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/068-wire-TmuxPassthrough-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/185-wire-ScreenPassthrough-0"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P07",
+      "contract": "REQ010.1/2/3；S004",
+      "requiredFacts": "copy65535/65536/65537、title1023/1024/1025、icon1048575/1048576/1048577及多字节预算",
+      "evidenceRule": "对应public记录与零输出拒绝；上限是资源策略，不能推定宿主都接收大payload",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/002-bounds-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/069-bounds-TmuxPassthrough-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/186-bounds-ScreenPassthrough-0"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P08",
+      "contract": "REQ010.2/4；S004",
+      "requiredFacts": "非法UTF8及全部C0/DEL/C1 title拒绝，首个byte offset准确，拒绝前不push",
+      "evidenceRule": "malformed与65标量测试原件、全部wire；不规范化、不静默过滤、不泄漏payload诊断",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/003-invalid-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/070-invalid-TmuxPassthrough-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/187-invalid-ScreenPassthrough-0"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P09",
+      "contract": "REQ010.3；S003/004",
+      "requiredFacts": "icon预算内Unsupported/NoImageAdapter、零输出、不解析PNG、不发OSC0/1",
+      "evidenceRule": "公共结果、wire、真实host icon属性前后hash；不能拿icon-name或界面图片代替",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/002-bounds-Direct-0",
+        "/workspace/work/session-extension-execution/raw/hosts2",
+        "/workspace/work/session-extension-execution/raw/hosts3/tmux-allow",
+        "/workspace/work/session-extension-execution/raw/hosts4"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P10",
+      "contract": "REQ010.4；S004/005",
+      "requiredFacts": "三个typed单层route精确包装，wire含wrapper；无自动mux猜测",
+      "evidenceRule": "Direct87392/tmux87402/screen87396可达最大长度及字节golden；90000/溢出/非法enum不可达分支明确论证，不造私有输入",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/001-wire-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/069-bounds-TmuxPassthrough-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/186-bounds-ScreenPassthrough-0"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P11",
+      "contract": "REQ010.4；S006",
+      "requiredFacts": "inactive id=0；后台/跨会话/getter/build/mount/cleanup为InvalidContext零输出",
+      "evidenceRule": "公开context矩阵；event/post/batch/owner同步合法；active options修改有生命周期异常",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/000-headless-Direct-0"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P12",
+      "contract": "REQ010.4；S006",
+      "requiredFacts": "既有FIFO/4096/cutoff/owner失效/stop丢弃；copy不增加frame",
+      "evidenceRule": "headless/fifo/cancel-before原件，序列与帧不交错；排队成功不作复制完成",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/000-headless-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/012-fifo-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/011-cancel-before-Direct-0"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P13",
+      "contract": "REQ010.4；S006/008",
+      "requiredFacts": "首字节前stop为Cancelled；完整写后stop仍SentUnconfirmed；忽略Failed仍结束run并抛首错",
+      "evidenceRule": "写入/停止选择器原始日志、结果、native时序和真实exit；不能只以日志时间接近认定竞争正确",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/011-cancel-before-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/275-fault-copy-Direct-1-aggregate"
+      ],
+      "limitation": "Stop ordering uses fixed-source review plus boundary runtime evidence, not a claim of exhaustively sampled concurrent timings.",
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P14",
+      "contract": "REQ010.2/4；S007",
+      "requiredFacts": "Unknown stack不push/pop；无scope NoSavedTitle/NotNeeded；修改但未保存RestoreUnavailable",
+      "evidenceRule": "unknown-title/zero-scope wire、public/cleanup结果；不猜默认原标题",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/009-unknown-title-Direct-0"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P15",
+      "contract": "REQ010.2/4；S007",
+      "requiredFacts": "一次push、多次set、一次pop；重复restore零字节NoSavedTitle/NotNeeded；显式pop后close空cleanup；随后set建新scope",
+      "evidenceRule": "ledger完整wire/步骤/cleanup原件，正常/stop/异常各自观察",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/005-ledger-Direct-0",
+        "/workspace/work/session-extension-execution/raw/lifecycle-hosts"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P16",
+      "contract": "REQ010.2/4；S007/008",
+      "requiredFacts": "完整push+set零字节失败必须安全pop一次；普通后续API仍Cancelled，首错不丢",
+      "evidenceRule": "f8补充4个受影响配置：Direct/Tmux/Screen offset0及Direct+callbackFail+uiFail；exact save+pop、steps、deep-copy requery、native pop先于close、termios/exit",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/038-fault-set-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/125-fault-set-TmuxPassthrough-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/230-fault-set-ScreenPassthrough-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/277-fault-set-Direct-0-aggregate"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P17",
+      "contract": "REQ010.4；S007/008",
+      "requiredFacts": "save失败不set；save/set任意部分失败绝不pop或恢复控制",
+      "evidenceRule": "每route/每不完整byte offset的结果与exact all-wire；result ParserUnsynchronized、step WriteFailed，准确计数含已完成save",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/039-fault-set-Direct-1",
+        "/workspace/work/session-extension-execution/raw/session-matrix/126-fault-set-TmuxPassthrough-1",
+        "/workspace/work/session-extension-execution/raw/session-matrix/231-fault-set-ScreenPassthrough-1",
+        "/workspace/work/session-extension-execution/raw/session-matrix"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P18",
+      "contract": "REQ004/010.4；S008",
+      "requiredFacts": "唯一writer准确Int64计数，0/short/EINTR/EAGAIN/write=0/永久失败分类正确",
+      "evidenceRule": "native seam/完整公共消费者原件；成功短写累积，失败屏幕不提交baseline；不宣称managed heap/OOM恢复",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix",
+        "/workspace/work/session-extension-execution/scope/regression-reuse.json"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P19",
+      "contract": "REQ004/010.4；S008",
+      "requiredFacts": "pre-write allocation失败零输出不污染parser/停止健康session，后续可重试",
+      "evidenceRule": "allocation seam结果、后续屏幕重试及baseline证据；范围仅现有native buffer seam",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/018-fault-allocation-Direct-0",
+        "/workspace/work/session-extension-execution/scope/regression-reuse.json"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P20",
+      "contract": "REQ004/010.4；S008",
+      "requiredFacts": "部分故障后所有屏幕/模式/扩展/cleanup全静默，无CAN/SUB/ST/BEL/reset/pop",
+      "evidenceRule": "全流与all-wire准确失败前缀、停止poll/post；含既有screen writer部分失败，不仅扩展wire",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/275-fault-copy-Direct-1-aggregate",
+        "/workspace/work/session-extension-execution/raw/session-matrix/272-fault-screen-Direct-1",
+        "/workspace/work/session-extension-execution/raw/session-matrix/273-fault-screen-Direct-2",
+        "/workspace/work/session-extension-execution/raw/session-matrix/274-fault-screen-Direct-5"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P21",
+      "contract": "REQ004/011；S008",
+      "requiredFacts": "unsafe同进程第二Application/open拒绝；零写失败close后可reopen",
+      "evidenceRule": "同进程原始PID/open日志、公有失败、真实后续字节；进程重启不是恢复证明",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/038-fault-set-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/039-fault-set-Direct-1"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P22",
+      "contract": "REQ004/011；S007/008；AC020局部",
+      "requiredFacts": "正常/取消/输入失败/callback/UI/title/native组合失败仍完成独立清理，主错及附加错不被覆盖",
+      "evidenceRule": "before/after termios、signal handlers/masks、native close/free/active、public聚合与exit；视觉恢复不可由termios推出",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/275-fault-copy-Direct-1-aggregate",
+        "/workspace/work/session-extension-execution/raw/session-matrix/276-ledger-error-Direct-0-aggregate",
+        "/workspace/work/session-extension-execution/raw/lifecycle-hosts"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P23",
+      "contract": "S012",
+      "requiredFacts": "返回steps与cleanup外层/嵌套steps修改不反写ledger或下次结果",
+      "evidenceRule": "正常公共消费者实际mutation+requery；public let或外层clone不是充分证据",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/session-matrix/005-ledger-Direct-0",
+        "/workspace/work/session-extension-execution/raw/session-matrix/277-fault-set-Direct-0-aggregate"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P24",
+      "contract": "REQ010.1/2/4；真实XTerm",
+      "requiredFacts": "XTerm398 default clipboard拒绝、SetSelection正例、title-off独立负例",
+      "evidenceRule": "同一新public binary、原始配置/版本/尺寸、local clipboard hex、真实xproperty标题/图标、c/a/b/r阶段PNG/native grid/全流，结果仍SentUnconfirmed",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/hosts2/xterm-default",
+        "/workspace/work/session-extension-execution/raw/hosts2/xterm-enabled",
+        "/workspace/work/session-extension-execution/raw/hosts2/xterm-titleoff"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P25",
+      "contract": "REQ010.2/4；真实VTE",
+      "requiredFacts": "VTE0.80.1默认与dynamic-title各自效果与恢复程度真实",
+      "evidenceRule": "新public consumer运行的插装native viewport文本、widget/PID/maps/module hash、原始PNG/xproperty/clipboard/termios；不称完整cell属性，不用host-only recon代替",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/hosts2/vte-default",
+        "/workspace/work/session-extension-execution/raw/hosts2/vte-dynamic"
+      ],
+      "limitation": "Instrumented actual VTE current viewport text only; no full cell/style/font-map conclusion.",
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P26",
+      "contract": "REQ010.1/2/4；真实tmux",
+      "requiredFacts": "default、clipboard-on、outer-denied、passthrough off/on分别验证",
+      "evidenceRule": "tmux3.5a真实配置/socket与外层配置；区分pane_title/buffer和外层caption/CLIPBOARD目标，负例不可被mux成功覆盖",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/hosts2/tmux-default",
+        "/workspace/work/session-extension-execution/raw/hosts3/tmux-allow",
+        "/workspace/work/session-extension-execution/raw/hosts2/tmux-outer-deny",
+        "/workspace/work/session-extension-execution/raw/hosts2/tmux-pass-off",
+        "/workspace/work/session-extension-execution/raw/hosts2/tmux-pass-on"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P27",
+      "contract": "REQ010.1/2/4；真实screen",
+      "requiredFacts": "screenplain与显式passthrough，标题支持不推导栈恢复",
+      "evidenceRule": "screen4.09.01实际链路、精确目标属性/CLIPBOARD、title A/B/restored与全部host原件",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/hosts2/screen-plain",
+        "/workspace/work/session-extension-execution/raw/hosts2/screen-pass"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P28",
+      "contract": "REQ010.1；AC030局部；真实SSH",
+      "requiredFacts": "stock ssh -T+remote script PTY运行实际产品，OSC52目标为本地私有终端",
+      "evidenceRule": "真实publickey/KEX/exit日志、remoteCommand/TTY/grid、端点产品binary/source hash、本地clipboard与outer全流；仅私有loopback，不推广跨网/-tt/任意客户端",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/hosts4/ssh-enabled",
+        "/workspace/work/session-extension-execution/raw/hosts4/ssh-denied"
+      ],
+      "limitation": "Private loopback stock SSH -T plus remote script PTY only.",
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P29",
+      "contract": "REQ010.1/4；无query/OS工具",
+      "requiredFacts": "产品不调用shell/xclip/wl-copy、不读clipboard、不发OSC52?，host观察工具与产品分离",
+      "evidenceRule": "独立150静态证据+151真实process/syscall或等效记录；fixture的script/ssh/X工具不可误归产品依赖",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/no-product-process",
+        "/workspace/work/session-extension-execution/scope/admission.json"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P30",
+      "contract": "REQ010/011；有限真实VT",
+      "requiredFacts": "无图形可选能力不成为核心前提；S008有限资源路径真实",
+      "evidenceRule": "root交接实际VT产品探针的固定binary/TTY/config/termios/native/exit；不得借host-only/fontmap模拟提升为完整094/AC041",
+      "status": "deferred_parent_scope_not_current151_requirement",
+      "evidence": [],
+      "limitation": "Current830 kernel VT not executed; formal151 card and frozen148 matrix do not require a new kernelVT run. Full AC041/font-map/094 remains pending.",
+      "currentScope": false,
+      "verdict": "insufficient_evidence"
+    },
+    {
+      "id": "P31",
+      "contract": "AC149/151/152；S010",
+      "requiredFacts": "无第二writer/runtime/队列/ANSI或Unicode内核/新依赖；每实体单文件",
+      "evidenceRule": "复用固定150源码结论与hash有效性，必要疑点才定点源码读；不机械重跑既有suite",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/scope/admission.json",
+        "/workspace/work/session-extension-execution/scope/product-source.json",
+        "/workspace/work/session-extension-review/report.md"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P32",
+      "contract": "AC151/152；交付",
+      "requiredFacts": "正常bundle lint/advisory不隐藏、实际clean package源码清单与普通消费者一致",
+      "evidenceRule": "精确CJP外部hash/成员清单、正常命令/exit、331等实际advisory重新按交接核定；旧FAIL原文和修正理由保留，full-boundary缺口不消失",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/raw/bundle",
+        "/workspace/work/session-extension-execution/raw/full-bundle-check",
+        "/workspace/work/session-extension-execution/scope/package-members.json",
+        "/workspace/work/session-extension-execution/scope/clean-source-final.json",
+        "/workspace/work/session-extension-execution/raw/clean-build",
+        "/workspace/work/session-extension-execution/raw/clean-example-pty-artifacts"
+      ],
+      "limitation": "Scoped package/consumer passed; full release checker exit1 and 331 advisories retained.",
+      "currentScope": true,
+      "verdict": "pass"
+    },
+    {
+      "id": "P33",
+      "contract": "AC152；归档链",
+      "requiredFacts": "每条事实原件可定位，最终hash在host/Xorg退出后冻结，代表PNG实际查看并交叉核对",
+      "evidenceRule": "manifest、命令/cwd/UTC/exit、截图捕获窗口ID、source/config/binary/hash；省略逐项列source/hash/reason；不归档ELF/CJP/CJO/SDK/cache/私钥/整checkout",
+      "status": "verified",
+      "evidence": [
+        "/workspace/work/session-extension-execution/manifest.json",
+        "/workspace/work/session-extension-execution/artifacts.sha256"
+      ],
+      "limitation": null,
+      "currentScope": true,
+      "verdict": "pass"
+    }
+  ],
+  "utc": "2026-11-10T23:52:15.145Z",
+  "product": "83094ca92acab37ed0a38042e2e40ead55049f41",
+  "tests": "f8b95815616c850145b647aae57e082c7915dab0"
+}

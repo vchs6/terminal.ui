@@ -1,0 +1,289 @@
+{
+  "utc": "2026-11-10T23:47:39.184Z",
+  "command": "node /workspace/work/session-extension-acceptance/verify-lifecycle-evidence.mjs",
+  "cwd": "/workspace",
+  "scope": "Offline independent check of new real XTerm398 Direct lifecycle evidence; no candidate or host execution",
+  "checks": [
+    {
+      "scenario": "ledger-close",
+      "passed": true,
+      "bytes": 26,
+      "automaticPop": 1,
+      "actualTitleBefore": "TASK151 automatic ledger-close",
+      "actualTitleAfter": "TASK151 automatic ledger-close",
+      "ownedTitleCaptured": false,
+      "captures": 2,
+      "expectedRuntimeFailure": false
+    },
+    {
+      "scenario": "ledger-error",
+      "passed": true,
+      "bytes": 26,
+      "automaticPop": 1,
+      "actualTitleBefore": "TASK151 automatic ledger-error",
+      "actualTitleAfter": "TASK151 automatic ledger-error",
+      "ownedTitleCaptured": true,
+      "captures": 3,
+      "expectedRuntimeFailure": true
+    },
+    {
+      "scenario": "ledger-cancel",
+      "passed": true,
+      "bytes": 26,
+      "automaticPop": 1,
+      "actualTitleBefore": "TASK151 automatic ledger-cancel",
+      "actualTitleAfter": "TASK151 automatic ledger-cancel",
+      "ownedTitleCaptured": true,
+      "captures": 3,
+      "expectedRuntimeFailure": false
+    }
+  ],
+  "inputs": [
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/launch.json",
+      "sha256": "54386795aaaef19cb5b95c8dd830301d2833ad83b77374213213a08f48264182"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/input-events.json",
+      "sha256": "bac3dba76bb007142acd4dbf2d7418133cdd042eecfedc11b7adc13a29a13e93"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/consumer/wire.bin",
+      "sha256": "6b607b1d770b097562e1dc08bb858fb22364b8396328371e56df2a3c4b71a042"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/consumer/all-wire.bin",
+      "sha256": "6b607b1d770b097562e1dc08bb858fb22364b8396328371e56df2a3c4b71a042"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/consumer/native.tsv",
+      "sha256": "6ea2ac841821ae93e4de9a66b7b11aab0e32fae52e8935255970dda8edee2241"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/consumer/results.tsv",
+      "sha256": "62c931016072df4370b9c8e8663a09d733b50f9852983dfc75d37bbce6cc6aca"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/consumer/before",
+      "sha256": "fd85d152f656eb22909486dc6411668d421bc1ba1507076baf65636dce43aae4"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/consumer/after",
+      "sha256": "fd85d152f656eb22909486dc6411668d421bc1ba1507076baf65636dce43aae4"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/consumer/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/captures.json",
+      "sha256": "484bb5519f99a94d9643b002b46322742bf14de440417de46bd009fd8ffb0fae"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/before-xprop.txt",
+      "sha256": "17dd860236f1a9327d5b3f1402896e0a40c3deb8ddd56197d529f1431f1def98"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/before.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/before-native-grid.ansi",
+      "sha256": "6038dc1c32407982da0526eea1d65f5c462570fc49baa5708770f5f4de8f8797"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/after-automatic-cleanup-xprop.txt",
+      "sha256": "e1455223f12619fcebf6236e232842dacc60d9c0cb56f48977f24d4b16b5624a"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/after-automatic-cleanup.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/after-automatic-cleanup-native-grid.ansi",
+      "sha256": "6038dc1c32407982da0526eea1d65f5c462570fc49baa5708770f5f4de8f8797"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/outer-ansi.bin",
+      "sha256": "4ba24aab324227504e01084321ed4999a539f62d49296e178451b0efa4483001"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-close/child-wrapper.sh",
+      "sha256": "3cc8931622f0d08628f06266cd1190887396e47a521cb3cabc7e9bb3e1c4d62e"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/launch.json",
+      "sha256": "23517285762503f7e12ff494f435e4fe8b6265c1253b0a5c617dd48d9a0ce516"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/input-events.json",
+      "sha256": "8fbcd9b0a060d6b8e6bd22b8adb2066ffb351a96fb5983d2bca18d87b8f89f0b"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/consumer/wire.bin",
+      "sha256": "6b607b1d770b097562e1dc08bb858fb22364b8396328371e56df2a3c4b71a042"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/consumer/all-wire.bin",
+      "sha256": "6b607b1d770b097562e1dc08bb858fb22364b8396328371e56df2a3c4b71a042"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/consumer/native.tsv",
+      "sha256": "3accaa3e348c61749ba81dfbc76c53444083b867c4f9353c212ba61613c0df22"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/consumer/results.tsv",
+      "sha256": "787bdfcdda8f89c4e9c6631a90cc5c00dde3c948db67421879e8f9f452117a5b"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/consumer/before",
+      "sha256": "fd85d152f656eb22909486dc6411668d421bc1ba1507076baf65636dce43aae4"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/consumer/after",
+      "sha256": "fd85d152f656eb22909486dc6411668d421bc1ba1507076baf65636dce43aae4"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/consumer/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/captures.json",
+      "sha256": "8583a4cba6b55521690cf07dd6c2444259e5e01d509be5b9af62818327050872"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/before-xprop.txt",
+      "sha256": "4f5b2b3a654371e6663df0b0d4e1b141ca915b6c56001d49e86abfe63a972ea8"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/before.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/before-native-grid.ansi",
+      "sha256": "6038dc1c32407982da0526eea1d65f5c462570fc49baa5708770f5f4de8f8797"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/owned-before-exit-xprop.txt",
+      "sha256": "99f1ee76028aba5b3a05c2e021631c6f7c136e013c311489cb4a25ace6c8cc4c"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/owned-before-exit.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/owned-before-exit-native-grid.ansi",
+      "sha256": "6038dc1c32407982da0526eea1d65f5c462570fc49baa5708770f5f4de8f8797"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/after-automatic-cleanup-xprop.txt",
+      "sha256": "d3c697fb74c9c19ddc50c835a3a8853e48c952b2adea65287bec4cee0003ec4c"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/after-automatic-cleanup.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/after-automatic-cleanup-native-grid.ansi",
+      "sha256": "6038dc1c32407982da0526eea1d65f5c462570fc49baa5708770f5f4de8f8797"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/outer-ansi.bin",
+      "sha256": "2271ed06a3de7fc1a6d8fae8850683c3b0eb13e9be57d436f6ca5b6adc308860"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-error/child-wrapper.sh",
+      "sha256": "8754cdc876dbd379ca9e987e0c98331d1ed0a089a044c8c26084b2cc17caecaf"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/launch.json",
+      "sha256": "2c33630c25fc2a0cfcbfb6ad446897217db7f75e094d49a8942d0e4d94167374"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/input-events.json",
+      "sha256": "61610a8621b08c375ed01b1ab7f6e154f8f25cf7abda90741f7f1b0573d5e481"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/consumer/wire.bin",
+      "sha256": "6b607b1d770b097562e1dc08bb858fb22364b8396328371e56df2a3c4b71a042"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/consumer/all-wire.bin",
+      "sha256": "6b607b1d770b097562e1dc08bb858fb22364b8396328371e56df2a3c4b71a042"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/consumer/native.tsv",
+      "sha256": "6ea2ac841821ae93e4de9a66b7b11aab0e32fae52e8935255970dda8edee2241"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/consumer/results.tsv",
+      "sha256": "62c931016072df4370b9c8e8663a09d733b50f9852983dfc75d37bbce6cc6aca"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/consumer/before",
+      "sha256": "fd85d152f656eb22909486dc6411668d421bc1ba1507076baf65636dce43aae4"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/consumer/after",
+      "sha256": "fd85d152f656eb22909486dc6411668d421bc1ba1507076baf65636dce43aae4"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/consumer/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/captures.json",
+      "sha256": "8b3d35c80a5d6cb4b5178f4de8f56a9777fc595d48ccd8991a9e9c5618fbd3fb"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/before-xprop.txt",
+      "sha256": "37fe4f0a61dbe7bba9f535b5b24816e93a2f137f4ea126bdd3444de55a28863e"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/before.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/before-native-grid.ansi",
+      "sha256": "6038dc1c32407982da0526eea1d65f5c462570fc49baa5708770f5f4de8f8797"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/owned-before-exit-xprop.txt",
+      "sha256": "4201796a5a8c16c5420c4ab18572a1b943b0ef681821d274d472a0b27b9a18f0"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/owned-before-exit.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/owned-before-exit-native-grid.ansi",
+      "sha256": "6038dc1c32407982da0526eea1d65f5c462570fc49baa5708770f5f4de8f8797"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/after-automatic-cleanup-xprop.txt",
+      "sha256": "fe54c1d803d776a214cba6072ca23ed779e633172897d366d168a07b7af7b71b"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/after-automatic-cleanup.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/after-automatic-cleanup-native-grid.ansi",
+      "sha256": "6038dc1c32407982da0526eea1d65f5c462570fc49baa5708770f5f4de8f8797"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/outer-ansi.bin",
+      "sha256": "4042721b7f9e98d61233c9f9b1f8c793be701e5b75c38a412c5d45e7e3b34bd2"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/ledger-cancel/child-wrapper.sh",
+      "sha256": "10c5e99358e4c47a6f88286b1c335ed452715e2a907e60ccaa1bba6039944b0b"
+    },
+    {
+      "source": "/workspace/work/session-extension-execution/raw/lifecycle-hosts/summary.json",
+      "sha256": "9f45244dca18532beaf4a2783111dc8d47d5f880b6f56cffbb8d0dced3e8353f"
+    }
+  ],
+  "allPassed": true,
+  "remaining": "Final151 manifest seal and source-copy integrity; no final TASK152 verdict yet"
+}

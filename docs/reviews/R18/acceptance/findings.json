@@ -1,0 +1,48 @@
+{
+  "task": "TASK152",
+  "verdict": "PASS",
+  "scope": "Frozen finite Session increment only; not full parent030/004/008/020/041, M2, full Linux or release",
+  "product": "83094ca92acab37ed0a38042e2e40ead55049f41",
+  "tests": "f8b95815616c850145b647aae57e082c7915dab0",
+  "openCounts": {
+    "critical": 0,
+    "important": 0,
+    "minor": 0
+  },
+  "productDefects": [],
+  "findings": [
+    {
+      "id": "152-E01",
+      "category": "required evidence gap",
+      "severity": "important",
+      "status": "verified_closed",
+      "requirement": "Frozen f8 tests/session_extensions/README.md:56 real-host error/cancel restoration before/after observations",
+      "initialEvidence": "278 controlled PTY cases plus 14 explicit restore host profiles did not cover actual host automatic cleanup",
+      "resolution": "Independent151 added actual XTerm398 Direct ledger-close/error/cancel with same consumer and no explicit restore; independent152 checked wire, native call order, xprop, PNG/grid, expected errors and resource recovery",
+      "evidence": "raw/lifecycle-verification.json"
+    }
+  ],
+  "deferred": [
+    {
+      "id": "P30",
+      "verdict": "insufficient_evidence",
+      "scope": "Full actual kernelVT/platform combination",
+      "reason": "Current830 kernelVT not executed; no explicit current151 frozen-matrix requirement for an additional VT run; full041/094/096/097 remains pending"
+    },
+    {
+      "scope": "Full release",
+      "verdict": "failed",
+      "reason": "Existing full checker exit1 missing composition; scoped bundle/clean consumer success does not close release"
+    },
+    {
+      "scope": "Parent030 paste/cut,004 U1-U5,008 full recovery,020 full modes,041 full inputs/native, M2 and otherOS",
+      "verdict": "pending",
+      "reason": "Outside this finite accepted increment; actual later integration evidence required"
+    }
+  ],
+  "actualServingModel": "unverified",
+  "candidateExecutedBy152": false,
+  "formalTestsChanged": false,
+  "mainStatusChanged": false,
+  "subagentsDispatched": false
+}
