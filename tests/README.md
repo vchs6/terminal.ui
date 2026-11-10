@@ -1,5 +1,14 @@
 # Linux first-slice independent tests (TASK-048)
 
+R019 coherent terminal-size and corrected resize fixtures:
+`./tests/run-slice.sh resize-coherence`; see [resize-coherence/README.md](resize-coherence/README.md).
+The integration fixture's ordinary build facility is now
+`./tests/integration/fixture/build.sh`, which prepares its test-only real-close
+link wrapper before CJPM. Direct PTY facilities compile the shared atomic
+terminal-size helper and retain resize raw artifacts. Complete final grids replace
+the former history-wide old-width ban; impossible mixed pairs have a separate
+deterministic actual-Application regression.
+
 Persistent reactive runtime A+B consumers (TASK-071):
 `./tests/run-slice.sh runtime`. Their frozen contract, literal expectations,
 controlled concurrency, and scope are documented in [runtime/README.md](runtime/README.md).

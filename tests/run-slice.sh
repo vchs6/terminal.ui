@@ -38,13 +38,14 @@ case "${1:-all}" in
   capabilities) tests/capabilities/run.sh ;;
   composition) tests/composition/run.sh ;;
   runtime) tests/runtime/run.sh ;;
+  resize-coherence) tests/resize-coherence/run.sh ;;
   layout-integration)
     (cd examples/layout && cjpm build)
     node tests/integration/layout-pty.mjs "${LAYOUT_SESSION_BIN:-examples/layout/target/release/bin/main}"
     ;;
   application-lifecycle) tests/application-lifecycle/run.sh ;;
   integration)
-    (cd tests/integration/fixture && cjpm build)
+    tests/integration/fixture/build.sh
     node tests/integration/pty.mjs "${SLICE_SESSION_BIN:-tests/integration/fixture/target/release/bin/main}"
     ;;
   all)
@@ -62,6 +63,7 @@ case "${1:-all}" in
     "$0" capabilities
     "$0" composition
     "$0" runtime
+    "$0" resize-coherence
     ;;
-  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
 esac

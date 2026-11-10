@@ -4,6 +4,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import { mkdir, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
+import { atomicResize, finalGrid, prepareTerminalSizeTool } from '../support/terminal_frames.mjs';
 
 const binary = resolve(process.argv[2] ?? 'tests/application-lifecycle/target/release/bin/main');
 const modes = ['q-success', 'q-close-failure', 'callback-success', 'callback-close-failure', 'ctrl-c-success', 'resize-success'];
@@ -39,13 +40,14 @@ async function session(mode) {
     assert(output.includes(Buffer.from('\x1b[')), 'application draws into actual TTY');
     await delay(200);
     if (mode === 'resize-success') {
-      const offset = output.length;
       const tty = (await read(join(dir, 'tty'))).trim();
-      const changed = spawnSync('stty', ['-F', tty, 'rows', '3', 'cols', '8'], { encoding: 'utf8' });
-      assert.equal(changed.status, 0, changed.stderr);
+      const readback = atomicResize(tty, 8, 3);
+      await writeFile(join(dir, 'atomic-resize.json'), JSON.stringify({ cols: 8, rows: 3, readback }));
       process.kill(pid, 'SIGWINCH');
-      await until(() => output.subarray(offset).includes(Buffer.from('01234567')), 'resize before normal cleanup');
-      assert(!output.subarray(offset).includes(Buffer.from('0123456789')), 'resize honors actual width');
+      const wanted = ['CJTUI_LI', '01234567', '        '];
+      await until(() => finalGrid(output, wanted), 'complete final 8x3 grid before normal cleanup');
+      await delay(180);
+      assert(finalGrid(output, wanted), 'final settled grid clips all rows to eight actual columns');
     }
     child.stdin.write(mode === 'ctrl-c-success' ? '\x03' : callback ? 'e' : 'q');
     await until(() => finished, `${mode} cleanup and exit`);
@@ -77,6 +79,7 @@ async function session(mode) {
 }
 let failures = 0;
 try {
+  prepareTerminalSizeTool();
   for (const command of ['script', 'stty']) assert.equal(spawnSync(command, ['--version']).status, 0, `${command} available`);
   for (const mode of selected) assert(modes.includes(mode), `unknown mode: ${mode}`);
   for (const mode of selected.length ? selected : modes) {

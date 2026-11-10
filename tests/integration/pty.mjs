@@ -5,6 +5,7 @@ import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import assert from 'node:assert/strict';
+import { atomicResize, completeFrames, finalGrid, prepareTerminalSizeTool } from '../support/terminal_frames.mjs';
 
 const binary = resolve(process.argv[2] ?? 'tests/integration/fixture/target/release/bin/main');
 const modes = ['q', 'ctrl-c', 'sigint', 'sigterm', 'resize', 'exception', 'osc-ctrl-c', 'utf8-ctrl-c', 'utf8-fragmented', 'sos-ignore', 'sos-escape-utf8'];
@@ -22,7 +23,7 @@ async function session(mode) {
   const dir = await mkdtemp(join(tmpdir(), 'cjtui-pty-'));
   const wrapper = join(dir, 'session.sh');
   await writeFile(wrapper, `#!/bin/sh\nstty rows 5 cols 24\nstty -g > "$2/before"\ntty > "$2/tty"\n"$1" < /dev/tty &\np=$!\necho "$p" > "$2/pid"\nwait "$p"\nstatus=$?\nstty -g > "$2/after"\nexit "$status"\n`);
-  const child = spawn('script', ['--quiet', '--return', '--flush', '--command', `sh ${quote(wrapper)} ${quote(binary)} ${quote(dir)}`, '/dev/null'], { stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, TERM: 'xterm-256color', CJTUI_TEST_EVENTS: collectEvents ? '1' : '0' } });
+  const child = spawn('script', ['--quiet', '--return', '--flush', '--command', `sh ${quote(wrapper)} ${quote(binary)} ${quote(dir)}`, '/dev/null'], { stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, TERM: 'xterm-256color', CJTUI_TEST_EVENTS: collectEvents ? '1' : '0', CJTUI_TEST_CLOSE_FAIL: '0', CJTUI_TEST_CLOSE_RECORD: join(dir, 'close-record.txt') } });
   let output = Buffer.alloc(0), stderr = '';
   child.stdout.on('data', b => { output = Buffer.concat([output, b]); });
   child.stderr.on('data', b => { stderr += b.toString(); });
@@ -39,14 +40,14 @@ async function session(mode) {
     await delay(180);
     assert.equal(output.length, idleStart, 'idle frame sends no screen updates');
     if (mode === 'resize') {
-      const offset = output.length;
       const tty = (await read(join(dir, 'tty'))).trim();
-      const resized = spawnSync('stty', ['-F', tty, 'rows', '3', 'cols', '8'], { encoding: 'utf8' });
-      assert.equal(resized.status, 0, resized.stderr);
+      const readback = atomicResize(tty, 8, 3);
+      await writeFile(join(dir, 'atomic-resize.json'), JSON.stringify({ cols: 8, rows: 3, readback }));
       process.kill(pid, 'SIGWINCH');
-      await until(() => output.length > offset && output.subarray(offset).includes(Buffer.from('01234567')), 'resize repaint at actual dimensions');
-      const repaint = output.subarray(offset).toString();
-      assert(!repaint.includes('0123456789'), 'resize must clip to eight actual columns');
+      const wanted = ['cjtui   ', '中文 👩‍💻 ', '01234567'];
+      await until(() => finalGrid(output, wanted), 'complete final styled/Unicode 8x3 grid');
+      await delay(180);
+      assert(finalGrid(output, wanted), 'final settled grid clips all rows to eight actual columns');
       child.stdin.write('q');
     } else if (mode === 'osc-ctrl-c' || mode === 'utf8-ctrl-c') {
       // Leave the input parser inside an unfinished sequence before cancellation.
@@ -83,6 +84,7 @@ async function session(mode) {
     assert(before && after, 'both termios snapshots recorded');
     assert.equal(after, before, `restore termios (${mode})`);
     assert.equal(signal, null, 'script must exit without forced signal');
+    if (mode === 'resize') assert.equal(await read(join(dir, 'close-record.txt')), 'real_result=0 injected=0\n', 'resize closes the real terminal exactly once');
     if (mode === 'q' || mode === 'resize') assert.equal(code, 0, 'normal stop succeeds');
     if (mode === 'osc-ctrl-c' || mode === 'utf8-ctrl-c') assert.equal(code, 0, 'Ctrl-C cancellation returns normally despite incomplete input');
     if (collectEvents) {
@@ -100,7 +102,12 @@ async function session(mode) {
   } finally {
     if (!finished) { if (pid) { try { process.kill(pid, 'SIGKILL'); } catch {} } child.kill('SIGKILL'); }
     child.stdin.destroy();
-    await rm(dir, { recursive: true, force: true });
+    if (mode === 'resize') {
+      await writeFile(join(dir, 'session.raw'), output);
+      await writeFile(join(dir, 'stderr.txt'), stderr);
+      await writeFile(join(dir, 'frames.json'), JSON.stringify(completeFrames(output), null, 2));
+      console.log(`Integration resize artifacts=${dir}`);
+    } else await rm(dir, { recursive: true, force: true });
   }
 }
 async function nonTTY() {
@@ -119,6 +126,7 @@ async function nonTTY() {
   } finally { if (!done) child.kill('SIGKILL'); }
 }
 try {
+  prepareTerminalSizeTool();
   for (const command of ['script', 'stty']) {
     assert.equal(spawnSync(command, ['--version']).status, 0, `${command} required`);
   }

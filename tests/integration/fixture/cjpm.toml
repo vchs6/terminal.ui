@@ -4,5 +4,8 @@ name = "slice_session_fixture"
 version = "0.0.0"
 src-dir = "src"
 output-type = "executable"
+link-option = "--wrap=cjt_close"
 [dependencies]
 cjtui = { path = "../../.." }
+[ffi.c]
+integration_close = { path = "./native" }
