@@ -1,6 +1,6 @@
 # R10 自动颜色与属性输出：测试报告
 
-本轮实现默认自动降级：应用使用完整 `Color`/`Style`，`Application(root)` 根据宿主声明及可选 terminfo 适配颜色与六种文本属性；离线 `Frame.toAnsi()` 保留真彩与属性。产品版本为 `0.0.0`。最终技术版本 `8af39f6` 已完成独立审核，[逐需求验收](acceptance/report.md)已确认有限功能范围；最终集成元数据另行核对。
+本轮实现默认自动降级：应用使用完整 `Color`/`Style`，`Application(root)` 根据宿主声明及可选 terminfo 适配颜色与六种文本属性；离线 `Frame.toAnsi()` 保留真彩与属性。产品版本为 `0.0.0`。最终技术版本 `8af39f6` 已完成独立审核，[逐需求验收](acceptance/report.md)已确认有限功能与最终集成元数据通过。
 
 ## 实际执行结果
 

@@ -1,6 +1,6 @@
-# R10 independent acceptance — final integration pending
+# R10 independent acceptance — finite scope PASS
 
-Status: **finite functional evidence accepted and reusable to final technical target 8af39f6; integration metadata pending; no integrated pass verdict issued**. Prepared 2026-11-10 UTC in the independent `/workspace/work/auto-final-acceptance` directory. Product and test files have not been edited; functional suites have not been rerun. No product-author analysis or self-assessment has been read. The current cumulative independent review at the supplied fixed SHA has now been read as an authorized acceptance input. The latest verdict table is in “Execution evidence acceptance”, supplemented by the final technical target checks; the earlier tables preserve preparation/history.
+Status: **PASS for the finite R10 scope, including AC-064 metadata acceptance at candidate `0862b83b7907d9a7dca84c27fa6044784e06386e`**. Technical target: `8af39f6c8882772b946ae1d9507361f8a6082388`. Actual execution attribution remains stage A ead6a8d and stage B bf308bf. Prepared 2026-11-10 UTC in the independent `/workspace/work/auto-final-acceptance` directory. Product and test files have not been edited; functional suites have not been rerun. No product-author analysis or self-assessment has been used as proof. The final verdict is in “Final metadata acceptance”; earlier pending entries preserve the review history and are superseded by that section.
 
 Role: independent requirements acceptance (TASK-064). Requested scheduling: **Astra/high**. This agent has no authoritative runtime model/effort identifier available in its tools; the requested scheduling must not be reported as independently observed runtime identity. The generic system identity describes Codex/GPT-6 and does not establish the selected serving model.
 
@@ -152,3 +152,34 @@ AC-062 is therefore **pass at 8af39f6**, and the finite AC-006/061/063/065/066 c
 Fresh final selected-copy checking verified all **1,202** entries of `execution/SOURCE_SHA256SUMS.txt` (manifest SHA-256 `884ed6d0546bd9ecd0a87dfd6323648d09e47d5735fb006366c78a871af3b732`) against archive bytes. Every mapped original file also matches the independent execution directory, including logs, report, snapshots, consumer evidence and inventories. The only local-only entry is the derived GUI manifest. The GUI manifest has **864** entries and SHA-256 `76c79036a1df4df7e4706f2620d62f895ccb7c420d01a1ad51520de403a78cd0`. `final-technical-evidence.json` (SHA-256 `4260562bf309bc4905b824c06a348837e8ca30a02d6efb8503c172f5155c4495`) records these fresh zero-mismatch results and the independent delta check.
 
 **Remaining AC-064 hold:** final controller metadata projection, copy-scope explanation, aggregated report/link correctness and final direct-main integrated SHA. No further product or matrix test run is requested by this acceptance role.
+
+## Final metadata acceptance — AC-064 PASS
+
+Reviewed candidate: **`0862b83b7907d9a7dca84c27fa6044784e06386e`** on main, with a clean working tree. Direct Git comparison against the final reviewed technical target **`8af39f6c8882772b946ae1d9507361f8a6082388`** shows no change in product/native/build/manifest/examples/tests/scripts/product-docs/package inputs. This closes the preceding metadata hold; it does not claim a future self-referencing acceptance commit has already been inspected.
+
+The candidate projects AC-006/061/062/063/065/066 as finite passed and leaves AC-064 pending and TASK-064 unchecked pending this verdict. Those are accurate pre-verdict states. Its aggregate report distinguishes stage-A ead6a8d, stage-B bf308bf, and final technical 8af39f6, retains the actual complete-release checker exit 1, the original Auto RED log gap and current historical-code reproduction, VTE version-query failure with separate corroboration, the two-implementation/three-configuration boundary, and missing console/tmux/screen/platform coverage.
+
+Fresh final checks:
+
+- All **1,614 SOURCE_SHA256SUMS entries** and **864 GUI manifest entries** match the actual candidate files; this is checksum-entry count, not a test count.
+- All **31 local links** in `docs/reviews/R10/README.md` resolve. Its three embedded ordinary-example PNGs match the already-inspected originals, metadata source `bf308bf`, host/configuration and 100×28 starting grid. Displayed UTC+08:00 times correctly convert the corresponding original metadata capture-record times; they are not newly acquired screenshot timestamps.
+- Exact initial-image hashes are xterm-default `014143548a03625c279d87e0b99e19716e4fb99162ee0ab5f76055e5c6012e18`, xterm-256color `9b515ae2dc6cc0c04ed59826c88c9ce1132c0cfb009cc50bfb0c05a8c41c4ec7`, and XFCE/VTE `d4f4d2e3710f1632415e1e03150585cc706e5ec1ea10d7ded8e23e9a714b995e`.
+- `execution/COPY_SCOPE.md` accurately records original→archive GUI renaming, unchanged raw/PNG/metadata/ACK bytes and exclusions of rebuilt test ELF, caches, SDK, cjp body and repeated unpacked source. The actual original cjp was independently inspected and remains hash-bound by E5 and its per-file archive inventory; not committing its body is not a claim it was never produced.
+- Both frozen smoke-contract Markdown files renamed `.md.txt` are byte-identical to their original independent files, with hashes `e504dc044dbec8fc0ebcb2e339cb48bf69e939f3c9c03c8fa3ca57bcaab4c9d9` and `15e6f8fe13a831f0c8ccbcbddba70abafd150bfc9d026f2d88602a51c03ee735`. The explicit `COPY_PATHS.json` mapping preserves provenance and avoids treating snapshot-relative links as active documentation.
+- Read the independent package-smoke contract review and the fixed consumer driver. Its generic raw-growth wait alone does not prove resize. Independent read-only parsing of the existing 920-byte raw (`524b47e8cee7540313ee3e41f0dde4c110cfe314495978a347a42decd407aca8`) confirms the initial ASCII row 6 has 40 spaces and later ASCII row 9 has 54 spaces, corroborating the actual resized redraw without a new execution or treating Unicode codepoint counts as display columns.
+
+The complete fresh metadata checks and individual paths/hashes are in `final-metadata-evidence.json`, SHA-256 **`510e4fad518eb5b39aa16fdb8117becc0c57fd4d8e7d67a54c4d578244bf98ad`**. No mismatch or unresolved required failure remains within this finite acceptance scope.
+
+| AC | Final verdict | Evidence and scope |
+|---|---|---|
+| AC-006 | PASS, finite | E1/E3/E4 and fixed shared output path: colors, six attributes, automatic downgrade and pure snapshots |
+| AC-061 | PASS, finite with provenance limit | E6–E9 and exact fixed source/test archives: real current historical-code RED; original execution chronology remains unproven |
+| AC-062 | PASS, finite | 8af39f6 cumulative independent review, three original review hashes above; minor localized duplication explicitly deferred |
+| AC-063 | PASS, finite | E1/E2/E5 plus actual normal unpack/consumer/raw; complete release checker remains failed and is outside this positive conclusion |
+| AC-064 | PASS, finite | Candidate 0862b83, unchanged technical inputs, final metadata evidence hash above, accurate copy and state projection |
+| AC-065 | PASS, bounded investigation | Actual capability/host probes and E10, source and ABI limitations retained |
+| AC-066 | PASS, executed/reused scope | E3/E4, same no-override binaries, 12 real-host rows, 45 original PNGs and raw restoration evidence across two implementations |
+
+After this verdict, only mechanical closure is needed: mark AC-064 finite passed and TASK-064 checked, copy this final report and accompanying acceptance ledger/evidence JSON files byte-for-byte into the review archive, update direct references/checksum metadata, and commit that closure. No additional functional, GUI, package or consumer run is required for those metadata-only actions. If technical content or evidence bytes change, this authorization to reuse evidence does not cover the changed scope.
+
+This verdict does not authorize publication or establish complete release readiness, all Linux requirements, themes/M2, physical console/tmux/screen, other libc/ABI combinations, or Windows/macOS/HarmonyOS support.
