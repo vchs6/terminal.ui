@@ -1,0 +1,29 @@
+# Deferred fixture recipes — preparation, all BLOCKED
+
+These are unfinished tests, not substitute execution. Bind them only to fixed actual A102/088/152 interfaces. The Cangjie files also remain uncompiled against those interfaces. All expected offsets/grids above are manual literals; no cloned layout/renderer computes an oracle.
+
+## Root and resource
+
+Repeat the I009 root table with blank content and zero actual height, explicit root height3, nested ordinary/Horizontal/Vertical/Both barriers, and hidden children. The 100-row zero-height case has extent100 and legal range0..100; initial offset0, an ensure request does not position its zero axis. Restore24 -> maximum76. Static Text Grapheme wrap is the Theme T004 contract (actual088 remains missing).
+
+The at-most-two-pass property has no public pass counter. Do not add one, infer it from Canvas measure counts (the contract allows multiple measures), or mistake a timeout for proof. Freeze an independent technical diff review of the sole layout root algorithm plus these literal results; retain a bounded subprocess timeout as a liveness negative control only. For resource evidence run the real binary under `/usr/bin/time -v`, retain raw exit/RSS and compare with actual Frame dimensions. A large logical Canvas Size still must respect real maxSize/area validation; do not assert arbitrary huge extents are universally allowed or allocate a giant oracle Frame.
+
+## Ensure and caret
+
+Complete an explicit alignment table with all axes: V6/target20x1 -> Start20, End15, Center18, Nearest15 from0, Nearest18 from18. Oversized target [10,40) with window [15,21) keeps15; starting below/above moves to nearest edge; equal-distance choice is Start. Zero axes never locate. Some(rect) on a viewport acts first on itself; None uses its whole layout box and begins at parent. Nested inner box at outer local3 has actual height3; when its target row9 appears at local5, outer V4 requires2, not the full-document tail. End/Center at both levels must use the visible transformed fragment.
+
+New intent/resize: keep a completed caret at logical12, resize physical viewport, then handle an event that sets caret2 and calls ensureVisible(Rect(2,0,1,1)). Record the actual A resize/event boundary so both belong to the same turn. Final offset uses caret2 and new extent; repeated unchanged snapshots must not restore caret12. Headless snapshot cannot legally be called inside Application.batch: do not use that to fake a same-turn resize. Once actual source is available, select the real existing public path; any absent signature goes to root, never a private hook. Also cover old caret outside shortened extent (silently discard), loss of focus, unmount/new generation, multiple explicit scroll/ensure orders, and new caret-only logic without text mutation.
+
+Paint mutation test uses a real public Canvas whose draw attempts its own ref.ensureVisible and catches the fixed ReentrantEvaluation; no fake getter/offset and no draw-issued scheduling loop. It is separate from read-only draw query, which is legal.
+
+## Guards
+
+Use a fresh app for failures that stop a session. Read viewportSnapshot via a real property getter and via measure/draw; count no added measurement from query itself and verify dependent output invalidates after scroll. Attempt scroll/ensure in getter/measure/draw => ReentrantEvaluation; lifecycle direct command => LifecycleReentry, while post into next turn is accepted. Cross-active-session and wrong-thread contexts => WrongUIContext; stale query/commands => StaleReference; no capability => InvalidProperty; explicit hidden ensure target => InvalidProperty. Test negative x/y of scrollTo separately (IllegalArgumentException), negative Some rect coordinates and out-of-content rect by the formal entry validation, empty rect no-op, Int64.Max By/Min By saturation without arithmetic exceptions. Do not invent combined-error precedence beyond specified thread/session ownership and context lifetimes; ask root if a missing signature/priority is needed.
+
+## Unicode clipping
+
+Dedicated non-ASCII case, isolated from ASCII scroll arithmetic: Canvas emits `A界B`, measured width4, horizontal viewport width2. Offset1 displays full 界 (lead width2 and one continuation). Offset2 clips the lead outside viewport, so row is space+B, with neither half-glyph nor orphan continuation. Offset0 displays A+space, because 界 would cross the right clip. Include a combining cluster and an emoji ZWJ cluster using the same accepted Unicode library, hand-check their display columns under fixed ambiguousWide=false. Place fixed chrome adjacent; scroll then shrink and capture actual raw differential output and complete Frame to ensure old wide cells are cleared and chrome untouched. Do not build a second Unicode renderer or recalculate oracle from product layout.
+
+## Real PTY
+
+After actual accepted A source and real B binary are available: source SDK env, run normal build then direct binary; `python tests/interaction_b/pty_driver.py --binary tests/interaction_b/target/release/bin/main --output <raw-dir>`. Driver creates a controlling terminal, sets TIOCSWINSZ, checks TIOCGWINSZ, retains raw before/during/after termios and phase bytes, uses actual down-arrow CSI B and actual SIGWINCH, then q. It does not substitute root Frame or emulate a terminal. Initial manual oracle row0..23, after100 downs row76..99; 40x10 narrows actual target and 80x24 restores it. Compare raw plus actual terminal/frame evidence independently; the recorder's success is only process/restoration recording. PageUp/PageDown are normalized manual dispatch only until actual Keyboard114/117, never pretend B implements their device decoder. NoFocusable fixture must receive events via A activeTarget; never add fake root focus to pass. This PTY is not a real-host XTerm/VTE/VT cursor-visibility certification; I015's actual host evidence remains an A obligation.

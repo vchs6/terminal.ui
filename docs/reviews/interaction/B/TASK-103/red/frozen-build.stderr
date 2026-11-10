@@ -1,0 +1,59 @@
+[31merror[0m: undeclared type name 'ScrollAxes'
+  [36m==>[0m /workspace/work/viewport-tests/source/tests/interaction_b/src/commands.cj:34:27:
+   [36m| [0m
+[36m34[0m [36m| [0m    let axes = Observable<ScrollAxes>(ScrollAxes.Both)[0m
+   [36m| [0m                          [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'viewportSnapshot' is not a member of class 'NodeRef'
+  [36m==>[0m /workspace/work/viewport-tests/source/tests/interaction_b/src/assertions.cj:23:32:
+   [36m| [0m
+[36m23[0m [36m| [0m    let state = ref(component).viewportSnapshot()[0m
+   [36m| [0m                               [31m^^^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Canvas'
+ [36m==>[0m /workspace/work/viewport-tests/source/tests/interaction_b/src/caret_scrolling.cj:8:17:
+  [36m| [0m
+[36m8[0m [36m| [0m    let input = Canvas({ _ => Size(13, 1) }, { ctx =>[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'viewport' is not a member of class 'Component'
+ [36m==>[0m /workspace/work/viewport-tests/source/tests/interaction_b/src/commands.cj:8:55:
+  [36m| [0m
+[36m8[0m [36m| [0m    let root = Column({ => Text({ => text.get() }) }).viewport(ScrollAxes.Both)[0m
+  [36m| [0m                                                      [31m^^^^^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: 'viewport' is not a member of class 'Component'
+  [36m==>[0m /workspace/work/viewport-tests/source/tests/interaction_b/src/commands.cj:36:10:
+   [36m| [0m
+[36m36[0m [36m| [0m        .viewport({ => axes.get() }).focusable(true)[0m
+   [36m| [0m         [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'viewport' is not a member of class 'Component'
+  [36m==>[0m /workspace/work/viewport-tests/source/tests/interaction_b/src/commands.cj:57:68:
+   [36m| [0m
+[36m57[0m [36m| [0m    let row = Row({ => Text("ABCD"); Text("EFGH"); Text("IJKL") }).viewport(ScrollAxes.Horizontal)[0m
+   [36m| [0m                                                                   [31m^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'ScrollView'
+ [36m==>[0m /workspace/work/viewport-tests/source/tests/interaction_b/src/composition.cj:8:42:
+  [36m| [0m
+[36m8[0m [36m| [0m        let root = if (useConstructor) { ScrollView({ => Text("a\nb\nc\nd\ne\nf") }) }[0m
+  [36m| [0m                                         [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'viewport' is not a member of class 'Component'
+ [36m==>[0m /workspace/work/viewport-tests/source/tests/interaction_b/src/composition.cj:9:60:
+  [36m| [0m
+[36m9[0m [36m| [0m            else { Column({ => Text("a\nb\nc\nd\ne\nf") }).viewport(ScrollAxes.Vertical).focusable(true) }[0m
+  [36m| [0m                                                           [31m^^^^^^^^ [0m
+  [36m| [0m
+
+38 errors generated, 8 errors printed.
+Error: failed to compile package `interaction_b`, return code is 1
+Error: cjpm build failed
