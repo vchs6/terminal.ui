@@ -51,4 +51,4 @@ TASK-006、011、012 及既有支持任务保持已验范围，不重新实现�
 
 ## 当前执行入口
 
-第一项：[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)。全阶段恢复日志：[Linux 总执行日志](../openspec/linux-completion-progress.md)。日志仅记录交接与裁决，不建立第二份任务状态。
+当前：[持久运行时](../openspec/changes/implement-reactive-runtime/tasks.md)（A+B验收后直接继续动态结构C）；帧合成已完成。后续已准备[富文本](../openspec/changes/implement-rich-text/tasks.md)及[主题](../openspec/changes/implement-theme-styles/tasks.md)合同与独立测试，按共享文件屏障集成。全阶段恢复日志：[Linux 总执行日志](../openspec/linux-completion-progress.md)。日志仅记录交接与裁决，不建立第二份任务状态。

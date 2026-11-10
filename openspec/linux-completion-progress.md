@@ -17,3 +17,11 @@ Frame阶段最终5c2a7e7已实现并独立review/execution/功能验收，准备
 Frame具体变更已最终metadata独立PASS（候选dde27d1），主代理机械关闭070并准备正常main checkpoint；不结束本用户任务。下一阶段已获得原生宏/泛型/接口/带参init/线程局部/WeakRef及普通CJPM/源码包消费实证，runtime草稿与root裁决记录待正式冻结。无需重复R8–R11功能或重新讨论已选路线。
 
 Frame已正常推送6a7b240（远端/本地一致、clean）。当前继续[reactive runtime](changes/implement-reactive-runtime/tasks.md)：主代理采用草稿并在design第6节落实R001–014，A+B首单元071–075，动态结构C076–080。独立names微探针确认宏/类型Component可共存，限定名必须`import cjtui`，已纳入契约；不重复运行探针。新runtime进度以其progress为恢复入口，全部Linux任务仍活动。
+
+2026-11-10恢复交接：runtime A+B产品源c3d743d通过独立073（含F001–007修复），074完成core255/宏/12PTY/旧Frame/正常bundle/干净包消费/真实XTerm与VTE PNG，但resize旧oracle失败；没有伪称075或整个Linux通过。独立resize_root_cause识别两query混pair、stty两次SET及合法旧帧inflight，R019合同fc766冻结；测试原dddbdd9（main6d703bf）先强RED、产品原61ce9e5（main0912436）三文件原子采样修复，当前限定独立审核与受影响074复验。原始失败保留，具体进度见runtime progress。
+
+后续已交付而不要重派：C正式32组测试3ee1a9b（/workspace/work/dynamic-tests），RichText正式测试e6b3229+6d3ae13（/workspace/work/rich-text-tests）；均未集成，产品等075/080屏障。Theme正式合同5c150ec，085测试原74b1a5ac（/workspace/work/theme-tests/source）等待最终报告；产品等080/084。RichText与Theme已独立preflight ready，状态不代表产品实现。
+
+实际Linux VT产品探针已在QEMU内核tty1运行旧6a7b240三个场景，退出恢复通过且有16张原始PNG；字体缺少CJK/emoji/组合符，不能将逻辑Unicode网格等同真实显示。字形草案主代理选择保守整簇等宽ASCII占位、复用边框映射，未知PTY保留Unicode；没有可用NFC依赖，绝不手写表。093–097预留自动字形子接口，080/084后、主题产品前；完整041仍等最终场景。离线render/snapshot默认逻辑Unicode，显式Ascii可供排版/ellipsis确定验证；设备run默认Auto，公共选项只是高级覆盖。正式稿和preflight仍待完成。
+
+独立交互草案/workspace/work/interaction-contract-draft整理为A/B/C正式候选：098–102公共Canvas/focus(父017)、103–107viewport(父037)、108–112overlay(父018)。主代理采纳原推荐，ScrollView默认Vertical、普通Column不隐式滚动；Tab/backtab最小解码进入A。完整输入/编辑草案/workspace/work/input-contract-draft继续，113–117归一化输入/paste/EOF子接口、118–122编辑，原稳定028编辑/030可选会话/020恢复/019菜单编号保持，不按主代理口误重编号。上述皆未冻结/未实施，不提前关闭父AC。M2草案/workspace/work/m2-contract-draft完成，待主代理正式收敛；完整Linux剩余仍连续执行。

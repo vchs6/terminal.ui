@@ -21,7 +21,7 @@
 
 ## Tasks / state
 
-- [x] TASK-071（WP005/testing）：固定A+B公共消费者、宏正负样例与原始RED。
+- [ ] TASK-071（WP005/testing）：固定A+B公共消费者、宏正负样例与原始RED。
 - [ ] TASK-072（WP004/implementation）：实现A+B构造/绑定/代际/事件最小协议/调度，与run集成并交付公开动态示例。
 - [ ] TASK-073（WP005/verification）：固定A+B完整技术diff的spec/quality独立审核，无未决Critical/Important。
 - [ ] TASK-074（WP005/testing）：独立运行A+B新用例、受影响回归、正常bundle/纯公开包消费及真实TTY清理。
