@@ -53,7 +53,7 @@ public open class Component {
         checkDefinitionChange()
         nonnegative(v)
         removeBinding("width")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         fixedW = v
         this
     }
@@ -61,17 +61,17 @@ public open class Component {
         checkDefinitionChange()
         nonnegative(v)
         removeBinding("height")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         fixedH = v
         this
     }
     public func widthAuto(): Component {
-        removeBinding("width"); markChanged()
+        removeBinding("width"); markChanged(ChangeKind.Layout)
         fixedW = None
         this
     }
     public func heightAuto(): Component {
-        removeBinding("height"); markChanged()
+        removeBinding("height"); markChanged(ChangeKind.Layout)
         fixedH = None
         this
     }
@@ -79,7 +79,7 @@ public open class Component {
         checkDefinitionChange()
         nonnegative(v)
         removeBinding("minWidth")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         minW = v
         this
     }
@@ -87,7 +87,7 @@ public open class Component {
         checkDefinitionChange()
         nonnegative(v)
         removeBinding("minHeight")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         minH = v
         this
     }
@@ -95,7 +95,7 @@ public open class Component {
         checkDefinitionChange()
         nonnegative(v)
         removeBinding("layoutWeight")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         weight = v
         this
     }
@@ -103,7 +103,7 @@ public open class Component {
         checkDefinitionChange()
         nonnegative(v)
         removeBinding("padding")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         pad = v
         this
     }
@@ -114,7 +114,7 @@ public open class Component {
             throw IllegalArgumentException("gap on text")
         };
         removeBinding("gap")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         spacing = v
         this
     }
@@ -124,7 +124,7 @@ public open class Component {
             throw IllegalArgumentException("alignment on text")
         };
         removeBinding("alignItems")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         align = v
         this
     }
@@ -134,7 +134,7 @@ public open class Component {
             throw IllegalArgumentException("invalid justification")
         };
         removeBinding("justifyContent")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         justify = v
         this
     }
@@ -144,7 +144,7 @@ public open class Component {
             throw IllegalArgumentException("invalid text alignment")
         };
         removeBinding("textAlign")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         textAlignment = v
         this
     }
@@ -203,18 +203,18 @@ public open class Component {
     }
     public func border(value: BorderStyle): Component {
         removeBinding("border")
-        markChanged()
+        markChanged(ChangeKind.Layout)
         borderStyle = value
         this
     }
     public func borderColor(value: Color): Component {
         removeBinding("borderColor")
-        markChanged()
+        markChanged(ChangeKind.Style)
         borderFg = value
         this
     }
     public func shadow(offsetX!: Int64 = 1, offsetY!: Int64 = 1, style!: Style = Style(), enabled!: Bool = true): Component {
-        removeBinding("shadow"); markChanged()
+        removeBinding("shadow"); markChanged(ChangeKind.Style)
         shadowX = offsetX
         shadowY = offsetY
         shadowStyle = style
@@ -223,13 +223,13 @@ public open class Component {
     }
     public func foreground(value: Color): Component {
         removeBinding("foreground")
-        markChanged()
+        markChanged(ChangeKind.Style)
         fg = value
         this
     }
     public func background(value: Color): Component {
         removeBinding("background")
-        markChanged()
+        markChanged(ChangeKind.Style)
         bg = value
         this
     }
@@ -238,7 +238,7 @@ public open class Component {
     }
     public func bold(value: Bool): Component {
         removeBinding("bold")
-        markChanged()
+        markChanged(ChangeKind.Style)
         isBold = value
         this
     }
@@ -247,7 +247,7 @@ public open class Component {
     }
     public func dim(value: Bool): Component {
         removeBinding("dim")
-        markChanged()
+        markChanged(ChangeKind.Style)
         isDim = value
         this
     }
@@ -256,7 +256,7 @@ public open class Component {
     }
     public func italic(value: Bool): Component {
         removeBinding("italic")
-        markChanged()
+        markChanged(ChangeKind.Style)
         isItalic = value
         this
     }
@@ -265,7 +265,7 @@ public open class Component {
     }
     public func underline(value: Bool): Component {
         removeBinding("underline")
-        markChanged()
+        markChanged(ChangeKind.Style)
         isUnderline = value
         this
     }
@@ -274,7 +274,7 @@ public open class Component {
     }
     public func inverse(value: Bool): Component {
         removeBinding("inverse")
-        markChanged()
+        markChanged(ChangeKind.Style)
         isInverse = value
         this
     }
@@ -283,7 +283,7 @@ public open class Component {
     }
     public func strikethrough(value: Bool): Component {
         removeBinding("strikethrough")
-        markChanged()
+        markChanged(ChangeKind.Style)
         isStrikethrough = value
         this
     }
@@ -301,7 +301,9 @@ public open class Component {
             } else { index++ }
         }
     }
-    func markChanged(): Unit { if (let Some(node) <- readMount()) { node.session.markChanged() } }
+    func markChanged(change: ChangeKind): Unit {
+        if (let Some(node) <- readMount()) { node.session.markChanged(node, change) }
+    }
     func bind(name: String, category: ChangeKind, getter: () -> Unit): Component {
         checkDefinitionChange()
         if (let Some(node) <- readMount()) {
@@ -320,77 +322,77 @@ public open class Component {
         } else { bindings.add(binding) }
         this
     }
-    public func visible(value: Bool): Component { removeBinding("visible"); isVisible = value; markChanged(); this }
+    public func visible(value: Bool): Component { removeBinding("visible"); isVisible = value; markChanged(ChangeKind.Layout); this }
     public func visible(value: () -> Bool): Component {
-        bind("visible", ChangeKind.Layout, { => let next = value(); if (isVisible != next) { isVisible = next; markChanged() } })
+        bind("visible", ChangeKind.Layout, { => let next = value(); if (isVisible != next) { isVisible = next; markChanged(ChangeKind.Layout) } })
     }
     public func text(value: String): Component {
         if (kind != 0) { throw UIException("InvalidProperty", "text applies only to Text") }
-        removeBinding("text"); this.value = value; markChanged(); this
+        removeBinding("text"); this.value = value; markChanged(ChangeKind.Content); this
     }
     public func text(value: () -> String): Component {
         if (kind != 0) { throw UIException("InvalidProperty", "text applies only to Text") }
-        bind("text", ChangeKind.Content, { => let next = value(); if (this.value != next) { this.value = next; markChanged() } })
+        bind("text", ChangeKind.Content, { => let next = value(); if (this.value != next) { this.value = next; markChanged(ChangeKind.Content) } })
     }
     public func width(value: () -> Int64): Component {
-        bind("width", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (fixedW != next) { fixedW = next; markChanged() } })
+        bind("width", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (fixedW != next) { fixedW = next; markChanged(ChangeKind.Layout) } })
     }
     public func height(value: () -> Int64): Component {
-        bind("height", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (fixedH != next) { fixedH = next; markChanged() } })
+        bind("height", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (fixedH != next) { fixedH = next; markChanged(ChangeKind.Layout) } })
     }
     public func minWidth(value: () -> Int64): Component {
-        bind("minWidth", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (minW != next) { minW = next; markChanged() } })
+        bind("minWidth", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (minW != next) { minW = next; markChanged(ChangeKind.Layout) } })
     }
     public func minHeight(value: () -> Int64): Component {
-        bind("minHeight", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (minH != next) { minH = next; markChanged() } })
+        bind("minHeight", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (minH != next) { minH = next; markChanged(ChangeKind.Layout) } })
     }
     public func layoutWeight(value: () -> Int64): Component {
-        bind("layoutWeight", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (weight != next) { weight = next; markChanged() } })
+        bind("layoutWeight", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (weight != next) { weight = next; markChanged(ChangeKind.Layout) } })
     }
     public func padding(value: () -> Int64): Component {
-        bind("padding", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (pad != next) { pad = next; markChanged() } })
+        bind("padding", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (pad != next) { pad = next; markChanged(ChangeKind.Layout) } })
     }
     public func gap(value: () -> Int64): Component {
-        bind("gap", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (kind == 0) { throw IllegalArgumentException("gap on text") }; if (spacing != next) { spacing = next; markChanged() } })
+        bind("gap", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (kind == 0) { throw IllegalArgumentException("gap on text") }; if (spacing != next) { spacing = next; markChanged(ChangeKind.Layout) } })
     }
     public func alignItems(value: () -> Alignment): Component {
-        bind("alignItems", ChangeKind.Layout, { => let next = value(); if (kind == 0) { throw IllegalArgumentException("alignment on text") }; if (align != next) { align = next; markChanged() } })
+        bind("alignItems", ChangeKind.Layout, { => let next = value(); if (kind == 0) { throw IllegalArgumentException("alignment on text") }; if (align != next) { align = next; markChanged(ChangeKind.Layout) } })
     }
     public func justifyContent(value: () -> Alignment): Component {
-        bind("justifyContent", ChangeKind.Layout, { => let next = value(); if (kind == 0 || next == Alignment.Stretch) { throw IllegalArgumentException("invalid justification") }; if (justify != next) { justify = next; markChanged() } })
+        bind("justifyContent", ChangeKind.Layout, { => let next = value(); if (kind == 0 || next == Alignment.Stretch) { throw IllegalArgumentException("invalid justification") }; if (justify != next) { justify = next; markChanged(ChangeKind.Layout) } })
     }
     public func textAlign(value: () -> Alignment): Component {
-        bind("textAlign", ChangeKind.Layout, { => let next = value(); if (kind != 0 || next == Alignment.Stretch) { throw IllegalArgumentException("invalid text alignment") }; if (textAlignment != next) { textAlignment = next; markChanged() } })
+        bind("textAlign", ChangeKind.Layout, { => let next = value(); if (kind != 0 || next == Alignment.Stretch) { throw IllegalArgumentException("invalid text alignment") }; if (textAlignment != next) { textAlignment = next; markChanged(ChangeKind.Layout) } })
     }
     public func border(value: () -> BorderStyle): Component {
-        bind("border", ChangeKind.Layout, { => let next = value(); if (borderStyle != next) { borderStyle = next; markChanged() } })
+        bind("border", ChangeKind.Layout, { => let next = value(); if (borderStyle != next) { borderStyle = next; markChanged(ChangeKind.Layout) } })
     }
     public func borderColor(value: () -> Color): Component {
-        bind("borderColor", ChangeKind.Style, { => let next = value(); if (borderFg != next) { borderFg = next; markChanged() } })
+        bind("borderColor", ChangeKind.Style, { => let next = value(); if (borderFg != next) { borderFg = next; markChanged(ChangeKind.Style) } })
     }
     public func foreground(value: () -> Color): Component {
-        bind("foreground", ChangeKind.Style, { => let next = value(); if (fg != next) { fg = next; markChanged() } })
+        bind("foreground", ChangeKind.Style, { => let next = value(); if (fg != next) { fg = next; markChanged(ChangeKind.Style) } })
     }
     public func background(value: () -> Color): Component {
-        bind("background", ChangeKind.Style, { => let next = value(); if (bg != next) { bg = next; markChanged() } })
+        bind("background", ChangeKind.Style, { => let next = value(); if (bg != next) { bg = next; markChanged(ChangeKind.Style) } })
     }
     public func bold(value: () -> Bool): Component {
-        bind("bold", ChangeKind.Style, { => let next = value(); if (isBold != next) { isBold = next; markChanged() } })
+        bind("bold", ChangeKind.Style, { => let next = value(); if (isBold != next) { isBold = next; markChanged(ChangeKind.Style) } })
     }
     public func dim(value: () -> Bool): Component {
-        bind("dim", ChangeKind.Style, { => let next = value(); if (isDim != next) { isDim = next; markChanged() } })
+        bind("dim", ChangeKind.Style, { => let next = value(); if (isDim != next) { isDim = next; markChanged(ChangeKind.Style) } })
     }
     public func italic(value: () -> Bool): Component {
-        bind("italic", ChangeKind.Style, { => let next = value(); if (isItalic != next) { isItalic = next; markChanged() } })
+        bind("italic", ChangeKind.Style, { => let next = value(); if (isItalic != next) { isItalic = next; markChanged(ChangeKind.Style) } })
     }
     public func underline(value: () -> Bool): Component {
-        bind("underline", ChangeKind.Style, { => let next = value(); if (isUnderline != next) { isUnderline = next; markChanged() } })
+        bind("underline", ChangeKind.Style, { => let next = value(); if (isUnderline != next) { isUnderline = next; markChanged(ChangeKind.Style) } })
     }
     public func inverse(value: () -> Bool): Component {
-        bind("inverse", ChangeKind.Style, { => let next = value(); if (isInverse != next) { isInverse = next; markChanged() } })
+        bind("inverse", ChangeKind.Style, { => let next = value(); if (isInverse != next) { isInverse = next; markChanged(ChangeKind.Style) } })
     }
     public func strikethrough(value: () -> Bool): Component {
-        bind("strikethrough", ChangeKind.Style, { => let next = value(); if (isStrikethrough != next) { isStrikethrough = next; markChanged() } })
+        bind("strikethrough", ChangeKind.Style, { => let next = value(); if (isStrikethrough != next) { isStrikethrough = next; markChanged(ChangeKind.Style) } })
     }
 }
 

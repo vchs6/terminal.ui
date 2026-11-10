@@ -49,10 +49,14 @@ public class Application {
     func current(): RuntimeSession {
         match (readSession()) { case Some(value) => return value; case None => throw UIException("SessionInactive", "session is inactive") }
     }
-    private func saveClosed(value: RuntimeSession): Unit {
+    func sessionClosed(value: RuntimeSession): Unit {
         let snapshot = value.stats()
         sessionLock.lock()
-        try { latestStats = snapshot; session = None } finally { sessionLock.unlock() }
+        try {
+            if (let Some(current) <- session) {
+                if (current.id == value.id) { latestStats = snapshot; session = None }
+            }
+        } finally { sessionLock.unlock() }
     }
     public func stats(): RuntimeStats {
         sessionLock.lock()
@@ -64,7 +68,7 @@ public class Application {
         match (readSession()) { case Some(value) => value.post(Some(owner), action); case None => false }
     }
     public func startHeadless(): Unit {
-        let value = RuntimeSession(root, limits)
+        let value = RuntimeSession(root, limits, application: Some(this))
         sessionLock.lock()
         try {
             if (session.isSome()) { throw UIException("LifecycleReentry", "session already active") }
@@ -76,7 +80,7 @@ public class Application {
         } catch (error: Exception) {
             var failure: Exception = error
             try { value.close() } catch (cleanup: Exception) { failure = aggregateCleanup(failure, cleanup) }
-            saveClosed(value); throw failure
+            sessionClosed(value); throw failure
         }
     }
     public func dispose(): Unit {
@@ -85,7 +89,7 @@ public class Application {
                 throw UIException("LifecycleReentry", "dispose requires an outer UI boundary")
             }
             value.requireContext()
-            try { value.close() } finally { saveClosed(value) }
+            try { value.close() } finally { sessionClosed(value) }
         }
     }
     public func batch(action: () -> Unit): Unit {
@@ -103,7 +107,7 @@ public class Application {
         } catch (error: Exception) {
             var failure: Exception = error
             try { value.close() } catch (cleanup: Exception) { failure = aggregateCleanup(failure, cleanup) }
-            saveClosed(value); throw failure
+            sessionClosed(value); throw failure
         }
     }
     public func snapshot(width: Int64, height: Int64): Frame {
@@ -118,7 +122,7 @@ public class Application {
             if (error is UIException && (error as UIException).getOrThrow().code == "WrongUIContext") { throw error }
             var failure: Exception = error
             try { value.close() } catch (cleanup: Exception) { failure = aggregateCleanup(failure, cleanup) }
-            saveClosed(value); throw failure
+            sessionClosed(value); throw failure
         }
     }
     public func dispatch(target: NodeRef, key: KeyEvent): Unit {
@@ -159,8 +163,21 @@ public class Application {
         } catch (error: Exception) {
             var failure: Exception = error
             try { value.close() } catch (cleanup: Exception) { failure = aggregateCleanup(failure, cleanup) }
-            saveClosed(value); throw failure
+            sessionClosed(value); throw failure
         }
+        if (value.isStopping()) { running = false; dispose() }
+    }
+    private func dispatchHiddenKey(key: KeyEvent): Unit {
+        let value = current()
+        value.requireBoundary()
+        let turnCutoff = value.cutoff()
+        try {
+            value.enter({ =>
+                value.inCallback = true; value.batchDepth++
+                try { handler(key) } finally { value.batchDepth--; value.inCallback = false }
+                value.stabilize(turnCutoff)
+            })
+        } catch (error: Exception) { throw value.closeFailure(error) }
         if (value.isStopping()) { running = false; dispose() }
     }
     public func run(): Unit {
@@ -194,17 +211,17 @@ public class Application {
                     case None => capabilities.colorMode
                 }
                 let profile = terminalRenderProfile(capabilities, mode)
-                let frame = snapshot(width, height)
-                var output = ""
-                if (width != previousWidth || height != previousHeight) {
-                    baseline = None
-                }
-                match (baseline) {
-                    case None => output = frame.toAnsiForTerminal(profile)
-                    case Some(old) => output = frame.changesSinceForTerminal(old, baselineProfile, profile)
-                }
-                if (!output.isEmpty()) {
-                    writeScreen(output)
+                let work = current()
+                if (work.needsWork() || width != previousWidth || height != previousHeight ||
+                    mode != baselineProfile.colorMode || baseline.isNone()) {
+                    let frame = snapshot(width, height)
+                    var output = ""
+                    if (width != previousWidth || height != previousHeight) { baseline = None }
+                    match (baseline) {
+                        case None => output = frame.toAnsiForTerminal(profile)
+                        case Some(old) => output = frame.changesSinceForTerminal(old, baselineProfile, profile)
+                    }
+                    if (!output.isEmpty()) { writeScreen(output) }
                     baseline = Some(frame)
                     baselineProfile = profile
                     previousWidth = width
@@ -227,7 +244,7 @@ public class Application {
                     case Some(key) =>
                         if (root.isVisible) { dispatch(root.reference().getOrThrow(), key) }
                         else if (key.code == "interrupt") { running = false }
-                        else { handler(key) }
+                        else { dispatchHiddenKey(key) }
                     case None => ()
                 }
             }

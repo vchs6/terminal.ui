@@ -14,6 +14,7 @@ class Binding {
     let dependencies = ArrayList<BindingDependency>()
     let ownerLock = Mutex()
     var owner: ?RuntimeSession = None
+    var node: ?RuntimeNode = None
     var publishedDependencies: Int64 = 0
     var dirty = true
     var dirtySequence: Int64 = 0
@@ -53,7 +54,7 @@ class Binding {
         try {
             if (let Some(session) <- owner) {
                 session.deactivateBinding(this)
-                owner = None
+                owner = None; node = None
             } else { active = false }
         } finally { ownerLock.unlock() }
         for (entry in dependencies) { entry.source.unsubscribe(this) }

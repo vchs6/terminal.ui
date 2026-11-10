@@ -2,6 +2,7 @@ package cjtui
 
 import std.collection.ArrayList
 import std.sync.Mutex
+import std.ref.{WeakRef, CleanupPolicy}
 
 let runtimeIdLock = Mutex()
 var nextRuntimeId: Int64 = 1
@@ -16,10 +17,14 @@ class RuntimeSession {
     let limits: RuntimeLimits
     let id: Int64
     let threadId: Int64
+    let threadNonce: Int64
     let temporary: Bool
+    let application: ?WeakRef<Application>
     let lock = Mutex()
     let nodes = ArrayList<RuntimeNode>()
     let bindings = ArrayList<Binding>()
+    let pendingBindings = ArrayList<Binding>()
+    let pendingNodes = ArrayList<PendingNodeChange>()
     let posts = ArrayList<QueuedAction>()
     var active = true
     var acceptingPosts = false
@@ -36,17 +41,25 @@ class RuntimeSession {
     var cached: ?Frame = None
     var cachedWidth: Int64 = -1
     var cachedHeight: Int64 = -1
-    init(root: Component, limits: RuntimeLimits, temporary!: Bool = false) {
+    init(root: Component, limits: RuntimeLimits, temporary!: Bool = false,
+        application!: ?Application = Option<Application>.None) {
         this.root = root; this.limits = limits; this.temporary = temporary
+        this.application = match (application) {
+            case Some(app) => Some(WeakRef<Application>(app, CleanupPolicy.EAGER))
+            case None => None
+        }
         threadId = Thread.currentThread.id
+        threadNonce = uiThreadIdentity().nonce
         id = uniqueRuntimeId()
     }
     func requireContext(): Unit {
-        if (evaluating.get().isSome()) { throw UIException("ReentrantEvaluation", "cannot enter UI during getter") }
-        if (!active) { throw UIException("SessionInactive", "session is inactive") }
-        if (Thread.currentThread.id != threadId) { throw UIException("WrongUIContext", "wrong UI thread") }
         if (let Some(other) <- activeSession.get()) {
             if (other.id != id) { throw UIException("WrongUIContext", "another session owns the active callback") }
+        }
+        if (evaluating.get().isSome()) { throw UIException("ReentrantEvaluation", "cannot enter UI during getter") }
+        if (!active) { throw UIException("SessionInactive", "session is inactive") }
+        if (Thread.currentThread.id != threadId || uiThreadIdentity().nonce != threadNonce) {
+            throw UIException("WrongUIContext", "wrong UI thread")
         }
     }
     func requireBoundary(): Unit {
@@ -65,21 +78,33 @@ class RuntimeSession {
         lock.lock()
         try { active && node.valid } finally { lock.unlock() }
     }
-    func markChanged(): Unit { lock.lock(); try { changed = true } finally { lock.unlock() } }
+    func markNodeDirtyLocked(node: RuntimeNode, change: ChangeKind): Unit {
+        if (change == ChangeKind.Content || change == ChangeKind.All) { node.contentDirty = true }
+        if (change == ChangeKind.Style || change == ChangeKind.All) { node.styleDirty = true }
+        if (change == ChangeKind.Content || change == ChangeKind.Layout || change == ChangeKind.Structure || change == ChangeKind.All) {
+            node.layoutDirty = true
+            var parent = node.parent
+            while (let Some(ancestor) <- parent) { ancestor.layoutDirty = true; parent = ancestor.parent }
+        }
+    }
+    func markChanged(node: RuntimeNode, change: ChangeKind): Unit {
+        lock.lock()
+        try { if (active && node.valid) { markNodeDirtyLocked(node, change); changed = true } } finally { lock.unlock() }
+    }
     func recordBuild(): Unit { lock.lock(); try { builds++ } finally { lock.unlock() } }
     func recordMeasure(): Unit { lock.lock(); try { measures++ } finally { lock.unlock() } }
     func recordPaint(): Unit { lock.lock(); try { paints++ } finally { lock.unlock() } }
     func recordFrame(): Unit { lock.lock(); try { frames++ } finally { lock.unlock() } }
     func addNode(node: RuntimeNode): Unit { lock.lock(); try { nodes.add(node) } finally { lock.unlock() } }
     func inActiveDomain(): Bool {
-        if (Thread.currentThread.id != threadId) { return false }
+        if (Thread.currentThread.id != threadId || uiThreadIdentity().nonce != threadNonce) { return false }
         match (activeSession.get()) { case Some(session) => session.id == id; case None => false }
     }
     func markDirtyLocked(binding: Binding, deferred: Bool): Unit {
         var sequence: Int64 = 0
         if (deferred) { invalidationSequence++; sequence = invalidationSequence }
-        if (!binding.dirty || sequence < binding.dirtySequence) { binding.dirtySequence = sequence }
-        binding.dirty = true
+        if (!binding.dirty) { binding.dirtySequence = sequence; binding.dirty = true; pendingBindings.add(binding) }
+        else if (sequence < binding.dirtySequence) { binding.dirtySequence = sequence }
     }
     func cutoff(): Int64 {
         lock.lock()
@@ -104,7 +129,11 @@ class RuntimeSession {
         binding.ownerLock.lock()
         try {
             lock.lock()
-            try { binding.owner = Some(this); binding.active = true; binding.dirty = true; binding.dirtySequence = 0 } finally { lock.unlock() }
+            try {
+                binding.owner = Some(this); binding.node = binding.component.readMount()
+                binding.active = true; binding.dirty = true; binding.dirtySequence = 0
+                pendingBindings.add(binding)
+            } finally { lock.unlock() }
         } finally { binding.ownerLock.unlock() }
         lock.lock()
         try { bindings.add(binding) } finally { lock.unlock() }
@@ -117,6 +146,10 @@ class RuntimeSession {
             while (index < bindings.size) {
                 if (bindings[index].id == binding.id) { bindings.remove(at: index) } else { index++ }
             }
+            index = 0
+            while (index < pendingBindings.size) {
+                if (pendingBindings[index].id == binding.id) { pendingBindings.remove(at: index) } else { index++ }
+            }
         } finally { lock.unlock() }
     }
     func notify(node: RuntimeNode, change: ChangeKind): Unit {
@@ -124,6 +157,18 @@ class RuntimeSession {
         lock.lock()
         try {
             if (!active || !node.valid) { throw UIException("StaleReference", "node is no longer mounted") }
+            if (change != ChangeKind.Bindings) {
+                var sequence: Int64 = 0
+                if (later) { invalidationSequence++; sequence = invalidationSequence }
+                match (node.pendingChange) {
+                    case Some(pending) =>
+                        if (sequence < pending.sequence) { pending.sequence = sequence }
+                        pending.include(change)
+                    case None =>
+                        let pending = PendingNodeChange(node, sequence)
+                        pending.include(change); node.pendingChange = Some(pending); pendingNodes.add(pending)
+                }
+            }
             for (binding in node.component.bindings) {
                 if (change == ChangeKind.All || change == ChangeKind.Bindings || binding.category == change) { markDirtyLocked(binding, later) }
             }
@@ -160,14 +205,40 @@ class RuntimeSession {
         mountedNode
     }
     func stabilize(cutoff: Int64): Unit {
-        let dirty = ArrayList<Binding>()
+        let ready = ArrayList<Binding>()
+        let laterBindings = ArrayList<Binding>()
+        let laterNodes = ArrayList<PendingNodeChange>()
         lock.lock()
         try {
-            for (binding in bindings) {
-                if (binding.active && binding.dirty && binding.dirtySequence <= cutoff) { binding.dirty = false; dirty.add(binding) }
+            for (pending in pendingNodes) {
+                if (pending.sequence <= cutoff) {
+                    pending.node.pendingChange = None
+                    if (pending.node.valid) {
+                        if (pending.content) { markNodeDirtyLocked(pending.node, ChangeKind.Content) }
+                        if (pending.style) { markNodeDirtyLocked(pending.node, ChangeKind.Style) }
+                        if (pending.layout) { markNodeDirtyLocked(pending.node, ChangeKind.Layout) }
+                        changed = true
+                    }
+                } else { laterNodes.add(pending) }
             }
+            pendingNodes.clear()
+            for (pending in laterNodes) { pendingNodes.add(pending) }
+            for (binding in pendingBindings) {
+                if (binding.active && binding.dirty && binding.dirtySequence <= cutoff) {
+                    binding.dirty = false
+                    if (let Some(node) <- binding.node) { markNodeDirtyLocked(node, binding.category) }
+                    ready.add(binding)
+                } else if (binding.active && binding.dirty) { laterBindings.add(binding) }
+            }
+            pendingBindings.clear()
+            for (binding in laterBindings) { pendingBindings.add(binding) }
         } finally { lock.unlock() }
-        for (binding in dirty) { if (binding.active) { binding.evaluate() } }
+        for (binding in ready) { if (binding.active) { binding.evaluate() } }
+    }
+    func needsWork(): Bool {
+        lock.lock()
+        try { changed || !posts.isEmpty() || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || stopping }
+        finally { lock.unlock() }
     }
     func start(): Unit {
         enter({ =>
@@ -220,9 +291,18 @@ class RuntimeSession {
         stabilize(turnCutoff)
     }
     func produce(width: Int64, height: Int64, force: Bool): Frame {
-        if (force || changed || width != cachedWidth || height != cachedHeight || cached.isNone()) {
+        lock.lock()
+        var dirtyFrame = false
+        try { dirtyFrame = changed } finally { lock.unlock() }
+        if (force || dirtyFrame || width != cachedWidth || height != cachedHeight || cached.isNone()) {
+            lock.lock()
+            try {
+                for (node in nodes) { node.contentDirty = false; node.styleDirty = false; node.layoutDirty = false }
+            } finally { lock.unlock() }
             let frame = renderLayout(root, width, height, this)
-            recordFrame(); cached = Some(frame); cachedWidth = width; cachedHeight = height; changed = false
+            recordFrame(); cached = Some(frame); cachedWidth = width; cachedHeight = height
+            lock.lock()
+            try { changed = false } finally { lock.unlock() }
         }
         cached.getOrThrow().copy(Rect(0, 0, width, height))
     }
@@ -236,32 +316,50 @@ class RuntimeSession {
                 builds, measures, paints, frames)
         } finally { lock.unlock() }
     }
+    func notifyClosed(): Unit {
+        if (let Some(weak) <- application) {
+            if (let Some(app) <- weak.value) { app.sessionClosed(this) }
+        }
+    }
+    func closeFailure(primary: Exception): Exception {
+        var result = primary
+        try { close() } catch (cleanup: Exception) { result = aggregateCleanup(result, cleanup) }
+        notifyClosed()
+        result
+    }
+    func closeStopped(): Unit {
+        try { close() } finally { notifyClosed() }
+    }
     func close(): Unit {
         if (!active) { return }
         lock.lock()
         try {
             active = false
             acceptingPosts = false
-            posts.clear()
-            for (node in nodes) { node.valid = false }
+            posts.clear(); pendingBindings.clear(); pendingNodes.clear()
+            for (node in nodes) { node.valid = false; node.pendingChange = None }
         } finally { lock.unlock() }
         for (node in nodes) { node.component.clearMount() }
         for (binding in bindings) { binding.dispose() }
         var failure: ?Exception = None
-        var i = nodes.size
-        while (i > 0) {
-            i--
-            if (let Some(cleanup) <- nodes[i].cleanup) {
-                nodes[i].cleanup = None
-                inLifecycle = true
-                try { cleanup() } catch (error: Exception) {
-                    match (failure) {
-                        case None => failure = Some(error)
-                        case Some(first) => failure = Some(aggregateCleanup(first, error))
-                    }
-                } finally { inLifecycle = false }
+        let previousSession = activeSession.get()
+        activeSession.set(Some(this))
+        try {
+            var i = nodes.size
+            while (i > 0) {
+                i--
+                if (let Some(cleanup) <- nodes[i].cleanup) {
+                    nodes[i].cleanup = None
+                    inLifecycle = true
+                    try { cleanup() } catch (error: Exception) {
+                        match (failure) {
+                            case None => failure = Some(error)
+                            case Some(first) => failure = Some(aggregateCleanup(first, error))
+                        }
+                    } finally { inLifecycle = false }
+                }
             }
-        }
+        } finally { activeSession.set(previousSession) }
         for (node in nodes) { node.component.releaseMount() }
         if (let Some(error) <- failure) { throw error }
     }

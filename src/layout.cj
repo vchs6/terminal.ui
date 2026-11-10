@@ -287,13 +287,21 @@ public func render(root: Component, width: Int64, height: Int64): Frame {
     if (let Some(node) <- root.readMount()) {
         let session = node.session
         session.requireBoundary()
+        if (session.isStopping()) {
+            session.closeStopped()
+            throw UIException("SessionInactive", "session stopped")
+        }
         let turnCutoff = session.cutoff()
-        return session.enter({ =>
-            session.stabilize(turnCutoff)
-            let frame = renderLayout(root, width, height, session)
-            session.recordFrame()
-            frame
-        })
+        try {
+            let frame = session.enter({ =>
+                session.stabilize(turnCutoff)
+                let result = renderLayout(root, width, height, session)
+                session.recordFrame()
+                result
+            })
+            if (session.isStopping()) { session.closeStopped() }
+            return frame
+        } catch (error: Exception) { throw session.closeFailure(error) }
     }
     let session = RuntimeSession(root, RuntimeLimits(), temporary: true)
     try {
