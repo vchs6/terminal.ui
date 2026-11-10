@@ -233,7 +233,7 @@ R006：`RuntimeLimits`公开构造（所有命名参数，均Int64正数）：`i
 
 R007：`public class UIException <: Exception`公开只读`code:String`，`public init(code:String,message:String)`；错误code固定：StaleReference、AlreadyMounted、ConstructionAlreadyFinished、ConstructionFailed、DuplicateKey、InvalidKey、ConstructionRootCount、WrongUIContext、SessionInactive、ExpiredEvent、ReentrantEvaluation、ReentrantStructure、LifecycleReentry、StaleAnchor、CrossParentMove、InvalidParent、CapacityExceeded、UnstableUpdate、InvalidProperty。宏非法源码为编译诊断，运行时参数负值/limits非正沿既有IllegalArgumentException。普通用户回调异常保留原异常，额外清理失败聚合附加，不能吞首错。新的约束若实际语言迫使签名修正须在测试冻结前报主代理，不擅改契约。
 
-R008：`public class RuntimeStats`无公开构造，公开只读Int64属性`mountedNodes,activeBindings,subscriptions,pendingPosts,builds,measures,paints,frames`；`Application.stats():RuntimeStats`返回独立快照。前三者是session当前存量，pendingPosts当前待执行未取消量；builds/measures/paints/frames为当前session累计次数（每Component.build/每LayoutNode.measure/每LayoutNode.paint/每生成目标Frame一次计数），start重置，dispose保留末次累计但当前存量归0。未start全0。用于公开诊断/基准和无空闲树工作证明，不是私有测试hook。
+R008：`public class RuntimeStats`无公开构造，公开只读Int64属性`mountedNodes,activeBindings,subscriptions,pendingPosts,builds,measures,paints,frames`；`Application.stats():RuntimeStats`返回独立快照。前三者是session当前存量，pendingPosts当前待执行未取消量；builds/measures/paints/frames为当前session累计次数（每Component.build/每LayoutNode.measure/每节点paint调用/每生成目标Frame一次计数），start重置，dispose保留末次累计但当前存量归0。未start全0。用于公开诊断/基准和无空闲树工作证明，不是私有测试hook。
 
 R009：全部已有单参数Color/Bool/Int64/Alignment/BorderStyle链属性增加同名`() -> T`重载，原常量签名不变；无参bold等保留。`text(value:String):Component`和`text(value:()->String):Component`只用于Text叶；visible默认true，增加常量/getter。widthAuto/heightAuto清除对应getter。shadow本次常量复合签名保留，动态复合对象后续Style契约另定，不以任意字符串反射替代typed绑定。常量/闭包后写替换同属性旧依赖，挂载后更新限UI域并标脏。
 
@@ -246,6 +246,8 @@ R012：清理先撤销整树token/订阅/队列，再孩子到父执行已登记
 R013：C完整采用4.2槽位表；唯一物理序列包含内部group marker，绝不按业务数据之外的规则排序。保留key新T更新ListItem.value；manual不归组所有，删除数据不删除manual。同父move保代际，跨父拒绝。普通原生if/for是一次build；响应式If/ForEach是公开动态构造，不混淆。一个key一个根是首版显式限制，复合根可用Row/Column。结构错误按4.3，不虚称全batch事务。
 
 R014：原全局parents+Mutex构造栈退役，ThreadLocal collector唯一；旧每100ms无条件render退役，dirty/resize驱动目标生成；原LayoutNode/Frame/Style/Unicode/ansies保留为唯一权威。产品组件不直接输出ANSI，后续控件通过公开组合与受控通用primitive，不加Button专用kind。基准或导出不能维护第二组件树。
+
+R015：public Component()及宏组件根默认Column纵向容器语义，是有布局盒的组合节点；build收集的直接孩子按声明顺序参与同Column测量/绘制，公开布局/样式同等生效，不暗设无盒Fragment。当前无focus阶段，run路由目标为有效可见root；后续017才由focus选择目标。显式dispatch目标自身或任一祖先visible(false)时抛UIException(InvalidProperty)，不进入节点/app新UI回调。设备root隐藏时不构造虚假UIKeyEvent、不调用节点/新UIhandler，仍调用旧onKey处理非interrupt，interrupt默认stop；后续焦点/域路由须保持隐藏节点不可接收输入。dispatch开始后沿已固定路径完成，回调属性修改在安全边界生效，不在同次路由半移除目标。
 
 ### 编译实证来源
 

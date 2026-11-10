@@ -27,3 +27,5 @@ Root adopted independent draft with final section6 overrides. Language/macro pac
 | runtime→后续焦点/主题/M2 | NodeRef/dirty与完整M1参考作为输入；新功能不得另建UI路径；各自AC待后续实施 |
 
 Ruling：保留末次stats累计但dispose当前存量归0，明确用于资源释放检查；队列owner取消后pending量须归零。异步任务持续产生不参与当前turn同步稳定上限，避免合法进度流被当死循环。若独立preflight发现可达矛盾先修合同，正式测试后才写产品。
+
+独立preflight指出组合根默认布局、无focus时设备事件目标两项Important合同空缺。主代理R015明确默认Column布局盒、run活动可见root为目标；隐藏target/祖先显式dispatch报InvalidProperty，隐藏root设备不虚构UI事件但保留旧非interrupt handler/默认interrupt停止。修正stats的paint计数为每节点paint调用，不强迫自由函数改成员。等待审查者核此限定修文后071准入；没有提前派产品。
