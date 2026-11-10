@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "status": "candidate_only_pending_formal_freeze_and_independent_preflight",
+  "product_modified": false,
+  "formal_tests_created_or_run": false,
+  "recon_rerun": false,
+  "recommendation": "single asynchronous DECRQM mode25 query, 600ms monotonic authorization window, same decoder and writer, no extra input buffer or queue",
+  "root_decisions": [
+    {
+      "id": "I015-R1",
+      "decision": "Only exact in-window first status1/2 authorizes mode25 management; Unknown preserves visibility with logical caret/CUP."
+    },
+    {
+      "id": "I015-R2",
+      "decision": "Formal finite148-152 precedes A;152 is added admission dependency; no dependency on future Keyboard acceptance."
+    },
+    {
+      "id": "I015-R3",
+      "decision": "Probe deadline never resets/times out decoder; complete late reply means same CSI not interrupted by existing keyboard timeout/cancel."
+    }
+  ],
+  "findings": [
+    {
+      "id": "CPD-001",
+      "kind": "source_gap",
+      "status": "resolved_by_root_planned_reordering",
+      "summary": "Current native writer has no partial count or outputUnsafe latch. A must consume fixed149/152 instead of implementing a second writer ledger.",
+      "evidence": [
+        "src/terminal_bridge.cj",
+        "native/cjtui_terminal.c",
+        "openspec/changes/implement-session-extensions/tasks.md#4",
+        "openspec/changes/implement-session-extensions/design.md#S008"
+      ]
+    },
+    {
+      "id": "CPD-002",
+      "kind": "contract_ambiguity",
+      "status": "resolved_by_root_scope_definition",
+      "summary": "600ms authorization deadline and K002100ms actual idle timeout are distinct. Split reply across deadline is consumed; a CSI actually ended by timeout follows K002 diagnostics and normal suffix decoding.",
+      "evidence": [
+        "openspec/changes/implement-linux-input-editing/design.md#K002",
+        "openspec/changes/implement-linux-input-editing/design.md#F003"
+      ]
+    },
+    {
+      "id": "CPD-003",
+      "kind": "existing_scope_limit",
+      "status": "documented_no_change_requested",
+      "summary": "TCSAFLUSH in native open already discards typeahead. Query adds no input drop; it does not promise preservation before open. EOF/-4 also remains futureK004 behavior.",
+      "evidence": [
+        "native/cjtui_terminal.c",
+        "openspec/changes/implement-linux-input-editing/design.md#K004"
+      ]
+    },
+    {
+      "id": "CPD-004",
+      "kind": "minimal_observability_choice",
+      "status": "pending_root_freeze",
+      "summary": "Existing capability reason/source are color-specific; proposed one readonly cursorVisibilityStatus field on existing TerminalCapabilities, justified for logical-vs-physical diagnosis. No new probe/settings/callback API. Exact API and lifetime require root decision and preflight.",
+      "evidence": [
+        "src/terminal_capabilities.cj",
+        "src/application.cj",
+        "docs/architecture.md#13"
+      ]
+    },
+    {
+      "id": "CPD-005",
+      "kind": "implementation_admission",
+      "status": "pending_preflight",
+      "summary": "Validate monotonic SDK API or minimal CLOCK_MONOTONIC internal FFI; no ABI or Cangjie signature was compiled in this document-only task.",
+      "evidence": [
+        "draft.md#1"
+      ]
+    },
+    {
+      "id": "CPD-006",
+      "kind": "bounded_protocol_assumption",
+      "status": "documented",
+      "summary": "DECRQM lacks authentication/nonce. Exact report identifies a protocol value under exclusive terminal ownership, not cryptographic proof; terminal external changes/spoofed byte strings are outside restoration guarantee."
+    }
+  ],
+  "acceptance_boundary": "Host-only evidence remains recon. Product implementation, formal test design/execution, and independent acceptance all pending.",
+  "deliverables": [
+    "draft.md",
+    "findings.json",
+    "source-hashes.json"
+  ]
+}
