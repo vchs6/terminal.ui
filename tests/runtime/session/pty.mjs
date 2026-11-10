@@ -7,6 +7,7 @@ import { join, resolve } from 'node:path';
 
 const binary = resolve(process.argv[2] ?? 'tests/runtime/session/target/release/bin/main');
 const modes = ['idle', 'callback', 'cleanup', 'callback-cleanup', 'callback-cleanup-close', 'mount', 'bind', 'hidden', 'prevent', 'ctrlc'];
+modes.push('hidden-cross-session', 'hidden-reentrant');
 const selected = process.argv.slice(3);
 const parent = process.env.CJTUI_RUNTIME_ARTIFACTS ?? tmpdir();
 await mkdir(parent, { recursive: true });
@@ -60,7 +61,7 @@ async function session(mode) {
         assert(before.every(Number.isFinite));
         assert.deepEqual(after, before, 'idle polls perform no build/measure/paint/frame work');
         child.stdin.write('q');
-      } else if (mode === 'hidden') {
+      } else if (mode === 'hidden' || mode === 'hidden-cross-session' || mode === 'hidden-reentrant') {
         child.stdin.write('h');
         await until(async () => (await read(join(dir, 'h'))).length > 0, 'hide callback acknowledgement');
         child.stdin.write('x');
@@ -106,6 +107,12 @@ async function session(mode) {
     if (failClose) assert(combined.includes('terminal restore failed'), 'restore failure remains explicit beside primary runtime error');
     else assert(!combined.includes('terminal restore failed'), 'successful close fabricates no restore failure');
     if (mode !== 'mount' && mode !== 'bind') assert.equal(await read(join(dir, 'cleanup')), '1', 'registered cleanup executes exactly once');
+    if (mode === 'hidden-cross-session') assert.equal(await read(join(dir, 'other-restored')), 'usable',
+      'other session survives rejected hidden legacy entry and owns a later safe boundary');
+    if (mode === 'hidden-cross-session') assert.equal(await read(join(dir, 'context')), 'WrongUIContext',
+      'hidden legacy callback cannot enter a different same-thread headless session');
+    if (mode === 'hidden-reentrant') assert.equal(await read(join(dir, 'context')), 'LifecycleReentry',
+      'hidden legacy callback cannot recursively enter app.snapshot');
     assert(!combined.includes('legacy received interrupt'), 'legacy interrupt compatibility retained');
     await writeFile(join(dir, 'result.json'), JSON.stringify({ mode, code, signal, passed: true }, null, 2));
     console.log(`PASS runtime PTY ${mode}: exit=${code}; exact termios restored`);

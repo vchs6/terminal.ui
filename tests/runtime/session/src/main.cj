@@ -27,6 +27,9 @@ main(): Int64 {
         Text("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     }.onKeyCapture({ _ => counts[0]++ }).onKey({ _ => counts[1]++ })
     let app = Application(root, colorMode: ColorMode.Basic16)
+    let otherRoot = Text("other")
+    let other = Application(otherRoot)
+    if (mode == "hidden-cross-session") { other.startHeadless() }
     root.onMount({ _ =>
         if (mode == "mount") { throw Exception("CJTUI_MOUNT_SENTINEL") }
         { =>
@@ -46,7 +49,17 @@ main(): Int64 {
         if (event.code == "interrupt") { throw Exception("legacy received interrupt") }
         if (event.text == "a" || event.text == "b") { writeStats(directory, event.text, app.stats()) }
         if (event.text == "h") { root.visible(false); writeCounts(directory, "h", counts) }
-        if (event.text == "x") { writeCounts(directory, "x", counts) }
+        if (event.text == "x") {
+            if (mode == "hidden-cross-session" || mode == "hidden-reentrant") {
+                var observed = "accepted"
+                try {
+                    if (mode == "hidden-cross-session") { other.snapshot(5, 1) }
+                    else { app.snapshot(5, 1) }
+                } catch (error: UIException) { observed = error.code }
+                File.writeTo(directory + "/context", observed.toArray())
+            }
+            writeCounts(directory, "x", counts)
+        }
         if (event.text == "e") { throw Exception("CJTUI_CALLBACK_SENTINEL") }
         if (event.text == "q") { app.stop() }
     })
@@ -57,6 +70,13 @@ main(): Int64 {
     let after = app.stats()
     if (after.mountedNodes != 0 || after.activeBindings != 0 || after.subscriptions != 0 || after.pendingPosts != 0) {
         throw Exception("disposed run retained resources")
+    }
+    if (mode == "hidden-cross-session") {
+        if (!otherRoot.reference().getOrThrow().isValid() || other.snapshot(5, 1).toPlainText() != "other") {
+            throw Exception("rejected hidden callback damaged other session")
+        }
+        other.dispose()
+        File.writeTo(directory + "/other-restored", "usable".toArray())
     }
     return 0
 }

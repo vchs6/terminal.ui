@@ -89,3 +89,22 @@ cleanup-only primary selection, and original exception identity/type when no
 additional failure exists. Existing assertions remain unchanged. The PTY dual
 cleanup/restore case also requires those failures in the returned exception
 message after actual close, rather than only in stderr.
+
+Review regressions under the original R004/R005/R011/R012 contracts have focused
+case selection after the ordinary core build:
+
+```sh
+CJTUI_RUNTIME_CASE=cleanup-context tests/runtime/target/release/bin/main
+CJTUI_RUNTIME_CASE=owner-render tests/runtime/target/release/bin/main
+CJTUI_RUNTIME_CASE=owner-render-cleanup tests/runtime/target/release/bin/main
+./tests/runtime/session/run.sh hidden-cross-session hidden-reentrant
+```
+
+Cleanup must install A's active UI context while invoking user effects, reject
+entry into idle B with WrongUIContext, then restore TLS and leave B usable. An
+owner-session global render getter failure must clean A like snapshot does,
+release pending owner work/subscriptions, and preserve primary/cleanup errors.
+The real PTY hidden legacy path must retain business callback execution and
+default Ctrl-C while enforcing normal callback context/reentry rules and exact
+terminal restoration. Each focused case runs independently so one RED cannot
+hide evidence for the other failure exits. Existing assertions are retained.
