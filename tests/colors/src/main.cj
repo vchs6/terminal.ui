@@ -113,6 +113,38 @@ func encodingAndCells(): Unit {
         "legacy 8color bold default bytes unchanged")
     for (mode in modes) { check(Frame(0, 1).toAnsi(colorMode: mode) == "" && Frame(1, 0).toAnsi(colorMode: mode) == "", "zero-area mode output empty") }
 }
+func componentAttributeCases(): Unit {
+    let boldNode = Text("X")
+    let boldReceiver = boldNode.bold()
+    check(render(boldNode, 1, 1).cellAt(0, 0).style == Style(bold: true), "component bold default true changes only its own attribute")
+    boldReceiver.bold(false)
+    check(render(boldNode, 1, 1).cellAt(0, 0).style == Style(), "component bold explicit false and same receiver")
+    let dimNode = Text("X")
+    let dimReceiver = dimNode.dim()
+    check(render(dimNode, 1, 1).cellAt(0, 0).style == Style(dim: true), "component dim default true changes only its own attribute")
+    dimReceiver.dim(false)
+    check(render(dimNode, 1, 1).cellAt(0, 0).style == Style(), "component dim explicit false and same receiver")
+    let italicNode = Text("X")
+    let italicReceiver = italicNode.italic()
+    check(render(italicNode, 1, 1).cellAt(0, 0).style == Style(italic: true), "component italic default true changes only its own attribute")
+    italicReceiver.italic(false)
+    check(render(italicNode, 1, 1).cellAt(0, 0).style == Style(), "component italic explicit false and same receiver")
+    let underlineNode = Text("X")
+    let underlineReceiver = underlineNode.underline()
+    check(render(underlineNode, 1, 1).cellAt(0, 0).style == Style(underline: true), "component underline default true changes only its own attribute")
+    underlineReceiver.underline(false)
+    check(render(underlineNode, 1, 1).cellAt(0, 0).style == Style(), "component underline explicit false and same receiver")
+    let inverseNode = Text("X")
+    let inverseReceiver = inverseNode.inverse()
+    check(render(inverseNode, 1, 1).cellAt(0, 0).style == Style(inverse: true), "component inverse default true changes only its own attribute")
+    inverseReceiver.inverse(false)
+    check(render(inverseNode, 1, 1).cellAt(0, 0).style == Style(), "component inverse explicit false and same receiver")
+    let strikethroughNode = Text("X")
+    let strikethroughReceiver = strikethroughNode.strikethrough()
+    check(render(strikethroughNode, 1, 1).cellAt(0, 0).style == Style(strikethrough: true), "component strikethrough default true changes only its own attribute")
+    strikethroughReceiver.strikethrough(false)
+    check(render(strikethroughNode, 1, 1).cellAt(0, 0).style == Style(), "component strikethrough explicit false and same receiver")
+}
 func components(): Unit {
     let full = Style(foreground: Color.Red, background: Color.Blue, bold: true, dim: true, italic: true,
         underline: true, inverse: true, strikethrough: true)
@@ -142,6 +174,6 @@ func components(): Unit {
     check(!nested.cellAt(0, 0).style.italic && nested.cellAt(1, 0).style.italic, "nested false inheritance and child true override")
 }
 main(): Int64 {
-    models(); mapping(); encodingAndCells(); components()
+    models(); mapping(); encodingAndCells(); componentAttributeCases(); components()
     return 0
 }
