@@ -6,6 +6,8 @@ main(): Int64 {
     observableBindings()
     replacementAndNotify()
     subscriptionRace()
+    continuousBackgroundUpdates()
+    retainedVisibility()
     schedulerTurns()
     contextsAndLimits()
     routedEvents()

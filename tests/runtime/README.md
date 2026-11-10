@@ -12,6 +12,8 @@ and registry as described in `tests/README.md`, then run:
 ./tests/run-slice.sh runtime
 # Core consumer independently:
 ./tests/runtime/run.sh core
+./tests/runtime/run.sh macros
+./tests/runtime/run.sh session
 ```
 
 The ordinary external CJPM consumer imports only the public product package.
@@ -43,3 +45,38 @@ cannot count as product compilation or behavioral GREEN. Product authors report
 test defects through the coordinator; expected results do not change to fit an
 implementation. Subsequent independent execution owns actual product GREEN and
 real TTY idle/cleanup evidence.
+
+The macro positive consumer preserves explicit parameter initialization, generic
+parameters, two interfaces, public/private State visibility, generated no-arg
+constructors, throw paths, and nested lambda returns. Local classes named
+`Component` and `Observable` deliberately shadow names to expose unhygienic
+generated references; all macro consumers use the three required imports.
+
+`macros/negative/cases.tsv` enumerates independent fixtures for constructor
+return, open/abstract components, custom superclass, constructor delegation,
+illegal State declarations, private-state access, reserved finishConstruction,
+and a wrong typed Bind. Every fixture builds as an ordinary CJPM consumer.
+The positive consumer must first build and execute successfully; then every
+negative must fail with a source-located compiler diagnostic about its forbidden
+construct. Dependency/network/link failures cannot pass. Shared target output
+reuses product dependencies; no ad hoc FFI flags or skipped product hooks are
+added. Raw stdout/stderr/status are retained in the printed fresh artifact
+directory. `CJTUI_RUNTIME_ARTIFACTS` may select an existing artifact parent.
+
+The session fixture is a public ordinary application with a test-local linker
+wrapper reused from the existing D027 facility. It always calls the actual
+product `cjt_close` before optional failure injection; it never restores termios
+for the product. Real Linux PTYs test idle counter stability across three poll
+windows, hidden-root routing (legacy non-interrupt preserved), preventDefault
+on Ctrl-C, default Ctrl-C, binding/mount/callback/cleanup failures, and combined
+callback+cleanup+restore failure. Every case requires exact termios restoration,
+one actual successful close, direct binary status, and exactly-once registered
+cleanup. Timeouts and SIGKILL are failure cleanup only. Node, GCC/ar, util-linux
+script/stty, and rg for macro diagnostics are test facilities.
+
+The idle timer measures the interval under test; public callback file
+acknowledgements order both sides of it. All concurrent state races in the core
+use deterministic Condition handshakes. Session raw bytes, stderr, before/after
+termios, close records, callback acknowledgements, and result JSON remain in the
+fresh directory printed by the harness. This author freezes missing-API RED;
+the independent execution role supplies actual implementation/TTY results.
