@@ -26,7 +26,7 @@
 
 ### Task 2: TASK-011 constrained layout
 
-- [ ] 2.1 TASK-011：实现固定/min/weight/padding/gap/alignment与Rect；验收AC-011：独立整数/窄屏/极值/旧行为测试，公共接口实际构建；完成后独立局部审核再进行装饰。
+- [x] 2.1 TASK-011：实现固定/min/weight/padding/gap/alignment与Rect；验收AC-011：独立整数/窄屏/极值/旧行为测试，公共接口实际构建；完成后独立局部审核再进行装饰。
 
 **Files:** src/component.cj与src/layout.cj（建议），必要共享Frame入口；产品布局说明。**Interfaces:** design布局表/Rect；既有render/Component/Frame保持。
 L4：1.读取冻结测试并确认RED；2.实现一次measure/arrange/paint和安全几何；3.自测提交交独立审核，不改tests。
