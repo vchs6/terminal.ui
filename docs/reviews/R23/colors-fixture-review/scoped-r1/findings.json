@@ -1,0 +1,18 @@
+{
+  "review_type": "CRF001 scoped re-review round1",
+  "base": "3138d1a549c5941793b24183bd71cad74d2c688c",
+  "reviewed_commit": "0d46c35456db148f08bd407825a4fd559467249a",
+  "test_contract_verdict": "PASS",
+  "code_quality_verdict": "PASS",
+  "counts_open": {"critical": 0, "important": 0, "minor": 0},
+  "findings": [],
+  "resolved": [{
+    "id": "CRF001",
+    "status": "ADDRESSED_VERIFIED",
+    "original_severity": "important",
+    "source": ["tests/colors/pty.mjs:129", "tests/colors/pty.mjs:170", "tests/colors/pty.mjs:206", "tests/colors/pty.mjs:281", "tests/colors/stop_oracle_test.mjs"],
+    "verification": "Independent fixed diff/source/raw hash review: caller-verified grid checkpoint survives until close; parser finalization rejects incomplete UTF-8/escape/row/resize and unreset style; final deepEqual rejects late style changes. Recorded real-child oracle RED exit1 on3138 becomes GREEN exit0 with five rejects and three legal accepts on0d46. Existing resize controls and actual old91 colors fixture/example each exit0.",
+    "evidence": ["audit.json", "hashes.json", "report.md", "fixed.diff"]
+  }],
+  "limits": "Only CRF001 and new changes in3138..0d46 reviewed. Original initialFAIL retained. Product199 TASK165 verdict unchanged; no new-source GUI PASS or status mutation."
+}

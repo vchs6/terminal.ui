@@ -1,0 +1,264 @@
+diff --git a/tests/colors/README.md b/tests/colors/README.md
+index d2098f4..839e3f4 100644
+--- a/tests/colors/README.md
++++ b/tests/colors/README.md
+@@ -31,43 +31,60 @@ it accepts only complete old or target pairs, tracks all sequential full-frame
+ rows, rejects any third width/pair, and requires the final complete target grid.
+ The color scenarios use distinct widths100→31→8→100, so the first complete row
+ identifies which of the two allowed pairs is being delivered. This is a bounded
+ fixture reader, not a general terminal emulator or new Unicode implementation.
+ 
+ The target31x12 and8x4 text and every foreground/background/attribute cell are
+ hand-authored structured literals. Returning100x40 must equal the original full
+ styled grid. Existing14 handshake-acknowledged exact-byte actions, RGB cycles,
+ six attribute toggles, direct application exit0 and exact termios restoration
+ remain enforced. Session completion waits for stdio close and propagates any
+-parser error received before close, including after target completion. The existing100ms no-output interval only checks that an
++parser error received before close, including after target completion. It then
++finalizes UTF-8/escape/row/resize state, requires the final rendering reset, and
++compares the final styled grid with the last grid validated by the caller. The
++fixture captures this checkpoint after its exact-byte action assertion; the
++example uses its original100x40 golden after the final resize. No fresh
++unvalidated snapshot can replace that checkpoint at shutdown. The
++existing100ms no-output interval only checks that an
+ already complete target remains settled; row completion still uses actual CUP
+ boundaries/reset, and no added sleep hides old output or relaxes correctness.
+ An old frame, partial target, or last frame at the old size cannot satisfy the
+ target predicate.
+ 
+ Run deterministic controls separately:
+ 
+ ```sh
+ node tests/colors/resize_oracle_test.mjs
++node tests/colors/stop_oracle_test.mjs
+ ```
+ 
+ They load the **exact historical Screen implementation** from fixed91 Git history
+ (`91c22f82adcd2412d9509b9872ff63450ba81af9`) to prove its false rejection of the
+ actual100x12 failure bytes and a coherent old frame. A fresh unchanged R019
+ native write-gated old24x5→target8x3 stream supplies a real in-flight positive
+ control: the old oracle rejects it; the corrected reader accepts its exact
+ complete final grid. Additional controls accept split transport chunks, but
+ reject malformed row width, third width, the now-impossible100x12 pair under an
+ atomic two-state transition, oversized height, old-only/partial/old-final
+ unsettled streams, and wrong target style. No product hook, runtime edit, new
+ terminal model or modified business example is involved.
+ 
++The stop controls send late bytes through actual Node child stdout and wait for
++real stdio close through the same Session.stop method. They reject incomplete
++rows, incomplete ESC, complete wrong-style rows, truncated UTF-8 and unreset
++style. Quiet q/exit0, shutdown SGR0 and an identical complete styled row are
++positive controls: shutdown output is permitted when it is complete, reset and
++leaves the last verified grid intact. Equal before/after marker files in these
++controls are deliberately synthetic; they prove only oracle behavior. Actual
++product q/termios restoration remains covered by the normal PTY sessions.
++Set `CJTUI_COLOR_STOP_ARTIFACTS` to retain their per-case bytes/observations.
++
+ Artifacts are selected by `CJTUI_COLOR_ARTIFACTS`; each actual resize records the
+ old/target pair, verified native readback and all accepted complete frame pairs.
+ The broader R019 coherence and in-flight tests remain independent:
+ 
+ ```sh
+ bash tests/resize-coherence/run.sh
+ ```
+ 
+ This fixture correction does not certify any unexecuted new-product source or
+ real GUI terminal behavior.
+diff --git a/tests/colors/pty.mjs b/tests/colors/pty.mjs
+index 9bf3009..1e28625 100644
+--- a/tests/colors/pty.mjs
++++ b/tests/colors/pty.mjs
+@@ -119,20 +119,26 @@ export class Screen {
+         assert(this.row !== null, 'text follows CUP');
+         assert(!/[\x00-\x1f\x7f-\x9f]/u.test(text), 'no scrolling controls or injected output');
+         this.text += text;
+         // SGR segments preserve the complete style for each text segment.
+         for (const { segment } of new Intl.Segmenter('en', { granularity: 'grapheme' }).segment(text)) this.cells.push({ text: segment, ...structuredClone(this.style) });
+         this.pending = end < 0 ? '' : this.pending.slice(end);
+       }
+     }
+   }
+   snapshot() { assert.equal(this.pending, '', 'no incomplete escape'); assert.equal(this.row, null, 'row completed by reset'); return structuredClone(this.rows); }
++  finalize() {
++    assert.equal(this.decoder.end(), '', 'no incomplete UTF-8 at stream close');
++    assert(!this.transition && !this.frame, 'no incomplete resize frame at stream close');
++    assert.deepEqual(this.style, freshStyle(), 'rendering style reset at stream close');
++    return this.snapshot();
++  }
+ }
+ class Session {
+   constructor(name, binary, w, h) { this.name = name; this.binary = resolve(binary); this.w = w; this.h = h; this.raw = Buffer.alloc(0); this.stderr = ''; this.screen = new Screen(w, h); this.finished = false; this.lastBytes = 0; }
+   async start() {
+     this.dir = join(artifacts, this.name); await mkdir(this.dir, { recursive: true });
+     const wrapper = join(this.dir, 'session.sh');
+     await writeFile(wrapper, `#!/bin/sh\nstty rows ${this.h} cols ${this.w}\nstty -g > "$2/before"\ntty > "$2/tty"\n"$1" < /dev/tty &\np=$!\necho "$p" > "$2/pid"\nwait "$p"\nstatus=$?\nstty -g > "$2/after"\nexit "$status"\n`);
+     this.child = spawn('script', ['--quiet', '--return', '--flush', '--command', `sh ${quote(wrapper)} ${quote(this.binary)} ${quote(this.dir)}`, '/dev/null'], {
+       stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, TERM: 'xterm-256color', COLORTERM: 'truecolor', CJTUI_COLOR_HANDSHAKE: this.dir }
+     });
+@@ -154,69 +160,74 @@ class Session {
+     await writeFile(join(this.dir, `resize-${w}x${h}.json`), JSON.stringify({
+       old: this.screen.transition.old, target: [w, h], successfulSets: 1, readback
+     }));
+     process.kill(this.pid, 'SIGWINCH');
+     await this.wait(() => this.screen.targetComplete(w, h) && Date.now() - this.lastBytes >= 100,
+       `complete settled resize ${w}x${h}`);
+     const rows = this.screen.finishResize(w, h);
+     await writeFile(join(this.dir, `resize-${w}x${h}-frames.json`), JSON.stringify(this.screen.resizeFrames, null, 2));
+     return rows;
+   }
+-  async stop() {
++  async stop(expectedGrid) {
++    assert(Array.isArray(expectedGrid), 'stop requires the last verified grid');
++    const verified = structuredClone(expectedGrid);
++    assert.deepEqual(this.screen.snapshot(), verified, 'screen still equals last verified grid before quit');
+     this.child.stdin.write('q'); await until(() => this.finished, `${this.name} q exit`);
+     if (this.error) throw this.error;
+     assert.equal(this.code, 0, 'direct binary successful exit'); assert.equal(this.signal, null);
+     const before = (await read(join(this.dir, 'before'))).trim(), after = (await read(join(this.dir, 'after'))).trim();
+     assert(before && after, 'termios snapshots exist'); assert.equal(after, before, 'exact termios restored');
++    assert.deepEqual(this.screen.finalize(), verified, 'final screen equals last verified grid after stdio close');
+   }
+   async save() {
+     await writeFile(join(this.dir, 'session.raw'), this.raw); await writeFile(join(this.dir, 'stderr.txt'), this.stderr);
+     await writeFile(join(this.dir, 'result.json'), JSON.stringify({ code: this.code, signal: this.signal, error: this.error?.message, updates: this.screen.updates }, null, 2));
+     if (!this.finished) { if (this.pid) { try { process.kill(this.pid, 'SIGKILL'); } catch {} } this.child?.kill('SIGKILL'); }
+     this.child?.stdin.destroy();
+   }
+ }
+ const rowBytes = (row, text, codes = '', w = 32) => `\x1b[0m\x1b[${row};1H${codes ? `\x1b[0m${codes}${text}\x1b[0m` : text}${' '.repeat(w - width(text))}\x1b[0m`;
+ async function fixture() {
+   const s = new Session('public-fixture', process.env.CJTUI_COLOR_FIXTURE_BIN ?? 'tests/colors/session/target/release/bin/main', 32, 6);
+-  let serial = 0;
++  let serial = 0, verifiedGrid;
+   try {
+     await s.start(); await s.settle(0, 'fixture first complete frame');
+     assert(s.raw.toString().includes('\x1b[91mRGB-DYNAMIC'), 'explicit default Basic16 wins over truecolor environment');
+     // Every action is followed by a distinct second public onKey event. The file proves the
+     // prior render ran. The complete changed fence row proves all its bytes traversed the PTY.
+     async function action(key, expected, name) {
+       const offset = s.raw.length, update = s.screen.updates.length;
+       serial++; s.child.stdin.write(key + 'h');
+       await s.wait(() => s.screen.updates.slice(update).some(v => v.row === 4), `${name}: fence row transport barrier`);
+       await until(async () => (await read(join(s.dir, `ack-${serial}`))) === 'ack', `${name}: second callback acknowledgement`);
+       assert(!s.error, s.error?.message);
+       const fence = rowBytes(4, 'EVENT-FENCE', serial % 2 ? '\x1b[1m' : '');
+       assert.equal(s.raw.subarray(offset).toString(), expected + fence, name);
++      verifiedGrid = s.screen.snapshot();
+       await writeFile(join(s.dir, `action-${serial}-${key}.raw`), s.raw.subarray(offset));
+     }
+     await action('x', '', '250→249 red projects to same Basic16; no color row update');
+     await action('i', '', 'Basic16→Indexed256 same bright-red projection; no unconditional repaint');
+     await action('r', rowBytes(3, 'RGB-DYNAMIC', '\x1b[38;2;249;0;0m'), 'TrueColor changes only actual RGB line; plain/named lines silent');
+     await action('y', rowBytes(3, 'RGB-DYNAMIC', '\x1b[38;2;250;0;0m'), 'TrueColor channel change updates');
+     await action('m', rowBytes(2, 'NAMED-UNCHANGED') + rowBytes(3, 'RGB-DYNAMIC'), 'Monochrome removes colors, preserves plain line');
+     await action('x', '', 'Monochrome only color change silent');
+     const attrs = '\x1b[1m\x1b[2m\x1b[3m\x1b[4m\x1b[7m\x1b[9m';
+     await action('t', rowBytes(3, 'RGB-DYNAMIC', attrs), 'Monochrome attribute change updates all six');
+     await action('f', rowBytes(3, 'RGB-DYNAMIC'), 'explicit false resets six attributes with reset0');
+     await action('b', rowBytes(2, 'NAMED-UNCHANGED', '\x1b[31m') + rowBytes(3, 'RGB-DYNAMIC', '\x1b[91m'), 'Basic16 restores both effective colors');
+     await action('n', rowBytes(3, 'RGB-DYNAMIC', '\x1b[31m'), 'named color changes dynamic row');
+     await action('a', '', 'Indexed1 aliases named Red without invalid refresh');
+     await action('r', '', 'Basic16→TrueColor indexed basic alias and uncolored/named lines silent');
+     await action('d', rowBytes(3, 'RGB-DYNAMIC'), 'explicit Default clears current foreground');
+     await action('b', '', 'TrueColor→Basic16 with only default/named colors silent');
+-    await s.stop(); console.log('PASS colors fixture: 14 handshake-acknowledged actions, exact row bytes, termios restored');
++    await s.stop(verifiedGrid); console.log('PASS colors fixture: 14 handshake-acknowledged actions, exact row bytes, termios restored');
+   } finally { await s.save(); }
+ }
+ const cells = rows => rows.flatMap(row => row.cells);
+ const text = rows => rows.map(row => row.text).join('\n');
+ const selections = rows => cells(rows).flatMap(c => [c.fg, c.bg]);
+ const foregrounds = rows => cells(rows).map(c => c.fg);
+ export function expectedResize(w) {
+   const row = chunks => ({
+     text: chunks.map(([text]) => text).join(''),
+     cells: chunks.flatMap(([text, fg = 'default', attributes = []]) =>
+@@ -260,21 +271,21 @@ async function example() {
+     }
+     const unstyled = await key('t', 't restores six attributes');
+     assert.deepEqual(unstyled, gray, 'second t restores exact automatic rich-color text and style');
+     const basic = await key('c', 'c→first RGB sample');
+     assert.deepEqual(basic, initial, 'third c restores the first RGB sample without changing the automatic profile');
+     assert.deepEqual(await s.resize(31, 12), expectedResize(31), '31x12 exact complete clipped text/style target');
+     assert.deepEqual(await s.resize(8, 4), expectedResize(8), '8x4 exact complete clipped text/style target');
+     const restored = await s.resize(100, 40);
+     assert.deepEqual(restored, initial, 'resize back restores actual full example with modes unchanged');
+     for (const [name, value] of Object.entries({ initial, red, gray, styled, restored })) await writeFile(join(s.dir, `${name}.json`), JSON.stringify(value, null, 2));
+-    await s.stop(); console.log('PASS actual colors example: automatic RGB sample cycle, all six t attributes, resize and exact termios');
++    await s.stop(initial); console.log('PASS actual colors example: automatic RGB sample cycle, all six t attributes, resize and exact termios');
+   } finally { await s.save(); }
+ }
+ if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+   prepareTerminalSizeTool();
+   let failures = 0;
+   for (const command of ['script', 'stty']) assert.equal(spawnSync(command, ['--version']).status, 0, `${command} available`);
+   const selected = process.argv.slice(2);
+   for (const name of selected) assert(['fixture', 'example'].includes(name), `unknown test ${name}`);
+   for (const [name, run] of [['fixture', fixture], ['example', example]]) if (!selected.length || selected.includes(name)) {
+     try { await run(); } catch (error) { failures++; console.error(`FAIL colors ${name}: ${error.stack}`); }
+diff --git a/tests/colors/stop_oracle_test.mjs b/tests/colors/stop_oracle_test.mjs
+new file mode 100644
+index 0000000..c3bbec1
+--- /dev/null
++++ b/tests/colors/stop_oracle_test.mjs
+@@ -0,0 +1,60 @@
++#!/usr/bin/env node
++// Oracle-only EOF controls: real child pipes/close; no product or TTY claim.
++import assert from 'node:assert/strict';
++import { spawn } from 'node:child_process';
++import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import { join } from 'node:path';
++import { pathToFileURL } from 'node:url';
++
++const artifacts=process.env.CJTUI_COLOR_STOP_ARTIFACTS ?? await mkdtemp(join(tmpdir(),'cjtui-color-stop-'));
++await mkdir(artifacts,{recursive:true});
++// Expose the existing test-local Session without changing its method bodies or
++// adding a product hook. The CLI main guard prevents ordinary sessions here.
++const original=await readFile(new URL('pty.mjs',import.meta.url),'utf8');
++const helper=new URL('../support/terminal_frames.mjs',import.meta.url).href;
++const modulePath=join(artifacts,'current-stop-module.mjs');
++await writeFile(modulePath,original.replace("from '../support/terminal_frames.mjs'",`from '${helper}'`)+ '\nexport { Session as ControlledSession };\n');
++const {ControlledSession:Session}=await import(pathToFileURL(modulePath));
++const frame=Buffer.from(Array.from({length:12},(_,i)=>`\x1b[0m\x1b[${i+1};1H${'T'.repeat(31)}\x1b[0m`).join(''));
++const cases=[
++ ['late-partial-row',Buffer.from('\x1b[0m\x1b[1;1H'+'T'.repeat(30)+'\x1b[0m'),false],
++ ['late-incomplete-escape',Buffer.from('\x1b['),false],
++ ['late-wrong-style-row',Buffer.from('\x1b[0m\x1b[1;1H\x1b[31m'+'T'.repeat(31)+'\x1b[0m'),false],
++ ['late-incomplete-utf8',Buffer.from([0xf0,0x9f]),false],
++ ['late-unreset-style',Buffer.from('\x1b[31m'),false],
++ ['legal-quiet-close',Buffer.alloc(0),true],
++ ['legal-reset-close',Buffer.from('\x1b[0m'),true],
++ ['legal-identical-row',Buffer.from('\x1b[0m\x1b[1;1H'+'T'.repeat(31)+'\x1b[0m'),true]
++];
++const observations=[];
++for(const [name,late,expectedAccepted] of cases) {
++ const session=new Session(name,'/oracle-only-no-product',100,40);
++ session.screen.beginResize(31,12);session.screen.feed(frame);
++ const verified=session.screen.finishResize(31,12);
++ session.dir=join(artifacts,name);await mkdir(session.dir,{recursive:true});
++ // Deliberately synthetic equal markers, not termios measurement evidence.
++ await writeFile(join(session.dir,'before'),'oracle-control-same-marker');
++ await writeFile(join(session.dir,'after'),'oracle-control-same-marker');
++ const code="process.stdin.once('data',bytes=>{if(bytes.toString()!=='q')process.exit(2);process.stdout.write(Buffer.from(process.argv[1],'base64'),()=>process.exit(0));});";
++ session.child=spawn(process.execPath,['-e',code,late.toString('base64')],{stdio:['pipe','pipe','pipe']});
++ session.child.stdout.on('data',bytes=>{
++  session.raw=Buffer.concat([session.raw,bytes]);session.lastBytes=Date.now();
++  try{session.screen.feed(bytes);}catch(error){session.error??=error;}
++ });
++ session.child.stderr.on('data',bytes=>{session.stderr+=bytes.toString();});
++ session.child.on('error',error=>{session.error??=error;session.finished=true;});
++ session.child.on('close',(exit,signal)=>{session.code=exit;session.signal=signal;session.finished=true;});
++ let accepted=true,error=null;
++ try{await session.stop(verified);}catch(e){accepted=false;error=e.message.split('\n')[0];}
++ if(!session.finished)session.child.kill('SIGKILL');
++ await writeFile(join(session.dir,'late.raw'),session.raw);
++ observations.push({name,expectedAccepted,accepted,error,actualChildExit:session.code,
++  actualChildSignal:session.signal,qRequiredForChildExit0:true,matched:accepted===expectedAccepted});
++}
++const result={scope:'oracle-only actual child stdout and close; synthetic equal markers, no product/PTY/GUI success claim',observations};
++await writeFile(join(artifacts,'observations.json'),JSON.stringify(result,null,2)+'\n');
++console.log(JSON.stringify(result,null,2));
++assert(observations.every(o=>o.matched&&o.actualChildExit===0&&o.actualChildSignal===null),
++ 'EOF must reject malformed/changed final output while accepting legal close');
++console.log('PASS colors stop oracle: five invalid tails rejected, three legal closes accepted');

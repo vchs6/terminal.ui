@@ -1,0 +1,12 @@
+FAIL colors example: AssertionError [ERR_ASSERTION]: complete row 1: "cjtui colors                                                                                        "
+
+100 !== 31
+
+    at Screen.flush (file:///workspace/work/glyph-advance-implementation/source/tests/colors/pty.mjs:41:12)
+    at Screen.feed (file:///workspace/work/glyph-advance-implementation/source/tests/colors/pty.mjs:75:84)
+    at Socket.<anonymous> (file:///workspace/work/glyph-advance-implementation/source/tests/colors/pty.mjs:103:137)
+    at Socket.emit (node:events:514:28)
+    at addChunk (node:internal/streams/readable:569:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:520:3)
+    at Readable.push (node:internal/streams/readable:400:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:194:23)

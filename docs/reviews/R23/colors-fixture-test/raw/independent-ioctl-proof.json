@@ -1,0 +1,67 @@
+{
+  "old-stty": {
+    "argv": [
+      "strace",
+      "-e",
+      "trace=ioctl",
+      "-o",
+      "/workspace/work/colors-resize-fixture/raw/old-stty-ioctl.trace",
+      "stty",
+      "-F",
+      "/dev/pts/0",
+      "rows",
+      "12",
+      "cols",
+      "31"
+    ],
+    "cwd": "/workspace/work/colors-resize-fixture/source",
+    "start_utc": "2026-11-10T22:15:42.067581+00:00",
+    "end_utc": "2026-11-10T22:15:42.075222+00:00",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "successful_SET_pairs": [
+      [
+        100,
+        12
+      ],
+      [
+        31,
+        12
+      ]
+    ],
+    "final_readback": [
+      31,
+      12
+    ]
+  },
+  "atomic-helper": {
+    "argv": [
+      "strace",
+      "-e",
+      "trace=ioctl",
+      "-o",
+      "/workspace/work/colors-resize-fixture/raw/atomic-helper-ioctl.trace",
+      "/workspace/work/colors-resize-fixture/source/tests/support/target/terminal-size",
+      "/dev/pts/0",
+      "31",
+      "12"
+    ],
+    "cwd": "/workspace/work/colors-resize-fixture/source",
+    "start_utc": "2026-11-10T22:15:42.075346+00:00",
+    "end_utc": "2026-11-10T22:15:42.079308+00:00",
+    "exit": 0,
+    "stdout": "31 12\n",
+    "stderr": "",
+    "successful_SET_pairs": [
+      [
+        31,
+        12
+      ]
+    ],
+    "final_readback": [
+      31,
+      12
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "status": "confirmed_test_facility_mismatch_no_product_failure_demonstrated_by_this_raw",
+  "contract": "R019 permits real old/inflight frames and requires atomic test resize plus final settled target",
+  "stty_trace_sha256": "4128d362025514313c3f80e31cd511c82fd65a9d22f47ee72b0f6ca254d5afcb",
+  "old_test_sha256": "fa54af38ee59931b56e937c91e83ccf378337be3530fa740013489eafdfd4628",
+  "task164_test_sha256": "fa54af38ee59931b56e937c91e83ccf378337be3530fa740013489eafdfd4628",
+  "test_same_fixed91": true,
+  "trace_real_kernel_pairs": [
+    [
+      100,
+      40
+    ],
+    [
+      100,
+      12
+    ],
+    [
+      31,
+      12
+    ]
+  ],
+  "Screen_sequence": "snapshot(); Screen.resize(31,12); spawnSync(stty rows12 cols31); SIGWINCH; settle",
+  "interpretation": "Width100 is a valid old or real intermediate state. Full row count in raw separately identifies whether an observed100x12 frame is intermediate. Rejecting that row merely because expected width was switched to31 is not evidence of an impossible product dimension pair.",
+  "raw_analysis": {
+    "08-colors-session": {
+      "session_raw_sha256": "7ebf2ffaa047d0a7b7572f717fb9461bd7171d0f78c400940ed90be37ed6e4ac",
+      "frames": [
+        {
+          "start": 0,
+          "end": 5189,
+          "first_row_bytes": 100,
+          "cup_rows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            5,
+            5,
+            6,
+            6,
+            5
+          ],
+          "height": 40,
+          "closing_reset": true
+        },
+        {
+          "start": 5189,
+          "end": 6705,
+          "first_row_bytes": 100,
+          "cup_rows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "height": 12,
+          "closing_reset": true
+        }
+      ]
+    },
+    "08b-colors-example-rerun": {
+      "session_raw_sha256": "7ebf2ffaa047d0a7b7572f717fb9461bd7171d0f78c400940ed90be37ed6e4ac",
+      "frames": [
+        {
+          "start": 0,
+          "end": 5189,
+          "first_row_bytes": 100,
+          "cup_rows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            5,
+            5,
+            6,
+            6,
+            5
+          ],
+          "height": 40,
+          "closing_reset": true
+        },
+        {
+          "start": 5189,
+          "end": 6705,
+          "first_row_bytes": 100,
+          "cup_rows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "height": 12,
+          "closing_reset": true
+        }
+      ]
+    }
+  },
+  "checked_utc": "2026-11-10T22:10:05.045522+00:00"
+}

@@ -1,0 +1,52 @@
+{
+  "status": "confirmed_test_facility_mismatch_corrected",
+  "base": "91c22f82adcd2412d9509b9872ff63450ba81af9",
+  "test_only_sha": "3138d1a549c5941793b24183bd71cad74d2c688c",
+  "test_only_files": 7,
+  "product_or_example_edits": false,
+  "task163_edits": false,
+  "original_failure_raw_sha256": "7ebf2ffaa047d0a7b7572f717fb9461bd7171d0f78c400940ed90be37ed6e4ac",
+  "original_real_intermediate": {
+    "size": [
+      100,
+      12
+    ],
+    "offsets": [
+      5189,
+      6705
+    ]
+  },
+  "independent_stty_SET_pairs": [
+    [
+      100,
+      12
+    ],
+    [
+      31,
+      12
+    ]
+  ],
+  "independent_atomic_SET_pairs": [
+    [
+      31,
+      12
+    ]
+  ],
+  "normal_old91_root_build_exit": 0,
+  "final_normal_colors_integration_exit": 0,
+  "final_colors_fixture_and_example_exit": 0,
+  "coherence_and_inflight_exit": 0,
+  "deterministic_controls_exit": 0,
+  "controls": {
+    "named_groups": 14,
+    "historical_false_rejections": 3,
+    "fixed_reader_accepted_streams": 3,
+    "fixed_reader_rejection_cases": 9,
+    "overlap": "actual gated-inflight group observes both old rejection and new acceptance"
+  },
+  "own_old_live_oracle_exit": 0,
+  "own_old_live_interpretation": "race not observed in this run; does not invalidate original failures or deterministic false-rejection controls",
+  "new_product199f_GUI_scope": "not tested; no PASS claim",
+  "report_path": "/workspace/work/colors-resize-fixture/report.md",
+  "verified_utc": "2026-11-10T22:21:40.875805+00:00"
+}
