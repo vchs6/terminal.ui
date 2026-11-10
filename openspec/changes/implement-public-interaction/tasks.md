@@ -73,7 +73,7 @@
 | A-05 | caret-only移位、clip外/零维/continuation → 正确显示或隐藏，frame网格相同仍有caret输出 | 098 headless与PTY fixture、101终端输出raw/恢复 |
 | A-06 | 保存ctx、wrong thread/session、draw/cleanup异常、限制超出 → 固定错误、清理一次、旧ref不复活、native恢复 | 098边界fixture、100审查、101执行 |
 | B-01 | 裸App根80×24的100行、主体ScrollView+固定栏、横向宽表 → 所有内容可访问而固定栏不滚、Frame仍80×24，不更改业务visible | 103手工坐标/网格、104公开指南例子、106PTY与消费者 |
-| B-02 | 隐式根自然高1/3权重保持5/5、8/1溢出第二pass为9/1、wrap后overflow、fixed-height屏障、root None、resize/缩短/axes/0尺寸及极值 → offset按最新extent安全钳制、key身份保留，不分配巨大Frame | 103状态/资源边界、106执行 |
+| B-02 | 隐式根自然高1/3权重保持5/5、8/1溢出第二pass为9/1、wrap后overflow、fixed-height屏障、root Off、resize/缩短/axes/0尺寸及极值 → offset按最新extent安全钳制、key身份保留，不分配巨大Frame | 103状态/资源边界、106执行 |
 | B-03 | 嵌套ensureVisible及行末1×1caret、新显式caret与旧帧resize同turn → 内到外最小滚动、显式新意图优先、paint无命令循环 | 103公共序列fixture、105审查、106执行 |
 | B-04 | 用户Ancestor先于同节点viewport标准滚；Target或Ancestor prevent则不滚，stop仍默认；最近viewport能移动即prevent后续，边界才外移；Bool只表示接受变化 | 103trace/offset fixture、106执行 |
 | C-01 | modal→popup→确认层及域外dispatch → 当前域隔离，base app/legacy为0次，域外FocusOutsideDomain，未prevent interrupt退出全app | 108 trace fixture、111PTY/运行 |

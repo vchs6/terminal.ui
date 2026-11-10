@@ -34,7 +34,7 @@
 
 ## Shared L3 admission card
 
-各TASK为L3：071/073–076/078–080父WP005/REQ007；072/077父WP004/REQ001/002/009。分类execution：用户已确定运行时目标；可逆精确接口经独立设计草稿与主代理R001–014裁决，不重开产品方向。具体change为本目录，workflow为本tasks，skills为using/TDD/SDD/receiving-review/systematic-debugging/verification（按角色适用）；实际调用在progress记录。模型071/076 Sol high，072/077 Terra high，073/075/078/080 Astra high，074/079 Sol medium，指定配置和实际不可独立核验区分。
+各TASK为L3：071/073–076/078–080父WP005/REQ007；072/077父WP004/REQ001/002/009。分类execution：用户已确定运行时目标；可逆精确接口经独立设计草稿与主代理R001–014裁决，不重开产品方向。具体change为本目录，workflow为本tasks，skills为using/TDD/SDD/receiving-review/systematic-debugging/verification（按角色适用）；实际调用在progress记录。模型071/076 Sol high，072 Terra high、077 Sol high（AGENTS13.2仓颉适配，原Terra角色无产品退出后改派），073/075/078/080 Astra high，074/079 Sol medium，指定配置和实际不可独立核验区分。
 
 输入：6a7b240已验Frame/Layout/Style/Unicode/能力/设备恢复、design精确接口与独立语言/正常宏CJPM证据。完整上游001–004/008/013按R001分段准入，不伪称父任务完成。071准入为独立preflight通过本合同；072依赖071固定测试；073依赖072固定产品；074依赖073；075依赖原始执行与审核。076消费已冻结C合同可与072并行写测试，但旧产品RED在A+B集成固定后取；077依赖075/076；078→079→080顺序。全部证据有source/hash/命令/实际exit。
 

@@ -241,7 +241,7 @@ viewport 是实际分配内容区；框架最小尺寸只影响期望，不强�
 **隐式根兼容算法（源码推导，尚未产品实测）**：
 
 1. 先用现有有限约束完整布局一次，root外盒由实际终端、显式width/height、min和装饰按既有规则确定，内容viewport高度记V。根的隐式Vertical仅登记能力，不预先改变这一pass的weighted-min基准或孩子分配。按实际分配宽测量wrap，不用未约束自然宽推高度。
-2. 同一LayoutNode遍历产生内部纵向overflow摘要：在已分配内容盒内，逻辑内容/普通孩子的实际所需底界超过内容高度即记录未承接overflow；横向截断、阴影扩展不算。摘要至少含是否存在、首个来源node id及是本地自然内容/分配宽wrap/后代传播，内部使用、不增加公共测试hook。显式fixed height的节点在其声明边界截断并停止向外传播；具有Vertical/Both viewport的非root节点把自身内部overflow承接进自己的extent，不向根传播；Horizontal/None不承接纵向。有效hidden节点不参加布局/摘要。显式root.height同样保留其声明裁剪意图，隐式fallback不得绕过它；显式root.viewport(Vertical/Both)则明确选择根内容滚动，使用下述直接B2路径。
+2. 同一LayoutNode遍历产生内部纵向overflow摘要：在已分配内容盒内，逻辑内容/普通孩子的实际所需底界超过内容高度即记录未承接overflow；横向截断、阴影扩展不算。摘要至少含是否存在、首个来源node id及是本地自然内容/分配宽wrap/后代传播，内部使用、不增加公共测试hook。显式fixed height的节点在其声明边界截断并停止向外传播；具有Vertical/Both viewport的非root节点把自身内部overflow承接进自己的extent，不向根传播；Horizontal/Off不承接纵向。有效hidden节点不参加布局/摘要。显式root.height同样保留其声明裁剪意图，隐式fallback不得绕过它；显式root.viewport(Vertical/Both)则明确选择根内容滚动，使用下述直接B2路径。
 3. 摘要无未承接overflow：直接用第一pass全部位置/尺寸，根contentHeight取V、offsetY=0，不因自然高度不等而重分weights。这保留旧短内容像素。摘要存在：仅再作一次根内容B2协商；内容虚拟高度H=max(V,受约束自然需求)，root外盒仍V，滚动量0..H-V。B2自然需求在显式fixed height处取声明尺寸及既有min/实际约束结果，在独立纵向viewport边界取第一pass已分配的外盒需求，不把内部100行当根的100行。普通未承接子树按自然内容高参与，正余量按既有weights/余数规则分配。
 4. 每次目标布局最多两个这样的root pass；第二pass结果直接作为本次布局权威，不因其摘要再开第三pass，也不启用Observable稳定循环。若第二pass仍因显式fixed裁剪或不可满足真实边界留不可见内容，保持既定clip；它不是再次增大终端的理由。内容自然需求计算复用现测量/主题wrap协商，不建第二布局树。后续状态/尺寸变化是下一次正常布局，重新先走第一pass，offset按最终extent钳制。
 5. 显式root.viewport(Vertical/Both)、普通ScrollView或任意显式viewport直接采用B2内容协商，不需要根兼容试探pass；root.viewport(Off)完整关闭此兜底。普通非滚动容器仍原规则。

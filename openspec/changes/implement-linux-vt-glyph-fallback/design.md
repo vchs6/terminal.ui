@@ -155,7 +155,7 @@ Frame.toPlainText/writePlainText/toAnsi/writeAnsi不新增必需参数，不查�
 | 已确证文本VT后，临时内存分配失败 | linux-vt-unavailable / map-allocation-failed | true / false / 0 |
 | 同fd GIO_UNIMAP返回-1 | linux-vt-unavailable / map-query-failed | true / false / 原errno |
 | map数据长度等内部校验不符 | linux-vt-unavailable / map-invalid | true / false / 0 |
-| 完整有界map成功（可0条） | linux-vt-unimap / 空reason | true / true / 0 |
+| 完整有界map成功（可0条） | linux-vt-unimap / ?可映射时空reason，否则ascii-fallback-unavailable（沿G003） | true / true / 0 |
 | 编译目标无该实现 | unknown / unsupported-platform | false / false / 0 |
 
 失败entryCount=0，成功为实际pair数而非bitmap置位数；重复unicode映射不会把读取失败伪装成成功。仅对已确证文本VT尝试分配/读取map，未知PTY不得触发该读取。
