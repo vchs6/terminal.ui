@@ -26,4 +26,4 @@ REQ-001.8、REQ-003 与原 TASK-019/029 已要求标准控件。Runtime C、Rich
 
 拟新增根包公开纯组合工厂、MenuEntry 与 SplitAxis 值类型、两组公共消费者/测试和文档；沿用 Component/Text/Row/Column/Canvas、ForEach/ListItem、NodeRef、唯一 resolver/LayoutNode/Frame/Unicode 内核。布局算法、设备 decoder、主题 schema、运行时节点种类均非本件修改范围。实际产品路径待前置固定接受源映射，不能预先虚构上游文件。
 
-原 TASK-019/029 状态权威在主仓 docs/tasks.md，只有主代理正式转移后本变更 tasks.md 才承接具体支持编号；独立候选不同时维护第二份已开始/已通过状态。U2/U4/U5 和 TASK-027 四主题完整展示仍需后续集成证据，162不自动关闭它们。Linux 全部验收、发布、其他平台不由本件宣布完成。
+原TASK-019/029及支持153–162唯一任务状态已转至本变更tasks.md，docs/tasks.md只保留编号及原AC引用，不维护第二份勾选状态。U2/U4/U5 和 TASK-027 四主题完整展示仍需后续集成证据，162不自动关闭它们。Linux 全部验收、发布、其他平台不由本件宣布完成。

@@ -142,3 +142,7 @@
 canonical owner：RuntimeNode身份/dirty/cache，唯一LayoutNode算法，Frame单一簇/透明/存储，终端后端显示baseline，benchmark自身输入/量测。旧每目标全树清dirty、paint内分配、第二短命几何权威、逐Cell full-copy热路径与无条件全frame比较在相关单元退役；通用fallback保留并明确场景。所有公开/持久数据兼容，无业务数据删除/迁移。
 
 DQ预检核25编号唯一、原父AC未缩小、冻结输入可定位、每单元真实可验/不重叠写文件、统计语义可手算、纯公共消费者与普通制品命令、故障不被缓存跳过、角色独立。当前为可冻结候选，主代理接入OpenSpec后独立preflight确认DQ再将具体任务ready；本稿与探针均不是正式测试产物或产品完成证据。
+
+### M011/M012追加准入与L4
+
+Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/Auto交替cache handgolden，138增加同投影零输出/旧新profile，143同模式同epoch配对。124前仅冻结完整功能M1库cjp及source/deps/native/SDK；143/144基准源后置，不再要求其作为124的不存在上游。144新增`benchmarks/rendering/{compat,workloads}/cjpm.toml`及各自src，compat/workloads与新库专用诊断入口分包，无private编译参数/生产模式开关。143→144→145→146在142之后，146前freeze相同compat/workload代码并对旧/新cjp正常构建；旧库缺三Stats记not_available，真实新三诊断只从最终库专用入口取。

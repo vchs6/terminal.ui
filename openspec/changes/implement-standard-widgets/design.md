@@ -1,6 +1,6 @@
 # 标准控件公共组合设计候选
 
-**全部新增签名未编译验证；产品 planned，验证 pending；等待主代理 freeze 与独立 preflight。** 本件消费未来公共合同，不声称 Canvas/focus/viewport/overlay/Theme 已在产品可调用。来源和字节 hash 见 provenance.json。粗输入 root-decisions.md 是主代理工程建议，不是用户选定签名，正文推荐仍待正式采纳。
+**全部新增签名未编译验证；产品 planned，验证 pending；等待主代理 freeze 与独立 preflight。** 本件消费未来公共合同，不声称 Canvas/focus/viewport/overlay/Theme 已在产品可调用。原独立来源和字节hash保留/workspace/work/widgets-contract-draft/provenance.json。粗输入/workspace/work/widgets-contract/root-decisions.md 是主代理工程建议，不是用户选定签名，正文推荐仍待正式采纳。
 
 ## 1. 权威与边界
 
@@ -43,8 +43,8 @@ public func PopupMenu(items: Array<MenuEntry>, onChoose: (String) -> Unit): Comp
 public func PopupMenu(items: () -> Array<MenuEntry>, onChoose: (String) -> Unit): Component
 public func StatusBar(body: () -> Unit): Component
 public enum SplitAxis { | Horizontal | Vertical }
-public func SplitPane(body: () -> Unit,
-    axis!: SplitAxis = SplitAxis.Horizontal): Component
+public func SplitPane(axis!: SplitAxis = SplitAxis.Horizontal,
+    body!: () -> Unit): Component
 ```
 
 常量 Label/Button/Progress/menu 重载只捕获不可变输入或复制数组，与 getter 路径共用实现。Checkbox/Radio 不给 Bool 初值重载：它易被误认成内部可写状态；固定值可显式传 `{ => false }`。label 的 String 默认空，getter 重载无默认，避免省略 label 时两候选歧义。callbacks 必需，不加可选无操作回调或任意返回值协议。callback 保存普通仓颉闭包，不另跟踪它的“值”；业务可在闭包内读自己的最新模型。菜单没有嵌套 business command 类型。
@@ -92,7 +92,7 @@ MenuEntry 是不可变值；key非空，按字节精确相等，不trim、不从
 
 HorizontalMenu=Row role HorizontalMenu；PopupMenu=Column role PopupMenu。ForEach(items,key,body)每key恰一个Text root role MenuItem，正文和enabled getter引用保留的 ListItem.value，不闭包捕获首次 MenuEntry。相同key换label/enabled更新同节点，重排保ref/focus；删除后同key重加是新代际。各 enabled item 默认focusable=true，Tab沿框架真实序列进入/离开；不做roving tabstop、不陷Tab、不额外存储selectedIndex。
 
-公开 ref 表仅保存菜单自己创建的entry key→NodeRef并在onMount/cleanup登记/撤销；保存UI实现本地引用不是复制业务状态。导航使用已经提交、有效的这批entry refs按公共 `menuRoot.reference().children()`实际物理顺序过滤，匹配只调用sameNode/isValid/isEnabled；不扫描私有树、不解析任意child AST，不按HashMap迭代或label排序。它因此还能正确反映公开同父move；不把源数组排序回写业务。ForEach下次协调仍按C的数据顺序规则，不新增第二协调算法。手动附加的非entry孩子依Runtime仍参与普通Tab与布局，但不被猜作菜单项，也不由菜单箭头导航/回调管理。
+公开 ref 表仅保存菜单自己创建的entry key→NodeRef并在onMount/cleanup登记/撤销；保存UI实现本地引用不是复制业务状态。导航使用已经提交、有效的这批entry refs按公共 `menuRoot.reference().children()`实际物理顺序过滤，匹配只调用sameNode/isValid/isEnabled/isVisible；不扫描私有树、不解析任意child AST，不按HashMap迭代或label排序。它因此还能正确反映公开同父move；不把源数组排序回写业务。ForEach下次协调仍按C的数据顺序规则，不新增第二协调算法。手动附加的非entry孩子依Runtime仍参与普通Tab与布局，但不被猜作菜单项，也不由菜单箭头导航/回调管理。
 
 菜单容器的 Ancestor 默认只在event.target是自己注册的entry且当前focusedNode等于它时工作；嵌套菜单完成导航后prevent，所以外菜单不再动作。Horizontal left/right循环、Popup up/down循环；Home/End首/尾enabled entry；禁用/hidden/无效ref跳过，普通祖先disabled已由框架屏蔽。在至少一个eligible候选且识别本菜单导航键时消费，只有一个或已到Home首项也消费，防止错误触发祖先viewport滚动；空/全disabled没有候选不消费不调用callback。选择目标需要变化时public requestFocus，边界提交并由公共ensureVisible保持可达，绝不直接写focus。Popup left/right、Horizontal up/down不声明菜单意义，可交公共viewport/祖先。
 
@@ -143,3 +143,9 @@ getter/业务callback/纯绘制失败沿Runtime统一UIException/原异常与cle
 ## 最终调度与公开入口裁决补充
 
 主代理最终明确采纳：S153–157也等117；PopupMenu仅可复用内容、默认surface(Opaque)、onChoose不自动close，由业务显式handle.close；enabled仅公共属性槽；Checkbox/Radio仅getter受控。以上为确定选择，不再留实现者另选分支。其余尚未正式freeze的候选及上游接受门禁不因本消息自动通过。
+
+## W007 主代理正式接纳及SDK签名修正
+
+本change已成为019/029及153–162唯一任务状态入口，docs/tasks只保编号/原AC引用，旧候选“尚未转移”措辞不再适用。用户范围与S等待117/Popup内容默认Opaque且不自动close/StatusBar自然Row/I012统一态裁决均已采纳，产品仍planned。原provenance/root-decisions独立原件仅来源，不是消费者构建依赖。
+
+SplitPane最终精确签名为`public func SplitPane(axis!: SplitAxis = SplitAxis.Horizontal, body!: () -> Unit): Component`。SDK1.2固定现宏已正常编译原始`SplitPane { ... }`及`SplitPane(axis: SplitAxis.Vertical) { ... }.width(20)`；旧body先axis后的签名使named axis尾随块报重复axis，故修正未实现API签名而不改宏/不要求用户显式lambda对象。其他新增重载/泛型callback/Float64 API同轮仅语言验证，不是产品GREEN。

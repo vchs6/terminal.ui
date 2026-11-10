@@ -1,6 +1,6 @@
 # M2 局部布局、绘制与可重复基准：可冻结候选设计
 
-2026-11-10；主代理已采用本方案及第14节最终裁决，等待独立preflight后转入主仓冻结。本件是可冻结OpenSpec工件，不是实现或验收通过结论。第14节优先于前述独立草稿中“推荐/待裁决/未冻结”的措辞。只写独立目录，不改主仓。指定Astra/high，实际serving/effort不可核验；未派下级。适用brainstorming、writing-plans及verification-before-completion，语言微探针使用cangjie-coding与当前SDK实证。
+2026-11-10；主代理已采用本方案及第14节最终裁决，已纳入主仓，独立preflight修订中。本件是可冻结OpenSpec工件，不是实现或验收通过结论。第14节优先于前述独立草稿中“推荐/待裁决/未冻结”的措辞。原独立作者仅写草稿，当前主代理维护此正式变更；产品尚未准入。指定Astra/high，实际serving/effort不可核验；未派下级。适用brainstorming、writing-plans及verification-before-completion，语言微探针使用cangjie-coding与当前SDK实证。
 
 ## 1. 固定输入与已知事实
 
@@ -236,7 +236,7 @@ Canvas跳过draw时保留其最近有效的逻辑caret请求作为节点绘制�
 
 M005：分配证据以真实范围的Cell存储槽累计为精确指标，并公开SDK当前heap占用、累计GC回收、次数/耗时以及进程peak RSS；这些不相互冒充。不将精确全进程对象allocated bytes/count或perf权限新增为原AC-031前置。外部微验证已证明NewArray8导出hook漏内联快路径，禁止用其不完整计数当总分配。cjprof当前权限失败仅限制热点采样，不限制wait4真实CPU测量。报告工具覆盖边界，不以“多项测试通过”替代总体证据。
 
-M006：全部功能完成且M2产品实施前冻结完整M1基线，记录源码/依赖/SDK/native/制品hash和正常公开benchmark源。TTY的M1/M2对照用同业务基准分别依赖两份固定普通包正常构建，无生产库模式开关。headless当前全局render与snapshot同库对照；timing不夹M1 oracle/equality/hash，避免其GC污染。correctness用业务barrier和同稳定批次，防两次API消费不同后台状态。大小至少80×24/160×48，所有第11节变化与全局退化均纳入。
+M006：全部功能完成且M2产品实施前冻结完整M1基线，记录功能库源码/依赖/SDK/native/普通制品hash；公开benchmark源码由143/144后置交付并在146计量前冻结，不要求124前已有基准项目。TTY的M1/M2对照用同业务基准分别依赖两份固定普通包正常构建，无生产库模式开关。headless当前全局render与snapshot同库对照；timing不夹M1 oracle/equality/hash，避免其GC污染。correctness用业务barrier和同稳定批次，防两次API消费不同后台状态。大小至少80×24/160×48，所有第11节变化与全局退化均纳入。
 
 M007：本候选已同步三诊断与限定分配口径，不把全进程精确累计分配追加为前置；无需再次等待该路线确认。Canvas/viewport/overlay路线已采用，但其正式合同版本和全部上游产品固定SHA仍在实施前补齐。没有独立preflight、冻结测试和上游最终通过产物时本任务不ready，不能越过共享Component/Layout写屏障。
 
@@ -253,3 +253,21 @@ init(mountedNodes: Int64, activeBindings: Int64, subscriptions: Int64,
 ```
 
 同一个public RuntimeStats返回对象新增三个`public let`，旧8参数包内调用仍编译，外部只读消费保持。框架在实际生成处传真实新计数，不能长期用默认0代替计量；M1完整参考也累计实际成本。旧八字段及查询副作用不变，无benchmark隐藏清零。独立消费者核字段可读和无额外公开可变状态，构造可见性依固定R008而非误述。
+
+## M011 Glyph布局生成策略与终端投影闭包
+
+消费已冻结Glyph G001–G011和097实际接受源，不只消费ambiguousWide。目标Frame缓存、文本行/测量/绘制缓存的输入包含影响generatedEllipsis结果的有效policy内容（至少能区分该次可用宽度及统一宽度策略下的marker字符串/宽度）；不能只比较requested Auto枚举、policy对象地址或文本revision。模式变更的候选失效经有效输入比较，复用同一generatedEllipsis与Frame终端projection，不新造省略号/Unicode/终端Frame。
+
+设备produce使用实际会话policy；offline snapshot/render默认Unicode、显式Ascii按G007分别进入同算法。一个持久缓存交替使用这些入口时不得返回另一个policy的前缀。无业务/尺寸/样式变更，Text("abcdef").overflow(Ellipsis)宽5、ambiguousWide=false的snapshot Unicode→Ascii→Unicode，手算结果abcd…→ab...→abcd…。M1/M2必须使用相同glyphMode、同稳定epoch逐完整Cell配对，不能拿两个模式不同的Frame当算法错误。
+
+设备profile与逻辑生成policy是不同责任。只有终端glyph投影变了而生成marker不变时，可复用逻辑布局/Frame，后端仍使用新/旧各自完整profile；同style的中→文与中→??若投影同两列??，必须零grid更新。行身份相同只有profile投影等价才可直接跳过；profile变化重新比较实际投影，不自动全屏输出。133/138/143分别补cache交替、damage/profile及正确性/成本场景；普通文件默认逻辑Unicode保持。
+
+## M012 M1功能库冻结与双版本基准源码的可编译分工
+
+修正M006旧稿不必要的提前benchmark源码冻结要求：124之前固定的是功能齐全、尚无任何M2优化的M1库源码及普通cjp/依赖/SDK/native/示例证据，而不是尚未交付的benchmark项目。143/144在142后实现公开基准，146计量前冻结相同业务workload/公共TTY入口源码，再分别依赖已保留的M1库制品和最终M2制品正常构建。库基线不回填M2优化，不设置生产M1开关；原第11节workload矩阵现在已预先声明，不能测后只挑赢家。此路线不增加额外早期产品任务，也不形成144→124前置环。
+
+公共benchmark构建边界精确为：`benchmarks/rendering/compat`正常独立CJPM入口及`benchmarks/rendering/workloads`共享库只使用完整功能M1已有公共API/原八Stats字段，同一份源码在旧/新两个普通库制品上构建（仅依赖manifest路径改动）。新三诊断在此共同入口的CSV均为not_available，不填0、不运行时探测不存在的成员；该入口不得import仅新版本诊断代码。
+
+`benchmarks/rendering`主项目是最终库专用诊断/同库headless M1-reference-vs-M2入口，复用同一个workloads库，允许读取arranges/cellWrites/frameAllocatedCells并报告其精确范围。它只对最终新库编译，不能用运行时分支声称会避开旧库缺字段的编译错误。旧/新TTY真实CPU/heap/GC/RSS/output由共同compat入口及外部计量比较；新库的精确阶段/Cell槽收益另由同库两个路径证明，不混称旧库也测过新字段。
+
+143正式测试分别正常构建compat+workloads对冻结旧M1/新M2，及诊断入口对新M2；144交全部独立manifest/公开源码/说明，145审核隔离与公平性，146保留每次实际版本/源码/原值，147按原022/031验收。功能M1普通制品此时可能尚无benchmark文件，不能称已经通过最终Linux release；完整023/024仍在最后。
