@@ -106,3 +106,20 @@ Detailed commands and historical check scope are retained in evidence/commands.m
 Evidence inventory: evidence/SHA256SUMS (all retained evidence files, excluding the inventory itself).
 The actual targeted PTY session.raw SHA256 is d0274d5091f4b030d91f7a8471c4cb2ed282404c17f3331ad2719cf03a898651.
 The normally built revised fixture binary SHA256 is 24cb37a7bbbb8813a2168fdcfb9b2a18192a775b197eee2c429c117a846006d6, against product 0568a09bdb55d9cf02de362da5ff1c2631ddaabf plus independently authored test source. The coordinator integrated final test commit 3385157 as ead6a8d and assigned scoped re-review and actual GUI execution separately.
+
+# Exit oracle fixround2
+
+Fixed test-only commit: **4c879e28187644cdf3d5c891858629555a7a4cf9**, parent 3385157. Four files changed, all tests/test documentation. The coordinator independently confirmed that terminal-emulator wait status is not authoritative for the application result and authorized this specific repair.
+
+run.sh now waits for the same required recorder fields and bounded host exit, saves the actual terminal host wait status in host-wait-status.txt, and validates the inner and outer recorder statuses through verify-exit.mjs. Each recorder must have exactly one legal numeric 0..255 exit_status; their values must agree. q, interrupt and ordinary-example outcomes require application status zero; callback exception requires nonzero. Host wait status is separately validated and retained in exit-verification.json, with no requirement to mirror the child. Existing timeout/termios/fence/scene assertions remain, including the ordinary scene's explicit zero-status checks. The new verifier is included in the harness source hash.
+
+The requested counterexamples were independently executed against the exact old shell predicate, then the new helper:
+
+| Inner/outer application status | Host wait | Exception expectation under old predicate | Fixed oracle |
+| --- | --- | --- | --- |
+| 7 / 7 | 0 | rejected (exit 1) | accepted (exit 0) |
+| 0 / 0 | 7 | wrongly accepted (exit 0) | rejected (exit 1) |
+
+Historical run.sh, its narrow execution adapter, materialized raw oracle inputs, exact commands, stdout/stderr/status results and explanation are in evidence/fixround2/ . These controlled exit-status fixtures are oracle tests, not claimed real application/host runs. The test-first run against the old decision was RED with 6/7 groups failing, including both independent requested counterexamples. After repair, the exit oracle passes 7/7 and all terminal-tool checks pass 25/25. Shell/Node syntax and diff checks pass. Logs: exit-oracle-red.log, exit-oracle-green.log and terminal-tools-green.log in that directory. No whole matrix, GUI or product build was rerun for this narrow change, per coordinator instruction.
+
+Remaining work for this fix: Astra scoped review and final independent real-host execution on the integrated fixed sources. This report does not claim those future runs passed.

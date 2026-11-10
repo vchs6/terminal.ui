@@ -1,0 +1,62 @@
+[
+  {
+    "case": "child-failed-host-ok",
+    "application": 7,
+    "host": 0,
+    "oracle": "old",
+    "status": 1,
+    "command": [
+      "node",
+      "evidence/fixround2/legacy-exit-oracle.mjs",
+      "evidence/fixround2/cases/child-failed-host-ok/inner.txt",
+      "evidence/fixround2/cases/child-failed-host-ok/outer.txt",
+      "evidence/fixround2/cases/child-failed-host-ok/host-wait-status.txt",
+      "nonzero"
+    ]
+  },
+  {
+    "case": "child-failed-host-ok",
+    "application": 7,
+    "host": 0,
+    "oracle": "fixed",
+    "status": 0,
+    "command": [
+      "node",
+      "tests/terminals/verify-exit.mjs",
+      "evidence/fixround2/cases/child-failed-host-ok/inner.txt",
+      "evidence/fixround2/cases/child-failed-host-ok/outer.txt",
+      "evidence/fixround2/cases/child-failed-host-ok/host-wait-status.txt",
+      "nonzero"
+    ]
+  },
+  {
+    "case": "child-ok-host-failed",
+    "application": 0,
+    "host": 7,
+    "oracle": "old",
+    "status": 0,
+    "command": [
+      "node",
+      "evidence/fixround2/legacy-exit-oracle.mjs",
+      "evidence/fixround2/cases/child-ok-host-failed/inner.txt",
+      "evidence/fixround2/cases/child-ok-host-failed/outer.txt",
+      "evidence/fixround2/cases/child-ok-host-failed/host-wait-status.txt",
+      "nonzero"
+    ]
+  },
+  {
+    "case": "child-ok-host-failed",
+    "application": 0,
+    "host": 7,
+    "oracle": "fixed",
+    "status": 1,
+    "command": [
+      "node",
+      "tests/terminals/verify-exit.mjs",
+      "evidence/fixround2/cases/child-ok-host-failed/inner.txt",
+      "evidence/fixround2/cases/child-ok-host-failed/outer.txt",
+      "evidence/fixround2/cases/child-ok-host-failed/host-wait-status.txt",
+      "nonzero"
+    ]
+  }
+]

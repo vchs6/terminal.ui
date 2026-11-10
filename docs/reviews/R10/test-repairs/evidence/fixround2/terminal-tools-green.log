@@ -1,0 +1,33 @@
+✔ accepts recorded application exception when terminal host exits zero (61.25621ms)
+✔ rejects successful application as exception even when terminal host fails (47.746428ms)
+✔ accepts successful application independently of nonzero terminal host evidence (41.956064ms)
+✔ rejects application failure for normal q interrupt or ordinary example expectation (36.630017ms)
+✔ rejects inconsistent inner and outer application statuses (76.044468ms)
+✔ rejects missing duplicate malformed and out-of-range recorder statuses (416.834151ms)
+✔ requires legal host wait evidence and explicit expected outcome (113.697165ms)
+✔ accepts frozen Basic8 host and three nominal sample mappings (64.081597ms)
+✔ rejects Basic8 bright foreground and background (90.386513ms)
+✔ rejects unknown provenance, missing fields, invalid booleans and host mismatch (187.295078ms)
+✔ rejects wrong nominal sample projection even inside supported color class (48.985642ms)
+✔ applies combined NCV bits in colored context and preserves legal uncolored attributes (194.4272ms)
+✔ rejects unsupported attribute and missing expected foreground/background mapping (87.05965ms)
+✔ accepts indexed and direct profiles with literal expected mappings (77.125189ms)
+✔ accepts complete fence after prior business output and records its exact interval (61.44352ms)
+✔ quiet interval accepts only intentional fence bytes (85.265067ms)
+✔ rejects ack without device bytes (220.680698ms)
+✔ rejects partial fence row (228.050201ms)
+✔ rejects old unchanged fence style (232.868186ms)
+✔ waits for recorder to deliver full final reset (103.50978ms)
+✔ accepts new complete CUP row and reports exact byte range (159.011864ms)
+✔ fails on incomplete row (234.75326ms)
+✔ fails on no byte growth (240.222344ms)
+✔ fails on non-CUP noise (243.706414ms)
+✔ waits for delayed final reset before accepting output (199.465461ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1955.538699

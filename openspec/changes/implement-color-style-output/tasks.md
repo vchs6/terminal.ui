@@ -10,19 +10,19 @@ Spec：design.md精确API/投影/行为。Baseline96bdb9b。Stack：仓颉SDK1.2
 
 ## 1. Independent test contract
 
-- [ ] 1.1 TASK-061：冻结独立public颜色/属性消费者、真实PTY例子/模式静默fixture及runner；AC061：缺新API真实RED、手算golden/明确模式/握手、旧断言不变。
+- [x] 1.1 TASK-061：冻结独立public颜色/属性消费者、真实PTY例子/模式静默fixture及runner；AC061：缺新API真实RED、手算golden/明确模式/握手、旧断言不变。
 
 ## 2. Implementation
 
 ### Task 2: TASK-006 color and style output
 
-- [ ] 2.1 TASK-006：实现design全部Color/Style/ColorMode、组件布尔属性、能力映射及有效输出差分、Application模式与colors示例；AC006：默认/16/256/RGB按模式映射，组件不发ANSI，同一原始Style可多模式输出且不可见变化静默。
+- [x] 2.1 TASK-006：实现design全部Color/Style/ColorMode、组件布尔属性、能力映射及有效输出差分、Application模式与colors示例；AC006：默认/16/256/RGB按模式映射，组件不发ANSI，同一原始Style可多模式输出且不可见变化静默。
 
 Files：src/style/color.cj/style.cj/new color_mode.cj、src/color_mapping.cj（纯内部策略建议）、src/exports.cj/ansi_encoding.cj/frame.cj/component.cj/layout.cj/application.cj、examples/colors与docs/product。每实体单文件；旧ansiColor与encodeStyle原路径直接扩展/替换，旧转换路径不得并存。依赖converter不被调用，真实依赖编码保留。L4：冻结061RED→模型/名义策略/共享继承→编码/有效diff与App已显示模式→公开例子和针对自测→提交审核。不写/改tests。
 
 ## 3. Quality gates
 
-- [ ] 3.1 TASK-062：独立整片spec/quality代码审核、真实反例及必要作者修复复核；AC062：固定完整diff+contract passed，无必需未决失败。
+- [x] 3.1 TASK-062：独立整片spec/quality代码审核、真实反例及必要作者修复复核；AC062：固定完整diff+contract passed，无必需未决失败。
 - [ ] 3.2 TASK-063：独立cold slice/真实colors与静默PTY/标准bundle/clean consumer执行；AC063：实际退出/raw/hash齐全，完整release缺项不标pass。
 - [ ] 3.3 TASK-064：独立有限需求及最终集成验收；AC064：代码/证据/状态一致，未重复功能测试，正常direct-main集成。
 
@@ -54,7 +54,7 @@ Preflight接口对：061→006（命名/模式/golden完全由design，未读实
 
 当前精确contract以design D031–33为准；旧explicit段落保留历史不作默认。061重冻Auto公共消费者/合成terminfo/native隔离失败/Basic8/离线快照预期，保留旧具体mode映射及060；006 fresh实现同一颜色pipeline上的Auto/profile/optional C模块，不替换input/session核心；062复核完整增量和新test；063最终固定源执行全部相关回归、真实宿主、PNG、正常bundle/clean消费；064核合同+范围+原始图/日志/状态。
 
-- [ ] 4.2 TASK-066：独立编写真跨终端测试与原始截图采集程序；AC066：相同无override应用在真实xterm/XFCE-VTE运行，逐宿主原PNG/metadata/raw/能力来源/尺寸/恢复齐全。
+- [x] 4.2 TASK-066：独立编写真跨终端测试与原始截图采集程序；AC066：相同无override应用在真实xterm/XFCE-VTE运行，逐宿主原PNG/metadata/raw/能力来源/尺寸/恢复齐全。
 
 066为L3 testing，父WP005；inputs为D031–33/065实际host探针，depends_on065；只改tests/terminals及其README/fixture/采集脚本，不改产品或其它冻结tests，不改tests/run-slice.sh避免与061共享编辑。独立Codex5.6/high，TDD/verification/cloud-runtime；L4：核host控制→写独立fixture与真实矩阵脚本→对旧显式默认真实RED→freeze→交063最终执行。正常slice回归入口包含061；真实host入口单列tests/terminals/run.sh，由063明确执行，缺宿主必须非零/insufficient_evidence，不能静默跳过标passed。GUI/recorders仅测试deps，采集源图不重绘；不得只换TERM数三独立终端。
 
