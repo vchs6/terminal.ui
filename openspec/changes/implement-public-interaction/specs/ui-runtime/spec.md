@@ -24,7 +24,7 @@
 
 ### Requirement: 实际尺寸与滚动
 
-框架 SHALL 以终端实际行列为根布局边界，响应尺寸变化；ScrollView默认纵向滚动，公开构造指南默认将主体置于ScrollView，固定菜单/状态条留在普通布局；Application根未显式声明viewport时默认Vertical兜底，显式None关闭，其他显式axes优先；普通非root Column不隐式滚动。表格允许显式Horizontal/Both，单行输入内部视口保持光标可见；组件显隐由应用显式确定。
+框架 SHALL 以终端实际行列为根布局边界，响应尺寸变化；ScrollView默认纵向滚动，公开构造指南默认将主体置于ScrollView，固定菜单/状态条留在普通布局；Application根未显式声明viewport时默认Vertical兜底，显式Off关闭，其他显式axes优先；普通非root Column不隐式滚动。表格允许显式Horizontal/Both，单行输入内部视口保持光标可见；组件显隐由应用显式确定。
 
 #### Scenario: 固定小控制台
 - **WHEN** 实际80×24且应用最小尺寸100×30
@@ -136,3 +136,17 @@
 #### Scenario: Owner button disabled
 - **WHEN** 打开层后应用仅禁用触发按钮以防重复打开
 - **THEN** 已打开层保持自己的enabled语义，层内交互不因跨owner关系继承disabled而失效。
+
+## ADDED Requirements
+
+### Requirement: 公共组件同会话服务和自动外观态
+
+框架 SHALL 提供NodeRef.application只读获取同一应用服务，且保持所有服务的阶段/线程权限；统一样式resolver SHALL 合成真实disabled/focus与声明VisualStates，selected仍由业务声明，不由标准控件私读RuntimeNode模拟。
+
+#### Scenario: Detached disabled view
+- **WHEN** 离线render中后链enabled(false)或普通祖先禁用
+- **THEN** 同resolver解析disabled外观，无需已发布NodeRef，不修改业务数据；显式视觉focused/selected只增加外观状态而不改变真实输入权限。
+
+#### Scenario: Readonly application reference
+- **WHEN** 同UI getter从有效NodeRef取得Application后尝试其写操作
+- **THEN** 取得引用本身不pump不创建会话，写操作仍受原ReentrantEvaluation等guard，不能借只读入口增权。

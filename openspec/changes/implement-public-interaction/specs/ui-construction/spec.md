@@ -38,7 +38,7 @@
 
 ### Requirement: Default scroll construction
 
-框架 SHALL 在公开构造指南中将可变长度主体默认放入Vertical ScrollView，固定菜单和状态条留普通布局；用户可以显式选择Horizontal/Both。普通非root Column保留原布局语义；Application根未声明viewport时提供Vertical兜底，root.viewport(None)明确关闭。框架不自动修改业务visible。
+框架 SHALL 在公开构造指南中将可变长度主体默认放入Vertical ScrollView，固定菜单和状态条留普通布局；用户可以显式选择Horizontal/Both。普通非root Column保留原布局语义；Application根未声明viewport时提供Vertical兜底，root.viewport(Off)明确关闭。框架不自动修改业务visible。
 
 #### Scenario: Body and fixed chrome
 - **WHEN** 用户按公开指南构造固定菜单、100行主体与固定状态条

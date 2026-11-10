@@ -7,7 +7,7 @@
 ## What Changes
 
 - A：新增一个公共 Canvas 叶及独立 measure/draw 依赖、局部 PaintContext、选区样式、会话 caret；enabled/focusable、可跟踪只读查询、目标/祖先默认动作和物理子序列焦点。最小设备解码新增 HT→tab、CSI Z→backtab；KeyEvent仍只有code/text。
-- B：通用 viewport 修饰、默认纵向 ScrollView、表格横滚和 ensureVisible。Application根未声明viewport时默认Vertical兜底，可用root.viewport(None)关闭；普通非root Column不隐式滚。根先保旧短内容布局，仅未承接overflow时再作一次自然内容协商；指南主体ScrollView、菜单/状态条留普通布局，不修改业务显隐。标准键滚是通用viewport能力，每节点用户Ancestor之后才尝试，ScrollView不重复登记回调。
+- B：通用 viewport 修饰、默认纵向 ScrollView、表格横滚和 ensureVisible。Application根未声明viewport时默认Vertical兜底，可用root.viewport(Off)关闭；普通非root Column不隐式滚。根先保旧短内容布局，仅未承接overflow时再作一次自然内容协商；指南主体ScrollView、菜单/状态条留普通布局，不修改业务显隐。标准键滚是通用viewport能力，每节点用户Ancestor之后才尝试，ScrollView不重复登记回调。
 - C：同Runtime节点的owner依赖层、宿主裁剪、锚点、modal/nonmodal/passive、级联关闭及焦点恢复；公共surface填充意图保证无背景modal不透底又不压死主题。
 - 替换当前设备root固定目标与分散默认退出分支；保留现有公共事件控制、Style/Frame/Unicode/ansies和M1完整参考。新增行为按安全边界提交，组件不取得stdout/ANSI或可变整屏Frame。
 - 仅冻结交互基础。Button/Progress/InputCaret是公共消费者证明，不交付TASK-019/028/029的完整菜单、编辑或标准控件API；鼠标、拖动、剪贴板及M2不在本变更。

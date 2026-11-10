@@ -7,7 +7,7 @@
 以下I001–I010优先于正文历史“推荐/建议”字样；被比较的替代方案不再供实现者自由选择。来源为主代理2026-11-10明确采纳，未改变用户范围。
 
 - I001：采用原草稿A1–A4；Canvas分别跟踪measure/draw，M1全局render保持完整参考；默认动作Target/Ancestor两槽、框架默认居中；只读guard包含Component.reference；selected由唯一resolver解析；caret仅聚焦Canvas自身。
-- I002：B1经主代理复核REQ003.11/architecture后修订为Application根未显式声明viewport时默认Vertical兜底；root.viewport(None)关闭，显式其他axes优先。普通非root Column默认None，ScrollView默认Vertical；公开指南主体ScrollView、固定菜单/状态条不滚。B2自然基准用于显式viewport与隐式根发生未承接overflow后的第二pass；B3接受变化Bool/边界钳制保持。不得因viewport改变业务显隐。
+- I002：B1经主代理复核REQ003.11/architecture后修订为Application根未显式声明viewport时默认Vertical兜底；root.viewport(Off)关闭，显式其他axes优先。普通非root Column默认None，ScrollView默认Vertical；公开指南主体ScrollView、固定菜单/状态条不滚。B2自然基准用于显式viewport与隐式根发生未承接overflow后的第二pass；B3接受变化Bool/边界钳制保持。不得因viewport改变业务显隐。
 - I003：采用C1–C5：同Runtime所有权边/宿主记录；modal截断下层app/legacy但未阻止interrupt仍退出全应用；surface填充意图；Modal无anchor，锚点离开clip关闭非modal；nonmodal不trap、Passive不夺焦点、空takeFocus层可成为activeTarget。
 - I004：域外焦点请求及显式dispatch错误名统一FocusOutsideDomain；删除DomainViolation备选名。其他新增错误名以正文表为准，不能按实现方便自由替换。
 - I005：稳定父项A=TASK-017、B=TASK-037、C=TASK-018；支持编号098–112各五角色按A→B→C。TASK-028仍文本编辑，019菜单/状态条、029基础widgets、020退出恢复、030可选会话能力，不重编号、不借基础通过关闭这些完整任务。
@@ -199,7 +199,7 @@ public func caretSnapshot(): CaretSnapshot // Application；只读最近完成�
 #### B.1 公开形状与状态权威
 
 ```cangjie
-public enum ScrollAxes { | None | Vertical | Horizontal | Both }
+public enum ScrollAxes { | Off | Vertical | Horizontal | Both }
 public enum ScrollAlign { | Nearest | Start | Center | End }
 public func viewport(axes: ScrollAxes): Component
 public func viewport(axes: () -> ScrollAxes): Component
@@ -229,7 +229,7 @@ viewport 是通用节点能力，不是 ScrollView 私有 kind；可用于 Colum
 
 NodeRef 挂载代际拥有唯一 offset，不能再让 ScrollView 的业务 Observable 保存第二份可相互覆盖的 offset。query 是不可变、可跟踪的最后提交布局快照，不隐式 measure。挂载后尚无布局时返回 width/height/content/offset全0与当前 axes，之后自动失效。关闭/重建节点归零，key重排/同父move保留。axes 关闭某轴时该轴 offset 归0，其余轴保留钳制。
 
-**默认纵向裁决B1/I009**：Application根没有任何viewport常量/getter声明时有效axes为Vertical；`.viewport(ScrollAxes.None)`显式关闭，显式Vertical/Horizontal/Both或getter结果优先。声明“未设”与显式None必须分别保存，不以枚举默认None丢失presence。普通非root Column默认None，ScrollView默认Vertical。公开指南将可变长度主体置于ScrollView、固定菜单/状态条留普通布局；同时保留裸根长内容的兜底，不以指南代替默认行为。无新增Application rootScrollAxes选项。detached `render`临时Runtime没有隐式根viewport；mounted `render`完整M1消费已有session的有效viewport/offset/层栈，保持R004同输入等价，不pump第二session、不访问M2缓存。
+**默认纵向裁决B1/I009**：Application根没有任何viewport常量/getter声明时有效axes为Vertical；`.viewport(ScrollAxes.Off)`显式关闭，显式Vertical/Horizontal/Both或getter结果优先。声明“未设”与显式None必须分别保存，不以枚举默认None丢失presence。普通非root Column默认None，ScrollView默认Vertical。公开指南将可变长度主体置于ScrollView、固定菜单/状态条留普通布局；同时保留裸根长内容的兜底，不以指南代替默认行为。无新增Application rootScrollAxes选项。detached `render`临时Runtime没有隐式根viewport；mounted `render`完整M1消费已有session的有效viewport/offset/层栈，保持R004同输入等价，不pump第二session、不访问M2缓存。
 
 #### B.2 extent、clip、实际尺寸
 
@@ -244,7 +244,7 @@ viewport 是实际分配内容区；框架最小尺寸只影响期望，不强�
 2. 同一LayoutNode遍历产生内部纵向overflow摘要：在已分配内容盒内，逻辑内容/普通孩子的实际所需底界超过内容高度即记录未承接overflow；横向截断、阴影扩展不算。摘要至少含是否存在、首个来源node id及是本地自然内容/分配宽wrap/后代传播，内部使用、不增加公共测试hook。显式fixed height的节点在其声明边界截断并停止向外传播；具有Vertical/Both viewport的非root节点把自身内部overflow承接进自己的extent，不向根传播；Horizontal/None不承接纵向。有效hidden节点不参加布局/摘要。显式root.height同样保留其声明裁剪意图，隐式fallback不得绕过它；显式root.viewport(Vertical/Both)则明确选择根内容滚动，使用下述直接B2路径。
 3. 摘要无未承接overflow：直接用第一pass全部位置/尺寸，根contentHeight取V、offsetY=0，不因自然高度不等而重分weights。这保留旧短内容像素。摘要存在：仅再作一次根内容B2协商；内容虚拟高度H=max(V,受约束自然需求)，root外盒仍V，滚动量0..H-V。B2自然需求在显式fixed height处取声明尺寸及既有min/实际约束结果，在独立纵向viewport边界取第一pass已分配的外盒需求，不把内部100行当根的100行。普通未承接子树按自然内容高参与，正余量按既有weights/余数规则分配。
 4. 每次目标布局最多两个这样的root pass；第二pass结果直接作为本次布局权威，不因其摘要再开第三pass，也不启用Observable稳定循环。若第二pass仍因显式fixed裁剪或不可满足真实边界留不可见内容，保持既定clip；它不是再次增大终端的理由。内容自然需求计算复用现测量/主题wrap协商，不建第二布局树。后续状态/尺寸变化是下一次正常布局，重新先走第一pass，offset按最终extent钳制。
-5. 显式root.viewport(Vertical/Both)、普通ScrollView或任意显式viewport直接采用B2内容协商，不需要根兼容试探pass；root.viewport(None)完整关闭此兜底。普通非滚动容器仍原规则。
+5. 显式root.viewport(Vertical/Both)、普通ScrollView或任意显式viewport直接采用B2内容协商，不需要根兼容试探pass；root.viewport(Off)完整关闭此兜底。普通非滚动容器仍原规则。
 
 | 输入（均无border/padding/gap，除非写明） | 固定结果 |
 |---|---|
@@ -257,7 +257,7 @@ viewport 是实际分配内容区；框架最小尺寸只影响期望，不强�
 | 实际根内容V=0，裸100行且无fixed height | 最多两pass，contentHeight=100、初始offset0、合法范围0..100；不绘制、不显示caret，ensure在该零轴不定位；恢复尺寸重新协商/钳制 |
 | 空内容、V=0 | contentHeight=0、offset=0，一pass无overflow；无除零/稳定循环 |
 | 某普通子树显式height(3)且未启纵向viewport，内有100行 | 它保留高3裁剪，摘要不越过声明边界；祖先implicit root不得借兜底扩成100行 |
-| 任意裸长root显式viewport(None) | 保持旧静态裁剪，root不滚；这是应用明确关闭，不是框架自行隐藏数据 |
+| 任意裸长root显式viewport(Off) | 保持旧静态裁剪，root不滚；这是应用明确关闭，不是框架自行隐藏数据 |
 | detached render同一未声明viewport的长描述 / mounted render当前App root | 前者离线静态默认；后者消费App有效root策略和offset完整重算，和同逻辑输入snapshot一致 |
 
 根fallback只在Application持久模式启用，owner/host clip仍取实际外盒；层宿主不随root内容虚拟extent扩成超大终端。M2必须消费同一有效策略与overflow摘要语义，不另造“快速根布局”改变上述例表。
@@ -412,3 +412,17 @@ anchor卸载或有效hidden时关闭AnchorGone；单纯disabled不改变几何�
 ## Verification boundary
 
 本候选保留所有新增签名“未编译验证”状态；API语法微编译、preflight、正式独立测试/实施/审查/执行/验收均有不同证据职责。工件schema校验只能证明OpenSpec格式，不能证明Cangjie语法、产品行为或工程DQ已通过。原草稿和来源hash见同目录provenance.json；不依赖主代理读作者自评。
+
+## I011 同会话公共应用服务的只读装配
+
+新增`public func application(): Application`于NodeRef。返回当前挂载关联的同一个公开Application，不启动会话、不pump、不创建服务/队列/注册表。使用同UI只读context guard，允许getter/measure/draw取得引用；stale报StaleReference、异线程/活动跨域报WrongUIContext，极端无Application关联报SessionInactive。临时render本身不发布NodeRef。返回引用可以由调用者保存，但Application每个方法仍守其已有阶段/线程/stop/post约束，取得引用不带来写权限。由此公共自定义组件和后续TextInput能用同一个Application的post与可选clipboard服务，不添加只为编辑器的NodeRef.copy方法、不要求常规输入构造注入应用回调。关联是当前mount身份，不持有过期RuntimeNode强引用。
+
+## I012 统一resolver的自动行为外观状态
+
+Theme原VisualStates仍只表达外观，不修改业务enabled、焦点或选中值。A阶段统一resolver在既有声明状态上合成实际行为状态：`disabled = !effectiveEnabled || declared.disabled`、`focused = actuallyFocused || declared.focused`、`selected = declared.selected`。effectiveEnabled沿普通祖先合取，跨overlay ownership边不隐式继承，复用A既有行为规则。false不屏蔽真实禁用/焦点；希望调整外观时应用可用原显式样式逐字段覆盖。selected始终由业务/视图声明，不因focus或disabled自动修改。
+
+普通/标准控件不必用NodeRef读取行为态再拼另一套visualStates。Checkbox/Radio可只声明业务selected，实际focused/disabled由同resolver加入，祖先禁用与后链.enabled覆盖会自动呈现。detached全局render使用同Runtime求值的effectiveEnabled，未发布ref仍能显示disabled；无真实focus时actuallyFocused=false，显式focused演示仍有效。已冻结Theme基础085在未启用新行为槽时结果不变；I012是后续A的明确集成增量，不反写Theme基础验收。A正式测试须覆盖离线、祖先disabled、后链.enabled、显式视觉态仅增加/不反写行为、真假focus与selected保持。
+
+## I013 轴关闭值的源码兼容修正
+
+ScrollAxes的关闭值最终为Off（不是未实现草稿None），其余Vertical/Horizontal/Both不变。SDK1.2独立正常consumer已实证根包导出的None构造会使既有裸Option None用法报multiple constructor；Off保留关闭语义且原裸None正常编译，不要求应用为新增轴枚举重写Option值。此阶段尚无该轴产品/正式测试，故不提供冲突None兼容alias。所有本变更axes表与示例以Off为准，Option.None含义不变。

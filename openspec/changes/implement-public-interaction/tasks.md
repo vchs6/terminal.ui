@@ -14,7 +14,7 @@
 - 角色独立上下文/目录或worktree；测试、产品、审查、执行、验收分别交付。只交需求、冻结源码/测试、可复现命令及raw/hash，不交产品作者推理、自评或预设通过结论。
 - 一类型一小写下划线文件，成员归实体文件；根包持有Runtime/NodeRef/PaintContext，纯style/theme不能反向依赖根包。禁止第二树/renderer/Unicode/主题resolver、Button/Input私有kind。
 - 全部新增签名尚未编译验证。原StyleRule候选with退役为当前T016 withValue；KeyEvent仍只有code/text。普通getter可只读查询，不能写节点或跨session mutation。
-- A仅最小HT/tab、CSI Z/backtab设备增量；完整键盘/编辑/paste/clipboard另阶段。B默认ScrollView Vertical，指南主体默认滚动、固定菜单状态条不滚，普通非root Column不隐式滚；Application根默认Vertical兜底、显式None关闭，I009最多两pass保短内容分配。
+- A仅最小HT/tab、CSI Z/backtab设备增量；完整键盘/编辑/paste/clipboard另阶段。B默认ScrollView Vertical，指南主体默认滚动、固定菜单状态条不滚，普通非root Column不隐式滚；Application根默认Vertical兜底、显式Off关闭，I009最多两pass保短内容分配。
 - M1全局render完整参考保留：detached不隐建root viewport，mounted消费session已提交viewport/offset/层栈，不访问M2缓存。paint-only失效不等同已实现M2；min不凌驾实际viewport；不自动改业务排序/显隐。无鼠标、拖动、发布。
 
 ## Admission and handoff
@@ -395,3 +395,7 @@ DQ06/10/13保持not_checked：实际080/084/088验收与固定源、完整签名
 
 - 主代理集成规划目录、关联docs/tasks/长期AC时只作已冻结内容映射；本独立起草角色不改主仓。
 - 三单位接受后仍按原稳定任务完成菜单/编辑/widgets/可选会话/四主题展示/M2及Linux整体目标；归档只在本变更适用证据完成时进行，不发布。
+
+### A追加公共集成边界
+
+098测试/099产品/100审核/101执行/102验收同时消费I011–013：NodeRef.application只读同会话服务入口、统一resolver自动disabled/focus并与声明状态OR合成、ScrollAxes.Off保持裸Option None源码兼容。A hand-written detached/ancestor-disabled/后链覆盖/focus+selected样例必须实际验证，不能等widgets再用私有节点补洞。Off签名微验证只是语言事实，不是B滚动已实现。
