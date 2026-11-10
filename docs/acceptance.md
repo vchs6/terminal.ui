@@ -202,3 +202,52 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-122 | REQ-009/010/007/011 | TASK-122 | 原028完整证据及metadata，030父项按真实paste/cut汇合 | pending |
 
 唯一任务状态见[输入编辑变更](../openspec/changes/implement-linux-input-editing/tasks.md)，候选与签名微验证不当产品通过。
+
+## M2与公开基准质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-123 | REQ-001/003/004/007 | TASK-123 | 独立同核算法/统计测试与新增API RED | pending |
+| AC-124 | REQ-001/003/004/007 | TASK-124 | 单measure/arrange/paint重构及真实统计 | pending |
+| AC-125 | REQ-001/003/004/007 | TASK-125 | 算法分离独立双审 | pending |
+| AC-126 | REQ-001/003/004/007 | TASK-126 | 算法分离独立执行及回归 | pending |
+| AC-127 | REQ-001/003/004/007 | TASK-127 | A有限验收，不提前称局部渲染 | pending |
+| AC-128 | REQ-001/003/004/007 | TASK-128 | 独立Frame共享/宽簇/透明/分配槽测试 | pending |
+| AC-129 | REQ-001/003/004/007 | TASK-129 | Frame私有行COW及精确来源 | pending |
+| AC-130 | REQ-001/003/004/007 | TASK-130 | 行共享独立双审 | pending |
+| AC-131 | REQ-001/003/004/007 | TASK-131 | 行共享独立执行和旧Frame回归 | pending |
+| AC-132 | REQ-001/003/004/007 | TASK-132 | B有限验收，不提前关031 | pending |
+| AC-133 | REQ-001/003/004/007 | TASK-133 | 独立dirty/cache/布局连带golden | pending |
+| AC-134 | REQ-001/003/004/007 | TASK-134 | 节点约束缓存/精确失效传播 | pending |
+| AC-135 | REQ-001/003/004/007 | TASK-135 | 缓存失效独立双审 | pending |
+| AC-136 | REQ-001/003/004/007 | TASK-136 | 缓存/逐帧M1对照独立执行 | pending |
+| AC-137 | REQ-001/003/004/007 | TASK-137 | C有限验收，局部合成待D | pending |
+| AC-138 | REQ-001/003/004/007 | TASK-138 | 独立damage/层/滚动/caret/故障golden | pending |
+| AC-139 | REQ-001/003/004/007 | TASK-139 | 同Frame局部合成与后端安全提交 | pending |
+| AC-140 | REQ-001/003/004/007 | TASK-140 | 局部合成独立双审 | pending |
+| AC-141 | REQ-001/003/004/007 | TASK-141 | 局部渲染/M1等价与设备故障独立执行 | pending |
+| AC-142 | REQ-001/003/004/007 | TASK-142 | D功能验收，031成本待E | pending |
+| AC-143 | REQ-001/003/004/007 | TASK-143 | 公开benchmark独立公平性与计量测试 | pending |
+| AC-144 | REQ-001/003/004/007 | TASK-144 | 独立CJPM benchmark实现与说明 | pending |
+| AC-145 | REQ-001/003/004/007 | TASK-145 | benchmark公平性/公共API独立双审 | pending |
+| AC-146 | REQ-001/003/004/007 | TASK-146 | 独立重复CPU/Cell槽/heap/GC/RSS/输出与干净消费 | pending |
+| AC-147 | REQ-001/003/004/007 | TASK-147 | 原022/031完整成本及metadata验收 | pending |
+
+唯一任务状态见[具体变更](../openspec/changes/implement-incremental-rendering/tasks.md)，规划和探针不代表产品已完成。
+
+## 标准控件质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-153 | REQ-001/003/004/007 | TASK-153 | 独立受控状态/事件/样式/边界golden | pending |
+| AC-154 | REQ-001/003/004/007 | TASK-154 | 公共Label/Button/Checkbox/Radio/Progress实现 | pending |
+| AC-155 | REQ-001/003/004/007 | TASK-155 | 基础控件独立双审 | pending |
+| AC-156 | REQ-001/003/004/007 | TASK-156 | 基础控件独立真实终端及包消费 | pending |
+| AC-157 | REQ-001/003/004/007 | TASK-157 | 原029完整证据和metadata | pending |
+| AC-158 | REQ-001/003/004/007 | TASK-158 | 独立菜单/状态/分区/层组合golden | pending |
+| AC-159 | REQ-001/003/004/007 | TASK-159 | 公共菜单/状态条/SplitPane实现 | pending |
+| AC-160 | REQ-001/003/004/007 | TASK-160 | 菜单组合独立双审 | pending |
+| AC-161 | REQ-001/003/004/007 | TASK-161 | 菜单导航/取消/窄屏及制品独立执行 | pending |
+| AC-162 | REQ-001/003/004/007 | TASK-162 | 原019完整证据与metadata | pending |
+
+唯一任务状态见[具体变更](../openspec/changes/implement-standard-widgets/tasks.md)，规划和探针不代表产品已完成。

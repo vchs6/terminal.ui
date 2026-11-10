@@ -65,12 +65,12 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 - [ ] 4.16 TASK-016：状态批处理与 UI 调度；验收 AC-016：后台状态经过调度，批量修改合并刷新，长短文本切换无残留。
 - [ ] 4.17 TASK-017：键盘导航和有效焦点；验收 AC-017：禁用、卸载和空焦点集合有确定行为，无失效引用。
 - [ ] 4.18 TASK-018：覆盖层嵌套与关闭恢复；验收 AC-018：父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态。
-- [ ] 4.19 TASK-019：菜单与状态条组合行为；验收 AC-019：水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合。
+- TASK-019：状态/准入/实际依赖转至[标准控件变更](../openspec/changes/implement-standard-widgets/tasks.md)，保留原AC-019与需求映射。
 - [ ] 4.20 TASK-020：应用退出与终端模式恢复；验收 AC-020：正常退出、异常和取消均恢复光标及终端模式。
 ## 5. WP-005
 
 - [ ] 5.21 TASK-021：交付 U1–U5 公开接口示例；验收 AC-021：minimal/composition 独立项目构建；不同业务 U5 无内核特判。
-- [ ] 5.22 TASK-022：交付可重复渲染基准项目；验收 AC-022：固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果。
+- TASK-022：状态/准入/实际依赖转至[M2变更](../openspec/changes/implement-incremental-rendering/tasks.md)，保留原AC-022与需求映射。
 - [ ] 5.23 TASK-023：验证最终源码制品可独立使用；验收 AC-023：实际 cjp 无开发资料；干净解包能构建主库及运行示例/基准，版本/许可证核对完整。
 - [ ] 5.24 TASK-024：整体验收与发行准备；验收 AC-024：需求全部有证据，产品文档与制品一致；Battle 无未关闭必需失败。
 
@@ -231,9 +231,9 @@ GOV-001 治理修订的任务状态见 [已归档变更](../openspec/changes/arc
 - TASK-026：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-026与需求映射。
 - TASK-027：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-027与需求映射。
 - TASK-028：状态/准入/实际依赖转至[输入编辑变更](../openspec/changes/implement-linux-input-editing/tasks.md)，保留原AC-028与需求映射。
-- [ ] 6.5 TASK-029：按钮标签与选择进度基础组件；验收 AC-029：标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致。
+- TASK-029：状态/准入/实际依赖转至[标准控件变更](../openspec/changes/implement-standard-widgets/tasks.md)，保留原AC-029与需求映射。
 - [ ] 6.6 TASK-030：可选会话能力与本地剪贴板通道；验收 AC-030：SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心。
-- [ ] 6.7 TASK-031：M2局部布局绘制及基线对照；验收 AC-031：局部负载减少无关工作，移动/遮挡/宽字符/resize与M1帧结果一致，记录CPU/分配/输出及大范围退化。
+- TASK-031：状态/准入/实际依赖转至[M2变更](../openspec/changes/implement-incremental-rendering/tasks.md)，保留原AC-031与需求映射。
 - [ ] 6.8 TASK-032：混合子元素操作与定向通知集成；验收 AC-032：声明A/B/C中插X融合排序位置；显式移动/移除、无效锚点/卸载/重入操作有诊断；定向通知合批无手动flush。
 
 ### TASK-025：分类主题配置解析与诊断
@@ -554,3 +554,5 @@ Linux VT自动字形子接口支持TASK093–097唯一状态在[字形适配变�
 可选会话能力TASK148–152唯一状态在[session-extensions tasks](../openspec/changes/implement-session-extensions/tasks.md)，追踪030并联004/020/041既有接口；copyLocalText同步结果供028编辑消费，不另建剪贴板队列。完整030粘贴与真实SSH仍待实际证据，图片无adapter如实降级。
 
 输入/编辑支持TASK113–122唯一状态在[linux-input-editing tasks](../openspec/changes/implement-linux-input-editing/tasks.md)，028同变更；归一化键盘/paste关联017/020/030/041子接口，152有限会话writer先于114，完整父项仍按实际汇合，019菜单/029小控件不混编号。
+
+M2支持TASK123–147唯一状态在[incremental-rendering tasks](../openspec/changes/implement-incremental-rendering/tasks.md)，稳定031/022同变更；完整功能M1基线在全部组件/主题/输入/示例后固定，旧idle优化不冒称M2。控件支持TASK153–162唯一状态在[standard-widgets tasks](../openspec/changes/implement-standard-widgets/tasks.md)，稳定029/019同变更，SplitPane只公共Row/Column封装支持既有011，不重开已验布局；两控件单元均等117完整键盘。
