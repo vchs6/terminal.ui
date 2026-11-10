@@ -1,0 +1,60 @@
+{
+  "task": "TASK093 G012 formal test-only refresh",
+  "base": "04a5289361d990e5a340ace22bbd50c9b805a9d9",
+  "testOnlyCommit": "df21f3def32de39a415d1d8d9845b83514dc2902",
+  "originalTest": "daf2a2523c5aacb27e2ea3b564b9b057bd6430de",
+  "originalRootTest": "901b06a",
+  "source": "/workspace/work/glyph-tests-refresh/source",
+  "report": "/workspace/work/glyph-tests-refresh/report",
+  "cache": "/workspace/work/glyph-tests-refresh/cache",
+  "sdkSetup": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+  "sdkVersion": "1.2.0",
+  "dependencies": {
+    "ansies": "1.3.113",
+    "unicode": "0.1.0",
+    "unicodewidth": "0.1.113"
+  },
+  "requestedRole": "Sol/high; actual serving model/effort not independently exposed",
+  "contracts": [
+    {
+      "path": "openspec/changes/implement-linux-vt-glyph-fallback/design.md",
+      "sha256": "b10649cf6efc89c19681ba5e426d7f7b08d2be209e39741361dff6d110b951a0"
+    },
+    {
+      "path": "openspec/changes/implement-linux-vt-glyph-fallback/tasks.md",
+      "sha256": "725de23b075a493f2f4fdc7ea2f8f7aad053072612279fb235a87c577bd819e9"
+    },
+    {
+      "path": "openspec/changes/implement-linux-vt-glyph-fallback/specs/terminal-output/spec.md",
+      "sha256": "c0e63fab52bbc6cfc09d7c5eebd86b9fab4d461264de080bff670e02c50b70c8"
+    },
+    {
+      "path": "openspec/changes/fix-uncertain-glyph-advance/design.md",
+      "sha256": "adc4395b6f7645c71d1876f77a6003161451f723d7c67f6323d8f03623279d23"
+    },
+    {
+      "path": "openspec/changes/fix-uncertain-glyph-advance/tasks.md",
+      "sha256": "d7611d86610943a0d0bcc0ec3e10d66bea337be34d6ab451cc4e968b4c9bf41b"
+    },
+    {
+      "path": "openspec/changes/fix-uncertain-glyph-advance/specs/terminal-output/spec.md",
+      "sha256": "3bf3e6252f16f2dadf1c4db730e305f6a67a598111013e3909c74852d4502344"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd"
+    }
+  ],
+  "patchSha256": "8e1ae7b9ca59cfffa11923938107b29dc7810737b98198f38076d57fa808b1d4",
+  "sourcehashSha256": "3e92b7fdfd365bfe3418d0ffb82e868186b75aadd7f621e82457e7dfec4ada51",
+  "commandsSha256": "b66ada5494cdf3325f78fe034635df8022e9da46e83d6a69b4a6bc4f4a45bea2",
+  "productChanged": false,
+  "oldEvidenceCopiedByHash": true,
+  "partialConservativeTests": 5,
+  "fullGlyphStatus": "missing API RED / behavior blocked",
+  "readonlyStatus": "positive API compile gate blocked; no product readonly PASS",
+  "realVtStatus": "not executed; required in actual096",
+  "full094Status": "not admitted; still waits152 and all specified upstream",
+  "declarationControls": "3 cjc staticlib compile-only language controls; never executed",
+  "finished": "2026-11-10T23:08:05.675Z"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "native-compile",
+  "cwd": "/workspace/work/glyph-tests-refresh/source",
+  "argv": [
+    "bash",
+    "-lc",
+    "source /workspace/work/validation/sdk/cangjie/envsetup.sh\ngcc -std=c11 -Wall -Wextra -Werror -fPIC -O2 -c tests/glyphs/session/native/glyph_syscall_wrap.c -o /workspace/work/glyph-tests-refresh/cache/glyph_syscall_wrap-control.o"
+  ],
+  "start": "2026-11-10T22:58:43.086Z",
+  "end": "2026-11-10T22:58:43.205Z",
+  "code": 0,
+  "signal": null
+}

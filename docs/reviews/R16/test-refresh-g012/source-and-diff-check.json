@@ -1,0 +1,13 @@
+{
+  "name": "source-and-diff-check",
+  "cwd": "/workspace/work/glyph-tests-refresh/source",
+  "argv": [
+    "bash",
+    "-lc",
+    "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nset -e\ngit diff --cached --check\ngit diff --exit-code 04a5289361d990e5a340ace22bbd50c9b805a9d9 -- src native build.cj cjpm.toml\ngit diff --exit-code daf2a2523c5aacb27e2ea3b564b9b057bd6430de -- tests/glyphs/public tests/glyphs/rich tests/glyphs/session/native tests/glyphs/negative/write_capabilities.cj.txt tests/glyphs/internal/glyph_frame_test.cj\ngit diff --cached --name-only"
+  ],
+  "start": "2026-11-10T23:00:15.174Z",
+  "end": "2026-11-10T23:00:15.251Z",
+  "code": 0,
+  "signal": null
+}

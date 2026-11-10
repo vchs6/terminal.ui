@@ -1,0 +1,29 @@
+Found 2 layered-document match(es) for 'String runes':
+
+### 1. std.core.struct.string.runes [api-member L6] score=2010
+- `runes(): Iterator<Rune>`
+- 获取字符串的 Rune 迭代器。
+- package: `std.core`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/core/structs/string/runes.md
+
+### 2. std.core.struct.string [api-type L5] score=1170
+- `String <: Collection<Byte> & Comparable<String> & Hashable & ToString`
+- 该结构体表示仓颉字符串，提供了构造、查找、拼接等一系列字符串操作。
+- match: | [`runes(): Iterator<Rune>`](runes.md) | 获取字符串的 Rune 迭代器。 |
+- package: `std.core`
+- path: references/api/std/core/structs/string/index.md
+Found 2 layered-document match(es) for 'cjpm test filter no-run':
+Note: this multi-topic result list is diversified across query terms; use --all-terms to require co-occurrence in one page, or repeat --query for independent lookups.
+
+### 1. tools.cjpm [guide-topic L3] score=1070
+- 新建可执行模块用 `cjpm init --name <合法包名> --type=executable`（`executable` 也是默认类型）；随后用 `build/test/run` 构建、测试和运行，并通过 `cjpm.toml` 管理依赖与工作区。
+- path: references/tools/cjpm/index.md
+
+### 2. tools.cjpm.3-常用命令选项表.3-3-test-选项 [guide-leaf L5] score=730
+- `cjpm test` 在 `src` 包源码目录（package source directory）中发现 `@Test`/`@TestCase`；没有测试声明时可成功但显示 `TOTAL: 0`。
+- match: | `--no-run` | 只编译测试，不运行 |
+- match: cjpm test --no-run # 仅验证测试能否编译
+- match: | `--dry-run` | 列出将运行的测试，不执行 |
+- match: | `--filter <value>` | 过滤测试用例（通配符匹配，如 `*`/`*.*`/`*.*Test`） |
+- path: references/tools/cjpm/3-常用命令选项表/3-3-test-选项.md

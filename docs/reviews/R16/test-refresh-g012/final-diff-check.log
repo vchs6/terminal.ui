@@ -1,0 +1,15 @@
+ tests/glyphs/README.md                           |  32 ++++--
+ tests/glyphs/api/src/main.cj                     |  16 +++
+ tests/glyphs/internal/glyph_conservative_test.cj | 119 +++++++++++++++++++++++
+ tests/glyphs/internal/glyph_projection_test.cj   |   4 +-
+ tests/glyphs/negative.sh                         |  30 ++++--
+ tests/glyphs/negative/write_entry_count.cj.txt   |   7 ++
+ tests/glyphs/negative/write_map_known.cj.txt     |   7 ++
+ tests/glyphs/negative/write_native_error.cj.txt  |   7 ++
+ tests/glyphs/negative/write_native_vt.cj.txt     |   7 ++
+ tests/glyphs/negative/write_reason.cj.txt        |   7 ++
+ tests/glyphs/negative/write_source.cj.txt        |   7 ++
+ tests/glyphs/pty.mjs                             |  43 ++++++--
+ tests/glyphs/run.sh                              |   9 +-
+ tests/glyphs/session/src/main.cj                 |   2 +
+ 14 files changed, 270 insertions(+), 27 deletions(-)

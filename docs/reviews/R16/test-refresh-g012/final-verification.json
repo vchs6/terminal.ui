@@ -1,0 +1,13 @@
+{
+  "name": "final-verification",
+  "cwd": "/workspace/work/glyph-tests-refresh/source",
+  "argv": [
+    "bash",
+    "-lc",
+    "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nset -e\nsha256sum -c /workspace/work/glyph-tests-refresh/report/sourcehash.sha256\ngit diff --exit-code\ngit diff --cached --exit-code\ntest -z \"$(git status --porcelain)\"\ngit diff --exit-code 04a5289361d990e5a340ace22bbd50c9b805a9d9 HEAD -- src native build.cj cjpm.toml\ngit diff-tree --no-commit-id --name-only -r HEAD\ngit rev-parse HEAD"
+  ],
+  "start": "2026-11-10T23:08:05.548Z",
+  "end": "2026-11-10T23:08:05.614Z",
+  "code": 0,
+  "signal": null
+}

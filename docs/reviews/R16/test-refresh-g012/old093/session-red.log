@@ -1,0 +1,59 @@
+[31merror[0m: undeclared type name 'GlyphMode'
+ [36m==>[0m /workspace/work/glyph-tests/tests/glyphs/session/src/main.cj:7:22:
+  [36m| [0m
+[36m7[0m [36m| [0mfunc modeName(value: GlyphMode): String {[0m
+  [36m| [0m                     [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'terminalGlyphCapabilities' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/glyph-tests/tests/glyphs/session/src/main.cj:12:28:
+   [36m| [0m
+[36m12[0m [36m| [0m    let capabilities = app.terminalGlyphCapabilities().getOrThrow()[0m
+   [36m| [0m                           [31m^^^^^^^^^^^^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'glyphMode' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/glyph-tests/tests/glyphs/session/src/main.cj:15:71:
+   [36m| [0m
+[36m15[0m [36m| [0m        "nativeError=${capabilities.nativeError}\nmode=${modeName(app.glyphMode())}\nserial=${serial}\n" +[0m
+   [36m| [0m                                                                      [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'glyphMode' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/glyph-tests/tests/glyphs/session/src/main.cj:30:35:
+   [36m| [0m
+[36m30[0m [36m| [0m        case Some("Ascii") => app.glyphMode(GlyphMode.Ascii)[0m
+   [36m| [0m                                  [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'glyphMode' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/glyph-tests/tests/glyphs/session/src/main.cj:31:37:
+   [36m| [0m
+[36m31[0m [36m| [0m        case Some("Unicode") => app.glyphMode(GlyphMode.Unicode)[0m
+   [36m| [0m                                    [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'glyphMode' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/glyph-tests/tests/glyphs/session/src/main.cj:43:29:
+   [36m| [0m
+[36m43[0m [36m| [0m            case "a" => app.glyphMode(GlyphMode.Ascii)[0m
+   [36m| [0m                            [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'glyphMode' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/glyph-tests/tests/glyphs/session/src/main.cj:44:29:
+   [36m| [0m
+[36m44[0m [36m| [0m            case "u" => app.glyphMode(GlyphMode.Unicode)[0m
+   [36m| [0m                            [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'glyphMode' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/glyph-tests/tests/glyphs/session/src/main.cj:45:29:
+   [36m| [0m
+[36m45[0m [36m| [0m            case "o" => app.glyphMode(GlyphMode.Auto)[0m
+   [36m| [0m                            [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+18 errors generated, 8 errors printed.
+Error: failed to compile package `glyph_session`, return code is 1
+Error: cjpm build failed
