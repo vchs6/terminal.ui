@@ -1,0 +1,44 @@
+{
+  "started_utc": "2026-11-10T21:31:16.980560+00:00",
+  "host_command": [
+    "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+    "-geometry",
+    "100x28+20+20",
+    "-fa",
+    "Monospace",
+    "-fs",
+    "12",
+    "-T",
+    "WIDTH RECON xterm-default",
+    "-e",
+    "/tmp/cjtui-dsr-driver.3dn55860/replay_probe",
+    "/workspace/work/glyph-advance-tests/raw/old-fresh-replay/raw/xterm-default",
+    "/workspace/work/glyph-advance-tests/raw/old-fresh-replay/frames/xterm-default",
+    "zwj"
+  ],
+  "xorg_command": [
+    "Xorg",
+    ":241",
+    "-config",
+    "/workspace/work/cross-terminal-recon/probes/xorg-dummy.conf",
+    "-nolisten",
+    "tcp",
+    "-noreset",
+    "-logfile",
+    "/workspace/work/glyph-advance-tests/raw/old-fresh-replay/raw/xterm-default/xorg.log"
+  ],
+  "locale": {
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "COLORTERM": null
+  },
+  "config": "same argv/font/geometry and initially empty per-session XDG dirs as TASK083; only native raw input for complete DSR; no advanced terminal mode change",
+  "native_sha256": "edaf7d086d0987683fd73d7818060b2e2e61a983e27ad31b0257937960a2da52",
+  "ended_utc": "2026-11-10T21:31:17.662379+00:00",
+  "host_exit": 0,
+  "captures": [
+    "green",
+    "initial",
+    "red"
+  ]
+}

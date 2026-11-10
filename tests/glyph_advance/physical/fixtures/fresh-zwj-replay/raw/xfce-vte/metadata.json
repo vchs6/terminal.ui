@@ -1,0 +1,40 @@
+{
+  "started_utc": "2026-11-10T21:31:20.870980+00:00",
+  "host_command": [
+    "dbus-run-session",
+    "--",
+    "env",
+    "-u",
+    "COLORTERM",
+    "/usr/bin/xfce4-terminal",
+    "--disable-server",
+    "--geometry=100x28+20+20",
+    "--title=WIDTH RECON xfce-vte",
+    "--command=/tmp/cjtui-dsr-driver.3dn55860/replay_probe /workspace/work/glyph-advance-tests/raw/old-fresh-replay/raw/xfce-vte /workspace/work/glyph-advance-tests/raw/old-fresh-replay/frames/xfce-vte zwj"
+  ],
+  "xorg_command": [
+    "Xorg",
+    ":242",
+    "-config",
+    "/workspace/work/cross-terminal-recon/probes/xorg-dummy.conf",
+    "-nolisten",
+    "tcp",
+    "-noreset",
+    "-logfile",
+    "/workspace/work/glyph-advance-tests/raw/old-fresh-replay/raw/xfce-vte/xorg.log"
+  ],
+  "locale": {
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "COLORTERM": null
+  },
+  "config": "same argv/font/geometry and initially empty per-session XDG dirs as TASK083; only native raw input for complete DSR; no advanced terminal mode change",
+  "native_sha256": "edaf7d086d0987683fd73d7818060b2e2e61a983e27ad31b0257937960a2da52",
+  "ended_utc": "2026-11-10T21:31:21.655441+00:00",
+  "host_exit": 0,
+  "captures": [
+    "green",
+    "initial",
+    "red"
+  ]
+}

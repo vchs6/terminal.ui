@@ -1,0 +1,79 @@
+{
+  "schema": "cjtui-rich-terminal-task083-v1",
+  "profile": "xterm-default",
+  "host": "xterm",
+  "host_version": "XTerm(398)\n",
+  "scenario": "q",
+  "scene": "examples/rich-text/src/main.cj",
+  "source_commit": "91c22f82adcd2412d9509b9872ff63450ba81af9",
+  "fixture_commit": "91c22f82adcd2412d9509b9872ff63450ba81af9",
+  "fixture_source_sha256": "dff0d2bca92115d1d2c2f1d9c8412e2cb94d95844ec33c5af6037144437fb8b3",
+  "fixture_binary_sha256": "589ee5424b0abfed5a91bc2c7526a288441e98e8ac048b9f33d60a56841cf048",
+  "harness_source_sha256": "3c548babd0817495225a1fa82343703466ed29ea81025fea5dee2f1f972c891a",
+  "captured_at_utc": "2026-11-10T20:51:56Z",
+  "locale": {
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "LC_CTYPE": "C.UTF-8"
+  },
+  "capability_scope": "Unavailable in unmodified ordinary example; no fixture diagnostic is attributed to this scene. Host TERM/COLORTERM declarations are in outer-tty.txt; fixture matrix supplies separate capability verification.\n",
+  "outer_tty": "ready_size=28 100\nready_termios=4500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0\nTERM=xterm\nCOLORTERM=\ntty=/dev/pts/0\nexit_size=34 120\nexit_termios=4500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0\nexit_status=0\n",
+  "inner_tty": "ready_size=28 100\nready_termios=4500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0\ntty=/dev/pts/1\nexit_size=34 120\nexit_termios=4500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0\nexit_status=0\n",
+  "x11_before": "\nxwininfo: Window id: 0x20000c \"TASK083 xterm-default q\"\n\n  Root window id: 0x250 (the root window) (has no name)\n  Parent window id: 0x250 (the root window) (has no name)\n     1 child:\n     0x20001e (has no name): ()  1004x536+0+0  +21+21\n\n  Absolute upper-left X:  20\n  Absolute upper-left Y:  20\n  Relative upper-left X:  20\n  Relative upper-left Y:  20\n  Width: 1004\n  Height: 536\n  Depth: 24\n  Visual: 0x21\n  Visual Class: TrueColor\n  Border width: 1\n  Class: InputOutput\n  Colormap: 0x20 (installed)\n  Bit Gravity State: NorthWestGravity\n  Window Gravity State: NorthWestGravity\n  Backing Store State: NotUseful\n  Save Under State: no\n  Map State: IsViewable\n  Override Redirect State: no\n  Corners:  +20+20  -254+20  -254-242  +20-242\n  -geometry 100x28+20+20\n\n  Bit gravity: NorthWestGravity\n  Window gravity: NorthWestGravity\n  Backing-store hint: NotUseful\n  Backing-planes to be preserved: 0xffffffff\n  Backing pixel: 0\n  Save-unders: No\n\n  Someone wants these events:\n      KeyPress\n      KeyRelease\n      EnterWindow\n      LeaveWindow\n      StructureNotify\n      FocusChange\n      PropertyChange\n  Do not propagate these events:\n  Override redirection?: No\n\n  Window manager hints:\n      Client accepts input or input focus: Yes\n      Initial state is Normal State\n      Process id: 1278176 on host 5a154db51e9e\n\n  Normal window size hints:\n      User supplied location: 20, 20\n      User supplied size: 1004 by 536\n      Program supplied size: 1004 by 536\n      Program supplied minimum size: 14 by 23\n      Program supplied base size: 4 by 4\n      Program supplied x resize increment: 10\n      Program supplied y resize increment: 19\n      User supplied size in resize increments:  100 by 28\n      Program supplied size in resize increments:  100 by 28\n      Program supplied minimum size in resize increments: 1 by 1\n      Program supplied base size in resize increments:  0 by 0\n      Program supplied window gravity: NorthWestGravity\n  No zoom window size hints defined\n\n  No window shape defined\n  No border shape defined\n\n",
+  "x11_after": "\nxwininfo: Window id: 0x20000c \"TASK083 xterm-default q\"\n\n  Root window id: 0x250 (the root window) (has no name)\n  Parent window id: 0x250 (the root window) (has no name)\n     1 child:\n     0x20001e (has no name): ()  1204x650+0+0  +21+21\n\n  Absolute upper-left X:  20\n  Absolute upper-left Y:  20\n  Relative upper-left X:  20\n  Relative upper-left Y:  20\n  Width: 1204\n  Height: 650\n  Depth: 24\n  Visual: 0x21\n  Visual Class: TrueColor\n  Border width: 1\n  Class: InputOutput\n  Colormap: 0x20 (installed)\n  Bit Gravity State: NorthWestGravity\n  Window Gravity State: NorthWestGravity\n  Backing Store State: NotUseful\n  Save Under State: no\n  Map State: IsViewable\n  Override Redirect State: no\n  Corners:  +20+20  -54+20  -54-128  +20-128\n  -geometry 120x34+20+20\n\n  Bit gravity: NorthWestGravity\n  Window gravity: NorthWestGravity\n  Backing-store hint: NotUseful\n  Backing-planes to be preserved: 0xffffffff\n  Backing pixel: 0\n  Save-unders: No\n\n  Someone wants these events:\n      KeyPress\n      KeyRelease\n      EnterWindow\n      LeaveWindow\n      StructureNotify\n      FocusChange\n      PropertyChange\n  Do not propagate these events:\n  Override redirection?: No\n\n  Window manager hints:\n      Client accepts input or input focus: Yes\n      Initial state is Normal State\n      Process id: 1278176 on host 5a154db51e9e\n\n  Normal window size hints:\n      User supplied location: 20, 20\n      User supplied size: 1204 by 650\n      Program supplied size: 1204 by 650\n      Program supplied minimum size: 14 by 23\n      Program supplied base size: 4 by 4\n      Program supplied x resize increment: 10\n      Program supplied y resize increment: 19\n      User supplied size in resize increments:  120 by 34\n      Program supplied size in resize increments:  120 by 34\n      Program supplied minimum size in resize increments: 1 by 1\n      Program supplied base size in resize increments:  0 by 0\n      Program supplied window gravity: NorthWestGravity\n  No zoom window size hints defined\n\n  No window shape defined\n  No border shape defined\n\n",
+  "artifact_hash_note": "Final artifact hashes are sampled only after host and Xorg exit; see final-artifacts.json.",
+  "metadata_created_at_utc": "2026-11-10T20:51:57.869078+00:00",
+  "captured_at_utc_semantics": "actual initial screenshot capture start; per-stage times below",
+  "captured_at_utc_by_stage": {
+    "initial": "2026-11-10T20:51:56Z",
+    "green": "2026-11-10T20:51:56Z",
+    "red": "2026-11-10T20:51:57Z",
+    "resized": "2026-11-10T20:51:57Z",
+    "resized-green": "2026-11-10T20:51:57Z"
+  },
+  "input_helper_binary": {
+    "path": "/workspace/work/rich-text-execution/commands/gui-key",
+    "sha256": "113f9dd377d440450bdc2df9d774ea3cb6d0bdb9948ab1d7c68cfbbb0b94a0cf",
+    "role": "external X11 key/resize injection; ELF kept outside curated archive"
+  },
+  "executed_harness_sha256": {
+    "execute-gui.sh": "7994c272ff5f09873d7ef8cd8887f5805da499ef9d8ab2629aa7360b172c1503",
+    "gui-key.c": "a6e6e91d0ba5eb28ea187bc45a22f946c08c105c8e60dae88b4224f174123114",
+    "gui-metadata.py": "e90151f4e94e7ca6ab25735936619f2809c4e11afdb335a02de2633f9b070e69",
+    "gui-rich.sh": "0c17fac7bf44fcac07014cfe9e0e32c5e3dd7facb72623f5166b4b7fdd859d34",
+    "verify-rich-grid.mjs": "16a39e94fc7dd45d9a1252a539657e8bc67417ed4c3b8c4bee111fd14295601b"
+  },
+  "binary_abi": "/workspace/work/rich-text-execution/clean-product/cjtui-0.0.0/examples/rich-text/target/release/bin/main: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, not stripped\n",
+  "ldd": "\tlinux-vdso.so.1 (0x00007fa008dab000)\n\tlibcangjie-runtime.so => not found\n\tlibboundscheck.so => not found\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fa007cff000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fa007b0b000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fa008dad000)\n",
+  "host_libraries": "\tlinux-vdso.so.1 (0x00007f8a259f4000)\n\tlibXft.so.2 => /lib/x86_64-linux-gnu/libXft.so.2 (0x00007f8a258c4000)\n\tlibfontconfig.so.1 => /lib/x86_64-linux-gnu/libfontconfig.so.1 (0x00007f8a25876000)\n\tlibfreetype.so.6 => /lib/x86_64-linux-gnu/libfreetype.so.6 (0x00007f8a257a6000)\n\tlibXext.so.6 => /lib/x86_64-linux-gnu/libXext.so.6 (0x00007f8a25791000)\n\tlibXaw.so.7 => /lib/x86_64-linux-gnu/libXaw.so.7 (0x00007f8a25716000)\n\tlibXmu.so.6 => /lib/x86_64-linux-gnu/libXmu.so.6 (0x00007f8a256fa000)\n\tlibXinerama.so.1 => /lib/x86_64-linux-gnu/libXinerama.so.1 (0x00007f8a256f5000)\n\tlibXpm.so.4 => /lib/x86_64-linux-gnu/libXpm.so.4 (0x00007f8a256e1000)\n\tlibXt.so.6 => /lib/x86_64-linux-gnu/libXt.so.6 (0x00007f8a25675000)\n\tlibX11.so.6 => /lib/x86_64-linux-gnu/libX11.so.6 (0x00007f8a2552d000)\n\tlibICE.so.6 => /lib/x86_64-linux-gnu/libICE.so.6 (0x00007f8a2550c000)\n\tlibutempter.so.0 => /lib/x86_64-linux-gnu/libutempter.so.0 (0x00007f8a25507000)\n\tlibtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x00007f8a254d1000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f8a252dd000)\n\tlibXrender.so.1 => /lib/x86_64-linux-gnu/libXrender.so.1 (0x00007f8a252d0000)\n\tlibexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x00007f8a252a2000)\n\tlibz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f8a25280000)\n\tlibbz2.so.1.0 => /lib/x86_64-linux-gnu/libbz2.so.1.0 (0x00007f8a2526d000)\n\tlibpng16.so.16 => /lib/x86_64-linux-gnu/libpng16.so.16 (0x00007f8a25234000)\n\tlibbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x00007f8a25226000)\n\tlibSM.so.6 => /lib/x86_64-linux-gnu/libSM.so.6 (0x00007f8a2521b000)\n\tlibxcb.so.1 => /lib/x86_64-linux-gnu/libxcb.so.1 (0x00007f8a251ee000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f8a259f6000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f8a250fe000)\n\tlibbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x00007f8a250db000)\n\tlibuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x00007f8a250d1000)\n\tlibXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x00007f8a250cc000)\n\tlibXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x00007f8a250c2000)\n",
+  "vte_version": "libvte-2.91-0:amd64\t0.80.1-1\n",
+  "expected_policy": {
+    "source": "formal final7a33ddc + R10 terminal projection policy; hand-literal expected rows in verify-rich-grid.mjs",
+    "initial_grid": [
+      100,
+      28
+    ],
+    "resized_grid": [
+      120,
+      34
+    ],
+    "events": [
+      "initial",
+      "t:Green",
+      "t:Red",
+      "resize",
+      "t:Green",
+      "q"
+    ],
+    "logical_rgb": [
+      80,
+      180,
+      255
+    ],
+    "projected_rgb": "White (Basic8 nearest palette)",
+    "component_override": "Yellow foreground per field with existing bold first11 cells retained",
+    "unicode": "e+combining one cell; CJK and ZWJ emoji each two cells, first scalar style"
+  },
+  "finalized_at_utc": "2026-11-10T20:52:16.227088+00:00",
+  "hashes_sampled_after_host_and_xorg_exit": true
+}
