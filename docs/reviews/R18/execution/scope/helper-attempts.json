@@ -1,0 +1,51 @@
+[
+  {
+    "attempt": "hosts-launch",
+    "class": "execution fixture",
+    "failure": "start-stock-sshd.sh mode0600 direct exec EACCES",
+    "repair": "invoke same readonly script through /bin/sh",
+    "original": "raw/hosts-launch/stderr"
+  },
+  {
+    "attempt": "hosts-launch2",
+    "class": "execution manifest",
+    "failure": "absolute m.binary concatenated by formal join(base,m.binary), ENOENT after prior assertions",
+    "repair": "new manifest-corrected.json only, preserve originals; offline same frozen oracle rerun",
+    "original": "raw/hosts2"
+  },
+  {
+    "attempt": "hosts2/tmux-allow",
+    "class": "execution window discovery",
+    "failure": "tmux set-titles immediately replaces initial caption; original-only search StopIteration",
+    "repair": "discover actual XTerm class on own X server; initial expected pane target independently checked against uname hostname",
+    "original": "raw/hosts2/tmux-allow"
+  },
+  {
+    "attempt": "hosts2/ssh-*",
+    "class": "execution remote environment",
+    "failure": "real SSH exit127 missing libcangjie-runtime.so; remote does not inherit local SDK env",
+    "repair": "source fixed SDK env in self-owned remote launcher before same consumer",
+    "original": "raw/hosts2"
+  },
+  {
+    "attempt": "hosts3/ssh-*",
+    "class": "execution input fixture",
+    "failure": "ssh -T leaves local client tty canonical; pc echoed, no host.copy result",
+    "repair": "record own client termios; stty raw -echo; ssh; trap exact restore; remote script PTY unchanged",
+    "original": "raw/hosts3"
+  },
+  {
+    "attempt": "record no-product-process",
+    "class": "recorder guard",
+    "failure": "precreated raw directory triggered FileExistsError before product launch",
+    "repair": "distinct process-trace command-log directory; no original files overwritten",
+    "original": "tool execution output; source record.py rejects existing dir"
+  },
+  {
+    "attempt": "evidence-recheck",
+    "class": "offline evidence helper",
+    "failure": "counted summary.json as 279th case directory",
+    "repair": "filter is_dir; complete278 data unchanged",
+    "original": "raw/evidence-recheck/stderr"
+  }
+]

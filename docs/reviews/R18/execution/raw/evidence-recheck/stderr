@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/work/session-extension-execution/scripts/verify-evidence.py", line 20, in <module>
+    cases=sorted((R/'session-matrix').iterdir());check(len(cases)==278,'278 original directories')
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/session-extension-execution/scripts/verify-evidence.py", line 9, in check
+    if not value:raise AssertionError(detail)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 278 original directories

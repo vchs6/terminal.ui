@@ -1,0 +1,65 @@
+{
+  "kind": "cjtui-session-public-host-v1",
+  "profile": "screen-pass",
+  "sourceSha": "83094ca92acab37ed0a38042e2e40ead55049f41",
+  "binary": "/workspace/work/session-extension-execution/source/tests/session_extensions/target/release/bin/main",
+  "binarySha256": "dc5c0dde2548b9bd9ac74d5a390e82b6a2ee65cdf5777eb6668e2fda74a3677a",
+  "host": {
+    "name": "XTerm/screen",
+    "version": "398/4.09.01",
+    "configFile": "host.config",
+    "grid": [
+      100,
+      28
+    ]
+  },
+  "route": "ScreenPassthrough",
+  "declareStack": true,
+  "utcStart": "2026-11-10T23:32:09.318733+00:00",
+  "utcEnd": "2026-11-10T23:32:11.612639+00:00",
+  "results": "consumer/results.tsv",
+  "operationWire": "consumer/wire.bin",
+  "fullStream": "outer-ansi.bin",
+  "nativeGrid": "native-grid.ansi",
+  "observations": "observations.json",
+  "expected": {
+    "seedHex": "5441534b313531206f776e20736565642073637265656e2d70617373",
+    "clipboardApplied": true,
+    "title": {
+      "initial": "TASK151 screen-pass",
+      "A": "CJTUI_HOST_TITLE_A",
+      "B": "CJTUI_HOST_TITLE_B",
+      "restored": "TASK151 screen-pass"
+    }
+  },
+  "screenshots": [
+    {
+      "file": "initial.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts2/screen-pass/initial.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:32:09.847405+00:00"
+    },
+    {
+      "file": "A.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts2/screen-pass/A.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:32:10.393926+00:00"
+    },
+    {
+      "file": "B.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts2/screen-pass/B.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:32:10.834175+00:00"
+    },
+    {
+      "file": "restored.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts2/screen-pass/restored.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:32:11.281447+00:00"
+    }
+  ]
+}

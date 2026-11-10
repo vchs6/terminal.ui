@@ -1,0 +1,65 @@
+{
+  "kind": "cjtui-session-public-host-v1",
+  "profile": "vte-default",
+  "sourceSha": "83094ca92acab37ed0a38042e2e40ead55049f41",
+  "binary": "../../../source/tests/session_extensions/target/release/bin/main",
+  "binarySha256": "dc5c0dde2548b9bd9ac74d5a390e82b6a2ee65cdf5777eb6668e2fda74a3677a",
+  "host": {
+    "name": "XFCE/VTE",
+    "version": "1.1.4/0.80.1",
+    "configFile": "host.config",
+    "grid": [
+      100,
+      28
+    ]
+  },
+  "route": "Direct",
+  "declareStack": true,
+  "utcStart": "2026-11-10T23:31:39.564534+00:00",
+  "utcEnd": "2026-11-10T23:31:41.768761+00:00",
+  "results": "consumer/results.tsv",
+  "operationWire": "consumer/wire.bin",
+  "fullStream": "outer-ansi.bin",
+  "nativeGrid": "native-2-visible.txt",
+  "observations": "observations.json",
+  "expected": {
+    "seedHex": "5441534b313531206f776e2073656564207674652d64656661756c74",
+    "clipboardApplied": false,
+    "title": {
+      "initial": "TASK151 vte-default",
+      "A": "TASK151 vte-default",
+      "B": "TASK151 vte-default",
+      "restored": "TASK151 vte-default"
+    }
+  },
+  "screenshots": [
+    {
+      "file": "initial.png",
+      "sha256": "1756c3001db23d679fc0f5cd9714eb3408ae6335783af64aeb61ba7aeb5c75b5",
+      "captureCommand": "import -window 0x600003 /workspace/work/session-extension-execution/raw/hosts2/vte-default/initial.png",
+      "windowId": "0x600003",
+      "utc": "2026-11-10T23:31:40.191813+00:00"
+    },
+    {
+      "file": "A.png",
+      "sha256": "1756c3001db23d679fc0f5cd9714eb3408ae6335783af64aeb61ba7aeb5c75b5",
+      "captureCommand": "import -window 0x600003 /workspace/work/session-extension-execution/raw/hosts2/vte-default/A.png",
+      "windowId": "0x600003",
+      "utc": "2026-11-10T23:31:40.722130+00:00"
+    },
+    {
+      "file": "B.png",
+      "sha256": "1756c3001db23d679fc0f5cd9714eb3408ae6335783af64aeb61ba7aeb5c75b5",
+      "captureCommand": "import -window 0x600003 /workspace/work/session-extension-execution/raw/hosts2/vte-default/B.png",
+      "windowId": "0x600003",
+      "utc": "2026-11-10T23:31:41.155654+00:00"
+    },
+    {
+      "file": "restored.png",
+      "sha256": "1756c3001db23d679fc0f5cd9714eb3408ae6335783af64aeb61ba7aeb5c75b5",
+      "captureCommand": "import -window 0x600003 /workspace/work/session-extension-execution/raw/hosts2/vte-default/restored.png",
+      "windowId": "0x600003",
+      "utc": "2026-11-10T23:31:41.587304+00:00"
+    }
+  ]
+}

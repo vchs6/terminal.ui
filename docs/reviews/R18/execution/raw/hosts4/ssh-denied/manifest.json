@@ -1,0 +1,75 @@
+{
+  "kind": "cjtui-session-public-host-v1",
+  "profile": "ssh-denied",
+  "sourceSha": "83094ca92acab37ed0a38042e2e40ead55049f41",
+  "binary": "../../../source/tests/session_extensions/target/release/bin/main",
+  "binarySha256": "dc5c0dde2548b9bd9ac74d5a390e82b6a2ee65cdf5777eb6668e2fda74a3677a",
+  "host": {
+    "name": "XTerm",
+    "version": "398",
+    "configFile": "host.config",
+    "grid": [
+      100,
+      28
+    ]
+  },
+  "route": "Direct",
+  "declareStack": true,
+  "utcStart": "2026-11-10T23:34:30.374664+00:00",
+  "utcEnd": "2026-11-10T23:34:32.518954+00:00",
+  "results": "consumer/results.tsv",
+  "operationWire": "consumer/wire.bin",
+  "fullStream": "outer-ansi.bin",
+  "nativeGrid": "native-grid.ansi",
+  "observations": "observations.json",
+  "expected": {
+    "seedHex": "5441534b313531206f776e2073656564207373682d64656e696564",
+    "clipboardApplied": false,
+    "title": {
+      "initial": "TASK151 ssh-denied",
+      "A": "CJTUI_HOST_TITLE_A",
+      "B": "CJTUI_HOST_TITLE_B",
+      "restored": "TASK151 ssh-denied"
+    }
+  },
+  "screenshots": [
+    {
+      "file": "initial.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts4/ssh-denied/initial.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:34:30.982831+00:00"
+    },
+    {
+      "file": "A.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts4/ssh-denied/A.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:34:31.473621+00:00"
+    },
+    {
+      "file": "B.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts4/ssh-denied/B.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:34:31.864698+00:00"
+    },
+    {
+      "file": "restored.png",
+      "sha256": "ee05d1e0f54e31a779d0d3b70c21959686fb8783fb9a0aeaa3babee7dd841d3f",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts4/ssh-denied/restored.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:34:32.255672+00:00"
+    }
+  ],
+  "ssh": {
+    "topology": "stock OpenSSH loopback 127.0.0.1:22473, ssh -T + remote util-linux script PTY",
+    "clientLog": "ssh-client.log",
+    "remoteCommand": "/usr/bin/script --quiet --flush --return --log-out /workspace/work/session-extension-execution/raw/hosts4/ssh-denied/remote-pty-ansi.bin --command '/bin/bash -c '\"'\"'source /workspace/work/validation/sdk/cangjie/envsetup.sh; stty rows 28 cols 100; exec /workspace/work/session-extension-execution/source/tests/session_extensions/host-consumer.sh /workspace/work/session-extension-execution/source/tests/session_extensions/target/release/bin/main /workspace/work/session-extension-execution/raw/hosts4/ssh-denied/consumer Direct declared'\"'\"''",
+    "remoteGrid": [
+      100,
+      28
+    ],
+    "remoteTty": "/dev/pts/2"
+  }
+}

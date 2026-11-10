@@ -1,0 +1,65 @@
+{
+  "kind": "cjtui-session-public-host-v1",
+  "profile": "tmux-allow",
+  "sourceSha": "83094ca92acab37ed0a38042e2e40ead55049f41",
+  "binary": "../../../source/tests/session_extensions/target/release/bin/main",
+  "binarySha256": "dc5c0dde2548b9bd9ac74d5a390e82b6a2ee65cdf5777eb6668e2fda74a3677a",
+  "host": {
+    "name": "XTerm/tmux",
+    "version": "398/3.5a",
+    "configFile": "host.config",
+    "grid": [
+      100,
+      27
+    ]
+  },
+  "route": "Direct",
+  "declareStack": true,
+  "utcStart": "2026-11-10T23:33:09.764375+00:00",
+  "utcEnd": "2026-11-10T23:33:15.523008+00:00",
+  "results": "consumer/results.tsv",
+  "operationWire": "consumer/wire.bin",
+  "fullStream": "outer-ansi.bin",
+  "nativeGrid": "native-grid.ansi",
+  "observations": "observations.json",
+  "expected": {
+    "seedHex": "5441534b313531206f776e207365656420746d75782d616c6c6f77",
+    "clipboardApplied": true,
+    "title": {
+      "initial": "5a154db51e9e",
+      "A": "CJTUI_HOST_TITLE_A",
+      "B": "CJTUI_HOST_TITLE_B",
+      "restored": "5a154db51e9e"
+    }
+  },
+  "screenshots": [
+    {
+      "file": "initial.png",
+      "sha256": "938c9bab771ef05204caaa762ac31b1296d0e64f30c87f1120a38deccb43bf90",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts3/tmux-allow/initial.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:33:11.237820+00:00"
+    },
+    {
+      "file": "A.png",
+      "sha256": "545de344156f61e5c4d5e56c24d3f144e95db98491d7846a2c3e390bdf3a825f",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts3/tmux-allow/A.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:33:12.640241+00:00"
+    },
+    {
+      "file": "B.png",
+      "sha256": "d9f77e0788e42ca05ba3d864ae3999ed2e1747c0511c745e350fa9f49ff279e7",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts3/tmux-allow/B.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:33:13.945348+00:00"
+    },
+    {
+      "file": "restored.png",
+      "sha256": "938c9bab771ef05204caaa762ac31b1296d0e64f30c87f1120a38deccb43bf90",
+      "captureCommand": "import -window 0x60000c /workspace/work/session-extension-execution/raw/hosts3/tmux-allow/restored.png",
+      "windowId": "0x60000c",
+      "utc": "2026-11-10T23:33:15.251364+00:00"
+    }
+  ]
+}
