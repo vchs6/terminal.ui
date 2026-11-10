@@ -107,6 +107,12 @@ public class AnsiTextDecoder {
                     ""
                 }, start, 1, output)
             } else if (byte >= 0xc2 && byte <= 0xf4) {
+                // CSI framing is ASCII, so this lead is already a syntax fault.
+                // Keep validating the scalar while draining; countByte above
+                // preserves resource priority only for a fault on this same byte.
+                if (state == AnsiTextState.Csi) {
+                    issue(output, AnsiTextIssue.MalformedSequence)
+                }
                 utf8.add(byte)
                 utf8Offset = start
                 utf8Length = if (byte < 0xe0) {
