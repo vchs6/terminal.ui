@@ -1,18 +1,27 @@
 package cjtui
 
+import std.fs.File
+
 public class Frame {
     public let width: Int64
     public let height: Int64
     private let ambiguousWide: Bool
     private let cells: Array<Cell>
-    public init(width: Int64, height: Int64, ambiguousWide!: Bool = false) {
-        if (width < 0 || height < 0 || (height != 0 && width > Int64.Max / height)) {
+    private let transparent: Bool
+    private let maxCells: Int64
+    public init(width: Int64, height: Int64, ambiguousWide!: Bool = false, transparent!: Bool = false,
+        maxCells!: Int64 = 1048576) {
+        if (width < 0 || height < 0 || maxCells <= 0 ||
+            (height != 0 && width > Int64.Max / height) ||
+            (width > 0 && height > 0 && width > maxCells / height)) {
             throw IllegalArgumentException("invalid frame size")
         }
         this.width = width
         this.height = height
         this.ambiguousWide = ambiguousWide
-        cells = Array<Cell>(width * height, {_ => blankCell()})
+        this.transparent = transparent
+        this.maxCells = maxCells
+        cells = Array<Cell>(width * height, {_ => blankCell(transparent)})
     }
     private func index(x: Int64, y: Int64): Int64 {
         y * width + x
@@ -23,7 +32,7 @@ public class Frame {
         }
         cells[index(x, y)]
     }
-    private func clearAt(x: Int64, y: Int64): Unit {
+    private func clearAt(x: Int64, y: Int64, transparent: Bool): Unit {
         var start = x
         while (start > 0 && cells[index(start, y)].continuation) {
             start--
@@ -31,7 +40,7 @@ public class Frame {
         let span = cells[index(start, y)].width
         for (i in 0..span) {
             if (start + i < width) {
-                cells[index(start + i, y)] = blankCell()
+                cells[index(start + i, y)] = blankCell(transparent)
             }
         }
     }
@@ -54,7 +63,7 @@ public class Frame {
             }
             if (cy >= 0 && cy < height && cx >= 0 && cx < width && w <= width - cx) {
                 for (i in 0..w) {
-                    clearAt(cx + i, cy)
+                    clearAt(cx + i, cy, transparent)
                 }
                 cells[index(cx, cy)] = Cell(cluster, w, false, style)
                 for (i in 1..w) {
@@ -196,7 +205,79 @@ public class Frame {
             }
         }
     }
+    public func clear(rect: Rect, transparent!: Bool = false): Unit {
+        if (width == 0 || height == 0) { return }
+        let x0 = greater(0, rect.x)
+        let y0 = greater(0, rect.y)
+        let x1 = lesser(width, signedAdd(rect.x, rect.width))
+        let y1 = lesser(height, signedAdd(rect.y, rect.height))
+        for (y in y0..greater(y0, y1)) {
+            for (x in x0..greater(x0, x1)) {
+                clearAt(x, y, transparent)
+            }
+        }
+    }
+    public func copy(rect: Rect): Frame {
+        let result = Frame(rect.width, rect.height, ambiguousWide: ambiguousWide, transparent: transparent,
+            maxCells: maxCells)
+        if (rect.x != Int64.Min && rect.y != Int64.Min) {
+            result.composite(this, x: -rect.x, y: -rect.y)
+        }
+        result
+    }
+    public func resized(width: Int64, height: Int64): Frame {
+        let result = Frame(width, height, ambiguousWide: ambiguousWide, transparent: transparent, maxCells: maxCells)
+        result.composite(this)
+        result
+    }
+    public func composite(layer: Frame, x!: Int64 = 0, y!: Int64 = 0): Unit {
+        if (ambiguousWide != layer.ambiguousWide) {
+            throw IllegalArgumentException("incompatible width policy")
+        }
+        if (width == 0 || height == 0 || layer.width == 0 || layer.height == 0 ||
+            x >= width || y >= height || x <= -layer.width || y <= -layer.height) { return }
+        let sx = if (x < 0) { -x } else { 0 }
+        let sy = if (y < 0) { -y } else { 0 }
+        let dx = if (x > 0) { x } else { 0 }
+        let dy = if (y > 0) { y } else { 0 }
+        let columns = lesser(width - dx, layer.width - sx)
+        let rows = lesser(height - dy, layer.height - sy)
+        // Snapshot only the intersecting cells, so overlapping self-composition reads the original.
+        let source = Array<Cell>(columns * rows, {i =>
+            layer.cells[layer.index(sx + i % columns, sy + i / columns)]
+        })
+        for (row in 0..rows) {
+            var col = 0
+            while (col < columns) {
+                let cell = source[row * columns + col]
+                if (cell.isTransparent) {
+                    col++
+                    continue
+                }
+                if (!cell.continuation && cell.width <= columns - col) {
+                    for (i in 0..cell.width) { clearAt(dx + col + i, dy + row, transparent) }
+                    for (i in 0..cell.width) {
+                        cells[index(dx + col + i, dy + row)] = source[row * columns + col + i]
+                    }
+                    col += cell.width
+                } else {
+                    clearAt(dx + col, dy + row, transparent)
+                    cells[index(dx + col, dy + row)] = Cell(" ", 1, false, cell.style)
+                    col++
+                }
+            }
+        }
+    }
+    public func writePlainText(path: String): Unit {
+        File.writeTo(path, toPlainText().toArray())
+    }
+    public func writeAnsi(path: String, colorMode!: ColorMode = ColorMode.TrueColor): Unit {
+        File.writeTo(path, toAnsi(colorMode: colorMode).toArray())
+    }
     public func toPlainText(): String {
+        if (width == 0 && height > 0 && height - 1 > maxCells) {
+            throw IllegalArgumentException("frame text exceeds budget")
+        }
         var out = ""
         for (y in 0..height) {
             if (y > 0) {
