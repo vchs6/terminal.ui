@@ -307,3 +307,7 @@ L3 交付前完成其必需验收，工作包集成与交付前完成相应集�
 可使用用户指定的[CangjieSkills](https://atomgit.com/Cangjie-SIG/CangjieSkills.git)；本轮固定277f2e1234ca5217496966887243c679653887a8，cangjie-coding按脚本渐进查询，语言事实以本项目SDK1.2.0实际编译优先，不采用其默认旧SDK版本覆盖项目清单。此工具只属开发资料，不加入产品依赖或制品。
 
 工程规范同时参考[cangjie-rules](https://github.com/SunriseSummer/cangjie-rules.git)，固定40bacab1dafc7c5710a9b14c5c5c86898feed63c。按需采用其结构/命名/格式/最小可见性和兼容性审查，不将全部条目或附带检查器自动升级为本项目额外门禁；适用范围及差异见[仓颉工程参考](docs/development/cangjie-conventions.md)。
+
+## 15. 自动适配与跨终端报告（2026-11-10用户裁决）
+
+正常应用声明完整颜色与属性，由框架渲染自动识别实际支持并降级，不能要求程序员选择能力；显式override仅高级可选。测试以不同真实终端实现为依据，逐宿主记录版本/配置/尺寸/能力来源/受检SHA/日志/结果，并附实际运行PNG及hash，不能用同PTY换TERM或生成/重绘图片冒充。缺少真实环境的范围明确待验，截图不代替功能/恢复原始证据。测试GUI/捕获工具不成为产品运行依赖。

@@ -4,11 +4,11 @@ R9已交付布局/装饰，但Color仍只有8色、Style只有bold，TASK013主�
 
 # What Changes
 
-实现既定TASK006：扩展结构化Color/Style和组件属性；Frame与Application显式颜色模式、确定性降级、按有效输出差分；交付可运行颜色示例。继续使用ansies公开编码API，依赖最近邻缺陷仅用框架策略薄适配，不修共享包或引入新依赖。
+实现既定TASK006及用户最新明确的自动适配：扩展结构化Color/Style和组件属性；Application默认自动获取终端能力并降级，显式模式只为可选override；按有效输出差分，交付无需能力处理的颜色示例。继续使用ansies公开编码API，依赖最近邻缺陷仅用框架策略薄适配，不修共享包或引入新依赖。
 
 # Capabilities
 
-不新增规范级目标；落实REQ001文本样式/REQ005.4和既有AC006。现有终端输出/状态/性能要求不改变，skip_specs=true。
+落实REQ001文本样式/REQ005.4及AC006；用户新裁决以terminal-output和development-workflow增量场景明确自动默认、真实跨终端及报告截图。不是完整跨平台或完整主题交付。
 
 # Impact
 
