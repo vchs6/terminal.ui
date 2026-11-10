@@ -1,0 +1,122 @@
+[
+  {
+    "command": "clean-core-build",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ /workspace/work/runtime-execution/clean-consumers/tests/runtime\\ \\&\\&\\ cjpm\\ build"
+  },
+  {
+    "command": "root-check",
+    "exit": 0,
+    "recorded_command": "cjpm check"
+  },
+  {
+    "command": "clean-macro-positive-build",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ /workspace/work/runtime-execution/clean-consumers/tests/runtime/macros/positive\\ \\&\\&\\ cjpm\\ build"
+  },
+  {
+    "command": "runtime-core",
+    "exit": 0,
+    "recorded_command": "tests/runtime/run.sh core"
+  },
+  {
+    "command": "gui-reactive-raw-check",
+    "exit": 0,
+    "recorded_command": "python3 /workspace/work/runtime-execution/verify-reactive-raw.py"
+  },
+  {
+    "command": "clean-macro-positive-direct",
+    "exit": 0,
+    "recorded_command": "env TERM=dumb COLORTERM= timeout 45s /workspace/work/runtime-execution/clean-consumers/tests/runtime/macros/positive/target/release/bin/main"
+  },
+  {
+    "command": "clean-reactive-direct",
+    "exit": 0,
+    "recorded_command": "node /workspace/work/runtime-execution/clean-reactive-pty.mjs /workspace/work/runtime-execution/clean-product/cjtui-0.0.0/examples/reactive/target/release/bin/main /workspace/work/runtime-execution/evidence/clean-reactive-pty"
+  },
+  {
+    "command": "clean-root-check",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ \\\"\\$1\\\"\\ \\&\\&\\ cjpm\\ check bash /workspace/work/runtime-execution/clean-product/cjtui-0.0.0"
+  },
+  {
+    "command": "reactive-build",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ examples/reactive\\ \\&\\&\\ cjpm\\ build"
+  },
+  {
+    "command": "clean-reactive-build",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ \\\"\\$1/examples/reactive\\\"\\ \\&\\&\\ cjpm\\ build bash /workspace/work/runtime-execution/clean-product/cjtui-0.0.0"
+  },
+  {
+    "command": "regressions",
+    "exit": 1,
+    "recorded_command": "bash -c for\\ mode\\ in\\ contract\\ coordinates\\ colors\\ layout\\ decoration\\ composition\\ application-lifecycle\\;\\ do\\ ./tests/run-slice.sh\\ \\\"\\$mode\\\"\\ \\|\\|\\ exit\\;\\ done"
+  },
+  {
+    "command": "sdk",
+    "exit": 0,
+    "recorded_command": "bash -c cjc\\ --version\\;\\ cjpm\\ --version\\;\\ node\\ --version\\;\\ uname\\ -a\\;\\ getconf\\ CLK_TCK"
+  },
+  {
+    "command": "runtime-idle-cpu",
+    "exit": 0,
+    "recorded_command": "tests/runtime/session/run.sh idle-cpu"
+  },
+  {
+    "command": "clean-core-direct",
+    "exit": 0,
+    "recorded_command": "env TERM=dumb COLORTERM= timeout 45s /workspace/work/runtime-execution/clean-consumers/tests/runtime/target/release/bin/main"
+  },
+  {
+    "command": "gui-reactive-command",
+    "exit": 0,
+    "recorded_command": "/workspace/work/runtime-execution/gui-reactive.sh xterm-default xfce-vte"
+  },
+  {
+    "command": "clean-root-build",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ \\\"\\$1\\\"\\ \\&\\&\\ cjpm\\ build bash /workspace/work/runtime-execution/clean-product/cjtui-0.0.0"
+  },
+  {
+    "command": "archive-boundary",
+    "exit": 1,
+    "recorded_command": "node scripts/check-bundle.mjs target/cjtui-0.0.0.cjp"
+  },
+  {
+    "command": "archive-list",
+    "exit": 0,
+    "recorded_command": "tar -tzf target/cjtui-0.0.0.cjp"
+  },
+  {
+    "command": "macro-positive-build",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ tests/runtime/macros/positive\\ \\&\\&\\ cjpm\\ build\\ --target-dir\\ ../target"
+  },
+  {
+    "command": "runtime-session",
+    "exit": 0,
+    "recorded_command": "tests/runtime/session/run.sh"
+  },
+  {
+    "command": "root-build",
+    "exit": 0,
+    "recorded_command": "cjpm build"
+  },
+  {
+    "command": "reused-macro-negatives",
+    "exit": 0,
+    "recorded_command": "reused frozen macro diagnostic artifacts; original head/utc/manifests retained"
+  },
+  {
+    "command": "bundle",
+    "exit": 0,
+    "recorded_command": "cjpm bundle"
+  },
+  {
+    "command": "macro-positive-direct",
+    "exit": 0,
+    "recorded_command": "env TERM=dumb COLORTERM= timeout 45s tests/runtime/macros/target/release/bin/main"
+  }
+]

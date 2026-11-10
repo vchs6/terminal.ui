@@ -21,12 +21,12 @@
 
 ## Tasks / state
 
-- [ ] TASK-071（WP005/testing）：固定A+B公共消费者、宏正负样例与原始RED。
-- [ ] TASK-072（WP004/implementation）：实现A+B构造/绑定/代际/事件最小协议/调度，与run集成并交付公开动态示例。
-- [ ] TASK-073（WP005/verification）：固定A+B完整技术diff的spec/quality独立审核，无未决Critical/Important。
-- [ ] TASK-074（WP005/testing）：独立运行A+B新用例、受影响回归、正常bundle/纯公开包消费及真实TTY清理。
-- [ ] TASK-075（WP005/acceptance）：有限合同证据及元数据核对，不提前关闭列表/弹窗父AC。
-- [ ] TASK-076（WP005/testing）：固定C槽位表、混合/失效/边界独立测试与RED。
+- [x] TASK-071（WP005/testing）：固定A+B公共消费者、宏正负样例与原始RED。
+- [x] TASK-072（WP004/implementation）：实现A+B构造/绑定/代际/事件最小协议/调度，与run集成并交付公开动态示例。
+- [x] TASK-073（WP005/verification）：固定A+B完整技术diff的spec/quality独立审核，无未决Critical/Important。
+- [x] TASK-074（WP005/testing）：独立运行A+B新用例、受影响回归、正常bundle/纯公开包消费及真实TTY清理。
+- [x] TASK-075（WP005/acceptance）：有限合同证据及元数据核对，不提前关闭列表/弹窗父AC。
+- [x] TASK-076（WP005/testing）：固定C槽位表、混合/失效/边界独立测试与RED。
 - [ ] TASK-077（WP004/implementation）：实现If/ForEach/ListItem和NodeRef混合操作，唯一子序列。
 - [ ] TASK-078（WP005/verification）：固定C增量和整体运行时跨界spec/quality独立审核。
 - [ ] TASK-079（WP005/testing）：独立C矩阵、A+B相关回归和正常源码制品消费。

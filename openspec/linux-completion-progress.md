@@ -25,3 +25,5 @@ Frame已正常推送6a7b240（远端/本地一致、clean）。当前继续[reac
 实际Linux VT产品探针已在QEMU内核tty1运行旧6a7b240三个场景，退出恢复通过且有16张原始PNG；字体缺少CJK/emoji/组合符，不能将逻辑Unicode网格等同真实显示。字形草案主代理选择保守整簇等宽ASCII占位、复用边框映射，未知PTY保留Unicode；没有可用NFC依赖，绝不手写表。093–097预留自动字形子接口，080/084后、主题产品前；完整041仍等最终场景。离线render/snapshot默认逻辑Unicode，显式Ascii可供排版/ellipsis确定验证；设备run默认Auto，公共选项只是高级覆盖。正式稿和preflight仍待完成。
 
 独立交互草案/workspace/work/interaction-contract-draft整理为A/B/C正式候选：098–102公共Canvas/focus(父017)、103–107viewport(父037)、108–112overlay(父018)。主代理采纳原推荐，ScrollView默认Vertical、普通Column不隐式滚动；Tab/backtab最小解码进入A。完整输入/编辑草案/workspace/work/input-contract-draft继续，113–117归一化输入/paste/EOF子接口、118–122编辑，原稳定028编辑/030可选会话/020恢复/019菜单编号保持，不按主代理口误重编号。上述皆未冻结/未实施，不提前关闭父AC。M2草案/workspace/work/m2-contract-draft完成，待主代理正式收敛；完整Linux剩余仍连续执行。
+
+Runtime A+B最终075有限PASS已机械集成（产品0912436，R12/acceptance，AC071–075 passed）。原VTE metadata保留并追加strict JSON projection，原hash不变。076动态32组test-only已集成bc91577/真缺API RED，077可立即fresh Terra/high产品实施；不要重派测试/重跑A+B全suite。Rich测试已集成3f60142+7ba2cd4，Theme测试105337d；三者RED证据归R13/R14/R15，各自产品屏障不变。Glyph G010最终6d30da4独立补preflight ready，093作者glyph_test_author正写，R16。Interaction候选d10eb13已独立preflight中；M2/session/input/widgets草稿处于各自目录，尚未产品准入。

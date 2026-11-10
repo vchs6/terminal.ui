@@ -1,0 +1,107 @@
+[
+  {
+    "command": "integration-build",
+    "exit": 0,
+    "recorded_command": "tests/integration/fixture/build.sh"
+  },
+  {
+    "command": "native-session",
+    "exit": 0,
+    "recorded_command": "tests/native-session/run.sh"
+  },
+  {
+    "command": "abi-direct",
+    "exit": 0,
+    "recorded_command": "/workspace/work/runtime-execution/r019-abi"
+  },
+  {
+    "command": "abi-build",
+    "exit": 0,
+    "recorded_command": "gcc -std=c11 -Wall -Wextra -Werror -O2 native/cjtui_terminal.c /workspace/work/runtime-execution/r019-evidence/size_abi_probe.c -Wl\\,--wrap=ioctl -o /workspace/work/runtime-execution/r019-abi"
+  },
+  {
+    "command": "root-check",
+    "exit": 0,
+    "recorded_command": "cjpm check"
+  },
+  {
+    "command": "integration-resize",
+    "exit": 0,
+    "recorded_command": "node tests/integration/pty.mjs tests/integration/fixture/target/release/bin/main resize"
+  },
+  {
+    "command": "clean-reactive-direct",
+    "exit": 0,
+    "recorded_command": "node /workspace/work/runtime-execution/clean-reactive-pty.mjs /workspace/work/runtime-execution/r019-clean/cjtui-0.0.0/examples/reactive/target/release/bin/main /workspace/work/runtime-execution/r019-evidence/clean-reactive-pty"
+  },
+  {
+    "command": "gui-library-version-supplement",
+    "exit": 0,
+    "recorded_command": "bash -c dpkg-query\\ -W\\ libvte-2.91-0\\ xfce4-terminal\\;\\ ldd\\ /usr/bin/xfce4-terminal\\ \\|\\ rg\\ \\\"vte\\|gtk\\|glib\\\""
+  },
+  {
+    "command": "clean-root-check",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ \\\"\\$1\\\"\\ \\&\\&\\ cjpm\\ check bash /workspace/work/runtime-execution/r019-clean/cjtui-0.0.0"
+  },
+  {
+    "command": "tool-versions",
+    "exit": 0,
+    "recorded_command": "bash -c cjc\\ --version\\;\\ cjpm\\ --version\\;\\ gcc\\ --version\\;\\ node\\ --version\\;\\ uname\\ -a\\;\\ getconf\\ CLK_TCK"
+  },
+  {
+    "command": "lifecycle-resize",
+    "exit": 0,
+    "recorded_command": "node tests/application-lifecycle/pty.mjs tests/application-lifecycle/target/release/bin/main resize-success"
+  },
+  {
+    "command": "clean-reactive-build",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ \\\"\\$1/examples/reactive\\\"\\ \\&\\&\\ cjpm\\ build bash /workspace/work/runtime-execution/r019-clean/cjtui-0.0.0"
+  },
+  {
+    "command": "resize-coherence",
+    "exit": 0,
+    "recorded_command": "tests/resize-coherence/run.sh"
+  },
+  {
+    "command": "clean-root-build",
+    "exit": 0,
+    "recorded_command": "bash -c cd\\ \\\"\\$1\\\"\\ \\&\\&\\ cjpm\\ build bash /workspace/work/runtime-execution/r019-clean/cjtui-0.0.0"
+  },
+  {
+    "command": "lifecycle-build",
+    "exit": 0,
+    "recorded_command": "bash -c gcc\\ -std=c11\\ -Wall\\ -Wextra\\ -Werror\\ -fPIC\\ -O2\\ -c\\ tests/application-lifecycle/native/close_wrap.c\\ -o\\ tests/application-lifecycle/native/close_wrap.o\\ \\&\\&\\ ar\\ rcs\\ tests/application-lifecycle/native/liblifecycle_close.a\\ tests/application-lifecycle/native/close_wrap.o\\ \\&\\&\\ cd\\ tests/application-lifecycle\\ \\&\\&\\ cjpm\\ build"
+  },
+  {
+    "command": "archive-boundary",
+    "exit": 1,
+    "recorded_command": "node ../source/scripts/check-bundle.mjs target/cjtui-0.0.0.cjp"
+  },
+  {
+    "command": "archive-list",
+    "exit": 0,
+    "recorded_command": "tar -tzf target/cjtui-0.0.0.cjp"
+  },
+  {
+    "command": "root-build",
+    "exit": 0,
+    "recorded_command": "cjpm build"
+  },
+  {
+    "command": "clean-abi-direct",
+    "exit": 0,
+    "recorded_command": "/workspace/work/runtime-execution/r019-clean-abi"
+  },
+  {
+    "command": "clean-abi-build",
+    "exit": 0,
+    "recorded_command": "gcc -std=c11 -Wall -Wextra -Werror -O2 /workspace/work/runtime-execution/r019-clean/cjtui-0.0.0/native/cjtui_terminal.c /workspace/work/runtime-execution/r019-evidence/size_abi_probe.c -Wl\\,--wrap=ioctl -o /workspace/work/runtime-execution/r019-clean-abi"
+  },
+  {
+    "command": "bundle",
+    "exit": 0,
+    "recorded_command": "cjpm bundle"
+  }
+]

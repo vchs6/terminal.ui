@@ -103,11 +103,11 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-071 | REQ-001/002/007 | TASK-071 | 公共runtime/宏消费者固定期望与真实RED | pending |
-| AC-072 | REQ-001/002/009 | TASK-072 | 持久构造/绑定/调度/有限事件及公开动态示例 | pending |
-| AC-073 | REQ-007 | TASK-073 | 固定技术diff的独立spec/quality审查 | pending |
-| AC-074 | REQ-002/004/006/007 | TASK-074 | 独立执行、真实退出/TTY恢复、正常bundle与公开消费 | pending |
-| AC-075 | REQ-001/002/007 | TASK-075 | A+B有限证据与最终元数据核对，原父AC不提前完成 | pending |
+| AC-071 | REQ-001/002/007 | TASK-071 | 公共runtime/宏消费者固定期望与真实RED；见[R12有限验收](reviews/R12/acceptance/report.md) | passed |
+| AC-072 | REQ-001/002/009 | TASK-072 | 持久构造/绑定/调度/有限事件及公开动态示例；见[R12有限验收](reviews/R12/acceptance/report.md) | passed |
+| AC-073 | REQ-007 | TASK-073 | 固定技术diff的独立spec/quality审查；见[R12有限验收](reviews/R12/acceptance/report.md) | passed |
+| AC-074 | REQ-002/004/006/007 | TASK-074 | 独立执行、真实退出/TTY恢复、正常bundle与公开消费；见[R12有限验收](reviews/R12/acceptance/report.md) | passed |
+| AC-075 | REQ-001/002/007 | TASK-075 | A+B有限证据与最终元数据核对，原父AC不提前完成；见[R12有限验收](reviews/R12/acceptance/report.md) | passed |
 | AC-076 | REQ-002/007 | TASK-076 | 动态/混合槽位独立golden与真实RED | pending |
 | AC-077 | REQ-001/002 | TASK-077 | If/ForEach与手动操作共享唯一子序列 | pending |
 | AC-078 | REQ-007 | TASK-078 | C增量及运行时跨界独立spec/quality审查 | pending |
