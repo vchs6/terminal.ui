@@ -31,3 +31,5 @@ Ruling：保留末次stats累计但dispose当前存量归0，明确用于资源�
 独立preflight指出组合根默认布局、无focus时设备事件目标两项Important合同空缺。主代理R015明确默认Column布局盒、run活动可见root为目标；隐藏target/祖先显式dispatch报InvalidProperty，隐藏root设备不虚构UI事件但保留旧非interrupt handler/默认interrupt停止。修正stats的paint计数为每节点paint调用，不强迫自由函数改成员。等待审查者核此限定修文后071准入；没有提前派产品。
 
 独立preflight最终a947857 ready/design_reviewed，DQ01–14 pass，两历史Important已由R015验证关闭，无剩余Critical/Important；原件见`docs/reviews/R12/preflight`。071作者runtime_test_author指定Sol/high已获明确frozen与开工，自有`/workspace/work/runtime-tests/source`，只A+B正式测试；产品072仍未准入。语言supplement/names源码/raw已按原件复制R12/language，planning-evidence.json记录来源/副本/hash，未重跑探针。仓库OpenSpec1.14.3实际list/status/apply报告ready、0/10，planning_complete不代表产品完成。
+
+071作者获得旧库正常build0、消费者missingAPI真实RED1，并独立声明-only scratch语法编译0（从未运行、非产品证据）；等待首个core test-only固定SHA，宏fixtures继续同合同覆盖。作者发现headless interrupt停止清理的确切时点未定，主代理R016明确dispatch返回前安全UI清理；后台stop仍只是请求，绝不后台cleanup。076作者独立C测试准备，无A+B基线故尚未正式RED；其错误码歧义由R016区分属性求值ReentrantEvaluation和结构上下文ReentrantStructure。此为限定合同澄清，回原preflight独立核，不重跑旧调查。

@@ -249,6 +249,8 @@ R014：原全局parents+Mutex构造栈退役，ThreadLocal collector唯一；旧
 
 R015：public Component()及宏组件根默认Column纵向容器语义，是有布局盒的组合节点；build收集的直接孩子按声明顺序参与同Column测量/绘制，公开布局/样式同等生效，不暗设无盒Fragment。当前无focus阶段，run路由目标为有效可见root；后续017才由focus选择目标。显式dispatch目标自身或任一祖先visible(false)时抛UIException(InvalidProperty)，不进入节点/app新UI回调。设备root隐藏时不构造虚假UIKeyEvent、不调用节点/新UIhandler，仍调用旧onKey处理非interrupt，interrupt默认stop；后续焦点/域路由须保持隐藏节点不可接收输入。dispatch开始后沿已固定路径完成，回调属性修改在安全边界生效，不在同次路由半移除目标。
 
+R016：headless中显式dispatch未prevent的interrupt，在该dispatch最外安全边界停止并清理session，返回时ref无效、订阅/owner队列释放。跨线程stop只发停止请求，headless在下一个安全UI边界处理，后台绝不运行用户cleanup；dispose可主动结束且幂等。普通typed属性getter中的snapshot/dispatch或Observable写报ReentrantEvaluation；动态condition/items/key/body构造属于结构上下文，其递归snapshot/dispatch/NodeRef结构操作报ReentrantStructure；任何求值中直接Observable写仍报ReentrantEvaluation。不同session活动域越界仍WrongUIContext，不为错误上下文静默重新驱动别的session。
+
 ### 编译实证来源
 
 主代理冻结前读取`/workspace/work/linux-source-audit/{report.md,supplement/report.md,names/report.md}`和`/workspace/work/linux-build-recon/report.md`。这些是开发证据，不是正式产品通过；随本轮归档选取源码/raw/hash，无SDK/cache/二进制混入产品。独立preflight核合同与任务，正式测试取得缺API RED，然后产品正常CJPM编译验证全部精确API。TOML证据供后续主题使用，本变更不增TOML依赖。
