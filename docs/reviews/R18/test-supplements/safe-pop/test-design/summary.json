@@ -1,0 +1,38 @@
+{
+  "status": "formal_tests_fixed_fixture_verified_product_runtime_pending",
+  "product_base": "e9121c9768291b65fae56ca9b0f38b9bb6c3ee1f",
+  "namespace_test_sha": "47d267fe802dcb817b4f95247eac18a4a30c2fab",
+  "safe_pop_test_sha": "f8b95815616c850145b647aae57e082c7915dab0",
+  "safe_pop_changed_files": [
+    "tests/session_extensions/README.md",
+    "tests/session_extensions/cases.mjs",
+    "tests/session_extensions/native/fixture_driver.c",
+    "tests/session_extensions/oracle.mjs",
+    "tests/session_extensions/safe_pop_selftest.mjs",
+    "tests/session_extensions/selftest.mjs"
+  ],
+  "file_sha256": {
+    "tests/session_extensions/README.md": "3924e6257091dbd38a7a3be8c1eb6b08a9904a4855278e6b5e6a7985512765cd",
+    "tests/session_extensions/cases.mjs": "e1a895972aa7d3cb47d662c1b25c01226b310b621780a4c48c78b0e6d4351324",
+    "tests/session_extensions/native/fixture_driver.c": "ca80f2f22577623b2f7c1a21349adbb16cab0f8c9214c07fbfafbdc45d428bfa",
+    "tests/session_extensions/oracle.mjs": "a7f3e72953c38ac762e36e39a7170a1e16cd14e0c1ee29f0f971a653ce6fc0a7",
+    "tests/session_extensions/safe_pop_selftest.mjs": "11ae199d816f0700b61132623c45856c3b7d117cc5dfa4b52bd416cb297f7818",
+    "tests/session_extensions/selftest.mjs": "2cd77115674d13cabbb5ba5b31b4258b3063e170d36718c11dd3a46e5354289c"
+  },
+  "runtime_matrix_total": 278,
+  "target_zero_set_configs": 4,
+  "routes": [
+    "Direct",
+    "TmuxPassthrough",
+    "ScreenPassthrough"
+  ],
+  "oracle_only_negative_controls": 39,
+  "native_selector_route_probes": 3,
+  "fixture_selftest_exit": 0,
+  "old_library_consumer_build_exit": 1,
+  "old_library_result": "missing public Session API compile RED and cascading diagnostics; no product behavior execution",
+  "read_149_author_source_report_progress": false,
+  "product_modified": false,
+  "product_behavior_RED_or_GREEN_claim": false,
+  "verified_utc": "2026-11-10T23:21:12.528037+00:00"
+}

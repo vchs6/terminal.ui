@@ -1,0 +1,879 @@
+{
+  "utc": "2026-11-10T23:19:50.512Z",
+  "cwd": "/workspace/work/session-extension-review",
+  "command": "node verify.mjs",
+  "checks": [
+    {
+      "ok": true,
+      "detail": {
+        "manifest": "product-source.sha256",
+        "base": "/workspace/work/session-extension-review/source",
+        "count": 101,
+        "bad": []
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "manifest": "formal-tests.sha256",
+        "base": "/workspace/work/session-extension-review/source",
+        "count": 21,
+        "bad": []
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "manifest": "contract-runtime.sha256",
+        "base": "/workspace/work/session-extension-review/source",
+        "count": 6,
+        "bad": []
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "manifest": "manifests.sha256",
+        "base": "/workspace/work/session-extension-implementation",
+        "count": 6,
+        "bad": []
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "manifest": "final-runtime-binaries.sha256",
+        "base": "/workspace/work/session-extension-implementation/source",
+        "count": 8,
+        "bad": []
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "manifest": "dependency-source.sha256",
+        "base": "/workspace/work/validation/replay-dependencies/cache",
+        "count": 114,
+        "bad": []
+      }
+    },
+    {
+      "ok": true,
+      "detail": "actual CJP hash"
+    },
+    {
+      "ok": true,
+      "detail": {
+        "manifest": "product-packaged-source.sha256",
+        "base": "/workspace/work/session-extension-review/package-inspection/cjtui-0.0.0",
+        "count": 100,
+        "bad": []
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "packageForbiddenMembers": []
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "oneEntityPerFile": [
+          {
+            "file": "src/alignment.cj",
+            "types": [
+              "Alignment"
+            ]
+          },
+          {
+            "file": "src/ansi_encoding.cj",
+            "types": []
+          },
+          {
+            "file": "src/application.cj",
+            "types": [
+              "Application"
+            ]
+          },
+          {
+            "file": "src/binding.cj",
+            "types": [
+              "Binding"
+            ]
+          },
+          {
+            "file": "src/binding_dependency.cj",
+            "types": [
+              "BindingDependency"
+            ]
+          },
+          {
+            "file": "src/cell.cj",
+            "types": [
+              "Cell"
+            ]
+          },
+          {
+            "file": "src/change_kind.cj",
+            "types": [
+              "ChangeKind"
+            ]
+          },
+          {
+            "file": "src/child_declaration.cj",
+            "types": [
+              "ChildDeclaration"
+            ]
+          },
+          {
+            "file": "src/child_entry.cj",
+            "types": [
+              "ChildEntry"
+            ]
+          },
+          {
+            "file": "src/color_mapping.cj",
+            "types": []
+          },
+          {
+            "file": "src/component.cj",
+            "types": [
+              "Component"
+            ]
+          },
+          {
+            "file": "src/component_collector.cj",
+            "types": []
+          },
+          {
+            "file": "src/conditional_declaration.cj",
+            "types": [
+              "ConditionalDeclaration"
+            ]
+          },
+          {
+            "file": "src/conditional_group.cj",
+            "types": [
+              "ConditionalGroup"
+            ]
+          },
+          {
+            "file": "src/drawing_geometry.cj",
+            "types": []
+          },
+          {
+            "file": "src/dynamic_declaration.cj",
+            "types": [
+              "DynamicDeclaration"
+            ]
+          },
+          {
+            "file": "src/dynamic_group.cj",
+            "types": [
+              "DynamicGroup"
+            ]
+          },
+          {
+            "file": "src/exports.cj",
+            "types": []
+          },
+          {
+            "file": "src/foreach_declaration.cj",
+            "types": [
+              "ForEachDeclaration"
+            ]
+          },
+          {
+            "file": "src/foreach_group.cj",
+            "types": [
+              "ForEachGroup"
+            ]
+          },
+          {
+            "file": "src/frame.cj",
+            "types": [
+              "Frame"
+            ]
+          },
+          {
+            "file": "src/geometry/rect.cj",
+            "types": [
+              "Rect"
+            ]
+          },
+          {
+            "file": "src/glyph_render_policy.cj",
+            "types": [
+              "GlyphRenderPolicy"
+            ]
+          },
+          {
+            "file": "src/input_decoder.cj",
+            "types": [
+              "InputDecoder"
+            ]
+          },
+          {
+            "file": "src/key_event.cj",
+            "types": [
+              "KeyEvent"
+            ]
+          },
+          {
+            "file": "src/layout.cj",
+            "types": []
+          },
+          {
+            "file": "src/layout_node.cj",
+            "types": [
+              "LayoutNode"
+            ]
+          },
+          {
+            "file": "src/list_item.cj",
+            "types": [
+              "ListItem"
+            ]
+          },
+          {
+            "file": "src/macros/bind_macro.cj",
+            "types": []
+          },
+          {
+            "file": "src/macros/component_macro.cj",
+            "types": []
+          },
+          {
+            "file": "src/macros/constructor_return_visitor.cj",
+            "types": [
+              "ConstructorReturnVisitor"
+            ]
+          },
+          {
+            "file": "src/macros/state_macro.cj",
+            "types": []
+          },
+          {
+            "file": "src/node_ref.cj",
+            "types": [
+              "NodeRef"
+            ]
+          },
+          {
+            "file": "src/observable.cj",
+            "types": [
+              "Observable"
+            ]
+          },
+          {
+            "file": "src/observable_source.cj",
+            "types": [
+              "ObservableSource"
+            ]
+          },
+          {
+            "file": "src/pending_node_change.cj",
+            "types": [
+              "PendingNodeChange"
+            ]
+          },
+          {
+            "file": "src/queued_action.cj",
+            "types": [
+              "QueuedAction"
+            ]
+          },
+          {
+            "file": "src/rich_text_clusters.cj",
+            "types": []
+          },
+          {
+            "file": "src/runtime_limits.cj",
+            "types": [
+              "RuntimeLimits"
+            ]
+          },
+          {
+            "file": "src/runtime_node.cj",
+            "types": [
+              "RuntimeNode"
+            ]
+          },
+          {
+            "file": "src/runtime_session.cj",
+            "types": [
+              "RuntimeSession"
+            ]
+          },
+          {
+            "file": "src/runtime_stats.cj",
+            "types": [
+              "RuntimeStats"
+            ]
+          },
+          {
+            "file": "src/session_basis.cj",
+            "types": [
+              "SessionBasis"
+            ]
+          },
+          {
+            "file": "src/session_capabilities.cj",
+            "types": [
+              "SessionCapabilities"
+            ]
+          },
+          {
+            "file": "src/session_capability.cj",
+            "types": [
+              "SessionCapability"
+            ]
+          },
+          {
+            "file": "src/session_device_exception.cj",
+            "types": [
+              "SessionDeviceException"
+            ]
+          },
+          {
+            "file": "src/session_encoding.cj",
+            "types": []
+          },
+          {
+            "file": "src/session_extension_state.cj",
+            "types": [
+              "SessionExtensionState"
+            ]
+          },
+          {
+            "file": "src/session_issue.cj",
+            "types": [
+              "SessionIssue"
+            ]
+          },
+          {
+            "file": "src/session_operation.cj",
+            "types": [
+              "SessionOperation"
+            ]
+          },
+          {
+            "file": "src/session_options.cj",
+            "types": [
+              "SessionOptions"
+            ]
+          },
+          {
+            "file": "src/session_policy.cj",
+            "types": [
+              "SessionPolicy"
+            ]
+          },
+          {
+            "file": "src/session_result.cj",
+            "types": [
+              "SessionResult"
+            ]
+          },
+          {
+            "file": "src/session_route.cj",
+            "types": [
+              "SessionRoute"
+            ]
+          },
+          {
+            "file": "src/session_status.cj",
+            "types": [
+              "SessionStatus"
+            ]
+          },
+          {
+            "file": "src/session_step_result.cj",
+            "types": [
+              "SessionStepResult"
+            ]
+          },
+          {
+            "file": "src/session_support.cj",
+            "types": [
+              "SessionSupport"
+            ]
+          },
+          {
+            "file": "src/session_write_result.cj",
+            "types": [
+              "SessionWriteResult"
+            ]
+          },
+          {
+            "file": "src/structural_command.cj",
+            "types": [
+              "StructuralCommand"
+            ]
+          },
+          {
+            "file": "src/style/border_style.cj",
+            "types": [
+              "BorderStyle"
+            ]
+          },
+          {
+            "file": "src/style/color.cj",
+            "types": [
+              "Color"
+            ]
+          },
+          {
+            "file": "src/style/color_mode.cj",
+            "types": [
+              "ColorMode"
+            ]
+          },
+          {
+            "file": "src/style/style.cj",
+            "types": [
+              "Style"
+            ]
+          },
+          {
+            "file": "src/style/text_style_patch.cj",
+            "types": [
+              "TextStylePatch"
+            ]
+          },
+          {
+            "file": "src/terminal_bridge.cj",
+            "types": []
+          },
+          {
+            "file": "src/terminal_capabilities.cj",
+            "types": [
+              "TerminalCapabilities"
+            ]
+          },
+          {
+            "file": "src/terminal_glyph_projection.cj",
+            "types": []
+          },
+          {
+            "file": "src/terminal_projected_row.cj",
+            "types": []
+          },
+          {
+            "file": "src/terminal_render_profile.cj",
+            "types": [
+              "TerminalRenderProfile"
+            ]
+          },
+          {
+            "file": "src/text/ansi_text.cj",
+            "types": []
+          },
+          {
+            "file": "src/text/ansi_text_batch.cj",
+            "types": [
+              "AnsiTextBatch"
+            ]
+          },
+          {
+            "file": "src/text/ansi_text_decoder.cj",
+            "types": [
+              "AnsiTextDecoder"
+            ]
+          },
+          {
+            "file": "src/text/ansi_text_diagnostic.cj",
+            "types": [
+              "AnsiTextDiagnostic"
+            ]
+          },
+          {
+            "file": "src/text/ansi_text_exception.cj",
+            "types": [
+              "AnsiTextException"
+            ]
+          },
+          {
+            "file": "src/text/ansi_text_issue.cj",
+            "types": [
+              "AnsiTextIssue"
+            ]
+          },
+          {
+            "file": "src/text/ansi_text_limits.cj",
+            "types": [
+              "AnsiTextLimits"
+            ]
+          },
+          {
+            "file": "src/text/ansi_text_output.cj",
+            "types": [
+              "AnsiTextOutput"
+            ]
+          },
+          {
+            "file": "src/text/ansi_text_result.cj",
+            "types": [
+              "AnsiTextResult"
+            ]
+          },
+          {
+            "file": "src/text/ansi_text_state.cj",
+            "types": [
+              "AnsiTextState"
+            ]
+          },
+          {
+            "file": "src/text/rich_text.cj",
+            "types": [
+              "RichText"
+            ]
+          },
+          {
+            "file": "src/text/text_span.cj",
+            "types": [
+              "TextSpan"
+            ]
+          },
+          {
+            "file": "src/text/unicode.cj",
+            "types": []
+          },
+          {
+            "file": "src/text/validation.cj",
+            "types": []
+          },
+          {
+            "file": "src/text_validation.cj",
+            "types": []
+          },
+          {
+            "file": "src/title_restore_state.cj",
+            "types": [
+              "TitleRestoreState"
+            ]
+          },
+          {
+            "file": "src/ui_cleanup_exception.cj",
+            "types": [
+              "UICleanupException"
+            ]
+          },
+          {
+            "file": "src/ui_exception.cj",
+            "types": [
+              "UIException"
+            ]
+          },
+          {
+            "file": "src/ui_key_event.cj",
+            "types": [
+              "UIKeyEvent"
+            ]
+          },
+          {
+            "file": "src/ui_thread_identity.cj",
+            "types": [
+              "UIThreadIdentity"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "normalBundleWarnings": 331,
+        "categories": {
+          "G.OPR.01": 10,
+          "G.ERR.01": 99,
+          "G.VAR.02": 105,
+          "G.FUN.01": 33,
+          "G.EXP.07": 10,
+          "G.ERR.03": 9,
+          "G.NAM.05": 37,
+          "G.NAM.04": 8,
+          "G.NAM.01": 20
+        }
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "build-final",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "session-final",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "bundle",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "clean-consumer-build",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "clean-consumer-pty",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "native-session",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "runtime-core",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "runtime-session-final",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "application-lifecycle-final",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "colors",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "reusedOriginalRun": "capabilities",
+        "exit": "0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "independentRawAssertion": "038-fault-set-Direct-0",
+        "wireBytes": 14,
+        "zeroFailure": true
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "noPollAfterFault": "038-fault-set-Direct-0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "exactTermios": "038-fault-set-Direct-0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "independentRawAssertion": "039-fault-set-Direct-1",
+        "wireBytes": 8,
+        "zeroFailure": false
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "noPollAfterFault": "039-fault-set-Direct-1"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "exactTermios": "039-fault-set-Direct-1"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "independentRawAssertion": "125-fault-set-TmuxPassthrough-0",
+        "wireBytes": 34,
+        "zeroFailure": true
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "noPollAfterFault": "125-fault-set-TmuxPassthrough-0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "exactTermios": "125-fault-set-TmuxPassthrough-0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "independentRawAssertion": "126-fault-set-TmuxPassthrough-1",
+        "wireBytes": 18,
+        "zeroFailure": false
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "noPollAfterFault": "126-fault-set-TmuxPassthrough-1"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "exactTermios": "126-fault-set-TmuxPassthrough-1"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "independentRawAssertion": "230-fault-set-ScreenPassthrough-0",
+        "wireBytes": 22,
+        "zeroFailure": true
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "noPollAfterFault": "230-fault-set-ScreenPassthrough-0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "exactTermios": "230-fault-set-ScreenPassthrough-0"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "independentRawAssertion": "231-fault-set-ScreenPassthrough-1",
+        "wireBytes": 12,
+        "zeroFailure": false
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "noPollAfterFault": "231-fault-set-ScreenPassthrough-1"
+      }
+    },
+    {
+      "ok": true,
+      "detail": {
+        "exactTermios": "231-fault-set-ScreenPassthrough-1"
+      }
+    }
+  ],
+  "inputs": {
+    "/workspace/work/session-extension-implementation/raw/product-source.sha256": "b39a165e876dd757161e50c027abc0fae0e503050cdde600c65c4e6120a74dc5",
+    "/workspace/work/session-extension-implementation/raw/formal-tests.sha256": "f9633be0d2e630be6f71efb92dcec1bc6f7e3caedb92d11bd0aaab0caf297f9f",
+    "/workspace/work/session-extension-implementation/raw/contract-runtime.sha256": "8713a544323ba43d43cb9768e7376efb7da56765ae32d047e58b61a63956cc1c",
+    "/workspace/work/session-extension-implementation/raw/manifests.sha256": "e378bc868e79a1195c51daf2272df3afbcbf61afece5e4ecd47ed06852a4a3f1",
+    "/workspace/work/session-extension-implementation/raw/final-runtime-binaries.sha256": "4888814137ddb56469cff52b4db9d135902d045332151fba96b3ef33098d85ca",
+    "/workspace/work/session-extension-implementation/raw/dependency-source.sha256": "905e9021f5d7b8ddbcb7c5978915a00f6779bb2168030b86736b4ac669cdc23f",
+    "/workspace/work/session-extension-implementation/source/target/cjtui-0.0.0.cjp": "b2a5b5e19f67058adf0f4d6f6b4e130af8454e6b72f66aaa8c09c87cf6435d54",
+    "/workspace/work/session-extension-implementation/raw/product-packaged-source.sha256": "a4b904d2bed4e1fd1b6639b27e59cb7d5044fa1d807e4d985f4b54bb67b63664",
+    "/workspace/work/session-extension-implementation/raw/build-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/build-final.log": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "/workspace/work/session-extension-implementation/raw/session-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/session-final.log": "b250c6e801b9cfe06d0172a3248ad9f0512c61ff03e30af5882b8471b948fc31",
+    "/workspace/work/session-extension-implementation/raw/bundle.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/bundle.log": "fb17a4068a89a3e01dcbc97bb37f0f3aa949be1b3dd0840bd952d2bc78887c6a",
+    "/workspace/work/session-extension-implementation/raw/clean-consumer-build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/clean-consumer-build.log": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "/workspace/work/session-extension-implementation/raw/clean-consumer-pty.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/clean-consumer-pty.log": "634f035b85fd0d5577ea1e09f3f6808c3d7257fa76d31d471524c592b5a02d18",
+    "/workspace/work/session-extension-implementation/raw/native-session.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/native-session.log": "584d003451c015d94f77eb54e2c5d9833ce8769ccfd543470de30da062710f8a",
+    "/workspace/work/session-extension-implementation/raw/runtime-core.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/runtime-core.log": "9c863fcae871fff7d1fe144617031ec9b7cb6fc57810e05717f2e19b9e3082bf",
+    "/workspace/work/session-extension-implementation/raw/runtime-session-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/runtime-session-final.log": "b4f1a2b283c5cbdaabb6946f77790d7a0839fe2e5dca1d371e9a7f82d42b5e06",
+    "/workspace/work/session-extension-implementation/raw/application-lifecycle-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/application-lifecycle-final.log": "daa7048404f72f9d14d6bb73ef629233257a97020062b6b6dfc589a50af98b76",
+    "/workspace/work/session-extension-implementation/raw/colors.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/colors.log": "e9a82b20e6d781a4c7e71a90676bb6da1bbd5c444d49ee0f942e8dc0b278c49f",
+    "/workspace/work/session-extension-implementation/raw/capabilities.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/session-extension-implementation/raw/capabilities.log": "4aae457febc889dbf87b76cb8242a21af4a486372bc5012377d360c5ab1f0478",
+    "/workspace/work/session-extension-implementation/raw/session-final/038-fault-set-Direct-0/results.tsv": "57ee905b11c88605303f743728648ec3b5110eddb17dc7c584914ca72b00b6a0",
+    "/workspace/work/session-extension-implementation/raw/session-final/038-fault-set-Direct-0/native.tsv": "2a00c55b484497f475c6d4ecf1d928f665ce70c5544565801e2ce38e8769fb20",
+    "/workspace/work/session-extension-implementation/raw/session-final/038-fault-set-Direct-0/wire.bin": "5898ed2d809bbe1043129164536f200f9d1fd498f2e3fdb79c221b4d6a894678",
+    "/workspace/work/session-extension-implementation/raw/session-final/038-fault-set-Direct-0/all-wire.bin": "5898ed2d809bbe1043129164536f200f9d1fd498f2e3fdb79c221b4d6a894678",
+    "/workspace/work/session-extension-implementation/raw/session-final/038-fault-set-Direct-0/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/038-fault-set-Direct-0/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/038-fault-set-Direct-0/launch.json": "44516359e4e9e5810ff206986c0f8a6c7fe9e7c0a57cb1c1ec07d61f98aecebd",
+    "/workspace/work/session-extension-implementation/raw/session-final/038-fault-set-Direct-0/check.json": "b67e9adeccca5c0a60a6059f932c2685a6d7f98b0d8dd1aefd1e269fc9784bec",
+    "/workspace/work/session-extension-implementation/raw/session-final/039-fault-set-Direct-1/results.tsv": "1499411981744affe5f24ed54e747039f1a45d3c29f31df7cc9acaa876d94265",
+    "/workspace/work/session-extension-implementation/raw/session-final/039-fault-set-Direct-1/native.tsv": "a07a2e8e865be5e7cba2bfdb37857e31c4e2ff08f3d5a03a2fce42def4ce17e3",
+    "/workspace/work/session-extension-implementation/raw/session-final/039-fault-set-Direct-1/wire.bin": "08b8a4447a045ba23b7bf053fdfaaddef80bf24600c6238d42101684238f0760",
+    "/workspace/work/session-extension-implementation/raw/session-final/039-fault-set-Direct-1/all-wire.bin": "08b8a4447a045ba23b7bf053fdfaaddef80bf24600c6238d42101684238f0760",
+    "/workspace/work/session-extension-implementation/raw/session-final/039-fault-set-Direct-1/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/039-fault-set-Direct-1/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/039-fault-set-Direct-1/launch.json": "a4ef1a53f015a1fd30d8a550d555f51e81e841a3a470f42dd7420b32dbb45711",
+    "/workspace/work/session-extension-implementation/raw/session-final/039-fault-set-Direct-1/check.json": "2080318e419f1ebc91b5b73bf31279d9a876d37b98d9ddaad44cf3bac1fc56db",
+    "/workspace/work/session-extension-implementation/raw/session-final/125-fault-set-TmuxPassthrough-0/results.tsv": "ac77c7c3f4a67d435921f8829718c6d54fb2521a6afa50b8c226106c70190944",
+    "/workspace/work/session-extension-implementation/raw/session-final/125-fault-set-TmuxPassthrough-0/native.tsv": "b8d26f52cb3c63fd3178937ca3a2f88fc62c3f586139a039ee70c873fb68ded3",
+    "/workspace/work/session-extension-implementation/raw/session-final/125-fault-set-TmuxPassthrough-0/wire.bin": "8068844ca92fd9810ccbe298063cb4755d37475918488fa64ce76bc7160ea7d8",
+    "/workspace/work/session-extension-implementation/raw/session-final/125-fault-set-TmuxPassthrough-0/all-wire.bin": "8068844ca92fd9810ccbe298063cb4755d37475918488fa64ce76bc7160ea7d8",
+    "/workspace/work/session-extension-implementation/raw/session-final/125-fault-set-TmuxPassthrough-0/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/125-fault-set-TmuxPassthrough-0/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/125-fault-set-TmuxPassthrough-0/launch.json": "5e432eb459d2958bcf6379249dd9cd5f64153cfe3f661a75868bd23e76c50047",
+    "/workspace/work/session-extension-implementation/raw/session-final/125-fault-set-TmuxPassthrough-0/check.json": "fa1a8ecd02cc89cc6c0b3f45cbed0178eefa0f5b955d58304911dd1ac41c12a6",
+    "/workspace/work/session-extension-implementation/raw/session-final/126-fault-set-TmuxPassthrough-1/results.tsv": "9f0436721778e88dfc6f9cb051a7c0691f455bbcc6440351fde133cb21459808",
+    "/workspace/work/session-extension-implementation/raw/session-final/126-fault-set-TmuxPassthrough-1/native.tsv": "d6310138dcbb595bbe0d6c8c58e25912a8ecdef31293f871b146a1885148eba1",
+    "/workspace/work/session-extension-implementation/raw/session-final/126-fault-set-TmuxPassthrough-1/wire.bin": "10fc5d587b15195b0ff550797d218b0d01a7535d891f9589c33859b82d77b6a4",
+    "/workspace/work/session-extension-implementation/raw/session-final/126-fault-set-TmuxPassthrough-1/all-wire.bin": "10fc5d587b15195b0ff550797d218b0d01a7535d891f9589c33859b82d77b6a4",
+    "/workspace/work/session-extension-implementation/raw/session-final/126-fault-set-TmuxPassthrough-1/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/126-fault-set-TmuxPassthrough-1/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/126-fault-set-TmuxPassthrough-1/launch.json": "1f26a7eda39cdb3225a9174b6a361c8331b5221acd66d7ee7c175b8e6c399964",
+    "/workspace/work/session-extension-implementation/raw/session-final/126-fault-set-TmuxPassthrough-1/check.json": "307ceb40a9e6a227a1880c70183db68abb0ab145523a405dc157d8b15bdb57d3",
+    "/workspace/work/session-extension-implementation/raw/session-final/230-fault-set-ScreenPassthrough-0/results.tsv": "4cda31a0403ec7e4552d88a2638d452237171e380b7872ba7a406d4d505bc37b",
+    "/workspace/work/session-extension-implementation/raw/session-final/230-fault-set-ScreenPassthrough-0/native.tsv": "1a9f36e921313fd82623736698e2894d6c84c4ddbf6617774248ee485329d850",
+    "/workspace/work/session-extension-implementation/raw/session-final/230-fault-set-ScreenPassthrough-0/wire.bin": "363452a49ba4557bfb8e700723c858dced624c1fc3c9809ef2697e39b5190e21",
+    "/workspace/work/session-extension-implementation/raw/session-final/230-fault-set-ScreenPassthrough-0/all-wire.bin": "363452a49ba4557bfb8e700723c858dced624c1fc3c9809ef2697e39b5190e21",
+    "/workspace/work/session-extension-implementation/raw/session-final/230-fault-set-ScreenPassthrough-0/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/230-fault-set-ScreenPassthrough-0/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/230-fault-set-ScreenPassthrough-0/launch.json": "2382c6cf3343d49d84428867fe9a28833cca7ee00509342ba1b70f3969bf3228",
+    "/workspace/work/session-extension-implementation/raw/session-final/230-fault-set-ScreenPassthrough-0/check.json": "6c4aac83add9f0ff20b1ccf0651fef350b2f0c53bc9dbef84b239e769da04f8e",
+    "/workspace/work/session-extension-implementation/raw/session-final/231-fault-set-ScreenPassthrough-1/results.tsv": "3b4a08b66858ac06c9df36bdd6f122c940eb8dc0ea6cb25409e928f832e156c6",
+    "/workspace/work/session-extension-implementation/raw/session-final/231-fault-set-ScreenPassthrough-1/native.tsv": "7200e48adc4114931f0443268da3a7fbf53dda801d3ed790b985672190fb55e9",
+    "/workspace/work/session-extension-implementation/raw/session-final/231-fault-set-ScreenPassthrough-1/wire.bin": "811c18a8ddcc47f11ad304579352cced63326e1bf1b69f028d01a4f1191d5084",
+    "/workspace/work/session-extension-implementation/raw/session-final/231-fault-set-ScreenPassthrough-1/all-wire.bin": "811c18a8ddcc47f11ad304579352cced63326e1bf1b69f028d01a4f1191d5084",
+    "/workspace/work/session-extension-implementation/raw/session-final/231-fault-set-ScreenPassthrough-1/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/231-fault-set-ScreenPassthrough-1/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/231-fault-set-ScreenPassthrough-1/launch.json": "0553aa6bfffc560d82ee46468ba29745d1af8fff5e3c2dea5d6b801c240c50b2",
+    "/workspace/work/session-extension-implementation/raw/session-final/231-fault-set-ScreenPassthrough-1/check.json": "bf2c01f65f0c984df9c4e149fc89f849f40214a2d9e0b7a19f9504ee4a2a2814"
+  }
+}

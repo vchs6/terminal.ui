@@ -13,3 +13,5 @@ G011原限定审查识别成功空map reason与G003冲突，已a0eae999修复并
 093正式test-only原daf2a252已集成901b06a（17files/935lines），最终合同a0eae999，独立旧root正常build0、glyph-only真缺API RED1及internal/public/rich/session真实缺实现RED；readonly negative缺类型仍未计通过，声明-only no-run未执行不计GREEN。原件/manifest/hash归R16/test-design；shared runner未碰。094产品仍等080/084及最终正式角色准入，真实glyph设备GREEN/VT等096。
 
 093 G012正式测试刷新df21f3def32de39a415d1d8d9845b83514dc2902已集成9454f22，限testonly14files：未知Auto保守golden/显式Unicode保留/5个partial正常tests PASS，完整API/internal/public/rich/session真实缺实现RED1，readonly正向blocked2非负例PASS。SDK3control证旧不可变参数会掩盖publicvar，现六字段mutablelocal逐项负例但产品实际仍blocked。71原件+2wrapper归档R16/test-refresh-g012，rootfresh核71sourcecopy142SHA。094仍严格等152，不因有限内核已过提前实施或关097/041/Linux。
+
+root机械同步tasks Global/AC094及designG003/G005旧“未知PTY原Unicode”到早已冻结G012保守设备策略，不改变实际行为或093 df21预期；093标test-design delivered（非AC093/094/097 passed），正式094依complete-linux L006等Session152接受源。094 Terra/high原生C/FFI适配作者只读前读完成ready-to-receive-final-base，无新歧义/未改源/未运行测试，严格等152，不并行产品作者。

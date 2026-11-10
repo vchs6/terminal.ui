@@ -5,11 +5,11 @@
 **Goal:** 普通应用自动适配已知Linux文本VT字形，保留逻辑Unicode和默认离线快照，提供后续Theme013生成标记上下文。
 **Architecture:** 实际stdout只读探测→不可变内部policy→现Runtime/布局上下文和TerminalRenderProfile→同Frame投影/比较；单一分簇/宽度/Frame/ANSI所有权。
 **Tech Stack:** 仓颉SDK/CJPM1.2.0、unicode0.1.0/unicodewidth0.1.113/ansies1.3.113、Linux原生ioctl；无新第三方依赖。
-**Spec:** design.md G001–G009、specs/terminal-output/spec.md、decisions.md、REQ001.7/004.2–.7/005.4–.6/011。
+**Spec:** design.md G001–G012、specs/terminal-output/spec.md、decisions.md、REQ001.7/004.2–.7/005.4–.6/011。
 
 ## Global constraints
 
-用户指定独立测试/产品/审查/执行/验收；编号093–097保留本增量，交付追踪父TASK041、L2归WP004，无新增L5。正常应用默认Auto，override高级可选；未知PTY保持Unicode但不报覆盖率已知。独立角色目录/固定版本交接，不传作者推理或自评。主代理只冻结、调度、集成及分歧处理。禁止发布。
+用户指定独立测试/产品/审查/执行/验收；编号093–097保留本增量，交付追踪父TASK041、L2归WP004，无新增L5。正常应用默认Auto，override高级可选；未知PTY按已冻结G012保持canonical Unicode、设备用conservativeUnicode且不报覆盖率已知。独立角色目录/固定版本交接，不传作者推理或自评。主代理只冻结、调度、集成及分歧处理。禁止发布。
 
 产品作者等080和084最终固定源已集成；本增量097后theme013/025才可开始产品写入，085测试可以按原冻结API准备并追加mode场景，不并发改Component/Application/Runtime/LayoutNode/Frame等同一权威文件。Theme013实际ellipsis按本policy预留三列，085追加端到端测试、088验收；093–097不提前实现或声称完整ellipsis通过。
 
@@ -18,7 +18,7 @@
 ## File responsibility map
 
 - 新建`src/style/glyph_mode.cj`：三个公共mode及相等比较，根exports统一reexport。
-- 新建`src/terminal_glyph_capabilities.cj`：只读诊断快照/原生解码；`src/glyph_render_policy.cj`：包内不可变policy和bounded bitmap所有权；`src/glyph_projection.cj`：实际编码和生成标记使用的纯函数。每文件按职责/单实体组织，可合并纯函数但不混类型。
+- 新建`src/terminal_glyph_capabilities.cj`：只读诊断快照/原生解码；`src/glyph_render_policy.cj`：包内不可变policy和bounded bitmap所有权；`src/terminal_glyph_projection.cj`：沿G012现有projectTerminalGlyph扩展同一实际编码owner；生成标记纯函数按内聚职责加入同包，不复制投影。每文件按职责/单实体组织，可合并纯函数但不混类型。
 - 新建`native/cjtui_glyphs.c`及现native/build.sh/build.cj/FFI接线：同stdout只读探测、限额和失败分类；保留原颜色探测二进制/作用域隔离。
 - 修改`src/application.cj`：现init追加参数、setter/getter/诊断，run设备policy与offline参数明确分流、wake及profile基线。
 - 修改`src/runtime_session.cj`/`src/layout.cj`/现LayoutNode：同一produce/renderLayout传内部policy并纳入缓存键，未来文字布局可直接消费marker函数；不是提前引入TextOverflow。
@@ -36,7 +36,7 @@
 
 ## Shared L3 admission fields
 
-全部level=L3，parent=TASK041（追踪父项；L2=WP004），classification=execution：主代理已选A、未知PTY保Unicode、离线显式mode和既有UTF8前置；重要可逆细化见decisions.md，冻结/preflight未过前均planned。change_ref本目录，workflow_ref本tasks，requirement_refs见Spec。required_skills：主代理brainstorming/writing-plans/SDD；测试/产品作者TDD、用户固定CangjieSkills渐进search_docs、必要systematic-debugging及verification；审核requesting/receiving-code-review；执行/验收verification。实际使用证据随角色补progress，复用已记录云技能/固定SDK资料，不以“已安装”代替实际使用。
+全部level=L3，parent=TASK041（追踪父项；L2=WP004），classification=execution：主代理已选A及G012、未知PTY保逻辑Unicode并设备保守投影、离线显式mode和既有UTF8前置；重要可逆细化见decisions.md，冻结/preflight未过前均planned。change_ref本目录，workflow_ref本tasks，requirement_refs见Spec。required_skills：主代理brainstorming/writing-plans/SDD；测试/产品作者TDD、用户固定CangjieSkills渐进search_docs、必要systematic-debugging及verification；审核requesting/receiving-code-review；执行/验收verification。实际使用证据随角色补progress，复用已记录云技能/固定SDK资料，不以“已安装”代替实际使用。
 
 模型按用户流程：093 Sol/high；094 Terra/high；095与097 Astra/high；096 Sol/medium。记录指定配置，serving工具未暴露则如实不可核验。输入为主代理冻结合同hash、080/084最终集成SHA、093固定测试、原glyph调查可复现原始结果。公开制品检验用各自cache、正常cjpm build/bundle，不skip脚本、不依赖他人target。
 
@@ -44,7 +44,7 @@
 
 ## TASK-093：独立测试设计与真实RED
 
-- [ ] TASK-093（testing，status planned）：交付固定测试资产、独立预期、实际缺API RED和复现命令。
+- [x] TASK-093（testing，status delivered/test-design only）：交付固定测试资产、独立预期、实际缺API RED和复现命令。
 
 **Inputs / depends_on:** 主代理冻结design+独立preflight通过；可先在当前旧源做缺API RED，正式执行基线等080/084；不能依据产品作者实现生成预期。
 **Scope / deliverables:** tests/glyphs正常消费者、同package纯函数单测、native read分支验证与真实PTY会话脚本/README；手算BMP bitmap/列数/marker预期，测试接线独立提交。排除产品补API、真实ellipsis布局实现、重写085fixture/API。
@@ -61,9 +61,9 @@
 
 - [ ] TASK-094（implementation，status planned）：交付可独立运行的设备字形适配与后续Theme013布局policy输入。
 
-**Inputs / depends_on:** TASK080、084固定源已集成，093固定测试，合同preflight通过；产品独占共享权威文件。
+**Inputs / depends_on:** TASK080、084固定源已集成，093最终G012测试df21f3d固定，合同preflight通过；按complete-linux-integration L006共享writer顺序等待Session152接受源，产品独占共享权威文件。
 **Scope / deliverables:** 精确公共API、原生只读bitmap、包内policy/真实纯函数、现Frame编码+投影后diff、run模式唤醒、offline参数/布局缓存key、产品说明与普通无override样例；产品提交只含实现与必要调用者/说明，不改093冻结测试。
-**Acceptance AC-094 / verification:** 新测试及受影响颜色/Frame/runtime/富文本回归有真实结果；相同应用在实际VT不改业务文本而输出确定fallback、未知PTY原Unicode，纯文件不受设备字体污染；真实NFC缺口保留；actual ellipsis排版仍明确待013。
+**Acceptance AC-094 / verification:** 新测试及受影响颜色/Frame/runtime/富文本回归有真实结果；相同应用在实际VT不改业务文本而输出确定fallback、未知PTY按G012保逻辑Unicode并保守设备投影，纯文件不受设备字体污染；真实NFC缺口保留；actual ellipsis排版仍明确待013。
 **Impact / compatibility:** Application/Runtime/Layout/Frame/native/exports及正常构建；构造兼容、theme参数合并约束和原颜色语义不变，主仓一实体一文件。
 **L4:**
 1. 按冻结SDK和正常包可见性实现enum/只读cap/policy；先验证同package纯函数边界、map冻结副本与一次分配上界，避免root↔text循环。
@@ -104,3 +104,7 @@
 本草稿只检查到planned：稳定编号/父项、scope/inputs/deps/deliverables/AC、文件职责、mode精确签名、native资源确值、原文/生成标记/投影三边界、旧路径迁移、失败策略及有限验收均可定位。ready需主代理冻结、独立preflight、080/084及093固定输入满足。所有checkbox不勾选；status/evidence随实际角色填入，不提前伪造通过。
 
 G012前置修订候选：094消费fix-uncertain-glyph-advance已接受167纯owner+原084，而不是反向阻塞R14。093测试作者在实际094前按最终G012补conservative deviceAuto期望，旧纯unicode/ascii/mapped及native矩阵不改，先固定正式test-only。G005/G007/G010仅一份GlyphRenderPolicy/projectTerminalGlyph，164已交子接口由094扩展，禁止复制。原094/095/096/097状态不因新补丁通过。
+
+## 当前准入投影
+
+G012已冻结并由167/084接受有限partial owner；本tasks上文旧“未知PTY Unicode”历史解释以G012为准，现已机械同步文字，无新行为选择。093原daf2及刷新df21f3d（root9454f22）只表示正式test-design交付，证据[R16刷新](../../../docs/reviews/R16/test-refresh-g012/report.md)，readonly正向仍blocked2、完整API真实RED1，不是AC093/094/097已通过。094继续等Session152；不并行写Application/Runtime/Frame/native。

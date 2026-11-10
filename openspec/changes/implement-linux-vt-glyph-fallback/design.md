@@ -64,7 +64,7 @@ setter与现颜色配置同一同步/调用约定：启动前或现UI执行域�
 | 设备Ascii | 原始可打印ASCII单列原样，其余整簇ASCII回退；生成标记按ASCII |
 | 设备Auto，已证实具体文本VT且map成功 | 单BMP、单列、可打印且mapped候选可原样；其它整簇ASCII；生成标记通过同候选判断 |
 | 设备Auto，已证实具体文本VT、map失败 | 保守Ascii；diagnostic保留失败 |
-| 设备Auto，未知PTY/其它宿主/身份未确证 | Unicode透出，coverage unknown；不能凭TERM报支持 |
+| 设备Auto，未知PTY/其它宿主/身份未确证 | 依G012使用现有conservativeUnicode等宽投影；逻辑原文保留，coverage unknown，不能凭TERM报支持 |
 | 离线snapshot/render Unicode或Auto | Unicode生成策略，不探测/引用任何设备/最近run能力；Auto确定等同Unicode |
 | 离线snapshot/render Ascii | ASCII生成策略；原始文本/逻辑Frame仍Unicode，不是“所有原文字节变ASCII”的导出器 |
 
@@ -80,7 +80,7 @@ GIO_UNIMAP的unicode是u16，不能表示非BMP。mapped可存在别名（原始
 
 ## G005 单一投影与装饰回退
 
-内部只增加一个不可变`GlyphRenderPolicy`（包内，一类型一文件）：解析后的Unicode/Ascii/LinuxVtMapped三种策略及可选有界bitmap。命名可由实现沿现风格细化，但不得增加公共policy家族。TerminalRenderProfile含该policy；Application仅解析一次请求→策略，Frame和布局生成标记消费同一值。
+内部只增加一个不可变`GlyphRenderPolicy`（包内，一类型一文件）：解析后的Unicode/ConservativeUnicode（G012现有）/Ascii/LinuxVtMapped策略及可选有界bitmap。命名可由实现沿现风格细化，但不得增加公共policy家族。TerminalRenderProfile含该policy；Application仅解析一次请求→策略，Frame和布局生成标记消费同一值。
 
 生产用纯函数边界（包内，可由同package单测合法调用）：
 

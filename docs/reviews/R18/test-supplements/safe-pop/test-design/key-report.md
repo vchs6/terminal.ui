@@ -1,0 +1,11 @@
+# Independent148 headless namespace correction
+
+Fixed test-only commit: `47d267fe802dcb817b4f95247eac18a4a30c2fab`, parent e9121c9768291b65fae56ca9b0f38b9bb6c3ee1f. Six files under tests/session_extensions only; no product/public API/expected field value changes. No149 source/report/progress read or author contact.
+
+The supplied original TSV has two headless.title rows:5-field capability and6-field SetHostTitle result. Its old parseResults silently retained only the latter, so verifyHeadless could not check both prescribed records. Original bytes and origin SHA are in raw/headless-key/original-results.tsv and origin.json; full frozen input also resides in the formal fixtures. Input SHA256: `cc778a8f355f0a702c4112c57e224f1b9dcdf44064d23c4fce32386e380ab1fd`.
+
+The consumer capability prefix is now headless.capabilities; operation headless.title is unchanged. The headless capability assertions read the distinct keys. parseResults rejects a same key whose pipe-delimited field count changes, which catches this cross-record-shape collision in both orders. Same-shape repeats remain last-value-wins by the original design. This guard does NOT reject every duplicate or validate every repeated call independently.
+
+Covering file: tests/session_extensions/key_selftest.mjs, included by normal selftest. Command `node tests/session_extensions/key_selftest.mjs`: before fix exit1 (raw/headless-key/old-selftest-red), after fix exit0 (raw/headless-key/fixed-selftest). Final raw output: `PASS fixture-only record keys: cross-shape negatives=3; distinct capability/operation namespaces; same-shape last-wins keys=60; no product run`. The real supplied corpus verifies preservation of60 same-shape repeated keys; its control only renames capability keys, preserving all original values and unchanged headless field expectations. It is an oracle/fixture check, not independent149 product execution.
+
+Node syntax and git diff --check exit0. Existing old-library build is a separate missing-API RED, never behavior GREEN. Source is independent /workspace/work/session-safe-pop-tests/source; original collision history retained. S007 safe-pop work will be a following separate test-only commit. Root can review this namespace SHA first and request only affected headless/controls after supplying it to149.
