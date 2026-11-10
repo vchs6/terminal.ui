@@ -36,27 +36,48 @@ L4 008.a：手写相同帧/缩短/仅样式/resize/能力切换与C002所有截�
 
 - [ ] 1.2 原TASK-010：按C003交付实际可见层彩色/纯文本文件（WP002/REQ005；implementation及独立质量活动）。
 
-输入=084/112/107/088、Frame既有文件原语；不依赖M2。输出=tests/visible_snapshot/、普通CJPM消费者、必要现Application.snapshot/Frame文件写错误修复、R22/010。公开签名严格C003，禁止新screen-export kernel。
-L4 010.a：手写嵌套层/滚动/透明/样式空格/宽簇完整Cell和文件golden，snapshot保存后继续变更检查旧副本。010.b：独立ANSI消费从空屏解释目标，纯文本无ESC，真实目录/NUL/不可写路径throw，测试先固定。010.c：现产品真实失败才补唯一API，未缺行为则无无谓实现。010.d：独立diff审核和正常bundle/clean consumer（仅相应变化）+实际文件检查，记录直接binary。010.e：原AC010完整范围验收，CLI `tests/visible_snapshot/run.sh`。
+输入=084/112/107/088/097实际接受源、Frame既有文件原语；不依赖M2。输出=tests/visible_snapshot/、普通CJPM消费者、必要现Application.snapshot/Frame文件写错误修复、R22/010。公开签名严格C003，禁止新screen-export kernel。
+L4 010.a：手写Unicode/Auto=Unicode/Ascii框架生成标记且业务Unicode不转码，以及嵌套层/滚动/透明/样式空格/宽簇完整Cell和文件golden，snapshot保存后继续变更检查旧副本。010.b：独立ANSI消费从空屏解释目标，纯文本无ESC，真实目录/NUL/不可写路径throw，测试先固定。010.c：现产品真实失败才补唯一API，未缺行为则无无谓实现。010.d：独立diff审核和正常bundle/clean consumer（仅相应变化）+实际文件检查，记录直接binary。010.e：原AC010完整范围验收，CLI `tests/visible_snapshot/run.sh`。
 
 - [ ] 1.3 原TASK-020：按C004形成全部功能M1模式/资源恢复输入（WP004/REQ004/011；implementation及独立质量活动）。
 
 输入=008/152/117/122/112/162及I015实际输入；不会反向等待最终041/M2。输出=tests/session_lifecycle/、同一Application/native必要恢复小修、完整C004模式表及M1证据manifest。排除额外会话writer/模式所有者。
 L4 020.a：独立测试列每种退出/原可见隐藏/knownunknown/原2004/title/termios/handler/owner以及业务+清理双错误，手工判定表固定。020.b：复用有效原件，补最终所有新增模式真实PTY和实际host可确认结果，unsafe零后续output。020.c：有真实缺陷才独立作者修最小路径。020.d：双审核→独立执行→有限M1恢复验收；CLI `tests/session_lifecycle/run.sh`。020.e：M2/release影响部分再补后由024核完整原AC020，候选卡不提前宣称最终所有源码恢复PASS。
 
-- [ ] 1.4 原TASK-021：按C005交付完整M1 U1–U5和composition（WP004/REQ001–005；implementation及独立质量活动）。
+- [ ] 1.4 原TASK-021：按C005交付完整M1 U1–U5和composition（WP005/REQ001–005；implementation及独立质量活动）。
 
-输入=全部M1功能112/117/122/157/162/092/097/084；不依赖027完整展示/M2/最终041。输出=examples/minimal/、examples/composition/普通CJPM源码/README、tests/composition/正式用例、产品公开构造文档。具体新增仓颉实体按其命名独立文件，不在main.cj塞所有type；单一main只入口。
+输入=全部M1功能112/117/122/157/162/092/097/084，保留原010完整可见快照与020 M1阶段恢复输入（不等M2后完整041）；不依赖027完整展示/M2/最终041。输出=examples/minimal/、examples/composition/普通CJPM源码/README、tests/composition/正式用例、产品公开构造文档。具体新增仓颉实体按其命名独立文件，不在main.cj塞所有type；单一main只入口。
 L4 021.a：独立测试按C005明确U1–U5入口、字面画面/业务事件/焦点和可见状态，旧缺composition为真实交付RED。021.b：独立作者实现完整可编译应用与 --smoke，界面不用私有API/Frame坐标/flush，source review可拒绝内核特判。021.c：独立固定diff双审核。021.d：独立正常build+直接smoke/真实键操作+窄屏resize/固定视口，原图/raw按C008。021.e：AC021完整便利性与复用结果验收，CLI `tests/composition/run.sh`；普通entry在各项目README固定。
 
 027不是本处第二复选框：依theme唯一tasks展开C006完整L4，消费021并在124前完成。上述M1交付与027全部接受后，按M012冻结完整功能M1 LIBsource/cjp/deps/SDK/native。123–147按既有M2变化继续，不在这里另造022/031算法或benchmark任务。
 
 ## 最终证据和制品卡
 
-- [ ] 2.1 原TASK-001/002/003/004/041最终汇合：按C007/C008形成完整目标/语言/依赖/构造/设备矩阵冻结记录（各原WP/REQ/AC保持；verification/原调查冻结职责）。
+### 2.1 最终调查与契约汇合协调组（无L3状态）
 
-输入=所有功能固定最终源、原各有限链有效证据、147成本结果；可先形成M1输入manifest供124（完整041暂pending），最终M2后核变化。输出=docs/development/依赖/平台/语法文档及实际产品说明、34项原AC覆盖矩阵、完整真实终端证据索引。每个原项分别判定，不以一行“汇合完成”合并原AC。
-L4 C.a：独立验收角色核原始源码语法正负例/错误定位/SDK依赖native闭包，保留时间/受检源与可复用范围。C.b：独立执行角色在C008实际6类host按同一最终公开场景跑，精确事件/尺寸/原bytes/termios/PNG/hash，复用内容未变证据；不换TERM、不读用户clipboard、无图形环境仍实际VT。C.c：原调查/契约角色据事实写最终声明矩阵与已验证边界，新增代码缺陷回对应正式测试/作者小修。C.d：独立审核与最终024验收逐项核，缺一required证据保持不足。原030/017/026等跨任务组合一并投影其完整原文，不增加平行实现。
+下面五个原稳定任务分别承接自己的结果/状态/文件/原AC，共用真实host执行原件及共同复用/验收活动，不复制五套实现或质量链。共同planning_gaps=最终源/test/cjp/宿主与命令manifest尚未产生；各卡进入ready前固定实际输入，不能把未来文件名当现有通过证据。
+
+- [ ] 2.1.1 原TASK-001：最终Linux目标与支持矩阵冻结（WP001/REQ008/011；调查verification）。
+
+输入=各平台/颜色/Glyph/Session/input原始事实、最终功能源、C008实际host矩阵；完整最终判断在147后，M1子接口可先冻结。独立交付 `docs/development/linux-support.md` 和 `docs/reviews/Linux-final/platform-matrix.json`，准确OS/CPU/ABI/SDK、TTY/非TTY/权限/固定console/模拟器/SSH配置与已测限制，其他OS列后续required。L4 001.a汇合固定来源与原件hash；001.b独立host执行角色给真实矩阵；001.c原调查角色写事实/限制并固定docs；001.d独立审核/验收按原AC001确认，不以TERM替代真实实现。具体最终执行命令manifest缺失前保持planned。
+
+- [ ] 2.1.2 原TASK-002：完整原始声明式语法证据冻结（WP001/REQ001/002；语言verification）。
+
+输入=071–080宏/绑定/动态与所有公开例子实际原始仓颉源码、正负例raw/SDK/定位限制；不等待与语法无关的最终041。独立交付 `docs/development/declarative-syntax.md` 与 `docs/reviews/Linux-final/syntax-map.json`。L4 002.a按原AC002逐组件块/链/状态/条件列表/自定义组件/回调映射固定源码与普通CJPM入口；002.b复用内容未变原正负例，变化部分由独立执行补真实编译/定位；002.c语言文档记录已验证限制与编辑器事实，禁用声明stub替代；002.d独立审核/验收每语法条款。最终源/命令未固定时planned，不与001/041绑定为一个状态。
+
+- [ ] 2.1.3 原TASK-003：最终依赖/native消费事实冻结（WP001/REQ005/006/011；依赖verification）。
+
+输入=最终cjpm清单/SDK1.2/deps及传递项、003既有R7/R8+Theme TOML/stdx实际输入、native闭包与干净消费；M1版本证据可供124，最终M2后核变化。独立交付更新 `docs/development/dependencies.md`、`docs/development/central-packages.json` 及 `docs/reviews/Linux-final/dependency-manifest.json`，同步产品README/build前置。L4 003.a固定所有版本/来源/hash与使用职责/缺口；003.b独立执行正常clean build/link/公开consumer（复用未变证据）；003.c依赖文档给准确工具链/运行闭包/缓存可用范围与实际license原文归属；003.d独立审核/验收原AC003，不恢复用户否定的许可冲突阻塞。最终源和全消费命令缺失时planned。
+
+- [ ] 2.1.4 原TASK-004：完整U1–U5公共构造契约冻结（WP001/REQ001/002；接口verification）。
+
+输入=021/027实际公开应用与全部功能正式design/API/包/错误/状态生命周期；C001各分段接口已冻事实保留。独立交付更新 `docs/ui-construction.md`、`docs/architecture.md` 与 `docs/reviews/Linux-final/construction-map.json`，产品说明同步准确入口。L4 004.a逐U1–U5源码调用映射语法/实际签名/职责/错误与固定消费者；004.b独立检查源码无需私有API/坐标/flush/内核特判及真实运行；004.c契约角色整理最终公共接口而非新建API；004.d独立审核/验收原AC004逐条，设计稿不替代编译。尚无全部最终consumer/src hash则planned。
+
+- [ ] 2.1.5 原TASK-041：M1设备输入与最终全Linux适配证据（WP004/REQ011/003/004/009；平台verification/必要原owner修复）。
+
+输入=已验native/TTY/尺寸/输入/输出/恢复子接口，M1完整020与C008设备事实；最终完整源还消费147。独立交付 `docs/development/linux-session.md`、`docs/reviews/Linux-final/linux-session-m1.json` 与 `docs/reviews/Linux-final/linux-session-final.json`。L4 041.a在124前固定M1 SDK/native/deps/ABI/输入输出/尺寸/恢复子接口manifest（不关闭完整AC041、不等待147）；041.b在M2后同源C008实际固定console/模拟器/mux/SSH场景补受影响输入/Unicode/布局/固定变化尺寸/全部恢复；041.c有真实缺陷回原独立测试/作者小修且双审核、相关执行，禁第二平台/渲染内核；041.d独立最终验收原AC041全部范围与exacttermios/bytes/PNG，不以M1 manifest勾选本卡完成。最终host/命令/hash缺失是planning_gaps，M1与最终状态由同一原卡分阶段交付，不创重复041状态。
+
+017/026/030等跨任务父AC汇合由024同一验收职责引用各现有正式链与组合结果；不新增实现任务，不因支持编号相加关闭父。
 
 - [ ] 2.2 原TASK-023：按C009交付最终正常源码cjp与干净消费（WP005/REQ006；implementation/交付及独立质量活动）。
 
@@ -70,6 +91,6 @@ L4 024.a：验收者Astra/high核最终source/package/deps与各原件hash、真
 
 ## Preflight与状态准入
 
-自查：C002–C009各有明确原任务/输入/输出/路径/独立角色/原AC，接口不扩张，001–004/041汇合为文档/证据职责而非一个全能编码L3；027/022/031/030仍原权威，不重复。M1→M2→最终矩阵无完整041前置循环；021→027单向；各补充consumer只能消费已实际存在上游。
+自查：C002–C009各有明确原任务/输入/输出/路径/独立角色/原AC，接口不扩张，001/002/003/004/041各自独立状态/文件/原AC，汇合组无状态且共享证据；027/022/031/030仍原权威，不重复。M1→M2→最终矩阵无完整041前置循环；021→027单向；各补充consumer只能消费已实际存在上游。
 
 下一步独立preflight按工程DQ逐项核候选、与原34AC/各正式design/现发行脚本的一致性。尚未获得结论，不能据此直接开始本change产品；当前Rich等原有已准入工作继续。若固定合同需要新公共API，回root单独精确化/preflight，不能以收尾名义随意扩展。

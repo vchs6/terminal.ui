@@ -319,3 +319,7 @@ CtrlC无选区不消费、让原interrupt默认退出；CtrlInsert无选区消�
 ## F006 I015内部mode25查询的键盘继承边界
 
 公开KeyboardDecoder默认无设备接点；精确ESC[?25;P$y仍UnsupportedSequence。设备run按interaction I015在同一decoder CSI路径接内部报告P=0..4，只有完整未被timeout/cancel打断的7bit九字节形态可消费；不产生业务key/issue、无独立parser/queue。Probe600ms截止不触发键盘timeout，不影响100ms真实idle；真正timeout后保留K002原normal/diagnostic，不长期重组。paste/string payload不识别报告；序列预算不豁免，maxSequenceBytes8可SequenceTooLong而不授权。F003输入位置/通知先后、F002 C1规则、K004每turn4096均保留。有限Session152现先于A，故114消费152和A的实际query/writer输入，不重复实现查询或partialunsafe闩。公开键盘签名无变化，完整113准入仍等实际交互/Session源。
+
+## F007 非string序列取消不额外诊断
+
+K002新ESC、F002标量边界新raw/UTF8 C1 CSI及非paste raw03取消已有未完整非string状态时，取消本身不额外产生IncompleteInput或MalformedSequence。先前已经报告的MalformedSequence/SequenceTooLong等保留，新引导自身诊断仍按原规则；这是与真实timeout/finish相区分的取消语义，不改变字符串隔离、UTF8边界或paste/drain内03为数据规则。字面例：ESC[12 ESC[A只产生新up；ESC[12 03 x产生interrupt(ctrl=true)、text x；ESC[1 raw9B A在标量边界只产生新up；各例没有取消附加issue。已被真实100ms timeout打断的旧序列已有IncompleteInput照常保留，不能事后撤销。
