@@ -39,10 +39,10 @@ public struct VisualStates {
 public class StyleKey<T> { }
 public class StyleKeys { /* 第4节每行定义一个 public static let */ }
 
-// 不可变值，with 返回新值；不共享可变 HashMap 给调用者。
+// 不可变值，withValue 返回新值；不共享可变 HashMap 给调用者。
 public struct StyleRule {
     public init()
-    public func with<T>(key: StyleKey<T>, value: StyleValue<T>,
+    public func withValue<T>(key: StyleKey<T>, value: StyleValue<T>,
         state!: VisualState = VisualState.Normal): StyleRule
 }
 public enum StyleUse { | Named(String) | Inline(StyleRule) }
@@ -67,7 +67,7 @@ public func visualStates(value: VisualStates): Component
 public func visualStates(value: () -> VisualStates): Component
 ```
 
-`StyleKeys` 不是反射机制：`foreground:StyleKey<Color>` 不接受 Bool，padding 不接受 Color；键有不可伪造的内部编号，合法范围仍须在运行时验证。泛型访问器避免给每个属性添加独立 reset/clear/状态的三套方法，原 `.foreground(v)` 等仍是最简正常入口。SDK 尚未实际编译此 generic singleton/with/setStyle 组合；若仓颉不能保持类型安全，实现应改成按具体类型的重载或命名方法，不能退为 `Any`/String 属性袋而冒充 typed。
+`StyleKeys` 不是反射机制：`foreground:StyleKey<Color>` 不接受 Bool，padding 不接受 Color；键有不可伪造的内部编号，合法范围仍须在运行时验证。泛型访问器避免给每个属性添加独立 reset/clear/状态的三套方法，原 `.foreground(v)` 等仍是最简正常入口。SDK 尚未实际编译此 generic singleton/withValue/setStyle 组合；若仓颉不能保持类型安全，实现应改成按具体类型的重载或命名方法，不能退为 `Any`/String 属性袋而冒充 typed。
 
 原 `.foreground(v)` 等同于在 Normal 写 `Value(v)`；最后写入同一 `(key,state)` 替换旧常量/getter与依赖。`setStyle(key, Unset)` 清除此槽并解除 getter，下一来源可接管；Reset 是占位声明并终止回落，值不是 Color.Default 的别名。getter 返回 Unset 不等于删除 getter，下一次依赖变化仍会求值。widthAuto/heightAuto 按 runtime 已冻结契约清除对应 getter与显式宽高槽，恢复来源回落；若要强制 auto，显式 `Value(Dimension.Auto)`；若要忽略主题强制框架 auto，用 Reset。原 `.shadow(...)` 一次写 enabled/offset/八个 shadow 样式的 Normal 槽；原 `.padding(n)` 一次写四边；不得以完整 Style 默认值污染本次未写的其他槽。
 
@@ -81,7 +81,7 @@ visualStates 仅传递组件已有状态的外观投影，不执行 focus、sele
 
 ```cangjie
 let emphasis = StyleRule()
-    .with(StyleKeys.bold, StyleValue<Bool>.Value(true))
+    .withValue(StyleKeys.bold, StyleValue<Bool>.Value(true))
 Text("Hello")
     .styles([StyleUse.Named("emphasis"), StyleUse.Inline(emphasis)])
     .foreground(Color.Cyan)
@@ -389,7 +389,7 @@ reloadTheme在调用瞬间捕获**已提交**主题的文件来源；若当前�
 
 T001：采用上述typed partial+单resolver、中心仓TOML方案。所有已列v1属性均在本变更真正接入（包括四边padding、grapheme wrap和ellipsis），不能只接受字段不生效。根[text]八绘制属性为逻辑根默认种子，三个文本排版键是静态文字primitive的全局默认；后named的normal可盖前named的disabled；Reset终止回落；背景fill意图单独保留来源bit。四来源/状态/继承/富文本按5/9节表精确执行。
 
-T002：Style仍完整最终绘制值。StyleValue<T>三态是声明，不含布局/渲染线程；StyleRule不可变、以内容比较相等；StyleUse及所有用于属性值的枚举/struct（VisualState/VisualStates/ThemeRole/TextWrap/TextOverflow/Dimension/ThemePreset）提供Equatable<Self>与==。StyleRule也提供Equatable<StyleRule>；StyleValue<T>在T可比较时提供相等。StyleKey<T>不能由应用创建，with/setStyle保持T匹配，禁止Any或字符串属性袋。泛型方法若SDK迫使语法调整先报主代理，以正常公开消费者为准，不用未编译示例宣称支持。内部存储可用已闭集类型的专属槽/安全typed accessor，不用unsafe downcast规避类型检查。
+T002：Style仍完整最终绘制值。StyleValue<T>三态是声明，不含布局/渲染线程；StyleRule不可变、以内容比较相等；StyleUse及所有用于属性值的枚举/struct（VisualState/VisualStates/ThemeRole/TextWrap/TextOverflow/Dimension/ThemePreset）提供Equatable<Self>与==。StyleRule也提供Equatable<StyleRule>；StyleValue<T>在T可比较时提供相等。StyleKey<T>不能由应用创建，withValue/setStyle保持T匹配，禁止Any或字符串属性袋。泛型方法若SDK迫使语法调整先报主代理，以正常公开消费者为准，不用未编译示例宣称支持。内部存储可用已闭集类型的专属槽/安全typed accessor，不用unsafe downcast规避类型检查。
 
 T003：Component.themeRole只改样式标签，挂载后拒改，永远不改布局kind。Text/Label/Button/Radio/Checkbox/MenuItem的首版构造根为文字primitive；Row/Column/HorizontalMenu/PopupMenu/StatusBar/Modal/SplitPane为容器；Progress/TextInput/TextArea为后续受控绘制primitive，只接受通用绘制/尺寸/装饰属性，不接受静态文字wrap/ellipsis/align键。Generic按实际primitive能力。自定义组件选择角色不能使其原primitive突然获得新能力；应用命名样式/组件角色主题时对实际节点验证，不支持则明确失败，禁止悄悄忽略。角色配置静态校验按上述内置矩阵；Generic允许闭集全部键但应用时核实际能力。全局默认只投影到有该能力的primitive，不能因全局gap让Text报错。基础控件尚未交付时，对配置模型的验证不是控件外观已通过；027等全部控件后汇合。
 
@@ -417,7 +417,7 @@ T012：依赖精确固定cangjie_toml0.2.3+官方stdx1.2.0-beta.02.1，hash/布�
 
 T013：包依赖必须单向。Alignment迁至cjtui.style/alignment.cj并由根包重导出，原src/alignment.cj定义退役，保持所有现源码消费者的cjtui.Alignment入口，不声称已发布二进制ABI兼容。StyleRule/Key/Keys仅依赖style基础值，Theme纯值/schema/parser仅依赖style/SDK/TOML。ThemeRequest和关联Observable/Runtime的loader在根包各自文件实现，不能让cjtui.theme反向import cjtui。ThemeResult/Source/Info/Diagnostic等纯数据留theme，根包重导出。
 
-StyleKey<T>增加公开只读`name:String`（固定lowerCamelCase键名、无公开构造），StyleRule增加`public func value<T>(key:StyleKey<T>,state!:VisualState=VisualState.Normal):StyleValue<T>`只读查询该指定state原声明，未设置返回Unset；它不自行执行跨来源/状态级联。两项是typed规则可检查性与跨包纯resolver输入，不公开可变表/Any。Root的唯一resolver可用这些纯查询计算结果，无需子包读Component。无效数值的程序化StyleRule.with抛IllegalArgumentException，主题文件则由schema映射ThemeDiagnostic；缺名/不适用节点仍按正文UIException(InvalidProperty)。
+StyleKey<T>增加公开只读`name:String`（固定lowerCamelCase键名、无公开构造），StyleRule增加`public func value<T>(key:StyleKey<T>,state!:VisualState=VisualState.Normal):StyleValue<T>`只读查询该指定state原声明，未设置返回Unset；它不自行执行跨来源/状态级联。两项是typed规则可检查性与跨包纯resolver输入，不公开可变表/Any。Root的唯一resolver可用这些纯查询计算结果，无需子包读Component。无效数值的程序化StyleRule.withValue抛IllegalArgumentException，主题文件则由schema映射ThemeDiagnostic；缺名/不适用节点仍按正文UIException(InvalidProperty)。
 
 候选/绑定结果相等比较必须包含source explicit mask与fill意图，不能只比8字段Style：例如base本为Default，当前文本span为红，新增组件显式foreground(Default)会改变最终画面，虽base颜色数值未变也必须标paint。Inherited来源不当本组件explicit；反之显式Reset必须压过span。preset固定设计输入在fixtures/themes，产品输出解析值逐字段相等而非要求SDK格式化后字节同一；产品可编辑TOML应直接复制设计输入字节，不擅自换值。
 
@@ -428,4 +428,8 @@ wrap的自然行高精确规则：分配内容宽度0时，每个硬行仍占1�
 T015（独立preflight Classic兼容修订）：背景填充区分无fill、根全局种子background fill、节点本地background fill三种来源，不能只记Bool后无条件使用节点最终Style。逻辑根仅因global[text].background获得fill时，使用`Style(background:已解析种子background)`填根分配盒（其余7字段框架默认），不继承根组件显式/复用/role的foreground/inverse/underline等；它是背景底色，不把文本效果扩散到空白。非background的全局seed文本效果仍正常用于实际文字/边框，不自行增加空白效果。
 
 若本节点在显式/复用/本role主题来源声明background Value或Reset，则本地fill优先，按该节点完整最终Style填盒，保持旧`.background(...).inverse(...)`等行为。继承background不自行fill。global seed fill只在可见根按其分配盒/clip绘制，隐藏根不绘制；无额外“Classic renderer”分支。于是Classic文件保留background="default"仍使`Text("x").inverse(true)`宽3仅x反显、其余2格默认，underline同理；Root本地background声明仍可令全盒有该效果。新fill来源/独立fillStyle纳入缓存相等与dirty比较，不覆盖span局部背景。
+
+T016（独立测试期SDK语法/预算澄清）：仓颉with是关键字，正式样式builder成员名采用`withValue<T>(key:StyleKey<T>,value:StyleValue<T>,state!:VisualState=VisualState.Normal):StyleRule`，不要求常规调用使用反引号；语义同原候选with，尚无已实现/发布的旧入口，不增加不必要兼容alias。测试作者实际SDK1.2声明-only编译已证明原普通with语法不成立，保留失败原件，不能声称原API已编译。
+
+T009 token预算精确计所有上游Lexer发出的非EOF token，包括CommentStart/其他注释token，EOF不计；空文档是0token但schema仍缺必需字段。声明计数为每次KeyStart、TableStart、ArrayTableStart各1（inline内KeyStart也计），其余token不计声明。边界样本必须用该固定上游public Lexer实数核对，不另写模拟词法；变量/样式4096等预算仍联合生效，避免断言因先撞其他预算而失真。
 
