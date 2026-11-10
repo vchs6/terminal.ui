@@ -139,3 +139,15 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-092 | REQ-008/007 | TASK-092 | 原AC026及集成metadata，不提前关闭027/Linux | pending |
 
 具体准入和唯一任务状态见[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)；候选/配置文件不是实现通过。
+
+## Linux VT 字形子接口质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-093 | REQ-004/005/007/011 | TASK-093 | 独立原文/标记/投影、原生边界及真实缺API RED | pending |
+| AC-094 | REQ-004/005/011 | TASK-094 | 自动VT探测/等宽降级/高级覆盖及离线Unicode边界 | pending |
+| AC-095 | REQ-007 | TASK-095 | 固定字形增量的独立spec/quality审核 | pending |
+| AC-096 | REQ-004/005/006/007/011 | TASK-096 | 独立原生/投影/差分、真实VT与模拟器PNG、正常干净包消费 | pending |
+| AC-097 | REQ-004/005/007/011 | TASK-097 | 有限字形子接口证据与metadata，完整041和主题ellipsis仍待汇合 | pending |
+
+状态权威仅见[字形适配变更](../openspec/changes/implement-linux-vt-glyph-fallback/tasks.md)，候选微验证不是产品验收。
