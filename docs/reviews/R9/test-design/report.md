@@ -73,3 +73,13 @@ c5ec6cfa794d829bbe05d7040d457affcb8037b7d5b9951c2002608ed06d71d0  /workspace/wor
 ee9e91fc1859d398f370f5f442efc5753fa5eafb10c424d3cdb89641cd4bb7ac  /workspace/work/layout-tests/public-width.log
 
 Final all shell exit was observed as 1 (`ALL_BASELINE_EXIT=1`). Final static checks all exit 0; working tree is clean after removing only generated, initially absent old-consumer lockfiles. New projects ignore their own generated locks. Report and raw logs are external artifacts, not tracked product sources.
+
+## Follow-up: test-owned mutable-capture syntax failure
+
+The implementation-side consumer compilation exposed a defect in the frozen test at line 134: `Row { panel = ... }` captured and assigned `var panel`. SDK1.2.0 rejects non-immediately-invoked lambdas capturing mutable variables. This was a **test-owned compiler failure**, not a product behavior failure. Original compiler diagnostic is retained unmodified at `/workspace/work/layout-tests/decoration-capture-failure.log` (copied only from the authorized diagnostic file; no implementation sources inspected). Earlier API-absence RED did not reach this later semantic diagnostic, so the prior source was not fully syntax-valid.
+
+Systematic-debugging skill was invoked for this correction; TDD and verification workflow remain applied. Minimal independent language consumer `/workspace/work/layout-tests/capture-probe` reproduced the same mutable-capture error with `construct(body: () -> Unit)` and no cjtui dependency or product stubs. `cjpm build` returned 1; raw `/workspace/work/layout-tests/capture-red.log`.
+
+The probe then captured immutable `let panel = [original]`, assigned `panel[0] = replacement` inside the callback, and mutated the replacement object after the callback. `cjpm build` then **direct binary execution** both succeeded, exit 0, with `PASS: immutable array capture retains replacement reference for later mutation`; raw `/workspace/work/layout-tests/capture-green.log`. Compiler/CJPM SDK1.2.0, unchanged from earlier commands. This validates the reference-capture mechanism alone, not product layout/decoration behavior.
+
+The test correction applies exactly that mechanism: immutable one-element Component array, assignment to `panel[0]` inside Row, then the original two `shadow` calls through `panel[0]`. All render/snapshot/assertion expectations remain byte-for-byte unchanged. Product implementation execution is left to the independent executor as directed by coordinator. `git diff --check` exits 0. The original failed diagnostic and both language-probe outputs remain retained.

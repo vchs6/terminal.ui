@@ -305,3 +305,5 @@ L3 交付前完成其必需验收，工作包集成与交付前完成相应集�
 按职责与仓颉package/目录规则组织源码；每个类、结构体、接口、枚举单独一个小写下划线文件，不把多个类型集中进一个文件。某个实体的成员/扩展尽量归属其实体文件；纯函数按内聚职责组织，不机械拆成单函数文件。新增与本轮现有混合定义均须整理，不能只约束未来代码。保留公开构造方式和消费者兼容；跨包可见性以SDK实际编译为准，不为拆包随意公开内部状态。
 
 可使用用户指定的[CangjieSkills](https://atomgit.com/Cangjie-SIG/CangjieSkills.git)；本轮固定277f2e1234ca5217496966887243c679653887a8，cangjie-coding按脚本渐进查询，语言事实以本项目SDK1.2.0实际编译优先，不采用其默认旧SDK版本覆盖项目清单。此工具只属开发资料，不加入产品依赖或制品。
+
+工程规范同时参考[cangjie-rules](https://github.com/SunriseSummer/cangjie-rules.git)，固定40bacab1dafc7c5710a9b14c5c5c86898feed63c。按需采用其结构/命名/格式/最小可见性和兼容性审查，不将全部条目或附带检查器自动升级为本项目额外门禁；适用范围及差异见[仓颉工程参考](docs/development/cangjie-conventions.md)。
