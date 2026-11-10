@@ -1,0 +1,25 @@
+from pathlib import Path
+import ast,hashlib,json,re,subprocess
+b=Path('/workspace/work/theme-load-tests');r=b/'source';t=r/'tests/theme-loading';s=b/'declaration-only-scratch'
+for name in ['run.py','generate_inputs.py']:compile((t/name).read_text(),str(t/name),'exec')
+subprocess.run(['bash','-n',str(t/'run.sh')],check=True)
+subprocess.run(['cc','-fsyntax-only','-Wall','-Wextra','-Werror',str(t/'native/gate_wrap.c')],check=True)
+module=ast.parse((t/'run.py').read_text())
+cases=next(ast.literal_eval(n.value) for n in module.body if isinstance(n,ast.Assign) and any(isinstance(a,ast.Name) and a.id=='CASES' for a in n.targets))
+assert set(cases)-{'infrastructure'}==set(re.findall(r'case "([^"]+)"',(t/'consumer/src/main.cj').read_text()))
+assert len(cases)==23
+inventory=[]
+for group in ['consumer','foundation','api-probe']:
+    for p in (t/group/'src').glob('*.cj'):
+        q=s/group/'src'/p.name
+        assert p.read_bytes()==q.read_bytes(),str(p)
+        assert p.read_text().startswith('package ')
+        assert len(re.findall(r'^\s*(?:public )?(?:open )?(class|struct|enum|interface) ',p.read_text(),re.M))<=1,str(p)
+        inventory.append(dict(file=str(p.relative_to(r)),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),scratch_file=str(q),relation='exact source bytes; compiled only against declaration-only scratch'))
+(b/'static-source-equivalence.json').write_text(json.dumps(inventory,indent=2)+'\n')
+old=json.loads((b/'raw/infrastructure-run/source-hashes.json').read_text())
+for f in ['native/gate_wrap.c','probe/src/main.cj']:
+    assert hashlib.sha256((t/f).read_bytes()).hexdigest()==old[f]
+assert (r/'openspec/changes/implement-theme-styles/design.md').read_bytes()==Path('/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md').read_bytes()
+subprocess.run(['git','diff','--check'],cwd=r,check=True)
+print(f'PASS preparation artifact checks: Python/shell/C syntax; 22 behavioral cases; one type/file; {len(inventory)} exact declaration-static consumer source copies; unchanged proven native/probe source; unchanged frozen design. No Theme product behavior executed.')
