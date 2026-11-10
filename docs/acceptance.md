@@ -185,3 +185,20 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-152 | REQ-010/007 | TASK-152 | 030有限会话结果及metadata，粘贴等完整父AC按实际汇合 | pending |
 
 唯一任务状态见[会话扩展变更](../openspec/changes/implement-session-extensions/tasks.md)，不把协议环境探针当产品成功。
+
+## 归一化输入与基础编辑质量验收
+
+| AC | 需求 | 任务 | 验收边界 | 状态 |
+|---|---|---|---|---|
+| AC-113 | REQ-009/010/007/011 | TASK-113 | 独立字节/分块/粘贴目标/EOF公平性golden与RED | pending |
+| AC-114 | REQ-009/010/007/011 | TASK-114 | 唯一KeyboardDecoder/设备/2004模式实现 | pending |
+| AC-115 | REQ-009/010/007/011 | TASK-115 | 固定键盘增量独立双审 | pending |
+| AC-116 | REQ-009/010/007/011 | TASK-116 | 独立真实输入/模态目标/退出恢复与普通包消费 | pending |
+| AC-117 | REQ-009/010/007/011 | TASK-117 | 有限键盘合同及metadata，完整编辑仍待验 | pending |
+| AC-118 | REQ-009/010/007/011 | TASK-118 | 独立Unicode事务/历史/竞态/控件golden与RED | pending |
+| AC-119 | REQ-009/010/007/011 | TASK-119 | 公共Canvas单多行输入/控制器/标准快捷键实现 | pending |
+| AC-120 | REQ-009/010/007/011 | TASK-120 | 固定编辑增量独立双审 | pending |
+| AC-121 | REQ-009/010/007/011 | TASK-121 | 独立编辑/剪贴板结果/主题/viewport/真实终端消费 | pending |
+| AC-122 | REQ-009/010/007/011 | TASK-122 | 原028完整证据及metadata，030父项按真实paste/cut汇合 | pending |
+
+唯一任务状态见[输入编辑变更](../openspec/changes/implement-linux-input-editing/tasks.md)，候选与签名微验证不当产品通过。

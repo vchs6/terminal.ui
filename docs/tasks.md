@@ -230,7 +230,7 @@ GOV-001 治理修订的任务状态见 [已归档变更](../openspec/changes/arc
 - TASK-025：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-025与需求映射。
 - TASK-026：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-026与需求映射。
 - TASK-027：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-027与需求映射。
-- [ ] 6.4 TASK-028：基础输入编辑与标准快捷操作；验收 AC-028：单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交。
+- TASK-028：状态/准入/实际依赖转至[输入编辑变更](../openspec/changes/implement-linux-input-editing/tasks.md)，保留原AC-028与需求映射。
 - [ ] 6.5 TASK-029：按钮标签与选择进度基础组件；验收 AC-029：标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致。
 - [ ] 6.6 TASK-030：可选会话能力与本地剪贴板通道；验收 AC-030：SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心。
 - [ ] 6.7 TASK-031：M2局部布局绘制及基线对照；验收 AC-031：局部负载减少无关工作，移动/遮挡/宽字符/resize与M1帧结果一致，记录CPU/分配/输出及大范围退化。
@@ -552,3 +552,5 @@ Linux VT自动字形子接口支持TASK093–097唯一状态在[字形适配变�
 公共交互支持TASK098–112唯一状态在[public-interaction tasks](../openspec/changes/implement-public-interaction/tasks.md)：A绘制/焦点追踪017、B纵横视口追踪037、C覆盖层追踪018；独立preflight与正式签名微验证前均planned，原父状态仍以完整AC关闭。
 
 可选会话能力TASK148–152唯一状态在[session-extensions tasks](../openspec/changes/implement-session-extensions/tasks.md)，追踪030并联004/020/041既有接口；copyLocalText同步结果供028编辑消费，不另建剪贴板队列。完整030粘贴与真实SSH仍待实际证据，图片无adapter如实降级。
+
+输入/编辑支持TASK113–122唯一状态在[linux-input-editing tasks](../openspec/changes/implement-linux-input-editing/tasks.md)，028同变更；归一化键盘/paste关联017/020/030/041子接口，152有限会话writer先于114，完整父项仍按实际汇合，019菜单/029小控件不混编号。
