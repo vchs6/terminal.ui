@@ -233,3 +233,67 @@ FFI archives, R8 consumers, and public assertions are not modified. The runner's
 `all` includes this new mode after existing checks. The separate ordinary
 `cjpm bundle` check must still pass mandatory SDK lint without suppressions;
 source-text assertions do not replace running that packaging command.
+
+## Capability-aware colors and six text attributes (TASK-061)
+
+Binding input: `implement-color-style-output/design.md` at
+`f3329d2f9308c7242aea22266d5ab45d781e03b1`. Existing R8/R9/060 tests and
+assertions are retained. New modes also run after those checks in `all`:
+
+```sh
+./tests/run-slice.sh colors
+./tests/run-slice.sh colors-integration
+# After the ordinary builds, directly select one real PTY scenario:
+node tests/colors/pty.mjs fixture
+node tests/colors/pty.mjs example
+```
+
+`tests/colors` is an ordinary external public consumer. It checks constructor and
+channel-sensitive Color equality, every Style field, four distinct ColorMode values,
+all sixteen named/alias colors, all indexed values in exact-capability modes,
+independently calculated nearest/tie cases, RGB channel endpoints, foreground and
+background bytes, six attributes and their reset/order, original raw Cell styles,
+wide continuation/run output, explicit false inheritance, complete border/shadow
+styles, and exact legacy eight-color/bold bytes. Expectations are literal standard
+SGR bytes and nominal color distances from the contract, never captured product
+output. No private projection/diff function is imported.
+
+The separate `tests/colors/session` application supplies four fixed text rows.
+`b/i/r/m` selects the four modes; `x/y` switches red249/red250; `n/a/d` selects
+named Red / indexed alias1 / Default; `t/f` enables/disables all six attributes;
+`q` stops. Each harness action is followed by a second public `h` key event.
+That callback writes a serial acknowledgement file, demonstrating that the prior
+run-loop render completed, and toggles bold on the otherwise independent fourth
+`EVENT-FENCE` row. Receipt of that row's complete bytes is an additional PTY
+transport barrier. The harness compares **all** bytes since the action against
+exact expected business-row updates plus the fence row. It does not use a fixed
+sleep, idle interval, output hook, stdout sentinel, or private API to infer that
+a silent event was processed. Fourteen actions distinguish real changes from
+Basic16/Indexed256-equivalent changes, Monochrome-only color changes, indexed
+aliases, and mode changes that leave plain/named rows unchanged.
+
+The other PTY scenario executes the actual `examples/colors` binary. It checks
+initial Basic16 despite truecolor environment hints, `c` cycling through
+Indexed256, TrueColor, Monochrome, and Basic16, `t` changing each of the six
+attributes and round-tripping, actual-size resize 100x40→31x12→8x4→100x40,
+normal q status, and exact before/after termios. Its screen reader observes CUP
+and SGR bytes with independent column accounting; it is test support, not a
+terminal emulator or product encoder. It does not require example business text
+or a particular title. Positive example repaints wait for complete rows and
+stream quiescence; the silence fixture instead uses the explicit event and
+transport barriers above.
+
+Both executables are built normally, then run directly under util-linux
+`script --return`. Compiler errors, assertion status, timeouts, and forced cleanup
+are failures. Set `CJTUI_COLOR_ARTIFACTS` to retain raw session/action bytes,
+parsed example snapshots, stderr, terminal snapshots, and results in a chosen
+directory; otherwise a fresh temporary directory is printed. Compatible already
+built binaries can be selected with `CJTUI_COLOR_FIXTURE_BIN` and
+`CJTUI_COLOR_EXAMPLE_BIN`; these do not bypass the runner's normal builds.
+
+This test author establishes missing-API RED and freezes consumers/facilities;
+it does not sign the subsequent product implementation GREEN. Device-write
+failure baseline/mode commit ordering remains an independent review obligation
+because the public application API supplies no writer injection hook. Normal
+bundle and clean package-consumer execution are separate integration obligations;
+no source scan or PTY assertion substitutes for them.
