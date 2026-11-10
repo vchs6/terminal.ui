@@ -1,0 +1,19 @@
+[package]
+  cjc-version = "1.2.0"
+  name = "glyph_session"
+  organization = ""
+  description = "nothing here"
+  version = "1.0.0"
+  target-dir = ""
+  script-dir = ""
+  output-type = "executable"
+  compile-option = ""
+  override-compile-option = ""
+  link-option = "--wrap=fstat --wrap=isatty --wrap=ioctl --wrap=malloc --wrap=calloc --wrap=free --wrap=write"
+  package-configuration = {}
+
+[dependencies]
+cjtui = { path = "../../.." }
+
+[ffi.c]
+glyph_syscall_wrap = { path = "./native" }

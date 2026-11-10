@@ -1,0 +1,11 @@
+package glyph_readonly
+import cjtui.*
+func mutate(value: TerminalGlyphCapabilities): Unit {
+    value.nativeVt = false
+    value.mapKnown = false
+    value.entryCount = 0
+    value.source = "fabricated"
+    value.reason = ""
+    value.nativeError = 0
+}
+main(): Int64 { 0 }
