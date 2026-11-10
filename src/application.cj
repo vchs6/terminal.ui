@@ -35,16 +35,16 @@ public class Application {
         if (unsafe { cjt_open() } != 0) {
             throw Exception("Linux ANSI TTY required")
         }
-        running = true
-        let capabilities = detectTerminalCapabilities()
-        lastCapabilities = Some(capabilities)
-        let initialMode = match (colorOverride) {
-            case Some(value) => value
-            case None => capabilities.colorMode
-        }
         var failure: ?Exception = None
         var restoreFailed = false
         try {
+            running = true
+            let capabilities = detectTerminalCapabilities()
+            lastCapabilities = Some(capabilities)
+            let initialMode = match (colorOverride) {
+                case Some(value) => value
+                case None => capabilities.colorMode
+            }
             let decoder = InputDecoder()
             var baseline: ?Frame = None
             var baselineProfile = terminalRenderProfile(capabilities, initialMode)

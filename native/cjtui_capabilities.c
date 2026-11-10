@@ -29,6 +29,14 @@ enum {
     CJT_MODE_TRUECOLOR
 };
 
+/* Packed ABI layout is documented in design D031–D033. */
+enum {
+    CJT_BOLD_BIT = 3, CJT_DIM_BIT = 4, CJT_ITALIC_BIT = 5,
+    CJT_UNDERLINE_BIT = 6, CJT_INVERSE_BIT = 7, CJT_STRIKE_BIT = 8,
+    CJT_TERMINFO_BIT = 9, CJT_COLORTERM_BIT = 10,
+    CJT_REASON_SHIFT = 11, CJT_NCV_SHIFT = 16, CJT_NCV_PRESENT_BIT = 48
+};
+
 typedef int (*setupterm_fn)(char *, int, int *);
 typedef int (*tigetnum_fn)(const char *);
 typedef int (*tigetflag_fn)(const char *);
@@ -52,7 +60,7 @@ static struct cjt_tinfo cjt_tinfo;
 static int cjt_tinfo_state;
 
 static int64_t cjt_pack(int mode, int reason) {
-    return (int64_t)mode | ((int64_t)reason << 11);
+    return (int64_t)mode | ((int64_t)reason << CJT_REASON_SHIFT);
 }
 
 static int cjt_valid_term(const char *term) {
@@ -149,7 +157,7 @@ int64_t cjt_capabilities_detect(void) {
             (cjt_tinfo_state == -3 ? CJT_REASON_PLATFORM : CJT_REASON_LIBRARY);
         pthread_mutex_unlock(&cjt_tinfo_lock);
         result = cjt_pack(color_term ? CJT_MODE_TRUECOLOR : CJT_MODE_UNKNOWN, reason);
-        return color_term ? result | ((int64_t)1 << 10) : result;
+        return color_term ? result | ((int64_t)1 << CJT_COLORTERM_BIT) : result;
     }
     saved = *cjt_tinfo.cur_term;
     if (cjt_tinfo.setupterm((char *)term, STDOUT_FILENO, &error) != 0) {
@@ -159,7 +167,7 @@ int64_t cjt_capabilities_detect(void) {
         pthread_mutex_unlock(&cjt_tinfo_lock);
         reason = error == -1 ? CJT_REASON_DATABASE : CJT_REASON_ENTRY;
         result = cjt_pack(color_term ? CJT_MODE_TRUECOLOR : CJT_MODE_UNKNOWN, reason);
-        return color_term ? result | ((int64_t)1 << 10) : result;
+        return color_term ? result | ((int64_t)1 << CJT_COLORTERM_BIT) : result;
     }
     created = *cjt_tinfo.cur_term;
     colors = cjt_tinfo.tigetnum("colors");
@@ -175,19 +183,19 @@ int64_t cjt_capabilities_detect(void) {
         level = CJT_MODE_MONOCHROME;
     }
     if (color_term) level = CJT_MODE_TRUECOLOR;
-    if (cjt_matches_sgr(cjt_tinfo.tigetstr("bold"), "\033[1m")) flags |= 1 << 3;
-    if (cjt_matches_sgr(cjt_tinfo.tigetstr("dim"), "\033[2m")) flags |= 1 << 4;
-    if (cjt_matches_sgr(cjt_tinfo.tigetstr("sitm"), "\033[3m")) flags |= 1 << 5;
-    if (cjt_matches_sgr(cjt_tinfo.tigetstr("smul"), "\033[4m")) flags |= 1 << 6;
-    if (cjt_matches_sgr(cjt_tinfo.tigetstr("rev"), "\033[7m")) flags |= 1 << 7;
-    if (cjt_matches_sgr(cjt_tinfo.tigetstr("smxx"), "\033[9m")) flags |= 1 << 8;
+    if (cjt_matches_sgr(cjt_tinfo.tigetstr("bold"), "\033[1m")) flags |= 1 << CJT_BOLD_BIT;
+    if (cjt_matches_sgr(cjt_tinfo.tigetstr("dim"), "\033[2m")) flags |= 1 << CJT_DIM_BIT;
+    if (cjt_matches_sgr(cjt_tinfo.tigetstr("sitm"), "\033[3m")) flags |= 1 << CJT_ITALIC_BIT;
+    if (cjt_matches_sgr(cjt_tinfo.tigetstr("smul"), "\033[4m")) flags |= 1 << CJT_UNDERLINE_BIT;
+    if (cjt_matches_sgr(cjt_tinfo.tigetstr("rev"), "\033[7m")) flags |= 1 << CJT_INVERSE_BIT;
+    if (cjt_matches_sgr(cjt_tinfo.tigetstr("smxx"), "\033[9m")) flags |= 1 << CJT_STRIKE_BIT;
     ncv = cjt_tinfo.tigetnum("ncv");
     cjt_tinfo.set_curterm(saved);
     cjt_tinfo.del_curterm(created);
     pthread_mutex_unlock(&cjt_tinfo_lock);
 
-    result = cjt_pack(level, CJT_REASON_NONE) | ((int64_t)1 << 9) | flags;
-    if (color_term) result |= (int64_t)1 << 10;
-    if (ncv >= 0) result |= ((int64_t)(uint32_t)ncv << 16) | ((int64_t)1 << 48);
+    result = cjt_pack(level, CJT_REASON_NONE) | ((int64_t)1 << CJT_TERMINFO_BIT) | flags;
+    if (color_term) result |= (int64_t)1 << CJT_COLORTERM_BIT;
+    if (ncv >= 0) result |= ((int64_t)(uint32_t)ncv << CJT_NCV_SHIFT) | ((int64_t)1 << CJT_NCV_PRESENT_BIT);
     return result;
 }

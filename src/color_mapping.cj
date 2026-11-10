@@ -90,25 +90,28 @@ func projectColor(color: Color, mode: ColorMode): Color {
     }
 }
 
-func projectStyle(style: Style, mode: ColorMode): Style {
-    Style(foreground: projectColor(style.foreground, mode), background: projectColor(style.background, mode),
-        bold: style.bold, dim: style.dim, italic: style.italic, underline: style.underline, inverse: style.inverse,
-        strikethrough: style.strikethrough)
-}
+private let ncvUnderline: Int64 = 2
+private let ncvInverse: Int64 = 4
+private let ncvDim: Int64 = 16
+private let ncvBold: Int64 = 32
+private let ncvKnownMask: Int64 = ncvUnderline | ncvInverse | ncvDim | ncvBold
 
 func projectTerminalStyle(style: Style, profile: TerminalRenderProfile): Style {
     let color = projectColor(style.foreground, profile.colorMode)
     let background = projectColor(style.background, profile.colorMode)
     let hasColor = color != Color.Default || background != Color.Default
-    let unknownColorVideo = profile.noColorVideo > 0 && (profile.noColorVideo & 54) != profile.noColorVideo
+    let unknownColorVideo = profile.noColorVideo > 0 && (profile.noColorVideo & ncvKnownMask) != profile.noColorVideo
     let video = if (hasColor && profile.noColorVideo >= 0 && !unknownColorVideo) {
         profile.noColorVideo
     } else {
         0
     }
-    Style(foreground: color, background: background, bold: style.bold && profile.supportsBold && (video & 32) == 0,
-        dim: style.dim && profile.supportsDim && (video & 16) == 0, italic: style.italic && profile.supportsItalic,
-        underline: style.underline && profile.supportsUnderline && (video & 2) == 0,
-        inverse: style.inverse && profile.supportsInverse && (video & 4) == 0,
-        strikethrough: style.strikethrough && profile.supportsStrikethrough)
+    let attributesAllowed = !(hasColor && unknownColorVideo)
+    Style(foreground: color, background: background,
+        bold: attributesAllowed && style.bold && profile.supportsBold && (video & ncvBold) == 0,
+        dim: attributesAllowed && style.dim && profile.supportsDim && (video & ncvDim) == 0,
+        italic: attributesAllowed && style.italic && profile.supportsItalic,
+        underline: attributesAllowed && style.underline && profile.supportsUnderline && (video & ncvUnderline) == 0,
+        inverse: attributesAllowed && style.inverse && profile.supportsInverse && (video & ncvInverse) == 0,
+        strikethrough: attributesAllowed && style.strikethrough && profile.supportsStrikethrough)
 }

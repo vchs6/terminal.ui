@@ -211,9 +211,6 @@ public class Frame {
         }
         out
     }
-    func changesSince(old: Frame, oldMode: ColorMode, colorMode: ColorMode): String {
-        changesSinceForTerminal(old, snapshotProfile(oldMode), snapshotProfile(colorMode))
-    }
     func changesSinceForTerminal(old: Frame, oldProfile: TerminalRenderProfile, profile: TerminalRenderProfile): String {
         if (width != old.width || height != old.height) {
             return toAnsiForTerminal(profile)
