@@ -95,4 +95,4 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-067 | REQ-004/005/007 | TASK-067 | 固定公共消费者、独立网格/字节期望及真实缺API RED原件 | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
 | AC-068 | REQ-007 | TASK-068 | 固定完整技术diff的spec/quality双结论，无未决必需缺陷 | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
 | AC-069 | REQ-004/005/006/007 | TASK-069 | 独立新消费者/受影响旧回归/正常bundle及公开消费的实际退出与原始证据 | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
-| AC-070 | REQ-004/005/007 | TASK-070 | AC005/007与文件原语有限验收及最终内容/元数据核对，不提升完整AC010/Linux | pending |
+| AC-070 | REQ-004/005/007 | TASK-070 | AC005/007与文件原语有限验收及最终内容/元数据核对，不提升完整AC010/Linux | passed（[R11最终投影](reviews/R11/acceptance/final-projection-report.md)） |

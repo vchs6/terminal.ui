@@ -22,7 +22,7 @@
 - [x] TASK-007（WP-002 implementation）：完整透明/不透明 Frame 合成与文件原语，共用 005 同一实现提交及测试周期；依赖 005/006，单一产品作者，不人为拆成平行内核。
 - [x] TASK-068（WP-005 verification）：固定完整 diff 的 spec/quality 独立审核及必要 scoped 修复复核；无未决 Critical/Important。
 - [x] TASK-069（WP-005 testing）：独立构建、新消费者、旧 contract/coordinates/colors/layout/decoration 受影响回归、标准 bundle 与普通包消费者；记录实际 exit/raw/source/hash。完整 release 仍有后续交付，不冒充通过。
-- [ ] TASK-070（WP-005 acceptance）：逐 AC-005/007 及本变更文件原语有限验收、最终元数据核对，合入 main 后自动继续总计划。
+- [x] TASK-070（WP-005 acceptance）：逐 AC-005/007 及本变更文件原语有限验收、最终元数据核对，合入 main 后自动继续总计划。
 
 001–004 子输入、005/007 canonical_owner 和 compatibility 见 design；010 状态仍由 docs/tasks.md 持有，文件原语为部分交付。067–070为本变更唯一支持状态，对应新增 AC 同号，父 WP-005/REQ-007。
 

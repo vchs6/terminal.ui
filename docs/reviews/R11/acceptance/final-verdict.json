@@ -1,0 +1,42 @@
+{
+  "task": "TASK-070",
+  "functionalSource": "5c2a7e7d956b5d8c0284e96514276608616bf8a6",
+  "projectionCandidate": "dde27d18274fa9645fc0d75bdd9631d31a882d67",
+  "functionalContractVerdict": "PASS",
+  "metadataVerdict": "PASS",
+  "overallScopedTaskVerdict": "PASS",
+  "mechanicalClosureAuthorized": true,
+  "ac": {
+    "AC-005": "passed",
+    "AC-007": "passed",
+    "AC-067": "passed",
+    "AC-068": "passed",
+    "AC-069": "passed_scoped_delivery",
+    "AC-070": "passed",
+    "AC-010": "pending_with_file_primitives_passed"
+  },
+  "fullRelease": {
+    "verdict": "failed",
+    "actualExit": 1,
+    "reason": "Incomplete product bundle: examples/composition/cjpm.toml"
+  },
+  "allLinux": "not_complete_not_accepted",
+  "archiveEntriesVerified": 493,
+  "localMarkdownLinksChecked": 72,
+  "brokenLinks": 0,
+  "technicalContentUnchanged": true,
+  "findings": [],
+  "nonblockingArchiveSuggestion": [
+    "audit.mjs",
+    "package-boundary.mjs",
+    "projection-audit.mjs"
+  ],
+  "nextActions": [
+    "archive final acceptance report/facts/verdict",
+    "mechanically close only TASK/AC-070 and update ledgers",
+    "continue full Linux implementation plan"
+  ],
+  "rerunRequired": false,
+  "report": "final-projection-report.md",
+  "facts": "projection-facts.json"
+}
