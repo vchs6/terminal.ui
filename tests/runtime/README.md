@@ -138,3 +138,13 @@ the target and session tokens are already revoked; post returns false without
 running or leaking into remount. The case observes all three outcomes before
 asserting, checks remaining cleanup/resources, then exercises later legal B and
 remounted A boundaries to detect leaked TLS ownership. Existing assertions remain.
+
+F007 owner-failure regressions run independently with
+`CJTUI_RUNTIME_CASE=post-cross-session`, `post-cross-session-cleanup`, or
+`getter-cross-session` after the ordinary core build. A callback/getter attempts
+B.snapshot and rethrows the original WrongUIContext after recording its object.
+B must retain its subscription/ref and remain usable; the uncaught error must
+tear down owner A, cancel queued owner work, and preserve the original error
+object/type (or expose it as primary with the exact cleanup failure). These
+checks do not change earlier assertions that B's direct precondition rejection
+must leave B alive. No error-code exemption may skip A's failure boundary.
