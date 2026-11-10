@@ -5,10 +5,11 @@ import { spawn, spawnSync } from 'node:child_process';
 import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = resolve(process.cwd());
-const binary = resolve(process.env.CJTUI_CAPABILITY_BIN ?? 'tests/capabilities/session/target/release/bin/main');
-const terminfo = resolve(process.env.CJTUI_CAPABILITY_TERMINFO ?? 'tests/capabilities/generated-terminfo');
+const root = fileURLToPath(new URL('../..', import.meta.url));
+const binary = resolve(root, process.env.CJTUI_CAPABILITY_BIN ?? 'tests/capabilities/session/target/release/bin/main');
+const terminfo = resolve(root, process.env.CJTUI_CAPABILITY_TERMINFO ?? 'tests/capabilities/generated-terminfo');
 const artifacts = resolve(process.env.CJTUI_CAPABILITY_ARTIFACTS ?? await mkdtemp(join(tmpdir(), 'cjtui-capabilities-')));
 await mkdir(artifacts, { recursive: true });
 const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -87,6 +88,7 @@ try {
     ['unset', { TERM: null, COLORTERM: 'truecolor' }, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'term-unset' }],
     ['dumb', { TERM: 'dumb', COLORTERM: 'truecolor' }, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'term-dumb' }],
     ['invalid', { TERM: 'bad;term', COLORTERM: 'truecolor' }, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'term-invalid' }],
+    ['non-ascii', { TERM: 'cap-é', COLORTERM: 'truecolor' }, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'term-invalid' }],
   ];
   for (const [name, environment, expected] of cases) {
     const result = await runCase(name, environment); profile(result, expected, name);
@@ -105,7 +107,7 @@ try {
     if (name === 'colorterm-only') {
       for (const sgr of ['1', '2', '3', '4', '7', '9']) assert(!result.raw.includes(`\x1b[${sgr}m`), `COLORTERM-only has no attribute support evidence for SGR${sgr}`);
     }
-    if (['unknown', 'unset', 'dumb', 'invalid'].includes(name)) assert(!/\x1b\[(?:3[0-7]|9[0-7]|38;|4[0-7]|10[0-7]|48;|[123479])m/.test(result.raw), `${name} emits no unsupported color or video SGR`);
+    if (['unknown', 'unset', 'dumb', 'invalid', 'non-ascii'].includes(name)) assert(!/\x1b\[(?:3[0-7]|9[0-7]|38;|4[0-7]|10[0-7]|48;|[123479])m/.test(result.raw), `${name} emits no unsupported color or video SGR`);
   }
   const ncv18 = await runCase('ncv18', { TERM: 'cap-ncv18' }); profile(ncv18, { colorMode: 'Basic8', noColorVideo: 18, dim: true, underline: true }, 'ncv18');
   for (const sgr of ['1', '3', '7', '9']) assert(ncv18.raw.includes(`\x1b[${sgr}m`), `ncv18 retains SGR${sgr}`);
@@ -114,7 +116,7 @@ try {
   for (const sgr of ['1', '2', '3', '4', '7', '9']) assert(!ncvUnknown.raw.includes(`\x1b[${sgr}m`), `unknown ncv bit conservatively removes SGR${sgr}`);
   const nonSgr = await runCase('non-sgr', { TERM: 'cap-nonsgr' }); profile(nonSgr, { colorMode: 'Basic8', bold: false }, 'non-SGR capability');
   assert(!nonSgr.raw.includes('\x1b[99m'), 'terminfo strings are never forwarded to the device'); assert(!nonSgr.raw.includes('\x1b[1m'), 'unsafe bold capability is not treated as standard SGR1');
-  const override = await runCase('override-auto', { TERM: 'cap-direct', CJTUI_CAPABILITY_OVERRIDE: '1' }, { colorMode: 'TrueColor' }, 'a');
+  const override = await runCase('override-auto', { TERM: 'cap-direct', CJTUI_CAPABILITY_OVERRIDE: '1' }, 'a'); profile(override, { colorMode: 'TrueColor' }, 'override-auto');
   assert(override.raw.includes('\x1b[31mCOLOR'), 'explicit Basic8 override changes first device projection'); assert(override.raw.includes('\x1b[91mCOLOR'), 'colorModeAuto restores the fixed automatic profile during the session');
   const isolated = await runCase('isolation', { TERM: 'cap-256', CJTUI_CAPABILITY_SEED: '1' }); profile(isolated, { colorMode: 'Indexed256', seededColors: 16, baseColors: 16 }, 'private terminfo namespace isolation');
   const loaderFail = await runCase('loader-fail', { TERM: 'cap-256', CJTUI_CAP_TEST_DLMOPEN_FAIL: '1' }); profile(loaderFail, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'terminfo-library-unavailable' }, 'optional loader failure');
