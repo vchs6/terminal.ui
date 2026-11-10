@@ -4,6 +4,8 @@ set -eu
 root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
 tdir=$root/tests/terminals
 fixture=$tdir/fixture
+scene=${CJTUI_TERMINAL_SCENE-fixture}
+case "$scene" in fixture) scene_source=tests/terminals/fixture/src/main.cj;; example) fixture=$root/examples/colors; scene_source=examples/colors/src/main.cj;; *) printf 'unknown scene: %s\n' "$scene" >&2; exit 2;; esac
 sdk=${CJTUI_SDK_ENV-}
 hosts=${CJTUI_TERMINAL_HOST_ROOT-}
 evidence=${CJTUI_TERMINAL_CAPTURE_DIR-}
@@ -17,6 +19,7 @@ for command in "$xorg" xwininfo import identify script node cc; do command -v "$
 mkdir "$evidence"
 . "$sdk"
 bin=${CJTUI_TERMINAL_FIXTURE_BIN-}
+if test "$scene" = example; then bin=${CJTUI_TERMINAL_EXAMPLE_BIN-}; fi
 if test -z "$bin"; then (cd "$fixture" && cjpm build); bin=$fixture/target/release/bin/main; fi
 test -x "$bin" || { printf '%s\n' 'fixture binary missing' >&2; exit 1; }
 interrupt=${CJTUI_XTEST_INTERRUPT-$evidence/x11-xtest-interrupt}
@@ -24,13 +27,16 @@ if test ! -x "$interrupt"; then cc -O2 -Wall -Wextra -Werror "$tdir/x11-xtest-in
 test -x "$interrupt" || { printf '%s\n' 'insufficient_evidence: Ctrl-C injector unavailable' >&2; exit 2; }
 profiles=${*:-"xterm-default xterm-256color xfce-vte"}
 scenarios=${CJTUI_TERMINAL_SCENARIOS-"q exception interrupt"}
+if test "$scene" = example; then scenarios=q; fi
 fixture_sha=$(sha256sum "$fixture/src/main.cj" | awk '{print $1}')
-harness_sha=$(sha256sum "$tdir/run.sh" "$tdir/verify-sgr.mjs" "$tdir/outer-recorder.sh" "$tdir/inner-recorder.sh" "$tdir/x11-xtest-interrupt.c" | sha256sum | awk '{print $1}')
+harness_sha=$(sha256sum "$tdir/run.sh" "$tdir/verify-sgr.mjs" "$tdir/outer-recorder.sh" "$tdir/inner-recorder.sh" "$tdir/x11-xtest-interrupt.c" "$tdir/wait-output.mjs" "$tdir/wait-fence.mjs" | sha256sum | awk '{print $1}')
 source_commit=$(git -C "$root" rev-parse HEAD)
-fixture_commit=$(git -C "$root" log -1 --format=%H -- tests/terminals/fixture/src/main.cj)
+fixture_commit=$(git -C "$root" log -1 --format=%H -- "$scene_source")
+(cd "$root" && git ls-files -z -- "${scene_source%/src/main.cj}" | xargs -0 sha256sum) > "$evidence/consumer-source-sha256.txt"
 binary_sha=$(sha256sum "$bin" | awk '{print $1}')
 wait_file() { f=$1; label=$2; n=0; while test ! -e "$f"; do n=$((n+1)); test "$n" -le 150 || { printf 'timed out: %s\n' "$label" >&2; return 1; }; sleep .1; done; }
 wait_ack() { f=$1; label=$2; n=0; while test "$(cat "$f" 2>/dev/null || true)" != ack; do n=$((n+1)); test "$n" -le 150 || { printf 'timed out: %s\n' "$label" >&2; return 1; }; sleep .1; done; }
+wait_field() { field_file=$1; field_key=$2; field_attempt=0; until grep -q "^${field_key}=." "$field_file" 2>/dev/null; do field_attempt=$((field_attempt+1)); test "$field_attempt" -le 150 || { printf 'timed out: recorder field %s\n' "$field_key" >&2; return 1; }; sleep .1; done; }
 window() { d=$1; title=$2; tree=$3; info=$4; n=0; while :; do DISPLAY=$d xwininfo -root -tree > "$tree"; id=$(awk -v t="$title" '$0 ~ t {print $1;exit}' "$tree"); if test -n "$id" && DISPLAY=$d xwininfo -id "$id" -all > "$info" 2>/dev/null && grep -q 'Map State: IsViewable' "$info"; then printf '%s\n' "$id"; return; fi; n=$((n+1)); test "$n" -le 150 || { printf 'timed out: visible window %s\n' "$title" >&2; return 1; }; sleep .1; done; }
 pixels() { awk '/^  Width:/{w=$2} /^  Height:/{h=$2} END{print w "x" h}' "$1"; }
 termios() { sed -n 's/^'"$2"'_termios=//p' "$1" | tail -1; }
@@ -40,8 +46,45 @@ metadata() {
   capline=$(tr '\n' ' ' < "$cap" | sed 's/"/\\\\"/g')
   versionline=$(tr '\n' ' ' < "$version" | sed 's/"/\\\\"/g')
   cat > "$dir/metadata.json" <<EOF
-{"schema":"cjtui-terminal-matrix-v1","profile":"$profile","scenario":"$scenario","host":"$host","host_version":"$versionline","captured_at_utc":"$(date -u +%Y-%m-%dT%H:%M:%SZ)","x11_pixels_before":"$(pixels "$before")","x11_pixels_after":"$(pixels "$after")","outer_tty_before":"$(tty_size "$dir/outer-tty.txt" ready)","outer_tty_after":"$(tty_size "$dir/outer-tty.txt" exit)","inner_tty_before":"$(tty_size "$dir/inner-tty.txt" ready)","inner_tty_after":"$(tty_size "$dir/inner-tty.txt" exit)","scene":"tests/terminals/fixture/src/main.cj Application(root)","source_commit":"$source_commit","fixture_commit":"$fixture_commit","fixture_source_sha256":"$fixture_sha","fixture_binary_sha256":"$binary_sha","harness_source_sha256":"$harness_sha","capability_record":"$capline","original_png_before":"original-before-resize.png","original_png_before_sha256":"$(sha256sum "$dir/original-before-resize.png" | awk '{print $1}')","original_png_after":"original-after-resize.png","original_png_after_sha256":"$(sha256sum "$dir/original-after-resize.png" | awk '{print $1}')","inner_tty_raw_sha256":"$(sha256sum "$dir/inner-tty.raw" | awk '{print $1}')","outer_tty_raw_sha256":"$(sha256sum "$dir/outer-tty.txt" | awk '{print $1}')","inner_tty_state_sha256":"$(sha256sum "$dir/inner-tty.txt" | awk '{print $1}')"}
+{"schema":"cjtui-terminal-matrix-v1","profile":"$profile","scenario":"$scenario","host":"$host","host_version":"$versionline","captured_at_utc":"$(date -u +%Y-%m-%dT%H:%M:%SZ)","x11_pixels_before":"$(pixels "$before")","x11_pixels_after":"$(pixels "$after")","outer_tty_before":"$(tty_size "$dir/outer-tty.txt" ready)","outer_tty_after":"$(tty_size "$dir/outer-tty.txt" exit)","inner_tty_before":"$(tty_size "$dir/inner-tty.txt" ready)","inner_tty_after":"$(tty_size "$dir/inner-tty.txt" exit)","scene":"$scene_source Application(root)","source_commit":"$source_commit","fixture_commit":"$fixture_commit","fixture_source_sha256":"$fixture_sha","fixture_binary_sha256":"$binary_sha","harness_source_sha256":"$harness_sha","capability_record":"$capline","original_png_before":"original-before-resize.png","original_png_before_sha256":"$(sha256sum "$dir/original-before-resize.png" | awk '{print $1}')","original_png_after":"original-after-resize.png","original_png_after_sha256":"$(sha256sum "$dir/original-after-resize.png" | awk '{print $1}')","inner_tty_raw_sha256":"$(sha256sum "$dir/inner-tty.raw" | awk '{print $1}')","outer_tty_raw_sha256":"$(sha256sum "$dir/outer-tty.txt" | awk '{print $1}')","inner_tty_state_sha256":"$(sha256sum "$dir/inner-tty.txt" | awk '{print $1}')"}
 EOF
+}
+capture_example() {
+  stage_name=$1; stage_offset=$2; stage_window=$3
+  node "$tdir/wait-output.mjs" "$dir/inner-tty.raw" "$stage_offset" 15000 "$dir/example-$stage_name.raw" > "$dir/example-$stage_name-output.json"
+  DISPLAY=$display import -window "$stage_window" "$dir/example-$stage_name.png"
+  identify "$dir/example-$stage_name.png" > "$dir/example-$stage_name.identify.txt"
+  sha256sum "$dir/example-$stage_name.png" "$dir/example-$stage_name.raw" >> "$dir/example-stage-sha256.txt"
+}
+example_key() {
+  stage_name=$1; stage_key=$2; stage_start=$(wc -c < "$dir/inner-tty.raw")
+  DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$before" "$stage_key" 0 0 > "$dir/xtest-example-$stage_name.txt"
+  capture_example "$stage_name" "$stage_start" "$before"
+}
+fixture_key() {
+  fixture_event=$1; fixture_window=$2
+  fixture_serial=$((fixture_serial+1))
+  DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$fixture_window" "$fixture_event" 0 0 > "$dir/xtest-$fixture_serial-$fixture_event.txt"
+  wait_ack "$dir/event-$fixture_serial.ack" "callback $fixture_serial $fixture_event"
+}
+fixture_action() {
+  action_name=$1; action_key=$2; action_window=$3; action_mode=${4-updates}
+  action_offset=$(wc -c < "$dir/inner-tty.raw")
+  fixture_key "$action_key" "$action_window"
+  fixture_key p "$action_window"
+  if test "$fixture_bold" = true; then fixture_bold=false; else fixture_bold=true; fi
+  action_columns=$(stty -F "$inner_tty" size | awk '{print $2}')
+  node "$tdir/wait-fence.mjs" "$dir/inner-tty.raw" "$action_offset" "$fixture_bold" "$action_columns" "$action_mode" > "$dir/fence-$action_name.json"
+}
+wait_grid_change() {
+  initial_grid=$1; grid_attempt=0
+  while test "$(stty -F "$inner_tty" size)" = "$initial_grid"; do
+    grid_attempt=$((grid_attempt+1)); test "$grid_attempt" -le 150 || { printf '%s\n' 'timed out: actual PTY resize' >&2; return 1; }; sleep .1
+  done
+}
+wait_host_exit() {
+  exit_attempt=0
+  while kill -0 "$hostpid" 2>/dev/null; do exit_attempt=$((exit_attempt+1)); test "$exit_attempt" -le 150 || { printf '%s\n' 'timed out: terminal host exit' >&2; return 1; }; sleep .1; done
 }
 run() {
   profile=$1; number=$2; scenario=$3
@@ -62,26 +105,61 @@ run() {
   "$cmd" -version >"$dir/host-version.txt" 2>&1 || "$cmd" --version >"$dir/host-version.txt" 2>&1 || true
   if test "$profile" = xfce-vte; then
     mkdir -p "$dir/xdg-cache" "$dir/xdg-config"
-    TASK066_OUTER_RAW=$dir/outer-tty.txt TASK066_INNER_RAW=$dir/inner-tty.raw TASK066_INNER_STATE=$dir/inner-tty.txt TASK066_FIXTURE=$bin TASK066_INNER_RUNNER=$dir/inner-recorder.sh CJTUI_TERMINAL_EVIDENCE=$dir DISPLAY=$display XDG_CACHE_HOME=$dir/xdg-cache XDG_CONFIG_HOME=$dir/xdg-config dbus-run-session -- "$cmd" $args --title="$title" --command="/bin/sh $dir/outer-recorder.sh" >"$dir/host.stdout" 2>"$dir/host.stderr" &
+    TASK066_OUTER_RAW=$dir/outer-tty.txt TASK066_INNER_RAW=$dir/inner-tty.raw TASK066_INNER_STATE=$dir/inner-tty.txt TASK066_FIXTURE=$bin TASK066_INNER_RUNNER=$dir/inner-recorder.sh CJTUI_TERMINAL_EVIDENCE=$dir DISPLAY=$display XDG_CACHE_HOME=$dir/xdg-cache XDG_CONFIG_HOME=$dir/xdg-config dbus-run-session -- env -u COLORTERM "$cmd" $args --title="$title" --command="/bin/sh $dir/outer-recorder.sh" >"$dir/host.stdout" 2>"$dir/host.stderr" &
   else
-    TASK066_OUTER_RAW=$dir/outer-tty.txt TASK066_INNER_RAW=$dir/inner-tty.raw TASK066_INNER_STATE=$dir/inner-tty.txt TASK066_FIXTURE=$bin TASK066_INNER_RUNNER=$dir/inner-recorder.sh CJTUI_TERMINAL_EVIDENCE=$dir DISPLAY=$display "$cmd" $args -T "$title" -e /bin/sh "$dir/outer-recorder.sh" >"$dir/host.stdout" 2>"$dir/host.stderr" &
+    TASK066_OUTER_RAW=$dir/outer-tty.txt TASK066_INNER_RAW=$dir/inner-tty.raw TASK066_INNER_STATE=$dir/inner-tty.txt TASK066_FIXTURE=$bin TASK066_INNER_RUNNER=$dir/inner-recorder.sh CJTUI_TERMINAL_EVIDENCE=$dir DISPLAY=$display env -u COLORTERM "$cmd" $args -T "$title" -e /bin/sh "$dir/outer-recorder.sh" >"$dir/host.stdout" 2>"$dir/host.stderr" &
   fi
-  hostpid=$!; wait_file "$dir/outer-tty.txt" 'outer recorder'; grep -q '^ready_size=' "$dir/outer-tty.txt"; before=$(window "$display" "$title" "$dir/window-before.tree.txt" "$dir/window-before.txt")
-  DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$before" p 0 0 >"$dir/xtest-1-startup.txt"; wait_ack "$dir/event-1.ack" 'startup render fence'; wait_file "$dir/capabilities-1.txt" 'first capabilities'; DISPLAY=$display import -window "$before" "$dir/original-before-resize.png"; identify "$dir/original-before-resize.png" >"$dir/original-before-resize.identify.txt"
-  for e in 2 3 4; do DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$before" c 0 0 >"$dir/xtest-$e-c.txt"; wait_ack "$dir/event-$e.ack" "c $e"; done
-  DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$before" t 0 0 >"$dir/xtest-5-t.txt"; wait_ack "$dir/event-5.ack" t
-  DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$before" p "$width" "$height" >"$dir/xtest-6-resize.txt"; wait_ack "$dir/event-6.ack" 'resize render fence'; cap=$dir/capabilities-6.txt; wait_file "$cap" 'post-resize capabilities'
+  hostpid=$!; wait_field "$dir/outer-tty.txt" ready_size; before=$(window "$display" "$title" "$dir/window-before.tree.txt" "$dir/window-before.txt")
+  wait_file "$dir/inner-tty.txt" 'inner recorder'; wait_file "$dir/inner-tty.raw" 'raw recorder'
+  wait_field "$dir/inner-tty.txt" tty
+  inner_tty=$(sed -n 's/^tty=//p' "$dir/inner-tty.txt" | head -1)
+  test -n "$inner_tty" || { printf '%s\n' 'missing actual inner tty' >&2; return 1; }
+  initial_grid=$(stty -F "$inner_tty" size)
+  if test "$scene" = example; then
+    capture_example initial 0 "$before"
+    DISPLAY=$display import -window "$before" "$dir/original-before-resize.png"; identify "$dir/original-before-resize.png" > "$dir/original-before-resize.identify.txt"
+    example_key red c; example_key gray c; example_key restored c
+    example_key attributes-off t; example_key attributes-on t
+    resize_start=$(wc -c < "$dir/inner-tty.raw")
+    DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$before" n "$width" "$height" > "$dir/xtest-example-resize.txt"
+    wait_grid_change "$initial_grid"
+    after=$(window "$display" "$title" "$dir/window-after.tree.txt" "$dir/window-after.txt")
+    test "$(pixels "$dir/window-before.txt")" != "$(pixels "$dir/window-after.txt")" || { printf '%s\n' 'X11 resize had no geometry change' >&2; return 1; }
+    capture_example resized "$resize_start" "$after"
+    DISPLAY=$display import -window "$after" "$dir/original-after-resize.png"; identify "$dir/original-after-resize.png" > "$dir/original-after-resize.identify.txt"
+    cap=$dir/example-capability-scope.txt
+    printf '%s\n' 'Unavailable in unmodified ordinary example; no fixture diagnostic is attributed to this scene. Host TERM/COLORTERM declarations are in outer-tty.txt; fixture matrix supplies separate capability verification.' > "$cap"
+    DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$after" q 0 0 > "$dir/xtest-example-q.txt"
+    expected=0
+  else
+  fixture_serial=0; fixture_bold=false
+  fixture_action startup n "$before"
+  wait_file "$dir/capabilities-$fixture_serial.txt" 'first capabilities'; DISPLAY=$display import -window "$before" "$dir/original-before-resize.png"; identify "$dir/original-before-resize.png" >"$dir/original-before-resize.identify.txt"
+  for e in 1 2 3; do fixture_action "color-$e" c "$before"; done
+  fixture_action attributes t "$before"
+  DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$before" n "$width" "$height" > "$dir/xtest-resize.txt"
+  fixture_serial=$((fixture_serial+1)); wait_ack "$dir/event-$fixture_serial.ack" 'resize input'
+  wait_grid_change "$initial_grid"
+  fixture_action resized n "$before"
+  cap=$dir/capabilities-$fixture_serial.txt; wait_file "$cap" 'post-resize capabilities'
   after=$(window "$display" "$title" "$dir/window-after.tree.txt" "$dir/window-after.txt"); test "$(pixels "$dir/window-before.txt")" != "$(pixels "$dir/window-after.txt")" || { printf '%s\n' 'X11 resize had no geometry change' >&2; return 1; }; DISPLAY=$display import -window "$after" "$dir/original-after-resize.png"; identify "$dir/original-after-resize.png" >"$dir/original-after-resize.identify.txt"
-  quiet_before=$(wc -c < "$dir/inner-tty.raw"); DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$after" n 0 0 >"$dir/xtest-7-noop.txt"; wait_ack "$dir/event-7.ack" 'no-op'; DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$after" p 0 0 >"$dir/xtest-8-quiet-fence.txt"; wait_ack "$dir/event-8.ack" 'quiet render fence'; quiet_after=$(wc -c < "$dir/inner-tty.raw"); test "$quiet_before" = "$quiet_after" || { printf 'no-op emitted bytes before fence (%s -> %s)\n' "$quiet_before" "$quiet_after" >&2; return 1; }
-  node "$tdir/verify-sgr.mjs" "$cap" "$dir/inner-tty.raw" >"$dir/sgr-verification.txt"
+  fixture_action noop n "$after" quiet
+  node "$tdir/verify-sgr.mjs" "$cap" "$dir/inner-tty.raw" "$profile" >"$dir/sgr-verification.txt"
   case "$scenario" in
-    q) DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$after" q 0 0 >"$dir/xtest-9-q.txt"; wait_ack "$dir/event-9.ack" q; expected=0;;
-    exception) DISPLAY=$display "$hosts/probes/x11-xtest-inject" "$after" e 0 0 >"$dir/xtest-9-exception.txt"; wait_ack "$dir/event-9.ack" exception; expected=nonzero;;
+    q) fixture_key q "$after"; expected=0;;
+    exception) fixture_key e "$after"; expected=nonzero;;
     interrupt) DISPLAY=$display "$interrupt" "$after" >"$dir/xtest-9-ctrl-c.txt"; expected=0;;
     *) return 2;;
   esac
+  fi
+  wait_field "$dir/inner-tty.txt" exit_status; wait_field "$dir/outer-tty.txt" exit_status; wait_host_exit
   set +e; wait "$hostpid"; status=$?; set -e; if test "$expected" = 0; then test "$status" -eq 0; else test "$status" -ne 0; fi
   wait_file "$dir/inner-tty.txt" 'inner restoration'; test "$(termios "$dir/outer-tty.txt" ready)" = "$(termios "$dir/outer-tty.txt" exit)"; test "$(termios "$dir/inner-tty.txt" ready)" = "$(termios "$dir/inner-tty.txt" exit)"
+  if test "$scene" = example; then
+    test -n "$(termios "$dir/outer-tty.txt" exit)"; test -n "$(termios "$dir/inner-tty.txt" exit)"
+    grep -q '^exit_status=0$' "$dir/inner-tty.txt"; grep -q '^exit_status=0$' "$dir/outer-tty.txt"
+    test "$(tty_size "$dir/inner-tty.txt" ready)" != "$(tty_size "$dir/inner-tty.txt" exit)" || { printf '%s\n' 'PTY grid did not resize' >&2; return 1; }
+  fi
   metadata "$dir" "$profile" "$host" "$dir/host-version.txt" "$dir/window-before.txt" "$dir/window-after.txt" "$cap" "$scenario"
   trap - INT TERM EXIT; kill "$xpid" 2>/dev/null || true; printf 'PASS profile=%s scenario=%s evidence=%s\n' "$profile" "$scenario" "$dir"
 }
