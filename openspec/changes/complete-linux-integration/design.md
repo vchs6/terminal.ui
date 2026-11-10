@@ -22,7 +22,7 @@ M1输入与最终矩阵分段按总计划L002/L005：008/020先满足全部M1模
 
 唯一公开入口 Application.snapshot(width:Int64,height:Int64,glyphMode!:GlyphMode=GlyphMode.Unicode):Frame；继续 Frame.toPlainText():String、toAnsi(colorMode!:ColorMode=ColorMode.TrueColor):String、writePlainText(path:String):Unit、writeAnsi(path:String,colorMode!:ColorMode=ColorMode.TrueColor):Unit。旧双参调用继续有效；精确glyphMode参数沿Glyph G002/G007，消费097实际接受源。无另一个screen-export模型。snapshot消费本次稳定提交的主树+层+viewport，整个目标帧不依赖上次设备差分。无设备/headless必须可用，不做flush、不发控制或依赖实际stdout能力。
 
-固定公共consumer建立底层Unicode/RichText、边框/阴影、透明层和有样式空格、嵌套modal/nonmodal、层移动/缩小/关闭、被挡底层新数据及滚动；逐cell/style/宽簇和手工字面网格断言。快照原件保存后新更新不得反改旧Frame。ANSI文件只有完整目标与样式，独立从空网格解析等于目标；纯文本为完整网格且无ESC。Unicode/颜色/字形选择分别沿正式离线策略，不能把设备降级偷偷施于逻辑文件。默认Unicode及离线Auto=Unicode；显式Ascii仅改变框架生成的边框/ellipsis等标记，不转码业务Unicode。正式010须手工核Unicode/Auto/Ascii生成标记及同一业务文本，Frame文件方法不增加glyph参数。路径NUL/目录/不可写/短写错误明确抛出，不承诺未经需求要求的原子文件替换；测试实际SDK错误结果，不能伪成功吞异常。
+固定公共consumer建立底层Unicode/RichText、边框/阴影、透明层和有样式空格、嵌套modal/nonmodal、层移动/缩小/关闭、被挡底层新数据及滚动；逐cell/style/宽簇和手工字面网格断言。快照原件保存后新更新不得反改旧Frame。ANSI文件只有完整目标与样式，独立从空网格解析等于目标；纯文本为完整网格且无ESC。Unicode/颜色/字形选择分别沿正式离线策略，不能把设备降级偷偷施于逻辑文件。默认Unicode及离线Auto=Unicode；显式Ascii影响框架生成的ellipsis标记，不转码业务Unicode；边框遵循Glyph正式布局/设备投影契约，不在此新增离线边框转码承诺。正式010须手工核Unicode/Auto/Ascii生成标记及同一业务文本，Frame文件方法不增加glyph参数。路径NUL/目录/不可写/短写错误明确抛出，不承诺未经需求要求的原子文件替换；测试实际SDK错误结果，不能伪成功吞异常。
 
 ## C004 全模式和资源恢复（原020）
 

@@ -57,7 +57,7 @@ L4 021.a：独立测试按C005明确U1–U5入口、字面画面/业务事件/�
 
 下面五个原稳定任务分别承接自己的结果/状态/文件/原AC，共用真实host执行原件及共同复用/验收活动，不复制五套实现或质量链。共同planning_gaps=最终源/test/cjp/宿主与命令manifest尚未产生；各卡进入ready前固定实际输入，不能把未来文件名当现有通过证据。
 
-- [ ] 2.1.1 原TASK-001：最终Linux目标与支持矩阵冻结（WP001/REQ008/011；调查verification）。
+- [ ] 2.1.1 原TASK-001：最终Linux目标与支持矩阵冻结（WP001/REQ003/004/007/011；调查verification）。
 
 输入=各平台/颜色/Glyph/Session/input原始事实、最终功能源、C008实际host矩阵；完整最终判断在147后，M1子接口可先冻结。独立交付 `docs/development/linux-support.md` 和 `docs/reviews/Linux-final/platform-matrix.json`，准确OS/CPU/ABI/SDK、TTY/非TTY/权限/固定console/模拟器/SSH配置与已测限制，其他OS列后续required。L4 001.a汇合固定来源与原件hash；001.b独立host执行角色给真实矩阵；001.c原调查角色写事实/限制并固定docs；001.d独立审核/验收按原AC001确认，不以TERM替代真实实现。具体最终执行命令manifest缺失前保持planned。
 
@@ -65,7 +65,7 @@ L4 021.a：独立测试按C005明确U1–U5入口、字面画面/业务事件/�
 
 输入=071–080宏/绑定/动态与所有公开例子实际原始仓颉源码、正负例raw/SDK/定位限制；不等待与语法无关的最终041。独立交付 `docs/development/declarative-syntax.md` 与 `docs/reviews/Linux-final/syntax-map.json`。L4 002.a按原AC002逐组件块/链/状态/条件列表/自定义组件/回调映射固定源码与普通CJPM入口；002.b复用内容未变原正负例，变化部分由独立执行补真实编译/定位；002.c语言文档记录已验证限制与编辑器事实，禁用声明stub替代；002.d独立审核/验收每语法条款。最终源/命令未固定时planned，不与001/041绑定为一个状态。
 
-- [ ] 2.1.3 原TASK-003：最终依赖/native消费事实冻结（WP001/REQ005/006/011；依赖verification）。
+- [ ] 2.1.3 原TASK-003：最终依赖/native消费事实冻结（WP001/REQ004/005/006/011；依赖verification）。
 
 输入=最终cjpm清单/SDK1.2/deps及传递项、003既有R7/R8+Theme TOML/stdx实际输入、native闭包与干净消费；M1版本证据可供124，最终M2后核变化。独立交付更新 `docs/development/dependencies.md`、`docs/development/central-packages.json` 及 `docs/reviews/Linux-final/dependency-manifest.json`，同步产品README/build前置。L4 003.a固定所有版本/来源/hash与使用职责/缺口；003.b独立执行正常clean build/link/公开consumer（复用未变证据）；003.c依赖文档给准确工具链/运行闭包/缓存可用范围与实际license原文归属；003.d独立审核/验收原AC003，不恢复用户否定的许可冲突阻塞。最终源和全消费命令缺失时planned。
 
