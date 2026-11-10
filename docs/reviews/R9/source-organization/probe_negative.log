@@ -1,0 +1,17 @@
+[31merror[0m: can not access field 'state'
+ [36m==>[0m /workspace/work/source-organization/probe/src/main.cj:4:9:
+  [36m| [0m
+[36m4[0m [36m| [0m    if (Entity().state + Entity().secret != 12 || Tint(4).value != 4) { return 1 }[0m
+  [36m| [0m        [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: can not access field 'secret'
+ [36m==>[0m /workspace/work/source-organization/probe/src/main.cj:4:26:
+  [36m| [0m
+[36m4[0m [36m| [0m    if (Entity().state + Entity().secret != 12 || Tint(4).value != 4) { return 1 }[0m
+  [36m| [0m                         [31m^ [0m
+  [36m| [0m
+
+2 errors generated, 2 errors printed.
+Error: failed to compile package `org_probe`, return code is 1
+Error: cjpm build failed

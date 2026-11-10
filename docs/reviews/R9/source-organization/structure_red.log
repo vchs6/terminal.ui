@@ -1,0 +1,13 @@
+application.cj: mixed types ['KeyEvent', 'InputDecoder', 'Application']
+frame.cj: mixed types ['Color', 'Style', 'Cell', 'Frame']
+layout.cj: mixed types ['Rect', 'Alignment', 'LayoutNode']
+Color: frame.cj != style/color.cj
+Style: frame.cj != style/style.cj
+BorderStyle: border_style.cj != style/border_style.cj
+Rect: layout.cj != geometry/rect.cj
+Cell: frame.cj != cell.cj
+Alignment: layout.cj != alignment.cj
+LayoutNode: layout.cj != layout_node.cj
+KeyEvent: application.cj != key_event.cj
+InputDecoder: application.cj != input_decoder.cj
+text/unicode.cj missing
