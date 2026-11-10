@@ -9,7 +9,7 @@
 | AC-003 | REQ-004、REQ-005、REQ-011 | 验证中心仓依赖与 SDK 适配边界 | TASK-003 | 固定ansies、unicode、unicodewidth及传递依赖可解析；当前先Linux核对分段/规范化、唯一宽度、ANSI、目标原生构建/干净消费与许可来源；其他OS后续扩展；证据待实施时链接 | pending |
 | AC-004 | REQ-001,REQ-002 | 冻结首个公共构造切片契约 | TASK-004 | U1–U5 设计稿均可映射至语法规则、签名、模块归属和验收，不以设计稿冒充运行；证据待实施时链接 | pending |
 | AC-005 | REQ-004 | 字符簇写入和边缘裁剪 | TASK-005 | 中文、组合符和 emoji 在边缘写入/覆盖/裁剪无半宽字符或孤立延续单元；证据待实施时链接 | pending |
-| AC-006 | REQ-005 | 结构化样式映射与 ANSI 编码 | TASK-006 | 默认/16/256/真彩色按能力映射，组件不直接发序列；证据待实施时链接 | pending |
+| AC-006 | REQ-005 | 结构化样式映射与 ANSI 编码 | TASK-006 | 默认/16/256/真彩色按能力映射，组件不直接发序列；[R10报告](reviews/R10/README.md) | passed（有限；[R10验收](reviews/R10/acceptance/report.md)） |
 | AC-007 | REQ-004 | 完整目标帧与覆盖合成 | TASK-007 | 透明单元和带样式空格有区别，前后层按确定规则合成；证据待实施时链接 | pending |
 | AC-008 | REQ-004 | 差分提交与写失败恢复 | TASK-008 | 无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错；证据待实施时链接 | pending |
 | AC-009 | REQ-005 | 有界增量 ANSI 输入适配 | TASK-009 | 跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传；证据待实施时链接 | pending |
@@ -81,9 +81,9 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-061 | REQ-001/005/007 | TASK-061 | 独立颜色/属性/输出模式测试及真实RED | pending |
-| AC-062 | REQ-007 | TASK-062 | 固定技术diff的spec/quality独立审核 | pending |
-| AC-063 | REQ-005/006/007 | TASK-063 | cold全入口/真实PTY/标准bundle/clean消费者 | pending |
+| AC-061 | REQ-001/005/007 | TASK-061 | 独立颜色/属性/输出模式测试及真实RED | passed（有限；[R10验收](reviews/R10/acceptance/report.md)） |
+| AC-062 | REQ-007 | TASK-062 | 固定技术diff的spec/quality独立审核 | passed（有限；[R10验收](reviews/R10/acceptance/report.md)） |
+| AC-063 | REQ-005/006/007 | TASK-063 | cold全入口/真实PTY/标准bundle/clean消费者 | passed（有限；[R10验收](reviews/R10/acceptance/report.md)） |
 | AC-064 | REQ-005/007 | TASK-064 | 有限合同与最终集成独立验收 | pending |
-| AC-065 | REQ-005/007 / 用户自动适配与跨终端截图约束 | TASK-065 | 实际能力来源探针、跨宿主矩阵及真实截图方法 | pending |
-| AC-066 | REQ-005/007 / 跨终端与运行截图 | TASK-066 | 真实宿主统一应用、原始PNG/日志/尺寸/能力来源/恢复测试程序 | pending |
+| AC-065 | REQ-005/007 / 用户自动适配与跨终端截图约束 | TASK-065 | 实际能力来源探针、跨宿主矩阵及真实截图方法 | passed（有限；[R10验收](reviews/R10/acceptance/report.md)） |
+| AC-066 | REQ-005/007 / 跨终端与运行截图 | TASK-066 | 真实宿主统一应用、原始PNG/日志/尺寸/能力来源/恢复测试程序 | passed（有限；[R10验收](reviews/R10/acceptance/report.md)） |

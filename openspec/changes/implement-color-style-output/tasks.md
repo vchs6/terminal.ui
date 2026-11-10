@@ -23,7 +23,7 @@ Files：src/style/color.cj/style.cj/new color_mode.cj、src/color_mapping.cj（�
 ## 3. Quality gates
 
 - [x] 3.1 TASK-062：独立整片spec/quality代码审核、真实反例及必要作者修复复核；AC062：固定完整diff+contract passed，无必需未决失败。
-- [ ] 3.2 TASK-063：独立cold slice/真实colors与静默PTY/标准bundle/clean consumer执行；AC063：实际退出/raw/hash齐全，完整release缺项不标pass。
+- [x] 3.2 TASK-063：独立cold slice/真实colors与静默PTY/标准bundle/clean consumer执行；AC063：实际退出/raw/hash齐全，完整release缺项不标pass。
 - [ ] 3.3 TASK-064：独立有限需求及最终集成验收；AC064：代码/证据/状态一致，未重复功能测试，正常direct-main集成。
 
 ## L3 cards and preflight

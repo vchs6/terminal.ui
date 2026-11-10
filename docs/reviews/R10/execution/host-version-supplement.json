@@ -1,0 +1,50 @@
+{
+  "recorded_at_utc": "2026-11-10T11:55:23.967834+00:00",
+  "tested_source_commit": "bf308bfccb43d0e88305c6d0ec64b4a92adbc892",
+  "raw_command_evidence": "raw/stage-b-host-versions.log",
+  "original_metadata_preserved": true,
+  "hosts": {
+    "xterm-default": {
+      "tested_host_path": "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+      "binary_sha256": "141372c1b48f0becdacc5649bbcbb0b26bb059c2e31f4a905c96ed0bdbad9b1d",
+      "implementation": "xterm",
+      "version_evidence": "XTerm(398)",
+      "version_scope": "xterm -version",
+      "rows": [
+        "/workspace/work/auto-final-execution/artifacts/real-fixture-bash/xterm-default/exception/metadata.json",
+        "/workspace/work/auto-final-execution/artifacts/real-fixture-bash/xterm-default/interrupt/metadata.json",
+        "/workspace/work/auto-final-execution/artifacts/real-fixture-bash/xterm-default/q/metadata.json",
+        "/workspace/work/auto-final-execution/artifacts/real-example/xterm-default/q/metadata.json"
+      ]
+    },
+    "xterm-256color": {
+      "tested_host_path": "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+      "binary_sha256": "141372c1b48f0becdacc5649bbcbb0b26bb059c2e31f4a905c96ed0bdbad9b1d",
+      "implementation": "xterm",
+      "version_evidence": "XTerm(398)",
+      "version_scope": "xterm -version",
+      "rows": [
+        "/workspace/work/auto-final-execution/artifacts/real-fixture-bash/xterm-256color/exception/metadata.json",
+        "/workspace/work/auto-final-execution/artifacts/real-fixture-bash/xterm-256color/interrupt/metadata.json",
+        "/workspace/work/auto-final-execution/artifacts/real-fixture-bash/xterm-256color/q/metadata.json",
+        "/workspace/work/auto-final-execution/artifacts/real-example/xterm-256color/q/metadata.json"
+      ]
+    },
+    "xfce-vte": {
+      "tested_host_path": "/usr/bin/xfce4-terminal",
+      "binary_sha256": "752c95cbd8ac8f6d85ab96b102ba2c1212b626dfd3d3c70a89e901b0a5d03143",
+      "implementation": "XFCE/VTE",
+      "version_evidence": "xfce4-terminal 1.1.4-1; libvte-2.91-0:amd64 0.80.1-1; libvte-2.91-common 0.80.1-1",
+      "version_scope": "installed package query and actual executable/library hashes; original harness version call lacked DISPLAY",
+      "rows": [
+        "/workspace/work/auto-final-execution/artifacts/real-fixture-bash/xfce-vte/exception/metadata.json",
+        "/workspace/work/auto-final-execution/artifacts/real-fixture-bash/xfce-vte/interrupt/metadata.json",
+        "/workspace/work/auto-final-execution/artifacts/real-fixture-bash/xfce-vte/q/metadata.json",
+        "/workspace/work/auto-final-execution/artifacts/real-example/xfce-vte/q/metadata.json"
+      ],
+      "engine_library_path": "/usr/lib/x86_64-linux-gnu/libvte-2.91.so.0",
+      "engine_library_resolved_path": "/usr/lib/x86_64-linux-gnu/libvte-2.91.so.0.8000.1",
+      "engine_library_sha256": "e2e719555735ebeb0d72c3add313ff0a16f7ca4f8191d533a0252bddd076aba2"
+    }
+  }
+}

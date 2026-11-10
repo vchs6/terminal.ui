@@ -1,0 +1,21 @@
+{
+  "command": [
+    "bash",
+    "-c",
+    "cjc --version; cjpm --version; node --version; tic -V; script --version; stty --version"
+  ],
+  "actual_argv": [
+    "bash",
+    "-c",
+    "set -e; source /workspace/work/validation/sdk/cangjie/envsetup.sh; export CJTUI_UCD_ARCHIVE=/workspace/work/validation/UCD-17.0.0.zip; exec \"$@\"",
+    "sdk-run",
+    "bash",
+    "-c",
+    "cjc --version; cjpm --version; node --version; tic -V; script --version; stty --version"
+  ],
+  "cwd": "/workspace/work/auto-red-reproduction",
+  "started_at_utc": "2026-11-10T11:44:26.042230+00:00",
+  "finished_at_utc": "2026-11-10T11:44:26.194735+00:00",
+  "exit_code": 0,
+  "scope": "Current reproduction on fixed historical code, not recovered historical log"
+}

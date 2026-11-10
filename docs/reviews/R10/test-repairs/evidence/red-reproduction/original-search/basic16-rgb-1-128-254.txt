@@ -1,0 +1,40 @@
+command: node - <<'NODE'
+const rgb = [1, 128, 254]
+const palette = [
+  ['Black', [0, 0, 0]], ['Red', [128, 0, 0]], ['Green', [0, 128, 0]], ['Yellow', [128, 128, 0]],
+  ['Blue', [0, 0, 128]], ['Magenta', [128, 0, 128]], ['Cyan', [0, 128, 128]], ['White', [192, 192, 192]],
+  ['BrightBlack', [128, 128, 128]], ['BrightRed', [255, 0, 0]], ['BrightGreen', [0, 255, 0]], ['BrightYellow', [255, 255, 0]],
+  ['BrightBlue', [0, 0, 255]], ['BrightMagenta', [255, 0, 255]], ['BrightCyan', [0, 255, 255]], ['BrightWhite', [255, 255, 255]],
+]
+for (const [index, [name, value]] of palette.entries()) {
+  const delta = value.map((channel, i) => rgb[i] - channel)
+  const distance = delta.reduce((sum, channel) => sum + channel * channel, 0)
+  console.log(`${index}\t${name}\t(${value.join(',')})\t(${delta.join(',')})\t${distance}`)
+}
+NODE
+0	Black	(0,0,0)	(1,128,254)	80901
+1	Red	(128,0,0)	(-127,128,254)	97029
+2	Green	(0,128,0)	(1,0,254)	64517
+3	Yellow	(128,128,0)	(-127,0,254)	80645
+4	Blue	(0,0,128)	(1,128,126)	32261
+5	Magenta	(128,0,128)	(-127,128,126)	48389
+6	Cyan	(0,128,128)	(1,0,126)	15877
+7	White	(192,192,192)	(-191,-64,62)	44421
+8	BrightBlack	(128,128,128)	(-127,0,126)	32005
+9	BrightRed	(255,0,0)	(-254,128,254)	145416
+10	BrightGreen	(0,255,0)	(1,-127,254)	80646
+11	BrightYellow	(255,255,0)	(-254,-127,254)	145161
+12	BrightBlue	(0,0,255)	(1,128,-1)	16386
+13	BrightMagenta	(255,0,255)	(-254,128,-1)	80901
+14	BrightCyan	(0,255,255)	(1,-127,-1)	16131
+15	BrightWhite	(255,255,255)	(-254,-127,-1)	80646
+winner=6 Cyan SGR36 distance=15877
+exit=0
+
+command: node - <<'NODE' # same-batch Basic16 mapping audit
+Rgb(250,0,0)	rgb=(250,0,0)	winners=9	distance=25	expected=9	PASS
+Rgb(64,0,0)	rgb=(64,0,0)	winners=0,1	distance=4096	expected=0	PASS
+Indexed(17) cube(0,0,95)	rgb=(0,0,95)	winners=4	distance=1089	expected=4	PASS
+Indexed(232) gray(8,8,8)	rgb=(8,8,8)	winners=0	distance=192	expected=0	PASS
+Indexed(255) gray(238,238,238)	rgb=(238,238,238)	winners=15	distance=867	expected=15	PASS
+exit=0

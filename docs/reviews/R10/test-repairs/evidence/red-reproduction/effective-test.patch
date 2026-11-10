@@ -1,0 +1,600 @@
+diff --git a/tests/README.md b/tests/README.md
+index ca6a8f7..ee6a51b 100644
+--- a/tests/README.md
++++ b/tests/README.md
+@@ -26,7 +26,8 @@ binary, so a nonzero assertion exit reaches the caller. SDK 1.2.0 `cjpm run` its
+ can return zero after a failing consumer; its wrapper status is not sufficient evidence.
+ 
+ If the environment uses an existing official offline cache, create an **untracked**
+-`cangjie-repo.toml` in each consumer directory (including `tests/integration/fixture`):
++`cangjie-repo.toml` in each consumer directory (including `tests/integration/fixture`,
++`tests/capabilities`, and `tests/capabilities/session`):
+ 
+ ```toml
+ [repository.cache]
+@@ -236,13 +237,14 @@ source-text assertions do not replace running that packaging command.
+ 
+ ## Capability-aware colors and six text attributes (TASK-061)
+ 
+-Binding input: `implement-color-style-output/design.md` at
+-`f3329d2f9308c7242aea22266d5ab45d781e03b1`. Existing R8/R9/060 tests and
++Binding input: `implement-color-style-output/design.md` D031–D033 at
++`6e09a4f`. Existing R8/R9/060 tests and
+ assertions are retained. New modes also run after those checks in `all`:
+ 
+ ```sh
+ ./tests/run-slice.sh colors
+ ./tests/run-slice.sh colors-integration
++./tests/run-slice.sh capabilities
+ # After the ordinary builds, directly select one real PTY scenario:
+ node tests/colors/pty.mjs fixture
+ node tests/colors/pty.mjs example
+@@ -273,8 +275,9 @@ Basic16/Indexed256-equivalent changes, Monochrome-only color changes, indexed
+ aliases, and mode changes that leave plain/named rows unchanged.
+ 
+ The other PTY scenario executes the actual `examples/colors` binary. It checks
+-initial Basic16 despite truecolor environment hints, `c` cycling through
+-Indexed256, TrueColor, Monochrome, and Basic16, `t` changing each of the six
++the default automatic direct-color profile under the controlled truecolor declaration,
++`c` cycling the documented RGB samples `(1,128,254)`, `(250,0,0)`, and
++`(238,238,238)` without selecting a capability override, `t` changing each of the six
+ attributes and round-tripping, actual-size resize 100x40→31x12→8x4→100x40,
+ normal q status, and exact before/after termios. Its screen reader observes CUP
+ and SGR bytes with independent column accounting; it is test support, not a
+@@ -297,3 +300,24 @@ failure baseline/mode commit ordering remains an independent review obligation
+ because the public application API supplies no writer injection hook. Normal
+ bundle and clean package-consumer execution are separate integration obligations;
+ no source scan or PTY assertion substitutes for them.
++
++## Automatic terminal capabilities (TASK-061 delta)
++
++```sh
++./tests/run-slice.sh capabilities
++```
++
++`tests/capabilities` adds an ordinary public consumer for `Basic8`, automatic
++`Application(root)`, `TerminalCapabilities`, `colorModeAuto()`, and pure
++`Frame.toAnsi()` defaults. It must fail to compile against the frozen pre-Auto
++consumer revision; that RED is intentional. Once the public API exists, its second
++consumer compiles the test-local dynamic-loader wrapper, builds normally, and runs
++under real Linux PTYs. `tic` produces a temporary synthetic terminfo database for
++branch coverage only: it covers known monochrome/8/16/256/direct profiles,
++COLORTERM-only, unset/dumb/invalid TERM, standard-six SGR evidence, NCV 18 and an
++unknown NCV bit, unsafe terminfo strings, explicit override then Auto restoration,
++private namespace isolation, and a test-link `dlmopen` failure. The wrapper neither
++changes product code nor restores the terminal. It establishes that the pre-existing
++base-namespace entry remains `cap-16` while the product query uses its own namespace.
++Synthetic TERM entries are not real-host evidence; TASK-066 owns terminal-emulator
++matrix runs and screenshots.
+diff --git a/tests/capabilities/cjpm.toml b/tests/capabilities/cjpm.toml
+new file mode 100644
+index 0000000..7cf5fdd
+--- /dev/null
++++ b/tests/capabilities/cjpm.toml
+@@ -0,0 +1,9 @@
++[package]
++cjc-version = "1.2.0"
++name = "capability_contract"
++version = "0.0.0"
++src-dir = "src"
++output-type = "executable"
++
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/tests/capabilities/fixture/terminfo.src b/tests/capabilities/fixture/terminfo.src
+new file mode 100644
+index 0000000..1187530
+--- /dev/null
++++ b/tests/capabilities/fixture/terminfo.src
+@@ -0,0 +1,36 @@
++# Synthetic database entries for automatic-capability branch tests only.
++# They are not evidence of a physical terminal implementation.
++cap-8|cjtui synthetic eight-color terminal,
++	use=xterm-256color,
++	colors#8,
++
++cap-mono|cjtui synthetic known monochrome terminal,
++	use=xterm-256color,
++	colors#0,
++
++cap-16|cjtui synthetic sixteen-color terminal,
++	use=xterm-256color,
++	colors#16,
++
++cap-256|cjtui synthetic indexed terminal,
++	use=xterm-256color,
++	colors#256,
++
++cap-direct|cjtui synthetic direct-color terminal,
++	use=xterm-256color,
++	RGB,
++
++cap-ncv18|cjtui synthetic color-priority ncv 18 terminal,
++	use=xterm-256color,
++	colors#8,
++	ncv#18,
++
++cap-ncv-unknown|cjtui synthetic ncv with unmodelled bit terminal,
++	use=xterm-256color,
++	colors#8,
++	ncv#19,
++
++cap-nonsgr|cjtui synthetic unsafe bold capability terminal,
++	use=xterm-256color,
++	colors#8,
++	bold=\E[99m,
+diff --git a/tests/capabilities/pty.mjs b/tests/capabilities/pty.mjs
+new file mode 100644
+index 0000000..e1dedcd
+--- /dev/null
++++ b/tests/capabilities/pty.mjs
+@@ -0,0 +1,123 @@
++#!/usr/bin/env node
++// A synthetic terminfo branch suite. Real-host visual evidence belongs to TASK-066.
++import assert from 'node:assert/strict';
++import { spawn, spawnSync } from 'node:child_process';
++import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import { join, resolve } from 'node:path';
++
++const root = resolve(process.cwd());
++const binary = resolve(process.env.CJTUI_CAPABILITY_BIN ?? 'tests/capabilities/session/target/release/bin/main');
++const terminfo = resolve(process.env.CJTUI_CAPABILITY_TERMINFO ?? 'tests/capabilities/generated-terminfo');
++const artifacts = resolve(process.env.CJTUI_CAPABILITY_ARTIFACTS ?? await mkdtemp(join(tmpdir(), 'cjtui-capabilities-')));
++await mkdir(artifacts, { recursive: true });
++const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
++const quote = text => `'${text.replaceAll("'", "'\\''")}'`;
++const read = async path => { try { return await readFile(path, 'utf8'); } catch { return ''; } };
++async function until(predicate, name, milliseconds = 8000) {
++  const deadline = Date.now() + milliseconds;
++  while (Date.now() < deadline) { if (await predicate()) return; await sleep(10); }
++  throw new Error(`timeout: ${name}`);
++}
++function parseReport(text) {
++  const result = Object.create(null);
++  for (const line of text.trim().split('\n')) {
++    const index = line.indexOf('=');
++    assert(index > 0, `report line ${JSON.stringify(line)}`);
++    result[line.slice(0, index)] = line.slice(index + 1);
++  }
++  return result;
++}
++async function runCase(name, environment, action = '') {
++  const directory = join(artifacts, name); await mkdir(directory, { recursive: true });
++  const report = join(directory, 'profile.txt');
++  const wrapper = join(directory, 'session.sh');
++  await writeFile(wrapper, '#!/bin/sh\nstty rows 5 cols 24\nstty -g > "$2/before"\ntty > "$2/tty"\n"$1" < /dev/tty &\np=$!\necho "$p" > "$2/pid"\nwait "$p"\nstatus=$?\nstty -g > "$2/after"\nexit "$status"\n');
++  const childEnvironment = { ...process.env, ...environment, TERMINFO: terminfo, CJTUI_CAPABILITY_REPORT: report };
++  for (const [key, value] of Object.entries(childEnvironment)) if (value === null) delete childEnvironment[key];
++  const child = spawn('script', ['--quiet', '--return', '--flush', '--command', `sh ${quote(wrapper)} ${quote(binary)} ${quote(directory)}`, '/dev/null'], {
++    stdio: ['pipe', 'pipe', 'pipe'],
++    env: childEnvironment
++  });
++  let raw = Buffer.alloc(0), stderr = '', finished = false, code, signal, processError;
++  child.stdout.on('data', bytes => { raw = Buffer.concat([raw, bytes]); });
++  child.stderr.on('data', bytes => { stderr += bytes.toString(); });
++  child.on('error', error => { processError = error; finished = true; });
++  child.on('exit', (value, valueSignal) => { code = value; signal = valueSignal; finished = true; });
++  try {
++    await until(async () => Number((await read(join(directory, 'pid'))).trim()) > 0, `${name} pid`);
++    await until(() => raw.includes(Buffer.from('COLOR')), `${name} first frame`);
++    if (action) child.stdin.write(action);
++    child.stdin.write('p');
++    await until(async () => (await read(report)).includes('colorMode='), `${name} profile after render`);
++    child.stdin.write('q');
++    await until(() => finished, `${name} q exit`);
++    if (processError) throw processError;
++    assert.equal(code, 0, `${name}: direct application exit`); assert.equal(signal, null, `${name}: no forced signal`);
++    const before = (await read(join(directory, 'before'))).trim(), after = (await read(join(directory, 'after'))).trim();
++    assert(before && after, `${name}: termios evidence exists`); assert.equal(after, before, `${name}: exact termios restoration`);
++    const profile = parseReport(await read(report));
++    await writeFile(join(directory, 'session.raw'), raw); await writeFile(join(directory, 'stderr.txt'), stderr);
++    await writeFile(join(directory, 'result.json'), JSON.stringify({ name, code, signal, profile }, null, 2));
++    return { profile, raw: raw.toString('utf8') };
++  } catch (error) {
++    await writeFile(join(directory, 'session.raw'), raw); await writeFile(join(directory, 'stderr.txt'), stderr);
++    await writeFile(join(directory, 'result.json'), JSON.stringify({ name, code, signal, error: error.message }, null, 2));
++    throw error;
++  } finally {
++    if (!finished) child.kill('SIGKILL');
++    child.stdin.destroy();
++  }
++}
++function profile(result, expected, name) {
++  for (const [key, value] of Object.entries(expected)) assert.equal(result.profile[key], String(value), `${name}: ${key}`);
++}
++let failures = 0;
++try {
++  for (const command of ['script', 'stty', 'tic']) assert.equal(spawnSync(command, ['--version']).status, 0, `${command} available`);
++  const cases = [
++    ['eight', { TERM: 'cap-8' }, { colorMode: 'Basic8', colorKnown: true, terminfoKnown: true, source: 'terminfo', reason: '', noColorVideo: -1 }],
++    ['mono', { TERM: 'cap-mono' }, { colorMode: 'Monochrome', colorKnown: true, terminfoKnown: true, source: 'terminfo', reason: '', noColorVideo: -1 }],
++    ['sixteen', { TERM: 'cap-16' }, { colorMode: 'Basic16', colorKnown: true, terminfoKnown: true, source: 'terminfo', reason: '' }],
++    ['indexed', { TERM: 'cap-256' }, { colorMode: 'Indexed256', colorKnown: true, terminfoKnown: true, source: 'terminfo', reason: '' }],
++    ['direct', { TERM: 'cap-direct' }, { colorMode: 'TrueColor', colorKnown: true, terminfoKnown: true, source: 'terminfo', reason: '' }],
++    ['terminfo-colorterm', { TERM: 'cap-16', COLORTERM: 'truecolor' }, { colorMode: 'TrueColor', colorKnown: true, terminfoKnown: true, source: 'terminfo+COLORTERM', reason: '' }],
++    ['unknown', { TERM: 'cap-unknown' }, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'terminfo-entry-unavailable' }],
++    ['colorterm-only', { TERM: 'cap-unknown', COLORTERM: '24BIT' }, { colorMode: 'TrueColor', colorKnown: true, terminfoKnown: false, source: 'COLORTERM', reason: 'terminfo-entry-unavailable' }],
++    ['unset', { TERM: null, COLORTERM: 'truecolor' }, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'term-unset' }],
++    ['dumb', { TERM: 'dumb', COLORTERM: 'truecolor' }, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'term-dumb' }],
++    ['invalid', { TERM: 'bad;term', COLORTERM: 'truecolor' }, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'term-invalid' }],
++  ];
++  for (const [name, environment, expected] of cases) {
++    const result = await runCase(name, environment); profile(result, expected, name);
++    if (name === 'eight') { assert(result.raw.includes('\x1b[31mCOLOR'), 'Basic8 maps BrightRed to the nominal eight-color red'); assert(!result.raw.includes('\x1b[91mCOLOR'), 'Basic8 does not emit bright SGR'); }
++    if (name === 'sixteen') assert(result.raw.includes('\x1b[91mCOLOR'), 'Basic16 retains BrightRed');
++    if (name === 'indexed') assert(result.raw.includes('\x1b[38;5;33m'), 'Indexed256 maps RGB through the nominal indexed palette');
++    if (name === 'direct' || name === 'colorterm-only') assert(result.raw.includes('\x1b[38;2;1;128;254m'), `${name} emits direct RGB`);
++    if (name === 'direct') {
++      profile(result, { bold: true, dim: true, italic: true, underline: true, inverse: true, strikethrough: true }, 'direct known SGR capabilities');
++      for (const sgr of ['1', '2', '3', '4', '7', '9']) assert(result.raw.includes(`\x1b[${sgr}m`), `direct accepts known SGR${sgr}`);
++    }
++    if (name === 'mono') {
++      assert(!/\x1b\[(?:3[0-7]|9[0-7]|38;|4[0-7]|10[0-7]|48;)m/.test(result.raw), 'known monochrome omits colors');
++      for (const sgr of ['1', '2', '3', '4', '7', '9']) assert(result.raw.includes(`\x1b[${sgr}m`), `known monochrome retains supported non-color SGR${sgr}`);
++    }
++    if (name === 'colorterm-only') {
++      for (const sgr of ['1', '2', '3', '4', '7', '9']) assert(!result.raw.includes(`\x1b[${sgr}m`), `COLORTERM-only has no attribute support evidence for SGR${sgr}`);
++    }
++    if (['unknown', 'unset', 'dumb', 'invalid'].includes(name)) assert(!/\x1b\[(?:3[0-7]|9[0-7]|38;|4[0-7]|10[0-7]|48;|[123479])m/.test(result.raw), `${name} emits no unsupported color or video SGR`);
++  }
++  const ncv18 = await runCase('ncv18', { TERM: 'cap-ncv18' }); profile(ncv18, { colorMode: 'Basic8', noColorVideo: 18, dim: true, underline: true }, 'ncv18');
++  for (const sgr of ['1', '3', '7', '9']) assert(ncv18.raw.includes(`\x1b[${sgr}m`), `ncv18 retains SGR${sgr}`);
++  for (const sgr of ['2', '4']) assert(!ncv18.raw.includes(`\x1b[${sgr}m`), `ncv18 removes color-conflicting SGR${sgr}`);
++  const ncvUnknown = await runCase('ncv-unknown', { TERM: 'cap-ncv-unknown' }); profile(ncvUnknown, { colorMode: 'Basic8', noColorVideo: 19 }, 'ncv unknown bit');
++  for (const sgr of ['1', '2', '3', '4', '7', '9']) assert(!ncvUnknown.raw.includes(`\x1b[${sgr}m`), `unknown ncv bit conservatively removes SGR${sgr}`);
++  const nonSgr = await runCase('non-sgr', { TERM: 'cap-nonsgr' }); profile(nonSgr, { colorMode: 'Basic8', bold: false }, 'non-SGR capability');
++  assert(!nonSgr.raw.includes('\x1b[99m'), 'terminfo strings are never forwarded to the device'); assert(!nonSgr.raw.includes('\x1b[1m'), 'unsafe bold capability is not treated as standard SGR1');
++  const override = await runCase('override-auto', { TERM: 'cap-direct', CJTUI_CAPABILITY_OVERRIDE: '1' }, { colorMode: 'TrueColor' }, 'a');
++  assert(override.raw.includes('\x1b[31mCOLOR'), 'explicit Basic8 override changes first device projection'); assert(override.raw.includes('\x1b[91mCOLOR'), 'colorModeAuto restores the fixed automatic profile during the session');
++  const isolated = await runCase('isolation', { TERM: 'cap-256', CJTUI_CAPABILITY_SEED: '1' }); profile(isolated, { colorMode: 'Indexed256', seededColors: 16, baseColors: 16 }, 'private terminfo namespace isolation');
++  const loaderFail = await runCase('loader-fail', { TERM: 'cap-256', CJTUI_CAP_TEST_DLMOPEN_FAIL: '1' }); profile(loaderFail, { colorMode: 'Monochrome', colorKnown: false, terminfoKnown: false, source: 'unknown', reason: 'terminfo-library-unavailable' }, 'optional loader failure');
++  console.log(`PASS synthetic capability branches: artifacts=${artifacts}`);
++} catch (error) { failures++; console.error(`FAIL capabilities: ${error.stack}`); }
++if (failures) process.exitCode = 1;
+diff --git a/tests/capabilities/run.sh b/tests/capabilities/run.sh
+new file mode 100755
+index 0000000..30cbee5
+--- /dev/null
++++ b/tests/capabilities/run.sh
+@@ -0,0 +1,11 @@
++#!/usr/bin/env bash
++set -euo pipefail
++cd "$(dirname "$0")"
++mkdir -p generated-terminfo session/native
++tic -x -o generated-terminfo fixture/terminfo.src
++gcc -std=c11 -Wall -Wextra -Werror -fPIC -O2 -c session/native/capability_test_native.c -o session/native/capability_test_native.o
++ar rcs session/native/libcapability_test_native.a session/native/capability_test_native.o
++cjpm build
++./target/release/bin/main
++(cd session && cjpm build)
++node pty.mjs
+diff --git a/tests/capabilities/session/cjpm.toml b/tests/capabilities/session/cjpm.toml
+new file mode 100644
+index 0000000..ca5a29e
+--- /dev/null
++++ b/tests/capabilities/session/cjpm.toml
+@@ -0,0 +1,13 @@
++[package]
++cjc-version = "1.2.0"
++name = "capability_session"
++version = "0.0.0"
++src-dir = "src"
++output-type = "executable"
++link-option = "--wrap=dlmopen"
++
++[dependencies]
++cjtui = { path = "../../.." }
++
++[ffi.c]
++capability_test_native = { path = "./native" }
+diff --git a/tests/capabilities/session/native/capability_test_native.c b/tests/capabilities/session/native/capability_test_native.c
+new file mode 100644
+index 0000000..559fc2a
+--- /dev/null
++++ b/tests/capabilities/session/native/capability_test_native.c
+@@ -0,0 +1,38 @@
++#define _GNU_SOURCE
++#include <dlfcn.h>
++#include <stdint.h>
++#include <stdlib.h>
++
++/* Test-only seam: ordinary consumers do not link this archive or --wrap. */
++void *__real_dlmopen(long lmid, const char *file, int mode);
++
++void *__wrap_dlmopen(long lmid, const char *file, int mode) {
++    if (getenv("CJTUI_CAP_TEST_DLMOPEN_FAIL") != NULL) {
++        return NULL;
++    }
++    return __real_dlmopen(lmid, file, mode);
++}
++
++typedef int (*setupterm_fn)(const char *, int, int *);
++typedef int (*tigetnum_fn)(const char *);
++
++static void *base_tinfo(void) {
++    return dlopen("libtinfo.so.6", RTLD_NOW | RTLD_LOCAL);
++}
++
++int64_t cjt_test_base_seed(void) {
++    void *library = base_tinfo();
++    setupterm_fn setupterm = library == NULL ? NULL : (setupterm_fn)dlsym(library, "setupterm");
++    tigetnum_fn tigetnum = library == NULL ? NULL : (tigetnum_fn)dlsym(library, "tigetnum");
++    int error = 0;
++    if (setupterm == NULL || tigetnum == NULL || setupterm("cap-16", 1, &error) != 0) {
++        return -1;
++    }
++    return tigetnum("colors");
++}
++
++int64_t cjt_test_base_colors(void) {
++    void *library = base_tinfo();
++    tigetnum_fn tigetnum = library == NULL ? NULL : (tigetnum_fn)dlsym(library, "tigetnum");
++    return tigetnum == NULL ? -1 : tigetnum("colors");
++}
+diff --git a/tests/capabilities/session/src/main.cj b/tests/capabilities/session/src/main.cj
+new file mode 100644
+index 0000000..750d445
+--- /dev/null
++++ b/tests/capabilities/session/src/main.cj
+@@ -0,0 +1,92 @@
++package capability_session
++
++import cjtui.*
++import std.env.*
++import std.fs.*
++
++foreign {
++    func cjt_test_base_seed(): Int64
++    func cjt_test_base_colors(): Int64
++}
++
++class SessionState {
++    let reportPath: String
++    var app: ?Application = None
++    var seededColors: Int64 = -1
++
++    init(reportPath: String) {
++        this.reportPath = reportPath
++    }
++}
++
++func modeName(mode: ColorMode): String {
++    match (mode) {
++        case ColorMode.Monochrome => "Monochrome"
++        case ColorMode.Basic8 => "Basic8"
++        case ColorMode.Basic16 => "Basic16"
++        case ColorMode.Indexed256 => "Indexed256"
++        case ColorMode.TrueColor => "TrueColor"
++    }
++}
++
++func report(state: SessionState): Unit {
++    match (state.app) {
++        case None => throw Exception("missing application")
++        case Some(app) =>
++            match (app.terminalCapabilities()) {
++                case None => throw Exception("profile missing after successful open")
++                case Some(capabilities) =>
++                    let text = "colorMode=${modeName(capabilities.colorMode)}\n" +
++                        "colorKnown=${capabilities.colorKnown}\n" +
++                        "terminfoKnown=${capabilities.terminfoKnown}\n" +
++                        "bold=${capabilities.supportsBold}\n" +
++                        "dim=${capabilities.supportsDim}\n" +
++                        "italic=${capabilities.supportsItalic}\n" +
++                        "underline=${capabilities.supportsUnderline}\n" +
++                        "inverse=${capabilities.supportsInverse}\n" +
++                        "strikethrough=${capabilities.supportsStrikethrough}\n" +
++                        "noColorVideo=${capabilities.noColorVideo}\n" +
++                        "source=${capabilities.source}\n" +
++                        "reason=${capabilities.reason}\n" +
++                        "baseColors=${unsafe { cjt_test_base_colors() }}\n" +
++                        "seededColors=${state.seededColors}\n"
++                    File.writeTo(state.reportPath, text.toArray())
++            }
++    }
++}
++
++main(): Int64 {
++    let reportPath = getVariable("CJTUI_CAPABILITY_REPORT").getOrThrow()
++    let state = SessionState(reportPath)
++    if (getVariable("CJTUI_CAPABILITY_SEED").isSome()) {
++        state.seededColors = unsafe { cjt_test_base_seed() }
++    }
++    let root = Column {
++        Text("COLOR").foreground(Color.BrightRed)
++        Text("RICH").foreground(Color.Rgb(1, 128, 254)).background(Color.Indexed(17))
++            .bold().dim().italic().underline().inverse().strikethrough()
++    }
++    let app = Application(root)
++    state.app = Some(app)
++    if (getVariable("CJTUI_CAPABILITY_OVERRIDE").isSome()) {
++        app.colorMode(ColorMode.Basic8)
++    }
++    app.onKey { event =>
++        if (event.text == "a") {
++            match (state.app) {
++                case Some(current) => current.colorModeAuto()
++                case None => ()
++            }
++        }
++        if (event.text == "p") {
++            report(state)
++        }
++        if (event.text == "q") {
++            match (state.app) {
++                case Some(current) => current.stop()
++                case None => ()
++            }
++        }
++    }.run()
++    return 0
++}
+diff --git a/tests/capabilities/src/main.cj b/tests/capabilities/src/main.cj
+new file mode 100644
+index 0000000..732eee5
+--- /dev/null
++++ b/tests/capabilities/src/main.cj
+@@ -0,0 +1,71 @@
++package capability_contract
++
++import cjtui.*
++
++func check(value: Bool, name: String): Unit {
++    if (!value) {
++        throw Exception("FAIL: ${name}")
++    }
++    println("PASS: ${name}")
++}
++
++func inspect(capabilities: TerminalCapabilities): Unit {
++    // This is intentionally a public-consumer field audit. It validates that
++    // diagnostics expose a read-only snapshot rather than a configuration API.
++    let mode = capabilities.colorMode
++    let known = capabilities.colorKnown
++    let terminfo = capabilities.terminfoKnown
++    let bold = capabilities.supportsBold
++    let dim = capabilities.supportsDim
++    let italic = capabilities.supportsItalic
++    let underline = capabilities.supportsUnderline
++    let inverse = capabilities.supportsInverse
++    let strike = capabilities.supportsStrikethrough
++    let ncv = capabilities.noColorVideo
++    let source = capabilities.source
++    let reason = capabilities.reason
++    check(mode == mode && known == known && terminfo == terminfo && bold == bold && dim == dim &&
++        italic == italic && underline == underline && inverse == inverse && strike == strike && ncv == ncv &&
++        source == source && reason == reason, "TerminalCapabilities public diagnostic fields are readable")
++}
++
++func publicApi(): Unit {
++    let root = Text("public consumer")
++    let automatic = Application(root)
++    match (automatic.terminalCapabilities()) {
++        case None => check(true, "diagnostic is absent before a successful terminal session")
++        case Some(capabilities) => inspect(capabilities)
++    }
++    let automaticReceiver: Application = automatic.colorModeAuto()
++    automaticReceiver.onKey {_ => ()}
++    check(true, "colorModeAuto returns the Application receiver")
++
++    let advanced = Application(root, colorMode: ColorMode.Basic8)
++    let overrideReceiver: Application = advanced.colorMode(ColorMode.TrueColor)
++    overrideReceiver.onKey {_ => ()}
++    let restored: Application = advanced.colorModeAuto()
++    restored.onKey {_ => ()}
++    check(true, "explicit override and colorModeAuto return the Application receiver")
++    check(ColorMode.Basic8 == ColorMode.Basic8 && ColorMode.Basic8 != ColorMode.Basic16,
++        "Basic8 is a distinct concrete public output mode")
++}
++
++func pureSnapshots(): Unit {
++    let frame = Frame(1, 1)
++    frame.put(0, 0, "X", style: Style(foreground: Color.Rgb(1, 128, 254), bold: true, dim: true,
++        italic: true, underline: true, inverse: true, strikethrough: true))
++    let esc = "\u{1b}["
++    let expected = esc + "0m" + esc + "1;1H" + esc + "0m" + esc + "38;2;1;128;254m" +
++        esc + "1m" + esc + "2m" + esc + "3m" + esc + "4m" + esc + "7m" + esc + "9mX" + esc + "0m" + esc + "0m"
++    check(frame.toAnsi() == expected, "default Frame.toAnsi is a pure TrueColor six-attribute snapshot")
++    let basic = esc + "0m" + esc + "1;1H" + esc + "0m" + esc + "36m" +
++        esc + "1m" + esc + "2m" + esc + "3m" + esc + "4m" + esc + "7m" + esc + "9mX" + esc + "0m" + esc + "0m"
++    check(frame.toAnsi(colorMode: ColorMode.Basic16) == basic,
++        "explicit offline Basic16 preview maps RGB(1,128,254) to nominal Cyan and preserves attributes")
++}
++
++main(): Int64 {
++    publicApi()
++    pureSnapshots()
++    return 0
++}
+diff --git a/tests/colors/pty.mjs b/tests/colors/pty.mjs
+index a79b3c2..9e86953 100644
+--- a/tests/colors/pty.mjs
++++ b/tests/colors/pty.mjs
+@@ -171,34 +171,32 @@ async function fixture() {
+ const cells = rows => rows.flatMap(row => row.cells);
+ const text = rows => rows.map(row => row.text).join('\n');
+ const selections = rows => cells(rows).flatMap(c => [c.fg, c.bg]);
++const foregrounds = rows => cells(rows).map(c => c.fg);
+ async function example() {
+   const s = new Session('actual-example', process.env.CJTUI_COLOR_EXAMPLE_BIN ?? 'examples/colors/target/release/bin/main', 100, 40);
+   try {
+     await s.start(); const initial = await s.settle(0, 'actual colors first frame');
+     assert(selections(initial).some(c => /^named:9[0-7]$/.test(c)), 'actual example includes bright colors');
+-    assert(!selections(initial).some(c => /^(indexed|rgb):/.test(c)), 'initial Basic16 regardless of TERM/COLORTERM');
++    assert(foregrounds(initial).includes('rgb:1,128,254'), 'normal example starts with its first rich RGB sample under automatic direct-color profile');
+     async function key(k, name) { const before = s.screen.updates.length; s.child.stdin.write(k); return s.settle(before, name); }
+-    const indexed = await key('c', 'c→Indexed256');
+-    assert(selections(indexed).some(c => c.startsWith('indexed:')), 'first c exposes indexed colors');
+-    assert(!selections(indexed).some(c => c.startsWith('rgb:')), 'Indexed256 contains no RGB selection');
+-    const rgb = await key('c', 'c→TrueColor');
+-    assert(selections(rgb).some(c => c.startsWith('rgb:')), 'second c exposes truecolor');
+-    const mono = await key('c', 'c→Monochrome');
+-    assert(selections(mono).every(c => c === 'default'), 'third c removes all foreground/background selections');
++    const red = await key('c', 'c→second RGB sample');
++    assert(foregrounds(red).includes('rgb:250,0,0'), 'first c advances the normal example to RGB(250, 0, 0) without an override');
++    const gray = await key('c', 'c→third RGB sample');
++    assert(foregrounds(gray).includes('rgb:238,238,238'), 'second c advances the normal example to RGB(238, 238, 238) without an override');
+     const styled = await key('t', 't toggles actual example six attributes');
+     for (const n of [1, 2, 3, 4, 7, 9]) {
+       const count = rows => cells(rows).filter(c => c.text.trim() && c.attributes.includes(n)).reduce((sum, c) => sum + width(c.text), 0);
+-      assert.notEqual(count(styled), count(mono), `t changes attribute SGR${n} on visible example text`);
++      assert.notEqual(count(styled), count(gray), `t changes attribute SGR${n} on visible example text`);
+     }
+     const unstyled = await key('t', 't restores six attributes');
+-    assert.deepEqual(unstyled, mono, 'second t restores exact monochrome text and style');
+-    const basic = await key('c', 'c→Basic16 completes cycle');
+-    assert.deepEqual(basic, initial, 'fourth c restores initial complete screen');
++    assert.deepEqual(unstyled, gray, 'second t restores exact automatic rich-color text and style');
++    const basic = await key('c', 'c→first RGB sample');
++    assert.deepEqual(basic, initial, 'third c restores the first RGB sample without changing the automatic profile');
+     await s.resize(31, 12); await s.resize(8, 4);
+     const restored = await s.resize(100, 40);
+     assert.deepEqual(restored, initial, 'resize back restores actual full example with modes unchanged');
+-    for (const [name, value] of Object.entries({ initial, indexed, rgb, mono, styled, restored })) await writeFile(join(s.dir, `${name}.json`), JSON.stringify(value, null, 2));
+-    await s.stop(); console.log('PASS actual colors example: Basic16→Indexed256→TrueColor→Monochrome→Basic16, all six t attributes, resize and exact termios');
++    for (const [name, value] of Object.entries({ initial, red, gray, styled, restored })) await writeFile(join(s.dir, `${name}.json`), JSON.stringify(value, null, 2));
++    await s.stop(); console.log('PASS actual colors example: automatic RGB sample cycle, all six t attributes, resize and exact termios');
+   } finally { await s.save(); }
+ }
+ let failures = 0;
+diff --git a/tests/colors/src/main.cj b/tests/colors/src/main.cj
+index 3557397..6361f70 100644
+--- a/tests/colors/src/main.cj
++++ b/tests/colors/src/main.cj
+@@ -109,8 +109,12 @@ func encodingAndCells(): Unit {
+         "effective style run emitted once and default cell resets every attribute")
+     let old = Frame(2, 1)
+     old.put(0, 0, "X", style: Style(foreground: Color.Red, background: Color.Blue, bold: true))
+-    check(old.toAnsi() == reset + esc + "1;1H" + reset + esc + "31m" + esc + "44m" + esc + "1mX" + reset + " " + reset,
+-        "legacy 8color bold default bytes unchanged")
++    check(old.toAnsi(colorMode: ColorMode.Basic16) == reset + esc + "1;1H" + reset + esc + "31m" + esc + "44m" + esc + "1mX" + reset + " " + reset,
++        "explicit Basic16 legacy 8color bold bytes unchanged")
++    let snapshot = Frame(1, 1)
++    snapshot.put(0, 0, "X", style: Style(foreground: Color.Rgb(1, 128, 254), bold: true))
++    check(snapshot.toAnsi() == reset + esc + "1;1H" + reset + esc + "38;2;1;128;254m" + esc + "1mX" + reset + reset,
++        "default snapshot is the pure TrueColor projection")
+     for (mode in modes) { check(Frame(0, 1).toAnsi(colorMode: mode) == "" && Frame(1, 0).toAnsi(colorMode: mode) == "", "zero-area mode output empty") }
+ }
+ func componentAttributeCases(): Unit {
+diff --git a/tests/run-slice.sh b/tests/run-slice.sh
+index 58640c7..1a35548 100755
+--- a/tests/run-slice.sh
++++ b/tests/run-slice.sh
+@@ -35,6 +35,7 @@ case "${1:-all}" in
+     (cd examples/colors && cjpm build)
+     node tests/colors/pty.mjs
+     ;;
++  capabilities) tests/capabilities/run.sh ;;
+   layout-integration)
+     (cd examples/layout && cjpm build)
+     node tests/integration/layout-pty.mjs "${LAYOUT_SESSION_BIN:-examples/layout/target/release/bin/main}"
+@@ -56,6 +57,7 @@ case "${1:-all}" in
+     "$0" application-lifecycle
+     "$0" colors
+     "$0" colors-integration
++    "$0" capabilities
+     ;;
+-  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|all]" >&2; exit 2 ;;
++  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|all]" >&2; exit 2 ;;
+ esac

@@ -1,0 +1,52 @@
+[31merror[0m: undeclared type name 'TerminalCapabilities'
+  [36m==>[0m /workspace/work/auto-red-reproduction/tests/capabilities/src/main.cj:12:28:
+   [36m| [0m
+[36m12[0m [36m| [0mfunc inspect(capabilities: TerminalCapabilities): Unit {[0m
+   [36m| [0m                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'terminalCapabilities' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/auto-red-reproduction/tests/capabilities/src/main.cj:35:22:
+   [36m| [0m
+[36m35[0m [36m| [0m    match (automatic.terminalCapabilities()) {[0m
+   [36m| [0m                     [31m^^^^^^^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'colorModeAuto' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/auto-red-reproduction/tests/capabilities/src/main.cj:39:52:
+   [36m| [0m
+[36m39[0m [36m| [0m    let automaticReceiver: Application = automatic.colorModeAuto()[0m
+   [36m| [0m                                                   [31m^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Basic8' is not a member of enum 'ColorMode'
+  [36m==>[0m /workspace/work/auto-red-reproduction/tests/capabilities/src/main.cj:43:59:
+   [36m| [0m
+[36m43[0m [36m| [0m    let advanced = Application(root, colorMode: ColorMode.Basic8)[0m
+   [36m| [0m                                                          [31m^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Basic8' is not a member of enum 'ColorMode'
+  [36m==>[0m /workspace/work/auto-red-reproduction/tests/capabilities/src/main.cj:49:21:
+   [36m| [0m
+[36m49[0m [36m| [0m    check(ColorMode.Basic8 == ColorMode.Basic8 && ColorMode.Basic8 != ColorMode.Basic16,[0m
+   [36m| [0m                    [31m^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Basic8' is not a member of enum 'ColorMode'
+  [36m==>[0m /workspace/work/auto-red-reproduction/tests/capabilities/src/main.cj:49:41:
+   [36m| [0m
+[36m49[0m [36m| [0m    check(ColorMode.Basic8 == ColorMode.Basic8 && ColorMode.Basic8 != ColorMode.Basic16,[0m
+   [36m| [0m                                        [31m^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'Basic8' is not a member of enum 'ColorMode'
+  [36m==>[0m /workspace/work/auto-red-reproduction/tests/capabilities/src/main.cj:49:61:
+   [36m| [0m
+[36m49[0m [36m| [0m    check(ColorMode.Basic8 == ColorMode.Basic8 && ColorMode.Basic8 != ColorMode.Basic16,[0m
+   [36m| [0m                                                            [31m^^^^^^ [0m
+   [36m| [0m
+
+7 errors generated, 7 errors printed.
+Error: failed to compile package `capability_contract`, return code is 1
+Error: cjpm build failed

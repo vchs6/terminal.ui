@@ -123,3 +123,53 @@ The requested counterexamples were independently executed against the exact old 
 Historical run.sh, its narrow execution adapter, materialized raw oracle inputs, exact commands, stdout/stderr/status results and explanation are in evidence/fixround2/ . These controlled exit-status fixtures are oracle tests, not claimed real application/host runs. The test-first run against the old decision was RED with 6/7 groups failing, including both independent requested counterexamples. After repair, the exit oracle passes 7/7 and all terminal-tool checks pass 25/25. Shell/Node syntax and diff checks pass. Logs: exit-oracle-red.log, exit-oracle-green.log and terminal-tools-green.log in that directory. No whole matrix, GUI or product build was rerun for this narrow change, per coordinator instruction.
 
 Remaining work for this fix: Astra scoped review and final independent real-host execution on the integrated fixed sources. This report does not claim those future runs passed.
+
+# Initial Auto RED provenance supplement
+
+**原件未留存，以下为现在固定历史代码重现，不是恢复旧日志。**
+
+The coordinator requested a search for the original Auto API/default-snapshot/ordinary-example RED logs. The original auto-tests/raw directory contains only its Basic16 arithmetic evidence; relevant original-directory and /tmp searches did not find complete stdout/stderr/actual-exit logs for these three Auto REDs. Two contemporary old-example raw sessions were preserved unchanged, with their original paths, mtimes and hashes, but their result.json records do not include the assertion/exit outcome. They therefore remain partial candidate evidence, not recovered complete RED. A third candidate is an SDK runtime-loader failure and is explicitly excluded. Existing earlier explicit-color RED logs are also excluded as substitutes.
+
+The full original search, preserved candidates and a detailed provenance statement are in **evidence/red-reproduction/original-search/** and **evidence/red-reproduction/README.md**. The new reproduction uses an independent clone at /workspace/work/auto-red-reproduction:
+
+- Old product 187e126fc20b13a4f5526a28a9189cc0acb4037f, unchanged in src/native/examples/build/manifest before and after execution.
+- Frozen public Auto test 9466f89 and complete Auto/default-snapshot/example test snapshot 762a25e, plus only the independently justified SGR36 correction from 789bea3 to the non-executed Basic16 preview expectation.
+- Fixed effective test-overlay commit **0d2f6c77621cafdd0be267f3837f80652c9fc66b**, directly on old product 187e126. No product or failing Auto assertion was altered; no extra SDK/tool shim was required.
+- SDK/CJPM 1.2.0, the existing private cache and registry relay, with ignored ordinary-consumer cangjie-repo.toml files. No missing dependency or runtime-library failure is counted as functional RED.
+
+Fresh actual results on 2026-11-10, 11:43–11:46 UTC:
+
+| Scope | Prerequisite/build | Actual RED |
+| --- | --- | --- |
+| Auto public API | Normal bash tests/capabilities/run.sh reaches cjpm/compiler | exit 1, seven real missing-API diagnostics including TerminalCapabilities, Application.terminalCapabilities / colorModeAuto and ColorMode.Basic8 |
+| Default pure snapshot | Normal tests/colors cjpm build exits 0 | Direct binary exit 1: FAIL: default snapshot is the pure TrueColor projection, encodingAndCells:116 |
+| Old normal example | Normal examples/colors cjpm build exits 0 | Frozen Node example harness exit 1: normal example starts with its first rich RGB sample under automatic direct-color profile, pty.mjs:180; actual raw PTY bytes retained |
+
+Each phase has separate raw stdout.log, stderr.log and result.json containing exact command/argv/cwd/UTC times/actual subprocess exit code. Normal direct executable invocation avoids cjpm run masking an assertion's status. The example result is the frozen harness's assertion failure after observing a normally built old executable; it is not a claim that the application itself returned an error before harness cleanup.
+
+The evidence directory also retains fixed Git IDs, complete product/test source archives, effective patch, exact per-file source hashes, dependency locks, SDK/environment inputs, successful build logs, built-binary hashes and empty product/test post-run diffs. SHA256SUMS covers all evidence. effective-test-sha256.json SHA256 is 86ee95e29a91b4656d123b8708821d88b0e9c4e8605eb6f6919d619478904230. The new actual ordinary-example raw SHA256 is d7bd2578d1cddf6f82eb33a219d62a5530a12ca5afff5f6c97c2c0d0dd5be80e.
+
+Final targeted checks confirmed all five expected actual statuses (API build 1, snapshot build 0 / binary 1, example build 0 / harness 1), the three exact failure causes, unchanged effective source hashes, empty product/test diffs and nonempty actual PTY raw. No unrelated suite, whole matrix or GUI run was performed. No main-checkout product file changed, and current cold/GUI acceptance work remains independent.
+
+This supplement establishes that fixed frozen tests reject fixed pre-Auto code now. It does not retroactively recover the missing original logs or claim their original test-first execution timestamp has been proved.
+
+# Final Bash entry and DISPLAY version collection repair
+
+Two small independent test-only commits, without product/scene/oracle changes:
+
+- **4c952025f34dd0fa90191ff32e9c3181baa9a9bc** changes only run.sh's shebang to #!/usr/bin/env bash plus README. The executor's preserved original direct entry failed with Unsupported shell: unknown / actual_exit=1. A fresh actual direct-script check with SDK 1.2.0 and a deliberately absent fixture BIN passed envsetup and exited 1 specifically at fixture binary missing; no application or matrix started.
+- **6f5f4be5722dafbf215769870501fad431efdf94** changes only the host-version metadata line plus README. It uses the active DISPLAY and a supported option per known host: xterm -version and XFCE --version. Merely adding DISPLAY to the previous XFCE -version first choice was independently observed to time out after 10 seconds, so that unsupported version invocation is not retained. A real XFCE --version on temporary actual Xorg :219 exited 0 and printed xfce4-terminal 1.1.4 (Xfce 4.20). Raw outputs/actual statuses and the failed initial probe are preserved.
+
+The starting script was byte-identical to the actual executed **bf308bf** script. evidence/fixround3/body-equivalence.json proves that the final script differs at exactly lines 1 and 105, and restoring them exactly reproduces its original SHA256 48c04d04548a51d17f2607cf51478be10148fd5cbcec36a89244868035415953. Every application launch, input, rendering, byte/PNG capture, timeout, termios and output/exit assertion line is unchanged. The actual XFCE binary hash matches the executor's supplemental package/binary version evidence.
+
+The executor's direct-entry RED, explicit-Bash successful 9-fixture/3-example records and metadata-version failure were copied unchanged with provenance hashes into evidence/fixround3/executor-originals/. Original acceptance raw/PNG/metadata files were never edited. No complete GUI matrix, product build or rendering test was rerun for these repairs. Existing bf308bf explicit-Bash results remain attributed to bf308bf; they are not relabeled as new-commit executions. The coordinator's reuse decision and third-round scoped review can use the exact two-line equivalence proof. bash -n and diff checks pass.
+
+Detailed commands, controlled early-check environment, original stdout/stderr/actual exits, temporary-Xorg version outputs, source diffs and preservation hashes are in **evidence/fixround3/** and its README.md / SHA256SUMS. Remaining work is scoped review of these two lines and the coordinator's final evidence-reuse ruling; this author does not assert a new GUI acceptance run.
+
+# Finite package-smoke test-contract review
+
+The coordinator separately requested a read-only independent test-contract check of the executor's four consumer/glue sources against frozen AC063. The review is test-contract-smoke-review.md; exact source/manifest hashes, unchanged source copies, frozen contract projection and relevant existing raw/metadata are in evidence/package-smoke-contract/.
+
+The ordinary consumer uses public APIs and an ordinary dependency on the unpacked package, with no private linker/API rescue. Its plain/ANSI, actual q exit and exact full termios assertions are appropriate for the limited smoke. The resize wait predicate only requires raw growth and is not a general transport fence; this limitation is explicit in the review. The existing recorded raw independently contains 6x40 initial output followed by full 9x54 repaint (ASCII row9 alone has54 spaces), so no current missing resize evidence requires a rerun or source change. Raw SHA256 is 524b47e8cee7540313ee3e41f0dde4c110cfe314495978a347a42decd407aca8.
+
+No consumer build/run/check or GUI was repeated. This is a limited clean-consumer contract review, not full AC063 or release acceptance; the known full release-checker missing composition/benchmark results remain separate and must not be overwritten by this smoke conclusion.
