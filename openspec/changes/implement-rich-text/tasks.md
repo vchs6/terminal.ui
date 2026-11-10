@@ -22,10 +22,10 @@
 ## Tasks
 
 - [x] TASK-081（WP005/testing）：冻结tests/rich-text公共消费者、字节分块/手工样式golden/错误与真实RED。
-- [ ] TASK-009（WP002/implementation）：有界decoder/typed文本/Frame及组件一体集成，固定产品提交。
-- [ ] TASK-082（WP005/verification）：固定完整技术diff独立spec/quality审核。
-- [ ] TASK-083（WP005/testing）：独立新矩阵、受影响帧/布局/runtime回归、正常bundle/公开包消费者。
-- [ ] TASK-084（WP005/acceptance）：原AC009及有限文本集成证据/元数据，仍不提前关闭完整010/Linux。
+- [x] TASK-009（WP002/implementation）：有界decoder/typed文本/Frame及组件一体集成，固定产品提交。
+- [x] TASK-082（WP005/verification）：固定完整技术diff独立spec/quality审核。
+- [x] TASK-083（WP005/testing）：独立新矩阵、受影响帧/布局/runtime回归、正常bundle/公开包消费者。
+- [x] TASK-084（WP005/acceptance）：原AC009及有限文本集成证据/元数据，仍不提前关闭完整010/Linux。
 
 ## Shared admission / L3 cards
 
@@ -42,3 +42,7 @@ L4：081先手算span/Cell/字节golden，全部byte切分、组合簇、4095/40
 preflight：081自洽性=公共不依赖实现golden；009=先验证整值再写Frame，控制流无透传；082/083/084各自固定输入和独立结论。081→009共用精确design，009→runtime只加typed内容/getter，不建新Runtime；009→082→083→084无环且上游等待明确。shared frame/layout文件只允许前一runtime作者已完成后再改。原AC009状态需转移到此tasks，docs/tasks只留引用；尚未获得独立DQ准入不得产品实施。详细DQ01–14由独立preflight核。
 
 正式081准入：独立preflight固定7a33ddc最终ready，无剩余Important；原009状态已转本表、AC081–084在docs/acceptance唯一维护。DQ13来源/安装记录复用[已验证开发技能](../../../docs/reviews/R11/skills.json)，主代理实际本次使用cloud using/brainstorming/writing-plans/SDD及preflight，过程见progress；作者按其职责实际读TDD/cangjie-coding/search_docs并在交接记录调用。用户仓颉工具固定277f2e1、rules40bacab，Skill使用不引入产品依赖。此准入仅081测试，009产品仍严格等固定tests与runtime/shared文件屏障。
+
+## 实际有限完成
+
+[独立084验收](../../../docs/reviews/R14/acceptance/report.md)确认原AC009及AC081–084 PASS_FINITE，0C/I/M。原034产品、91 decoder修复与199设备保守投影已集成；082原重要缺陷与083原真实GUI FAIL均保留历史，由各自scoped及R23独立验收闭合已测范围。[原083最终定点执行衔接](../../../docs/reviews/R14/execution-scoped/report.md)复用内容有效旧回归并补实际新源输出；[R23报告及80原PNG](../../../docs/reviews/R23/execution/report.md)为设备路径补证。完整010可见层、008/041恢复、M2、composition/benchmark全制品与Linux整体仍待各自任务，不因本有限结论关闭。

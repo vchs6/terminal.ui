@@ -12,7 +12,7 @@
 | AC-006 | REQ-005 | 结构化样式映射与 ANSI 编码 | TASK-006 | 默认/16/256/真彩色按能力映射，组件不直接发序列；[R10报告](reviews/R10/README.md) | passed（有限；[R10验收](reviews/R10/acceptance/report.md)） |
 | AC-007 | REQ-004 | 完整目标帧与覆盖合成 | TASK-007 | 透明单元和带样式空格有区别，前后层按确定规则合成；[R11证据](reviews/R11/result.md) | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
 | AC-008 | REQ-004 | 差分提交与写失败恢复 | TASK-008 | 无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错；证据待实施时链接 | pending |
-| AC-009 | REQ-005 | 有界增量 ANSI 输入适配 | TASK-009 | 跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传；证据待实施时链接 | pending |
+| AC-009 | REQ-005 | 有界增量 ANSI 输入适配 | TASK-009 | 跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传；证据待实施时链接 | passed（[R14有限验收](reviews/R14/acceptance/report.md)） |
 | AC-010 | REQ-005 | 完整彩色与纯文本快照 | TASK-010 | 含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告；证据待实施时链接 | pending |
 | AC-011 | REQ-003 | 横纵与弹性尺寸协商 | TASK-011 | 窄屏、零尺寸和非整除弹性分配有确定结果；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
 | AC-012 | REQ-003 | 圆角边框与阴影绘制区域 | TASK-012 | 阴影只扩展绘制；移动/缩小清旧区，服从祖先裁剪；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
@@ -118,12 +118,12 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-081 | REQ-001/005/007 | TASK-081 | 独立typed文本/逐byte分块/手工样式golden与真实缺API RED | pending |
-| AC-082 | REQ-007 | TASK-082 | 固定完整富文本技术diff的spec/quality独立审核 | pending |
-| AC-083 | REQ-005/006/007 | TASK-083 | 独立新矩阵、受影响回归、正常源码包与公开消费 | pending |
-| AC-084 | REQ-001/005/007 | TASK-084 | 原AC009和有限文本集成证据/最终metadata，010可见层仍待验 | pending |
+| AC-081 | REQ-001/005/007 | TASK-081 | 独立typed文本/逐byte分块/手工样式golden与真实缺API RED | passed（[R14有限验收](reviews/R14/acceptance/report.md)） |
+| AC-082 | REQ-007 | TASK-082 | 固定完整富文本技术diff的spec/quality独立审核 | passed（[R14有限验收](reviews/R14/acceptance/report.md)） |
+| AC-083 | REQ-005/006/007 | TASK-083 | 独立新矩阵、受影响回归、正常源码包与公开消费 | passed（[R14有限验收](reviews/R14/acceptance/report.md)） |
+| AC-084 | REQ-001/005/007 | TASK-084 | 原AC009和有限文本集成证据/最终metadata，010可见层仍待验 | passed（[R14有限验收](reviews/R14/acceptance/report.md)） |
 
-富文本行为和支持任务状态见[具体变更](../openspec/changes/implement-rich-text/tasks.md)，pending不是产品通过。
+富文本行为和支持任务状态见[具体变更](../openspec/changes/implement-rich-text/tasks.md)，已完成范围限原AC009及本四项支持验收。
 
 ## 主题样式质量验收
 
