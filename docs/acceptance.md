@@ -85,3 +85,4 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-062 | REQ-007 | TASK-062 | 固定技术diff的spec/quality独立审核 | pending |
 | AC-063 | REQ-005/006/007 | TASK-063 | cold全入口/真实PTY/标准bundle/clean消费者 | pending |
 | AC-064 | REQ-005/007 | TASK-064 | 有限合同与最终集成独立验收 | pending |
+| AC-065 | REQ-005/007 / 用户自动适配与跨终端截图约束 | TASK-065 | 实际能力来源探针、跨宿主矩阵及真实截图方法 | pending |

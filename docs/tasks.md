@@ -532,3 +532,5 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 正常bundle阻塞修复TASK-059/060状态与准入见[布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)，独立060测试→059代码→055定点复核→056受影响验证→057验收。
 
 颜色/属性实施TASK-006与独立测试061、审核062、执行063、验收064唯一状态见[颜色与样式变更](../openspec/changes/implement-color-style-output/tasks.md)。
+
+自动终端能力与跨终端截图调查TASK-065随[颜色与样式变更](../openspec/changes/implement-color-style-output/tasks.md)，用户新裁决覆盖其旧显式默认；原实现记录不作新自动验收证据。
