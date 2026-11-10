@@ -35,7 +35,7 @@ L4：1.读取冻结测试并确认RED；2.实现一次measure/arrange/paint和�
 
 ### Task 3: TASK-012 character decoration
 
-- [ ] 3.1 TASK-012：共享Frame fill/border/shadow与Component链、layout示例；验收AC-012：独立golden/裁剪/宽簇/旧影清除，真实示例和共享路径，阴影不改变layout。
+- [x] 3.1 TASK-012：共享Frame fill/border/shadow与Component链、layout示例；验收AC-012：独立golden/裁剪/宽簇/旧影清除，真实示例和共享路径，阴影不改变layout。
 
 **Files:** src/decoration.cj及Frame共享入口、Component布局绘制接入、examples/layout及产品说明。**Interfaces:** 已交付Rect/layout与design装饰表，不能另建字符/屏幕内核。
 L4：1.确认独立装饰RED；2.共享路径实现并接入布局树；3.自测公开示例和针对回归，提交固定版本交整片审核。
@@ -44,13 +44,13 @@ L4：1.确认独立装饰RED；2.共享路径实现并接入布局树；3.自测
 
 ### Task 4: TASK-058 package and entity files
 
-- [ ] 3.2 TASK-058：按D026整理产品包/源码，每类型单文件，保持公开API；验收AC-058：实体/文件/包声明检查、外部消费者和最终源码包均正常。
+- [x] 3.2 TASK-058：按D026整理产品包/源码，每类型单文件，保持公开API；验收AC-058：实体/文件/包声明检查、外部消费者和最终源码包均正常。
 
 **Inputs/depends_on:** 最新用户约束、D026、冻结测试 / TASK012。**Deliverable:** style/geometry/text包和cjtui实体文件，根public import，说明；**Scope:** 仅源码移动/必要imports/可见性与格式，不改测试/native/依赖/行为。独立Sol/high（多文件包协作）实现，TDD/cangjie-coding/verification；先SDK probe确认包/可见性，再整理和针对layout/decor构建，最终055审核和056全量复用。旧混合定义同时移除，不保留平行路径。风险：重新导出/内部访问/制品子包；用原外部消费者与cjp校验。L4：固定源和包probe→单实体文件/包重排→公共消费者构建→提交整片审核；不新增产品功能测试。
 
 ## 4. Quality gates
 
-- [ ] 4.1 TASK-055：独立代码审核及修复复核；验收AC-055：契约/质量双passed，必需发现有实际反例和闭合版本。
+- [x] 4.1 TASK-055：独立代码审核及修复复核；验收AC-055：契约/质量双passed，必需发现有实际反例和闭合版本。
 - [ ] 4.2 TASK-056：独立执行完整slice、新示例PTY、clean cjp消费；验收AC-056：fresh实际退出、raw/sha完整，不采用作者自测。
 - [ ] 4.3 TASK-057：独立合同验收及最终集成；验收AC-057：证据/源码/状态一致，技术源未变，完整项目未虚标完成。
 

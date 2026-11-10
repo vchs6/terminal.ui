@@ -1,0 +1,95 @@
+foreign
+  src/application.cj -> src/terminal_bridge.cj f2d42a1f3e53989ba0eac0d10a257b94b58b4478ac2878d90ec2fa9c3bca88f3
+public class KeyEvent
+  src/application.cj -> src/key_event.cj f35d1ab9662f8bdaf3b51d7139c9f52b370c98b280034d5c66f664608fd9f96a
+func readByte ( timeout : Int32 ) : Int32
+  src/application.cj -> src/terminal_bridge.cj 5ac37b04ac286e55e97a4d27cde5d33dccb7e9ba20b510974a91dc0dc36023eb
+class InputDecoder
+  src/application.cj -> src/input_decoder.cj d3b2441c2c19c90054fb24fb24703d79276f2c3d9b1034384a7bece371b71c37
+func writeScreen ( value : String ) : Unit
+  src/application.cj -> src/terminal_bridge.cj f43832c9c63eb00fd9c0c1f88b0d27e5ee1947fe792092d79757304e38289ed9
+public class Application
+  src/application.cj -> src/application.cj 0127e5c0d4b119f1ad594298fd8fc333a7e23534d9f59666cda1b72ebb2edf38
+public enum BorderStyle < : Equatable < BorderStyle >
+  src/border_style.cj -> src/style/border_style.cj 0bcb21376c82a017ba1f86aa5776b099e42714cccd143170470e9f0477b0e409
+func signedAdd ( a : Int64 , b : Int64 ) : Int64
+  src/border_style.cj -> src/drawing_geometry.cj fbdaeaa132842997767ae4af05eacf3e1f5929c139b35b16c32bd074d4135692
+func containsAxis ( start : Int64 , length : Int64 , point : Int64 ) : Bool
+  src/border_style.cj -> src/drawing_geometry.cj 925ce844ec6ba5f709803b1e9924da4d8b9fef15743e21e44d6262693ce741ad
+let constructionLock = Mutex ( ) let parents = ArrayList < Component > ( ) public class Component
+  src/component.cj -> src/component.cj 659858e506d281db6e073100e5aa41e46295547bfa2884f52e32dd8dc1f74245
+func attach ( c : Component ) : Component
+  src/component.cj -> src/component.cj 2e63c4838e706ddfaff861f79dd3c1865419def42dd0cd73c8548a56a19b6249
+public func Text ( value : String ) : Component
+  src/component.cj -> src/component.cj 1c69cf8ded01b7f087781dcec017edbfbb5870757fc5f387ae4de04acd78211e
+func container ( kind : Int64 , body : ( ) - > Unit ) : Component
+  src/component.cj -> src/component.cj 6d57a83f3e6d41634d3fcd80f1801ef684ec398cb1e6528cf4c47e4bd95aa926
+public func Column ( body : ( ) - > Unit ) : Component
+  src/component.cj -> src/component.cj c9783f91d9e3e738d76ee8a6ef07153c51a3ffd0fe15363dad9e66ca95772998
+public func Row ( body : ( ) - > Unit ) : Component
+  src/component.cj -> src/component.cj 0c8bb139fd171af58ed1908c0df8f4c426d1b25fa1a9c3d38a888a9c61f292be
+public enum Color < : Equatable < Color >
+  src/frame.cj -> src/style/color.cj fd5819dd8c78350539f51c6f5723b9f3b38cbd7188346e6bdbde56e343a77c0a
+public struct Style < : Equatable < Style >
+  src/frame.cj -> src/style/style.cj a427bf6a152d6c0b690bda08b79d0e6fb2a0180aeac6d96303bf14545d20189b
+public struct Cell
+  src/frame.cj -> src/cell.cj 63eecfa82ec0ffd265e16b65ac0d8742e47e3d27c26ff9fcc08aa2cc4f6e7f55
+func blankCell ( ) : Cell
+  src/frame.cj -> src/cell.cj 70552d9f2313ef951e21fb161d58bdf75787093bc15d6dcee146135282f80bd4
+func ansiColor ( c : Color ) : AnsiColor
+  src/frame.cj -> src/ansi_encoding.cj 5e36dc02aa86d05a585424ecdb32027ed2324c9923cb2a2e6d4d0498be74230d
+func position ( y : Int64 , x : Int64 ) : String
+  src/frame.cj -> src/ansi_encoding.cj f2cf2fcc9771c96516059a2ebe171c3c6e7a6d092b5fbbe7fb94187fe4b52e7a
+func resetStyle ( ) : String
+  src/frame.cj -> src/ansi_encoding.cj d2c8c0c7496ed815e8c163b72d5e056b6a6520f58c5ab165ac7f57612b70d5ac
+func encodeStyle ( s : Style ) : String
+  src/frame.cj -> src/ansi_encoding.cj 863ace0117b44ecc4088efd985b5a8e872c5d69662a5b51ad19195c16445c314
+func validateText ( text : String ) : Unit
+  src/frame.cj -> src/text_validation.cj a4eb53a1770ba7e70aedf33202514c9040ae65b2ac67486c6b661539cfdd0908
+public class Frame
+  src/frame.cj -> src/frame.cj e2b8929e4153f6fa5063fc3bd28b96fdcd0562f20fb0430c05cd86d930e25577
+public struct Rect
+  src/layout.cj -> src/geometry/rect.cj b5e8bf9daaad6f17324cef1766ea906f457e3be13973126218cd392085c76dbb
+public enum Alignment < : Equatable < Alignment >
+  src/layout.cj -> src/alignment.cj b1199345276f6bab6a63f70b8e98ceb0615ad17af7898599b7af8ad47f91ef97
+func sat ( a : Int64 , b : Int64 ) : Int64
+  src/layout.cj -> src/layout.cj 6ed3a4011dec910c30f2feae384c53b74f56449f351781c67123be8c192b596e
+func lesser ( a : Int64 , b : Int64 ) : Int64
+  src/layout.cj -> src/layout.cj 8a1b51ed84c51ccfa4e3582b6668f875ae41c1fbc198b804234fca16701c9aae
+func greater ( a : Int64 , b : Int64 ) : Int64
+  src/layout.cj -> src/layout.cj 8ec92e2aba6f0b9df7e7a8fb61eb76219a550f972e832ed0fdeca807c4521c0c
+func offset ( a : Alignment , free : Int64 ) : Int64
+  src/layout.cj -> src/layout.cj 6af8e2fe78a627105b1d9457fd3f8ff09abdc8f324781324d1aa39d6f0cff337
+class LayoutNode
+  src/layout.cj -> src/layout_node.cj 3abf01c18af9aae602d1d60a9c05d98bc1d27a5319388baae30ff0b27a301fe1
+func mulDiv ( a : Int64 , b : Int64 , d : Int64 ) : ( Int64 , Int64 )
+  src/layout.cj -> src/layout.cj a243124171592607145cd8662c2bf0e87dc8c21d341a75cb5770b4dcd8a4cd45
+func paint ( n : LayoutNode , frame : Frame , x : Int64 , y : Int64 , w : Int64 , h : Int64 , clipL : Int64 , clipT : Int64 , clipR : Int64 , clipB : Int64 , inherited : Style ) : Unit
+  src/layout.cj -> src/layout.cj d2debceeedc4e1d5c39cdc94d1776ebe1403a0da1fd2913a599eccd987644a29
+public func render ( root : Component , width : Int64 , height : Int64 ) : Frame
+  src/layout.cj -> src/layout.cj b714a0ab59b7fbe850be823f9c1ddb3a5611995812db123d45cd133d1df8e9b3
+public func graphemeClusters ( value : String ) : Array < String >
+  src/unicode.cj -> src/text/unicode.cj 498cafe0178b0efb7aa380bee1d11d44073232f82ae4ab1e75d431f479bc019c
+public func displayWidth ( value : String , ambiguousWide ! : Bool = false ) : Int64
+  src/unicode.cj -> src/text/unicode.cj fab1159e21514071ad4aff13bb30789db27f1234c967eff4a3a48e225db8f2fd
+PASS 37 top-level definition token streams preserved (imports/package/comments/whitespace/semicolons excluded)
+PACKAGE src/alignment.cj cjtui TYPES Alignment
+PACKAGE src/ansi_encoding.cj cjtui TYPES (pure functions/re-exports)
+PACKAGE src/application.cj cjtui TYPES Application
+PACKAGE src/cell.cj cjtui TYPES Cell
+PACKAGE src/component.cj cjtui TYPES Component
+PACKAGE src/drawing_geometry.cj cjtui TYPES (pure functions/re-exports)
+PACKAGE src/exports.cj cjtui TYPES (pure functions/re-exports)
+PACKAGE src/frame.cj cjtui TYPES Frame
+PACKAGE src/geometry/rect.cj cjtui.geometry TYPES Rect
+PACKAGE src/input_decoder.cj cjtui TYPES InputDecoder
+PACKAGE src/key_event.cj cjtui TYPES KeyEvent
+PACKAGE src/layout.cj cjtui TYPES (pure functions/re-exports)
+PACKAGE src/layout_node.cj cjtui TYPES LayoutNode
+PACKAGE src/style/border_style.cj cjtui.style TYPES BorderStyle
+PACKAGE src/style/color.cj cjtui.style TYPES Color
+PACKAGE src/style/style.cj cjtui.style TYPES Style
+PACKAGE src/terminal_bridge.cj cjtui TYPES (pure functions/re-exports)
+PACKAGE src/text/unicode.cj cjtui.text TYPES (pure functions/re-exports)
+PACKAGE src/text_validation.cj cjtui TYPES (pure functions/re-exports)
+PASS single type per file and package-directory correspondence

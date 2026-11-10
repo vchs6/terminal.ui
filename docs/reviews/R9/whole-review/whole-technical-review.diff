@@ -1,0 +1,2420 @@
+425626a refactor: organize Cangjie entities by package and file
+d655f9b docs: align documentation entry with active Linux implementation
+9940b1c docs: adopt scoped Cangjie engineering references and retain decoration evidence
+1dcf969 docs: require Cangjie packages and one entity per source file
+4097a09 Implement shared character decoration and layout example
+37642b5 test: fix immutable panel reference capture for SDK 1.2
+2341a94 docs: retain independent layout review and admit decoration implementation
+f7767cc docs: preserve independent test freeze and layout development evidence
+ba868f8 Implement constrained component layout
+87a45d4 test: bound decoration on zero-area extreme frames
+7ce8c94 test: freeze decoration consumers and actual layout PTY checks
+9052bf0 docs: record frozen layout test handoff and example PTY contract
+dfcfdfd test: freeze independent layout contract consumers
+ecd35d7 docs: specify layout example toggle for independent PTY tests
+8f0f0b5 docs: reconcile layout prerequisites and independent role handoff
+86b088f plan: admit constrained terminal layout and character decoration
+ AGENTS.md                                          |   8 +
+ docs/development/cangjie-conventions.md            |  14 +
+ docs/product/README.md                             |   6 +
+ examples/layout/cjpm.toml                          |   8 +
+ examples/layout/src/main.cj                        |  33 +++
+ .../changes/implement-layout-decoration/design.md  |  80 ++++++
+ src/alignment.cj                                   |  12 +
+ src/ansi_encoding.cj                               |  40 +++
+ src/application.cj                                 | 184 ++++---------
+ src/cell.cj                                        |  18 ++
+ src/component.cj                                   |  85 +++---
+ src/drawing_geometry.cj                            |  16 ++
+ src/exports.cj                                     |   5 +
+ src/frame.cj                                       | 287 +++++++++++++++------
+ src/geometry/rect.cj                               |  17 ++
+ src/input_decoder.cj                               | 178 +++++++++++++
+ src/key_event.cj                                   |  14 +
+ src/layout.cj                                      | 278 ++++++++++++++++++++
+ src/layout_node.cj                                 |  68 +++++
+ src/style/border_style.cj                          |  12 +
+ src/style/color.cj                                 |  13 +
+ src/style/style.cj                                 |  15 ++
+ src/terminal_bridge.cj                             |  35 +++
+ src/{ => text}/unicode.cj                          |  10 +-
+ src/text_validation.cj                             |  15 ++
+ tests/README.md                                    |  59 +++++
+ tests/decoration/.gitignore                        |   1 +
+ tests/decoration/cjpm.toml                         |   8 +
+ tests/decoration/src/main.cj                       | 162 ++++++++++++
+ tests/integration/layout-pty.mjs                   | 150 +++++++++++
+ tests/layout/.gitignore                            |   1 +
+ tests/layout/cjpm.toml                             |   8 +
+ tests/layout/src/main.cj                           | 106 ++++++++
+ tests/run-slice.sh                                 |  17 +-
+ 34 files changed, 1687 insertions(+), 276 deletions(-)
+diff --git a/AGENTS.md b/AGENTS.md
+index 63ce8e5..62fc16c 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -292,10 +292,18 @@ L3 交付前完成其必需验收，工作包集成与交付前完成相应集
+ 
+ ### 13.2 用户指定的独立子代理流程
+ 
+ 后续按前置依赖顺序执行；测试用例编写、产品代码编写、代码审核、测试执行与验收验证分别交由独立子代理，主代理负责契约、任务调度、集成及分歧处理。各角色使用独立上下文和工作目录/工作树，不交叉编辑；只交接需求、验收标准、可复现命令及固定版本产物，不传递作者推理、自评或预设通过结论。发现通过主代理反馈，后续角色依据契约独立核实。
+ 
+ 按任务选择模型：测试设计及依赖排障通常用Sol/high；产品实现用Terra/high或适合该语言任务的Sol/high；独立审核及复杂验收用Astra/high；确定命令的测试执行可用Sol/medium。选择依据写入任务记录，不要求所有任务使用最昂贵模型。测试作者先按契约写正常、边界和失败用例，实现者随后获取固定测试产物；审核者检查固定提交，测试执行者独立构建运行，验收者判断需求证据而非仅复述测试数量。作者自己的探针和自测只作开发证据，不能代替独立验收。
+ 
+ ### 13.3 用户最新许可处理裁决
+ 
+ 用户明确“许可证冲突不是我们需要解决的问题，包能够使用就可以了”。当前实施和交付以包实际可构建/链接/运行为准，不再将第三方声明不一致作为项目自设阻塞或要求用户澄清；保留包提供的实际许可与归属记录，不擅改第三方原文。R5/R7的风险结论保留为历史，不继续按其旧阻塞政策执行。
++
++## 14. 仓颉源码组织（2026-11-10用户裁决）
++
++按职责与仓颉package/目录规则组织源码；每个类、结构体、接口、枚举单独一个小写下划线文件，不把多个类型集中进一个文件。某个实体的成员/扩展尽量归属其实体文件；纯函数按内聚职责组织，不机械拆成单函数文件。新增与本轮现有混合定义均须整理，不能只约束未来代码。保留公开构造方式和消费者兼容；跨包可见性以SDK实际编译为准，不为拆包随意公开内部状态。
++
++可使用用户指定的[CangjieSkills](https://atomgit.com/Cangjie-SIG/CangjieSkills.git)；本轮固定277f2e1234ca5217496966887243c679653887a8，cangjie-coding按脚本渐进查询，语言事实以本项目SDK1.2.0实际编译优先，不采用其默认旧SDK版本覆盖项目清单。此工具只属开发资料，不加入产品依赖或制品。
++
++工程规范同时参考[cangjie-rules](https://github.com/SunriseSummer/cangjie-rules.git)，固定40bacab1dafc7c5710a9b14c5c5c86898feed63c。按需采用其结构/命名/格式/最小可见性和兼容性审查，不将全部条目或附带检查器自动升级为本项目额外门禁；适用范围及差异见[仓颉工程参考](docs/development/cangjie-conventions.md)。
+diff --git a/docs/development/cangjie-conventions.md b/docs/development/cangjie-conventions.md
+new file mode 100644
+index 0000000..38b27a4
+--- /dev/null
++++ b/docs/development/cangjie-conventions.md
+@@ -0,0 +1,14 @@
++# 仓颉工程参考
++
++用户2026-11-10明确每实体单文件、按包划分，并提供两份开发参考。它们只用于开发，不作为产品运行依赖、不随cjp分发。
++
++| 参考 | 固定版本 | 用途 |
++|---|---|---|
++| [CangjieSkills](https://atomgit.com/Cangjie-SIG/CangjieSkills.git) / cangjie-coding | 277f2e1234ca5217496966887243c679653887a8 | 按Skill脚本逐层核查package、导入、可见性、SDK语法；实际SDK1.2.0优先于其默认旧版本 |
++| [cangjie-rules](https://github.com/SunriseSummer/cangjie-rules.git) | 40bacab1dafc7c5710a9b14c5c5c86898feed63c | 本轮阅读SKILL和STR/NAM/FMT，针对结构整理参考规范；未将222条或附带检查器全部设为门禁 |
++
++本轮采用STR03/04/05/06：目录与package一致、包无环、有效中间目录、职责内聚；NAM01/02/03：包/文件小写下划线、类型大驼峰；FMT01–04与07/08：UTF8/LF、改动产品源码cjfmt、分组显式import。每类型单文件是用户硬要求，既有混合定义也须整理。辅助纯函数按职责同文件，不机械造单函数文件；不为每类型建立无意义小包。
++
++项目差异：现有公开ArkUI属性链及Text/Row/Column命名保持已确认契约，不为一般命名建议改API；外部消费者import cjtui.*为支持入口，不改冻结测试来满足内部显式import习惯。依赖库不含git依赖，仓库当前锁文件/产品包策略继续依原分发契约，独立消费者不批量补生成物。函数/文件任意行数阈值不替代AGENTS10质量判断，不因此拆重复内核。无新增stdx、AST/CodeGraph、全局npm安装或未知检查器兼容性假设。需要扩展质量工具时另有具体任务和SDK兼容验证。
++
++检查以当前SDK构建、真实外部消费者、代码审核及源码包消费为证；原有有效证据依AGENTS11复用，不因阅读参考重复执行。源码整理后最终全量执行和包验证必须基于整理后的固定内容。
+diff --git a/docs/product/README.md b/docs/product/README.md
+index 609e901..efc1c16 100644
+--- a/docs/product/README.md
++++ b/docs/product/README.md
+@@ -7,10 +7,16 @@ cjtui 0.0.0 的首个切片提供 Linux ANSI TTY 文本界面：`Text`、`Row`
+ ```sh
+ cd examples/minimal
+ cjpm run
+ ```
+ 
+ 按 `q` 退出，Ctrl-C 取消；程序需要实际 TTY。构建依赖及可选离线 Unicode 数据输入见 [原生构建](native-build.md)。
+ 
+ 首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、响应式状态、多层合成、主题、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
+ 
+ 低层可用 `Frame(width, height)` 和 `put(x, y, text, style: Style(...))` 写入网格，`cellAt` 查询，`toPlainText` 和 `toAnsi` 导出完整快照。负尺寸与越界查询报错；写入按边界裁剪，拒绝除换行外的控制字符。`render(root, width, height)` 使用同一网格渲染组件树。`Application(root).onKey { event => ... }.run()` 负责终端会话；文本按 Unicode 字符提供，`stop()` 可从回调退出。
++
++布局可通过组件属性链设置 `width`、`height`、`minWidth`、`minHeight`、`layoutWeight`、`padding`；`widthAuto`、`heightAuto` 清除固定尺寸。`Row` 和 `Column` 还支持 `gap`、`alignItems` 和 `justifyContent`，`Text` 支持逐行 `textAlign`。尺寸与间距以字符列和行为单位，必须非负；实际视口及祖先内容区域限制绘制。正权重在容器主轴上分配剩余空间，余数按最大余数及声明顺序确定。`Alignment` 提供 `Start`、`Center`、`End`、`Stretch`，其中 `Stretch` 仅用于交叉轴对齐。显式背景填充组件外框；文本、裁剪及宽字符使用同一 Frame 规则。
++
++组件可通过 `border(BorderStyle.Rounded)`、`borderColor(Color.Cyan)` 和 `shadow()` 设置字符装饰；`border(BorderStyle.None)` 与 `shadow(enabled: false)` 分别移除效果。边框占外框每边一行或一列，阴影仅扩展绘制范围、不改变布局，并受祖先内容区裁剪。阴影可指定正负偏移及完整 `Style`。未设置边框颜色时使用节点有效前景色；显式背景包含边框与内边距。`BorderStyle` 还提供 `Single`、`Double` 和 `Ascii`；终端宽度策略无法以一列显示某个边框字符时整套回退 ASCII。阴影字符 `░` 非一列时回退 `.`，这不代表检测了字体覆盖。
++
++低层 `Frame.fillRect`、`drawBorder` 和 `drawShadow` 使用相同字符宽度、样式和裁剪规则；填充写入带样式的空格，边框按原矩形几何裁剪。`examples/layout` 展示标题、加权面板和底栏；按 `d` 切换边框及阴影，按 `q` 退出，终端改变尺寸时自动重排。
+diff --git a/examples/layout/cjpm.toml b/examples/layout/cjpm.toml
+new file mode 100644
+index 0000000..39a50aa
+--- /dev/null
++++ b/examples/layout/cjpm.toml
+@@ -0,0 +1,8 @@
++[package]
++cjc-version = "1.2.0"
++name = "cjtui_layout"
++version = "0.0.0"
++src-dir = "src"
++output-type = "executable"
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/examples/layout/src/main.cj b/examples/layout/src/main.cj
+new file mode 100644
+index 0000000..b200875
+--- /dev/null
++++ b/examples/layout/src/main.cj
+@@ -0,0 +1,33 @@
++package cjtui_layout
++import cjtui.*
++
++class Panels {
++    var left = Text("")
++    var right = Text("")
++    var decorated = true
++    func toggle(): Unit {
++        decorated = !decorated
++        let border = if (decorated) { BorderStyle.Rounded } else { BorderStyle.None }
++        left.border(border).shadow(enabled: decorated)
++        right.border(border).shadow(enabled: decorated)
++    }
++}
++main(): Int64 {
++    let panels = Panels()
++    let root = Column {
++        Text("cjtui layout").foreground(Color.Cyan)
++        Row {
++            panels.left = Column { Text("Projects"); Text("Terminal UI") }
++                .layoutWeight(1).height(6).padding(1).border(BorderStyle.Rounded).shadow()
++            panels.right = Column { Text("Details"); Text("Shared layout") }
++                .layoutWeight(1).height(6).padding(1).border(BorderStyle.Rounded).shadow()
++        }.layoutWeight(1).gap(2).padding(1)
++        Text("d: decoration   q: quit")
++    }
++    let app = Application(root)
++    app.onKey { event =>
++        if (event.text == "q") { app.stop() }
++        else if (event.text == "d") { panels.toggle() }
++    }.run()
++    return 0
++}
+diff --git a/openspec/changes/implement-layout-decoration/design.md b/openspec/changes/implement-layout-decoration/design.md
+new file mode 100644
+index 0000000..22d8c40
+--- /dev/null
++++ b/openspec/changes/implement-layout-decoration/design.md
+@@ -0,0 +1,80 @@
++# Design
++
++## Context
++
++基线c502c9fe64422095d7a37e741d8756af3bbc9873已有Frame、静态Text/Row/Column、Linux事件循环和独立R8证据。当前measure/draw只有内容尺寸，不能声明面板。此变更落实既有REQ-003.1/.2/.3/.9/.10，不增加GUI或CSS引擎。
++
++## Goals / Non-Goals
++
++Goals：同一声明树和同一Frame支持固定/最小/比例布局、间距对齐、边框和阴影；旧无布局参数示例保留可见内容和样式继承；实际视口优先，可构造真实分区示例。
++Non-Goals：不实现滚动、主题配置/四主题、响应式、编辑、覆盖层、M2或其他OS；不改Linux输入/会话/native构建。它们的既定要求仍保留，不能用本片替代。
++
++## Decisions
++
++D-023（工程决定/执行准入）：复用已验证TASK050的Frame、Unicode和Component，而不等待尚无必要实现的完整覆盖层007；原TASK011/012状态转入本变更。此依赖细化不取消其他任务。替代独立画图/面板渲染器会重复Unicode/样式内核，不采用；只做底层而无声明式组合不能实现用户目标，也不采用。
++
++D-024：一条measure→arrange→paint路径，内容度量应每次render一次递归而非为每个祖先反复扫描文本；内部临时布局记录不是第二套持久节点权威。全部位置/尺寸为行列整数；overflow不能绕回或导致遍历巨大不可见Rect。度量/游标累计可饱和到Int64.Max；比例所需总权重/基数若无法精确表示则诊断，不静默用浮点近似。比例乘除须防溢出（常见乘积可直接算，极值可安全整数mul/div），不新增依赖。
++
++D-025：显式background填整个分配框（含padding/border底色），未指定则不画框底色，文字维持既有继承语义；显式Color.Default仍是有意复位/填充。边框/间距/padding/阴影不继承。只在应用显式调用时画装饰，不主动美化。
++
++## Public contract: layout (TASK-011)
++
++新增`public struct Rect`：`init(x: Int64, y: Int64, width: Int64, height: Int64)`，四个同名只读Int64字段；x/y可负，width/height必须非负，非法抛IllegalArgumentException。
++
++新增`public enum Alignment { Start | Center | End | Stretch }`。
++
++Component属性链均返回同一Component：
++
++| 方法 | 默认与行为 |
++|---|---|
++| width(Int64), height(Int64) | 可选固定外框尺寸；非负，0是真正零尺寸 |
++| widthAuto(), heightAuto() | 清除固定尺寸，恢复内容/父级分配 |
++| minWidth(Int64), minHeight(Int64) | 非负，默认0；可满足时下限，实际祖先空间不足时降到可用尺寸 |
++| layoutWeight(Int64) | 非负，默认0；仅在Row/Column主轴生效，0为非flex；正值的主轴固定尺寸/自然尺寸被最小值基数+比例分配取代，交叉轴仍按普通尺寸 |
++| padding(Int64) | 非负，默认0；四边相同行列，作用于所有组件，内边距不继承 |
++| gap(Int64) | 非负，默认0；仅容器，沿主轴相邻子项间距，无首尾间距 |
++| alignItems(Alignment) | 仅容器交叉轴，默认Start；Center向下取整，End靠末，Stretch只拉伸auto交叉尺寸，固定交叉尺寸不被覆盖 |
++| justifyContent(Alignment) | 仅容器主轴，默认Start，仅Start/Center/End；Stretch非法；剩余空间居中向下取整，不拉伸字符 |
++| textAlign(Alignment) | 仅Text每行在内容框内Start/Center/End，默认Start；Stretch非法；超长行起始裁剪，不从中间截字 |
++
++所有不合法值/目标种类在setter立即抛IllegalArgumentException且保留旧设置（Text上gap/alignItems/justifyContent及容器上textAlign均非法）。已有foreground/background/bold调用不变。
++
++render(root,width,height)仍创建同尺寸Frame。根auto外框用实际视口，显式尺寸/最小尺寸也不超过视口；不强撑应用最小画布。子非flex主轴尺寸为固定或自然尺寸与min的较大值，并收敛至父内容主轴可用尺寸；放置按声明顺序，可见越界由祖先裁剪，不改显隐状态。多个非flex/间距合计溢出时不重排业务顺序，末尾内容裁剪；滚动后续另实现。
++
++容器先扣固定/nonflex与gap占用，余量pool不小于0。flex子项先用各自min基数（先收敛至父可用轴）；min合计<=pool时，pool-min合计按权重分配，再加min。min合计>pool时仅将pool按min基数比例分配。整数份额按floor后把剩余逐一分配给小数余量最大的子项，余量相同按声明顺序；无浮点误差。flex主轴铺满它的pool；无flex时justify作用于真正剩余。交叉轴fixed/自然+min收敛至父内容交叉尺寸，Stretch拉伸auto；Center/End不足时偏移0。
++
++外框包含边框与padding；内容可用尺寸不能负。Insets在不足时依左/上优先收敛（先扣左/上，再扣右/下），不溢出。所有文本即便零尺寸或完全裁剪仍验证C0/C1/ESC规则；多行LF/CRLF、Unicode完整簇和样式规则复用R8。没有新参数时旧公开回归必须通过。TASK011先实现padding与Rect，边框Insets由TASK012接入同路径。
++
++## Public contract: decoration (TASK-012)
++
++新增`public enum BorderStyle { None | Single | Rounded | Double | Ascii }`，无装饰为默认None。
++
++Component新增：
++- `border(value: BorderStyle): Component`；非None占外框每边一列/行。
++- `borderColor(value: Color): Component`；默认未设，边框沿用该节点有效前景；不修改文字前景。
++- `shadow(offsetX!: Int64 = 1, offsetY!: Int64 = 1, style!: Style = Style(), enabled!: Bool = true): Component`；偏移可正/负/0，enabled=false可移除。
++
++Frame新增共享低层API（不要求高级用户构建组件）：
++- `fillRect(rect: Rect, style!: Style = Style()): Unit`：绘制带样式空格，不是透明擦除。
++- `drawBorder(rect: Rect, border!: BorderStyle = BorderStyle.Single, style!: Style = Style()): Unit`。
++- `drawShadow(rect: Rect, offsetX!: Int64 = 1, offsetY!: Int64 = 1, style!: Style = Style()): Unit`。
++
++Single为┌─┐│└┘，Rounded角╭╮╰╯，Double为╔═╗║╚╝，Ascii为+-|。零宽/高不画；1×1画ASCII +，宽1高>1仅竖线，高1宽>1仅横线；这些退化不画重叠角。阴影为偏移外框中不属于原外框的部分，用░，不增加布局/命中面积；偏移0/0无外露区域。任一边框字形在Frame宽度策略下非1列时整套回退Ascii，阴影░非1列时用ASCII .；不声称检测字体覆盖。
++
++低层操作按原Rect几何画再裁剪，不把裁剪边缘重画成新边框；必须先裁剪可见迭代范围，极大/越界坐标有界完成，不通过整块虚拟Rect循环。它们与Text共用Frame宽字簇清理/样式，不复制屏幕或字符内核。
++
++高层顺序为shadow→显式框背景→border→children/text。每个子节点阴影可越过自身外框，但必须服从祖先内容裁剪；本节点内容裁剪扣除自身border/padding。兄弟按声明顺序绘制，后绘覆盖前绘；没有显式框背景的空区域不写入。根阴影服从Frame边界。阴影样式完整使用传入Style，不悄悄继承或修改业务数据。旧新布局/阴影改变在M1完整目标帧中自然清残留，不能要求应用手动flush。
++
++## Deliverable / verification
++
++新增examples/layout真实程序，使用公开Component链构造有标题/主体/底栏、两个加权面板与圆角/阴影；可用UI回调按d切换阴影/边框观察旧区域清除，q退出，resize自动重排，不直接写ANSI/全屏坐标/flush。布局和装饰各自独立Cangjie外部消费者测试，runner仍build后直接binary。所有R8回归保留。独立执行actual例子与resize/切换/退出，cold源码包消费。公开API、Frame极值、裁剪/宽簇、整数余量和背景styled-space由独立测试作者冻结golden。
++
++## Risks / Trade-offs
++
++窄屏min可能不可满足→actual尺寸+确定裁剪/比例降级，不改业务显隐。大整数→安全算术/有界可见迭代，不能截断。背景新增框填充语义→显式记录，旧glyph继承及全部R8断言不变。装饰绕过裁剪/宽字→共享Frame路径与独立反例。将来M2/覆盖层→本片不另建绘制内核，布局框与绘制扩展仍分离。
++
++## D-026: user-directed Cangjie source organization
++
++2026-11-10用户要求包划分与一个软件实体一个文件。本片增加TASK058，在装饰完成后、最终审核前按职责整理现有混合定义；属于代码组织不改变产品行为。style包容纳Color/Style/BorderStyle，geometry包容纳Rect，text包容纳Unicode薄适配；目录和package声明一致，每个类型独立小写下划线文件。框架协作类型仍属cjtui包（Frame、Cell、Component、Alignment、LayoutNode、KeyEvent、InputDecoder、Application各一文件），不为每个类型发明单独包。根包通过明确public import重新导出既有公开符号，保持import cjtui.*消费者与示例无需改动。纯函数按绘制/布局/原生桥职责组织，不再复制实体定义；Frame成员集中其实体文件。
++
++不能借整理引入新功能、第二内核、依赖或对外暴露内部状态；可见性/重新导出先用SDK最小实验确认。使用用户提供CangjieSkills固定277f2e1234ca5217496966887243c679653887a8的cangjie-coding，包/文件名依据其cjlint G.NAM.01/.02（小写下划线），类型大驼峰。只格式化实际改动的产品源码，测试不改。源码移动使最终包与全量执行使用整理后固定版本，不能仅凭此前自测通过。
+diff --git a/src/alignment.cj b/src/alignment.cj
+new file mode 100644
+index 0000000..d6bb742
+--- /dev/null
++++ b/src/alignment.cj
+@@ -0,0 +1,12 @@
++package cjtui
++
++public enum Alignment <: Equatable<Alignment> {
++    | Start | Center | End | Stretch
++
++    public operator func ==(other: Alignment): Bool {
++        match ((this, other)) {
++            case (Start, Start) | (Center, Center) | (End, End) | (Stretch, Stretch) => true
++            case _ => false
++        }
++    }
++}
+diff --git a/src/ansi_encoding.cj b/src/ansi_encoding.cj
+new file mode 100644
+index 0000000..f71f4e0
+--- /dev/null
++++ b/src/ansi_encoding.cj
+@@ -0,0 +1,40 @@
++package cjtui
++
++import ansies.core.{CUP, SGR, AnsiColor, AnsiStyle}
++import ansies.api.{Color as AnsiColors, Style as AnsiStyles}
++
++func ansiColor(c: Color): AnsiColor {
++    match (c) {
++        case Color.Default => AnsiColor.Default
++        case Color.Black => AnsiColor.Black
++        case Color.Red => AnsiColor.Red
++        case Color.Green => AnsiColor.Green
++        case Color.Yellow => AnsiColor.Yellow
++        case Color.Blue => AnsiColor.Blue
++        case Color.Magenta => AnsiColor.Magenta
++        case Color.Cyan => AnsiColor.Cyan
++        case Color.White => AnsiColor.White
++    }
++}
++
++func position(y: Int64, x: Int64): String {
++    CUP([(y + 1).toString(), (x + 1).toString()])
++}
++
++func resetStyle(): String {
++    SGR(["0"])
++}
++
++func encodeStyle(s: Style): String {
++    var out = resetStyle()
++    if (s.foreground != Color.Default) {
++        out += AnsiColors.foreground(ansiColor(s.foreground))
++    }
++    if (s.background != Color.Default) {
++        out += AnsiColors.background(ansiColor(s.background))
++    }
++    if (s.bold) {
++        out += AnsiStyles.set(AnsiStyle.BOLD)
++    }
++    out
++}
+diff --git a/src/application.cj b/src/application.cj
+index fd0b7d5..9dde439 100644
+--- a/src/application.cj
++++ b/src/application.cj
+@@ -1,166 +1,78 @@
+ package cjtui
+-foreign {
+-    func cjt_open(): Int32
+-    func cjt_close(): Int32
+-    func cjt_size(axis: Int32): Int32
+-    func cjt_read(timeout: Int32): Int32
+-    func cjt_buffer_clear(): Unit
+-    func cjt_buffer_add(value: Int32): Int32
+-    func cjt_buffer_write(): Int32
+-}
+-public class KeyEvent {
+-    public let code: String
+-    public let text: String
+-    init(code: String, text: String) { this.code = code; this.text = text }
+-    init(code: String) { this.code = code; this.text = "" }
+-}
+-func readByte(timeout: Int32): Int32 { unsafe { cjt_read(timeout) } }
+-// The parser keeps only bounded state across polls and never forwards control payloads.
+-class InputDecoder {
+-    var state: Int64 = 0 // normal, ESC, CSI, string, string-ESC, ESC intermediate
+-    var parameter = false
+-    var stringRemaining: Int32 = 0
+-    var stringC2 = false
+-    var remaining: Int32 = 0
+-    var code: UInt32 = 0
+-    var minimum: UInt32 = 0
+-    func timeout(): ?KeyEvent {
+-        if (state == 1) { state = 0; return KeyEvent("escape") }
+-        None
+-    }
+-    func feed(first: Int32): ?KeyEvent {
+-        if (first == 3) { state = 0; remaining = 0; return KeyEvent("interrupt") }
+-        if (state == 3) {
+-            if (first == 7 || first == 27) {
+-                state = if (first == 7) { 0 } else { 4 }
+-                stringRemaining = 0; stringC2 = false
+-            } else if (stringRemaining > 0 && first >= 128 && first <= 191) {
+-                if (stringC2 && first == 0x9c) { state = 0 }
+-                stringRemaining--; stringC2 = false
+-            } else {
+-                stringRemaining = 0; stringC2 = false
+-                if (first == 0x9c) { state = 0 }
+-                else if (first >= 194 && first <= 223) { stringRemaining = 1; stringC2 = first == 194 }
+-                else if (first >= 224 && first <= 239) { stringRemaining = 2 }
+-                else if (first >= 240 && first <= 244) { stringRemaining = 3 }
+-            }
+-            return None
+-        }
+-        if (state == 4) {
+-            if (first == 92 || first == 7) { state = 0; return None }
+-            if (first == 27) { return None }
+-            state = 3; stringRemaining = 0; stringC2 = false
+-            // This byte belongs to the discarded string too, including UTF-8 leads.
+-            return feed(first)
+-        }
+-        if (state == 2) {
+-            if (first >= 64 && first <= 126) {
+-                state = 0
+-                if (!parameter) {
+-                    match (first) {
+-                        case 65 => return KeyEvent("up")
+-                        case 66 => return KeyEvent("down")
+-                        case 67 => return KeyEvent("right")
+-                        case 68 => return KeyEvent("left")
+-                        case _ => ()
+-                    }
+-                }
+-            } else if (first == 27) { state = 1 }
+-            else { parameter = true }
+-            return None
+-        }
+-        if (state == 5) {
+-            if (first >= 48 && first <= 126) { state = 0 }
+-            else if (first == 27) { state = 1 }
+-            return None
+-        }
+-        if (state == 1) {
+-            state = 0
+-            if (first == 91 || first == 79) { state = 2; parameter = false }
+-            else if (first == 93 || first == 80 || first == 88 || first == 94 || first == 95) { state = 3; stringRemaining = 0; stringC2 = false }
+-            else if (first >= 32 && first <= 47) { state = 5 }
+-            else if (first == 27) { state = 1 }
+-            return None
+-        }
+-        if (remaining > 0) {
+-            if (first >= 128 && first <= 191) {
+-                code = (code << 6) | UInt32(first & 63)
+-                remaining--
+-                if (remaining != 0) { return None }
+-                if (code < minimum || code > 0x10ffff || (code >= 0xd800 && code <= 0xdfff)) { return None }
+-                if (code >= 128 && code < 160) {
+-                    if (code == 0x90 || code == 0x98 || code == 0x9d || code == 0x9e || code == 0x9f) { state = 3; stringRemaining = 0; stringC2 = false }
+-                    else if (code == 0x9b) { state = 2; parameter = false }
+-                    return None
+-                }
+-                return KeyEvent("text", String(Rune(code)))
+-            }
+-            remaining = 0
+-            // A malformed prefix must not consume the next independent byte.
+-            return feed(first)
+-        }
+-        if (first == 27) { state = 1; return None }
+-        if (first == 13 || first == 10) { return KeyEvent("enter") }
+-        if (first == 127 || first == 8) { return KeyEvent("backspace") }
+-        if (first < 32) { return None }
+-        if (first < 128) { return KeyEvent("text", String(Rune(UInt32(first)))) }
+-        if (first >= 194 && first <= 223) { remaining = 1; code = UInt32(first & 31); minimum = 128 }
+-        else if (first >= 224 && first <= 239) { remaining = 2; code = UInt32(first & 15); minimum = 2048 }
+-        else if (first >= 240 && first <= 244) { remaining = 3; code = UInt32(first & 7); minimum = 65536 }
+-        else if (first == 0x90 || first == 0x98 || first == 0x9d || first == 0x9e || first == 0x9f) { state = 3; stringRemaining = 0; stringC2 = false }
+-        else if (first == 0x9b) { state = 2; parameter = false }
+-        None
+-    }
+-}
+-func writeScreen(value: String): Unit {
+-    unsafe {
+-        cjt_buffer_clear()
+-        for (b in value.toArray()) {
+-            if (cjt_buffer_add(Int32(b)) != 0) { throw Exception("terminal output allocation failed") }
+-        }
+-        if (cjt_buffer_write() != 0) { throw Exception("terminal write failed; display synchronization lost") }
+-    }
+-}
++
+ public class Application {
+     private let root: Component
+-    private var handler: (KeyEvent) -> Unit = { _ => }
++    private var handler: (KeyEvent) -> Unit = {_ =>}
+     private var running = false
+-    public init(root: Component) { this.root = root }
+-    public func onKey(handler: (KeyEvent) -> Unit): Application { this.handler = handler; this }
+-    public func stop(): Unit { running = false }
++    public init(root: Component) {
++        this.root = root
++    }
++    public func onKey(handler: (KeyEvent) -> Unit): Application {
++        this.handler = handler
++        this
++    }
++    public func stop(): Unit {
++        running = false
++    }
+     public func run(): Unit {
+-        if (unsafe { cjt_open() } != 0) { throw Exception("Linux ANSI TTY required") }
++        if (unsafe { cjt_open() } != 0) {
++            throw Exception("Linux ANSI TTY required")
++        }
+         running = true
+         try {
+             let decoder = InputDecoder()
+             var baseline: ?Frame = None
+             var previousWidth: Int64 = -1
+             var previousHeight: Int64 = -1
+             while (running) {
+                 let width = Int64(unsafe { cjt_size(0) })
+                 let height = Int64(unsafe { cjt_size(1) })
+-                if (width < 0 || height < 0) { throw Exception("terminal size unavailable") }
++                if (width < 0 || height < 0) {
++                    throw Exception("terminal size unavailable")
++                }
+                 let frame = render(root, width, height)
+                 var output = ""
+-                if (width != previousWidth || height != previousHeight) { baseline = None }
++                if (width != previousWidth || height != previousHeight) {
++                    baseline = None
++                }
+                 match (baseline) {
+                     case None => output = frame.toAnsi()
+                     case Some(old) => output = frame.changesSince(old)
+                 }
+-                if (!output.isEmpty()) { writeScreen(output) }
+-                baseline = frame; previousWidth = width; previousHeight = height
++                if (!output.isEmpty()) {
++                    writeScreen(output)
++                }
++                baseline = frame
++                previousWidth = width
++                previousHeight = height
+                 let value = readByte(100)
+-                if (value == -2) { running = false; continue }
+-                if (value == -3) { throw Exception("terminal input failed") }
+-                let event = if (value >= 0) { decoder.feed(value) } else { decoder.timeout() }
++                if (value == -2) {
++                    running = false
++                    continue
++                }
++                if (value == -3) {
++                    throw Exception("terminal input failed")
++                }
++                let event = if (value >= 0) {
++                    decoder.feed(value)
++                } else {
++                    decoder.timeout()
++                }
+                 match (event) {
+-                    case Some(key) => if (key.code == "interrupt") { running = false } else { handler(key) }
++                    case Some(key) =>
++                        if (key.code == "interrupt") {
++                            running = false
++                        } else {
++                            handler(key)
++                        }
+                     case None => ()
+                 }
+             }
+         } finally {
+             running = false
+-            if (unsafe { cjt_close() } != 0) { throw Exception("terminal restore failed") }
++            if (unsafe { cjt_close() } != 0) {
++                throw Exception("terminal restore failed")
++            }
+         }
+     }
+ }
+diff --git a/src/cell.cj b/src/cell.cj
+new file mode 100644
+index 0000000..0b13c8b
+--- /dev/null
++++ b/src/cell.cj
+@@ -0,0 +1,18 @@
++package cjtui
++
++public struct Cell {
++    public let grapheme: String
++    public let width: Int64
++    public let continuation: Bool
++    public let style: Style
++    init(grapheme: String, width: Int64, continuation: Bool, style: Style) {
++        this.grapheme = grapheme
++        this.width = width
++        this.continuation = continuation
++        this.style = style
++    }
++}
++
++func blankCell(): Cell {
++    Cell(" ", 1, false, Style())
++}
+diff --git a/src/component.cj b/src/component.cj
+index d880f98..ac37f67 100644
+--- a/src/component.cj
++++ b/src/component.cj
+@@ -4,21 +4,55 @@ import std.sync.Mutex
+ 
+ let constructionLock = Mutex()
+ let parents = ArrayList<Component>()
+ public class Component {
+     let kind: Int64
+     let value: String
+     let children = ArrayList<Component>()
+     var fg: ?Color = None
+     var bg: ?Color = None
+     var isBold: ?Bool = None
++    var fixedW: ?Int64 = None
++    var fixedH: ?Int64 = None
++    var minW: Int64 = 0
++    var minH: Int64 = 0
++    var weight: Int64 = 0
++    var borderStyle: BorderStyle = BorderStyle.None
++    var borderFg: ?Color = None
++    var shadowEnabled = false
++    var shadowX: Int64 = 1
++    var shadowY: Int64 = 1
++    var shadowStyle = Style()
++    var pad: Int64 = 0
++    var spacing: Int64 = 0
++    var align: Alignment = Alignment.Start
++    var justify: Alignment = Alignment.Start
++    var textAlignment: Alignment = Alignment.Start
++    func nonnegative(v: Int64): Unit { if (v < 0) { throw IllegalArgumentException("negative layout value") } }
++    public func width(v: Int64): Component { nonnegative(v); fixedW = v; this }
++    public func height(v: Int64): Component { nonnegative(v); fixedH = v; this }
++    public func widthAuto(): Component { fixedW = None; this }
++    public func heightAuto(): Component { fixedH = None; this }
++    public func minWidth(v: Int64): Component { nonnegative(v); minW = v; this }
++    public func minHeight(v: Int64): Component { nonnegative(v); minH = v; this }
++    public func layoutWeight(v: Int64): Component { nonnegative(v); weight = v; this }
++    public func padding(v: Int64): Component { nonnegative(v); pad = v; this }
++    public func gap(v: Int64): Component { nonnegative(v); if (kind == 0) { throw IllegalArgumentException("gap on text") }; spacing = v; this }
++    public func alignItems(v: Alignment): Component { if (kind == 0) { throw IllegalArgumentException("alignment on text") }; align = v; this }
++    public func justifyContent(v: Alignment): Component { if (kind == 0 || v == Alignment.Stretch) { throw IllegalArgumentException("invalid justification") }; justify = v; this }
++    public func textAlign(v: Alignment): Component { if (kind != 0 || v == Alignment.Stretch) { throw IllegalArgumentException("invalid text alignment") }; textAlignment = v; this }
+     init(kind: Int64, value: String) { this.kind = kind; this.value = value }
++    public func border(value: BorderStyle): Component { borderStyle = value; this }
++    public func borderColor(value: Color): Component { borderFg = value; this }
++    public func shadow(offsetX!: Int64 = 1, offsetY!: Int64 = 1, style!: Style = Style(), enabled!: Bool = true): Component {
++        shadowX = offsetX; shadowY = offsetY; shadowStyle = style; shadowEnabled = enabled; this
++    }
+     public func foreground(value: Color): Component { fg = value; this }
+     public func background(value: Color): Component { bg = value; this }
+     public func bold(): Component { isBold = true; this }
+ }
+ func attach(c: Component): Component {
+     constructionLock.lock()
+     try { if (parents.size > 0) { parents[parents.size - 1].children.add(c) }; c }
+     finally { constructionLock.unlock() }
+ }
+ public func Text(value: String): Component { attach(Component(0, value)) }
+@@ -26,61 +60,10 @@ func container(kind: Int64, body: () -> Unit): Component {
+     constructionLock.lock()
+     try {
+         let node = attach(Component(kind, ""))
+         parents.add(node)
+         try { body() } finally { parents.remove(at: parents.size - 1) }
+         node
+     } finally { constructionLock.unlock() }
+ }
+ public func Column(body: () -> Unit): Component { container(1, body) }
+ public func Row(body: () -> Unit): Component { container(2, body) }
+-func measure(c: Component): (Int64, Int64) {
+-    if (c.kind == 0) {
+-        var w: Int64 = 0
+-        var maxWidth: Int64 = 0
+-        var h: Int64 = 1
+-        for (g in graphemeClusters(c.value)) {
+-            if (g == "\n" || g == "\r\n") { if (w > maxWidth) { maxWidth = w }; w = 0; h++ }
+-            else { w += displayWidth(g) }
+-        }
+-        if (w > maxWidth) { maxWidth = w }
+-        return (maxWidth, h)
+-    }
+-    var w: Int64 = 0
+-    var h: Int64 = 0
+-    for (child in c.children) {
+-        let (cw, ch) = measure(child)
+-        if (c.kind == 1) { if (cw > w) { w = cw }; h += ch }
+-        else { w += cw; if (ch > h) { h = ch } }
+-    }
+-    (w, h)
+-}
+-func draw(c: Component, frame: Frame, x: Int64, y: Int64, right: Int64, bottom: Int64, inherited: Style): Unit {
+-    let style = Style(foreground: c.fg ?? inherited.foreground, background: c.bg ?? inherited.background, bold: c.isBold ?? inherited.bold)
+-    if (c.kind == 0) {
+-        // Validate the complete string, including clipped text.
+-        validateText(c.value)
+-        var cx = x
+-        var cy = y
+-        for (g in graphemeClusters(c.value)) {
+-            if (g == "\n" || g == "\r\n") { cx = x; cy++; continue }
+-            let w = displayWidth(g)
+-            if (cx >= x && cy >= y && cy < bottom && cx < right && w <= right - cx) { frame.put(cx, cy, g, style: style) }
+-            cx += w
+-        }
+-        return
+-    }
+-    var cx = x
+-    var cy = y
+-    for (child in c.children) {
+-        let (w, h) = measure(child)
+-        let cr = if (cx + w < right) { cx + w } else { right }
+-        let cb = if (cy + h < bottom) { cy + h } else { bottom }
+-        draw(child, frame, cx, cy, cr, cb, style)
+-        if (c.kind == 1) { cy += h } else { cx += w }
+-    }
+-}
+-public func render(root: Component, width: Int64, height: Int64): Frame {
+-    let result = Frame(width, height)
+-    draw(root, result, 0, 0, width, height, Style())
+-    result
+-}
+diff --git a/src/drawing_geometry.cj b/src/drawing_geometry.cj
+new file mode 100644
+index 0000000..89c41ce
+--- /dev/null
++++ b/src/drawing_geometry.cj
+@@ -0,0 +1,16 @@
++package cjtui
++
++// Saturation is sufficient for clipping against the nonnegative Frame viewport.
++func signedAdd(a: Int64, b: Int64): Int64 {
++    if (b > 0 && a > Int64.Max - b) {
++        Int64.Max
++    } else if (b < 0 && a < Int64.Min - b) {
++        Int64.Min
++    } else {
++        a + b
++    }
++}
++
++func containsAxis(start: Int64, length: Int64, point: Int64): Bool {
++    length > 0 && point >= start && point < signedAdd(start, length)
++}
+diff --git a/src/exports.cj b/src/exports.cj
+new file mode 100644
+index 0000000..0b7f318
+--- /dev/null
++++ b/src/exports.cj
+@@ -0,0 +1,5 @@
++package cjtui
++
++public import cjtui.geometry.Rect
++public import cjtui.style.{BorderStyle, Color, Style}
++public import cjtui.text.{displayWidth, graphemeClusters}
+diff --git a/src/frame.cj b/src/frame.cj
+index d31565d..da2bc36 100644
+--- a/src/frame.cj
++++ b/src/frame.cj
+@@ -1,154 +1,271 @@
+ package cjtui
+ 
+-import ansies.core.{CUP, SGR, AnsiColor, AnsiStyle}
+-import ansies.api.{Color as AnsiColors, Style as AnsiStyles}
+-
+-public enum Color <: Equatable<Color> {
+-    | Default | Black | Red | Green | Yellow | Blue | Magenta | Cyan | White
+-    public operator func ==(other: Color): Bool {
+-        match ((this, other)) {
+-            case (Default, Default) | (Black, Black) | (Red, Red) | (Green, Green) | (Yellow, Yellow) | (Blue, Blue) | (Magenta, Magenta) | (Cyan, Cyan) | (White, White) => true
+-            case _ => false
+-        }
+-    }
+-}
+-public struct Style <: Equatable<Style> {
+-    public let foreground: Color
+-    public let background: Color
+-    public let bold: Bool
+-    public init(foreground!: Color = Color.Default, background!: Color = Color.Default, bold!: Bool = false) {
+-        this.foreground = foreground; this.background = background; this.bold = bold
+-    }
+-    public operator func ==(other: Style): Bool {
+-        foreground == other.foreground && background == other.background && bold == other.bold
+-    }
+-}
+-public struct Cell {
+-    public let grapheme: String
+-    public let width: Int64
+-    public let continuation: Bool
+-    public let style: Style
+-    init(grapheme: String, width: Int64, continuation: Bool, style: Style) {
+-        this.grapheme = grapheme; this.width = width; this.continuation = continuation; this.style = style
+-    }
+-}
+-func blankCell(): Cell { Cell(" ", 1, false, Style()) }
+-func ansiColor(c: Color): AnsiColor {
+-    match (c) {
+-        case Color.Default => AnsiColor.Default
+-        case Color.Black => AnsiColor.Black
+-        case Color.Red => AnsiColor.Red
+-        case Color.Green => AnsiColor.Green
+-        case Color.Yellow => AnsiColor.Yellow
+-        case Color.Blue => AnsiColor.Blue
+-        case Color.Magenta => AnsiColor.Magenta
+-        case Color.Cyan => AnsiColor.Cyan
+-        case Color.White => AnsiColor.White
+-    }
+-}
+-func position(y: Int64, x: Int64): String { CUP([(y + 1).toString(), (x + 1).toString()]) }
+-func resetStyle(): String { SGR(["0"]) }
+-func encodeStyle(s: Style): String {
+-    var out = resetStyle()
+-    if (s.foreground != Color.Default) { out += AnsiColors.foreground(ansiColor(s.foreground)) }
+-    if (s.background != Color.Default) { out += AnsiColors.background(ansiColor(s.background)) }
+-    if (s.bold) { out += AnsiStyles.set(AnsiStyle.BOLD) }
+-    out
+-}
+-func validateText(text: String): Unit {
+-    for (cluster in graphemeClusters(text)) {
+-        if (cluster == "\n" || cluster == "\r\n") { continue }
+-        for (r in cluster.runes()) {
+-            let n = UInt32(r)
+-            if (n < 32 || (n >= 127 && n < 160)) { throw IllegalArgumentException("control character in text") }
+-        }
+-    }
+-}
+ public class Frame {
+     public let width: Int64
+     public let height: Int64
+     private let ambiguousWide: Bool
+     private let cells: Array<Cell>
+     public init(width: Int64, height: Int64, ambiguousWide!: Bool = false) {
+-        if (width < 0 || height < 0 || (height != 0 && width > Int64.Max / height)) { throw IllegalArgumentException("invalid frame size") }
+-        this.width = width; this.height = height; this.ambiguousWide = ambiguousWide
+-        cells = Array<Cell>(width * height, { _ => blankCell() })
++        if (width < 0 || height < 0 || (height != 0 && width > Int64.Max / height)) {
++            throw IllegalArgumentException("invalid frame size")
++        }
++        this.width = width
++        this.height = height
++        this.ambiguousWide = ambiguousWide
++        cells = Array<Cell>(width * height, {_ => blankCell()})
++    }
++    private func index(x: Int64, y: Int64): Int64 {
++        y * width + x
+     }
+-    private func index(x: Int64, y: Int64): Int64 { y * width + x }
+     public func cellAt(x: Int64, y: Int64): Cell {
+-        if (x < 0 || x >= width || y < 0 || y >= height) { throw IllegalArgumentException("cell outside frame") }
++        if (x < 0 || x >= width || y < 0 || y >= height) {
++            throw IllegalArgumentException("cell outside frame")
++        }
+         cells[index(x, y)]
+     }
+     private func clearAt(x: Int64, y: Int64): Unit {
+         var start = x
+-        while (start > 0 && cells[index(start, y)].continuation) { start-- }
++        while (start > 0 && cells[index(start, y)].continuation) {
++            start--
++        }
+         let span = cells[index(start, y)].width
+-        for (i in 0..span) { if (start + i < width) { cells[index(start + i, y)] = blankCell() } }
++        for (i in 0..span) {
++            if (start + i < width) {
++                cells[index(start + i, y)] = blankCell()
++            }
++        }
+     }
+     public func put(x: Int64, y: Int64, text: String, style!: Style = Style()): Unit {
+         validateText(text)
+         let clusters = graphemeClusters(text)
+         var cx = x
+         var cy = y
+         for (cluster in clusters) {
+-            if (cluster == "\n" || cluster == "\r\n") { cx = x; if (cy < Int64.Max) { cy++ }; continue }
++            if (cluster == "\n" || cluster == "\r\n") {
++                cx = x
++                if (cy < Int64.Max) {
++                    cy++
++                };
++                continue
++            }
+             let w = displayWidth(cluster, ambiguousWide: ambiguousWide)
+-            if (w <= 0) { continue }
++            if (w <= 0) {
++                continue
++            }
+             if (cy >= 0 && cy < height && cx >= 0 && cx < width && w <= width - cx) {
+-                for (i in 0..w) { clearAt(cx + i, cy) }
++                for (i in 0..w) {
++                    clearAt(cx + i, cy)
++                }
+                 cells[index(cx, cy)] = Cell(cluster, w, false, style)
+-                for (i in 1..w) { cells[index(cx + i, cy)] = Cell("", 0, true, style) }
++                for (i in 1..w) {
++                    cells[index(cx + i, cy)] = Cell("", 0, true, style)
++                }
++            }
++            if (cx > Int64.Max - w) {
++                cx = Int64.Max
++            } else {
++                cx += w
++            }
++        }
++    }
++    public func fillRect(rect: Rect, style!: Style = Style()): Unit {
++        fillClipped(rect, style, 0, 0, width, height)
++    }
++    func fillClipped(rect: Rect, style: Style, left: Int64, top: Int64, right: Int64, bottom: Int64): Unit {
++        if (width == 0 || height == 0) {
++            return
++        }
++        let x0 = greater(left, greater(0, rect.x));
++        let y0 = greater(top, greater(0, rect.y))
++        let x1 = lesser(right, lesser(width, signedAdd(rect.x, rect.width)))
++        let y1 = lesser(bottom, lesser(height, signedAdd(rect.y, rect.height)))
++        for (y in y0..greater(y0, y1)) {
++            for (x in x0..greater(x0, x1)) {
++                put(x, y, " ", style: style)
++            }
++        }
++    }
++    public func drawBorder(rect: Rect, border!: BorderStyle = BorderStyle.Single, style!: Style = Style()): Unit {
++        borderClipped(rect, border, style, 0, 0, width, height)
++    }
++    func borderClipped(rect: Rect, border: BorderStyle, style: Style, left: Int64, top: Int64, right: Int64,
++        bottom: Int64): Unit {
++        if (border == BorderStyle.None || rect.width == 0 || rect.height == 0 || width == 0 || height == 0) {
++            return
++        }
++        var tl = "┌";
++        var tr = "┐";
++        var bl = "└";
++        var br = "┘";
++        var horizontal = "─";
++        var vertical = "│"
++        if (border == BorderStyle.Rounded) {
++            tl = "╭"
++            tr = "╮"
++            bl = "╰"
++            br = "╯"
++        }
++        if (border == BorderStyle.Double) {
++            tl = "╔"
++            tr = "╗"
++            bl = "╚"
++            br = "╝"
++            horizontal = "═"
++            vertical = "║"
++        }
++        if (border == BorderStyle.Ascii || displayWidth(tl, ambiguousWide: ambiguousWide) != 1 ||
++            displayWidth(tr, ambiguousWide: ambiguousWide) != 1 || displayWidth(bl, ambiguousWide: ambiguousWide) != 1 ||
++            displayWidth(br, ambiguousWide: ambiguousWide) != 1 ||
++            displayWidth(horizontal, ambiguousWide: ambiguousWide) != 1 ||
++            displayWidth(vertical, ambiguousWide: ambiguousWide) != 1) {
++            tl = "+"
++            tr = "+"
++            bl = "+"
++            br = "+"
++            horizontal = "-"
++            vertical = "|"
++        }
++        let lastX = signedAdd(rect.x, rect.width - 1);
++        let lastY = signedAdd(rect.y, rect.height - 1)
++        let x0 = greater(left, greater(0, rect.x));
++        let y0 = greater(top, greater(0, rect.y))
++        let x1 = lesser(right, lesser(width, signedAdd(rect.x, rect.width)))
++        let y1 = lesser(bottom, lesser(height, signedAdd(rect.y, rect.height)))
++        for (y in y0..greater(y0, y1)) {
++            for (x in x0..greater(x0, x1)) {
++                var glyph = ""
++                if (rect.width == 1 && rect.height == 1) {
++                    glyph = "+"
++                } else if (rect.width == 1) {
++                    glyph = vertical
++                } else if (rect.height == 1) {
++                    glyph = horizontal
++                } else if (y == rect.y) {
++                    glyph = if (x == rect.x) {
++                        tl
++                    } else if (x == lastX) {
++                        tr
++                    } else {
++                        horizontal
++                    }
++                } else if (y == lastY) {
++                    glyph = if (x == rect.x) {
++                        bl
++                    } else if (x == lastX) {
++                        br
++                    } else {
++                        horizontal
++                    }
++                } else if (x == rect.x || x == lastX) {
++                    glyph = vertical
++                }
++                if (!glyph.isEmpty()) {
++                    put(x, y, glyph, style: style)
++                }
++            }
++        }
++    }
++    public func drawShadow(rect: Rect, offsetX!: Int64 = 1, offsetY!: Int64 = 1, style!: Style = Style()): Unit {
++        shadowClipped(rect, offsetX, offsetY, style, 0, 0, width, height)
++    }
++    func shadowClipped(rect: Rect, dx: Int64, dy: Int64, style: Style, left: Int64, top: Int64, right: Int64,
++        bottom: Int64): Unit {
++        if (rect.width == 0 || rect.height == 0 || width == 0 || height == 0 || (dx == 0 && dy == 0)) {
++            return
++        }
++        // A negatively overflowing origin plus any representable extent remains offscreen.
++        if ((dx < 0 && rect.x < Int64.Min - dx) || (dy < 0 && rect.y < Int64.Min - dy)) {
++            return
++        }
++        let sx = signedAdd(rect.x, dx);
++        let sy = signedAdd(rect.y, dy)
++        let x0 = greater(left, greater(0, sx));
++        let y0 = greater(top, greater(0, sy))
++        let x1 = lesser(right, lesser(width, signedAdd(sx, rect.width)))
++        let y1 = lesser(bottom, lesser(height, signedAdd(sy, rect.height)))
++        let glyph = if (displayWidth("░", ambiguousWide: ambiguousWide) == 1) {
++            "░"
++        } else {
++            "."
++        }
++        for (y in y0..greater(y0, y1)) {
++            for (x in x0..greater(x0, x1)) {
++                if (!(containsAxis(rect.x, rect.width, x) && containsAxis(rect.y, rect.height, y))) {
++                    put(x, y, glyph, style: style)
++                }
+             }
+-            if (cx > Int64.Max - w) { cx = Int64.Max } else { cx += w }
+         }
+     }
+     public func toPlainText(): String {
+         var out = ""
+         for (y in 0..height) {
+-            if (y > 0) { out += "\n" }
+-            for (x in 0..width) { let c = cells[index(x, y)]; if (!c.continuation) { out += c.grapheme } }
++            if (y > 0) {
++                out += "\n"
++            }
++            for (x in 0..width) {
++                let c = cells[index(x, y)];
++                if (!c.continuation) {
++                    out += c.grapheme
++                }
++            }
+         }
+         out
+     }
+     func changesSince(old: Frame): String {
+-        if (width != old.width || height != old.height) { return toAnsi() }
++        if (width != old.width || height != old.height) {
++            return toAnsi()
++        }
+         var out = ""
+         for (y in 0..height) {
+             var changed = false
+             for (x in 0..width) {
+-                let a = cellAt(x, y); let b = old.cellAt(x, y)
+-                if (a.grapheme != b.grapheme || a.width != b.width || a.continuation != b.continuation || a.style != b.style) { changed = true }
++                let a = cellAt(x, y);
++                let b = old.cellAt(x, y)
++                if (a.grapheme != b.grapheme || a.width != b.width || a.continuation != b.continuation || a.style != b
++                    .style) {
++                    changed = true
++                }
+             }
+             if (changed) {
+                 out += resetStyle() + position(y, 0)
+                 var previous = Style()
+                 for (x in 0..width) {
+                     let c = cellAt(x, y)
+                     if (!c.continuation) {
+-                        if (c.style != previous) { out += encodeStyle(c.style); previous = c.style }
++                        if (c.style != previous) {
++                            out += encodeStyle(c.style)
++                            previous = c.style
++                        }
+                         out += c.grapheme
+                     }
+                 }
+                 out += resetStyle()
+             }
+         }
+         out
+     }
+     public func toAnsi(): String {
+-        if (width == 0 || height == 0) { return "" }
++        if (width == 0 || height == 0) {
++            return ""
++        }
+         var out = resetStyle()
+         for (y in 0..height) {
+             out += position(y, 0)
+             var previous = Style()
+             for (x in 0..width) {
+                 let c = cells[index(x, y)]
+                 if (!c.continuation) {
+-                    if (c.style != previous) { out += encodeStyle(c.style); previous = c.style }
++                    if (c.style != previous) {
++                        out += encodeStyle(c.style)
++                        previous = c.style
++                    }
+                     out += c.grapheme
+                 }
+             }
+-            if (previous != Style()) { out += resetStyle() }
++            if (previous != Style()) {
++                out += resetStyle()
++            }
+         }
+         out + resetStyle()
+     }
+ }
+diff --git a/src/geometry/rect.cj b/src/geometry/rect.cj
+new file mode 100644
+index 0000000..3994e69
+--- /dev/null
++++ b/src/geometry/rect.cj
+@@ -0,0 +1,17 @@
++package cjtui.geometry
++
++public struct Rect {
++    public let x: Int64
++    public let y: Int64
++    public let width: Int64
++    public let height: Int64
++    public init(x: Int64, y: Int64, width: Int64, height: Int64) {
++        if (width < 0 || height < 0) {
++            throw IllegalArgumentException("negative rectangle size")
++        }
++        this.x = x
++        this.y = y
++        this.width = width
++        this.height = height
++    }
++}
+diff --git a/src/input_decoder.cj b/src/input_decoder.cj
+new file mode 100644
+index 0000000..23968bf
+--- /dev/null
++++ b/src/input_decoder.cj
+@@ -0,0 +1,178 @@
++package cjtui
++
++// The parser keeps only bounded state across polls and never forwards control payloads.
++class InputDecoder {
++    var state: Int64 = 0 // normal, ESC, CSI, string, string-ESC, ESC intermediate
++    var parameter = false
++    var stringRemaining: Int32 = 0
++    var stringC2 = false
++    var remaining: Int32 = 0
++    var code: UInt32 = 0
++    var minimum: UInt32 = 0
++    func timeout(): ?KeyEvent {
++        if (state == 1) {
++            state = 0
++            return KeyEvent("escape")
++        }
++        None
++    }
++    func feed(first: Int32): ?KeyEvent {
++        if (first == 3) {
++            state = 0
++            remaining = 0
++            return KeyEvent("interrupt")
++        }
++        if (state == 3) {
++            if (first == 7 || first == 27) {
++                state = if (first == 7) {
++                    0
++                } else {
++                    4
++                }
++                stringRemaining = 0
++                stringC2 = false
++            } else if (stringRemaining > 0 && first >= 128 && first <= 191) {
++                if (stringC2 && first == 0x9c) {
++                    state = 0
++                }
++                stringRemaining--;
++                stringC2 = false
++            } else {
++                stringRemaining = 0
++                stringC2 = false
++                if (first == 0x9c) {
++                    state = 0
++                } else if (first >= 194 && first <= 223) {
++                    stringRemaining = 1
++                    stringC2 = first == 194
++                } else if (first >= 224 && first <= 239) {
++                    stringRemaining = 2
++                } else if (first >= 240 && first <= 244) {
++                    stringRemaining = 3
++                }
++            }
++            return None
++        }
++        if (state == 4) {
++            if (first == 92 || first == 7) {
++                state = 0
++                return None
++            }
++            if (first == 27) {
++                return None
++            }
++            state = 3
++            stringRemaining = 0
++            stringC2 = false
++            // This byte belongs to the discarded string too, including UTF-8 leads.
++            return feed(first)
++        }
++        if (state == 2) {
++            if (first >= 64 && first <= 126) {
++                state = 0
++                if (!parameter) {
++                    match (first) {
++                        case 65 => return KeyEvent("up")
++                        case 66 => return KeyEvent("down")
++                        case 67 => return KeyEvent("right")
++                        case 68 => return KeyEvent("left")
++                        case _ => ()
++                    }
++                }
++            } else if (first == 27) {
++                state = 1
++            } else {
++                parameter = true
++            }
++            return None
++        }
++        if (state == 5) {
++            if (first >= 48 && first <= 126) {
++                state = 0
++            } else if (first == 27) {
++                state = 1
++            }
++            return None
++        }
++        if (state == 1) {
++            state = 0
++            if (first == 91 || first == 79) {
++                state = 2
++                parameter = false
++            } else if (first == 93 || first == 80 || first == 88 || first == 94 || first == 95) {
++                state = 3
++                stringRemaining = 0
++                stringC2 = false
++            } else if (first >= 32 && first <= 47) {
++                state = 5
++            } else if (first == 27) {
++                state = 1
++            }
++            return None
++        }
++        if (remaining > 0) {
++            if (first >= 128 && first <= 191) {
++                code = (code << 6) | UInt32(first & 63)
++                remaining--
++                if (remaining != 0) {
++                    return None
++                }
++                if (code < minimum || code > 0x10ffff || (code >= 0xd800 && code <= 0xdfff)) {
++                    return None
++                }
++                if (code >= 128 && code < 160) {
++                    if (code == 0x90 || code == 0x98 || code == 0x9d || code == 0x9e || code == 0x9f) {
++                        state = 3
++                        stringRemaining = 0
++                        stringC2 = false
++                    } else if (code == 0x9b) {
++                        state = 2
++                        parameter = false
++                    }
++                    return None
++                }
++                return KeyEvent("text", String(Rune(code)))
++            }
++            remaining = 0
++            // A malformed prefix must not consume the next independent byte.
++            return feed(first)
++        }
++        if (first == 27) {
++            state = 1
++            return None
++        }
++        if (first == 13 || first == 10) {
++            return KeyEvent("enter")
++        }
++        if (first == 127 || first == 8) {
++            return KeyEvent("backspace")
++        }
++        if (first < 32) {
++            return None
++        }
++        if (first < 128) {
++            return KeyEvent("text", String(Rune(UInt32(first))))
++        }
++        if (first >= 194 && first <= 223) {
++            remaining = 1
++            code = UInt32(first & 31)
++            minimum = 128
++        } else if (first >= 224 && first <= 239) {
++            remaining = 2
++            code = UInt32(first & 15)
++            minimum = 2048
++        } else if (first >= 240 && first <= 244) {
++            remaining = 3
++            code = UInt32(first & 7)
++            minimum = 65536
++        } else if (first == 0x90 || first == 0x98 || first == 0x9d || first == 0x9e || first == 0x9f) {
++            state = 3
++            stringRemaining = 0
++            stringC2 = false
++        } else if (first == 0x9b) {
++            state = 2
++            parameter = false
++        }
++        None
++    }
++}
+diff --git a/src/key_event.cj b/src/key_event.cj
+new file mode 100644
+index 0000000..41e14b5
+--- /dev/null
++++ b/src/key_event.cj
+@@ -0,0 +1,14 @@
++package cjtui
++
++public class KeyEvent {
++    public let code: String
++    public let text: String
++    init(code: String, text: String) {
++        this.code = code
++        this.text = text
++    }
++    init(code: String) {
++        this.code = code
++        this.text = ""
++    }
++}
+diff --git a/src/layout.cj b/src/layout.cj
+new file mode 100644
+index 0000000..ab52041
+--- /dev/null
++++ b/src/layout.cj
+@@ -0,0 +1,278 @@
++package cjtui
++
++func sat(a: Int64, b: Int64): Int64 {
++    if (a > Int64.Max - b) {
++        Int64.Max
++    } else {
++        a + b
++    }
++}
++
++func lesser(a: Int64, b: Int64): Int64 {
++    if (a < b) {
++        a
++    } else {
++        b
++    }
++}
++
++func greater(a: Int64, b: Int64): Int64 {
++    if (a > b) {
++        a
++    } else {
++        b
++    }
++}
++
++func offset(a: Alignment, free: Int64): Int64 {
++    if (a == Alignment.End) {
++        free
++    } else if (a == Alignment.Center) {
++        free / 2
++    } else {
++        0
++    }
++}
++
++// Exact quotient and remainder for a*b/d, where 0 <= a <= d and b >= 0.
++func mulDiv(a: Int64, b: Int64, d: Int64): (Int64, Int64) {
++    if (a == d) {
++        return (b, 0)
++    }
++    var q: Int64 = 0
++    var r: Int64 = 0
++    var bit: Int64 = 4611686018427387904
++    while (bit > 0) {
++        q *= 2
++        if (r >= d - r) {
++            r -= d - r
++            q++
++        } else {
++            r += r
++        }
++        if ((b / bit) % 2 == 1) {
++            if (r >= d - a) {
++                r -= d - a
++                q++
++            } else {
++                r += a
++            }
++        }
++        bit /= 2
++    }
++    (q, r)
++}
++
++func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
++    clipR: Int64, clipB: Int64, inherited: Style): Unit {
++    let c = n.component
++    let style = Style(foreground: c.fg ?? inherited.foreground, background: c.bg ?? inherited.background,
++        bold: c.isBold ?? inherited.bold)
++    let right = lesser(clipR, sat(x, w));
++    let bottom = lesser(clipB, sat(y, h))
++    let rect = Rect(x, y, w, h)
++    if (c.shadowEnabled) {
++        frame.shadowClipped(rect, c.shadowX, c.shadowY, c.shadowStyle, clipL, clipT, clipR, clipB)
++    }
++    if (c.bg != Option<Color>.None) {
++        frame.fillClipped(rect, style, clipL, clipT, clipR, clipB)
++    }
++    let borderStyle = Style(foreground: c.borderFg ?? style.foreground, background: style.background, bold: style.bold)
++    frame.borderClipped(rect, c.borderStyle, borderStyle, clipL, clipT, clipR, clipB)
++    let inset = sat(c.pad, if (c.borderStyle == BorderStyle.None) {
++        0
++    } else {
++        1
++    })
++    let leftPad = lesser(inset, w);
++    let topPad = lesser(inset, h)
++    let innerW = w - leftPad - lesser(inset, w - leftPad)
++    let innerH = h - topPad - lesser(inset, h - topPad)
++    let ix = sat(x, leftPad);
++    let iy = sat(y, topPad)
++    let ir = lesser(right, sat(ix, innerW));
++    let ib = lesser(bottom, sat(iy, innerH))
++    if (c.kind == 0) {
++        for (i in 0..n.lines.size) {
++            let cy = sat(iy, i)
++            let free = if (n.widths[i] < innerW) {
++                innerW - n.widths[i]
++            } else {
++                0
++            }
++            var cx = sat(ix, offset(c.textAlignment, free))
++            for (g in n.lines[i]) {
++                let gw = displayWidth(g)
++                if (cy < ib && cx < ir && gw <= ir - cx) {
++                    frame.put(cx, cy, g, style: style)
++                }
++                cx = sat(cx, gw)
++            }
++        }
++        return
++    }
++    let mainSize = if (c.kind == 2) {
++        innerW
++    } else {
++        innerH
++    }
++    let cross = if (c.kind == 2) {
++        innerH
++    } else {
++        innerW
++    }
++    let count = n.children.size
++    let sizes = Array<Int64>(count, repeat: 0)
++    let bases = Array<Int64>(count, repeat: 0)
++    let remainders = Array<Int64>(count, repeat: 0)
++    var occupied: Int64 = 0
++    var totalWeight: Int64 = 0
++    var totalBase: Int64 = 0
++    var flexCount: Int64 = 0
++    for (i in 0..count) {
++        let child = n.children[i];
++        let cc = child.component
++        if (i > 0) {
++            occupied = sat(occupied, c.spacing)
++        }
++        let minimum = if (c.kind == 2) {
++            cc.minW
++        } else {
++            cc.minH
++        }
++        if (cc.weight > 0) {
++            if (totalWeight > Int64.Max - cc.weight) {
++                throw IllegalArgumentException("weight sum overflow")
++            }
++            totalWeight += cc.weight
++            flexCount++
++            bases[i] = lesser(minimum, mainSize)
++            if (totalBase > Int64.Max - bases[i]) {
++                throw IllegalArgumentException("minimum sum overflow")
++            }
++            totalBase += bases[i]
++        } else {
++            let desired = if (c.kind == 2) {
++                cc.fixedW ?? child.naturalW
++            } else {
++                cc.fixedH ?? child.naturalH
++            }
++            sizes[i] = lesser(mainSize, greater(desired, minimum))
++            occupied = sat(occupied, sizes[i])
++        }
++    }
++    let pool = if (occupied < mainSize) {
++        mainSize - occupied
++    } else {
++        0
++    }
++    if (flexCount > 0) {
++        let useMin = totalBase > pool
++        let denominator = if (useMin) {
++            totalBase
++        } else {
++            totalWeight
++        }
++        let amount = if (useMin) {
++            pool
++        } else {
++            pool - totalBase
++        }
++        var used: Int64 = 0
++        for (i in 0..count) {
++            let cc = n.children[i].component
++            if (cc.weight > 0) {
++                let basis = if (useMin) {
++                    bases[i]
++                } else {
++                    cc.weight
++                }
++                let (share, rem) = mulDiv(basis, amount, denominator)
++                sizes[i] = share + if (useMin) {
++                    0
++                } else {
++                    bases[i]
++                }
++                remainders[i] = rem
++                used += share
++            }
++        }
++        var remaining = amount - used
++        while (remaining > 0) {
++            var best: Int64 = -1
++            for (i in 0..count) {
++                if (n.children[i].component.weight > 0 && remainders[i] >= 0 && (best < 0 || remainders[i] > remainders[best])) {
++                    best = i
++                }
++            }
++            sizes[best]++;
++            remainders[best] = -1
++            remaining--
++        }
++    }
++    let free = if (flexCount == 0 && occupied < mainSize) {
++        mainSize - occupied
++    } else {
++        0
++    }
++    var cursor = offset(c.justify, free)
++    for (i in 0..count) {
++        let child = n.children[i];
++        let cc = child.component
++        let fixed = if (c.kind == 2) {
++            cc.fixedH
++        } else {
++            cc.fixedW
++        }
++        let minimum = if (c.kind == 2) {
++            cc.minH
++        } else {
++            cc.minW
++        }
++        let natural = if (c.kind == 2) {
++            child.naturalH
++        } else {
++            child.naturalW
++        }
++        var crossSize = lesser(cross, greater(fixed ?? natural, minimum))
++        if (c.align == Alignment.Stretch && fixed == Option<Int64>.None) {
++            crossSize = cross
++        }
++        let crossOffset = offset(c.align, cross - crossSize)
++        let cx = if (c.kind == 2) {
++            sat(ix, cursor)
++        } else {
++            sat(ix, crossOffset)
++        }
++        let cy = if (c.kind == 2) {
++            sat(iy, crossOffset)
++        } else {
++            sat(iy, cursor)
++        }
++        let cw = if (c.kind == 2) {
++            sizes[i]
++        } else {
++            crossSize
++        }
++        let ch = if (c.kind == 2) {
++            crossSize
++        } else {
++            sizes[i]
++        }
++        paint(child, frame, cx, cy, cw, ch, greater(clipL, ix), greater(clipT, iy), ir, ib, style)
++        cursor = sat(cursor, sizes[i])
++        if (i + 1 < count) {
++            cursor = sat(cursor, c.spacing)
++        }
++    }
++}
++
++public func render(root: Component, width: Int64, height: Int64): Frame {
++    let frame = Frame(width, height)
++    let node = LayoutNode(root);
++    node.measure()
++    let w = lesser(width, greater(root.fixedW ?? width, root.minW))
++    let h = lesser(height, greater(root.fixedH ?? height, root.minH))
++    paint(node, frame, 0, 0, w, h, 0, 0, width, height, Style())
++    frame
++}
+diff --git a/src/layout_node.cj b/src/layout_node.cj
+new file mode 100644
+index 0000000..292041a
+--- /dev/null
++++ b/src/layout_node.cj
+@@ -0,0 +1,68 @@
++package cjtui
++
++import std.collection.ArrayList
++
++class LayoutNode {
++    let component: Component
++    let children = ArrayList<LayoutNode>()
++    let lines = ArrayList<ArrayList<String>>()
++    let widths = ArrayList<Int64>()
++    var naturalW: Int64 = 0
++    var naturalH: Int64 = 0
++    init(c: Component) {
++        component = c
++    }
++    func measure(): Unit {
++        let c = component
++        if (c.kind == 0) {
++            validateText(c.value)
++            var line = ArrayList<String>()
++            var w: Int64 = 0
++            for (g in graphemeClusters(c.value)) {
++                if (g == "\n" || g == "\r\n") {
++                    lines.add(line);
++                    widths.add(w);
++                    naturalW = greater(naturalW, w)
++                    line = ArrayList<String>()
++                    w = 0
++                } else {
++                    line.add(g);
++                    w = sat(w, displayWidth(g))
++                }
++            }
++            lines.add(line);
++            widths.add(w);
++            naturalW = greater(naturalW, w)
++            naturalH = lines.size
++        } else {
++            for (child in c.children) {
++                let n = LayoutNode(child);
++                n.measure();
++                children.add(n)
++                let cw = greater(child.fixedW ?? n.naturalW, child.minW)
++                let ch = greater(child.fixedH ?? n.naturalH, child.minH)
++                if (c.kind == 1) {
++                    naturalW = greater(naturalW, cw)
++                    naturalH = sat(naturalH, ch)
++                } else {
++                    naturalW = sat(naturalW, cw)
++                    naturalH = greater(naturalH, ch)
++                }
++            }
++            for (_ in 1..children.size) {
++                if (c.kind == 1) {
++                    naturalH = sat(naturalH, c.spacing)
++                } else {
++                    naturalW = sat(naturalW, c.spacing)
++                }
++            }
++        }
++        let inset = sat(c.pad, if (c.borderStyle == BorderStyle.None) {
++            0
++        } else {
++            1
++        })
++        naturalW = sat(sat(naturalW, inset), inset)
++        naturalH = sat(sat(naturalH, inset), inset)
++    }
++}
+diff --git a/src/style/border_style.cj b/src/style/border_style.cj
+new file mode 100644
+index 0000000..121d38a
+--- /dev/null
++++ b/src/style/border_style.cj
+@@ -0,0 +1,12 @@
++package cjtui.style
++
++public enum BorderStyle <: Equatable<BorderStyle> {
++    | None | Single | Rounded | Double | Ascii
++
++    public operator func ==(other: BorderStyle): Bool {
++        match ((this, other)) {
++            case (None, None) | (Single, Single) | (Rounded, Rounded) | (Double, Double) | (Ascii, Ascii) => true
++            case _ => false
++        }
++    }
++}
+diff --git a/src/style/color.cj b/src/style/color.cj
+new file mode 100644
+index 0000000..fd19853
+--- /dev/null
++++ b/src/style/color.cj
+@@ -0,0 +1,13 @@
++package cjtui.style
++
++public enum Color <: Equatable<Color> {
++    | Default | Black | Red | Green | Yellow | Blue | Magenta | Cyan | White
++
++    public operator func ==(other: Color): Bool {
++        match ((this, other)) {
++            case (Default, Default) | (Black, Black) | (Red, Red) | (Green, Green) | (Yellow, Yellow) | (Blue, Blue)
++                | (Magenta, Magenta) | (Cyan, Cyan) | (White, White) => true
++            case _ => false
++        }
++    }
++}
+diff --git a/src/style/style.cj b/src/style/style.cj
+new file mode 100644
+index 0000000..8bde7ee
+--- /dev/null
++++ b/src/style/style.cj
+@@ -0,0 +1,15 @@
++package cjtui.style
++
++public struct Style <: Equatable<Style> {
++    public let foreground: Color
++    public let background: Color
++    public let bold: Bool
++    public init(foreground!: Color = Color.Default, background!: Color = Color.Default, bold!: Bool = false) {
++        this.foreground = foreground
++        this.background = background
++        this.bold = bold
++    }
++    public operator func ==(other: Style): Bool {
++        foreground == other.foreground && background == other.background && bold == other.bold
++    }
++}
+diff --git a/src/terminal_bridge.cj b/src/terminal_bridge.cj
+new file mode 100644
+index 0000000..5fa8710
+--- /dev/null
++++ b/src/terminal_bridge.cj
+@@ -0,0 +1,35 @@
++package cjtui
++
++foreign {
++    func cjt_open(): Int32
++
++    func cjt_close(): Int32
++
++    func cjt_size(axis: Int32): Int32
++
++    func cjt_read(timeout: Int32): Int32
++
++    func cjt_buffer_clear(): Unit
++
++    func cjt_buffer_add(value: Int32): Int32
++
++    func cjt_buffer_write(): Int32
++}
++
++func readByte(timeout: Int32): Int32 {
++    unsafe { cjt_read(timeout) }
++}
++
++func writeScreen(value: String): Unit {
++    unsafe {
++        cjt_buffer_clear()
++        for (b in value.toArray()) {
++            if (cjt_buffer_add(Int32(b)) != 0) {
++                throw Exception("terminal output allocation failed")
++            }
++        }
++        if (cjt_buffer_write() != 0) {
++            throw Exception("terminal write failed; display synchronization lost")
++        }
++    }
++}
+diff --git a/src/unicode.cj b/src/text/unicode.cj
+similarity index 78%
+rename from src/unicode.cj
+rename to src/text/unicode.cj
+index 31d58b5..86abe1e 100644
+--- a/src/unicode.cj
++++ b/src/text/unicode.cj
+@@ -1,23 +1,27 @@
+-package cjtui
++package cjtui.text
+ 
+ import std.collection.ArrayList
+ import unicode.GraphemeIterator
+ import unicodewidth.StringWidth
+ 
+ public func graphemeClusters(value: String): Array<String> {
+-    if (value.isEmpty()) { return Array<String>() }
++    if (value.isEmpty()) {
++        return Array<String>()
++    }
+     let result = ArrayList<String>()
+     let iterator = GraphemeIterator(value)
+     while (true) {
+         match (iterator.next()) {
+             case None => break
+             case Some(cluster) => result.add(cluster.toString())
+         }
+     }
+     return result.toArray()
+ }
+ 
+ public func displayWidth(value: String, ambiguousWide!: Bool = false): Int64 {
+-    if (ambiguousWide) { return Int64(value.widthCjk()) }
++    if (ambiguousWide) {
++        return Int64(value.widthCjk())
++    }
+     return Int64(value.width())
+ }
+diff --git a/src/text_validation.cj b/src/text_validation.cj
+new file mode 100644
+index 0000000..72d454c
+--- /dev/null
++++ b/src/text_validation.cj
+@@ -0,0 +1,15 @@
++package cjtui
++
++func validateText(text: String): Unit {
++    for (cluster in graphemeClusters(text)) {
++        if (cluster == "\n" || cluster == "\r\n") {
++            continue
++        }
++        for (r in cluster.runes()) {
++            let n = UInt32(r)
++            if (n < 32 || (n >= 127 && n < 160)) {
++                throw IllegalArgumentException("control character in text")
++            }
++        }
++    }
++}
+diff --git a/tests/README.md b/tests/README.md
+index e4ec069..c4936c6 100644
+--- a/tests/README.md
++++ b/tests/README.md
+@@ -131,10 +131,69 @@ and distinguish compiler syntax checks from behavioral results. OpenSpec apply s
+ was read for the existing `implement-linux-first-slice` change; the coordinator updates
+ authoritative task state, since this test author is restricted to tests/test documentation.
+ 
+ Native bridge ownership/setup-signal module regressions can run through
+ `./tests/run-slice.sh native-session` or directly via `./tests/native-session/run.sh`.
+ The default `./tests/run-slice.sh all` runs both C cases before the SDK consumers,
+ so existing CI slice checks include them. They link the actual product C and control external
+ syscalls; they are white-box C tests, distinct from the public consumers and real
+ PTY suite above. See [native-session/README.md](native-session/README.md) for the
+ contract, controlled interleaving, and evidence limits.
++
++## Layout and decoration contract (TASK-054)
++
++Binding input: `implement-layout-decoration/design.md` at product revision
++`86b088f`. This is an execution task: public API and behavior are already frozen;
++only independent consumers and runners are added. The existing R8 consumers and
++assertions remain unchanged. TDD and verification-before-completion skills apply.
++
++```sh
++./tests/run-slice.sh layout
++```
++
++`tests/layout` is an independent public Cangjie consumer. Its literal snapshots are
++hand-derived from the design, not from product output. It catches wrong largest
++remainders/ties, fixed/gap deductions, infeasible minimum allocation, overflow in
++integer multiply/divide, invalid setter rollback, viewport constraints, padding,
++axis alignment, zero dimensions, and complete validation of clipped text. The
++runner builds then executes the binary directly under a 30-second bound; timeout,
++compiler failure, and nonzero binary status fail. `all` includes this consumer after
++all retained R8 modes. Missing APIs at the binding input must produce genuine RED.
++
++For exact fractions: eight columns with weights 1:2:3 allocate 1:3:4 (remainders
++2/6, 4/6, 0); ten columns allocate 2:3:5. An infeasible 8:4 minimum in six available
++columns first clamps to 6:4, then allocates 4:2. These are specification fixtures.
++
++```sh
++./tests/run-slice.sh decoration
++./tests/run-slice.sh layout-integration
++```
++
++`tests/decoration` independently checks literal borders (including zero/one-cell
++and ambiguous-width cases), signed shadow set difference, original-rectangle
++clipping, huge bounded geometry, styled-space fill, wide-cluster cleanup through
++all three low-level operations, component insets, transparent unused allocation,
++explicit Default background, paint order, ancestor clipping, and clearing on
++border/shadow removal. `░` is narrow under the current public width policy even
++with ambiguousWide enabled; the conditional dot fallback cannot be forced through
++this public policy. Border glyphs are ambiguous and their whole-set ASCII fallback
++is executable. No artificial width API or product test hook is introduced.
++
++`layout-integration` builds the actual `examples/layout` application and runs it in
++a real Linux PTY. Its agreed public interaction is: initially rounded borders and
++visible shadow, d toggles both off/on, q exits. The harness starts at 48x14, compares
++the complete frame after d/off/on, resizes to 23x9 then 8x4, toggles there, and
++returns to 48x14. It checks no stale decoration, deterministic restored geometry,
++full actual-width output rows with bounded cursor addresses, idle silence, normal
++exit, and exact termios restoration. It does not bind titles or business text.
++The small screen reader consumes the existing Linux backend's CUP/SGR full-row
++output, with independent terminal-column accounting for ordinary Latin/CJK/emoji
++content; it is a test facility rather than a full terminal emulator. A future
++backend that changes the supported encoding must update this facility deliberately.
++
++Set `CJTUI_LAYOUT_PTY_ARTIFACTS=/absolute/output/directory` to retain raw bytes,
++frame snapshots, stderr, and termios evidence in a chosen directory. Otherwise a
++new temporary artifact directory is retained and printed. A timeout fails; SIGKILL
++is used only to clean up a failing session. The fixture is never replaced by a
++fake terminal application. `LAYOUT_SESSION_BIN` can select a compatible actual
++example binary after the ordinary example build. The default `all` mode includes
++both new consumers and actual example PTY after all original R8 modes.
+diff --git a/tests/decoration/.gitignore b/tests/decoration/.gitignore
+new file mode 100644
+index 0000000..9e16cb3
+--- /dev/null
++++ b/tests/decoration/.gitignore
+@@ -0,0 +1 @@
++cjpm.lock
+diff --git a/tests/decoration/cjpm.toml b/tests/decoration/cjpm.toml
+new file mode 100644
+index 0000000..c9aab60
+--- /dev/null
++++ b/tests/decoration/cjpm.toml
+@@ -0,0 +1,8 @@
++[package]
++cjc-version = "1.2.0"
++name = "decoration_contract"
++version = "0.0.0"
++src-dir = "src"
++output-type = "executable"
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/tests/decoration/src/main.cj b/tests/decoration/src/main.cj
+new file mode 100644
+index 0000000..73657f7
+--- /dev/null
++++ b/tests/decoration/src/main.cj
+@@ -0,0 +1,162 @@
++package decoration_contract
++import cjtui.*
++func check(value: Bool, name: String): Unit {
++    if (!value) { throw Exception("FAIL: ${name}") }
++    println("PASS: ${name}")
++}
++func snapshot(frame: Frame, expected: String, name: String): Unit {
++    check(frame.toPlainText() == expected, "${name}: got [${frame.toPlainText()}], want [${expected}]")
++}
++func blank(frame: Frame, x: Int64, y: Int64): Bool {
++    let cell = frame.cellAt(x, y)
++    cell.grapheme == " " && cell.width == 1 && !cell.continuation
++}
++func borders(): Unit {
++    let single = Frame(4, 3)
++    single.drawBorder(Rect(0, 0, 4, 3))
++    snapshot(single, "┌──┐\n│  │\n└──┘", "default single border")
++    let rounded = Frame(4, 3)
++    rounded.drawBorder(Rect(0, 0, 4, 3), border: BorderStyle.Rounded)
++    snapshot(rounded, "╭──╮\n│  │\n╰──╯", "rounded corners")
++    let double = Frame(4, 3)
++    double.drawBorder(Rect(0, 0, 4, 3), border: BorderStyle.Double)
++    snapshot(double, "╔══╗\n║  ║\n╚══╝", "double border")
++    let ascii = Frame(4, 3)
++    ascii.drawBorder(Rect(0, 0, 4, 3), border: BorderStyle.Ascii)
++    snapshot(ascii, "+--+\n|  |\n+--+", "explicit ASCII border")
++    for (style in [BorderStyle.None, BorderStyle.Single, BorderStyle.Rounded, BorderStyle.Double, BorderStyle.Ascii]) {
++        let empty = Frame(3, 2)
++        empty.put(0, 0, "abc\ndef")
++        empty.drawBorder(Rect(0, 0, 0, 2), border: style)
++        empty.drawBorder(Rect(0, 0, 3, 0), border: style)
++        snapshot(empty, "abc\ndef", "empty border leaves existing cells intact")
++    }
++    let none = Frame(3, 2)
++    none.put(0, 0, "abc\ndef")
++    none.drawBorder(Rect(0, 0, 3, 2), border: BorderStyle.None)
++    snapshot(none, "abc\ndef", "None is transparent")
++    for (style in [BorderStyle.Single, BorderStyle.Rounded, BorderStyle.Double, BorderStyle.Ascii]) {
++        let point = Frame(1, 1)
++        point.drawBorder(Rect(0, 0, 1, 1), border: style)
++        snapshot(point, "+", "one-cell border uses ASCII plus")
++    }
++    let vertical = Frame(1, 3)
++    vertical.drawBorder(Rect(0, 0, 1, 3), border: BorderStyle.Double)
++    snapshot(vertical, "║\n║\n║", "width-one border has no overlapping corners")
++    let horizontal = Frame(4, 1)
++    horizontal.drawBorder(Rect(0, 0, 4, 1), border: BorderStyle.Rounded)
++    snapshot(horizontal, "────", "height-one border has no corners")
++    let fallback = Frame(4, 3, ambiguousWide: true)
++    fallback.drawBorder(Rect(0, 0, 4, 3))
++    snapshot(fallback, "+--+\n|  |\n+--+", "non-column-one border glyph triggers whole-set ASCII fallback")
++    let clipped = Frame(4, 3)
++    clipped.drawBorder(Rect(-2, -1, 5, 4))
++    snapshot(clipped, "  │ \n  │ \n──┘ ", "clip original border geometry without inventing new corners")
++}
++func fillsAndSharedClusters(): Unit {
++    let s = Style(foreground: Color.Red, background: Color.Blue, bold: true)
++    let fill = Frame(4, 2)
++    fill.put(0, 0, "abcd\nefgh")
++    fill.fillRect(Rect(1, 0, 2, 2), style: s)
++    snapshot(fill, "a  d\ne  h", "fill writes opaque styled spaces")
++    check(fill.cellAt(1, 0).style == s && fill.cellAt(2, 1).style == s, "fill retains complete style")
++    fill.fillRect(Rect(1, 0, 1, 1))
++    check(fill.cellAt(1, 0).style == Style(), "default fill explicitly resets cell style")
++    let wideFill = Frame(4, 1)
++    wideFill.put(0, 0, "中X")
++    wideFill.fillRect(Rect(1, 0, 1, 1), style: s)
++    snapshot(wideFill, "  X ", "fill over continuation clears full old cluster")
++    check(blank(wideFill, 0, 0) && wideFill.cellAt(1, 0).style == s, "fill shares Frame continuation cleanup")
++    let wideBorder = Frame(4, 1)
++    wideBorder.put(0, 0, "中中")
++    wideBorder.drawBorder(Rect(1, 0, 1, 1), style: s)
++    snapshot(wideBorder, " +中", "border overwriting wide continuation preserves adjacent cluster")
++    check(blank(wideBorder, 0, 0) && wideBorder.cellAt(1, 0).style == s && wideBorder.cellAt(3, 0).continuation, "border shares Frame width and style rules")
++    let wideShadow = Frame(4, 1)
++    wideShadow.put(0, 0, "中X")
++    wideShadow.drawShadow(Rect(0, 0, 1, 1), offsetX: 1, offsetY: 0, style: s)
++    snapshot(wideShadow, " ░X ", "shadow over continuation clears original leading cell")
++    check(blank(wideShadow, 0, 0) && wideShadow.cellAt(1, 0).style == s, "shadow shares cleanup and exact style")
++    wideShadow.put(0, 0, "中")
++    check(wideShadow.cellAt(1, 0).continuation && wideShadow.cellAt(0, 0).width == 2, "subsequent text covers decoration through same Frame path")
++}
++func shadowsAndExtrema(): Unit {
++    for (empty in [Frame(0, 0), Frame(0, Int64.Max), Frame(Int64.Max, 0)]) {
++        empty.fillRect(Rect(Int64.Min, Int64.Min, Int64.Max, Int64.Max))
++        empty.drawBorder(Rect(0, 0, Int64.Max, Int64.Max))
++        empty.drawShadow(Rect(0, 0, Int64.Max, Int64.Max))
++        check(empty.toAnsi() == "", "empty frame with extreme other axis performs no virtual-area iteration")
++    }
++    let f = Frame(5, 3)
++    f.drawShadow(Rect(1, 0, 3, 2))
++    snapshot(f, "     \n    ░\n  ░░░", "positive shadow is shifted rectangle minus original")
++    let negative = Frame(5, 3)
++    negative.drawShadow(Rect(1, 1, 3, 2), offsetX: -1, offsetY: -1)
++    snapshot(negative, "░░░  \n░    \n     ", "negative offsets expose top and left only")
++    let zero = Frame(3, 2)
++    zero.put(0, 0, "abc\ndef")
++    zero.drawShadow(Rect(0, 0, 3, 2), offsetX: 0, offsetY: 0)
++    zero.drawShadow(Rect(0, 0, 0, 2))
++    zero.drawShadow(Rect(0, 0, 3, 0))
++    snapshot(zero, "abc\ndef", "zero offset and empty shadows write nothing")
++    let fallback = Frame(3, 1, ambiguousWide: true)
++    fallback.drawShadow(Rect(0, 0, 1, 1), offsetX: 1, offsetY: 0)
++    check(displayWidth("░", ambiguousWide: true) == 1, "actual public width policy keeps light shade one column")
++    snapshot(fallback, " ░ ", "nonambiguous shadow glyph does not spuriously fall back")
++    let huge = Frame(3, 2)
++    huge.drawBorder(Rect(-1, -1, Int64.Max, Int64.Max))
++    huge.drawBorder(Rect(Int64.Min, 0, Int64.Max, 2))
++    huge.drawBorder(Rect(Int64.Max, Int64.Max, Int64.Max, Int64.Max))
++    snapshot(huge, "   \n   ", "huge offscreen original edges do not become viewport border")
++    huge.drawBorder(Rect(-1, 0, Int64.Max, 1))
++    snapshot(huge, "───\n   ", "huge thin border iterates only visible cells")
++    huge.fillRect(Rect(-1, -1, Int64.Max, Int64.Max), style: Style(background: Color.Green))
++    snapshot(huge, "   \n   ", "huge fill completes after clipping")
++    check(huge.cellAt(2, 1).style.background == Color.Green, "huge fill reaches visible far corner")
++    huge.fillRect(Rect(Int64.Min, 0, Int64.Max, 2), style: Style(background: Color.Red))
++    check(huge.cellAt(0, 0).style.background == Color.Green, "negative extreme right edge stays outside")
++    let shifted = Frame(3, 2)
++    shifted.drawShadow(Rect(Int64.Min, Int64.Min, Int64.Max, Int64.Max), offsetX: Int64.Max, offsetY: Int64.Max)
++    snapshot(shifted, "░░░\n░░░", "extreme offset uses mathematical geometry before clipping")
++    shifted.drawShadow(Rect(0, 0, 3, 2), offsetX: Int64.Max, offsetY: Int64.Max)
++    snapshot(shifted, "░░░\n░░░", "overflowing shifted endpoints stay offscreen")
++}
++func components(): Unit {
++    snapshot(render(Text("X").border(BorderStyle.Rounded), 5, 3), "╭───╮\n│X  │\n╰───╯", "component border reserves content insets")
++    snapshot(render(Text("X").border(BorderStyle.Single).padding(1), 7, 5), "┌─────┐\n│     │\n│ X   │\n│     │\n└─────┘", "border and padding share outer inset path")
++    snapshot(render(Text("X").border(BorderStyle.Single), 1, 1), "+", "tiny component never writes content over border")
++    snapshot(render(Text("X").border(BorderStyle.Double), 1, 3), "║\n║\n║", "tiny vertical component keeps border only")
++    let color = render(Text("X").foreground(Color.Green).border(BorderStyle.Single).borderColor(Color.Red), 4, 3)
++    check(color.cellAt(0, 0).style.foreground == Color.Red && color.cellAt(1, 1).style.foreground == Color.Green, "borderColor changes border without changing text")
++    let inherited = render(Column { Text("X").border(BorderStyle.Single) }.foreground(Color.Cyan), 5, 3)
++    check(inherited.cellAt(0, 0).style.foreground == Color.Cyan, "unset borderColor follows effective node foreground")
++    let panel = [Text("")]
++    let root = Row { panel[0] = Text("A").width(3).height(2).shadow(); Text("B").width(1).height(2) }
++    snapshot(render(root, 5, 3), "A  B \n   ░ \n ░░░ ", "shadow expands paint without affecting sibling layout; unset empty areas stay transparent")
++    panel[0].shadow(enabled: false)
++    snapshot(render(root, 5, 3), "A  B \n     \n     ", "disabled shadow clears previous target area on next complete render")
++    panel[0].shadow(offsetX: 0, offsetY: 0)
++    snapshot(render(root, 5, 3), "A  B \n     \n     ", "zero-offset component shadow remains invisible")
++    let clipped = Column { Text("A").width(3).height(2).shadow(offsetX: -1, offsetY: 1) }.padding(1)
++    snapshot(render(clipped, 6, 4), "      \n A    \n      \n      ", "child shadow obeys ancestor content clip on every side")
++    let opaque = Row { Text("A").width(3).height(2).shadow(); Text("B").width(1).height(2).background(Color.Default) }
++    snapshot(render(opaque, 5, 3), "A  B \n     \n ░░░ ", "explicit Default background fills later sibling and covers shadow")
++    let styled = render(Text("X").padding(1).border(BorderStyle.Single).background(Color.Blue), 5, 5)
++    check(styled.cellAt(0, 0).style.background == Color.Blue && styled.cellAt(1, 1).style.background == Color.Blue && styled.cellAt(2, 2).style.background == Color.Blue, "explicit background fills border padding and content space")
++    let noFill = render(Text("X").width(4).height(2).foreground(Color.Red), 4, 2)
++    check(noFill.cellAt(0, 0).style.foreground == Color.Red && noFill.cellAt(3, 1).style == Style(), "unset background leaves unused allocation untouched")
++    let s = Style(foreground: Color.Red, background: Color.Yellow, bold: true)
++    let exact = render(Row { Text("X").width(2).height(1).shadow(offsetX: 1, offsetY: 1, style: s) }.foreground(Color.Green).background(Color.Blue), 4, 3)
++    check(exact.cellAt(1, 1).style == s, "shadow uses complete explicit style without inheriting parent")
++    let border = Text("X").border(BorderStyle.Single)
++    snapshot(render(border, 4, 3), "┌──┐\n│X │\n└──┘", "border initial frame")
++    border.border(BorderStyle.None)
++    snapshot(render(border, 4, 3), "X   \n    \n    ", "removing border restores content space and clears old border")
++}
++main(): Int64 {
++    borders()
++    fillsAndSharedClusters()
++    shadowsAndExtrema()
++    components()
++    return 0
++}
+diff --git a/tests/integration/layout-pty.mjs b/tests/integration/layout-pty.mjs
+new file mode 100644
+index 0000000..71ef666
+--- /dev/null
++++ b/tests/integration/layout-pty.mjs
+@@ -0,0 +1,150 @@
++#!/usr/bin/env node
++// Actual public layout example in a Linux PTY. This is test support, not a backend.
++import assert from 'node:assert/strict';
++import { spawn, spawnSync } from 'node:child_process';
++import { mkdtemp, readFile, writeFile, mkdir } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import { resolve, join } from 'node:path';
++import { StringDecoder } from 'node:string_decoder';
++
++const binary = resolve(process.argv[2] ?? 'examples/layout/target/release/bin/main');
++const artifacts = resolve(process.env.CJTUI_LAYOUT_PTY_ARTIFACTS ?? await mkdtemp(join(tmpdir(), 'cjtui-layout-pty-')));
++await mkdir(artifacts, { recursive: true });
++const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
++const quote = s => `'${s.replaceAll("'", "'\\''")}'`;
++const read = async path => { try { return await readFile(path, 'utf8'); } catch { return ''; } };
++async function until(predicate, name, ms = 7000) {
++  const end = Date.now() + ms;
++  while (Date.now() < end) { if (await predicate()) return; await delay(25); }
++  throw new Error(`timeout: ${name}`);
++}
++// The example stream uses the already supported CUP and SGR subset. Each test row
++// update must cover the complete row, making residual-cell checks unambiguous.
++const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
++function columns(text) {
++  let count = 0;
++  for (const { segment } of segmenter.segment(text)) {
++    const cp = segment.codePointAt(0);
++    if (/^\p{Mark}+$/u.test(segment)) continue;
++    const wide = /\p{Extended_Pictographic}|\p{Regional_Indicator}/u.test(segment) ||
++      (cp >= 0x1100 && (cp <= 0x115f || cp === 0x2329 || cp === 0x232a ||
++       (cp >= 0x2e80 && cp <= 0xa4cf && cp !== 0x303f) ||
++       (cp >= 0xac00 && cp <= 0xd7a3) || (cp >= 0xf900 && cp <= 0xfaff) ||
++       (cp >= 0xfe10 && cp <= 0xfe19) || (cp >= 0xfe30 && cp <= 0xfe6f) ||
++       (cp >= 0xff00 && cp <= 0xff60) || (cp >= 0xffe0 && cp <= 0xffe6) || cp >= 0x20000));
++    count += wide ? 2 : 1;
++  }
++  return count;
++}
++class Screen {
++  constructor(width, height) { this.resize(width, height); this.pending = ''; this.decoder = new StringDecoder('utf8'); this.updates = 0; this.row = null; this.text = ''; }
++  resize(width, height) { this.width = width; this.height = height; this.rows = Array(height).fill(' '.repeat(width)); }
++  flush() {
++    if (this.row === null) return;
++    assert.equal(columns(this.text), this.width, `complete actual-width row ${this.row + 1}: ${JSON.stringify(this.text)}`);
++    this.rows[this.row] = this.text;
++    this.row = null; this.text = ''; this.updates++;
++  }
++  feed(bytes) {
++    this.pending += this.decoder.write(bytes);
++    while (this.pending.length) {
++      if (this.pending[0] === '\x1b') {
++        const match = /^\x1b\[([0-9;]*)([A-Za-z])/.exec(this.pending);
++        if (!match) { if (/^\x1b(?:\[[0-9;]*)?$/.test(this.pending)) break; throw new Error(`unsupported output: ${JSON.stringify(this.pending.slice(0, 32))}`); }
++        this.pending = this.pending.slice(match[0].length);
++        if (match[2] === 'm') continue;
++        assert.equal(match[2], 'H', 'example emits supported absolute row positioning');
++        this.flush();
++        const parts = match[1].split(';').map(Number);
++        assert.equal(parts.length, 2, 'explicit row and column');
++        assert.equal(parts[1], 1, 'existing Linux backend writes complete rows from column one');
++        assert(parts[0] >= 1 && parts[0] <= this.height, `actual row bounds ${parts[0]} <= ${this.height}`);
++        this.row = parts[0] - 1;
++      } else {
++        const end = this.pending.indexOf('\x1b');
++        const text = end < 0 ? this.pending : this.pending.slice(0, end);
++        assert(this.row !== null, 'text follows addressed position');
++        assert(!/[\x00-\x1f\x7f-\x9f]/u.test(text), 'no raw output controls/newline scrolling');
++        this.text += text;
++        this.pending = end < 0 ? '' : this.pending.slice(end);
++      }
++    }
++  }
++  settle() { this.flush(); assert.equal(this.pending, '', 'no incomplete ANSI remains after completed repaint'); return this.rows.join('\n'); }
++}
++const decorated = text => /[╭╮╰╯]/u.test(text) && text.includes('░');
++const noDecoration = text => !/[┌┐└┘─│╭╮╰╯╔╗╚╝═║░]/u.test(text);
++const dir = await mkdtemp(join(tmpdir(), 'cjtui-layout-session-'));
++const wrapper = join(dir, 'session.sh');
++await writeFile(wrapper, '#!/bin/sh\nstty rows 14 cols 48\nstty -g > "$2/before"\ntty > "$2/tty"\n"$1" < /dev/tty &\np=$!\necho "$p" > "$2/pid"\nwait "$p"\nstatus=$?\nstty -g > "$2/after"\nexit "$status"\n');
++const child = spawn('script', ['--quiet', '--return', '--flush', '--command', `sh ${quote(wrapper)} ${quote(binary)} ${quote(dir)}`, '/dev/null'], { stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, TERM: 'xterm-256color' } });
++let raw = Buffer.alloc(0), stderr = '', finished = false, exitCode, exitSignal, parseError, pid;
++const screen = new Screen(48, 14);
++child.stdout.on('data', bytes => { raw = Buffer.concat([raw, bytes]); try { screen.feed(bytes); } catch (error) { parseError ??= error; } });
++child.stderr.on('data', bytes => { stderr += bytes.toString(); });
++child.on('error', error => { parseError ??= error; finished = true; });
++child.on('exit', (code, signal) => { exitCode = code; exitSignal = signal; finished = true; });
++async function settled(name, predicate) {
++  await until(() => { if (parseError) throw parseError; return predicate(); }, name);
++  await delay(250);
++  if (parseError) throw parseError;
++  return screen.settle();
++}
++async function save(name, text) { await writeFile(join(artifacts, `${name}.txt`), text); }
++async function toggle(name) {
++  const before = raw.length;
++  child.stdin.write('d');
++  return settled(name, () => raw.length > before);
++}
++async function resize(width, height) {
++  const before = raw.length;
++  screen.settle(); screen.resize(width, height);
++  const tty = (await read(join(dir, 'tty'))).trim();
++  const changed = spawnSync('stty', ['-F', tty, 'rows', `${height}`, 'cols', `${width}`], { encoding: 'utf8' });
++  assert.equal(changed.status, 0, changed.stderr);
++  process.kill(pid, 'SIGWINCH');
++  return settled(`resize ${width}x${height}`, () => raw.length > before);
++}
++try {
++  for (const command of ['script', 'stty']) assert.equal(spawnSync(command, ['--version']).status, 0, `${command} available`);
++  await until(async () => { pid = Number((await read(join(dir, 'pid'))).trim()); return pid > 0; }, 'actual example PID');
++  const initial = await settled('first decorated frame', () => raw.length > 0);
++  assert(decorated(initial), 'initial actual example contains rounded corners and exposed shadow');
++  await save('01-initial-48x14', initial);
++  const idle = raw.length; await delay(250); assert.equal(raw.length, idle, 'idle does not emit screen updates');
++  const off = await toggle('decoration disabled');
++  assert(noDecoration(off), 'd clears every previous border/shadow cell in actual screen');
++  await save('02-disabled-48x14', off);
++  const restored = await toggle('decoration restored');
++  assert.equal(restored, initial, 'second d restores complete initial screen without stale cells');
++  await save('03-restored-48x14', restored);
++  await save('04-resize-23x9', await resize(23, 9));
++  const tiny = await resize(8, 4);
++  await save('05-resize-8x4', tiny);
++  const tinyVisible = !noDecoration(tiny);
++  const tinyOff = tinyVisible ? await toggle('tiny decoration disabled') : (child.stdin.write('d'), await delay(350), screen.settle());
++  assert(noDecoration(tinyOff), 'tiny frame clears decoration too');
++  await save('06-disabled-8x4', tinyOff);
++  const tinyRestored = tinyVisible ? await toggle('tiny decoration restored') : (child.stdin.write('d'), await delay(350), screen.settle());
++  assert.equal(tinyRestored, tiny, 'tiny decoration round trip is deterministic');
++  const enlarged = await resize(48, 14);
++  assert.equal(enlarged, initial, 'resize back restores complete original geometry');
++  await save('07-resize-back-48x14', enlarged);
++  child.stdin.write('q');
++  await until(() => finished, 'q stops actual example');
++  assert.equal(exitCode, 0, 'example exits normally');
++  assert.equal(exitSignal, null, 'no forced signal');
++  const before = (await read(join(dir, 'before'))).trim(), after = (await read(join(dir, 'after'))).trim();
++  assert(before && after, 'actual termios captured before and after');
++  assert.equal(after, before, 'application restores exact termios');
++  await writeFile(join(artifacts, 'termios.txt'), `before=${before}\nafter=${after}\n`);
++  console.log(`PASS layout PTY: exit=0, d clears/restores, 48x14→23x9→8x4→48x14, termios restored; artifacts=${artifacts}`);
++} catch (error) {
++  console.error(`FAIL layout PTY: ${error.stack}; exit=${exitCode}, signal=${exitSignal}, artifacts=${artifacts}`);
++  process.exitCode = 1;
++} finally {
++  await writeFile(join(artifacts, 'session.raw'), raw);
++  await writeFile(join(artifacts, 'stderr.txt'), stderr);
++  if (!finished) { if (pid) { try { process.kill(pid, 'SIGKILL'); } catch {} } child.kill('SIGKILL'); }
++  child.stdin.destroy();
++}
+diff --git a/tests/layout/.gitignore b/tests/layout/.gitignore
+new file mode 100644
+index 0000000..9e16cb3
+--- /dev/null
++++ b/tests/layout/.gitignore
+@@ -0,0 +1 @@
++cjpm.lock
+diff --git a/tests/layout/cjpm.toml b/tests/layout/cjpm.toml
+new file mode 100644
+index 0000000..1faa0c7
+--- /dev/null
++++ b/tests/layout/cjpm.toml
+@@ -0,0 +1,8 @@
++[package]
++cjc-version = "1.2.0"
++name = "layout_contract"
++version = "0.0.0"
++src-dir = "src"
++output-type = "executable"
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/tests/layout/src/main.cj b/tests/layout/src/main.cj
+new file mode 100644
+index 0000000..f45a929
+--- /dev/null
++++ b/tests/layout/src/main.cj
+@@ -0,0 +1,106 @@
++package layout_contract
++import cjtui.*
++func check(value: Bool, name: String): Unit {
++    if (!value) { throw Exception("FAIL: ${name}") }
++    println("PASS: ${name}")
++}
++func plain(root: Component, width: Int64, height: Int64, expected: String, name: String): Unit {
++    let frame = render(root, width, height)
++    check(frame.width == width && frame.height == height, "actual viewport: ${name}")
++    check(frame.toPlainText() == expected, "${name}: got [${frame.toPlainText()}], want [${expected}]")
++}
++func illegal(action: () -> Unit, name: String): Unit {
++    var caught = false
++    try { action() } catch (_: IllegalArgumentException) { caught = true }
++    check(caught, name)
++}
++func rejected(action: () -> Unit, name: String): Unit {
++    var caught = false
++    try { action() } catch (_: Exception) { caught = true }
++    check(caught, name)
++}
++func geometry(): Unit {
++    let r = Rect(-2, -3, 4, 5)
++    check(r.x == -2 && r.y == -3 && r.width == 4 && r.height == 5, "Rect preserves signed origin and nonnegative extents")
++    let extreme = Rect(Int64.Min, Int64.Max, Int64.Max, 0)
++    check(extreme.width == Int64.Max && extreme.height == 0, "Rect permits extrema and empty geometry")
++    illegal({ => Rect(0, 0, -1, 1); () }, "Rect negative width rejected")
++    illegal({ => Rect(0, 0, 1, -1); () }, "Rect negative height rejected")
++    plain(Text("abcdef").width(3).height(1), 6, 2, "abc   \n      ", "fixed root uses outer size")
++    plain(Text("abcdef").width(0), 6, 1, "      ", "explicit zero is not auto")
++    plain(Text("abcdef").height(0), 6, 2, "      \n      ", "zero height draws nothing")
++    plain(Text("abcdef").width(1).widthAuto(), 6, 1, "abcdef", "widthAuto clears fixed root")
++    plain(Text("A\nB").height(0).heightAuto(), 2, 2, "A \nB ", "heightAuto clears fixed root")
++    plain(Text("ABCDE").minWidth(100).minHeight(100), 3, 1, "ABC", "root min cannot enlarge actual viewport")
++    plain(Row { Text("A").minWidth(3); Text("B") }, 6, 1, "A  B  ", "nonflex minimum reserves outer space")
++    plain(Row { Text("ABCDE").width(2).minWidth(4); Text("Z") }, 6, 1, "ABCDZ ", "minimum can exceed fixed request")
++    plain(Row { Text("ABCDE").width(Int64.Max); Text("Z") }, 3, 1, "ABC", "extreme fixed child converges to ancestor")
++    plain(Row { Text("AB").width(2); Text("CD").width(2); Text("Z") }, 3, 1, "ABC", "nonflex overflow preserves order and clips suffix")
++}
++func proportion(): Unit {
++    plain(Row { Text("AAAAAA").layoutWeight(1); Text("BBBBBB").layoutWeight(1); Text("CCCCCC").layoutWeight(1) }, 8, 1, "AAABBBCC", "equal remainders resolve in declaration order")
++    plain(Row { Text("AAAAAAAA").layoutWeight(1); Text("BBBBBBBB").layoutWeight(2); Text("CCCCCCCC").layoutWeight(3) }, 8, 1, "ABBBCCCC", "largest remainder wins over earlier child")
++    plain(Row { Text("AAAAAAAA").layoutWeight(1); Text("BBBBBBBB").layoutWeight(2); Text("CCCCCCCC").layoutWeight(3) }, 10, 1, "AABBBCCCCC", "non-tied exact ratio rounding")
++    plain(Row { Text("AA").width(2); Text("BBBBBBBB").layoutWeight(1); Text("CCCCCCCC").layoutWeight(2) }.gap(1), 10, 1, "AA BB CCCC", "fixed and gaps deducted before flex")
++    plain(Row { Text("AAAAAAAAAA").minWidth(3).layoutWeight(1); Text("BBBBBBBBBB").minWidth(1).layoutWeight(1) }, 10, 1, "AAAAAABBBB", "flex minimum precedes weight remainder")
++    plain(Row { Text("AAAAAAAAAA").minWidth(8).layoutWeight(1); Text("BBBBBBBBBB").minWidth(4).layoutWeight(100) }, 6, 1, "AAAABB", "infeasible minima use clamped minimum ratio rather than weights")
++    plain(Row { Text("AAAAAA").width(1).layoutWeight(1); Text("BBBBBB").width(5).layoutWeight(1) }, 6, 1, "AAABBB", "positive weights replace fixed and natural main size")
++    plain(Row { Text("AA").layoutWeight(0); Text("BBBBBB").layoutWeight(1) }, 6, 1, "AABBBB", "zero weight remains nonflex")
++    plain(Column { Text("A\nA\nA\nA\nA").layoutWeight(1); Text("B\nB\nB\nB\nB").layoutWeight(1) }, 1, 5, "A\nA\nA\nB\nB", "column uses same largest remainder allocation")
++    plain(Row { Text("AAAAAAAA").layoutWeight(Int64.Max / 2); Text("BBBBBBBB").layoutWeight(Int64.Max / 2) }, 7, 1, "AAAABBB", "integer multiply-divide survives product overflow")
++    plain(Row { Text("AAA").layoutWeight(Int64.Max / 2 - 1); Text("BBB").layoutWeight(Int64.Max / 2) }, 3, 1, "ABB", "near-equal extreme remainders remain exact beyond float precision")
++    plain(Row { Text("AAAAAAAA").layoutWeight(Int64.Max - 1); Text("BBBBBBBB").layoutWeight(1) }, 7, 1, "AAAAAAA", "extreme skew preserves exact remainder")
++    plain(Row { Text("AAAAAAAAA").minWidth(Int64.Max).layoutWeight(1); Text("BBBBBBBBB").minWidth(Int64.Max).layoutWeight(1) }, 9, 1, "AAAAABBBB", "minimum clamp precedes safe sum")
++    rejected({ => render(Row { Text("A").layoutWeight(Int64.Max); Text("B").layoutWeight(1) }, 5, 1); () }, "unrepresentable weight sum diagnosed")
++    plain(Row { Text("A").width(Int64.Max); Text("B").layoutWeight(1) }.gap(Int64.Max), 3, 1, "A  ", "extreme occupied extent saturates without wrapping")
++}
++func paddingAndAlignment(): Unit {
++    plain(Text("ABCDE\nFGHIJ").padding(1), 7, 4, "       \n ABCDE \n FGHIJ \n       ", "padding applies to text and consumes outer box")
++    plain(Column { Text("A"); Text("B") }.padding(1), 4, 4, "    \n A  \n B  \n    ", "container padding does not inherit into child")
++    plain(Text("X").padding(1), 1, 1, " ", "insets consume left top first at tiny viewport")
++    plain(Text("X").padding(Int64.Max), 3, 2, "   \n   ", "extreme padding is bounded")
++    plain(Row { Text("A"); Text("B") }.gap(2), 8, 1, "A  B    ", "gap has no leading or trailing allocation")
++    plain(Row { Text("A"); Text("B") }.justifyContent(Alignment.Center), 7, 1, "  AB   ", "main center floors odd free space")
++    plain(Row { Text("A"); Text("B") }.justifyContent(Alignment.End), 7, 1, "     AB", "main end consumes remaining space")
++    plain(Column { Text("A"); Text("B") }.justifyContent(Alignment.End), 1, 4, " \n \nA\nB", "column main alignment")
++    plain(Row { Text("A") }.alignItems(Alignment.Center), 3, 4, "   \nA  \n   \n   ", "cross center floors odd remaining space")
++    plain(Row { Text("A") }.alignItems(Alignment.End), 3, 3, "   \n   \nA  ", "cross end aligns bottom")
++    plain(Column { Text("A").textAlign(Alignment.End); Text("B").width(2).textAlign(Alignment.End) }.alignItems(Alignment.Stretch), 6, 2, "     A\n B    ", "stretch affects only auto cross sizes")
++    plain(Text("A\nBCD").textAlign(Alignment.Center), 6, 2, "  A   \n BCD  ", "text aligns every line separately")
++    plain(Text("A\r\nBCD").textAlign(Alignment.End), 6, 2, "     A\n   BCD", "text end handles CRLF")
++    plain(Text("ABCDE").textAlign(Alignment.End), 3, 1, "ABC", "overlong end-aligned text clips from original start")
++    plain(Row { Text("中X").width(1); Text("Z") }, 3, 1, " Z ", "child clipping keeps wide cluster whole")
++    plain(Column { Row { Text("ABC").width(3); Text("Z") }.width(2); Text("Q") }, 4, 2, "AB  \nQ   ", "nested ancestor content clips descendants")
++    plain(Text("X"), 0, 2, "\n", "zero-width viewport shape")
++    plain(Text("X"), 2, 0, "", "zero-height viewport shape")
++}
++func validation(): Unit {
++    let c = Text("ABCDE").width(3).height(1).minWidth(2).minHeight(1).layoutWeight(0).padding(0).textAlign(Alignment.End)
++    illegal({ => c.width(-1); () }, "negative width setter immediate")
++    illegal({ => c.height(-1); () }, "negative height setter immediate")
++    illegal({ => c.minWidth(-1); () }, "negative minWidth immediate")
++    illegal({ => c.minHeight(-1); () }, "negative minHeight immediate")
++    illegal({ => c.layoutWeight(-1); () }, "negative weight immediate")
++    illegal({ => c.padding(-1); () }, "negative padding immediate")
++    illegal({ => c.textAlign(Alignment.Stretch); () }, "stretch text alignment immediate")
++    illegal({ => c.gap(1); () }, "gap on Text immediate")
++    illegal({ => c.alignItems(Alignment.Start); () }, "alignItems on Text immediate")
++    illegal({ => c.justifyContent(Alignment.Start); () }, "justifyContent on Text immediate")
++    plain(c, 5, 2, "ABC  \n     ", "rejected setters retain all old settings and chain mutates original")
++    let row = Row { Text("A"); Text("B") }.gap(1).justifyContent(Alignment.End)
++    illegal({ => row.gap(-1); () }, "negative gap immediate")
++    illegal({ => row.justifyContent(Alignment.Stretch); () }, "stretch justification immediate")
++    illegal({ => row.textAlign(Alignment.Start); () }, "textAlign on container immediate")
++    plain(row, 6, 1, "   A B", "container retains settings after rejected calls")
++    for (text in ["\u{1b}[2J", "\u{0}", "\u{85}", "\r"]) {
++        rejected({ => render(Text(text).width(0).height(0), 0, 0); () }, "zero-size text still validates controls")
++        rejected({ => render(Row { Text("X").width(2); Text(text) }, 1, 1); () }, "fully clipped text still validates controls")
++    }
++}
++main(): Int64 {
++    geometry()
++    proportion()
++    paddingAndAlignment()
++    validation()
++    return 0
++}
+diff --git a/tests/run-slice.sh b/tests/run-slice.sh
+index fa5f0a6..bc13ddd 100755
+--- a/tests/run-slice.sh
++++ b/tests/run-slice.sh
+@@ -11,23 +11,38 @@ case "${1:-all}" in
+     tests/native-smoke/target/release/bin/main
+     ;;
+   contract)
+     (cd tests/contract && cjpm build)
+     tests/contract/target/release/bin/main
+     ;;
+   coordinates)
+     (cd tests/coordinate-boundary && cjpm build)
+     tests/coordinate-boundary/target/release/bin/main
+     ;;
++  layout)
++    (cd tests/layout && cjpm build)
++    timeout 30s tests/layout/target/release/bin/main
++    ;;
++  decoration)
++    (cd tests/decoration && cjpm build)
++    timeout 30s tests/decoration/target/release/bin/main
++    ;;
++  layout-integration)
++    (cd examples/layout && cjpm build)
++    node tests/integration/layout-pty.mjs "${LAYOUT_SESSION_BIN:-examples/layout/target/release/bin/main}"
++    ;;
+   integration)
+     (cd tests/integration/fixture && cjpm build)
+     node tests/integration/pty.mjs "${SLICE_SESSION_BIN:-tests/integration/fixture/target/release/bin/main}"
+     ;;
+   all)
+     "$0" native-session
+     "$0" native-smoke
+     "$0" contract
+     "$0" coordinates
+     "$0" integration
++    "$0" layout
++    "$0" decoration
++    "$0" layout-integration
+     ;;
+-  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|integration|all]" >&2; exit 2 ;;
++  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|integration|all]" >&2; exit 2 ;;
+ esac
+# Fixed whole technical review: c502c9fe64422095d7a37e741d8756af3bbc9873..425626a1b6556b16837cb0744d5a5f46ebd54814
+
+All changed technical/contract files; author reports and development analysis excluded for role independence.
+
