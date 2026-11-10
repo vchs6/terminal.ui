@@ -1,0 +1,2090 @@
+{
+  "schema": "linux-completion-audit-v1",
+  "source_commit": "31a7017e6bb522e3f4bcabd2f01abe1d81ea2170",
+  "not_an_acceptance_status_authority": true,
+  "model": {
+    "requested": "Astra/high",
+    "runtime_identity_authoritatively_observed": false
+  },
+  "sources": {
+    "core": [
+      "src/component.cj",
+      "src/application.cj",
+      "src/layout.cj",
+      "src/layout_node.cj"
+    ],
+    "frame": [
+      "src/frame.cj",
+      "src/cell.cj",
+      "src/text/unicode.cj",
+      "src/text_validation.cj"
+    ],
+    "color": [
+      "src/terminal_capabilities.cj",
+      "src/terminal_render_profile.cj",
+      "src/color_mapping.cj",
+      "src/ansi_encoding.cj",
+      "native/cjtui_capabilities.c"
+    ],
+    "input": [
+      "src/input_decoder.cj",
+      "src/key_event.cj",
+      "native/cjtui_terminal.c",
+      "src/terminal_bridge.cj"
+    ],
+    "package": [
+      "cjpm.toml",
+      "build.cj",
+      "native/build.sh",
+      "scripts/check-product.sh",
+      "scripts/check-bundle.mjs"
+    ],
+    "evidence": [
+      "docs/reviews/R10/acceptance/verdicts.json",
+      "docs/reviews/R10/acceptance/final-technical-evidence.json",
+      "docs/reviews/R10/execution/raw/stage-a-cold-slice.meta",
+      "docs/reviews/R10/execution/raw/stage-a-bundle.meta",
+      "docs/reviews/R10/execution/raw/stage-a-full-bundle-check.meta",
+      "docs/reviews/R9/verification/final-integration.md",
+      "docs/reviews/R8/verification/final-integration.md"
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-001.1",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-002",
+        "TASK-004",
+        "TASK-021"
+      ],
+      "acs": [
+        "AC-002",
+        "AC-004",
+        "AC-021"
+      ],
+      "remaining": [
+        "产品可观察状态、动态条件/稳定key列表、自定义组件与诊断原源码可编译证明",
+        "补持久节点/绑定/事件/焦点/层/主题/编辑/滚动/动态操作与资源上限，U1–U5完整签名映射",
+        "独立composition、完整U1–U5公开场景、可确定非交互smoke；M1基线不等待四主题/M2"
+      ]
+    },
+    {
+      "id": "REQ-001.2",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-002",
+        "TASK-004",
+        "TASK-014",
+        "TASK-015",
+        "TASK-016"
+      ],
+      "acs": [
+        "AC-002",
+        "AC-004",
+        "AC-014",
+        "AC-015",
+        "AC-016"
+      ],
+      "remaining": [
+        "产品可观察状态、动态条件/稳定key列表、自定义组件与诊断原源码可编译证明",
+        "补持久节点/绑定/事件/焦点/层/主题/编辑/滚动/动态操作与资源上限，U1–U5完整签名映射",
+        "参数/绑定/回调的可复用公开组件；同组件普通容器/弹窗运行证据；见下面语义依赖环",
+        "父身份/声明位置/key、重排保留局部状态、卸载清理、失效引用/重复key错误",
+        "单UI执行域、后台提交、绑定依赖、批处理、各类失效与短文本清理"
+      ]
+    },
+    {
+      "id": "REQ-001.3",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-021"
+      ],
+      "acs": [
+        "AC-021"
+      ],
+      "remaining": [
+        "独立composition、完整U1–U5公开场景、可确定非交互smoke；M1基线不等待四主题/M2"
+      ]
+    },
+    {
+      "id": "REQ-001.4",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-009",
+        "TASK-011",
+        "TASK-013",
+        "TASK-014",
+        "TASK-019",
+        "TASK-021",
+        "TASK-028",
+        "TASK-029",
+        "TASK-037"
+      ],
+      "acs": [
+        "AC-009",
+        "AC-011",
+        "AC-013",
+        "AC-014",
+        "AC-019",
+        "AC-021",
+        "AC-028",
+        "AC-029",
+        "AC-037"
+      ],
+      "remaining": [
+        "有界分块ANSI文本适配、支持/丢弃/诊断矩阵、EOF/畸形/超长与安全边界；基于ansies已支持部分作最小适配",
+        "保持结果，新增持久节点/滚动/主题间距集成时做受影响回归",
+        "四来源逐属性优先级、显式复位、状态覆盖与绘制/布局失效",
+        "参数/绑定/回调的可复用公开组件；同组件普通容器/弹窗运行证据；见下面语义依赖环",
+        "水平与弹出菜单导航/禁用/选择/取消，窄屏状态条公共组合",
+        "独立composition、完整U1–U5公开场景、可确定非交互smoke；M1基线不等待四主题/M2",
+        "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口",
+        "公开构造、受控/默认局部状态单一权威、事件一次、主题一致",
+        "80×24访问100行、宽表横向、宽簇完整裁剪、resize偏移钳制和有效焦点保留"
+      ]
+    },
+    {
+      "id": "REQ-001.5",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-014",
+        "TASK-018"
+      ],
+      "acs": [
+        "AC-014",
+        "AC-018"
+      ],
+      "remaining": [
+        "参数/绑定/回调的可复用公开组件；同组件普通容器/弹窗运行证据；见下面语义依赖环",
+        "嵌套层、锚点/宿主裁剪、关闭父子、最新底层状态与有效焦点恢复"
+      ]
+    },
+    {
+      "id": "REQ-001.6",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-013",
+        "TASK-025",
+        "TASK-026"
+      ],
+      "acs": [
+        "AC-013",
+        "AC-025",
+        "AC-026"
+      ],
+      "remaining": [
+        "四来源逐属性优先级、显式复位、状态覆盖与绘制/布局失效",
+        "单文件TOML分类、类型变量/命名样式、版本/未知字段/坏引用/重复/范围位置诊断、资源上限",
+        "显式加载/切换/重载、原子替换、旧请求不覆盖新请求、失败旧主题/数据/编辑/焦点保留；无默认监听"
+      ]
+    },
+    {
+      "id": "REQ-001.7",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-006",
+        "TASK-012",
+        "TASK-004"
+      ],
+      "acs": [
+        "AC-006",
+        "AC-012",
+        "AC-004"
+      ],
+      "remaining": [
+        "保持既有结果；富文本共享样式和未来组件集成另验，不重做颜色核心",
+        "保持结果，覆盖层/移动/局部失效接入后验证旧新绘制范围",
+        "补持久节点/绑定/事件/焦点/层/主题/编辑/滚动/动态操作与资源上限，U1–U5完整签名映射"
+      ]
+    },
+    {
+      "id": "REQ-001.8",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-019",
+        "TASK-021",
+        "TASK-028",
+        "TASK-029"
+      ],
+      "acs": [
+        "AC-019",
+        "AC-021",
+        "AC-028",
+        "AC-029"
+      ],
+      "remaining": [
+        "水平与弹出菜单导航/禁用/选择/取消，窄屏状态条公共组合",
+        "独立composition、完整U1–U5公开场景、可确定非交互smoke；M1基线不等待四主题/M2",
+        "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口",
+        "公开构造、受控/默认局部状态单一权威、事件一次、主题一致"
+      ]
+    },
+    {
+      "id": "REQ-001.9",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-032"
+      ],
+      "acs": [
+        "AC-032"
+      ],
+      "remaining": [
+        "A/B/C插X、位置/锚点、move/remove、跨父/失效/重入诊断和统一批次、定向通知"
+      ]
+    },
+    {
+      "id": "REQ-001.10",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-002",
+        "TASK-004",
+        "TASK-032"
+      ],
+      "acs": [
+        "AC-002",
+        "AC-004",
+        "AC-032"
+      ],
+      "remaining": [
+        "产品可观察状态、动态条件/稳定key列表、自定义组件与诊断原源码可编译证明",
+        "补持久节点/绑定/事件/焦点/层/主题/编辑/滚动/动态操作与资源上限，U1–U5完整签名映射",
+        "A/B/C插X、位置/锚点、move/remove、跨父/失效/重入诊断和统一批次、定向通知"
+      ]
+    },
+    {
+      "id": "REQ-002.1",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-015"
+      ],
+      "acs": [
+        "AC-015"
+      ],
+      "remaining": [
+        "父身份/声明位置/key、重排保留局部状态、卸载清理、失效引用/重复key错误"
+      ]
+    },
+    {
+      "id": "REQ-002.2",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-016"
+      ],
+      "acs": [
+        "AC-016"
+      ],
+      "remaining": [
+        "单UI执行域、后台提交、绑定依赖、批处理、各类失效与短文本清理"
+      ]
+    },
+    {
+      "id": "REQ-002.3",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-015"
+      ],
+      "acs": [
+        "AC-015"
+      ],
+      "remaining": [
+        "父身份/声明位置/key、重排保留局部状态、卸载清理、失效引用/重复key错误"
+      ]
+    },
+    {
+      "id": "REQ-002.4",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-015"
+      ],
+      "acs": [
+        "AC-015"
+      ],
+      "remaining": [
+        "父身份/声明位置/key、重排保留局部状态、卸载清理、失效引用/重复key错误"
+      ]
+    },
+    {
+      "id": "REQ-002.5",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-016"
+      ],
+      "acs": [
+        "AC-016"
+      ],
+      "remaining": [
+        "单UI执行域、后台提交、绑定依赖、批处理、各类失效与短文本清理"
+      ]
+    },
+    {
+      "id": "REQ-002.6",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-016",
+        "TASK-031"
+      ],
+      "acs": [
+        "AC-016",
+        "AC-031"
+      ],
+      "remaining": [
+        "单UI执行域、后台提交、绑定依赖、批处理、各类失效与短文本清理",
+        "局部布局/绘制、旧新范围/遮挡/滚动/宽簇，对照M1完整帧；布局节点/绘制单元/CPU/分配内存/输出测量，公开API不变"
+      ]
+    },
+    {
+      "id": "REQ-002.7",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-032",
+        "TASK-016"
+      ],
+      "acs": [
+        "AC-032",
+        "AC-016"
+      ],
+      "remaining": [
+        "A/B/C插X、位置/锚点、move/remove、跨父/失效/重入诊断和统一批次、定向通知",
+        "单UI执行域、后台提交、绑定依赖、批处理、各类失效与短文本清理"
+      ]
+    },
+    {
+      "id": "REQ-002.8",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-015",
+        "TASK-032"
+      ],
+      "acs": [
+        "AC-015",
+        "AC-032"
+      ],
+      "remaining": [
+        "父身份/声明位置/key、重排保留局部状态、卸载清理、失效引用/重复key错误",
+        "A/B/C插X、位置/锚点、move/remove、跨父/失效/重入诊断和统一批次、定向通知"
+      ]
+    },
+    {
+      "id": "REQ-002.9",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-017",
+        "TASK-028",
+        "TASK-029"
+      ],
+      "acs": [
+        "AC-017",
+        "AC-028",
+        "AC-029"
+      ],
+      "remaining": [
+        "焦点集合/禁用卸载/导航、组件→父→应用路由、拦截及停止/阻止默认、模态域边界",
+        "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口",
+        "公开构造、受控/默认局部状态单一权威、事件一次、主题一致"
+      ]
+    },
+    {
+      "id": "REQ-003.1",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-011",
+        "TASK-032"
+      ],
+      "acs": [
+        "AC-011",
+        "AC-032"
+      ],
+      "remaining": [
+        "保持结果，新增持久节点/滚动/主题间距集成时做受影响回归",
+        "A/B/C插X、位置/锚点、move/remove、跨父/失效/重入诊断和统一批次、定向通知"
+      ]
+    },
+    {
+      "id": "REQ-003.2",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-011",
+        "TASK-012",
+        "TASK-017"
+      ],
+      "acs": [
+        "AC-011",
+        "AC-012",
+        "AC-017"
+      ],
+      "remaining": [
+        "保持结果，新增持久节点/滚动/主题间距集成时做受影响回归",
+        "保持结果，覆盖层/移动/局部失效接入后验证旧新绘制范围",
+        "焦点集合/禁用卸载/导航、组件→父→应用路由、拦截及停止/阻止默认、模态域边界"
+      ]
+    },
+    {
+      "id": "REQ-003.3",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-012",
+        "TASK-018"
+      ],
+      "acs": [
+        "AC-012",
+        "AC-018"
+      ],
+      "remaining": [
+        "保持结果，覆盖层/移动/局部失效接入后验证旧新绘制范围",
+        "嵌套层、锚点/宿主裁剪、关闭父子、最新底层状态与有效焦点恢复"
+      ]
+    },
+    {
+      "id": "REQ-003.4",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-018"
+      ],
+      "acs": [
+        "AC-018"
+      ],
+      "remaining": [
+        "嵌套层、锚点/宿主裁剪、关闭父子、最新底层状态与有效焦点恢复"
+      ]
+    },
+    {
+      "id": "REQ-003.5",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-018"
+      ],
+      "acs": [
+        "AC-018"
+      ],
+      "remaining": [
+        "嵌套层、锚点/宿主裁剪、关闭父子、最新底层状态与有效焦点恢复"
+      ]
+    },
+    {
+      "id": "REQ-003.6",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-019"
+      ],
+      "acs": [
+        "AC-019"
+      ],
+      "remaining": [
+        "水平与弹出菜单导航/禁用/选择/取消，窄屏状态条公共组合"
+      ]
+    },
+    {
+      "id": "REQ-003.7",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-017",
+        "TASK-018"
+      ],
+      "acs": [
+        "AC-017",
+        "AC-018"
+      ],
+      "remaining": [
+        "焦点集合/禁用卸载/导航、组件→父→应用路由、拦截及停止/阻止默认、模态域边界",
+        "嵌套层、锚点/宿主裁剪、关闭父子、最新底层状态与有效焦点恢复"
+      ]
+    },
+    {
+      "id": "REQ-003.8",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-018",
+        "TASK-031"
+      ],
+      "acs": [
+        "AC-018",
+        "AC-031"
+      ],
+      "remaining": [
+        "嵌套层、锚点/宿主裁剪、关闭父子、最新底层状态与有效焦点恢复",
+        "局部布局/绘制、旧新范围/遮挡/滚动/宽簇，对照M1完整帧；布局节点/绘制单元/CPU/分配内存/输出测量，公开API不变"
+      ]
+    },
+    {
+      "id": "REQ-003.9",
+      "scope": "required",
+      "observed_status": "covered_by_accepted_layout_contract",
+      "tasks": [
+        "TASK-011"
+      ],
+      "acs": [
+        "AC-011"
+      ],
+      "remaining": [
+        "保持结果，新增持久节点/滚动/主题间距集成时做受影响回归"
+      ]
+    },
+    {
+      "id": "REQ-003.10",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-001",
+        "TASK-011",
+        "TASK-041"
+      ],
+      "acs": [
+        "AC-001",
+        "AC-011",
+        "AC-041"
+      ],
+      "remaining": [
+        "汇总冻结Linux OS/ABI/SDK/宿主/TTY/输入/resize/恢复矩阵；补实际固定无图形console证据，不等待其他OS",
+        "保持结果，新增持久节点/滚动/主题间距集成时做受影响回归",
+        "完整核心输入/输出/尺寸/模式/恢复的Linux冻结配置，含固定无图形console证据；不能以PTY或TERM=linux替代实际console"
+      ]
+    },
+    {
+      "id": "REQ-003.11",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-037",
+        "TASK-028"
+      ],
+      "acs": [
+        "AC-037",
+        "AC-028"
+      ],
+      "remaining": [
+        "80×24访问100行、宽表横向、宽簇完整裁剪、resize偏移钳制和有效焦点保留",
+        "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口"
+      ]
+    },
+    {
+      "id": "REQ-004.1",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-005",
+        "TASK-011"
+      ],
+      "acs": [
+        "AC-005",
+        "AC-011"
+      ],
+      "remaining": [
+        "完整覆盖透明合成、复制/清空/缩放与宽簇不变量；复用已验输入，不重新实现Unicode",
+        "保持结果，新增持久节点/滚动/主题间距集成时做受影响回归"
+      ]
+    },
+    {
+      "id": "REQ-004.2",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-005",
+        "TASK-007"
+      ],
+      "acs": [
+        "AC-005",
+        "AC-007"
+      ],
+      "remaining": [
+        "完整覆盖透明合成、复制/清空/缩放与宽簇不变量；复用已验输入，不重新实现Unicode",
+        "缺显式透明单元/覆盖合成模型与独立多层预期；有样式空格必须覆盖，透明不覆盖"
+      ]
+    },
+    {
+      "id": "REQ-004.3",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-003",
+        "TASK-005"
+      ],
+      "acs": [
+        "AC-003",
+        "AC-005"
+      ],
+      "remaining": [
+        "汇总现有证据至完整Linux契约；富文本/编辑边界、必要新主题解析依赖增量；无需重解已关闭许可政策",
+        "完整覆盖透明合成、复制/清空/缩放与宽簇不变量；复用已验输入，不重新实现Unicode"
+      ]
+    },
+    {
+      "id": "REQ-004.4",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-005",
+        "TASK-007"
+      ],
+      "acs": [
+        "AC-005",
+        "AC-007"
+      ],
+      "remaining": [
+        "完整覆盖透明合成、复制/清空/缩放与宽簇不变量；复用已验输入，不重新实现Unicode",
+        "缺显式透明单元/覆盖合成模型与独立多层预期；有样式空格必须覆盖，透明不覆盖"
+      ]
+    },
+    {
+      "id": "REQ-004.5",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-007",
+        "TASK-008"
+      ],
+      "acs": [
+        "AC-007",
+        "AC-008"
+      ],
+      "remaining": [
+        "缺显式透明单元/覆盖合成模型与独立多层预期；有样式空格必须覆盖，透明不覆盖",
+        "补完整合成后截断序列/写失败故障矩阵与同步状态契约；无法确认安全同步时停止报错是已允许分支，不强加所有终端自动恢复"
+      ]
+    },
+    {
+      "id": "REQ-004.6",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-008",
+        "TASK-020"
+      ],
+      "acs": [
+        "AC-008",
+        "AC-020"
+      ],
+      "remaining": [
+        "补完整合成后截断序列/写失败故障矩阵与同步状态契约；无法确认安全同步时停止报错是已允许分支，不强加所有终端自动恢复",
+        "完整输入/括号粘贴/光标/实际修改模式登记后的正常/取消/可处理异常清理和失败可见性"
+      ]
+    },
+    {
+      "id": "REQ-004.7",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-020",
+        "TASK-041"
+      ],
+      "acs": [
+        "AC-020",
+        "AC-041"
+      ],
+      "remaining": [
+        "完整输入/括号粘贴/光标/实际修改模式登记后的正常/取消/可处理异常清理和失败可见性",
+        "完整核心输入/输出/尺寸/模式/恢复的Linux冻结配置，含固定无图形console证据；不能以PTY或TERM=linux替代实际console"
+      ]
+    },
+    {
+      "id": "REQ-004.8",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-031",
+        "TASK-022"
+      ],
+      "acs": [
+        "AC-031",
+        "AC-022"
+      ],
+      "remaining": [
+        "局部布局/绘制、旧新范围/遮挡/滚动/宽簇，对照M1完整帧；布局节点/绘制单元/CPU/分配内存/输出测量，公开API不变",
+        "公开API独立基准、固定尺寸/中文/emoji/批更新、版本环境/重复结果；建立M1成本基线"
+      ]
+    },
+    {
+      "id": "REQ-005.1",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-003",
+        "TASK-006",
+        "TASK-009"
+      ],
+      "acs": [
+        "AC-003",
+        "AC-006",
+        "AC-009"
+      ],
+      "remaining": [
+        "汇总现有证据至完整Linux契约；富文本/编辑边界、必要新主题解析依赖增量；无需重解已关闭许可政策",
+        "保持既有结果；富文本共享样式和未来组件集成另验，不重做颜色核心",
+        "有界分块ANSI文本适配、支持/丢弃/诊断矩阵、EOF/畸形/超长与安全边界；基于ansies已支持部分作最小适配"
+      ]
+    },
+    {
+      "id": "REQ-005.2",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-009"
+      ],
+      "acs": [
+        "AC-009"
+      ],
+      "remaining": [
+        "有界分块ANSI文本适配、支持/丢弃/诊断矩阵、EOF/畸形/超长与安全边界；基于ansies已支持部分作最小适配"
+      ]
+    },
+    {
+      "id": "REQ-005.3",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-009",
+        "TASK-018"
+      ],
+      "acs": [
+        "AC-009",
+        "AC-018"
+      ],
+      "remaining": [
+        "有界分块ANSI文本适配、支持/丢弃/诊断矩阵、EOF/畸形/超长与安全边界；基于ansies已支持部分作最小适配",
+        "嵌套层、锚点/宿主裁剪、关闭父子、最新底层状态与有效焦点恢复"
+      ]
+    },
+    {
+      "id": "REQ-005.4",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-006",
+        "TASK-009",
+        "TASK-013"
+      ],
+      "acs": [
+        "AC-006",
+        "AC-009",
+        "AC-013"
+      ],
+      "remaining": [
+        "保持既有结果；富文本共享样式和未来组件集成另验，不重做颜色核心",
+        "有界分块ANSI文本适配、支持/丢弃/诊断矩阵、EOF/畸形/超长与安全边界；基于ansies已支持部分作最小适配",
+        "四来源逐属性优先级、显式复位、状态覆盖与绘制/布局失效"
+      ]
+    },
+    {
+      "id": "REQ-005.5",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-010"
+      ],
+      "acs": [
+        "AC-010"
+      ],
+      "remaining": [
+        "完整可见层快照和文件写入/错误API；编码/空白/LF/终止样式文档与失败结果"
+      ]
+    },
+    {
+      "id": "REQ-005.6",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-010"
+      ],
+      "acs": [
+        "AC-010"
+      ],
+      "remaining": [
+        "完整可见层快照和文件写入/错误API；编码/空白/LF/终止样式文档与失败结果"
+      ]
+    },
+    {
+      "id": "REQ-006.1",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-023"
+      ],
+      "acs": [
+        "AC-023"
+      ],
+      "remaining": [
+        "composition/benchmark/主题与展示/M2/混合操作全部入实际包；干净构建运行、归属/版本边界、最终包含/排除检查"
+      ]
+    },
+    {
+      "id": "REQ-006.2",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-021",
+        "TASK-023"
+      ],
+      "acs": [
+        "AC-021",
+        "AC-023"
+      ],
+      "remaining": [
+        "独立composition、完整U1–U5公开场景、可确定非交互smoke；M1基线不等待四主题/M2",
+        "composition/benchmark/主题与展示/M2/混合操作全部入实际包；干净构建运行、归属/版本边界、最终包含/排除检查"
+      ]
+    },
+    {
+      "id": "REQ-006.3",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-003",
+        "TASK-023"
+      ],
+      "acs": [
+        "AC-003",
+        "AC-023"
+      ],
+      "remaining": [
+        "汇总现有证据至完整Linux契约；富文本/编辑边界、必要新主题解析依赖增量；无需重解已关闭许可政策",
+        "composition/benchmark/主题与展示/M2/混合操作全部入实际包；干净构建运行、归属/版本边界、最终包含/排除检查"
+      ]
+    },
+    {
+      "id": "REQ-006.4",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-024"
+      ],
+      "acs": [
+        "AC-024"
+      ],
+      "remaining": [
+        "Linux所有required+M2+组合证据、可选能力真实结果和全制品/文档一致；不publish，不声明跨平台全支持"
+      ]
+    },
+    {
+      "id": "REQ-006.5",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-023"
+      ],
+      "acs": [
+        "AC-023"
+      ],
+      "remaining": [
+        "composition/benchmark/主题与展示/M2/混合操作全部入实际包；干净构建运行、归属/版本边界、最终包含/排除检查"
+      ]
+    },
+    {
+      "id": "REQ-007",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-001",
+        "TASK-004",
+        "TASK-024"
+      ],
+      "acs": [
+        "AC-001",
+        "AC-004",
+        "AC-024"
+      ],
+      "remaining": [
+        "汇总冻结Linux OS/ABI/SDK/宿主/TTY/输入/resize/恢复矩阵；补实际固定无图形console证据，不等待其他OS",
+        "补持久节点/绑定/事件/焦点/层/主题/编辑/滚动/动态操作与资源上限，U1–U5完整签名映射",
+        "Linux所有required+M2+组合证据、可选能力真实结果和全制品/文档一致；不publish，不声明跨平台全支持"
+      ]
+    },
+    {
+      "id": "REQ-008.1",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-025"
+      ],
+      "acs": [
+        "AC-025"
+      ],
+      "remaining": [
+        "单文件TOML分类、类型变量/命名样式、版本/未知字段/坏引用/重复/范围位置诊断、资源上限"
+      ]
+    },
+    {
+      "id": "REQ-008.2",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-013",
+        "TASK-025"
+      ],
+      "acs": [
+        "AC-013",
+        "AC-025"
+      ],
+      "remaining": [
+        "四来源逐属性优先级、显式复位、状态覆盖与绘制/布局失效",
+        "单文件TOML分类、类型变量/命名样式、版本/未知字段/坏引用/重复/范围位置诊断、资源上限"
+      ]
+    },
+    {
+      "id": "REQ-008.3",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-027"
+      ],
+      "acs": [
+        "AC-027"
+      ],
+      "remaining": [
+        "四预置主题和统一完整组件展示，聚焦/选中/禁用组合、受限颜色/ASCII/窄屏/坏重载及包内运行"
+      ]
+    },
+    {
+      "id": "REQ-008.4",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-026"
+      ],
+      "acs": [
+        "AC-026"
+      ],
+      "remaining": [
+        "显式加载/切换/重载、原子替换、旧请求不覆盖新请求、失败旧主题/数据/编辑/焦点保留；无默认监听"
+      ]
+    },
+    {
+      "id": "REQ-008.5",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-013",
+        "TASK-026",
+        "TASK-031"
+      ],
+      "acs": [
+        "AC-013",
+        "AC-026",
+        "AC-031"
+      ],
+      "remaining": [
+        "四来源逐属性优先级、显式复位、状态覆盖与绘制/布局失效",
+        "显式加载/切换/重载、原子替换、旧请求不覆盖新请求、失败旧主题/数据/编辑/焦点保留；无默认监听",
+        "局部布局/绘制、旧新范围/遮挡/滚动/宽簇，对照M1完整帧；布局节点/绘制单元/CPU/分配内存/输出测量，公开API不变"
+      ]
+    },
+    {
+      "id": "REQ-009.1",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-017",
+        "TASK-028"
+      ],
+      "acs": [
+        "AC-017",
+        "AC-028"
+      ],
+      "remaining": [
+        "焦点集合/禁用卸载/导航、组件→父→应用路由、拦截及停止/阻止默认、模态域边界",
+        "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口"
+      ]
+    },
+    {
+      "id": "REQ-009.2",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-028",
+        "TASK-030"
+      ],
+      "acs": [
+        "AC-028",
+        "AC-030"
+      ],
+      "remaining": [
+        "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口",
+        "可选剪贴板/标题/图片图标API及状态/结果、防注入、负载限制与恢复边界；无图标适配可真实unsupported/unknown，不需要虚造位图协议"
+      ]
+    },
+    {
+      "id": "REQ-009.3",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-028"
+      ],
+      "acs": [
+        "AC-028"
+      ],
+      "remaining": [
+        "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口"
+      ]
+    },
+    {
+      "id": "REQ-009.4",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-003",
+        "TASK-005",
+        "TASK-028"
+      ],
+      "acs": [
+        "AC-003",
+        "AC-005",
+        "AC-028"
+      ],
+      "remaining": [
+        "汇总现有证据至完整Linux契约；富文本/编辑边界、必要新主题解析依赖增量；无需重解已关闭许可政策",
+        "完整覆盖透明合成、复制/清空/缩放与宽簇不变量；复用已验输入，不重新实现Unicode",
+        "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口"
+      ]
+    },
+    {
+      "id": "REQ-009.5",
+      "scope": "required",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-016",
+        "TASK-028",
+        "TASK-041"
+      ],
+      "acs": [
+        "AC-016",
+        "AC-028",
+        "AC-041"
+      ],
+      "remaining": [
+        "单UI执行域、后台提交、绑定依赖、批处理、各类失效与短文本清理",
+        "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口",
+        "完整核心输入/输出/尺寸/模式/恢复的Linux冻结配置，含固定无图形console证据；不能以PTY或TERM=linux替代实际console"
+      ]
+    },
+    {
+      "id": "REQ-010.1",
+      "scope": "extension",
+      "observed_status": "api_missing_host_effect_optional",
+      "tasks": [
+        "TASK-030"
+      ],
+      "acs": [
+        "AC-030"
+      ],
+      "remaining": [
+        "可选剪贴板/标题/图片图标API及状态/结果、防注入、负载限制与恢复边界；无图标适配可真实unsupported/unknown，不需要虚造位图协议"
+      ]
+    },
+    {
+      "id": "REQ-010.2",
+      "scope": "extension",
+      "observed_status": "api_missing_host_effect_optional",
+      "tasks": [
+        "TASK-030"
+      ],
+      "acs": [
+        "AC-030"
+      ],
+      "remaining": [
+        "可选剪贴板/标题/图片图标API及状态/结果、防注入、负载限制与恢复边界；无图标适配可真实unsupported/unknown，不需要虚造位图协议"
+      ]
+    },
+    {
+      "id": "REQ-010.3",
+      "scope": "extension",
+      "observed_status": "api_missing_host_effect_optional",
+      "tasks": [
+        "TASK-030"
+      ],
+      "acs": [
+        "AC-030"
+      ],
+      "remaining": [
+        "可选剪贴板/标题/图片图标API及状态/结果、防注入、负载限制与恢复边界；无图标适配可真实unsupported/unknown，不需要虚造位图协议"
+      ]
+    },
+    {
+      "id": "REQ-010.4",
+      "scope": "extension",
+      "observed_status": "api_missing_host_effect_optional",
+      "tasks": [
+        "TASK-030"
+      ],
+      "acs": [
+        "AC-030"
+      ],
+      "remaining": [
+        "可选剪贴板/标题/图片图标API及状态/结果、防注入、负载限制与恢复边界；无图标适配可真实unsupported/unknown，不需要虚造位图协议"
+      ]
+    },
+    {
+      "id": "REQ-011.1",
+      "scope": "required_linux_now_other_os_later",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-004",
+        "TASK-021",
+        "TASK-041"
+      ],
+      "acs": [
+        "AC-004",
+        "AC-021",
+        "AC-041"
+      ],
+      "remaining": [
+        "补持久节点/绑定/事件/焦点/层/主题/编辑/滚动/动态操作与资源上限，U1–U5完整签名映射",
+        "独立composition、完整U1–U5公开场景、可确定非交互smoke；M1基线不等待四主题/M2",
+        "完整核心输入/输出/尺寸/模式/恢复的Linux冻结配置，含固定无图形console证据；不能以PTY或TERM=linux替代实际console"
+      ]
+    },
+    {
+      "id": "REQ-011.2",
+      "scope": "required_linux_now_other_os_later",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-020",
+        "TASK-041"
+      ],
+      "acs": [
+        "AC-020",
+        "AC-041"
+      ],
+      "remaining": [
+        "完整输入/括号粘贴/光标/实际修改模式登记后的正常/取消/可处理异常清理和失败可见性",
+        "完整核心输入/输出/尺寸/模式/恢复的Linux冻结配置，含固定无图形console证据；不能以PTY或TERM=linux替代实际console"
+      ]
+    },
+    {
+      "id": "REQ-011.3",
+      "scope": "required_linux_now_other_os_later",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-001",
+        "TASK-041"
+      ],
+      "acs": [
+        "AC-001",
+        "AC-041"
+      ],
+      "remaining": [
+        "汇总冻结Linux OS/ABI/SDK/宿主/TTY/输入/resize/恢复矩阵；补实际固定无图形console证据，不等待其他OS",
+        "完整核心输入/输出/尺寸/模式/恢复的Linux冻结配置，含固定无图形console证据；不能以PTY或TERM=linux替代实际console"
+      ]
+    },
+    {
+      "id": "REQ-011.4",
+      "scope": "required_linux_now_other_os_later",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-003",
+        "TASK-023",
+        "TASK-041"
+      ],
+      "acs": [
+        "AC-003",
+        "AC-023",
+        "AC-041"
+      ],
+      "remaining": [
+        "汇总现有证据至完整Linux契约；富文本/编辑边界、必要新主题解析依赖增量；无需重解已关闭许可政策",
+        "composition/benchmark/主题与展示/M2/混合操作全部入实际包；干净构建运行、归属/版本边界、最终包含/排除检查",
+        "完整核心输入/输出/尺寸/模式/恢复的Linux冻结配置，含固定无图形console证据；不能以PTY或TERM=linux替代实际console"
+      ]
+    },
+    {
+      "id": "REQ-011.5",
+      "scope": "required_linux_now_other_os_later",
+      "observed_status": "partial_or_pending",
+      "tasks": [
+        "TASK-021",
+        "TASK-023",
+        "TASK-024",
+        "TASK-041"
+      ],
+      "acs": [
+        "AC-021",
+        "AC-023",
+        "AC-024",
+        "AC-041"
+      ],
+      "remaining": [
+        "独立composition、完整U1–U5公开场景、可确定非交互smoke；M1基线不等待四主题/M2",
+        "composition/benchmark/主题与展示/M2/混合操作全部入实际包；干净构建运行、归属/版本边界、最终包含/排除检查",
+        "Linux所有required+M2+组合证据、可选能力真实结果和全制品/文档一致；不publish，不声明跨平台全支持",
+        "完整核心输入/输出/尺寸/模式/恢复的Linux冻结配置，含固定无图形console证据；不能以PTY或TERM=linux替代实际console"
+      ]
+    }
+  ],
+  "tasks_and_acs": [
+    {
+      "task": "TASK-001",
+      "ac": "AC-001",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：R7 Linux环境、R8/R10 TTY及两宿主；已有native尺寸/信号/模式",
+      "remaining": "汇总冻结Linux OS/ABI/SDK/宿主/TTY/输入/resize/恢复矩阵；补实际固定无图形console证据，不等待其他OS"
+    },
+    {
+      "task": "TASK-002",
+      "ac": "AC-002",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：R5语法探针、真实静态块/链/if/for/函数/回调",
+      "remaining": "产品可观察状态、动态条件/稳定key列表、自定义组件与诊断原源码可编译证明"
+    },
+    {
+      "task": "TASK-003",
+      "ac": "AC-003",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：正式build hook/native FFI、三个固定依赖、普通bundle/clean consumer已验",
+      "remaining": "汇总现有证据至完整Linux契约；富文本/编辑边界、必要新主题解析依赖增量；无需重解已关闭许可政策"
+    },
+    {
+      "task": "TASK-004",
+      "ac": "AC-004",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：三个活动实现change已有有限精确API",
+      "remaining": "补持久节点/绑定/事件/焦点/层/主题/编辑/滚动/动态操作与资源上限，U1–U5完整签名映射"
+    },
+    {
+      "task": "TASK-005",
+      "ac": "AC-005",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：Frame.put、clearAt、Unicode分段/宽度，R8/R9边界",
+      "remaining": "完整覆盖透明合成、复制/清空/缩放与宽簇不变量；复用已验输入，不重新实现Unicode"
+    },
+    {
+      "task": "TASK-006",
+      "ac": "AC-006",
+      "canonical_ac_status": "passed（有限；[R10验收](reviews/R10/acceptance/report.md)）",
+      "scope": "linux_product",
+      "observed": "**passed有限**：R10颜色/六属性/Auto及真实宿主",
+      "remaining": "保持既有结果；富文本共享样式和未来组件集成另验，不重做颜色核心"
+    },
+    {
+      "task": "TASK-007",
+      "ac": "AC-007",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：render完整目标Frame；Cell全是实单元",
+      "remaining": "缺显式透明单元/覆盖合成模型与独立多层预期；有样式空格必须覆盖，透明不覆盖"
+    },
+    {
+      "task": "TASK-008",
+      "ac": "AC-008",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：成功写后提交baseline、resize失效、无变化静默、失败停止",
+      "remaining": "补完整合成后截断序列/写失败故障矩阵与同步状态契约；无法确认安全同步时停止报错是已允许分支，不强加所有终端自动恢复"
+    },
+    {
+      "task": "TASK-009",
+      "ac": "AC-009",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：InputDecoder是键盘输入，不是富文本SGR解析；validateText仅拒绝控制",
+      "remaining": "有界分块ANSI文本适配、支持/丢弃/诊断矩阵、EOF/畸形/超长与安全边界；基于ansies已支持部分作最小适配"
+    },
+    {
+      "task": "TASK-010",
+      "ac": "AC-010",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：Frame.toAnsi/toPlainText完整字符串快照，R8/R10消费",
+      "remaining": "完整可见层快照和文件写入/错误API；编码/空白/LF/终止样式文档与失败结果"
+    },
+    {
+      "task": "TASK-011",
+      "ac": "AC-011",
+      "canonical_ac_status": "passed",
+      "scope": "linux_product",
+      "observed": "**passed**：R9整数约束布局/边界，源码measure-arrange-paint",
+      "remaining": "保持结果，新增持久节点/滚动/主题间距集成时做受影响回归"
+    },
+    {
+      "task": "TASK-012",
+      "ac": "AC-012",
+      "canonical_ac_status": "passed",
+      "scope": "linux_product",
+      "observed": "**passed**：R9字符边框/阴影与裁剪",
+      "remaining": "保持结果，覆盖层/移动/局部失效接入后验证旧新绘制范围"
+    },
+    {
+      "task": "TASK-013",
+      "ac": "AC-013",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：继承文本属性、显式false/Default；无主题/命名样式",
+      "remaining": "四来源逐属性优先级、显式复位、状态覆盖与绘制/布局失效"
+    },
+    {
+      "task": "TASK-014",
+      "ac": "AC-014",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：普通仓颉函数可封装静态块",
+      "remaining": "参数/绑定/回调的可复用公开组件；同组件普通容器/弹窗运行证据；见下面语义依赖环"
+    },
+    {
+      "task": "TASK-015",
+      "ac": "AC-015",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：Component是静态描述/可变属性对象，没有持久运行节点、key协调、引用/订阅",
+      "remaining": "父身份/声明位置/key、重排保留局部状态、卸载清理、失效引用/重复key错误"
+    },
+    {
+      "task": "TASK-016",
+      "ac": "AC-016",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：Application每100ms轮询整树render，样式可变不等于依赖调度",
+      "remaining": "单UI执行域、后台提交、绑定依赖、批处理、各类失效与短文本清理"
+    },
+    {
+      "task": "TASK-017",
+      "ac": "AC-017",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：UTF8/方向/Enter/退出的简单KeyEvent，仅应用回调",
+      "remaining": "焦点集合/禁用卸载/导航、组件→父→应用路由、拦截及停止/阻止默认、模态域边界"
+    },
+    {
+      "task": "TASK-018",
+      "ac": "AC-018",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：没有覆盖层栈/模态/所有权/焦点恢复",
+      "remaining": "嵌套层、锚点/宿主裁剪、关闭父子、最新底层状态与有效焦点恢复"
+    },
+    {
+      "task": "TASK-019",
+      "ac": "AC-019",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：layout示例底部Text不是有行为状态条/菜单",
+      "remaining": "水平与弹出菜单导航/禁用/选择/取消，窄屏状态条公共组合"
+    },
+    {
+      "task": "TASK-020",
+      "ac": "AC-020",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：termios保存恢复、SIGINT/TERM、finally及双错误已验",
+      "remaining": "完整输入/括号粘贴/光标/实际修改模式登记后的正常/取消/可处理异常清理和失败可见性"
+    },
+    {
+      "task": "TASK-021",
+      "ac": "AC-021",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：minimal/layout/colors项目存在",
+      "remaining": "独立composition、完整U1–U5公开场景、可确定非交互smoke；M1基线不等待四主题/M2"
+    },
+    {
+      "task": "TASK-022",
+      "ac": "AC-022",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：无benchmarks/rendering项目",
+      "remaining": "公开API独立基准、固定尺寸/中文/emoji/批更新、版本环境/重复结果；建立M1成本基线"
+    },
+    {
+      "task": "TASK-023",
+      "ac": "AC-023",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：正常bundle/干净消费可复用，完整bundle checker失败",
+      "remaining": "composition/benchmark/主题与展示/M2/混合操作全部入实际包；干净构建运行、归属/版本边界、最终包含/排除检查"
+    },
+    {
+      "task": "TASK-024",
+      "ac": "AC-024",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "待最终整体验收；R8/R9/R10有限pass不能提升",
+      "remaining": "Linux所有required+M2+组合证据、可选能力真实结果和全制品/文档一致；不publish，不声明跨平台全支持"
+    },
+    {
+      "task": "TASK-025",
+      "ac": "AC-025",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：无主题解析/schema",
+      "remaining": "单文件TOML分类、类型变量/命名样式、版本/未知字段/坏引用/重复/范围位置诊断、资源上限"
+    },
+    {
+      "task": "TASK-026",
+      "ac": "AC-026",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失",
+      "remaining": "显式加载/切换/重载、原子替换、旧请求不覆盖新请求、失败旧主题/数据/编辑/焦点保留；无默认监听"
+    },
+    {
+      "task": "TASK-027",
+      "ac": "AC-027",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失",
+      "remaining": "四预置主题和统一完整组件展示，聚焦/选中/禁用组合、受限颜色/ASCII/窄屏/坏重载及包内运行"
+    },
+    {
+      "task": "TASK-028",
+      "ac": "AC-028",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：当前仅KeyEvent文本，无输入组件/编辑状态",
+      "remaining": "单/多行簇级移动删除选择、撤销重做、标准快捷键、Enter/括号粘贴/剪切事务、内部水平视口"
+    },
+    {
+      "task": "TASK-029",
+      "ac": "AC-029",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：无Label/Button/Radio/Checkbox/Progress组件",
+      "remaining": "公开构造、受控/默认局部状态单一权威、事件一次、主题一致"
+    },
+    {
+      "task": "TASK-030",
+      "ac": "AC-030",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：颜色TerminalCapabilities不涵盖宿主能力",
+      "remaining": "可选剪贴板/标题/图片图标API及状态/结果、防注入、负载限制与恢复边界；无图标适配可真实unsupported/unknown，不需要虚造位图协议"
+    },
+    {
+      "task": "TASK-031",
+      "ac": "AC-031",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：每轮render完整树，行差分不是M2",
+      "remaining": "局部布局/绘制、旧新范围/遮挡/滚动/宽簇，对照M1完整帧；布局节点/绘制单元/CPU/分配内存/输出测量，公开API不变"
+    },
+    {
+      "task": "TASK-032",
+      "ac": "AC-032",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：children仅构造时内部附加，没有公共混合操作/通知",
+      "remaining": "A/B/C插X、位置/锚点、move/remove、跨父/失效/重入诊断和统一批次、定向通知"
+    },
+    {
+      "task": "TASK-033",
+      "ac": "AC-033",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-034",
+      "ac": "AC-034",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-035",
+      "ac": "AC-035",
+      "canonical_ac_status": "design_reviewed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-036",
+      "ac": "AC-036",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-037",
+      "ac": "AC-037",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "缺失：当前只有裁剪，没有内容滚动",
+      "remaining": "80×24访问100行、宽表横向、宽簇完整裁剪、resize偏移钳制和有效焦点保留"
+    },
+    {
+      "task": "TASK-038",
+      "ac": "AC-038",
+      "canonical_ac_status": "pending",
+      "scope": "post_linux_required",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-039",
+      "ac": "AC-039",
+      "canonical_ac_status": "pending",
+      "scope": "post_linux_required",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-040",
+      "ac": "AC-040",
+      "canonical_ac_status": "pending",
+      "scope": "post_linux_required",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-041",
+      "ac": "AC-041",
+      "canonical_ac_status": "pending",
+      "scope": "linux_product",
+      "observed": "部分：Linux C桥+glbic可选terminfo与实际xterm/VTE",
+      "remaining": "完整核心输入/输出/尺寸/模式/恢复的Linux冻结配置，含固定无图形console证据；不能以PTY或TERM=linux替代实际console"
+    },
+    {
+      "task": "TASK-042",
+      "ac": "AC-042",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-043",
+      "ac": "AC-043",
+      "canonical_ac_status": "design_reviewed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-044",
+      "ac": "AC-044",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-045",
+      "ac": "AC-045",
+      "canonical_ac_status": "design_reviewed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-046",
+      "ac": "AC-046",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-047",
+      "ac": "AC-047",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-048",
+      "ac": "AC-048",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-049",
+      "ac": "AC-049",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-050",
+      "ac": "AC-050",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-051",
+      "ac": "AC-051",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-052",
+      "ac": "AC-052",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-053",
+      "ac": "AC-053",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-054",
+      "ac": "AC-054",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-055",
+      "ac": "AC-055",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-056",
+      "ac": "AC-056",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-057",
+      "ac": "AC-057",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-058",
+      "ac": "AC-058",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-059",
+      "ac": "AC-059",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-060",
+      "ac": "AC-060",
+      "canonical_ac_status": "passed",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-061",
+      "ac": "AC-061",
+      "canonical_ac_status": "passed（有限；[R10验收](reviews/R10/acceptance/report.md)）",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-062",
+      "ac": "AC-062",
+      "canonical_ac_status": "passed（有限；[R10验收](reviews/R10/acceptance/report.md)）",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-063",
+      "ac": "AC-063",
+      "canonical_ac_status": "passed（有限；[R10验收](reviews/R10/acceptance/report.md)）",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-064",
+      "ac": "AC-064",
+      "canonical_ac_status": "passed（有限；[R10验收](reviews/R10/acceptance/report.md)）",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-065",
+      "ac": "AC-065",
+      "canonical_ac_status": "passed（有限；[R10验收](reviews/R10/acceptance/report.md)）",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    },
+    {
+      "task": "TASK-066",
+      "ac": "AC-066",
+      "canonical_ac_status": "passed（有限；[R10验收](reviews/R10/acceptance/report.md)）",
+      "scope": "historical_bounded_governance_or_increment",
+      "observed": null,
+      "remaining": null
+    }
+  ],
+  "product_dependency_graph": {
+    "TASK-001": [],
+    "TASK-002": [
+      "TASK-001"
+    ],
+    "TASK-003": [
+      "TASK-001"
+    ],
+    "TASK-004": [
+      "TASK-002",
+      "TASK-003"
+    ],
+    "TASK-005": [
+      "TASK-003",
+      "TASK-004"
+    ],
+    "TASK-006": [],
+    "TASK-007": [
+      "TASK-005",
+      "TASK-006"
+    ],
+    "TASK-008": [
+      "TASK-007"
+    ],
+    "TASK-009": [
+      "TASK-003",
+      "TASK-006"
+    ],
+    "TASK-010": [
+      "TASK-007",
+      "TASK-009"
+    ],
+    "TASK-011": [],
+    "TASK-012": [
+      "TASK-011"
+    ],
+    "TASK-013": [
+      "TASK-006",
+      "TASK-011"
+    ],
+    "TASK-014": [
+      "TASK-004",
+      "TASK-011",
+      "TASK-013"
+    ],
+    "TASK-015": [
+      "TASK-004",
+      "TASK-014"
+    ],
+    "TASK-016": [
+      "TASK-008",
+      "TASK-015"
+    ],
+    "TASK-017": [
+      "TASK-015"
+    ],
+    "TASK-018": [
+      "TASK-012",
+      "TASK-016",
+      "TASK-017"
+    ],
+    "TASK-019": [
+      "TASK-013",
+      "TASK-017",
+      "TASK-018"
+    ],
+    "TASK-020": [
+      "TASK-008",
+      "TASK-017",
+      "TASK-041"
+    ],
+    "TASK-021": [
+      "TASK-010",
+      "TASK-019",
+      "TASK-020"
+    ],
+    "TASK-022": [
+      "TASK-008",
+      "TASK-011",
+      "TASK-016"
+    ],
+    "TASK-023": [
+      "TASK-009",
+      "TASK-021",
+      "TASK-022",
+      "TASK-027",
+      "TASK-030",
+      "TASK-031",
+      "TASK-032"
+    ],
+    "TASK-024": [
+      "TASK-023"
+    ],
+    "TASK-025": [
+      "TASK-003",
+      "TASK-004"
+    ],
+    "TASK-026": [
+      "TASK-013",
+      "TASK-025",
+      "TASK-016"
+    ],
+    "TASK-027": [
+      "TASK-021",
+      "TASK-026",
+      "TASK-028",
+      "TASK-029",
+      "TASK-037"
+    ],
+    "TASK-028": [
+      "TASK-003",
+      "TASK-004",
+      "TASK-015",
+      "TASK-017",
+      "TASK-030"
+    ],
+    "TASK-029": [
+      "TASK-004",
+      "TASK-013",
+      "TASK-014",
+      "TASK-016",
+      "TASK-017"
+    ],
+    "TASK-030": [
+      "TASK-001",
+      "TASK-003",
+      "TASK-004"
+    ],
+    "TASK-031": [
+      "TASK-005",
+      "TASK-007",
+      "TASK-008",
+      "TASK-011",
+      "TASK-012",
+      "TASK-016",
+      "TASK-018",
+      "TASK-020",
+      "TASK-022",
+      "TASK-037"
+    ],
+    "TASK-032": [
+      "TASK-004",
+      "TASK-014",
+      "TASK-015",
+      "TASK-016",
+      "TASK-017"
+    ],
+    "TASK-037": [
+      "TASK-004",
+      "TASK-005",
+      "TASK-011",
+      "TASK-017"
+    ],
+    "TASK-038": [
+      "TASK-001",
+      "TASK-003",
+      "TASK-004",
+      "TASK-024"
+    ],
+    "TASK-039": [
+      "TASK-001",
+      "TASK-003",
+      "TASK-004",
+      "TASK-024"
+    ],
+    "TASK-040": [
+      "TASK-001",
+      "TASK-003",
+      "TASK-004",
+      "TASK-024"
+    ],
+    "TASK-041": [
+      "TASK-001",
+      "TASK-003",
+      "TASK-004"
+    ]
+  },
+  "accepted_finite_prerequisites": {
+    "TASK-006": [
+      "TASK-050",
+      "TASK-061"
+    ],
+    "TASK-011": [
+      "TASK-050",
+      "TASK-054"
+    ],
+    "TASK-012": [
+      "TASK-011",
+      "TASK-054"
+    ]
+  },
+  "explicit_graph_acyclic": true,
+  "original_topological_layers": [
+    [
+      "TASK-001",
+      "TASK-006",
+      "TASK-011"
+    ],
+    [
+      "TASK-002",
+      "TASK-003",
+      "TASK-012",
+      "TASK-013"
+    ],
+    [
+      "TASK-004",
+      "TASK-009"
+    ],
+    [
+      "TASK-005",
+      "TASK-014",
+      "TASK-025",
+      "TASK-030",
+      "TASK-041"
+    ],
+    [
+      "TASK-007",
+      "TASK-015"
+    ],
+    [
+      "TASK-008",
+      "TASK-010",
+      "TASK-017"
+    ],
+    [
+      "TASK-016",
+      "TASK-020",
+      "TASK-028",
+      "TASK-037"
+    ],
+    [
+      "TASK-018",
+      "TASK-022",
+      "TASK-026",
+      "TASK-029",
+      "TASK-032"
+    ],
+    [
+      "TASK-019",
+      "TASK-031"
+    ],
+    [
+      "TASK-021"
+    ],
+    [
+      "TASK-027"
+    ],
+    [
+      "TASK-023"
+    ],
+    [
+      "TASK-024"
+    ],
+    [
+      "TASK-038",
+      "TASK-039",
+      "TASK-040"
+    ]
+  ],
+  "linux_task024_closure": [
+    "TASK-001",
+    "TASK-002",
+    "TASK-003",
+    "TASK-004",
+    "TASK-005",
+    "TASK-006",
+    "TASK-007",
+    "TASK-008",
+    "TASK-009",
+    "TASK-010",
+    "TASK-011",
+    "TASK-012",
+    "TASK-013",
+    "TASK-014",
+    "TASK-015",
+    "TASK-016",
+    "TASK-017",
+    "TASK-018",
+    "TASK-019",
+    "TASK-020",
+    "TASK-021",
+    "TASK-022",
+    "TASK-023",
+    "TASK-024",
+    "TASK-025",
+    "TASK-026",
+    "TASK-027",
+    "TASK-028",
+    "TASK-029",
+    "TASK-030",
+    "TASK-031",
+    "TASK-032",
+    "TASK-037",
+    "TASK-041"
+  ],
+  "linux_predecessor_count": 33,
+  "semantic_cycle": {
+    "requirement_edge": "TASK-014 acceptance requires popup supplied by TASK-018",
+    "existing_chain": [
+      "TASK-018",
+      "TASK-016",
+      "TASK-015",
+      "TASK-014"
+    ],
+    "resolution": "Accept a bounded reusable component contract as TASK-015 input, keep full AC-014 pending until popup integration; record substituted prerequisite in a concrete change."
+  },
+  "release_missing": [
+    "examples/composition/cjpm.toml and real source",
+    "benchmarks/rendering/cjpm.toml and real benchmark",
+    "examples/minimal deterministic --smoke implementation",
+    "four themes/component showcase and their package/function checks",
+    "full runtime/renderer/state/edit/overlay/scroll/M2 acceptance"
+  ],
+  "evidence_limits": [
+    "Current technical content identical to R10 accepted 8af39f6c for src/native/examples/tests/scripts/build.cj/cjpm.toml; no new functional rerun",
+    "Actual recorded full checker failure is node scripts/check-bundle.mjs exit 1, not proof of running entire check-product.sh release",
+    "Two real terminal implementations xterm and XFCE/VTE; three configurations",
+    "Physical Linux console not established",
+    "No implemented optional clipboard/title/image-icon API; honest unsupported/unknown is valid when no adapter exists",
+    "License-conflict stop was superseded by recorded user decision; preserve original notices"
+  ]
+}

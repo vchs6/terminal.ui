@@ -47,9 +47,9 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 - [ ] 1.4 TASK-004：冻结首个公共构造切片契约；验收 AC-004：U1–U5 设计稿均可映射至语法规则、签名、模块归属和验收，不以设计稿冒充运行。
 ## 2. WP-002
 
-- [ ] 2.5 TASK-005：字符簇写入和边缘裁剪；验收 AC-005：中文、组合符和 emoji 在边缘写入/覆盖/裁剪无半宽字符或孤立延续单元。
+- TASK-005：状态/准入/实际依赖转至[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，保留 AC-005 及需求映射。
 - TASK-006：状态/准入/实际依赖转至[颜色与样式变更](../openspec/changes/implement-color-style-output/tasks.md)，保留原AC-006及需求映射。
-- [ ] 2.7 TASK-007：完整目标帧与覆盖合成；验收 AC-007：透明单元和带样式空格有区别，前后层按确定规则合成。
+- TASK-007：状态/准入/实际依赖转至[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，保留 AC-007 及需求映射。
 - [ ] 2.8 TASK-008：差分提交与写失败恢复；验收 AC-008：无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错。
 - [ ] 2.9 TASK-009：有界增量 ANSI 输入适配；验收 AC-009：跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传。
 - [ ] 2.10 TASK-010：完整彩色与纯文本快照；验收 AC-010：含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告。
@@ -536,3 +536,7 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 自动终端能力与跨终端截图调查TASK-065随[颜色与样式变更](../openspec/changes/implement-color-style-output/tasks.md)，用户新裁决覆盖其旧显式默认；原实现记录不作新自动验收证据。
 
 真实跨终端测试与截图采集TASK-066依[颜色样式D031–33](../openspec/changes/implement-color-style-output/design.md)独立测试角色编写，真实host执行由TASK063负责，状态只见该change。
+
+## Linux 全阶段连续实施
+
+当前用户要求完成全部 Linux；[总执行计划](linux-completion-plan.md)与[恢复日志](../openspec/linux-completion-progress.md)协调全部稳定任务，不维护第二份完成复选框。TASK-067–070（测试/审核/执行/验收支持）唯一状态在[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，对应 AC-067–070。TASK-010 仍由本表维护；文件原语在该增量交付，实际可见覆盖层快照在018后汇合，不提前标完整通过。
