@@ -1,0 +1,4 @@
+command: bash -c env\ \|\ rg\ \'\^\(TERM\|COLORTERM\|TERM_PROGRAM\|VTE_VERSION\|TMUX\|STY\|WT_SESSION\|KITTY_\|WEZTERM\|LC_TERMINAL\)=\'\ \|\|\ true
+COLORTERM=
+TERM=dumb
+exit=0

@@ -1,0 +1,36 @@
+command: bash -c source\ /workspace/work/validation/sdk/cangjie/envsetup.sh\ \&\&\ cjc\ \'/workspace/work/auto-capability-recon/source/application_overload_probe.cj\'\ -o\ \'/workspace/work/auto-capability-recon/application_overload_probe\'\ \&\&\ \'/workspace/work/auto-capability-recon/application_overload_probe\'
+[33mwarning[0m: unused variable:'root'
+ [36m==>[0m /workspace/work/auto-capability-recon/source/application_overload_probe.cj:8:17:
+  [36m| [0m
+[36m8[0m [36m| [0m    public init(root: Root) {}[0m
+  [36m| [0m                [33m^^^^ unused variable[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'root'
+ [36m==>[0m /workspace/work/auto-capability-recon/source/application_overload_probe.cj:9:17:
+  [36m| [0m
+[36m9[0m [36m| [0m    public init(root: Root, colorMode!: ColorMode) {}[0m
+  [36m| [0m                [33m^^^^ unused variable[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'colorMode'
+ [36m==>[0m /workspace/work/auto-capability-recon/source/application_overload_probe.cj:9:29:
+  [36m| [0m
+[36m9[0m [36m| [0m    public init(root: Root, colorMode!: ColorMode) {}[0m
+  [36m| [0m                            [33m^^^^^^^^^ unused variable[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused variable:'colorMode'
+  [36m==>[0m /workspace/work/auto-capability-recon/source/application_overload_probe.cj:13:24:
+   [36m| [0m
+[36m13[0m [36m| [0m    public func toAnsi(colorMode!: ColorMode = ColorMode.RichSnapshot): String {[0m
+   [36m| [0m                       [33m^^^^^^^^^ unused variable[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+4 warnings generated, 4 warnings printed.
+automatic and explicit overloads compile; rich snapshot; rich snapshot
+exit=0

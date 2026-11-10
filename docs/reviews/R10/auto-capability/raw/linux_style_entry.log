@@ -1,0 +1,6 @@
+command: bash -c infocmp\ -1\ -x\ linux\ \|\ rg\ \'\^\\s\*\(bold\|dim\|sitm\|smul\|rev\|smxx\)=\'
+	bold=\E[1m,
+	dim=\E[2m,
+	rev=\E[7m,
+	smul=\E[4m,
+exit=0

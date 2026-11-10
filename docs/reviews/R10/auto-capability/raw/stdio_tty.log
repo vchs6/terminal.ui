@@ -1,0 +1,6 @@
+command: bash -c test\ -t\ 0\;\ printf\ \"stdin_isatty=%s\\n\"\ \"\$\?\"\;\ test\ -t\ 1\;\ printf\ \"stdout_isatty=%s\\n\"\ \"\$\?\"\;\ tty\;\ printf\ \"tty_exit=%s\\n\"\ \"\$\?\"
+stdin_isatty=1
+stdout_isatty=1
+not a tty
+tty_exit=1
+exit=0

@@ -1,0 +1,8 @@
+command: bash -c infocmp\ -1\ -x\ xterm-256color\ \|\ rg\ \'\^\\s\*\(bold\|dim\|sitm\|smul\|rev\|smxx\)=\'
+	bold=\E[1m,
+	dim=\E[2m,
+	rev=\E[7m,
+	sitm=\E[3m,
+	smul=\E[4m,
+	smxx=\E[9m,
+exit=0

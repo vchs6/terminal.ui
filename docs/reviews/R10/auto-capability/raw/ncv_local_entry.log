@@ -1,0 +1,7 @@
+command: bash -c infocmp\ -L\ -1\ linux\ \|\ rg\ \'no_color_video\|enter_\(bold\|dim\|italics\|underline\|reverse\)_mode\'
+	no_color_video#18,
+	enter_bold_mode=\E[1m,
+	enter_dim_mode=\E[2m,
+	enter_reverse_mode=\E[7m,
+	enter_underline_mode=\E[4m,
+exit=0
