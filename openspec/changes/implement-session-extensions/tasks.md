@@ -64,7 +64,7 @@ L4：148.S1 按design精确签名/枚举/byte公式手写golden及上述case表�
 
 ## 4. Product Delivery
 
-- [ ] 4.1 TASK-149：在现有Application/session/native writer中实施并提供正常公共消费者；AC-149要求契约结果/字节/状态/清理符合148冻结断言，源码职责与旧路径处置可审，作者自测仅开发证据。
+- [x] 4.1 TASK-149：在现有Application/session/native writer中实施并提供正常公共消费者；AC-149要求契约结果/字节/状态/清理符合148冻结断言，源码职责与旧路径处置可审，作者自测仅开发证据。
 
 | 字段 | 定义 |
 |---|---|
@@ -86,7 +86,7 @@ L4：149.S1 核固定合同/test/base及共享写屏障，按S010建每类型文
 
 ## 5. Independent Review
 
-- [ ] 5.1 TASK-150：独立审核固定产品/测试/合同；AC-150要求spec与quality分别判定，所有必修finding有可复核关闭证据，作者自评不作结论。
+- [x] 5.1 TASK-150：独立审核固定产品/测试/合同；AC-150要求spec与quality分别判定，所有必修finding有可复核关闭证据，作者自评不作结论。
 
 | 字段 | 定义 |
 |---|---|
@@ -106,7 +106,7 @@ L4：150.S1 固定三个SHA与许可输入，独立重建公开调用路径；15
 
 ## 6. Independent Execution
 
-- [ ] 6.1 TASK-151：在固定审核版本独立执行正常构建、正式测试及真实host/SSH；AC-151要求原始日志、实际exit、真实截图/属性/clipboard外部oracle与固定版本匹配，失败/缺环境不被摘要掩盖。
+- [x] 6.1 TASK-151：在固定审核版本独立执行正常构建、正式测试及真实host/SSH；AC-151要求原始日志、实际exit、真实截图/属性/clipboard外部oracle与固定版本匹配，失败/缺环境不被摘要掩盖。
 
 | 字段 | 定义 |
 |---|---|
@@ -126,7 +126,7 @@ L4：151.S1 固定base/test/contract/二进制SHA、SDK、命令及私有host隔
 
 ## 7. Independent Acceptance
 
-- [ ] 7.1 TASK-152：独立按需求、接口、正式原始证据逐项验收；AC-152要求本增量pass/fail/insufficient_evidence可追踪，完整父030/004/020/041剩余范围明确，不以测试数量代替需求证据。
+- [x] 7.1 TASK-152：独立按需求、接口、正式原始证据逐项验收；AC-152要求本增量pass/fail/insufficient_evidence可追踪，完整父030/004/020/041剩余范围明确，不以测试数量代替需求证据。
 
 | 字段 | 定义 |
 |---|---|
@@ -172,3 +172,7 @@ L4：152.S1 验固定证据链与来源，拒绝环境模拟/生成图冒充host
 ### L006后置交互的writer输入顺序
 
 root按真实caret协议边界将有限148–152安排在RichText084后、Glyph/Theme/交互A前。149本来仅消费已接受runtime/148/004子合同/R10/003，不需A；152不关闭完整paste/cut030/020/041。未来A按I015使用本writer发单次mode25查询，该查询不是本可选clipboard/title/icon协议，S001/S010不主动query限制仍禁止本操作发OSC52?或新增宿主探测，不禁止独立核心caret契约。148/151原始golden按本操作事务识别，普通UI控制与未来caret查询不能伪装可选操作结果。S008唯一计数/unsafe闩由149实现，A/Keyboard复用，不加第二writer。
+
+## 最终有限验收投影
+
+[独立152验收](../../../docs/reviews/R18/acceptance/report.md)确认148–152冻结有限Session增量PASS，0 open C/I/M；产品83094ca（root5b070e2）、正式测试原4093+47修复+S007f8b9581（root11729c2）。[151真实执行](../../../docs/reviews/R18/execution/report.md)包含278配置、14真实hostprofiles及额外3组真实XTerm自动cleanup，64成功原PNG+2失败helper原PNG、实际SSH、正常bundle331advisory/cleanconsumer/138实际包成员同源；初次缺README:56异常取消宿主恢复证据的重要项152-E01已补齐并独立核闭。完整checker缺composition/benchmark仍exit1。当前830真实kernelVT未执行、P30平台组合不足证据，由094096/041继续；完整父030 paste/cut、004008020041/M2/Linux/其他OS不因此关闭。各卡旧planned/未检措辞为初始准入历史，实际单一状态以上方checkbox和本最终投影为准。
