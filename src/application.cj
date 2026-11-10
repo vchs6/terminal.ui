@@ -19,6 +19,8 @@ public class Application {
             throw Exception("Linux ANSI TTY required")
         }
         running = true
+        var failure: ?Exception = None
+        var restoreFailed = false
         try {
             let decoder = InputDecoder()
             var baseline: ?Frame = None
@@ -68,11 +70,22 @@ public class Application {
                     case None => ()
                 }
             }
+        } catch (error: Exception) {
+            failure = Some(error)
         } finally {
             running = false
-            if (unsafe { cjt_close() } != 0) {
-                throw Exception("terminal restore failed")
-            }
+            restoreFailed = unsafe { cjt_close() } != 0
+        }
+        match (failure) {
+            case Some(error) =>
+                if (restoreFailed) {
+                    throw Exception("${error.message}; terminal restore failed")
+                }
+                throw error
+            case None => ()
+        }
+        if (restoreFailed) {
+            throw Exception("terminal restore failed")
         }
     }
 }
