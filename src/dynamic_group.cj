@@ -95,7 +95,11 @@ abstract class DynamicGroup {
                 removed.add(node)
             }
         }
-        parent.session.publish(next, removed.toArray())
+        // An initial nested group belongs to an unpublished subtree. The outer
+        // insertion publishes all descendants together after recursive validation.
+        if (parent.committed) {
+            parent.session.publish(next, removed.toArray())
+        }
         parent.session.markChanged(parent, ChangeKind.Structure)
         parent.session.unmount(removed.toArray())
     }

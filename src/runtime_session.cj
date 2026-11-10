@@ -256,7 +256,7 @@ class RuntimeSession {
             lock.unlock()
         }
     }
-    func addBinding(binding: Binding): Unit {
+    func addBinding(binding: Binding, initiallyDirty!: Bool = true): Unit {
         requireContext()
         let ownerNode = binding.component.readMount().getOrThrow()
         if (ownerNode.bindingCount >= limits.bindingsPerNode) {
@@ -270,9 +270,11 @@ class RuntimeSession {
                 binding.owner = Some(this)
                 binding.node = binding.component.readMount()
                 binding.active = true
-                binding.dirty = true
+                binding.dirty = initiallyDirty
                 binding.dirtySequence = 0
-                pendingBindings.add(binding)
+                if (initiallyDirty) {
+                    pendingBindings.add(binding)
+                }
             } finally {
                 lock.unlock()
             }
@@ -348,7 +350,8 @@ class RuntimeSession {
             lock.unlock()
         }
     }
-    // Prepare every static description before publishing nodes or invoking mount effects.
+    // Build static declarations before staging. mount also initializes every nested dynamic
+    // group before the outer insertion can publish this subtree or retire old nodes.
     func preflight(components: Array<Component>, parent: ?RuntimeNode, retiring!: Array<RuntimeNode> = []): Unit {
         let seen = HashSet<Int64>()
         let depth = match (parent) {
@@ -360,7 +363,7 @@ class RuntimeSession {
                 prepareTree(component, depth, seen)
             }
         })
-        if (nodes.size + seen.size - subtreeCount(retiring) > limits.mountedNodes) {
+        if (nodes.size - mountingCredit + seen.size - subtreeCount(retiring) > limits.mountedNodes) {
             throw UIException("CapacityExceeded", "node limit exceeded")
         }
     }
@@ -440,10 +443,19 @@ class RuntimeSession {
                 case ChildDeclaration.DeclaredGroup(declaration) =>
                     let group = declaration.create(created)
                     created.sequence.add(ChildEntry.GroupMarker(group))
-                    addBinding(Binding(component, "group${group.id}", ChangeKind.Structure, {=> group.prepare()}))
+                    initializeGroup(component, group)
             }
         }
         created
+    }
+    // The new node's sequence is still private to its enclosing staged subtree.
+    // Evaluate initial structure with its own dependency tracker, then commit only
+    // after restoring evaluation guards. Descendant mounts recurse through here.
+    func initializeGroup(component: Component, group: DynamicGroup): Unit {
+        let binding = Binding(component, "group${group.id}", ChangeKind.Structure, {=> group.prepare()})
+        addBinding(binding, initiallyDirty: false)
+        binding.evaluate()
+        group.commit()
     }
     func requireStructure(): Unit {
         requireOwner()
@@ -727,8 +739,10 @@ class RuntimeSession {
             lock.unlock()
         }
     }
-    func stabilize(cutoff: Int64): Unit {
-        structuralOps = 0
+    func stabilize(cutoff: Int64, resetStructuralOps!: Bool = true): Unit {
+        if (resetStructuralOps) {
+            structuralOps = 0
+        }
         var passes: Int64 = 0
         while (true) {
             if (passes >= limits.stabilizationPasses) {
@@ -864,6 +878,7 @@ class RuntimeSession {
             {
                 =>
                     let turnCutoff = cutoff()
+                    structuralOps = 0
                     preflight([root], Option<RuntimeNode>.None)
                     let mounted = mount(root, Option<RuntimeNode>.None, 0)
                     publish([mounted], [])
@@ -875,7 +890,7 @@ class RuntimeSession {
                             lock.unlock()
                         }
                     }
-                    stabilize(turnCutoff)
+                    stabilize(turnCutoff, resetStructuralOps: false)
             }
         )
     }
