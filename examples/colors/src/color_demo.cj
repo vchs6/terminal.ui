@@ -3,13 +3,14 @@ package cjtui_colors
 import cjtui.*
 
 class ColorDemo {
-    var mode: Int64 = 0
+    var color: Int64 = 0
     var styled = true
     var sample = Text("")
-    func nextMode(app: Application): Unit {
-        mode = (mode + 1) % 4
-        let modes = [ColorMode.Basic16, ColorMode.Indexed256, ColorMode.TrueColor, ColorMode.Monochrome]
-        app.colorMode(modes[mode])
+    var rgbSample = Text("")
+    func nextColor(): Unit {
+        color = (color + 1) % 3
+        let colors = [Color.Rgb(1, 128, 254), Color.Rgb(250, 0, 0), Color.Rgb(238, 238, 238)]
+        rgbSample.foreground(colors[color])
     }
     func toggle(): Unit {
         styled = !styled

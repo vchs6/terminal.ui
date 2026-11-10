@@ -4,14 +4,25 @@ public class Application {
     private let root: Component
     private var handler: (KeyEvent) -> Unit = {_ =>}
     private var running = false
-    private var mode: ColorMode
-    public init(root: Component, colorMode!: ColorMode = ColorMode.Basic16) {
+    private var colorOverride: ?ColorMode = None
+    private var lastCapabilities: ?TerminalCapabilities = None
+    public init(root: Component) {
         this.root = root
-        this.mode = colorMode
+    }
+    public init(root: Component, colorMode!: ColorMode) {
+        this.root = root
+        colorOverride = Some(colorMode)
     }
     public func colorMode(value: ColorMode): Application {
-        mode = value
+        colorOverride = Some(value)
         this
+    }
+    public func colorModeAuto(): Application {
+        colorOverride = None
+        this
+    }
+    public func terminalCapabilities(): ?TerminalCapabilities {
+        lastCapabilities
     }
     public func onKey(handler: (KeyEvent) -> Unit): Application {
         this.handler = handler
@@ -25,12 +36,18 @@ public class Application {
             throw Exception("Linux ANSI TTY required")
         }
         running = true
+        let capabilities = detectTerminalCapabilities()
+        lastCapabilities = Some(capabilities)
+        let initialMode = match (colorOverride) {
+            case Some(value) => value
+            case None => capabilities.colorMode
+        }
         var failure: ?Exception = None
         var restoreFailed = false
         try {
             let decoder = InputDecoder()
             var baseline: ?Frame = None
-            var baselineMode = mode
+            var baselineProfile = terminalRenderProfile(capabilities, initialMode)
             var previousWidth: Int64 = -1
             var previousHeight: Int64 = -1
             while (running) {
@@ -39,22 +56,27 @@ public class Application {
                 if (width < 0 || height < 0) {
                     throw Exception("terminal size unavailable")
                 }
+                let mode = match (colorOverride) {
+                    case Some(value) => value
+                    case None => capabilities.colorMode
+                }
+                let profile = terminalRenderProfile(capabilities, mode)
                 let frame = render(root, width, height)
                 var output = ""
                 if (width != previousWidth || height != previousHeight) {
                     baseline = None
                 }
                 match (baseline) {
-                    case None => output = frame.toAnsi(colorMode: mode)
-                    case Some(old) => output = frame.changesSince(old, baselineMode, mode)
+                    case None => output = frame.toAnsiForTerminal(profile)
+                    case Some(old) => output = frame.changesSinceForTerminal(old, baselineProfile, profile)
                 }
                 if (!output.isEmpty()) {
                     writeScreen(output)
+                    baseline = Some(frame)
+                    baselineProfile = profile
+                    previousWidth = width
+                    previousHeight = height
                 }
-                baseline = frame
-                baselineMode = mode
-                previousWidth = width
-                previousHeight = height
                 let value = readByte(100)
                 if (value == -2) {
                     running = false

@@ -21,8 +21,10 @@ cjpm run
 
 低层 `Frame.fillRect`、`drawBorder` 和 `drawShadow` 使用相同字符宽度、样式和裁剪规则；填充写入带样式的空格，边框按原矩形几何裁剪。`examples/layout` 展示标题、加权面板和底栏；按 `d` 切换边框及阴影，按 `q` 退出，终端改变尺寸时自动重排。
 
-颜色提供 16 种命名色、`Color.Indexed(UInt8)` 和 `Color.Rgb(UInt8, UInt8, UInt8)`。`Application(root, colorMode: ColorMode.Basic16)` 指定输出能力，默认 Basic16；也可在回调中调用 `app.colorMode(ColorMode.Indexed256)`，或选择 `TrueColor`、`Monochrome`。降级使用固定名义调色板的 RGB 平方距离，距离相同时选择较小索引；实际终端可能使用自定义调色板。Monochrome 保留文本属性。`Frame.toAnsi(colorMode: ...)` 按指定能力导出，网格仍保留原始颜色。
+颜色提供 16 种命名色、`Color.Indexed(UInt8)` 和 `Color.Rgb(UInt8, UInt8, UInt8)`。`Application(root)` 在每次会话开始时依据 TERM 的 terminfo 条目和 COLORTERM 声明自动选择颜色等级与可用属性；未知能力保守降级。高级用途可用 `Application(root, colorMode: ColorMode.Basic16)` 或 `app.colorMode(...)` 覆盖颜色等级，`app.colorModeAuto()` 恢复自动选择；属性仍受检测结果约束。`app.terminalCapabilities()` 可选查询最近一次检测的诊断快照，首次检测前为 `None`。声明与数据库不保证宿主的实际配置和字形覆盖。
+
+颜色等级包括 `Basic8`、`Basic16`、`Indexed256`、`TrueColor` 和 `Monochrome`。降级使用固定名义调色板的 RGB 平方距离，距离相同时选择较小索引；实际终端可能使用自定义调色板。`Frame.toAnsi()` 默认导出完整真彩色及六种属性的离线快照，也可通过 `colorMode` 指定颜色预览；网格保留原始颜色和样式。
 
 文本属性包括 `bold`、`dim`、`italic`、`underline`、`inverse` 和 `strikethrough`。组件属性链如 `.italic()` 启用属性，`.italic(false)` 显式关闭继承值；`Style` 对应参数默认为 false。文本、显式背景和边框继承这些属性，阴影使用传入的完整 Style。
 
-`examples/colors` 展示命名色、索引色、RGB 和文本属性；在终端中按 `c` 依次切换 Basic16、Indexed256、TrueColor 和 Monochrome，按 `t` 切换属性，按 `q` 退出。
+`examples/colors` 展示命名色、索引色、RGB 和文本属性；在终端中按 `c` 循环三种 RGB 样例，按 `t` 切换属性，按 `q` 退出。

@@ -14,6 +14,8 @@ foreign {
     func cjt_buffer_add(value: Int32): Int32
 
     func cjt_buffer_write(): Int32
+
+    func cjt_capabilities_detect(): Int64
 }
 
 func readByte(timeout: Int32): Int32 {

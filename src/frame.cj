@@ -212,16 +212,19 @@ public class Frame {
         out
     }
     func changesSince(old: Frame, oldMode: ColorMode, colorMode: ColorMode): String {
+        changesSinceForTerminal(old, snapshotProfile(oldMode), snapshotProfile(colorMode))
+    }
+    func changesSinceForTerminal(old: Frame, oldProfile: TerminalRenderProfile, profile: TerminalRenderProfile): String {
         if (width != old.width || height != old.height) {
-            return toAnsi(colorMode: colorMode)
+            return toAnsiForTerminal(profile)
         }
         var out = ""
         for (y in 0..height) {
             var changed = false
             var oldRaw = Style()
             var newRaw = Style()
-            var oldProjected = projectStyle(oldRaw, oldMode)
-            var newProjected = projectStyle(newRaw, colorMode)
+            var oldProjected = projectTerminalStyle(oldRaw, oldProfile)
+            var newProjected = projectTerminalStyle(newRaw, profile)
             for (x in 0..width) {
                 let a = cellAt(x, y)
                 let b = old.cellAt(x, y)
@@ -229,16 +232,20 @@ public class Frame {
                     changed = true
                     break
                 }
-                if (colorMode == oldMode && a.style == b.style) {
+                if (a.style == b.style && oldProfile.colorMode == profile.colorMode && oldProfile.supportsBold == profile
+                    .supportsBold && oldProfile.supportsDim == profile.supportsDim && oldProfile.supportsItalic == profile
+                    .supportsItalic && oldProfile.supportsUnderline == profile.supportsUnderline &&
+                    oldProfile.supportsInverse == profile.supportsInverse && oldProfile.supportsStrikethrough == profile
+                    .supportsStrikethrough && oldProfile.noColorVideo == profile.noColorVideo) {
                     continue
                 }
                 if (a.style != newRaw) {
                     newRaw = a.style
-                    newProjected = projectStyle(newRaw, colorMode)
+                    newProjected = projectTerminalStyle(newRaw, profile)
                 }
                 if (b.style != oldRaw) {
                     oldRaw = b.style
-                    oldProjected = projectStyle(oldRaw, oldMode)
+                    oldProjected = projectTerminalStyle(oldRaw, oldProfile)
                 }
                 if (newProjected != oldProjected) {
                     changed = true
@@ -247,23 +254,23 @@ public class Frame {
             }
             if (changed) {
                 out += resetStyle() + position(y, 0)
-                out += encodedRow(y, colorMode)
+                out += encodedRowForTerminal(y, profile)
                 out += resetStyle()
             }
         }
         out
     }
-    private func encodedRow(y: Int64, colorMode: ColorMode): String {
+    private func encodedRowForTerminal(y: Int64, profile: TerminalRenderProfile): String {
         var out = ""
         var previous = Style()
         var raw = Style()
-        var projected = projectStyle(raw, colorMode)
+        var projected = projectTerminalStyle(raw, profile)
         for (x in 0..width) {
             let c = cells[index(x, y)]
             if (!c.continuation) {
                 if (c.style != raw) {
                     raw = c.style
-                    projected = projectStyle(raw, colorMode)
+                    projected = projectTerminalStyle(raw, profile)
                 }
                 if (projected != previous) {
                     out += encodeStyle(projected)
@@ -274,7 +281,7 @@ public class Frame {
         }
         out
     }
-    public func toAnsi(colorMode!: ColorMode = ColorMode.Basic16): String {
+    func toAnsiForTerminal(profile: TerminalRenderProfile): String {
         if (width == 0 || height == 0) {
             return ""
         }
@@ -283,13 +290,13 @@ public class Frame {
             out += position(y, 0)
             var previous = Style()
             var raw = Style()
-            var projected = projectStyle(raw, colorMode)
+            var projected = projectTerminalStyle(raw, profile)
             for (x in 0..width) {
                 let c = cells[index(x, y)]
                 if (!c.continuation) {
                     if (c.style != raw) {
                         raw = c.style
-                        projected = projectStyle(raw, colorMode)
+                        projected = projectTerminalStyle(raw, profile)
                     }
                     if (projected != previous) {
                         out += encodeStyle(projected)
@@ -303,5 +310,8 @@ public class Frame {
             }
         }
         out + resetStyle()
+    }
+    public func toAnsi(colorMode!: ColorMode = ColorMode.TrueColor): String {
+        toAnsiForTerminal(snapshotProfile(colorMode))
     }
 }
