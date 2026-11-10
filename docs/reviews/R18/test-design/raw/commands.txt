@@ -1,0 +1,20 @@
+# Runtime setup (no duplicate relay started):
+source /workspace/work/validation/sdk/cangjie/envsetup.sh
+cp -a /workspace/work/validation/replay-dependencies/cache/. /workspace/work/session-extension-tests/cache/
+# Root and consumer ignored cangjie-repo.toml: own cache above; registry http://127.0.0.1:18973
+cjc --version
+cjpm --version
+# Real normal old-product RED; stdout/stderr both in final-api-red.log, exit in final-api-red.exit:
+cd /workspace/work/session-extension-tests/source
+CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip tests/session_extensions/run.sh build
+# Fixture-only real-native writer check, stdout final-selftest.log, exit final-selftest.exit:
+tests/session_extensions/run.sh selftest
+# Final consumer compile-only syntax check, deliberately NEVER executed:
+# syntax-only/library = exact old src/native + fixed preflight session value declarations and seven throw-only methods;
+# syntax-only/consumer first ordinary CJPM build compiled all files and linked but executable was never run.
+cjc -p /workspace/work/session-extension-tests/source/tests/session_extensions/src --import-path=/workspace/work/session-extension-tests/syntax-only/consumer/target/release --output-type=staticlib --error-count-limit all -o /workspace/work/session-extension-tests/syntax-only/final-consumer.a
+# Test JS/shell parse and source scope:
+for file in tests/session_extensions/*.mjs; do node --check "$file"; done
+bash -n tests/session_extensions/run.sh
+git diff --cached --check
+git diff --exit-code HEAD -- src native cjpm.toml

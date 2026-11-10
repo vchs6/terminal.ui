@@ -1,0 +1,270 @@
+[31merror[0m: undeclared type name 'SessionStepResult'
+ [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:6:17:
+  [36m| [0m
+[36m6[0m [36m| [0mvar aliasStep: ?SessionStepResult = None[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionOperation'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:12:23:
+   [36m| [0m
+[36m12[0m [36m| [0mfunc operation(value: SessionOperation): String {[0m
+   [36m| [0m                      [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionStatus'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:21:20:
+   [36m| [0m
+[36m21[0m [36m| [0mfunc status(value: SessionStatus): String {[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionSupport'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:30:21:
+   [36m| [0m
+[36m30[0m [36m| [0mfunc support(value: SessionSupport): String {[0m
+   [36m| [0m                    [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionBasis'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:33:19:
+   [36m| [0m
+[36m33[0m [36m| [0mfunc basis(value: SessionBasis): String {[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionRoute'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:41:19:
+   [36m| [0m
+[36m41[0m [36m| [0mfunc route(value: SessionRoute): String {[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'TitleRestoreState'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:44:21:
+   [36m| [0m
+[36m44[0m [36m| [0mfunc restore(value: TitleRestoreState): String {[0m
+   [36m| [0m                    [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionIssue'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:54:19:
+   [36m| [0m
+[36m54[0m [36m| [0mfunc issue(value: SessionIssue): String {[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionCapability'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:75:37:
+   [36m| [0m
+[36m75[0m [36m| [0mfunc capability(key: String, value: SessionCapability): Unit {[0m
+   [36m| [0m                                    [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionResult'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:78:33:
+   [36m| [0m
+[36m78[0m [36m| [0mfunc result(key: String, value: SessionResult): Unit {[0m
+   [36m| [0m                                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionStepResult'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:87:19:
+   [36m| [0m
+[36m87[0m [36m| [0m        let step: SessionStepResult = value.steps[i][0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionCapabilities'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:92:16:
+   [36m| [0m
+[36m92[0m [36m| [0m    let value: SessionCapabilities = app.sessionCapabilities().getOrThrow()[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'SessionResult'
+   [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:100:24:
+    [36m| [0m
+[36m100[0m [36m| [0m    let entries: Array<SessionResult> = app.sessionCleanupResults()[0m
+    [36m| [0m                       [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: find multiple constructor 'None' of enum declaration
+ [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:6:37:
+  [36m| [0m
+[36m6[0m [36m| [0mvar aliasStep: ?SessionStepResult = None[0m
+  [36m| [0m                                    [31m^ [0m
+  [36m| [0m
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)border_style.cj:4:7:
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)border_style.cj:4:7:
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)border_style.cj:4:7:
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)border_style.cj:4:7:
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)border_style.cj:4:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+
+[31merror[0m: undeclared identifier 'SessionRoute'
+ [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:7:35:
+  [36m| [0m
+[36m7[0m [36m| [0m        case "TmuxPassthrough" => SessionRoute.TmuxPassthrough[0m
+  [36m| [0m                                  [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'SessionRoute'
+ [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:8:37:
+  [36m| [0m
+[36m8[0m [36m| [0m        case "ScreenPassthrough" => SessionRoute.ScreenPassthrough[0m
+  [36m| [0m                                    [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'SessionRoute'
+ [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:9:19:
+  [36m| [0m
+[36m9[0m [36m| [0m        case _ => SessionRoute.Direct[0m
+  [36m| [0m                  [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'SessionOptions'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:13:19:
+   [36m| [0m
+[36m13[0m [36m| [0m    let options = SessionOptions(route: selectedRoute,[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'sessionOptions' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:21:33:
+   [36m| [0m
+[36m21[0m [36m| [0m    let app = Application(root).sessionOptions(options)[0m
+   [36m| [0m                                [31m^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'setHostTitle' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:70:29:
+   [36m| [0m
+[36m70[0m [36m| [0m            let first = app.setHostTitle("A"); result("set.A", first)[0m
+   [36m| [0m                            [31m^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'setHostTitle' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:71:30:
+   [36m| [0m
+[36m71[0m [36m| [0m            let second = app.setHostTitle("B"); result("set.B", second)[0m
+   [36m| [0m                             [31m^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'sessionCleanupResults' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:77:51:
+   [36m| [0m
+[36m77[0m [36m| [0m            note("after.explicit.cleanup", "${app.sessionCleanupResults().size}")[0m
+   [36m| [0m                                                  [31m^^^^^^^^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'parse'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:96:20:
+   [36m| [0m
+[36m96[0m [36m| [0m    let at = Int64.parse(getVariable("CJTUI_SESSION_OFFSET") ?? "0")[0m
+   [36m| [0m                   [31m^^^^^ [0m
+   [36m| [0m
+[34mnote[0m: to use the following extension, you must import at least one of its inherited interfaces
+   [36m==>[0m (package std.convert)parsable.cj:727:1:
+[34mnote[0m: to use the following extension, you must import at least one of its inherited interfaces
+   [36m==>[0m (package std.convert)parsable.cj:793:1:
+
+[31merror[0m: 'restoreHostTitle' is not a member of class 'Application'
+   [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:100:65:
+    [36m| [0m
+[36m100[0m [36m| [0m    let value = if (scenario.startsWith("fault-restore")) { app.restoreHostTitle() }[0m
+    [36m| [0m                                                                [31m^^^^^^^^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'setHostTitle' is not a member of class 'Application'
+   [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:101:95:
+    [36m| [0m
+[36m101[0m [36m| [0m        else if (scenario.startsWith("fault-save") || scenario.startsWith("fault-set")) { app.setHostTitle("A") }[0m
+    [36m| [0m                                                                                              [31m^^^^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'copyLocalText' is not a member of class 'Application'
+   [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/live.cj:102:20:
+    [36m| [0m
+[36m102[0m [36m| [0m        else { app.copyLocalText("f") }[0m
+    [36m| [0m                   [31m^^^^^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'sessionCapabilities' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:92:42:
+   [36m| [0m
+[36m92[0m [36m| [0m    let value: SessionCapabilities = app.sessionCapabilities().getOrThrow()[0m
+   [36m| [0m                                         [31m^^^^^^^^^^^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: 'sessionCleanupResults' is not a member of class 'Application'
+   [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:100:45:
+    [36m| [0m
+[36m100[0m [36m| [0m    let entries: Array<SessionResult> = app.sessionCleanupResults()[0m
+    [36m| [0m                                            [31m^^^^^^^^^^^^^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: enum pattern is not matched
+   [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:107:21:
+    [36m| [0m
+[36m107[0m [36m| [0m            if (let Some(replacement) <- aliasStep) { original.steps[0] = replacement }[0m
+    [36m| [0m                    [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: 'copyLocalText' is not a member of class 'Application'
+   [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:109:31:
+    [36m| [0m
+[36m109[0m [36m| [0m        let replacement = app.copyLocalText("inactive")[0m
+    [36m| [0m                              [31m^^^^^^^^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: 'sessionCleanupResults' is not a member of class 'Application'
+   [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/record.cj:111:25:
+    [36m| [0m
+[36m111[0m [36m| [0m        let again = app.sessionCleanupResults()[0m
+    [36m| [0m                        [31m^^^^^^^^^^^^^^^^^^^^^ [0m
+    [36m| [0m
+
+[33mwarning[0m: unused import 'cjtui.*'
+ [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/main.cj:2:1:
+  [36m| [0m
+[36m2[0m [36m| [0mimport cjtui.*[0m
+  [36m| [0m[33m^^^^^^^^^^^^^^ unused import[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[31merror[0m: lambda capturing mutable variables needs to be called directly
+  [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/headless.cj:7:21:
+   [36m| [0m
+[36m7[0m  [36m| [0m      let root = Text({ =>[0m
+   [36m| [0m [31m_[0m[31m____________________^[0m
+[36m8[0m  [36m| [0m[31m|[0m         if (let Some(app) <- held) { result("getter", app.copyLocalText("getter")) }[0m
+   [36m| [0m[31m|[0m ...[0m
+[36m10[0m [36m| [0m[31m|[0m     }).onMount({ _ =>[0m
+   [36m| [0m[31m|[0m[31m_[0m[31m____^[0m
+   [36m| [0m
+[34mnote[0m: 'held' is mutable
+ [36m==>[0m /workspace/work/session-extension-tests/source/tests/session_extensions/src/headless.cj:8:30:
+  [36m| [0m
+[36m8[0m [36m| [0m        if (let Some(app) <- held) { result("getter", app.copyLocalText("getter")) }[0m
+  [36m| [0m                             [34m^^^^ [0m
+  [36m| [0m
+
+32 errors generated, 32 errors printed.
+1 warning generated, 1 warning printed.
+Error: failed to compile package `session_extensions`, return code is 1
+Error: cjpm build failed

@@ -47,3 +47,7 @@ root已采纳I015异步一次600ms、唯一decoder/writer、Unknown不改显隐�
 2026-11-10 df9612e：I015/F006/L006与complete-linux-integration候选已固定，repository/OpenSpec22项通过（仅元数据）。cursor_i015_preflight与linux_closeout_preflight分别Astra/high独立限定设计核，不读作者自评；实际A/收尾产品未准入。原scope audit /workspace/work/linux-final-scope-audit/report.md/mapping.json覆盖34原项，无套件/产品通过结论。TASK113 keyboard_test_preparation Sol/high仅prepare，真实puremissingAPI RED可先做，完整focus/modal/152等未具备则不关闭113/不准入114。当前唯一产品作者仍TASK009 Sol/high，首次开发rich11组GREEN不代替082–084。
 
 59bea180独立linux_closeout_preflight限定规划通过，LC-PF001快照glyphMode、002五独立原结果/文件/状态、003021WP005/原010020M1边全部verified。root机械迁移001/002/003/004/008/010/020/021/023/024/041唯一状态到complete-linux-integration/tasks；全部planned，未改AC事实/未准入未来产品。027仍theme唯一状态，追加C006完整独立测试/实现/审核/执行/验收L4；无重复M2/Session链。I015与F007限定Astra设计核无Important，实际A/完整113仍缺152/084/088等产品输入。
+
+TASK009固定原034685d已集成d8c5be0（local，082/083/084未通过不推新产品checkpoint）；082独立真实probe确认CSI nonASCII lead先出现但延迟到完整scalar才判语法，后byte资源可能抢首错。root核design5/6 ASCII边界与首个问题立即报，裁定C2已是非法CSIbyte，当时Malformed；后续UTF8验证继续、samebyte资源优先不变。按SDD fix-loop准备round1/5，独立Sol/high formalregression先实际RED，再原产品作者修，根不改产品/tests。完整Linux任务继续。
+
+TASK148独立Sol/high正式test-only4093a7ab已集成c24f796，19files1071行，正常旧9bc库实际missingAPI RED1、声明syntax仅compile0从未运行、native夹具22checks和11负控0；277未来产品配置尚未执行，不投影AC148/030通过。113准备b7bb95b集成9137972，真实puremissingAPI RED1，但focus/modal/EOF/152上游缺失，113不勾/114不准入。098 fresh独立interaction_a_test_preparation Sol/high只准备A，084/088/152仍屏障。唯一Rich产品009原034685d独立082双FAIL，R14-T082-001 Important，先独立正式回归RED，再同原产品作者round1；根不改代码/测试。
