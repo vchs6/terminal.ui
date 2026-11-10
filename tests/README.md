@@ -197,3 +197,39 @@ is used only to clean up a failing session. The fixture is never replaced by a
 fake terminal application. `LAYOUT_SESSION_BIN` can select a compatible actual
 example binary after the ordinary example build. The default `all` mode includes
 both new consumers and actual example PTY after all original R8 modes.
+
+## Application cleanup and error preservation (TASK-060 / D027)
+
+```sh
+./tests/run-slice.sh application-lifecycle
+# Or one focused case after building the fixture:
+node tests/application-lifecycle/pty.mjs tests/application-lifecycle/target/release/bin/main callback-close-failure
+```
+
+This ordinary public Cangjie application uses a test-only FFI link wrapper, not a
+product hook. The consumer's `link-option = "--wrap=cjt_close"` redirects its real
+Application close call to `__wrap_cjt_close`. The wrapper **always calls the real
+product close first**, records its actual result, then optionally returns failure.
+The C wrapper neither restores termios itself nor substitutes a terminal backend.
+Each case requires exactly one real close, real result 0, and exact before/after
+termios equality even when failure is injected after cleanup.
+
+The real PTY cases cover normal q and callback exception, each with successful and
+failed close, plus Ctrl-C and resize followed by q with successful close. Normal
+cleanup succeeds; close failure exits nonzero and explicitly reports
+`terminal restore failed`; callback failure preserves its original sentinel; a
+dual failure must explicitly report **both**. The unmodified baseline masks the
+callback exception when close also fails, so the dual-failure assertion must be
+RED. Failures propagate from the directly executed binary through util-linux
+`script --return` and the Node harness. Every selected case runs even after an
+assertion fails, preserving the four-combination evidence.
+
+Set `CJTUI_LIFECYCLE_ARTIFACTS=/absolute/new/output/directory` to choose a retained
+artifact directory (otherwise a fresh temporary directory is retained). Every case
+stores original raw output, stderr, termios snapshots, wrapper record, and result.
+A timeout is failure; forced signals are cleanup only. This support compiles only
+test-local C and links it into the external consumer. Original product source,
+FFI archives, R8 consumers, and public assertions are not modified. The runner's
+`all` includes this new mode after existing checks. The separate ordinary
+`cjpm bundle` check must still pass mandatory SDK lint without suppressions;
+source-text assertions do not replace running that packaging command.

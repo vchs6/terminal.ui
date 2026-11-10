@@ -30,6 +30,7 @@ case "${1:-all}" in
     (cd examples/layout && cjpm build)
     node tests/integration/layout-pty.mjs "${LAYOUT_SESSION_BIN:-examples/layout/target/release/bin/main}"
     ;;
+  application-lifecycle) tests/application-lifecycle/run.sh ;;
   integration)
     (cd tests/integration/fixture && cjpm build)
     node tests/integration/pty.mjs "${SLICE_SESSION_BIN:-tests/integration/fixture/target/release/bin/main}"
@@ -43,6 +44,7 @@ case "${1:-all}" in
     "$0" layout
     "$0" decoration
     "$0" layout-integration
+    "$0" application-lifecycle
     ;;
-  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|integration|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|all]" >&2; exit 2 ;;
 esac

@@ -1,0 +1,11 @@
+[package]
+cjc-version = "1.2.0"
+name = "application_lifecycle"
+version = "0.0.0"
+src-dir = "src"
+output-type = "executable"
+link-option = "--wrap=cjt_close"
+[dependencies]
+cjtui = { path = "../.." }
+[ffi.c]
+lifecycle_close = { path = "./native" }
