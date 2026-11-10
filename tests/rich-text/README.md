@@ -22,3 +22,31 @@ never a test pass. Additional decoder and runtime tests follow the same contract
 Independent evidence is kept outside this clone in `../evidence`: UTC, source,
 commands, stdout/stderr and real exit codes. Author runs are development evidence;
 independent execution and acceptance remain separate tasks.
+
+The complete matrix additionally covers:
+
+| Files | Independent expectations |
+| --- | --- |
+| `sgr.cj` | All 16 foreground/background colors, indexed/RGB endpoints, all six enables, selective disables, top-level empty resets, unset/reset distinction, atomic unsupported/malformed sequences and leftmost semantic fault |
+| `utf8.cj`, `invalid_utf8.cj` | Every two-block byte boundary plus fully bytewise feeds, raw and UTF-8 C1, non-control UTF-8 continuations resembling CSI/ST, absolute byte offsets, CRLF, isolated controls, overlong/surrogate/out-of-range/truncated UTF-8 and permanent closure |
+| `limits.cj` | Defaults and valid/invalid bounds, 63/64/65 fields for SGR and non-SGR CSI, operand/empty-field counts, fourth-digit immediate failure for any final, 4095/4096/4097 original-byte boundaries, terminator-byte accounting, same-byte resource precedence, first-error preservation and incomplete residuals |
+| `control_strings.cj`, `unsupported.cj` | OSC/DCS/SOS/PM/APC in ESC/raw-C1/UTF8-C1 forms; BEL/ST rules; bounded and overlong isolation across embedded CSI, ESC, CAN/SUB and UTF-8 continuation; unknown operations never execute; malformed framing, cancellation and finish |
+| `aliases.cj` | Defensive batch/result arrays, no retained mutable pending CSI/UTF8 chunks, subsequent feeds cannot mutate an old batch |
+| `component.cj`, `bindings.cj` | Exact Cell styles; high-level explicit attributes override span fields while Frame base yields to span; shared grapheme/layout path; typed getter/constant constructor and setter overloads; String/RichText replacements detach subscriptions; equal normalized values avoid frames; style-only changes paint without measure |
+
+For successful streams the accumulator compares concatenated normalized spans and
+ordered diagnostic `(kind, offset)` pairs against author literals. It never compares
+one decoder run to another as an expected-value oracle. Each small stream exercises
+every cut, empty chunks and bytewise feeds. Long boundary streams use bytewise feeds
+and selected cuts around the limit. Invalid UTF-8 tests assert the same error code
+and closed state only: successful prefix batches can differ by split, as specified.
+
+`InputTooLarge` requires an unrepresentable cumulative Int64 input size and cannot
+be exercised economically through this public consumer. No test hook or fabricated
+offset is added. Bounded-memory complexity also requires independent source review;
+functional isolation tests are not claimed as a direct memory-bound proof.
+
+A separate ignored, non-repository declaration-only scratch package was compiled
+solely to detect consumer language errors before new APIs exist. Its callable bodies
+throw, it is never run, and its build is not evidence that the product works. The
+formal consumer remains dependent on the real `cjtui` package, with no scratch path.

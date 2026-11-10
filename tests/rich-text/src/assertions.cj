@@ -24,3 +24,9 @@ func cell(frame: Frame, x: Int64, y: Int64, glyph: String, width: Int64,
     check(actual.grapheme == glyph && actual.width == width && actual.continuation == continuation &&
         actual.style == style && !actual.isTransparent, name)
 }
+
+func uiError(expected: String, action: () -> Unit, name: String): Unit {
+    let actual = ["no exception"]
+    try { action() } catch (error: UIException) { actual[0] = error.code }
+    check(actual[0] == expected, "${name}: ${actual[0]}, expected ${expected}")
+}
