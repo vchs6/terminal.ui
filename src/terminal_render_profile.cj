@@ -9,9 +9,10 @@ struct TerminalRenderProfile {
     let supportsInverse: Bool
     let supportsStrikethrough: Bool
     let noColorVideo: Int64
+    let glyphPolicy: GlyphRenderPolicy
     init(colorMode!: ColorMode, supportsBold!: Bool = true, supportsDim!: Bool = true, supportsItalic!: Bool = true,
         supportsUnderline!: Bool = true, supportsInverse!: Bool = true, supportsStrikethrough!: Bool = true,
-        noColorVideo!: Int64 = -1) {
+        noColorVideo!: Int64 = -1, glyphPolicy!: GlyphRenderPolicy = GlyphRenderPolicy.unicode()) {
         this.colorMode = colorMode
         this.supportsBold = supportsBold
         this.supportsDim = supportsDim
@@ -20,6 +21,7 @@ struct TerminalRenderProfile {
         this.supportsInverse = supportsInverse
         this.supportsStrikethrough = supportsStrikethrough
         this.noColorVideo = noColorVideo
+        this.glyphPolicy = glyphPolicy
     }
 }
 

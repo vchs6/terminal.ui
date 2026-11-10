@@ -304,68 +304,20 @@ public class Frame {
         out
     }
     func changesSinceForTerminal(old: Frame, oldProfile: TerminalRenderProfile, profile: TerminalRenderProfile): String {
+        if (width == 0 || height == 0) {
+            return ""
+        }
         if (width != old.width || height != old.height) {
             return toAnsiForTerminal(profile)
         }
         var out = ""
         for (y in 0..height) {
-            var changed = false
-            var oldRaw = Style()
-            var newRaw = Style()
-            var oldProjected = projectTerminalStyle(oldRaw, oldProfile)
-            var newProjected = projectTerminalStyle(newRaw, profile)
-            for (x in 0..width) {
-                let a = cellAt(x, y)
-                let b = old.cellAt(x, y)
-                if (a.grapheme != b.grapheme || a.width != b.width || a.continuation != b.continuation) {
-                    changed = true
-                    break
-                }
-                if (a.style == b.style && oldProfile.colorMode == profile.colorMode && oldProfile.supportsBold == profile
-                    .supportsBold && oldProfile.supportsDim == profile.supportsDim && oldProfile.supportsItalic == profile
-                    .supportsItalic && oldProfile.supportsUnderline == profile.supportsUnderline &&
-                    oldProfile.supportsInverse == profile.supportsInverse && oldProfile.supportsStrikethrough == profile
-                    .supportsStrikethrough && oldProfile.noColorVideo == profile.noColorVideo) {
-                    continue
-                }
-                if (a.style != newRaw) {
-                    newRaw = a.style
-                    newProjected = projectTerminalStyle(newRaw, profile)
-                }
-                if (b.style != oldRaw) {
-                    oldRaw = b.style
-                    oldProjected = projectTerminalStyle(oldRaw, oldProfile)
-                }
-                if (newProjected != oldProjected) {
-                    changed = true
-                    break
-                }
-            }
-            if (changed) {
+            let row = projectTerminalRow(this, y, profile)
+            let oldRow = projectTerminalRow(old, y, oldProfile)
+            if (!terminalRowsEqual(row, oldRow)) {
                 out += resetStyle() + position(y, 0)
-                out += encodedRowForTerminal(y, profile)
+                out += encodeTerminalRow(row, false)
                 out += resetStyle()
-            }
-        }
-        out
-    }
-    private func encodedRowForTerminal(y: Int64, profile: TerminalRenderProfile): String {
-        var out = ""
-        var previous = Style()
-        var raw = Style()
-        var projected = projectTerminalStyle(raw, profile)
-        for (x in 0..width) {
-            let c = cells[index(x, y)]
-            if (!c.continuation) {
-                if (c.style != raw) {
-                    raw = c.style
-                    projected = projectTerminalStyle(raw, profile)
-                }
-                if (projected != previous) {
-                    out += encodeStyle(projected)
-                    previous = projected
-                }
-                out += c.grapheme
             }
         }
         out
@@ -377,26 +329,7 @@ public class Frame {
         var out = resetStyle()
         for (y in 0..height) {
             out += position(y, 0)
-            var previous = Style()
-            var raw = Style()
-            var projected = projectTerminalStyle(raw, profile)
-            for (x in 0..width) {
-                let c = cells[index(x, y)]
-                if (!c.continuation) {
-                    if (c.style != raw) {
-                        raw = c.style
-                        projected = projectTerminalStyle(raw, profile)
-                    }
-                    if (projected != previous) {
-                        out += encodeStyle(projected)
-                        previous = projected
-                    }
-                    out += c.grapheme
-                }
-            }
-            if (previous != Style()) {
-                out += resetStyle()
-            }
+            out += encodeTerminalRow(projectTerminalRow(this, y, profile), true)
         }
         out + resetStyle()
     }

@@ -27,6 +27,8 @@ cjpm run
 
 颜色等级包括 `Basic8`、`Basic16`、`Indexed256`、`TrueColor` 和 `Monochrome`。降级使用固定名义调色板的 RGB 平方距离，距离相同时选择较小索引；实际终端可能使用自定义调色板。`Frame.toAnsi()` 默认导出完整真彩色及六种属性的离线快照，也可通过 `colorMode` 指定颜色预览；网格保留原始颜色和样式。
 
+实际终端输出自动采用保守的 Unicode 呈现，显式选择颜色等级时也适用：按现有默认窄模糊宽度规则，逐标量显示宽度之和等于字符簇已存列数时保留原文，否则将整个簇替为相同列数、相同样式的 ASCII `?`。例如 `👩‍💻`、`❤️` 在当前宽度数据下呈现为 `??`，`界`、`é`、单个 `👩` 和 `🇨🇳` 保留。应用无需判断终端；业务文本、`Frame.cellAt`、纯文本及 ANSI 文件快照仍保留原始 Unicode。此规则针对已在 XTerm 398 和 XFCE4 Terminal 1.1.4 / VTE 0.80.1 观察到的字符簇推进差异，不检测字体，也不保证任意宿主、字体或 Unicode 版本的实际推进；库内两种宽度计算一致仅是保留条件。
+
 文本属性包括 `bold`、`dim`、`italic`、`underline`、`inverse` 和 `strikethrough`。组件属性链如 `.italic()` 启用属性，`.italic(false)` 显式关闭继承值；`Style` 对应参数默认为 false。文本、显式背景和边框继承这些属性，阴影使用传入的完整 Style。
 
 `examples/colors` 展示命名色、索引色、RGB 和文本属性；在终端中按 `c` 循环三种 RGB 样例，按 `t` 切换属性，按 `q` 退出。

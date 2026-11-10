@@ -115,5 +115,6 @@ func terminalRenderProfile(capabilities: TerminalCapabilities, mode: ColorMode):
     TerminalRenderProfile(colorMode: mode, supportsBold: capabilities.supportsBold,
         supportsDim: capabilities.supportsDim, supportsItalic: capabilities.supportsItalic,
         supportsUnderline: capabilities.supportsUnderline, supportsInverse: capabilities.supportsInverse,
-        supportsStrikethrough: capabilities.supportsStrikethrough, noColorVideo: capabilities.noColorVideo)
+        supportsStrikethrough: capabilities.supportsStrikethrough, noColorVideo: capabilities.noColorVideo,
+        glyphPolicy: GlyphRenderPolicy.conservativeUnicode())
 }
