@@ -255,6 +255,10 @@ R017：SDK Exception无可用suppressed/cause附加API，不能只把额外清�
 
 R018（原约束澄清，不新增功能范围）：UI owner须同时识别线程生命期和session生命期；允许复用的数值Thread.id不能替代线程生命期身份，ThreadLocal生成的唯一owner标识或等效不复用Thread对象身份可行。普通事件/post/lifecycle回调中snapshot/dispatch/dispose的同session重入报LifecycleReentry，typed getter仍ReentrantEvaluation，异session先WrongUIContext；batch按原约定允许嵌套。cleanup可post指仍活动session的子树卸载，整个session结束后post按3.2返回false，无不可执行的“下一turn”。R009要求节点保留Content/Style/Layout等失效分类，Binding类别不能替代常量setter/实际属性结果更新的节点失效记录；M1可全量生成但不能丢掉这些元数据。R011空闲只查尺寸/队列/渲染profile等常数级信号，不扫描所有bindings、不复制Frame、不运行全帧diff；外部snapshot仍返回独立Frame，内部设备入口应跳过未变化目标的重算/复制/比较。此不要求提前实现M2局部布局绘制，也不为验证增加私有hook。
 
+R019（独立074真实失败后的Linux尺寸契约补全）：Application每轮宽/高必须来自同一次成功TIOCGWINSZ快照，不能分别采样拼成不存在的pair。新增内部C ABI`int64_t cjt_size_snapshot(void)`：一次成功ioctl取得winsize，返回`(uint64_t(cols)<<32)|uint64_t(rows)`转Int64，错误返回-1；允许EINTR重试但成功的两个字段必须同一结构体，合法0..65535输入不溢出。根包私有`readTerminalSize(): (Int64,Int64)`一次调用并解码，错误给(-1,-1)，App保留原terminal size unavailable错误行为；旧C符号cjt_size(axis)因既有native测试调用保留为该同一snapshot的薄解码shim，不留第二套ioctl规则，生产App不再分两次调用。
+
+真实异步resize中，基于曾真实存在的完整旧尺寸而生成的在途帧可能在新尺寸设置后才写完，允许随后稳定更新；禁止把两次观测混成从未存在过的pair。测试输入如需单次尺寸跳变应一次TIOCSWINSZ同时设两字段，不能把GNU stty rows/cols两次ioctl冒充原子设置。原测试从offset起全面禁止旧宽文本的oracle无效，改为等待完整最终settled目标网格并检查该帧裁剪/最终尺寸/正常退出恢复；另独立受控单原子resize跨查询回归必须能检出旧混pair，实现修复与fixture修订分别验证，不能仅放宽旧断言掩盖产品缺陷。普通source、PTY与native恢复测试不弱化；原始失败及隔离A/B/inflight证据完整保留。
+
 ### 编译实证来源
 
 主代理冻结前读取`/workspace/work/linux-source-audit/{report.md,supplement/report.md,names/report.md}`和`/workspace/work/linux-build-recon/report.md`。这些是开发证据，不是正式产品通过；随本轮归档选取源码/raw/hash，无SDK/cache/二进制混入产品。独立preflight核合同与任务，正式测试取得缺API RED，然后产品正常CJPM编译验证全部精确API。TOML证据供后续主题使用，本变更不增TOML依赖。

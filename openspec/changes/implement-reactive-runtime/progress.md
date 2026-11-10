@@ -39,3 +39,11 @@ Ruling：保留末次stats累计但dispose当前存量归0，明确用于资源�
 076独立dynamic_test_author已准备32组手工golden/公共API草稿，静态语法/旧库build0仅环境证据，无A+B新基线故还未missingC RED/正式冻结；恢复时直接唤回该角色，不重复另派。后续richtext合同独立ready，081测试正在准备，009产品仍等072–075及共享文件屏障；不同时改同一Component/Layout权威。
 
 072发现SDK Exception不能附加suppressed/cause，旧清理额外错误仅stderr不足，主代理R017引入UICleanupException公开保留primary原对象/有序附加列表及数组防御复制。主代理先下达编码导致作者提前写入未编译R017，后又误指示保留；读TDD实际铁律后纠正为仅删除该新类型/聚合改动、恢复先前core已通过临时路径，不保留参考副本。作者已确认删除，相关中断验证exit130不计通过；其他A+B代码/测试/证据保留。此真实时序不反写成先RED。071作者独立补R017测试/旧库真实缺API RED，原preflight限定复核；重新准入后从测试/合同重写。后续R017选择所有双失败均公开保留primary对象，D027原消息组合为前缀、计数追加末尾，不保留旧丢对象实现。
+
+R017扩大了071的公开异常测试交付，原R001–016冻结交付保留，071当前临时重开等待独立新补充，不把前次完成自动外推到新接口。只新增相关RED/类型与聚合断言，不重跑无关旧套件。
+
+主代理实际读取receiving-code-review、SDD fix-loop后按原要求处理：首轮4267/f07独立spec/quality FAIL，F001–006均Important，独立公共/真实PTY反例先固定为d958，源码线程身份/节点分类/idle成本按证据核；修复原e1→d46→0aa投影28a8af9→f11f82c→19b620f，分类/线程生命期等澄清R018不缩窄。0aa开发和独立CPU样本均固定512×256/2048getter/默认heap/约2s；f07基线1.30CPU秒，独立candidate0.01CPU秒，单机单次/10ms tick，不能外推绝对零CPU或跨宿主性能。原1024²OOM/探索样本不是CPU有效样本。
+
+Task072 fix round1/5：F001–006已独立关闭；相邻owner错误出口F007仍实质且下游依赖，按原R007错误清理处理，不降Minor或拖到C。独立fc690c三case normalbuild0/directRED1，修复原01efa投影c3d743d；Task072 fix round2/5最终spec/quality PASS，无未决Critical/Important，原review/r017/fail证据保留。071原至fc690全部正式测试已固定；076 32组也已独立新A+B build0/真实missingC RED1，原3ee1a9b等待集成，不重发已完成测试。
+
+074独立runtime_execution指定Sol/medium在c3源完成core255 PASS、宏正向、15negative有效复用审计、12PTY、六组旧Frame/布局回归、正常bundle/干净root-core-macro-reactive消费、XTerm/VTE两个实际宿主PNG/input/resize/恢复及CPU，唯旧application-lifecycle resize-success原样失败，总074 FAIL，075不得提前开始。独立resize_root_cause按systematic-debugging隔离确认双缺陷：产品两query能混pair；GNU stty两TIOCSWINSZ会真的产生中间24×3；两种raw与原306B完全相同，不能凭旧日志唯一归因；完整旧帧inflight也合法。R019冻结内部原子尺寸快照与正确settled oracle；先独立测试/真实RED，后产品作者修，再限定审核/受影响执行，不重跑无关已有效证据，不修改旧失败为通过。
