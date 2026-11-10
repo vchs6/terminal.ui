@@ -14,6 +14,16 @@ func ansiColor(c: Color): AnsiColor {
         case Color.Magenta => AnsiColor.Magenta
         case Color.Cyan => AnsiColor.Cyan
         case Color.White => AnsiColor.White
+        case Color.BrightBlack => AnsiColor.BrightBlack
+        case Color.BrightRed => AnsiColor.BrightRed
+        case Color.BrightGreen => AnsiColor.BrightGreen
+        case Color.BrightYellow => AnsiColor.BrightYellow
+        case Color.BrightBlue => AnsiColor.BrightBlue
+        case Color.BrightMagenta => AnsiColor.BrightMagenta
+        case Color.BrightCyan => AnsiColor.BrightCyan
+        case Color.BrightWhite => AnsiColor.BrightWhite
+        case Color.Indexed(i) => AnsiColor.IndexedColor(i)
+        case Color.Rgb(r, g, b) => AnsiColor.TrueColor(r, g, b)
     }
 }
 
@@ -35,6 +45,21 @@ func encodeStyle(s: Style): String {
     }
     if (s.bold) {
         out += AnsiStyles.set(AnsiStyle.BOLD)
+    }
+    if (s.dim) {
+        out += AnsiStyles.set(AnsiStyle.DIM)
+    }
+    if (s.italic) {
+        out += AnsiStyles.set(AnsiStyle.ITALIC)
+    }
+    if (s.underline) {
+        out += AnsiStyles.set(AnsiStyle.UNDERLINE)
+    }
+    if (s.inverse) {
+        out += AnsiStyles.set(AnsiStyle.REVERSE)
+    }
+    if (s.strikethrough) {
+        out += AnsiStyles.set(AnsiStyle.STRIKETHROUGH)
     }
     out
 }

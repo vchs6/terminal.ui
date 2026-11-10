@@ -4,8 +4,14 @@ public class Application {
     private let root: Component
     private var handler: (KeyEvent) -> Unit = {_ =>}
     private var running = false
-    public init(root: Component) {
+    private var mode: ColorMode
+    public init(root: Component, colorMode!: ColorMode = ColorMode.Basic16) {
         this.root = root
+        this.mode = colorMode
+    }
+    public func colorMode(value: ColorMode): Application {
+        mode = value
+        this
     }
     public func onKey(handler: (KeyEvent) -> Unit): Application {
         this.handler = handler
@@ -24,6 +30,7 @@ public class Application {
         try {
             let decoder = InputDecoder()
             var baseline: ?Frame = None
+            var baselineMode = mode
             var previousWidth: Int64 = -1
             var previousHeight: Int64 = -1
             while (running) {
@@ -38,13 +45,14 @@ public class Application {
                     baseline = None
                 }
                 match (baseline) {
-                    case None => output = frame.toAnsi()
-                    case Some(old) => output = frame.changesSince(old)
+                    case None => output = frame.toAnsi(colorMode: mode)
+                    case Some(old) => output = frame.changesSince(old, baselineMode, mode)
                 }
                 if (!output.isEmpty()) {
                     writeScreen(output)
                 }
                 baseline = frame
+                baselineMode = mode
                 previousWidth = width
                 previousHeight = height
                 let value = readByte(100)

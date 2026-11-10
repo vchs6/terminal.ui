@@ -211,40 +211,70 @@ public class Frame {
         }
         out
     }
-    func changesSince(old: Frame): String {
+    func changesSince(old: Frame, oldMode: ColorMode, colorMode: ColorMode): String {
         if (width != old.width || height != old.height) {
-            return toAnsi()
+            return toAnsi(colorMode: colorMode)
         }
         var out = ""
         for (y in 0..height) {
             var changed = false
+            var oldRaw = Style()
+            var newRaw = Style()
+            var oldProjected = projectStyle(oldRaw, oldMode)
+            var newProjected = projectStyle(newRaw, colorMode)
             for (x in 0..width) {
-                let a = cellAt(x, y);
+                let a = cellAt(x, y)
                 let b = old.cellAt(x, y)
-                if (a.grapheme != b.grapheme || a.width != b.width || a.continuation != b.continuation || a.style != b
-                    .style) {
+                if (a.grapheme != b.grapheme || a.width != b.width || a.continuation != b.continuation) {
                     changed = true
+                    break
+                }
+                if (colorMode == oldMode && a.style == b.style) {
+                    continue
+                }
+                if (a.style != newRaw) {
+                    newRaw = a.style
+                    newProjected = projectStyle(newRaw, colorMode)
+                }
+                if (b.style != oldRaw) {
+                    oldRaw = b.style
+                    oldProjected = projectStyle(oldRaw, oldMode)
+                }
+                if (newProjected != oldProjected) {
+                    changed = true
+                    break
                 }
             }
             if (changed) {
                 out += resetStyle() + position(y, 0)
-                var previous = Style()
-                for (x in 0..width) {
-                    let c = cellAt(x, y)
-                    if (!c.continuation) {
-                        if (c.style != previous) {
-                            out += encodeStyle(c.style)
-                            previous = c.style
-                        }
-                        out += c.grapheme
-                    }
-                }
+                out += encodedRow(y, colorMode)
                 out += resetStyle()
             }
         }
         out
     }
-    public func toAnsi(): String {
+    private func encodedRow(y: Int64, colorMode: ColorMode): String {
+        var out = ""
+        var previous = Style()
+        var raw = Style()
+        var projected = projectStyle(raw, colorMode)
+        for (x in 0..width) {
+            let c = cells[index(x, y)]
+            if (!c.continuation) {
+                if (c.style != raw) {
+                    raw = c.style
+                    projected = projectStyle(raw, colorMode)
+                }
+                if (projected != previous) {
+                    out += encodeStyle(projected)
+                    previous = projected
+                }
+                out += c.grapheme
+            }
+        }
+        out
+    }
+    public func toAnsi(colorMode!: ColorMode = ColorMode.Basic16): String {
         if (width == 0 || height == 0) {
             return ""
         }
@@ -252,12 +282,18 @@ public class Frame {
         for (y in 0..height) {
             out += position(y, 0)
             var previous = Style()
+            var raw = Style()
+            var projected = projectStyle(raw, colorMode)
             for (x in 0..width) {
                 let c = cells[index(x, y)]
                 if (!c.continuation) {
-                    if (c.style != previous) {
-                        out += encodeStyle(c.style)
-                        previous = c.style
+                    if (c.style != raw) {
+                        raw = c.style
+                        projected = projectStyle(raw, colorMode)
+                    }
+                    if (projected != previous) {
+                        out += encodeStyle(projected)
+                        previous = projected
                     }
                     out += c.grapheme
                 }

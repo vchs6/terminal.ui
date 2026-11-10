@@ -67,7 +67,9 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
     clipR: Int64, clipB: Int64, inherited: Style): Unit {
     let c = n.component
     let style = Style(foreground: c.fg ?? inherited.foreground, background: c.bg ?? inherited.background,
-        bold: c.isBold ?? inherited.bold)
+        bold: c.isBold ?? inherited.bold, dim: c.isDim ?? inherited.dim, italic: c.isItalic ?? inherited.italic,
+        underline: c.isUnderline ?? inherited.underline, inverse: c.isInverse ?? inherited.inverse,
+        strikethrough: c.isStrikethrough ?? inherited.strikethrough)
     let right = lesser(clipR, sat(x, w));
     let bottom = lesser(clipB, sat(y, h))
     let rect = Rect(x, y, w, h)
@@ -77,7 +79,9 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
     if (c.bg != Option<Color>.None) {
         frame.fillClipped(rect, style, clipL, clipT, clipR, clipB)
     }
-    let borderStyle = Style(foreground: c.borderFg ?? style.foreground, background: style.background, bold: style.bold)
+    let borderStyle = Style(foreground: c.borderFg ?? style.foreground, background: style.background, bold: style.bold,
+        dim: style.dim, italic: style.italic, underline: style.underline, inverse: style.inverse,
+        strikethrough: style.strikethrough)
     frame.borderClipped(rect, c.borderStyle, borderStyle, clipL, clipT, clipR, clipB)
     let inset = sat(c.pad, if (c.borderStyle == BorderStyle.None) {
         0
