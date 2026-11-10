@@ -1,0 +1,15 @@
+PASS negative old oracle misrejects real100x12
+PASS negative old oracle misrejects legalOldInflight100x40
+PASS actual R019 gated old/inflight: old oracle misrejects, fixed oracle accepts complete final grid
+PASS coherent old/inflight followed by complete target accepted
+PASS split-byte old/inflight and target accepted
+PASS rejects bad row width
+PASS rejects third width
+PASS rejects third pair100x12 after atomic two-state resize
+PASS rejects oversized target height
+PASS rejects unsettled old only
+PASS rejects unsettled incomplete target
+PASS rejects unsettled target followed by old
+PASS late wrong-size bytes still rejected after target completion
+PASS exact target rejects incorrect style
+PASS colors resize oracle: old false rejections reproduced; finite pairs, complete settled grid and styles enforced

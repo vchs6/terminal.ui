@@ -1,0 +1,47 @@
+{
+  "status": "PASS source/semantic reuse proof",
+  "old_sha256": "6f98c3ff7d1afdd7fe95abbafebff25aba36c118737caf9321b911b7f7ebd9ae",
+  "new_sha256": "93ca78942310ee6dd8dbd40de50f165cd475f90013b1f6a262ac71620d850116",
+  "only_change": "Two identical pure immutable Style() value constructions hoisted into one local defaultStyle; no changed arguments, state, equality, control flow or bytes",
+  "unchanged_runtime_native_files": 76,
+  "style_constructor_source_sha256": "4625095afe74a62b42d37195a50b1ff3ddb0fe1d8dbf785fe01cf6223b27a847",
+  "reused": [
+    {
+      "name": "04-colors",
+      "command": "bash tests/run-slice.sh colors",
+      "origin": "/workspace/work/glyph-advance-implementation/raw/04-colors",
+      "exit": 0
+    },
+    {
+      "name": "05-rich-text",
+      "command": "bash tests/rich-text/run.sh",
+      "origin": "/workspace/work/glyph-advance-implementation/raw/05-rich-text",
+      "exit": 0
+    },
+    {
+      "name": "06-runtime-core",
+      "command": "bash tests/runtime/run.sh core",
+      "origin": "/workspace/work/glyph-advance-implementation/raw/06-runtime-core",
+      "exit": 0
+    },
+    {
+      "name": "07-runtime-session",
+      "command": "bash tests/runtime/run.sh session",
+      "origin": "/workspace/work/glyph-advance-implementation/raw/07-runtime-session",
+      "exit": 0
+    },
+    {
+      "name": "09-capabilities",
+      "command": "bash tests/run-slice.sh capabilities",
+      "origin": "/workspace/work/glyph-advance-implementation/raw/09-capabilities",
+      "exit": 0
+    },
+    {
+      "name": "09b-resize-coherence",
+      "command": "bash tests/resize-coherence/run.sh",
+      "origin": "/workspace/work/glyph-advance-implementation/raw/09b-resize-coherence",
+      "exit": 0
+    }
+  ],
+  "limits": "Pre-lint execution semantically reused; explicitly not claimed as exact 199 execution. Actual new glyph suite, package, device GUIs and corrected colors remain fresh."
+}

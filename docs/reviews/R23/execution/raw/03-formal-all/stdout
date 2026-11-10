@@ -1,0 +1,540 @@
+cjpm build success
+PASS: canonical width and grapheme A
+PASS: public Frame retains canonical A
+PASS: offline Unicode bytes A
+PASS: canonical width and grapheme 界
+PASS: public Frame retains canonical 界
+PASS: offline Unicode bytes 界
+PASS: canonical width and grapheme é
+PASS: public Frame retains canonical é
+PASS: offline Unicode bytes é
+PASS: canonical width and grapheme 👩
+PASS: public Frame retains canonical 👩
+PASS: offline Unicode bytes 👩
+PASS: canonical width and grapheme 💻
+PASS: public Frame retains canonical 💻
+PASS: offline Unicode bytes 💻
+PASS: canonical width and grapheme 🇨🇳
+PASS: public Frame retains canonical 🇨🇳
+PASS: offline Unicode bytes 🇨🇳
+PASS: canonical width and grapheme 👩‍💻
+PASS: public Frame retains canonical 👩‍💻
+PASS: offline Unicode bytes 👩‍💻
+PASS: canonical width and grapheme ❤️
+PASS: public Frame retains canonical ❤️
+PASS: offline Unicode bytes ❤️
+PASS: canonical width and grapheme ☀️
+PASS: public Frame retains canonical ☀️
+PASS: offline Unicode bytes ☀️
+PASS: canonical width and grapheme 1️⃣
+PASS: public Frame retains canonical 1️⃣
+PASS: offline Unicode bytes 1️⃣
+PASS: rich headless logical Unicode
+PASS: rich reactive style and canonical columns
+PASS: writeAnsi exact offline bytes
+PASS: writePlainText exact logical bytes
+[?25l[0J7[;r8
+[1F7[9999E8--------------------------------------------------------------------------------------------------
+TP: cjtui, time elapsed: 4840051 ns, RESULT:
+    TCS: TestCase_advance_device_factory_and_color_override, time elapsed: 998462 ns, RESULT:
+    [ PASSED ] CASE: advance_device_factory_and_color_override (210125 ns)
+    TCS: TestCase_advance_existing_device_path_behavior, time elapsed: 497505 ns, RESULT:
+    [ PASSED ] CASE: advance_existing_device_path_behavior (272469 ns)
+    TCS: TestCase_advance_full_and_logical_frame_contract, time elapsed: 497996 ns, RESULT:
+    [ PASSED ] CASE: advance_full_and_logical_frame_contract (231117 ns)
+    TCS: TestCase_advance_diff_compares_canonical_projected_columns, time elapsed: 452689 ns, RESULT:
+    [ PASSED ] CASE: advance_diff_compares_canonical_projected_columns (202414 ns)
+    TCS: TestCase_advance_style_groups_and_color_equivalence, time elapsed: 386019 ns, RESULT:
+    [ PASSED ] CASE: advance_style_groups_and_color_equivalence (167460 ns)
+    TCS: TestCase_advance_policy_switch_uses_both_baselines, time elapsed: 419810 ns, RESULT:
+    [ PASSED ] CASE: advance_policy_switch_uses_both_baselines (173099 ns)
+    TCS: TestCase_advance_ambiguous_and_zero_area_budget, time elapsed: 409624 ns, RESULT:
+    [ PASSED ] CASE: advance_ambiguous_and_zero_area_budget (174392 ns)
+    TCS: TestCase_advance_literal_projection_contract, time elapsed: 290856 ns, RESULT:
+    [ PASSED ] CASE: advance_literal_projection_contract (65048 ns)
+    TCS: TestCase_advance_zero_negative_and_bounded_sum, time elapsed: 278628 ns, RESULT:
+    [ PASSED ] CASE: advance_zero_negative_and_bounded_sum (58558 ns)
+Summary: TOTAL: 9
+    PASSED: 9, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+Project tests finished, time elapsed: 11953757 ns, RESULT:
+TP: cjtui.*, time elapsed: 11889816 ns, RESULT:
+    PASSED:
+    TP: cjtui, time elapsed: 4840051 ns
+Summary: TOTAL: 9
+    PASSED: 9, SKIPPED: 0, ERROR: 0
+    FAILED: 0
+--------------------------------------------------------------------------------------------------
+[0J7[;r8[?25hcjpm test success
+{
+  "status": "fixture_controls_pass",
+  "complete_dsr": 116,
+  "original_failures": 16,
+  "controls": [
+    {
+      "host": "xterm-default",
+      "name": "replace_zwj_cjk-0-green",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": true,
+      "actual_dsr": [
+        3,
+        100
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": true
+    },
+    {
+      "host": "xterm-default",
+      "name": "replace_zwj_cjk-0-red",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": true,
+      "actual_dsr": [
+        3,
+        100
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": true
+    },
+    {
+      "host": "xterm-default",
+      "name": "remove_zwj_only-0-green",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xterm-default",
+      "name": "remove_zwj_only-0-red",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xterm-default",
+      "name": "padding_minus2-0-green",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": true,
+      "actual_dsr": [
+        3,
+        100
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": true
+    },
+    {
+      "host": "xterm-default",
+      "name": "padding_minus2-0-red",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": true,
+      "actual_dsr": [
+        3,
+        100
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": true
+    },
+    {
+      "host": "xfce-vte",
+      "name": "replace_zwj_cjk-0-green",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": true,
+      "actual_dsr": [
+        3,
+        100
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": true
+    },
+    {
+      "host": "xfce-vte",
+      "name": "replace_zwj_cjk-0-red",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": true,
+      "actual_dsr": [
+        3,
+        100
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": true
+    },
+    {
+      "host": "xfce-vte",
+      "name": "remove_zwj_only-0-green",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "remove_zwj_only-0-red",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "padding_minus2-0-green",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": true,
+      "actual_dsr": [
+        3,
+        100
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": true
+    },
+    {
+      "host": "xfce-vte",
+      "name": "padding_minus2-0-red",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": true,
+      "actual_dsr": [
+        3,
+        100
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": true
+    }
+  ],
+  "observations": [
+    {
+      "host": "xterm-default",
+      "name": "original-0-green",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xterm-default",
+      "name": "original-0-red",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xterm-default",
+      "name": "original-1-green",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xterm-default",
+      "name": "original-1-red",
+      "row4_box": [
+        2,
+        59,
+        1002,
+        78
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xterm-default",
+      "name": "vs16_suffix",
+      "actual_dsr": [
+        15,
+        3
+      ],
+      "expected_dsr": [
+        15,
+        4
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xterm-default",
+      "name": "original083-green",
+      "row4_pixels_unchanged": false,
+      "accepted": false
+    },
+    {
+      "host": "xterm-default",
+      "name": "original083-red",
+      "row4_pixels_unchanged": false,
+      "accepted": false
+    },
+    {
+      "host": "xterm-default",
+      "name": "original083-resized-green",
+      "row4_pixels_unchanged": false,
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "original-0-green",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "original-0-red",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "original-1-green",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "original-1-red",
+      "row4_box": [
+        1,
+        85,
+        1001,
+        104
+      ],
+      "row4_pixels_unchanged": false,
+      "actual_dsr": [
+        4,
+        3
+      ],
+      "expected_dsr": [
+        3,
+        100
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "vs16_suffix",
+      "actual_dsr": [
+        15,
+        3
+      ],
+      "expected_dsr": [
+        15,
+        4
+      ],
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "original083-green",
+      "row4_pixels_unchanged": false,
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "original083-red",
+      "row4_pixels_unchanged": false,
+      "accepted": false
+    },
+    {
+      "host": "xfce-vte",
+      "name": "original083-resized-green",
+      "row4_pixels_unchanged": false,
+      "accepted": false
+    }
+  ]
+}

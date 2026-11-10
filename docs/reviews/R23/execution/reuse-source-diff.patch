@@ -1,0 +1,21 @@
+--- pre-lint/src/terminal_projected_row.cj
++++ 199/src/terminal_projected_row.cj
+@@ -40,7 +40,8 @@
+ 
+ func encodeTerminalRow(row: Array<Cell>, resetAtEnd: Bool): String {
+     var out = ""
+-    var previous = Style()
++    let defaultStyle = Style()
++    var previous = defaultStyle
+     for (cell in row) {
+         if (!cell.continuation) {
+             if (cell.style != previous) {
+@@ -50,7 +51,7 @@
+             out += cell.grapheme
+         }
+     }
+-    if (resetAtEnd && previous != Style()) {
++    if (resetAtEnd && previous != defaultStyle) {
+         out += resetStyle()
+     }
+     out

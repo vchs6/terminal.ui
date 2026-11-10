@@ -1,0 +1,34 @@
+{
+  "schema": "glyph-advance-real-capture-v1",
+  "profile": "xfce-vte",
+  "host": "xfce-terminal-vte",
+  "host_version": "xfce4-terminal 1.1.4 (Xfce 4.20)\n\nCopyright (c) 2003-2024\n\tThe Xfce development team. All rights reserved.\n\nWritten by Benedikt Meurer <benny@xfce.org>,\nNick Schermer <nick@xfce.org>,\nIgor Zakharov <f2404@yandex.ru>,\nSergios - Anestis Kefalidis <sergioskefalidis@gmail.com>.\n\nPlease report bugs to <https://gitlab.xfce.org/apps/xfce4-terminal/>.\n",
+  "source_commit": "199f00076c1a79cfa6d0be92e7be09366e1a06af",
+  "fixture_commit": "199f00076c1a79cfa6d0be92e7be09366e1a06af",
+  "fixture_source_sha256": "dff0d2bca92115d1d2c2f1d9c8412e2cb94d95844ec33c5af6037144437fb8b3",
+  "fixture_binary_sha256": "bb2df4d6948c0242b8924f6e4cfcb5608d6adef73985d057abb22db3d032210c",
+  "harness_sha256": "142f8d942a32a03d96f26ffb4f379d4e33f6ad093e29278269767c015b17c5db",
+  "scene": "examples/rich-text/src/main.cj",
+  "scenario": "q",
+  "x11_before": "\nxwininfo: Window id: 0x200003 \"TASK163 xfce-vte q\"\n\n  Root window id: 0x250 (the root window) (has no name)\n  Parent window id: 0x250 (the root window) (has no name)\n     1 child:\n     0x200004 (has no name): ()  1x1+-1+-1  +19+19\n\n  Absolute upper-left X:  20\n  Absolute upper-left Y:  20\n  Relative upper-left X:  20\n  Relative upper-left Y:  20\n  Width: 1017\n  Height: 561\n  Depth: 32\n  Visual: 0x244\n  Visual Class: TrueColor\n  Border width: 0\n  Class: InputOutput\n  Colormap: 0x200002 (not installed)\n  Bit Gravity State: NorthWestGravity\n  Window Gravity State: NorthWestGravity\n  Backing Store State: NotUseful\n  Save Under State: no\n  Map State: IsViewable\n  Override Redirect State: no\n  Corners:  +20+20  -243+20  -243-219  +20-219\n  -geometry 100x28+20+20\n\n  Bit gravity: NorthWestGravity\n  Window gravity: NorthWestGravity\n  Backing-store hint: NotUseful\n  Backing-planes to be preserved: 0xffffffff\n  Backing pixel: 0\n  Save-unders: No\n\n  Someone wants these events:\n      Exposure\n      VisibilityChange\n      StructureNotify\n      PropertyChange\n  Do not propagate these events:\n  Override redirection?: No\n\n  Window manager hints:\n      Client accepts input or input focus: Yes\n      Initial state is Normal State\n      Window type:\n          Normal\n      Process id: 1405594 on host 5a154db51e9e\n\n  Normal window size hints:\n      Program supplied location: 0, 0\n      Program supplied minimum size: 277 by 73\n      Program supplied base size: 17 by 29\n      Program supplied x resize increment: 10\n      Program supplied y resize increment: 19\n      Program supplied minimum size in resize increments: 27 by 3\n      Program supplied base size in resize increments:  1 by 1\n      Program supplied window gravity: NorthWestGravity\n  No zoom window size hints defined\n\n  No window shape defined\n  No border shape defined\n\n",
+  "x11_after": "\nxwininfo: Window id: 0x200003 \"TASK163 xfce-vte q\"\n\n  Root window id: 0x250 (the root window) (has no name)\n  Parent window id: 0x250 (the root window) (has no name)\n     1 child:\n     0x200004 (has no name): ()  1x1+-1+-1  +19+19\n\n  Absolute upper-left X:  20\n  Absolute upper-left Y:  20\n  Relative upper-left X:  20\n  Relative upper-left Y:  20\n  Width: 1217\n  Height: 675\n  Depth: 32\n  Visual: 0x244\n  Visual Class: TrueColor\n  Border width: 0\n  Class: InputOutput\n  Colormap: 0x200002 (not installed)\n  Bit Gravity State: NorthWestGravity\n  Window Gravity State: NorthWestGravity\n  Backing Store State: NotUseful\n  Save Under State: no\n  Map State: IsViewable\n  Override Redirect State: no\n  Corners:  +20+20  -43+20  -43-105  +20-105\n  -geometry 120x34+20+20\n\n  Bit gravity: NorthWestGravity\n  Window gravity: NorthWestGravity\n  Backing-store hint: NotUseful\n  Backing-planes to be preserved: 0xffffffff\n  Backing pixel: 0\n  Save-unders: No\n\n  Someone wants these events:\n      Exposure\n      VisibilityChange\n      StructureNotify\n      PropertyChange\n  Do not propagate these events:\n  Override redirection?: No\n\n  Window manager hints:\n      Client accepts input or input focus: Yes\n      Initial state is Normal State\n      Window type:\n          Normal\n      Process id: 1405594 on host 5a154db51e9e\n\n  Normal window size hints:\n      Program supplied location: 0, 0\n      Program supplied minimum size: 277 by 73\n      Program supplied base size: 17 by 29\n      Program supplied x resize increment: 10\n      Program supplied y resize increment: 19\n      Program supplied minimum size in resize increments: 27 by 3\n      Program supplied base size in resize increments:  1 by 1\n      Program supplied window gravity: NorthWestGravity\n  No zoom window size hints defined\n\n  No window shape defined\n  No border shape defined\n\n",
+  "inner_tty": "ready_size=28 100\nready_termios=4500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0\ntty=/dev/pts/1\nexit_size=34 120\nexit_termios=4500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0\nexit_status=0\n",
+  "outer_tty": "ready_size=28 100\nready_termios=4500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0\nTERM=xterm-256color\nCOLORTERM=truecolor\ntty=/dev/pts/0\nexit_size=34 120\nexit_termios=4500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0\nexit_status=0\n",
+  "captured_at_utc_by_stage": {
+    "initial": "2026-11-10T22:30:48Z",
+    "green": "2026-11-10T22:30:48Z",
+    "red": "2026-11-10T22:30:49Z",
+    "resized": "2026-11-10T22:30:49Z",
+    "resized-green": "2026-11-10T22:30:49Z"
+  },
+  "events": [
+    "initial",
+    "t",
+    "t",
+    "actual resize",
+    "t",
+    "q"
+  ],
+  "metadata_utc": "2026-11-10T22:30:49.968740+00:00",
+  "physical_scope": "Original X11 captures and actual product bytes; use replay.py for full DSR and pixel-row4 oracle. No logical grid parser establishes physical PASS."
+}

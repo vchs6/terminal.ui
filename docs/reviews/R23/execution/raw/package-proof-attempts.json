@@ -1,0 +1,14 @@
+{
+  "attempts": [
+    {
+      "status": "ADAPTER_FAILURE",
+      "error": "AssertionError comparing all directory entries: generated native .a/.o and src/.gitkeep not present in source archive",
+      "preserved_command": "commands/package-attempt1.sh"
+    },
+    {
+      "status": "ADAPTER_FAILURE",
+      "error": "AssertionError comparing git-tracked entries: only src/.gitkeep empty placeholder absent"
+    }
+  ],
+  "resolution": "enumerate tracked functional files and explicitly account for missing empty .gitkeep; all source byte hashes equal; no product/formaltest change"
+}

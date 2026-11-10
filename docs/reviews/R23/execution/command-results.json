@@ -1,0 +1,230 @@
+[
+  {
+    "name": "00-tool-versions",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "bash -c cjc\\ --version\\;\\ cjpm\\ --version\\;\\ node\\ --version"
+  },
+  {
+    "name": "01-root-build",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "cjpm build"
+  },
+  {
+    "name": "02-root-check",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "cjpm check"
+  },
+  {
+    "name": "03-formal-all",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "bash tests/glyph_advance/run.sh all"
+  },
+  {
+    "name": "04-original-rich-build",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "bash -c cd\\ examples/rich-text\\ \\&\\&\\ cjpm\\ build"
+  },
+  {
+    "name": "05-normal-bundle",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "cjpm bundle"
+  },
+  {
+    "name": "06-preserved-old-red",
+    "exit": 1,
+    "expected_exit": 1,
+    "command": "bash tests/glyph_advance/run.sh physical-old"
+  },
+  {
+    "name": "07-packaged-root-build",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "cjpm build"
+  },
+  {
+    "name": "08-packaged-root-check",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "cjpm check"
+  },
+  {
+    "name": "09-packaged-public-build",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "cjpm build"
+  },
+  {
+    "name": "10-packaged-public-direct",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "target/release/bin/main"
+  },
+  {
+    "name": "11-packaged-rich-build",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "cjpm build"
+  },
+  {
+    "name": "12-packaged-rich-smoke",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "target/release/bin/main --smoke"
+  },
+  {
+    "name": "13-known-whole-boundary",
+    "exit": 1,
+    "expected_exit": 1,
+    "command": "node scripts/check-bundle.mjs target/cjtui-0.0.0.cjp"
+  },
+  {
+    "name": "14-colors-oracle-controls",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "node tests/colors/resize_oracle_test.mjs"
+  },
+  {
+    "name": "15-colors-actual",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "bash tests/run-slice.sh colors-integration"
+  },
+  {
+    "name": "16-repository-check",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "npm run check"
+  },
+  {
+    "name": "20-basic8-capture",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "bash tests/glyph_advance/physical/capture.sh xterm-default xfce-vte"
+  },
+  {
+    "name": "20-heart-capture",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "bash tests/glyph_advance/physical/capture.sh xterm-default xfce-vte"
+  },
+  {
+    "name": "20-rich-capture",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "bash tests/glyph_advance/physical/capture.sh xterm-default xfce-vte"
+  },
+  {
+    "name": "20-truecolor-capture",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "bash tests/glyph_advance/physical/capture.sh xterm-default xfce-vte"
+  },
+  {
+    "name": "21-basic8-verify",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/verify_capture.py --captures /workspace/work/glyph-advance-execution/gui/basic8 --kind vs16"
+  },
+  {
+    "name": "21-heart-verify",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/verify_capture.py --captures /workspace/work/glyph-advance-execution/gui/heart --kind vs16"
+  },
+  {
+    "name": "21-rich-verify",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/verify_capture.py --captures /workspace/work/glyph-advance-execution/gui/rich --kind zwj"
+  },
+  {
+    "name": "21-truecolor-verify",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/verify_capture.py --captures /workspace/work/glyph-advance-execution/gui/truecolor --kind vs16"
+  },
+  {
+    "name": "22-basic8-replay",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/replay.py --captures /workspace/work/glyph-advance-execution/gui/basic8 --kind vs16 --out /workspace/work/glyph-advance-execution/gui/basic8-dsr"
+  },
+  {
+    "name": "22-heart-replay",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/replay.py --captures /workspace/work/glyph-advance-execution/gui/heart --kind vs16 --out /workspace/work/glyph-advance-execution/gui/heart-dsr"
+  },
+  {
+    "name": "22-rich-replay",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/replay.py --captures /workspace/work/glyph-advance-execution/gui/rich --kind zwj --out /workspace/work/glyph-advance-execution/gui/rich-dsr"
+  },
+  {
+    "name": "22-truecolor-replay",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/replay.py --captures /workspace/work/glyph-advance-execution/gui/truecolor --kind vs16 --out /workspace/work/glyph-advance-execution/gui/truecolor-dsr"
+  },
+  {
+    "name": "23-basic8-dsr-verify",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/verify_replay.py --replay /workspace/work/glyph-advance-execution/gui/basic8-dsr --kind vs16"
+  },
+  {
+    "name": "23-heart-dsr-verify",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/verify_replay.py --replay /workspace/work/glyph-advance-execution/gui/heart-dsr --kind vs16"
+  },
+  {
+    "name": "23-rich-dsr-verify",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/verify_replay.py --replay /workspace/work/glyph-advance-execution/gui/rich-dsr --kind zwj"
+  },
+  {
+    "name": "23-truecolor-dsr-verify",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 tests/glyph_advance/physical/verify_replay.py --replay /workspace/work/glyph-advance-execution/gui/truecolor-dsr --kind vs16"
+  },
+  {
+    "name": "24-literal-scenes-audit",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 /workspace/work/glyph-advance-execution/raw/commands/audit-scenes.py"
+  },
+  {
+    "name": "25-exact-styles-audit",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "python3 /workspace/work/glyph-advance-execution/raw/commands/audit-scenes.py"
+  },
+  {
+    "name": "26-final-stop-controls",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "node tests/colors/stop_oracle_test.mjs"
+  },
+  {
+    "name": "27-final-resize-controls",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "node tests/colors/resize_oracle_test.mjs"
+  },
+  {
+    "name": "28-final-colors-actual",
+    "exit": 0,
+    "expected_exit": 0,
+    "command": "node tests/colors/pty.mjs fixture example"
+  }
+]

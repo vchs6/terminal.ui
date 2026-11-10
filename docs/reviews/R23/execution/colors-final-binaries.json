@@ -1,0 +1,71 @@
+{
+  "product_sha": "199f00076c1a79cfa6d0be92e7be09366e1a06af",
+  "built_by": "raw/15-colors-actual; same unchanged source and existing binaries reused; tests-only script correction",
+  "before_execution": [
+    {
+      "path": "tests/colors/session/target/release/bin/main",
+      "binary_sha256": "e57973ce527a93ec8292f6e56dcfd75815cb5e61ee548c8aa9284b5f79c89e03"
+    },
+    {
+      "path": "examples/colors/target/release/bin/main",
+      "binary_sha256": "7ff011408e0f95b2cc9ce11caa96f1443da61deb37521f86c15ec60f4bf7e42e"
+    }
+  ],
+  "after_execution": [
+    {
+      "path": "tests/colors/session/target/release/bin/main",
+      "binary_sha256": "e57973ce527a93ec8292f6e56dcfd75815cb5e61ee548c8aa9284b5f79c89e03"
+    },
+    {
+      "path": "examples/colors/target/release/bin/main",
+      "binary_sha256": "7ff011408e0f95b2cc9ce11caa96f1443da61deb37521f86c15ec60f4bf7e42e"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "examples/colors/cjpm.toml",
+      "sha256": "3c661104075cb4a93878a25d08625379e8d225b58573ebf63abdec5b5c7da956"
+    },
+    {
+      "path": "examples/colors/src/color_demo.cj",
+      "sha256": "b4ce66dd486cd8c541d41aee2516d7b28f1397ce5ea0a6cb90c380e5fdcd0500"
+    },
+    {
+      "path": "examples/colors/src/main.cj",
+      "sha256": "e96e2f5703c9c8f1efc7d556284879d033a5bbd3e46de44242f6a6abc0629973"
+    },
+    {
+      "path": "tests/colors/session/cjpm.toml",
+      "sha256": "d935cfc4b67a3e2ca30cb5428e179ad1f92a23b5a8abcc4e82718dc5214fa761"
+    },
+    {
+      "path": "tests/colors/session/src/main.cj",
+      "sha256": "b9f5983ed2dba93830f78780ec0d689a6c6c144cdca43a52bb84d61394936a60"
+    },
+    {
+      "path": "tests/colors/src/main.cj",
+      "sha256": "505eb9476d94e75294e7f6cb3daffefd0c0ca30a3200bb30b7a0243cccd11984"
+    }
+  ],
+  "actual_sessions": [
+    {
+      "name": "public-fixture",
+      "exit": 0,
+      "signal": null,
+      "exact_termios_equal": true,
+      "before_sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+      "after_sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+      "session_raw_sha256": "42dc8538f232a78ffa10284a6ad692fdfe09441d5085ef196da9848b0d04019c"
+    },
+    {
+      "name": "actual-example",
+      "exit": 0,
+      "signal": null,
+      "exact_termios_equal": true,
+      "before_sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+      "after_sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+      "session_raw_sha256": "5862c0b388cf1ef152899ff00182bceb1398cd17cc8cdfd29804ce966127e6dc"
+    }
+  ],
+  "status": "PASS same actual binaries before/after; fixed source; actual close/final-grid/termios asserted by official0d46 fixture"
+}
