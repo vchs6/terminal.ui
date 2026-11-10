@@ -119,12 +119,7 @@ public class Application {
             let frame = value.enter({ => value.pump(); value.produce(width, height, false) })
             if (value.isStopping()) { running = false; dispose() }
             return frame
-        } catch (error: Exception) {
-            if (error is UIException && (error as UIException).getOrThrow().code == "WrongUIContext") { throw error }
-            var failure: Exception = error
-            try { value.close() } catch (cleanup: Exception) { failure = aggregateCleanup(failure, cleanup) }
-            sessionClosed(value); throw failure
-        }
+        } catch (error: Exception) { throw value.closeFailure(error) }
     }
     public func dispatch(target: NodeRef, key: KeyEvent): Unit {
         let value = current()
