@@ -1,0 +1,53 @@
+{
+  "schema": "cjtui-R12-execution-finite-v1",
+  "candidate": "0912436b647f701e1de607fe03ce1bfba6a9bbf4",
+  "tests": "dddbdd9e02fbb6e8a998b24d447ec9b97a79a439",
+  "contract": "fc7667339d39208bbd0c25650696a7f495ca971d",
+  "finiteExecutionVerdict": "PASS",
+  "fullLinuxReleaseVerdict": "not complete; archive completeness lacks composition example; benchmark/full delivery pending",
+  "actualModel": "requested Sol/medium; serving variant/effort unverified",
+  "freshEvidence": "evidence/r019",
+  "reusedC3Evidence": {
+    "source": "c3d743d2dd5cb125e4ca435b2842d1b10c501281",
+    "location": "evidence/c3",
+    "scope": [
+      "255 core",
+      "macro positive",
+      "15 negatives from validated fixed f07 raw",
+      "six Frame/layout/style consumers",
+      "12 runtime PTY scenarios",
+      "two real GUI implementations",
+      "idleCPU0.01s/2.003816325s"
+    ],
+    "meaning": "these are earlier c3 observations, not new091 measurements"
+  },
+  "oldControlledRed": {
+    "productTreeEqualsC3": true,
+    "testSourceHashesMatchingFreeze": 161,
+    "location": "evidence/r019-author-red"
+  },
+  "sourceArchive": {
+    "candidate": "0912436b647f701e1de607fe03ce1bfba6a9bbf4",
+    "archiveOriginalPath": "/workspace/work/runtime-execution/r019-source/target/cjtui-0.0.0.cjp",
+    "archiveSha256": "045d4030cc461922a91a207a0bd268e610fcc52175c753dfcd39a6757ba9465d",
+    "productRoot": "/workspace/work/runtime-execution/r019-clean/cjtui-0.0.0",
+    "srcNativeFileCount": 47,
+    "omittedNonSourcePlaceholders": [
+      "src/.gitkeep"
+    ],
+    "missing": [],
+    "different": [],
+    "productTargetCacheCopied": false,
+    "scope": "ordinary clean SDK native/root build/check plus unchanged packaged public reactive example"
+  },
+  "sourceSnapshotIncluded": false,
+  "excluded": [
+    "cjp",
+    "compiled executables/libraries",
+    "target",
+    "cache",
+    "node_modules",
+    "product source snapshots"
+  ],
+  "intendedDestination": "docs/reviews/R12/execution"
+}

@@ -1,0 +1,30 @@
+# TASK-074 R019 scoped execution supplement
+
+Status: **PASS for finite scoped TASK074 R019**, with the original c3 failure preserved and full Linux/release still open. Fixed product `0912436b647f701e1de607fe03ce1bfba6a9bbf4`, tests `dddbdd9e02fbb6e8a998b24d447ec9b97a79a439`, contract `fc7667339d39208bbd0c25650696a7f495ca971d`. Coordinator conveyed final independent TASK073 spec/quality PASS before execution. Requested executor Sol/medium; serving variant/effort remains independently unverifiable. No product/test/contract/metadata changes or downstream agents.
+
+This is an additive supplement; original c3 report and failed raw remain immutable. R019 permits an old coherent frame already in flight and requires one atomic successful size snapshot per application iteration. It also corrects the old history-wide resize oracle and uses one atomic TIOCSWINSZ input: old `stty rows/cols` could itself introduce a real intermediate kernel pair. The original observational failure alone did not establish whether its24×3 pair was fabricated. A separate frozen controlled gate now demonstrates the defect precisely: old c3 real queries only observe24×5/8×3, but it generates24×3; old source exits normally/restores, then fails the impossible-pair assertion. Test-author raw source manifest161/161 matches the frozen current test files and its captured product tree exactly equals c3. New independent execution uses these frozen tests, not author self-evaluation.
+
+Fresh scope is only the three changed product files: native/cjtui_terminal.c,src/terminal_bridge.cj,src/application.cj. Fresh checks cover ordinary root build/check, native ownership/signal recovery, ABI packing/decoding/errors/legacy shim, controlled coherence and legal in-flight frame, both corrected legacy resize consumers, normal bundle, clean package native/root and public reactive consumer.
+
+The previous255 core,positive/15-negative macros,six Frame/layout/style consumers,12 runtime PTY scenarios,original actual XTerm/VTE GUI and CPU measurements are reused under AGENTS11.1 from **c3d743d2dd5cb125e4ca435b2842d1b10c501281**, not presented as new091 executions. Runtime/macro/Frame/model code,public signatures and callbacks/cleanup remain unchanged; new native/device sample path receives the focused fresh checks. CPU remains specifically the old c3 observation0.01CPU seconds/2.003816325s, not a091 measurement or a threshold guarantee. Full release completeness remains separate.
+
+
+Fresh results: root build/check,native owner/setup-signal,ABI probe build/direct,coherence/inflight,both legacy resize builds/direct,normal cjpm bundle,clean root build/check,clean native ABI build/direct,and clean packaged public reactive build/direct all exit0. Both controlled resize cases have complete pairs only24×5 and8×3, final settled8×3,q exit0,one actual close and exact termios. Lifecycle resize has exit0/exact restoration; styled/Unicode integration additionally verifies complete final grid,close once and nonTTY noESC. Clean reactive Count0→1,Ctrl-C true exit0 and exact termios. No skipped lint or special rescue flags.
+
+New normal archive SHA256: `045d4030cc461922a91a207a0bd268e610fcc52175c753dfcd39a6757ba9465d`; original path `/workspace/work/runtime-execution/r019-source/target/cjtui-0.0.0.cjp`. All47 effective src/native source files equal091; only non-source src/.gitkeep is normally omitted by CJPM. No archive/target/cache/nativearchive was copied into the clean product. Archive completeness checker still exits1 only because examples/composition/cjpm.toml is absent. This remains a later complete-release deliverable, not an executed/passed check-product release. Final audit is r019-evidence/final-verification.json.
+
+
+## Archived evidence
+
+[Scope manifest](scope-manifest.json), [all-file SHA256 list](artifacts.sha256), [fresh final audit](evidence/r019/final-verification.json), [reuse source audit](evidence/r019/reuse-source-audit.json), and [original c3 report](c3-original-report.md). Original c3 failure bytes remain [here](evidence/c3/lifecycle-raw/resize-success/session.raw); controlled old-c3 impossible-pair RED and source/tree audits remain [here](evidence/r019-author-red/r019-coherence-old-product.stderr). The archived command records preserve actual historical absolute working paths; they are provenance, not source snapshots. Raw command/exit/start/end files are inside each evidence check directory. No author implementation self-evaluation is included.
+
+Fresh [coherence observations](evidence/r019/cjtui-resize-eCER8j/coherence/observations.json), [in-flight observations](evidence/r019/cjtui-resize-eCER8j/inflight/observations.json), [integration final frames](evidence/r019/integration-resize-raw/frames.json), [clean source audit](evidence/r019/clean-source-comparison.json), and [clean reactive result](evidence/r019/clean-reactive-pty/result.json).
+
+The following unedited original PNGs are specifically c3 executions, with accompanying version/config/source/time/hash/raw in their same directories. The supplementary package query records VTE0.80.1 and XFCE1.1.4; it is timestamped later than those original captures.
+
+| Actual host | Initial | Count2 | Resized |
+| --- | --- | --- | --- |
+| XTerm398 | [PNG](evidence/c3/gui-reactive/xterm-default/interrupt/example-initial.png) | [PNG](evidence/c3/gui-reactive/xterm-default/interrupt/example-increment-two.png) | [PNG](evidence/c3/gui-reactive/xterm-default/interrupt/example-resized.png) |
+| XFCE1.1.4/VTE | [PNG](evidence/c3/gui-reactive/xfce-vte/interrupt/example-initial.png) | [PNG](evidence/c3/gui-reactive/xfce-vte/interrupt/example-increment-two.png) | [PNG](evidence/c3/gui-reactive/xfce-vte/interrupt/example-resized.png) |
+
+This directory is prepared for `docs/reviews/R12/execution`; all Markdown artifact links resolve within it. CJP files,compiled executables,libraries,targets,caches and product source snapshots are deliberately excluded; only archive SHA/original paths and executed binary hashes are retained. Main-agent mechanical integration and separate acceptance remain pending.

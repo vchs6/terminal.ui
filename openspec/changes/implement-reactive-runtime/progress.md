@@ -51,3 +51,5 @@ Task072 fix round1/5：F001–006已独立关闭；相邻owner错误出口F007�
 R019独立test-only原dddbdd9已集成6d703bf：真实App coherence强RED1、合法inflight0、修订两legacy settled fixture旧产品0，原失败未覆盖。产品原61ce9e5已集成0912436，仅native/bridge/App三文件，开发root/native/ABI/coherence/inflight/两resize/正常bundle均0；不以自测替代独立074。073原审者正在限定复核，074随后只重验受影响native/resize/新源码包，复用无关同源宏/runtime/Frame有效证据；075尚未准入。
 
 R019独立限定073最终spec/quality PASS，无Critical/Important；独立C probe覆盖0/1/65535组合/单GET/axis/error，重解析原始PTY验证强RED及合法inflight/最终grid/termios。报告及失败历史按原字节归R12/code-review，archive-index逐文件hash。074已在原固定0912436准入限定复验，不因main后加C/Rich/theme测试改变运行源。
+
+074 R019限定复验最终PASS：0912436新root/native ABI/coherence/inflight/两legacy resize/正常bundle/新清包root+native+公开reactive direct真实0；原c3旧FAIL及其coherence RED保留，core255/宏/旧Frame/12PTY/真实GUI/CPU原c3范围有效复用，不冒称091实测。新cjp SHA045d4030cc461922a91a207a0bd268e610fcc52175c753dfcd39a6757ba9465d，47有效源文件同091，fullrelease composition仍待交付。764份执行原件hash核验后机械归R12/execution（含两宿主原始PNG/版本/source/time/raw），075独立runtime_acceptance Astra/high已准入，有限验收不关闭父014/015/016/032/041。

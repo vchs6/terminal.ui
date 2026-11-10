@@ -1,0 +1,19 @@
+FAIL resize coherence: AssertionError [ERR_ASSERTION]: actual Application must never generate a pair absent from all real terminal states
++ actual - expected
+
++ [
++   {
++     height: 3,
++     offset: 158,
++     rows: [
++       'CJTUI_COHERENCE_READY   ',
++       '0123456789ABCDEFGHIJKLMN',
++       '                        '
++     ],
++     width: 24
++   }
++ ]
+- []
+
+    at session (file:///workspace/work/runtime-tests/source/tests/resize-coherence/pty.mjs:72:12)
+    at async file:///workspace/work/runtime-tests/source/tests/resize-coherence/pty.mjs:89:11

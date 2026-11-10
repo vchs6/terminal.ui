@@ -1,0 +1,10 @@
+[31merror[0m: STATE_MUTABLE: State requires var
+ [36m==>[0m /workspace/work/runtime-implementation/source/tests/runtime/macros/negative/state-duplicate/src/fixture.cj:9:12:
+  [36m| [0m
+[36m9[0m [36m| [0m    @State @State var value: Int64 = 1[0m
+  [36m| [0m           [31m^ use a mutable instance field[0m
+  [36m| [0m
+
+1 error generated, 1 error printed.
+Error: failed to compile package `runtime_macro_state_duplicate`, return code is 1
+Error: cjpm build failed
