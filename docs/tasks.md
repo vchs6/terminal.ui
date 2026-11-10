@@ -534,3 +534,5 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 颜色/属性实施TASK-006与独立测试061、审核062、执行063、验收064唯一状态见[颜色与样式变更](../openspec/changes/implement-color-style-output/tasks.md)。
 
 自动终端能力与跨终端截图调查TASK-065随[颜色与样式变更](../openspec/changes/implement-color-style-output/tasks.md)，用户新裁决覆盖其旧显式默认；原实现记录不作新自动验收证据。
+
+真实跨终端测试与截图采集TASK-066依[颜色样式D031–33](../openspec/changes/implement-color-style-output/design.md)独立测试角色编写，真实host执行由TASK063负责，状态只见该change。

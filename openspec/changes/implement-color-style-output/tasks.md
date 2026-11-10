@@ -6,7 +6,7 @@ Spec：design.md精确API/投影/行为。Baseline96bdb9b。Stack：仓颉SDK1.2
 ## Global constraints
 
 主代理仅契约/文档/集成；独立测试设计→产品实现→审核→执行→验收，各自fresh上下文和目录，只交冻结产物，不交作者推理/预设通过结论。用户连续实施和direct-main授权有效。遵守AGENTS14包/实体文件与用户两份参考；不改变第三方代码/许可，不引入新运行依赖。
-只改style/encoding/Frame输出diff/组件属性继承/App模式/示例和对应文档。不得另建ANSI/Unicode/Frame或持久投影内核；input/native/布局算法/D027恢复保持。既有8色/bold字节与全部R8/R9/060断言保留，不为新模式弱化oldtests。完整项目及其他平台未因此完成。
+只改style/encoding/Frame输出diff/组件属性继承/App模式/示例和对应文档。不得另建ANSI/Unicode/Frame或持久投影内核；input/会话原生逻辑/布局算法/D027恢复保持；D031允许新增独立可选capability C模块和正常archive构建接入。既有8色/bold字节与全部R8/R9/060断言保留，不为新模式弱化oldtests。完整项目及其他平台未因此完成。
 
 ## 1. Independent test contract
 
@@ -49,3 +49,13 @@ Preflight接口对：061→006（命名/模式/golden完全由design，未读实
 - [ ] 4.1 TASK-065：自动能力来源及实际跨终端宿主/截图的独立验证；AC065：用实际探针冻结能力来源/未知降级、可运行宿主矩阵与真实PNG证据要求，不把环境变量仿真当跨终端。
 
 065为L3 investigation，父WP001及本change；inputs为用户新裁决、旧shared颜色/输出路径；depends_on无实现前置。独立auto-capability-recon和cross-terminal-recon分别处理API/能力来源与测试宿主，目录隔离，Codex5.6/high，主代理汇总契约。deliverable为隔离探针/raw/建议与可运行环境，不改主产品/冻结断言。技能brainstorming/writing-plans/cangjie-coding/verification，环境技能若读取缺失如实记录fallback；L4：调查API/宿主→实际probe/截图→主冻结设计/独立测试增量→产品实现→062delta review→063真实matrix/pack→064验收。风险：terminfo全局状态/环境提示可信度/不支持查询/真实console缺失；不得捏造能力或补产品GUI依赖，不发送上游消息。新需求优先于原默认工程选择，日后无需再次问是否继续。
+
+### Automatic revision execution handoff
+
+当前精确contract以design D031–33为准；旧explicit段落保留历史不作默认。061重冻Auto公共消费者/合成terminfo/native隔离失败/Basic8/离线快照预期，保留旧具体mode映射及060；006 fresh实现同一颜色pipeline上的Auto/profile/optional C模块，不替换input/session核心；062复核完整增量和新test；063最终固定源执行全部相关回归、真实宿主、PNG、正常bundle/clean消费；064核合同+范围+原始图/日志/状态。
+
+- [ ] 4.2 TASK-066：独立编写真跨终端测试与原始截图采集程序；AC066：相同无override应用在真实xterm/XFCE-VTE运行，逐宿主原PNG/metadata/raw/能力来源/尺寸/恢复齐全。
+
+066为L3 testing，父WP005；inputs为D031–33/065实际host探针，depends_on065；只改tests/terminals及其README/fixture/采集脚本，不改产品或其它冻结tests，不改tests/run-slice.sh避免与061共享编辑。独立Codex5.6/high，TDD/verification/cloud-runtime；L4：核host控制→写独立fixture与真实矩阵脚本→对旧显式默认真实RED→freeze→交063最终执行。正常slice回归入口包含061；真实host入口单列tests/terminals/run.sh，由063明确执行，缺宿主必须非零/insufficient_evidence，不能静默跳过标passed。GUI/recorders仅测试deps，采集源图不重绘；不得只换TERM数三独立终端。
+
+006本轮新增文件建议：src/terminal_capabilities.cj（唯一公开诊断struct）、src/capability_detection.cj（纯解码/FFI入口）、native/cjtui_capabilities.c（私有namespace适配），已有build hook接入该对象；其余按D031共享Style/Frame/ColorMode/Application，具体文件最小充分且每实体一文件。native/构建变更须实际publicconsumer+标准bundle，不能私有link flags，Cg runtime的dlmopen独立probe等待报告补齐时有失败先反馈。独立实现作者不能写正式tests或看测试作者推理，只收冻结产品需求/API/用例。
