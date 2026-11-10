@@ -1,0 +1,70 @@
+[
+  {
+    "id": "PREFLIGHT-001",
+    "round_id": "runtime-preflight",
+    "revision": "1492b0e0ef5154d2c470e94fd58d2a238702967b",
+    "category": "construction",
+    "target": "Custom Component root layout",
+    "contract_ref": "AGENTS.md §5–6; design.md §2.1/2.2/3.1",
+    "acceptance_ref": "TASK-071/072/074; AC-014/016 bounded subinterfaces",
+    "claim": "Custom root child arrangement and layout-box semantics were not frozen.",
+    "severity": "major",
+    "priority": "Important",
+    "status": "verified",
+    "reproducer": {
+      "setup": "Source/contract counterexample; no product implementation exists for these new APIs.",
+      "actions": [
+        "Build a custom component containing Text(\"A\") and Text(\"B\").",
+        "Apply padding/border to the custom root and render."
+      ],
+      "expected": "A frozen, independently assertable public behavior.",
+      "observed": "Contract allowed no unique expected line arrangement or wrapper decoration semantics."
+    },
+    "evidence_refs": [
+      "report.md",
+      "contract-sha256.txt",
+      "reviewed-files-sha256.json",
+      "1492b0e0ef5154d2c470e94fd58d2a238702967b:openspec/changes/implement-reactive-runtime/design.md"
+    ],
+    "fix_revision": "a947857c1ba89ce088c7fe4909239e8a2a85089d",
+    "verification": {
+      "method": "Independent narrow contract diff and baseline source inspection; design only",
+      "result": "R015 explicitly adopts Column layout and a real layout box with ordinary attributes.",
+      "revision": "a947857c1ba89ce088c7fe4909239e8a2a85089d"
+    }
+  },
+  {
+    "id": "PREFLIGHT-002",
+    "round_id": "runtime-preflight",
+    "revision": "1492b0e0ef5154d2c470e94fd58d2a238702967b",
+    "category": "lifecycle",
+    "target": "Device event target before focus",
+    "contract_ref": "AGENTS.md §5–6; design.md §2.1/2.2/3.1",
+    "acceptance_ref": "TASK-071/072/074; AC-014/016 bounded subinterfaces",
+    "claim": "run had no frozen target-selection rule for the mandatory UIKeyEvent.target, including hidden roots.",
+    "severity": "major",
+    "priority": "Important",
+    "status": "verified",
+    "reproducer": {
+      "setup": "Source/contract counterexample; no product implementation exists for these new APIs.",
+      "actions": [
+        "Run a visible root with node and application UI handlers.",
+        "Send a key; then hide root and send a key/interrupt."
+      ],
+      "expected": "A frozen, independently assertable public behavior.",
+      "observed": "Headless routing was specified, but device target and hidden-root routing were not independently testable."
+    },
+    "evidence_refs": [
+      "report.md",
+      "contract-sha256.txt",
+      "reviewed-files-sha256.json",
+      "1492b0e0ef5154d2c470e94fd58d2a238702967b:openspec/changes/implement-reactive-runtime/design.md"
+    ],
+    "fix_revision": "a947857c1ba89ce088c7fe4909239e8a2a85089d",
+    "verification": {
+      "method": "Independent narrow contract diff and baseline source inspection; design only",
+      "result": "R015 freezes visible-root target, hidden dispatch rejection and hidden-device legacy/default fallback.",
+      "revision": "a947857c1ba89ce088c7fe4909239e8a2a85089d"
+    }
+  }
+]

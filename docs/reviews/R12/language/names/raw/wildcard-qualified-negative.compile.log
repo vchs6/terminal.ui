@@ -1,0 +1,91 @@
+[31merror[0m: the error originates in the macro `Component` (consider using `--debug-macro` for more info)
+ [36m==>[0m /workspace/work/linux-source-audit/names/wildcard_qualified_negative.cj:4:1:
+  [36m| [0m
+[36m4[0m [36m| [0m  @Component[0m
+  [36m| [0m [31m_[0m[31m^[0m
+[36m5[0m [36m| [0m[31m|[0m class Custom {[0m
+  [36m| [0m[31m|[0m ...[0m
+[36m8[0m [36m| [0m[31m|[0m }[0m
+  [36m| [0m[31m|[0m[31m_[0m[31m^[0m
+  [36m| [0m
+[34mnote[0m: undeclared type name 'auditnames'
+  [36m| [0m
+  [36m| [0mclass Custom <: auditnames.Component {[0m
+  [36m| [0m                [34m^^^^^^^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: the error originates in the macro `Component` (consider using `--debug-macro` for more info)
+ [36m==>[0m /workspace/work/linux-source-audit/names/wildcard_qualified_negative.cj:4:1:
+  [36m| [0m
+[36m4[0m [36m| [0m  @Component[0m
+  [36m| [0m [31m_[0m[31m^[0m
+[36m5[0m [36m| [0m[31m|[0m class Custom {[0m
+  [36m| [0m[31m|[0m ...[0m
+[36m8[0m [36m| [0m[31m|[0m }[0m
+  [36m| [0m[31m|[0m[31m_[0m[31m^[0m
+  [36m| [0m
+[34mnote[0m: undeclared type name 'Component'
+  [36m| [0m
+  [36m| [0mclass Custom <: auditnames.Component {[0m
+  [36m| [0m                           [34m^ [0m
+  [36m| [0m
+
+[31merror[0m: the error originates in the macro `Component` (consider using `--debug-macro` for more info)
+ [36m==>[0m /workspace/work/linux-source-audit/names/wildcard_qualified_negative.cj:4:1:
+  [36m| [0m
+[36m4[0m [36m| [0m  @Component[0m
+  [36m| [0m [31m_[0m[31m^[0m
+[36m5[0m [36m| [0m[31m|[0m class Custom {[0m
+  [36m| [0m[31m|[0m ...[0m
+[36m8[0m [36m| [0m[31m|[0m }[0m
+  [36m| [0m[31m|[0m[31m_[0m[31m^[0m
+  [36m| [0m
+[34mnote[0m: class 'Custom' can only inherit a class or implement interfaces
+  [36m| [0m
+  [36m| [0mclass Custom <: auditnames.Component {[0m
+  [36m| [0m                [34m^^^^^^^^^^^^^^^^^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: the error originates in the macro `Component` (consider using `--debug-macro` for more info)
+ [36m==>[0m /workspace/work/linux-source-audit/names/wildcard_qualified_negative.cj:4:1:
+  [36m| [0m
+[36m4[0m [36m| [0m  @Component[0m
+  [36m| [0m [31m_[0m[31m^[0m
+[36m5[0m [36m| [0m[31m|[0m class Custom {[0m
+  [36m| [0m[31m|[0m ...[0m
+[36m8[0m [36m| [0m[31m|[0m }[0m
+  [36m| [0m[31m|[0m[31m_[0m[31m^[0m
+  [36m| [0m
+[34mnote[0m: undeclared identifier 'auditnames'
+  [36m| [0m
+  [36m| [0m    private let _state_number = auditnames.Observable < Int64 >(3)[0m
+  [36m| [0m                                [34m^^^^^^^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: mismatched types
+  [36m==>[0m /workspace/work/linux-source-audit/names/wildcard_qualified_negative.cj:12:32:
+   [36m| [0m
+[36m12[0m [36m| [0m    let component: Component = custom[0m
+   [36m| [0m                               [31m^^^^^^ expected 'Class-Component', found 'Class-Custom'[0m
+   [36m| [0m
+
+[31merror[0m: the error originates in the macro `Component` (consider using `--debug-macro` for more info)
+ [36m==>[0m /workspace/work/linux-source-audit/names/wildcard_qualified_negative.cj:4:1:
+  [36m| [0m
+[36m4[0m [36m| [0m  @Component[0m
+  [36m| [0m [31m_[0m[31m^[0m
+[36m5[0m [36m| [0m[31m|[0m class Custom {[0m
+  [36m| [0m[31m|[0m ...[0m
+[36m8[0m [36m| [0m[31m|[0m }[0m
+  [36m| [0m[31m|[0m[31m_[0m[31m^[0m
+  [36m| [0m
+[34mnote[0m: 'override' function 'build' does not have an overridden function in its supertype
+   [36m| [0m
+   [36m| [0m      public override func build(): String {[0m
+   [36m| [0m [34m_[0m[34m____^[0m
+   [36m| [0m[34m|[0m         "number=${number}"[0m
+   [36m| [0m[34m|[0m     }[0m
+   [36m| [0m[34m|[0m[34m_[0m[34m____^[0m
+   [36m| [0m
+
+6 errors generated, 6 errors printed.

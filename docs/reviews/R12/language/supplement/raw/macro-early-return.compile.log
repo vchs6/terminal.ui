@@ -1,0 +1,8 @@
+[31merror[0m: AUDIT_INIT_RETURN: constructor return requires control-flow instrumentation; this probe rejects it
+ [36m==>[0m /workspace/work/linux-source-audit/supplement/macro_early_return.cj:9:22:
+  [36m| [0m
+[36m9[0m [36m| [0m        if (early) { return }[0m
+  [36m| [0m                     [31m^^^^^^ return in constructor is unsupported by this probe[0m
+  [36m| [0m
+
+1 error generated, 1 error printed.
