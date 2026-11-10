@@ -49,6 +49,10 @@ TASK-006、011、012 及既有支持任务保持已验范围，不重新实现�
 - **Ruling L003:** 保留当前支持 ANSI 的 Linux 范围和字符语义。物理 console、复用器等实际环境不足时继续其他工作并有依据寻找可运行环境；最终未获得的必需证据须如实列为不足，不能用环境变量代替。
 - **Ruling L004:** 优先原生尾随 Lambda 与已实证宏、标准仓颉构建；不新增语言运行时或手写完整 TOML/Unicode/ANSI 内核。宏 @Component/@State/@Bind 的精确源码与支持限制在运行时变更冻结。
 
+- **Ruling L005:** M2124前冻结完整功能M1库及041已冻结设备/ABI/输入输出/尺寸/恢复子接口；原041包含全组件/M2/全部宿主的最终验收在M2后汇合，不能反向作124前置。008/020的M1实际恢复条件保留，原041不提前关闭。
+
+- **Ruling L006:** I015查询/显隐恢复需要Session S008唯一writer实际输入。顺序明确084→有限148–152→Glyph097→Theme088/092→A098–102→B/C→Keyboard/Editing。152不提前关闭完整030/020/041，不依赖A，无环。Unknown自动保留原显隐，已知报告才管理；600ms一次异步窗口，细节以interaction I015为准。
+
 ## 当前执行入口
 
 当前：[富文本](../openspec/changes/implement-rich-text/tasks.md)（081固定测试已交付，009产品作者实施中）；动态结构C独立080验收通过，原始失败/修复/跨宿主PNG/最终metadata投影已归档R13，帧合成已完成。后续已准备[富文本](../openspec/changes/implement-rich-text/tasks.md)及[主题](../openspec/changes/implement-theme-styles/tasks.md)合同与独立测试，按共享文件屏障集成。全阶段恢复日志：[Linux 总执行日志](../openspec/linux-completion-progress.md)。日志仅记录交接与裁决，不建立第二份任务状态。

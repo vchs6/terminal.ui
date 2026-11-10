@@ -150,3 +150,15 @@
 #### Scenario: Readonly application reference
 - **WHEN** 同UI getter从有效NodeRef取得Application后尝试其写操作
 - **THEN** 取得引用本身不pump不创建会话，写操作仍受原ReentrantEvaluation等guard，不能借只读入口增权。
+
+### Requirement: Reported native cursor visibility
+
+框架 SHALL 按design I015以一次600ms异步mode25查询复用唯一decoder/writer，及时精确报告原显隐后才管理25h/l；未知时保留原显隐，仅在逻辑caret可见时定位，不要求普通应用判断终端。查询不得新增输入缓存或第二解析器；只有完整成功输出才提交caret设备基线。退出 SHALL 仅在原态已知且writer允许时恢复实际管理过的原显隐，unsafe不得继续输出。
+
+#### Scenario: Unknown Linux console visibility
+- **WHEN** 真实终端没有在有界窗口内报告原显隐
+- **THEN** 本run所有路径不发送25h/l/s/r，逻辑caret继续正确，terminalCapabilities只读诊断为unknown-timeout；不得假设退出应visible
+
+#### Scenario: Probe deadline is not keyboard idle
+- **WHEN** 报告在未被实际keyboard timeout打断的同一CSI中跨600ms窗口完成
+- **THEN** 完整精确设备报告被消费且不升级授权，不reset decoder或合成普通key/diagnostic；真正100ms断流仍按K002处理

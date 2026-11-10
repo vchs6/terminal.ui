@@ -168,3 +168,7 @@ L4：152.S1 验固定证据链与来源，拒绝环境模拟/生成图冒充host
 - 主代理冻结后将proposal/design/tasks/specs一次性集成正式change；独立preflight修补缺口，后续执行不再次询问用户许可菜单。
 - 集成时将docs/terminal-session、requirements REQ010说明中“Unknown必然零输出”的旧歧义同步为显式尝试与结果分离；docs/tasks仅状态引用，acceptance保留完整父AC。
 - 全部当期验收完成后按实际范围归档；不能把产品未实现、SSH证据不足或父粘贴/cut未汇合归档为全量030完成。
+
+### L006后置交互的writer输入顺序
+
+root按真实caret协议边界将有限148–152安排在RichText084后、Glyph/Theme/交互A前。149本来仅消费已接受runtime/148/004子合同/R10/003，不需A；152不关闭完整paste/cut030/020/041。未来A按I015使用本writer发单次mode25查询，该查询不是本可选clipboard/title/icon协议，S001/S010不主动query限制仍禁止本操作发OSC52?或新增宿主探测，不禁止独立核心caret契约。148/151原始golden按本操作事务识别，普通UI控制与未来caret查询不能伪装可选操作结果。S008唯一计数/unsafe闩由149实现，A/Keyboard复用，不加第二writer。

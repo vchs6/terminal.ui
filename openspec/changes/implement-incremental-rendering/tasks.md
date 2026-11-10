@@ -28,7 +28,7 @@
 | 主题基础/加载/展示 | T001–015及后续正式修订 | PENDING088/092/027 |
 | Canvas/焦点/viewport/overlay | 主代理采用interaction合同，含root Vertical有限布局fallback | PENDING正式合同SHA及全部独立验收 |
 | 输入编辑/标准控件/应用示例 | 原017–021/028–030/037等完整Linux公共功能 | PENDING最终固定集成 |
-| Frame/Unicode/装饰/输出恢复 | 原005/007/008/011/012/020/041完整适用AC | PENDING最终固定SHA/有效复用证据 |
+| Frame/Unicode/装饰/输出恢复 | 原005/007/008/011/012/020功能M1证据，以及041已冻结M1 Linux设备/ABI/输入输出/尺寸/恢复子接口证据；完整041最终全组件/M2/全部宿主验收后置 | PENDING最终固定SHA/有效复用证据 |
 | 完整M1性能基线 | 全部功能齐全、M2实施前 | PENDING源码/依赖/native/制品/hash；正常公共benchmark双版本构建 |
 | 本候选 | design14与三个spec、独立preflight/DQ | PENDING主仓冻结SHA |
 
@@ -146,3 +146,7 @@ DQ预检核25编号唯一、原父AC未缩小、冻结输入可定位、每单�
 ### M011/M012追加准入与L4
 
 Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/Auto交替cache handgolden，138增加同投影零输出/旧新profile，143同模式同epoch配对。124前仅冻结完整功能M1库cjp及source/deps/native/SDK；143/144基准源后置，不再要求其作为124的不存在上游。144新增`benchmarks/rendering/{compat,workloads}/cjpm.toml`及各自src，compat/workloads与新库专用诊断入口分包，无private编译参数/生产模式开关。143→144→145→146在142之后，146前freeze相同compat/workload代码并对旧/新cjp正常构建；旧库缺三Stats记not_available，真实新三诊断只从最终库专用入口取。
+
+### L005：041最终汇合不反向阻塞M2输入
+
+主代理据独立范围审计修正Admission：124冻结的是全部功能M1库、SDK/deps/native及真实M1设备输入证据，不要求尚含M2最终矩阵的原AC041完整passed。123–147消费已冻结的041 M1子接口；完成M2后原041再随全Linux宿主矩阵最终验收。原041任务/AC保持pending到完整证据具备，不缩减其范围、不新增生产模式，也不把这一规划裁决当产品通过。此消除“041完整最终验收等M2，而M2等完整041”的语义环；沿总计划L002分阶段输入原则，008/020在M1阶段的实际恢复条件仍必须满足。

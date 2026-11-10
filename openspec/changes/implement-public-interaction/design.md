@@ -186,7 +186,7 @@ public struct CaretSnapshot {
 public func caretSnapshot(): CaretSnapshot // Application；只读最近完成的目标帧
 ```
 
-隐藏值规范 owner=None,x=0,y=0,visible=false；snapshot/设备目标生成更新它，查询本身不重绘；headless 可观察逻辑结果。dispose/新 start 清空。全局 render 返回的 Frame 仍只含画面，不改变签名或触发设备光标输出；不以它代替 Application 的 caret 查询。设备统一比较画面与 caret，caret-only 移动即使网格相同也需要输出。全部输出成功后才更新成功基线；失败沿现恢复围栏。退出恢复设备原光标模式，不能从用户 draw finally 发终端控制。
+隐藏值规范 owner=None,x=0,y=0,visible=false；snapshot/设备目标生成更新它，查询本身不重绘；headless 可观察逻辑结果。dispose/新 start 清空。全局 render 返回的 Frame 仍只含画面，不改变签名或触发设备光标输出；不以它代替 Application 的 caret 查询。设备统一比较画面与 caret，caret-only 移动即使网格相同也需要输出。全部输出成功后才更新成功基线；失败沿现恢复围栏。退出原显隐按I015已知管理/未知保留策略恢复，不能从用户 draw finally 发终端控制。
 
 #### A.7 三个极小公共消费者（只解释复用性，不冻结标准控件API）
 
@@ -432,3 +432,91 @@ ScrollAxes的关闭值最终为Off（不是未实现草稿None），其余Vertic
 startHeadless/run完成初始挂载与同步稳定后，在首次目标帧之前自动选择基础域物理前序的首个eligible候选；全空保持None。onMount自身不因这一步重新调用，stop已请求则不再选焦点。此前没有焦点且普通结构/显隐/启用变化产生候选时，也在安全边界选首个；已有有效焦点仍按A规则保持/失效回退，不因新增或重排抢焦点。焦点变化照常使只读查询/样式依赖失效，返回初始headless边界前稳定到一致。
 
 C的显式takeFocus空交互层是例外：仍保持focusedNode=None及该层activeTarget，不自动抢回基础域。该层随后产生eligible孩子时选该层内首个；Tab或显式requestFocus仍按当前域导航，成功离层后遵原目标层规则。Passive从不设此保留。此补充只冻结原来未明确的初态，不增加autofocus配置或改变应用数据/显隐。098增加初态/后增候选，108增加空层保留/后增候选的手工期望。
+
+## I015 原生caret显隐：一次有界查询与自动保守降级
+
+本节为root工程裁决，需独立限定preflight，不代表A/020已实施。事实来源 `/workspace/work/cursor-capability-recon/report.md`：真实XTerm398/VTE0.80.1能报告原显隐；Linux6.12.107 tty1无回复且25s/r不恢复原态。不得按TERM猜测。原A.6“退出恢复设备原光标模式”限定为本节：已知可管理并恢复，未知从未改变显隐而保留原态，逻辑caret继续成立。实测候选设计来源 `/workspace/work/cursor-protocol-design/draft.md`，最终权威是本节。
+
+root比较阻塞缓存600ms、异步一次查询、永不查询三条路线，选择异步复用唯一decoder/writer，无缓存与普通输入延迟；Unknown不发送显隐命令，不提供软件caret，不要求应用判断终端能力。DECRQM无nonce：协议报告只在同一会话独占终端输入/输出假设下作依据，不能认证外部并发进程/用户注入同字节，也不保证外部同时改mode25后仍能恢复。
+
+### 1. 生命周期与有界窗口
+
+1. run取得唯一native设备、创建唯一decoder并装配包内mode25接收入口。startHeadless依I014完成挂载/稳定/首焦点；若此时已stop或失败，不发query，不改25。
+2. 在首个设备目标输出之前，经唯一writer发送一次 **7 bytes** `ESC [ ? 2 5 $ p`。该次是独立完整输出事务，不拼入用户文本，不占mode25 saved slot；无后台线程。只有完整写成功才进入Pending。原frame baseline不因query提交。
+3. 完整写后读取单调时间 `t0`，deadline=`t0+600ms`（检查加法）。在发送前也须确认单调时钟可用，若失败则不查询并保持UnknownClock；发送后读取失败同样UnknownClock。无墙钟/帧数推算。600是保守工程上限，沿用调查窗口；不是所有宿主的响应保证。
+4. 立即进入既有UI/输入循环。Pending与Unknown均不得发25h/l；有效逻辑caret仍最终CUP定位。回复从原cjt_read→原decoder路径输入，普通键立即按现行安全边界派发，无查询缓存、无重放、无第二队列。
+5. 每次可能读取之前、返回输入之后及安全UI边界检查时钟。`now >= deadline`首先将Pending终结为UnknownTimeout；只有完整reply最后字节在本机被处理时 `now < deadline`才可授权，等于截止也不接受。无法知道OS队列实际到达时刻，不据推测追溯授权。
+6. 持续输入不延长deadline。poll超时取既有输入空闲/事件循环要求与剩余探测时间的最小值；探测deadline唤醒本身**不调用decoder.timeout**。100ms键盘idle以距上次实际输入计算，不能把20ms的probe唤醒误当100ms idle。无须等待600ms结束才显示第一帧。
+7. 600ms只约束授权窗口；不承诺阻塞write、用户callback或OS调度在600ms内返回。即使UI被callback占用，恢复后先检查deadline，已迟到reply不能升级。单调时钟运行中失败终结Pending为UnknownClock，继续保守运行。
+8. 固定使用最小Linux内部FFI `cjt_monotonic_ms(): Int64`（C侧int64_t(void)），CLOCK_MONOTONIC非负毫秒；调用失败、负秒、乘加溢出返回-1。沿native现有编译/FFI桥，不增加产品依赖/public计时API；独立preflight须以实际Linux工具链微编译确认签名/头文件可用，不假称产品已实现。只在Pending及既有输入idle计时所需时读取，结束probe不额外每byte做probe时钟调用。
+
+### 2. 精确状态与限额
+
+每run一个ledger：`NotProbed | Pending(deadline) | Known(originalVisible) | Unknown(reason) | Closed`；originalVisible只接受1/2后写一次。包内字段保留是否query已完整发送、最近完整成功的设备caret输出、是否曾完整成功改变显隐；数据量O(1)，不保留输入payload/报告历史。deadline只允许一次，不自动重试。
+
+| 输入/事件 | 状态结果 | 输出权限 |
+|---|---|---|
+| 完整query写成功+可用时钟 | Pending | 仅原屏幕/CUP，不改25 |
+| Pending内首个精确report `...;1$y` / `...;2$y`，完成时未到deadline | Known(true/false) | 下一安全设备边界管理显隐 |
+| 精确status0/3/4 | 消费，保持Pending至正常deadline；可记一个bounded“已见不可用报告”位 | 不升级、不猜永久set/reset可改 |
+| 错mode、额外参数、leading zero、非法status、SS3、非精确7bit introducer | 按原/后续Keyboard合同的未知/畸形分支 | 不升级；不误作成功report |
+| Pending到期 | UnknownTimeout（可在内部原因附unusable-report） | 不改25 |
+| Known后重复/矛盾精确report | 消费，保留首次original | 不覆盖恢复原态 |
+| Unknown后迟到完整精确report | 消费，Unknown不再升级 | 不改25 |
+| stop/signal/EOF/异常 | Closed；保留已有original供必要cleanup | 未知时没有25恢复输出 |
+
+唯一decoder在既有CSI转移上增加固定精确路径 `ESC[?25;P$y`，P仅ASCII 0..4，总长9bytes。无需9bytes实际缓存，prefix index+单digit即可；正式工程契约匹配状态最多0..9，失配退回同CSI的既有框定/丢弃规则，**不再feed已消费byte、不向别处回放**。识别仅7bit ESC [，不能因现state2也代表SS3便接受ESC O；也不默许raw/UTF8 C1版本取得管理权。超长伪造参数走原/升级后的CSI有界drain，不积累数字，不留任意长“可能回复”buffer。
+
+A现有状态机不另扩展完整Keyboard语义；只增加I007和本单一reply分支。mode25接收者是包内固定接点，不公开构造参数/事件类型：A可在final byte调用无用户回调的包内接收方法，只更新ledger并标设备caret需重算。它不输出、不更改逻辑焦点、不执行业务callback。因此无需通用通知容器/队列。将来Keyboard内部有序通知可承接同一固定分支，退役原InputDecoder时不得并存第二parser。
+
+设备run安装此接点直到停止读输入，因此Pending结束后仍能吞掉完整回复。未来公开独立KeyboardDecoder没有会话接点/不发query，相同字节依其未知CSI规则给UnsupportedSequence；public KeyboardBatch不新增protocol事件。raw/UTF8 C1等其他形态维持F002既有规则。
+
+### 3. 诊断顺序、真正timeout与分块
+
+root明确采纳：600ms probe截止只关闭管理授权，不reset/feed/finish/timeout decoder。跨deadline仍是同一CSI，最后字节到期后完成则吞reply、无KeyEvent、无KeyboardDiagnostic、不能升级。1/2与0/3/4的精确报告在设备会话均视为protocol，不暴露业务输入；重复同理。
+
+**“完整reply”限定同一未被键盘timeout/cancel打断的CSI。** 全Keyboard K002的100ms实际idle仍可对未完成CSI产生IncompleteInput并回normal；随后字节依normal解析，不声称任意间隔后拼起来像reply就能永久吞掉。裸ESC尤其无法与单Esc按键无歧义区分。禁止为此加入长期quarantine或改写K002计时。A当前CSI没有该timeout，升级后按K002新合同；A→Keyboard的测试应区分这一明确阶段差异，不能把A旧timeout实现当完整Keyboard最终语义。
+
+F003的顺序保留：每个已形成key/issue先完成自身普通UI callback和稳定提交，再消费后续byte；probe内部final处理也在其真实流位置同步发生。精确protocol报告没有业务diagnostic callback，不产生新事件队列。坏/非精确CSI在完整Keyboard仍按K002/F002/F003诊断，这些callback可能改焦点，后续paste-start必须看到已提交结果。reply字样在paste/string payload中不能抢占原状态，paste保持原子与目标锁；仅在normal引导的CSI分支识别。
+
+A不为了query引入KeyboardIssue公共接口。现有TCSAFLUSH开头丢输入是原native语义，**本正式工程契约“无丢失”只指查询不新增flush、缓存满丢弃、吞普通已读取按键或重新解码**。完整输入后续若承诺保留open前typeahead，应单独核改TCSAFLUSH，不能在本正式工程契约顺手扩大scope。
+
+输入资源：query额外输入buffer=0、额外事件queue=0、matcher/ledger=O(1)。A原单byte读天然每轮≤1byte；Keyboard K004升级后每UI turn≤4096bytes，原post cutoff/安全提交和OS背压不变。未来Keyboard状态仍O(maxPasteBytes+maxSequenceBytes+常数)，该分支纳入普通sequence预算，不绕过用户很小maxSequenceBytes。默认64容纳9bytes；设置<9时可能SequenceTooLong→Unknown，不另设超预算协议例外。
+
+### 4. 逻辑与物理输出
+
+A.6的CaretSnapshot仍是“最近完成目标帧的逻辑请求”：owner、坐标、visible按焦点Canvas/clip/宽簇/遮挡判定，headless等价。I014初焦点不等probe。设备Pending/Unknown不把逻辑visible改false，也不靠它伪造物理能力。
+
+在每个安全设备边界，用该时刻最新已完成目标caret生成输出；Known刚取得时强制考虑设备caret，即使网格不变。不保留旧reply时的逻辑坐标作为待执行命令。成功基线=完整成功写出的网格/profile+设备caret计划，只有全部字节成功才提交；失败不能提交部分caret。
+
+Known模式：逻辑隐藏则25l；逻辑可见则最后CUP到合法单元并25h。可按既有渲染计划在重绘前临时hide，前提Known且整个计划归同一writer；成功后ledger记录最终模式。Unknown模式：**所有路径，包括首帧、重绘、caret-only、模式初始化和cleanup，均不得含25h/l、25s/r**。逻辑可见时在画面输出后CUP到最新坐标；逻辑隐藏无额外caret CUP，终端光标可能仍停在画面writer最后位置。未知原visible时无请求仍可能显示，原hidden时有请求也不会显现；这是公开自动降级限制，不是逻辑caret失败。
+
+位置变化与能力变化可触发caret-only输出，不新增renderer。全局Frame导出不包含设备模式query和caret。root承诺的是显隐原态恢复，不声称恢复退出前原光标坐标/shape/blink；这些不能由本次mode25调查推导。
+
+### 5. writer与退出：root已裁决依赖重排
+
+当前源码的真实围栏只有write异常→停止run/报告→静默native close；没有partial/zero区分或跨run闩。A新增恢复字节后不能继续援引“沿原围栏”却在任何write错误后盲发25h/l。给A再写一套计数/闩会侵占149唯一权威；本正式工程契约不这样处理。
+
+**root已采纳工程顺序：固定RichText084后，先有限Session148→149→150→151→152；再Glyph094–097/Theme088+load092；随后A098/099（080/084/088保留并新增152），再B/C/Keyboard。** 这是现授权内可逆工程编排，无需新用户许可；计划不等于ready。
+
+依赖证据：session tasks §4 TASK149 inputs列148固定测试、004子合同、已验runtime固定整合、R10、003；没有A102/B107/C112。149.S2唯一实施native byte计数与unsafe闩。有限152不提前关闭paste/cut完整030、020或041，所以`152→A102→B/C→Keyboard114`无环。正式任务卡、Linux计划、输入F001均须由root同步此新前置，不能只改本文。
+
+本正式工程契约消费S008实际固定交付：query/屏幕/25输出/cleanup串行同writer。query任何write失败按S008终止run、首错保留；部分失败闩outputUnsafe且后续屏幕/25/title/2004全部零输出；native termios/signal/buffer清理继续。分配失败属于零设备字节，不伪造已发送query；A可沿既有抛错路径结束且保持原态，不把AllocationFailed写成成功探测。
+
+正常/应用异常/stop/signal/EOF退出：先停止input/probe授权，在唯一cleanup路径按**已经取得original且实际管理过mode25**记录恢复显隐；writer允许才发精确原25h或25l。恢复写成功只表示协议字节完整交付，真实host效果仍须产品证据。若没有实际改变原模式可不发冗余恢复；不得因logical caret曾变化就猜设备变过。任何outputUnsafe禁止恢复输出，报恢复不足并聚合首错，不能由termios成功推导显示模式恢复。零byte故障后的清理按S008既定允许范围；若设备不再可写则明确恢复失败，不能重试到无限循环。恢复自身失败同一闩/聚合，不二次“补救show”。
+
+EOF在A继承现cjt_read -3错误路径也须cleanup；不得声称A已经有Keyboard -4 EOF新语义。K004新增EOF后按F003先finish/有序末尾diagnostics，再stop/cleanup且不生成新设备帧；晚到reply不能在关闭阶段取得授权。signal/stop不额外制造诊断回调。再run创建新ledger/decoder；native进程期unsafe闩不能被新run绕过。
+
+### 6. 只读诊断与生命周期（root采纳唯一公共增量）
+
+现有public struct TerminalCapabilities增加 `public let cursorVisibilityStatus: String`。包内现init尾部新增named参数 `cursorVisibilityStatus!: String = "not-probed"`；不增加public构造/设置/probe接口、不改变颜色source/reason、colorOverride或glyph字段语义。闭集为 `not-probed`、`pending`、`original-visible`、`original-hidden`、`unknown-timeout`、`unknown-clock`。known只说明收到过原态报告，不说明当前像素/恢复成功。诊断无需业务分支，普通应用依旧自动运行。
+
+Application.terminalCapabilities()原只读入口返回完整不可变值快照；每run在其现有颜色能力初始化点建立not-probed，在query完整成功后Pending，同步接收/截止时更新副本不改颜色字段。getter只读不pump/不触发查询，不新增Observable依赖承诺。关闭后保留本run最后诊断；再次run在现能力初始化点重置。未运行first headless返回None；headless不创建/覆盖实际设备能力，曾有run则保留现lastCapabilities原生命周期。挂载/检测前失败保留原有last值，不能伪造本次probe。若查询写失败，执行S008原错误路径，诊断不代替原primary/cleanup结果。状态Closed只是内部ledger，不公开第七字符串；已获得原态在cleanup后仍是original-visible/hidden。
+
+### 7. 正式验证门槛
+
+098正式测试增加：精确7bytequery/9byte报告、0..4及所有分块/错误形态、普通键/UTF8/HT/Backtab/interrupt相对顺序、截止599/600且持续输入不延长、跨截止分块不触发timeout、真正100ms断流单列、Unknown/重复/迟到不升级、known后caret-only更新、snapshot逻辑与物理策略分离。A当前InputDecoder的有限timeout与最终K002完整timeout差别须显式测试，不把A当117。
+
+时间精确判定可用原生link fault clock shim/受控PTY oracle（仅测试，不加公开可写时钟）；短读/错误/overflow路径均有原件。正式实际XTerm/VTE/VT在visible和hidden两种受控初态运行同一无override产品，PNG多帧避blink、原bytes/termios/exit/version/config/src/hash；Unknown全wire无25h/l/s/r，逻辑snapshot与有效CUP仍正确。query/帧/caret-only/cleanup零/部分错误遵S008，unsafe后零后续output并保留native资源清理/首错/reopen拒绝。复用未变S008证据，仅补query/caret新边界，不重复全矩阵。
+
+未来113/114继承同一精确内部reply分支、payload隔离/F003顺序/4096预算，无接点public KeyboardDecoder仍UnsupportedSequence，maxSequenceBytes=8/9/64不豁免9byte报告。reply实际100ms timeout打断后沿K002回normal/诊断，不保证任意间隔可重新拼回。152/080/084/088实际接受后方可098完整准入；独立preflight仅设计事实，不替代该产品屏障。

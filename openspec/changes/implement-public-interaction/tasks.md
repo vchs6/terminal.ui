@@ -5,7 +5,7 @@
 **Goal:** 交付用户与内置组件同权的公共绘制/焦点、统一视口与owner覆盖层。
 **Architecture:** 单Component/RuntimeNode/LayoutNode/Frame/样式resolver；两类绘制依赖、统一UI边界、普通子序列与层所有权关系区分。
 **Tech Stack:** 仓颉SDK1.2.0、既有Unicode/Unicodewidth/ansies与主题088冻结依赖；无新运行时。
-**Spec:** design.md（I001–I014优先）及specs/ui-runtime、ui-construction、terminal-output；源需求REQ001/003/009。
+**Spec:** design.md（I001–I015优先）及specs/ui-runtime、ui-construction、terminal-output；源需求REQ001/003/009。
 
 ## Global constraints
 
@@ -31,8 +31,8 @@
 
 本节与每张任务卡合并才构成完整L3定义，适用于098–112，无省略字段：
 
-- `level=L3; goal=G-001; classification=execution`：用户目标已定、I001–I014收敛工程选择；若签名实证迫使外部行为变化，先修合同/preflight，不由实现者自由补约。
-- `openspec_change_ref=implement-public-interaction; workflow_ref=本tasks.md; decision_refs=design I001–I014`。具体`parent/parent_task/requirement_refs/type/inputs/depends_on/deliverables/acceptance/steps`见各卡。
+- `level=L3; goal=G-001; classification=execution`：用户目标已定、I001–I015收敛工程选择；若签名实证迫使外部行为变化，先修合同/preflight，不由实现者自由补约。
+- `openspec_change_ref=implement-public-interaction; workflow_ref=本tasks.md; decision_refs=design I001–I015`。具体`parent/parent_task/requirement_refs/type/inputs/depends_on/deliverables/acceptance/steps`见各卡。
 - `preconditions`：通用admission、该卡全部依赖、固定hash和角色隔离成立。`status=planned; evidence_refs=[]; blockers=admission及该卡依赖尚未由本角色核验完成`。不是实施授权缺失，不重复索要用户许可。
 - `required_skills`：测试=TDD/verification；产品=TDD/SDD/verification，遇故障再systematic-debugging；审查=requesting-code-review及verification（反馈修复用receiving-code-review）；执行/验收=verification，失败按需systematic-debugging。所有角色按实际工作使用已读AGENTS的仓颉参考及OpenSpec apply工作流。已具备的技能来源复用仓库固定记录；`skill_evidence_refs`进入ready时记录实际发现/读取/适用版本到`docs/reviews/interaction/<A|B|C>/<task-id>/skills.json`，不能将安装当实际使用。
 - `compatibility`：现Text/Row/Column/Frame/Style/KeyEvent/UIKeyEvent入口、事件过期、跨session、native恢复保留；本变更可观察新增/退役仅design列出的设备目标、统一默认、viewport/layer桥接。无发布ABI或旧widgets入口兼容承诺，兼容例外为空。
@@ -401,3 +401,9 @@ DQ06/10/13保持not_checked：实际080/084/088验收与固定源、完整签名
 098测试/099产品/100审核/101执行/102验收同时消费I011–013：NodeRef.application只读同会话服务入口、统一resolver自动disabled/focus并与声明状态OR合成、ScrollAxes.Off保持裸Option None源码兼容。A hand-written detached/ancestor-disabled/后链覆盖/focus+selected样例必须实际验证，不能等widgets再用私有节点补洞。Off签名微验证只是语言事实，不是B滚动已实现。
 
 I014补冻初始基础域首eligible自动焦点，None后新增候选与显式takeFocus空层保留例外，098/108各补手写期望；正式test冻结前单独preflight限定核，不以隐式选择让实现者自由决定。
+
+### I015新增前置与A测试/产品L4
+
+正式098/099保留080/084/088并新增152实际固定接受source/writer输入；root顺序为084→有限148–152→Glyph097→Theme088/092→A098–102→B/C→Keyboard113–117。152不包含完整paste/cut、020/041，无反向依赖A，不制造环。A099在同一InputDecoder只增原I007与I015精确reply路径，唯一native writer/byte计数/unsafe闩由149负责，禁止A另写一套。新增文件caret_probe.cj（内部ledger/单一实体），现terminal_capabilities.cj只读字段，native桥cjt_monotonic_ms；具体原功能文件按现表沿用。
+
+098手写时序/byte/显隐/只读诊断golden，覆盖design I015第7节。099先接已验writer和C单调时钟，再唯一decoder内部report接点、Application异步一次窗口/空闲计时、同一设备caret成功基线/cleanup，最后文档说明Unknown效果；不能为query丢普通输入或重置decoder。100以完整固定技术diff审核I015无第二parser/queue及错误路径；101只对变化跑相关正式检查/实际三host两原态原图；102核逻辑caret、协议授权、实际显隐/恢复、自动降级四层证据，不以未知分支PASS宣称所有host原生显隐可控。

@@ -7,3 +7,5 @@
 独立interaction_preflight Astra/high最终a0eae999 design_reviewed/execution_ready=false，无Critical/Important；Off及I011正常SDKshape consumer build/link/run0（非产品功能），I012与Theme既有矩阵/状态优先兼容。两处旧None文本Minor已机械修Off，报告de5312b85f05d9240826a05f97d9a7aa37d04fdb225017a1d7179aded8b5398d归R17/preflight；105原件hash外部保留，不复制整source snapshot。执行DQ03/06/10/13仍等080/084/088接受源及interface-map/角色证据，正式产品未准入。
 
 正式测试准备前root发现初始焦点未明：I014明确基础域初始稳定后首eligible、空域后加候选同规则，C takeFocus空层保持None/activeTarget层保留，不抢base。此是有限初态工程裁决，需限定复核再冻结098，不影响现C产品。
+
+root已采纳I015异步一次600ms、唯一decoder/writer、Unknown不改显隐、只读cursorVisibilityStatus诊断和最小Linux单调FFI。152提前为A实际writer前置；F006明确未来键盘继承和deadline/100msidle区别。仅formal候选，独立限定preflight后设计准入，当前A未实施。
