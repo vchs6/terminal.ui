@@ -251,6 +251,8 @@ R015：public Component()及宏组件根默认Column纵向容器语义，是有�
 
 R016：headless中显式dispatch未prevent的interrupt，在该dispatch最外安全边界停止并清理session，返回时ref无效、订阅/owner队列释放。跨线程stop只发停止请求，headless在下一个安全UI边界处理，后台绝不运行用户cleanup；dispose可主动结束且幂等。普通typed属性getter中的snapshot/dispatch或Observable写报ReentrantEvaluation；动态condition/items/key/body构造属于结构上下文，其递归snapshot/dispatch/NodeRef结构操作报ReentrantStructure；任何求值中直接Observable写仍报ReentrantEvaluation。不同session活动域越界仍WrongUIContext，不为错误上下文静默重新驱动别的session。
 
+R017：SDK Exception无可用suppressed/cause附加API，不能只把额外清理失败写stderr。新增单文件`public class UICleanupException <: Exception`，`public let primary:Exception`、`public prop cleanupFailures:Array<Exception>{get}`、`public init(primary:Exception,cleanupFailures:Array<Exception>)`；构造复制数组，getter返回副本。附加列表只含primary之后的清理失败；message含primary.message、附加数量及每条附加message（顺序同实际清理），不丢首错。框架无附加失败时仍抛原对象/类型；仅清理失败取首个作primary，其后作附加。有附加才包装；若已有UICleanupException，展开到最内primary并按顺序拼接旧/新附加，不反复嵌套。构造本身允许空列表，但框架不为无附加错误做空包装。native close仍在非抛finally执行；已有聚合错误再遇restore失败，将Exception("terminal restore failed")追加为附加；只有原primary与restore失败时保持既有D027组合消息形状。stderr可辅助，不是唯一诊断返回通道。
+
 ### 编译实证来源
 
 主代理冻结前读取`/workspace/work/linux-source-audit/{report.md,supplement/report.md,names/report.md}`和`/workspace/work/linux-build-recon/report.md`。这些是开发证据，不是正式产品通过；随本轮归档选取源码/raw/hash，无SDK/cache/二进制混入产品。独立preflight核合同与任务，正式测试取得缺API RED，然后产品正常CJPM编译验证全部精确API。TOML证据供后续主题使用，本变更不增TOML依赖。
