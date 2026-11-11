@@ -1,5 +1,7 @@
 package cjtui
 
+import std.collection.ArrayList
+
 // Alignment works only on finite committed viewport and content dimensions.
 func viewportAlignedOffset(current: Int64, viewport: Int64, extent: Int64, start: Int64, length: Int64,
     alignment: ScrollAlign): Int64 {
@@ -19,7 +21,11 @@ func viewportAlignedOffset(current: Int64, viewport: Int64, extent: Int64, start
             if ((start >= current && end <= windowEnd) || (length > viewport && current >= start && windowEnd <= end)) {
                 return current
             }
-            if (start < current) { desired = start } else { desired = signedAdd(end,-viewport) }
+            if (length > viewport) {
+                desired = if (current < start) { start } else { signedAdd(end,-viewport) }
+            } else {
+                desired = if (start < current) { start } else { signedAdd(end,-viewport) }
+            }
     }
     lesser(greater(0,desired),greater(0,extent-viewport))
 }
@@ -44,8 +50,8 @@ func applyViewportEnsure(session: RuntimeSession, command: ScrollCommand): Unit 
         var ox: Int64 = 0; var oy: Int64 = 0
         if (let Some(active) <- axes) {
             let view = node.viewportState.snapshot()
-            ox = if (active.horizontal()) { viewportAlignedOffset(view.offsetX,view.width,view.contentWidth,x,w,command.horizontal) } else { 0 }
-            oy = if (active.vertical()) { viewportAlignedOffset(view.offsetY,view.height,view.contentHeight,y,h,command.vertical) } else { 0 }
+            ox = if (active.horizontal() && !command.zeroWidth.contains(node.id)) { viewportAlignedOffset(view.offsetX,view.width,view.contentWidth,x,w,command.horizontal) } else { view.offsetX }
+            oy = if (active.vertical() && !command.zeroHeight.contains(node.id)) { viewportAlignedOffset(view.offsetY,view.height,view.contentHeight,y,h,command.vertical) } else { view.offsetY }
             if (node.viewportState.setOffset(ox,oy)) { session.markChanged(node,ChangeKind.Style) }
             // Carry only the visible fragment through the next outer viewport.
             let right = lesser(signedAdd(x,w),signedAdd(ox,view.width))

@@ -580,6 +580,18 @@ class RuntimeSession {
             throw UIException("CapacityExceeded", "command limit exceeded")
         }
         command.order = nextViewportIntent()
+        if (command.kind == 1) {
+            let target = command.target.resolve()
+            var current: ?RuntimeNode = if (command.rect.isSome()) { Some(target) } else { target.parent }
+            while (let Some(node) <- current) {
+                if (viewportAxes(node).isSome()) {
+                    let snap = node.viewportState.snapshot()
+                    if (snap.width == 0) { command.zeroWidth.add(node.id) }
+                    if (snap.height == 0) { command.zeroHeight.add(node.id) }
+                }
+                current = node.parent
+            }
+        }
         viewportCommands.add(command)
         if (command.kind == 0) {
             let state = command.target.resolve().viewportState
