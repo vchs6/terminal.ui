@@ -77,7 +77,7 @@ func parseTheme(input: String, source: String, path: ?String): Theme {
         let code = if (e.err.startsWith("expected integer value")) { "OutOfRange" } else { "SyntaxError" }
         throw ThemeException(ThemeDiagnostic(code,source,e.lastKey,e.message,Some(location),"value"))
     }
-    try { ThemeDecoder(source,parser.result).decode(path) } catch (e: ThemeException) {
+    try { ThemeDecoder(source,parser.result,parser).decode(path) } catch (e: ThemeException) {
         let d = e.diagnostic
         var lookup = d.keyPath
         if (d.code == "UnknownReference" || d.code == "ReferenceTypeMismatch") { lookup += ".ref" }

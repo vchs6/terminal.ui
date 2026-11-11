@@ -2,6 +2,7 @@ package cjtui.theme
 
 import cjtui.style.*
 import std.unicode.*
+import cangjie_toml.cangjie_toml.parser.*
 import std.collection.*
 import stdx.serialization.serialization.*
 
@@ -10,17 +11,18 @@ class ThemeDecoder {
     let root: DataModelStruct
     let schema: ThemeSchema
     let literal: ThemeLiteral
+    let parser: Parser
     let roles = Array<StyleRule>(17, { _ => StyleRule() })
     let names = ArrayList<String>()
     let named = ArrayList<StyleRule>()
     var text = StyleRule()
     var decoration = StyleRule()
     var spacing = StyleRule()
-    init(source: String, root: DataModelStruct) {
-        this.source = source; this.root = root; this.literal = ThemeLiteral(source)
+    init(source: String, root: DataModelStruct, parser: Parser) {
+        this.source = source; this.root = root; this.parser = parser; this.literal = ThemeLiteral(source,parser)
         let vars = root.get("variables")
         let varTable = if (vars is DataModelNull) { DataModelStruct() } else { literalTable(vars,"variables") }
-        this.schema = ThemeSchema(source,varTable)
+        this.schema = ThemeSchema(source,varTable,parser)
     }
     func fail(code: String,path: String): Nothing { throw themeFailure(code,source,path,"invalid theme value at ${path}") }
     func decode(path: ?String): Theme {
@@ -31,9 +33,13 @@ class ThemeDecoder {
         if (nameValue is DataModelNull) { fail("MissingRequired","name") }
         let name = literal.str(nameValue,"name")
         if (name.trim().isEmpty()) { fail("InvalidValue","name") }
+        for (r in name.runes()) {
+            let n = UInt32(r)
+            if (n < 32 || (n >= 127 && n <= 159)) { fail("InvalidValue","name") }
+        }
         for (entry in root.getFields()) {
             let k = entry.getName(); let v = entry.getData()
-            match (k) {
+            try { match (k) {
                 case "schema_version" | "name" => ()
                 case "variables" => validateVariables(v)
                 case "text" => text = schema.category(StyleRule(),k,v,k,VisualState.Normal)
@@ -55,14 +61,53 @@ class ThemeDecoder {
                         roles[i] = rule(field.getData(),p,i)
                     }
                 case _ => fail("UnknownKey",k)
+            } } catch (e: ThemeException) { schema.errors.add(e) }
+        }
+        throwFirstError()
+        Theme(name,path,source,text,decoration,spacing,roles,names.toArray(),named.toArray())
+    }
+    // Compare failures against the upstream Parser's declaration sequence, not
+    // the grouping of the final merged DataModel tree.
+    func errorRank(path: String, order: HashMap<String, Int64>): Int64 {
+        var lookup = path
+        while (!lookup.isEmpty()) {
+            if (let Some(index) <- order.get(lookup)) { return index }
+            match (lookup.lastIndexOf(b'.')) {
+                case Some(index) => lookup = lookup[..index]
+                case _ => break
             }
         }
-        Theme(name,path,source,text,decoration,spacing,roles,names.toArray(),named.toArray())
+        Int64.Max
+    }
+    func throwFirstError(): Unit {
+        if (schema.errors.size == 0) { return }
+        // Store each path prefix only on its first occurrence. This keeps the
+        // selection linear in bounded declaration count and path depth.
+        let order = HashMap<String, Int64>()
+        var index: Int64 = 0
+        for (key in parser.orderedKeys) {
+            var full = ""
+            for (part in key.raw()) {
+                full = if (full.isEmpty()) { part } else { full + "." + part }
+                if (order.get(full).isNone()) { order[full] = index }
+            }
+            index++
+        }
+        var first = schema.errors[0]
+        var rank = errorRank(first.diagnostic.keyPath,order)
+        for (e in schema.errors) {
+            let candidate = errorRank(e.diagnostic.keyPath,order)
+            if (candidate < rank || (candidate == rank && e.diagnostic.keyPath < first.diagnostic.keyPath)) {
+                first = e; rank = candidate
+            }
+        }
+        throw first
     }
     func validateVariables(dm: DataModel): Unit {
         let entries = schema.table(dm,"variables").getFields()
         if (entries.size > 4096) { fail("CapacityExceeded","variables") }
         for (entry in entries) {
+            try {
             let p = "variables." + entry.getName()
             if (!validThemeName(entry.getName())) { fail("InvalidName",p) }
             let rec = schema.table(entry.getData(),p)
@@ -84,6 +129,7 @@ class ThemeDecoder {
                 case "overflow" => let _ = literal.overflow(v,valuePath)
                 case _ => fail("InvalidValue",p + ".type")
             }
+            } catch (e: ThemeException) { schema.errors.add(e) }
         }
     }
     func rule(dm: DataModel,path: String,role: Int64): StyleRule {
@@ -94,6 +140,7 @@ class ThemeDecoder {
             let k = f.getName(); let v = f.getData()
             if (k == "states") {
                 for (sf in schema.table(v,path + ".states").getFields()) {
+                    try {
                     let sp = path + ".states." + sf.getName()
                     let state = match (sf.getName()) {
                         case "normal" => VisualState.Normal
@@ -103,10 +150,15 @@ class ThemeDecoder {
                         case _ => fail("UnknownState",sp)
                     }
                     for (cf in schema.table(sf.getData(),sp).getFields()) {
-                        result = ruleCategory(result,cf.getName(),cf.getData(),sp + "." + cf.getName(),state,role,seen)
+                        try { result = ruleCategory(result,cf.getName(),cf.getData(),sp + "." + cf.getName(),state,role,seen) }
+                        catch (e: ThemeException) { schema.errors.add(e) }
                     }
+                    } catch (e: ThemeException) { schema.errors.add(e) }
                 }
-            } else { result = ruleCategory(result,k,v,path + "." + k,VisualState.Normal,role,seen) }
+            } else {
+                try { result = ruleCategory(result,k,v,path + "." + k,VisualState.Normal,role,seen) }
+                catch (e: ThemeException) { schema.errors.add(e) }
+            }
         }
         result
     }
@@ -114,6 +166,7 @@ class ThemeDecoder {
         if (cat != "text" && cat != "decoration" && cat != "spacing") { fail("UnknownKey",path) }
         var result = rule
         for (f in schema.table(dm,path).getFields()) {
+            try {
             let key = cat + "." + f.getName(); let p = path + "." + f.getName()
             if (state == VisualState.Normal) {
                 if (seen.contains(key)) { fail("DuplicateProperty",p) }
@@ -127,6 +180,7 @@ class ThemeDecoder {
                 if ((textLayout && !isText) || (containerLayout && !isContainer)) { fail("UnsupportedProperty",p) }
             }
             result = schema.property(result,cat,f.getName(),f.getData(),p,state)
+            } catch (e: ThemeException) { schema.errors.add(e) }
         }
         result
     }

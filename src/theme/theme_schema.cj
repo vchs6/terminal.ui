@@ -3,12 +3,14 @@ package cjtui.theme
 import cjtui.style.*
 import std.collection.*
 import stdx.serialization.serialization.*
+import cangjie_toml.cangjie_toml.parser.*
 
 class ThemeSchema {
     let source: String
     let literal: ThemeLiteral
     let variables: DataModelStruct
-    init(source: String, variables: DataModelStruct) { this.source = source; literal = ThemeLiteral(source); this.variables = variables }
+    let errors = ArrayList<ThemeException>()
+    init(source: String, variables: DataModelStruct, parser: Parser) { this.source = source; literal = ThemeLiteral(source,parser); this.variables = variables }
     func fail(code: String, path: String): Nothing { throw themeFailure(code,source,path,"invalid theme value at ${path}") }
     func table(dm: DataModel, path: String): DataModelStruct {
         if (let Some(v) <- (dm as DataModelStruct)) { return v }
@@ -63,7 +65,7 @@ class ThemeSchema {
                 if (!literal.boolean(f[0].getData(),path)) { fail("InvalidValue",path) }
                 reset = true
             } else if (f.size == 1 && f[0].getName() == "ref") {
-                let ref = literal.str(f[0].getData(),path)
+                let ref = literal.str(f[0].getData(),path,metadataPath: path + ".ref")
                 if (!validThemeName(ref)) { fail("InvalidValue",path) }
                 let v = variables.get(ref)
                 if (v is DataModelNull) { fail("UnknownReference",path) }
@@ -118,7 +120,8 @@ class ThemeSchema {
     func category(rule: StyleRule, cat: String, dm: DataModel, path: String, state: VisualState): StyleRule {
         var result = rule
         for (field in table(dm,path).getFields()) {
-            result = property(result,cat,field.getName(),field.getData(),path + "." + field.getName(),state)
+            try { result = property(result,cat,field.getName(),field.getData(),path + "." + field.getName(),state) }
+            catch (e: ThemeException) { errors.add(e) }
         }
         result
     }
