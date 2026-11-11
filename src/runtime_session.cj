@@ -625,12 +625,16 @@ class RuntimeSession {
                 var pendingIndex: Int64 = 0
                 while (pendingIndex < pendingEnsures.size) {
                     let earlier = pendingEnsures[pendingIndex]
-                    if (earlier.order < command.order && viewportContains(node,earlier.target)) {
-                        pendingEnsures.remove(at:pendingIndex)
+                    if (earlier.order < command.order) {
+                        if (viewportContains(node,earlier.target)) {
+                            pendingEnsures.remove(at:pendingIndex)
+                        } else { pendingIndex++ }
                     } else { pendingIndex++ }
                 }
                 if (let Some(focus) <- pendingFocusEnsure) {
-                    if (focus.order < command.order && viewportContains(node,focus.target)) { pendingFocusEnsure = None }
+                    if (focus.order < command.order) {
+                        if (viewportContains(node,focus.target)) { pendingFocusEnsure = None }
+                    }
                 }
                 let state = node.viewportState
                 state.queuedX = None; state.queuedY = None
