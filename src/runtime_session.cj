@@ -23,7 +23,7 @@ let activeSession = ThreadLocal<RuntimeSession>()
 class RuntimeSession {
     let root: Component
     let limits: RuntimeLimits
-    let theme: Theme
+    var theme: Theme
     let id: Int64
     let threadId: Int64
     let threadNonce: Int64
@@ -1000,6 +1000,23 @@ class RuntimeSession {
             }
         }
         stabilize(turnCutoff)
+        applyPendingTheme()
+    }
+    func applyPendingTheme(): Unit {
+        if (let Some(weak) <- application) {
+            if (let Some(app) <- weak.value) { app.applyThemeCandidate(this) }
+        }
+    }
+    func acceptTheme(value: Theme, layoutChanged: Bool): Unit {
+        lock.lock()
+        try {
+            theme = value; changed = true
+            if (layoutChanged) { measuredLayout = None }
+            for (node in nodes) {
+                if (layoutChanged) { node.layoutDirty = true }
+                node.styleDirty = true
+            }
+        } finally { lock.unlock() }
     }
     func glyphPolicyChanged(): Unit {
         lock.lock()
@@ -1123,6 +1140,9 @@ class RuntimeSession {
             }
         } finally {
             lock.unlock()
+        }
+        if (let Some(weak) <- application) {
+            if (let Some(app) <- weak.value) { app.closeThemeSession(id) }
         }
         for (node in nodes) {
             node.component.clearMount()

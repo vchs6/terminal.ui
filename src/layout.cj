@@ -226,6 +226,7 @@ public func render(root: Component, width: Int64, height: Int64, glyphMode!: Gly
         try {
             let frame = session.enter({ =>
                 session.stabilize(turnCutoff)
+                session.applyPendingTheme()
                 session.selectLayoutGlyphPolicy(offlineGlyphPolicy(glyphMode))
                 let result = renderLayout(root, width, height, session)
                 session.recordFrame()

@@ -8,7 +8,7 @@ public class Application {
     private var handler: (KeyEvent) -> Unit = {_ =>}
     private var running = false
     private let limits: RuntimeLimits
-    private let initialTheme: Theme
+    private let themeLoader: ThemeLoader
     private let sessionLock = Mutex()
     private var session: ?RuntimeSession = None
     private var latestStats = RuntimeStats(0, 0, 0, 0, 0, 0, 0, 0)
@@ -22,16 +22,31 @@ public class Application {
     private var lastSessionCleanup = Array<SessionResult>()
     public init(root: Component, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto, theme!: Theme = Theme.preset(ThemePreset.Classic)) {
         this.root = root
-        this.initialTheme = theme
+        this.themeLoader = ThemeLoader(theme)
         this.limits = limits
         this.configuredGlyphMode = glyphMode
     }
     public init(root: Component, colorMode!: ColorMode, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto, theme!: Theme = Theme.preset(ThemePreset.Classic)) {
         this.root = root
-        this.initialTheme = theme
+        this.themeLoader = ThemeLoader(theme)
         this.limits = limits
         this.configuredGlyphMode = glyphMode
         colorOverride = Some(colorMode)
+    }
+    public func loadTheme(source: ThemeSource): ThemeRequest { themeLoader.submit(source,false) }
+    public func reloadTheme(): ThemeRequest { themeLoader.submit(ThemeSource.Prepared(themeLoader.currentTheme()),true) }
+    public func themeInfo(): ThemeInfo { themeLoader.info() }
+    func closeThemeSession(id: Int64): Unit { themeLoader.closeSession(id) }
+    func applyThemeCandidate(session: RuntimeSession): Unit {
+        if (let Some(candidate) <- themeLoader.candidate(session.id)) {
+            if (candidate.fault.isSome()) {
+                if (let Some(fault) <- themeLoader.claimFault(session.id,candidate)) { throw fault }
+                return
+            }
+            let (error, layoutChanged) = if (let Some(d) <- candidate.diagnostic) { (Some(d), false) }
+                else { validateThemeCandidate(session,candidate.theme.getOrThrow()) }
+            themeLoader.finish(session,candidate,error,layoutChanged)
+        }
     }
     public func glyphMode(value: GlyphMode): Application {
         if (configuredGlyphMode != value) {
@@ -192,8 +207,9 @@ public class Application {
                 throw UIException("LifecycleReentry", "session already active")
             }
             value = RuntimeSession(root, limits, application: Some(this), sessionOptions: configuredSessionOptions,
-                device: device, theme: initialTheme)
+                device: device, theme: themeLoader.currentTheme())
             session = Some(value)
+            themeLoader.open(value.id)
             lastSessionCapabilities = Some(value.extensions.capabilities)
             lastSessionCleanup = []
         } finally {
@@ -252,6 +268,7 @@ public class Application {
                         }
                         if (value.batchDepth == 0) {
                             value.stabilize(turnCutoff)
+                            applyThemeCandidate(value)
                         }
                 }
             )
@@ -360,6 +377,7 @@ public class Application {
                             value.inCallback = false
                         }
                         value.stabilize(turnCutoff)
+                        applyThemeCandidate(value)
                 }
             )
         } catch (error: Exception) {
@@ -451,7 +469,8 @@ public class Application {
                 }
                 let profile = terminalRenderProfile(capabilities, mode, glyphPolicy: glyphPolicy)
                 let work = current()
-                if (work.needsWork() || width != previousWidth || height != previousHeight || mode != baselineProfile
+                let hasThemeCandidate = themeLoader.hasCandidate(work.id)
+                if (work.needsWork() || hasThemeCandidate || width != previousWidth || height != previousHeight || mode != baselineProfile
                     .colorMode || requestGlyphMode != baselineGlyphMode || baseline.isNone()) {
                     let frame = snapshotWithPolicy(width, height, glyphPolicy)
                     if (readSession().isNone() || work.isStopping()) {
