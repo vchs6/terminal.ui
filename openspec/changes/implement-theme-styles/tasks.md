@@ -71,3 +71,7 @@ preflight逐项：085/013/025接口同design/fixtures；013和025同代码周期
 ### 085 / 013025 的 T009 词法键预算补充 L4
 
 原085固定交付不变；实施中新明确的转义预算测量按design末T009澄清，由本L4继续补齐，不新建解析器或独立产品内核。顺序：独立上游Lexer实证/决策Battle确认正式文字→独立测试角色追加所有键上下文的1024/1025、103个plain a与103次U转义、值位置控制（原所有预期保留）→固定test-only及实际missing-target RED/工具控制的真实边界→013025原作者实现同一Lexer guard并跑完整正式测试→086/087/088按新增冻结合同审核、执行和验收。未完成新增测试固定前，原作者不得自行定义转义预算或改预期。实际文件由测试作者按tests/themes既有生成输入及capacity实体组织，新增Cj类型仍一实体一文件；无公开API改变。
+
+### 013025 同一产品周期的顺序实现检查点
+
+013025仍为一个完整产品范围，086审全部BASE..最终产品，不分别接受半成品。为控制单次实现范围，原作者在同一隔离树串行完成：A仅typed style/immutable Theme及完整TOML依赖、Lexer预算、schema/诊断、readFile/preset/四配置、普通values真实执行；B仅现Component声明槽/唯一resolver/继承与presence/fill/explicit mask及Application theme入口、真实integration来源状态部分；C同一LayoutNode分配宽度wrap/overflow/四边padding、Glyph marker上下文/cache/快照与全部正式085、回归和正常包消费。每检查点提交固定product-only代码和纯raw，主代理继续调度下一点而不合入未独审的局部实现；A/B不关闭013025/085/088。三段不允许第二resolver/Frame/TOML路径或重复树；后续026仍等完整088。

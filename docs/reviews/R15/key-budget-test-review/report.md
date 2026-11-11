@@ -1,0 +1,44 @@
+# Independent review: TASK085 encoded-key test supplement
+
+**Spec verdict: PASS_TEST_ASSET_SCOPE. Quality verdict: PASS_STATIC_TEST_ASSET_SCOPE.** No Critical, Important or Minor findings. The fixed test-only change is suitable to integrate and hand to the product implementer. This verdict does not claim compilation or runtime success of the new Cangjie consumer, product correctness, or TASK013/025 acceptance.
+
+Reviewed BASE `51a22fee9732a6d53affd05dd1eaa63e3d58ce2e` through HEAD `51986bb00457e400c5ad90d3284db6aa873d5530`, against formal design SHA-256 `084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4` (contract commit supplied as 589c3bb). The exact five-file diff, fixed source snapshots, formal contract and task brief are archived here. The supplied diff package is exactly the fixed git diff with ten context lines. Initial comparison with git's default three lines failed only because of context length; no content discrepancy exists.
+
+## Scope and independence
+
+Read the sole current brief first, then fixed code/contract, existing call sites/schema assertions and only the permitted raw evidence. Did not read test-author report/progress/reasoning/self-assessment or product-author directories. No main, product, formal contract or test-source edits; no subagents. New review artifacts live only under /workspace/work/theme-key-budget-test-review. The earlier sealed decision review remains unchanged.
+
+This review independently executed input generation and byte/location/preservation checks, not the theme suite. The existing 40 upstream public-Lexer probes were not repeated: upstream version and token questions are unchanged. No alternative TOML parser, decoder, fake Theme, guard implementation or product-derived expected values were introduced. The fixed source uses only the public Theme/StyleRule API and standard File/String/Rune operations already present in the contract/test project.
+
+## Spec review
+
+- The generator adds 11 spellings × 6 key contexts × 2 boundaries = 132 generic inputs. Every payload is exactly 1024 or 1025 UTF-8 bytes. Bare/basic/literal ASCII, basic/literal Unicode, Unicode-plus-ASCII, short/long Unicode escapes, escaped quotes/backslashes and quoted punctuation are covered. Contexts include ordinary/dotted keys, ordinary/array-table headers, inline tables and array-contained inline tables.
+- At 1024, generic keys are deliberately unsupported names: ordinary/table/array-table roots and dotted/inline text properties correctly demand UnknownKey. The array-contained-inline input makes `text` an array and correctly demands InvalidType at `text`. Passing a resource gate is not asserted to make an unsupported array-table schema valid. At 1025, every context demands CapacityExceeded before Parser/schema.
+- The decoded keys for schema diagnostics are independently written as simple fixture arithmetic. They are not obtained from product parsing or a test TOML decoder. Literal/escaped quote and backslash expectations match TOML meaning; dots/brackets inside quoted segments stay part of a single segment rather than a structural path-depth count.
+- Both styles and variables have direct103 accepted names, escaped103 spelling with 1030 raw bytes rejected, escaped1024 spelling with 106 decoded ASCII letters accepted, and escaped1025 spelling with 107 decoded letters rejected. All decoded names stay below128, isolating the lexical gate. Accepted styles are queried through namedStyle; variables are actually resolved through the public text rule. The expected bold rule is built independently with the typed public builder.
+- Six admitted equivalent forms query the same explicitly expected bold rule. Escaped1030-byte, literal1025-byte and Unicode1026-byte display-name values are valid controls; two long comments must remain inert for key/path/depth while retaining existing token-count policy. No new case approaches the file, token, declaration, path, depth, variable or style resource limits (maximum generated addition:1846 bytes).
+- Capacity diagnostics must retain caller source, a nonempty message and a bounded nonempty Rune range overlapping the offending spelling. Coordinates are checked against source Runes. The test does not demand a decoded guard keyPath or an exact delimiter-inclusive range. Generic start offsets and quoted source lengths were independently recomputed; styles/variables offending-key start offsets38/41 and lengths1032/1027 are correct.
+
+The brief's key domains, controls and admission/semantic distinction are covered. Existing contract diagnostic categories and tests (unknown root/property, wrong category type) support the asserted downstream errors. No contradictory new diagnostic category was imposed.
+
+## Quality and preservation review
+
+The diff changes only five test/documentation files: three new files and two additive hooks. Independently reconstructed base versus head content proves all63 existing theme-source files preserved; removing the specified new import/generator call and capacity call restores the two touched old files byte-for-byte. All16 negative fixtures and all4 preset files remain identical. Independently running the original and new generators produced41 old and192 total inputs, with all41 original files byte-identical and151 additions.
+
+Execution wiring is complete: run.sh invokes run.py; run.py imports generate_inputs and generates inputs before building/running values; generate_inputs calls the new generator; values/main invokes capacityBoundaries; its appended call invokes encodedKeyBudgetBoundaries. The new Cangjie file shares the existing package and is automatically part of the normal CJPM values project. Existing runner cwd makes `../.scratch/...` resolve correctly. Both capacity failures and valid controls throw on unexpected behavior and cannot silently pass after an exception from another type. The root typed assertions compare declared values, not renderer or parser-produced goldens.
+
+Implementation complexity is limited to fixture construction, table-driven context/encoding loops, reusable assertion helpers and documentation. No product path or untracked development directory becomes a test runtime dependency. The input generator performs byte arithmetic only. The single new .cj file defines cohesive test functions and no mixed entity declarations. No unnecessary compatibility branch or replacement path was added.
+
+## Executed checks and raw SDK evidence
+
+`python /workspace/work/theme-key-budget-test-review/inspect.py` exited0. Exact independent results, UTC, version anchors and hashes are in raw/independent-checks.json; supporting inventories are raw/source-preservation-independent.json, raw/arithmetic-independent.json and raw/generated-hashes-independent.json. This check read fixed git blobs, ran both generators in isolated output directories, checked all132 boundary arithmetic/location combinations, verified old input preservation, checked the supplied permitted raw manifests and tied the actual run source hashes to the fixed HEAD.
+
+Raw manifest hashes were verified for the selected SDK evidence before reading/copying it. The recorded SDK is cjc/cjpm1.2.0. The existing command `cjpm build` in the values consumer at2026-11-11T01:59:46.674571+00:00 exited1 with `can not find ... cjtui.theme`. The runner stopped at the positive build; there is no values run or negative-gate pass. The command log's git HEAD was the base because the supplement was not yet committed at execution time; actual-source-equivalence hashes independently match all five fixed HEAD files, resolving the source identity.
+
+That missing-API result proves only the availability gate stopped correctly. It neither proves escaped-budget behavior RED nor establishes that the newly added Cangjie code has fully typechecked. Public symbol names/signatures, return types and syntax were reviewed statically against the formal API and established test patterns. A compiler-help check did not identify a supported syntax-only mode; no synthetic stub or invented flag was used to manufacture compilation evidence. Full build and behavior assertions remain for the later real product implementation and independent execution stage.
+
+## Handoff and archive
+
+Integrate the reviewed test commit and hand its fixed source to the product author. Preserve the current outcome classification until a real product can build/run these tests. No test correction is required by this review.
+
+The curated directory includes report/findings, brief, frozen formal contract, exact diff, fixed changed/call-site source text, review script, selected raw logs, independent inventories and all151 new generated fixtures. It omits generated old megabyte stress files (their hashes are retained), caches, SDKs, CJP/ELF/object binaries, checkouts and credentials. artifacts.sha256 verifies the package; no earlier sealed decision artifacts were modified.

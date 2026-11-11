@@ -1,0 +1,43 @@
+{
+  "review_id": "TASK085-KEY-BUDGET-TEST-ASSET-20261111",
+  "review_kind": "independent_spec_and_quality_test_asset_review",
+  "base": "51a22fee9732a6d53affd05dd1eaa63e3d58ce2e",
+  "revision": "51986bb00457e400c5ad90d3284db6aa873d5530",
+  "contract_sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+  "spec_verdict": "PASS_TEST_ASSET_SCOPE",
+  "quality_verdict": "PASS_STATIC_TEST_ASSET_SCOPE",
+  "integration_recommendation": "Integrate fixed test-only revision and hand to product author; no asset correction required",
+  "counts": {"critical": 0, "important": 0, "minor": 0},
+  "findings": [],
+  "verification": {
+    "independent_command": "python /workspace/work/theme-key-budget-test-review/inspect.py",
+    "independent_exit": 0,
+    "changed_test_files": 5,
+    "old_test_source_files_preserved": 63,
+    "negative_fixtures_preserved": 16,
+    "preset_files_preserved": 4,
+    "old_generated_inputs_preserved": 41,
+    "new_generated_inputs": 151,
+    "generic_boundary_combinations_checked": 132,
+    "maximum_new_input_bytes": 1846,
+    "actual_run_source_matches_fixed_revision": true,
+    "recorded_consumer_build_exit": 1,
+    "recorded_consumer_build_reason": "Missing cjtui.theme",
+    "product_runtime_executions_this_review": 0,
+    "repeated_upstream_lexer_probes": 0,
+    "references": ["raw/independent-checks.json", "raw/source-preservation-independent.json", "raw/arithmetic-independent.json", "raw/generated-hashes-independent.json", "raw/actual-source-equivalence.json", "raw/selected-sdk-evidence/theme-run/commands.jsonl", "raw/selected-sdk-evidence/theme-run/values-build.stderr"]
+  },
+  "limitations": [
+    "No product implementation was reviewed",
+    "Missing-API gate is not escaped-budget behavior RED or product GREEN",
+    "New Cangjie consumer has not fully typechecked against actual Theme implementation",
+    "Build/runtime acceptance remains for independent execution once the real product exists"
+  ],
+  "independence": {
+    "test_author_reports_or_self_assessment_read": false,
+    "product_author_directory_read": false,
+    "main_product_contract_test_edits": false,
+    "subagents": false,
+    "earlier_sealed_decision_artifacts_modified": false
+  }
+}

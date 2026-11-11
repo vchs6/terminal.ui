@@ -25,3 +25,9 @@ T009窄独立Battle中间实证：正常SDK/自有cache/未改upstream0.2.3，40
 T009正式wording独立窄复核PASS_NARROW_FORMAL_WORDING，designSHA084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4，KB01 formal歧义已闭合；KB02仅未选B的公开decoder缺口，KB03新增产品测试仍待。独立085 Sol/high theme_glyph_test_refresh恢复到新目录theme-key-budget-tests，BASE51a22fe/testonly，要求所有原断言不变、只追加raw/escaped上下文边界/valuecomment/1030与103及预算内语义等价；不读产品作者目录。预算实现等固定追加，013025其它继续。决策实证原180index归档时完整设计snapshot不复制，保外部hash/精确省略说明、原report/index字节不改；root机械archive处理中。
 
 T009决策与上游实证已归档[R15/key-budget-review](../../../docs/reviews/R15/key-budget-review/report.md)：源实际181files/原index180entries含完整设计snapshot；归档180原件（179indexpayload+原index本体）+3wrapper，共183，唯一完整设计snapshot外部保hash/理由，不改原报告或index，不声称完整index自包含重放。rootfresh180sourcecopy360SHA0差异，正式designhash084b1623不变；当前npm run check实际23/23exit0仅metadata/OpenSpec。新增测试及013025产品仍未完成。
+
+085 T009追加51986bb（root92fe4f3）已独立spec PASS_TEST_ASSET_SCOPE/quality PASS_STATIC_TEST_ASSET_SCOPE0C/I/M；独立重算63原源/41旧生成/16negative/4preset保留，132边界/151新增、最大1846bytes、完整接线。缺Theme实际SDKexit1，新增Cj消费者未完整typecheck/行为未执行，不能冒行为RED/GREEN。测试原件R15/key-budget-tests34份rootfresh68hash全同，独立review原件随后归档。
+
+013025作者交INCOMPLETE（HEAD81cd/无产品提交），仅typed declarations/Theme数据模型；root实际调用handling-reports并读完整交接，未集成或标ready。作者确认停止因错误地把规模当结束理由，无平台/工具/context阻断。现同一L3周期拆A pureTheme/parser+values→B resolver/Component/Application→C layout+全测试包的串行检查点，复用原树/证据，无第二产品作者；原作者已继续A。固定新增08551986已交budget ACTUAL GO，独立测试overlay与product-onlycommit区分；预算源契约hash084b1623不变。最终086仍审完整BASE81cd..最终产品，不把检查点当有限交付或提前关闭任务。
+
+085 T009测试/独审原件归档R15/key-budget-tests36files=34原件+2wrapper；test-review182files=179原件+3wrapper（原index181entries+本体182源，完整formal/brief/KEYBUDGET三个Markdown源snapshot留外部hash/省略说明，原报告/index不改）。rootfresh34sourcecopy68SHA及179sourcecopy358SHA全同；当前npm run check实际23/23exit0仅metadata/OpenSpec。Budget测试固定51986/root92fe已交原实现作者，checkpointA正在继续；没有013025产品提交或提前通过。
