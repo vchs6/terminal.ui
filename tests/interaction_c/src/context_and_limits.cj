@@ -57,11 +57,26 @@ func lifecycleLayerCommands():Unit {
 }
 
 func layerCapacity(which:Int64):Unit {
-    let root=Column{}.viewport(ScrollAxes.Off)
+    let owner=Box<?Component>(Option<Component>.None)
+    // Shared runtime starts at root0: only the depth case adds ordinary owner1.
+    let root=Column{if(which==2){owner.value=Some(Text("owner"))}}.viewport(ScrollAxes.Off)
     let limits=if(which==0){RuntimeLimits(mountedNodes:1)}else if(which==1){RuntimeLimits(structuralOpsPerBatch:1)}else{RuntimeLimits(treeDepth:1)}
     let app=Application(root,limits:limits);app.startHeadless()
-    code("CapacityExceeded",{=>app.batch({=>node(root).openOverlay(Text("one"));if(which==1){node(root).openOverlay(Text("two"))};()})},"E16 shared node/command/depth budget")
+    code("CapacityExceeded",{=>app.batch({=>
+        if(which==2){node(owner.value.getOrThrow()).openOverlay(Text("one"))}else{node(root).openOverlay(Text("one"))}
+        if(which==1){node(root).openOverlay(Text("two"))};()
+    })},"E16 shared node/command/depth budget")
     app.dispose();released(app,"E16 no retained layer queue")
+}
+
+func layerDepthBoundary():Unit {
+    let root=Column{}.viewport(ScrollAxes.Off)
+    let app=Application(root,limits:RuntimeLimits(treeDepth:1));app.startHeadless()
+    let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+    app.batch({=>handle.value=Some(node(root).openOverlay(Text("one")))})
+    check(handle.value.getOrThrow().isOpen() && handle.value.getOrThrow().content().getOrThrow().isValid() && app.stats().mountedNodes==2,
+        "E16 root0 to Text layer1 is legal at treeDepth1 and has exactly two real nodes")
+    app.dispose();released(app,"E16 legal depth boundary releases complete session")
 }
 func layerDependencyBudget(exceed:Bool):Unit {
     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root,limits:RuntimeLimits(dependenciesPerBinding:1));app.startHeadless()

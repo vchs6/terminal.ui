@@ -12,7 +12,10 @@ func anchorPlacement(placement:OverlayPlacement,top:Int64,left:Int64,expected:St
     let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>h.value=Some(node(root).openOverlay(popup,options:OverlayOptions(anchor:node(anchor.value.getOrThrow()),placement:placement,takeFocus:false)))})
     let old=node(popup);picture(app.snapshot(10,6),expected,"G13 manual directional/flip/clamp grid")
-    app.snapshot(9,5);check(old.sameNode(h.value.getOrThrow().content().getOrThrow()),"G13 resize keeps actual layer identity")
+    // Keep the known anchor intersecting the host; fully clipped is G14.
+    app.snapshot(if(left==9){10}else{9},if(top==5){6}else{5})
+    check(h.value.getOrThrow().isOpen() && h.value.getOrThrow().content().isSome(),"G13 still-visible anchor keeps published layer open")
+    check(old.sameNode(h.value.getOrThrow().content().getOrThrow()),"G13 resize keeps actual layer identity")
     app.dispose()
 }
 func directionalAnchors():Unit {
@@ -35,7 +38,7 @@ func clippedAndLostAnchors():Unit {
     app.batch({=>node(root).scrollTo(0,1);()});app.snapshot(4,2)
     let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>h.value=Some(node(root).openOverlay(Text("PP").width(2).height(1),options:OverlayOptions(anchor:node(anchor.value.getOrThrow()),placement:OverlayPlacement.BelowStart,takeFocus:false)))})
-    picture(app.snapshot(4,2),"    \nPP  ","G14 partial anchor uses visible intersection")
+    picture(app.snapshot(4,2),"    \nPPil","G14 partial anchor uses visible intersection")
     app.batch({=>anchor.value.getOrThrow().enabled(false)});app.snapshot(4,2)
     check(h.value.getOrThrow().isOpen(),"G14 disabled anchor keeps geometry/layer")
     app.batch({=>node(root).scrollTo(0,2);()});app.snapshot(4,2)
