@@ -48,7 +48,8 @@ class Binding {
             ownerLock.unlock()
         }
     }
-    func evaluate(): Unit {
+    func evaluate(): Unit { track(getter) }
+    func track(action: () -> Unit): Unit {
         for (entry in dependencies) {
             entry.source.unsubscribe(this)
         }
@@ -57,9 +58,9 @@ class Binding {
         evaluating.set(Some(this))
         try {
             if (category == ChangeKind.Structure) {
-                inStructure(getter)
+                inStructure(action)
             } else {
-                getter()
+                action()
             }
         } finally {
             evaluating.set(previous)

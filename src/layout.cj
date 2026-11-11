@@ -99,6 +99,18 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
     let iy = sat(y, topPad)
     let ir = lesser(right, sat(ix, innerW));
     let ib = lesser(bottom, sat(iy, innerH))
+    if (c.kind == 3) {
+        if (output.isNone()) { return }
+        let frame = output.getOrThrow()
+        let left = greater(0,clipL - ix); let top = greater(0,clipT - iy)
+        let endX = greater(left,lesser(innerW,ir - ix)); let endY = greater(top,lesser(innerH,ib - iy))
+        let selected = resolveStyle(c,n.session.theme,n.inheritedStyle,n.rootNode,selected:true)
+        let context = PaintContext(n.session,c.readMount().getOrThrow(),frame,ix,iy,Size(innerW,innerH),
+            Rect(left,top,endX-left,endY-top),r,selected)
+        try { c.canvasBinding("canvas-draw").track({=> c.canvas.getOrThrow().draw(context) }) }
+        finally { context.expire() }
+        return
+    }
     if (c.kind == 0) {
         if (output.isNone()) { return }
         let frame = output.getOrThrow()

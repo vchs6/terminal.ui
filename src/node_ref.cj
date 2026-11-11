@@ -34,6 +34,28 @@ public class NodeRef {
         }
         throw UIException("StaleReference", "node is no longer mounted")
     }
+    public func isFocused(): Bool {
+        let value = resolve(); value.session.requireReadContext(); value.session.focusManager.observe()
+        if (let Some(focused) <- value.session.focusManager.focused) { focused.id == value.id } else { false }
+    }
+    public func isEnabled(): Bool {
+        let value = resolve(); value.session.requireReadContext(); value.session.focusManager.observe()
+        value.session.focusManager.effective(value,true)
+    }
+    public func isVisible(): Bool {
+        let value = resolve(); value.session.requireReadContext(); value.session.focusManager.observe()
+        value.session.focusManager.effective(value,false)
+    }
+    public func application(): Application {
+        let value = resolve(); value.session.requireReadContext()
+        if (let Some(weak) <- value.session.application) { if (let Some(app) <- weak.value) { return app } }
+        throw UIException("SessionInactive", "node has no application")
+    }
+    public func requestFocus(): Unit {
+        let value = resolve(); value.session.requireContext()
+        if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "focus during lifecycle") }
+        value.session.focusManager.requested.add(this)
+    }
     public func notify(change: ChangeKind): Unit {
         if (structureEvaluation.get().isSome()) {
             throw UIException("ReentrantStructure", "node notification during structure evaluation")
