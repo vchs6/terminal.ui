@@ -111,10 +111,11 @@ func detectTerminalCapabilities(): TerminalCapabilities {
         reason: capabilityReason(bits))
 }
 
-func terminalRenderProfile(capabilities: TerminalCapabilities, mode: ColorMode): TerminalRenderProfile {
+func terminalRenderProfile(capabilities: TerminalCapabilities, mode: ColorMode,
+    glyphPolicy!: GlyphRenderPolicy = GlyphRenderPolicy.conservativeUnicode()): TerminalRenderProfile {
     TerminalRenderProfile(colorMode: mode, supportsBold: capabilities.supportsBold,
         supportsDim: capabilities.supportsDim, supportsItalic: capabilities.supportsItalic,
         supportsUnderline: capabilities.supportsUnderline, supportsInverse: capabilities.supportsInverse,
         supportsStrikethrough: capabilities.supportsStrikethrough, noColorVideo: capabilities.noColorVideo,
-        glyphPolicy: GlyphRenderPolicy.conservativeUnicode())
+        glyphPolicy: glyphPolicy)
 }

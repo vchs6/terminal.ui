@@ -14,18 +14,31 @@ public class Application {
     private var eventHandler: ?(UIKeyEvent) -> Unit = None
     private var colorOverride: ?ColorMode = None
     private var lastCapabilities: ?TerminalCapabilities = None
+    private var configuredGlyphMode = GlyphMode.Auto
+    private var lastGlyphCapabilities: ?TerminalGlyphCapabilities = None
     private var configuredSessionOptions = SessionOptions()
     private var lastSessionCapabilities: ?SessionCapabilities = None
     private var lastSessionCleanup = Array<SessionResult>()
-    public init(root: Component, limits!: RuntimeLimits = RuntimeLimits()) {
+    public init(root: Component, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto) {
         this.root = root
         this.limits = limits
+        this.configuredGlyphMode = glyphMode
     }
-    public init(root: Component, colorMode!: ColorMode, limits!: RuntimeLimits = RuntimeLimits()) {
+    public init(root: Component, colorMode!: ColorMode, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto) {
         this.root = root
         this.limits = limits
+        this.configuredGlyphMode = glyphMode
         colorOverride = Some(colorMode)
     }
+    public func glyphMode(value: GlyphMode): Application {
+        if (configuredGlyphMode != value) {
+            configuredGlyphMode = value
+            if (let Some(active) <- readSession()) { active.glyphPolicyChanged() }
+        }
+        this
+    }
+    public func glyphMode(): GlyphMode { configuredGlyphMode }
+    public func terminalGlyphCapabilities(): ?TerminalGlyphCapabilities { lastGlyphCapabilities }
     public func colorMode(value: ColorMode): Application {
         colorOverride = Some(value)
         this
@@ -254,7 +267,10 @@ public class Application {
             throw failure
         }
     }
-    public func snapshot(width: Int64, height: Int64): Frame {
+    public func snapshot(width: Int64, height: Int64, glyphMode!: GlyphMode = GlyphMode.Unicode): Frame {
+        snapshotWithPolicy(width, height, offlineGlyphPolicy(glyphMode))
+    }
+    private func snapshotWithPolicy(width: Int64, height: Int64, policy: GlyphRenderPolicy): Frame {
         let value = current()
         value.requireBoundary()
         if (value.isStopping()) {
@@ -266,7 +282,7 @@ public class Application {
                 {
                     =>
                         value.pump();
-                        value.produce(width, height, false)
+                        value.produce(width, height, false, glyphPolicy: policy)
                 }
             )
             if (value.isStopping()) {
@@ -402,6 +418,8 @@ public class Application {
             running = readSession().isSome()
             let capabilities = detectTerminalCapabilities()
             lastCapabilities = Some(capabilities)
+            let (glyphCapabilities, detectedGlyphPolicy) = detectTerminalGlyphs()
+            lastGlyphCapabilities = Some(glyphCapabilities)
             let initialMode = match (colorOverride) {
                 case Some(value) => value
                 case None => capabilities.colorMode
@@ -409,6 +427,7 @@ public class Application {
             let decoder = InputDecoder()
             var baseline: ?Frame = None
             var baselineProfile = terminalRenderProfile(capabilities, initialMode)
+            var baselineGlyphMode = configuredGlyphMode
             var previousWidth: Int64 = -1
             var previousHeight: Int64 = -1
             while (running && readSession().isSome()) {
@@ -423,11 +442,15 @@ public class Application {
                     case Some(value) => value
                     case None => capabilities.colorMode
                 }
-                let profile = terminalRenderProfile(capabilities, mode)
+                let requestGlyphMode = configuredGlyphMode
+                let glyphPolicy = if (requestGlyphMode == GlyphMode.Auto) { detectedGlyphPolicy } else {
+                    offlineGlyphPolicy(requestGlyphMode)
+                }
+                let profile = terminalRenderProfile(capabilities, mode, glyphPolicy: glyphPolicy)
                 let work = current()
                 if (work.needsWork() || width != previousWidth || height != previousHeight || mode != baselineProfile
-                    .colorMode || baseline.isNone()) {
-                    let frame = snapshot(width, height)
+                    .colorMode || requestGlyphMode != baselineGlyphMode || baseline.isNone()) {
+                    let frame = snapshotWithPolicy(width, height, glyphPolicy)
                     if (readSession().isNone() || work.isStopping()) {
                         break
                     }
@@ -456,6 +479,7 @@ public class Application {
                     if (committed) {
                         baseline = Some(frame)
                         baselineProfile = profile
+                        baselineGlyphMode = requestGlyphMode
                         previousWidth = width
                         previousHeight = height
                     } else {

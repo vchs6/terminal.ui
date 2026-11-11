@@ -106,37 +106,13 @@ public class Frame {
         if (border == BorderStyle.None || rect.width == 0 || rect.height == 0 || width == 0 || height == 0) {
             return
         }
-        var tl = "┌";
-        var tr = "┐";
-        var bl = "└";
-        var br = "┘";
-        var horizontal = "─";
-        var vertical = "│"
-        if (border == BorderStyle.Rounded) {
-            tl = "╭"
-            tr = "╮"
-            bl = "╰"
-            br = "╯"
-        }
-        if (border == BorderStyle.Double) {
-            tl = "╔"
-            tr = "╗"
-            bl = "╚"
-            br = "╝"
-            horizontal = "═"
-            vertical = "║"
-        }
+        var (tl, tr, bl, br, horizontal, vertical) = borderGlyphs(border)
         if (border == BorderStyle.Ascii || displayWidth(tl, ambiguousWide: ambiguousWide) != 1 ||
             displayWidth(tr, ambiguousWide: ambiguousWide) != 1 || displayWidth(bl, ambiguousWide: ambiguousWide) != 1 ||
             displayWidth(br, ambiguousWide: ambiguousWide) != 1 ||
             displayWidth(horizontal, ambiguousWide: ambiguousWide) != 1 ||
             displayWidth(vertical, ambiguousWide: ambiguousWide) != 1) {
-            tl = "+"
-            tr = "+"
-            bl = "+"
-            br = "+"
-            horizontal = "-"
-            vertical = "|"
+            (tl, tr, bl, br, horizontal, vertical) = borderGlyphs(BorderStyle.Ascii)
         }
         let lastX = signedAdd(rect.x, rect.width - 1);
         let lastY = signedAdd(rect.y, rect.height - 1)

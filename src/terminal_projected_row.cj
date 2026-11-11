@@ -19,8 +19,9 @@ func projectTerminalRow(frame: Frame, y: Int64, profile: TerminalRenderProfile):
             }
         } else {
             // A fallback occupies independent printable columns, just like literal '?'.
+            let bytes = glyph.toArray()
             for (i in 0..cell.width) {
-                row[x + i] = Cell("?", 1, false, style)
+                row[x + i] = Cell(String.fromUtf8([bytes[i]]), 1, false, style)
             }
         }
         x += cell.width

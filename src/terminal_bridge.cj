@@ -20,6 +20,8 @@ foreign {
     func cjt_output_unsafe(): Int32
 
     func cjt_capabilities_detect(): Int64
+
+    func cjt_glyph_probe(bitmap: CPointer<UInt8>, result: CPointer<Int64>): Unit
 }
 
 func readTerminalSize(): (Int64, Int64) {

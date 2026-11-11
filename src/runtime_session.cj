@@ -54,6 +54,9 @@ class RuntimeSession {
     var frames: Int64 = 0
     var cached: ?Frame = None
     var measuredLayout: ?LayoutNode = None
+    var layoutGlyphPolicy = GlyphRenderPolicy.unicode()
+    var cachedGlyphMarker = ""
+    var measuredGlyphMarker = ""
     var cachedWidth: Int64 = -1
     var cachedHeight: Int64 = -1
     init(root: Component, limits: RuntimeLimits, temporary!: Bool = false,
@@ -996,7 +999,23 @@ class RuntimeSession {
         }
         stabilize(turnCutoff)
     }
-    func produce(width: Int64, height: Int64, force: Bool): Frame {
+    func glyphPolicyChanged(): Unit {
+        lock.lock()
+        try {
+            changed = true
+            measuredLayout = None
+            for (node in nodes) { node.layoutDirty = true }
+        } finally { lock.unlock() }
+    }
+    func selectLayoutGlyphPolicy(policy: GlyphRenderPolicy): String {
+        let marker = generatedEllipsis(policy, 3, ambiguousWide: false)
+        if (marker != measuredGlyphMarker) { measuredLayout = None }
+        measuredGlyphMarker = marker
+        layoutGlyphPolicy = policy
+        marker
+    }
+    func produce(width: Int64, height: Int64, force: Bool, glyphPolicy!: GlyphRenderPolicy = GlyphRenderPolicy.unicode()): Frame {
+        let marker = selectLayoutGlyphPolicy(glyphPolicy)
         lock.lock()
         var dirtyFrame = false
         try {
@@ -1004,7 +1023,7 @@ class RuntimeSession {
         } finally {
             lock.unlock()
         }
-        if (force || dirtyFrame || width != cachedWidth || height != cachedHeight || cached.isNone()) {
+        if (force || dirtyFrame || width != cachedWidth || height != cachedHeight || marker != cachedGlyphMarker || cached.isNone()) {
             lock.lock()
             try {
                 for (node in nodes) {
@@ -1018,6 +1037,7 @@ class RuntimeSession {
             let frame = renderLayout(root, width, height, this)
             recordFrame();
             cached = Some(frame)
+            cachedGlyphMarker = marker
             cachedWidth = width
             cachedHeight = height
             lock.lock()

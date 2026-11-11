@@ -302,7 +302,7 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
     frame
 }
 
-public func render(root: Component, width: Int64, height: Int64): Frame {
+public func render(root: Component, width: Int64, height: Int64, glyphMode!: GlyphMode = GlyphMode.Unicode): Frame {
     if (let Some(node) <- root.readMount()) {
         let session = node.session
         session.requireBoundary()
@@ -314,6 +314,7 @@ public func render(root: Component, width: Int64, height: Int64): Frame {
         try {
             let frame = session.enter({ =>
                 session.stabilize(turnCutoff)
+                session.selectLayoutGlyphPolicy(offlineGlyphPolicy(glyphMode))
                 let result = renderLayout(root, width, height, session)
                 session.recordFrame()
                 result
@@ -325,6 +326,6 @@ public func render(root: Component, width: Int64, height: Int64): Frame {
     let session = RuntimeSession(root, RuntimeLimits(), temporary: true)
     try {
         session.start()
-        return session.produce(width, height, true)
+        return session.produce(width, height, true, glyphPolicy: offlineGlyphPolicy(glyphMode))
     } finally { session.close() }
 }

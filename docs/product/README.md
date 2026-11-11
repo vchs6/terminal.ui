@@ -29,7 +29,11 @@ cjpm run
 
 颜色等级包括 `Basic8`、`Basic16`、`Indexed256`、`TrueColor` 和 `Monochrome`。降级使用固定名义调色板的 RGB 平方距离，距离相同时选择较小索引；实际终端可能使用自定义调色板。`Frame.toAnsi()` 默认导出完整真彩色及六种属性的离线快照，也可通过 `colorMode` 指定颜色预览；网格保留原始颜色和样式。
 
-实际终端输出自动采用保守的 Unicode 呈现，显式选择颜色等级时也适用：按现有默认窄模糊宽度规则，逐标量显示宽度之和等于字符簇已存列数时保留原文，否则将整个簇替为相同列数、相同样式的 ASCII `?`。例如 `👩‍💻`、`❤️` 在当前宽度数据下呈现为 `??`，`界`、`é`、单个 `👩` 和 `🇨🇳` 保留。应用无需判断终端；业务文本、`Frame.cellAt`、纯文本及 ANSI 文件快照仍保留原始 Unicode。此规则针对已在 XTerm 398 和 XFCE4 Terminal 1.1.4 / VTE 0.80.1 观察到的字符簇推进差异，不检测字体，也不保证任意宿主、字体或 Unicode 版本的实际推进；库内两种宽度计算一致仅是保留条件。
+应用正常使用 `Application(root).run()`，框架每次启动会话读取实际标准输出设备的字形事实。确认是 Linux 文本 VT 且读取映射成功时，单个、单列、可打印并在 BMP 映射中的字符保留；其他字符簇按原列数回退为 ASCII。映射不可读时使用保守 ASCII，未知终端则采用保守 Unicode：逐标量显示宽度之和与原簇列数相等时保留，否则整簇替为等宽 `?`。单列边框回退复用 ASCII 边框字符。映射中缺少 `?` 时使用空格维持列数。已读取的映射在本次会话内固定；外部改变字体后，下次运行才重新探测。映射只表明内核槽位，不保证视觉字形或组合效果；终端需支持 UTF-8。
+
+高级用途可用 `app.glyphMode(GlyphMode.Unicode)` 强制原 Unicode、`GlyphMode.Ascii` 强制 ASCII 投影，`GlyphMode.Auto` 恢复自动选择。`app.terminalGlyphCapabilities()` 返回最近一次设备探测的只读事实，首次运行前为 `None`；覆盖模式不会改变事实。设备投影不改变业务文本、`Frame.cellAt` 或默认纯文本和 ANSI 快照。`snapshot` 和顶层 `render` 可指定 `glyphMode` 控制框架生成标记，默认为离线 Unicode，离线 Auto 也等同 Unicode；Ascii 不把业务文本转码。完整省略号截断布局仍待后续文本布局实现。
+
+未知终端的保守规则针对 XTerm 398 和 XFCE4 Terminal 1.1.4 / VTE 0.80.1 观察到的字符簇推进差异，不检测字体，也不保证任意宿主、字体或 Unicode 版本的实际推进；库内两种宽度计算一致仅是保留条件。
 
 文本属性包括 `bold`、`dim`、`italic`、`underline`、`inverse` 和 `strikethrough`。组件属性链如 `.italic()` 启用属性，`.italic(false)` 显式关闭继承值；`Style` 对应参数默认为 false。文本、显式背景和边框继承这些属性，阴影使用传入的完整 Style。
 
