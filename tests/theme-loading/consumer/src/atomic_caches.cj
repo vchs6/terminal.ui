@@ -1,5 +1,6 @@
 package theme_loading_contract
 import cjtui.*
+import std.collection.ArrayList
 func kept(name:String,color:String,spacing!:String=""):Theme {
     Theme.parse("schema_version=1\nname=\""+name+"\"\n[styles.keep.text]\nforeground=\""+color+"\"\n"+spacing)
 }
@@ -21,6 +22,7 @@ func candidateValidatesLatestDeclarationCache(env:TestEnvironment):Unit {
 }
 func atomicCandidateValidationUsesCaches(env:TestEnvironment):Unit {
     candidateMinimumSumRejectsBeforeCommit(env)
+    subtreeCandidateMinimumSumRejectsBeforeCommit(env)
     let state=Observable<String>("edit")
     let root=TrackedPanel(state)
     root.onMount({_=>root.mounts++;{=>root.cleanups++}})
@@ -104,5 +106,45 @@ func candidateMinimumSumRejectsBeforeCommit(env:TestEnvironment):Unit {
         check(empty.width==Int64.Max && empty.height==0,"previous zero-area frame stays independent")
         sameFrame(pixels,app.snapshot(4,1),4,1)
         check(pixels.cellAt(0,0).style.foreground==Color.Red,"previous accepted pixels remain unchanged")
+    } finally {app.dispose()}
+}
+
+// A mounted-subtree render is also a UI commit boundary; its 1x1 export size
+// must not replace the active root viewport used for candidate validation.
+func subtreeCandidateMinimumSumRejectsBeforeCommit(env:TestEnvironment):Unit {
+    let state=Observable<String>("a")
+    let getters=Box<Int64>(0);let mounts=Box<Int64>(0)
+    let children=ArrayList<Component>()
+    let root=Row { children.add(Text({=>getters.value++;state.get()}));Text("b") }
+        .onMount({_=>mounts.value++;{=>}})
+    let app=Application(root,theme:prepared("SubtreeBase","red"));app.startHeadless()
+    try {
+        let old=reference(root);let child=reference(children[0])
+        let pixels=app.snapshot(4,1)
+        let empty=app.snapshot(Int64.Max,0)
+        check(empty.width==Int64.Max && empty.height==0,"subtree regression has valid Max by zero root baseline")
+        let beforeGetters=getters.value
+        let candidate=Theme.parse("schema_version=1\nname=\"SubtreeCandidate\"\n[text]\nforeground=\"blue\"\n[components.text.spacing]\nweight=1\nmin_width=9223372036854775807\n")
+        let request=app.loadTheme(ThemeSource.Prepared(candidate))
+        var layoutError=""
+        try {
+            for(_ in 0..20000) {
+                let frame=render(children[0],1,1)
+                check(frame.width==1 && frame.height==1,"mounted subtree export stays 1x1")
+                if(request.result().isSome()){break}
+                env.sync("tick")
+            }
+            println("OBSERVED after mounted subtree: ${resultTag(request)} info=${app.themeInfo().name}")
+            app.snapshot(Int64.Max,0)
+        } catch(error:Exception){layoutError=error.message}
+        let info=app.themeInfo();let active=app.post({=>})
+        println("OBSERVED subtree candidate minima: error=[${layoutError}], result=${resultTag(request)}, info=${info.name}/${info.revision}/${info.requestId}, post=${active}, ref=${old.isValid()}")
+        check(layoutError.isEmpty(),"T008 subtree commit validates root constraints before publication or layout failure")
+        candidateFailure(request,"OutOfRange")
+        unchanged(app,"SubtreeBase",0,0)
+        check(active && old.isValid() && child.isValid() && old.sameNode(reference(root)) && child.sameNode(reference(children[0])),"failed subtree candidate preserves session and both refs")
+        check(state.get()=="a" && getters.value==beforeGetters && mounts.value==1,"subtree validation preserves business state and cached getters/mount")
+        check(empty.width==Int64.Max && empty.height==0,"old zero-area frame stays independent after subtree commit boundary")
+        sameFrame(pixels,app.snapshot(4,1),4,1)
     } finally {app.dispose()}
 }
