@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/work/theme-load-acceptance/verify_raw.py", line 62, in <module>
+    ck(wanted<=recorded and (group!='async-all' or recorded==wanted|{'infrastructure'}),'Full requested case set '+group)
+  File "/workspace/work/theme-load-acceptance/verify_raw.py", line 7, in ck
+    if not v:raise AssertionError(label)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Full requested case set async-all

@@ -1,0 +1,21 @@
+PASS: Applied has exact committed revision
+PASS: accepted ThemeInfo remains CandidateMin/1/1
+PASS: finite viewport clips legal Max minima without rejecting the candidate
+PASS: finite legal candidate is visible and session stays active
+PASS: baseline Max by zero snapshot succeeds without giant allocation
+OBSERVED candidate minima: error=[], result=failed:InvalidCandidate, info=MinimumBase/0/0, post=true, ref=true
+PASS: T008 rejects predictable candidate minimum-sum overflow before layout throws
+PASS: candidate validation has contract-permitted diagnostic
+PASS: accepted ThemeInfo remains MinimumBase/0/0
+PASS: failed layout candidate preserves active session and node generation
+PASS: validation preserves business state without getter or mount replay
+PASS: previous zero-area frame stays independent
+PASS: Application snapshot equals active-root M1 render at 0,0
+PASS: Application snapshot equals active-root M1 render at 1,0
+PASS: Application snapshot equals active-root M1 render at 2,0
+PASS: Application snapshot equals active-root M1 render at 3,0
+PASS: previous accepted pixels remain unchanged
+PASS: subtree regression has valid Max by zero root baseline
+PASS: mounted subtree export stays 1x1
+OBSERVED after mounted subtree: applied:1 info=SubtreeCandidate
+OBSERVED subtree candidate minima: error=[minimum sum overflow], result=applied:1, info=SubtreeCandidate/1/1, post=false, ref=false

@@ -1,0 +1,64 @@
+[
+  {
+    "utc": "2026-11-11T06:32:50.433619+00:00",
+    "elapsed": 0.012311373997363262,
+    "kind": "io-enter",
+    "file": "gate-app-a.toml",
+    "sequence": 1,
+    "api": "open",
+    "tid": "2326489"
+  },
+  {
+    "utc": "2026-11-11T06:32:50.433635+00:00",
+    "elapsed": 0.012318994995439425,
+    "kind": "barrier",
+    "command": "entered:gate-app-a.toml:1"
+  },
+  {
+    "utc": "2026-11-11T06:32:50.433891+00:00",
+    "elapsed": 0.012578144000144675,
+    "kind": "io-enter",
+    "file": "gate-app-b.toml",
+    "sequence": 1,
+    "api": "open",
+    "tid": "2326490"
+  },
+  {
+    "utc": "2026-11-11T06:32:50.433900+00:00",
+    "elapsed": 0.012582990995724685,
+    "kind": "barrier",
+    "command": "entered:gate-app-b.toml:1"
+  },
+  {
+    "utc": "2026-11-11T06:32:50.434168+00:00",
+    "elapsed": 0.012852915999246761,
+    "kind": "barrier",
+    "command": "release:gate-app-a.toml:1"
+  },
+  {
+    "utc": "2026-11-11T06:32:50.434194+00:00",
+    "elapsed": 0.012877072003902867,
+    "kind": "io-released",
+    "file": "gate-app-a.toml",
+    "sequence": 1
+  },
+  {
+    "utc": "2026-11-11T06:32:50.434228+00:00",
+    "elapsed": 0.012912245001643896,
+    "kind": "barrier",
+    "command": "release:gate-app-b.toml:1"
+  },
+  {
+    "utc": "2026-11-11T06:32:50.434274+00:00",
+    "elapsed": 0.012958334002178162,
+    "kind": "io-released",
+    "file": "gate-app-b.toml",
+    "sequence": 1
+  },
+  {
+    "utc": "2026-11-11T06:32:50.435194+00:00",
+    "elapsed": 0.013880116996006109,
+    "kind": "barrier",
+    "command": "tick"
+  }
+]

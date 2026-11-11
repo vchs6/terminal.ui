@@ -1,0 +1,72 @@
+{
+  "review_id": "TASK090-FIX-ROUND1",
+  "base": "797039d6da9df8d849d382aff52eeb2180ba31b8",
+  "revision": "4971528013f89f5ec00fac7d5f0c41a693fb2ee8",
+  "contract_sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+  "spec_verdict": "CHANGES_REQUIRED",
+  "quality_verdict": "CHANGES_REQUIRED",
+  "original_dispositions": [
+    {
+      "id": "T090-I01",
+      "disposition": "NOT_ADDRESSED",
+      "detail": "Direct root snapshot cases fixed on both axes, but mounted subtree render overwrites application validation extent and accepts same invalid candidate."
+    },
+    {
+      "id": "T090-M01",
+      "disposition": "ADDRESSED",
+      "detail": "Guide now documents current load/reload/request/info interfaces and leaves only full showcase for future work."
+    }
+  ],
+  "current_findings": [
+    {
+      "id": "T090-I01",
+      "severity": "Important",
+      "status": "OPEN_PARTIALLY_FIXED",
+      "path": "src/layout.cj",
+      "line": 253,
+      "related_lines": [
+        207,
+        210,
+        254
+      ],
+      "contract": [
+        "T008",
+        "design section7 precommit validation/current real tree and active render semantics"
+      ],
+      "title": "Mounted subtree render validates application candidate with the subtree extent",
+      "counterexample": "After successful root snapshot(Max,0) for Row or (0,Max) for Column, submit Prepared candidate with two text children weight1 and matching minimum Max; call render(mountedTextChild,1,1), then repeat root snapshot at original extent.",
+      "actual": "Subtree boundary Applied(1), then root snapshot minimum sum overflow; accepted info candidate/1 and postfalse on both axes.",
+      "expected": "Before a pending global candidate is accepted, validate the actual application tree with its relevant root extent; subtree dimensions must not silently replace the root extent. Reject known invalid candidate and preserve old accepted state/session.",
+      "remediation": "Associate validation dimensions with their render target; keep application-root validation constraints distinct from mounted subtree output dimensions. Close this existing failure across UI commit entry points without reintroducing blanket large-minimum rejection.",
+      "evidence": "raw/run.stdout; probe/src/main.cj; independent normal SDK build0/run0"
+    }
+  ],
+  "new_unrelated_findings": [],
+  "verification": {
+    "producer_tracked_sources_matching": 213,
+    "producer_test_records_matching": 78,
+    "producer_commands_exit0": 7,
+    "own_product_files_matching": 138,
+    "own_probe_build_exit": 0,
+    "own_probe_run_exit": 0,
+    "direct_row_rejects": true,
+    "direct_column_rejects": true,
+    "subtree_row_reproduces_defect": true,
+    "subtree_column_reproduces_defect": true,
+    "paint_only_measures_before": 6,
+    "paint_only_measures_after": 6,
+    "formal_suites_rerun": false
+  },
+  "limitations": [
+    "Scoped fix review; original full review constraints and limits remain.",
+    "Normal package/clean release execution and broader acceptance are not closed here.",
+    "Five ignored environment hashes recorded; author-worktree config contents not independently reread."
+  ],
+  "independence": {
+    "author_reports_read": false,
+    "author_communication": false,
+    "subagents": false,
+    "product_tests_main_contract_modified": false,
+    "old_sealed_reviews_modified": false
+  }
+}

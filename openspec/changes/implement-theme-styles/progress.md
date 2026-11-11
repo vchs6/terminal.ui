@@ -53,3 +53,7 @@ Task 026: fix round 1/5 (M01 addressed, 1 Important open — I01 partially fixed
 Round2准入：独立42行最小子树回归71f9312已集成/推送main8797749；固定497普通gate/foundation/API/consumer build均0，single atomic direct1：root-only与有限合法控制已通过，mounted subtree入口Applied1后原根minimum sum overflow/postfalse/ref失效。纯rawmanifest0a179eb98eedd6e60c8127d1dc72013cf4ed2bcb12f244bb628b1d3f57ca836e，root已读实际stdout/stderr。原Terra作者ACTUAL fix round2/5，精确顺序根snapshot→load→subtree render提交→根snapshot；测试角色恢复098。
 
 Task 026: fix round 2/5 complete (I01 addressed, 0 open;4971528..fa6a46e). 独立090最终spec/quality均PASS_SOURCE_REVIEW，root实际验证round2全部6条hash；原完整审查/两回合范围与证据限制保留。最终fa6已推WIP，091原Sol/medium独立执行角色已ACTUAL GO，自有SDK/cache/inputhash准备就绪，运行固定22case/必要布局回归/正常bundleclean；092仅准备不提前验收。
+
+TASK091全部当前执行通过：fixedfa6原22实际0（含两次独立atomic回归）、layout/完整Theme integration0、正常mandatorylint bundle0（508warnings保留）、184CJP成员字节等fa6、干净完整consumer源码build0与latest-success/atomic两代表实际0、真实PTY接受后部分写EIO记录保持Applied/ThemeInfo且termios/信号恢复；unsafevisual明确未恢复。稳定manifest e7fc2d30586e99ab4236eb9455be98842c5de5f347f2e442a581cd1207b529a4，rootfresh277条checksum0。092独立PASS_ASYNC_SCOPE：33行32当前满足/1后续排除，0C/I/M；manifest f6aa39e3539fe7261e39f3202125d52830a3f2f8f8825f742f3ce528115be7ca，rootfresh22条checksum0，未重复运行产品。026/090–092当前范围关闭，027/023/全Linux/M2仍OPEN。
+
+产品四提交ec506e7/797039d/4971528/fa6a46e仅机械cherry为main2a8eda0/ba1b17f/42c7f1c/5f5342f，排除已在main的两个测试overlay；rootactual产品/正式tests与fa6 diff0，main5f5342f已实际推送。后续仅文档状态投影不冒新制品已构建；相同代码/依赖/环境/配置/范围复用091092有效证据。归档只做一次R15/theme-loading，继续098正式测试→099完整交互实现，不以本项关闭停止Linux总目标。

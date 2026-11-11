@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/work/theme-load-actual/replay/./tests/theme-loading/run.py", line 179, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/work/theme-load-actual/replay/./tests/theme-loading/run.py", line 176, in main
+    run_controlled(HERE/'consumer/target/release/bin/main',case,logs/f'work-{case}',library,logs,sha,args.timeout)
+  File "/workspace/work/theme-load-actual/replay/./tests/theme-loading/run.py", line 127, in run_controlled
+    if problem:raise RuntimeError(problem)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: atomic-caches binary exit 1

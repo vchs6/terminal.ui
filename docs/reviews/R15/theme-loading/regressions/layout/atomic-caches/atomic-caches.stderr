@@ -1,0 +1,6 @@
+An exception has occurred:
+Exception: FAIL: T008 rejects predictable candidate minimum-sum overflow before layout throws
+	 at theme_loading_contract::check(Bool, std.core::String)(/workspace/work/theme-load-actual/replay/tests/theme-loading/consumer/src/checks.cj:3)
+	 at theme_loading_contract::candidateMinimumSumRejectsBeforeCommit(theme_loading_contract::TestEnvironment)(/workspace/work/theme-load-actual/replay/tests/theme-loading/consumer/src/atomic_caches.cj:99)
+	 at theme_loading_contract::atomicCandidateValidationUsesCaches(theme_loading_contract::TestEnvironment)(/workspace/work/theme-load-actual/replay/tests/theme-loading/consumer/src/atomic_caches.cj:23)
+	 at theme_loading_contract::main(std.core::Array<...>)(/workspace/work/theme-load-actual/replay/tests/theme-loading/consumer/src/main.cj:13)

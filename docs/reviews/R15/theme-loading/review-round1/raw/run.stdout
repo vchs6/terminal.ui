@@ -1,0 +1,15 @@
+INITIAL Row subtree=false
+ROOT_SNAPSHOT_OK
+FINAL Row subtree=false result=Failed(InvalidCandidate) info=initial/0 post=true
+INITIAL Column subtree=false
+ROOT_SNAPSHOT_OK
+FINAL Column subtree=false result=Failed(InvalidCandidate) info=initial/0 post=true
+INITIAL Row subtree=true
+AFTER_SUBTREE Applied(1) info=candidate
+ROOT_SNAPSHOT_ERROR minimum sum overflow
+FINAL Row subtree=true result=Applied(1) info=candidate/1 post=false
+INITIAL Column subtree=true
+AFTER_SUBTREE Applied(1) info=candidate
+ROOT_SNAPSHOT_ERROR minimum sum overflow
+FINAL Column subtree=true result=Applied(1) info=candidate/1 post=false
+PAINT_ONLY result=Applied(1) measures=6/6

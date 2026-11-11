@@ -1,0 +1,6 @@
+An exception has occurred:
+Exception: FAIL: T008 subtree commit validates root constraints before publication or layout failure
+	 at theme_loading_contract::check(Bool, std.core::String)(/workspace/work/theme-load-actual/replay/tests/theme-loading/consumer/src/checks.cj:3)
+	 at theme_loading_contract::subtreeCandidateMinimumSumRejectsBeforeCommit(theme_loading_contract::TestEnvironment)(/workspace/work/theme-load-actual/replay/tests/theme-loading/consumer/src/atomic_caches.cj:142)
+	 at theme_loading_contract::atomicCandidateValidationUsesCaches(theme_loading_contract::TestEnvironment)(/workspace/work/theme-load-actual/replay/tests/theme-loading/consumer/src/atomic_caches.cj:25)
+	 at theme_loading_contract::main(std.core::Array<...>)(/workspace/work/theme-load-actual/replay/tests/theme-loading/consumer/src/main.cj:13)

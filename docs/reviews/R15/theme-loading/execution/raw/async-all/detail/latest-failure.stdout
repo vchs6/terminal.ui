@@ -1,0 +1,18 @@
+SYNC entered:gate-old.toml:1
+PASS: Superseded records first replacing request id
+SYNC release:gate-old.toml:1
+SYNC tick
+PASS: Failed diagnostic InvalidType
+PASS: Superseded records first replacing request id
+PASS: accepted ThemeInfo remains A/0/0
+PASS: latest failure retains accepted theme; old legal intent never revives
+PASS: Applied has exact committed revision
+PASS: recoverable failure leaves session active
+SYNC entered:gate-fence.toml:1
+PASS: Superseded records first replacing request id
+SYNC release:gate-fence.toml:1
+PASS: Failed diagnostic NoFileSource
+PASS: accepted ThemeInfo remains Recovery/1/3
+PASS: Superseded records first replacing request id
+PASS: Applied has exact committed revision
+PASS CASE latest-failure

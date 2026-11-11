@@ -28,10 +28,10 @@
 - [x] TASK-087（WP005/testing）：基础主题独立执行、原回归/正常bundle、干净stdx/路径消费和实际四主题样例。
 - [x] TASK-088（WP005/acceptance）：原AC013/025完整基础范围和制品/元数据独立验收；027完整组件展示仍不关闭。
 - [x] TASK-089（WP005/testing）：冻结ThemeRequest/latest-wins/失效/worker有界/UI提交独立测试与真实RED。
-- [ ] TASK-026（WP006/implementation）：显式load/reload、有界worker/候选信箱/原子UI提交/可观察结果，保留节点与业务状态。
-- [ ] TASK-090（WP005/verification）：固定异步加载增量与基础跨界独立spec/quality审核。
-- [ ] TASK-091（WP005/testing）：独立乱序/失败/关闭/同源重载、受影响回归及正常制品公开消费。
-- [ ] TASK-092（WP005/acceptance）：原AC026、元数据与集成独立核对，继续控件/027整展示。
+- [x] TASK-026（WP006/implementation）：显式load/reload、有界worker/候选信箱/原子UI提交/可观察结果，保留节点与业务状态。
+- [x] TASK-090（WP005/verification）：固定异步加载增量与基础跨界独立spec/quality审核。
+- [x] TASK-091（WP005/testing）：独立乱序/失败/关闭/同源重载、受影响回归及正常制品公开消费。
+- [x] TASK-092（WP005/acceptance）：原AC026、元数据与集成独立核对，继续控件/027整展示。
 - [ ] TASK-027（WP006/implementation）：全部基本组件可用后交付四主题统一showcase、窄屏/状态组合/Unicode与ASCII真实跨宿主截图，复用前述主题代码；状态不靠提前几段文字就关闭。
 
 ## L3 admission / inputs / roles

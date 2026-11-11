@@ -1,0 +1,14 @@
+SYNC entered:gate-app-a.toml:1
+SYNC entered:gate-app-b.toml:1
+PASS: request ids belong to each Application
+SYNC release:gate-app-a.toml:1
+SYNC release:gate-app-b.toml:1
+SYNC tick
+PASS: Applied has exact committed revision
+PASS: accepted ThemeInfo remains AppB/1/1
+PASS: accepted ThemeInfo remains Shared/0/0
+PASS: Applied has exact committed revision
+PASS: accepted ThemeInfo remains AppA/1/1
+PASS: accepted ThemeInfo remains AppB/1/1
+PASS: shared immutable Theme does not share application mutation
+PASS CASE multi-application

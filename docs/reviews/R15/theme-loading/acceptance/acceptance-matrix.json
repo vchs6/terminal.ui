@@ -1,0 +1,314 @@
+{
+  "task": "TASK092",
+  "utc": "2026-11-11T06:53:00.040864+00:00",
+  "phase": "final_independent_acceptance",
+  "candidate": "fa6a46ec339ea0f098dea521c814226a7a373c7e",
+  "acceptance_verdict": "PASS_ASYNC_SCOPE",
+  "task092_ready": true,
+  "rows": [
+    {
+      "id": "T92-01",
+      "contract": "AC089–092",
+      "obligation": "来源与角色",
+      "required_evidence": "091 final源fa6/tests含3040111+71f9312、依赖/SDK/stdx/config、实际binary、command/UTC/exit与前后hash；原件→封存核对。",
+      "status": "PASS",
+      "judgment": "14组命令的274源记录稳定；final源/78正式输入/11环境文件/375依赖与371 stdx/ELF绑定核对，276原件和副本逐字节封存。",
+      "evidence": "091 manifest/command pre-post + own raw/verification.json"
+    },
+    {
+      "id": "T92-02",
+      "contract": "AC089",
+      "obligation": "正式async-only RED/设施",
+      "required_evidence": "真实foundation正向在先，async-probe缺load API RED独立；固定22case/真实SDK regular-file gate成功，声明-only不当执行。",
+      "status": "PASS_REUSED",
+      "judgment": "旧8d foundation实际0后async API缺失RED1；本轮foundation/API实际0和22行为case完成。all模式不额外执行独立infrastructure case，不虚增计数。",
+      "evidence": "R15/async-red/raw/{foundation,async-probe}/commands.jsonl; E:raw/async-all"
+    },
+    {
+      "id": "T92-03",
+      "contract": "AC090",
+      "obligation": "审查与两轮闭环",
+      "required_evidence": "完整090与round1/round2；I01从direct修到root/subtree约束身份、M01文档修；源码双PASS不能替091执行。",
+      "status": "PASS",
+      "judgment": "两轮I01修复与M01文档闭环；final双PASS、0 C/I/M，与本轮实际原件相互印证。",
+      "evidence": "090 report + round1/report + round2/report; E:raw/async-all/detail/atomic-caches.stdout"
+    },
+    {
+      "id": "T92-04",
+      "contract": "T006/T013/§2.2",
+      "obligation": "公开接口/单向依赖",
+      "required_evidence": "ThemeSource/Result/Info/Request类型、两个Application入口、只读查询、无wait/cancel/hooks；root loader不使theme反向依赖。",
+      "status": "PASS",
+      "judgment": "只读公开异步接口与root所有权符合冻结契约；实际公共API编译通过，包消费者亦通过。",
+      "evidence": "fixed src/theme_request.cj, src/theme_loader.cj, src/application.cj; E:raw/async-all/detail/async-api-build.*"
+    },
+    {
+      "id": "T92-05",
+      "contract": "T006/T007",
+      "obligation": "初态/非活动/生命周期",
+      "required_evidence": "初0/0、inactive load/reload立即SessionClosed无IO；accepted theme/history dispose后保留，重启id/revision不复用。",
+      "status": "PASS",
+      "judgment": "初态、inactive立即终态、dispose保留accepted历史及重启单调id/revision均有实际断言。",
+      "evidence": "E:raw/async-all/detail/{lifecycle,queued-restart}.*"
+    },
+    {
+      "id": "T92-06",
+      "contract": "T006",
+      "obligation": "latest请求成功次序",
+      "required_evidence": "slow File/new Prepared/候选未提交换代；旧意图Superseded首个较新id固定，只有最新可commit。",
+      "status": "PASS",
+      "judgment": "真实文件gate及UI提交前换代证据；旧请求Superseded首个新id稳定，最新意图独占提交。",
+      "evidence": "E:raw/async-all/detail/{latest-success,candidate-order}.*"
+    },
+    {
+      "id": "T92-07",
+      "contract": "T006/T007",
+      "obligation": "新失败不复活旧成功",
+      "required_evidence": "new invalidFile/NoFileSource淘汰旧合法slow；保留最近已接受theme，旧终态不改。",
+      "status": "PASS",
+      "judgment": "较新失败淘汰旧合法slow结果且不复活；已接受主题/终态保留。",
+      "evidence": "E:raw/async-all/detail/latest-failure.*"
+    },
+    {
+      "id": "T92-08",
+      "contract": "T007",
+      "obligation": "关闭/重启session fence",
+      "required_evidence": "blocked真实IO与queued Prepared在dispose立即终结；旧worker后来完成不可污染新session，终态只写一次。",
+      "status": "PASS",
+      "judgment": "阻塞IO与排队Prepared跨关闭立即终结，旧worker晚到被session fence拒绝。",
+      "evidence": "E:raw/async-all/detail/{session-fence,queued-restart,cleanup}.*"
+    },
+    {
+      "id": "T92-09",
+      "contract": "T006",
+      "obligation": "有界worker/pending/mailbox",
+      "required_evidence": "源码090证明精确1active+1latestpending+1candidate；32files握手只最新实际读，关闭blockedworker不重开第二线程；不伪造内部counter实测。",
+      "status": "PASS_SOURCE_AND_RUNTIME",
+      "judgment": "精确1active+1pending+1candidate由源码证明；32文件请求实际只进入old和最新pending31，晚到worker仍占槽。无内部计数实测声称。",
+      "evidence": "090 final source; E:raw/async-all/detail/{pending-bound,session-fence}.*"
+    },
+    {
+      "id": "T92-10",
+      "contract": "T006",
+      "obligation": "post容量独立",
+      "required_evidence": "满普通post队列overflow拒绝；有限theme mailbox仍可提交一次，不绕成无限积压。",
+      "status": "PASS",
+      "judgment": "普通post溢出拒绝，独立有界theme mailbox仍提交一次。",
+      "evidence": "E:raw/async-all/detail/post-capacity.*"
+    },
+    {
+      "id": "T92-11",
+      "contract": "T006/T008",
+      "obligation": "锁/排序/无用户代码",
+      "required_evidence": "090与固定源证明IO/parse/observer/usercode锁外、锁顺序、UI提交前id/session重核；无getter/build/mount replay。",
+      "status": "PASS_SOURCE_AND_RUNTIME",
+      "judgment": "检查锁序、锁外IO/parse/用户通知及提交前session/id重核；运行证据不冒穷举调度证明。",
+      "evidence": "090 final source; fixed theme_loader/application; E:raw/async-all/detail/{getter-reentry,build-reentry,current-cache}.*"
+    },
+    {
+      "id": "T92-12",
+      "contract": "T008",
+      "obligation": "失败候选事务",
+      "required_evidence": "missing named/inapplicable/weight overflow/schema读错误在theme/info/cache变更前Failed；旧frame/theme/session仍可用。",
+      "status": "PASS",
+      "judgment": "missing/inapplicable/weight/schema等可预见失败先于theme/cache提交，旧frame与session保留。",
+      "evidence": "E:raw/async-all/detail/{candidate-order,atomic-caches,recoverable}.*"
+    },
+    {
+      "id": "T92-13",
+      "contract": "T008/090-I01",
+      "obligation": "实际checked minimum预检",
+      "required_evidence": "同LayoutNode/allocateMain实际约束下Row/Column min sum检查，Max×0及0×Max无需巨分配；合法finite clip不误拒。明确runtime证据与axis-independent源码证明。",
+      "status": "PASS_SOURCE_AND_RUNTIME",
+      "judgment": "final实际direct Row最小值溢出拒绝与finite clip成功；Column同checked allocator预检按轴一致源码与090证据闭环，不声称本轮新增Column用例。",
+      "evidence": "090 round1+round2; E:raw/async-all/detail/atomic-caches.stdout"
+    },
+    {
+      "id": "T92-14",
+      "contract": "T008/090-I01-R2",
+      "obligation": "root/subtree extent",
+      "required_evidence": "mounted child 1×1 render可处理候选但不得覆盖root Max×0约束；拒绝后旧Info0/0、refs/business/getter/mount及旧frame保留。",
+      "status": "PASS",
+      "judgment": "实际mounted subtree 1×1处理候选仍使用root Max×0；InvalidCandidate、旧Info0/0、节点/状态/getter/mount/frame保留。root identity guard不会被subtree改写。",
+      "evidence": "E:raw/async-all/detail/atomic-caches.stdout; fixed src/layout.cj"
+    },
+    {
+      "id": "T92-15",
+      "contract": "T008",
+      "obligation": "当前缓存与原子布局",
+      "required_evidence": "IO阻塞时当前style引用改变，最后UI按最新stable cache验证；一帧同revision，全cell/style与active-root M1相同。",
+      "status": "PASS",
+      "judgment": "IO期间变化的当前stable样式缓存参与最后验证；原子布局/frame/revision及M1对照实际通过。",
+      "evidence": "E:raw/async-all/detail/{current-cache,atomic-caches}.*"
+    },
+    {
+      "id": "T92-16",
+      "contract": "T008/AC026",
+      "obligation": "身份与状态保持",
+      "required_evidence": "成功/失败不重建Component/NodeRef，不改Observable业务文本/订阅、无unrelated getter/build/mount；后续真实focus/edit/scroll控件不先声称。",
+      "status": "PASS_FINITE_APIS",
+      "judgment": "Component/NodeRef/Observable业务状态与订阅身份保持；仅当前API，未把缺席的完整focus/edit/scroll控件算通过。",
+      "evidence": "E:raw/async-all/detail/{atomic-caches,lifecycle,current-cache}.*"
+    },
+    {
+      "id": "T92-17",
+      "contract": "T008",
+      "obligation": "paint/layout缓存边界",
+      "required_evidence": "paint-only保持测量cache、几何变更清理；preview不替活tree/不写Frame、不冒零CPU成本，mask/fill/Glyph上下文不回归。",
+      "status": "PASS_SOURCE_AND_RUNTIME",
+      "judgment": "paint-only保留live测量缓存、geometry清理；preview独立树不写Frame且无getter/build/mount重放；preview仍有CPU开销。受影响layout/Theme新跑0。",
+      "evidence": "090 preview/cache analysis; E:raw/{async-all,layout,theme-integration}"
+    },
+    {
+      "id": "T92-18",
+      "contract": "T007/§6",
+      "obligation": "accepted File reload",
+      "required_evidence": "只捕获当前已接受冻结File；失败/进行中File不改来源；外改无动作，成功preset/memory清源，Prepared(readFile)可恢复。",
+      "status": "PASS",
+      "judgment": "reload只冻结accepted File；失败/进行中File不替换来源，memory/preset清源，Prepared(readFile)保留来源。",
+      "evidence": "E:raw/async-all/detail/reload-origin.*"
+    },
+    {
+      "id": "T92-19",
+      "contract": "T007",
+      "obligation": "relative/source identity",
+      "required_evidence": "请求时cwd冻结绝对path，阻塞后chdir不能转向；sourceName似path的parse仍memory；同步parse/readFile不改变app。",
+      "status": "PASS",
+      "judgment": "cwd请求时冻结、sourceName不冒文件、同步解析不自动提交的实际断言通过。",
+      "evidence": "E:raw/async-all/detail/{relative-origin,synchronous-values,reload-origin}.*"
+    },
+    {
+      "id": "T92-20",
+      "contract": "T006",
+      "obligation": "可观察非阻塞查询",
+      "required_evidence": "UI result/info绑定自动依赖和invalidate，background读不绑UI/不跑getter；单纯查询不pump或提交。",
+      "status": "PASS",
+      "judgment": "UI只读查询自动依赖/失效；background查询不绑定UI、不执行getter、不pump提交。",
+      "evidence": "E:raw/async-all/detail/observability.*"
+    },
+    {
+      "id": "T92-21",
+      "contract": "T006",
+      "obligation": "事件/post与重入",
+      "required_evidence": "普通callback可提交；getter/structure evaluation中load和reload均先拒ReentrantEvaluation且不分配/改主题。",
+      "status": "PASS",
+      "judgment": "callback/post正常提交；getter/structure中load/reload预先ReentrantEvaluation，id及已接受主题保持。",
+      "evidence": "E:raw/async-all/detail/{event-post,getter-reentry,build-reentry}.*"
+    },
+    {
+      "id": "T92-22",
+      "contract": "T006/T007",
+      "obligation": "多应用与并发请求",
+      "required_evidence": "两个App真实同时进入各自文件gate、主题/请求序独立；八后台请求唯一顺序且maxid提交，共享Theme不可变。",
+      "status": "PASS",
+      "judgment": "两个App同时进入各自真实gate，八后台请求id唯一且max提交；不夸大为任意并发穷举。",
+      "evidence": "E:raw/async-all/detail/{multi-application,background-race}.*"
+    },
+    {
+      "id": "T92-23",
+      "contract": "T007/R017",
+      "obligation": "清理错误与资源",
+      "required_evidence": "pending关闭，child/parent cleanup错误聚合，ref/post/binding/subscription释放；旧worker/失败cleanup不能污染restart。",
+      "status": "PASS",
+      "judgment": "cleanup异常聚合、关闭pending、引用/订阅/绑定/posts释放；真实PTY失败后资源全0。",
+      "evidence": "E:raw/async-all/detail/cleanup.*; E:raw/device-pty-bound"
+    },
+    {
+      "id": "T92-24",
+      "contract": "T008",
+      "obligation": "恢复错误分层",
+      "required_evidence": "read/path/UTF8/syntax/type/ref/capacity失败可恢复；业务异常在accept之后仍走原runtime清理，已接受Info/Applied不回滚。",
+      "status": "PASS",
+      "judgment": "读取/格式/容量失败可恢复；accept后业务异常按runtime清理且Applied/info不回滚。",
+      "evidence": "E:raw/async-all/detail/{recoverable,exception-boundary}.*"
+    },
+    {
+      "id": "T92-25",
+      "contract": "T008/backend",
+      "obligation": "实际设备输出失败",
+      "required_evidence": "真正设备写失败发生在theme acceptance后，原writer/restore/error路径有效且Info/Applied不回滚；callback exception不冒device故障。",
+      "status": "PASS_CONTROLLED_REAL_PTY",
+      "judgment": "真实PTY先正常frame后接受主题，writer实际4字节再受控EIO；Applied1/info1保留，termios/3 handlers/close恢复，资源0。ParserUnsynchronized、visual state not restored明确保留；非自然故障或GUI视觉证明。",
+      "evidence": "E:raw/device-pty-bound; E:device-observation; raw/verification.json detail.device"
+    },
+    {
+      "id": "T92-26",
+      "contract": "T007",
+      "obligation": "计数上界静态证据",
+      "required_evidence": "requestId/revision UInt64无wrap且先检查后变更；引用090源码证据，无公开seed、不伪造实跑UInt64域；继承runtime其他耗尽限仍保留。",
+      "status": "PASS_SOURCE_ONLY",
+      "judgment": "UInt64上界检查先于请求/版本变更，禁止wrap；没有public seed，不伪造遍历计数上界实跑。",
+      "evidence": "090 final source; fixed theme_loader/theme_request"
+    },
+    {
+      "id": "T92-27",
+      "contract": "AC091",
+      "obligation": "实际22case完成",
+      "required_evidence": "真实binary exit0+PASS CASE+controllerError null，各新process/gate events有序、无timing-success；最新atomic追加被实际调用。",
+      "status": "PASS",
+      "judgment": "全部22 actualexit0、sentinel正确、controller_error null、真实gate顺序/enter/release完整；另clean2条为重复代表case，不作24唯一用例。",
+      "evidence": "E:raw/async-all/detail/commands.jsonl + per-case stdout/stderr/events; raw/verification.json"
+    },
+    {
+      "id": "T92-28",
+      "contract": "AC091/AGENTS11.1",
+      "obligation": "原有效回归",
+      "required_evidence": "080084088152097等按source/deps/env/scope复用；对新增layout预检/调度/异常的受影响范围给新证据，不机械冷重跑旧suite。",
+      "status": "PASS_SCOPED_REUSE",
+      "judgment": "211/213与213/213及早期6路径差异有明确对照；旧无pending候选行为有限复用，当前22/layout/Theme/device覆盖新路径；未冷跑旧suite/PNG。旧C1时序限制不变。",
+      "evidence": "E:raw/reuse; previous080084088152097 accepted records"
+    },
+    {
+      "id": "T92-29",
+      "contract": "T012/AC091",
+      "obligation": "正常bundle/lint/CJP",
+      "required_evidence": "finalfa6正常bundle原argv/exit/lint；实际全member字节等fixed源/presets，member记录不代替打开包。",
+      "status": "PASS",
+      "judgment": "正常mandatorylint bundle0，508 warnings原样保留；实际打开CJP全部184文件字节==fa==clean展开后源，四preset包含。整包checker另项仍OPEN。",
+      "evidence": "E:raw/bundle; E:raw/package/member-inventory.json; raw/verification.json detail.package"
+    },
+    {
+      "id": "T92-30",
+      "contract": "T012/AC091",
+      "obligation": "clean SDK/stdx consumer",
+      "required_evidence": "正常解包库与纯公开load消费者只manifest路径改动，实际build/directexit、source/deps/config完整，不借作者target/cache。",
+      "status": "PASS_FINITE_PACKAGE_RUN",
+      "judgment": "clean库与完整正式public consumer各build0，仅依赖路径变；正式run_controlled+同gate实际latest-success/atomic-caches各0，未称clean重跑全部22。",
+      "evidence": "E:raw/{clean-library-build,clean-consumer-build,clean-async}; E:tools/clean-run.py"
+    },
+    {
+      "id": "T92-31",
+      "contract": "AC092",
+      "obligation": "元数据/原件/失败保留",
+      "required_evidence": "strictJSON/commands/env/native原件/hash/退出/省略理由，metadata与功能分开，保留失败尝试和既有身份限制。",
+      "status": "PASS",
+      "judgment": "strictJSON/原件hash/exit/身份分别核；初始None harness编译1保留，sole Option资格修正后0；2252元数据/原始断言复核不当成2252产品测试。",
+      "evidence": "raw/final-metadata.json; E:raw/device-build; E:manifest.json"
+    },
+    {
+      "id": "T92-32",
+      "contract": "AC026/092",
+      "obligation": "说明与最终投影",
+      "required_evidence": "文档已交付load/request/info语义符合UI提交/acceptedFile边界；逐mustpass证齐后再接受async有限scope，不直接改main状态。",
+      "status": "PASS",
+      "judgment": "产品说明同步值与load/request/info/acceptedFile边界一致；允许root投影026及089–092有限完成，当前pending状态等待机械投影而非功能缺陷；本角色不改主仓。",
+      "evidence": "fixed docs/product/theme.md; canonical design; this report/matrix"
+    },
+    {
+      "id": "T92-33",
+      "contract": "TASK023/027/Linux",
+      "obligation": "明确后续排除",
+      "required_evidence": "T087-G01仍最终023 wholechecker themesallowlist/composition/benchmark门禁；027全控件、完整Linux/M2/release不由本轮关闭。",
+      "status": "EXCLUDED_OPEN",
+      "judgment": "T010要求themes，与旧023 checker allowlist冲突及composition/benchmark缺项仍OPEN；027全控件展示、wholeLinux/M2/release未验收。",
+      "evidence": "TASK092 brief; prior088 T087-G01; E:raw/identity/fixed-inputs.json + raw/package/member-inventory.json"
+    }
+  ],
+  "pending_mustpass": 0,
+  "evidence_aliases": {
+    "E": "/workspace/work/theme-load-execution",
+    "090": "/workspace/work/theme-load-review",
+    "fixed": "fa6a46ec339ea0f098dea521c814226a7a373c7e"
+  },
+  "product_executed": false
+}
