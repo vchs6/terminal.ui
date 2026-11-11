@@ -8,6 +8,13 @@ class RuntimeNode {
     let id: Int64
     let parent: ?RuntimeNode
     var overlayRoot = false
+    var overlayModal = false
+    var screenX: Int64 = 0
+    var screenY: Int64 = 0
+    var clipLeft: Int64 = 0
+    var clipTop: Int64 = 0
+    var clipRight: Int64 = 0
+    var clipBottom: Int64 = 0
     let sequence = ArrayList<ChildEntry>()
     let viewportState = ViewportState()
     // Geometry is in the parent's logical content coordinates.

@@ -89,7 +89,12 @@ func resolveStyle(c: Component, theme: Theme, inherited: Style, isRoot: Bool, se
     result.style = Style(foreground:foreground, background:background, bold:bold, dim:dim, italic:italic, underline:underline, inverse:inverse, strikethrough:strikethrough)
     result.explicit = TextStylePatch(foreground: if (foregroundExplicit) { Some(foreground) } else { Option<Color>.None }, background: if (backgroundExplicit) { Some(background) } else { Option<Color>.None }, bold: if (boldExplicit) { Some(bold) } else { Option<Bool>.None }, dim: if (dimExplicit) { Some(dim) } else { Option<Bool>.None }, italic: if (italicExplicit) { Some(italic) } else { Option<Bool>.None }, underline: if (underlineExplicit) { Some(underline) } else { Option<Bool>.None }, inverse: if (inverseExplicit) { Some(inverse) } else { Option<Bool>.None }, strikethrough: if (strikethroughExplicit) { Some(strikethrough) } else { Option<Bool>.None })
     let seedBackgroundDeclared = isDeclared(theme.textDefaults().value(StyleKeys.background))
-    if (backgroundLocal) { result.fill = 2; result.fillStyle = result.style }
+    var surfaceOpaque = c.surfaceMode == Some(SurfaceMode.Opaque)
+    if (c.surfaceMode.isNone()) {
+        if (let Some(node) <- c.readMount()) { surfaceOpaque = node.overlayModal }
+    }
+    if (surfaceOpaque) { result.fill = 2; result.fillStyle = result.style }
+    else if (backgroundLocal) { result.fill = 2; result.fillStyle = result.style }
     else if (isRoot && seedBackgroundDeclared) {
         result.fill = 1; result.fillStyle = Style(background:inherited.background)
     }

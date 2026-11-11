@@ -156,6 +156,12 @@ public class Application {
         if (let Some(value) <- readSession()) {
             value.requireReadContext(); value.focusManager.observe()
             if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
+            if (let Some(reserved) <- value.reservedLayer) {
+                if (let Some(rootRef) <- reserved.root) { if (rootRef.isValid()) { return Some(rootRef) } }
+            }
+            if (let Some(modal) <- value.topModal()) {
+                if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) { return Some(rootRef) } }
+            }
         }
         None
     }
@@ -349,13 +355,20 @@ public class Application {
         if (targetNode.session.id != value.id) {
             throw UIException("WrongUIContext", "target belongs to another session")
         }
+        if (!value.inOverlayDomain(targetNode)) { throw UIException("FocusOutsideDomain", "target outside modal domain") }
         let path = ArrayList<RuntimeNode>()
         var cursor: ?RuntimeNode = Some(targetNode)
+        var checkEnabled = true
+        let modal = value.topModal()
         while (let Some(node) <- cursor) {
-            if (!node.component.isVisible || !node.component.isEnabled) {
+            if (!node.component.isVisible || (checkEnabled && !node.component.isEnabled)) {
                 throw UIException("InvalidProperty", "hidden target")
             }
             path.add(node);
+            if (node.overlayRoot) { checkEnabled = false }
+            if (let Some(layer) <- modal) {
+                if (let Some(rootRef) <- layer.root) { if (rootRef.sameNode(node.reference())) { break } }
+            }
             cursor = node.parent
         }
         let captures = Array<?(UIKeyEvent) -> Unit>(path.size,{i => path[i].component.captureHandler})
@@ -389,12 +402,12 @@ public class Application {
                                 }
                                 i++
                             }
-                            if (!event.stopped) {
+                            if (!event.stopped && modal.isNone()) {
                                 if (let Some(callback) <- savedAppHandler) {
                                     callback(event)
                                 }
                             }
-                            if (!event.stopped && key.code != "interrupt") {
+                            if (!event.stopped && key.code != "interrupt" && modal.isNone()) {
                                 savedLegacy(key)
                             }
                             if (!event.defaultPrevented) {
@@ -405,6 +418,12 @@ public class Application {
                                 if (key.code == "interrupt") { value.requestStop(); running = false; event.preventDefault() }
                                 else if (key.code == "tab" || key.code == "backtab") {
                                     if (value.focusManager.move(key.code == "backtab")) { event.preventDefault() }
+                                } else if (key.code == "escape") {
+                                    if (let Some(layer) <- value.layerFor(targetNode)) {
+                                        if (layer.options.mode != OverlayMode.Passive && layer.options.closeOnEscape) {
+                                            value.closeOverlay(layer,OverlayCloseReason.Escape); event.preventDefault()
+                                        }
+                                    }
                                 }
                             }
                             i = 0

@@ -12,6 +12,7 @@ class OverlayRecord <: ObservableSource {
     var savedFocus: ?NodeRef = None
     var terminal: ?OverlayCloseReason = None
     var requested: ?OverlayCloseReason = None
+    var focusPending = false
     init(session: RuntimeSession, owner: NodeRef, description: Component, options: OverlayOptions) {
         this.owner = owner; this.options = options; this.description = Some(description)
         sessionId = session.id; threadId = session.threadId; threadNonce = session.threadNonce
