@@ -627,7 +627,11 @@ public class Application {
                 }
                 if (value >= 0 && decoder.state == 1 && lastInput >= 0) {
                     let now = unsafe { cjt_monotonic_ms() }
-                    if (now < 0 || (now >= lastInput && now - lastInput >= 100)) {
+                    if (now < 0) {
+                        // A failed sample is not evidence that the just-read
+                        // byte arrived after the keyboard idle interval.
+                        lastInput = -1; untimedIdleRemaining = 100
+                    } else if (now >= lastInput && now - lastInput >= 100) {
                         lastInput = -1
                         if (let Some(escape) <- decoder.timeout()) { dispatchDeviceKey(escape) }
                         if (readSession().isNone() || work.isStopping()) { break }
@@ -642,7 +646,15 @@ public class Application {
                     decoded
                 } else if (decoder.state == 1 && lastInput >= 0) {
                     let now = unsafe { cjt_monotonic_ms() }
-                    if (now < 0 || now - lastInput >= 100) { lastInput = -1; decoder.timeout() } else { Option<KeyEvent>.None }
+                    if (now < 0) {
+                        // Only the just-completed poll interval is known to
+                        // have elapsed; an earlier probe wake may be shorter.
+                        lastInput = -1
+                        untimedIdleRemaining = greater(0,100 - readTimeout)
+                        if (untimedIdleRemaining == 0) { decoder.timeout() } else { Option<KeyEvent>.None }
+                    } else if (now >= lastInput && now - lastInput >= 100) {
+                        lastInput = -1; decoder.timeout()
+                    } else { Option<KeyEvent>.None }
                 } else { Option<KeyEvent>.None }
                 lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
                 match (event) {
