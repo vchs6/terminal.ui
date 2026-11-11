@@ -9,6 +9,8 @@ foreign {
 
     func cjt_read(timeout: Int32): Int32
 
+    func cjt_monotonic_ms(): Int64
+
     func cjt_buffer_clear(): Unit
 
     func cjt_buffer_add(value: Int32): Int32
