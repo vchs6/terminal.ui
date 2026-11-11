@@ -227,12 +227,12 @@ func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
     layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
 }
 
-func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession): Frame {
+func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession, reuse!: Bool = true): Frame {
     let frame = Frame(width, height)
     if (!root.isVisible) { return frame }
     // Public render may target a mounted subtree in the same session.
     // Only the application root owns this reusable measurement.
-    let sessionRoot = root.descriptionId == session.root.descriptionId
+    let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
     let node = if (sessionRoot && session.measuredLayout.isSome()) {
         session.measuredLayout.getOrThrow()
     } else {
@@ -270,7 +270,7 @@ public func render(root: Component, width: Int64, height: Int64, glyphMode!: Gly
                 }
                 session.applyPendingTheme()
                 session.selectLayoutGlyphPolicy(offlineGlyphPolicy(glyphMode))
-                let result = renderLayout(root, width, height, session)
+                let result = renderLayout(root, width, height, session, reuse:false)
                 session.recordFrame()
                 result
             })

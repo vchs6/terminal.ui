@@ -6,6 +6,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <termios.h>
+#include <time.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
 
@@ -19,6 +20,15 @@ static int64_t emitted_bytes;
 static unsigned char *buffer;
 static size_t length, capacity;
 static void handle_signal(int sig) { if (sig == SIGINT || sig == SIGTERM) interrupted = sig; }
+int64_t cjt_monotonic_ms(void) {
+    struct timespec ts;
+    if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0 || ts.tv_sec < 0 || ts.tv_nsec < 0 || ts.tv_nsec >= 1000000000L) return -1;
+    if ((uint64_t)ts.tv_sec > (uint64_t)(INT64_MAX / 1000)) return -1;
+    int64_t seconds = (int64_t)ts.tv_sec * 1000;
+    int64_t fraction = ts.tv_nsec / 1000000L;
+    if (seconds > INT64_MAX - fraction) return -1;
+    return seconds + fraction;
+}
 int cjt_open(void) {
     struct sigaction action = {0};
     struct termios raw;

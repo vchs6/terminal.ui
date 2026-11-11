@@ -13,9 +13,10 @@ public struct TerminalCapabilities {
     public let noColorVideo: Int64
     public let source: String
     public let reason: String
+    public let cursorVisibilityStatus: String
     init(colorMode!: ColorMode, colorKnown!: Bool, terminfoKnown!: Bool, supportsBold!: Bool, supportsDim!: Bool,
         supportsItalic!: Bool, supportsUnderline!: Bool, supportsInverse!: Bool, supportsStrikethrough!: Bool,
-        noColorVideo!: Int64, source!: String, reason!: String) {
+        noColorVideo!: Int64, source!: String, reason!: String, cursorVisibilityStatus!: String = "not-probed") {
         this.colorMode = colorMode
         this.colorKnown = colorKnown
         this.terminfoKnown = terminfoKnown
@@ -28,6 +29,13 @@ public struct TerminalCapabilities {
         this.noColorVideo = noColorVideo
         this.source = source
         this.reason = reason
+        this.cursorVisibilityStatus = cursorVisibilityStatus
+    }
+    func withCursorStatus(value: String): TerminalCapabilities {
+        TerminalCapabilities(colorMode:colorMode,colorKnown:colorKnown,terminfoKnown:terminfoKnown,
+            supportsBold:supportsBold,supportsDim:supportsDim,supportsItalic:supportsItalic,
+            supportsUnderline:supportsUnderline,supportsInverse:supportsInverse,supportsStrikethrough:supportsStrikethrough,
+            noColorVideo:noColorVideo,source:source,reason:reason,cursorVisibilityStatus:value)
     }
 }
 
