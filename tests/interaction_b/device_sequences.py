@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Public B consumers on real PTYs. Literal numeric oracles, no terminal model."""
 import argparse,json,os,pathlib,signal,subprocess,time,pty,hashlib
-from pty_driver import resize,attributes,drain,controlling_terminal
+from pty_driver import resize,attributes,drain,controlling_terminal,wait_ready
 
 def state_fields(value):
     parts=value.split('/')
@@ -13,11 +13,15 @@ def expect_state(actual,expected):
 
 class Sequence:
     def __init__(self,binary,out,mode):
-        self.out=out;out.mkdir(parents=True);self.mode=mode;self.events=[];self.raw=bytearray();self.query_count=0
+        self.out=out;out.mkdir(parents=True);self.mode=mode;self.events=[];self.raw=bytearray();self.query_count=0;self.started=False
         self.master,self.slave=pty.openpty();resize(self.slave,4,1);self.before=attributes(self.slave)
         self.binary=pathlib.Path(binary).resolve()
         env=dict(os.environ,CJTUI_VIEWPORT_CASE=mode,CJTUI_VIEWPORT_OUTPUT=str(out),TERM='xterm-256color')
         self.child=subprocess.Popen([str(self.binary)],stdin=self.slave,stdout=self.slave,stderr=self.slave,env=env,preexec_fn=lambda:controlling_terminal(self.slave))
+    def startup(self):
+        markers=(b'#A !',) if self.mode=='unicode' else (b'abcd',)
+        proof=wait_ready(self.child,self.master,self.slave,self.raw,markers)
+        self.started=True;self.events.append(dict(readiness=proof))
     def send(self,data):
         self.events.append(dict(input_hex=data.hex(),monotonic_ns=time.monotonic_ns()));os.write(self.master,data)
     def pump(self):self.raw.extend(drain(self.master,.005))
@@ -39,7 +43,9 @@ class Sequence:
         got=resize(self.slave,w,h);os.killpg(self.child.pid,signal.SIGWINCH)
         self.events.append(dict(actual_resize=got,monotonic_ns=time.monotonic_ns()))
     def finish(self):
-        if self.child.poll() is None:self.send(b'q')
+        if self.child.poll() is None:
+            if self.started:self.send(b'q')
+            else:self.child.send_signal(signal.SIGTERM)
         until=time.monotonic()+4
         while self.child.poll() is None and time.monotonic()<until:self.pump()
         forced=self.child.poll() is None
@@ -60,6 +66,7 @@ def completed_size(s,width,height):
 def run_case(binary,out,mode):
     s=Sequence(binary,out/mode,mode)
     try:
+        s.startup()
         initial=s.query()
         if mode=='unicode':
             expect_state(initial,{0:2,1:1,2:4,4:0,5:0})
