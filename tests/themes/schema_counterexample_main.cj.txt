@@ -1,0 +1,14 @@
+package theme_values_contract
+import std.process.Process
+main(): Int64 {
+    try {
+        match(Process.current.arguments[0]) {
+            case "positive" => schemaPositiveControl()
+            case "source-types" => schemaSourceTypes()
+            case "printable-name" => schemaPrintableName()
+            case "source-order" => schemaSourceOrder()
+            case _ => throw Exception("unknown counterexample group")
+        }
+        return 0
+    } catch(e:Exception) { println("GROUP FAIL: ${e.message}");return 1 }
+}
