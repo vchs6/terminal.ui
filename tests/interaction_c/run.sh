@@ -13,6 +13,10 @@ build_and_execute() {
     )
 }
 
+if (( $# > 1 )); then
+    printf '%s\n' 'usage: bash tests/interaction_c/run.sh [formal|preparation|baseline|api-probe|fixture-controls|device]' >&2
+    exit 64
+fi
 case "${1:-formal}" in
     api-probe)
         printf '%s\n' 'PREPARATION_ONLY normal public consumer build; C behavior UNEXECUTED; not B107 acceptance'
@@ -32,14 +36,30 @@ case "${1:-formal}" in
     *) printf '%s\n' 'usage: bash tests/interaction_c/run.sh [formal|preparation|baseline|api-probe|fixture-controls|device]' >&2; exit 64 ;;
 esac
 
-# Freeze is deliberately closed while real accepted upstream inputs and the
-# remaining executable fixtures are absent. No environment variable bypass.
+# Prefer explicit current admission. Invalid current data never falls back to
+# historical records. No environment variable selects or bypasses the table.
+admission="$task_dir/admission.tsv"
+if [[ -e "$task_dir/admission.current.tsv" || -L "$task_dir/admission.current.tsv" ]]; then
+    admission="$task_dir/admission.current.tsv"
+fi
+if [[ ! -f "$admission" ]]; then
+    printf '%s\n' 'BLOCKED admission table missing or not a regular file' >&2
+    exit 77
+fi
+declare -A seen=()
 blocked=0
 rows=0
 while IFS=$'\t' read -r gate status source_sha evidence; do
     [[ "$gate" == gate ]] && continue
     [[ -z "$gate" ]] && continue
     rows=$((rows + 1))
+    case "$gate" in TASK080|TASK084|TASK088|TASK102|TASK107|TASK152|INTERFACE_MAP|TEST_FREEZE) ;;
+        *) printf 'BLOCKED unknown gate %s\n' "$gate" >&2; blocked=1; continue ;;
+    esac
+    if [[ -n ${seen[$gate]:-} ]]; then
+        printf 'BLOCKED duplicate gate %s\n' "$gate" >&2; blocked=1; continue
+    fi
+    seen[$gate]=1
     if [[ "$status" != ACCEPTED || ! "$source_sha" =~ ^[0-9a-f]{40}$ ]]; then
         printf 'BLOCKED %s: %s; %s\n' "$gate" "$status" "$evidence" >&2
         blocked=1
@@ -50,12 +70,14 @@ while IFS=$'\t' read -r gate status source_sha evidence; do
         printf 'BLOCKED %s: accepted source is not in this source history\n' "$gate" >&2
         blocked=1
     fi
-    if [[ ! -f "$evidence" ]]; then
+    evidence_path="$evidence"
+    if [[ "$evidence_path" != /* ]]; then evidence_path="$repo_dir/$evidence_path"; fi
+    if [[ ! -f "$evidence_path" ]]; then
         printf 'BLOCKED %s: missing fixed evidence %s\n' "$gate" "$evidence" >&2
         blocked=1
     fi
-done < "$task_dir/admission.tsv"
-if [[ "$rows" != 8 || "$blocked" != 0 ]]; then
+done < "$admission"
+if [[ "$rows" != 8 || ${#seen[@]} != 8 || "$blocked" != 0 ]]; then
     printf '%s\n' 'PREPARATION_ONLY: no overlay build or execution attempted; exit 77' >&2
     exit 77
 fi

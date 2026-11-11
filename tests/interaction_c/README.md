@@ -100,3 +100,23 @@ readiness requires raw mode, the genuine mode25 query and the first literal
 BASE-OVERLAY-READY frame. Mount files and final trace files are callback barriers.
 Missing binary/acknowledgement, timeout, nonzero child status, altered trace,
 missing cleanup or termios difference fails. No sleep infers a committed layer.
+
+## Formal TASK108 admission after accepted B107
+
+`admission.current.tsv/json` is the current eight-gate test admission. The old
+`admission.tsv` and earlier preparation records stay historical. ACCEPTED here
+means prerequisites and test freeze, not C product behavior. The current JSON
+binds accepted620/integrated9cf and frozen b134 consumer code, the original
+preparation/declaration manifests and remaining scope limits.
+
+The entry automatically prefers the current table; invalid current data is a
+hard77, with no fallback or environment override. Only absence selects the old
+closed table. Every required gate must occur once, have ACCEPTED/full commit
+SHA/actual HEAD ancestry/existing evidence. Relative evidence resolves from the
+repository root, independently of the caller's current directory.
+`preparation` now validates the current admission and returns0 without compiling.
+Default/formal still uses normal `cjpm build`, then direct binary only on build0.
+Before C implementation, the existing actual missing-C compiler RED applies;
+C behavior remains UNEXECUTED. `gate-selftest.sh` exercises accepted metadata,
+rejection cases, legacy fallback and nonzero-compiler/no-binary boundaries using
+tools-only sentinels in an isolated small Git fixture, never a C implementation.
