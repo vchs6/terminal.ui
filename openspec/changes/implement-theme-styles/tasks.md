@@ -21,7 +21,7 @@
 
 ## Tasks
 
-- [ ] TASK-085（WP005/testing）：冻结基础typed resolver/schema/布局/四preset公共测试、固定期望与缺API RED。
+- [x] TASK-085（WP005/testing）：冻结基础typed resolver/schema/布局/四preset公共测试、固定期望与缺API RED。
 - [ ] TASK-013（WP003/implementation）：typed声明/来源解析、继承/复位、完整布局属性及wrap/ellipsis接入。
 - [ ] TASK-025（WP006/implementation）：同一主题值的完整TOML schema、上游Lexer预算/Parser、四预置及普通依赖/制品配置；与013共享必要同一产品周期，不建第二resolver。
 - [ ] TASK-086（WP005/verification）：013/025固定技术diff独立spec/quality审核。
@@ -63,3 +63,7 @@ preflight逐项：085/013/025接口同design/fixtures；013和025同代码周期
 正式范围消费[Linux收尾C006](../complete-linux-integration/design.md)并沿本theme T001–T016，新增字段不重复定义API。实际输入=092/084/097/112/117/122/157/162及完整021；021不反等027，027完成后才冻结124的完整功能M1库。全部实际输入/测试/命令/hash未齐前planned，不因preflight推定ready。
 
 027.a独立Sol/high测试作者在tests/theme_showcase/普通consumer手写同业务/尺寸四主题全部基本组件和focused/selected/disabled预期、切换后节点/编辑选择/undo/焦点/滚动不丢、非法文件旧主题保持、主动reload原子成功；实际缺showcase/行为RED与工具自检后冻结test-only。027.b独立Sol/high或Terra/high作者在已定examples/theme_showcase/和产品themes/README用公开API实施，无theme特判内核；四preset canonical bytes沿已冻fixture。027.c独立Astra/high固定完整diff双verdict，不读作者自评。027.d独立Sol/medium正常CJPM build→直接smoke与真实键操作，至少一真实GUI同一场景四套原PNG/完整grid/style/version/config/source/time/hash；跨host自动降级沿C008完整矩阵，不用TERM假实现。027.e独立Astra/high逐原AC027完整组件/状态/窄屏/切换保持/可见层快照/主题分发核原件与source/cjp，root仅机械集成，不把基础四文本图当全showcase。CLI tests/theme_showcase/run.sh为开发测试入口，实际product project启动文档在examples/theme_showcase/README.md；入ready前固定具体命令与正式源。
+
+## 2026-11-11 基础产品准入
+
+085正式设计原74b1a5ac与追加2b16ce9固定交付，原47文件/16负例/4preset不变，真实缺Theme API RED保留，后续布局断言尚未GREEN。097最终有限字形验收通过，080/084/152及097固定源码已集成，013+025可按原合同进入同一产品周期；086/087/088及实际Theme能力未提前通过。追加证据见[R15测试刷新](../../../docs/reviews/R15/glyph-refresh/report.md)。

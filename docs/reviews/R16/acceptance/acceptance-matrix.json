@@ -1,0 +1,486 @@
+{
+  "task": "TASK097",
+  "phase": "final_independent_acceptance",
+  "acceptance_verdict": "PASS_FINITE_SCOPE",
+  "task097_ready": true,
+  "rows": [
+    {
+      "id": "G97-01",
+      "contract": "AC093–097",
+      "obligation": "固定来源与独立性",
+      "required_evidence": "产品/base/root/测试lineage、096实际源/二进制/依赖/配置完整hash；不使用作者自评。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/integrity.json",
+        "preparation-hashes.json"
+      ],
+      "judgment": "原件完整链成立：固定 product/root/test 对象，475 execution source、296 dependency、36 external inputs 重算；无作者报告输入。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-02",
+      "contract": "AC093",
+      "obligation": "正式RED与fixture修正",
+      "required_evidence": "旧正常build与真实缺API/internal RED；原11 Observable/capture1设施RED保留；bfd/dc6仅getter/counter修正，原oracle不降级。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/red-lineage-verification.json",
+        "docs/reviews/R16/test-supplements/observable-api/review",
+        "docs/reviews/R16/test-supplements/capture/review"
+      ],
+      "judgment": "原正常根 build0；正式 API/internal 缺产品符号 RED1 原日志 hash 相符。两个独立 fixture 修复仅 getter/setter 与 serial holder，原字面量/oracle 不变，保留原设施失败。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-03",
+      "contract": "AC095",
+      "obligation": "独立代码审查复用",
+      "required_evidence": "095固定18文件、spec/quality结果及hash；095仅代码范围，不能替代096真实宿主。",
+      "status": "passed",
+      "received_evidence": [
+        "docs/reviews/R16/code-review/report.md",
+        "docs/reviews/R16/code-review/handoff-correction.md"
+      ],
+      "judgment": "复用095独立 PASS_CODE_SCOPE / quality PASS，0 C/I/M；自有源核查与096实际证据补足执行范围。metadata纠正不改变code结果。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-04",
+      "contract": "AC096/G002",
+      "obligation": "正常SDK及公开兼容",
+      "required_evidence": "SDK1.2.0根/普通consumer build及binary直接exit；两构造/legacy参数、enum/reexport、set/get签名。",
+      "status": "passed",
+      "received_evidence": [
+        "execution/raw/root-build",
+        "execution/raw/glyph-api",
+        "execution/raw/glyph-public",
+        "execution/raw/glyph-rich",
+        "raw/integrity.json"
+      ],
+      "judgment": "SDK1.2.0 正常根/API/public/rich build 与直接 binary 全0；公开构造、legacy参数和新API沿正式消费者验证。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-05",
+      "contract": "G002",
+      "obligation": "能力只读正负控制",
+      "required_evidence": "完整API正向先成功；六字段各var-local写入拒绝；构造包内、无公共bitmap。",
+      "status": "passed",
+      "received_evidence": [
+        "execution/raw/glyph-negative",
+        "source/src/terminal_glyph_capabilities.cj",
+        "raw/integrity.json"
+      ],
+      "judgment": "完整正向先成功，联合及六个 var-local 独立负例均编译拒绝；源码能力值 readonly、构造包内、无公共bitmap。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-06",
+      "contract": "G002/G004",
+      "obligation": "探测生命周期与事实",
+      "required_evidence": "每成功run open后cleanup围栏内一次；Unicode/Ascii仍探测；离线不探测、关闭后last保留。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/oracle-verification.json",
+        "raw/host-verification.json"
+      ],
+      "judgment": "25正式 raw 与真实Host显示 run一次 fd1 probe；Unicode/Ascii override不重探、不改caps；离线不探测、close后快照保留。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-07",
+      "contract": "G004/G011",
+      "obligation": "具体stdout VT身份",
+      "required_evidence": "isatty/fstat/S_ISCHR/major4 minor1..63/VT_GETMODE/KD_TEXT；实际fd1，alias/PTY/非文本不读map。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/host-verification.json",
+        "raw/oracle-verification.json",
+        "source/native/cjtui_glyphs.c"
+      ],
+      "judgment": "真实 tty1 char4:1/KD_TEXT；formal alias/PTY/regular/nontext不读map。实际产品仅当前fd1，无额外VT/vcs读取。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-08",
+      "contract": "G004/G011",
+      "obligation": "有界unimap与释放",
+      "required_evidence": "65535 pairs/262140临时bytes一次alloc/read，8192 bitmap副本，所有退出free；重复原pair计数与空map有效。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/native-map-crosscheck.json",
+        "raw/oracle-verification.json",
+        "source/native/cjtui_glyphs.c"
+      ],
+      "judgment": "65535pair/262140bytes 单次有界读、8192bitmap与free路径由source/095及正式native日志验证；空map和65535重复pair不混淆。真实303pair与1212byte observer逐pair一致。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-09",
+      "contract": "G003/G011",
+      "obligation": "失败诊断分类",
+      "required_evidence": "闭集source/reason、errno、entryCount0；真实kernel失败与controlled syscall/PTY注入分别标注。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/oracle-verification.json",
+        "raw/host-verification.json",
+        "execution/raw/vt/glyph-root-deny-auto"
+      ],
+      "judgment": "source/reason/errno/count 闭集及合成失败正确；真实kernel EACCES13只由self-launcher seccomp控制，不冒充普通用户自然失败。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-10",
+      "contract": "G005/G010",
+      "obligation": "policy所有权与预算",
+      "required_evidence": "唯一生产policy/factories；mapped长度8192、防御复制；width0/负值/合法正预算，无固定width<=2。",
+      "status": "passed",
+      "received_evidence": [
+        "execution/raw/glyph-internal",
+        "source/src/glyph_render_policy.cj",
+        "docs/reviews/R16/code-review/report.md"
+      ],
+      "judgment": "唯一私有policy工厂、8192防御复制；width0/负值与正预算边界由13正式internal及源码验证，非固定<=2策略。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-11",
+      "contract": "G003/G005",
+      "obligation": "Ascii及mapped投影",
+      "required_evidence": "单可打印ASCII或mapped单BMP单列gate；宽/CJK/组合/VS/ZWJ/非BMP整簇等宽，无NFC或业务改写。",
+      "status": "passed",
+      "received_evidence": [
+        "execution/raw/glyph-internal",
+        "raw/oracle-verification.json",
+        "raw/host-verification.json"
+      ],
+      "judgment": "ASCII/mapped gate、BMP单列、组合/VS/ZWJ/nonBMP整体等宽投影由正式internal/session及实际VT raw验证，无NFC业务重写。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-12",
+      "contract": "G005",
+      "obligation": "装饰与缺备用字符",
+      "required_evidence": "共享border数据；专用ASCII→?→空格有限回退，empty/no-question/no-border真实bytes和diagnostic。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/oracle-verification.json",
+        "raw/visual-inspection.json",
+        "source/src/glyph_render_policy.cj"
+      ],
+      "judgment": "共享边框表及专用ASCII→?→space 有限链，empty/no-question/no-border原raw和diagnostic通过；真实BOX存在。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-13",
+      "contract": "G012/A003–005",
+      "obligation": "未知PTY保守Unicode",
+      "required_evidence": "唯一displayWidth逐scalar与Cell.width相等放行，否则整簇?；保留类/替代类、true宽策略与零面积边界。",
+      "status": "passed",
+      "received_evidence": [
+        "execution/raw/glyph-internal",
+        "raw/host-verification.json",
+        "source/src/glyph_render_policy.cj"
+      ],
+      "judgment": "G012优先：未知设备Auto conservativeUnicode逐scalar宽度和Cell预算相等才放行，超预算减法防溢；internal及GUI9stage验证保留/替换和零bytes。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-14",
+      "contract": "G006",
+      "obligation": "生成marker纯接口",
+      "required_evidence": "真实generatedEllipsis、ambiguous false/true、mapped/missing、可用<=0/1/2/3/5；字面…仅原width投影。",
+      "status": "passed",
+      "received_evidence": [
+        "execution/raw/glyph-internal",
+        "source/src/glyph_render_policy.cj"
+      ],
+      "judgment": "generatedEllipsis实际纯接口及true/false宽策略、mapped/missing、预算边界由13internal和源码验证；字面…只按存储width投影。未实现真实TextOverflow。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-15",
+      "contract": "G007",
+      "obligation": "单一布局policy接线",
+      "required_evidence": "设备private produce与离线入口解析；同一renderLayout，无第二snapshot/Frame/布局内核。",
+      "status": "passed",
+      "received_evidence": [
+        "source/src/application.cj",
+        "source/src/runtime_session.cj",
+        "docs/reviews/R16/code-review/report.md"
+      ],
+      "judgment": "Application设备private produce/离线入口向唯一RuntimeSession.renderLayout传同一policy；无第二Frame、snapshot或布局内核。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-16",
+      "contract": "G007",
+      "obligation": "缓存与mounted交替",
+      "required_evidence": "Unicode/Ascii/Auto交替snapshot及mounted render，marker内容cache key与measure失效，节点身份保留。",
+      "status": "passed",
+      "received_evidence": [
+        "source/src/runtime_session.cj",
+        "execution/raw/glyph-public",
+        "raw/host-verification.json",
+        "docs/reviews/R16/code-review/report.md"
+      ],
+      "judgment": "marker字符串进入测量cache key；离线Auto/Unicode/Ascii交替和实际mounted模式切换正确。中途mounted交替的完整时序由源码及095证明，不伪称新增专门runtime case。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-17",
+      "contract": "G002/G007/G008",
+      "obligation": "模式唤醒与pump时序",
+      "required_evidence": "actual-change唤醒/布局失效、同值静默；pump中修改使用实际旧policy基线，下一refresh不丢更新。",
+      "status": "passed",
+      "received_evidence": [
+        "source/src/application.cj",
+        "docs/reviews/R16/code-review/report.md",
+        "raw/host-verification.json"
+      ],
+      "judgment": "setter仅实际变化invalidate；run在pump前固定实际请求、成功后提交对应基线，中途变更下轮仍不等。源码/095证明时序，实际模式往返提供一般执行控制。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-18",
+      "contract": "G008/A004",
+      "obligation": "投影列等价diff",
+      "required_evidence": "中→文、宽簇↔两个?及空间替代，old/new各profile；style投影共同等价零bytes。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/host-verification.json",
+        "raw/oracle-verification.json",
+        "execution/raw/glyph-internal"
+      ],
+      "judgment": "old/new各自profile投影后列/style等价才零写；真实VT前四p fence和GUI VS16/literal零增量，与正式单元/PTY一致。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-19",
+      "contract": "G008/A004",
+      "obligation": "输出与基线边界",
+      "required_evidence": "宽→窄/缩短清残留、尺寸变化重绘；仅全写成功提交logical/profile，零面积不遍历巨轴。",
+      "status": "passed",
+      "received_evidence": [
+        "execution/raw/glyph-internal",
+        "raw/visual-inspection.json",
+        "source/src/application.cj",
+        "raw/oracle-verification.json"
+      ],
+      "judgment": "正式frame检查宽→窄/缩短/尺寸/零面积，写成功才提交baseline；真实A窄化nativecells/PNG无尾列残留。故障语义沿既有writer复用，不宣称新增所有VT故障。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-20",
+      "contract": "G009",
+      "obligation": "离线文件独立",
+      "required_evidence": "默认/显式Auto=Unicode、Ascii仅生成marker；实际plain/ANSI文件完整Unicode且不受设备/最近map污染。",
+      "status": "passed",
+      "received_evidence": [
+        "execution/raw/logical-files",
+        "raw/host-verification.json",
+        "execution/raw/glyph-public"
+      ],
+      "judgment": "真正plain/ANSI文件完整Unicode、30列数据匹配；默认/显式Auto离线Unicode，Ascii仅生成marker，设备map/最近profile不污染文件路径。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-21",
+      "contract": "G001/G009",
+      "obligation": "原回归与唯一权威",
+      "required_evidence": "固定Frame/颜色/富文本/runtime回归与源码关联复用；业务跨span、clip/continuation、颜色事实不污染。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/oracle-verification.json",
+        "execution/raw/reused-prior",
+        "execution/raw/native-session",
+        "docs/reviews/R16/code-review/report.md"
+      ],
+      "judgment": "13 internal/25 Glyph/native-owner及setup-signal/36 focused Session和既有runtime/12PTY原件可复用；native session writer/encoding/color/unicode与BASE字节相同，不声称重新全830。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-22",
+      "contract": "S008/G008",
+      "obligation": "失败安全与资源恢复",
+      "required_evidence": "唯一writer/unsafe/reopen/zero-byte-safe-title/silentclose/首错聚合；失败后无后续设备输出；nativeclose、termios、signal原件。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/oracle-verification.json",
+        "raw/host-verification.json",
+        "execution/raw/native-session"
+      ],
+      "judgment": "正式allocation/read失败free、session部分写/未知前缀/主错误/恢复等36原件重新oracle断言；9正常真实host exit0/termios恢复及单一owner，不改错误优先级。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-23",
+      "contract": "AC096/G001/G004",
+      "obligation": "NEW真实kernel VT来源",
+      "required_evidence": "新产品真实kernel/tty1，kernel版本/UID/major-minor/KD_TEXT/source/binary/config/viewport/UTC；非旧6a7b、TERM换名或合成VT。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/host-verification.json",
+        "execution/raw/fixed-inputs-and-binaries.json",
+        "execution/raw/vt"
+      ],
+      "judgment": "QEMU TCG真实Linux6.12.107 tty1 80×25，新执行当前同binary；cpio内容及部署hash可追溯，旧权限失败与权限only25变更保留。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-24",
+      "contract": "G001/G004",
+      "obligation": "UTF8输出前置",
+      "required_evidence": "实际boot默认+未改codec链+已知UTF8 native cells与原PNG经验对应；IUTF8/键盘/fontmap均不能单独证明。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/host-verification.json",
+        "raw/visual-inspection.json",
+        "execution/raw/vt/glyph-root-unicode"
+      ],
+      "judgment": "固定bootcmdline/sysfs default1/无codec或font变更链 + Unicode nativecells é、中、文及原PNG构成经验前置。IUTF8/fontmap不是输出UTF8证明；未查询每console当前codec。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-25",
+      "contract": "AC094/096/G003",
+      "obligation": "真实VT普通Auto与override",
+      "required_evidence": "同普通Application业务源无终端if，Auto fallback及Unicode/Ascii；原始map/字体来源、权限、诊断facts不被override改写。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/host-verification.json",
+        "raw/native-map-crosscheck.json",
+        "raw/visual-inspection.json"
+      ],
+      "judgment": "同正式093未wrapper业务main的正常Application(root) Auto，root8stage、UID/EUID1000 Auto、Unicode/Ascii及controlleddeny均有实际fd1/源binary/map/native/raw/PNG/restore链。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-26",
+      "contract": "AC096/G009/G012",
+      "obligation": "真实GUI物理输出",
+      "required_evidence": "真正XTerm/VTE版本/config/font，同实际源/二进制；native物理数据和原PNG，保留/替代类与delta不越行。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/host-verification.json",
+        "execution/raw/gui",
+        "raw/visual-inspection.json"
+      ],
+      "judgment": "真实XTerm398和VTE0.80.1各9stage，XTEST输入、实际stdout零写阶段、nativeprint/GTKviewport、原PNG、未知caps不变及termios恢复。VTE文本观察不冒充完整cell属性。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-27",
+      "contract": "AC096/097",
+      "obligation": "原图和原生数据独立核查",
+      "required_evidence": "两类实际render profile代表原PNG亲看并hash，全部PNG来源/退出后封存；host观察器与产品分离，不用逻辑宽度模型作物理oracle。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/integrity.json",
+        "raw/host-verification.json",
+        "raw/visual-inspection.json"
+      ],
+      "judgment": "39原PNG逐hash核验，21PPM→PNG RGB一致，10代表图直接视觉核查；native数据与实际trace写/输入fence交叉验证，不使用作者自评或oracle重画。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-28",
+      "contract": "Session152 P30/REQ010/011",
+      "obligation": "有限真实VT Session组合",
+      "required_evidence": "当前产品普通Session例/正式consumer实际copy/title/restore/icon，NoAdapter或Unknown发送未确认诚实，永不因OSC wire推Applied；仅已证subset可闭合。",
+      "status": "passed_finite_subset",
+      "received_evidence": [
+        "raw/oracle-verification.json",
+        "raw/host-verification.json",
+        "execution/raw/vt/session-wire",
+        "execution/raw/vt/session-unknown-title"
+      ],
+      "judgment": "P30新增有限通过：正式148 Direct mode0真实tty1 wire156bytes/unknown-title6，原verifyLive不改通过；native退出只READY无OSCpayload，termios/close0。copy/title SentUnconfirmed、icon Unsupported、restoreUnknownUnavailable；未覆盖所有路由/故障/输入resize。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-29",
+      "contract": "AC096/G009",
+      "obligation": "正常bundle lint",
+      "required_evidence": "正常cjpm bundle实际命令/exit和warning计数，无skip、压级或suppression；保留advisory。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/integrity.json",
+        "execution/raw/bundle",
+        "execution/raw/bundle-advisories.json",
+        "execution/raw/whole-bundle-check"
+      ],
+      "judgment": "正常cjpm bundle exit0，强制lint实际353warnings完整保留，无参数/配置禁lint。全checker exit1保留composition/benchmark不足，不升级发行。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-30",
+      "contract": "AC096/097",
+      "obligation": "全CJP及cleanconsumer",
+      "required_evidence": "143实际regular members逐bytes对fixed git、全inventory；clean普通consumer仅manifest路径改，实际源和binary/exit。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/integrity.json",
+        "execution/raw/package-members.json",
+        "execution/raw/package-bytes",
+        "execution/raw/clean-api-build-run"
+      ],
+      "judgment": "实际CJP143成员逐byte等固定product与clean构建后source；正常clean build及只改依赖路径的公开APIconsumer build/direct0。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-31",
+      "contract": "AC097",
+      "obligation": "strictJSON与制品封存",
+      "required_evidence": "全部原件/curated/hash及命令cwd/UTC/exit；host退出后final hash；omit ELF/CJP/CJO/SDK/cache/整checkout/私钥/Markdown源快照并记录外部hash理由。",
+      "status": "passed",
+      "received_evidence": [
+        "raw/integrity.json",
+        "execution/manifest.json",
+        "execution/raw/seal-summary.json"
+      ],
+      "judgment": "096 1389原件→副本、1390index含manifest、1391实际含index全同，206 strictJSON；封存晚于正常host全部reaped。失败原件仍在，无运行中logger封存。",
+      "within_current_scope": true
+    },
+    {
+      "id": "G97-32",
+      "contract": "G006/AC097/Theme013",
+      "obligation": "后续Theme输入边界",
+      "required_evidence": "policy/marker/context可交013，085实际端到端追加后准入；完整ellipsis前缀与布局仍待013/085/088。",
+      "status": "interface_passed_layout_pending",
+      "received_evidence": [
+        "source/src/glyph_render_policy.cj",
+        "docs/reviews/R15/glyph-refresh",
+        "preparation.md"
+      ],
+      "judgment": "本轮提供真实generatedEllipsis接口、mode及policy输入。Theme085固定补充只是后续控制；013前缀预算/025实际ellipsis/088矩阵仍待root准入和执行。",
+      "within_current_scope": "interface only; future Theme layout excluded"
+    },
+    {
+      "id": "G97-33",
+      "contract": "AC041/P30/M2/AC023–024",
+      "obligation": "父范围与发行边界",
+      "required_evidence": "本097有限glyph不关041全部输入/resize/恢复/全组件、020/008/027/010/M2/Linux/跨OS/发布；whole checker缺composition/benchmark exit1保留。",
+      "status": "parent_scope_pending",
+      "received_evidence": [
+        "execution/report.md",
+        "docs/reviews/R18/acceptance/report.md",
+        "proposed-integration.json"
+      ],
+      "judgment": "父041、008/020/030等未由本轮全关；wholeLinux/M2/fullrelease保持pending，wholebundle checker不足仍公开。此项为范围边界，不是当前有限Glyph缺陷。",
+      "within_current_scope": false
+    }
+  ],
+  "utc": "2026-11-11T01:33:49.021519+00:00",
+  "evidence_prefixes": {
+    "execution/": "docs/reviews/R16/execution/",
+    "source/": "local fixed git source (omitted from archive)",
+    "raw/": "this acceptance archive/raw/"
+  },
+  "status_counts": {
+    "passed": 30,
+    "passed_finite_subset": 1,
+    "interface_passed_layout_pending": 1,
+    "parent_scope_pending": 1
+  }
+}

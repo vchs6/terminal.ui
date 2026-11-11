@@ -59,7 +59,7 @@
 
 ## TASK-094：产品子接口及Linux VT自动字形降级
 
-- [ ] TASK-094（implementation，status planned）：交付可独立运行的设备字形适配与后续Theme013布局policy输入。
+- [x] TASK-094（implementation，status passed_finite_scope）：交付可独立运行的设备字形适配与后续Theme013布局policy输入。
 
 **Inputs / depends_on:** TASK080、084固定源已集成，093最终G012测试df21f3d固定，合同preflight通过；按complete-linux-integration L006共享writer顺序等待Session152接受源，产品独占共享权威文件。
 **Scope / deliverables:** 精确公共API、原生只读bitmap、包内policy/真实纯函数、现Frame编码+投影后diff、run模式唤醒、offline参数/布局缓存key、产品说明与普通无override样例；产品提交只含实现与必要调用者/说明，不改093冻结测试。
@@ -74,7 +74,7 @@
 
 ## TASK-095：独立固定代码审查
 
-- [ ] TASK-095（verification，status planned）：交付独立spec/quality双判定、findings与受检hash。
+- [x] TASK-095（verification，status passed_finite_scope）：交付独立spec/quality双判定、findings与受检hash。
 
 **Inputs / depends_on:** 094固定base..product、093测试、冻结合同；不读产品作者自评代替推理。
 **Scope / deliverables:** 审核真实调用链、native资源/errno/只读性、跨包可见性、row diff与缓存/布局policy边界；排除改产品/测试作者文件。
@@ -83,7 +83,7 @@
 
 ## TASK-096：独立执行与真实宿主证据
 
-- [ ] TASK-096（testing/execution，status planned）：独立正常构建运行固定产品/测试并留raw与制品证据。
+- [x] TASK-096（testing/execution，status passed_finite_scope）：独立正常构建运行固定产品/测试并留raw与制品证据。
 
 **Inputs / depends_on:** 095无未决必须缺陷、固定最终product/test/contract SHA；独立目录/cache/SDK及实际可用VT/模拟器。
 **Scope / deliverables:** 正常cjpm build/directbinary exit、内部/公开suite、受影响旧回归、正常bundle/解包纯路径consumer，真实LinuxVT与未知模拟器各自原始字节/profile/PNG/hash和恢复证据。原已验证内容按AGENTS11相关性复用，不机械重复。
@@ -92,7 +92,7 @@
 
 ## TASK-097：有限子接口独立验收与主代理集成投影
 
-- [ ] TASK-097（acceptance，status planned）：逐项核对glyph子契约、制品元数据及后续Theme013可消费输入，不关闭完整041。
+- [x] TASK-097（acceptance，status passed_finite_scope）：逐项核对glyph子契约、制品元数据及后续Theme013可消费输入，不关闭完整041。
 
 **Inputs / depends_on:** 095独立审核、096真实执行、固定原件/副本/制品/hash、093–094合同与结果。
 **Scope / deliverables:** 逐G001–G009/AC093–096判定、有限glyph子接口结论、公共文档与真实证据索引，明确pending/insufficient_evidence；把新policy/marker输入交主代理冻结到Theme013任务，不改085公共API。
@@ -108,3 +108,7 @@ G012前置修订候选：094消费fix-uncertain-glyph-advance已接受167纯owne
 ## 当前准入投影
 
 G012已冻结并由167/084接受有限partial owner；本tasks上文旧“未知PTY Unicode”历史解释以G012为准，现已机械同步文字，无新行为选择。093原daf2及刷新df21f3d（root9454f22）只表示正式test-design交付，证据[R16刷新](../../../docs/reviews/R16/test-refresh-g012/report.md)，readonly正向仍blocked2、完整API真实RED1，不是AC093/094/097已通过。094继续等Session152；不并行写Application/Runtime/Frame/native。
+
+## 2026-11-11 最终有限验收投影
+
+TASK097独立最终findings为PASS_FINITE_SCOPE，0C/I/M；33项矩阵为30passed、1项P30有限通过、1项marker接口通过但Theme布局待验、1项父范围待验。固定product1f67e273（rootb3b24f8）、正式093 df21+bfd0715+dc6fdbf；上述历史RED/等待说明保留原时点。当前AC093–097仅本有限字形范围通过，证据见[R16独立验收](../../../docs/reviews/R16/acceptance/report.md)、[执行原件](../../../docs/reviews/R16/execution/report.md)。实际P30仅此次kernel组合（含Direct正常wire/unknown-title），不关闭全041/008/020/030、输入/resize、全部路由故障、M2、Linux或发行。Theme013/025可消费已接受policy及固定085测试，完整ellipsis布局仍待013/088。

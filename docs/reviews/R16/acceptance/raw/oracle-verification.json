@@ -1,0 +1,538 @@
+{
+  "utc": "2026-11-11T01:24:14.546Z",
+  "method": "Read-only original evidence, fixed official pure oracle; no product launch",
+  "sourceHashes": {
+    "./source/tests/glyphs/pty.mjs": "7ed6d5ecaf5384c229b62a3622d44e2ee542fed0674da54532b9c6ac6510fbaa",
+    "./source/tests/session_extensions/oracle.mjs": "a7f3e72953c38ac762e36e39a7170a1e16cd14e0c1ee29f0f971a653ce6fc0a7",
+    "./source/tests/session_extensions/fixtures/wire.json": "33820142ccbd0a8627ad109e30765eae74dffc03db3fa2369fe589ff8689a3f7"
+  },
+  "records": [
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "real-pty-auto",
+      "scenario": "real",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "real-pty-term-linux",
+      "scenario": "real",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "real-pty-unicode",
+      "scenario": "real",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "real-pty-ascii",
+      "scenario": "real",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "mapped",
+      "scenario": "mapped",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "minor63",
+      "scenario": "minor63",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "max-duplicates",
+      "scenario": "max",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "mapped-unicode-override",
+      "scenario": "mapped",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "mapped-ascii-override",
+      "scenario": "mapped",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "empty-map",
+      "scenario": "empty",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "question-missing",
+      "scenario": "no-question",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "border-fallback-missing",
+      "scenario": "no-border",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "map-read-fail",
+      "scenario": "map-fail",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "allocation-fail",
+      "scenario": "alloc-fail",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "allocation-fail-unicode",
+      "scenario": "alloc-fail",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "fstat-fail",
+      "scenario": "fstat-fail",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "vt-query-fail",
+      "scenario": "vt-fail",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "kd-query-fail",
+      "scenario": "kd-fail",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "graphics",
+      "scenario": "graphics",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "alias-tty0",
+      "scenario": "alias-tty0",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "alias-console",
+      "scenario": "alias-console",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "alias-tty",
+      "scenario": "alias-tty",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "minor64",
+      "scenario": "minor64",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "regular",
+      "scenario": "regular",
+      "passed": true
+    },
+    {
+      "kind": "formalGlyphPersistedRaw",
+      "name": "not-tty",
+      "scenario": "not-tty",
+      "passed": true
+    },
+    {
+      "kind": "newKernelSession",
+      "scenario": "wire",
+      "route": "Direct",
+      "wireBytes": 156,
+      "passed": true
+    },
+    {
+      "kind": "newKernelSession",
+      "scenario": "unknown-title",
+      "route": "Direct",
+      "wireBytes": 6,
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "000-fault-set-Direct-0",
+      "config": {
+        "scenario": "fault-set",
+        "route": "Direct",
+        "offset": 0
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "001-fault-set-Direct-1",
+      "config": {
+        "scenario": "fault-set",
+        "route": "Direct",
+        "offset": 1
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "002-fault-set-Direct-2",
+      "config": {
+        "scenario": "fault-set",
+        "route": "Direct",
+        "offset": 2
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "003-fault-set-Direct-3",
+      "config": {
+        "scenario": "fault-set",
+        "route": "Direct",
+        "offset": 3
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "004-fault-set-Direct-4",
+      "config": {
+        "scenario": "fault-set",
+        "route": "Direct",
+        "offset": 4
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "005-fault-set-Direct-5",
+      "config": {
+        "scenario": "fault-set",
+        "route": "Direct",
+        "offset": 5
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "006-fault-set-TmuxPassthrough-0",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 0
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "007-fault-set-TmuxPassthrough-1",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 1
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "008-fault-set-TmuxPassthrough-2",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 2
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "009-fault-set-TmuxPassthrough-3",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 3
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "010-fault-set-TmuxPassthrough-4",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 4
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "011-fault-set-TmuxPassthrough-5",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 5
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "012-fault-set-TmuxPassthrough-6",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 6
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "013-fault-set-TmuxPassthrough-7",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 7
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "014-fault-set-TmuxPassthrough-8",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 8
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "015-fault-set-TmuxPassthrough-9",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 9
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "016-fault-set-TmuxPassthrough-10",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 10
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "017-fault-set-TmuxPassthrough-11",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 11
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "018-fault-set-TmuxPassthrough-12",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 12
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "019-fault-set-TmuxPassthrough-13",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 13
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "020-fault-set-TmuxPassthrough-14",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 14
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "021-fault-set-TmuxPassthrough-15",
+      "config": {
+        "scenario": "fault-set",
+        "route": "TmuxPassthrough",
+        "offset": 15
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "022-fault-set-ScreenPassthrough-0",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 0
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "023-fault-set-ScreenPassthrough-1",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 1
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "024-fault-set-ScreenPassthrough-2",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 2
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "025-fault-set-ScreenPassthrough-3",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 3
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "026-fault-set-ScreenPassthrough-4",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 4
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "027-fault-set-ScreenPassthrough-5",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 5
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "028-fault-set-ScreenPassthrough-6",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 6
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "029-fault-set-ScreenPassthrough-7",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 7
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "030-fault-set-ScreenPassthrough-8",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 8
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "031-fault-set-ScreenPassthrough-9",
+      "config": {
+        "scenario": "fault-set",
+        "route": "ScreenPassthrough",
+        "offset": 9
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "032-fault-screen-Direct-1",
+      "config": {
+        "scenario": "fault-screen",
+        "route": "Direct",
+        "offset": 1
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "033-fault-screen-Direct-2",
+      "config": {
+        "scenario": "fault-screen",
+        "route": "Direct",
+        "offset": 2
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "034-fault-screen-Direct-5",
+      "config": {
+        "scenario": "fault-screen",
+        "route": "Direct",
+        "offset": 5
+      },
+      "passed": true
+    },
+    {
+      "kind": "reusedFocusedSession",
+      "name": "035-fault-set-Direct-0-aggregate",
+      "config": {
+        "scenario": "fault-set",
+        "route": "Direct",
+        "offset": 0,
+        "uiFail": true,
+        "callbackFail": true
+      },
+      "passed": true
+    }
+  ],
+  "failed": 0
+}

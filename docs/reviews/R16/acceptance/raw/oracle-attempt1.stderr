@@ -1,0 +1,19 @@
+node:fs:621
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open '/workspace/work/glyph-execution/raw/glyph-session/real-pty-auto/syscalls.txt'
+    at Object.openSync (node:fs:621:18)
+    at Object.readFileSync (node:fs:487:35)
+    at read (file:///workspace/work/glyph-acceptance/verify_oracles.mjs:7:18)
+    at file:///workspace/work/glyph-acceptance/verify_oracles.mjs:23:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/workspace/work/glyph-execution/raw/glyph-session/real-pty-auto/syscalls.txt'
+}
+
+Node.js v24.22.1

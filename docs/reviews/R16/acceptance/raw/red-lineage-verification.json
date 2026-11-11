@@ -1,0 +1,56 @@
+{
+  "utc": "2026-11-11T01:30:15.618686+00:00",
+  "records": [
+    {
+      "path": "/workspace/work/glyph-tests-refresh/report/baseline-build.json",
+      "sha256": "c5470e99485b82996a1862088278515ab0a6f2034e21227ccef1cd28aecef0e2"
+    },
+    {
+      "path": "/workspace/work/glyph-tests-refresh/report/baseline-build.log",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "command": "baseline-build",
+      "code": 0,
+      "errorCount": 0,
+      "examples": []
+    },
+    {
+      "path": "/workspace/work/glyph-tests-refresh/report/api-final-red.json",
+      "sha256": "dd1e724a50a73d0799141e1f92a880cbe1b28b5b28ad64e787edc4cf932518a6"
+    },
+    {
+      "path": "/workspace/work/glyph-tests-refresh/report/api-final-red.log",
+      "sha256": "ffd8ee46cd7f31a64f4d0d56f23d2349ff666751be3cb22196cde7efe9473bd8"
+    },
+    {
+      "command": "api-final-red",
+      "code": 1,
+      "errorCount": 8,
+      "examples": [
+        "error: undeclared type name 'TerminalGlyphCapabilities'",
+        "error: undeclared identifier 'GlyphMode'",
+        "error: undeclared identifier 'GlyphMode'"
+      ]
+    },
+    {
+      "path": "/workspace/work/glyph-tests-refresh/report/internal-full-red.json",
+      "sha256": "d24af14cdae9a2d4f3ef08ef8c400b9fb13d6c5a6897013905b7d6ba66f4c3da"
+    },
+    {
+      "path": "/workspace/work/glyph-tests-refresh/report/internal-full-red.log",
+      "sha256": "c668b558a2116ee6ca6a62f8b1a3ab382e729ecb9802dfd3c36125052b0286c6"
+    },
+    {
+      "command": "internal-full-red",
+      "code": 1,
+      "errorCount": 8,
+      "examples": [
+        "error: 'ascii' is not a member of class 'GlyphRenderPolicy'",
+        "error: 'ascii' is not a member of class 'GlyphRenderPolicy'",
+        "error: 'ascii' is not a member of class 'GlyphRenderPolicy'"
+      ]
+    }
+  ],
+  "failed": 0
+}

@@ -144,11 +144,11 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-093 | REQ-004/005/007/011 | TASK-093 | 独立原文/标记/投影、原生边界及真实缺API RED | pending |
-| AC-094 | REQ-004/005/011 | TASK-094 | 自动VT探测/等宽降级/高级覆盖及离线Unicode边界 | pending |
-| AC-095 | REQ-007 | TASK-095 | 固定字形增量的独立spec/quality审核 | pending |
-| AC-096 | REQ-004/005/006/007/011 | TASK-096 | 独立原生/投影/差分、真实VT与模拟器PNG、正常干净包消费 | pending |
-| AC-097 | REQ-004/005/007/011 | TASK-097 | 有限字形子接口证据与metadata，完整041和主题ellipsis仍待汇合 | pending |
+| AC-093 | REQ-004/005/007/011 | TASK-093 | 独立原文/标记/投影、原生边界及真实缺API RED | passed（[R16有限验收](reviews/R16/acceptance/report.md)） |
+| AC-094 | REQ-004/005/011 | TASK-094 | 自动VT探测/等宽降级/高级覆盖及离线Unicode边界 | passed（[R16有限验收](reviews/R16/acceptance/report.md)） |
+| AC-095 | REQ-007 | TASK-095 | 固定字形增量的独立spec/quality审核 | passed（[R16有限验收](reviews/R16/acceptance/report.md)） |
+| AC-096 | REQ-004/005/006/007/011 | TASK-096 | 独立原生/投影/差分、真实VT与模拟器PNG、正常干净包消费 | passed（[R16有限验收](reviews/R16/acceptance/report.md)） |
+| AC-097 | REQ-004/005/007/011 | TASK-097 | 有限字形子接口证据与metadata，完整041和主题ellipsis仍待汇合 | passed（[R16有限验收](reviews/R16/acceptance/report.md)） |
 
 状态权威仅见[字形适配变更](../openspec/changes/implement-linux-vt-glyph-fallback/tasks.md)，候选微验证不是产品验收。
 
@@ -260,4 +260,6 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-166 | REQ-004/005/007/011 | TASK-166 | 实际两GUI DSR/原PNG/未改行及包消费复验 | passed（[R23有限验收](reviews/R23/acceptance/report.md)） |
 | AC-167 | REQ-004/005/007/011 | TASK-167 | R14T083001及有限G纯子接口独立验收 | passed（[R23有限验收](reviews/R23/acceptance/report.md)） |
 
-163–167唯一状态在[projection tasks](../openspec/changes/fix-uncertain-glyph-advance/tasks.md)，163–167已有限验收，完整Glyph094/041/Linux仍按各自范围待验。
+163–167唯一状态在[projection tasks](../openspec/changes/fix-uncertain-glyph-advance/tasks.md)，163–167已有限验收；Glyph093–097后续有限验收见R16，完整041/Linux仍按各自范围待验。
+
+2026-11-11：AC093–097仅字形子接口通过；P30新增当前固定源码的实际kernel有限组合证据，完整041/全Linux与Theme实际ellipsis布局仍待后续汇合。历史不足结论保留其原时点，不扩大本轮范围。

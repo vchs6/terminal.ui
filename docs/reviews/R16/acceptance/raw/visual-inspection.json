@@ -1,0 +1,66 @@
+{
+  "utc": "2026-11-11T01:33:49.021519+00:00",
+  "method": "Original PNGs displayed via view_image, independent visual inspection; no regenerated screenshots. All 39 originals hashed; 21 PPM/PNG decoded RGB equivalence separately checked.",
+  "images": [
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/gui/xterm/initial.png",
+      "public_path": "docs/reviews/R16/execution/raw/gui/xterm/initial.png",
+      "sha256": "2fbe496bc07c9237bc9c114c62a2dc4b19f63251f5054b74ce1f9b2c4fdf8f7d",
+      "observation": "实际 GUI：红色中，é/中文/emoji，保守替换 ??，BOX 边框；字体绘制与字节层分开判断。"
+    },
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/gui/vte/auto.png",
+      "public_path": "docs/reviews/R16/execution/raw/gui/vte/auto.png",
+      "sha256": "cf5e1297c4c1f965f2d6e0225ad1a8c3bc1950e810e1c77e716c363b2280ed84",
+      "observation": "实际 GUI Auto：红色 ??，é/中文/emoji，保守替换与 BOX 保留。"
+    },
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/vt/glyph-root-auto/initial.png",
+      "public_path": "docs/reviews/R16/execution/raw/vt/glyph-root-auto/initial.png",
+      "sha256": "73b361975c276ae71b7d183f8c06ab022e1b8f2f7687a1fdd7086df412a74a4d",
+      "observation": "实际 VT Auto：红色 ??，映射 é 保留，其余缺映射等宽问号；ASCII 共享边框及 BOX。"
+    },
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/vt/glyph-root-unicode/initial.png",
+      "public_path": "docs/reviews/R16/execution/raw/vt/glyph-root-unicode/initial.png",
+      "sha256": "72b6f1876d1ec092792ab8a3862e4492145c5d9023e974a5be969258e5a56f54",
+      "observation": "显式 Unicode 原字符输出，当前 VGA 缺字方块可见；不宣称当前字体能绘制全部字符。"
+    },
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/vt/glyph-root-deny-auto/initial.png",
+      "public_path": "docs/reviews/R16/execution/raw/vt/glyph-root-deny-auto/initial.png",
+      "sha256": "f9020a0e64f00e5ad62d6bf8079d2fa0805bfb7e0c6b4b8b651b61c3203d8213",
+      "observation": "受控 GIO EACCES 后 Auto 等宽 ASCII 与边框。"
+    },
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/vt/session-wire/exit.png",
+      "public_path": "docs/reviews/R16/execution/raw/vt/session-wire/exit.png",
+      "sha256": "a470d9f8f18471d7ad5165950cda5bd6fdf8ab2aa77414c8379486340259f320",
+      "observation": "退出 native 屏幕仅 CJTUI_SESSION_READY，未见 OSC payload 文本。"
+    },
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/vt/glyph-uid1000-auto/initial.png",
+      "public_path": "docs/reviews/R16/execution/raw/vt/glyph-uid1000-auto/initial.png",
+      "sha256": "9dae24d5d19ca553af05b7beb4f7f5aa9f0f2b535017f05cc0a9096950a0fd49",
+      "observation": "真正 UID/EUID1000 与 root Auto 相同替换、BOX 和边框。"
+    },
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/vt/session-unknown-title/exit.png",
+      "public_path": "docs/reviews/R16/execution/raw/vt/session-unknown-title/exit.png",
+      "sha256": "fa5550fe1827c81a183c3bf605c10c44bf1eae7faaeabddd3d7ebea9f0c418ec",
+      "observation": "退出屏幕仅 CJTUI_SESSION_READY，无 title payload 泄漏。"
+    },
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/vt/glyph-root-auto/narrow.png",
+      "public_path": "docs/reviews/R16/execution/raw/vt/glyph-root-auto/narrow.png",
+      "sha256": "8513017a3735447246d27931c01e73bbd864b29f9e703764d82cc69f4868ef0e",
+      "observation": "宽转窄 A 后无第二列残留，第二行和 BOX 保持。"
+    },
+    {
+      "path": "/workspace/work/glyph-execution/curated-r16-execution/raw/gui/vte/narrow.png",
+      "public_path": "docs/reviews/R16/execution/raw/gui/vte/narrow.png",
+      "sha256": "973fee5422848308e2ddd761c224edfd35dac9ac2946da6e79a027d8a3cb4c3e",
+      "observation": "GUI 宽转窄 A 后无第二列残留，实际 viewport 的第二行和 BOX 保持。"
+    }
+  ]
+}

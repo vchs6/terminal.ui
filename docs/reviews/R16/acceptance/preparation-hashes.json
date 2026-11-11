@@ -1,0 +1,832 @@
+{
+  "utc": "2026-11-11T00:47:04.949Z",
+  "task": "TASK097",
+  "phase": "read_only_preparation",
+  "base": "7681999e501ca3a6d019648bca34528e6eaa990c",
+  "product": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+  "integrated_root": "b3b24f896672336797cec009cfe0cd830a955aa7",
+  "official_test_root": "ca565720f4a7c63330ad6e07bf25d1c198da2498",
+  "official_test_base": "df21f3def32de39a415d1d8d9845b83514dc2902",
+  "official_test_repairs": [
+    "bfd0715cc342fe7c334bd7ce222cdda9c4fb37d5",
+    "dc6fdbfb4003a3151dab21d8de7cf7e54a1598b9"
+  ],
+  "source_files": [
+    {
+      "path": "README.md",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "4d21078c0f90dd628bdddb29acdd727f12b096c3d6cc3c425563cd314b8dc99d"
+    },
+    {
+      "path": "build.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9"
+    },
+    {
+      "path": "cjpm.toml",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "68450a8627d756699b189f0ca3a14e42e3a0160db3a77cdcc6eb61c43372704b"
+    },
+    {
+      "path": "docs/product/README.md",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "3e7c4bb08acc98e7b5fce46fa2341ab9a2c63323d11bf5d9cd70ac3b6370793b"
+    },
+    {
+      "path": "docs/product/native-build.md",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "353f732ac0b85e1628ac34640734f28d80fb1d7d20a0bb760eb6906c7d024177"
+    },
+    {
+      "path": "docs/product/rich-text.md",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "7f659cc2f9ed2136a71f6f8bbaebf28078ad2e4aefe2ec803dacced57164bfa7"
+    },
+    {
+      "path": "docs/product/session.md",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "3555dac37f0b4475a6c26703f3d96883c8d4945e975550c6b700d7407f300796"
+    },
+    {
+      "path": "examples/.gitkeep",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "examples/colors/cjpm.toml",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "3c661104075cb4a93878a25d08625379e8d225b58573ebf63abdec5b5c7da956"
+    },
+    {
+      "path": "examples/colors/src/color_demo.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "b4ce66dd486cd8c541d41aee2516d7b28f1397ce5ea0a6cb90c380e5fdcd0500"
+    },
+    {
+      "path": "examples/colors/src/main.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "e96e2f5703c9c8f1efc7d556284879d033a5bbd3e46de44242f6a6abc0629973"
+    },
+    {
+      "path": "examples/dynamic/cjpm.toml",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "39bf8f0e9be1530ca04f502461e4efaa84368b3636cbc324a298befe861c350e"
+    },
+    {
+      "path": "examples/dynamic/src/main.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "4ba21303d282c20752003e271e3ed741c4025fd73f045648d649fa759832d7d5"
+    },
+    {
+      "path": "examples/layout/cjpm.toml",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "77169d29ae13be7467e9aec17b251abc5ce5b5fe6ff97afec0e9655952d19e2f"
+    },
+    {
+      "path": "examples/layout/src/main.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "87999d29296a3c8d2cfe6c76ac7e62a98c69b90e7c2c1318922d8f38b342f51c"
+    },
+    {
+      "path": "examples/minimal/cjpm.toml",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "d301a62d68caaa94a7bccf19ea1fb9072309f8bfacfde7b1c0779055acd43f03"
+    },
+    {
+      "path": "examples/minimal/src/main.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "6887f6e6a8c8412017e8cd4b6c715cf10c2f11ce40c893d3de59fff44476a296"
+    },
+    {
+      "path": "examples/reactive/cjpm.toml",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "04603fdc2371a427d09e2327a1fe8df8c3807d7f7b56bfddffc8d891ee369c20"
+    },
+    {
+      "path": "examples/reactive/src/main.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "7c164a63ee6e6d437fdbbf4c20d886b7f8238ae0129e6196e3502ebbc1511373"
+    },
+    {
+      "path": "examples/rich-text/cjpm.toml",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "c06fe56096441776b0baa5484496705ec7dddc6c0c6f75783d49ec535c9ed6ad"
+    },
+    {
+      "path": "examples/rich-text/src/main.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "dff0d2bca92115d1d2c2f1d9c8412e2cb94d95844ec33c5af6037144437fb8b3"
+    },
+    {
+      "path": "examples/session/cjpm.toml",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "6dd3b60b6e8e8fcbe142d0d75717b5993fa846db83a44cc854859f21b7896e46"
+    },
+    {
+      "path": "examples/session/src/main.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "59ba8a271a29e060151fe2849945a340e7ba3962ded42b30ca4d5902c4babb93"
+    },
+    {
+      "path": "native/build.sh",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "35f60ac54647452cd0a614d05cc6bab8c7adc72987b7bd1bcaed90d4bc33c3e9"
+    },
+    {
+      "path": "native/cjtui_capabilities.c",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "e1a3a8148562f0b31c5924e8526505a662873f13dc0779f0ced770957d19d7e2"
+    },
+    {
+      "path": "native/cjtui_glyphs.c",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "0b795a39e75f5efeac0a43cfde7c0f8e76c27e79c4ad50ef5a40cb0fe1b72405"
+    },
+    {
+      "path": "native/cjtui_terminal.c",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "45db4e1e16b3b2c76957fed1efb33076294a9b57038e2af3dac40b71c0d65410"
+    },
+    {
+      "path": "src/.gitkeep",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "src/alignment.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "b8525afb51b0ab899e040b81af986055ffb6d00b54f251f7622620e643422fa2"
+    },
+    {
+      "path": "src/ansi_encoding.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "b22feed06490dd619ab7efde176e8eef170d8e3b5555d52d32c37180733aed28"
+    },
+    {
+      "path": "src/application.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "9bba5780750aa78346d08660a42bc37b451b7a77d63deb60ce918189bd2459db"
+    },
+    {
+      "path": "src/binding.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "80ee17b32fc9dfadcf0d25d2c0a05e25ce016e3b251d20829b8c73b2d804cc98"
+    },
+    {
+      "path": "src/binding_dependency.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "ac8d656fc10c8963846342c6d8e53e2bfbb70a56515606ddc551c352b1e3532a"
+    },
+    {
+      "path": "src/border_glyphs.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "f8ef77090327941b35b4158be0645c4344aaf0cdd6d15ad1c9bf62965b6348d3"
+    },
+    {
+      "path": "src/cell.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "8b67e195b40d700aeb5f394d6f41ba968c5f7488fd2f3cacd19a66e1f26c1dfe"
+    },
+    {
+      "path": "src/change_kind.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "78c92929387c6fad55a7a953c87766a37c9f999c7bb576eb6a63fb92d6795eac"
+    },
+    {
+      "path": "src/child_declaration.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "f2088f99af760305306bf832d48b9aa3b86b0d92d78de16962073c67a662d526"
+    },
+    {
+      "path": "src/child_entry.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "83bb5bce3215ecb4cbfefb57eb736161a63c38e075dd1e237edd6856151ec1da"
+    },
+    {
+      "path": "src/color_mapping.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "58f2c372bb8705ac1cf4cea93a225e93aa6f60713d8072f43d32892825264219"
+    },
+    {
+      "path": "src/component.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "e3f6e2f88279bd865c78c9b5cb9761e3afa476db8bddf3edd155cfe76a9b86e0"
+    },
+    {
+      "path": "src/component_collector.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "91da3af3815921771ef53b948a645d902659bb0fe11b3321209682602f7bc062"
+    },
+    {
+      "path": "src/conditional_declaration.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "128281f2235a076abab4eec447355d48560d2f6f5c48cd5d715af8a3327ec02d"
+    },
+    {
+      "path": "src/conditional_group.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "cf1074a63b90eac3d26b5c778132108b0fed7a6de4b0b6dcc8d69ebb4ea24755"
+    },
+    {
+      "path": "src/drawing_geometry.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "2a31e0eb8dc6e1f3e8557c11374db5068ffa1fa9e3ebd6f79ec08794b59cba05"
+    },
+    {
+      "path": "src/dynamic_declaration.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "34288e4f7d5bfc6188dc9bdd52c7123b1dd8a5a22482fd48e32332b1bd8c7fd4"
+    },
+    {
+      "path": "src/dynamic_group.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "c4955b8c322c5d24b11eb212cfe7ddf5962a106a6bc82d93aadcae8a97634217"
+    },
+    {
+      "path": "src/exports.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "bb2dd8825825c50c1980c71c4d8327715e008a2bada8d1568d7272e976b51bc6"
+    },
+    {
+      "path": "src/foreach_declaration.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "99fe8a3070fdcccaf55aeb434bbfbec2fcd436848d4edb188a107ee997a8303f"
+    },
+    {
+      "path": "src/foreach_group.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "3cd6361f2ffed81ba1e5cf2383f898a2a243107c62cafeac19485d6866dc60b2"
+    },
+    {
+      "path": "src/frame.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604"
+    },
+    {
+      "path": "src/geometry/rect.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "f12793359eae47d415f263b0e35cacea2019388fd06de08b48e60b9e9896c641"
+    },
+    {
+      "path": "src/glyph_render_policy.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "df352bc39e7b21eceb7b5e9e5deb0773233663a7abf7037ffa3087b138678cbd"
+    },
+    {
+      "path": "src/input_decoder.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "81efc8f94112b4c33b904188d6fccda36d0997b2aafd6a8e689b51920b4e1dc1"
+    },
+    {
+      "path": "src/key_event.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "8443523e2e9d2707cde8393b1e518ccae301b2cfeefe168721d7d5a35308ea65"
+    },
+    {
+      "path": "src/layout.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "1eeb70bf6b07ec5892ea147468aead4afcbd43e5f3cb779e35f68c9447904211"
+    },
+    {
+      "path": "src/layout_node.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "1c4134474f0c7b71e1a255fb3bb5d1b3164c24726f52b2990b70c710a043eb6e"
+    },
+    {
+      "path": "src/list_item.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "45289c3ddaed90c620fb4c9051d0698a33ad091b706702a614a1967b747086e4"
+    },
+    {
+      "path": "src/macros/bind_macro.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "b16928c7577816a1eeb12b8a31a73c5ddf02c3b0d9b60a5989c30f17c8f7c420"
+    },
+    {
+      "path": "src/macros/component_macro.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "9e6a116776accfbbd3d626ce14100b0873245c0bfc824a3bb06ad45fc9014f05"
+    },
+    {
+      "path": "src/macros/constructor_return_visitor.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "36630999f75520d9234b3d4f909b7bbc010225a14d3cedb2215157051a767f52"
+    },
+    {
+      "path": "src/macros/state_macro.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "934f18649f5b8ef91b808db68fbefb7eb0251618abfa0592391e96e478f4b869"
+    },
+    {
+      "path": "src/node_ref.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "a1ba8bdca9693231064075b16184af794d5288ae1de8e34acb879a74e4ad7672"
+    },
+    {
+      "path": "src/observable.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "9dfb578e88a75548fc76785dad65bd70d8a4ff0eaf2309d58a7ba68651a9758b"
+    },
+    {
+      "path": "src/observable_source.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "898d36caed711fddb8eefd31a3ac8eee14ebec1aad628db55bd0165b4afb8d7a"
+    },
+    {
+      "path": "src/pending_node_change.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "abe9418459b78eb199fb532e3e7bcb7c60639851a282082dca19ba42036e7a60"
+    },
+    {
+      "path": "src/queued_action.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "2af732f1850230e8005766d6c4a895eaee7eb30d72dd3663f0cb2d53aa1753f5"
+    },
+    {
+      "path": "src/rich_text_clusters.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "b5070a44e25cbf6262fcbbfb942ec703a45e37ee587c128c3c4900520c1bc3b4"
+    },
+    {
+      "path": "src/runtime_limits.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "f44156ffc8803d8b16c8fd7ea455d15478b064e6beed9281597b13c6bae58b83"
+    },
+    {
+      "path": "src/runtime_node.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "d2d0fc8a2bab685ec7546990b56a829f907f7dcb37c7e1818d869398c920bea7"
+    },
+    {
+      "path": "src/runtime_session.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "ff23fc8ccdfef1876b3720081e73b8ad2d62ccd0b7a4afae21e64bb60fe2c196"
+    },
+    {
+      "path": "src/runtime_stats.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "84082f03df45963bb2c2eb8da154653e553fd7b7bc7df1b711522265bdbb3a9b"
+    },
+    {
+      "path": "src/session_basis.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "159e57d96a9724f8bc3b6010aa41326ef4cdf29718f4b93221d1f7223a1b5bcf"
+    },
+    {
+      "path": "src/session_capabilities.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "f97d060e44baeaaef3492c12329dbe5aae4679217c04b80ab8a78e894cadb11b"
+    },
+    {
+      "path": "src/session_capability.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "e0114e3b5a1a9252e6a33bf19cb5d40ba4a949fd3a759f8fc8ac712733bbec34"
+    },
+    {
+      "path": "src/session_device_exception.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "1dc607b3afe6b063ffefcff4f2c6ababc08843bc866099de8c09538b91e25f8a"
+    },
+    {
+      "path": "src/session_encoding.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "5eb84e4de4b1f8ffba525df0469b32ba29167233be2e89bc45293d37cedef87b"
+    },
+    {
+      "path": "src/session_extension_state.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "c0893f5b3fccec9b42d90cae1bd9ffd18bf5a712d2f35c7fb7f19de81abceef9"
+    },
+    {
+      "path": "src/session_issue.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "2231e13a9e748a78b5ca093951998f42d972b22e62aabf19c7dd8ca24d535a3c"
+    },
+    {
+      "path": "src/session_operation.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "5f5f6de17979493f0d3e13a36d3bb00a546e0ab7c676a1b834a912268458b7d2"
+    },
+    {
+      "path": "src/session_options.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "5f6191b55550967cccbbbc12988af7c1924ab2cb536a218bf76febe5d2d7b54b"
+    },
+    {
+      "path": "src/session_policy.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "718b32ddffca7f9c96155180e0f49044b8523825f6fd0565aa1951d5b9952ff5"
+    },
+    {
+      "path": "src/session_result.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "e9874706043e7f0e9552adc66555c716f9d5b5b5a2e511813b70ebe97a8f63f3"
+    },
+    {
+      "path": "src/session_route.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "37945a185b12d4e919df8a538e2b952aef6911c37fd4c89278debfdefbc6427b"
+    },
+    {
+      "path": "src/session_status.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "70449f5da389c7d89da70390154cc5b9e0276faa299cd1722a6d470062b19661"
+    },
+    {
+      "path": "src/session_step_result.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "d254759fd15d8fa6eb0d6291450e3e2412fe943f9abf17061a67f6dfe8c9a172"
+    },
+    {
+      "path": "src/session_support.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "ac3e4023f9c1ef5d2ccbf52a4d0c913837d48c6e9629c7e47322e4fbf6ab3fe5"
+    },
+    {
+      "path": "src/session_write_result.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "8af491218a6a500f8cc74906e857ac2ef562e13261102cc787461f29c50f4a3c"
+    },
+    {
+      "path": "src/structural_command.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "339539b81afaf31bfc53659e5be7fc03dfbddbcf58a2b4f0aac4a7e66045806e"
+    },
+    {
+      "path": "src/style/border_style.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "6cda8b6e130d33ff2e98d161eca3f00ad6456fecfd0acf2f8a5c2927f6b7b250"
+    },
+    {
+      "path": "src/style/color.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "bfe06ae333ffe2545b96d5dd31af287ca9d2ff06b747f5681813a1d9642a673e"
+    },
+    {
+      "path": "src/style/color_mode.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "23fbbfffb32f36db1e515f6e2bc59a64e41cc18c55255bc13543cddd42460b53"
+    },
+    {
+      "path": "src/style/glyph_mode.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "e9fadaadd3eb66723df9c14ff3318861efcb80adaa94c63b062d23e9afb6f0dd"
+    },
+    {
+      "path": "src/style/style.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "4625095afe74a62b42d37195a50b1ff3ddb0fe1d8dbf785fe01cf6223b27a847"
+    },
+    {
+      "path": "src/style/text_style_patch.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "7e66a8a2d2887057a670e9b39444b010517e99f850d52dfd0d97945eb4f59a1f"
+    },
+    {
+      "path": "src/terminal_bridge.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "392647d4e4129df55e3d0c33dcda527c634cdda0499b208c74856d53c8073f90"
+    },
+    {
+      "path": "src/terminal_capabilities.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "22eb3f4ccb47b30adf67f1dd055a1339f22dfb9147bfaf25efd661331f42d6d5"
+    },
+    {
+      "path": "src/terminal_glyph_capabilities.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "77e400f0f4846d224cdfa5bdcbf9d8830ab8e87e80c43cad5a9409d8bb125a81"
+    },
+    {
+      "path": "src/terminal_glyph_detection.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "77328de70bb2968b063b20e28cc2d44cf8d672a302b5bb545b99e49f88c0c6a6"
+    },
+    {
+      "path": "src/terminal_glyph_projection.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "4779f17a52662433694dcd59b3d913c1767a28794854089820f4e757ca848ac3"
+    },
+    {
+      "path": "src/terminal_projected_row.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "8b0a60a64125834945d0e5294dd5e05605df67222df5f118006d6dab6a376974"
+    },
+    {
+      "path": "src/terminal_render_profile.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "7bc43434dba17aa52915c783911d491e4a20f9faf9a649ff7fee34b00b8827a8"
+    },
+    {
+      "path": "src/text/ansi_text.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "986d73578f2fc0a2b1922abfdd2ae975ea13afb7655ad73e26cdff08c0bdee0d"
+    },
+    {
+      "path": "src/text/ansi_text_batch.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "ce2d53ca218882fe03e301f619793c006814e0538c6ba8ed7b529fcbc625ca00"
+    },
+    {
+      "path": "src/text/ansi_text_decoder.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "02d431d9fb1f6f56cf6f5449b6570d9beabeca9102d4c11f16ed57647f484307"
+    },
+    {
+      "path": "src/text/ansi_text_diagnostic.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "ed3ad2cb93022e011b79aca706f103296fed6f5d430552d16f53217d81787933"
+    },
+    {
+      "path": "src/text/ansi_text_exception.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "339de4adb79806c8776d38b9e7fec76cc74e8f5b7529a4bd56234509cfaf7a0c"
+    },
+    {
+      "path": "src/text/ansi_text_issue.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "3f0084c8e4564c56fb8c906ccdcd977056d90025db55d66586e4b6f815b26173"
+    },
+    {
+      "path": "src/text/ansi_text_limits.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "e4f2abe90e9f28662c50d9d8c3a4f1954cd7a43bb72d0555b386123c394ef3ae"
+    },
+    {
+      "path": "src/text/ansi_text_output.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "d74e3bcbc81b55ccf819ecb11439aed9fbbd0ed11b8d96efd546380a1ef95125"
+    },
+    {
+      "path": "src/text/ansi_text_result.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "f9d0ed270bc609f80cde117cc852b41872edeb60cd31be359f039922c18a7df7"
+    },
+    {
+      "path": "src/text/ansi_text_state.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "f29f4fb43fd00d188b89e403b6bdb02dcd35a7ced8b349f38d0e6f9057cc0d3d"
+    },
+    {
+      "path": "src/text/rich_text.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "c7c2ea1a6f93916952598eaef8836b7c8e6f3e01eb772eddd2af383e2ba6e47f"
+    },
+    {
+      "path": "src/text/text_span.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "040ac64a6d195ccc2a66f7175f7019955ea28a3e2f087a71086e69221dafe380"
+    },
+    {
+      "path": "src/text/unicode.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "2bd5f0fbae84ddcb38d7dc4e639fd7b04e6b1c45465d17c9ef763ec56c70a15c"
+    },
+    {
+      "path": "src/text/validation.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "cf7bd3c7a141cb617804451a5e4ac538d26167ba2992b39eabfc46bb4910a980"
+    },
+    {
+      "path": "src/text_validation.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "b14b891ea790790c9177949cfe4fe8e24d04f1114da5fdec664eefddd0df0e41"
+    },
+    {
+      "path": "src/title_restore_state.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "ae177df93324da96785d26712473dffc9107e90b17a7ef15c394299cd7d8f948"
+    },
+    {
+      "path": "src/ui_cleanup_exception.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "e94605384f3495df6c7303fd866cddbfc20b987db398a7794d9d27f4372cfc09"
+    },
+    {
+      "path": "src/ui_exception.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "8425f5b85afd477063a63ea00fd117a7a140c5c676d97f94fa1259e2eec31a91"
+    },
+    {
+      "path": "src/ui_key_event.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "d7c22acd58f73140cb631b283bad469d199b61e73c26c63d39f3a287f2c6990c"
+    },
+    {
+      "path": "src/ui_thread_identity.cj",
+      "commit": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "sha256": "49a0562b1adae0110e35746d60465bce6a3266e04fa932c1678f7e912c1ad032"
+    },
+    {
+      "path": "tests/glyphs/.gitignore",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "7b1f655dcbdf6d0e5eb378a69c46701c8e33c11e19d62cb3b4ed667ab66b53cd"
+    },
+    {
+      "path": "tests/glyphs/README.md",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "0a170367a94303cd27bda34dcdc79c5c5c14e4f623e106299b5ede3ccbcbac96"
+    },
+    {
+      "path": "tests/glyphs/api/cjpm.toml",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "f047158a7a51f07b4d90ec4c08ca1b4627ac762a84e95f9357027a5e6b0f5bcd"
+    },
+    {
+      "path": "tests/glyphs/api/src/main.cj",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "f23a42afc5bfb2043feb20df292aba940f4f1ed2ca484fbaac5b26a3fb9d36c1"
+    },
+    {
+      "path": "tests/glyphs/internal/glyph_conservative_test.cj",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "8f0dc708a7bf884c736fe29fd849c07c64c440859924fec77d5c9929469a26fd"
+    },
+    {
+      "path": "tests/glyphs/internal/glyph_frame_test.cj",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "c48cf483fbc2d52401184a2962c300576c2bfcc0ac61bb65a98d82b1430cb2c1"
+    },
+    {
+      "path": "tests/glyphs/internal/glyph_projection_test.cj",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "d289ab9264f0f4a3487d640728b6cfef050ec69fc91e74d0505472dfd5768225"
+    },
+    {
+      "path": "tests/glyphs/negative/write_capabilities.cj.txt",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "bd2d7af44ce2b6c2e5e3bd30cbf59c8c692d76463e687bb3e2b0410df2d07a9b"
+    },
+    {
+      "path": "tests/glyphs/negative/write_entry_count.cj.txt",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "11315c43172f7e2d2b496c9a8aa099c2acf2fcdc0bb578d19d64eb285f13351f"
+    },
+    {
+      "path": "tests/glyphs/negative/write_map_known.cj.txt",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "dbf8f69f8889936195aa3585499c77d16dd39887853c87654beb4e8399b489b9"
+    },
+    {
+      "path": "tests/glyphs/negative/write_native_error.cj.txt",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "d39412bb20dbe18dda3c70c2171d7ae842f5eec75aa27eeac3f321948bbad4f4"
+    },
+    {
+      "path": "tests/glyphs/negative/write_native_vt.cj.txt",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "55841faf20d47a625a703f35899f58c1f268d86a7a18131bdd4d340ef166a167"
+    },
+    {
+      "path": "tests/glyphs/negative/write_reason.cj.txt",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "0c6c8c7f8fb7722fed5824a8c16745284de9e92554ed3fb1306f7ba38c41cded"
+    },
+    {
+      "path": "tests/glyphs/negative/write_source.cj.txt",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "8c86ab73db25a026a0d6d55b16176e851515949e386760d887a3c6fa2a49c590"
+    },
+    {
+      "path": "tests/glyphs/negative.sh",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "bf8e5fe6ad50f9c1236b615672329be73703b6e4b627fcafa5fb784b94e3d4f8"
+    },
+    {
+      "path": "tests/glyphs/pty.mjs",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "7ed6d5ecaf5384c229b62a3622d44e2ee542fed0674da54532b9c6ac6510fbaa"
+    },
+    {
+      "path": "tests/glyphs/public/cjpm.toml",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "afb3dcaed8ba3d310f4689ac81b7dbccb3c0d81b3c1bf45eb34351b4d3aae26a"
+    },
+    {
+      "path": "tests/glyphs/public/src/main.cj",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "e8953888a8ddeb39d9dfd7e5a7c70e3c431a1b4df3c25a725e6344b9d138c0bd"
+    },
+    {
+      "path": "tests/glyphs/rich/cjpm.toml",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "5e2c6fa14df65c92f63860c84dfc4c0189c81f520256de550d3be2b59e57a6a5"
+    },
+    {
+      "path": "tests/glyphs/rich/src/main.cj",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "1d4381188a8e911b2e2338f7e7cece9d6e73d828dc31f4d2c87e97f5daaf32b1"
+    },
+    {
+      "path": "tests/glyphs/run.sh",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "e85026b7a3dfeb1fe9e61e1b82a9eb351a82cb2b0934400c0e5d3804419382db"
+    },
+    {
+      "path": "tests/glyphs/session/cjpm.toml",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "cdd7853ee049d112448ab864e58f11f9bcefaeba62ab3426e8bfc23f54f019f4"
+    },
+    {
+      "path": "tests/glyphs/session/native/glyph_syscall_wrap.c",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "a438d2a5ec90b4f214165a79f4344c0906f0602870f9a30a087670018a2d6691"
+    },
+    {
+      "path": "tests/glyphs/session/src/main.cj",
+      "commit": "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "sha256": "6ee5aab2d2dab6d6a45eed4ff690fd251f6d31ab2a7374f3fb0f790c7912bafa"
+    }
+  ],
+  "contracts": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "openspec/changes/implement-linux-vt-glyph-fallback/design.md",
+      "sha256": "ff789df4251f4a953e5c8547b91e2a6231d9978bc060a78c824d5d54955a3947",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "openspec/changes/implement-linux-vt-glyph-fallback/tasks.md",
+      "sha256": "450476d0cc357a1c05c8394f38101204701d6bdb4d1e2dd9d393ba50770fb07b",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "openspec/changes/implement-linux-vt-glyph-fallback/decisions.md",
+      "sha256": "24ea618e587373194db02bfe52f66cdb9aaaf9dc0d1d9b18b317e0fcae479f9e",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "openspec/changes/implement-linux-vt-glyph-fallback/specs/terminal-output/spec.md",
+      "sha256": "c0e63fab52bbc6cfc09d7c5eebd86b9fab4d461264de080bff670e02c50b70c8",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "openspec/changes/implement-linux-vt-glyph-fallback/specs/development-workflow/spec.md",
+      "sha256": "73ef689ad41f3148e2dc05677cf0cfcbfbde05815bf2d3989a25d43cbe8f8879",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "openspec/changes/fix-uncertain-glyph-advance/design.md",
+      "sha256": "adc4395b6f7645c71d1876f77a6003161451f723d7c67f6323d8f03623279d23",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "openspec/changes/fix-uncertain-glyph-advance/specs/terminal-output/spec.md",
+      "sha256": "3bf3e6252f16f2dadf1c4db730e305f6a67a598111013e3909c74852d4502344",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "openspec/changes/fix-uncertain-glyph-advance/tasks.md",
+      "sha256": "d7611d86610943a0d0bcc0ec3e10d66bea337be34d6ab451cc4e968b4c9bf41b",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "docs/reviews/R18/acceptance/report.md",
+      "sha256": "9a3668ca67f3573d70cd4c2cb833d7081579136b4047aa1322f219590e140fb0",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "docs/reviews/R18/acceptance/acceptance-matrix.md",
+      "sha256": "5040a53d997b47742f8f17e1e1924488bf843af6ae6ec3ba7c95b253b6c6afeb",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "docs/tasks.md",
+      "sha256": "9cd686aa2783384cce05ec026b0c5568f67194cdec9d6310a3fe826c29ba2c49",
+      "matches_frozen_root": true
+    },
+    {
+      "path": "docs/acceptance.md",
+      "sha256": "476bd7c8b56e4b455217a39eb719958b814318a10d1d45a7041a84c86af5e540",
+      "matches_frozen_root": true
+    }
+  ],
+  "review": [
+    {
+      "path": "/workspace/work/glyph-review/report.md",
+      "sha256": "18939617a63c541da4a02f78b83231d00a9c092cbc1bacbdf7ba968c97c2ce3f"
+    },
+    {
+      "path": "/workspace/work/glyph-review/findings.json",
+      "sha256": "cb32b3d985c82106da09a5c464d1ba449028c776185b8286350737e57ec4f91e"
+    },
+    {
+      "path": "/workspace/work/glyph-review/reviewed-hashes.json",
+      "sha256": "a175d8dd8da62c37904cd5f1d62d97dba0be17cc896fcd2ec845c8cfd4c1d243"
+    },
+    {
+      "path": "/workspace/work/glyph-review/artifacts.sha256",
+      "sha256": "2461f5a1ccd5567cd4fe35537ed028cf054d8a665fb451e51db86dadad1f6297"
+    }
+  ],
+  "brief": {
+    "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-linux-vt-glyph-fallback/task-097-brief.md",
+    "sha256": "0d7e4aa86e14d3c6f269864df8b3d154214f086b819ea612f7edd358f3077a31"
+  },
+  "product_executed": false,
+  "source_copy_archive_policy": "Local analysis input only; omit source directory from curated acceptance artifacts."
+}

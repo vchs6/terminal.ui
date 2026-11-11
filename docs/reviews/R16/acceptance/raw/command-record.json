@@ -1,0 +1,26 @@
+{
+  "utc": "2026-11-11T01:33:49.021519+00:00",
+  "cwd": "/workspace/work/glyph-acceptance",
+  "product_executed": false,
+  "commands": [
+    {
+      "command": "python3 verify_integrity.py",
+      "exit": 0,
+      "result": "raw/integrity.json",
+      "result_recorded_utc": "2026-11-11T01:22:35.664193+00:00"
+    },
+    {
+      "command": "node verify_oracles.mjs",
+      "exit": 0,
+      "result": "raw/oracle-verification.json",
+      "result_recorded_utc": "2026-11-11T01:24:14.546Z"
+    },
+    {
+      "command": "python3 verify_hosts.py",
+      "exit": 0,
+      "result": "raw/host-verification.json",
+      "result_recorded_utc": "2026-11-11T01:26:10.409354+00:00"
+    }
+  ],
+  "timestamp_note": "Result timestamps are script-recorded UTC, not invented command start/end. Initial failed helper attempts remain in raw; terminal transcript also retains later read-only display-summary TypeError."
+}
