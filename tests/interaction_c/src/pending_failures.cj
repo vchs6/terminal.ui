@@ -7,7 +7,7 @@ import std.sync.*
 func duplicateReservation():Unit {
     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
     let mounts=Box<Int64>(0);let content=Text("one").onMount({_=>mounts.value++;{=>}})
-    let first=Box<?OverlayHandle>(None)
+    let first=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>first.value=Some(node(root).openOverlay(content));code("AlreadyMounted",{=>node(root).openOverlay(content);()},"P03 duplicate pending reservation")})
     check(first.value.getOrThrow().isOpen() && mounts.value==1,"P03 only first reservation mounts")
     app.dispose()
@@ -18,7 +18,7 @@ func pendingFailure(mount:Bool):Unit {
     let failure=Exception("P04 original ${mount}");let cleaned=Box<Int64>(0)
     let parent=Text("old").onMount({_=>{=>cleaned.value++}})
     app.batch({=>node(root).openOverlay(parent,options:OverlayOptions(takeFocus:false));()})
-    let handle=Box<?OverlayHandle>(None)
+    let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     let bad:Component=if(mount){Text("bad").onMount({_=>throw failure})}else{BrokenPanel(failure)}
     var caught=false
     try{app.batch({=>handle.value=Some(node(root).openOverlay(bad))})}catch(e:Exception){caught=refEq(e,failure)}
@@ -30,7 +30,7 @@ func pendingFailure(mount:Bool):Unit {
 // EAGER collection is explicitly not guaranteed by SDK. P05 is an observation,
 // never a deterministic leak PASS merely because this observer was cleared.
 func releasedOwnerObservation():Unit {
-    let weak=Box<?WeakRef<Application>>(None);let retained=Box<?OverlayHandle>(None)
+    let weak=Box<?WeakRef<Application>>(Option<WeakRef<Application>>.None);let retained=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     makeReleasedOwner(weak,retained)
     let before=getGCCount();gc(heavy:true)
     for(_ in 0..5000){if(getGCCount()>before){break};sleep(Duration.millisecond)}

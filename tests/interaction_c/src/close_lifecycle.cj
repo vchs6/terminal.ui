@@ -3,7 +3,7 @@ package interaction_c
 import cjtui.*
 
 func dependentClosure(): Unit {
-    let owner = Box<?Component>(None)
+    let owner = Box<?Component>(Option<Component>.None)
     let root = Column {
         owner.value = Some(Text("owner").focusable(true))
         Text("sibling").focusable(true)
@@ -12,8 +12,8 @@ func dependentClosure(): Unit {
     app.startHeadless()
     let trace = Box<String>("")
     let watched = Observable<String>("A")
-    let inner = Box<?NodeRef>(None)
-    let outerRef = Box<?NodeRef>(None)
+    let inner = Box<?NodeRef>(Option<NodeRef>.None)
+    let outerRef = Box<?NodeRef>(Option<NodeRef>.None)
     let outer = Column {Text({=> watched.get()})}.onMount(
         {
             reference =>
@@ -40,9 +40,9 @@ func dependentClosure(): Unit {
                 }
         }
     )
-    let first = Box<?OverlayHandle>(None)
-    let nested = Box<?OverlayHandle>(None)
-    let sibling = Box<?OverlayHandle>(None)
+    let first = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+    let nested = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+    let sibling = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({
         => first.value = Some(
             node(owner.value.getOrThrow()).openOverlay(outer, options: OverlayOptions(takeFocus: false)))
@@ -77,9 +77,9 @@ func dependentClosure(): Unit {
 }
 
 func savedFocusFallback(): Unit {
-    let first = Box<?Component>(None)
-    let next = Box<?Component>(None)
-    let previous = Box<?Component>(None)
+    let first = Box<?Component>(Option<Component>.None)
+    let next = Box<?Component>(Option<Component>.None)
+    let previous = Box<?Component>(Option<Component>.None)
     let root = Column {
         previous.value = Some(Text("previous").focusable(true))
         first.value = Some(Text("saved").focusable(true))
@@ -89,7 +89,7 @@ func savedFocusFallback(): Unit {
     app.startHeadless()
     app.batch({=> node(first.value.getOrThrow()).requestFocus()})
     let layer = Text("modal").focusable(true)
-    let handle = Box<?OverlayHandle>(None)
+    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({
         => handle.value = Some(
             node(first.value.getOrThrow()).openOverlay(layer, options: OverlayOptions(mode: OverlayMode.Modal)))

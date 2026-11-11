@@ -3,7 +3,7 @@ import cjtui.*
 
 func decoratedLayerTargets():Unit {
     let root=Canvas({_=>Size(8,5)},{p=>for(y in 0..5){p.put(0,y,"abcdefgh")}}).viewport(ScrollAxes.Off)
-    let app=Application(root);app.startHeadless();let h=Box<?OverlayHandle>(None)
+    let app=Application(root);app.startHeadless();let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     let popup=Canvas({_=>Size(2,1)},{p=>p.put(0,0,"界")}).width(4).height(3).surface(SurfaceMode.Opaque).border(BorderStyle.Rounded).shadow(style:Style(dim:true))
     app.batch({=>h.value=Some(node(root).openOverlay(popup,options:OverlayOptions(takeFocus:false)))})
     let first=app.snapshot(8,5)
@@ -25,7 +25,7 @@ func caretSpacesShadowAndClip():Unit {
     let root=Canvas({_=>Size(8,5)},{p=>p.put(2,1,"界");p.caret(6,2)}).focusable(true).viewport(ScrollAxes.Off)
     let app=Application(root);app.startHeadless();app.snapshot(8,5)
     check(app.caretSnapshot().visible,"G16 initial caret visible")
-    let h=Box<?OverlayHandle>(None)
+    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     let shadow=Text("").width(4).height(3).shadow()
     app.batch({=>h.value=Some(node(root).openOverlay(shadow,options:OverlayOptions(mode:OverlayMode.Passive,takeFocus:false)))})
     app.snapshot(8,5);hiddenCaret(app,"G16 shadow contribution occludes caret")

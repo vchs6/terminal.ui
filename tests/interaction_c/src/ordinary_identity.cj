@@ -10,7 +10,7 @@ func mixedOrdinaryIdentity():Unit {
     }.viewport(ScrollAxes.Off)
     let app=Application(root);app.startHeadless();let a=node(entries[0]);let b=node(entries[1]);let manual=Text("M")
     app.batch({=>node(root).insertBefore(b,manual)})
-    let before=node(root).children();let layer=Text("layer");let h=Box<?OverlayHandle>(None)
+    let before=node(root).children();let layer=Text("layer");let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>h.value=Some(node(root).openOverlay(layer,options:OverlayOptions(takeFocus:false)))})
     let after=node(root).children()
     check(after.size==before.size,"N04 layer not an ordinary marker or child")
@@ -23,11 +23,11 @@ func mixedOrdinaryIdentity():Unit {
 }
 
 func ownerMoveAndPaintLifetime():Unit {
-    let owner=Box<?Component>(None);let root=Column{owner.value=Some(Text("O").height(1));Text("S").height(1)}.viewport(ScrollAxes.Off)
+    let owner=Box<?Component>(Option<Component>.None);let root=Column{owner.value=Some(Text("O").height(1));Text("S").height(1)}.viewport(ScrollAxes.Off)
     let app=Application(root);app.startHeadless();app.snapshot(6,6)
-    let paint=Box<?PaintContext>(None)
+    let paint=Box<?PaintContext>(Option<PaintContext>.None)
     let popup=Canvas({_=>Size(3,8)},{p=>paint.value=Some(p);p.put(0,3,"P")}).viewport(ScrollAxes.Vertical).width(3).height(2)
-    let h=Box<?OverlayHandle>(None)
+    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>h.value=Some(node(owner.value.getOrThrow()).openOverlay(popup,options:OverlayOptions(anchor:node(owner.value.getOrThrow()),placement:OverlayPlacement.BelowStart,takeFocus:false)))})
     app.snapshot(6,6);let old=node(popup);let ownerRef=node(owner.value.getOrThrow())
     app.batch({=>old.scrollTo(0,3);node(root).moveToEnd(ownerRef)})

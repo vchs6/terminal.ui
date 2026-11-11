@@ -3,8 +3,8 @@ package interaction_c
 import cjtui.*
 
 func entryValidation(): Unit {
-    let ordinary = Box<?Component>(None)
-    let stranger = Box<?Component>(None)
+    let ordinary = Box<?Component>(Option<Component>.None)
+    let stranger = Box<?Component>(Option<Component>.None)
     let root = Column {
         ordinary.value = Some(Text("owner"))
         stranger.value = Some(Column {Text("not ancestor")}.overlayHost(true))
@@ -111,7 +111,7 @@ func foreignAndOldHandles(): Unit {
     let root = Column {Text("one")}.viewport(ScrollAxes.Off)
     let app = Application(root)
     app.startHeadless()
-    let handle = Box<?OverlayHandle>(None)
+    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=> handle.value = Some(node(root).openOverlay(Text("layer"), options: OverlayOptions(takeFocus: false)))})
     app.dispose()
     let old = handle.value.getOrThrow()

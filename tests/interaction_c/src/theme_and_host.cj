@@ -2,7 +2,7 @@ package interaction_c
 import cjtui.*
 
 func ownerThemeSurface():Unit {
-    let owner=Box<?Component>(None)
+    let owner=Box<?Component>(Option<Component>.None)
     let root=Column{owner.value=Some(Text("O").styles([StyleUse.Named("owner")]))}.styles([StyleUse.Named("host")]).overlayHost(true).viewport(ScrollAxes.Off)
     let first=Theme.parse("schema_version=1\nname='first'\n[styles.host]\nbackground='#445566'\n[styles.owner]\nbackground='#112233'\n")
     let second=Theme.parse("schema_version=1\nname='second'\n[styles.host]\nbackground='#445566'\n[styles.owner]\nbackground='#778899'\n")
@@ -21,7 +21,7 @@ func ownerThemeSurface():Unit {
 }
 
 func explicitHostClip():Unit {
-    let host=Box<?Component>(None);let owner=Box<?Component>(None)
+    let host=Box<?Component>(Option<Component>.None);let owner=Box<?Component>(Option<Component>.None)
     let root=Column{
         host.value=Some(Column{owner.value=Some(Text("O").width(1).height(1))}.width(6).height(3).overlayHost(true))
         Text("TTTTTTTT").height(1)

@@ -7,7 +7,7 @@ func pendingCancellation(): Unit {
     let app = Application(root)
     let mounts = Box<Int64>(0)
     let cleanups = Box<Int64>(0)
-    let saved = Box<?OverlayHandle>(None)
+    let saved = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.startHeadless()
     app.batch(
         {
@@ -40,7 +40,7 @@ func pendingCancellation(): Unit {
 
 func sharedTypeAndIdentity(): Unit {
     let model = Observable<String>("A")
-    let ordinary = Box<?SettingsPanel>(None)
+    let ordinary = Box<?SettingsPanel>(Option<SettingsPanel>.None)
     let root = Column {
         let panel = SettingsPanel(model)
         panel.width(3).height(1)
@@ -55,7 +55,7 @@ func sharedTypeAndIdentity(): Unit {
     let normalRef = node(normal)
     let layer = SettingsPanel(model)
     layer.width(3).height(1)
-    let handle = Box<?OverlayHandle>(None)
+    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({
         => handle.value = Some(
             owner.openOverlay(layer, options: OverlayOptions(mode: OverlayMode.NonModal, takeFocus: false)))

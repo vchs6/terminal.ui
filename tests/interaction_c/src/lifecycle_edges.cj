@@ -2,12 +2,12 @@ package interaction_c
 import cjtui.*
 
 func ordinaryOwnedClosure():Unit {
-    let branch=Box<?Component>(None);let owner=Box<?Component>(None)
+    let branch=Box<?Component>(Option<Component>.None);let owner=Box<?Component>(Option<Component>.None)
     let root=Column{branch.value=Some(Column{owner.value=Some(Text("owner"))})}.viewport(ScrollAxes.Off)
     let app=Application(root);app.startHeadless();let trace=Box<String>("")
     let first=Text("first").onMount({_=>{=>trace.value+="P;"}})
     let child=Text("child").onMount({_=>{=>trace.value+="C;"}})
-    let h=Box<?OverlayHandle>(None);let c=Box<?OverlayHandle>(None);let sibling=Box<?OverlayHandle>(None)
+    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None);let c=Box<?OverlayHandle>(Option<OverlayHandle>.None);let sibling=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>h.value=Some(node(owner.value.getOrThrow()).openOverlay(first))})
     app.batch({=>c.value=Some(node(first).openOverlay(child))})
     app.batch({=>sibling.value=Some(node(root).openOverlay(Text("sibling"),options:OverlayOptions(takeFocus:false)))})
@@ -18,9 +18,9 @@ func ordinaryOwnedClosure():Unit {
 }
 
 func offscreenOwnerAndReason():Unit {
-    let owner=Box<?Component>(None);let root=ScrollView({=>owner.value=Some(Text("O").height(1));Text("tail").height(10)})
+    let owner=Box<?Component>(Option<Component>.None);let root=ScrollView({=>owner.value=Some(Text("O").height(1));Text("tail").height(10)})
     let app=Application(root);app.startHeadless();app.snapshot(4,2)
-    let h=Box<?OverlayHandle>(None)
+    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>h.value=Some(node(owner.value.getOrThrow()).openOverlay(Text("P"),options:OverlayOptions(takeFocus:false)))})
     app.batch({=>node(root).scrollTo(0,5);()});app.snapshot(4,2)
     check(h.value.getOrThrow().isOpen(),"L07 offscreen owner is not hidden")
@@ -28,7 +28,7 @@ func offscreenOwnerAndReason():Unit {
     app.batch({=>owner.value.getOrThrow().visible(false)})
     check(reason(h.value.getOrThrow())=="OwnerHidden","L07 explicit hidden closes")
     app.batch({=>owner.value.getOrThrow().visible(true)});app.snapshot(4,2)
-    let anchored=Box<?OverlayHandle>(None)
+    let anchored=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>node(root).scrollTo(0,0);()});app.snapshot(4,2)
     app.batch({=>anchored.value=Some(node(owner.value.getOrThrow()).openOverlay(Text("A"),options:OverlayOptions(anchor:node(owner.value.getOrThrow()),placement:OverlayPlacement.BelowStart,takeFocus:false)))})
     app.batch({=>node(root).remove(node(owner.value.getOrThrow()))})
