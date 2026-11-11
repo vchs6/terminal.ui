@@ -1,0 +1,61 @@
+{
+  "task": "TASK093 stored onKey serial capture fixture correction",
+  "testOnlyCommit": "dc6fdbfb4003a3151dab21d8de7cf7e54a1598b9",
+  "parent": "bfd0715cc342fe7c334bd7ce222cdda9c4fb37d5",
+  "productSourceBase": "04a5289361d990e5a340ace22bbd50c9b805a9d9",
+  "changedFiles": [
+    "tests/glyphs/session/src/main.cj"
+  ],
+  "source": "/workspace/work/glyph-tests-refresh/source",
+  "report": "/workspace/work/glyph-tests-refresh/capture-report",
+  "consumer": "/workspace/work/glyph-tests-refresh/capture-consumer",
+  "sdkVersion": "1.2.0",
+  "sdkSetup": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+  "cache": "/workspace/work/glyph-tests-refresh/cache",
+  "registry": "http://127.0.0.1:18973",
+  "originalAllowedAuthorFile": "/workspace/work/glyph-implementation/session-fixed.log",
+  "originalFailureSha256": "acf5c7e81fad95ad781c1a34622e2121c1854ef8f3abe1275301b4346246fb4c",
+  "fixedFixtureSha256": "6ee5aab2d2dab6d6a45eed4ff690fd251f6d31ab2a7374f3fb0f790c7912bafa",
+  "patchSha256": "8f61f9d6b2566d42b5cbcd1a19ed7717f4cbc7fced7cbfee418a3f2fb144eab9",
+  "sourcehashSha256": "9ae040120f07c25573c6b5ceea5499be754fcafe25f7203fb5383d2f5f4ea023",
+  "controlManifestSha256": "f9bead0894d24352dce7eb30de0db22594252f77953d5a3a42b02c197ab446fe",
+  "controlRedSourceSha256": "01487d280a6095399bc3a4a186dd56408dc88cec5d5bd6a84c050da41b1afad3",
+  "controlGreenSourceSha256": "82dfb9d22ddc0ab44060e06543942bbd204c00fa80bc9100710d34cf6f67f3fc",
+  "controlBinarySha256": "0d99920b428651fa2314db02c2aa19a1163b7211a3242a3c507c8dfaacd1170c",
+  "normalPublicControl": {
+    "mutableCaptureBuildExit": 1,
+    "arrayHolderBuildExit": 0,
+    "directBinaryExit": 0,
+    "passedAssertions": 6,
+    "expectedSerialSequence": [
+      0,
+      1,
+      1,
+      2,
+      3,
+      3
+    ],
+    "dispatchInputs": [
+      "p",
+      "x",
+      "p",
+      "p",
+      "q"
+    ],
+    "actualCallbackPath": "public Application.dispatch -> stored Application.onKey handler",
+    "scope": "existing headless callback storage and serial semantics only"
+  },
+  "fullGlyphSession": {
+    "executed": false,
+    "status": "pending root limited review and fixed094 rerun; no Glyph Session/PTY/native GREEN"
+  },
+  "productChanged": false,
+  "expectedOrNativeChanged": false,
+  "newProductApi": false,
+  "newEntity": false,
+  "newObservableOrSubscription": false,
+  "author094SourceOrReportRead": false,
+  "author094Built": false,
+  "subagents": false,
+  "finished": "2026-11-11T00:27:25.852Z"
+}

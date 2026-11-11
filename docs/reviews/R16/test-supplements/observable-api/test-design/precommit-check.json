@@ -1,0 +1,13 @@
+{
+  "name": "precommit-check",
+  "cwd": "/workspace/work/glyph-tests-refresh/source",
+  "argv": [
+    "bash",
+    "-lc",
+    "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nset -e\ngit diff --cached --check\ngit diff --cached --stat\ngit diff --exit-code df21f3def32de39a415d1d8d9845b83514dc2902 -- src native build.cj cjpm.toml tests/glyphs/pty.mjs tests/glyphs/session/native\ngit status --short"
+  ],
+  "start": "2026-11-11T00:13:00.722Z",
+  "end": "2026-11-11T00:13:00.866Z",
+  "code": 0,
+  "signal": null
+}

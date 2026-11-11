@@ -1,0 +1,13 @@
+import {spawn} from 'node:child_process';
+import {open,readFile,writeFile} from 'node:fs/promises';
+const [name, root, command] = process.argv.slice(2);
+const dir='/workspace/work/glyph-tests-refresh/capture-report';
+const log=await open(`${dir}/${name}.log`,'w');
+const start=new Date().toISOString();
+const child=spawn('bash',['-lc',`source /workspace/work/validation/sdk/cangjie/envsetup.sh\n${command}`],{cwd:root,stdio:['ignore',log.fd,log.fd]});
+const result=await new Promise(resolve=>child.on('close',(code,signal)=>resolve({code,signal})));
+await log.close();
+const row={name,cwd:root,argv:['bash','-lc',`source /workspace/work/validation/sdk/cangjie/envsetup.sh\n${command}`],start,end:new Date().toISOString(),...result};
+await writeFile(`${dir}/${name}.json`,JSON.stringify(row,null,2)+'\n');
+process.stdout.write(JSON.stringify(row)+'\n');
+process.stdout.write((await readFile(`${dir}/${name}.log`,'utf8')).slice(-1800));

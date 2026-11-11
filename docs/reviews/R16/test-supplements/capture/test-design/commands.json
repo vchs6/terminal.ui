@@ -1,0 +1,93 @@
+[
+  {
+    "name": "capture-mutable-red",
+    "cwd": "/workspace/work/glyph-tests-refresh/capture-consumer",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/validation/sdk/cangjie/envsetup.sh\ncjpm build"
+    ],
+    "start": "2026-11-11T00:22:49.292Z",
+    "end": "2026-11-11T00:23:45.398Z",
+    "code": 1,
+    "signal": null
+  },
+  {
+    "name": "capture-holder-build",
+    "cwd": "/workspace/work/glyph-tests-refresh/capture-consumer",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/validation/sdk/cangjie/envsetup.sh\ncjpm build"
+    ],
+    "start": "2026-11-11T00:24:13.702Z",
+    "end": "2026-11-11T00:25:05.016Z",
+    "code": 0,
+    "signal": null
+  },
+  {
+    "name": "environment",
+    "cwd": "/workspace/work/glyph-tests-refresh/source",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nset -e\ncjc --version\ncjpm --version\ngit rev-parse HEAD\ngit status --short"
+    ],
+    "start": "2026-11-11T00:24:57.093Z",
+    "end": "2026-11-11T00:24:57.269Z",
+    "code": 0,
+    "signal": null
+  },
+  {
+    "name": "unchanged-contract-check",
+    "cwd": "/workspace/work/glyph-tests-refresh/source",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nset -e\ngit diff --check\ngit diff --exit-code bfd0715cc342fe7c334bd7ce222cdda9c4fb37d5 -- src native build.cj cjpm.toml tests/glyphs/pty.mjs tests/glyphs/internal tests/glyphs/api tests/glyphs/public tests/glyphs/rich tests/glyphs/negative tests/glyphs/negative.sh tests/glyphs/README.md tests/glyphs/run.sh tests/glyphs/session/native tests/glyphs/session/cjpm.toml\ngit diff --name-only\ngit diff -- tests/glyphs/session/src/main.cj"
+    ],
+    "start": "2026-11-11T00:24:57.307Z",
+    "end": "2026-11-11T00:24:57.354Z",
+    "code": 0,
+    "signal": null
+  },
+  {
+    "name": "capture-holder-run",
+    "cwd": "/workspace/work/glyph-tests-refresh/capture-consumer",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/validation/sdk/cangjie/envsetup.sh\n./target/release/bin/main"
+    ],
+    "start": "2026-11-11T00:25:50.565Z",
+    "end": "2026-11-11T00:25:50.599Z",
+    "code": 0,
+    "signal": null
+  },
+  {
+    "name": "precommit-check",
+    "cwd": "/workspace/work/glyph-tests-refresh/source",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nset -e\ngit diff --cached --check\ngit diff --cached --stat\ngit diff --exit-code bfd0715cc342fe7c334bd7ce222cdda9c4fb37d5 -- src native build.cj cjpm.toml tests/glyphs/pty.mjs tests/glyphs/session/native\ngit status --short"
+    ],
+    "start": "2026-11-11T00:26:23.783Z",
+    "end": "2026-11-11T00:26:23.840Z",
+    "code": 0,
+    "signal": null
+  },
+  {
+    "name": "final-verification",
+    "cwd": "/workspace/work/glyph-tests-refresh/source",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nset -e\nsha256sum -c /workspace/work/glyph-tests-refresh/capture-report/sourcehash.sha256\ngit diff --exit-code\ngit diff --cached --exit-code\ntest -z \"$(git status --porcelain)\"\ngit diff --exit-code bfd0715cc342fe7c334bd7ce222cdda9c4fb37d5 HEAD -- src native build.cj cjpm.toml\ngit diff-tree --no-commit-id --name-only -r HEAD\ngit rev-parse HEAD"
+    ],
+    "start": "2026-11-11T00:26:45.597Z",
+    "end": "2026-11-11T00:26:45.656Z",
+    "code": 0,
+    "signal": null
+  }
+]

@@ -1,0 +1,26 @@
+[31merror[0m: lambda capturing mutable variables needs to be called directly
+  [36m==>[0m /workspace/work/glyph-implementation/source/tests/glyphs/session/src/main.cj:35:15:
+   [36m| [0m
+[36m35[0m [36m| [0m      app.onKey { event =>[0m
+   [36m| [0m [31m_[0m[31m______________^[0m
+[36m36[0m [36m| [0m[31m|[0m         match (event.text) {[0m
+   [36m| [0m[31m|[0m ...[0m
+[36m51[0m [36m| [0m[31m|[0m     }.run()[0m
+   [36m| [0m[31m|[0m[31m_[0m[31m____^[0m
+   [36m| [0m
+[34mnote[0m: 'serial' is mutable
+  [36m==>[0m /workspace/work/glyph-implementation/source/tests/glyphs/session/src/main.cj:37:25:
+   [36m| [0m
+[36m37[0m [36m| [0m            case "p" => serial++; save(app, serial)[0m
+   [36m| [0m                        [34m^^^^^^ [0m
+   [36m| [0m
+[34mnote[0m: 'serial' is mutable
+  [36m==>[0m /workspace/work/glyph-implementation/source/tests/glyphs/session/src/main.cj:37:45:
+   [36m| [0m
+[36m37[0m [36m| [0m            case "p" => serial++; save(app, serial)[0m
+   [36m| [0m                                            [34m^^^^^^ [0m
+   [36m| [0m
+
+1 error generated, 1 error printed.
+Error: failed to compile package `glyph_session`, return code is 1
+Error: cjpm build failed

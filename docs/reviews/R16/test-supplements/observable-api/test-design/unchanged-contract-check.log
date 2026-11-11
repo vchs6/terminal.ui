@@ -1,0 +1,35 @@
+tests/glyphs/session/src/main.cj
+diff --git a/tests/glyphs/session/src/main.cj b/tests/glyphs/session/src/main.cj
+index 822469a..9e96dfa 100644
+--- a/tests/glyphs/session/src/main.cj
++++ b/tests/glyphs/session/src/main.cj
+@@ -21,7 +21,7 @@ main(): Int64 {
+     let text = Observable<String>("中")
+     let foreground = Observable<Color>(Color.Red)
+     let root = Column {
+-        Text({ => text.value }).foreground({ => foreground.value })
++        Text({ => text.get() }).foreground({ => foreground.get() })
+         Text("é e\u{301} 中文 😀 ✈\u{fe0f} 👩‍💻 …")
+         Text("BOX").border(BorderStyle.Rounded)
+     }
+@@ -35,13 +35,13 @@ main(): Int64 {
+     app.onKey { event =>
+         match (event.text) {
+             case "p" => serial++; save(app, serial)
+-            case "v" => text.value = "文"
+-            case "t" => text.value = "??"
+-            case "z" => text.value = "👩\u{200d}💻"
+-            case "h" => text.value = "❤\u{fe0f}"
+-            case "n" => text.value = "A"
+-            case "c" => foreground.value = Color.Blue
+-            case "b" => text.value = "文"; foreground.value = Color.Blue
++            case "v" => text.set("文")
++            case "t" => text.set("??")
++            case "z" => text.set("👩\u{200d}💻")
++            case "h" => text.set("❤\u{fe0f}")
++            case "n" => text.set("A")
++            case "c" => foreground.set(Color.Blue)
++            case "b" => text.set("文"); foreground.set(Color.Blue)
+             case "a" => app.glyphMode(GlyphMode.Ascii)
+             case "u" => app.glyphMode(GlyphMode.Unicode)
+             case "o" => app.glyphMode(GlyphMode.Auto)
