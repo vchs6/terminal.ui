@@ -11,6 +11,8 @@ main(): Int64 {
     schemaSourceTypes()
     schemaPrintableName()
     schemaSourceOrder()
+    schemaReviewPriorities()
+    schemaReviewVariableOrder()
     println("PASS TASK085 pure public values/schema/presets")
     0
 }
