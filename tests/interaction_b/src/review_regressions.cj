@@ -8,6 +8,8 @@ func reviewRegression(name:String):Int64 {
         case "I05"=>reviewGrowingExtentEnsure()
         case "I06"=>reviewFiniteNonScrollConstraint()
         case "I07"=>reviewCandidateAfterInvalidation()
+        case "I05-stable"=>reviewStableDirtyExtentEnsure()
+        case "I08"=>reviewIntermediateMeasureDependency()
         case _=>throw Exception("unknown B review case ${name}")
     }
     println("PASS B review ${name}");0

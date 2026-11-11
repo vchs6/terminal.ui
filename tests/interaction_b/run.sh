@@ -14,7 +14,7 @@ fi
 (cd tests/interaction_b && cjpm build)
 if [[ ${1:-} == --review-regressions ]]; then
     status=0
-    for name in I01 I02 I03 I04 I05 I06 I07; do
+    for name in I01 I02 I03 I04 I05 I06 I07 I05-stable I08; do
         if CJTUI_VIEWPORT_REVIEW="$name" timeout 60s tests/interaction_b/target/release/bin/main </dev/null; then :; else status=1; fi
     done
     exit "$status"

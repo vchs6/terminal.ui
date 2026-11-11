@@ -34,7 +34,7 @@ main(): Int64 {
     ensureTwoAxesAndNone();explicitIntentOrdering()
     viewportReadonlyContexts();viewportPureMutationGuards();viewportValidationAndCapacity()
     pendingViewportCancellation();viewportLifecyclePost();unicodeViewportClipping()
-    for(name in ["I01","I02","I03","I04","I05","I06","I07"]){reviewRegression(name)}
+    for(name in ["I01","I02","I03","I04","I05","I06","I07","I05-stable","I08"]){reviewRegression(name)}
     println("PASS: executed interaction B public viewport assertions")
     return 0
 }

@@ -71,3 +71,8 @@ On252c5ad these are seven actual assertion REDs after build0. Original31/eight
 group/f57/692 assertions remain; M01Minor is outside this batch. I07 uses the
 Prepared UI mailbox without a worker-readiness sleep. Clean rejection controls
 record callbacks; business invalidation permits normal measure/getter work.
+
+Round2 adds only I05-stable and I08 selectors: stable-but-unlaid extent before
+next-batch ensure, and dependencies from an intermediate width-bounded/height-
+unbounded measure. Both use literal public grids/offsets. Original seven cases
+and the true-out-of-finalextent guard remain unchanged.
