@@ -5,6 +5,7 @@ import std.collection.ArrayList
 class LayoutNode {
     let session: RuntimeSession
     let component: Component
+    let previewTheme: ?Theme
     var resolved: ResolvedStyle
     let children = ArrayList<LayoutNode>()
     // Indices retain the original grapheme identity across soft and hard lines.
@@ -13,13 +14,14 @@ class LayoutNode {
     var naturalW: Int64 = 0
     var naturalH: Int64 = 0
     var constrainedWidth: ?Int64 = None
-    init(c: Component, session: RuntimeSession, inherited: Style, isRoot!: Bool = false) {
+    init(c: Component, session: RuntimeSession, inherited: Style, isRoot!: Bool = false, previewTheme!: ?Theme = None) {
         this.session = session
         component = c
-        resolved = resolveStyle(c,session.theme,inherited,isRoot)
+        this.previewTheme = previewTheme
+        resolved = resolveStyle(c,previewTheme ?? session.theme,inherited,isRoot)
     }
     func measure(): Unit {
-        session.recordMeasure()
+        if (previewTheme.isNone()) { session.recordMeasure() }
         let c = component
         if (c.kind == 0) {
             buildLines(0,false)
@@ -30,7 +32,7 @@ class LayoutNode {
                 if (let ChildEntry.MountedChild(runtimeChild) <- entry) {
                     let child = runtimeChild.component
                     if (!child.isVisible) { continue }
-                    let n = LayoutNode(child, session, resolved.style)
+                    let n = LayoutNode(child, session, resolved.style, previewTheme: previewTheme)
                     n.measure(); children.add(n)
                     let cw = greater(n.resolved.fixedW ?? n.naturalW, n.resolved.minW)
                     let ch = greater(n.resolved.fixedH ?? n.naturalH, n.resolved.minH)
@@ -84,7 +86,7 @@ class LayoutNode {
     func constrain(width: Int64): Unit {
         if (constrainedWidth == Some(width)) { return }
         constrainedWidth = Some(width)
-        session.recordMeasure()
+        if (previewTheme.isNone()) { session.recordMeasure() }
         let available = innerWidth(width)
         if (component.kind == 0) {
             buildLines(available,resolved.wrap == TextWrap.Grapheme)

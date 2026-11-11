@@ -65,23 +65,31 @@ func mulDiv(a: Int64, b: Int64, d: Int64): (Int64, Int64) {
 
 func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
     clipR: Int64, clipB: Int64): Unit {
-    n.session.recordPaint()
+    layoutPass(n,Some(frame),x,y,w,h,clipL,clipT,clipR,clipB)
+}
+
+// Shared geometry and allocator for normal paint and side-effect-free preflight.
+func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
+    clipR: Int64, clipB: Int64): Unit {
+    if (output.isSome()) { n.session.recordPaint() }
     let c = n.component
     let r = n.resolved
     let style = r.style
     let right = lesser(clipR, sat(x, w));
     let bottom = lesser(clipB, sat(y, h))
-    let rect = Rect(x, y, w, h)
-    if (r.shadowEnabled) {
-        frame.shadowClipped(rect, r.shadowX, r.shadowY, r.shadowStyle, clipL, clipT, clipR, clipB)
+    if (let Some(frame) <- output) {
+        let rect = Rect(x, y, w, h)
+        if (r.shadowEnabled) {
+            frame.shadowClipped(rect, r.shadowX, r.shadowY, r.shadowStyle, clipL, clipT, clipR, clipB)
+        }
+        if (r.fill != 0) {
+            frame.fillClipped(rect, r.fillStyle, clipL, clipT, clipR, clipB)
+        }
+        let borderStyle = Style(foreground: r.borderFg, background: style.background, bold: style.bold,
+            dim: style.dim, italic: style.italic, underline: style.underline, inverse: style.inverse,
+            strikethrough: style.strikethrough)
+        frame.borderClipped(rect, r.borderStyle, borderStyle, clipL, clipT, clipR, clipB)
     }
-    if (r.fill != 0) {
-        frame.fillClipped(rect, r.fillStyle, clipL, clipT, clipR, clipB)
-    }
-    let borderStyle = Style(foreground: r.borderFg, background: style.background, bold: style.bold,
-        dim: style.dim, italic: style.italic, underline: style.underline, inverse: style.inverse,
-        strikethrough: style.strikethrough)
-    frame.borderClipped(rect, r.borderStyle, borderStyle, clipL, clipT, clipR, clipB)
     let borderInset: Int64 = if (r.borderStyle == BorderStyle.None) { 0 } else { 1 }
     let leftPad = lesser(sat(r.padLeft,borderInset), w)
     let topPad = lesser(sat(r.padTop,borderInset), h)
@@ -92,6 +100,8 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
     let ir = lesser(right, sat(ix, innerW));
     let ib = lesser(bottom, sat(iy, innerH))
     if (c.kind == 0) {
+        if (output.isNone()) { return }
+        let frame = output.getOrThrow()
         let clusters = richTextClusters(c.value)
         for (i in 0..n.lines.size) {
             let cy = sat(iy,i)
@@ -183,12 +193,26 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
         } else {
             sizes[i]
         }
-        paint(child, frame, cx, cy, cw, ch, greater(clipL, ix), greater(clipT, iy), ir, ib)
+        layoutPass(child, output, cx, cy, cw, ch, greater(clipL, ix), greater(clipT, iy), ir, ib)
         cursor = sat(cursor, sizes[i])
         if (i + 1 < count) {
             cursor = sat(cursor, r.spacing)
         }
     }
+}
+
+// Uses the same measurement, constrained-width and recursive allocation path
+// as painting, with candidate-resolved cached declarations and no frame writes.
+func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
+    let width = session.validationWidth
+    let height = session.validationHeight
+    if (width < 0 || height < 0 || !session.root.isVisible) { return }
+    let node = LayoutNode(session.root,session,themeSeed(theme),isRoot:true,previewTheme:Some(theme))
+    node.measure()
+    let w = lesser(width,greater(node.resolved.fixedW ?? width,node.resolved.minW))
+    let h = lesser(height,greater(node.resolved.fixedH ?? height,node.resolved.minH))
+    node.constrain(w)
+    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
 }
 
 func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession): Frame {
@@ -226,6 +250,7 @@ public func render(root: Component, width: Int64, height: Int64, glyphMode!: Gly
         try {
             let frame = session.enter({ =>
                 session.stabilize(turnCutoff)
+                session.validationWidth = width; session.validationHeight = height
                 session.applyPendingTheme()
                 session.selectLayoutGlyphPolicy(offlineGlyphPolicy(glyphMode))
                 let result = renderLayout(root, width, height, session)

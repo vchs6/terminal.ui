@@ -8,7 +8,7 @@
 
 构造 `Application(root, theme: Theme.preset(ThemePreset.Dark))` 可设置初始主题；也可传入成功解析或读取的 Theme。组件属性高于有序复用样式，后加入的复用样式高于先加入的样式，其后是组件角色主题、继承值和框架默认值。组件可用 `.styles([StyleUse.Named("accent")])` 引用主题内命名样式；显式 `Reset` 结束该属性的回落。文本绘制属性继承，间距和装饰不继承。
 
-同步解析和读取不会自动切换正在运行的应用；显式加载与完整组件展示属于后续阶段。
+同步解析和读取不会自动切换正在运行的应用。运行中调用 `app.loadTheme(ThemeSource.File(path))`、`ThemeSource.Preset(...)` 或 `ThemeSource.Prepared(theme)` 返回 `ThemeRequest`；通过 `request.result()` 查询待处理或终态 `Applied`、`Failed`、`Superseded`、`SessionClosed`。最新请求优先，成功提交后可用 `app.themeInfo()` 查询已接受的主题及版本。`app.reloadTheme()` 重新读取最近一次成功接受的文件来源；没有文件来源时返回失败结果。完整组件展示属于后续阶段。
 
 `visualStates(VisualStates(disabled: true))` 只选择外观状态，不禁用事件或改变业务状态；控件的交互状态由控件自身管理。
 
