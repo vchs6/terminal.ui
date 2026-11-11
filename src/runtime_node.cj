@@ -18,6 +18,9 @@ class RuntimeNode {
     var contentY: Int64 = 0
     var logicalWidth: Int64 = 0
     var logicalHeight: Int64 = 0
+    // Last root-layout measurements remain valid facts across layout invalidation.
+    var canvasNatural: ?Size = None
+    var canvasConstrained: ?Size = None
     let depth: Int64
     var groupId: Int64 = 0
     var groupKey = ""

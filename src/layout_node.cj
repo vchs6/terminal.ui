@@ -7,6 +7,7 @@ class LayoutNode {
     let component: Component
     let previewTheme: ?Theme
     let previousMeasurement: ?LayoutNode
+    let commitGeometry: Bool
     var inheritedStyle: Style
     let rootNode: Bool
     var resolved: ResolvedStyle
@@ -20,18 +21,21 @@ class LayoutNode {
     var canvasConstrained = Size(0,0)
     var constrainedWidth: ?Int64 = None
     var assignedWidth: Int64 = 0
-    var assignedHeight: Int64 = 0
+    var assignedHeight: Int64 = -1
+    var finalCanvasWidth: Int64 = -1
+    var finalCanvasHeight: Int64 = -1
     var rootFallback = false
     var plannedMain: Int64 = -1
     var plannedNatural = false
     var plannedSizes = Array<Int64>()
     var plannedFree: Int64 = 0
     init(c: Component, session: RuntimeSession, inherited: Style, isRoot!: Bool = false, previewTheme!: ?Theme = None,
-        previousMeasurement!: ?LayoutNode = None) {
+        previousMeasurement!: ?LayoutNode = None, commitGeometry!: Bool = true) {
         this.session = session
         component = c
         this.previewTheme = previewTheme
         this.previousMeasurement = previousMeasurement
+        this.commitGeometry = commitGeometry
         inheritedStyle = inherited; rootNode = isRoot
         resolved = resolveStyle(c,previewTheme ?? session.theme,inherited,isRoot)
     }
@@ -44,10 +48,11 @@ class LayoutNode {
                 let limits = Constraints()
                 c.canvasBinding("canvas-measure").trackNatural({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
                 canvasNatural = canvas.measured
+                if (commitGeometry) { c.readMount().getOrThrow().canvasNatural = Some(canvasNatural) }
             } else if (let Some(previous) <- previousMeasurement) {
                 canvasNatural = previous.canvasNatural
             } else {
-                canvasNatural = canvas.measured
+                canvasNatural = c.readMount().getOrThrow().canvasNatural ?? canvas.measured
             }
             naturalW = canvasNatural.width; naturalH = canvasNatural.height
         } else if (c.kind == 0) {
@@ -66,7 +71,7 @@ class LayoutNode {
                         }
                     }
                     let n = LayoutNode(child, session, resolved.style, previewTheme: previewTheme,
-                        previousMeasurement: previousChild)
+                        previousMeasurement: previousChild, commitGeometry: commitGeometry)
                     n.measure(); children.add(n)
                     let cw = greater(n.resolved.fixedW ?? n.naturalW, n.resolved.minW)
                     let ch = greater(n.resolved.fixedH ?? n.naturalH, n.resolved.minH)
@@ -129,10 +134,11 @@ class LayoutNode {
                 let limits = Constraints(maxWidth:if (axes.horizontal()) { Option<Int64>.None } else { Some(available) })
                 component.canvasBinding("canvas-measure").trackConstrained({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
                 canvasConstrained = canvas.measured
+                if (commitGeometry) { component.readMount().getOrThrow().canvasConstrained = Some(canvasConstrained) }
             } else if (let Some(previous) <- previousMeasurement) {
                 canvasConstrained = previous.canvasConstrained
             } else {
-                canvasConstrained = canvas.measured
+                canvasConstrained = component.readMount().getOrThrow().canvasConstrained ?? canvas.measured
             }
             naturalH = sat(canvasConstrained.height,verticalInsets())
         } else if (component.kind == 0) {
@@ -149,7 +155,9 @@ class LayoutNode {
             }
             naturalH = sat(addGaps(height),verticalInsets())
         } else {
-            let (widths,_) = allocateMain(this,available)
+            let axes = session.viewportAxes(component.readMount().getOrThrow()) ?? ScrollAxes.Off
+            let mainWidth = if (axes.horizontal()) { greater(available,naturalW-horizontalInsets()) } else { available }
+            let (widths,_) = allocateMain(this,mainWidth,naturalBasis:axes.horizontal())
             var height: Int64 = 0
             for (i in 0..children.size) {
                 let child = children[i]
@@ -158,6 +166,19 @@ class LayoutNode {
             }
             naturalH = sat(height,verticalInsets())
         }
+    }
+    // Final finite allocation controls both axes of a Canvas measurement.
+    func constrainCanvasFinal(width: Int64, height: Int64, axes: ScrollAxes): Unit {
+        if (component.kind != 3 || previewTheme.isSome()) { return }
+        if (finalCanvasWidth == width && finalCanvasHeight == height) { return }
+        finalCanvasWidth = width; finalCanvasHeight = height
+        let canvas = component.canvas.getOrThrow()
+        let limits = Constraints(maxWidth:if (axes.horizontal()) { Option<Int64>.None } else { Some(width) },
+            maxHeight:if (axes.vertical()) { Option<Int64>.None } else { Some(height) })
+        component.canvasBinding("canvas-measure").trackConstrained({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
+        canvasConstrained = canvas.measured
+        naturalH = sat(canvasConstrained.height,verticalInsets())
+        if (commitGeometry) { component.readMount().getOrThrow().canvasConstrained = Some(canvasConstrained) }
     }
     // Reuse the same negotiated child sizes for paint after the finite pass.
     func mainAllocation(mainSize: Int64, naturalBasis: Bool): (Array<Int64>, Int64) {
@@ -170,6 +191,10 @@ class LayoutNode {
     }
     // Natural size for the scrolling axis, stopping at fixed-size or nested
     // vertical viewport boundaries while retaining the same LayoutNode tree.
+    func scrollBasisHeight(): Int64 {
+        if (component.viewportDeclared && component.viewportAxes.vertical() && assignedHeight >= 0) { return assignedHeight }
+        scrollingHeight()
+    }
     func scrollingHeight(): Int64 {
         if (component.kind == 0 || component.kind == 3) { return naturalH }
         var content: Int64 = 0

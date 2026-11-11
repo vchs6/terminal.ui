@@ -7,6 +7,7 @@ class ScrollCommand {
     let target: NodeRef
     let kind: Int64 // 0 scroll, 1 ensure
     var order: Int64 = 0
+    var explicitEnsure = false
     let x: Int64
     let y: Int64
     let rect: ?Rect
