@@ -546,6 +546,7 @@ class RuntimeSession {
     }
     func openOverlay(owner: RuntimeNode, content: Component, options: OverlayOptions): OverlayHandle {
         requireStructure()
+        if (!inActiveDomain()) { throw UIException("WrongUIContext", "overlay opening requires an active UI turn") }
         if (!inOverlayDomain(owner)) { throw UIException("FocusOutsideDomain", "owner outside modal domain") }
         if (options.mode == OverlayMode.Modal && !options.takeFocus) { throw IllegalArgumentException("modal requires focus") }
         if (options.mode == OverlayMode.Passive && options.takeFocus) { throw IllegalArgumentException("passive cannot take focus") }
