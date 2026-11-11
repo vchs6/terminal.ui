@@ -7,4 +7,4 @@ public import cjtui.text.{AnsiTextLimits, AnsiTextIssue, AnsiTextDiagnostic, Ans
     AnsiTextException, AnsiTextDecoder, parseAnsiText}
 public import cjtui.style.{StyleValue, StyleKey, StyleKeys, StyleRule, StyleUse, VisualState, VisualStates,
     Dimension, TextWrap, TextOverflow}
-public import cjtui.theme.{ThemeRole, ThemePreset, ThemeLocation, ThemeDiagnostic, ThemeException}
+public import cjtui.theme.{Theme, ThemeRole, ThemePreset, ThemeLocation, ThemeDiagnostic, ThemeException}

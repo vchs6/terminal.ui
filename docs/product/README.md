@@ -1,6 +1,6 @@
 # 产品说明
 
-可选会话复制、宿主标题与恢复结果见 [会话扩展](session.md)，正常公共调用示例位于 `examples/session`。完整发送为 SentUnconfirmed；能力声明不等于宿主效果确认。
+主题配置值和解析见 [主题配置](theme.md)。可选会话复制、宿主标题与恢复结果见 [会话扩展](session.md)，正常公共调用示例位于 `examples/session`。完整发送为 SentUnconfirmed；能力声明不等于宿主效果确认。
 
 cjtui 0.0.0 的首个切片提供 Linux ANSI TTY 文本界面：`Text`、`Row`、`Column` 组件块及前景色、背景色和粗体属性，Unicode 字符网格、纯文本与 ANSI 快照、键盘回调和终端尺寸变化时重排。普通应用无需发送 ANSI 或手动刷新。
 
