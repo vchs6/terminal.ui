@@ -1,0 +1,19 @@
+{
+  "review_id":"TASK086-SCOPED-ROUND1",
+  "base":"97df09638e2912cbee3313c23c4254e0a1708a5e",
+  "revision":"95c1186a8ec5b184d5d2f15af0cac2e81499ce68",
+  "contract_sha256":"084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+  "spec_verdict":"PASS_SCOPED",
+  "quality_verdict":"PASS_SCOPED_WITH_DEFERRED_MINOR",
+  "original_dispositions":[
+    {"id":"T086-I01","disposition":"ADDRESSED","fix_revision":"95c1186a8ec5b184d5d2f15af0cac2e81499ce68","verification":"pre-execution source identity; focused values-priority stdout: 3 cases passed; root checks precede variables validation"},
+    {"id":"T086-I02","disposition":"ADDRESSED","fix_revision":"95c1186a8ec5b184d5d2f15af0cac2e81499ce68","verification":"focused values-variable-order stdout: forward/reversed cases passed, source paths and Rune ranges correct; unknown and value errors are both retained"},
+    {"id":"T086-I03","disposition":"ADDRESSED","fix_revision":"95c1186a8ec5b184d5d2f15af0cac2e81499ce68","verification":"focused integration-binding stdout: constant/getter overloads reject before mutation; X at2,2 after original binding update and mounted count unchanged"},
+    {"id":"T086-M01","disposition":"ADDRESSED","fix_revision":"95c1186a8ec5b184d5d2f15af0cac2e81499ce68","verification":"fixed docs/product/theme.md explicitly states appearance-only states and root-seed inheritance example"}
+  ],
+  "blocking_new_findings":[],
+  "deferred":[{"id":"T086-R1-D01","severity":"Minor","status":"deferred_nonblocking_cleanup","path":"src/theme/theme_decoder.cj","line":193,"title":"Unused literalTable remains after last caller removal","evidence":"git grep on fixed95 finds definition only; I01 now uses ThemeSchema.table after root checks","action":"Delete at next appropriate local cleanup; do not extend scoped review loop","functional_regression_demonstrated":false}],
+  "verification":{"changed_paths":12,"pre_source_entries_checked":201,"pre_source_all_match_fixed_revision":true,"pre_source_capture_before_commands":true,"environment_records_checked":5,"focused_source_records_checked":5,"test_overlay_files_identical":5,"raw_commands_checked":12,"all_raw_command_exits_zero":true,"bundle_member_records_checked":175,"bundle_member_records_all_match_git":true,"normal_bundle_without_skip":true,"reviewer_runtime_reruns":0,"evidence_index":"reviewed-hashes.json"},
+  "limitations":["Scoped correction review, not full feature or Linux acceptance","Bundle member records checked against git; CJP not independently unpacked/re-hashed here","Clean consumer and broader087 execution not claimed complete","Earlier C1 temporal provenance limitations remain historical"],
+  "independence":{"author_reports_read":false,"subagents":false,"product_test_contract_modified":false,"old_sealed_review_modified":false}
+}

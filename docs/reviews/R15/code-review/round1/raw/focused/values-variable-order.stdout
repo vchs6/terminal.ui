@@ -1,0 +1,21 @@
+EXPECT review-variable-value-before-extra: InvalidType at variables.v.value; source=caller-label:界/review-variable-value-before-extra
+OBSERVED review-variable-value-before-extra: InvalidType at variables.v.value; source=caller-label:界/review-variable-value-before-extra; scope=value
+PASS: review-variable-value-before-extra: actual code InvalidType, expected InvalidType
+PASS: review-variable-value-before-extra: actual path variables.v.value, expected variables.v.value
+PASS: review-variable-value-before-extra: caller source identity must survive
+PASS: review-variable-value-before-extra: bounded nonempty source Rune range
+PASS: review-variable-value-before-extra: line/column agree with source Runes
+PASS: review-variable-value-before-extra: available source scope
+PASS: review-variable-value-before-extra: value source range contains independently specified literal bad
+CASE PASS review-variable-value-before-extra
+EXPECT review-variable-extra-before-value: UnknownKey at variables.v.extra; source=caller-label:界/review-variable-extra-before-value
+OBSERVED review-variable-extra-before-value: UnknownKey at variables.v.extra; source=caller-label:界/review-variable-extra-before-value; scope=value
+PASS: review-variable-extra-before-value: actual code UnknownKey, expected UnknownKey
+PASS: review-variable-extra-before-value: actual path variables.v.extra, expected variables.v.extra
+PASS: review-variable-extra-before-value: caller source identity must survive
+PASS: review-variable-extra-before-value: bounded nonempty source Rune range
+PASS: review-variable-extra-before-value: line/column agree with source Runes
+PASS: review-variable-extra-before-value: available source scope
+PASS: review-variable-extra-before-value: value source range contains independently specified literal true
+CASE PASS review-variable-extra-before-value
+PASS: review variable source order: 0 failed

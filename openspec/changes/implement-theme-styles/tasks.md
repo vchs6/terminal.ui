@@ -22,12 +22,12 @@
 ## Tasks
 
 - [x] TASK-085（WP005/testing）：冻结基础typed resolver/schema/布局/四preset公共测试、固定期望与缺API RED。
-- [ ] TASK-013（WP003/implementation）：typed声明/来源解析、继承/复位、完整布局属性及wrap/ellipsis接入。
-- [ ] TASK-025（WP006/implementation）：同一主题值的完整TOML schema、上游Lexer预算/Parser、四预置及普通依赖/制品配置；与013共享必要同一产品周期，不建第二resolver。
-- [ ] TASK-086（WP005/verification）：013/025固定技术diff独立spec/quality审核。
-- [ ] TASK-087（WP005/testing）：基础主题独立执行、原回归/正常bundle、干净stdx/路径消费和实际四主题样例。
-- [ ] TASK-088（WP005/acceptance）：原AC013/025完整基础范围和制品/元数据独立验收；027完整组件展示仍不关闭。
-- [ ] TASK-089（WP005/testing）：冻结ThemeRequest/latest-wins/失效/worker有界/UI提交独立测试与真实RED。
+- [x] TASK-013（WP003/implementation）：typed声明/来源解析、继承/复位、完整布局属性及wrap/ellipsis接入。
+- [x] TASK-025（WP006/implementation）：同一主题值的完整TOML schema、上游Lexer预算/Parser、四预置及普通依赖/制品配置；与013共享必要同一产品周期，不建第二resolver。
+- [x] TASK-086（WP005/verification）：013/025固定技术diff独立spec/quality审核。
+- [x] TASK-087（WP005/testing）：基础主题独立执行、原回归/正常bundle、干净stdx/路径消费和实际四主题样例。
+- [x] TASK-088（WP005/acceptance）：原AC013/025完整基础范围和制品/元数据独立验收；027完整组件展示仍不关闭。
+- [x] TASK-089（WP005/testing）：冻结ThemeRequest/latest-wins/失效/worker有界/UI提交独立测试与真实RED。
 - [ ] TASK-026（WP006/implementation）：显式load/reload、有界worker/候选信箱/原子UI提交/可观察结果，保留节点与业务状态。
 - [ ] TASK-090（WP005/verification）：固定异步加载增量与基础跨界独立spec/quality审核。
 - [ ] TASK-091（WP005/testing）：独立乱序/失败/关闭/同源重载、受影响回归及正常制品公开消费。
@@ -75,3 +75,7 @@ preflight逐项：085/013/025接口同design/fixtures；013和025同代码周期
 ### 013025 同一产品周期的顺序实现检查点
 
 013025仍为一个完整产品范围，086审全部BASE..最终产品，不分别接受半成品。为控制单次实现范围，原作者在同一隔离树串行完成：A仅typed style/immutable Theme及完整TOML依赖、Lexer预算、schema/诊断、readFile/preset/四配置、普通values真实执行；B仅现Component声明槽/唯一resolver/继承与presence/fill/explicit mask及Application theme入口、真实integration来源状态部分；C同一LayoutNode分配宽度wrap/overflow/四边padding、Glyph marker上下文/cache/快照与全部正式085、回归和正常包消费。每检查点提交固定product-only代码和纯raw，主代理继续调度下一点而不合入未独审的局部实现；A/B不关闭013025/085/088。三段不允许第二resolver/Frame/TOML路径或重复树；后续026仍等完整088。
+
+## 2026-11-11 基础验收与异步准入
+
+013/025与085–088当前基础范围由独立088接受，固定8d，产品已集成main73abef3；026/027/090–092与完整Linux/M2未完成。089原179c851冻结资产的真实foundation正向0后async-only probe1已交付，22行为场景未执行；026原实现角色已ACTUAL GO，BASE73abef3，唯一loader/Runtime/cache路径。证据见[R15基础验收](../../../docs/reviews/R15/acceptance/report.md)、[独立执行](../../../docs/reviews/R15/execution/report.md)、[异步RED](../../../docs/reviews/R15/async-red/report.md)。T087-G01 wholechecker实际1（themes允许表/缺composition/benchmark）保持最终023.a–d OPEN，不改为release通过。

@@ -1,0 +1,15 @@
+diff --git a/src/theme/theme_decoder.cj b/src/theme/theme_decoder.cj
+index a29dc4e..383f6ee 100644
+--- a/src/theme/theme_decoder.cj
++++ b/src/theme/theme_decoder.cj
+@@ -190,10 +190,6 @@ class ThemeDecoder {
+         result
+     }
+ }
+-func literalTable(dm: DataModel,path: String): DataModelStruct {
+-    if (let Some(v) <- (dm as DataModelStruct)) { return v }
+-    throw themeFailure("InvalidType","<memory>",path,"expected table")
+-}
+ func roleIndex(name: String): Int64 {
+     match (name) {
+         case "generic" => 0; case "text" => 1; case "row" => 2; case "column" => 3

@@ -1,0 +1,18 @@
+[31merror[0m: unable to infer generic argument of this function
+ [36m==>[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/string-key/src/main.cj:4:13:
+  [36m| [0m
+[36m4[0m [36m| [0m    let _ = StyleRule().withValue("foreground", StyleValue<Color>.Value(Color.Red))[0m
+  [36m| [0m            [31m^^^^^^^^^^^^^^^^^^^^^ [0m
+  [36m| [0m
+[34mnote[0m: for function type '(Class-StyleKey<Generics-T>, Enum-StyleValue<Generics-T>, Enum-VisualState) -> Struct-StyleRule' in context type 'Struct-StyleRule'
+ [36m==>[0m (package cjtui.style)style_rule.cj:6:17:
+[34mnote[0m: mismatched types
+ [36m==>[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/string-key/src/main.cj:4:35:
+  [36m| [0m
+[36m4[0m [36m| [0m    let _ = StyleRule().withValue("foreground", StyleValue<Color>.Value(Color.Red))[0m
+  [36m| [0m                                  [34m^^^^^^^^^^^^ of type 'Struct-String', impossible to match parameter type 'Class-StyleKey<Generics-T>'[0m
+  [36m| [0m
+
+1 error generated, 1 error printed.
+Error: failed to compile package `theme_negative`, return code is 1
+Error: cjpm build failed

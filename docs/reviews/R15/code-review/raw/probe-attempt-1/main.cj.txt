@@ -1,0 +1,36 @@
+package theme_review_probe
+import cjtui.*
+func diagnostic(label: String, input: String): Unit {
+    try { Theme.parse(input,sourceName:"review:"+label); println("DIAG ${label}: ACCEPTED") }
+    catch (e: ThemeException) { println("DIAG ${label}: ${e.diagnostic.code} | ${e.diagnostic.keyPath} | ${e.diagnostic.source}") }
+}
+main(): Int64 {
+    diagnostic("version-before-variables", "schema_version=2\nname=\"x\"\nvariables=1\n")
+    diagnostic("required-before-variables", "name=\"x\"\nvariables=1\n")
+    diagnostic("required-name-before-variables", "schema_version=1\nvariables=1\n")
+    diagnostic("variable-value-before-extra", "schema_version=1\nname=\"x\"\n[variables.v]\ntype=\"bool\"\nvalue=\"bad\"\nextra=true\n")
+    diagnostic("variable-extra-before-value-control", "schema_version=1\nname=\"x\"\n[variables.v]\ntype=\"bool\"\nextra=true\nvalue=\"bad\"\n")
+    diagnostic("version-only-control", "schema_version=2\nname=\"x\"\n")
+    let pad = Observable<Int64>(1)
+    let trigger = Observable<Bool>(false)
+    let c = Text("X").padding({=> pad.get()})
+    var caught = false
+    c.text({=>
+        if (trigger.get()) {
+            try { c.setStyle(StyleKeys.paddingLeft,StyleValue<Int64>.Value(9)) }
+            catch (e: UIException) { println("REENTRANT ${e.code}"); caught = true }
+        }
+        "X"
+    })
+    let app = Application(c)
+    app.startHeadless()
+    try {
+        println("FRAME initial\n"+app.snapshot(7,5).toPlainText())
+        trigger.set(true)
+        println("FRAME after-rejected-setter\n"+app.snapshot(7,5).toPlainText())
+        pad.set(2)
+        println("FRAME after-padding-update\n"+app.snapshot(7,5).toPlainText())
+        println("CAUGHT ${caught}")
+    } finally { app.dispose() }
+    0
+}

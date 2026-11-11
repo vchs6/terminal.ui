@@ -1,0 +1,522 @@
+{
+  "temporal_limit": "C1 product-input-hashes captured post-run; no retroactive pre-run identity proof",
+  "unchanged_product_files": [
+    "cjpm.toml",
+    "native/build.sh",
+    "native/cjtui_capabilities.c",
+    "native/cjtui_glyphs.c",
+    "native/cjtui_terminal.c",
+    "src/.gitkeep",
+    "src/ansi_encoding.cj",
+    "src/application.cj",
+    "src/binding.cj",
+    "src/binding_dependency.cj",
+    "src/border_glyphs.cj",
+    "src/cell.cj",
+    "src/change_kind.cj",
+    "src/child_declaration.cj",
+    "src/child_entry.cj",
+    "src/color_mapping.cj",
+    "src/component_collector.cj",
+    "src/conditional_declaration.cj",
+    "src/conditional_group.cj",
+    "src/dynamic_declaration.cj",
+    "src/dynamic_group.cj",
+    "src/exports.cj",
+    "src/foreach_declaration.cj",
+    "src/foreach_group.cj",
+    "src/frame.cj",
+    "src/geometry/rect.cj",
+    "src/glyph_render_policy.cj",
+    "src/input_decoder.cj",
+    "src/key_event.cj",
+    "src/layout.cj",
+    "src/layout_allocation.cj",
+    "src/layout_node.cj",
+    "src/list_item.cj",
+    "src/macros/bind_macro.cj",
+    "src/macros/component_macro.cj",
+    "src/macros/constructor_return_visitor.cj",
+    "src/macros/state_macro.cj",
+    "src/node_ref.cj",
+    "src/observable.cj",
+    "src/observable_source.cj",
+    "src/pending_node_change.cj",
+    "src/queued_action.cj",
+    "src/resolved_style.cj",
+    "src/rich_text_clusters.cj",
+    "src/runtime_limits.cj",
+    "src/runtime_node.cj",
+    "src/runtime_session.cj",
+    "src/runtime_stats.cj",
+    "src/session_basis.cj",
+    "src/session_capabilities.cj",
+    "src/session_capability.cj",
+    "src/session_device_exception.cj",
+    "src/session_encoding.cj",
+    "src/session_extension_state.cj",
+    "src/session_issue.cj",
+    "src/session_operation.cj",
+    "src/session_options.cj",
+    "src/session_policy.cj",
+    "src/session_result.cj",
+    "src/session_route.cj",
+    "src/session_status.cj",
+    "src/session_step_result.cj",
+    "src/session_support.cj",
+    "src/session_write_result.cj",
+    "src/structural_command.cj",
+    "src/style/alignment.cj",
+    "src/style/border_style.cj",
+    "src/style/color.cj",
+    "src/style/color_mode.cj",
+    "src/style/dimension.cj",
+    "src/style/glyph_mode.cj",
+    "src/style/style.cj",
+    "src/style/style_key.cj",
+    "src/style/style_keys.cj",
+    "src/style/style_rule.cj",
+    "src/style/style_rule_data.cj",
+    "src/style/style_use.cj",
+    "src/style/style_value.cj",
+    "src/style/text_overflow.cj",
+    "src/style/text_style_patch.cj",
+    "src/style/text_wrap.cj",
+    "src/style/visual_state.cj",
+    "src/style/visual_states.cj",
+    "src/terminal_bridge.cj",
+    "src/terminal_capabilities.cj",
+    "src/terminal_glyph_capabilities.cj",
+    "src/terminal_glyph_detection.cj",
+    "src/terminal_glyph_projection.cj",
+    "src/terminal_projected_row.cj",
+    "src/terminal_render_profile.cj",
+    "src/text/ansi_text.cj",
+    "src/text/ansi_text_batch.cj",
+    "src/text/ansi_text_decoder.cj",
+    "src/text/ansi_text_diagnostic.cj",
+    "src/text/ansi_text_exception.cj",
+    "src/text/ansi_text_issue.cj",
+    "src/text/ansi_text_limits.cj",
+    "src/text/ansi_text_output.cj",
+    "src/text/ansi_text_result.cj",
+    "src/text/rich_text.cj",
+    "src/text/text_span.cj",
+    "src/text/unicode.cj",
+    "src/text/validation.cj",
+    "src/text_validation.cj",
+    "src/theme/theme.cj",
+    "src/theme/theme_budget.cj",
+    "src/theme/theme_diagnostic.cj",
+    "src/theme/theme_exception.cj",
+    "src/theme/theme_literal.cj",
+    "src/theme/theme_location.cj",
+    "src/theme/theme_preset.cj",
+    "src/theme/theme_preset_text.cj",
+    "src/theme/theme_role.cj",
+    "src/title_restore_state.cj",
+    "src/ui_cleanup_exception.cj",
+    "src/ui_exception.cj",
+    "src/ui_key_event.cj",
+    "src/ui_thread_identity.cj",
+    "themes/classic.toml",
+    "themes/dark.toml",
+    "themes/high-contrast.toml",
+    "themes/light.toml"
+  ],
+  "changed_product_files": [
+    "src/component.cj",
+    "src/drawing_geometry.cj",
+    "src/style_resolver.cj",
+    "src/text/ansi_text_state.cj",
+    "src/theme/theme_decoder.cj",
+    "src/theme/theme_schema.cj",
+    "tests/themes/integration/cangjie-repo.toml",
+    "tests/themes/values/cangjie-repo.toml"
+  ],
+  "negative_records": [
+    {
+      "group": "themes-c1",
+      "name": "construct-key-default",
+      "exit": 1,
+      "command": {
+        "name": "negative-construct-key-default",
+        "utc": "2026-11-11T03:24:49.656497+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/construct-key-default",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-construct-key-default.stdout",
+        "stderr": "negative-construct-key-default.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-construct-key-default.stderr",
+      "stderr_sha256": "c22319917c2d3ea67cd2469f41e636622064e081d06cdc7d8417e30e968e2f37",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: no matching constructor for call 'StyleKey'\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/construct-key-default/src/main.cj:4:13:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = StyleKey<Color>()\u001b[0m\n  \u001b[36m| \u001b[0m            \u001b[31m^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: no matching constructor for call 'StyleKey'"
+    },
+    {
+      "group": "themes-c1",
+      "name": "construct-key-string",
+      "exit": 1,
+      "command": {
+        "name": "negative-construct-key-string",
+        "utc": "2026-11-11T03:25:37.954363+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/construct-key-string",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-construct-key-string.stdout",
+        "stderr": "negative-construct-key-string.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-construct-key-string.stderr",
+      "stderr_sha256": "0de0f7dd2b26cee8555c86a3a70e7025419a0fe9115d35924805001ad9af103d",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: no matching constructor for call 'StyleKey'\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/construct-key-string/src/main.cj:4:13:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = StyleKey<Color>(\"foreground\")\u001b[0m\n  \u001b[36m| \u001b[0m            \u001b[31m^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: no matching constructor for call 'StyleKey'"
+    },
+    {
+      "group": "themes-c1",
+      "name": "construct-theme",
+      "exit": 1,
+      "command": {
+        "name": "negative-construct-theme",
+        "utc": "2026-11-11T03:26:27.852983+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/construct-theme",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-construct-theme.stdout",
+        "stderr": "negative-construct-theme.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-construct-theme.stderr",
+      "stderr_sha256": "506a36a4cf1d9270046dec0e37d7b8c2d570c1ac6819c4e3514b77241e7b533f",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: no matching constructor for call 'Theme'\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/construct-theme/src/main.cj:4:13:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = Theme()\u001b[0m\n  \u001b[36m| \u001b[0m            \u001b[31m^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: no matching constructor for call 'Theme'"
+    },
+    {
+      "group": "themes-c1",
+      "name": "mutable-rule-table",
+      "exit": 1,
+      "command": {
+        "name": "negative-mutable-rule-table",
+        "utc": "2026-11-11T03:27:14.528391+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/mutable-rule-table",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-mutable-rule-table.stdout",
+        "stderr": "negative-mutable-rule-table.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-mutable-rule-table.stderr",
+      "stderr_sha256": "97db8618ee6a81a7669743ebea7fee0e9a65253547d5e78c3002ab69bd4925db",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: 'values' is not a member of struct 'StyleRule'\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/mutable-rule-table/src/main.cj:5:10:\n  \u001b[36m| \u001b[0m\n\u001b[36m5\u001b[0m \u001b[36m| \u001b[0m    rule.values[\"foreground\"] = Color.Red\u001b[0m\n  \u001b[36m| \u001b[0m         \u001b[31m^^^^^^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: 'values' is not a member of struct 'StyleRule'"
+    },
+    {
+      "group": "themes-c1",
+      "name": "mutable-theme-components",
+      "exit": 1,
+      "command": {
+        "name": "negative-mutable-theme-components",
+        "utc": "2026-11-11T03:28:03.599355+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/mutable-theme-components",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-mutable-theme-components.stdout",
+        "stderr": "negative-mutable-theme-components.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-mutable-theme-components.stderr",
+      "stderr_sha256": "a5171072dc04c2b53b4451732562602906e937ff746e1101ffba1129963ef7bf",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: 'components' is not a member of class 'Theme'\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/mutable-theme-components/src/main.cj:5:11:\n  \u001b[36m| \u001b[0m\n\u001b[36m5\u001b[0m \u001b[36m| \u001b[0m    value.components[ThemeRole.Text] = StyleRule()\u001b[0m\n  \u001b[36m| \u001b[0m          \u001b[31m^^^^^^^^^^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: 'components' is not a member of class 'Theme'"
+    },
+    {
+      "group": "themes-c1",
+      "name": "mutable-theme-table",
+      "exit": 1,
+      "command": {
+        "name": "negative-mutable-theme-table",
+        "utc": "2026-11-11T03:28:49.750671+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/mutable-theme-table",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-mutable-theme-table.stdout",
+        "stderr": "negative-mutable-theme-table.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-mutable-theme-table.stderr",
+      "stderr_sha256": "91710d91caab6ab6589c77f2561e3bdd1d5de9886d04b07615adf9068a679aa0",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: 'styles' is not a member of class 'Theme'\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/mutable-theme-table/src/main.cj:5:11:\n  \u001b[36m| \u001b[0m\n\u001b[36m5\u001b[0m \u001b[36m| \u001b[0m    value.styles[\"x\"] = StyleRule()\u001b[0m\n  \u001b[36m| \u001b[0m          \u001b[31m^^^^^^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: 'styles' is not a member of class 'Theme'"
+    },
+    {
+      "group": "themes-c1",
+      "name": "string-key",
+      "exit": 1,
+      "command": {
+        "name": "negative-string-key",
+        "utc": "2026-11-11T03:29:36.820715+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/string-key",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-string-key.stdout",
+        "stderr": "negative-string-key.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-string-key.stderr",
+      "stderr_sha256": "a904fee199d98738e44907d83bee8e81a06b28ac94cf0914ef341089322af213",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: unable to infer generic argument of this function\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/string-key/src/main.cj:4:13:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = StyleRule().withValue(\"foreground\", StyleValue<Color>.Value(Color.Red))\u001b[0m\n  \u001b[36m| \u001b[0m            \u001b[31m^^^^^^^^^^^^^^^^^^^^^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: for function type '(Class-StyleKey<Generics-T>, Enum-StyleValue<Generics-T>, Enum-VisualState) -> Struct-StyleRule' in context type 'Struct-StyleRule'\n \u001b[36m==>\u001b[0m (package cjtui.style)style_rule.cj:6:17:\n\u001b[34mnote\u001b[0m: mismatched types\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/string-key/src/main.cj:4:35:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = StyleRule().withValue(\"foreground\", StyleValue<Color>.Value(Color.Red))\u001b[0m\n  \u001b[36m| \u001b[0m                                  \u001b[34m^^^^^^^^^^^^ of type 'Struct-String', impossible to match parameter type 'Class-StyleKey<Generics-T>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: unable to infer generic argument of this function"
+    },
+    {
+      "group": "themes-c1",
+      "name": "write-key-name",
+      "exit": 1,
+      "command": {
+        "name": "negative-write-key-name",
+        "utc": "2026-11-11T03:30:24.378271+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/write-key-name",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-write-key-name.stdout",
+        "stderr": "negative-write-key-name.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-write-key-name.stderr",
+      "stderr_sha256": "ee9b7bbc93ea5f3f12f351638ad516b719ca895e03a3507b385c29093f98f3c7",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: cannot assign to immutable value\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/write-key-name/src/main.cj:3:16:\n  \u001b[36m| \u001b[0m\n\u001b[36m3\u001b[0m \u001b[36m| \u001b[0mmain():Int64 { StyleKeys.foreground.name=\"forged\";0 }\u001b[0m\n  \u001b[36m| \u001b[0m               \u001b[31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: variable 'name' is immutable\n \u001b[36m==>\u001b[0m (package cjtui.style)style_key.cj:3:16:\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: cannot assign to immutable value"
+    },
+    {
+      "group": "themes-c1",
+      "name": "write-theme-name",
+      "exit": 1,
+      "command": {
+        "name": "negative-write-theme-name",
+        "utc": "2026-11-11T03:31:08.141135+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/write-theme-name",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-write-theme-name.stdout",
+        "stderr": "negative-write-theme-name.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-write-theme-name.stderr",
+      "stderr_sha256": "1befaa31efdd61e41deeedfe734df36b973a93170a161cbf4565e73a5b9aa2c7",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: cannot assign to immutable value\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/write-theme-name/src/main.cj:5:5:\n  \u001b[36m| \u001b[0m\n\u001b[36m5\u001b[0m \u001b[36m| \u001b[0m    value.name = \"mutated\"\u001b[0m\n  \u001b[36m| \u001b[0m    \u001b[31m^^^^^^^^^^^^^^^^^^^^^^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: variable 'name' is immutable\n  \u001b[36m==>\u001b[0m (package cjtui.theme)theme.cj:11:16:\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: cannot assign to immutable value"
+    },
+    {
+      "group": "themes-c1",
+      "name": "write-theme-source",
+      "exit": 1,
+      "command": {
+        "name": "negative-write-theme-source",
+        "utc": "2026-11-11T03:31:56.366034+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/write-theme-source",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-write-theme-source.stdout",
+        "stderr": "negative-write-theme-source.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-write-theme-source.stderr",
+      "stderr_sha256": "b8e4fd2359090827e273309ea5188c4b8e1a0810c87d114627f8783c37cb8c27",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: cannot assign to immutable value\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/write-theme-source/src/main.cj:5:5:\n  \u001b[36m| \u001b[0m\n\u001b[36m5\u001b[0m \u001b[36m| \u001b[0m    value.sourcePath = Some(\"other\")\u001b[0m\n  \u001b[36m| \u001b[0m    \u001b[31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: variable 'sourcePath' is immutable\n  \u001b[36m==>\u001b[0m (package cjtui.theme)theme.cj:13:16:\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: cannot assign to immutable value"
+    },
+    {
+      "group": "themes-c1",
+      "name": "write-theme-version",
+      "exit": 1,
+      "command": {
+        "name": "negative-write-theme-version",
+        "utc": "2026-11-11T03:32:45.674400+00:00",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/write-theme-version",
+        "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+        "exit": 1,
+        "stdout": "negative-write-theme-version.stdout",
+        "stderr": "negative-write-theme-version.stderr"
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1/negative-write-theme-version.stderr",
+      "stderr_sha256": "738b521f02e4d2c567cc174855b8276ee1cb316ce7ac4b261d30be4a22c43c61",
+      "diagnostic_tail": "\u001b[31merror\u001b[0m: cannot assign to immutable value\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/write-theme-version/src/main.cj:5:5:\n  \u001b[36m| \u001b[0m\n\u001b[36m5\u001b[0m \u001b[36m| \u001b[0m    value.schemaVersion = 2\u001b[0m\n  \u001b[36m| \u001b[0m    \u001b[31m^^^^^^^^^^^^^^^^^^^^^^^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: variable 'schemaVersion' is immutable\n  \u001b[36m==>\u001b[0m (package cjtui.theme)theme.cj:12:16:\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: cannot assign to immutable value"
+    },
+    {
+      "group": "themes-c1-resumed",
+      "name": "wrong-component-color-bool",
+      "exit": 1,
+      "command": {
+        "name": "wrong-component-color-bool",
+        "utc": "2026-11-11T03:36:53.324214+00:00",
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-component-color-bool",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "exit": 1,
+        "hashes": {
+          "/workspace/work/theme-implementation/source/tests/themes/negative/wrong-component-color-bool.cj.txt": "dcd66fe717b95a1bf8dec020576922fa6b096998a6bf74368caa5c31cabe7941",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-component-color-bool/src/main.cj": "dcd66fe717b95a1bf8dec020576922fa6b096998a6bf74368caa5c31cabe7941",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-component-color-bool/cjpm.toml": "c3f6adf1890e94902da883d72b8396ebe380b41938ff5c10a6b779ce6dfbd27f",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-component-color-bool/cangjie-repo.toml": "d82a89074ff4a19d19c7538771af150aec25028e7b5ee4d32260a9340a46bc51"
+        }
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1-resumed/wrong-component-color-bool.stderr",
+      "stderr_sha256": "38157d978eeb5c45b39e954f028517a838a919ad37fb14186ac6fd213fb560e2",
+      "diagnostic_tail": "-Color' may come from:\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-component-color-bool/src/main.cj:4:32:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = Text(\"x\").setStyle(StyleKeys.foreground, StyleValue<Bool>.Value(true))\u001b[0m\n  \u001b[36m| \u001b[0m                               \u001b[34m^^^^^^^^^^^^^^^^^^^^ of type 'Class-StyleKey<Enum-Color>', should match parameter type 'Class-StyleKey<Generics-T>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\n\u001b[31merror\u001b[0m: no matching function declaration for function call 'setStyle'\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-component-color-bool/src/main.cj:4:23:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = Text(\"x\").setStyle(StyleKeys.foreground, StyleValue<Bool>.Value(true))\u001b[0m\n  \u001b[36m| \u001b[0m                      \u001b[31m^ \u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: found function member of 'Class-Component'\n  \u001b[36m==>\u001b[0m (package cjtui)component.cj:84:17:\n\u001b[34mnote\u001b[0m: found function member of 'Class-Component'\n  \u001b[36m==>\u001b[0m (package cjtui)component.cj:94:17:\n\n2 errors generated, 2 errors printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: unable to infer generic argument of this function"
+    },
+    {
+      "group": "themes-c1-resumed",
+      "name": "wrong-getter-color-bool",
+      "exit": 1,
+      "command": {
+        "name": "wrong-getter-color-bool",
+        "utc": "2026-11-11T03:37:48.829698+00:00",
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-getter-color-bool",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "exit": 1,
+        "hashes": {
+          "/workspace/work/theme-implementation/source/tests/themes/negative/wrong-getter-color-bool.cj.txt": "e42ebac8de038708eddd9d11754ea1aae0e3ce012540ef5b165237f7ccbb50f4",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-getter-color-bool/src/main.cj": "e42ebac8de038708eddd9d11754ea1aae0e3ce012540ef5b165237f7ccbb50f4",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-getter-color-bool/cjpm.toml": "c3f6adf1890e94902da883d72b8396ebe380b41938ff5c10a6b779ce6dfbd27f",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-getter-color-bool/cangjie-repo.toml": "d82a89074ff4a19d19c7538771af150aec25028e7b5ee4d32260a9340a46bc51"
+        }
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1-resumed/wrong-getter-color-bool.stderr",
+      "stderr_sha256": "2aa98d8ef16e8578474df8cb67a7a20713600ed3c41d33326d52f4d823c77924",
+      "diagnostic_tail": "tui)component.cj:94:26:\n\u001b[34mnote\u001b[0m: constraint 'Bool <: Generics-T' may come from:\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-getter-color-bool/src/main.cj:4:54:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = Text(\"x\").setStyle(StyleKeys.foreground, {=>StyleValue<Bool>.Value(true)})\u001b[0m\n  \u001b[36m| \u001b[0m                                                     \u001b[34m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ of type '() -> Enum-StyleValue<Bool>', should match parameter type '() -> Enum-StyleValue<Generics-T>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: constraint 'Generics-T <: Enum-Color' may come from:\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-getter-color-bool/src/main.cj:4:32:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = Text(\"x\").setStyle(StyleKeys.foreground, {=>StyleValue<Bool>.Value(true)})\u001b[0m\n  \u001b[36m| \u001b[0m                               \u001b[34m^^^^^^^^^^^^^^^^^^^^ of type 'Class-StyleKey<Enum-Color>', should match parameter type 'Class-StyleKey<Generics-T>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: unable to infer generic argument of this function"
+    },
+    {
+      "group": "themes-c1-resumed",
+      "name": "wrong-query-result",
+      "exit": 1,
+      "command": {
+        "name": "wrong-query-result",
+        "utc": "2026-11-11T03:38:40.429883+00:00",
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-query-result",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "exit": 1,
+        "hashes": {
+          "/workspace/work/theme-implementation/source/tests/themes/negative/wrong-query-result.cj.txt": "96bd140cdef39c7bf52346e4d3d40b8f73351086b22d38507493f9de319a5539",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-query-result/src/main.cj": "96bd140cdef39c7bf52346e4d3d40b8f73351086b22d38507493f9de319a5539",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-query-result/cjpm.toml": "c3f6adf1890e94902da883d72b8396ebe380b41938ff5c10a6b779ce6dfbd27f",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-query-result/cangjie-repo.toml": "d82a89074ff4a19d19c7538771af150aec25028e7b5ee4d32260a9340a46bc51"
+        }
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1-resumed/wrong-query-result.stderr",
+      "stderr_sha256": "a10dab523b1af6d9b80b3e52b32738cec37e5deb652018e1a65da5ae44c6c532",
+      "diagnostic_tail": "yle)style_rule.cj:12:23:\n\u001b[34mnote\u001b[0m: constraint 'Enum-Color <: Generics-T' may come from:\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-query-result/src/main.cj:3:59:\n  \u001b[36m| \u001b[0m\n\u001b[36m3\u001b[0m \u001b[36m| \u001b[0mmain():Int64 { let _:StyleValue<Bool> = StyleRule().value(StyleKeys.foreground);0 }\u001b[0m\n  \u001b[36m| \u001b[0m                                                          \u001b[34m^^^^^^^^^^^^^^^^^^^^ of type 'Class-StyleKey<Enum-Color>', should match parameter type 'Class-StyleKey<Generics-T>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: constraint 'Generics-T <: Bool' may come from:\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-query-result/src/main.cj:3:41:\n  \u001b[36m| \u001b[0m\n\u001b[36m3\u001b[0m \u001b[36m| \u001b[0mmain():Int64 { let _:StyleValue<Bool> = StyleRule().value(StyleKeys.foreground);0 }\u001b[0m\n  \u001b[36m| \u001b[0m                                        \u001b[34m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ of return type 'Enum-StyleValue<Generics-T>', should match expected type 'Enum-StyleValue<Bool>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: unable to infer generic argument of this function"
+    },
+    {
+      "group": "themes-c1-resumed",
+      "name": "wrong-rule-cells-color",
+      "exit": 1,
+      "command": {
+        "name": "wrong-rule-cells-color",
+        "utc": "2026-11-11T03:39:31.182011+00:00",
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-cells-color",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "exit": 1,
+        "hashes": {
+          "/workspace/work/theme-implementation/source/tests/themes/negative/wrong-rule-cells-color.cj.txt": "abb2aac1bbd93dfa4aab823488103a94b69b9fb55f7958e12a299cbd474cd9cc",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-cells-color/src/main.cj": "abb2aac1bbd93dfa4aab823488103a94b69b9fb55f7958e12a299cbd474cd9cc",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-cells-color/cjpm.toml": "c3f6adf1890e94902da883d72b8396ebe380b41938ff5c10a6b779ce6dfbd27f",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-cells-color/cangjie-repo.toml": "d82a89074ff4a19d19c7538771af150aec25028e7b5ee4d32260a9340a46bc51"
+        }
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1-resumed/wrong-rule-cells-color.stderr",
+      "stderr_sha256": "d6e3c248ec54ac6a299089d425d61c7ab40ee6e65846cbed3a097f1673d62708",
+      "diagnostic_tail": "rule.cj:6:27:\n\u001b[34mnote\u001b[0m: constraint 'Enum-Color <: Generics-T' may come from:\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-cells-color/src/main.cj:4:58:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = StyleRule().withValue(StyleKeys.paddingLeft, StyleValue<Color>.Value(Color.Red))\u001b[0m\n  \u001b[36m| \u001b[0m                                                         \u001b[34m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ of type 'Enum-StyleValue<Enum-Color>', should match parameter type 'Enum-StyleValue<Generics-T>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: constraint 'Generics-T <: Int64' may come from:\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-cells-color/src/main.cj:4:35:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = StyleRule().withValue(StyleKeys.paddingLeft, StyleValue<Color>.Value(Color.Red))\u001b[0m\n  \u001b[36m| \u001b[0m                                  \u001b[34m^^^^^^^^^^^^^^^^^^^^^ of type 'Class-StyleKey<Int64>', should match parameter type 'Class-StyleKey<Generics-T>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: unable to infer generic argument of this function"
+    },
+    {
+      "group": "themes-c1-resumed",
+      "name": "wrong-rule-color-bool",
+      "exit": 1,
+      "command": {
+        "name": "wrong-rule-color-bool",
+        "utc": "2026-11-11T03:40:18.236078+00:00",
+        "cwd": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-color-bool",
+        "command": [
+          "cjpm",
+          "build"
+        ],
+        "exit": 1,
+        "hashes": {
+          "/workspace/work/theme-implementation/source/tests/themes/negative/wrong-rule-color-bool.cj.txt": "283f6f4a086f124577484d1081e305dab7b8efd9fa79f5dd5611410e45f4aaf9",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-color-bool/src/main.cj": "283f6f4a086f124577484d1081e305dab7b8efd9fa79f5dd5611410e45f4aaf9",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-color-bool/cjpm.toml": "c3f6adf1890e94902da883d72b8396ebe380b41938ff5c10a6b779ce6dfbd27f",
+          "/workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-color-bool/cangjie-repo.toml": "d82a89074ff4a19d19c7538771af150aec25028e7b5ee4d32260a9340a46bc51"
+        }
+      },
+      "fixture_matches": true,
+      "stderr": "/workspace/work/theme-implementation/themes-c1-resumed/wrong-rule-color-bool.stderr",
+      "stderr_sha256": "75e021b14bb1fccb9fceae8c95495bb56d7767973d6f171e268b13510d75b104",
+      "diagnostic_tail": "package cjtui.style)style_rule.cj:6:27:\n\u001b[34mnote\u001b[0m: constraint 'Bool <: Generics-T' may come from:\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-color-bool/src/main.cj:4:57:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = StyleRule().withValue(StyleKeys.foreground, StyleValue<Bool>.Value(true))\u001b[0m\n  \u001b[36m| \u001b[0m                                                        \u001b[34m^^^^^^^^^^^^^^^^^^^^^^^^^^^^ of type 'Enum-StyleValue<Bool>', should match parameter type 'Enum-StyleValue<Generics-T>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\u001b[34mnote\u001b[0m: constraint 'Generics-T <: Enum-Color' may come from:\n \u001b[36m==>\u001b[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-rule-color-bool/src/main.cj:4:35:\n  \u001b[36m| \u001b[0m\n\u001b[36m4\u001b[0m \u001b[36m| \u001b[0m    let _ = StyleRule().withValue(StyleKeys.foreground, StyleValue<Bool>.Value(true))\u001b[0m\n  \u001b[36m| \u001b[0m                                  \u001b[34m^^^^^^^^^^^^^^^^^^^^ of type 'Class-StyleKey<Enum-Color>', should match parameter type 'Class-StyleKey<Generics-T>'\u001b[0m\n  \u001b[36m| \u001b[0m\n\n1 error generated, 1 error printed.\nError: failed to compile package `theme_negative`, return code is 1\nError: cjpm build failed\n",
+      "first_diagnostic": "error: unable to infer generic argument of this function"
+    }
+  ]
+}

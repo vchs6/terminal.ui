@@ -1,0 +1,52 @@
+[31merror[0m: undeclared type name 'ThemeRequest'
+ [36m==>[0m /workspace/work/theme-load-actual/source/tests/theme-loading/api-probe/src/main.cj:7:17:
+  [36m| [0m
+[36m7[0m [36m| [0m    let request:ThemeRequest=app.loadTheme(ThemeSource.Prepared(Theme.parse("schema_version=1\nname=\"Probe\"\n")))[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'ThemeRequest'
+ [36m==>[0m /workspace/work/theme-load-actual/source/tests/theme-loading/api-probe/src/main.cj:8:16:
+  [36m| [0m
+[36m8[0m [36m| [0m    let reload:ThemeRequest=app.reloadTheme()[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'ThemeInfo'
+ [36m==>[0m /workspace/work/theme-load-actual/source/tests/theme-loading/api-probe/src/main.cj:9:14:
+  [36m| [0m
+[36m9[0m [36m| [0m    let info:ThemeInfo=app.themeInfo()[0m
+  [36m| [0m             [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'ThemeResult'
+  [36m==>[0m /workspace/work/theme-load-actual/source/tests/theme-loading/api-probe/src/main.cj:10:17:
+   [36m| [0m
+[36m10[0m [36m| [0m    let result:?ThemeResult=request.result()[0m
+   [36m| [0m                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'loadTheme' is not a member of class 'Application'
+ [36m==>[0m /workspace/work/theme-load-actual/source/tests/theme-loading/api-probe/src/main.cj:7:34:
+  [36m| [0m
+[36m7[0m [36m| [0m    let request:ThemeRequest=app.loadTheme(ThemeSource.Prepared(Theme.parse("schema_version=1\nname=\"Probe\"\n")))[0m
+  [36m| [0m                                 [31m^^^^^^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: 'reloadTheme' is not a member of class 'Application'
+ [36m==>[0m /workspace/work/theme-load-actual/source/tests/theme-loading/api-probe/src/main.cj:8:33:
+  [36m| [0m
+[36m8[0m [36m| [0m    let reload:ThemeRequest=app.reloadTheme()[0m
+  [36m| [0m                                [31m^^^^^^^^^^^ [0m
+  [36m| [0m
+
+[31merror[0m: 'themeInfo' is not a member of class 'Application'
+ [36m==>[0m /workspace/work/theme-load-actual/source/tests/theme-loading/api-probe/src/main.cj:9:28:
+  [36m| [0m
+[36m9[0m [36m| [0m    let info:ThemeInfo=app.themeInfo()[0m
+  [36m| [0m                           [31m^^^^^^^^^ [0m
+  [36m| [0m
+
+7 errors generated, 7 errors printed.
+Error: failed to compile package `theme_loading_api_probe`, return code is 1
+Error: cjpm build failed

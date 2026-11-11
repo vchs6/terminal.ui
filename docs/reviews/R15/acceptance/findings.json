@@ -1,0 +1,49 @@
+{
+  "task": "TASK088",
+  "utc": "2026-11-11T05:03:40.852644+00:00",
+  "product": "8d75233c664fd61be08d441f74d464cbcdff2d9c",
+  "phase": "final_independent_acceptance",
+  "verdict": "PASS_FOUNDATION_SCOPE",
+  "assessment_complete": true,
+  "task088_ready": true,
+  "current_mustpass_product_findings": [],
+  "current_scope_quality": {
+    "critical": 0,
+    "important": 0,
+    "minor": 0
+  },
+  "open_outside_foundation": [
+    {
+      "id": "T087-G01",
+      "status": "OPEN",
+      "scope": "TASK023 final integration/release gate",
+      "actual_exit": 1,
+      "observed": "Development/unexpected file in bundle: themes/light.toml",
+      "also_missing": [
+        "examples/composition/cjpm.toml",
+        "benchmarks/rendering/cjpm.toml"
+      ],
+      "independent_disposition": "T010 requires themes; currentT012/AC087 normal bundle + clean SDK/stdx consumption proven. complete-linux023.a–d explicitly owns checker negative controls and final required deliverables. No release PASS."
+    }
+  ],
+  "metadata_observations": [
+    {
+      "id": "T088-O01",
+      "kind": "scope-qualified reuse",
+      "text": "16 C1 compile-negatives retained with post-run source/uncaptured pre-run compiler limitation. Actual errors + exact fixtures + unchanged relevant public declarations + final new positive controls support this limited compile contract, not new8d execution."
+    },
+    {
+      "id": "T088-O02",
+      "kind": "external-lock-byte-order-drift",
+      "text": "Early lock d39e3d166dde08c5412838a6ff34fdfa931e0c40fb566e7fac670a9cb0086ee9 differs from final/current a29edd7f2ac024e90fc03c1e314ef0f054c9b1c2e7021176cc425d6a8ee3e6cf. Unique matching permutation of same five exact dependency records proves order-only difference; original metadata not rewritten, no historical pre-run proof inferred."
+    }
+  ],
+  "limitations": [
+    "Async026/089 and full027 controls/showcase excluded.",
+    "FullLinux/M2/TASK023 release/other platforms pending.",
+    "Synthetic ioctl maps are controlled branches; no current Theme kernel VT execution claimed.",
+    "39 R16 PNGs reused only unchanged backend/font/kernel facts.",
+    "VTE native observer is viewport text, not full cell style metadata; explicit Unicode ZWJ may shape differently.",
+    "Actual serving model/effort independently unverified."
+  ]
+}

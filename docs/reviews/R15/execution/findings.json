@@ -1,0 +1,6 @@
+{
+  "product": "8d75233c664fd61be08d441f74d464cbcdff2d9c",
+  "current_foundation_mustpass_product_failures": [],
+  "findings": [{"id":"T087-G01","classification":"final TASK023 integration-tool/release gap","status":"OPEN","actual_exit":1,"trigger":"node scripts/check-bundle.mjs target/cjtui-0.0.0.cjp","observed":"Development/unexpected file in bundle: themes/light.toml","contract":"T010 requires delivery of the four canonical theme files","also_absent":["examples/composition/cjpm.toml","benchmarks/rendering/cjpm.toml"],"evidence":"raw/whole-bundle-check/; raw/package/member-inventory.json","action":"Root tracks at final TASK023 gate; no execution-role product/test/checker patch"}],
+  "evidence_limits": ["C1 reused negative product identity captured post-run; no retroactive pre-run proof","Controlled device fontmaps synthetic","Basic four-theme and Glyph GUI scenes do not close027/fullLinux/M2/088","Async026/089 not assessed here"]
+}

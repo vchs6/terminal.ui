@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+    "-geometry",
+    "80x25+20+20",
+    "-T",
+    "TASK087 xterm HighContrast",
+    "-fa",
+    "DejaVu Sans Mono",
+    "-fs",
+    "12",
+    "-xrm",
+    "XTerm*printerCommand: /bin/cat >> /workspace/work/theme-execution/raw/gui/xterm-HighContrast/native-grid.ansi",
+    "-xrm",
+    "XTerm*printAttributes: 2",
+    "-xrm",
+    "XTerm*VT100.translations: #override <Key>F6: print()",
+    "-e",
+    "python3",
+    "/workspace/work/theme-execution/tools/record-host.py",
+    "/workspace/work/theme-execution/observation/target/release/bin/main",
+    "/workspace/work/theme-execution/raw/gui/xterm-HighContrast"
+  ],
+  "env": {
+    "DISPLAY": ":187",
+    "HOME": "/workspace/work/theme-execution/raw/gui/xterm-HighContrast/home",
+    "XDG_CONFIG_HOME": "/workspace/work/theme-execution/raw/gui/xterm-HighContrast/home/config",
+    "XDG_CACHE_HOME": "/workspace/work/theme-execution/raw/gui/xterm-HighContrast/home/cache",
+    "LC_ALL": "C.UTF-8",
+    "TASK087_PRESET": "HighContrast"
+  },
+  "utc": "2026-11-11T04:39:16.910248+00:00",
+  "binarySha256": "5a6f7906c38d9592ac0ca10f76cfbe15cff297480ab1aad2aa074315476b0ba0"
+}

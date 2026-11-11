@@ -1,0 +1,26 @@
+[31merror[0m: unable to infer generic argument of this function
+ [36m==>[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-query-result/src/main.cj:3:41:
+  [36m| [0m
+[36m3[0m [36m| [0mmain():Int64 { let _:StyleValue<Bool> = StyleRule().value(StyleKeys.foreground);0 }[0m
+  [36m| [0m                                        [31m^^^^^^^^^^^^^^^^^ [0m
+  [36m| [0m
+[34mnote[0m: following constraints for type variable 'Generics-T' cannot be solved:
+      'Enum-Color <: Generics-T'
+      'Generics-T <: Bool'
+  [36m==>[0m (package cjtui.style)style_rule.cj:12:23:
+[34mnote[0m: constraint 'Enum-Color <: Generics-T' may come from:
+ [36m==>[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-query-result/src/main.cj:3:59:
+  [36m| [0m
+[36m3[0m [36m| [0mmain():Int64 { let _:StyleValue<Bool> = StyleRule().value(StyleKeys.foreground);0 }[0m
+  [36m| [0m                                                          [34m^^^^^^^^^^^^^^^^^^^^ of type 'Class-StyleKey<Enum-Color>', should match parameter type 'Class-StyleKey<Generics-T>'[0m
+  [36m| [0m
+[34mnote[0m: constraint 'Generics-T <: Bool' may come from:
+ [36m==>[0m /workspace/work/theme-implementation/source/tests/themes/.negative-run/wrong-query-result/src/main.cj:3:41:
+  [36m| [0m
+[36m3[0m [36m| [0mmain():Int64 { let _:StyleValue<Bool> = StyleRule().value(StyleKeys.foreground);0 }[0m
+  [36m| [0m                                        [34m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ of return type 'Enum-StyleValue<Generics-T>', should match expected type 'Enum-StyleValue<Bool>'[0m
+  [36m| [0m
+
+1 error generated, 1 error printed.
+Error: failed to compile package `theme_negative`, return code is 1
+Error: cjpm build failed

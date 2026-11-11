@@ -1,0 +1,348 @@
+{
+  "utc": "2026-11-11T04:56:36.472069+00:00",
+  "details": {
+    "archive": {
+      "original_copies": 563,
+      "index_entries": 564,
+      "actual_files": 565,
+      "strict_json": 168,
+      "manifest_sha256": "4370276add7bbbf5ff55284d45532b48ae49f39c463b4d213edeb0eed020c011",
+      "index_sha256": "8ed59a898f2e9703e6c0a7e97b7ecc2e31f2ac4c6e605dc636d6b6357dea7961"
+    },
+    "commands": [
+      {
+        "name": "clean-integration-build",
+        "exit": 0,
+        "utc": "2026-11-11T04:46:43.625763+00:00",
+        "argv": [
+          "cjpm",
+          "build"
+        ]
+      },
+      {
+        "name": "clean-integration-run",
+        "exit": 0,
+        "utc": "2026-11-11T04:47:32.932309+00:00",
+        "argv": [
+          "/workspace/work/theme-execution/clean-consumer/tests/themes/integration/target/release/bin/main"
+        ]
+      },
+      {
+        "name": "clean-library-build",
+        "exit": 0,
+        "utc": "2026-11-11T04:45:20.477358+00:00",
+        "argv": [
+          "cjpm",
+          "build"
+        ]
+      },
+      {
+        "name": "final-bundle",
+        "exit": 0,
+        "utc": "2026-11-11T04:43:50.072064+00:00",
+        "argv": [
+          "cjpm",
+          "bundle"
+        ]
+      },
+      {
+        "name": "foundation-integration",
+        "exit": 0,
+        "utc": "2026-11-11T04:37:59.270523+00:00",
+        "argv": [
+          "./tests/themes/run.sh",
+          "integration",
+          "--logs",
+          "/workspace/work/theme-execution/raw/foundation-integration/detail"
+        ]
+      },
+      {
+        "name": "foundation-values",
+        "exit": 0,
+        "utc": "2026-11-11T04:37:08.065600+00:00",
+        "argv": [
+          "./tests/themes/run.sh",
+          "values",
+          "--logs",
+          "/workspace/work/theme-execution/raw/foundation-values/detail"
+        ]
+      },
+      {
+        "name": "glyph-all",
+        "exit": 0,
+        "utc": "2026-11-11T04:38:58.264983+00:00",
+        "argv": [
+          "node",
+          "tests/themes/run-glyph-refresh.mjs",
+          "all",
+          "/workspace/work/theme-execution/raw/glyph-all/detail"
+        ]
+      },
+      {
+        "name": "gui-collection",
+        "exit": 0,
+        "utc": "2026-11-11T04:39:14.310617+00:00",
+        "argv": [
+          "python3",
+          "tools/gui.py"
+        ]
+      },
+      {
+        "name": "gui-glyph-collection",
+        "exit": 0,
+        "utc": "2026-11-11T04:42:49.670232+00:00",
+        "argv": [
+          "python3",
+          "tools/gui-glyph.py"
+        ]
+      },
+      {
+        "name": "gui-native-module",
+        "exit": 0,
+        "utc": "2026-11-11T04:39:14.195380+00:00",
+        "argv": [
+          "gcc",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Wno-misleading-indentation",
+          "-fPIC",
+          "-shared",
+          "vte-native-module.c",
+          "-o",
+          "vte-native-module.so",
+          "-ldl"
+        ]
+      },
+      {
+        "name": "observation-build",
+        "exit": 0,
+        "utc": "2026-11-11T04:38:05.935017+00:00",
+        "argv": [
+          "cjpm",
+          "build"
+        ]
+      },
+      {
+        "name": "observation-glyph-build",
+        "exit": 0,
+        "utc": "2026-11-11T04:41:54.679566+00:00",
+        "argv": [
+          "cjpm",
+          "build"
+        ]
+      },
+      {
+        "name": "package-bytecheck",
+        "exit": 0,
+        "utc": "2026-11-11T04:44:58.690669+00:00",
+        "argv": [
+          "python3",
+          "tools/package-check.py"
+        ]
+      },
+      {
+        "name": "root-build",
+        "exit": 0,
+        "utc": "2026-11-11T04:35:15.799974+00:00",
+        "argv": [
+          "cjpm",
+          "build"
+        ]
+      },
+      {
+        "name": "tool-versions",
+        "exit": 0,
+        "utc": "2026-11-11T04:45:54.860603+00:00",
+        "argv": [
+          "bash",
+          "-c",
+          "cjc --version; cjpm --version; node --version; gcc --version; uname -sm"
+        ]
+      },
+      {
+        "name": "whole-bundle-check",
+        "exit": 1,
+        "utc": "2026-11-11T04:44:59.159336+00:00",
+        "argv": [
+          "node",
+          "scripts/check-bundle.mjs",
+          "target/cjtui-0.0.0.cjp"
+        ]
+      }
+    ],
+    "foundation-values_extra_build_cache_records": 0,
+    "foundation-integration_extra_build_cache_records": 4,
+    "external_metadata_drift": {
+      "path": "/workspace/work/theme-execution/product/cjpm.lock",
+      "early_hash": "d39e3d166dde08c5412838a6ff34fdfa931e0c40fb566e7fac670a9cb0086ee9",
+      "final_current_hash": "a29edd7f2ac024e90fc03c1e314ef0f054c9b1c2e7021176cc425d6a8ee3e6cf",
+      "semantic_identity": "Unique SHA match among120 permutations of the same five exact version records",
+      "limitation": "Reconstructed order-equivalence proof; not an original historical lock snapshot or retroactive pre-run proof."
+    },
+    "dependency_files": 375,
+    "environment_files": 25,
+    "package": {
+      "sha256": "29ce7c64d16425c2a0f8350cb72d852a3e2a858fd423379bc0aad9fccd108fad",
+      "members": 175,
+      "all_git_clean_bytes_equal": true,
+      "absent_future": [
+        "examples/composition/cjpm.toml",
+        "benchmarks/rendering/cjpm.toml"
+      ]
+    },
+    "lint_warnings": 491,
+    "omitted_artifacts_checked": 1643,
+    "negatives": [
+      {
+        "name": "construct-key-default",
+        "diagnostic": "error: no matching constructor for call 'StyleKey'",
+        "exit": 1
+      },
+      {
+        "name": "construct-key-string",
+        "diagnostic": "error: no matching constructor for call 'StyleKey'",
+        "exit": 1
+      },
+      {
+        "name": "construct-theme",
+        "diagnostic": "error: no matching constructor for call 'Theme'",
+        "exit": 1
+      },
+      {
+        "name": "mutable-rule-table",
+        "diagnostic": "error: 'values' is not a member of struct 'StyleRule'",
+        "exit": 1
+      },
+      {
+        "name": "mutable-theme-components",
+        "diagnostic": "error: 'components' is not a member of class 'Theme'",
+        "exit": 1
+      },
+      {
+        "name": "mutable-theme-table",
+        "diagnostic": "error: 'styles' is not a member of class 'Theme'",
+        "exit": 1
+      },
+      {
+        "name": "string-key",
+        "diagnostic": "error: unable to infer generic argument of this function",
+        "exit": 1
+      },
+      {
+        "name": "write-key-name",
+        "diagnostic": "error: cannot assign to immutable value",
+        "exit": 1
+      },
+      {
+        "name": "write-theme-name",
+        "diagnostic": "error: cannot assign to immutable value",
+        "exit": 1
+      },
+      {
+        "name": "write-theme-source",
+        "diagnostic": "error: cannot assign to immutable value",
+        "exit": 1
+      },
+      {
+        "name": "write-theme-version",
+        "diagnostic": "error: cannot assign to immutable value",
+        "exit": 1
+      },
+      {
+        "name": "wrong-component-color-bool",
+        "diagnostic": "error: unable to infer generic argument of this function",
+        "exit": 1
+      },
+      {
+        "name": "wrong-getter-color-bool",
+        "diagnostic": "error: unable to infer generic argument of this function",
+        "exit": 1
+      },
+      {
+        "name": "wrong-query-result",
+        "diagnostic": "error: unable to infer generic argument of this function",
+        "exit": 1
+      },
+      {
+        "name": "wrong-rule-cells-color",
+        "diagnostic": "error: unable to infer generic argument of this function",
+        "exit": 1
+      },
+      {
+        "name": "wrong-rule-color-bool",
+        "diagnostic": "error: unable to infer generic argument of this function",
+        "exit": 1
+      }
+    ],
+    "negative_reuse_limit": "C1 product-input-hashes captured post-run; no retroactive pre-run identity proof",
+    "regressions": {
+      "pre_source_entries": 201,
+      "current_differences": [
+        "src/theme/theme_decoder.cj"
+      ],
+      "commands": [
+        {
+          "name": "contract",
+          "utc": "2026-11-11T04:24:48.549604+00:00",
+          "cwd": "/workspace/work/theme-implementation/source",
+          "argv": [
+            "bash",
+            "-c",
+            "source /workspace/work/theme-glyph-tests/env.sh && exec ./tests/run-slice.sh contract"
+          ],
+          "exit": 0
+        },
+        {
+          "name": "layout",
+          "utc": "2026-11-11T04:25:35.365476+00:00",
+          "cwd": "/workspace/work/theme-implementation/source",
+          "argv": [
+            "bash",
+            "-c",
+            "source /workspace/work/theme-glyph-tests/env.sh && exec ./tests/run-slice.sh layout"
+          ],
+          "exit": 0
+        },
+        {
+          "name": "decoration",
+          "utc": "2026-11-11T04:26:23.052720+00:00",
+          "cwd": "/workspace/work/theme-implementation/source",
+          "argv": [
+            "bash",
+            "-c",
+            "source /workspace/work/theme-glyph-tests/env.sh && exec ./tests/run-slice.sh decoration"
+          ],
+          "exit": 0
+        },
+        {
+          "name": "runtime-core",
+          "utc": "2026-11-11T04:27:09.882347+00:00",
+          "cwd": "/workspace/work/theme-implementation/source",
+          "argv": [
+            "bash",
+            "-c",
+            "source /workspace/work/theme-glyph-tests/env.sh && exec ./tests/runtime/run.sh core"
+          ],
+          "exit": 0
+        },
+        {
+          "name": "rich-text",
+          "utc": "2026-11-11T04:27:58.810977+00:00",
+          "cwd": "/workspace/work/theme-implementation/source",
+          "argv": [
+            "bash",
+            "-c",
+            "source /workspace/work/theme-glyph-tests/env.sh && exec ./tests/rich-text/run.sh"
+          ],
+          "exit": 0
+        }
+      ]
+    },
+    "product_executed": false
+  },
+  "failed": 0,
+  "check_count": 11401,
+  "full_local_result_sha256": "c84b203e8dfc2fe6b633b621442e33647155f999f9a3c07446e4d30d08650371",
+  "full_result_omitted_reason": "Repeated successful per-file assertions; original fixed087 manifest and runnable verifier retained, full result remains locally hash-addressed."
+}

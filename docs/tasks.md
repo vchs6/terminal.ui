@@ -555,7 +555,7 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 
 有界富文本支持TASK081–084唯一状态在[implement-rich-text](../openspec/changes/implement-rich-text/tasks.md)，对应AC081–084；原009状态同变更，010仍保持实际可见层前置。
 
-主题样式支持TASK085–092唯一状态在[implement-theme-styles](../openspec/changes/implement-theme-styles/tasks.md)，稳定013/025/026/027同变更；独立preflight仍核候选，全部产品AC待实际实现，027完整展示需全部控件依赖后补L4。
+主题样式支持TASK085–092唯一状态在[implement-theme-styles](../openspec/changes/implement-theme-styles/tasks.md)，稳定013/025/026/027同变更；013/025及085–088基础范围已独立验收，089真实异步API RED已交，026实施中；027完整展示仍等全部控件，不将基础截图当完整展示。
 
 Linux VT自动字形子接口支持TASK093–097唯一状态在[字形适配变更](../openspec/changes/implement-linux-vt-glyph-fallback/tasks.md)，追踪原041但不转移其全量验收；093–097已按R16有限验收；主题013消费已接受生成标记策略，真实ellipsis布局仍由013/085追加/088验收。
 

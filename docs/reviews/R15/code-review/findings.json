@@ -1,0 +1,35 @@
+{
+  "review_id": "TASK086-THEME013025-FINAL97",
+  "base": "81cd29cdf173cd02a390f3d992037de395caafaf",
+  "revision": "97df09638e2912cbee3313c23c4254e0a1708a5e",
+  "contract_sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+  "spec_verdict": "CHANGES_REQUIRED",
+  "quality_verdict": "CHANGES_REQUIRED",
+  "counts": {"critical": 0, "important": 3, "minor": 1},
+  "findings": [
+    {"id":"T086-I01","severity":"Important","status":"open","path":"src/theme/theme_decoder.cj","line":24,"contract":"theme design section6 line328: version/root-required phase before other schema declarations","title":"variables type validation bypasses initial schema precedence","counterexample":"schema_version=2\nname=\"x\"\nvariables=1\n","expected":"UnsupportedVersion at schema_version","actual":"InvalidType at variables","verification":"raw/final/probe-run.stdout; 3 invalid-root variants plus version-only control","disposition":"Move variables materialization/validation after root/version checks without losing forward references"},
+    {"id":"T086-I02","severity":"Important","status":"open","path":"src/theme/theme_decoder.cj","line":114,"contract":"theme design section6 line328: first unknown/value/ref error in source declaration order","title":"unknown variable field preempts earlier bad value","counterexample":"schema_version=1\nname=\"x\"\n[variables.v]\ntype=\"bool\"\nvalue=\"bad\"\nextra=true\n","expected":"InvalidType at variables.v.value","actual":"UnknownKey at variables.v.extra","verification":"raw/final/probe-run.stdout; reversed declaration control also inspected","disposition":"Retain/select all relevant record errors in declared order; do not unconditionally prioritize one error kind"},
+    {"id":"T086-I03","severity":"Important","status":"open","path":"src/component.cj","line":87,"related_lines":[37,95],"contract":"theme section2.1/T004 and reactive-runtime design109 getter mutation prohibition","title":"rejected setter changes uniform padding binding ownership","counterexample":"Text X with padding getter reading Observable1; another getter calls paddingLeft setter and catches ReentrantEvaluation; set original padding Observable2","expected":"X at x2,y2; all original side bindings retained","actual":"X at x1,y2; left side no longer updates","verification":"raw/final/probe-run.stdout and raw/probe-analysis.json","disposition":"Perform context/reentrancy checks before any detachPaddingSlot mutation in both overloads; add rejected-call regression"},
+    {"id":"T086-M01","severity":"Minor","status":"open","path":"docs/product/theme.md","line":9,"contract":"theme section2.1 explicit visualStates-only appearance documentation; section5 root text seed documentation","title":"public docs omit appearance-only state and root-seed inheritance semantics","counterexample":"A caller sees public visualStates(disabled:true) without any statement that it does not disable event handling","expected":"Explicit appearance-only state statement and parent/child root-text-seed example","actual":"No visualStates mention in product docs; inheritance described only generically","verification":"static fixed product docs search/read; no runtime change requested","disposition":"Add concise public statements/examples"}
+  ],
+  "verification": {
+    "independent_small_probe_build_exit":0,
+    "independent_small_probe_run_exit":0,
+    "product_meaning":"Three reproduced contract defects; exit0 belongs to observation harness",
+    "sdk":"cjc/cjpm1.2.0; normal cangjie_toml0.2.3; official stdx1.2.0-beta.02.1",
+    "fixed_source_and_inputs":"reviewed-hashes.json",
+    "original_preset_and_embedded_equivalence":true,
+    "fixed_test_overlay_equivalence":true,
+    "negative_compiler_diagnostics_checked":16,
+    "controlled_glyph_profile_results_checked":7,
+    "full_suite_reruns":0
+  },
+  "evidence_limits": [
+    "C1 product hash inventories were captured after earlier runs; tracked bytes match final revision but cannot alone establish earlier run input identity",
+    "Three ignored registry/cache config records have no corresponding git object, not source mismatches",
+    "Final normal bundle, clean unpacked SDK/stdx consumer and old-regression execution pending outside review",
+    "Initial environment disconnect and probe-scaffold failure retained; contaminated preliminary build logs excluded from verdict evidence"
+  ],
+  "independence": {"author_reports_read":false,"product_test_contract_edits":false,"subagents":false,"earlier_sealed_reviews_modified":false},
+  "next_step":"Resolve all findings as one correction set, independent focused regressions and affected re-review, then TASK087 with fixed source identity; no acceptance closure here"
+}

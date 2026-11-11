@@ -1,0 +1,39 @@
+{
+  "utc": "2026-11-11T04:31:20.827422+00:00",
+  "base": "95c1186a8ec5b184d5d2f15af0cac2e81499ce68",
+  "head": "8d75233c664fd61be08d441f74d464cbcdff2d9c",
+  "parent_is_base": true,
+  "numstat": "0\t4\tsrc/theme/theme_decoder.cj",
+  "exact_helper_only_deletion": true,
+  "fixed_git_reference_checks": [
+    {
+      "revision": "95c1186a8ec5b184d5d2f15af0cac2e81499ce68",
+      "command": "git grep -n literalTable REV -- src",
+      "exit": 0,
+      "stdout": "95c1186a8ec5b184d5d2f15af0cac2e81499ce68:src/theme/theme_decoder.cj:193:func literalTable(dm: DataModel,path: String): DataModelStruct {\n"
+    },
+    {
+      "revision": "8d75233c664fd61be08d441f74d464cbcdff2d9c",
+      "command": "git grep -n literalTable REV -- src",
+      "exit": 1,
+      "stdout": ""
+    }
+  ],
+  "source_sha256": {
+    "before": "e967703e413a19ef4f096d9043ecd379dd3cffa00ea65aec5702cc7803266e3f",
+    "after": "18150f8dc820068a79602a8d26ef257bcfad9bc573a96a2acef3fd5a6656e05e"
+  },
+  "delta_sha256": "63e83863b2a9a8675fa6c58a5c212a00e5efca6375e5c0e1749b8b4c7e048b66",
+  "raw_reference_log_sha256": "a0161f2e33c1b0626ead8d8937a831eb8767f742e13a3b4dce34875dd6104e7e",
+  "spec_verdict": "PASS_SOURCE_REVIEW",
+  "quality_verdict": "PASS_SOURCE_REVIEW",
+  "dispositions": {
+    "T086-I01": "ADDRESSED",
+    "T086-I02": "ADDRESSED",
+    "T086-I03": "ADDRESSED",
+    "T086-M01": "ADDRESSED",
+    "T086-R1-D01": "CLOSED"
+  },
+  "runtime_tests_rerun": false,
+  "final_revision_package_execution_verified": false
+}

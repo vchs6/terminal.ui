@@ -16,7 +16,7 @@
 | AC-010 | REQ-005 | 完整彩色与纯文本快照 | TASK-010 | 含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告；证据待实施时链接 | pending |
 | AC-011 | REQ-003 | 横纵与弹性尺寸协商 | TASK-011 | 窄屏、零尺寸和非整除弹性分配有确定结果；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
 | AC-012 | REQ-003 | 圆角边框与阴影绘制区域 | TASK-012 | 阴影只扩展绘制；移动/缩小清旧区，服从祖先裁剪；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
-| AC-013 | REQ-001 | 主题、样式复用及显式复位 | TASK-013 | 四级优先顺序和继承/复位行为明确，运行时仅样式变化也更新；证据待实施时链接 | pending |
+| AC-013 | REQ-001 | 主题、样式复用及显式复位 | TASK-013 | 四级优先顺序和继承/复位行为明确，运行时仅样式变化也更新 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
 | AC-014 | REQ-001 | 自定义组件跨容器复用 | TASK-014 | 同组件用于普通容器与弹窗无需修改内核；证据待实施时链接 | pending |
 | AC-015 | REQ-002 | 稳定身份与卸载订阅释放 | TASK-015 | 列表重排保留正确局部状态，卸载后订阅和引用失效；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
 | AC-016 | REQ-002 | 状态批处理与 UI 调度 | TASK-016 | 后台状态经过调度，批量修改合并刷新，长短文本切换无残留；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
@@ -28,7 +28,7 @@
 | AC-022 | REQ-004 | 交付可重复渲染基准项目 | TASK-022 | 固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果；证据待实施时链接 | pending |
 | AC-023 | REQ-006、REQ-011 | 验证最终源码制品可独立使用 | TASK-023 | 实际cjp无开发资料，含四主题及统一展示；TASK-027/031/032等交付纳入制品，当前Linux冻结配置干净消费构建运行，其他OS在Linux全量验收后扩展；目标依赖/版本/许可证完整；证据待实施时链接 | pending |
 | AC-024 | REQ-001–011 | 整体验收与发行准备 | TASK-024 | 当前Linux范围的需求全部有证据（含M2），产品文档与制品一致；后续OS独立扩展验收，不宣称跨平台完成；Battle 无未关闭必需失败；证据待实施时链接 | pending |
-| AC-025 | REQ-008 | 分类主题配置解析与诊断 | TASK-025 | 合法单文件主题形成结构化配置；未知字段/非法值/坏引用带位置错误，不执行代码；产品证据待实现 | pending |
+| AC-025 | REQ-008 | 分类主题配置解析与诊断 | TASK-025 | 合法单文件主题形成结构化配置；未知字段/非法值/坏引用带位置错误，不执行代码 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
 | AC-026 | REQ-008 | 应用主动主题重载与原子替换 | TASK-026 | 有效重载同批次生效；失败保留旧主题，旧请求不覆盖较新请求，状态/焦点保留；产品证据待实现 | pending |
 | AC-027 | REQ-008、REQ-006 | 四套预置主题及统一组件展示 | TASK-027 | 深/浅/高对比/经典主题用同一展示应用，覆盖组件状态、受限色和窄屏；制品独立运行；产品证据待实现 | pending |
 | AC-028 | REQ-001.8、REQ-009 | 基础输入编辑与标准快捷操作 | TASK-028 | 单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交；产品证据待实现 | pending |
@@ -129,11 +129,11 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-085 | REQ-008/007 | TASK-085 | 基础typed resolver/schema/布局/预置独立golden与真实RED | pending |
-| AC-086 | REQ-008/007 | TASK-086 | 013/025固定完整技术diff独立双审 | pending |
-| AC-087 | REQ-008/007 | TASK-087 | 独立基础矩阵/回归/正常bundle与SDK+stdx公开消费 | pending |
-| AC-088 | REQ-008/007 | TASK-088 | 原AC013/025及最终metadata，027全部展示仍待验 | pending |
-| AC-089 | REQ-008/007 | TASK-089 | 异步主题请求/淘汰/关闭/事务独立测试与真实RED | pending |
+| AC-085 | REQ-008/007 | TASK-085 | 基础typed resolver/schema/布局/预置独立golden与真实RED | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
+| AC-086 | REQ-008/007 | TASK-086 | 013/025固定完整技术diff独立双审 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
+| AC-087 | REQ-008/007 | TASK-087 | 独立基础矩阵/回归/正常bundle与SDK+stdx公开消费 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
+| AC-088 | REQ-008/007 | TASK-088 | 原AC013/025及最终metadata，027全部展示仍待验 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
+| AC-089 | REQ-008/007 | TASK-089 | 异步主题请求/淘汰/关闭/事务独立测试与真实RED | passed（测试交付/真实RED；[证据](reviews/R15/async-red/report.md)） |
 | AC-090 | REQ-008/007 | TASK-090 | 固定load增量及跨界独立spec/quality | pending |
 | AC-091 | REQ-008/007 | TASK-091 | 独立乱序/失败/资源/重载与公开制品消费 | pending |
 | AC-092 | REQ-008/007 | TASK-092 | 原AC026及集成metadata，不提前关闭027/Linux | pending |
@@ -263,3 +263,6 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 163–167唯一状态在[projection tasks](../openspec/changes/fix-uncertain-glyph-advance/tasks.md)，163–167已有限验收；Glyph093–097后续有限验收见R16，完整041/Linux仍按各自范围待验。
 
 2026-11-11：AC093–097仅字形子接口通过；P30新增当前固定源码的实际kernel有限组合证据，完整041/全Linux与Theme实际ellipsis布局仍待后续汇合。历史不足结论保留其原时点，不扩大本轮范围。
+
+
+Theme基础AC013/025/085–088仅当前范围接受：42项矩阵含限定复用/来源限制/后续排除，不能称42项全通过。T087-G01整包checker仍exit1，最终TASK023保持OPEN。AC089只证明真实基础正向后异步API缺失与测试交付，22行为及026/090–092未通过。

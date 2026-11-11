@@ -1,0 +1,605 @@
+{
+  "task": "TASK088",
+  "utc": "2026-11-11T05:03:40.852644+00:00",
+  "phase": "final_independent_acceptance",
+  "candidate": "8d75233c664fd61be08d441f74d464cbcdff2d9c",
+  "acceptance_verdict": "PASS_FOUNDATION_SCOPE",
+  "task088_ready": true,
+  "rows": [
+    {
+      "id": "T88-01",
+      "contract": "AC085–088",
+      "obligation": "固定来源与角色",
+      "required_evidence": "087执行前后产品/tests/SDK/stdx/依赖/ignored配置/实际binary/UTC/scope完整来源；原件→归档hash，不以HEAD标签代替内容。",
+      "status": "passed",
+      "judgment": "338条执行前后源/tests/native记录等8d，16组实际命令/UTC；563原件copy及564index全同，环境375deps/371stdx核实。lock仅5条记录排序漂移另明示。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-02",
+      "contract": "AC085",
+      "obligation": "正式测试及RED",
+      "required_evidence": "原085真实缺API RED、正向门禁及追加Glyph/T009/source-type/order/rejected-padding固定测试链；原16negative与4preset未降级。",
+      "status": "passed",
+      "judgment": "原085固定74b根正常build0、values因缺cjtui.theme exit1、negative门禁未进入；本次正式76文件对8d且原16negative/4preset字节同，新增合同断言未降级。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-03",
+      "contract": "AC086",
+      "obligation": "独立审查闭环",
+      "required_evidence": "原完整086+round1四项修复+8d四行helper删除链；0未决C/I/M只作为source review。",
+      "status": "passed",
+      "judgment": "独立086完整原审→round1四项修复→8d删除4行无引用helper，最终source spec/quality PASS；未替代087实际证明。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-04",
+      "contract": "T002/T013/T016",
+      "obligation": "typed声明与查询",
+      "required_evidence": "36typed key不可伪造、只读name、withValue/value原state查询、无Any袋；StyleValue/Rule/Use/enum内容相等与防别名。",
+      "status": "passed",
+      "judgment": "最终values完整正向验证36typed keys、三态/相等/不可变查询；公开类型与访问限制结合固定源/复用真实编译负例成立。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-05",
+      "contract": "T002/T012",
+      "obligation": "真实正向与负例门禁",
+      "required_evidence": "最终源正常SDK公开values/integration build及direct binary均成功在先；16实际编译拒绝为type/access，不是依赖失败。",
+      "status": "passed_with_scoped_reuse",
+      "judgment": "最终values/integration新build/direct0。16同fixture的旧type/access错误及前置正向gate成立，相关公开声明未变；按限定scope复用，非8d新negative执行，C1缺pre-run身份仍保留。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-06",
+      "contract": "T004/T011",
+      "obligation": "声明slot与兼容",
+      "required_evidence": "旧常量/getter接口、同key/state替换/解绑；getter返回Unset保留依赖，显式Unset删除；widthAuto/ValueAuto/Reset有别。",
+      "status": "passed",
+      "judgment": "正式来源/spacing/runtime断言通过：slots替换与解绑、getter Unset和删除区分、widthAuto/ValueAuto/Reset；单声明权威源码与086相符。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-07",
+      "contract": "T004/086-I03",
+      "obligation": "padding slot mutation安全",
+      "required_evidence": "uniform binding逐side替换、两个setStyle overload先重入/权限校验，拒绝调用不部分解绑；正式回归后pad2位于2,2且node保留。",
+      "status": "passed",
+      "judgment": "两个拒绝setter回归均真实执行，ReentrantEvaluation后原uniform padding仍更新到2,2、旧位置清空且mounted不变；源先checkDefinitionChange再slot改变。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-08",
+      "contract": "T003/T014",
+      "obligation": "role和primitive能力",
+      "required_evidence": "17roles静态矩阵、Generic实际能力、挂载后role拒改、不变kind；全局投影与named非法目标明确失败。",
+      "status": "passed",
+      "judgment": "17role schema及实际primitive检查通过，role挂载后拒改，不授予新kind能力；全局能力投影/named非法目标均正常公开测试。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-09",
+      "contract": "T001/T011",
+      "obligation": "四来源逐属性",
+      "required_evidence": "显式→后至前styles→role/global→继承/default；不是整体Style覆盖，来源/空列表/数组copy可观察。",
+      "status": "passed",
+      "judgment": "integration手写逐字段来源golden通过；explicit/reversed styles/role/global/继承default共用resolver，数组copy/清空行为已证。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-10",
+      "contract": "T001/T002",
+      "obligation": "状态次序与Reset",
+      "required_evidence": "每个来源内Disabled/Selected/Focused/Normal；后named normal盖前disabled；Reset终止，false/zero/Default是Value。",
+      "status": "passed",
+      "judgment": "values/integration状态golden通过；每来源内Disabled→Selected→Focused→Normal，后named normal优先，Reset终止且false/0/Default保留。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-11",
+      "contract": "T001/T013",
+      "obligation": "继承与root seed",
+      "required_evidence": "8绘制属性仅逻辑根seed；父已解析传播，子自身来源覆盖；装饰/间距/排版不继承，Reset后的默认可继承。",
+      "status": "passed",
+      "judgment": "真实Frame证明root8文本seed、父解析继承、子role覆盖/Reset默认；非文本属性不继承，公开文档已解释。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-12",
+      "contract": "T015",
+      "obligation": "背景三来源与fill",
+      "required_evidence": "无fill/root背景-only/local完整Style；继承背景不额外fill、根clip/hidden、Classic inverse/underline空白兼容。",
+      "status": "passed",
+      "judgment": "integration逐cell证明三种fill来源：root背景-only、本地完整Style、继承不fill；Classic空白inverse/underline兼容，hidden/clip有效。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-13",
+      "contract": "T013/T015",
+      "obligation": "presence/cache相等",
+      "required_evidence": "相同resolved颜色而explicit mask或fill来源变化仍invalidate/repaint；单一resolver/Runtime/LayoutNode/Frame。",
+      "status": "passed",
+      "judgment": "同值background但fill来源变化及同值foreground显式mask变化均真实重新绘制；resolver/Runtime/LayoutNode/Frame保持唯一。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-14",
+      "contract": "T011/§9",
+      "obligation": "富文本explicit mask",
+      "required_evidence": "当前组件显式含Reset > span > reuse/theme/inherited/default；祖先显式在子为Inherited；span背景仅其cell。",
+      "status": "passed",
+      "judgment": "RichText公开回归和本次mask golden通过；本组件explicit/Reset压span，继承非explicit，span背景不填盒。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-15",
+      "contract": "T001/T004",
+      "obligation": "全部装饰渲染",
+      "required_evidence": "border默认派生fg与ValueDefault不同、8shadow槽/偏移/开启分别生效；shadow便捷接口不污染正文/不继承。",
+      "status": "passed",
+      "judgment": "装饰cascade和旧decoration有效复用通过：派生border fg/Reset、ValueDefault、独立shadow槽、shadow便捷入口及极端偏移。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-16",
+      "contract": "T001/T004/T005",
+      "obligation": "全部间距渲染",
+      "required_evidence": "四边padding、固定/最小尺寸、weight、gap、align/justify实际Frame生效；sat/checked极端边界不溢出。",
+      "status": "passed",
+      "judgment": "全部spacing正式Frame断言通过，四边pad/width/min/weight/gap/alignment有实际输出；sat/checked路径保持。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-17",
+      "contract": "T005/T014",
+      "obligation": "实际分配宽wrap",
+      "required_evidence": "同LayoutNode Row flex与Column可用宽重测自然高及兄弟；padding/border后内容宽；无第二布局树。",
+      "status": "passed",
+      "judgment": "最终integration与clean同源consumer执行Row flex/Column约束宽重测，祖先高及兄弟位置golden通过；测量与paint共用allocateMain。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-18",
+      "contract": "T005/T014",
+      "obligation": "wrap零宽与簇边界",
+      "required_evidence": "硬LF/CRLF、零宽每硬行1、宽1大簇独占裁剪行且无末尾假行、组合/零宽簇、height/viewport裁剪。",
+      "status": "passed",
+      "judgment": "宽0硬行、CRLF、大簇独占裁剪行、无末尾假行、组合零宽簇及显式height/viewport测试通过。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-19",
+      "contract": "T005/G006",
+      "obligation": "真实ellipsis前缀预算",
+      "required_evidence": "width0..4、Unicode/Auto/Ascii、先marker宽再整簇prefix；exactfit/clip无标记；仅水平裁剪，不暗示垂直隐藏。",
+      "status": "passed",
+      "judgment": "最终offline/controlled/GUI证明真实ellipsis预算：ABC…与A...区分，0..4/整簇/exactfit/clip/垂直隐藏规则通过，未只验marker helper。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-20",
+      "contract": "T005/G007",
+      "obligation": "Glyph布局上下文/cache",
+      "required_evidence": "Row分配/padding/span边界、同mounted root snapshot mode往返、设备与离线上下文独立、逻辑原文/文件保留。",
+      "status": "passed",
+      "judgment": "正式Glyph布局/cache/逻辑文件断言成功；同mounted root mode往返、分配宽/padding/span前缀以及device/offline隔离已证。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-21",
+      "contract": "T005/G004/G012",
+      "obligation": "实际run的policy接线",
+      "required_evidence": "正式PTY未知/Unicode/Ascii、controlled mapped marker有/缺、一次probe、setter唤醒/no-remount和post-run；合成ioctl不冒真实VT。",
+      "status": "passed",
+      "judgment": "3输入control+7profile原件重断言，fd1 map仅controlled synthetic，缺marker104pair映射保持；实际A...→ABC…→A...且同setter无多余row。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-22",
+      "contract": "T009/§3–4",
+      "obligation": "闭集完整schema",
+      "required_evidence": "根8keys、36properties、17roles、10变量类型、4states，literal/Reset/ref全部；unknown/noinclude，unused坏值也拒。",
+      "status": "passed",
+      "judgment": "最终values执行所有36property/17role/10variable kinds/4states、literal/reset/ref/unused-invalid/闭集错误，源码guard/schema单路径。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-23",
+      "contract": "T009/§3–4",
+      "obligation": "原生类型与范围",
+      "required_evidence": "无字符串/Bool/Float/date/time强转；Int64/cells/offset/dimension/alignment域、颜色闭集/index/RGB、名称printable与标识符。",
+      "status": "passed",
+      "judgment": "最终schema源类型/printable/name/Int64/Color等全部断言完成；原生date/time不冒string，无Float中转整数。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-24",
+      "contract": "T009/§6/086-I01–02",
+      "obligation": "首条诊断与声明序",
+      "required_evidence": "安全预算内syntax→version/rootrequired→源码序unknown/value/ref，变量value/extra双向，forwardref保留；来源/位置原始。",
+      "status": "passed",
+      "judgment": "修复root优先及variable value/extra双向正式回归新执行成功；源声明序、syntax/version/rootrequired/forwardref按合同。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-25",
+      "contract": "T009/T014",
+      "obligation": "诊断Rune与source",
+      "required_evidence": "ref值位置、Rune而非byte、最近table/unavailable真实fallback，不伪造1,1；read错误source/空path/no位置。",
+      "status": "passed",
+      "judgment": "source/name/keyPath/Rune位置及ref值/nearest-parent允许fallback的正式断言通过，无伪造位置。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-26",
+      "contract": "T009",
+      "obligation": "同步readFile与路径",
+      "required_evidence": "有界读取/非法UTF8、空NUL、绝对冻结path、parse label非文件、~/$HOME/URI不解释；文件错误不改应用。",
+      "status": "passed",
+      "judgment": "readFile有限读取、UTF8/空NUL、明确绝对来源与literal特殊路径、parse label不同文件的正式断言通过；不主张异步reload。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-27",
+      "contract": "T009/T016",
+      "obligation": "完整联合预算",
+      "required_evidence": "UTF8 1MiB、4096vars/styles、16depth/effectivepath、65536非EOF含comment、16384声明；at合法或正确下游错误，over先Capacity。",
+      "status": "passed",
+      "judgment": "原全部联合预算及危险深输入通过；边界有些合法进入下游SyntaxError/UnknownKey，不伪称这些文档schema有效。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-28",
+      "contract": "T009末澄清",
+      "obligation": "encoded key所有上下文",
+      "required_evidence": "11spellings×6contexts 1024/1025，103raw a/103U转义区分，1024成功语义、value/comment控制、Rune超限位置。",
+      "status": "passed",
+      "judgment": "encoded-key151输入属于192个生成输入整体hash核对；6contexts×11spellings及103转义/直接/值comment控制按原断言成功，未改预算。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-29",
+      "contract": "T009",
+      "obligation": "上游唯一Lexer/Parser",
+      "required_evidence": "预算只读public token原始value不解码/自建parser；有效table+dotted+inline累计路径栈恢复、字符串/comment符号惰性；危险深输入先拒。",
+      "status": "passed",
+      "judgment": "上游public Lexer原始token预算→Parser唯一语义路径；累积prefix/dotted/inline栈、comment计token和错误边界由源码审及本次正式实测支持。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-30",
+      "contract": "T010/T014",
+      "obligation": "四preset同模型",
+      "required_evidence": "4固定fixture/product文本字节同，embedded preset同parse/schema/resolver，全部规则及source标签/immutable bridge独立预期。",
+      "status": "passed",
+      "judgment": "4canonical/test/shippedTOML逐byte同，preset公开parse/schema路径与独立规则golden成功，source标签/只读bridge无cwd依赖。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-31",
+      "contract": "T010/T015",
+      "obligation": "Classic兼容与四主题Frame",
+      "required_evidence": "原默认像素、未声明border/shadow不出现；四preset同业务手写grid/style及state基础输出。",
+      "status": "passed",
+      "judgment": "最终四preset手写Frame颜色/空白/重用accent规则通过，Classic原默认像素保持；这是基础场景。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-32",
+      "contract": "AC087/T010",
+      "obligation": "真实四主题宿主",
+      "required_evidence": "最终source/binary、真实GUI版本/font/config/尺寸/UTC、四主题同基础业务原PNG/native/raw/termios/exit；不扩作027全控件showcase。",
+      "status": "passed",
+      "judgment": "两真实GUI各4preset及各2Glyph mode共12原PNG，实际trace==stdout/native viewport、binaryhash、80×25/termios/exit通过；只接受当前基础场景。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-33",
+      "contract": "AC013/T011",
+      "obligation": "仅样式变化更新/身份",
+      "required_evidence": "state/style/getter变更影响实际frame，mounted/业务身份与原runtime契约保留，bindings/mask/fill缓存实际回归。",
+      "status": "passed",
+      "judgment": "仅样式/state/presence变更真实Frame更新且mounted回归通过；不将未来026主题提交/编辑全状态保持冒充本轮。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-34",
+      "contract": "AC087",
+      "obligation": "受影响旧回归",
+      "required_evidence": "固定源/配置/范围对应原Runtime/RichText/Glyph/布局/Frame/session实际证据；内容有效可复用，明确缺失与不适用，不按角色重跑。",
+      "status": "passed_with_scoped_reuse",
+      "judgment": "contract/layout/decoration/runtime-core/RichText原件按95执行前201来源复用；仅decoder4行无引用删除不同，新final positives重验受影响语义。274旧Glyph源及39PNG仅不变backend事实。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-35",
+      "contract": "T012/T013",
+      "obligation": "正常依赖与公共路径",
+      "required_evidence": "TOML0.2.3 + 官方stdx1.2.0-beta.02.1正常构建；单向package/Alignment根reexport，非作者target/cjo、无开发绝对路径。",
+      "status": "passed",
+      "judgment": "正常TOML0.2.3与官方stdx1.2.0-beta.02.1/SDK1.2证据，375deps及371stdx文件hash；单向包与Alignment根入口兼容，clean路径无作者target。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-36",
+      "contract": "T012/AC087",
+      "obligation": "正常bundle/lint",
+      "required_evidence": "最终8d正常cjpm bundle实际exit与完整lint warning；许可保留，不能skip或把zero-test摘要算Theme覆盖。",
+      "status": "passed_foundation_release_gate_open",
+      "judgment": "8d正常cjpm bundle0且491实际warning保留；wholechecker真实exit1保留OPEN_TASK023，不能把其themes拒绝变成通过或本轮漏交主题。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-37",
+      "contract": "T010/T012",
+      "obligation": "实际CJP完整成员",
+      "required_evidence": "解包真实最终CJP逐成员byte等8d，themes4文件交付；member记录不能替代实际包读取，构建后source仍同。",
+      "status": "passed",
+      "judgment": "实际CJP SHA29ce7c…，175成员逐byte等8d及clean构建后源，四themes已交；安全/product-only边界独立检查，缺composition/benchmark仍后续。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-38",
+      "contract": "T012/AC087",
+      "obligation": "clean公开消费者",
+      "required_evidence": "干净SDK/stdx前置，解包源正常build及同公开consumer只改manifest路径、directbinary原exit；不借作者target/cache。",
+      "status": "passed",
+      "judgment": "实际解包source-only主库build0、完整正式integration源仅manifest dep路径改动、build/direct0；没有复制private cjtui target或隐藏stdx flags。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-39",
+      "contract": "AC088",
+      "obligation": "strict metadata/原件封存",
+      "required_evidence": "strictJSON、command/cwd/UTC/exit、原件copy/hash完整、正常host已退出、PNG不可重画；失败/省略大件hash理由明确。",
+      "status": "passed",
+      "judgment": "168strictJSON、563原件copy/564index/565files，无异常成员；12正常host与Xorg已退出后seal，原PNG不重画，1643省略生成件hash核实。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-40",
+      "contract": "AC088",
+      "obligation": "早期证据时间限制",
+      "required_evidence": "C1 post-run inventories不当成历史pre-proof；95 pre201与bundle成员记录可保留其原范围，8d最终包/GUI执行待087独立证明。",
+      "status": "provenance_limit_preserved",
+      "judgment": "C1执行后hash不能追认pre-proof；95 pre201只按原范围复用；8d新执行单独338pre/post证明。早期lock记录和final锁仅依赖顺序差异，字节差异公开。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-41",
+      "contract": "AC013/025/085–088",
+      "obligation": "公开说明及机械投影",
+      "required_evidence": "解释visualStates不改业务/rootseed/encoded预算/stdx前置；逐AC必须项全证后才准最终状态，不凭审查PASS替执行。",
+      "status": "passed",
+      "judgment": "文档已解释visualStates外观/rootseed/encodedkey/stdx与后续加载；原AC013025及085–088有限foundation可接受，机械投影不改主仓。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": true
+    },
+    {
+      "id": "T88-42",
+      "contract": "T006–008/026/027",
+      "obligation": "排除后续范围",
+      "required_evidence": "异步latestwins/worker/事务与全控件showcase待026/027，fullLinux/M2/fullrelease未由基础主题关闭。",
+      "status": "excluded_followup_pending",
+      "judgment": "T006–008/026/089异步、027全部控件showcase、TASK023 whole-release/完整Linux/M2/其他平台仍pending。",
+      "received_evidence": [
+        "raw/integrity-summary.json",
+        "raw/observations-summary.json",
+        "raw/metadata.json"
+      ],
+      "within_current_scope": false
+    }
+  ],
+  "status_counts": {
+    "passed": 37,
+    "passed_with_scoped_reuse": 2,
+    "passed_foundation_release_gate_open": 1,
+    "provenance_limit_preserved": 1,
+    "excluded_followup_pending": 1
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+    "-geometry",
+    "80x25+20+20",
+    "-T",
+    "TASK087 Glyph xterm Ascii",
+    "-fa",
+    "DejaVu Sans Mono",
+    "-fs",
+    "12",
+    "-xrm",
+    "XTerm*printerCommand: /bin/cat >> /workspace/work/theme-execution/raw/gui-glyph/xterm-Ascii/native-grid.ansi",
+    "-xrm",
+    "XTerm*printAttributes: 2",
+    "-xrm",
+    "XTerm*VT100.translations: #override <Key>F6: print()",
+    "-e",
+    "python3",
+    "/workspace/work/theme-execution/tools/record-host-glyph.py",
+    "/workspace/work/theme-execution/observation-glyph/target/release/bin/main",
+    "/workspace/work/theme-execution/raw/gui-glyph/xterm-Ascii"
+  ],
+  "env": {
+    "DISPLAY": ":188",
+    "HOME": "/workspace/work/theme-execution/raw/gui-glyph/xterm-Ascii/home",
+    "XDG_CONFIG_HOME": "/workspace/work/theme-execution/raw/gui-glyph/xterm-Ascii/home/config",
+    "XDG_CACHE_HOME": "/workspace/work/theme-execution/raw/gui-glyph/xterm-Ascii/home/cache",
+    "LC_ALL": "C.UTF-8",
+    "TASK087_PRESET": "Ascii"
+  },
+  "utc": "2026-11-11T04:42:49.774662+00:00",
+  "binarySha256": "9278bfec85714f3c669bdb515a863744dff502fd4fa6e3052e398a7996753c57"
+}

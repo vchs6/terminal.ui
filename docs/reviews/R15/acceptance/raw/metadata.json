@@ -1,0 +1,128 @@
+{
+  "utc": "2026-11-11T04:59:58.572911+00:00",
+  "product_executed": false,
+  "generated_input_hashes_rechecked_without_copy": {
+    "foundation-values": 192,
+    "foundation-integration": 192
+  },
+  "reused_negative_public_declaration_files": 5,
+  "historical_positive_gates": [
+    {
+      "name": "values-build",
+      "utc": "2026-11-11T03:23:12.205929+00:00",
+      "command": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/theme-implementation/source/tests/themes/values",
+      "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+      "exit": 0,
+      "stdout": "values-build.stdout",
+      "stderr": "values-build.stderr"
+    },
+    {
+      "name": "values-run",
+      "utc": "2026-11-11T03:23:59.690562+00:00",
+      "command": [
+        "/workspace/work/theme-implementation/source/tests/themes/values/target/release/bin/main"
+      ],
+      "cwd": "/workspace/work/theme-implementation/source/tests/themes/values",
+      "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+      "exit": 0,
+      "stdout": "values-run.stdout",
+      "stderr": "values-run.stderr"
+    },
+    {
+      "name": "integration-build",
+      "utc": "2026-11-11T03:24:03.216109+00:00",
+      "command": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/theme-implementation/source/tests/themes/integration",
+      "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+      "exit": 0,
+      "stdout": "integration-build.stdout",
+      "stderr": "integration-build.stderr"
+    },
+    {
+      "name": "integration-run",
+      "utc": "2026-11-11T03:24:49.397250+00:00",
+      "command": [
+        "/workspace/work/theme-implementation/source/tests/themes/integration/target/release/bin/main"
+      ],
+      "cwd": "/workspace/work/theme-implementation/source/tests/themes/integration",
+      "sha": "3a52f55ebfb41165880749fbac6f675e087235b7",
+      "exit": 0,
+      "stdout": "integration-run.stdout",
+      "stderr": "integration-run.stderr"
+    }
+  ],
+  "negative_scope_limitation": "Exact fixtures/declarations and observed real type-access diagnostics support reuse; C1 product/compiler pre-run identity was not captured. No new-final negative run claimed.",
+  "formal085_original_red": {
+    "records": [
+      {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R15/test-design/commands.jsonl",
+        "sha256": "252beb8d9ca0baeb5c1af3688b0e511532dc9f0541c076cbd5b8a7d4166c1d6e"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R15/test-design/raw/fixed-contract-root-normal-build.stdout",
+        "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R15/test-design/raw/fixed-contract-root-normal-build.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R15/test-design/raw/fixed-foundation-runner/values-build.stderr",
+        "sha256": "f005b084a3e82afae9a7108155dae340a9f75d39dfd4c015ca3ab0f35f42931d"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R15/test-design/raw/fixed-foundation-runner/commands.jsonl",
+        "sha256": "86749f3517f8f1b90d6216f1890fa98bf696870ee056095c0b0ac671c311bcd3"
+      }
+    ],
+    "root_build_exit": 0,
+    "values_missing_api_exit": 1,
+    "negative_gate_not_reached": true
+  },
+  "gui_lifecycle": {
+    "runs": 8,
+    "xorgExit": 0,
+    "utcEnd": "2026-11-11T04:39:23.700366+00:00"
+  },
+  "gui-glyph_lifecycle": {
+    "runs": 4,
+    "xorgExit": 0,
+    "utcEnd": "2026-11-11T04:42:54.528488+00:00"
+  },
+  "boundary_inputs": [
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md",
+      "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/tasks.md",
+      "sha256": "bd8e1b0e40ba90fef90f9d3f89a8c8284e5413e1ef54a0ad557e928e904cb694"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/complete-linux-integration/tasks.md",
+      "sha256": "b915f0441c42ea096b7ca7bd20a80bd2ee98b96ee2ad4d766458b7fd7d9be2d0"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/acceptance.md",
+      "sha256": "cace27175a7e5cecd8cf051b0e005de8e6c381d9c86b3f8acabb8679057019b9"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/scripts/check-bundle.mjs",
+      "sha256": "9e57db16956ccf6000ab4838d4e273d1d4acfc6e4113871d1684fe99239d9a1a"
+    }
+  ],
+  "whole_checker_independent_disposition": {
+    "actual_exit": 1,
+    "open": true,
+    "scope": "Final TASK023 integration/release gate",
+    "reason": "T010 requires themes delivery. Original currentAC087/T012 requires normal bundle and clean SDK/stdx public consumption, independently proven. complete-linux-integration023.a explicitly requires formal negative controls for outdated themes/showcase/benchmark checker;023.b–d owns release wiring/full gates. Full release not accepted."
+  },
+  "failed": 0
+}
