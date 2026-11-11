@@ -23,4 +23,22 @@ func lifecycleAndLimits(): Unit {
     code("CapacityExceeded",{=>let p=Application(Canvas({_=>Size(one.get()+two.get(),1)},{_=>}),theme:plainTheme(),limits:RuntimeLimits(dependenciesPerBinding:1));p.startHeadless();p.snapshot(3,1);()})
     code("CapacityExceeded",{=>let p=Application(Canvas({_=>Size(1,1)},{p=>p.put(0,0,"${one.get()+two.get()}")}),theme:plainTheme(),limits:RuntimeLimits(dependenciesPerBinding:1));p.startHeadless();p.snapshot(3,1);()})
     code("CapacityExceeded",{=>let p=Application(Canvas({_=>Size(1,1)},{_=>}),theme:plainTheme(),limits:RuntimeLimits(bindingsPerNode:1));p.startHeadless();p.snapshot(1,1);()})
+    focusCommandCapacity("focus-focus"); focusCommandCapacity("append-focus"); focusCommandCapacity("focus-append")
+}
+
+// Shared command budget includes focus and existing structural operations.
+func focusCommandCapacity(mode:String): Unit {
+    let (control,good)=group([{=>Text("A").focusable(true)},{=>Text("B").focusable(true)}])
+    let accepted=Application(control,theme:plainTheme(),limits:RuntimeLimits(structuralOpsPerBatch:2));accepted.startHeadless()
+    try {accepted.batch({=>ref(good[0]).requestFocus();ref(good[1]).requestFocus()});focus(accepted,good[1])} finally {accepted.dispose()}
+    let (root,nodes)=group([{=>Text("A").focusable(true)},{=>Text("B").focusable(true)}])
+    let app=Application(root,theme:plainTheme(),limits:RuntimeLimits(structuralOpsPerBatch:1));app.startHeadless()
+    try {
+        app.batch({=>ref(nodes[1]).requestFocus()});focus(app,nodes[1])
+        code("CapacityExceeded",{=>app.batch({=>
+            if(mode=="append-focus"){ref(root).append(Text("C"))}else{ref(nodes[0]).requestFocus()}
+            if(mode=="focus-append"){ref(root).append(Text("C"))}else{ref(nodes[1]).requestFocus()}
+        })})
+    } finally {app.dispose()}
+    empty(app)
 }

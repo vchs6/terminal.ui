@@ -12,12 +12,14 @@ if [[ ${1:-} == --changed-fixtures-only ]]; then
     exit 0
 fi
 # Current, actual 080/084/088/152 consumer and current-only device error helper.
+if [[ ${1:-} != --review-regressions ]]; then
 cp "$here/src/device_failure.cj" "$here/prerequisites/src/device_failure.cj"
 if [[ -f "$here/cangjie-repo.toml" ]]; then cp "$here/cangjie-repo.toml" "$here/prerequisites/cangjie-repo.toml"; fi
 (cd "$here/prerequisites" && cjpm build)
 "$here/prerequisites/target/release/bin/main"
 if [[ ${1:-} == --prerequisites ]]; then exit 0; fi
-if [[ ${1:-} == --matrix ]]; then
+fi
+if [[ ${1:-} == --matrix || ${1:-} == --review-regressions ]]; then
     # Isolated ordinary consumer copy: same formal Cj bytes, manifest only
     # adjusts its library path and links the existing test-only clock seam.
     wrapped="$here/.wrapped"
@@ -34,7 +36,11 @@ config=here/'cangjie-repo.toml'
 if config.exists():(wrapped/config.name).write_bytes(config.read_bytes())
 PY
     (cd "$wrapped" && cjpm build)
-    python3 "$here/fixtures/matrix.py" --binary "$wrapped/target/release/bin/main" --output "$output/matrix"
+    if [[ ${1:-} == --review-regressions ]]; then
+        python3 "$here/fixtures/review_regressions.py" --binary "$wrapped/target/release/bin/main" --output "$output/review-regressions"
+    else
+        python3 "$here/fixtures/matrix.py" --binary "$wrapped/target/release/bin/main" --output "$output/matrix"
+    fi
     exit 0
 fi
 (cd "$here" && cjpm build)

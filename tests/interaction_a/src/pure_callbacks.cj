@@ -41,4 +41,30 @@ func pureCallbacks(): Unit {
     }).focusable(true)
     owner.value=Some(c)
     let app=Application(c,theme:plainTheme());app.startHeadless();cell(app.snapshot(1,1),0,0," ",1,false,Style());app.dispose()
+    canvasLeafStructure(false); canvasLeafStructure(true)
+}
+
+func canvasLeafStructure(nested:Bool): Unit {
+    // Existing containers still mount, order and focus ordinary children.
+    let control=Column {};let visible=Text("V").focusable(true)
+    let good=Application(control,theme:plainTheme());good.startHeadless()
+    try {
+        good.batch({=>ref(control).append(visible)})
+        let before=Text("B");good.batch({=>ref(control).insertBefore(ref(visible),before)})
+        check(ref(control).children().size==2 && good.snapshot(1,2).toPlainText()=="B\nV","I07 normal container append/insert control")
+        focus(good,visible)
+    } finally {good.dispose()}
+    let mounts=Box<Int64>(0)
+    let saved=Box<?Component>(Option<Component>.None)
+    let makeLeaf={=>let value=Canvas({_=>Size(1,1)},{p=>p.put(0,0,"C")});saved.value=Some(value);value}
+    let root:Component=if(nested){Column {makeLeaf()}}else{makeLeaf()}
+    let leaf=saved.value.getOrThrow()
+    let hidden=Text("hidden").focusable(true).onMount({_=>mounts.value++;{=>}})
+    let app=Application(root,theme:plainTheme());app.startHeadless()
+    try {
+        check(ref(leaf).children().isEmpty() && app.focusedNode().isNone(),"I07 leaf starts without hidden focus")
+        code("InvalidParent",{=>app.batch({=>ref(leaf).append(hidden)})})
+        check(mounts.value==0 && hidden.reference().isNone(),"I07 rejected leaf insertion never mounts hidden focus target")
+    } finally {app.dispose()}
+    empty(app)
 }

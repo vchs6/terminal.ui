@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
+#include <errno.h>
 /* A's existing -3 read-error path, not future Keyboard -4 EOF semantics.
  * Real PTY, real native reader; only inject the underlying poll HUP after arm. */
 int poll(struct pollfd *fds,nfds_t n,int timeout) {
@@ -19,5 +21,19 @@ int poll(struct pollfd *fds,nfds_t n,int timeout) {
             return 1;
         }
     }
-    return next_poll(fds,n,timeout);
+    const char *trace=getenv("CJTUI_A_POLL_TRACE");
+    if(!trace)return next_poll(fds,n,timeout);
+    struct timespec begin,end;
+    clock_gettime(CLOCK_MONOTONIC,&begin);
+    int result=next_poll(fds,n,timeout);
+    int saved_errno=errno;
+    clock_gettime(CLOCK_MONOTONIC,&end);
+    if(trace) for(nfds_t i=0;i<n;++i) if(fds[i].fd==STDIN_FILENO) {
+        FILE *out=fopen(trace,"a");
+        if(out){fprintf(out,"%lld %lld %d %d %u\n",
+            (long long)begin.tv_sec*1000000000LL+begin.tv_nsec,
+            (long long)end.tv_sec*1000000000LL+end.tv_nsec,timeout,result,(unsigned)fds[i].revents);fclose(out);}
+    }
+    errno=saved_errno;
+    return result;
 }

@@ -909,5 +909,21 @@
     "actual_prerequisite_consumer": "normal build/direct exit0; no declarations",
     "changed_native_selftest": "exit0; ten real PTY injected paths + controlled POLLHUP + seven negative controls; fixture only"
   },
-  "task098_asset_ready_for_controller": true
+  "task098_asset_ready_for_controller": true,
+  "TASK100_regressions": {
+    "product_checkpoint": "f02d8124dfad6028da1427c3da877eeec05a5708",
+    "test_base": "d4b3117b87d002c5555ead651a8a782a8cf31a20",
+    "entry": "run.sh --review-regressions",
+    "original94_vectors": "byte-identical",
+    "product_result": "ACTUAL_RED all seven findings; fixed behavior pending",
+    "mapping": {
+      "I01": "dependency_isolation.cj effectiveMeasureDependencies",
+      "I02": "focus_bindings.cj behaviorStateGeometry focus/constant/getter",
+      "I03": "lifecycle_and_limits.cj focusCommandCapacity focus-focus/append-focus/focus-append",
+      "I04": "focus_bindings.cj enabledVisibilityIndependence",
+      "I05": "fixtures/review_regressions.py clock_idle; native/input_hup.c optional completed-poll observer",
+      "I06": "focus_repair.cj cancelUnmountedFocus node/ancestor",
+      "I07": "pure_callbacks.cj canvasLeafStructure root/nested; normalcontainer positive"
+    }
+  }
 }
