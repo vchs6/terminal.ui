@@ -179,7 +179,10 @@ public open class Component {
         try { mounted } finally { mountLock.unlock() }
     }
     func behaviorChanged(): Unit {
-        if (let Some(node) <- readMount()) { node.session.focusManager.changed() }
+        if (let Some(node) <- readMount()) {
+            node.session.invalidateBehaviorStyle()
+            node.session.focusManager.changed()
+        }
     }
     public func focusable(value: Bool): Component {
         removeBinding("focusable"); if (isFocusable != value) { isFocusable = value; markChanged(ChangeKind.Style); behaviorChanged() }; this

@@ -23,15 +23,7 @@ func validateThemeCandidate(session: RuntimeSession, theme: Theme): (?ThemeDiagn
             let old = resolveStyle(node.component,session.theme,oldInherited,node.parent.isNone())
             oldStyles[node.id] = old.style
             let resolved = resolveStyle(node.component,theme,inherited,node.parent.isNone())
-            if (old.fixedW != resolved.fixedW || old.fixedH != resolved.fixedH ||
-                old.minW != resolved.minW || old.minH != resolved.minH || old.weight != resolved.weight ||
-                old.padLeft != resolved.padLeft || old.padTop != resolved.padTop ||
-                old.padRight != resolved.padRight || old.padBottom != resolved.padBottom ||
-                old.spacing != resolved.spacing || old.align != resolved.align || old.justify != resolved.justify ||
-                old.wrap != resolved.wrap ||
-                (old.borderStyle == BorderStyle.None) != (resolved.borderStyle == BorderStyle.None)) {
-                layoutChanged = true
-            }
+            if (layoutStyleDiff(old,resolved)) { layoutChanged = true }
             styles[node.id] = resolved.style
             if (let Some(parent) <- node.parent) {
                 if (node.component.isVisible && resolved.weight > 0) {

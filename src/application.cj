@@ -164,7 +164,9 @@ public class Application {
             value.requireReadContext(); value.focusManager.observe()
             if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
             if (let Some(node) <- value.root.readMount()) {
-                if (value.focusManager.effective(node,true)) { return Some(node.reference()) }
+                if (value.focusManager.effective(node,true)) {
+                    if (value.focusManager.effective(node,false)) { return Some(node.reference()) }
+                }
             }
         }
         None
@@ -510,6 +512,9 @@ public class Application {
                 }
             }
             var lastInput: Int64 = -1
+            // If the clock fails, count completed poll intervals rather than
+            // interpreting a probe wakeup as a full keyboard idle interval.
+            var untimedIdleRemaining: Int64 = 0
             var baseline: ?Frame = None
             var baselineProfile = terminalRenderProfile(capabilities, initialMode)
             var baselineGlyphMode = configuredGlyphMode
@@ -594,7 +599,11 @@ public class Application {
                 }
                 if (decoder.state == 1 && lastInput >= 0) {
                     let now = unsafe { cjt_monotonic_ms() }
-                    if (now >= lastInput) { readTimeout = lesser(readTimeout,greater(0,100 - (now - lastInput))) }
+                    if (now < 0) { lastInput = -1; untimedIdleRemaining = 100 }
+                    else if (now >= lastInput) { readTimeout = lesser(readTimeout,greater(0,100 - (now - lastInput))) }
+                }
+                if (decoder.state == 1 && untimedIdleRemaining > 0) {
+                    readTimeout = lesser(readTimeout,untimedIdleRemaining)
                 }
                 let value = readByte(Int32(readTimeout))
                 if (probe.status == "pending") { probe.check(unsafe { cjt_monotonic_ms() }) }
@@ -606,6 +615,16 @@ public class Application {
                 if (value == -3) {
                     throw Exception("terminal input failed")
                 }
+                if (value == -5) { continue }
+                if (value == -1 && decoder.state == 1 && untimedIdleRemaining > 0) {
+                    untimedIdleRemaining -= lesser(untimedIdleRemaining,readTimeout)
+                    if (untimedIdleRemaining == 0) {
+                        lastInput = -1
+                        if (let Some(escape) <- decoder.timeout()) { dispatchDeviceKey(escape) }
+                        if (readSession().isNone() || work.isStopping()) { break }
+                        continue
+                    }
+                }
                 if (value >= 0 && decoder.state == 1 && lastInput >= 0) {
                     let now = unsafe { cjt_monotonic_ms() }
                     if (now < 0 || (now >= lastInput && now - lastInput >= 100)) {
@@ -616,7 +635,10 @@ public class Application {
                 }
                 let event = if (value >= 0) {
                     let decoded = decoder.feed(value)
-                    if (decoder.state == 1) { lastInput = unsafe { cjt_monotonic_ms() } } else { lastInput = -1 }
+                    if (decoder.state == 1) {
+                        lastInput = unsafe { cjt_monotonic_ms() }
+                        untimedIdleRemaining = if (lastInput < 0) { 100 } else { 0 }
+                    } else { lastInput = -1; untimedIdleRemaining = 0 }
                     decoded
                 } else if (decoder.state == 1 && lastInput >= 0) {
                     let now = unsafe { cjt_monotonic_ms() }

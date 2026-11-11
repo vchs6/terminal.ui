@@ -28,3 +28,12 @@ class ResolvedStyle {
     var shadowY: Int64 = 1
     var shadowStyle = Style()
 }
+
+// One comparison for the layout-affecting part of resolved style.
+func layoutStyleDiff(old: ResolvedStyle, next: ResolvedStyle): Bool {
+    old.fixedW != next.fixedW || old.fixedH != next.fixedH || old.minW != next.minW || old.minH != next.minH ||
+    old.weight != next.weight || old.padLeft != next.padLeft || old.padTop != next.padTop ||
+    old.padRight != next.padRight || old.padBottom != next.padBottom || old.spacing != next.spacing ||
+    old.align != next.align || old.justify != next.justify || old.wrap != next.wrap ||
+    (old.borderStyle == BorderStyle.None) != (next.borderStyle == BorderStyle.None)
+}

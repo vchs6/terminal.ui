@@ -83,12 +83,12 @@ int cjt_read(int timeout) {
     unsigned char ch;
     if (interrupted) return -2;
     int p = poll(&pfd, 1, timeout);
-    if (p < 0) return errno == EINTR ? (interrupted ? -2 : -1) : -3;
+    if (p < 0) return errno == EINTR ? (interrupted ? -2 : -5) : -3;
     if (!p) return -1;
     if (pfd.revents & (POLLERR | POLLHUP | POLLNVAL)) return -3;
     ssize_t n = read(STDIN_FILENO, &ch, 1);
     if (n == 1) return ch;
-    if (n < 0 && (errno == EINTR || errno == EAGAIN)) return -1;
+    if (n < 0 && (errno == EINTR || errno == EAGAIN)) return -5;
     return -3;
 }
 void cjt_buffer_clear(void) { length = 0; }
