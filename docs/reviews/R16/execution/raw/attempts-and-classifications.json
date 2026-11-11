@@ -1,0 +1,57 @@
+[
+  {
+    "item": "npm-deps",
+    "exit": 254,
+    "evidence": "raw/npm-deps/{meta.json,stderr.log}",
+    "cause": "Default /home/agent/.npm cache inaccessible; own --cache succeeded0."
+  },
+  {
+    "item": "actual-gui first collector",
+    "exit": 1,
+    "evidence": "raw/actual-gui;raw/gui-attempt1",
+    "cause": "Waited recorder metadata, not actual initial frame; p fence never observed/read0 absent. Wait actual complete first frame before first key; second collector passed. Failed host cleanup SIGHUP is not normal product restore evidence."
+  },
+  {
+    "item": "actual-vt first collector",
+    "exit": 1,
+    "evidence": "raw/actual-vt;raw/vt-attempt1;packages/vt-attempt1.cpio.gz (hash only in curated)",
+    "cause": "QMP p before actual output; first grid BIOS; profile fence timed out. Guest strace first write readiness added; no product changes."
+  },
+  {
+    "item": "uid1000 initial deployment",
+    "product_exit": 127,
+    "evidence": "raw/vt-uid1000-permission-attempt;raw/actual-vt-attempt2",
+    "cause": "Guest uid0 cpio headers plus apps/directories/runtime0700 denied exec before app; own guest permissions755/644,tmp1777 fixed with identical file content. Failed QEMU numeric exit not persisted by old collector, not promoted to success."
+  },
+  {
+    "item": "verify-evidence first postprocessor",
+    "exit": 1,
+    "evidence": "raw/verify-evidence;raw/verification-attempt1.json",
+    "cause": "Count included3 logger files alongside25case dirs; filter case directories with result.json;261checks succeeded."
+  },
+  {
+    "item": "exploratory pixel-difference bbox helper",
+    "exit": 1,
+    "evidence": "execution tool transcript, reproduced here as metadata (no original file stdout was created)",
+    "command": "PIL compares rootAuto and uid1000 initial RGB pixels, then min/max bounding box on differences",
+    "output": "ValueError: min() iterable argument is empty",
+    "cause": "RGB images were identical; empty differences made helper bbox min fail. Final lossless image checker handles equality and passed; no product or image edits."
+  },
+  {
+    "item": "whole-bundle-check",
+    "exit": 1,
+    "evidence": "raw/whole-bundle-check",
+    "cause": "Known incomplete composition; benchmark absent inventory; future fullrelease gate retained."
+  },
+  {
+    "item": "Fontconfig cache diagnostics",
+    "exit": 0,
+    "evidence": "raw/environment/stderr.log;raw/font-sources/stderr.log",
+    "cause": "fc-match had no writable default cache but returned font matches; real GUI uses own writable HOME/XDG configs/caches."
+  },
+  {
+    "item": "curation self-logger metadata",
+    "exit": 0,
+    "cause": "Initial curation included its still-running logger files; final-seal recopied only after logger close and verified all source-copy/index hashes. No product/test rerun."
+  }
+]
