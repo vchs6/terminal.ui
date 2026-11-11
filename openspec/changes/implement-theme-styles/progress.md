@@ -13,3 +13,5 @@ TOML正常依赖/官方stdx/干净路径消费实证复用R11/build-recon，不�
 085测试原74b1a5ac已集成105337d（47files，20Cj消费者+16负例），旧rootbuild0、仅缺cjtui.theme真实RED1，声明-only静态不运行/非GREEN，证据R15/test-design；foundation013产品屏障080/084+glyph097仍未满足。089同独立Sol/high作者在theme-load-tests先准备异步独立手工期望/真实I/O竞争，async-only RED等基础088后，不拿当前缺包冒充特定功能失败。容量/单candidate内部不变量由090源码审核联合黑盒语义核，不加测试专用公开计数。FIFO非普通文件支持不可静默当需求，必要用合法测试进程read gate做真实普通文件握手，不造fakeworker。
 
 089准备原83fac077已集成179c851，仅准备交付；实际async-only RED仍等088，089/026/092不得提前完成。
+
+085 Glyph追加独立testonly2b16ce9d5975410265283cfce9ef127b3ad1f74d已集成b932b69，16新增文件556行，原47file/16negative/4preset固定字节0差异。新正常root/Glyphpositive/languageholder/getset/3真实controlledPTY input0；Theme target缺cjtui.theme RED1及offline缺overflow等20ERROR/device缺8API，未来ellipsis/7device断言未运行非GREEN。手goldenW4ABCDE UnicodeABC… vsAsciiA...、offlineAscii é...业务Unicode不变、实际Row宽/pad/hardline/cache/render-snapshot/file等追加。空map全blank不足证明前缀预算，独立testadapterinclude原glyphwrapper仅过滤U2026→已有A，104pair/ASCII/dots/?/é保留；实际literal…→? control可区别未来正确A...与错误ABC?，不改共享093fixture/不加productionhook/非真kernel。R15/glyph-refresh98files96原件，rootfresh核96sourcecopy192SHA。当前013025只读预研ready，仍等097接受与最终085交付准入；不能等ThemeGREEN再准产品形成环。

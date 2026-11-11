@@ -1,0 +1,52 @@
+[
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "HEAD"
+    ],
+    "cwd": "/workspace/work/theme-glyph-tests/source",
+    "utc": "2026-11-11T01:10:45.140254+00:00",
+    "exit": 0
+  },
+  {
+    "argv": [
+      "node",
+      "--check",
+      "tests/themes/glyph-pty.mjs"
+    ],
+    "cwd": "/workspace/work/theme-glyph-tests/source",
+    "utc": "2026-11-11T01:10:45.175437+00:00",
+    "exit": 0
+  },
+  {
+    "argv": [
+      "node",
+      "--check",
+      "tests/themes/run-glyph-refresh.mjs"
+    ],
+    "cwd": "/workspace/work/theme-glyph-tests/source",
+    "utc": "2026-11-11T01:10:45.197815+00:00",
+    "exit": 0
+  },
+  {
+    "argv": [
+      "git",
+      "diff",
+      "--name-only",
+      "b3b24f896672336797cec009cfe0cd830a955aa7",
+      "HEAD",
+      "--",
+      "src",
+      "native",
+      "docs",
+      "openspec",
+      "cjpm.toml"
+    ],
+    "cwd": "/workspace/work/theme-glyph-tests/source",
+    "utc": "2026-11-11T01:10:45.200319+00:00",
+    "exit": 0
+  }
+]
