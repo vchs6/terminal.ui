@@ -85,8 +85,8 @@
 ## 1. Unit A
 
 - [x] 1.1 TASK-098：冻结独立公共测试与RED；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
-- [ ] 1.2 TASK-099：实现有限公共单元并自验；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
-- [ ] 1.3 TASK-100：固定源码独立规格与质量审查；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
+- [x] 1.2 TASK-099：实现有限公共单元并自验；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
+- [x] 1.3 TASK-100：固定源码独立规格与质量审查；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
 - [ ] 1.4 TASK-101：独立执行与正常制品消费；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
 - [ ] 1.5 TASK-102：有限合同与父AC映射独立验收；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
 
@@ -123,10 +123,10 @@
 
 **L4:**
 
-- [ ] 1.2.1 TASK-099.S1：按文件表公开Canvas/Size/Constraints/PaintContext，复用绑定版本协议分别登记measure/draw依赖，所有控件共用一个primitive；实现ctx过期/clip/文本样式但不暴露Frame。
-- [ ] 1.2.2 TASK-099.S2：将readonly guard用于reference与查询，现真实children焦点资格/回退接activeTarget；Target→framework→Ancestor取代旧默认，最小Tab输入走同decoder。
-- [ ] 1.2.3 TASK-099.S3：接会话caret与设备成功基线/恢复，保存已完成帧局部rect供B复用；补公开三消费者与文档，产品正常编译/定点回归后固定product-only提交。
-- [ ] 1.2.4 TASK-099.S4：运行bash tests/interaction_a/run.sh及admission清单列出的受影响既有检查，记录实际exit；检查技术diff/实体文件/旧路径退役，提交产品hash给主代理。作者自验不是独立验收。
+- [x] 1.2.1 TASK-099.S1：按文件表公开Canvas/Size/Constraints/PaintContext，复用绑定版本协议分别登记measure/draw依赖，所有控件共用一个primitive；实现ctx过期/clip/文本样式但不暴露Frame。
+- [x] 1.2.2 TASK-099.S2：将readonly guard用于reference与查询，现真实children焦点资格/回退接activeTarget；Target→framework→Ancestor取代旧默认，最小Tab输入走同decoder。
+- [x] 1.2.3 TASK-099.S3：接会话caret与设备成功基线/恢复，保存已完成帧局部rect供B复用；补公开三消费者与文档，产品正常编译/定点回归后固定product-only提交。
+- [x] 1.2.4 TASK-099.S4：运行bash tests/interaction_a/run.sh及admission清单列出的受影响既有检查，记录实际exit；检查技术diff/实体文件/旧路径退役，提交产品hash给主代理。作者自验不是独立验收。
 
 ### TASK-100: 固定源码独立规格与质量审查
 
@@ -142,9 +142,9 @@
 
 **L4:**
 
-- [ ] 1.3.1 TASK-100.S1：锁定base/product/test/contract hash，逐公开接口核对design本单位与A-01–A-06、上游交叉及错误优先级，交可达反例而非泛泛建议。
-- [ ] 1.3.2 TASK-100.S2：检查文件职责/单Runtime/单resolver/Frame/宽簇、生命周期与资源上限；核对退役安排“移除设备固定root和旧interrupt平行分支；InputDecoder只增HT与无参数CSI Z，未知CSI/SS3 Z及控制串原隔离不放宽。”。
-- [ ] 1.3.3 TASK-100.S3：输出spec/quality双verdict与发现严重度；发现回主代理，不私改代码/断言。收到新固定修复后仅复核受影响diff和相关失败证据，保留前次记录。
+- [x] 1.3.1 TASK-100.S1：锁定base/product/test/contract hash，逐公开接口核对design本单位与A-01–A-06、上游交叉及错误优先级，交可达反例而非泛泛建议。
+- [x] 1.3.2 TASK-100.S2：检查文件职责/单Runtime/单resolver/Frame/宽簇、生命周期与资源上限；核对退役安排“移除设备固定root和旧interrupt平行分支；InputDecoder只增HT与无参数CSI Z，未知CSI/SS3 Z及控制串原隔离不放宽。”。
+- [x] 1.3.3 TASK-100.S3：输出spec/quality双verdict与发现严重度；发现回主代理，不私改代码/断言。收到新固定修复后仅复核受影响diff和相关失败证据，保留前次记录。
 
 ### TASK-101: 独立执行与正常制品消费
 
