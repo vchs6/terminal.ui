@@ -1,0 +1,19 @@
+diff --git a/openspec/changes/implement-theme-styles/design.md b/openspec/changes/implement-theme-styles/design.md
+index 433014c..bf233b0 100644
+--- a/openspec/changes/implement-theme-styles/design.md
++++ b/openspec/changes/implement-theme-styles/design.md
+@@ -136,7 +136,7 @@ load/reload 要求活动 session；非活动返回已经终结的 SessionClosed
+ 
+ 首版 schema 的根键 **只有** `schema_version,name,variables,text,decoration,spacing,components,styles`。schema_version 必需为 TOML integer 1，name 必需为非空可打印字符串（去空白后不可空，但保存原文本）；其余可省略。空文件不是默认主题。根表缺失可省略，显式空合法 table 等价无声明。根级 extends/include/import、未知键以及已知键拼错均错误。
+ 
+-标识符用于 variable/style 名：ASCII `[A-Za-z_][A-Za-z0-9_-]*`，1–128 字节，大小写敏感，不去空格，不允许点/路径/冒号；TOML 引号不放宽语义名称。name 是展示名，不是标识符或文件路径。字面 key、quoted key、dotted key、inline table、普通 table 只要解析后的树完全相同就语义相同，不另建词法解析器。多行字符串按 TOML 解析，但该字段仍受自身值域约束。
++标识符用于 variable/style 名：ASCII `[A-Za-z_][A-Za-z0-9_-]*`，1–128 字节，大小写敏感，不去空格，不允许点/路径/冒号；TOML 引号不放宽语义名称。name 是展示名，不是标识符或文件路径。在通过 T009 源输入资源预算后，字面 key、quoted key、dotted key、inline table、普通 table 只要解析后的树完全相同就语义相同，不另建词法解析器。多行字符串按 TOML 解析，但该字段仍受自身值域约束。
+ 
+ 结构定义：
+ 
+@@ -433,3 +433,5 @@ T016（独立测试期SDK语法/预算澄清）：仓颉with是关键字，正
+ 
+ T009 token预算精确计所有上游Lexer发出的非EOF token，包括CommentStart/其他注释token，EOF不计；空文档是0token但schema仍缺必需字段。声明计数为每次KeyStart、TableStart、ArrayTableStart各1（inline内KeyStart也计），其余token不计声明。边界样本必须用该固定上游public Lexer实数核对，不另写模拟词法；变量/样式4096等预算仍联合生效，避免断言因先撞其他预算而失真。
+ 
++T009 key 段预算澄清：1024 bytes 是解析前的**源输入词法资源预算**，按上游 Lexer 在键位置返回的每个段 token 的 `value` 原始 UTF8 字节数计算；Lexer 已移除的引号定界符不计，转义拼写原样计入，不按解码后键名计数。普通键、dotted key、table/array-table header、inline-table 键使用同一规则，值位置的字符串不计为键段。1024 包含在预算内，1025 及以上先报 CapacityExceeded；预算以内的词法、语法及 schema 错误仍按既有顺序处理。guard 不解码或规范化键，不调用 Parser 解析单个 token，不复制私有 keyString/replaceEscapes；完整 Parser 仍是唯一语义解码权威。因此 103 次 `\U00000061` 的键段原始值有 1030 bytes，即使语义键名只有 103 个 `a` 也先超限；直接写 103 个 `a` 不因这项预算被拒。TOML 语义等价承诺适用于通过源输入预算的配置，不保证不同源拼写具有相同资源成本。产品说明须公开此测量规则。
++

@@ -1,0 +1,2678 @@
+{
+  "note": "Narrow T009 decision review/public upstream Lexer40-case evidence only, not product implementation/PASS or013025acceptance. Original report/recommendation and final wording check remain unchanged.",
+  "copies": [
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/build.sh",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/build.sh",
+      "relative_path": "build.sh",
+      "sha256": "e962996e8b53c8c26e217fba761c9880fb981cac5c8be305a77da8db3a7533aa"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/candidate.md",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/candidate.md",
+      "relative_path": "candidate.md",
+      "sha256": "f64e0cc62e4dd5ffcafab1f2032c0bd6ecad49119b3f728ded1c17c3889dbe53"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/cases.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/cases.json",
+      "relative_path": "cases.json",
+      "sha256": "14f589aa23a19dc197f52cffe82b430baec51f78fb510ea032611021a5185fc4"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/collect_evidence.py",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/collect_evidence.py",
+      "relative_path": "collect_evidence.py",
+      "sha256": "5bb1ddd91fdb5ecedceaa4ad40cfdbf5853f0e00672436954c3905e907e89150"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/dependency-source-identity.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/dependency-source-identity.json",
+      "relative_path": "dependency-source-identity.json",
+      "sha256": "e50b54c06034421a2526860e215929c9245a308b51c0bf34ab16059ddea189ac"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/final-wording-review.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/final-wording-review.json",
+      "relative_path": "final-wording-review.json",
+      "sha256": "11d6e6d80e459dfd2db56fb2cc4e2b836981895e0162db702a49671a9e5a4d78"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/findings.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/findings.json",
+      "relative_path": "findings.json",
+      "sha256": "2ba29872d8bf87c2ea38c4ddd01d02b76dbd2c1a05e06dfea664115062558661"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/generate_inputs.py",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/generate_inputs.py",
+      "relative_path": "generate_inputs.py",
+      "sha256": "55ff4cbddbe2bcea423e9f157ef83ee6fcd1bd59065b9884d0a115d802015e80"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/input-hashes.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/input-hashes.json",
+      "relative_path": "input-hashes.json",
+      "sha256": "e64006b1b6ee9c82e343393cec8686ce50dbbdad8d57f5ec292f4564825df3af"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/array-inline-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/array-inline-1024.toml",
+      "relative_path": "inputs/array-inline-1024.toml",
+      "sha256": "d8a7a4d39a5eea3ae3ba93363a9d4c6e6c88bf726472f718265cb99531588a70"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/array-inline-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/array-inline-1025.toml",
+      "relative_path": "inputs/array-inline-1025.toml",
+      "sha256": "3ca7d7bf3643dda85e0974bc005f36d5a3b56ed0f937aa4c3301e33520905839"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/array-table-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/array-table-1024.toml",
+      "relative_path": "inputs/array-table-1024.toml",
+      "sha256": "cb8069e83118664c9f3a0e75e5d7400e08ac442f43fef6c5cf023c2fd6e2bd9b"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/array-table-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/array-table-1025.toml",
+      "relative_path": "inputs/array-table-1025.toml",
+      "sha256": "29099daec33c85e3744c8ee43d5a343fff1a579b43969a425c491f1720ccfb10"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/bare-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/bare-1024.toml",
+      "relative_path": "inputs/bare-1024.toml",
+      "sha256": "4ae09a12cf224e8a5403932dc3ddd7787fa492652e5793914762778f1e45bc46"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/bare-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/bare-1025.toml",
+      "relative_path": "inputs/bare-1025.toml",
+      "sha256": "b0ac1aea762768b1c96fb64daa58f718a08b0d4d409a88309f1ab2626d0d4f80"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/bare.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/bare.toml",
+      "relative_path": "inputs/bare.toml",
+      "sha256": "c6be1b5ba77af470d0ac75302988cca67d0e288bf2d9f5ebd872f560e2c0aa17"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/basic.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/basic.toml",
+      "relative_path": "inputs/basic.toml",
+      "sha256": "a6e59f8c465476eed1097482f78d6cee8bdb1133f8190b87044d7d40c60893bc"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/dotted-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/dotted-1024.toml",
+      "relative_path": "inputs/dotted-1024.toml",
+      "sha256": "73106eb0426d721fcaf624857e09266d3e740b516c7624fa982978169e737a22"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/dotted-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/dotted-1025.toml",
+      "relative_path": "inputs/dotted-1025.toml",
+      "sha256": "0d9807ccf7d120a57e135f821593f25d59fdaab7b25294d595697afa28e55f41"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/empty-basic.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/empty-basic.toml",
+      "relative_path": "inputs/empty-basic.toml",
+      "sha256": "44e1e8926b0da94d4907b4b75d53d536e73d7cfabeb56f26b55a7b1eff866dc8"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-U-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-U-1024.toml",
+      "relative_path": "inputs/escape-U-1024.toml",
+      "sha256": "c9e71036f36f6619b58328bf185091a6f8c226822f350138d944e05659008cd5"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-U-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-U-1025.toml",
+      "relative_path": "inputs/escape-U-1025.toml",
+      "sha256": "7d58b0bb5b0376c9068a872230ae2a33239f702ee43e276f65d586ef9aa63abb"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-U.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-U.toml",
+      "relative_path": "inputs/escape-U.toml",
+      "sha256": "2232049b2c5b49c1b86571772db7a31f238946d31d041cd82472132934b1bb20"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-backslash-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-backslash-1024.toml",
+      "relative_path": "inputs/escape-backslash-1024.toml",
+      "sha256": "7c3cf2a751edc4225a39833b2cf874447136bc138e89bd206ab233092be48f8f"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-backslash-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-backslash-1025.toml",
+      "relative_path": "inputs/escape-backslash-1025.toml",
+      "sha256": "a533e347698f3a424b9f72a083e1d5970640149b1b4601ee239c5da74f1f4c06"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-backslash.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-backslash.toml",
+      "relative_path": "inputs/escape-backslash.toml",
+      "sha256": "dc4453ae1b4a33dc662519a491d83bfdb7862942afe4a280e5c3a1edb044d72b"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-quote-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-quote-1024.toml",
+      "relative_path": "inputs/escape-quote-1024.toml",
+      "sha256": "1173959b52336958ae9f31a5ea06a3dd437b3f3670d423ec47b3bfdeee0699ef"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-quote-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-quote-1025.toml",
+      "relative_path": "inputs/escape-quote-1025.toml",
+      "sha256": "02d3e20cf354c6e8a3281ac28781fdff81c5f9518828d588ce919e972e5403a5"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-quote.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-quote.toml",
+      "relative_path": "inputs/escape-quote.toml",
+      "sha256": "6f631431ab0d78a82cebfdf9edf55cf6852e3a71c3f4d86fc73ac4c4d93e1520"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-u-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-u-1024.toml",
+      "relative_path": "inputs/escape-u-1024.toml",
+      "sha256": "84e7d6309330fad1b5a6d12b46851c989b7f283bded19d343738fe030f0069b6"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-u-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-u-1025.toml",
+      "relative_path": "inputs/escape-u-1025.toml",
+      "sha256": "661ee563c6120bd288f8651dd0d42321608e35194757fb765d2ec9959110a176"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-u.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-u.toml",
+      "relative_path": "inputs/escape-u.toml",
+      "sha256": "2bd335fd6de3a7024c05a9b44e540e22367a6d574dbb2e9d3457df1efeecd6a7"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/inline-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/inline-1024.toml",
+      "relative_path": "inputs/inline-1024.toml",
+      "sha256": "46bbb07bd4bb239042ce4f775079e3d0b6f3ba7436eefbea962a6b503b024a30"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/inline-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/inline-1025.toml",
+      "relative_path": "inputs/inline-1025.toml",
+      "sha256": "da3a6426ba3e5c3553cbcd228a05a2e8f77ba5a14b768d5f3cfe03c60f1eff37"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/literal-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/literal-1024.toml",
+      "relative_path": "inputs/literal-1024.toml",
+      "sha256": "cbe1aab079a62ab604a5a11a8937032530ce147b7421dba28353d686e9852228"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/literal-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/literal-1025.toml",
+      "relative_path": "inputs/literal-1025.toml",
+      "sha256": "3424f5c41aabc02f6ee29b70f0c0cce98f41ee908930855bb0a3165631bebedb"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/literal-backslash.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/literal-backslash.toml",
+      "relative_path": "inputs/literal-backslash.toml",
+      "sha256": "a2d19fa1dde8c36dca8d8542fc9198f40c5233838add07b4b2688c4eea548f0e"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/literal.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/literal.toml",
+      "relative_path": "inputs/literal.toml",
+      "sha256": "51761b2156cbd40755f6530be35fffe9fd9062bc70875998d3038ad873d2d67a"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/mixed-unicode.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/mixed-unicode.toml",
+      "relative_path": "inputs/mixed-unicode.toml",
+      "sha256": "1ff35743f27e59dc8586767a4c6e12faf5e71b89187b63a3c7b36b56beae5b12"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/quoted-dot-bracket.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/quoted-dot-bracket.toml",
+      "relative_path": "inputs/quoted-dot-bracket.toml",
+      "sha256": "e634578e971d09e11aa104a3041a3cad1772ff6ff4020d5dbf36f54a648af5ac"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/raw-unicode-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/raw-unicode-1024.toml",
+      "relative_path": "inputs/raw-unicode-1024.toml",
+      "sha256": "afb10b159ad7b12d27e8e8afd5995044d5f54a07b82d5797cf0fbff29ac3ceec"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/raw-unicode-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/raw-unicode-1025.toml",
+      "relative_path": "inputs/raw-unicode-1025.toml",
+      "sha256": "29db59ccd33ac8af06310be09d5bcd86c422ac34b68bc613ade3952a6dcf0850"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/schema-valid-escaped-1030.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/schema-valid-escaped-1030.toml",
+      "relative_path": "inputs/schema-valid-escaped-1030.toml",
+      "sha256": "536ad2356aed8799b740ab094c46afb322857c89a259ef25ae75e47b09106945"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/schema-valid-plain-103.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/schema-valid-plain-103.toml",
+      "relative_path": "inputs/schema-valid-plain-103.toml",
+      "sha256": "fedcb0577089ad9ead1024f1b9ec7e8193bd3e47f76ec7331bcf6d19981f7a41"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/table-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/table-1024.toml",
+      "relative_path": "inputs/table-1024.toml",
+      "sha256": "10964291f21630d0d97effc2d246c082d2f833fb2922db6c13d110a33503ef47"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/table-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/table-1025.toml",
+      "relative_path": "inputs/table-1025.toml",
+      "sha256": "c1dcdc61f37f033c6939bb3b1c0c8c4eb2c802d24df37f80df505b15182afd08"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/value-1024.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/value-1024.toml",
+      "relative_path": "inputs/value-1024.toml",
+      "sha256": "ab06f964f11cde7cb1557ec33878d400260aa6594606fa2f6f8fd6841cdcf054"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/value-1025.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/value-1025.toml",
+      "relative_path": "inputs/value-1025.toml",
+      "sha256": "35ebd5a3db9df80825359963b759e667b99433ce0345b93c2a73a1bb1c198f30"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/inputs/value-comment-control.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/value-comment-control.toml",
+      "relative_path": "inputs/value-comment-control.toml",
+      "sha256": "03940a2f65f7fe25bcb5c45423f347c5f7f735c39e1988ba0cf9c62d023b06c9"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/negative-decode/cangjie-repo.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-decode/cangjie-repo.toml",
+      "relative_path": "negative-decode/cangjie-repo.toml",
+      "sha256": "e8bde1fa66a19e2d5fbc3ac8c08091790d363bd8cac0fe324e8452556889df87"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/negative-decode/cjpm.lock",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-decode/cjpm.lock",
+      "relative_path": "negative-decode/cjpm.lock",
+      "sha256": "fc511177f4d97097c2f37e6d477853c328ddc061cf3cc896fa4a5bd8df2969ee"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/negative-decode/cjpm.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-decode/cjpm.toml",
+      "relative_path": "negative-decode/cjpm.toml",
+      "sha256": "99448ab243cb327dccfaff2b00b4e71a8c21b334fc16b1ea539891434dddfa2d"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/negative-decode/src/main.cj",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-decode/src/main.cj",
+      "relative_path": "negative-decode/src/main.cj",
+      "sha256": "2a4e784bcb619982cf29295bf97cf5e96281d99abe9f7be86a1eacbb1497aaa5"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/negative-key/cangjie-repo.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-key/cangjie-repo.toml",
+      "relative_path": "negative-key/cangjie-repo.toml",
+      "sha256": "e8bde1fa66a19e2d5fbc3ac8c08091790d363bd8cac0fe324e8452556889df87"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/negative-key/cjpm.lock",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-key/cjpm.lock",
+      "relative_path": "negative-key/cjpm.lock",
+      "sha256": "fc511177f4d97097c2f37e6d477853c328ddc061cf3cc896fa4a5bd8df2969ee"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/negative-key/cjpm.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-key/cjpm.toml",
+      "relative_path": "negative-key/cjpm.toml",
+      "sha256": "99448ab243cb327dccfaff2b00b4e71a8c21b334fc16b1ea539891434dddfa2d"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/negative-key/src/main.cj",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-key/src/main.cj",
+      "relative_path": "negative-key/src/main.cj",
+      "sha256": "d93652380535f714431464bfc73d42046ab0ec285098ecae7bc8546269cab925"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/probe/cangjie-repo.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe/cangjie-repo.toml",
+      "relative_path": "probe/cangjie-repo.toml",
+      "sha256": "e8bde1fa66a19e2d5fbc3ac8c08091790d363bd8cac0fe324e8452556889df87"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/probe/cjpm.lock",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe/cjpm.lock",
+      "relative_path": "probe/cjpm.lock",
+      "sha256": "fc511177f4d97097c2f37e6d477853c328ddc061cf3cc896fa4a5bd8df2969ee"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/probe/cjpm.toml",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe/cjpm.toml",
+      "relative_path": "probe/cjpm.toml",
+      "sha256": "99448ab243cb327dccfaff2b00b4e71a8c21b334fc16b1ea539891434dddfa2d"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/probe/src/main.cj",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe/src/main.cj",
+      "relative_path": "probe/src/main.cj",
+      "sha256": "b7a72a1beeab2e6e21f3630d7edb43337916ff0c6c36c23a2cbd149a1dc24390"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/probe-results.json",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe-results.json",
+      "relative_path": "probe-results.json",
+      "sha256": "4c1f5f57e0db786f1c87ec5f9d2d0748921b27c36348ee91e4da91fe72fb2f83"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/array-inline-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-inline-1024.stderr",
+      "relative_path": "raw/array-inline-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/array-inline-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-inline-1024.stdout",
+      "relative_path": "raw/array-inline-1024.stdout",
+      "sha256": "348f09cdccc2b2c217659862eece7d31c61993441bec629c2ae27500bb0165cb"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/array-inline-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-inline-1025.stderr",
+      "relative_path": "raw/array-inline-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/array-inline-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-inline-1025.stdout",
+      "relative_path": "raw/array-inline-1025.stdout",
+      "sha256": "0852277254516ce33f22ec5b99c9f9d4308157a133c8788c81558f8aa503f866"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/array-table-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-table-1024.stderr",
+      "relative_path": "raw/array-table-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/array-table-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-table-1024.stdout",
+      "relative_path": "raw/array-table-1024.stdout",
+      "sha256": "43bcabc58f8142cf99ac53b6b1492e81d0f4ae54957fe44b1ddc50efa84eb1d4"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/array-table-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-table-1025.stderr",
+      "relative_path": "raw/array-table-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/array-table-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-table-1025.stdout",
+      "relative_path": "raw/array-table-1025.stdout",
+      "sha256": "d0bb29f433c177af417e927e35d87f1660ab56f2362ed619794bf74acad6498f"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/bare-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare-1024.stderr",
+      "relative_path": "raw/bare-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/bare-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare-1024.stdout",
+      "relative_path": "raw/bare-1024.stdout",
+      "sha256": "f2c5f55762e8d14b33c4e1a832a51fe97ce540e0c66cde5461603f0ac1597192"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/bare-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare-1025.stderr",
+      "relative_path": "raw/bare-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/bare-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare-1025.stdout",
+      "relative_path": "raw/bare-1025.stdout",
+      "sha256": "7e8dcca79bc65ff0a0a4b220553474d945695c444db4ebbbb10ed47cead3d8e2"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/bare.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare.stderr",
+      "relative_path": "raw/bare.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/bare.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare.stdout",
+      "relative_path": "raw/bare.stdout",
+      "sha256": "a034747527bc4115ac2830332f4e1579fc1fa9bfb3e9e8342334c1d481eea2d1"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/basic.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/basic.stderr",
+      "relative_path": "raw/basic.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/basic.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/basic.stdout",
+      "relative_path": "raw/basic.stdout",
+      "sha256": "e3c558ac35841524e780484ce52368971d3612a95d569dea724e9a3d93041a3f"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.exit",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.exit",
+      "relative_path": "raw/build-attempt-1/build.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.finished.utc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.finished.utc",
+      "relative_path": "raw/build-attempt-1/build.finished.utc",
+      "sha256": "b277fd05000dc5badc2aee828f466e84c09225907e24e7bd7751d24cf0ed0842"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.started.utc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.started.utc",
+      "relative_path": "raw/build-attempt-1/build.started.utc",
+      "sha256": "08a9dc0a2060b10b6329c4ba669f8dd47a3f7a7f5bcfb12657031641692a65f9"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.stderr",
+      "relative_path": "raw/build-attempt-1/build.stderr",
+      "sha256": "5b824216a326a157d65c473bf87f09b887b3ff524c6287752fcd1b66c59dc07c"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.stdout",
+      "relative_path": "raw/build-attempt-1/build.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/main.cj.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/main.cj.txt",
+      "relative_path": "raw/build-attempt-1/main.cj.txt",
+      "sha256": "de1cfae979484ea34bcd188e6a848078c58dcad37a864dfe5920139bda90cbec"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build.exit",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.exit",
+      "relative_path": "raw/build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build.finished.utc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.finished.utc",
+      "relative_path": "raw/build.finished.utc",
+      "sha256": "2c89e53202e073f7e70cd5eaff8b3877c78986bf10f045483508fd9c24ee8d7c"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build.started.utc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.started.utc",
+      "relative_path": "raw/build.started.utc",
+      "sha256": "5c55dd442c1d6ef087b82384586d9d339a08be18664fb163603f844b507da2dc"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.stderr",
+      "relative_path": "raw/build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/build.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.stdout",
+      "relative_path": "raw/build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/dotted-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/dotted-1024.stderr",
+      "relative_path": "raw/dotted-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/dotted-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/dotted-1024.stdout",
+      "relative_path": "raw/dotted-1024.stdout",
+      "sha256": "4f5ec70c5de0166bad4efe43151e2402e412a715ac26b302eeb369de9befbea7"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/dotted-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/dotted-1025.stderr",
+      "relative_path": "raw/dotted-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/dotted-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/dotted-1025.stdout",
+      "relative_path": "raw/dotted-1025.stdout",
+      "sha256": "bee037837b59f29427b4e0c26cd1bf02fd4300b5d937ea867ab679327e4c716a"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/empty-basic.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/empty-basic.stderr",
+      "relative_path": "raw/empty-basic.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/empty-basic.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/empty-basic.stdout",
+      "relative_path": "raw/empty-basic.stdout",
+      "sha256": "e9420782cbf663024f35eeb9d0570e82e4d6d40570cd00bb780b4249fd73352e"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U-1024.stderr",
+      "relative_path": "raw/escape-U-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U-1024.stdout",
+      "relative_path": "raw/escape-U-1024.stdout",
+      "sha256": "fc2a4b58188d671e21dd3077e24fa1a8284bbd44501f5091016d0c369825aa9c"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U-1025.stderr",
+      "relative_path": "raw/escape-U-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U-1025.stdout",
+      "relative_path": "raw/escape-U-1025.stdout",
+      "sha256": "992edc01a1aa57a8851d75d8f663b7e685b109bfa64a438e9b06e337366e697f"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U.stderr",
+      "relative_path": "raw/escape-U.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U.stdout",
+      "relative_path": "raw/escape-U.stdout",
+      "sha256": "5ba4464bdd8f1215e040a3106faecd980a842a82d72e863b1d667792a4cfdb92"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash-1024.stderr",
+      "relative_path": "raw/escape-backslash-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash-1024.stdout",
+      "relative_path": "raw/escape-backslash-1024.stdout",
+      "sha256": "ca9e48e794bddc9309313dd366683b0c8d6bda1e42e5f77cfc2936593fcb5ca4"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash-1025.stderr",
+      "relative_path": "raw/escape-backslash-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash-1025.stdout",
+      "relative_path": "raw/escape-backslash-1025.stdout",
+      "sha256": "bac5768556037298c58741b4418a78c3b17c725994a0b0ee21898e2ed848d762"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash.stderr",
+      "relative_path": "raw/escape-backslash.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash.stdout",
+      "relative_path": "raw/escape-backslash.stdout",
+      "sha256": "cec5d22f59c6c3497871cea2b29316f2c20feb3d7ca90fe0050cfee44b8905b5"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote-1024.stderr",
+      "relative_path": "raw/escape-quote-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote-1024.stdout",
+      "relative_path": "raw/escape-quote-1024.stdout",
+      "sha256": "6494c073c5ebf118e0dd4ccce4aac8225a6e9ab412fe1f9647b19756b29da251"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote-1025.stderr",
+      "relative_path": "raw/escape-quote-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote-1025.stdout",
+      "relative_path": "raw/escape-quote-1025.stdout",
+      "sha256": "0307d2876358f4dae92365ac4b40ffdfc04191bcb48a26922023e84c809fb3b6"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote.stderr",
+      "relative_path": "raw/escape-quote.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote.stdout",
+      "relative_path": "raw/escape-quote.stdout",
+      "sha256": "a1b337fd637c903471c606a332376ff235375ed3a6f5711fa0769e23a503ac8e"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u-1024.stderr",
+      "relative_path": "raw/escape-u-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u-1024.stdout",
+      "relative_path": "raw/escape-u-1024.stdout",
+      "sha256": "0d89f2e94e59ed7a3c17bab1fd995e01cc36f71bcc35f00f7aeb4faeaebbf3b8"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u-1025.stderr",
+      "relative_path": "raw/escape-u-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u-1025.stdout",
+      "relative_path": "raw/escape-u-1025.stdout",
+      "sha256": "ed5d401579c040b50ab2c632224bd0d294953ded55df8a5216b87628d81267b3"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u.stderr",
+      "relative_path": "raw/escape-u.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u.stdout",
+      "relative_path": "raw/escape-u.stdout",
+      "sha256": "39ef26dccd8586f2a80fc7512d15e20765cdd1f4c512ea98b83de73d40112471"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/inline-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/inline-1024.stderr",
+      "relative_path": "raw/inline-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/inline-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/inline-1024.stdout",
+      "relative_path": "raw/inline-1024.stdout",
+      "sha256": "498bc971d9811f5fe22103d8984619b348d4fda4942e8edfd029c757185afd69"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/inline-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/inline-1025.stderr",
+      "relative_path": "raw/inline-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/inline-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/inline-1025.stdout",
+      "relative_path": "raw/inline-1025.stdout",
+      "sha256": "6ba1af0a341ce016742d5a1469a289cfe42d2cb7be299cd1565b471cb1cddeda"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/literal-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-1024.stderr",
+      "relative_path": "raw/literal-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/literal-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-1024.stdout",
+      "relative_path": "raw/literal-1024.stdout",
+      "sha256": "2922aa75a0f1c31087ebaf902fb8874774475732ec19e5f24a3412b72dfb1306"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/literal-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-1025.stderr",
+      "relative_path": "raw/literal-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/literal-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-1025.stdout",
+      "relative_path": "raw/literal-1025.stdout",
+      "sha256": "9039d54e733243168fcf8bf1c8850793eb574cd6cec793be8cb0a1626a0832a6"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/literal-backslash.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-backslash.stderr",
+      "relative_path": "raw/literal-backslash.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/literal-backslash.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-backslash.stdout",
+      "relative_path": "raw/literal-backslash.stdout",
+      "sha256": "f2b3553c136c31a6326a66af51a43e3ead2492117aec5850ab46993edec5ea81"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/literal.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal.stderr",
+      "relative_path": "raw/literal.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/literal.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal.stdout",
+      "relative_path": "raw/literal.stdout",
+      "sha256": "b6340935c53eeebafc0298fa9f5229a39204c80506367d8daee8acfa9a0f34fd"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/mixed-unicode.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/mixed-unicode.stderr",
+      "relative_path": "raw/mixed-unicode.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/mixed-unicode.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/mixed-unicode.stdout",
+      "relative_path": "raw/mixed-unicode.stdout",
+      "sha256": "6a946f653f5a154b049e707314769e9d793f42f55f527bb7c11e8b39a81f08fb"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.exit",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.exit",
+      "relative_path": "raw/negative-decode.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.finished.utc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.finished.utc",
+      "relative_path": "raw/negative-decode.finished.utc",
+      "sha256": "adfbe990e58c90874c333a99d03e0df17a2227385a485969cca1a95b76602e2c"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.started.utc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.started.utc",
+      "relative_path": "raw/negative-decode.started.utc",
+      "sha256": "9eb462d174312d29abe47a9cc940c91bca3fc3762c41db81aba755069f2be93d"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.stderr",
+      "relative_path": "raw/negative-decode.stderr",
+      "sha256": "f6555ffd4efa1427c40de0f140b8721d926113ab7dd05072091601da16ded125"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.stdout",
+      "relative_path": "raw/negative-decode.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.exit",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.exit",
+      "relative_path": "raw/negative-key.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.finished.utc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.finished.utc",
+      "relative_path": "raw/negative-key.finished.utc",
+      "sha256": "9eb462d174312d29abe47a9cc940c91bca3fc3762c41db81aba755069f2be93d"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.started.utc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.started.utc",
+      "relative_path": "raw/negative-key.started.utc",
+      "sha256": "5a56e713be006e6e3e5178955e98328220d7b4643bc8367fe195641c1f2a3fbf"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.stderr",
+      "relative_path": "raw/negative-key.stderr",
+      "sha256": "53a0116b5dac202c7124913f1a90b8d89db440023ab3831447f969642d5fc70a"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.stdout",
+      "relative_path": "raw/negative-key.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/quoted-dot-bracket.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/quoted-dot-bracket.stderr",
+      "relative_path": "raw/quoted-dot-bracket.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/quoted-dot-bracket.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/quoted-dot-bracket.stdout",
+      "relative_path": "raw/quoted-dot-bracket.stdout",
+      "sha256": "6d0350734b852749ca8236c0db7489854d0af2f3cc2a14be01b62df521b3b97f"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/raw-unicode-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/raw-unicode-1024.stderr",
+      "relative_path": "raw/raw-unicode-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/raw-unicode-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/raw-unicode-1024.stdout",
+      "relative_path": "raw/raw-unicode-1024.stdout",
+      "sha256": "f4d8ad9220ec52ccbc88775301e799e0c9d0f7f0cf3b0d9bf6533ed8c46f688b"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/raw-unicode-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/raw-unicode-1025.stderr",
+      "relative_path": "raw/raw-unicode-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/raw-unicode-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/raw-unicode-1025.stdout",
+      "relative_path": "raw/raw-unicode-1025.stdout",
+      "sha256": "174060845f0f9878c25450d6c39ba77f3b3f5cbc42c05b9319e8009caebf6953"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/schema-valid-escaped-1030.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/schema-valid-escaped-1030.stderr",
+      "relative_path": "raw/schema-valid-escaped-1030.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/schema-valid-escaped-1030.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/schema-valid-escaped-1030.stdout",
+      "relative_path": "raw/schema-valid-escaped-1030.stdout",
+      "sha256": "6a647bf5982fae337fa4a0d42e67411250a690e99203ed074b7c293bc1085c31"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/schema-valid-plain-103.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/schema-valid-plain-103.stderr",
+      "relative_path": "raw/schema-valid-plain-103.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/schema-valid-plain-103.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/schema-valid-plain-103.stdout",
+      "relative_path": "raw/schema-valid-plain-103.stdout",
+      "sha256": "ab4c4d1b83bc42077dbaca26ddc76946d1fba5e53f2c2b2048a4e23b89017947"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/sdk.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/sdk.txt",
+      "relative_path": "raw/sdk.txt",
+      "sha256": "86ea2825e2b8feef4e4c4c3cc5b82df1933fd07477f7eea25316e08a0cdb76ef"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/table-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/table-1024.stderr",
+      "relative_path": "raw/table-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/table-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/table-1024.stdout",
+      "relative_path": "raw/table-1024.stdout",
+      "sha256": "013ea67da9e12d38428775c60c7e0e909909d29976e92ea414b09744ca738575"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/table-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/table-1025.stderr",
+      "relative_path": "raw/table-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/table-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/table-1025.stdout",
+      "relative_path": "raw/table-1025.stdout",
+      "sha256": "071df5b688dd419a247110ec172d2431330b1559e721cd98fd87d6b4fa591c87"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/value-1024.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-1024.stderr",
+      "relative_path": "raw/value-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/value-1024.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-1024.stdout",
+      "relative_path": "raw/value-1024.stdout",
+      "sha256": "68199f336db5b6041afc36af6c2233f10a14ec41348c7614bef790963671fa80"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/value-1025.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-1025.stderr",
+      "relative_path": "raw/value-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/value-1025.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-1025.stdout",
+      "relative_path": "raw/value-1025.stdout",
+      "sha256": "29d7e6ea09e02f014d6af847036f50e4fa27a8f81841965b8b7ffec9714b47a3"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/value-comment-control.stderr",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-comment-control.stderr",
+      "relative_path": "raw/value-comment-control.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/raw/value-comment-control.stdout",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-comment-control.stdout",
+      "relative_path": "raw/value-comment-control.stdout",
+      "sha256": "77455624895fdf0b5ddc9bb1ac0952c957bc213acf5344766ab1d0727508faa8"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/report.md",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/report.md",
+      "relative_path": "report.md",
+      "sha256": "7a09060432f99292743a665012a56ef348820abe8a276a4af3080a2db92744a1"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/run_negative.sh",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/run_negative.sh",
+      "relative_path": "run_negative.sh",
+      "sha256": "2dcc949700369c30929bfbd0e3d0342b2c4e2dd6adccc3f2a63a3ebdbb5e2b20"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/run_probe.py",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/run_probe.py",
+      "relative_path": "run_probe.py",
+      "sha256": "587e5221cb4c0df6dae464f84e539400ba0683d28c3bea689f08c58a3cd4dd0c"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/final-formal-design.patch",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/final-formal-design.patch",
+      "relative_path": "source-evidence/final-formal-design.patch",
+      "sha256": "c38742c0c110007e15084f4cbd15e83d3aa3113bd15881b08c5b3bb2b5291441"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/formal-design.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/formal-design.txt",
+      "relative_path": "source-evidence/formal-design.txt",
+      "sha256": "0d6aa8ccf057e97fefb61b06f866afc0f3ae9130219f6b5f46271cb3bc47b6cd"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/original085-capacity.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/original085-capacity.txt",
+      "relative_path": "source-evidence/original085-capacity.txt",
+      "sha256": "cefedc6099394fa9e5012cffc5325d34bad40c663c3358d61f3ea02907b93459"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/original085-inputs.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/original085-inputs.txt",
+      "relative_path": "source-evidence/original085-inputs.txt",
+      "sha256": "2fab3d00ed5394126a4153b4560173c706b16a25b1ed2e153bef60bce7e1f25d"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/public-api-inventory.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/public-api-inventory.txt",
+      "relative_path": "source-evidence/public-api-inventory.txt",
+      "sha256": "a12d17da4689f339eef585f0c679e2cc178f4b35a276a5dee4c0cf8be42fe93c"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-escape.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-escape.txt",
+      "relative_path": "source-evidence/upstream-escape.txt",
+      "sha256": "5638d6d948d72e1964eda28566400a67004358d7a0ee83a77cb18a76aabbbb0d"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-fromtoml.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-fromtoml.txt",
+      "relative_path": "source-evidence/upstream-fromtoml.txt",
+      "sha256": "1042fc9699443f7a5d49fa5ced9757cfb404ca4ff6fdf908ca24524b1856bc5f"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-key.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-key.txt",
+      "relative_path": "source-evidence/upstream-key.txt",
+      "sha256": "8b9950736cde2527d096c9e8221da10de973dee8eca2b49a82e4d09c1f910986"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-lexer.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-lexer.txt",
+      "relative_path": "source-evidence/upstream-lexer.txt",
+      "sha256": "1e1afcb3054e4d2d8f68d6c4f5438115be9536d5fdedf9544836a43a559b8fb3"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-parser.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-parser.txt",
+      "relative_path": "source-evidence/upstream-parser.txt",
+      "sha256": "51ffa91c1387ec9fd69fe3f0675ab794908543827287480e7f57d01c6274a17d"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-state.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-state.txt",
+      "relative_path": "source-evidence/upstream-state.txt",
+      "sha256": "44c9c287e38516f84bf6469e8d0a17f9cdd598a81ccdd2bcd645c6c89defaa48"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-token.txt",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-token.txt",
+      "relative_path": "source-evidence/upstream-token.txt",
+      "sha256": "fa4aeb6a6a38abd44dc006d1cffcf07d3d8abdbca43e1cb47a72993962140526"
+    },
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/artifacts.sha256",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/artifacts.sha256",
+      "relative_path": "artifacts.sha256",
+      "sha256": "5929896eb95388e5fc8df4bc62456f0fbd49caa76d51b6ea2503d9bd47491383"
+    }
+  ],
+  "original_artifact_manifest_sha256": "5929896eb95388e5fc8df4bc62456f0fbd49caa76d51b6ea2503d9bd47491383",
+  "original_index_entries": 180,
+  "copied_original_payloads": 179,
+  "original_manifest_additional_file": 1,
+  "original_manifest_mapping": [
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/build.sh",
+      "sha256": "e962996e8b53c8c26e217fba761c9880fb981cac5c8be305a77da8db3a7533aa",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/build.sh",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/candidate.md",
+      "sha256": "f64e0cc62e4dd5ffcafab1f2032c0bd6ecad49119b3f728ded1c17c3889dbe53",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/candidate.md",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/cases.json",
+      "sha256": "14f589aa23a19dc197f52cffe82b430baec51f78fb510ea032611021a5185fc4",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/cases.json",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/collect_evidence.py",
+      "sha256": "5bb1ddd91fdb5ecedceaa4ad40cfdbf5853f0e00672436954c3905e907e89150",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/collect_evidence.py",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/dependency-source-identity.json",
+      "sha256": "e50b54c06034421a2526860e215929c9245a308b51c0bf34ab16059ddea189ac",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/dependency-source-identity.json",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/final-wording-review.json",
+      "sha256": "11d6e6d80e459dfd2db56fb2cc4e2b836981895e0162db702a49671a9e5a4d78",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/final-wording-review.json",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/findings.json",
+      "sha256": "2ba29872d8bf87c2ea38c4ddd01d02b76dbd2c1a05e06dfea664115062558661",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/findings.json",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/generate_inputs.py",
+      "sha256": "55ff4cbddbe2bcea423e9f157ef83ee6fcd1bd59065b9884d0a115d802015e80",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/generate_inputs.py",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/input-hashes.json",
+      "sha256": "e64006b1b6ee9c82e343393cec8686ce50dbbdad8d57f5ec292f4564825df3af",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/input-hashes.json",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/array-inline-1024.toml",
+      "sha256": "d8a7a4d39a5eea3ae3ba93363a9d4c6e6c88bf726472f718265cb99531588a70",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/array-inline-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/array-inline-1025.toml",
+      "sha256": "3ca7d7bf3643dda85e0974bc005f36d5a3b56ed0f937aa4c3301e33520905839",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/array-inline-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/array-table-1024.toml",
+      "sha256": "cb8069e83118664c9f3a0e75e5d7400e08ac442f43fef6c5cf023c2fd6e2bd9b",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/array-table-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/array-table-1025.toml",
+      "sha256": "29099daec33c85e3744c8ee43d5a343fff1a579b43969a425c491f1720ccfb10",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/array-table-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/bare-1024.toml",
+      "sha256": "4ae09a12cf224e8a5403932dc3ddd7787fa492652e5793914762778f1e45bc46",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/bare-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/bare-1025.toml",
+      "sha256": "b0ac1aea762768b1c96fb64daa58f718a08b0d4d409a88309f1ab2626d0d4f80",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/bare-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/bare.toml",
+      "sha256": "c6be1b5ba77af470d0ac75302988cca67d0e288bf2d9f5ebd872f560e2c0aa17",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/bare.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/basic.toml",
+      "sha256": "a6e59f8c465476eed1097482f78d6cee8bdb1133f8190b87044d7d40c60893bc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/basic.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/dotted-1024.toml",
+      "sha256": "73106eb0426d721fcaf624857e09266d3e740b516c7624fa982978169e737a22",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/dotted-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/dotted-1025.toml",
+      "sha256": "0d9807ccf7d120a57e135f821593f25d59fdaab7b25294d595697afa28e55f41",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/dotted-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/empty-basic.toml",
+      "sha256": "44e1e8926b0da94d4907b4b75d53d536e73d7cfabeb56f26b55a7b1eff866dc8",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/empty-basic.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-U-1024.toml",
+      "sha256": "c9e71036f36f6619b58328bf185091a6f8c226822f350138d944e05659008cd5",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-U-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-U-1025.toml",
+      "sha256": "7d58b0bb5b0376c9068a872230ae2a33239f702ee43e276f65d586ef9aa63abb",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-U-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-U.toml",
+      "sha256": "2232049b2c5b49c1b86571772db7a31f238946d31d041cd82472132934b1bb20",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-U.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-backslash-1024.toml",
+      "sha256": "7c3cf2a751edc4225a39833b2cf874447136bc138e89bd206ab233092be48f8f",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-backslash-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-backslash-1025.toml",
+      "sha256": "a533e347698f3a424b9f72a083e1d5970640149b1b4601ee239c5da74f1f4c06",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-backslash-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-backslash.toml",
+      "sha256": "dc4453ae1b4a33dc662519a491d83bfdb7862942afe4a280e5c3a1edb044d72b",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-backslash.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-quote-1024.toml",
+      "sha256": "1173959b52336958ae9f31a5ea06a3dd437b3f3670d423ec47b3bfdeee0699ef",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-quote-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-quote-1025.toml",
+      "sha256": "02d3e20cf354c6e8a3281ac28781fdff81c5f9518828d588ce919e972e5403a5",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-quote-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-quote.toml",
+      "sha256": "6f631431ab0d78a82cebfdf9edf55cf6852e3a71c3f4d86fc73ac4c4d93e1520",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-quote.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-u-1024.toml",
+      "sha256": "84e7d6309330fad1b5a6d12b46851c989b7f283bded19d343738fe030f0069b6",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-u-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-u-1025.toml",
+      "sha256": "661ee563c6120bd288f8651dd0d42321608e35194757fb765d2ec9959110a176",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-u-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/escape-u.toml",
+      "sha256": "2bd335fd6de3a7024c05a9b44e540e22367a6d574dbb2e9d3457df1efeecd6a7",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/escape-u.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/inline-1024.toml",
+      "sha256": "46bbb07bd4bb239042ce4f775079e3d0b6f3ba7436eefbea962a6b503b024a30",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/inline-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/inline-1025.toml",
+      "sha256": "da3a6426ba3e5c3553cbcd228a05a2e8f77ba5a14b768d5f3cfe03c60f1eff37",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/inline-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/literal-1024.toml",
+      "sha256": "cbe1aab079a62ab604a5a11a8937032530ce147b7421dba28353d686e9852228",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/literal-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/literal-1025.toml",
+      "sha256": "3424f5c41aabc02f6ee29b70f0c0cce98f41ee908930855bb0a3165631bebedb",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/literal-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/literal-backslash.toml",
+      "sha256": "a2d19fa1dde8c36dca8d8542fc9198f40c5233838add07b4b2688c4eea548f0e",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/literal-backslash.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/literal.toml",
+      "sha256": "51761b2156cbd40755f6530be35fffe9fd9062bc70875998d3038ad873d2d67a",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/literal.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/mixed-unicode.toml",
+      "sha256": "1ff35743f27e59dc8586767a4c6e12faf5e71b89187b63a3c7b36b56beae5b12",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/mixed-unicode.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/quoted-dot-bracket.toml",
+      "sha256": "e634578e971d09e11aa104a3041a3cad1772ff6ff4020d5dbf36f54a648af5ac",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/quoted-dot-bracket.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/raw-unicode-1024.toml",
+      "sha256": "afb10b159ad7b12d27e8e8afd5995044d5f54a07b82d5797cf0fbff29ac3ceec",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/raw-unicode-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/raw-unicode-1025.toml",
+      "sha256": "29db59ccd33ac8af06310be09d5bcd86c422ac34b68bc613ade3952a6dcf0850",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/raw-unicode-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/schema-valid-escaped-1030.toml",
+      "sha256": "536ad2356aed8799b740ab094c46afb322857c89a259ef25ae75e47b09106945",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/schema-valid-escaped-1030.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/schema-valid-plain-103.toml",
+      "sha256": "fedcb0577089ad9ead1024f1b9ec7e8193bd3e47f76ec7331bcf6d19981f7a41",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/schema-valid-plain-103.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/table-1024.toml",
+      "sha256": "10964291f21630d0d97effc2d246c082d2f833fb2922db6c13d110a33503ef47",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/table-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/table-1025.toml",
+      "sha256": "c1dcdc61f37f033c6939bb3b1c0c8c4eb2c802d24df37f80df505b15182afd08",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/table-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/value-1024.toml",
+      "sha256": "ab06f964f11cde7cb1557ec33878d400260aa6594606fa2f6f8fd6841cdcf054",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/value-1024.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/value-1025.toml",
+      "sha256": "35ebd5a3db9df80825359963b759e667b99433ce0345b93c2a73a1bb1c198f30",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/value-1025.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/inputs/value-comment-control.toml",
+      "sha256": "03940a2f65f7fe25bcb5c45423f347c5f7f735c39e1988ba0cf9c62d023b06c9",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/inputs/value-comment-control.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/negative-decode/cangjie-repo.toml",
+      "sha256": "e8bde1fa66a19e2d5fbc3ac8c08091790d363bd8cac0fe324e8452556889df87",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-decode/cangjie-repo.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/negative-decode/cjpm.lock",
+      "sha256": "fc511177f4d97097c2f37e6d477853c328ddc061cf3cc896fa4a5bd8df2969ee",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-decode/cjpm.lock",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/negative-decode/cjpm.toml",
+      "sha256": "99448ab243cb327dccfaff2b00b4e71a8c21b334fc16b1ea539891434dddfa2d",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-decode/cjpm.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/negative-decode/src/main.cj",
+      "sha256": "2a4e784bcb619982cf29295bf97cf5e96281d99abe9f7be86a1eacbb1497aaa5",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-decode/src/main.cj",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/negative-key/cangjie-repo.toml",
+      "sha256": "e8bde1fa66a19e2d5fbc3ac8c08091790d363bd8cac0fe324e8452556889df87",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-key/cangjie-repo.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/negative-key/cjpm.lock",
+      "sha256": "fc511177f4d97097c2f37e6d477853c328ddc061cf3cc896fa4a5bd8df2969ee",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-key/cjpm.lock",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/negative-key/cjpm.toml",
+      "sha256": "99448ab243cb327dccfaff2b00b4e71a8c21b334fc16b1ea539891434dddfa2d",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-key/cjpm.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/negative-key/src/main.cj",
+      "sha256": "d93652380535f714431464bfc73d42046ab0ec285098ecae7bc8546269cab925",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/negative-key/src/main.cj",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/probe/cangjie-repo.toml",
+      "sha256": "e8bde1fa66a19e2d5fbc3ac8c08091790d363bd8cac0fe324e8452556889df87",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe/cangjie-repo.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/probe/cjpm.lock",
+      "sha256": "fc511177f4d97097c2f37e6d477853c328ddc061cf3cc896fa4a5bd8df2969ee",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe/cjpm.lock",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/probe/cjpm.toml",
+      "sha256": "99448ab243cb327dccfaff2b00b4e71a8c21b334fc16b1ea539891434dddfa2d",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe/cjpm.toml",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/probe/src/main.cj",
+      "sha256": "b7a72a1beeab2e6e21f3630d7edb43337916ff0c6c36c23a2cbd149a1dc24390",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe/src/main.cj",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/probe-results.json",
+      "sha256": "4c1f5f57e0db786f1c87ec5f9d2d0748921b27c36348ee91e4da91fe72fb2f83",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/probe-results.json",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/array-inline-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-inline-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/array-inline-1024.stdout",
+      "sha256": "348f09cdccc2b2c217659862eece7d31c61993441bec629c2ae27500bb0165cb",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-inline-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/array-inline-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-inline-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/array-inline-1025.stdout",
+      "sha256": "0852277254516ce33f22ec5b99c9f9d4308157a133c8788c81558f8aa503f866",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-inline-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/array-table-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-table-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/array-table-1024.stdout",
+      "sha256": "43bcabc58f8142cf99ac53b6b1492e81d0f4ae54957fe44b1ddc50efa84eb1d4",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-table-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/array-table-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-table-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/array-table-1025.stdout",
+      "sha256": "d0bb29f433c177af417e927e35d87f1660ab56f2362ed619794bf74acad6498f",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/array-table-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/bare-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/bare-1024.stdout",
+      "sha256": "f2c5f55762e8d14b33c4e1a832a51fe97ce540e0c66cde5461603f0ac1597192",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/bare-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/bare-1025.stdout",
+      "sha256": "7e8dcca79bc65ff0a0a4b220553474d945695c444db4ebbbb10ed47cead3d8e2",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/bare.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/bare.stdout",
+      "sha256": "a034747527bc4115ac2830332f4e1579fc1fa9bfb3e9e8342334c1d481eea2d1",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/bare.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/basic.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/basic.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/basic.stdout",
+      "sha256": "e3c558ac35841524e780484ce52368971d3612a95d569dea724e9a3d93041a3f",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/basic.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.exit",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.finished.utc",
+      "sha256": "b277fd05000dc5badc2aee828f466e84c09225907e24e7bd7751d24cf0ed0842",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.finished.utc",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.started.utc",
+      "sha256": "08a9dc0a2060b10b6329c4ba669f8dd47a3f7a7f5bcfb12657031641692a65f9",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.started.utc",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.stderr",
+      "sha256": "5b824216a326a157d65c473bf87f09b887b3ff524c6287752fcd1b66c59dc07c",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/build.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/build.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build-attempt-1/main.cj.txt",
+      "sha256": "de1cfae979484ea34bcd188e6a848078c58dcad37a864dfe5920139bda90cbec",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build-attempt-1/main.cj.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.exit",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build.finished.utc",
+      "sha256": "2c89e53202e073f7e70cd5eaff8b3877c78986bf10f045483508fd9c24ee8d7c",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.finished.utc",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build.started.utc",
+      "sha256": "5c55dd442c1d6ef087b82384586d9d339a08be18664fb163603f844b507da2dc",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.started.utc",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/build.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/dotted-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/dotted-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/dotted-1024.stdout",
+      "sha256": "4f5ec70c5de0166bad4efe43151e2402e412a715ac26b302eeb369de9befbea7",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/dotted-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/dotted-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/dotted-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/dotted-1025.stdout",
+      "sha256": "bee037837b59f29427b4e0c26cd1bf02fd4300b5d937ea867ab679327e4c716a",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/dotted-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/empty-basic.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/empty-basic.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/empty-basic.stdout",
+      "sha256": "e9420782cbf663024f35eeb9d0570e82e4d6d40570cd00bb780b4249fd73352e",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/empty-basic.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U-1024.stdout",
+      "sha256": "fc2a4b58188d671e21dd3077e24fa1a8284bbd44501f5091016d0c369825aa9c",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U-1025.stdout",
+      "sha256": "992edc01a1aa57a8851d75d8f663b7e685b109bfa64a438e9b06e337366e697f",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-U.stdout",
+      "sha256": "5ba4464bdd8f1215e040a3106faecd980a842a82d72e863b1d667792a4cfdb92",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-U.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash-1024.stdout",
+      "sha256": "ca9e48e794bddc9309313dd366683b0c8d6bda1e42e5f77cfc2936593fcb5ca4",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash-1025.stdout",
+      "sha256": "bac5768556037298c58741b4418a78c3b17c725994a0b0ee21898e2ed848d762",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-backslash.stdout",
+      "sha256": "cec5d22f59c6c3497871cea2b29316f2c20feb3d7ca90fe0050cfee44b8905b5",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-backslash.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote-1024.stdout",
+      "sha256": "6494c073c5ebf118e0dd4ccce4aac8225a6e9ab412fe1f9647b19756b29da251",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote-1025.stdout",
+      "sha256": "0307d2876358f4dae92365ac4b40ffdfc04191bcb48a26922023e84c809fb3b6",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-quote.stdout",
+      "sha256": "a1b337fd637c903471c606a332376ff235375ed3a6f5711fa0769e23a503ac8e",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-quote.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u-1024.stdout",
+      "sha256": "0d89f2e94e59ed7a3c17bab1fd995e01cc36f71bcc35f00f7aeb4faeaebbf3b8",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u-1025.stdout",
+      "sha256": "ed5d401579c040b50ab2c632224bd0d294953ded55df8a5216b87628d81267b3",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/escape-u.stdout",
+      "sha256": "39ef26dccd8586f2a80fc7512d15e20765cdd1f4c512ea98b83de73d40112471",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/escape-u.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/inline-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/inline-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/inline-1024.stdout",
+      "sha256": "498bc971d9811f5fe22103d8984619b348d4fda4942e8edfd029c757185afd69",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/inline-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/inline-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/inline-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/inline-1025.stdout",
+      "sha256": "6ba1af0a341ce016742d5a1469a289cfe42d2cb7be299cd1565b471cb1cddeda",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/inline-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/literal-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/literal-1024.stdout",
+      "sha256": "2922aa75a0f1c31087ebaf902fb8874774475732ec19e5f24a3412b72dfb1306",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/literal-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/literal-1025.stdout",
+      "sha256": "9039d54e733243168fcf8bf1c8850793eb574cd6cec793be8cb0a1626a0832a6",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/literal-backslash.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-backslash.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/literal-backslash.stdout",
+      "sha256": "f2b3553c136c31a6326a66af51a43e3ead2492117aec5850ab46993edec5ea81",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal-backslash.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/literal.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/literal.stdout",
+      "sha256": "b6340935c53eeebafc0298fa9f5229a39204c80506367d8daee8acfa9a0f34fd",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/literal.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/mixed-unicode.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/mixed-unicode.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/mixed-unicode.stdout",
+      "sha256": "6a946f653f5a154b049e707314769e9d793f42f55f527bb7c11e8b39a81f08fb",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/mixed-unicode.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.exit",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.finished.utc",
+      "sha256": "adfbe990e58c90874c333a99d03e0df17a2227385a485969cca1a95b76602e2c",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.finished.utc",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.started.utc",
+      "sha256": "9eb462d174312d29abe47a9cc940c91bca3fc3762c41db81aba755069f2be93d",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.started.utc",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.stderr",
+      "sha256": "f6555ffd4efa1427c40de0f140b8721d926113ab7dd05072091601da16ded125",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-decode.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-decode.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.exit",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.finished.utc",
+      "sha256": "9eb462d174312d29abe47a9cc940c91bca3fc3762c41db81aba755069f2be93d",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.finished.utc",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.started.utc",
+      "sha256": "5a56e713be006e6e3e5178955e98328220d7b4643bc8367fe195641c1f2a3fbf",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.started.utc",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.stderr",
+      "sha256": "53a0116b5dac202c7124913f1a90b8d89db440023ab3831447f969642d5fc70a",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/negative-key.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/negative-key.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/quoted-dot-bracket.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/quoted-dot-bracket.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/quoted-dot-bracket.stdout",
+      "sha256": "6d0350734b852749ca8236c0db7489854d0af2f3cc2a14be01b62df521b3b97f",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/quoted-dot-bracket.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/raw-unicode-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/raw-unicode-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/raw-unicode-1024.stdout",
+      "sha256": "f4d8ad9220ec52ccbc88775301e799e0c9d0f7f0cf3b0d9bf6533ed8c46f688b",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/raw-unicode-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/raw-unicode-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/raw-unicode-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/raw-unicode-1025.stdout",
+      "sha256": "174060845f0f9878c25450d6c39ba77f3b3f5cbc42c05b9319e8009caebf6953",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/raw-unicode-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/schema-valid-escaped-1030.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/schema-valid-escaped-1030.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/schema-valid-escaped-1030.stdout",
+      "sha256": "6a647bf5982fae337fa4a0d42e67411250a690e99203ed074b7c293bc1085c31",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/schema-valid-escaped-1030.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/schema-valid-plain-103.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/schema-valid-plain-103.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/schema-valid-plain-103.stdout",
+      "sha256": "ab4c4d1b83bc42077dbaca26ddc76946d1fba5e53f2c2b2048a4e23b89017947",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/schema-valid-plain-103.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/sdk.txt",
+      "sha256": "86ea2825e2b8feef4e4c4c3cc5b82df1933fd07477f7eea25316e08a0cdb76ef",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/sdk.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/table-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/table-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/table-1024.stdout",
+      "sha256": "013ea67da9e12d38428775c60c7e0e909909d29976e92ea414b09744ca738575",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/table-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/table-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/table-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/table-1025.stdout",
+      "sha256": "071df5b688dd419a247110ec172d2431330b1559e721cd98fd87d6b4fa591c87",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/table-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/value-1024.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-1024.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/value-1024.stdout",
+      "sha256": "68199f336db5b6041afc36af6c2233f10a14ec41348c7614bef790963671fa80",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-1024.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/value-1025.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-1025.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/value-1025.stdout",
+      "sha256": "29d7e6ea09e02f014d6af847036f50e4fa27a8f81841965b8b7ffec9714b47a3",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-1025.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/value-comment-control.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-comment-control.stderr",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/raw/value-comment-control.stdout",
+      "sha256": "77455624895fdf0b5ddc9bb1ac0952c957bc213acf5344766ab1d0727508faa8",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/raw/value-comment-control.stdout",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/report.md",
+      "sha256": "7a09060432f99292743a665012a56ef348820abe8a276a4af3080a2db92744a1",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/report.md",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/run_negative.sh",
+      "sha256": "2dcc949700369c30929bfbd0e3d0342b2c4e2dd6adccc3f2a63a3ebdbb5e2b20",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/run_negative.sh",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/run_probe.py",
+      "sha256": "587e5221cb4c0df6dae464f84e539400ba0683d28c3bea689f08c58a3cd4dd0c",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/run_probe.py",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/final-formal-design.md",
+      "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+      "archive": null,
+      "omission_reason": "Full437-line main-repository design Markdown snapshot intentionally excluded. Original remains external and unchanged; narrow patch/excerpts preserved. Do not rename original report or claim complete self-contained original-index replay."
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/final-formal-design.patch",
+      "sha256": "c38742c0c110007e15084f4cbd15e83d3aa3113bd15881b08c5b3bb2b5291441",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/final-formal-design.patch",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/formal-design.txt",
+      "sha256": "0d6aa8ccf057e97fefb61b06f866afc0f3ae9130219f6b5f46271cb3bc47b6cd",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/formal-design.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/original085-capacity.txt",
+      "sha256": "cefedc6099394fa9e5012cffc5325d34bad40c663c3358d61f3ea02907b93459",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/original085-capacity.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/original085-inputs.txt",
+      "sha256": "2fab3d00ed5394126a4153b4560173c706b16a25b1ed2e153bef60bce7e1f25d",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/original085-inputs.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/public-api-inventory.txt",
+      "sha256": "a12d17da4689f339eef585f0c679e2cc178f4b35a276a5dee4c0cf8be42fe93c",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/public-api-inventory.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-escape.txt",
+      "sha256": "5638d6d948d72e1964eda28566400a67004358d7a0ee83a77cb18a76aabbbb0d",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-escape.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-fromtoml.txt",
+      "sha256": "1042fc9699443f7a5d49fa5ced9757cfb404ca4ff6fdf908ca24524b1856bc5f",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-fromtoml.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-key.txt",
+      "sha256": "8b9950736cde2527d096c9e8221da10de973dee8eca2b49a82e4d09c1f910986",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-key.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-lexer.txt",
+      "sha256": "1e1afcb3054e4d2d8f68d6c4f5438115be9536d5fdedf9544836a43a559b8fb3",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-lexer.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-parser.txt",
+      "sha256": "51ffa91c1387ec9fd69fe3f0675ab794908543827287480e7f57d01c6274a17d",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-parser.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-state.txt",
+      "sha256": "44c9c287e38516f84bf6469e8d0a17f9cdd598a81ccdd2bcd645c6c89defaa48",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-state.txt",
+      "omission_reason": null
+    },
+    {
+      "original_source": "/workspace/work/theme-key-budget-review/curated/source-evidence/upstream-token.txt",
+      "sha256": "fa4aeb6a6a38abd44dc006d1cffcf07d3d8abdbca43e1cb47a72993962140526",
+      "archive": "/workspace/work/terminal.ui/docs/reviews/R15/key-budget-review/source-evidence/upstream-token.txt",
+      "omission_reason": null
+    }
+  ],
+  "external_provenance_mapping": [
+    {
+      "original_source": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-theme-styles/t009-key-budget-candidate.md",
+      "sha256": "f64e0cc62e4dd5ffcafab1f2032c0bd6ecad49119b3f728ded1c17c3889dbe53",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md",
+      "sha256": "e2070819a34e54b01cb77bb5d8a660f3fcb5b5e4c4f8a94d43e695e1919fae1c",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/proposal.md",
+      "sha256": "43bb8455d88c91f66dbc95099ca4a82663f980ec476f0628623c3a9c099cfe06",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/terminal.ui/tests/themes/values/src/capacity_boundaries.cj",
+      "sha256": "879e36eaaa3fe85a330920ff7bc613b226d7d2693d2662395e6c91c443e1000b",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/terminal.ui/tests/themes/generate_inputs.py",
+      "sha256": "18317599fc2b927e52e23f4a01220f272197541119006a05287be41be8fa99a9",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/cjpm.toml",
+      "sha256": "4e35fd94079dd198fe964992b6e03558302a7d2c1f5d12d62ee3880187b90f8d",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/lexer/token.cj",
+      "sha256": "32a238b83f04380d5ef651f7986d6bba63b4c5cf7347008ef71e42840240c82d",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/lexer/lexer.cj",
+      "sha256": "ea66ad647e41d61399c4627e47f0c5adf1ef581482db0d830adc64105de547d7",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/lexer/state.cj",
+      "sha256": "3f9919590baebdfe3b67a656f66f72ed22a3cea51326c92386f161efad4905b9",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/parser/parser.cj",
+      "sha256": "4aff446046fa532c92449e19a905313ed8c4bee11dfecfae568a8aba18e452b5",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/parser/key.cj",
+      "sha256": "287deb0a7105597ea8ebc247a18ed36119963ca47ff874501138f063efff5228",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/util/escape.cj",
+      "sha256": "ce3d9bbf019217b1c56b676aa38e6f3194b069cbe5a234caa54497626cfa6472",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_source": "/workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/from_toml.cj",
+      "sha256": "ddee339d58e2275ffaff9ffd0ab519b3204b46026c6233d1d8f40158f5a5f700",
+      "archive": null,
+      "reason": "Original fixed input/source/dependency provenance only; no external directory followed or copied"
+    },
+    {
+      "original_dependency_relative_source": "examples/cjpm_datamodel/src/cjpm_lock.cj",
+      "sha256": "af4ff91a9e81eb49bc5e3b4a6491b89ce0f711ac7bc2cd5bfa4fa2a3dc6f5dce",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "examples/cjpm_datamodel/src/cjpm_toml.cj",
+      "sha256": "080cb6ee8ff34daa8eaef22ceeeb2cd8891030b86db74931440ccbeb1f0fdf1d",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "examples/cjpm_datamodel/src/main.cj",
+      "sha256": "82b534a0706eff4dce94c7566c66d2274feb61f523cf548c2ea7e388ca05be18",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "examples/object_deserialization/src/complex.cj",
+      "sha256": "6a76c666724c9d1b67f80882cc6178d5af5cdef5d804c3804abbc1ef6221b25f",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "examples/object_deserialization/src/main.cj",
+      "sha256": "68787abc5cb33baf1a7d6e63ce86a772420aa0b0da335c671a30517622fefac1",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "examples/object_deserialization/src/simple.cj",
+      "sha256": "84cfcd53c8d1fe48aeacb34545612835933e44650a5111c7014422147399f0f4",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/from_toml.cj",
+      "sha256": "ddee339d58e2275ffaff9ffd0ab519b3204b46026c6233d1d8f40158f5a5f700",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/import.cj",
+      "sha256": "eb309bed5ee23a744518c137bdd11e2a2d6860e2603194419f8457ebe07e1242",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/lexer/import.cj",
+      "sha256": "aa808901c8f699da1cad9fcfb1abe949b4311b8f9273af0c08a59093e3b2248a",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/lexer/lex_exception.cj",
+      "sha256": "d140f549d8a8ed1f35047f78f2a69b347e0843cac4caffdc5f38af63b667ba0a",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/lexer/lexer.cj",
+      "sha256": "ea66ad647e41d61399c4627e47f0c5adf1ef581482db0d830adc64105de547d7",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/lexer/position.cj",
+      "sha256": "81635882044bc3e19796a298abb84f3dae8aef98439d555d3f8011bc6d3cd7ac",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/lexer/state.cj",
+      "sha256": "3f9919590baebdfe3b67a656f66f72ed22a3cea51326c92386f161efad4905b9",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/lexer/token.cj",
+      "sha256": "32a238b83f04380d5ef651f7986d6bba63b4c5cf7347008ef71e42840240c82d",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/lexer/util.cj",
+      "sha256": "eb5aa23820736d76f0d1819e4394edd2424eca6bdd681dfdcf04bb8d3a5debce",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/parser/import.cj",
+      "sha256": "becedcfc99dd11f62a2e8247872322cd7ca396ab2648f030cda7a7da81cfdf68",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/parser/key.cj",
+      "sha256": "287deb0a7105597ea8ebc247a18ed36119963ca47ff874501138f063efff5228",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/parser/key_info.cj",
+      "sha256": "a07d115a23c08932920ed8eb6156c069b2c7269fcb3bc8ec2b207e34cd9af112",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/parser/parse_exception.cj",
+      "sha256": "918ac322cc539155d8e1234c82481651fe021ba7a129e09fe825fbadcfebc4d0",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/parser/parser.cj",
+      "sha256": "4aff446046fa532c92449e19a905313ed8c4bee11dfecfae568a8aba18e452b5",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/parser/toml_type.cj",
+      "sha256": "783a902dc072f11619ce7117b75df211df21e6f0dfd6312723ad93380516018c",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/parser/util.cj",
+      "sha256": "76549fc57bdc7dad6946216bf4b620b18dce25aa0209808bc23dc676747221f3",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/util/collection.cj",
+      "sha256": "ce447567b288e3327b53e7fe1caadcb257f0a3c498a12fb8a15598f69318ee1b",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/util/escape.cj",
+      "sha256": "ce3d9bbf019217b1c56b676aa38e6f3194b069cbe5a234caa54497626cfa6472",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/util/import.cj",
+      "sha256": "8ca3e184e7a54562ef55533f6caa63f05f93a155c46df4e5eb96bab6f73fc4f7",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/util/parse.cj",
+      "sha256": "5a152ea64e7436dfb3ea65a4076e28e4e8962fd9eb0ae93d2ce39d731c4b2cca",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/cangjie_toml/util/string.cj",
+      "sha256": "827bdbf89b4f003c066b6678da1566e89672f69cdd5acb3a64de8f55eea85cf2",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/package.cj",
+      "sha256": "df8e5f684e132180eb1758fab93ca89859c3e6d865bdff7f1b99660856dfd0cc",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/import.cj",
+      "sha256": "f17319ceb5ec0ff69abb2d96e5e8bbbcc11ab47382a91c422d02d49701be3393",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/array_test.cj",
+      "sha256": "520ca713b3f4889ed2f9a5eb7aaccb591d165097a93155017d2deae4d65cb7f0",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/bool_test.cj",
+      "sha256": "2f087634a92f2291704fb623f2106e8863a71ad83373579e74fceaad949b147f",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/control_test.cj",
+      "sha256": "3fb60363afe8002e45f1cd0bf003bf5294eb143b1ac81d391e5b463ad6f4b65d",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/encoding_test.cj",
+      "sha256": "068f56cb85932d7095f59fb2382b42f91a12087edd1ffe181c4ad6d406598a10",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/float_test.cj",
+      "sha256": "6eb50fe25afbac628bb6ffb2736e21dfbf5f0bf6a2934747adc1f367c9981e89",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/import.cj",
+      "sha256": "d1e25ac185f52418cba2813fd9ec9ef83e64118310b11ebb2d8c7f9fc5c6cb5c",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/inline_table_test.cj",
+      "sha256": "bc911e4d8de32b920c340974e0f7d2e2faf2f0b4822c0d375a488efa19ad80a9",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/integer_test.cj",
+      "sha256": "05e2d9ae332faf1741ed7dbe6fbf6c5d69bbc87d79768edb3e895ed6d61a4bbe",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/key_test.cj",
+      "sha256": "7584442f6721332177ca3bdddf702458faa854192dddd4ba93e0e493e09bcfaf",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/spec_test.cj",
+      "sha256": "0bdd5787e3c5b0ddff257240eab7fe7201743e232b1f9bbf84d7dad44bff29e0",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/string_test.cj",
+      "sha256": "edb54ef7e22c86f67541d1f1ec8bb073361fc831b3e1f6c6aecb6809d95ec638",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/invalid/table_test.cj",
+      "sha256": "af536fe412a0541079aded71965343a1139fa82d2e7fc7e4c05d2fa6e3193548",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/array_test.cj",
+      "sha256": "5dfa2a0c929c10cc9aeabb2667a49ef7db73c09de54a628f1faf4e1d572f6c0b",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/bool_test.cj",
+      "sha256": "bfa62748f4c865e7924b9923b2f79fadfe0689d71004af0435ede40126dbf7c6",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/comment_test.cj",
+      "sha256": "3b72df7f94eebd5e3cb8d412d709cad6d56c88b3b312073b17b8e4706585c50f",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/float_test.cj",
+      "sha256": "a1db326f759f91eea230dec28a1e8ecfec27864511807a5665b91a873018e12b",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/import.cj",
+      "sha256": "a91a76d8f31f6e597d75c5a396b349bf43241799cf3edf242bc75bb9d6cf4857",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/inline_table_test.cj",
+      "sha256": "04867abd11b6ef2bb35a44b633e8081aa8ec30ccce5023d8c1b9f66946522511",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/integer_test.cj",
+      "sha256": "59ecacf7a534047f21b2c898f3cb1941f39f88a3194c7c56a82528a2a458566d",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/key_test.cj",
+      "sha256": "b695158c95d82d809257edd022e03f82c9be75a21997b9e2cdef0fcce3ee4531",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/misc_test.cj",
+      "sha256": "5543858925485b88f321218e70d4fa418e6c3f045302deb99f6d7d6e40f27430",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/spec_test.cj",
+      "sha256": "daeb8f4d09112db766e87c4ccbe3c7a91e038a9bf17f5c525f7c699ecfe26e24",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/string_test.cj",
+      "sha256": "c0bc1ffe18c412843eb53397da65b28abbbb2afe11229ed1918a3064f8a68c8f",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/from_toml/valid/table_test.cj",
+      "sha256": "4e97bbaaca50528402511c5146f7be326e052b4f5164161a33cd15b183ca150c",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/import.cj",
+      "sha256": "3c3453ebbe9788a67fbdb1ffdbf77fe0ac3d74ae5c55e1421e6ec50de1f0c8d3",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/cangjie_toml/util/import.cj",
+      "sha256": "3f2e360b729b486d2c5f2d5468b95f828a06d4ed8e976b0bf0dacc27f544d76e",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/from_toml_test.cj",
+      "sha256": "8d7b606ee7e497ad87f44c2e6841b4e8b2717dc5f4cd856f9de56697585de1ea",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/import.cj",
+      "sha256": "b5c0b6efccedf7fee2319f616d5fc520e0f6d1e6a506939c4b872bccb75dc2ad",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/test_util/import.cj",
+      "sha256": "5e850d60123e7300a200132ef1fb1a8e659b084e90314c20937921a544966615",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    },
+    {
+      "original_dependency_relative_source": "src/test/test_util/util.cj",
+      "sha256": "f022edc1cdaf61c688fbb83553741dae00a626138b94161d208c205b744c0c15",
+      "original_identity_claim": true,
+      "archive": null,
+      "reason": "Upstream dependency source identity record only; dependency/cache tree not copied"
+    }
+  ],
+  "omitted": [
+    {
+      "source": "/workspace/work/theme-key-budget-review/curated/source-evidence/final-formal-design.md",
+      "original_manifest": "artifacts.sha256",
+      "relative_path": "source-evidence/final-formal-design.md",
+      "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+      "bytes": 52833,
+      "reason": "Full437-line main-repository design Markdown snapshot intentionally excluded. Original remains external and unchanged; narrow patch/excerpts preserved. Do not rename original report or claim complete self-contained original-index replay.",
+      "formal_repository_design": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md",
+      "formal_design_link_is_navigation_only": "Source snapshot hash is frozen provenance; current formal design was not read, hashed or modified by this archive."
+    }
+  ],
+  "index_replay_policy": "Original artifacts.sha256 retains1external omitted snapshot entry. Archive does not claim that running original index checks inside archive is fully self-contained; archive-index verifies actual copied bytes,omissions.json identifies the external entry.",
+  "issues": []
+}

@@ -1,0 +1,31 @@
+Source: /workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/from_toml.cj
+SHA256: ddee339d58e2275ffaff9ffd0ab519b3204b46026c6233d1d8f40158f5a5f700
+100:  * 为 DataModel 实现 FromToml<DataModel>
+101:  * 实现 Toml 字符串到 DataModel 的转换
+102:  */
+103: extend DataModel <: FromToml<DataModel> {
+104:     /**
+105:      * 将 Toml 字符串转换为 DataModel 类型
+106:      * 使用 Toml 1.0.0 规范
+107:      * 
+108:      * @param toml Toml 字符串
+109:      * @return 返回由 Toml 字符串得到的 DataModel 的实例
+110:      */
+111:     public static func fromToml(toml: String): DataModel {
+112:         let parser = Parser(toml)
+113:         parser.parse()
+114:         return parser.result
+115:     }
+116:     /**
+117:      * 将 Toml 字符串转换为 DataModel 类型
+118:      * 使用下一代 Toml 规范
+119:      * 
+120:      * @param toml Toml 字符串
+121:      * @return 返回由 Toml 字符串得到的 DataModel
+122:      */
+123:     public static func fromTomlNext(toml: String): DataModel {
+124:         let parser = Parser(toml, tomlNext: true)
+125:         parser.parse()
+126:         return parser.result
+127:     }
+128: }

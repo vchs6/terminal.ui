@@ -1,0 +1,84 @@
+Source: /workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/lexer/token.cj
+SHA256: 32a238b83f04380d5ef651f7986d6bba63b4c5cf7347008ef71e42840240c82d
+1: package cangjie_toml.cangjie_toml.lexer
+2: 
+3: public enum TokenType {
+4:     | Err
+5:     | EOF
+6:     | Text
+7:     | String
+8:     | StringEsc
+9:     | RawString
+10:     | MultilineString
+11:     | RawMultilineString
+12:     | BoolValue
+13:     | IntValue
+14:     | FloatValue
+15:     | DateTimeValue
+16:     | ArrayStart
+17:     | ArrayEnd
+18:     | TableStart
+19:     | TableEnd
+20:     | ArrayTableStart
+21:     | ArrayTableEnd
+22:     | KeyStart
+23:     | KeyEnd
+24:     | CommentStart
+25:     | InlineTableStart
+26:     | InlineTableEnd
+27: }
+28: 
+29: extend TokenType <: ToString {
+30:     public func toString(): String {
+31:         return match (this) {
+32:             case Err => "Err"
+33:             case EOF => "EOF"
+34:             case Text => "Text"
+35:             case String => "String"
+36:             case StringEsc => "StringEsc"
+37:             case RawString => "RawString"
+38:             case MultilineString => "MultilineString"
+39:             case RawMultilineString => "RawMultilineString"
+40:             case BoolValue => "BoolValue"
+41:             case IntValue => "IntValue"
+42:             case FloatValue => "FloatValue"
+43:             case DateTimeValue => "DateTimeValue"
+44:             case ArrayStart => "ArrayStart"
+45:             case ArrayEnd => "ArrayEnd"
+46:             case TableStart => "TableStart"
+47:             case TableEnd => "TableEnd"
+48:             case ArrayTableStart => "ArrayTableStart"
+49:             case ArrayTableEnd => "ArrayTableEnd"
+50:             case KeyStart => "KeyStart"
+51:             case KeyEnd => "KeyEnd"
+52:             case CommentStart => "CommentStart"
+53:             case InlineTableStart => "InlineTableStart"
+54:             case InlineTableEnd => "InlineTableEnd"
+55:         }
+56:     }
+57: }
+58: 
+59: extend TokenType <: Equatable<TokenType> {
+60:     public operator func ==(rhs: TokenType): Bool {
+61:         this.toString() == rhs.toString()
+62:     }
+63:     @When[cjc_version >= "0.53.13" && cjc_version < "0.59.6"]
+64:     public operator func !=(rhs: TokenType): Bool {
+65:         return !(this == rhs)
+66:     }
+67: }
+68: 
+69: public struct Token {
+70:     public Token(
+71:         public let tokenType: TokenType,
+72:         public let value: String,
+73:         public let position: Position,
+74:         public let error!: ?LexException = None
+75:     ) {}
+76: }
+77: 
+78: extend Token <: ToString {
+79:     public func toString(): String {
+80:         return "(${tokenType}, ${value})"
+81:     }
+82: }

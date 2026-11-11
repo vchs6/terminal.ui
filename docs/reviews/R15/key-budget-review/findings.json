@@ -1,0 +1,85 @@
+{
+  "decision_id": "T009-KEY-BYTES-20261111",
+  "review_kind": "independent_narrow_decision_and_public_upstream_probe",
+  "revision": "51a22fee9732a6d53affd05dd1eaa63e3d58ce2e plus candidate/input-hashes.json",
+  "scope": "1024 UTF-8 key-token byte budget only; no product candidate reviewed",
+  "conclusion": "A_SELECTED_BY_LEAD_FORMAL_WORDING_VERIFIED_NARROW_PASS",
+  "blocking_existing_contract_conflicts": [],
+  "findings": [
+    {
+      "id": "KB01",
+      "severity": "important",
+      "status": "formal_wording_resolved_at_final_design_hash",
+      "title": "Encoded versus decoded measurement must be explicit",
+      "evidence": [
+        "source-evidence/formal-design.txt",
+        "probe-results.json",
+        "inputs/schema-valid-escaped-1030.toml",
+        "inputs/schema-valid-plain-103.toml"
+      ],
+      "reason": "Current wording leaves unit ambiguous. A admits plain ASCII103 but rejects the equivalent 1030-byte escaped key; line139 semantic equivalence must explicitly apply after lexical resource admission.",
+      "resolution": "Lead selected A and applied formal wording; independent narrow verification passed at final design SHA. Product docs and tests remain handoff obligations, not reviewed implementation."
+    },
+    {
+      "id": "KB02",
+      "severity": "important_for_option_B",
+      "status": "B_blocked_under_current_constraints",
+      "title": "No usable public segment decoder in cangjie_toml0.2.3",
+      "evidence": [
+        "source-evidence/public-api-inventory.txt",
+        "source-evidence/upstream-parser.txt",
+        "source-evidence/upstream-key.txt",
+        "source-evidence/upstream-escape.txt",
+        "raw/negative-key.stderr",
+        "raw/negative-decode.stderr"
+      ],
+      "reason": "Lexer preserves escaping; Parser keyString/value/replaceEscapes are private; Key and escapeKey encode, while FromToml invokes full Parser. Negative public-consumer probes both compile exit1.",
+      "resolution": "Do not silently implement B with copied decoder, decoded-byte scanner, full or per-token Parser; revisit only with approved upstream public bounded decoding API/adaptation."
+    },
+    {
+      "id": "KB03",
+      "severity": "test_requirement",
+      "status": "handoff_pending",
+      "title": "Independent product tests must distinguish key positions from value tokens",
+      "evidence": [
+        "probe-results.json",
+        "report.md"
+      ],
+      "reason": "StringEsc is emitted for both key and value tokens. Lexical facts alone do not prove a guard handles context correctly.",
+      "resolution": "Extend original085 with escaped1024/1025 across all key contexts, value/comment controls, representation boundary and admitted semantic-equivalence checks; retain all old fixtures."
+    }
+  ],
+  "verification": {
+    "sdk": "cjc/cjpm1.2.0 x86_64-unknown-linux-gnu",
+    "dependency": "unmodified cangjie_toml0.2.3 normal version dependency; private cache; official stdx1.2.0-beta.02.1",
+    "lexer_cases": 40,
+    "lexer_passed": 40,
+    "final_probe_build_exit": 0,
+    "negative_private_keyString_build_exit": 1,
+    "negative_private_replaceEscapes_build_exit": 1,
+    "full_Parser_executions": 0,
+    "product_test_executions": 0,
+    "formal_or_product_edits": 0,
+    "raw_evidence": "probe-results.json, raw/, input-hashes.json, dependency-source-identity.json"
+  },
+  "decision_owner": "lead agent under existing user delegation",
+  "reopen_conditions": [
+    "new explicit decoded-byte contract or mandatory fixture",
+    "upstream token behavior changes",
+    "approved public bounded segment decoder becomes available"
+  ],
+  "limitations": [
+    "Decision review only, no candidate product reviewed",
+    "No product acceptance result",
+    "Schema-valid pair semantics are derived from formal contract; product parser not executed"
+  ],
+  "final_wording_verification": {
+    "checked_utc": "2026-11-11T01:53:58.025999+00:00",
+    "base_commit": "51a22fee9732a6d53affd05dd1eaa63e3d58ce2e",
+    "path": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md",
+    "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+    "patch_sha256": "c38742c0c110007e15084f4cbd15e83d3aa3113bd15881b08c5b3bb2b5291441",
+    "verdict": "PASS_NARROW_FORMAL_WORDING",
+    "reason": "Line139 conditions equal semantics on T009 admission; appended clarification defines UTF8 token.value including original escape spelling and excluding Lexer-removed delimiters, covers all key positions, excludes values, retains inclusive1024 and CapacityExceeded, forbids decoder/per-tokenParser, includes accurate1030/103 example and public documentation obligation. This meets KB01 formal wording condition. No product result inferred."
+  }
+}

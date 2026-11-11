@@ -1,0 +1,105 @@
+src/cangjie_toml/from_toml.cj:3:public import cangjie_toml.cangjie_toml.parser.*
+src/cangjie_toml/from_toml.cj:8:public interface FromToml<T> {
+src/cangjie_toml/from_toml.cj:111:    public static func fromToml(toml: String): DataModel {
+src/cangjie_toml/from_toml.cj:123:    public static func fromTomlNext(toml: String): DataModel {
+src/cangjie_toml/lexer/lex_exception.cj:3:public open class LexException <: Exception {
+src/cangjie_toml/lexer/lex_exception.cj:12:public class LexInternalException <: LexException {
+src/cangjie_toml/lexer/lex_exception.cj:18:public class LexInvalidControlCharException <: LexException {
+src/cangjie_toml/lexer/lex_exception.cj:20:        public let controlChar: Rune
+src/cangjie_toml/lexer/lex_exception.cj:26:public class LexStringNLException <: LexException {
+src/cangjie_toml/lexer/lex_exception.cj:31:public class LexEscapeException <: LexException {
+src/cangjie_toml/lexer/lex_exception.cj:33:        public let escapeChar: Rune
+src/cangjie_toml/lexer/lexer.cj:3:public const EOF = r'\0'
+src/cangjie_toml/lexer/lexer.cj:4:public const ERROR_RUNE = r'\u{FFFD}'
+src/cangjie_toml/lexer/lexer.cj:6:public class Lexer {
+src/cangjie_toml/lexer/lexer.cj:18:    public Lexer(
+src/cangjie_toml/lexer/lexer.cj:19:        public let input: Array<Rune>,
+src/cangjie_toml/lexer/lexer.cj:20:        public let tomlNext!: Bool = false
+src/cangjie_toml/lexer/lexer.cj:29:    public init(
+src/cangjie_toml/lexer/lexer.cj:36:    public prop position: Position {
+src/cangjie_toml/lexer/lexer.cj:42:    public prop current: String {
+src/cangjie_toml/lexer/lexer.cj:53:    public func next(): Rune {
+src/cangjie_toml/lexer/lexer.cj:82:    public func nextToken(): Token {
+src/cangjie_toml/lexer/position.cj:3:public struct Position {
+src/cangjie_toml/lexer/position.cj:4:    public Position(
+src/cangjie_toml/lexer/position.cj:5:        public let line: Int,
+src/cangjie_toml/lexer/position.cj:6:        public let start: Int,
+src/cangjie_toml/lexer/position.cj:7:        public let len: Int,
+src/cangjie_toml/lexer/position.cj:8:        public let col: Int
+src/cangjie_toml/lexer/position.cj:11:    public init(line: Int, start: Int, len: Int) {
+src/cangjie_toml/lexer/position.cj:15:    public func withCol(toml: Array<Rune>): Position {
+src/cangjie_toml/lexer/token.cj:3:public enum TokenType {
+src/cangjie_toml/lexer/token.cj:30:    public func toString(): String {
+src/cangjie_toml/lexer/token.cj:60:    public operator func ==(rhs: TokenType): Bool {
+src/cangjie_toml/lexer/token.cj:64:    public operator func !=(rhs: TokenType): Bool {
+src/cangjie_toml/lexer/token.cj:69:public struct Token {
+src/cangjie_toml/lexer/token.cj:70:    public Token(
+src/cangjie_toml/lexer/token.cj:71:        public let tokenType: TokenType,
+src/cangjie_toml/lexer/token.cj:72:        public let value: String,
+src/cangjie_toml/lexer/token.cj:73:        public let position: Position,
+src/cangjie_toml/lexer/token.cj:74:        public let error!: ?LexException = None
+src/cangjie_toml/lexer/token.cj:79:    public func toString(): String {
+src/cangjie_toml/parser/key.cj:3:public class Key <: Iterable<String> {
+src/cangjie_toml/parser/key.cj:4:    public Key(
+src/cangjie_toml/parser/key.cj:8:    public init(values: ArrayList<String>) {
+src/cangjie_toml/parser/key.cj:12:    public static let Empty = Key()
+src/cangjie_toml/parser/key.cj:14:    public prop size: Int {
+src/cangjie_toml/parser/key.cj:20:    public func parent(): Key {
+src/cangjie_toml/parser/key.cj:24:    public func lastRaw(): String {
+src/cangjie_toml/parser/key.cj:28:    public operator func +(s: String): Key {
+src/cangjie_toml/parser/key.cj:38:    public operator func +(k: Key): Key {
+src/cangjie_toml/parser/key.cj:48:    public func raw(): Iterator<String> {
+src/cangjie_toml/parser/key.cj:52:    public override func iterator(): Iterator<String> {
+src/cangjie_toml/parser/key.cj:71:    public func clone(): Key {
+src/cangjie_toml/parser/key.cj:77:    public func toString(): String {
+src/cangjie_toml/parser/key.cj:83:    public func hashCode(): Int64 {
+src/cangjie_toml/parser/key.cj:89:    public operator func ==(rhs: Key): Bool {
+src/cangjie_toml/parser/key.cj:93:    public operator func !=(rhs: Key): Bool {
+src/cangjie_toml/parser/key_info.cj:3:public struct KeyInfo {
+src/cangjie_toml/parser/key_info.cj:4:    public KeyInfo(
+src/cangjie_toml/parser/key_info.cj:5:        public let pos: Position,
+src/cangjie_toml/parser/key_info.cj:6:        public let tomlType: TomlType
+src/cangjie_toml/parser/parse_exception.cj:3:public class ParseException <: Exception {
+src/cangjie_toml/parser/parse_exception.cj:4:    public ParseException(
+src/cangjie_toml/parser/parse_exception.cj:5:        public let err: String,
+src/cangjie_toml/parser/parse_exception.cj:6:        public let position: Position,
+src/cangjie_toml/parser/parse_exception.cj:7:        public let lastKey: String
+src/cangjie_toml/parser/parse_exception.cj:10:    public override prop message: String {
+src/cangjie_toml/parser/parser.cj:3:public class Parser {
+src/cangjie_toml/parser/parser.cj:11:    public let keyInfo = HashMap<String, KeyInfo>()
+src/cangjie_toml/parser/parser.cj:12:    public let result = DataModelStruct()
+src/cangjie_toml/parser/parser.cj:13:    public let implicitKeys = HashSet<Key>()
+src/cangjie_toml/parser/parser.cj:14:    public let orderedKeys = ArrayList<Key>()
+src/cangjie_toml/parser/parser.cj:16:    public Parser(
+src/cangjie_toml/parser/parser.cj:18:        public let tomlNext!: Bool = false
+src/cangjie_toml/parser/parser.cj:24:    public prop current: String {
+src/cangjie_toml/parser/parser.cj:30:    public func parse(): Unit {
+src/cangjie_toml/parser/toml_type.cj:3:public enum TomlType {
+src/cangjie_toml/parser/toml_type.cj:15:    public func toString(): String {
+src/cangjie_toml/util/collection.cj:4:public class CollectionException <: Exception {
+src/cangjie_toml/util/collection.cj:5:    public CollectionException(s: String) {
+src/cangjie_toml/util/collection.cj:18:    public override func next(): Option<T> {
+src/cangjie_toml/util/collection.cj:30:public class ArrayQueue<T> <: Collection<T> {
+src/cangjie_toml/util/collection.cj:34:    public ArrayQueue(capacity: Int) {
+src/cangjie_toml/util/collection.cj:40:    public override prop size: Int64 {
+src/cangjie_toml/util/collection.cj:46:    public override func isEmpty(): Bool {
+src/cangjie_toml/util/collection.cj:50:    public override func toArray(): Array<T> {
+src/cangjie_toml/util/collection.cj:54:    public override func iterator(): Iterator<T> {
+src/cangjie_toml/util/collection.cj:58:    public func isFull(): Bool {
+src/cangjie_toml/util/collection.cj:62:    public func add(item: T): Unit {
+src/cangjie_toml/util/collection.cj:71:    public func remove(): ?T {
+src/cangjie_toml/util/collection.cj:82:    public func peek(): T {
+src/cangjie_toml/util/collection.cj:101:    public override func next(): Option<T> {
+src/cangjie_toml/util/collection.cj:113:public class ArrayStack<T> <: Collection<T> {
+src/cangjie_toml/util/collection.cj:116:    public ArrayStack(capacity: Int) {
+src/cangjie_toml/util/collection.cj:122:    public override prop size: Int64 {
+src/cangjie_toml/util/collection.cj:128:    public override func isEmpty(): Bool {
+src/cangjie_toml/util/collection.cj:132:    public override func toArray(): Array<T> {
+src/cangjie_toml/util/collection.cj:136:    public override func iterator(): Iterator<T> {
+src/cangjie_toml/util/collection.cj:144:    public func add(item: T): Unit {
+src/cangjie_toml/util/collection.cj:158:    public func remove(): ?T {
+src/cangjie_toml/util/collection.cj:168:    public func peek(): T {
+src/cangjie_toml/util/escape.cj:41:public func escapeKey(key: String): String {
+src/cangjie_toml/util/parse.cj:12:public func parseInt64(s: String): ?Int64 {
+src/cangjie_toml/util/parse.cj:16:public func parseInt64(s: String): ?Int64 {
+src/cangjie_toml/util/string.cj:11:public func stringSplit(s: String, f: (Rune) -> Bool): Array<String> {

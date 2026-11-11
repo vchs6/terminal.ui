@@ -1,0 +1,93 @@
+Source: /workspace/work/linux-build-recon/cache/repository/source/default/cangjie_toml-0.2.3/src/cangjie_toml/lexer/state.cj
+SHA256: 3f9919590baebdfe3b67a656f66f72ed22a3cea51326c92386f161efad4905b9
+275:  * @param lexer 词法分析器
+276:  * @return 返回下一个立即执行的状态
+277:  */
+278: private func lexBareName(lexer: Lexer): State {
+279:     // [ aa.b ] or [[ aaa.b ]]
+280:     //   ^             ^
+281:     if (lexer.next() |> isBareKeyChar) {
+282:         return Func(lexBareName)
+283:     }
+284:     // [ aa.b ] or [[ aaa.b ]]
+285:     //     ^               ^
+286:     lexer.backup()
+287:     // [ aa.b ] or [[ aaa.b ]]
+288:     //    ^               ^
+289:     lexer.emit(Text)
+290:     return lexer.pop()
+291: }
+292: 
+293: /**
+294:  * 字符串状态。
+295:  * 假定开头的 '"' 已经被消费并忽略掉。
+296:  *
+297:  * @param lexer 词法分析器
+298:  * @return 返回下一个立即执行的状态
+299:  */
+300: private func lexString(lexer: Lexer): State {
+301:     return match(lexer.next()) {
+302:         case r'\0' => lexer.error(
+303:             "expected '\"' but found EOF instead"
+304:         )
+305:         // "hello\r\n"
+306:         //       ^
+307:         case r'\\' => 
+308:             lexer.push(Func(lexString))
+309:             return Func(lexStringEscape)
+310:         // "hello\r\n"
+311:         //           ^
+312:         case r'"' =>
+313:             lexer.backup()
+314:             if (lexer.esc) {
+315:                 lexer.esc = false
+316:                 lexer.emit(StringEsc)
+317:             } else {
+318:                 lexer.emit(TokenType.String)
+319:             }
+320:             lexer.next()
+321:             lexer.ignore()
+322:             lexer.pop()
+323:         case r =>
+324:             if (isNL(r)) {
+325:                 lexer.errorPrevLine(LexStringNLException())
+326:             } else {
+327:                 Func(lexString)
+328:             }
+329:     }
+330: }
+331: 
+332: /**
+333:  * 字符串转义状态。
+334:  *
+335:  * @param lexer 词法分析器
+336:  * @return 返回下一个立即执行的状态
+337:  */
+338: private func lexStringEscape(lexer: Lexer): State {
+339:     lexer.esc = true
+340:     return match (lexer.next()) {
+341:         case r'e' =>
+342:             if (!lexer.tomlNext) {
+343:                 lexer.error(LexEscapeException(r'e'))
+344:             } else {
+345:                 lexer.pop()
+346:             }
+347:         
+348:         case r'b' | r't' | r'n' |
+349:             r'f' | r'r' | r'"' |
+350:             // 在多行字符串内，可以使用 '\' 转义新一行，任何空白字符会被忽略
+351:             r' ' | r'\t' |
+352:             r'\\'  => lexer.pop()
+353:         case r'x' =>
+354:             if (!lexer.tomlNext) {
+355:                 lexer.error(LexEscapeException(r'x'))
+356:             } else {
+357:                 Func(lexHexEscape)
+358:             }
+359:         case r'u' => Func(lexShortUnicodeEscape)
+360:         case r'U' => Func(lexLongUnicodeEscape)
+361:         case r => lexer.error(LexEscapeException(r))
+362:     }
+363: }
+364: 
+365: /**
