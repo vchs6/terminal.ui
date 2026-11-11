@@ -17,8 +17,9 @@ func readonlyQueries(): Unit {
     check(reads.value>0 && ref(root).application().focusedNode().getOrThrow().sameNode(ref(root)),"getter reference and readonly application service")
     let before=app.stats().frames; app.focusedNode(); app.activeTarget(); app.caretSnapshot(); ref(root).isFocused(); ref(root).application()
     check(app.stats().frames==before,"readonly queries do not pump")
-    let worker=spawn { code("WrongUIContext",{=>ref(root).isFocused();()}); code("WrongUIContext",{=>app.focusedNode();()}); ref(root).isValid() }
-    check(worker.get(Duration.second*5),"isValid remains thread safe")
+    let saved=ref(root)
+    let worker=spawn { code("WrongUIContext",{=>root.reference();()}); code("WrongUIContext",{=>saved.isFocused();()}); code("WrongUIContext",{=>app.focusedNode();()}); saved.isValid() && saved.sameNode(saved) }
+    check(worker.get(Duration.second*5),"saved NodeRef isValid/sameNode remain thread safe")
     let otherRoot=Text("other").focusable(true); let other=Application(otherRoot,theme:plainTheme()); other.startHeadless()
     app.batch({=>
         code("WrongUIContext",{=>ref(otherRoot).isVisible();()}); code("WrongUIContext",{=>other.focusedNode();()})
