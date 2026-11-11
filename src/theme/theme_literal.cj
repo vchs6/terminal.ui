@@ -2,13 +2,19 @@ package cjtui.theme
 
 import cjtui.style.*
 import stdx.serialization.serialization.*
+import cangjie_toml.cangjie_toml.parser.*
 
 // Converts already parsed TOML values; the upstream parser remains syntax owner.
 class ThemeLiteral {
     let source: String
-    init(source: String) { this.source = source }
+    let parser: Parser
+    init(source: String, parser: Parser) { this.source = source; this.parser = parser }
     func fail(code: String, path: String): Nothing { throw themeFailure(code, source, path, "invalid theme value at ${path}") }
-    func str(dm: DataModel, path: String): String {
+    func str(dm: DataModel, path: String, metadataPath!: String = ""): String {
+        let lookup = if (metadataPath.isEmpty()) { path } else { metadataPath }
+        if (let Some(info) <- parser.keyInfo.get(lookup)) {
+            if (info.tomlType.toString() == "TomlDateTime") { fail("InvalidType",path) }
+        }
         if (let Some(v) <- (dm as DataModelString)) { return v.getValue() }
         fail("InvalidType", path)
     }
@@ -26,7 +32,7 @@ class ThemeLiteral {
     }
     func dimension(dm: DataModel, path: String): Dimension {
         if (let Some(v) <- (dm as DataModelString)) {
-            if (v.getValue() == "auto") { return Dimension.Auto }
+            if (str(dm,path) == "auto") { return Dimension.Auto }
             fail("InvalidValue", path)
         }
         Dimension.Cells(integer(dm, path, true))
