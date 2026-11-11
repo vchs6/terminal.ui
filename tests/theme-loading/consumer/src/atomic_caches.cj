@@ -20,6 +20,7 @@ func candidateValidatesLatestDeclarationCache(env:TestEnvironment):Unit {
     } finally {app.dispose()}
 }
 func atomicCandidateValidationUsesCaches(env:TestEnvironment):Unit {
+    candidateMinimumSumRejectsBeforeCommit(env)
     let state=Observable<String>("edit")
     let root=TrackedPanel(state)
     root.onMount({_=>root.mounts++;{=>root.cleanups++}})
@@ -56,4 +57,52 @@ func sameFrame(first:Frame,second:Frame,width:Int64,height:Int64):Unit {
         let a=first.cellAt(x,y);let b=second.cellAt(x,y)
         check(a.grapheme==b.grapheme && a.width==b.width && a.continuation==b.continuation && a.isTransparent==b.isTransparent && a.style==b.style,"Application snapshot equals active-root M1 render at ${x},${y}")
     }}
+}
+
+// The same individually legal Max minimum must still be accepted when clipped
+// by a finite viewport. Only the actual allocated minimum sum may overflow.
+func candidateMinimumSumRejectsBeforeCommit(env:TestEnvironment):Unit {
+    let candidate=Theme.parse("schema_version=1\nname=\"CandidateMin\"\n[text]\nforeground=\"blue\"\n[components.text.spacing]\nweight=1\nmin_width=9223372036854775807\n")
+    let finite=Application(Row { Text("a");Text("b") },theme:prepared("FiniteBase","red"))
+    finite.startHeadless()
+    try {
+        finite.snapshot(4,1)
+        let valid=finite.loadTheme(ThemeSource.Prepared(candidate))
+        pump(finite,valid,env);applied(valid,1)
+        unchanged(finite,"CandidateMin",1,valid.id)
+        let clipped=finite.snapshot(4,1)
+        check(clipped.width==4 && clipped.height==1 && clipped.cellAt(0,0).grapheme=="a","finite viewport clips legal Max minima without rejecting the candidate")
+        check(clipped.cellAt(0,0).style.foreground==Color.Blue && finite.post({=>}),"finite legal candidate is visible and session stays active")
+    } finally {finite.dispose()}
+    let state=Observable<String>("a")
+    let getters=Box<Int64>(0);let mounts=Box<Int64>(0)
+    let root=Row { Text({=>getters.value++;state.get()});Text("b") }
+        .onMount({_=>mounts.value++;{=>}})
+    let app=Application(root,theme:prepared("MinimumBase","red"));app.startHeadless()
+    try {
+        let old=reference(root)
+        let pixels=app.snapshot(4,1)
+        let empty=app.snapshot(Int64.Max,0)
+        check(empty.width==Int64.Max && empty.height==0,"baseline Max by zero snapshot succeeds without giant allocation")
+        let beforeGetters=getters.value
+        let request=app.loadTheme(ThemeSource.Prepared(candidate))
+        var layoutError=""
+        try {
+            for(_ in 0..20000) {
+                app.snapshot(Int64.Max,0)
+                if(request.result().isSome()){break}
+                env.sync("tick")
+            }
+        } catch(error:Exception){layoutError=error.message}
+        let info=app.themeInfo();let active=app.post({=>})
+        println("OBSERVED candidate minima: error=[${layoutError}], result=${resultTag(request)}, info=${info.name}/${info.revision}/${info.requestId}, post=${active}, ref=${old.isValid()}")
+        check(layoutError.isEmpty(),"T008 rejects predictable candidate minimum-sum overflow before layout throws")
+        candidateFailure(request,"OutOfRange")
+        unchanged(app,"MinimumBase",0,0)
+        check(active && old.isValid() && old.sameNode(reference(root)),"failed layout candidate preserves active session and node generation")
+        check(state.get()=="a" && getters.value==beforeGetters && mounts.value==1,"validation preserves business state without getter or mount replay")
+        check(empty.width==Int64.Max && empty.height==0,"previous zero-area frame stays independent")
+        sameFrame(pixels,app.snapshot(4,1),4,1)
+        check(pixels.cellAt(0,0).style.foreground==Color.Red,"previous accepted pixels remain unchanged")
+    } finally {app.dispose()}
 }
