@@ -122,7 +122,8 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
     if (c.kind == 3) {
         if (output.isNone()) { return }
         let frame = output.getOrThrow()
-        let left = greater(0,signedSubtract(clipL,ix)); let top = greater(0,signedSubtract(clipT,iy))
+        let left = greater(0,signedSubtract(greater(clipL,boxX),ix))
+        let top = greater(0,signedSubtract(greater(clipT,boxY),iy))
         let endX = greater(left,lesser(contentW,signedSubtract(ir,ix))); let endY = greater(top,lesser(contentH,signedSubtract(ib,iy)))
         let selected = resolveStyle(c,n.session.theme,n.inheritedStyle,n.rootNode,selected:true)
         let context = PaintContext(n.session,c.readMount().getOrThrow(),frame,ix,iy,Size(contentW,contentH),
@@ -153,16 +154,16 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
                     markerStyle = textStyle
                     break
                 }
-                if (cy >= clipT && cy < ib && cx >= clipL && cx < ir && gw <= ir - cx) {
+                if (cy >= greater(clipT,boxY) && cy < ib && cx >= greater(clipL,boxX) && cx < ir && gw <= ir - cx) {
                     frame.put(cx,cy,span.text,style:textStyle)
                 }
                 cx = sat(cx,gw); used = sat(used,gw)
             }
-            if (clipped && cy >= clipT && cy < ib) {
+            if (clipped && cy >= greater(clipT,boxY) && cy < ib) {
                 var mx = sat(ix,contentW - markerWidth)
                 for (g in graphemeClusters(marker)) {
                     let mw = displayWidth(g)
-                    if (mx >= clipL && mx < ir && mw <= ir - mx) { frame.put(mx,cy,g,style:markerStyle) }
+                    if (mx >= greater(clipL,boxX) && mx < ir && mw <= ir - mx) { frame.put(mx,cy,g,style:markerStyle) }
                     mx = sat(mx,mw)
                 }
             }
