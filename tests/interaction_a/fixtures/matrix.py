@@ -6,13 +6,17 @@ Future Keyboard vectors remain explicitly blocked and are never simulated.
 """
 import argparse,json,os,pathlib,time
 from pty_capture import Capture,QUERY,unknown_wire,restored
+from native_cases import is_native_recipe,run_native_recipe
 
 class MatrixSession:
-    def __init__(self,binary,out,initial=1000):
+    def __init__(self,binary,out,initial=1000,extra=None,script=None):
         self.out=pathlib.Path(out);self.out.mkdir(parents=True,exist_ok=True)
         self.clock=self.out/'clock.txt';self.trace=self.out/'clock.calls';self.set_time(initial)
-        self.cap=Capture([str(pathlib.Path(binary).resolve())],self.out,{
-            'CJTUI_A_CLOCK_FILE':str(self.clock),'CJTUI_A_CLOCK_TRACE':str(self.trace)})
+        environment={'CJTUI_A_CLOCK_FILE':str(self.clock),'CJTUI_A_CLOCK_TRACE':str(self.trace)}
+        if script is not None:
+            path=self.out/'clock.script';path.write_text(''.join(str(x)+'\n' for x in script));environment['CJTUI_A_CLOCK_SCRIPT']=str(path)
+        environment.update(extra or {})
+        self.cap=Capture([str(pathlib.Path(binary).resolve())],self.out,environment)
     def set_time(self,value):
         temp=self.clock.with_suffix('.next');temp.write_text(str(value)+'\n');temp.replace(self.clock)
     def ready(self):
@@ -31,6 +35,7 @@ class MatrixSession:
         return meta
 
 def run_case(binary,out,case):
+    if is_native_recipe(case):return run_native_recipe(binary,out,case,MatrixSession)
     name=case['id'];s=MatrixSession(binary,pathlib.Path(out)/name)
     cap=s.cap
     try:
@@ -75,7 +80,7 @@ def run_case(binary,out,case):
     return {'id':name,'result':'PASS','scope':'public product controlled-clock PTY','raw':str(s.out/'wire.bin')}
 
 def executable(case):
-    return case['id'].startswith(('report-','reject-')) or case['id'] in {
+    return is_native_recipe(case) or case['id'].startswith(('report-','reject-')) or case['id'] in {
         'deadline-599','deadline-600','late-never-upgrade','cross-deadline','continuous-input',
         'duplicate-opposite','order-text-report-tab-utf8-backtab','csi-real-idle-A','bare-escape-real-idle'}
 

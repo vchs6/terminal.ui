@@ -56,8 +56,8 @@ class Capture:
         if timed_out: raise AssertionError("child timed out")
         return metadata
 
-def unknown_wire(raw):
-    if raw.count(QUERY)!=1: raise AssertionError("query must be exactly once, exactly seven bytes")
+def unknown_wire(raw,queries=1):
+    if raw.count(QUERY)!=queries: raise AssertionError("query must be exactly once, exactly seven bytes")
     for forbidden in FORBIDDEN_UNKNOWN:
         if forbidden in raw: raise AssertionError(f"Unknown emitted forbidden visibility bytes {forbidden!r}")
 
