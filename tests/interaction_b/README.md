@@ -61,3 +61,13 @@ Resource mode accepts `CJTUI_TIME_BIN` (default `/usr/bin/time`); use a genuine
 GNU Time binary, e.g. the validated Debian extraction in this environment.
 B02-bare-canvas-implicit-root separately checks logical1x999/clip1x1/Frame1x1;
 the old A non-viewport small fixture explicitly Off retains every1x1 assertion.
+
+TASK105 review regressions are separate I01–I07 consumer selections:
+`bash tests/interaction_b/run.sh --review-regressions` ordinarily builds once
+and directly runs seven independent processes. They cover weighted horizontal
+wrap, mixed overflow barriers, local viewport resize/caret, mounted export state,
+growing-extent ensure, finite non-scroll constraints, and T008 invalidation.
+On252c5ad these are seven actual assertion REDs after build0. Original31/eight
+group/f57/692 assertions remain; M01Minor is outside this batch. I07 uses the
+Prepared UI mailbox without a worker-readiness sleep. Clean rejection controls
+record callbacks; business invalidation permits normal measure/getter work.
