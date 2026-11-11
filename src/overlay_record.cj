@@ -19,7 +19,8 @@ class OverlayRecord <: ObservableSource {
         sessionId = session.id; threadId = session.threadId; threadNonce = session.threadNonce
     }
     func guard(): Unit {
-        if (Thread.currentThread.id != threadId || uiThreadIdentity().nonce != threadNonce) {
+        let nonce = uiThreadIdentity().nonce
+        if (Thread.currentThread.id != threadId || nonce != threadNonce) {
             throw UIException("WrongUIContext", "wrong UI thread")
         }
         if (let Some(current) <- activeSession.get()) {
