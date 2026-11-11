@@ -37,3 +37,7 @@ checkpointA开发固定0e46237c7e60d3d9e9fabb4587ac45c90321f4eb（父测试overl
 085 schema补充241a099349b7af0ec4379f2cc6529734a5177823（root99ef6ef）真实独立执行：publicbuild/positive0，164case88PASS/76FAIL，三组directbinary1；原values正常编译后在新增断言1，后续integration/16negative未运行。固定product0e46237，rawmanifestb8a66ce94ca12ac4efb4de160591b8d3819f6090c3040005ef4c2402430965f9，rootfresh90rawSHA全同。caller-source控制通过，不修内部helper猜测；原66文件/151预算/4preset保留。原实现代理已收到fixedtest+纯raw，ACTUAL GO修来源类型/name/首错，再完整values并续B/C。
 
 用户指出Token消耗与功能产出不配套。主代理据此合并同一功能的L4补充用例交接、审核和证据归档：该补充保留固定源码/实际RED/rawhash，随完整013025在086统一独审，不为每次补充再起独立资产审核/归档轮次；测试作者/实现/086审核/087执行/088验收仍分离，不降低必需验收。现有实现/测试代理复用，不新增代理。未完成产品已备份到远端wip/linux-theme-foundation@1d2d815，明确未审/有已知缺陷；main仍仅接受通过范围。完整主题产品最终按原main流程整体验收集成，无PR/发布。
+
+086完整候选97df096独审最终CHANGES_REQUIRED（0C/3I/1M）：版本/必需字段优先、变量记录源码首错、拒绝setStyle仍破坏padding绑定均由真实probe确认，公开状态/继承文档待补。最小正式回归61e531已集成33a5122，两个消费者正向0、三组行为RED1，旧73源保留；无额外资产审核/归档。原作者round1/5同批修3I/M及正常bundle-c强制lint失败；原bundle实际exit1，clean consumer/C后回归未启动。root已读fix-loop；修后仅97..fix限定复核。环境故障已恢复，源身份post-run哈希限制保留，不提前准入087/088或合产品main。
+
+Task 013025: fix round 1/5 complete (3 Important addressed, 0 open; 97df096..95c1186; M01 addressed). 非阻断D01随后仅删4行未用helper，95c1186..8d75233独立限定核验CLOSED；最终086 spec/quality均PASS_SOURCE_REVIEW，无遗留发现。175成员/正常bundle与cleanconsumer0属95范围，8d包不冒同字节已验。最终源码8d已推WIP，原作者开发回归完成，087原独立Sol/medium执行者已实际准入固定8d并复用自有准备环境；088原独立Astra角色只读准备pending matrix并行，未提前验收。维持同功能合并、内容有效复用及无额外L4归档轮次。

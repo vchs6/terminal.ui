@@ -1,6 +1,8 @@
 # Linux 主题阶段恢复交接（2026-11-11）
 
-执行环境不可用；本记录用于恢复，不代表主题或 Linux 阶段验收通过。控制面曾显示 running，但实际命令报 `No usable execution environment is available`。未能继续运行探针、打包及独立执行。
+以下保存中断时的检查点，不代表主题或 Linux 阶段验收通过。控制面曾显示 running，但实际命令报 `No usable execution environment is available`。
+
+恢复补记：原工作区已恢复；审查发现已修复，最终源码为 `8d75233`，086 独立源码审核通过。087 独立执行及 088 验收继续进行；下文的未完成项和候选问题保留为故障当时的历史记录，最新进度见同目录 progress.md。
 
 ## 已保存的源码与开发结果
 
