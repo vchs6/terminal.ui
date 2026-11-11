@@ -73,3 +73,15 @@ XTerm/VTE/VT two-original-state multi-frame PNG/version/config/raw evidence,
 normal bundle/clean consumer and100–102 acceptance remain later evidence; no
 same-PTY TERM change substitutes for a physical host implementation. No
 TASK017/020/028/029/030/M2 or full-Linux completion is claimed.
+
+The TASK100 seven-finding regression mode is separate from the frozen94-vector
+matrix: `CJTUI_INTERACTION_A_OUTPUT=/tmp/fresh-review bash tests/interaction_a/run.sh
+--review-regressions` (put the command on one line). It ordinarily builds the same
+public consumer with the existing clock seam, then directly runs12 small
+headless variants plus one UnknownClock PTY case. The latter observes a completed
+real100ms stdin poll through the optional test shim trace, then checks literal
+public events and wire/termios; no sleep-only or empty-timeout PASS oracle. The
+normal headless entry also calls the cohesive appended headless regressions.
+No old vector, assertion, readonly thread guard or future Keyboard boundary is
+changed. These regressions reproduce failures on fixedf02d812; they are not a
+claim that corrected product behavior has passed.
