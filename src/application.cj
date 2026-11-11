@@ -148,6 +148,27 @@ public class Application {
             sessionLock.unlock()
         }
     }
+    public func caretSnapshot(): CaretSnapshot {
+        if (let Some(value) <- readSession()) { value.requireReadContext(); return value.caret }
+        CaretSnapshot(Option<NodeRef>.None,0,0,false)
+    }
+    public func focusedNode(): ?NodeRef {
+        if (let Some(value) <- readSession()) {
+            value.requireReadContext(); value.focusManager.observe()
+            if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
+        }
+        None
+    }
+    public func activeTarget(): ?NodeRef {
+        if (let Some(value) <- readSession()) {
+            value.requireReadContext(); value.focusManager.observe()
+            if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
+            if (let Some(node) <- value.root.readMount()) {
+                if (value.focusManager.effective(node,true)) { return Some(node.reference()) }
+            }
+        }
+        None
+    }
     public func onKeyEvent(handler: (UIKeyEvent) -> Unit): Application {
         eventHandler = Some(handler)
         this
@@ -329,12 +350,18 @@ public class Application {
         let path = ArrayList<RuntimeNode>()
         var cursor: ?RuntimeNode = Some(targetNode)
         while (let Some(node) <- cursor) {
-            if (!node.component.isVisible) {
+            if (!node.component.isVisible || !node.component.isEnabled) {
                 throw UIException("InvalidProperty", "hidden target")
             }
             path.add(node);
             cursor = node.parent
         }
+        let captures = Array<?(UIKeyEvent) -> Unit>(path.size,{i => path[i].component.captureHandler})
+        let bubbles = Array<?(UIKeyEvent) -> Unit>(path.size,{i => path[i].component.keyHandler})
+        let ancestors = Array<?(UIKeyEvent) -> Unit>(path.size,{i => path[i].component.ancestorDefault})
+        let targetDefault = targetNode.component.targetDefault
+        let savedAppHandler = eventHandler
+        let savedLegacy = handler
         let event = UIKeyEvent(key, target)
         let turnCutoff = value.cutoff()
         try {
@@ -348,29 +375,41 @@ public class Application {
                             while (i > 0 && !event.stopped) {
                                 i--;
                                 event.setCurrent(path[i].reference())
-                                if (let Some(callback) <- path[i].component.captureHandler) {
+                                if (let Some(callback) <- captures[i]) {
                                     callback(event)
                                 }
                             }
                             i = 0
                             while (i < path.size && !event.stopped) {
                                 event.setCurrent(path[i].reference())
-                                if (let Some(callback) <- path[i].component.keyHandler) {
+                                if (let Some(callback) <- bubbles[i]) {
                                     callback(event)
                                 }
                                 i++
                             }
                             if (!event.stopped) {
-                                if (let Some(callback) <- eventHandler) {
+                                if (let Some(callback) <- savedAppHandler) {
                                     callback(event)
                                 }
                             }
                             if (!event.stopped && key.code != "interrupt") {
-                                handler(key)
+                                savedLegacy(key)
                             }
-                            if (key.code == "interrupt" && !event.defaultPrevented) {
-                                value.requestStop();
-                                running = false
+                            if (!event.defaultPrevented) {
+                                event.setCurrent(target)
+                                if (let Some(callback) <- targetDefault) { callback(event) }
+                            }
+                            if (!event.defaultPrevented) {
+                                if (key.code == "interrupt") { value.requestStop(); running = false; event.preventDefault() }
+                                else if (key.code == "tab" || key.code == "backtab") {
+                                    if (value.focusManager.move(key.code == "backtab")) { event.preventDefault() }
+                                }
+                            }
+                            i = 0
+                            while (i < path.size && !event.defaultPrevented) {
+                                event.setCurrent(path[i].reference())
+                                if (let Some(callback) <- ancestors[i]) { callback(event) }
+                                i++
                             }
                         } finally {
                             event.active = false
@@ -527,8 +566,8 @@ public class Application {
                 }
                 match (event) {
                     case Some(key) =>
-                        if (root.isVisible) {
-                            dispatch(root.reference().getOrThrow(), key)
+                        if (let Some(target) <- activeTarget()) {
+                            dispatch(target, key)
                         } else if (key.code == "interrupt") {
                             running = false
                         } else {

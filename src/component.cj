@@ -17,7 +17,12 @@ public open class Component {
     var keyHandler: ?(UIKeyEvent) -> Unit = None
     var captureHandler: ?(UIKeyEvent) -> Unit = None
     var isVisible = true
+    var isEnabled = true
+    var isFocusable = false
+    var targetDefault: ?(UIKeyEvent) -> Unit = None
+    var ancestorDefault: ?(UIKeyEvent) -> Unit = None
     let kind: Int64
+    var canvas: ?CanvasState = None
     var value: RichText
     let descriptionId = uniqueRuntimeId()
     let declarations = ArrayList<ChildDeclaration>()
@@ -70,7 +75,7 @@ public open class Component {
     func checkStyleTarget(name: String): Unit {
         let textOnly = name == "textAlign" || name == "textWrap" || name == "textOverflow"
         let containerOnly = name == "gap" || name == "alignItems" || name == "justifyContent"
-        if ((textOnly && kind != 0) || (containerOnly && kind == 0)) {
+        if ((textOnly && kind != 0) || (containerOnly && (kind == 0 || kind == 3))) {
             throw UIException("InvalidProperty", "style key is not supported by this primitive")
         }
     }
@@ -139,18 +144,22 @@ public open class Component {
         setStyle(StyleKeys.paddingBottom,StyleValue<Int64>.Value(bottom)); this
     }
     public func gap(v: Int64): Component {
+        if (kind == 3) { throw UIException("InvalidProperty", "gap on canvas") }
         if (kind == 0) { throw IllegalArgumentException("gap on text") }
         setStyle(StyleKeys.gap,StyleValue<Int64>.Value(v))
     }
     public func alignItems(v: Alignment): Component {
+        if (kind == 3) { throw UIException("InvalidProperty", "alignment on canvas") }
         if (kind == 0) { throw IllegalArgumentException("alignment on text") }
         setStyle(StyleKeys.alignItems,StyleValue<Alignment>.Value(v))
     }
     public func justifyContent(v: Alignment): Component {
+        if (kind == 3) { throw UIException("InvalidProperty", "justification on canvas") }
         if (kind == 0) { throw IllegalArgumentException("justification on text") }
         setStyle(StyleKeys.justifyContent,StyleValue<Alignment>.Value(v))
     }
     public func textAlign(v: Alignment): Component {
+        if (kind == 3) { throw UIException("InvalidProperty", "text alignment on canvas") }
         if (kind != 0) { throw IllegalArgumentException("invalid text alignment") }
         setStyle(StyleKeys.textAlign,StyleValue<Alignment>.Value(v))
     }
@@ -169,10 +178,30 @@ public open class Component {
         mountLock.lock()
         try { mounted } finally { mountLock.unlock() }
     }
+    func behaviorChanged(): Unit {
+        if (let Some(node) <- readMount()) { node.session.focusManager.changed() }
+    }
+    public func focusable(value: Bool): Component {
+        removeBinding("focusable"); if (isFocusable != value) { isFocusable = value; markChanged(ChangeKind.Style); behaviorChanged() }; this
+    }
+    public func focusable(value: () -> Bool): Component {
+        bind("focusable",ChangeKind.Style,{=> let next = value(); if (isFocusable != next) { isFocusable = next; markChanged(ChangeKind.Style); behaviorChanged() }})
+    }
+    public func enabled(value: Bool): Component {
+        removeBinding("enabled"); if (isEnabled != value) { isEnabled = value; markChanged(ChangeKind.Style); behaviorChanged() }; this
+    }
+    public func enabled(value: () -> Bool): Component {
+        bind("enabled",ChangeKind.Style,{=> let next = value(); if (isEnabled != next) { isEnabled = next; markChanged(ChangeKind.Style); behaviorChanged() }})
+    }
+    public func defaultAction(handler: (UIKeyEvent) -> Unit, phase!: DefaultActionPhase = DefaultActionPhase.Target): Component {
+        checkDefinitionChange()
+        match (phase) { case DefaultActionPhase.Target => targetDefault = Some(handler); case DefaultActionPhase.Ancestor => ancestorDefault = Some(handler) }
+        this
+    }
     public func reference(): ?NodeRef {
         match (readMount()) {
             case Some(node) =>
-                if (node.session.temporary) { None } else { node.session.requireContext(); Some(node.reference()) }
+                if (node.session.temporary) { None } else { node.session.requireReadContext(); Some(node.reference()) }
             case None => None
         }
     }
@@ -209,7 +238,7 @@ public open class Component {
     public func onKeyCapture(handler: (UIKeyEvent) -> Unit): Component { checkDefinitionChange(); captureHandler = Some(handler); this }
     init(kind: Int64, value: String) {
         this.kind = kind
-        this.styleRole = if (kind == 0) { ThemeRole.Text } else if (kind == 1) { ThemeRole.Column } else { ThemeRole.Row }
+        this.styleRole = if (kind == 0) { ThemeRole.Text } else if (kind == 1) { ThemeRole.Column } else if (kind == 2) { ThemeRole.Row } else { ThemeRole.Generic }
         this.value = RichText(value)
     }
     public func border(value: BorderStyle): Component { setStyle(StyleKeys.border,StyleValue<BorderStyle>.Value(value)) }
@@ -256,6 +285,10 @@ public open class Component {
             } else { index++ }
         }
     }
+    func canvasBinding(name: String): Binding {
+        for (binding in bindings) { if (binding.name == name) { return binding } }
+        throw UIException("InvalidProperty","canvas binding unavailable")
+    }
     func markChanged(change: ChangeKind): Unit {
         if (let Some(node) <- readMount()) { node.session.markChanged(node, change) }
     }
@@ -277,9 +310,9 @@ public open class Component {
         } else { bindings.add(binding) }
         this
     }
-    public func visible(value: Bool): Component { removeBinding("visible"); isVisible = value; markChanged(ChangeKind.Layout); this }
+    public func visible(value: Bool): Component { removeBinding("visible"); let changed = isVisible != value; isVisible = value; markChanged(ChangeKind.Layout); if (changed) { behaviorChanged() }; this }
     public func visible(value: () -> Bool): Component {
-        bind("visible", ChangeKind.Layout, { => let next = value(); if (isVisible != next) { isVisible = next; markChanged(ChangeKind.Layout) } })
+        bind("visible", ChangeKind.Layout, { => let next = value(); if (isVisible != next) { isVisible = next; markChanged(ChangeKind.Layout); behaviorChanged() } })
     }
     public func text(value: String): Component {
         text(RichText(value))

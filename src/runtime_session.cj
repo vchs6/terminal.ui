@@ -21,6 +21,7 @@ func uniqueRuntimeId(): Int64 {
 let activeSession = ThreadLocal<RuntimeSession>()
 
 class RuntimeSession {
+    let focusManager: FocusManager
     let root: Component
     let limits: RuntimeLimits
     var theme: Theme
@@ -53,6 +54,9 @@ class RuntimeSession {
     var measures: Int64 = 0
     var paints: Int64 = 0
     var frames: Int64 = 0
+    var trackCaret = false
+    var pendingCaret: ?CaretRequest = None
+    var caret = CaretSnapshot(Option<NodeRef>.None,0,0,false)
     var cached: ?Frame = None
     var measuredLayout: ?LayoutNode = None
     var layoutGlyphPolicy = GlyphRenderPolicy.unicode()
@@ -66,6 +70,7 @@ class RuntimeSession {
         application!: ?Application = Option<Application>.None, sessionOptions!: SessionOptions = SessionOptions(),
         device!: Bool = false, theme!: Theme = Theme.preset(ThemePreset.Classic)) {
         this.root = root
+        this.focusManager = FocusManager()
         this.theme = theme
         this.limits = limits
         this.temporary = temporary
@@ -77,6 +82,7 @@ class RuntimeSession {
         threadNonce = uiThreadIdentity().nonce
         id = uniqueRuntimeId()
         extensions = SessionExtensionState(id, sessionOptions, device)
+        focusManager.session = Some(this)
     }
     func requireOwner(): Unit {
         if (let Some(current) <- activeSession.get()) {
@@ -90,6 +96,10 @@ class RuntimeSession {
         if (uiThreadIdentity().nonce != threadNonce) {
             throw UIException("WrongUIContext", "wrong UI thread")
         }
+    }
+    func requireReadContext(): Unit {
+        requireOwner()
+        if (!active) { throw UIException("SessionInactive", "session is inactive") }
     }
     func requireContext(): Unit {
         requireOwner()
@@ -822,6 +832,8 @@ class RuntimeSession {
                 }
             }
             if (!hasReady(cutoff) && commands.isEmpty()) {
+                if (!temporary) { focusManager.repair() }
+                if (hasReady(cutoff)) { continue }
                 return
             }
         }
@@ -1055,7 +1067,18 @@ class RuntimeSession {
             } finally {
                 lock.unlock()
             }
-            let frame = renderLayout(root, width, height, this)
+            pendingCaret = None; trackCaret = true
+            let frame: Frame
+            try { frame = renderLayout(root, width, height, this) } finally { trackCaret = false }
+            var nextCaret = CaretSnapshot(Option<NodeRef>.None,0,0,false)
+            if (let Some(request) <- pendingCaret) {
+                if (request.x >= 0 && request.x < frame.width && request.y >= 0 && request.y < frame.height) {
+                    if (!frame.cellAt(request.x,request.y).continuation) {
+                        nextCaret = CaretSnapshot(Some(request.owner),request.x,request.y,true)
+                    }
+                }
+            }
+            caret = nextCaret
             recordFrame();
             cached = Some(frame)
             cachedGlyphMarker = marker

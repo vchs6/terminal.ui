@@ -4,6 +4,7 @@ package cjtui
 class InputDecoder {
     var state: Int64 = 0 // normal, ESC, CSI, string, string-ESC, ESC intermediate
     var parameter = false
+    var csiIntroducer = false
     var stringRemaining: Int32 = 0
     var stringC2 = false
     var remaining: Int32 = 0
@@ -76,6 +77,7 @@ class InputDecoder {
                         case 66 => return KeyEvent("down")
                         case 67 => return KeyEvent("right")
                         case 68 => return KeyEvent("left")
+                        case 90 => if (csiIntroducer) { return KeyEvent("backtab") }
                         case _ => ()
                     }
                 }
@@ -99,6 +101,7 @@ class InputDecoder {
             if (first == 91 || first == 79) {
                 state = 2
                 parameter = false
+                csiIntroducer = first == 91
             } else if (first == 93 || first == 80 || first == 88 || first == 94 || first == 95) {
                 state = 3
                 stringRemaining = 0
@@ -128,6 +131,7 @@ class InputDecoder {
                     } else if (code == 0x9b) {
                         state = 2
                         parameter = false
+                        csiIntroducer = false
                     }
                     return None
                 }
@@ -141,6 +145,7 @@ class InputDecoder {
             state = 1
             return None
         }
+        if (first == 9) { return KeyEvent("tab") }
         if (first == 13 || first == 10) {
             return KeyEvent("enter")
         }
@@ -172,6 +177,7 @@ class InputDecoder {
         } else if (first == 0x9b) {
             state = 2
             parameter = false
+            csiIntroducer = false
         }
         None
     }

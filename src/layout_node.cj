@@ -6,6 +6,8 @@ class LayoutNode {
     let session: RuntimeSession
     let component: Component
     let previewTheme: ?Theme
+    var inheritedStyle: Style
+    let rootNode: Bool
     var resolved: ResolvedStyle
     let children = ArrayList<LayoutNode>()
     // Indices retain the original grapheme identity across soft and hard lines.
@@ -18,12 +20,20 @@ class LayoutNode {
         this.session = session
         component = c
         this.previewTheme = previewTheme
+        inheritedStyle = inherited; rootNode = isRoot
         resolved = resolveStyle(c,previewTheme ?? session.theme,inherited,isRoot)
     }
     func measure(): Unit {
         if (previewTheme.isNone()) { session.recordMeasure() }
         let c = component
-        if (c.kind == 0) {
+        if (c.kind == 3) {
+            let canvas = c.canvas.getOrThrow()
+            if (previewTheme.isNone()) {
+                let limits = Constraints()
+                c.canvasBinding("canvas-measure").track({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
+            }
+            naturalW = canvas.measured.width; naturalH = canvas.measured.height
+        } else if (c.kind == 0) {
             buildLines(0,false)
             for (width in widths) { naturalW = greater(naturalW,width) }
             naturalH = lines.size
@@ -88,7 +98,14 @@ class LayoutNode {
         constrainedWidth = Some(width)
         if (previewTheme.isNone()) { session.recordMeasure() }
         let available = innerWidth(width)
-        if (component.kind == 0) {
+        if (component.kind == 3) {
+            let canvas = component.canvas.getOrThrow()
+            if (previewTheme.isNone()) {
+                let limits = Constraints(maxWidth:Some(available))
+                component.canvasBinding("canvas-measure").track({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
+            }
+            naturalH = sat(canvas.measured.height,verticalInsets())
+        } else if (component.kind == 0) {
             buildLines(available,resolved.wrap == TextWrap.Grapheme)
             naturalH = sat(lines.size,verticalInsets())
         } else if (component.kind == 1) {
@@ -113,6 +130,7 @@ class LayoutNode {
         }
     }
     func refresh(inherited: Style, isRoot: Bool): Unit {
+        inheritedStyle = inherited
         resolved = resolveStyle(component,session.theme,inherited,isRoot)
         for (child in children) { child.refresh(resolved.style,false) }
     }
