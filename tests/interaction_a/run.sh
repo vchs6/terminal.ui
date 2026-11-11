@@ -37,7 +37,9 @@ if config.exists():(wrapped/config.name).write_bytes(config.read_bytes())
 PY
     (cd "$wrapped" && cjpm build)
     if [[ ${1:-} == --review-regressions ]]; then
-        python3 "$here/fixtures/review_regressions.py" --binary "$wrapped/target/release/bin/main" --output "$output/review-regressions"
+        review_args=()
+        if [[ ${2:-} == --clock-transition-only ]]; then review_args+=(--clock-transition-only); fi
+        python3 "$here/fixtures/review_regressions.py" --binary "$wrapped/target/release/bin/main" --output "$output/review-regressions" "${review_args[@]}"
     else
         python3 "$here/fixtures/matrix.py" --binary "$wrapped/target/release/bin/main" --output "$output/matrix"
     fi

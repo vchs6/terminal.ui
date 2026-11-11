@@ -85,3 +85,12 @@ normal headless entry also calls the cohesive appended headless regressions.
 No old vector, assertion, readonly thread guard or future Keyboard boundary is
 changed. These regressions reproduce failures on fixedf02d812; they are not a
 claim that corrected product behavior has passed.
+
+I05 additionally covers clock failure first observed after an ESC read begins.
+The same binary first proves valid-clock CSI `up`, then repeats with clock1000
+changed to-1 after the ESC lastInput/pre-read samples and the next poll-entry
+handshake, delivering `[A` within100ms. Poll completion proves readable input,
+not an elapsed100ms idle. To run only this new pair, use
+`bash tests/interaction_a/run.sh --review-regressions --clock-transition-only`.
+The default review mode includes both additions; all original13 goldens and
+94 vectors remain. This transition reproduces RED on fixed6f0fcc4.

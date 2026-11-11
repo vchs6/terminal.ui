@@ -924,6 +924,14 @@
       "I05": "fixtures/review_regressions.py clock_idle; native/input_hup.c optional completed-poll observer",
       "I06": "focus_repair.cj cancelUnmountedFocus node/ancestor",
       "I07": "pure_callbacks.cj canvasLeafStructure root/nested; normalcontainer positive"
+    },
+    "I05_clock_transition": {
+      "product_checkpoint": "6f0fcc4006d3b6138e823eaa6d127a548db58a21",
+      "entry": "run.sh --review-regressions --clock-transition-only",
+      "source": "fixtures/review_regressions.py clock_transition; public clockTransitionConsumer",
+      "control": "same binary valid clock: up:|text:q|; exit0",
+      "failure_transition": "clock1000 to-1 after ESC samples/poll entry; sub100ms suffix: actual escape:|text:[|text:A|text:q|; driver1/product0",
+      "unmeasured": "same-shaped idle-return branch source risk; no additional execution claim"
     }
   }
 }

@@ -73,3 +73,15 @@ func deviceConsumer(): Int64 {
     }
     return 0
 }
+
+// I05 transition consumer: no protocol bytes outside the public Application.
+func clockTransitionConsumer():Int64 {
+    let directory=getVariable("CJTUI_INTERACTION_A_DEVICE").getOrThrow()
+    let events=Box<String>("")
+    let app=Application(Text("x"),theme:plainTheme())
+    app.onKey({e=>events.value+="${e.code}:${e.text}|";if(e.text=="q"){app.stop()}})
+    app.run()
+    File.writeTo(directory+"/closed-events",events.value.toArray())
+    File.writeTo(directory+"/closed-status",app.terminalCapabilities().getOrThrow().cursorVisibilityStatus.toArray())
+    empty(app);app.dispose();0
+}

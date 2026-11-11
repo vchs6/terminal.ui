@@ -1,5 +1,6 @@
 package interaction_a_contract
 func reviewRegression(name:String):Int64 {
+    if(name=="I05-transition-device"){return clockTransitionConsumer()}
     match(name){
         case "I01"=>effectiveMeasureDependencies()
         case "I02-focus"=>behaviorStateGeometry("focus")
