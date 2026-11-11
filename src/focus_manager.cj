@@ -89,18 +89,20 @@ class FocusManager <: ObservableSource {
     func repair(): Unit {
         let current = candidates()
         if (let Some(old) <- focused) {
-            if (!eligible(old) || !session.getOrThrow().inOverlayDomain(old)) {
+            let oldEligible = eligible(old)
+            let oldInDomain = session.getOrThrow().inOverlayDomain(old)
+            if (!oldEligible || !oldInDomain) {
                 var index: Int64 = -1
                 for (i in 0..previous.size) { if (previous[i].id == old.id) { index = i; break } }
                 var replacement: ?RuntimeNode = None
                 if (index >= 0) {
                     var i = index + 1
                     while (i < previous.size && replacement.isNone()) {
-                        if (eligible(previous[i]) && session.getOrThrow().inOverlayDomain(previous[i])) { replacement = Some(previous[i]) }; i++
+                        if (eligible(previous[i])) { if (session.getOrThrow().inOverlayDomain(previous[i])) { replacement = Some(previous[i]) } }; i++
                     }
                     i = index - 1
                     while (i >= 0 && replacement.isNone()) {
-                        if (eligible(previous[i]) && session.getOrThrow().inOverlayDomain(previous[i])) { replacement = Some(previous[i]) }; i--
+                        if (eligible(previous[i])) { if (session.getOrThrow().inOverlayDomain(previous[i])) { replacement = Some(previous[i]) } }; i--
                     }
                 }
                 if (replacement.isNone() && !current.isEmpty()) { replacement = Some(current[0]) }

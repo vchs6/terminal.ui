@@ -578,8 +578,10 @@ class RuntimeSession {
         requireStructure()
         if (record.terminal.isSome()) { return }
         if (record.requested.isSome()) { return }
-        if (record.root.isSome() && commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
-            throw UIException("CapacityExceeded", "command limit exceeded")
+        if (record.root.isSome()) {
+            if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
+                throw UIException("CapacityExceeded", "command limit exceeded")
+            }
         }
         if (record.root.isNone()) {
             if (let Some(content) <- record.description) { content.releaseMount() }
@@ -596,6 +598,25 @@ class RuntimeSession {
         }
         false
     }
+    func interactiveOverlayNode(node: RuntimeNode): Bool {
+        let content = node.component
+        if (content.isFocusable || content.keyHandler.isSome() || content.captureHandler.isSome() ||
+            content.targetDefault.isSome() || content.ancestorDefault.isSome()) { return true }
+        for (entry in node.sequence) {
+            if (let ChildEntry.MountedChild(child) <- entry) { if (interactiveOverlayNode(child)) { return true } }
+        }
+        false
+    }
+    func validatePassiveOverlays(): Unit {
+        for (record in overlayRecords) {
+            if (record.options.mode != OverlayMode.Passive || record.terminal.isSome()) { continue }
+            if (let Some(root) <- record.root) {
+                if (root.isValid()) { if (interactiveOverlayNode(root.resolve())) {
+                    throw IllegalArgumentException("passive overlay cannot contain interactive nodes")
+                } }
+            }
+        }
+    }
     func commitOverlays(): Unit {
         let pending = overlayPending.toArray(); overlayPending.clear()
         for (record in pending) {
@@ -605,8 +626,8 @@ class RuntimeSession {
             let content = record.description.getOrThrow()
             content.releaseMount()
             preflight([content],Some(owner))
-            if (record.options.mode == OverlayMode.Passive && interactiveOverlayContent(content)) {
-                throw IllegalArgumentException("passive overlay cannot contain interactive nodes")
+            if (record.options.mode == OverlayMode.Passive) {
+                if (interactiveOverlayContent(content)) { throw IllegalArgumentException("passive overlay cannot contain interactive nodes") }
             }
             let node = mount(content,Some(owner),owner.depth+1)
             node.overlayRoot = true
@@ -664,7 +685,7 @@ class RuntimeSession {
             if (let Some(saved) <- record.savedFocus) {
                 if (saved.isValid()) {
                     let candidate = saved.resolve()
-                    if (focusManager.eligible(candidate) && inOverlayDomain(candidate)) { next = Some(candidate) }
+                    if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } }
                 }
             }
             var ancestor: ?RuntimeNode = if (record.owner.isValid()) { Some(record.owner.resolve()) } else { Option<RuntimeNode>.None }
@@ -683,13 +704,13 @@ class RuntimeSession {
                     var i = savedIndex + 1
                     while (i < record.savedOrder.size && next.isNone()) {
                         let ref = record.savedOrder[i]
-                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate) && inOverlayDomain(candidate)) { next = Some(candidate) } }
+                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
                         i++
                     }
                     i = savedIndex - 1
                     while (i >= 0 && next.isNone()) {
                         let ref = record.savedOrder[i]
-                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate) && inOverlayDomain(candidate)) { next = Some(candidate) } }
+                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
                         i--
                     }
                 }
@@ -1150,6 +1171,7 @@ class RuntimeSession {
             }
             commitOverlays()
             evaluateReady(cutoff)
+            validatePassiveOverlays()
             closeHiddenOverlays()
             // Plans are prepared under dependency tracking, committed after evaluation has
             // restored its guards. Lifecycle writes can therefore schedule the next pass.
