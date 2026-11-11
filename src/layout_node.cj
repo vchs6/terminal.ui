@@ -175,7 +175,7 @@ class LayoutNode {
         let canvas = component.canvas.getOrThrow()
         let limits = Constraints(maxWidth:if (axes.horizontal()) { Option<Int64>.None } else { Some(width) },
             maxHeight:if (axes.vertical()) { Option<Int64>.None } else { Some(height) })
-        component.canvasBinding("canvas-measure").trackConstrained({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
+        component.canvasBinding("canvas-measure").trackFinalConstrained({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
         canvasConstrained = canvas.measured
         naturalH = sat(canvasConstrained.height,verticalInsets())
         if (commitGeometry) { component.readMount().getOrThrow().canvasConstrained = Some(canvasConstrained) }

@@ -572,7 +572,7 @@ class RuntimeSession {
     }
     func geometryMayChange(): Bool {
         lock.lock()
-        try { !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty() }
+        try { measuredLayout.isNone() || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty() }
         finally { lock.unlock() }
     }
     func enqueueViewport(command: ScrollCommand): Unit {
