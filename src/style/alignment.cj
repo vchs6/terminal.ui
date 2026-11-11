@@ -1,4 +1,4 @@
-package cjtui
+package cjtui.style
 
 public enum Alignment <: Equatable<Alignment> {
     | Start | Center | End | Stretch
