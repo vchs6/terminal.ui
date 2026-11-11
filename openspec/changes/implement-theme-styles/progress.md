@@ -47,3 +47,9 @@ Task 013025: fix round 1/5 complete (3 Important addressed, 0 open; 97df096..95c
 089实际source8d的foundation普通build/direct0后隔离async API编译1（7条确实缺类型/方法），原179c851资产/tree441cfd4d未改，无新testcommit，22行为未执行。真实RED原件34份归R15/async-red，2个原始.so外部hash/省略理由保留，不入仓。026原作者已从73abef3开独立branch进入完整async实施，数据层内部checkpoint ec506e7，不视026完成；WIP loading单独保留。后续090/091/092仍按角色分离，合并同功能验证/归档，不增零碎审核回合。
 
 TASK026 candidate797039d独立090完整审查为0C/1I/1M：候选漏检共享分配器的clipped minimum溢出，及加载文档陈旧。固定独立回归3040111已集成main41f29f1，有限4×1大min合法控制通过，Max×0实际Applied后overflow/关闭为RED。原作者round1修复4971528已推WIPloading；focused atomic/current与正常mandatorylint bundle退出0，独立090仅797..497必要影响范围复核进行中；091/092未准入，026不勾选。
+
+Task 026: fix round 1/5 (M01 addressed, 1 Important open — I01 partially fixed; commits797039d..4971528). 独立090 round1证实直接Row/Column根快照已拒绝，但实际顺序为根snapshot(Max,0)→loadTheme→render(mountedText,1,1)触发全局候选提交→根snapshot；子树尺寸覆写根验证尺寸导致Applied后溢出/sessionclosed。独立最小Row正式回归追加中，等待fixedtest+真实RED后同一作者round2修复。round1原件manifest7ceb4bb8959a07ea9bab1b6a0291c7b7cdc4941f4dd15dcd314002c07e222da3，213prehash来源已核，无commit-only重跑。
+
+Round2准入：独立42行最小子树回归71f9312已集成/推送main8797749；固定497普通gate/foundation/API/consumer build均0，single atomic direct1：root-only与有限合法控制已通过，mounted subtree入口Applied1后原根minimum sum overflow/postfalse/ref失效。纯rawmanifest0a179eb98eedd6e60c8127d1dc72013cf4ed2bcb12f244bb628b1d3f57ca836e，root已读实际stdout/stderr。原Terra作者ACTUAL fix round2/5，精确顺序根snapshot→load→subtree render提交→根snapshot；测试角色恢复098。
+
+Task 026: fix round 2/5 complete (I01 addressed, 0 open;4971528..fa6a46e). 独立090最终spec/quality均PASS_SOURCE_REVIEW，root实际验证round2全部6条hash；原完整审查/两回合范围与证据限制保留。最终fa6已推WIP，091原Sol/medium独立执行角色已ACTUAL GO，自有SDK/cache/inputhash准备就绪，运行固定22case/必要布局回归/正常bundleclean；092仅准备不提前验收。
