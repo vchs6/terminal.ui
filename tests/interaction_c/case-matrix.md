@@ -2,8 +2,8 @@
 
 All rows are **BLOCKED for actual overlay execution**. `source` means a prepared
 Cangjie assertion; it does not mean compiled or run. `recipe` is a hand-authored
-test vector requiring the actual public signature/source barrier before source
-can be frozen. No recipe is counted as executable coverage or task acceptance.
+historical test vector. The final-preparation mappings below now give public
+consumer functions. No row is counted as executed C behavior or task acceptance.
 
 | IDs | AC / formal clause | Prepared action and independent expected observation | Form |
 |---|---|---|---|
@@ -21,7 +21,7 @@ can be frozen. No recipe is counted as executable coverage or task acceptance.
 | D03–04 | C-01 / C.3/A.5 | Escape after Target closes closest and consumes before Ancestor; unprevented modal interrupt exits entire Application, not just layer | source layer_domains |
 | D05–06 | C-01 / C.3 | closeOnEscape=false closest blocks parent; capture preventDefault interrupt retains active session | source layer_domains |
 | D07 | C-01 / C.3 | Target preventDefault Escape leaves layers open; stopPropagation alone still runs Escape; passive top layer skipped | recipe |
-| D08 | C-01 / C.2/C.3 | Nonmodal event bubbles along owner chain to base app then legacy; explicit host is absent from logical event path | recipe |
+| D08 | C-01 / C.2/C.3 | Nonmodal event bubbles along owner chain to base app then legacy; host adds/replaces no logical parent edge (C.2 correction: an existing ancestor host appears once in owner order) | recipe |
 | D09 | C-01 / C.3/A.4 | Lower-domain owner attempts open under highest modal: FocusOutsideDomain; ordinary requestFocus outside domain likewise | recipe |
 | D10 | C-01 / C.3/A.4 | Modal Tab visits own ordinary preorder and dependent nonmodal layers in commit order only; base/sibling lower layer absent; backtab exact reverse | recipe |
 | F01–07 | C-01/C-02 / I014/A.4/C.4 | Initial base first; empty takeFocus root reservation; new base candidate ignored; late layer first selected; nonmodal Tab can leave; background close and noTake/Passive keep focus | source layer_domains |
@@ -57,3 +57,48 @@ can be frozen. No recipe is counted as executable coverage or task acceptance.
 No Scrollbar, window manager, mouse, standard Modal/Menu wrapper, second tree,
 second compositor, fake native writer, copied Unicode tables or second theme
 resolver is part of these consumers.
+
+## Final-preparation public-driver mapping
+
+All C rows below remain **UNEXECUTED** because the actual C API is absent.
+The historical `source`/`recipe` column above describes the original preparation,
+not successful type compilation. The new mapping supersedes that form column;
+original IDs and hand oracles are retained, except the documented D08 recipe
+wording correction under C.2. Full type correctness awaits actual C declarations.
+
+| IDs | Public consumer / driver |
+|---|---|
+| S01–03 | public_shapes.cj / publicShapes |
+| P01–02 | pending_and_identity.cj / pendingCancellation |
+| P03 | pending_failures.cj / duplicateReservation |
+| P04 | pending_failures.cj / pendingFailure(false/true), broken_panel.cj |
+| P05 | pending_failures.cj / releasedOwnerObservation: deterministic terminal/resource assertions; bounded public GC observation only; retention source audit TASK110 |
+| N01–03 | pending_and_identity.cj / sharedTypeAndIdentity |
+| N04 | ordinary_identity.cj / mixedOrdinaryIdentity: actual If/ForEach/manual physical sequence |
+| N05–06 | ordinary_identity.cj / ownerMoveAndPaintLifetime |
+| D01–04 | layer_domains.cj / modalDomains |
+| D05–06 | layer_domains.cj / escapeBarrierAndPrevent |
+| D07–08 | domain_edges.cj / escapeAndLogicalRouting; D08 correction in final-preparation.md |
+| D09–10 | domain_edges.cj / modalTraversalAndDomainOpen |
+| F01–07 | layer_domains.cj / emptyLayerReservation |
+| F08–09 | close_lifecycle.cj / savedFocusFallback |
+| F10–11 | focus_restoration.cj / hiddenOrUnmountedSaved(false/true) |
+| F12 | focus_restoration.cj / physicalRestorationFallback(0..3), public final outcomes; no invented transient focus callback |
+| F13 | focus_restoration.cj / stackedRestoration; merged internal focus restoration source audit TASK110 |
+| L01–04 | close_lifecycle.cj / dependentClosure |
+| L05 | close_lifecycle.cj / cleanupAggregation |
+| L06–07 | lifecycle_edges.cj / ordinaryOwnedClosure, offscreenOwnerAndReason |
+| L08 | lifecycle_edges.cj / primaryAndCleanup(false/true); native_fixture callback-error for real-run aggregation |
+| E01–12 | entry_errors.cj / entryValidation, foreignAndOldHandles |
+| E13–14 | context_and_limits.cj / threadAndAnchorValidation |
+| E15 | context_and_limits.cj / evaluationAndLifecycleGuards(0..2), lifecycleLayerCommands |
+| E16–18 | context_and_limits.cj / layerCapacity(0..2), layerDependencyBudget(false/true), interactivePassiveRejection |
+| G01–10 | surface_grids.cj / surfacesAndLatestBase, sourceBasedCaretOcclusion |
+| G11–12 | theme_and_host.cj / ownerThemeSurface, explicitHostClip |
+| G13–14 | anchor_geometry.cj / directionalAnchors, clippedAndLostAnchors |
+| G15–16 | decorations_and_caret.cj / decoratedLayerTargets, caretSpacesShadowAndClip |
+| H01 | native_fixture.cj + pty_driver.py; five real-process modes (interrupt/prevent/Escape/SIGINT/callback-error), existing B PTY primitives; native-host-recipe for original-host PNG and accepted close-fault infrastructure |
+| H02 | Future accepted Keyboard117; explicitly not implemented or executed now |
+
+No claim that a weak observer proves ownership, that a headless assertion proves
+native restoration, or that a PTY on another TERM is another host is made.

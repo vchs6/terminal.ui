@@ -14,13 +14,22 @@ build_and_execute() {
 }
 
 case "${1:-formal}" in
+    api-probe)
+        printf '%s\n' 'PREPARATION_ONLY normal public consumer build; C behavior UNEXECUTED; not B107 acceptance'
+        (cd -- "$task_dir" && cjpm build)
+        exit $?
+        ;;
+    fixture-controls)
+        python3 "$task_dir/pty_driver.py" --self-test
+        exit $?
+        ;;
     baseline)
         printf '%s\n' 'BASELINE_ONLY: existing API; not overlay/product admission'
         build_and_execute "$task_dir/baseline"
         exit $?
         ;;
-    formal|preparation) ;;
-    *) printf '%s\n' 'usage: bash tests/interaction_c/run.sh [formal|preparation|baseline]' >&2; exit 64 ;;
+    formal|preparation|device) ;;
+    *) printf '%s\n' 'usage: bash tests/interaction_c/run.sh [formal|preparation|baseline|api-probe|fixture-controls|device]' >&2; exit 64 ;;
 esac
 
 # Freeze is deliberately closed while real accepted upstream inputs and the
@@ -54,4 +63,9 @@ if [[ "${1:-formal}" == preparation ]]; then
     printf '%s\n' 'Actual admission data is present; use formal for ordinary build/direct binary.'
     exit 0
 fi
-build_and_execute "$task_dir"
+if [[ "${1:-formal}" == device ]]; then
+    (cd -- "$task_dir" && cjpm build)
+    python3 "$task_dir/pty_driver.py" --binary "$task_dir/target/release/bin/main" --output "${CJTUI_OVERLAY_EVIDENCE:?set output evidence directory}"
+else
+    build_and_execute "$task_dir"
+fi

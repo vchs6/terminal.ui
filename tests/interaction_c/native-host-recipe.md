@@ -54,3 +54,24 @@ be used as actual overlay, actual native recovery, or actual host PASS.
 Cross-layer paste capture is deferred until actual accepted Keyboard117 with its
 own exact routing contract. This recipe makes no guess about EOF, decoder target
 locks, bracketed-paste capture or future editing behavior.
+
+
+## Final-preparation driver binding (all C native behavior UNEXECUTED)
+
+`native_fixture.cj` and `pty_driver.py` now provide the original public nested
+M→P→C fixture, acknowledged mount/trace states, exact C-domain trace and base
+handler0 controls, Escape closest-close, unprevented03, prevented03, external
+SIGINT and original-callback plus two cleanup-failure aggregation. The recorder
+uses existing B PTY primitives, checks raw-open/query/first-frame readiness, and
+records wire input/output, exact before/after termios and direct product exit.
+The five independent modes are in `pty_driver.py`; none was executed against C.
+
+`fixture-controls` runs tools-only negative comparisons for exit9, wrong termios,
+trace order, missing cleanup, missing acknowledgement and timeout; absent or
+non-executable real binaries are rejected before PTY startup. These are never C
+PASS. The full headless consumer owns the literal visual grids; no ANSI emulator
+or generated screenshot is introduced here. Real-host visual evidence remains
+this original manual recipe: build the same consumer with real C, retain actual
+host implementation/version, original PNG and protocol/termios metadata. Native
+close-fault injection must use accepted existing native infrastructure in its
+own future execution; this test does not fake restoration or add product hooks.

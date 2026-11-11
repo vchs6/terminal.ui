@@ -72,3 +72,31 @@ Tools-only gate negative control: `bash tests/interaction_c/gate-selftest.sh`.
 It confirms both entry modes return77 without invoking a sentinel compiler,
 and invalid mode returns64. It does not build or execute any product stub and
 cannot establish overlay/native/host results.
+
+## Current final preparation
+
+The preceding text is the preserved historical preparation statement; its old
+unresolved-input list is superseded for this new snapshot by
+[final-preparation.md](final-preparation.md). The original admission table is
+still closed: B107 acceptance/formal108/109 are pending. C behavior is entirely
+UNEXECUTED. The new sources complete the original recipe scopes through public
+consumers; missing C declarations still prevent full product type checking.
+No declaration stub substitutes for those missing APIs.
+
+After sourcing SDK1.2 and the shared stdx/UCD environment:
+
+```sh
+bash tests/interaction_c/run.sh baseline          # ordinary build + direct0
+bash tests/interaction_c/run.sh api-probe         # ordinary build: missing C API RED
+bash tests/interaction_c/run.sh fixture-controls  # tools-only negative controls
+bash tests/interaction_c/gate-selftest.sh         # closed admission; no product build
+```
+
+`main.cj` invokes all headless C groups once C exists. `CJTUI_OVERLAY_NATIVE`
+selects the real public native consumer for the driver, not a gate bypass.
+Future admitted `device` requires `CJTUI_OVERLAY_EVIDENCE`, builds normally, then
+runs `pty_driver.py`. It imports the established B PTY recorder utilities;
+readiness requires raw mode, the genuine mode25 query and the first literal
+BASE-OVERLAY-READY frame. Mount files and final trace files are callback barriers.
+Missing binary/acknowledgement, timeout, nonzero child status, altered trace,
+missing cleanup or termios difference fails. No sleep infers a committed layer.

@@ -41,6 +41,7 @@ func modalDomains(): Unit {
         "D02 explicit dispatch cannot bypass highest modal")
     check(calls.value == "", "D02 domain rejection precedes user callbacks")
     app.dispatch(node(button.value.getOrThrow()), KeyEvent("escape"))
+    check(calls.value=="Cc;Tc;Tb;Cb;Td;","D03 Escape after Target consumes before Ancestor")
     check(
         reason(third.value.getOrThrow()) == "Escape" && first.value.getOrThrow().isOpen() &&
             second.value.getOrThrow().isOpen(), "D03 Escape closes only closest allowed layer")
