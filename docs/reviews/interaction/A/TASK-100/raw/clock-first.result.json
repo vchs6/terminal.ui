@@ -1,0 +1,30 @@
+{
+  "started_utc": "2026-11-11T07:45:34.835563+00:00",
+  "finished_utc": "2026-11-11T07:45:35.591676+00:00",
+  "command": [
+    "probe/target/release/bin/main",
+    "--clock"
+  ],
+  "clock_wrap": "cjt_monotonic_ms always -1",
+  "initial_wire_hex": "1b5b306d1b5b313b3148782020202020202020201b5b323b3148202020202020202020201b5b306d",
+  "events": [
+    {
+      "input_hex": "1b",
+      "elapsed_ms": 0
+    },
+    {
+      "after_escape_ms": 400.558,
+      "exited": false
+    },
+    {
+      "input_hex": "71",
+      "elapsed_ms": 400.61
+    },
+    {
+      "input_hex": "03",
+      "elapsed_ms": 550.863
+    }
+  ],
+  "exit": 0,
+  "wire_repr": "b'\\x1b[0m\\x1b[1;1Hx         \\x1b[2;1H          \\x1b[0mCLOCK_EVENTS=\\r\\nCLOCK_STATUS=unknown-clock\\r\\n'"
+}

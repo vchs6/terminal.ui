@@ -1,0 +1,11 @@
+An exception has occurred:
+Exception: node is no longer mounted
+	 at cjtui::NodeRef::resolve()(/workspace/work/interaction-a-tests/review-regressions/replay/src/node_ref.cj:35)
+	 at cjtui::FocusManager::repair()(/workspace/work/interaction-a-tests/review-regressions/replay/src/focus_manager.cj:76)
+	 at cjtui::RuntimeSession::stabilize(Int64, Bool)(/workspace/work/interaction-a-tests/review-regressions/replay/src/runtime_session.cj:835)
+	 at cjtui::Application::batch::lambda.0()(/workspace/work/interaction-a-tests/review-regressions/replay/src/application.cj:291)
+	 at cjtui::RuntimeSession::enter<...>(() -> T0)(/workspace/work/interaction-a-tests/review-regressions/replay/src/runtime_session.cj:130)
+	 at cjtui::Application::batch(() -> Unit)(/workspace/work/interaction-a-tests/review-regressions/replay/src/application.cj:281)
+	 at interaction_a_contract::cancelUnmountedFocus(Bool)(/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/src/focus_repair.cj:36)
+	 at interaction_a_contract::reviewRegression(std.core::String)(/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/src/review_regressions.cj:12)
+	 at interaction_a_contract::main()(/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/src/main.cj:4)

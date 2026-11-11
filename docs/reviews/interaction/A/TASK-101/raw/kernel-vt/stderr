@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/work/interaction-execution/tools/vt.py", line 3, in <module>
+    B=Path('/workspace/work/interaction-execution');R=B/'raw/kernel-vt';R.mkdir(exist_ok=False)
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/workspace/work/interaction-execution/raw/kernel-vt'

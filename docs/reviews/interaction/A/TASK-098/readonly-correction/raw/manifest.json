@@ -1,0 +1,84 @@
+{
+  "task": "098 readonly correction",
+  "test_sha": "f07635e75f2b68d7bd78f41e777e9d2d481d0bef",
+  "parent": "76b8dd1c118b0f3c58327b66581d67884cec2713",
+  "changed_files": [
+    "tests/interaction_a/src/readonly_queries.cj"
+  ],
+  "diff_lines": {
+    "insertions": 3,
+    "deletions": 2
+  },
+  "product_checkpoint": "6125934a98dff2bda9a26576ca0c0bce8cc983da",
+  "contract": "design.md A.4 line149",
+  "commands": [
+    {
+      "name": "readonly-build",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/interaction-a-tests/readonly-correction/replay/tests/readonly_case",
+      "utc": "2026-11-11T07:20:37.916540+00:00",
+      "exit": 0
+    },
+    {
+      "name": "readonly-run",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/readonly-correction/replay/tests/readonly_case/target/release/bin/main"
+      ],
+      "cwd": "/workspace/work/interaction-a-tests/readonly-correction/replay/tests/readonly_case",
+      "utc": "2026-11-11T07:22:01.151225+00:00",
+      "exit": 0
+    }
+  ],
+  "pre_execution_hashes": {
+    "product_sha": "6125934a98dff2bda9a26576ca0c0bce8cc983da",
+    "files": {
+      "tests/readonly_case/cjpm.toml": "695385534880d7e94ec5353be3da6902841109b6eace2870261fbbf12454bcca",
+      "tests/readonly_case/cangjie-repo.toml": "eacfa3bec44c8762f892db2897e8be7f1c770e7c409ff27c9db58e8530f8dd89",
+      "tests/readonly_case/src/box.cj": "f7a9a5f92a701d19847eaf01a6890a2ce5cc43ab79dc342e56668f267339335b",
+      "tests/readonly_case/src/readonly_queries.cj": "6ede5c4e5dda728f037ce8b3b762d929f14bbd74fb261bde7d0a30aa6ecd7a1c",
+      "tests/readonly_case/src/main.cj": "5bfd0bd055326a1b636948911c923d04291052f72c945325d735342058ab9825",
+      "tests/readonly_case/src/group.cj": "abcec681d234472b0157764d3b8fb5416544a5707bafa96b5763a5e750deb72a",
+      "tests/readonly_case/src/checks.cj": "bb2820c6c5818e56637efa12cb5069a4811d13f4f40db43730299172bfa1d8cc"
+    }
+  },
+  "corrected_test_sha256": "6ede5c4e5dda728f037ce8b3b762d929f14bbd74fb261bde7d0a30aa6ecd7a1c",
+  "replay_test_matches_committed": true,
+  "product_changes": [],
+  "executed": [
+    "normal readonly consumer build exit0",
+    "direct readonlyQueries only exit0"
+  ],
+  "not_executed": [
+    "87 native matrix",
+    "full headless suite",
+    "current I015 edits"
+  ],
+  "raw_files": {
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/commands.json": "fb0a6a674fc304a134ac9b4bb593dcc91f4b7d34b3e2c2f8617910394c58148a",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/contract-and-test-hashes.json": "dc3f08548b3b1ca5b227d86527b9b4b590f5a463f997535f8222037488bb3bb8",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/original-contract-dev3-build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/original-contract-dev3-build.stderr": "3356915002fbb6f3d5ac72ec0ab8829985c765ce98b17a6771a15e5a8d09951f",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/original-contract-dev3-build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/original-contract-dev3-run.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/original-contract-dev3-run.stderr": "e51c9b03cf61d5c466712e7d0b7a5155fa88d5db846992280c4ece2fdc175524",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/original-contract-dev3-run.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/original-contract-dev3.stderr": "e51c9b03cf61d5c466712e7d0b7a5155fa88d5db846992280c4ece2fdc175524",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/original-evidence.json": "4e0cf1b09923b86f45254df090a8c77a0ddf5e07b2ddaae252c353b4bfa12026",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/original-trace-identity.json": "e491737f4b9deae44af88c16c88217cc0c480aed95a441cb4cf22a4901fd15bc",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/prehash.json": "cdf097200a35a69298f0fcfdcc18780e3a101b3093d57c2aff907e01c7f542f9",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/readonly-build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/readonly-build.stderr": "b64ca341b03f6a7120303b531ed4e27064dcd12f34777443f4cf850f01a56550",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/readonly-build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/readonly-run.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/readonly-run.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/readonly-correction/raw/readonly-run.stdout": "5360eb1371ed5904ddb1dd70eb1a01c9d0b4f942fb0c0f372a4f1350c7b8e26d"
+  },
+  "binary": {
+    "/workspace/work/interaction-a-tests/readonly-correction/replay/tests/readonly_case/target/release/bin/main": "1634a2517110345bd508232cac75a92f4babc0839004ba4319e8c969deb9c94c"
+  }
+}

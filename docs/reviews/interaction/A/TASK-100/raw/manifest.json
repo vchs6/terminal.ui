@@ -1,0 +1,260 @@
+{
+  "utc": "2026-11-11T07:52:46.632067+00:00",
+  "head": "f02d8124dfad6028da1427c3da877eeec05a5708",
+  "normal_sdk": "1.2; see sdk.txt",
+  "commands": [
+    "bash run-probe.sh",
+    "bash run-unmount-probe.sh",
+    "bash run-leaf-probe.sh",
+    "source /workspace/work/linux-build-recon/env.sh; python3 clock-probe.py",
+    "python3 verify-inputs.py"
+  ],
+  "scope": "Focused public consumers only, not formal full suite. First public probe, incremental unmount, incremental leaf; same five earlier behaviors reproduced by final leaf-run. Clock repeated after final probe harness build; first raw retained. Product source exported from fixed Git and never edited. No historical pre-run identity invented.",
+  "files": [
+    {
+      "path": "raw/build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "raw/build.finished.utc",
+      "sha256": "402f8927c519d7ac5d926236e5423de0c1c4ccf274211303c1041f152a6424e7",
+      "bytes": 21
+    },
+    {
+      "path": "raw/build.started.utc",
+      "sha256": "94aa74da884146561202118e859d19e102cb965b71673e39392037c9150dc2a0",
+      "bytes": 21
+    },
+    {
+      "path": "raw/build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "raw/clock-build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "raw/clock-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/clock-build.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/clock-first.result.json",
+      "sha256": "0f5c6bb2acffdf35ecfd13d7d25f1c0aa3093660c03e7cd198007c5bdc32aee9",
+      "bytes": 753
+    },
+    {
+      "path": "raw/clock-first.wire",
+      "sha256": "9e4f577b9631fb97107682d1e522c507a4d225146dbe8c9638fd86644dd652c4",
+      "bytes": 83
+    },
+    {
+      "path": "raw/clock-pre-identity.json",
+      "sha256": "f9ee48c69f0b8d3c9e9b8b059cbc3c6b1884603bae5819f52328423a40d1a329",
+      "bytes": 912
+    },
+    {
+      "path": "raw/clock.result.json",
+      "sha256": "6953ec76acabfc69eb71fb71cb4ef7eccada6b6233207a02b7acf2982afeab06",
+      "bytes": 754
+    },
+    {
+      "path": "raw/clock.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/clock.wire",
+      "sha256": "9e4f577b9631fb97107682d1e522c507a4d225146dbe8c9638fd86644dd652c4",
+      "bytes": 83
+    },
+    {
+      "path": "raw/leaf-build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "raw/leaf-build.finished.utc",
+      "sha256": "eb0b66dc63bc632ac9e4f7d17754b747941c7fafc35e5db980b02ee51f171b92",
+      "bytes": 21
+    },
+    {
+      "path": "raw/leaf-build.started.utc",
+      "sha256": "4bf8e55fbf482de66aa41da7f73eb8b982ab5a77d3548fa041c37fc044938e9e",
+      "bytes": 21
+    },
+    {
+      "path": "raw/leaf-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/leaf-build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "raw/leaf-clock-build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "raw/leaf-clock-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/leaf-clock-build.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/leaf-run.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "raw/leaf-run.finished.utc",
+      "sha256": "eb0b66dc63bc632ac9e4f7d17754b747941c7fafc35e5db980b02ee51f171b92",
+      "bytes": 21
+    },
+    {
+      "path": "raw/leaf-run.started.utc",
+      "sha256": "eb0b66dc63bc632ac9e4f7d17754b747941c7fafc35e5db980b02ee51f171b92",
+      "bytes": 21
+    },
+    {
+      "path": "raw/leaf-run.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/leaf-run.stdout",
+      "sha256": "dbd6c4eb8daccee5e551a726d6ca867170305496c1c63f8cb1f1ff79b9f66bd4",
+      "bytes": 332
+    },
+    {
+      "path": "raw/leaf-sdk.txt",
+      "sha256": "57a2a1e9a49088b436037c7b8567e701fc556fb7381e29869e57a4ab62861c34",
+      "bytes": 120
+    },
+    {
+      "path": "raw/run-first.stdout",
+      "sha256": "a1a5066b1dbe33170e9194c3df00f9dbdf2ef21b15d83c07cf3fea3417ab462c",
+      "bytes": 241
+    },
+    {
+      "path": "raw/run.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "raw/run.finished.utc",
+      "sha256": "402f8927c519d7ac5d926236e5423de0c1c4ccf274211303c1041f152a6424e7",
+      "bytes": 21
+    },
+    {
+      "path": "raw/run.started.utc",
+      "sha256": "402f8927c519d7ac5d926236e5423de0c1c4ccf274211303c1041f152a6424e7",
+      "bytes": 21
+    },
+    {
+      "path": "raw/run.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/run.stdout",
+      "sha256": "a1a5066b1dbe33170e9194c3df00f9dbdf2ef21b15d83c07cf3fea3417ab462c",
+      "bytes": 241
+    },
+    {
+      "path": "raw/sdk.txt",
+      "sha256": "bf22dc93067ccc6758d8cefb078af0b3513406befbc42d4b09dda8c8c9c09b43",
+      "bytes": 120
+    },
+    {
+      "path": "raw/unmount-build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "raw/unmount-build.finished.utc",
+      "sha256": "188e53ec7b3c347cda400e697d02e777f079bac4e19bc4c6d12dd2e28384ceeb",
+      "bytes": 21
+    },
+    {
+      "path": "raw/unmount-build.started.utc",
+      "sha256": "c9bb63ffe6714478d87f5629ee70d2aa8b275bcdf6768c35b7fa918a5b9966dd",
+      "bytes": 21
+    },
+    {
+      "path": "raw/unmount-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/unmount-build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "raw/unmount-clock-build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "raw/unmount-clock-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/unmount-clock-build.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/unmount-run.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "raw/unmount-run.finished.utc",
+      "sha256": "188e53ec7b3c347cda400e697d02e777f079bac4e19bc4c6d12dd2e28384ceeb",
+      "bytes": 21
+    },
+    {
+      "path": "raw/unmount-run.started.utc",
+      "sha256": "188e53ec7b3c347cda400e697d02e777f079bac4e19bc4c6d12dd2e28384ceeb",
+      "bytes": 21
+    },
+    {
+      "path": "raw/unmount-run.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "raw/unmount-run.stdout",
+      "sha256": "4e6613cac0a7761a60992acb7e150300513616dcca2767126cd07e5fda6d9870",
+      "bytes": 276
+    },
+    {
+      "path": "raw/unmount-sdk.txt",
+      "sha256": "98b923a6fa8ae8b07689f573bcac39b0addc905c066f7174174c49ed2ffdc4b4",
+      "bytes": 120
+    }
+  ]
+}

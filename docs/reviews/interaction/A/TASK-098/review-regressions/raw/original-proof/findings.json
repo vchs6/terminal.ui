@@ -1,0 +1,162 @@
+{
+  "task": "TASK100",
+  "utc": "2026-11-11T07:52:46.599837+00:00",
+  "base": "3755f5793096b2f76602f5f73433fbb3a4973b65",
+  "head": "f02d8124dfad6028da1427c3da877eeec05a5708",
+  "scope": "完整 Unit A BASE..55c723b 加 55c723b..f02d812 mandatory-lint delta；非 checkpoint review",
+  "spec_verdict": "CHANGES_REQUIRED",
+  "quality_verdict": "CHANGES_REQUIRED",
+  "critical": 0,
+  "important": 7,
+  "minor": 0,
+  "findings": [
+    {
+      "id": "T100-I01",
+      "severity": "Important",
+      "status": "OPEN",
+      "title": "Canvas 多次约束测量丢掉仍参与布局的依赖",
+      "locations": [
+        "src/layout_node.cj:33",
+        "src/layout_node.cj:105",
+        "src/binding.cj:53"
+      ],
+      "contract": "A.1 多次约束测量；A.2 M/P 独立依赖与 M 变化 Layout+Paint；I001/M1 完整参考",
+      "minimum_reproducer": "Row(Canvas(measure: 无 maxWidth 时 Size(width.get(),1)，有 maxWidth 时 constrain(Size(1,1)), draw C), Text B)，width 初始1；snapshot(5,1)，width.set(3)，再次 snapshot 与 render 比较。",
+      "actual": "首次 snapshot 后 subscriptions=0；更新后 Application=[CB   ]，完整 render=[C  B ]。",
+      "impact": "后一次 track 清除前一次依赖，但 LayoutNode.naturalW 仍消费前一次结果；业务 Observable 更新不能自动刷新布局。",
+      "required_behavior": "保留所有仍支持有效测量结果的依赖，或使布局结果与保留的计算依赖一致；维持 M/P 分离、版本复核、容量和 theme validation 不调用业务代码等既有约束。",
+      "evidence": [
+        "probe/src/main.cj:measureDependencies",
+        "raw/leaf-run.stdout"
+      ]
+    },
+    {
+      "id": "T100-I02",
+      "severity": "Important",
+      "status": "OPEN",
+      "title": "实际 focus/enabled 状态只重绘，尺寸样式复用旧测量",
+      "locations": [
+        "src/focus_manager.cj:50",
+        "src/component.cj:190",
+        "src/layout_node.cj:128",
+        "src/runtime_session.cj:150"
+      ],
+      "contract": "I012 自动实际行为外观状态；A.2 影响测量的 style 改变使 measure 失效；M1 等价",
+      "minimum_reproducer": "Column(Text A focusable, Text abcd width4 wrapGrapheme focusable + focused width1, Text Z)，首次 snapshot(4,6) 后 requestFocus 第二节点，再 snapshot/render。",
+      "actual": "Application 输出 A/a/Z，剩余空行；M1 输出 A/a/b/c/d/Z。",
+      "impact": "真实焦点转换会裁掉文本并把后续节点放错位置。enabled 常量/getter 同样只标 Style，自动 disabled 尺寸规则存在同一源级缺口。",
+      "required_behavior": "实际行为态导致尺寸/排版字段变化时必须使相关测量失效；纯外观路径可继续 paint-only。",
+      "evidence": [
+        "probe/src/main.cj:focusGeometry",
+        "raw/leaf-run.stdout"
+      ]
+    },
+    {
+      "id": "T100-I03",
+      "severity": "Important",
+      "status": "OPEN",
+      "title": "requestFocus 绕过共享命令容量预算",
+      "locations": [
+        "src/node_ref.cj:56",
+        "src/focus_manager.cj:10",
+        "src/focus_manager.cj:75"
+      ],
+      "contract": "Shared errors/capacity design.md:384–387；命令受 structuralOpsPerBatch，不另无限队列",
+      "minimum_reproducer": "两个 focusable Text，RuntimeLimits(structuralOpsPerBatch:1)，同一个 app.batch 先后 requestFocus 两节点。",
+      "actual": "两次请求均被接受，输出 FOCUS_BUDGET two_requests_accepted。",
+      "impact": "任意多的 pending focus 请求可累积并在一次边界处理，公开容量保护失效；混合结构/焦点命令也未共享预算。",
+      "required_behavior": "焦点命令纳入既有每 batch 命令预算并报 CapacityExceeded，维持正常顺序/最后有效请求语义。",
+      "evidence": [
+        "probe/src/main.cj:budgetAndQueries",
+        "raw/leaf-run.stdout"
+      ]
+    },
+    {
+      "id": "T100-I04",
+      "severity": "Important",
+      "status": "OPEN",
+      "title": "isEnabled 将 visibility 混入行为 enabled 合取",
+      "locations": [
+        "src/focus_manager.cj:20",
+        "src/node_ref.cj:43"
+      ],
+      "contract": "A.4 isEnabled/isVisible 各自沿普通祖先有效合取；候选另要求 visible 且 enabled；I012 effectiveEnabled",
+      "minimum_reproducer": "Application(Text x .visible(false).enabled(true)) startHeadless 后查询 NodeRef.isVisible/isEnabled。",
+      "actual": "visible=false、enabled=false；没有节点或祖先 disabled。",
+      "impact": "隐藏被错误报告为禁用，用户 getter 无法区分两种独立行为状态；统一 resolver 的 effectiveEnabled 也沿此混合 helper。",
+      "required_behavior": "分开计算 enabled 与 visible 的祖先合取；焦点/dispatch eligibility 再显式组合两者。",
+      "evidence": [
+        "probe/src/main.cj:budgetAndQueries",
+        "raw/leaf-run.stdout"
+      ]
+    },
+    {
+      "id": "T100-I05",
+      "severity": "Important",
+      "status": "OPEN",
+      "title": "时钟失败后裸 ESC 永不超时并吞掉下个普通键",
+      "locations": [
+        "src/application.cj:595",
+        "src/application.cj:609",
+        "src/application.cj:619"
+      ],
+      "contract": "I015 §1.4/6/7/8：Unknown 保守运行、普通输入无阻塞、保留100ms实际键盘 idle；TASK100 brief 同要求",
+      "minimum_reproducer": "普通 Application.run 消费者链接测试 clock seam：cjt_monotonic_ms 始终 -1。首帧后输入 ESC，等待400ms，再输入 q，最后 Ctrl-C 退出。",
+      "actual": "400ms 后仍未退出；CLOCK_EVENTS 为空（ESC 与 q 均未派发），CLOCK_STATUS=unknown-clock；Ctrl-C 退出0。",
+      "impact": "lastInput=-1 同时表示无 ESC 和时钟读取失败；所有 timeout 分支要求 >=0，使 decoder 长期停在 ESC 状态，吞掉后继字符。",
+      "required_behavior": "计时失败仍保留旧输入空闲语义与普通键传递；UnknownClock 不得改变 mode25，probe deadline 唤醒仍不得冒充100ms idle。",
+      "evidence": [
+        "probe/src/main.cj:clockFailure",
+        "probe/clock_wrap.c",
+        "clock-probe.py",
+        "raw/clock.result.json",
+        "raw/clock.wire"
+      ]
+    },
+    {
+      "id": "T100-I06",
+      "severity": "Important",
+      "status": "OPEN",
+      "title": "卸载未取消已排队 focus 请求",
+      "locations": [
+        "src/runtime_session.cj:658",
+        "src/focus_manager.cj:75"
+      ],
+      "contract": "Shared lifecycle design.md:387：卸载取消 focus 请求；A.4 在安全提交边界修复焦点",
+      "minimum_reproducer": "Column 两个 focusable Text，同 batch 对第二节点 requestFocus，然后父 ref.remove(第二节点)。请求时 ref 有效。",
+      "actual": "边界抛 StaleReference（UNMOUNT_FOCUS error=StaleReference）。",
+      "impact": "合法的同 turn 移除触发过期队列引用异常，走应用失败路径，而非取消该节点待处理意图并修复焦点。",
+      "required_behavior": "卸载撤销该节点/后代的 pending focus 请求；直接使用已过期 ref 的调用仍按原错误规则拒绝。",
+      "evidence": [
+        "probe/src/main.cj:cancelledFocus",
+        "raw/leaf-run.stdout"
+      ]
+    },
+    {
+      "id": "T100-I07",
+      "severity": "Important",
+      "status": "OPEN",
+      "title": "Canvas 可通过动态 NodeRef append 接纳普通 children",
+      "locations": [
+        "src/canvas.cj:4",
+        "src/runtime_session.cj:515",
+        "src/runtime_session.cj:578"
+      ],
+      "contract": "A.1：Canvas 是叶，不收普通 children；construction spec 单个通用 Canvas 叶",
+      "minimum_reproducer": "Canvas root startHeadless 后，在 app.batch 中 root.reference.append(Text(hidden child).focusable(true))，检查 children/focusedNode/snapshot。",
+      "actual": "children=1、focused_child=true、frame=[C    ]：普通 child 被挂载并进入焦点候选，而 Canvas 绘制路径不画该 child。",
+      "impact": "新 kind=3 未纳入两处只拒绝 kind=0 的结构父能力检查，产生不可见却可聚焦的真实子树。",
+      "required_behavior": "公共结构操作按叶能力拒绝 Canvas 父节点，保持原容器操作和错误/事务语义。",
+      "evidence": [
+        "probe/src/main.cj:canvasLeaf",
+        "raw/leaf-run.stdout"
+      ]
+    }
+  ],
+  "deferred": [],
+  "not_closed": [
+    "TASK101 independent fresh execution",
+    "TASK102 physical host/acceptance",
+    "B/C/full Keyboard/edit/M2 remain out of Unit A scope"
+  ]
+}

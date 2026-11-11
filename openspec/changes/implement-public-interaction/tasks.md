@@ -1,6 +1,6 @@
 # Public interaction implementation plan
 
-> For agentic workers: REQUIRED SUB-SKILL superpowers:subagent-driven-development；按用户已指定独立角色推进。当前作者只准备合同，不启动执行或派代理。
+> For agentic workers: REQUIRED SUB-SKILL superpowers:subagent-driven-development；按用户已指定独立角色推进。各单位依实际准入执行；前置未完成的后续单位只做准备，不提前实施产品。
 
 **Goal:** 交付用户与内置组件同权的公共绘制/焦点、统一视口与owner覆盖层。
 **Architecture:** 单Component/RuntimeNode/LayoutNode/Frame/样式resolver；两类绘制依赖、统一UI边界、普通子序列与层所有权关系区分。
@@ -10,10 +10,10 @@
 ## Global constraints
 
 - 正式父项为A→TASK-017、B→TASK-037、C→TASK-018；稳定编号不改。028编辑、019菜单状态条、029基础widgets、020退出恢复、030可选会话仍保留完整责任。
-- 支持任务098–112的状态权威仅本tasks.md；主代理集成后docs/tasks.md只加编号/依赖映射，不复制另一套勾选。当前全部planned，AC pending，不能把文件存在当ready。
+- 支持任务098–112的状态权威仅本tasks.md；主代理集成后docs/tasks.md只加编号/依赖映射，不复制另一套勾选。实际状态以本文件任务勾选及对应固定证据为准，不能把文件存在当ready。
 - 角色独立上下文/目录或worktree；测试、产品、审查、执行、验收分别交付。只交需求、冻结源码/测试、可复现命令及raw/hash，不交产品作者推理、自评或预设通过结论。
 - 一类型一小写下划线文件，成员归实体文件；根包持有Runtime/NodeRef/PaintContext，纯style/theme不能反向依赖根包。禁止第二树/renderer/Unicode/主题resolver、Button/Input私有kind。
-- 全部新增签名尚未编译验证。原StyleRule候选with退役为当前T016 withValue；KeyEvent仍只有code/text。普通getter可只读查询，不能写节点或跨session mutation。
+- 新增签名的编译与功能验证分别随各单位固定产物记录，声明探针不代表产品通过。原StyleRule候选with退役为当前T016 withValue；KeyEvent仍只有code/text。普通getter可只读查询，不能写节点或跨session mutation。
 - A仅最小HT/tab、CSI Z/backtab设备增量；完整键盘/编辑/paste/clipboard另阶段。B默认ScrollView Vertical，指南主体默认滚动、固定菜单状态条不滚，普通非root Column不隐式滚；Application根默认Vertical兜底、显式Off关闭，I009最多两pass保短内容分配。
 - M1全局render完整参考保留：detached不隐建root viewport，mounted消费session已提交viewport/offset/层栈，不访问M2缓存。paint-only失效不等同已实现M2；min不凌驾实际viewport；不自动改业务排序/显隐。无鼠标、拖动、发布。
 
@@ -21,7 +21,7 @@
 
 实际SDK签名微编译先于独立preflight：由主代理在独立临时包安排声明-only探针，覆盖Canvas闭包、全部重载/命名默认参数、Option/enum/struct只读成员、根重导出及Color/Style/TextStylePatch/RichText/Rect互用。保存源码、SDK/cjpm版本、命令、stdout/stderr、exit和hash到`docs/reviews/interaction/admission/api-probe/`；声明stub只能证明语言形式，不能证明产品实现。禁止用产品伪实现通过探针；产品正常公开CJPM消费者证据仍由098/099/101承担。
 
-微编译后由独立Astra/high做preflight，逐DQ01–14检查当前合同/任务/三spec与接口probe；记录`docs/reviews/interaction/admission/preflight.md`，有Critical/Important先由主代理处理后冻结版本，不派产品。A的可执行准入还需080(runtime C)、084(RichText)、088(基础Theme)验收已接受的固定源与hash；不要求092异步加载。本稿不宣称前置完成，不建立短期假Theme/动态树兼容分支。
+微编译后由独立Astra/high做preflight，逐DQ01–14检查当前合同/任务/三spec与接口probe；记录`docs/reviews/interaction/admission/preflight.md`，有Critical/Important先由主代理处理后冻结版本，不派产品。A的可执行准入还需080(runtime C)、084(RichText)、088(基础Theme)验收已接受的固定源与hash；不要求092异步加载。实际前置完成状态见单位任务及固定证据，不建立短期假Theme/动态树兼容分支。
 
 `docs/reviews/interaction/admission/interface-map.json`由主代理在上述固定输入到位时记录：source SHA、公开签名引用、主题唯一resolver实际路径、现设备caret/恢复桥接路径、受影响现回归命令；它是定位清单而非另一套规范。下文确切新增路径不变；上游尚未交付的resolver文件名只沿088真实清单定位，不能先创建同名平行实现。该映射缺失时DQ03/06/10/13不能ready。
 
@@ -87,8 +87,8 @@
 - [x] 1.1 TASK-098：冻结独立公共测试与RED；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
 - [x] 1.2 TASK-099：实现有限公共单元并自验；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
 - [x] 1.3 TASK-100：固定源码独立规格与质量审查；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
-- [ ] 1.4 TASK-101：独立执行与正常制品消费；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
-- [ ] 1.5 TASK-102：有限合同与父AC映射独立验收；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
+- [x] 1.4 TASK-101：独立执行与正常制品消费；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
+- [x] 1.5 TASK-102：有限合同与父AC映射独立验收；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
 
 ### TASK-098: 冻结独立公共测试与RED
 
@@ -160,10 +160,10 @@
 
 **L4:**
 
-- [ ] 1.4.1 TASK-101.S1：在自己的SDK/registry/cache配置下核hash，执行bash tests/interaction_a/run.sh并保存真实exit；随后仅执行admission清单相关既有回归，复用未变内容的有效证据。
-- [ ] 1.4.2 TASK-101.S2：正常cjpm bundle（不skip）后干净解包，正式公共消费者与例子仅改manifest路径构建运行；SDK/stdx前置按088交付记录，不借作者私有cjo。
-- [ ] 1.4.3 TASK-101.S3：执行真实PTY HT/CSI Z焦点/caret-only输出/异常退出恢复；记录输入字节和termios。
-- [ ] 1.4.4 TASK-101.S4：保存逐命令raw、source/test/bundle/consumer SHA256与AC结果，发现失败回主代理而非直接修产品/测试；不以同PTY换TERM冒充多个真实宿主。
+- [x] 1.4.1 TASK-101.S1：在自己的SDK/registry/cache配置下核hash，执行bash tests/interaction_a/run.sh并保存真实exit；随后仅执行admission清单相关既有回归，复用未变内容的有效证据。
+- [x] 1.4.2 TASK-101.S2：正常cjpm bundle（不skip）后干净解包，正式公共消费者与例子仅改manifest路径构建运行；SDK/stdx前置按088交付记录，不借作者私有cjo。
+- [x] 1.4.3 TASK-101.S3：执行真实PTY HT/CSI Z焦点/caret-only输出/异常退出恢复；记录输入字节和termios。
+- [x] 1.4.4 TASK-101.S4：保存逐命令raw、source/test/bundle/consumer SHA256与AC结果，发现失败回主代理而非直接修产品/测试；不以同PTY换TERM冒充多个真实宿主。
 
 ### TASK-102: 有限合同与父AC映射独立验收
 
@@ -179,13 +179,13 @@
 
 **L4:**
 
-- [ ] 1.5.1 TASK-102.S1：从原件核对A-01–A-06到测试、执行raw与技术diff的映射及hash，确认公开消费者和真实设备声明各有相应证据，不重复已有效suite。
-- [ ] 1.5.2 TASK-102.S2：核对父TASK-017完整AC与本单位边界：017焦点部分可按实际全范围证据判定，028编辑/029标准组件/018多层仍未由A交付。
-- [ ] 1.5.3 TASK-102.S3：给有限结论与缺口列表，失败保持verifying/blocked并注明恢复条件；通过由主代理投影长期AC/任务并交下一单元，不凭任务勾选归档全部Linux。
+- [x] 1.5.1 TASK-102.S1：从原件核对A-01–A-06到测试、执行raw与技术diff的映射及hash，确认公开消费者和真实设备声明各有相应证据，不重复已有效suite。
+- [x] 1.5.2 TASK-102.S2：核对父TASK-017完整AC与本单位边界：017焦点部分可按实际全范围证据判定，028编辑/029标准组件/018多层仍未由A交付。
+- [x] 1.5.3 TASK-102.S3：给有限结论与缺口列表，失败保持verifying/blocked并注明恢复条件；通过由主代理投影长期AC/任务并交下一单元，不凭任务勾选归档全部Linux。
 
 ## 2. Unit B
 
-- [ ] 2.1 TASK-103：冻结独立公共测试与RED；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
+- [x] 2.1 TASK-103：冻结独立公共测试与RED；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
 - [ ] 2.2 TASK-104：实现有限公共单元并自验；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
 - [ ] 2.3 TASK-105：固定源码独立规格与质量审查；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
 - [ ] 2.4 TASK-106：独立执行与正常制品消费；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
@@ -205,10 +205,10 @@
 
 **L4:**
 
-- [ ] 2.1.1 TASK-103.S1：固定B-01的100行/固定栏/宽表及同Canvas水平输入消费者，手工产生屏幕与offset期望；在102固定源取真实缺viewport API RED。
-- [ ] 2.1.2 TASK-103.S2：按B-02/B-03覆盖缩短/axes/零维/Int64极端、weighted自然基准与I009全部root例表/overflow屏障/最多两pass、detached与mounted render差异、嵌套ensure、末尾caret占位、旧帧resize与新显式caret同turn；验证无paint→scroll反馈。
-- [ ] 2.1.3 TASK-103.S3：按B-04设计Target消费/用户Ancestor-before-viewport/stop与prevent/裸root与ScrollView同通道不重复注册/祖先边界回落/接受Bool的trace；已有方向键真实PTY访问100行，PageUp等尚未设备解码的规范code只作headless默认行为验证并记录限制。
-- [ ] 2.1.4 TASK-103.S4：冻结测试及运行说明，入口为bash tests/interaction_b/run.sh；明确其内部正常cjpm build和直接binary执行命令及预期exit，记录docs/reviews/interaction/B/TASK-103/manifest.json后交主代理。
+- [x] 2.1.1 TASK-103.S1：固定B-01的100行/固定栏/宽表及同Canvas水平输入消费者，手工产生屏幕与offset期望；在102固定源取真实缺viewport API RED。
+- [x] 2.1.2 TASK-103.S2：按B-02/B-03覆盖缩短/axes/零维/Int64极端、weighted自然基准与I009全部root例表/overflow屏障/最多两pass、detached与mounted render差异、嵌套ensure、末尾caret占位、旧帧resize与新显式caret同turn；验证无paint→scroll反馈。
+- [x] 2.1.3 TASK-103.S3：按B-04设计Target消费/用户Ancestor-before-viewport/stop与prevent/裸root与ScrollView同通道不重复注册/祖先边界回落/接受Bool的trace；已有方向键真实PTY访问100行，PageUp等尚未设备解码的规范code只作headless默认行为验证并记录限制。
+- [x] 2.1.4 TASK-103.S4：冻结测试及运行说明，入口为bash tests/interaction_b/run.sh；明确其内部正常cjpm build和直接binary执行命令及预期exit，记录docs/reviews/interaction/B/TASK-103/manifest.json后交主代理。
 
 ### TASK-104: 实现有限公共单元并自验
 

@@ -1,0 +1,373 @@
+{
+  "task": "098 TASK100 seven review regressions",
+  "utc": "2026-11-11T08:08:28.875981+00:00",
+  "test_sha": "13f75fcc59729090bf9ac3252876e61017cb9804",
+  "test_base": "d4b3117b87d002c5555ead651a8a782a8cf31a20",
+  "product_checkpoint": "f02d8124dfad6028da1427c3da877eeec05a5708",
+  "changed_test_files": [
+    "tests/interaction_a/README.md",
+    "tests/interaction_a/coverage.json",
+    "tests/interaction_a/fixtures/review_regressions.py",
+    "tests/interaction_a/native/input_hup.c",
+    "tests/interaction_a/run.sh",
+    "tests/interaction_a/src/dependency_isolation.cj",
+    "tests/interaction_a/src/focus_bindings.cj",
+    "tests/interaction_a/src/focus_repair.cj",
+    "tests/interaction_a/src/lifecycle_and_limits.cj",
+    "tests/interaction_a/src/main.cj",
+    "tests/interaction_a/src/pure_callbacks.cj",
+    "tests/interaction_a/src/review_regressions.cj"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "bash",
+        "tests/interaction_a/run.sh",
+        "--review-regressions"
+      ],
+      "cwd": "/workspace/work/interaction-a-tests/review-regressions/replay",
+      "utc": "2026-11-11T08:02:01.480262+00:00",
+      "env": {
+        "CJTUI_INTERACTION_A_OUTPUT": "/workspace/work/interaction-a-tests/review-regressions/output/attempt1"
+      },
+      "exit": 1
+    },
+    {
+      "argv": [
+        "python3",
+        "tests/interaction_a/fixtures/review_regressions.py",
+        "--binary",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main",
+        "--output",
+        "/workspace/work/interaction-a-tests/review-regressions/output/focused"
+      ],
+      "cwd": "/workspace/work/interaction-a-tests/review-regressions/replay",
+      "utc": "2026-11-11T08:05:41.690252+00:00",
+      "exit": 1
+    }
+  ],
+  "ordinary_build": {
+    "exit": 0,
+    "log": "attempt1.stdout",
+    "8_existing_consumer_warnings": "retained raw stderr; no compiler errors"
+  },
+  "first_driver": {
+    "exit": 1,
+    "classification": "infrastructure ENOSPC before any case; not behavior RED"
+  },
+  "focused_driver": {
+    "exit": 1,
+    "classification": "13 focused variants cover 7 findings; actual behavior RED"
+  },
+  "results": [
+    {
+      "case": "I01",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I01"
+      },
+      "utc": "2026-11-11T08:05:41.735360+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I02-focus",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I02-focus"
+      },
+      "utc": "2026-11-11T08:05:41.767001+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I02-constant",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I02-constant"
+      },
+      "utc": "2026-11-11T08:05:41.794801+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I02-getter",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I02-getter"
+      },
+      "utc": "2026-11-11T08:05:41.817930+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I03-focus-focus",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I03-focus-focus"
+      },
+      "utc": "2026-11-11T08:05:41.842136+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I03-append-focus",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I03-append-focus"
+      },
+      "utc": "2026-11-11T08:05:41.868618+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I03-focus-append",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I03-focus-append"
+      },
+      "utc": "2026-11-11T08:05:41.893162+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I04",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I04"
+      },
+      "utc": "2026-11-11T08:05:41.918819+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I06-node",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I06-node"
+      },
+      "utc": "2026-11-11T08:05:41.944965+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I06-ancestor",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I06-ancestor"
+      },
+      "utc": "2026-11-11T08:05:41.975034+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I07-root",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I07-root"
+      },
+      "utc": "2026-11-11T08:05:42.003170+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I07-nested",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main"
+      ],
+      "env": {
+        "CJTUI_INTERACTION_A_REGRESSION": "I07-nested"
+      },
+      "utc": "2026-11-11T08:05:42.027503+00:00",
+      "exit": 1
+    },
+    {
+      "case": "I05",
+      "utc": "2026-11-11T08:05:42.053452+00:00",
+      "exit": 1
+    }
+  ],
+  "limits": {
+    "headless_timeout_s": 60,
+    "clock_observation_bound_s": 3,
+    "clock_idle_requested_ms": 100,
+    "capacity_positive": 2,
+    "capacity_negative": 1,
+    "PTY_cells": [
+      12,
+      4
+    ]
+  },
+  "prehashes": [
+    "prehash.json before ordinary build",
+    "focused-prehash.json before actual runs; final native observer includes errno preservation"
+  ],
+  "post_execution_doc_only_changes": [
+    "README.md",
+    "coverage.json"
+  ],
+  "committed_test_hashes": {
+    "tests/interaction_a/.gitignore": "311587c3efa1f802514153d358831905e1334401077f2e368a1b49a8bc6011d7",
+    "tests/interaction_a/README.md": "f9a87e3772f4a1429591ea3319010e733c83e17812eee0662b86a9dec8bc7766",
+    "tests/interaction_a/cjpm.toml": "695385534880d7e94ec5353be3da6902841109b6eace2870261fbbf12454bcca",
+    "tests/interaction_a/coverage.json": "3b601381458c04926b7b9e90ee59036d3071b4874ac8e2bf3887873dec381f4c",
+    "tests/interaction_a/fixtures/device.py": "47e3fe46d86eccd1d0d0dc7260fcd11e002c1d8f7e034251acf6c34ac6526da8",
+    "tests/interaction_a/fixtures/final_selftest.py": "6f016e0783469b4b71d93ca0f20c3bff40cb7ed610716160ab37a36df18a0e3f",
+    "tests/interaction_a/fixtures/matrix.py": "2b279a5ce78f86604e803a9170037c7c4b1ccad5872762b9ae0a85ee13624cd7",
+    "tests/interaction_a/fixtures/native_cases.py": "68639d9c06f5cc67ec32634494fde8107c4b8de27d6d9894f2a431ccbe2b6fee",
+    "tests/interaction_a/fixtures/pty_capture.py": "48fa73609e9bbc81eb2b884b147ca8fcebf9eecfafae71d59a54fff14c43120a",
+    "tests/interaction_a/fixtures/review_regressions.py": "c5957badb797895d452f999d6012500e9b96d034fe64440d18c62e0d96b01a0e",
+    "tests/interaction_a/fixtures/selftest.py": "f239faa97a86c960ade6e5e8e720360b37da7ac1238321935c42e1e755b7f70c",
+    "tests/interaction_a/fixtures/vectors.json": "7ca0602fbf74391b983148582e139326f12646135ed25f9fe8ab0a79ac0b4e65",
+    "tests/interaction_a/native/clock_selftest.c": "84264aea5253f603b0c249e93061f4743737ffa96e2fd6c4a0fd972f6ecee476",
+    "tests/interaction_a/native/clock_wrap.c": "e281efe9a6bca73ad61b4beda9b8a7c45ed3862c142ae6598d7b450b6f61c053",
+    "tests/interaction_a/native/harness_peer.c": "9537badb35f8a7ef81707148b52b5a0235822981c4ca5c2bb2d2b0f45b02309f",
+    "tests/interaction_a/native/input_hup.c": "aa34b96b4bc7368011ad80e631af5c40d87f76431ab1cbc8425ed57cdfc6a8fc",
+    "tests/interaction_a/native/selector_selftest.c": "e83b88b98c7f79d4c562cffc372531b8968a10d6882f511fa8a42d36c2976806",
+    "tests/interaction_a/native/write_fault.c": "f25ca63ca23578d9ed417f6edf225a96e48a2f4b4887ffe1eb98bd3dff4cf31d",
+    "tests/interaction_a/prerequisites/cjpm.toml": "d4f0c8ed58b4be0b4d8a0383741556eb582b38beb96913e5dc818bd55e9b55ca",
+    "tests/interaction_a/prerequisites/src/main.cj": "c359af57f2bd2b6c8d0d16ccd975c634509ce1a34c672d130ec955a12e259b12",
+    "tests/interaction_a/run.sh": "c6bc0d364cfffbe7d97420f36a71a78f7d6d31c3288c2555b270a6de1fcfad71",
+    "tests/interaction_a/src/box.cj": "f7a9a5f92a701d19847eaf01a6890a2ce5cc43ab79dc342e56668f267339335b",
+    "tests/interaction_a/src/caret_frames.cj": "4eb98f03c84e19fc8a13574c4cea6d0a3a2ac248263165b72c321b8ff7d124cf",
+    "tests/interaction_a/src/checks.cj": "bb2820c6c5818e56637efa12cb5069a4811d13f4f40db43730299172bfa1d8cc",
+    "tests/interaction_a/src/context_expiry.cj": "b0abb21cd4ce8583d19f0a4105de2ccda11e16296dc34483bba477e585550500",
+    "tests/interaction_a/src/default_action_snapshot.cj": "377a37d17494c7d8811c582c33c8796f5450de4bcf20fbcff66d1c0a0d402ee3",
+    "tests/interaction_a/src/default_action_trace.cj": "dda224479b450592aec61a0e3663e674cb7c75e69bea0b5821462020569f1458",
+    "tests/interaction_a/src/dependency_isolation.cj": "1b6ca9a7eba3b477654beacfeb7c0466295a09f80ad8c09f45ed71601e851e5c",
+    "tests/interaction_a/src/device_consumer.cj": "02ab7cdeb2c8bd2c61e47869c733877f19893673c079bf18754057b873d31b04",
+    "tests/interaction_a/src/device_failure.cj": "3452a847f9bd01cf0bc82fa89a7604f18f505c22009aa012a94fa911ce9a3276",
+    "tests/interaction_a/src/focus_bindings.cj": "25e6c6612f227f6f379c56113fb0e0730e3553bfb7d5b31197dd37cea181b7e6",
+    "tests/interaction_a/src/focus_repair.cj": "7e1df4056bc34a0a3f3ab973538cbad2e90dd2adbbd2538905485a2adf616c1c",
+    "tests/interaction_a/src/full_canvas_cells.cj": "a71405ebc46328462b0d91fcf339ecdcf3307f8de96f027da937fd9109fe7dc0",
+    "tests/interaction_a/src/group.cj": "abcec681d234472b0157764d3b8fb5416544a5707bafa96b5763a5e750deb72a",
+    "tests/interaction_a/src/lifecycle_and_limits.cj": "be422ae50a6f7a5ff7dd79f1f5d5b36a9e530aa67652c36239c61a83577c7b8c",
+    "tests/interaction_a/src/main.cj": "c6313b009947474eda902a0c5a002a66929f5a4dd389ba61d0b37a8bbdde4fbf",
+    "tests/interaction_a/src/physical_focus.cj": "d217d1167962037da9893bf3c8e1dcdcdc85e27bad7d4ea14ee7e6f2d12a439f",
+    "tests/interaction_a/src/pure_callbacks.cj": "5602af60a16df37e686bd26e07afc3be64008d5e50be35b130b0cc85cd88c134",
+    "tests/interaction_a/src/readonly_queries.cj": "6ede5c4e5dda728f037ce8b3b762d929f14bbd74fb261bde7d0a30aa6ecd7a1c",
+    "tests/interaction_a/src/review_regressions.cj": "b651c6725ba03e4ab80e7104d58f2a7d12e4c13230040df425122b632a82a213",
+    "tests/interaction_a/src/selected_cascade.cj": "f4a8555cc2f634c0ba7836679ba39352ae4c3c936232f994c57ecdc080153c0d",
+    "tests/interaction_a/src/three_consumers.cj": "e7379f9e2fb864aba16feb590c4654d38070204f055b711345c29ec69d4161d0",
+    "tests/interaction_a/src/values_and_signatures.cj": "39daf3a958804e4ad413c7c6748353a304461bf81ec829083adbd958c37e5436"
+  },
+  "raw_files": {
+    "raw/attempt1.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "raw/attempt1.stderr": "143b5f227499e45dd2e74fba7adcb73512c312dec64ec5680aa9125ff87654a8",
+    "raw/attempt1.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "raw/commands.json": "27e3eb42db1afd7576f758d5ecc5a9a70eb5ba51d7159a0aba8319f238b22c94",
+    "raw/focused-prehash.json": "6f08ec0790ba7a10240576fe55efcc9945726aacf74ac6a1fe8a7759a506266f",
+    "raw/focused.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "raw/focused.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/focused.stdout": "15ff853f085cc4d7523aea1884d67d559ac533e8e63bf0cf8dd64b0053d9d68c",
+    "raw/original-proof/clock-probe.py": "2f4cd62aa86e86200101d274540c9e7a7ad3d24413e5e5408e3ed68eed899b4c",
+    "raw/original-proof/findings.json": "8a5323544b7381cd7635a66b6f85359a3b3213046ab80ac677a1f6a4a6b09c9a",
+    "raw/original-proof/probe/clock_wrap.c": "b9f67bb77eb73fe360768e1f14c93a341e09ccee9c3b1d808c5d47a0adb43caa",
+    "raw/original-proof/probe/src/main.cj": "1bbe8c0a28a377ce2da04926a65d8b49878aaca4c5118c6bae2e34a934e16543",
+    "raw/original-proof/raw/clock.result.json": "6953ec76acabfc69eb71fb71cb4ef7eccada6b6233207a02b7acf2982afeab06",
+    "raw/original-proof/raw/clock.wire": "9e4f577b9631fb97107682d1e522c507a4d225146dbe8c9638fd86644dd652c4",
+    "raw/original-proof/raw/leaf-run.stdout": "dbd6c4eb8daccee5e551a726d6ca867170305496c1c63f8cb1f1ff79b9f66bd4",
+    "raw/original-proof-hashes.json": "014fbe487276cb4d5559d7dff594f02d3cfb0dfe03150a55c2a1cf5dcea1c8e0",
+    "raw/own-regenerable-cache-cleanup.json": "8e1e0a4ad6ef1f95225ddb21504bdb1011d68e2e952398f0454b94f8ea94081b",
+    "raw/prehash.json": "a62f0882a262847c6590c3d4d645a32321015984c6b00bf701de85b6bfc9a755",
+    "raw/preservation.json": "870d1c42a604623e6ed085e2000a9f9005391d5be3db081371acb4622524b5ef"
+  },
+  "focused_output_files": {
+    "output/focused/I01/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I01/stderr": "2e25cf1a5a6d7a6f0b400127d47ea9c14cdeceffe4b7e2f410d179126a4dc491",
+    "output/focused/I01/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I02-constant/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I02-constant/stderr": "647edcf7597cb1c1f81444c4849c6041068cab589e5df866209b88bd3ca0029f",
+    "output/focused/I02-constant/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I02-focus/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I02-focus/stderr": "b04ec381be804d80242806851d52458372e0fa7bf976b3f240e44e37ccb9e44f",
+    "output/focused/I02-focus/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I02-getter/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I02-getter/stderr": "305f166841f99f0ed27760ab6838fb996baaa7af9a5ccdff7d1056756597f59d",
+    "output/focused/I02-getter/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I03-append-focus/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I03-append-focus/stderr": "abc33b4163ed0aaea4af44bdd0245a9e6a04a849eb06c8ad569df219c24c6728",
+    "output/focused/I03-append-focus/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I03-focus-append/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I03-focus-append/stderr": "09807bb1dabec8d7b2e13cc19d53a4e9f6ff20e6f296d65431d922de2c11e803",
+    "output/focused/I03-focus-append/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I03-focus-focus/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I03-focus-focus/stderr": "c77d92e6a96a2c7a7e8324d1fddb322d46ef929ec8754d2227d62409191c5545",
+    "output/focused/I03-focus-focus/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I04/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I04/stderr": "49313ade84055c53e5d9759db266c93ea8be513701dafde367880673a8a83885",
+    "output/focused/I04/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I05/capture.json": "7924521bcecc0f746e9b61b9dc05ad0c3df1856056976c3a8601414972cda935",
+    "output/focused/I05/cleanup": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+    "output/focused/I05/clock": "ee3aa64bb94a50845d5024cd4bd20202a4567aed5cd5328c0d97e9920775fc28",
+    "output/focused/I05/clock.calls": "91bf44d0a10bdb192c372abd8362e5089b7da61c9dbb2dffc0d936b0f33b5caf",
+    "output/focused/I05/closed-cleanup": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "output/focused/I05/closed-events": "067fee2b86bdf59811aa3921b7ff0a0c1bbb6002a4edb7a8ce90b0a6c67a729f",
+    "output/focused/I05/closed-status": "9226bc0816c53e3a612060d095cb2c8864d489b1a3d58271313e7e6bc8347ce7",
+    "output/focused/I05/driver.stderr": "567b55f0b453fd6b4b22d35cf927674ddbf6ac867197a9ea2ba7ad22f930f0c9",
+    "output/focused/I05/observed.json": "59846540e3c806d7a669e699b576d9cb5fc9cb404d2b3846fbb2de9147637749",
+    "output/focused/I05/poll.calls": "7c10ac2348d1cc72265e6be23395a59d2b8bfbba6b1312413143b07e85a0dbdd",
+    "output/focused/I05/state": "9783799bde974fd724fe99bcc41cc6fd48f221a9a2f89ce1b79566ca822f4edb",
+    "output/focused/I05/wire.bin": "dcaf22e799f3ff0bda534af23d7ee790265b2b4eb5ea197910586115863bd3a2",
+    "output/focused/I06-ancestor/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I06-ancestor/stderr": "620947ebf74ec76db072f2d7a9efeadfbd867888c23ef6f451216e7d3ac77c5e",
+    "output/focused/I06-ancestor/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I06-node/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I06-node/stderr": "35120b79474277d5d08fbec9d43f13f3e265a92f33242d3eefdbbecbcb91cb9c",
+    "output/focused/I06-node/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I07-nested/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I07-nested/stderr": "91638ec4ff2dfd38caaad06bf0974e3ed18940bd439998a2d29cc68ab9adde77",
+    "output/focused/I07-nested/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/I07-root/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "output/focused/I07-root/stderr": "ca2c1f75a79a80718ff88625ad5abda8aa71e85a7d1b3444e135337e400c0235",
+    "output/focused/I07-root/stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/focused/_native/build.json": "15ddaee3e66aa29616cac1f0dbb2cef7ee1a1442545fde891bb50246e99e961d",
+    "output/focused/_native/input_hup.so": "50a9fdd29292616b31a61fe38d97e0bcfa3d11eef67e6d0289f39f1e16a9c015",
+    "output/focused/_native/write_fault.so": "d81beaa43aa6558bd81c1fd73bd093c6ebdfa559f304bf1f247515fcbcfb58ed",
+    "output/focused/results.json": "cb616642ad5e5b3648d254672829c2ca25ccc2d8c562599b82a2b50d2e20c513"
+  },
+  "executed_binary": {
+    "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/.wrapped/target/release/bin/main": "fdc0b5fdb660c11fb4513f88c3aeb1ac19ce9dbeec4529e264ad9cfe73c3242d"
+  },
+  "explicit_not_run": [
+    "87 native vector matrix",
+    "old full headless hierarchy",
+    "future Keyboard/B/C",
+    "post-fix product behavior"
+  ]
+}

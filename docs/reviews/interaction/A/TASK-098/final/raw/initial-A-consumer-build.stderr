@@ -1,0 +1,59 @@
+[31merror[0m: undeclared type name 'PaintContext'
+ [36m==>[0m /workspace/work/interaction-a-tests/final/source/tests/interaction_a/src/context_expiry.cj:4:20:
+  [36m| [0m
+[36m4[0m [36m| [0m    let saved=Box<?PaintContext>(Option<PaintContext>.None)[0m
+  [36m| [0m                   [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'PaintContext'
+ [36m==>[0m /workspace/work/interaction-a-tests/final/source/tests/interaction_a/src/context_expiry.cj:4:41:
+  [36m| [0m
+[36m4[0m [36m| [0m    let saved=Box<?PaintContext>(Option<PaintContext>.None)[0m
+  [36m| [0m                                        [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'PaintContext'
+ [36m==>[0m /workspace/work/interaction-a-tests/final/source/tests/interaction_a/src/lifecycle_and_limits.cj:4:47:
+  [36m| [0m
+[36m4[0m [36m| [0m    let cleanup=Box<Int64>(0); let saved=Box<?PaintContext>(Option<PaintContext>.None)[0m
+  [36m| [0m                                              [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'PaintContext'
+ [36m==>[0m /workspace/work/interaction-a-tests/final/source/tests/interaction_a/src/lifecycle_and_limits.cj:4:68:
+  [36m| [0m
+[36m4[0m [36m| [0m    let cleanup=Box<Int64>(0); let saved=Box<?PaintContext>(Option<PaintContext>.None)[0m
+  [36m| [0m                                                                   [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'Canvas'
+ [36m==>[0m /workspace/work/interaction-a-tests/final/source/tests/interaction_a/src/caret_frames.cj:5:11:
+  [36m| [0m
+[36m5[0m [36m| [0m    let c=Canvas({_=>Size(4,1)},{p=>p.put(0,0,"界  "); p.caret(3,0); if(drawCaret.get()){p.caret(position.get(),0)}else{p.caret(0,0,visible:false)}}).focusable(true)[0m
+  [36m| [0m          [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: 'focusable' is not a member of class 'Component'
+  [36m==>[0m /workspace/work/interaction-a-tests/final/source/tests/interaction_a/src/caret_frames.cj:17:38:
+   [36m| [0m
+[36m17[0m [36m| [0m    let (pair,_)=group([{=>Text("x").focusable(true)},{=>Canvas({_=>Size(1,1)},{p=>p.caret(0,0)}).focusable(true)}])[0m
+   [36m| [0m                                     [31m^^^^^^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'Canvas'
+  [36m==>[0m /workspace/work/interaction-a-tests/final/source/tests/interaction_a/src/caret_frames.cj:19:19:
+   [36m| [0m
+[36m19[0m [36m| [0m    let noRequest=Canvas({_=>Size(1,1)},{p=>p.put(0,0,"x")}).focusable(true)[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: 'focusedNode' is not a member of class 'Application'
+  [36m==>[0m /workspace/work/interaction-a-tests/final/source/tests/interaction_a/src/checks.cj:32:15:
+   [36m| [0m
+[36m32[0m [36m| [0m    check(app.focusedNode().getOrThrow().sameNode(ref(c)), "focused identity")[0m
+   [36m| [0m              [31m^^^^^^^^^^^ [0m
+   [36m| [0m
+
+74 errors generated, 8 errors printed.
+Error: failed to compile package `interaction_a_contract`, return code is 1
+Error: cjpm build failed

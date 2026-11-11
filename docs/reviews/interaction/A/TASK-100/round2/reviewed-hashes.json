@@ -1,0 +1,519 @@
+{
+  "utc": "2026-11-11T08:40:16.158538+00:00",
+  "base": "6f0fcc4006d3b6138e823eaa6d127a548db58a21",
+  "head": "f8a028b39daf8a341576f304335d262544b9cca5",
+  "scope": "I05 remaining plus directly affected16-line application delta and fixed test overlay only",
+  "diff": {
+    "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-public-interaction/review-fix2-6f0fcc4..f8a028b.diff",
+    "sha256": "5f504df8b235a5ebaef11991b0f11cdd68f68a797dd5a9fc1129608e1af59bbc"
+  },
+  "changed_files": [
+    {
+      "path": "src/application.cj",
+      "sha256": "1e2357ba4d594ec8116c2373ee62c71be0f5495592226666ec79a84c23cd8a90"
+    },
+    {
+      "path": "tests/interaction_a/README.md",
+      "sha256": "aba1c76ea8b35e12d2a41acb26a2b492ecae864206b4aa2f94fae394ce348b59"
+    },
+    {
+      "path": "tests/interaction_a/coverage.json",
+      "sha256": "868c1d266f43658dbc847c309a9b1a8f21840467bbbd7bcc06c355d2db608e57"
+    },
+    {
+      "path": "tests/interaction_a/fixtures/review_regressions.py",
+      "sha256": "cf6b558268ef97bf3b7a8a8c779902976a2de49d36d5c3748cf8fbf6817b32c1"
+    },
+    {
+      "path": "tests/interaction_a/native/input_hup.c",
+      "sha256": "c61944617c93062c79f92036b2390910059c4952eb0146eaa51a5fbb589de288"
+    },
+    {
+      "path": "tests/interaction_a/run.sh",
+      "sha256": "45cd23f0fcf6214b852519de71ff48537cd25c414742946b31e1b4195fc03601"
+    },
+    {
+      "path": "tests/interaction_a/src/device_consumer.cj",
+      "sha256": "97e30e61df94639d979a9d748ed16ab2c61662d13bd481310bb42fc7541f4d28"
+    },
+    {
+      "path": "tests/interaction_a/src/review_regressions.cj",
+      "sha256": "f10feefe0257b132a4af251a6726b9275bd7ef814290832bd0e6f343c9b9d3eb"
+    }
+  ],
+  "contract": {
+    "path": "openspec/changes/implement-public-interaction/design.md",
+    "sha256": "06ca92698052739773b94e0d9550d10edee2a50051e8ad5f6d699640aee95198",
+    "unchanged": true
+  },
+  "tests": {
+    "fixed_overlay": "722560383dd8933236155bbc6989e4cfb060eb8f",
+    "files": 43,
+    "tree": "23f4e5aea222025af1f70279d7f4a0404b14eb0b",
+    "mismatches": [],
+    "original94_vectors_unchanged": true,
+    "vectors_sha256": "7ca0602fbf74391b983148582e139326f12646135ed25f9fe8ab0a79ac0b4e65"
+  },
+  "pre_identity": {
+    "recorded_head": "a6f56faba003c32bdb08a6569933a0dbcd0f151a",
+    "utc": "2026-11-11T08:35:23.486208+00:00",
+    "tracked_count": 195,
+    "config_count": 4,
+    "git_mismatches": [],
+    "note": "Actual pre-run label a6f56fa retained;195 input hashes match finalf8 bytes. No backdated commit identity."
+  },
+  "external_pure_raw": [
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/manifest.json",
+      "sha256": "4b08a48387dfef054143b2a51ff5965bbef51e3366258d42c0927237d7af1aaf"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/pre-identity.json",
+      "sha256": "fc10efce0a479e074b08efee9f33032be736fe011537575f6f7ffebae6625335"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/post-identity.json",
+      "sha256": "cd0a5e4b14060b92ff8eb6e5ce10bf0c9484747ca32cdfa9b9fdb1b2c1cb8495"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition.stdout",
+      "sha256": "58fcfe492d8c9cd21587c63bf4b980a824f44b656c3ebdb9e8e3f22b17036080"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition.stderr",
+      "sha256": "6557bc029cf90d1347eda43e50e07b1dae0816e853a214a7db0f2e235eb65d0e"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition.utc",
+      "sha256": "e0b12f8b885dda02a853c0c6a660b2a04af725682cc5e0155aee2b1b3e8069d8"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected.stdout",
+      "sha256": "4149ef33366fe32bed9b7067b544661f85efa08b7d43c47abe809765d398a4a6"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected.utc",
+      "sha256": "87806690a4da95b02caa0a17e634a2b3f5eb3578563c6db94df12c3857808cf4"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/transition-results.json",
+      "sha256": "440fb868a13bdf7412910aa60bf1f0bb8554710ee9cc693a9c869c84cc574228"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-control/observed.json",
+      "sha256": "0048c126a5a621513c5845fa2ac9a6fb09b77d6d2108009adb47e5e46422d15e"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-control/capture.json",
+      "sha256": "d063bd82079fede3c4f89bbdd9c6b418c56575bd35ccf2ea78a0cf67ddd4230a"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-control/closed-events",
+      "sha256": "0517e97a9ce22306c36575e9a25a742d5a8df1f1b66d29f3fb3cd9dc8ea3be6c"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-control/closed-status",
+      "sha256": "e9099ed6678f97c856c86b526a1252d7b0a713a6bc9a0f966a064ac2ac1d2544"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-control/clock.calls",
+      "sha256": "2452f5a56a9058f5c7651bfaab05fbea46ed7a321c40f23cd61270b74a93ad43"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-control/poll.calls",
+      "sha256": "d06a54379c2547367a97a187f2767e6961c484470e1d1370000ad98b2c797456"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-control/poll.enter",
+      "sha256": "8da577d890384b7bdb24ad9c5be6e816d37f1a7782fda6ede3715a6ee67b15be"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-control/wire.bin",
+      "sha256": "08783fed71c35937cf8d46597950bed0030a4fe85dee9f1890ce0079f71d91eb"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-failure/observed.json",
+      "sha256": "967881846a21b22961c59176474d95fb0e86c48494c7fdecf4806aef0f9f412d"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-failure/capture.json",
+      "sha256": "e9b9615b812997d15be0d56117dabec5d0f067b982700bba6ba9a9ea06e2acc5"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-failure/closed-events",
+      "sha256": "0517e97a9ce22306c36575e9a25a742d5a8df1f1b66d29f3fb3cd9dc8ea3be6c"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-failure/closed-status",
+      "sha256": "e9099ed6678f97c856c86b526a1252d7b0a713a6bc9a0f966a064ac2ac1d2544"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-failure/clock.calls",
+      "sha256": "de17cea905706091cc67812bac02bb0290375f07a0fba1002f76a52f9eb770d2"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-failure/poll.calls",
+      "sha256": "f2de13e2061be8ea1b9e1ff9072117845385070681a3272dbf4174261c134e10"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-failure/poll.enter",
+      "sha256": "d2bde6e9d124d69d8643bc8ad60099db4af051cd21bafe17c7aa262968d77d13"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/transition/review-regressions/I05-transition-failure/wire.bin",
+      "sha256": "08783fed71c35937cf8d46597950bed0030a4fe85dee9f1890ce0079f71d91eb"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/I05-always-minus-one/observed.json",
+      "sha256": "7c108fda16b1bf3fc631d9788addb5c3286462f48258388cc2cb2d84faae4c9c"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/I05-always-minus-one/closed-events",
+      "sha256": "a83ad19b8be75351bc307841e2aa7f66611e3e2d2f564700e849ec4cafbb2599"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/I05-always-minus-one/closed-status",
+      "sha256": "9226bc0816c53e3a612060d095cb2c8864d489b1a3d58271313e7e6bc8347ce7"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/I05-always-minus-one/clock.calls",
+      "sha256": "91bf44d0a10bdb192c372abd8362e5089b7da61c9dbb2dffc0d936b0f33b5caf"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/I05-always-minus-one/poll.calls",
+      "sha256": "651c5ffb632c1acbb0c3055006504d21a2b17ef7d4837f6863dd70803b139d20"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/I05-always-minus-one/capture.json",
+      "sha256": "d3983686d3cd46c7bc8ecc670e7e97028b97245a27aca098465de2de9ee7b21d"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/I05-always-minus-one/wire.bin",
+      "sha256": "abff147706df124b5e92c1f7ab440c7709877145bdb26e2b94b50b15038932d4"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/bare-escape-real-idle/capture.json",
+      "sha256": "fb4e430ec86b68e72a827c13db25ab7c2e78c39e96b13dd090aa326d1b6c33ca"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/bare-escape-real-idle/closed-events",
+      "sha256": "fe9a98cb53711a43da5370a17ed8afa3047b3d34e0aeb4a0a46bde08b191348c"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/bare-escape-real-idle/closed-status",
+      "sha256": "62a2fed3d6e08c44835fce71f02210b1ddabfb066e39edf1e6c261988f824dd3"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/bare-escape-real-idle/clock.calls",
+      "sha256": "a21cd022fbe58908852aaca4a687603bab84644622792bcccab25c3ade1f09bb"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/bare-escape-real-idle/wire.bin",
+      "sha256": "af8b896358f1edc4ff0477f1a3aa7868f74847a7681b1715ce07bec7bbdc4b74"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/cross-deadline/capture.json",
+      "sha256": "6699a3a4b32cc217b96cd051cdd510be9872e295acf151a26cb5f149315263a8"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/cross-deadline/closed-events",
+      "sha256": "9bb96b13b4099839a70e4aca49a9bfb234e5eb123916b9816e05a738d300e189"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/cross-deadline/closed-status",
+      "sha256": "7659073180b6abedb3257d843510b562e5203ad417f6208f6a72b3fca26b1781"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/cross-deadline/clock.calls",
+      "sha256": "cefd5c45067b0889e29778b61232332cf6d25693cf492fd459a2beedc74c2f57"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/cross-deadline/wire.bin",
+      "sha256": "bc560a1cbc9077a0d9a556d257a957d619be54781a953edd7eb4c3c740e22bbd"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-599/capture.json",
+      "sha256": "19c25996eb7f3b0af3058cb81246929858b88aed08acd6ce943857e5092a083a"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-599/closed-events",
+      "sha256": "9bb96b13b4099839a70e4aca49a9bfb234e5eb123916b9816e05a738d300e189"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-599/closed-status",
+      "sha256": "e9099ed6678f97c856c86b526a1252d7b0a713a6bc9a0f966a064ac2ac1d2544"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-599/clock.calls",
+      "sha256": "08021bea126769d8c954247f174ef22d7cf0acea53cb34112bbcdebe5e1418ca"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-599/wire.bin",
+      "sha256": "e38b687ce0a749b24245521d3617452abad368f1809ea47ba364b422b8354a58"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-600/capture.json",
+      "sha256": "b160ff8eb9a66032ed6d66c25a1d16f6ee725f429c67a91e2dbdfb850585f5bc"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-600/closed-events",
+      "sha256": "9bb96b13b4099839a70e4aca49a9bfb234e5eb123916b9816e05a738d300e189"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-600/closed-status",
+      "sha256": "7659073180b6abedb3257d843510b562e5203ad417f6208f6a72b3fca26b1781"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-600/clock.calls",
+      "sha256": "3e7d8a28841620de3c47b0f9a708c468207ca6c29b40d0d5fd24247a8bb35390"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/deadline-600/wire.bin",
+      "sha256": "bc560a1cbc9077a0d9a556d257a957d619be54781a953edd7eb4c3c740e22bbd"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-before-query/capture.json",
+      "sha256": "229ff7f659ab5e0c2065d3927da40d0208d6ba9494a222529968de6ba63178d6"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-before-query/closed-events",
+      "sha256": "9bb96b13b4099839a70e4aca49a9bfb234e5eb123916b9816e05a738d300e189"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-before-query/closed-status",
+      "sha256": "9226bc0816c53e3a612060d095cb2c8864d489b1a3d58271313e7e6bc8347ce7"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-before-query/clock.calls",
+      "sha256": "ee3aa64bb94a50845d5024cd4bd20202a4567aed5cd5328c0d97e9920775fc28"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-before-query/wire.bin",
+      "sha256": "77b472143c42f2efaf9460c49e2405b19e3b7d1afcb97c0c5cbf542282892c29"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-after-query/capture.json",
+      "sha256": "688d8a60eb1f79d81de686530d80306dcf1d8d0b355183389fbefd074c811b47"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-after-query/closed-events",
+      "sha256": "9bb96b13b4099839a70e4aca49a9bfb234e5eb123916b9816e05a738d300e189"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-after-query/closed-status",
+      "sha256": "9226bc0816c53e3a612060d095cb2c8864d489b1a3d58271313e7e6bc8347ce7"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-after-query/clock.calls",
+      "sha256": "4c720b29e003c3202be95821b436e738d78adf167812fd1d98ac37c8c40d7a49"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-after-query/wire.bin",
+      "sha256": "bc560a1cbc9077a0d9a556d257a957d619be54781a953edd7eb4c3c740e22bbd"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-pending-fails/capture.json",
+      "sha256": "1ee7443f020637a6e8e0e069dd3ec7b3b4c59cb0c07248fd52c90f31515f1fdf"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-pending-fails/closed-events",
+      "sha256": "9bb96b13b4099839a70e4aca49a9bfb234e5eb123916b9816e05a738d300e189"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-pending-fails/closed-status",
+      "sha256": "9226bc0816c53e3a612060d095cb2c8864d489b1a3d58271313e7e6bc8347ce7"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-pending-fails/clock.calls",
+      "sha256": "1f6d78e83fcb2ac047292196986c94e84229adecd214ea6dcee27a0ed4f2b871"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/clock-pending-fails/wire.bin",
+      "sha256": "bc560a1cbc9077a0d9a556d257a957d619be54781a953edd7eb4c3c740e22bbd"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/order-text-report-tab-utf8-backtab/capture.json",
+      "sha256": "4c71a49e6143a9ce38f237c7af7047d046e761f012edcdc4ca9085cb61e7873c"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/order-text-report-tab-utf8-backtab/closed-events",
+      "sha256": "b4136f710788bdd85a2c5b86efd46890e3e23d23bfc7bbde24849d8141bd8346"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/order-text-report-tab-utf8-backtab/closed-status",
+      "sha256": "e9099ed6678f97c856c86b526a1252d7b0a713a6bc9a0f966a064ac2ac1d2544"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/order-text-report-tab-utf8-backtab/clock.calls",
+      "sha256": "0e718b75d80da91a7469c8f8ba25a4b1bb0faaedd8755b2e8ed081d453f1d511"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/affected/order-text-report-tab-utf8-backtab/wire.bin",
+      "sha256": "2c3e192337307bb0d5d9cab19d1106909c268591f7ea41d9d4276b52d361ad5e"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/bundle.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/bundle.utc",
+      "sha256": "84afbb27145d0f1f0a1efe8d558458e881375351da44229429260af277da3a2d"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/bundle.stdout",
+      "sha256": "9606a53450f639af5a924f4fab85332a1f629bc7a6a7afd1a4c38bb91fd2a7e7"
+    },
+    {
+      "path": "/workspace/work/interaction-implementation/raw/review-fix2/bundle.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "transition_observations": {
+    "I05-transition-control": {
+      "events": "up:|text:q|",
+      "status": "original-visible",
+      "gap_ns": 789279,
+      "poll_entry": {
+        "start_ns": 116760510481951,
+        "timeout_ms": 100
+      },
+      "poll_completion": [
+        [
+          116760510481951,
+          116760511073012,
+          100,
+          1,
+          1
+        ]
+      ],
+      "child_exit": 0,
+      "termios_restored": true,
+      "timeout": false,
+      "clock_trace": [
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000"
+      ]
+    },
+    "I05-transition-failure": {
+      "events": "up:|text:q|",
+      "status": "original-visible",
+      "gap_ns": 970586,
+      "poll_entry": {
+        "start_ns": 116760623734231,
+        "timeout_ms": 100
+      },
+      "poll_completion": [
+        [
+          116760623734231,
+          116760624607881,
+          100,
+          1,
+          1
+        ]
+      ],
+      "child_exit": 0,
+      "termios_restored": true,
+      "timeout": false,
+      "clock_trace": [
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "-1"
+      ]
+    }
+  },
+  "package_observed_exits": {
+    "bundle": 0,
+    "clean-build": "PENDING",
+    "clean-run": "PENDING"
+  },
+  "prior_sealed": [
+    {
+      "path": "/workspace/work/interaction-review/artifacts.sha256",
+      "sha256": "ae6f7cf2daece4ac51026ba5dcc437c90c2556073cb86434c1ebbefc18fea39c"
+    },
+    {
+      "path": "/workspace/work/interaction-review/round1/artifacts.sha256",
+      "sha256": "2cf85fb8e9904742e05e056458f118a8f6008d2eaa7b417832c9e3828b48cabc"
+    }
+  ],
+  "execution_scope": "Read fixed source and actual pure raw. No role-only rebuild or rerun; no new probe needed for this delta."
+}

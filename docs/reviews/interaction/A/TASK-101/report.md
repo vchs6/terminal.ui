@@ -1,0 +1,50 @@
+# TASK101 independent Unit A execution
+
+**Source:** `f8a028b39daf8a341576f304335d262544b9cca5`. **Current A execution result: passed, within the scope below.** This is evidence for TASK102, not acceptance of TASK017/020/028–030, B/C, full widgets/editing, full Keyboard, M2, whole Linux or release.
+
+Own workspace `/workspace/work/interaction-execution`;2026-11-11 UTC. Requested Sol/medium serving configuration cannot be certified. Runtime, systematic-debugging and verification-before-completion skills used. Source100 final spec/quality PASS_SOURCE_REVIEW admitted f8; round2 artifact SHA256 `9d97575a997d8303692e160ca06fabd4957f79aa9b2a51ff6986facd90fc0b01`. Fixed tests include original76b8dd1, readonlyf07635e, review13f75fcc and transition7225603. Source/test/contract/review references and environment identities are retained; source QA is not treated as product execution.
+
+No product/formal test/main changes, author report/self-assessment, author compiled target or subagent. Clone used `--shared --no-checkout`, then sparse exclusion of historical `docs/reviews` before checkout. All product/build/test inputs are present; git status is clean. SDK1.2/official stdx1.2.0-beta.02.1/normal central cache were reused without copying them or starting a registry. Old087/091 originals were untouched. Only own regenerable intermediates were removed after their hashes were recorded; actual binaries, CJP and raw remain external to curated delivery.
+
+| New actual check | Result | Evidence |
+|---|---|---|
+| Canonical `run.sh --device` | ordinary prerequisite build/direct0; normal full A headless build/direct0; basic realPTY Unknown/visible/hidden0 | `raw/normal-device/` |
+| Canonical full `--matrix` | **87 A product vectors PASS**,7 future Keyboard vectors explicitly not executed | `raw/matrix/` |
+| Canonical full `--review-regressions` | **15 observations0**:12 headless variants, original I05 UnknownClock, transition control and transition failure | `raw/review/` |
+| Normal `cjpm bundle`, no skip flags |0, mandatory lint560 warnings retained; embedded zero unit tests do not replace A coverage | `raw/bundle/` |
+| CJP/git-byte binding | **197 file members all equal finalf8 git bytes**; safe source-only extraction, no hardcoded Theme-era member count | `raw/package/` |
+| Clean extracted library | normal build0, no author target/lock/native archive copied | `raw/clean-library-build/` |
+| Clean full formal public A consumer | build/direct0; exact fixed Cj source, only manifest dependency path changed | `raw/clean-public-build/`, `raw/clean-public-run/` |
+| Clean public `interaction_primitives` example | build/direct `--smoke`0; exact source, only dependency path changed | `raw/clean-example-build/`, `raw/clean-example-run/` |
+| Relevant current Theme integration | ordinary build/direct0 | `raw/affected-theme-integration/` |
+| Real XTerm/VTE and Linux VT |6 completed host/original-state combinations,74 original PNGs, native facts and restoration checks below | `raw/identity/physical-host-summary.json` |
+
+CJP SHA256 **`d18822ad40921982920fc4c6d204a1b9a5453d076b645e5da33c73de21970443`**,134504 bytes. All197 member sizes/hashes and exact fixed-git comparisons are in `raw/package/member-inventory.json`. Normal paths and declared SDK/stdx metadata suffice for clean consumption; no private cjo or absolute product-library dependency was injected.
+
+The original94 literal vectors are byte-identical to76b8dd1.87 execute the actual public Application and actual read/write paths through fixed test-only clock/syscall fixtures; fixture selftest PASS is never substituted for product PASS.7 future Keyboard cases remain explicitly unexecuted: full CSI idle semantics, OSC/DCS/paste isolation and sequence budgets8/9/64. Review15 is recorded separately; its12 headless variants also occur in default headless execution and are not summed as extra unique functionality. Current query/frame/caret-only/cleanup zero/partial faults, unsafe later-output prohibition, primary error, resources and reopen refusal are bound to final source by the actual87 outcomes.
+
+## Genuine current hosts and physical oracle
+
+The **unchanged formal public device consumer** runs without a test clock/query-reply shim on three real implementations: XTerm398; xfce4-terminal1.1.4/VTE0.80.1; actual Linux6.12.107 tty1 inside QEMU TCG. Each runs visible and hidden controlled original cursor states. QEMU is actual Linux virtual hardware, not a physical keyboard/console certification. Independent old host closure/kernel facts are reused narrowly; current product ELF, source, input/output, screen and native state are new.
+
+For GUI, the outer host helper sets the controlled initial state and performs a genuine terminal DECRQM measurement before and after the product. These outer queries are separately recorded and never forged as product input. **Each product run emits exactly one seven-byte query**; the actual hosts reply themselves. Four GUI runs exit0, termios restores, and the final real host reply equals the original visible/hidden reply. Xorg private dummy display,40×8, DejaVu Sans Mono16; migrated VTE Xfconf XML, original terminalrc, exact launch/environment/window/font/version/hash and raw strace evidence are preserved. XTerm native print and actual VTE widget text confirm literal AAAA/BBBB. VTE native cursor positions are(0,0),(0,1),(2,0),(2,0) across initial,Tab,caret-only,logical-hidden stages. Each stage has3 original unmodified PNGs,48 total. Successful raw paths: `gui-hosts2/xterm-{visible,hidden}`, `gui-hosts2/vte-visible`, `gui-hosts3/vte-hidden`.
+
+Linux VT uses the same normal ELF, deployed uid1000 with existing SDK/runtime host closure, actual `/dev/tty1`,80×25, VCS/VCSU/kernel/QMP facts. Both controlled original states return **Unknown-timeout**, emit one query, and have **zero product25h/l/s/r bytes**; logical caret and effective CUP continue. The final capture is fenced by the **complete literal2000-cell VCS grid plus required physical cursor coordinates**, not merely a public state file or elapsed sleep. Coordinates match(0,0),(0,1),(2,0),(2,0), with AAAA/BBBB and all other cells blank. Both app/QEMU exits0, termios restores and recorded SIGWINCH/SIGINT/SIGTERM handlers/masks restore. Each run has12 stage PNGs plus an exit PNG,26 total, directly generated by QEMU screendump PNG (no drawing/reconstruction). Final physical oracles are in `raw/vt-hosts2/`. Guest builtin ShiftTab maps to HT; actual CSI Z/Backtab is independently proven on GUI/realPTY. No unsupported guest keymap claim is made.
+
+Across all6 runs, the body is written once (AAAA/BBBB each once) while caret-only CUP reaches column3 without grid redraw. Signal before/after native calls are retained per host.74 final original PNG hashes, actual input/output, source/bin/config/clock/native facts and UTC/exits are indexed. No same-PTY TERM relabeling or fake Canvas screenshot was used.
+
+## Preserved infrastructure attempts
+
+Original failures/corrections remain, not product failures relabeled green: first GUI/VT wrapper names collided with their recorder directory before launch; GUI initially sent a key before raw-open readiness and lost it to normal input flush, then timed out and terminated the host; a VTE observer request used a non-atomic file write that could encounter its empty-file abort guard, so only the unfinished hidden scene was replayed with atomic request publication. Those raw host exits/diagnostics remain. Product/tests were never patched.
+
+The first VT collection exited0 but its observer read VCS before reading the public state and could sample an in-progress/previous physical frame. Its native cursor data is **not** used as the final oracle. The same2 scenes were re-observed with positive complete-grid/physical-coordinate fencing; no product rebuild or new suite was added. Earlier PNGs/raw remain as prior observations. This explicitly distinguishes application state, returned write bytes and physical screen state.
+
+## Reuse, limits and final gate
+
+AGENTS11.1 reuse is content/scope-based. Runtime-core's permitted6f raw exits0; its pre-source inventory differs from f8 only in `src/application.cj`, whose final delta is the device clock-failure loop not entered by this headless/no-valid-TTY core. It is not a fresh101 runtime rerun. RichText/text, Frame, Glyph policy and Session extension encoder source scopes remain byte-identical to acceptedBASE3755. Their accepted087/091/R16/152 narrow facts are reused; changed Application/Layout/Resolver behavior is covered by actual new A tests, current Theme integration and current hosts. Native legacy writer/open/close bodies remain; changed read EINTR/EAGAIN classification and new clock/query/caret boundaries are exercised by87+15/current hosts. Whole old Rich/GlyphSession/Session suites are not silently relabeled as newly executed. Scope/source comparison and allowed pure runtime raw are in `raw/reuse/`.
+
+No cold rerun of unrelated old negatives, screenshots or the whole S008 matrix was made. Old087 C1 provenance limits remain historical and unchanged. No65/1/21 author development partial history is counted as this fresh final87 result. The seven future Keyboard obligations, B/C/complete controls and M2 remain open.
+
+T087-G01 remains final TASK023 work: unchanged whole-checker theme allowlist gap, missing composition example and rendering benchmark. It is not bypassed or upgraded to release PASS, and it does not hide any new A package check. No current must-pass product defect was observed.
+
+`findings.json`, `scope.json` and stable `manifest.json` point to exact original raw/hash/control sources for TASK102. The manifest omits SDK/cache/whole checkouts/ELF/CJP/CJO/full source-Markdown snapshots and duplicate VM tar/base64 containers, recording their external identity/reason instead. Root can assemble the whole A archive once after102; this workspace does not create a duplicate whole-scope archive. Original failed attempts and byte-identical screenshots remain available at their indexed paths.

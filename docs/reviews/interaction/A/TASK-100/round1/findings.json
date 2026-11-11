@@ -1,0 +1,76 @@
+{
+  "task": "TASK100 scoped fix round1",
+  "utc": "2026-11-11T08:23:06.434835+00:00",
+  "base": "f02d8124dfad6028da1427c3da877eeec05a5708",
+  "head": "6f0fcc4006d3b6138e823eaa6d127a548db58a21",
+  "spec_verdict": "CHANGES_REQUIRED",
+  "quality_verdict": "CHANGES_REQUIRED",
+  "dispositions": [
+    {
+      "id": "T100-I01",
+      "status": "ADDRESSED",
+      "basis": "Natural measurement dependencies are retained as a bounded seed alongside the current constrained dependencies; trackNatural replaces the prior seed, subscribe/version checks remain shared, dispose clears both. Original geometry case passes."
+    },
+    {
+      "id": "T100-I02",
+      "status": "ADDRESSED",
+      "basis": "Behavioral state changes compare cached resolved layout fields through the single resolver; geometry differences invalidate measurement, pure appearance remains Style. Shared comparator is byte-equivalent to the prior theme candidate field test; no business getters are invoked. Focus and enabled constant/getter cases pass."
+    },
+    {
+      "id": "T100-I03",
+      "status": "ADDRESSED",
+      "basis": "Pending structure/focus share a queue bound, and valid focus requests consume the existing structuralOps counter at repair. Focus/focus and both mixed order cases pass, including the inclusive positive control."
+    },
+    {
+      "id": "T100-I04",
+      "status": "ADDRESSED",
+      "basis": "Effective enabled and visible now traverse their respective properties. Eligibility and activeTarget explicitly combine both; readonly query and resolver preserve separate behavior meanings. Ancestor and own visibility cases pass."
+    },
+    {
+      "id": "T100-I05",
+      "status": "NOT_ADDRESSED",
+      "basis": "Initial/known-before-read clock failure uses completed-poll fallback and the original always-minus-one regression passes. Failure first observed after read still calls decoder.timeout immediately on now<0, with no elapsed100ms evidence; independent sub2ms CSI direction sequence is corrupted."
+    },
+    {
+      "id": "T100-I06",
+      "status": "ADDRESSED",
+      "basis": "Unmount invalidates all descendants, then removes invalid pending focus refs before repair. Node and ancestor removal cases pass; direct stale-ref use remains rejected."
+    },
+    {
+      "id": "T100-I07",
+      "status": "ADDRESSED",
+      "basis": "Both recordCommand and commitCommand reject Canvas and Text parents as leaves before mounting. Root/nested Canvas rejection and ordinary container append/insert controls pass."
+    }
+  ],
+  "open_findings": [
+    {
+      "id": "T100-I05",
+      "severity": "Important",
+      "status": "NOT_ADDRESSED",
+      "locations": [
+        "src/application.cj:628",
+        "src/application.cj:630",
+        "src/application.cj:645"
+      ],
+      "contract": "Original A/I015: preserve100ms actual keyboard idle and continue ordinary input conservatively across clock failure; no full Keyboard scope extension.",
+      "remaining_problem": "now<0 is still treated as proof of elapsed idle in the post-read ESC path. The corrected pre-read and initial -1 paths do not cover this transition.",
+      "minimal_input": "Public Application.run with the existing test-only clock link seam: complete original-visible report; clock=1000; send ESC; observe both lastInput and pre-read clock samples; switch clock to -1 while poll waits; send [A within100ms; send q to finish.",
+      "expected": "up:|text:q|",
+      "actual": "escape:|text:[|text:A|text:q|",
+      "actual_gap_ns": 1554632,
+      "control_gap_ns": 1158898,
+      "control": "Same binary/sequence without clock failure yields up:|text:q|.",
+      "evidence": [
+        "raw/clock-transition-results.json",
+        "raw/clock-transition/wire.bin",
+        "raw/clock-transition/clock.calls",
+        "raw/clock-control/wire.bin",
+        "clock-transition.py",
+        "probe/src/main.cj"
+      ],
+      "required_behavior": "Handle first clock failure at every ESC timing read conservatively; preserve incoming sequence bytes and do not assert elapsed100ms without a valid timestamp or a completed100ms idle interval. Keep the new EINTR/EAGAIN distinction and probe deadline separation."
+    }
+  ],
+  "new_out_of_scope_findings": [],
+  "release_gates": "TASK101/TASK102 remain open; source review does not close final execution/physical host acceptance."
+}

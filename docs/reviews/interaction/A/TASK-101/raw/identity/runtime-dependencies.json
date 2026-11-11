@@ -1,0 +1,37 @@
+{
+  "binaries": {
+    "product/tests/interaction_a/target/release/bin/main": {
+      "sha256": "156ca79b2397fec440422b63df530af6375dcb4c4d2c8bb091489abb90a69642",
+      "ldd": "\tlinux-vdso.so.1 (0x00007f239d98c000)\n\tlibcangjie-runtime.so => not found\n\tlibboundscheck.so => not found\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f239c6c9000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f239c4d5000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f239d98e000)\n",
+      "runtime_hashes": {
+        "/lib/x86_64-linux-gnu/libm.so.6": "6d567d53e895273ca14a1f9dc164fc6c8d39aed2f60aa46a733c2784228915f3",
+        "/lib/x86_64-linux-gnu/libc.so.6": "9792e3cbb541c8f44c7acf5f14f4022ea62998ecc787d326bed4d8b6547dfd92",
+        "/lib64/ld-linux-x86-64.so.2": "c8438e4fde1934e61c88311633f00949ff645d5c04cdb8671fa3d78164d2f307"
+      }
+    },
+    "clean-consumer/tests/interaction_a/target/release/bin/main": {
+      "sha256": "3b802596283b7a75f6387870d313037159b2488c92b15951043f3ccdf0bf3616",
+      "ldd": "\tlinux-vdso.so.1 (0x00007fcfe5673000)\n\tlibcangjie-runtime.so => not found\n\tlibboundscheck.so => not found\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fcfe43af000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fcfe41bb000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fcfe5675000)\n",
+      "runtime_hashes": {
+        "/lib/x86_64-linux-gnu/libm.so.6": "6d567d53e895273ca14a1f9dc164fc6c8d39aed2f60aa46a733c2784228915f3",
+        "/lib/x86_64-linux-gnu/libc.so.6": "9792e3cbb541c8f44c7acf5f14f4022ea62998ecc787d326bed4d8b6547dfd92",
+        "/lib64/ld-linux-x86-64.so.2": "c8438e4fde1934e61c88311633f00949ff645d5c04cdb8671fa3d78164d2f307"
+      }
+    },
+    "clean-consumer/example-interaction/target/release/bin/main": {
+      "sha256": "13e5ae213f352194d2fe4862e517a95039a39b824fe5cf63e69570357a8e2e54",
+      "ldd": "\tlinux-vdso.so.1 (0x00007f4870207000)\n\tlibcangjie-runtime.so => not found\n\tlibboundscheck.so => not found\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f486efd0000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f486eddc000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f4870209000)\n",
+      "runtime_hashes": {
+        "/lib/x86_64-linux-gnu/libm.so.6": "6d567d53e895273ca14a1f9dc164fc6c8d39aed2f60aa46a733c2784228915f3",
+        "/lib/x86_64-linux-gnu/libc.so.6": "9792e3cbb541c8f44c7acf5f14f4022ea62998ecc787d326bed4d8b6547dfd92",
+        "/lib64/ld-linux-x86-64.so.2": "c8438e4fde1934e61c88311633f00949ff645d5c04cdb8671fa3d78164d2f307"
+      }
+    }
+  },
+  "375_normal_cache_sources_equal": true,
+  "dependency_baseline": "/workspace/work/theme-execution/raw/dependency-source-hashes.json",
+  "baseline_sha256": "bd4f5749187208c87d56fa597ccd2f0a787e1684c4a7c0aeefc7086c615d9e06",
+  "official_stdx_baseline": "/workspace/work/theme-execution/raw/stdx-hashes.json",
+  "stdx_baseline_sha256": "ffc2f10ae4d96439d1c7051a69042c92dcdbacc4105b248d552d36feadaff55d",
+  "stdx_all_files_equal": true
+}

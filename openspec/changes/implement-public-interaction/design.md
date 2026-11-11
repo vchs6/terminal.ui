@@ -274,7 +274,7 @@ scrollTo 输入非负，负值 IllegalArgumentException；超最大值钳制。s
 
 #### B.4 ensureVisible 的精确含义
 
-rect=None 指节点整个布局盒，用框架已提交几何转换；Some(rect) 是内容坐标，非负尺寸且 x/y>=0，目标须落在当前逻辑 contentExtent 中，超出报 InvalidProperty（不能凭无限 rect 强迫 viewport 增长）。空 rect 无操作；caret 用 width=1,height=1 的合法占位格，而不是0宽数学点。
+rect=None 指节点整个布局盒，用框架已提交几何转换；Some(rect) 是内容坐标，非负尺寸且 x/y>=0，目标须落在当前逻辑 contentExtent 中，超出报 InvalidProperty（不能凭无限 rect 强迫 viewport 增长）。其中负 x/y 也按内容域外报 InvalidProperty；负 width/height 由既有 Rect 构造报 IllegalArgumentException。Rect 的通用有符号位置语义保留，绘制裁剪不因此禁止负坐标。空 rect 无操作；caret 用 width=1,height=1 的合法占位格，而不是0宽数学点。
 
 从最近 viewport 祖先向外逐层计算；若目标节点本身有 viewport，Some内容rect先处理它自己的viewport，None布局盒则从父开始。Nearest 在目标完全可见时不动；能容纳时移动最小距离使两端可见；目标比viewport大时保留已经落在目标范围内的窗口，否则向最近一端移动，等距取Start。Start/End对齐相应边，Center 使用向下取整的一半余量；最终钳制。禁用轴不改变偏移，实际viewport为0的轴本次不做定位；后续resize按新几何重新确保焦点/caret。
 

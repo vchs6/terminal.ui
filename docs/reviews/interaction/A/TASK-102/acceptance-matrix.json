@@ -1,0 +1,224 @@
+{
+  "task": "TASK102",
+  "utc": "2026-11-11T09:38:49.734064+00:00",
+  "candidate": "f8a028b39daf8a341576f304335d262544b9cca5",
+  "verdict": "PASS_FINITE_UNIT_A",
+  "A01_A06": {
+    "A-01": "PASS_FINITE_UNIT_A",
+    "A-02": "PASS_FINITE_UNIT_A",
+    "A-03": "PASS_FINITE_UNIT_A",
+    "A-04": "PASS_FINITE_UNIT_A",
+    "A-05": "PASS_FINITE_UNIT_A",
+    "A-06": "PASS_FINITE_UNIT_A"
+  },
+  "accepted_mappings": 24,
+  "excluded_mappings": 1,
+  "next_B_dependency_ready": true,
+  "evidence_aliases": {
+    "E": "/workspace/work/interaction-execution",
+    "fixed": "f8a028b39daf8a341576f304335d262544b9cca5; tests tree equals7225603",
+    "interaction-review": "/workspace/work/interaction-review"
+  },
+  "rows": [
+    {
+      "id": "SOURCE",
+      "contract": "AC100–102",
+      "obligation": "Finalf8 source/test/contract/review identity",
+      "status": "PASS",
+      "evidence": "raw/final-identity-check.json; 100 original+round1+round2",
+      "judgment": "187 recorded source entries,43 frozen assets; seven Important findings closed; historical pre-label limits retained."
+    },
+    {
+      "id": "ADMISSION",
+      "contract": "AC098",
+      "obligation": "Real prerequisite positive and missing-A RED; fixtures distinct",
+      "status": "PASS_REUSED",
+      "evidence": "fixed tests/interaction_a/coverage.json + accepted098; E:raw/normal-device",
+      "judgment": "098 readiness retained; actual101 prerequisite/direct0 is current product proof, declarations/peer fixtures are not."
+    },
+    {
+      "id": "REVIEW",
+      "contract": "AC100",
+      "obligation": "Full source review plus direct fixes",
+      "status": "PASS",
+      "evidence": "interaction-review/{report,round1/report,round2/report}.md; E:raw/review",
+      "judgment": "Initial seven findings, six round1 closures and I05 final closure;15 current observations0, including transition control/failure."
+    },
+    {
+      "id": "A01-API",
+      "contract": "A-01",
+      "obligation": "Public signatures, values and three compositions",
+      "status": "PASS",
+      "evidence": "fixed values_and_signatures/three_consumers; E:raw/normal-device",
+      "judgment": "Actual headless entry calls all fixed public assertions; no Frame/ANSI/private kind in compositions; Canvas illegal properties and leaf controls reject."
+    },
+    {
+      "id": "A01-PACKAGE",
+      "contract": "A-01/101",
+      "obligation": "Normal source package and clean consumer/example",
+      "status": "PASS",
+      "evidence": "E:raw/{bundle,package,clean-library-build,clean-public-build,clean-public-run,clean-example-build,clean-example-run}",
+      "judgment": "197 members opened and compared;560 warnings preserved; only manifest paths differ, ordinary builds/direct runs0."
+    },
+    {
+      "id": "A02-ROUTE",
+      "contract": "A-02",
+      "obligation": "Literal event/default order and expiry",
+      "status": "PASS",
+      "evidence": "fixed default_action_trace/default_action_snapshot; E:raw/normal-device",
+      "judgment": "Seven literal traces, fixed path/handler snapshot, Target/framework/Ancestor ordering; stop/prevent/consume independently asserted."
+    },
+    {
+      "id": "A02-DEVICE",
+      "contract": "A-02/I007",
+      "obligation": "HT/CSI Z normalization and rejection",
+      "status": "PASS_FINITE",
+      "evidence": "E:raw/{matrix,normal-device,gui-hosts2,gui-hosts3}",
+      "judgment": "Actual GUI/PTY input contains HT and CSI Z; malformed/SS3/parameterized cases do not upgrade. VT shifted key is HT, no false CSI Z claim."
+    },
+    {
+      "id": "A03-CELLS",
+      "contract": "A-03",
+      "obligation": "Content/ancestor clip, whole grapheme and explicit cell values",
+      "status": "PASS",
+      "evidence": "fixed full_canvas_cells; E:raw/normal-device",
+      "judgment": "Literal text/style/continuation/space outcomes; whole-value reject before writes; zero/extreme dimensions do not escape actual allocation."
+    },
+    {
+      "id": "A03-STYLE",
+      "contract": "A-03/I012",
+      "obligation": "Unique resolver and typed state precedence",
+      "status": "PASS",
+      "evidence": "fixed selected_cascade/focus_bindings; E:raw/affected-theme-integration",
+      "judgment": "Explicit>paint patch>span>base; false/default are real fields; selected=false retains declared selected; actual enabled/focus augments appearance without mutation."
+    },
+    {
+      "id": "A03-MP",
+      "contract": "A-03/I001",
+      "obligation": "Separate M/P and effective constrained/natural dependencies",
+      "status": "PASS",
+      "evidence": "fixed dependency_isolation; E:raw/review/detail/review-regressions/{I01,I02-focus,I02-constant,I02-getter}",
+      "judgment": "Still-used natural dependencies survive; obsolete paint subscription retires; actual behavior-state geometry equals literal and M1 control. No M2/no-remeasure claim."
+    },
+    {
+      "id": "A04-ORDER",
+      "contract": "A-04",
+      "obligation": "Physical dynamic order, retention and deterministic fallback",
+      "status": "PASS",
+      "evidence": "fixed physical_focus/focus_repair; E:raw/normal-device",
+      "judgment": "C/X/B/A mixed key/manual order, preorder, successor/predecessor/empty, queued-removal cancel and stale remount generation assertions execute."
+    },
+    {
+      "id": "A04-READ",
+      "contract": "A-04/I011",
+      "obligation": "Readonly NodeRef/Application legality and authority",
+      "status": "PASS",
+      "evidence": "fixed readonly_queries/pure_callbacks",
+      "judgment": "Getter/measure/draw reads legal; no pumping or write privilege; cross-thread/session rejects; isValid/sameNode retain existing safe semantics."
+    },
+    {
+      "id": "A04-INITIAL",
+      "contract": "A-04/I012/I014",
+      "obligation": "Initial/later eligibility and enabled/visible separation",
+      "status": "PASS",
+      "evidence": "fixed focus_bindings/physical_focus; E:raw/review I04",
+      "judgment": "Initial first eligible, empty activeTarget, later first candidate/no stealing; hidden does not disable; visual states do not alter business state."
+    },
+    {
+      "id": "A05-LOGIC",
+      "contract": "A-05/A.6",
+      "obligation": "Caret owner/last request/hidden/continuation and same-grid movement",
+      "status": "PASS",
+      "evidence": "fixed caret_frames; current normal device/host stages",
+      "judgment": "Only focused Canvas owns caret; zero/clip/continuation/no request hide canonically; same grid and moved logical caret are independently asserted."
+    },
+    {
+      "id": "A05-PROBE",
+      "contract": "A-05/I015",
+      "obligation": "Once-only query, exact reply, clock/deadline/order",
+      "status": "PASS_FINITE",
+      "evidence": "E:raw/matrix; review I05 and transition pair; raw/partial-check.json",
+      "judgment": "87 actual A vectors; exact protocol replies not business keys,599/600 and late/duplicate/failure cases;7 future Keyboard cases remain unexecuted."
+    },
+    {
+      "id": "A05-GUI",
+      "contract": "A-05/I015",
+      "obligation": "Actual XTerm/VTE original states and restoration",
+      "status": "PASS_FINITE",
+      "evidence": "raw/gui-check.json; E:raw/gui-hosts2 + gui-hosts3/vte-hidden",
+      "judgment": "Four40×8 runs,48 originals,actual trace bytes/native print/widget; query1,original DECRQM before/after and termios equal,real cursor positions."
+    },
+    {
+      "id": "A05-VT",
+      "contract": "A-05/I015",
+      "obligation": "Actual Linux VT Unknown fallback",
+      "status": "PASS_FINITE",
+      "evidence": "raw/vt-check.json; E:raw/vt-hosts2",
+      "judgment": "Two80×25 uid1000 runs on QEMU TCG;26 originals and fullVCS/VCSU grid fence; query1/no25h/l/s/r; actual underline moves/blinks only in original-visible state."
+    },
+    {
+      "id": "A06-CONTEXT",
+      "contract": "A-06",
+      "obligation": "Expiry and readonly/error priority",
+      "status": "PASS",
+      "evidence": "fixed context_expiry/pure_callbacks/lifecycle_and_limits",
+      "judgment": "All retained context access rejected; wrong thread/session precedes expiry; user measure/draw writes forbidden; no stale state resurrection."
+    },
+    {
+      "id": "A06-RESOURCE",
+      "contract": "A-06",
+      "obligation": "Shared budgets, leaf capability, once-only cleanup",
+      "status": "PASS",
+      "evidence": "fixed lifecycle_and_limits/pure_callbacks; current review I03/I06/I07",
+      "judgment": "Inclusive budget positive controls and mixed structure/focus negatives; Canvas rejects mount; draw primary+cleanup additional,resources zero and cleanup once."
+    },
+    {
+      "id": "A06-WRITER",
+      "contract": "A-06/S008",
+      "obligation": "Query/frame/caret-only/cleanup zero and partial failures",
+      "status": "PASS_CONTROLLED",
+      "evidence": "E:raw/matrix/detail/matrix/writer-* + cancel-after-known; raw/partial-check.json",
+      "judgment": "Actual armed buffer matched;partial delivers1byte then fatal/no later positive output/reopen refused;zero caret permits only original-hidden restore;primary preserved. No unsafe visual restoration claim."
+    },
+    {
+      "id": "REUSE",
+      "contract": "AGENTS11.1",
+      "obligation": "Affected prior behavior and environment provenance",
+      "status": "PASS_SCOPED_REUSE",
+      "evidence": "E:raw/reuse; raw/final-identity-check.json",
+      "judgment": "Current Theme integration0; scoped6f runtime core device-only delta excluded; unchanged Rich/Frame/Glyph/Session sourcefacts reused with old C1 limits,not new suite counts."
+    },
+    {
+      "id": "IDENTITY",
+      "contract": "AC101/102",
+      "obligation": "Actual file/package/host/dependency/command identities",
+      "status": "PASS",
+      "evidence": "raw/final-identity-check.json; E:manifest.json",
+      "judgment": "1594 contents and1595 checksums verify;1680 prior inputs stable;375 dependency/371stdx,host font/config/version and runtime resolved by actual openat/packed bytes."
+    },
+    {
+      "id": "DOCS",
+      "contract": "AC102",
+      "obligation": "Delivered documentation and result classification",
+      "status": "PASS",
+      "evidence": "fixed docs/product/interaction.md; report.md",
+      "judgment": "Public API/fallback accurately described; frozen test RED metadata is historical; collector/own helper failures retained;no task/main edits or arbitrary overall release projection."
+    },
+    {
+      "id": "PARENT017",
+      "contract": "AC017/TASK017",
+      "obligation": "Original ordinary-domain focus acceptance and residual mapping",
+      "status": "PASS_FINITE_PARENT_MAPPING",
+      "evidence": "original docs/tasks.md + docs/acceptance.md; A02/A04 and devices",
+      "judgment": "Literal disabled/unmounted/empty deterministic focus/no stale refs and keyboard navigation satisfied. Project this focus scope; B viewport,C layer/domain restoration,full Keyboard responsibilities remain explicit."
+    },
+    {
+      "id": "FOLLOWUP",
+      "contract": "TASK018/019/020/023/028/029/030",
+      "obligation": "Later required scopes excluded",
+      "status": "EXCLUDED_OPEN",
+      "evidence": "formal design I005; TASK102 brief; T087-G01",
+      "judgment": "B/C,complete widgets/edit/menu/session/full recovery,7future Keyboard,M2/Linux/release remain outside.023 themes allowlist/composition/benchmark remainsOPEN."
+    }
+  ]
+}

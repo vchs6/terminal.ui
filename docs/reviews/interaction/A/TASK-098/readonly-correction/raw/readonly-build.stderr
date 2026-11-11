@@ -1,0 +1,60 @@
+[33mwarning[0m: unused function:'illegal'
+  [36m==>[0m /workspace/work/interaction-a-tests/readonly-correction/replay/tests/readonly_case/src/checks.cj:12:1:
+   [36m| [0m
+[36m12[0m [36m| [0m  func illegal(action: () -> Unit): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m13[0m [36m| [0m[33m|[0m     var rejected = false[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m16[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'cell'
+  [36m==>[0m /workspace/work/interaction-a-tests/readonly-correction/replay/tests/readonly_case/src/checks.cj:18:1:
+   [36m| [0m
+[36m18[0m [36m| [0m  func cell(f: Frame, x: Int64, y: Int64, glyph: String, width: Int64, continuation: Bool,[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m19[0m [36m| [0m[33m|[0m     style: Style): Unit {[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m23[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'sameFrame'
+  [36m==>[0m /workspace/work/interaction-a-tests/readonly-correction/replay/tests/readonly_case/src/checks.cj:24:1:
+   [36m| [0m
+[36m24[0m [36m| [0m  func sameFrame(a: Frame, b: Frame, width: Int64, height: Int64): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m25[0m [36m| [0m[33m|[0m     for (y in 0..height) { for (x in 0..width) {[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m30[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'focus'
+  [36m==>[0m /workspace/work/interaction-a-tests/readonly-correction/replay/tests/readonly_case/src/checks.cj:31:1:
+   [36m| [0m
+[36m31[0m [36m| [0m  func focus(app: Application, c: Component): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m32[0m [36m| [0m[33m|[0m     check(app.focusedNode().getOrThrow().sameNode(ref(c)), "focused identity")[0m
+[36m33[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'hiddenCaret'
+  [36m==>[0m /workspace/work/interaction-a-tests/readonly-correction/replay/tests/readonly_case/src/checks.cj:34:1:
+   [36m| [0m
+[36m34[0m [36m| [0m  func hiddenCaret(app: Application): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m35[0m [36m| [0m[33m|[0m     let s = app.caretSnapshot()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m37[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+5 warnings generated, 5 warnings printed.

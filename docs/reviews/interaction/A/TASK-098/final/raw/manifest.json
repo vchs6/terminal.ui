@@ -1,0 +1,237 @@
+{
+  "task": "098",
+  "created_utc": "2026-11-11T07:01:42.468994+00:00",
+  "test_sha": "76b8dd1c118b0f3c58327b66581d67884cec2713",
+  "product_base": "41f29f16cf372e1ed1904e1fbf0cdd7d657e2aef",
+  "original_test_sha": "b004fe597fe14ac6f3c9d033391ce22598f8c529",
+  "source_root": "/workspace/work/interaction-a-tests/final/source",
+  "test_only_changed_paths": [
+    "tests/interaction_a/.gitignore",
+    "tests/interaction_a/README.md",
+    "tests/interaction_a/cjpm.toml",
+    "tests/interaction_a/coverage.json",
+    "tests/interaction_a/fixtures/final_selftest.py",
+    "tests/interaction_a/fixtures/matrix.py",
+    "tests/interaction_a/fixtures/native_cases.py",
+    "tests/interaction_a/fixtures/pty_capture.py",
+    "tests/interaction_a/fixtures/vectors.json",
+    "tests/interaction_a/native/input_hup.c",
+    "tests/interaction_a/native/selector_selftest.c",
+    "tests/interaction_a/native/write_fault.c",
+    "tests/interaction_a/prerequisites/cjpm.toml",
+    "tests/interaction_a/prerequisites/src/main.cj",
+    "tests/interaction_a/run.sh",
+    "tests/interaction_a/src/device_consumer.cj",
+    "tests/interaction_a/src/device_failure.cj"
+  ],
+  "git_trees": {
+    "src": "6cd071e1ba223d3e24ca2de5be1b66b8cfe68c5a",
+    "native": "b57b2f4f7442c6c2bab815e8887551cd70720daa",
+    "tests/interaction_a": "fbc1831f3a89948154eb91455a03a3222f2b157f"
+  },
+  "test_pre_execution_hash_file": "/workspace/work/interaction-a-tests/final/raw/committed-test-prehash.json",
+  "commands": [
+    {
+      "name": "baseline-build",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/interaction-a-tests/final/source",
+      "utc": "2026-11-11T06:25:53.129590+00:00",
+      "sha": "41f29f16cf372e1ed1904e1fbf0cdd7d657e2aef",
+      "exit": 0
+    },
+    {
+      "name": "initial-A-consumer-build",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/interaction-a-tests/final/source/tests/interaction_a",
+      "utc": "2026-11-11T06:27:16.903230+00:00",
+      "sha": "41f29f16cf372e1ed1904e1fbf0cdd7d657e2aef",
+      "exit": 1
+    },
+    {
+      "name": "final-entry",
+      "argv": [
+        "bash",
+        "tests/interaction_a/run.sh"
+      ],
+      "cwd": "/workspace/work/interaction-a-tests/final/source",
+      "utc": "2026-11-11T06:53:49.992650+00:00",
+      "exit": 1
+    },
+    {
+      "name": "final-fixtures",
+      "argv": [
+        "bash",
+        "tests/interaction_a/run.sh",
+        "--changed-fixtures-only"
+      ],
+      "cwd": "/workspace/work/interaction-a-tests/final/source",
+      "utc": "2026-11-11T06:57:44.607078+00:00",
+      "exit": 0,
+      "env": {
+        "CJTUI_INTERACTION_A_OUTPUT": "/workspace/work/interaction-a-tests/final/output/fixture-final"
+      }
+    },
+    {
+      "name": "committed-A-build",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/interaction-a-tests/final/source/tests/interaction_a",
+      "utc": "2026-11-11T06:59:35.891415+00:00",
+      "sha": "76b8dd1c118b0f3c58327b66581d67884cec2713",
+      "exit": 1
+    }
+  ],
+  "actual_exits": {
+    "baseline_build": 0,
+    "prerequisite_build": 0,
+    "prerequisite_direct_binary": 0,
+    "final_entry_prerequisite_then_A_compile": 1,
+    "committed_A_build": 1,
+    "changed_fixture_selftest": 0
+  },
+  "A_compile_diagnostics": {
+    "total": 74,
+    "direct_missing_A_names_or_members": 72,
+    "writeTo_cascades_from_missing_status_attribute": 2
+  },
+  "product_execution": {
+    "A_headless": "UNEXECUTED missing A API",
+    "A_87_PTY_vectors": "UNEXECUTED missing A API",
+    "Keyboard_7": "FUTURE113-117",
+    "B_C": "FUTURE respective scope",
+    "real_hosts_bundle_clean": "UNEXECUTED later100-102"
+  },
+  "fixture_result": {
+    "scope": "fixture-only; no cjtui A execution or decoder/policy peer",
+    "selected_boundaries": [
+      "query-zero",
+      "query-partial",
+      "frame-zero",
+      "frame-partial",
+      "caret-only-zero",
+      "caret-only-partial",
+      "cleanup-zero",
+      "cleanup-partial",
+      "legacy-index-zero",
+      "legacy-index-partial"
+    ],
+    "negative_controls": [
+      "unsafe-late-restore",
+      "wrong-selected-boundary",
+      "duplicate-fault",
+      "zero-failure-wrong-restore",
+      "pre-query-failure-must-not-query",
+      "default-missing-query",
+      "default-forbidden-show"
+    ],
+    "poll_hup": true,
+    "executable_A_vectors": 87,
+    "future_Keyboard_vectors": [
+      "csi-real-idle-Keyboard",
+      "payload-osc",
+      "payload-dcs",
+      "payload-paste",
+      "sequence-budget-8",
+      "sequence-budget-9",
+      "sequence-budget-64"
+    ]
+  },
+  "raw_files": {
+    "/workspace/work/interaction-a-tests/final/raw/baseline-build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/interaction-a-tests/final/raw/baseline-build.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/raw/baseline-build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "/workspace/work/interaction-a-tests/final/raw/changed-fixtures.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/interaction-a-tests/final/raw/changed-fixtures.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/raw/changed-fixtures.stdout": "5df44b9f23151f0cfa32b24575b694316deaee22b3fe8f4aaf4686f564cd3491",
+    "/workspace/work/interaction-a-tests/final/raw/commands.jsonl": "ba51b393b8529aebfd07d372b91318baefb717ae4583e13fc9d868afa8215a72",
+    "/workspace/work/interaction-a-tests/final/raw/committed-A-build.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "/workspace/work/interaction-a-tests/final/raw/committed-A-build.stderr": "6af2719db0b59b148a3c2e6e10d4e14128977da030c82506effe15f59246456c",
+    "/workspace/work/interaction-a-tests/final/raw/committed-A-build.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/raw/committed-test-prehash.json": "ef78b33e3953aba7bac7e6533e9d1bfe95ba973b99090b61aea7696711581266",
+    "/workspace/work/interaction-a-tests/final/raw/environment-hashes.json": "c9d9da3b6063b54109ddd2bf467cd3c10faaeb845e76f244a71535633d0476e9",
+    "/workspace/work/interaction-a-tests/final/raw/final-entry.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "/workspace/work/interaction-a-tests/final/raw/final-entry.stderr": "e598b6aa14f318c1d75b9e6024370f0fb329cbb5b90443095e5139508388bcea",
+    "/workspace/work/interaction-a-tests/final/raw/final-entry.stdout": "3ccc22bda172b9e5e7af9d2511e806a6c5b92c351848d74abc3f5f19fd381d1d",
+    "/workspace/work/interaction-a-tests/final/raw/final-fixture-prehash.json": "37ad3ff33e7e83707c8db9fd40e04c0ef291798e418bfaaab011c3858516dd62",
+    "/workspace/work/interaction-a-tests/final/raw/final-fixtures.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/interaction-a-tests/final/raw/final-fixtures.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/raw/final-fixtures.stdout": "acfd75c11109b4385d49ee0069798a2774cada3c97145a814cb5249032180a36",
+    "/workspace/work/interaction-a-tests/final/raw/initial-A-consumer-build.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "/workspace/work/interaction-a-tests/final/raw/initial-A-consumer-build.stderr": "b0ed27f0000f1183b7b493402d71ef5b54c136134f37b0df0a3fa4816c56f8d6",
+    "/workspace/work/interaction-a-tests/final/raw/initial-A-consumer-build.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/raw/initial-source-hashes.json": "78b51d44e2d6015484dab537018f47c51e75db2317014b2bfffaeb74890bb0af",
+    "/workspace/work/interaction-a-tests/final/raw/prerequisite-build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/interaction-a-tests/final/raw/prerequisite-build.stderr": "826a9bfd2d290fd12d41eb49b3723012e4bb5a1f0c9ac7baa01a7a6a902eefa0",
+    "/workspace/work/interaction-a-tests/final/raw/prerequisite-build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "/workspace/work/interaction-a-tests/final/raw/prerequisite-run.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/workspace/work/interaction-a-tests/final/raw/prerequisite-run.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/raw/prerequisite-run.stdout": "90981a88d8b9d749e06e80bd3e1cb89306d1458d79346fa85f5a915ca1cc5539",
+    "/workspace/work/interaction-a-tests/final/raw/preservation.json": "7f4efdd10ae153473e91c55ceeaed5ea03bb953001e6652e7d6deaac7c563fe2",
+    "/workspace/work/interaction-a-tests/final/raw/reused-evidence.json": "111753ccb032e3ee74bc785cee03a3ad46ad6b1d8736d3f29ac18ac56737f4a5",
+    "/workspace/work/interaction-a-tests/final/raw/versions.json": "0497b4e064a20ae85c41399a7e91279cafd4f5828776fb15402e42e8f91e89fb"
+  },
+  "changed_fixture_files": {
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/_native/build.json": "5e20505f0ef3c6d6f79e99baf811e8f48850ca13b3bc683c8ab7a48a9ba7ca7a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/_native/input_hup.so": "b72773d63e3474fa6db6143498129e84261d516bedc97269664db8bc11833af3",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/_native/write_fault.so": "d81beaa43aa6558bd81c1fd73bd093c6ebdfa559f304bf1f247515fcbcfb58ed",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/caret-only-partial/arm": "dc083dbe056a217097b6d6aba9e34f057b5f728b2fa63d0099a5e3c3f297cb5a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/caret-only-partial/calls": "fac443cc1a69b529b07f1a2cefb7b26acba6e354997f75bd84fc427998c2584c",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/caret-only-partial/capture.json": "64e0c9645021570ab6e43df65881a439110353fe651269e488b9ed34829e4c1f",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/caret-only-partial/wire.bin": "77adfc95029e73b173f60e556f915b0cd8850848111358b1c370fb7c154e61fd",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/caret-only-zero/arm": "dc083dbe056a217097b6d6aba9e34f057b5f728b2fa63d0099a5e3c3f297cb5a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/caret-only-zero/calls": "97c99646455c8a366f0cd9c9acf6c09ea16c71bee75eb5e2d182670331649230",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/caret-only-zero/capture.json": "64e0c9645021570ab6e43df65881a439110353fe651269e488b9ed34829e4c1f",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/caret-only-zero/wire.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/cleanup-partial/arm": "dc083dbe056a217097b6d6aba9e34f057b5f728b2fa63d0099a5e3c3f297cb5a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/cleanup-partial/calls": "0576a100ebb105d1b603fcb29cedb4a73aee723216d0c349b86019b2e0d5c87e",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/cleanup-partial/capture.json": "feb8ad35fba34410e9f551d1be50ddbc7243b45da3be4e21235229671aa9094b",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/cleanup-partial/wire.bin": "77adfc95029e73b173f60e556f915b0cd8850848111358b1c370fb7c154e61fd",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/cleanup-zero/arm": "dc083dbe056a217097b6d6aba9e34f057b5f728b2fa63d0099a5e3c3f297cb5a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/cleanup-zero/calls": "37135c407ff9a4869f5fcff06d0afbab1fa19d215ba34ff9a640c12c00d6b2b8",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/cleanup-zero/capture.json": "feb8ad35fba34410e9f551d1be50ddbc7243b45da3be4e21235229671aa9094b",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/cleanup-zero/wire.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/frame-partial/arm": "dc083dbe056a217097b6d6aba9e34f057b5f728b2fa63d0099a5e3c3f297cb5a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/frame-partial/calls": "c65a0b6ee0a8d30ef50b3340fbb95a8ef91cc246c219829165096f02599af6d3",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/frame-partial/capture.json": "fc36444d976ecd8c5a35e7ce2d293410e587b98f3b47c9fc635080e78357185e",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/frame-partial/wire.bin": "559aead08264d5795d3909718cdd05abd49572e84fe55590eef31a88a08fdffd",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/frame-zero/arm": "dc083dbe056a217097b6d6aba9e34f057b5f728b2fa63d0099a5e3c3f297cb5a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/frame-zero/calls": "e5149548e3378493045c92ee4acfca2af2eac55adebb8ed85cab8b967abd25b9",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/frame-zero/capture.json": "fc36444d976ecd8c5a35e7ce2d293410e587b98f3b47c9fc635080e78357185e",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/frame-zero/wire.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/hup/arm": "dc083dbe056a217097b6d6aba9e34f057b5f728b2fa63d0099a5e3c3f297cb5a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/hup/calls": "1d7d8959b674932abe7b8c01274807b94608e93e6d8ff1590c3f2602a31d90ff",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/hup/capture.json": "f52acb95a0cf43beea5e0dfd527e0b2b8f65f1e0f3916f0d14685990201c9dd1",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/hup/wire.bin": "c2e3ac47f4a325469c1a2d5f117e463ec943c721986d5d9f09ac4540b7d80526",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/legacy-index-partial/calls": "f384d8e253c7bf35b157ec2e769b04a92f9b9e97ffcc10ea4fe2e7e82f39cf23",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/legacy-index-partial/capture.json": "d895177d3063cef4fa83dcf5c959b0489b6b67ee0be621bd2cc3b7cbb0764022",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/legacy-index-partial/wire.bin": "77adfc95029e73b173f60e556f915b0cd8850848111358b1c370fb7c154e61fd",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/legacy-index-zero/calls": "357108dc943c6d2e816138d802134f3d0b49ad84050c005bb9294b32ce0c5e17",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/legacy-index-zero/capture.json": "d895177d3063cef4fa83dcf5c959b0489b6b67ee0be621bd2cc3b7cbb0764022",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/legacy-index-zero/wire.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/query-partial/arm": "dc083dbe056a217097b6d6aba9e34f057b5f728b2fa63d0099a5e3c3f297cb5a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/query-partial/calls": "f384d8e253c7bf35b157ec2e769b04a92f9b9e97ffcc10ea4fe2e7e82f39cf23",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/query-partial/capture.json": "d895177d3063cef4fa83dcf5c959b0489b6b67ee0be621bd2cc3b7cbb0764022",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/query-partial/wire.bin": "77adfc95029e73b173f60e556f915b0cd8850848111358b1c370fb7c154e61fd",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/query-zero/arm": "dc083dbe056a217097b6d6aba9e34f057b5f728b2fa63d0099a5e3c3f297cb5a",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/query-zero/calls": "357108dc943c6d2e816138d802134f3d0b49ad84050c005bb9294b32ce0c5e17",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/query-zero/capture.json": "d895177d3063cef4fa83dcf5c959b0489b6b67ee0be621bd2cc3b7cbb0764022",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/query-zero/wire.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/result.json": "475609b1d9051343a791407b7d6ece023219b78093e6b8ffe04d33e32adc00fa",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/selector-selftest": "b4e912354d693a5f95ffec6f26e6c37c555cb52ba1e10836d3c266f053655a32"
+  },
+  "binaries": {
+    "/workspace/work/interaction-a-tests/final/source/tests/interaction_a/prerequisites/target/release/bin/main": "3a54604906d12c9a1ca07013ef7899bdc3a1841feee13840349cba584e27295b",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/selector-selftest": "b4e912354d693a5f95ffec6f26e6c37c555cb52ba1e10836d3c266f053655a32",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/_native/write_fault.so": "d81beaa43aa6558bd81c1fd73bd093c6ebdfa559f304bf1f247515fcbcfb58ed",
+    "/workspace/work/interaction-a-tests/final/output/fixture-final/changed-fixtures/_native/input_hup.so": "b72773d63e3474fa6db6143498129e84261d516bedc97269664db8bc11833af3"
+  },
+  "reuse_index": "/workspace/work/interaction-a-tests/final/raw/reused-evidence.json"
+}

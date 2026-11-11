@@ -20,7 +20,7 @@
 | AC-014 | REQ-001 | 自定义组件跨容器复用 | TASK-014 | 同组件用于普通容器与弹窗无需修改内核；证据待实施时链接 | pending |
 | AC-015 | REQ-002 | 稳定身份与卸载订阅释放 | TASK-015 | 列表重排保留正确局部状态，卸载后订阅和引用失效；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
 | AC-016 | REQ-002 | 状态批处理与 UI 调度 | TASK-016 | 后台状态经过调度，批量修改合并刷新，长短文本切换无残留；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
-| AC-017 | REQ-003 | 键盘导航和有效焦点 | TASK-017 | 禁用、卸载和空焦点集合有确定行为，无失效引用；证据待实施时链接 | pending |
+| AC-017 | REQ-003 | 键盘导航和有效焦点 | TASK-017 | 禁用、卸载和空焦点集合有确定行为，无失效引用；普通域已验收，视口/层域及完整输入后续汇合 | passed（普通域焦点范围；[有限验收](reviews/interaction/A/TASK-102/report.md)） |
 | AC-018 | REQ-003 | 覆盖层嵌套与关闭恢复 | TASK-018 | 父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态；证据待实施时链接 | pending |
 | AC-019 | REQ-003 | 菜单与状态条组合行为 | TASK-019 | 水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合；证据待实施时链接 | pending |
 | AC-020 | REQ-004、REQ-011 | 应用退出与终端模式恢复 | TASK-020 | 当前在冻结Linux配置正常退出、异常及取消均按平台契约清理模式/光标；其他OS后续扩展；证据待实施时链接 | pending |
@@ -157,10 +157,10 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
 | AC-098 | REQ-003/004/007/009 | TASK-098 | 独立Canvas/focus/事件/caret测试与真实RED | passed（测试交付与真实缺API RED；[固定测试](../tests/interaction_a/README.md)，产品行为待099–102） |
-| AC-099 | REQ-003/004/007/009 | TASK-099 | 公共受控绘制与键盘目标实现 | pending |
-| AC-100 | REQ-003/004/007/009 | TASK-100 | A固定源码独立spec/quality | pending |
-| AC-101 | REQ-003/004/007/009 | TASK-101 | A独立执行/真实TTY/正常包消费 | pending |
-| AC-102 | REQ-003/004/007/009 | TASK-102 | A有限验收/metadata，不提前关闭完整交互 | pending |
+| AC-099 | REQ-003/004/007/009 | TASK-099 | 公共受控绘制与键盘目标实现 | passed（有限Unit A；[证据](reviews/interaction/A/TASK-102/report.md)） |
+| AC-100 | REQ-003/004/007/009 | TASK-100 | A固定源码独立spec/quality | passed（有限Unit A；[证据](reviews/interaction/A/TASK-100/round2/report.md)） |
+| AC-101 | REQ-003/004/007/009 | TASK-101 | A独立执行/真实TTY/正常包消费 | passed（有限Unit A；[证据](reviews/interaction/A/TASK-101/report.md)） |
+| AC-102 | REQ-003/004/007/009 | TASK-102 | A有限验收/metadata，不提前关闭完整交互 | passed（有限Unit A；[证据](reviews/interaction/A/TASK-102/report.md)） |
 | AC-103 | REQ-003/004/007/009 | TASK-103 | 独立viewport/root fallback/滚动golden与RED | pending |
 | AC-104 | REQ-003/004/007/009 | TASK-104 | 单viewport坐标/滚动/ensureVisible实现 | pending |
 | AC-105 | REQ-003/004/007/009 | TASK-105 | B固定源码独立spec/quality | pending |
