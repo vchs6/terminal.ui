@@ -8,6 +8,9 @@ main(): Int64 {
     sourcePaths()
     capacityBoundaries()
     presets()
+    schemaSourceTypes()
+    schemaPrintableName()
+    schemaSourceOrder()
     println("PASS TASK085 pure public values/schema/presets")
     0
 }
