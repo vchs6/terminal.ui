@@ -8,6 +8,7 @@ public class Application {
     private var handler: (KeyEvent) -> Unit = {_ =>}
     private var running = false
     private let limits: RuntimeLimits
+    private let initialTheme: Theme
     private let sessionLock = Mutex()
     private var session: ?RuntimeSession = None
     private var latestStats = RuntimeStats(0, 0, 0, 0, 0, 0, 0, 0)
@@ -19,13 +20,15 @@ public class Application {
     private var configuredSessionOptions = SessionOptions()
     private var lastSessionCapabilities: ?SessionCapabilities = None
     private var lastSessionCleanup = Array<SessionResult>()
-    public init(root: Component, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto) {
+    public init(root: Component, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto, theme!: Theme = Theme.preset(ThemePreset.Classic)) {
         this.root = root
+        this.initialTheme = theme
         this.limits = limits
         this.configuredGlyphMode = glyphMode
     }
-    public init(root: Component, colorMode!: ColorMode, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto) {
+    public init(root: Component, colorMode!: ColorMode, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto, theme!: Theme = Theme.preset(ThemePreset.Classic)) {
         this.root = root
+        this.initialTheme = theme
         this.limits = limits
         this.configuredGlyphMode = glyphMode
         colorOverride = Some(colorMode)
@@ -189,7 +192,7 @@ public class Application {
                 throw UIException("LifecycleReentry", "session already active")
             }
             value = RuntimeSession(root, limits, application: Some(this), sessionOptions: configuredSessionOptions,
-                device: device)
+                device: device, theme: initialTheme)
             session = Some(value)
             lastSessionCapabilities = Some(value.extensions.capabilities)
             lastSessionCleanup = []
