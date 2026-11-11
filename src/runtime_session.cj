@@ -539,6 +539,11 @@ class RuntimeSession {
         }
         None
     }
+    func pendingOverlayCount(): Int64 {
+        var count = overlayPending.size
+        for (record in overlayRecords) { if (record.requested.isSome()) { count++ } }
+        count
+    }
     func openOverlay(owner: RuntimeNode, content: Component, options: OverlayOptions): OverlayHandle {
         requireStructure()
         if (!inOverlayDomain(owner)) { throw UIException("FocusOutsideDomain", "owner outside modal domain") }
@@ -558,22 +563,38 @@ class RuntimeSession {
             if (anchor.session.id != id) { throw UIException("WrongUIContext", "foreign anchor") }
             if (!overlayAncestor(owner,anchor)) { throw UIException("InvalidOverlayAnchor", "anchor must descend from owner") }
         }
-        if (commands.size + focusManager.requested.size + viewportCommands.size + overlayPending.size >= limits.structuralOpsPerBatch) {
+        if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
             throw UIException("CapacityExceeded", "command limit exceeded")
         }
         content.reserveMount()
         let record = OverlayRecord(this,owner.reference(),content,options)
         if (let Some(focused) <- focusManager.focused) { record.savedFocus = Some(focused.reference()) }
+        let candidates = focusManager.candidates()
+        record.savedOrder = Array<NodeRef>(candidates.size,{i => candidates[i].reference()})
         overlayRecords.add(record); overlayPending.add(record)
         OverlayHandle(record)
     }
     func closeOverlay(record: OverlayRecord, reason: OverlayCloseReason): Unit {
         requireStructure()
         if (record.terminal.isSome()) { return }
+        if (record.requested.isSome()) { return }
+        if (record.root.isSome() && commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
+            throw UIException("CapacityExceeded", "command limit exceeded")
+        }
         if (record.root.isNone()) {
             if (let Some(content) <- record.description) { content.releaseMount() }
             record.description = None; record.terminal = Some(reason); record.changed()
         } else { record.requested = Some(reason) }
+    }
+    func interactiveOverlayContent(content: Component): Bool {
+        if (content.isFocusable || content.keyHandler.isSome() || content.captureHandler.isSome() ||
+            content.targetDefault.isSome() || content.ancestorDefault.isSome()) { return true }
+        for (entry in content.declarations) {
+            if (let ChildDeclaration.DeclaredComponent(child) <- entry) {
+                if (interactiveOverlayContent(child)) { return true }
+            }
+        }
+        false
     }
     func commitOverlays(): Unit {
         let pending = overlayPending.toArray(); overlayPending.clear()
@@ -584,6 +605,9 @@ class RuntimeSession {
             let content = record.description.getOrThrow()
             content.releaseMount()
             preflight([content],Some(owner))
+            if (record.options.mode == OverlayMode.Passive && interactiveOverlayContent(content)) {
+                throw IllegalArgumentException("passive overlay cannot contain interactive nodes")
+            }
             let node = mount(content,Some(owner),owner.depth+1)
             node.overlayRoot = true
             node.overlayModal = record.options.mode == OverlayMode.Modal
@@ -596,6 +620,10 @@ class RuntimeSession {
             if (let Some(reason) <- record.requested) {
                 closeOverlayTree(record,reason,true)
             }
+        }
+        var index: Int64 = 0
+        while (index < overlayRecords.size) {
+            if (overlayRecords[index].terminal.isSome()) { overlayRecords.remove(at:index) } else { index++ }
         }
     }
     func closeOverlayTree(record: OverlayRecord, reason: OverlayCloseReason, restore: Bool): Unit {
@@ -610,18 +638,26 @@ class RuntimeSession {
                     if (overlayAncestor(root,reservedRoot.resolve())) { ownsFocus = true }
                 } }
             }
-            var i = overlayRecords.size
-            while (i > 0) {
-                i--; let child = overlayRecords[i]
+        }
+        let closing = ArrayList<OverlayRecord>(); closing.add(record)
+        if (let Some(root) <- rootNode) {
+            for (child in overlayRecords) {
                 if (!refEq(child,record) && child.terminal.isNone() && child.owner.isValid()) {
-                    if (overlayAncestor(root,child.owner.resolve())) { closeOverlayTree(child,OverlayCloseReason.OwnerGone,false) }
+                    if (overlayAncestor(root,child.owner.resolve())) { closing.add(child) }
                 }
             }
         }
-        record.requested = None; record.terminal = Some(reason); record.root = None
-        if (let Some(content) <- record.description) { content.releaseMount() }
-        record.description = None; record.changed()
-        if (let Some(root) <- rootNode) { unmount([root]) }
+        let roots = ArrayList<RuntimeNode>()
+        for (entry in closing) {
+            if (let Some(ref) <- entry.root) { if (ref.isValid()) { roots.add(ref.resolve()) } }
+            entry.requested = None
+            entry.terminal = Some(if (refEq(entry,record)) { reason } else { OverlayCloseReason.OwnerGone })
+            entry.root = None
+            if (let Some(content) <- entry.description) { content.releaseMount() }
+            entry.description = None; entry.changed()
+        }
+        if (!roots.isEmpty()) { unmount(roots.toArray()) }
+        if (record.owner.isValid()) { markChanged(record.owner.resolve(),ChangeKind.Layout) }
         if (ownsFocus && restore) {
             reservedLayer = None
             var next: ?RuntimeNode = None
@@ -631,17 +667,38 @@ class RuntimeSession {
                     if (focusManager.eligible(candidate) && inOverlayDomain(candidate)) { next = Some(candidate) }
                 }
             }
-            if (next.isNone() && record.owner.isValid()) {
-                let choices = ArrayList<RuntimeNode>(); focusManager.collect(record.owner.resolve(),choices)
+            var ancestor: ?RuntimeNode = if (record.owner.isValid()) { Some(record.owner.resolve()) } else { Option<RuntimeNode>.None }
+            while (next.isNone() && ancestor.isSome()) {
+                let current = ancestor.getOrThrow()
+                let choices = ArrayList<RuntimeNode>(); focusManager.collect(current,choices)
                 for (candidate in choices) { if (inOverlayDomain(candidate)) { next = Some(candidate); break } }
+                ancestor = current.parent
+            }
+            if (next.isNone()) {
+                var savedIndex: Int64 = -1
+                if (let Some(saved) <- record.savedFocus) {
+                    for (i in 0..record.savedOrder.size) { if (saved.sameNode(record.savedOrder[i])) { savedIndex = i; break } }
+                }
+                if (savedIndex >= 0) {
+                    var i = savedIndex + 1
+                    while (i < record.savedOrder.size && next.isNone()) {
+                        let ref = record.savedOrder[i]
+                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate) && inOverlayDomain(candidate)) { next = Some(candidate) } }
+                        i++
+                    }
+                    i = savedIndex - 1
+                    while (i >= 0 && next.isNone()) {
+                        let ref = record.savedOrder[i]
+                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate) && inOverlayDomain(candidate)) { next = Some(candidate) } }
+                        i--
+                    }
+                }
             }
             focusManager.set(next)
         }
     }
     func closeOwnedOverlays(roots: Array<RuntimeNode>): Unit {
-        var i = overlayRecords.size
-        while (i > 0) {
-            i--; let record = overlayRecords[i]
+        for (record in overlayRecords) {
             if (record.terminal.isSome() || !record.owner.isValid()) { continue }
             let owner = record.owner.resolve()
             for (root in roots) {
@@ -650,11 +707,14 @@ class RuntimeSession {
         }
     }
     func closeHiddenOverlays(): Unit {
-        var i = overlayRecords.size
-        while (i > 0) {
-            i--; let record = overlayRecords[i]
+        for (record in overlayRecords) {
             if (record.terminal.isSome() || !record.owner.isValid()) { continue }
-            if (!focusManager.effective(record.owner.resolve(),false)) { closeOverlayTree(record,OverlayCloseReason.OwnerHidden,true) }
+            if (!focusManager.effective(record.owner.resolve(),false)) {
+                closeOverlayTree(record,OverlayCloseReason.OwnerHidden,true)
+            } else if (let Some(anchor) <- record.options.anchor) {
+                if (!anchor.isValid()) { closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+                else if (!focusManager.effective(anchor.resolve(),false)) { closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+            }
         }
     }
     func applyOverlayFocus(): Unit {
@@ -706,7 +766,7 @@ class RuntimeSession {
                 }
             }
         }
-        if (commands.size + focusManager.requested.size + viewportCommands.size >= limits.structuralOpsPerBatch) {
+        if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
             throw UIException("CapacityExceeded", "command limit exceeded")
         }
         commands.add(command)
@@ -716,7 +776,7 @@ class RuntimeSession {
         viewportIntentSequence++; viewportIntentSequence
     }
     func enqueueFocus(ref: NodeRef): Unit {
-        if (commands.size + focusManager.requested.size + viewportCommands.size >= limits.structuralOpsPerBatch) {
+        if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
             throw UIException("CapacityExceeded", "command limit exceeded")
         }
         let order = nextViewportIntent()
@@ -746,7 +806,7 @@ class RuntimeSession {
     func enqueueViewport(command: ScrollCommand): Unit {
         requireContext()
         if (inLifecycle) { throw UIException("LifecycleReentry", "viewport command during lifecycle") }
-        if (commands.size + focusManager.requested.size + viewportCommands.size >= limits.structuralOpsPerBatch) {
+        if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
             throw UIException("CapacityExceeded", "command limit exceeded")
         }
         command.order = nextViewportIntent()

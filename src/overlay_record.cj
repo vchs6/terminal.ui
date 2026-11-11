@@ -10,6 +10,7 @@ class OverlayRecord <: ObservableSource {
     var description: ?Component
     var root: ?NodeRef = None
     var savedFocus: ?NodeRef = None
+    var savedOrder = Array<NodeRef>()
     var terminal: ?OverlayCloseReason = None
     var requested: ?OverlayCloseReason = None
     var focusPending = false
