@@ -156,7 +156,7 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-098 | REQ-003/004/007/009 | TASK-098 | 独立Canvas/focus/事件/caret测试与真实RED | pending |
+| AC-098 | REQ-003/004/007/009 | TASK-098 | 独立Canvas/focus/事件/caret测试与真实RED | passed（测试交付与真实缺API RED；[固定测试](../tests/interaction_a/README.md)，产品行为待099–102） |
 | AC-099 | REQ-003/004/007/009 | TASK-099 | 公共受控绘制与键盘目标实现 | pending |
 | AC-100 | REQ-003/004/007/009 | TASK-100 | A固定源码独立spec/quality | pending |
 | AC-101 | REQ-003/004/007/009 | TASK-101 | A独立执行/真实TTY/正常包消费 | pending |

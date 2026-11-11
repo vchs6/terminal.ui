@@ -15,3 +15,9 @@ root已采纳I015异步一次600ms、唯一decoder/writer、Unknown不改显隐�
 103准备者询问B Page大小写与wrap来源。root核input K002已有pageup/pagedown精确code并给B同文注记；物理解码仍114/117而非B新增。Theme T004已有TextWrap/Grapheme便捷成员且仅静态Text合法，当前缺actual088只记上游BLOCKED，不是新公共API缺口。
 
 2026-11-11主代理复核实际main41f29f1：080/084/088/152/097已接受并集成，098不依赖092。实际接口映射已固定于SDD task-098-final-brief：唯一style_resolver/ResolvedStyle与Component声明槽、RuntimeSession/RuntimeNode/NodeRef、Application设备root分派及InputDecoder、SessionExtensionState/terminal_bridge/native单writer、LayoutNode/Frame/Glyph路径；Focus/Canvas/caret仍为新实现目标。原prepare缺Theme/Session屏障已解除，独立Sol/high测试角色复用原interaction-a-tests资产正式完成098、真实缺A API RED及native剩余集成fixture；099仍等固定098产物，未开始产品修改。不新建资产审核轮，不重复旧有效验证。
+
+098正式测试完成：固定76b8dd1c118b0f3c58327b66581d67884cec2713已集成3755f5793096b2f76602f5f73433fbb3a4973b65并随main8f04983推送；19个旧非device Cj及94原literal输入/oracle不变，17A recipe已接线，87A行为仍UNEXECUTED、7Keyboard future明确保留。独立实际baseline/真实080084088152前置build/direct0，A正常编译RED74（72直接缺A名/成员，2级联），变更fixture10真实PTY zero/partial+POLLHUP+7负控0。测试rawmanifestd8868945cde1afacaec4eb70113f736e48a53e2b923e6ccc1a16cf365e62f538，root已核raw及固定hash；与后续100101102统一归档，不另起资产审核层。
+
+099执行准入：080084088152097及async092已接受且实际src集成；root实际接口映射与前置设计preflight/I014I015闭合，固定098与真实RED已交，角色独立/文件ownership明确，DQ03/06/10/13实际输入屏障解除。BASE3755f579，Terra/high原产品角色复用新interaction-implementation隔离树，已ACTUAL GO S1→S2→S3→S4；不改固定test/不派子代理。首值类型checkpoint3d15dc9正常根/独立公开消费者build/direct0，已推wip/linux-interaction-a，仅开发检查点不提前通过099/100102；继续Canvas/focus/caret，完整单元固定后100审全部BASE..HEAD。main产品仍已接受范围。
+
+准入定位清单的存放修正：实际接口映射在099 GO前已写SDD task-098-final-brief，但未同时落到本plan指定的公开interface-map.json路径。当前值类型检查点将相同定位内容/固定BASE3755 source逐SHA及受影响命令物化到docs/reviews/interaction/admission/interface-map.json；不追溯伪造文件存在时间，不改合同/实现路径。此前判定的实际输入未变化，后续100按公开清单核定位。

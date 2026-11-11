@@ -1,0 +1,137 @@
+{
+  "source": "3755f5793096b2f76602f5f73433fbb3a4973b65",
+  "kind": "controller actual-source location map, not a second specification",
+  "timing": "Map first recorded in task-098-final-brief before099 GO; formal public JSON materialized during099 value-types checkpoint. No claim it existed at the earlier timestamp.",
+  "accepted_inputs": [
+    "TASK080",
+    "TASK084",
+    "TASK088",
+    "TASK152",
+    "TASK097",
+    "TASK092 async"
+  ],
+  "new_A_APIs": "Canvas/PaintContext/FocusManager/caret not implemented in this baseline; exact signatures in canonical design A/I001-I015",
+  "signature_references": [
+    {
+      "path": "src/component.cj",
+      "symbol": "reference()/setStyle"
+    },
+    {
+      "path": "src/node_ref.cj",
+      "symbol": "children()/sameNode()/notify()"
+    },
+    {
+      "path": "src/application.cj",
+      "symbol": "snapshot()/dispatch()"
+    },
+    {
+      "path": "src/observable.cj",
+      "symbol": "get()/set()"
+    }
+  ],
+  "owners": [
+    {
+      "path": "src/component.cj",
+      "sha256": "ce304c8e9b575682ae5397ef60d373a98fc7346e4767a1fe219cbdd21886126a",
+      "responsibility": "declarations, reference(), cached properties and bindings"
+    },
+    {
+      "path": "src/node_ref.cj",
+      "sha256": "a1ba8bdca9693231064075b16184af794d5288ae1de8e34acb879a74e4ad7672",
+      "responsibility": "identity/lifetime/children()/notify()/structure mutation"
+    },
+    {
+      "path": "src/observable.cj",
+      "sha256": "9dfb578e88a75548fc76785dad65bd70d8a4ff0eaf2309d58a7ba68651a9758b",
+      "responsibility": "typed get()/set() dependencies"
+    },
+    {
+      "path": "src/runtime_node.cj",
+      "sha256": "d2d0fc8a2bab685ec7546990b56a829f907f7dcb37c7e1818d869398c920bea7",
+      "responsibility": "mounted identity and real child sequence"
+    },
+    {
+      "path": "src/runtime_session.cj",
+      "sha256": "20bf4e3295e6d759013e39e91164aa2cc1a2d1e692ca80fa2500bc7ee1f01742",
+      "responsibility": "stabilize/pump/produce/layout and frame caches/current theme commit"
+    },
+    {
+      "path": "src/style_resolver.cj",
+      "sha256": "c3286042f3f92387a997f3d7f718921d58c6205f07a48a33cc006e7ac49840e4",
+      "responsibility": "unique resolveStyle/chooseStyle/stateValue field-source resolver"
+    },
+    {
+      "path": "src/resolved_style.cj",
+      "sha256": "9ed10e9ad05000b1dc7033cdad1dd00df8575bf6814361b7853f5921a3f14e75",
+      "responsibility": "resolved fill/masks"
+    },
+    {
+      "path": "src/application.cj",
+      "sha256": "283de29939194c6c0ad1663ed02dc39f00a29a052209d7292c7340dd86ef8a43",
+      "responsibility": "public dispatch/snapshot and device event loop, currently root target"
+    },
+    {
+      "path": "src/input_decoder.cj",
+      "sha256": "81efc8f94112b4c33b904188d6fccda36d0997b2aafd6a8e689b51920b4e1dc1",
+      "responsibility": "single byte decoder, A adds only HT and unparameterized CSI Z"
+    },
+    {
+      "path": "src/layout.cj",
+      "sha256": "a4adaae8e689001a9239585ce61043e6858a6a9bc8320c8d7c3334d45d815188",
+      "responsibility": "shared mounted/detached render and allocation; root/subtree distinction"
+    },
+    {
+      "path": "src/layout_node.cj",
+      "sha256": "aaf6674009cf9edb58990185c41d63243eea1a1aff6ed8b863ff5f025c0e69fc",
+      "responsibility": "measure/arrange/paint"
+    },
+    {
+      "path": "src/frame.cj",
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+      "responsibility": "single cell/Unicode composition target"
+    },
+    {
+      "path": "src/session_extension_state.cj",
+      "sha256": "c0893f5b3fccec9b42d90cae1bd9ffd18bf5a712d2f35c7fb7f19de81abceef9",
+      "responsibility": "accepted session writer route/cleanup and ownership"
+    },
+    {
+      "path": "src/terminal_bridge.cj",
+      "sha256": "392647d4e4129df55e3d0c33dcda527c634cdda0499b208c74856d53c8073f90",
+      "responsibility": "existing native FFI/byte writer bridge"
+    },
+    {
+      "path": "native/cjtui_terminal.c",
+      "sha256": "45db4e1e16b3b2c76957fed1efb33076294a9b57038e2af3dac40b71c0d65410",
+      "responsibility": "raw mode/read/size/write/emitted/unsafe latch/close owner"
+    },
+    {
+      "path": "src/glyph_render_policy.cj",
+      "sha256": "df352bc39e7b21eceb7b5e9e5deb0773233663a7abf7037ffa3087b138678cbd",
+      "responsibility": "shared rendering glyph policy"
+    },
+    {
+      "path": "src/binding.cj",
+      "sha256": "80ee17b32fc9dfadcf0d25d2c0a05e25ce016e3b251d20829b8c73b2d804cc98",
+      "responsibility": "existing binding version/dependency protocol"
+    }
+  ],
+  "caret_bridge": "No existing caret controller; A I015 integrates single existing decoder and Session writer/native cleanup, not a second stdout owner. Current readByte idle100ms is preserved; new query deadline600ms is separate.",
+  "affected_existing_commands": [
+    "bash tests/runtime/run.sh core",
+    "bash tests/rich-text/run.sh",
+    "bash tests/themes/run.sh integration",
+    "node tests/themes/run-glyph-refresh.mjs session",
+    "bash tests/session_extensions/run.sh"
+  ],
+  "new_commands": [
+    "bash tests/interaction_a/run.sh"
+  ],
+  "frozen_tests": "76b8dd1c118b0f3c58327b66581d67884cec2713",
+  "test_raw_manifest_sha256": "d8868945cde1afacaec4eb70113f736e48a53e2b923e6ccc1a16cf365e62f538",
+  "design_preflight": [
+    "docs/reviews/R17/preflight/report.md",
+    "docs/reviews/R17/i015-preflight/findings.json"
+  ],
+  "limits": "Current expected missing-API RED is not implemented-A behavior; valid previous scope evidence reused under AGENTS11.1."
+}

@@ -84,7 +84,7 @@
 
 ## 1. Unit A
 
-- [ ] 1.1 TASK-098：冻结独立公共测试与RED；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
+- [x] 1.1 TASK-098：冻结独立公共测试与RED；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
 - [ ] 1.2 TASK-099：实现有限公共单元并自验；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
 - [ ] 1.3 TASK-100：固定源码独立规格与质量审查；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
 - [ ] 1.4 TASK-101：独立执行与正常制品消费；以本卡输入hash、A-01–A-06对应原始证据与明确结论验收。
@@ -104,10 +104,10 @@
 
 **L4:**
 
-- [ ] 1.1.1 TASK-098.S1：按A-01建立只import正式包的三小消费者与全部新增签名检查，固定test-only版本；在固定080/084/088基线正常build后直接编译取缺API RED，不能用桩冒充产品。
-- [ ] 1.1.2 TASK-098.S2：依据A-02–A-06自行写手工trace/网格、动态key与manual顺序、readonly/跨session、ctx过期、selected/宽簇/零维、异常清理/限制fixture；解码覆盖HT、CSI Z分块和SS3 Z/带参Z拒绝。
-- [ ] 1.1.3 TASK-098.S3：建立真实PTY输入/目标可视标记/caret输出/退出恢复fixture；记录原始输入、输出、尺寸和termios，不能只用Application.dispatch或改TERM充当设备证明。
-- [ ] 1.1.4 TASK-098.S4：冻结测试及运行说明，入口为bash tests/interaction_a/run.sh；明确其内部正常cjpm build和直接binary执行命令及预期exit，记录docs/reviews/interaction/A/TASK-098/manifest.json后交主代理。
+- [x] 1.1.1 TASK-098.S1：按A-01建立只import正式包的三小消费者与全部新增签名检查，固定test-only版本；在固定080/084/088基线正常build后直接编译取缺API RED，不能用桩冒充产品。
+- [x] 1.1.2 TASK-098.S2：依据A-02–A-06自行写手工trace/网格、动态key与manual顺序、readonly/跨session、ctx过期、selected/宽簇/零维、异常清理/限制fixture；解码覆盖HT、CSI Z分块和SS3 Z/带参Z拒绝。
+- [x] 1.1.3 TASK-098.S3：建立真实PTY输入/目标可视标记/caret输出/退出恢复fixture；记录原始输入、输出、尺寸和termios，不能只用Application.dispatch或改TERM充当设备证明。
+- [x] 1.1.4 TASK-098.S4：冻结测试及运行说明，入口为bash tests/interaction_a/run.sh；明确其内部正常cjpm build和直接binary执行命令及预期exit，记录docs/reviews/interaction/A/TASK-098/manifest.json后交主代理。
 
 ### TASK-099: 实现有限公共单元并自验
 
