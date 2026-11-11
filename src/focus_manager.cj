@@ -26,7 +26,10 @@ class FocusManager <: ObservableSource {
         }
         true
     }
-    func eligible(node: RuntimeNode): Bool { node.component.isFocusable && effective(node,true) }
+    func eligible(node: RuntimeNode): Bool {
+        if (!node.component.isFocusable) { return false }
+        effective(node,true)
+    }
     func collect(node: RuntimeNode, result: ArrayList<RuntimeNode>): Unit {
         if (eligible(node)) { result.add(node) }
         for (entry in node.sequence) {

@@ -639,13 +639,16 @@ public class Application {
                 case Some(first) => failure = Some(aggregateCleanup(first, error))
             }
         }
-        if (probe.known() && probe.managed && probe.currentVisible != probe.originalVisible && unsafe { cjt_output_unsafe() } == 0) {
-            if (let Some(work) <- deviceSession) {
-                let restore = if (probe.originalVisible) { "\u{1b}[?25h" } else { "\u{1b}[?25l" }
-                let written = writeTerminal(restore,work,false)
-                if (written.issue != SessionIssue.NoIssue) {
-                    let error = SessionDeviceException(unsafe { cjt_output_unsafe() } != 0)
-                    match (failure) { case None => failure = Some(error); case Some(first) => failure = Some(aggregateCleanup(first,error)) }
+        if (probe.known() && probe.managed && probe.currentVisible != probe.originalVisible) {
+            let outputSafe = unsafe { cjt_output_unsafe() } == 0
+            if (outputSafe) {
+                if (let Some(work) <- deviceSession) {
+                    let restore = if (probe.originalVisible) { "\u{1b}[?25h" } else { "\u{1b}[?25l" }
+                    let written = writeTerminal(restore,work,false)
+                    if (written.issue != SessionIssue.NoIssue) {
+                        let error = SessionDeviceException(unsafe { cjt_output_unsafe() } != 0)
+                        match (failure) { case None => failure = Some(error); case Some(first) => failure = Some(aggregateCleanup(first,error)) }
+                    }
                 }
             }
         }
