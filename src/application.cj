@@ -474,6 +474,8 @@ public class Application {
         }
         var failure: ?Exception = None
         var restoreFailed = false
+        let probe = CaretProbe()
+        var deviceSession: ?RuntimeSession = None
         try {
             startSession(true)
             running = readSession().isSome()
@@ -486,6 +488,23 @@ public class Application {
                 case None => capabilities.colorMode
             }
             let decoder = InputDecoder()
+            decoder.caretProbe = Some(probe)
+            if (let Some(work) <- readSession()) {
+                deviceSession = Some(work)
+                if (!work.isStopping()) {
+                    let before = unsafe { cjt_monotonic_ms() }
+                    if (before < 0 || before > Int64.Max - 600) { probe.status = "unknown-clock" }
+                    else {
+                        let written = writeTerminal("\u{1b}[?25$p",work,true)
+                        if (written.issue == SessionIssue.Cancelled) { running = false }
+                        else if (written.issue == SessionIssue.AllocationFailed) { throw Exception("caret query allocation failed") }
+                        else if (written.issue != SessionIssue.NoIssue) { work.recordDeviceFailure(); work.throwDeviceFailure() }
+                        else { probe.begin(unsafe { cjt_monotonic_ms() }) }
+                    }
+                    lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
+                }
+            }
+            var lastInput: Int64 = -1
             var baseline: ?Frame = None
             var baselineProfile = terminalRenderProfile(capabilities, initialMode)
             var baselineGlyphMode = configuredGlyphMode
@@ -510,7 +529,9 @@ public class Application {
                 let profile = terminalRenderProfile(capabilities, mode, glyphPolicy: glyphPolicy)
                 let work = current()
                 let hasThemeCandidate = themeLoader.hasCandidate(work.id)
-                if (work.needsWork() || hasThemeCandidate || width != previousWidth || height != previousHeight || mode != baselineProfile
+                if (probe.status == "pending") { probe.check(unsafe { cjt_monotonic_ms() }) }
+                lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
+                if (work.needsWork() || hasThemeCandidate || probe.dirty || width != previousWidth || height != previousHeight || mode != baselineProfile
                     .colorMode || requestGlyphMode != baselineGlyphMode || baseline.isNone()) {
                     let frame = snapshotWithPolicy(width, height, glyphPolicy)
                     if (readSession().isNone() || work.isStopping()) {
@@ -523,6 +544,13 @@ public class Application {
                     match (baseline) {
                         case None => output = frame.toAnsiForTerminal(profile)
                         case Some(old) => output = frame.changesSinceForTerminal(old, baselineProfile, profile)
+                    }
+                    let logicalCaret = work.caret
+                    if (logicalCaret.visible) {
+                        output += "\u{1b}[${logicalCaret.y + 1};${logicalCaret.x + 1}H"
+                    }
+                    if (probe.known() && (probe.dirty || logicalCaret.visible != probe.currentVisible)) {
+                        output += if (logicalCaret.visible) { "\u{1b}[?25h" } else { "\u{1b}[?25l" }
                     }
                     var committed = true
                     if (!output.isEmpty()) {
@@ -540,6 +568,7 @@ public class Application {
                     }
                     if (committed) {
                         baseline = Some(frame)
+                        probe.committed(logicalCaret.visible)
                         baselineProfile = profile
                         baselineGlyphMode = requestGlyphMode
                         previousWidth = width
@@ -551,7 +580,20 @@ public class Application {
                 if (readSession().isNone() || work.isStopping()) {
                     break
                 }
-                let value = readByte(100)
+                var readTimeout: Int64 = 100
+                if (probe.status == "pending") {
+                    let now = unsafe { cjt_monotonic_ms() }
+                    probe.check(now)
+                    if (probe.status == "pending") { readTimeout = lesser(readTimeout,probe.deadline - now) }
+                    lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
+                }
+                if (decoder.state == 1 && lastInput >= 0) {
+                    let now = unsafe { cjt_monotonic_ms() }
+                    if (now >= lastInput) { readTimeout = lesser(readTimeout,greater(0,100 - (now - lastInput))) }
+                }
+                let value = readByte(Int32(readTimeout))
+                if (probe.status == "pending") { probe.check(unsafe { cjt_monotonic_ms() }) }
+                lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
                 if (value == -2) {
                     running = false
                     continue
@@ -560,10 +602,14 @@ public class Application {
                     throw Exception("terminal input failed")
                 }
                 let event = if (value >= 0) {
-                    decoder.feed(value)
-                } else {
-                    decoder.timeout()
-                }
+                    let decoded = decoder.feed(value)
+                    if (decoder.state == 1) { lastInput = unsafe { cjt_monotonic_ms() } } else { lastInput = -1 }
+                    decoded
+                } else if (decoder.state == 1 && lastInput >= 0) {
+                    let now = unsafe { cjt_monotonic_ms() }
+                    if (now < 0 || now - lastInput >= 100) { lastInput = -1; decoder.timeout() } else { Option<KeyEvent>.None }
+                } else { Option<KeyEvent>.None }
+                lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
                 match (event) {
                     case Some(key) =>
                         if (let Some(target) <- activeTarget()) {
@@ -585,6 +631,16 @@ public class Application {
             match (failure) {
                 case None => failure = Some(error)
                 case Some(first) => failure = Some(aggregateCleanup(first, error))
+            }
+        }
+        if (probe.known() && probe.managed && probe.currentVisible != probe.originalVisible && unsafe { cjt_output_unsafe() } == 0) {
+            if (let Some(work) <- deviceSession) {
+                let restore = if (probe.originalVisible) { "\u{1b}[?25h" } else { "\u{1b}[?25l" }
+                let written = writeTerminal(restore,work,false)
+                if (written.issue != SessionIssue.NoIssue) {
+                    let error = SessionDeviceException(unsafe { cjt_output_unsafe() } != 0)
+                    match (failure) { case None => failure = Some(error); case Some(first) => failure = Some(aggregateCleanup(first,error)) }
+                }
             }
         }
         try {} finally {

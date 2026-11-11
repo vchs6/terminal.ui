@@ -5,6 +5,9 @@ class InputDecoder {
     var state: Int64 = 0 // normal, ESC, CSI, string, string-ESC, ESC intermediate
     var parameter = false
     var csiIntroducer = false
+    var caretProbe: ?CaretProbe = None
+    var caretMatch: Int64 = 0
+    var caretDigit: Int32 = -1
     var stringRemaining: Int32 = 0
     var stringC2 = false
     var remaining: Int32 = 0
@@ -69,6 +72,27 @@ class InputDecoder {
             return feed(first)
         }
         if (state == 2) {
+            if (caretMatch > 0) {
+                let matches = match (caretMatch) {
+                    case 1 => first == 63
+                    case 2 => first == 50
+                    case 3 => first == 53
+                    case 4 => first == 59
+                    case 5 => first >= 48 && first <= 52
+                    case 6 => first == 36
+                    case 7 => first == 121
+                    case _ => false
+                }
+                if (matches) {
+                    if (caretMatch == 5) { caretDigit = first - 48 }
+                    if (caretMatch == 7) {
+                        state = 0; caretMatch = 0
+                        if (let Some(probe) <- caretProbe) { probe.report(caretDigit) }
+                        return None
+                    }
+                    caretMatch++
+                } else { caretMatch = 0 }
+            }
             if (first >= 64 && first <= 126) {
                 state = 0
                 if (!parameter) {
@@ -102,6 +126,7 @@ class InputDecoder {
                 state = 2
                 parameter = false
                 csiIntroducer = first == 91
+                caretMatch = if (csiIntroducer && caretProbe.isSome()) { 1 } else { 0 }
             } else if (first == 93 || first == 80 || first == 88 || first == 94 || first == 95) {
                 state = 3
                 stringRemaining = 0
@@ -132,6 +157,7 @@ class InputDecoder {
                         state = 2
                         parameter = false
                         csiIntroducer = false
+                        caretMatch = 0
                     }
                     return None
                 }
@@ -178,6 +204,7 @@ class InputDecoder {
             state = 2
             parameter = false
             csiIntroducer = false
+            caretMatch = 0
         }
         None
     }
