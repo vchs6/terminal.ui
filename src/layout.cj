@@ -102,6 +102,7 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
     let axes = viewport ?? ScrollAxes.Off
     let implicitRoot = runtimeNode.parent.isNone() && !n.session.temporary && !c.viewportDeclared
     let virtualY = axes.vertical() && (!implicitRoot || n.rootFallback)
+    n.constrainCanvasFinal(innerW,innerH,axes)
     let naturalContentW = greater(0,n.naturalW - lesser(n.naturalW,n.horizontalInsets()))
     let neededH = n.scrollingHeight()
     let naturalContentH = greater(0,neededH - lesser(neededH,n.verticalInsets()))
@@ -111,11 +112,18 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
     let contentW = if (axes.horizontal() || zeroViewportWidth) { greater(innerW,naturalContentW) } else { innerW }
     let contentH = if (virtualY) { greater(innerH,naturalContentH) } else { innerH }
     let state = runtimeNode.viewportState
-    if (n.previewTheme.isNone() && viewport.isSome()) { state.update(innerW,innerH,contentW,contentH,axes) }
+    if (n.previewTheme.isNone() && n.commitGeometry && viewport.isSome()) {
+        if (state.width != innerW || state.height != innerH) {
+            if (let Some(caret) <- n.session.lastCaret) {
+                if (n.session.viewportContains(runtimeNode,caret.owner)) { n.session.focusedViewportResized = true }
+            }
+        }
+        state.update(innerW,innerH,contentW,contentH,axes)
+    }
     let scrollX = if (axes.horizontal()) { state.offsetX } else { 0 }
     let scrollY = if (axes.vertical()) { state.offsetY } else { 0 }
     let ix = signedAdd(boxX,-scrollX); let iy = signedAdd(boxY,-scrollY)
-    if (n.previewTheme.isNone()) {
+    if (n.previewTheme.isNone() && n.commitGeometry) {
         runtimeNode.layoutWidth = w; runtimeNode.layoutHeight = h
         runtimeNode.contentX = leftPad; runtimeNode.contentY = topPad
         runtimeNode.logicalWidth = contentW; runtimeNode.logicalHeight = contentH
@@ -220,7 +228,7 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
         } else {
             sizes[i]
         }
-        if (n.previewTheme.isNone()) {
+        if (n.previewTheme.isNone() && n.commitGeometry) {
             let childNode = child.component.readMount().getOrThrow()
             childNode.layoutX = if (c.kind == 2) { cursor } else { crossOffset }
             childNode.layoutY = if (c.kind == 2) { crossOffset } else { cursor }
@@ -300,7 +308,7 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
     let node = if (sessionRoot && session.measuredLayout.isSome()) {
         session.measuredLayout.getOrThrow()
     } else {
-        let measured = LayoutNode(root, session, themeSeed(session.theme), isRoot: true)
+        let measured = LayoutNode(root, session, themeSeed(session.theme), isRoot: true, commitGeometry: reuse)
         measured.measure()
         if (sessionRoot) { session.measuredLayout = Some(measured) }
         measured
@@ -319,8 +327,24 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         node.rootFallback = summary.present
     } else { node.rootFallback = false }
     // Resolve current finite geometry before consuming deferred ensure intents.
+    if (reuse) { session.focusedViewportResized = false }
     layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
-    applyPendingViewportEnsures(session)
+    if (reuse) {
+        if (session.focusedViewportResized) {
+            if (let Some(previousCaret) <- session.lastCaret) {
+                var hasExplicit = false
+                for (command in session.pendingEnsures) {
+                    if (command.target.sameNode(previousCaret.owner)) { hasExplicit = true }
+                }
+                if (!hasExplicit && previousCaret.owner.isValid()) {
+                    let ensure = ScrollCommand(previousCaret.owner,1,0,0,
+                        Some(Rect(previousCaret.localX,previousCaret.localY,1,1)),ScrollAlign.Nearest,ScrollAlign.Nearest)
+                    ensure.order = session.nextViewportIntent(); session.pendingEnsures.add(ensure)
+                }
+            }
+        }
+        applyPendingViewportEnsures(session)
+    }
     paint(node, frame, 0, 0, w, h, 0, 0, width, height)
     frame
 }

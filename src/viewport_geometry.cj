@@ -39,7 +39,10 @@ func applyViewportEnsure(session: RuntimeSession, command: ScrollCommand): Unit 
     var x: Int64 = 0; var y: Int64 = 0; var w: Int64 = 0; var h: Int64 = 0
     if (let Some(rect) <- command.rect) {
         if (rect.x < 0 || rect.y < 0 || rect.x > node.logicalWidth || rect.y > node.logicalHeight ||
-            rect.width > node.logicalWidth-rect.x || rect.height > node.logicalHeight-rect.y) { return }
+            rect.width > node.logicalWidth-rect.x || rect.height > node.logicalHeight-rect.y) {
+            if (command.explicitEnsure) { throw UIException("InvalidProperty", "rectangle outside content") }
+            return
+        }
         x = rect.x; y = rect.y; w = rect.width; h = rect.height
     } else {
         x = node.layoutX; y = node.layoutY; w = node.layoutWidth; h = node.layoutHeight

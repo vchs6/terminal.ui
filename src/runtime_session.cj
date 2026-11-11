@@ -61,6 +61,7 @@ class RuntimeSession {
     var trackCaret = false
     var pendingCaret: ?CaretRequest = None
     var lastCaret: ?CaretRequest = None
+    var focusedViewportResized = false
     var caret = CaretSnapshot(Option<NodeRef>.None,0,0,false)
     var cached: ?Frame = None
     var measuredLayout: ?LayoutNode = None
@@ -572,6 +573,11 @@ class RuntimeSession {
         if (node.component.viewportDeclared) { return Some(node.component.viewportAxes) }
         if (node.parent.isNone() && !temporary) { return Some(ScrollAxes.Vertical) }
         None
+    }
+    func geometryMayChange(): Bool {
+        lock.lock()
+        try { !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty() }
+        finally { lock.unlock() }
     }
     func enqueueViewport(command: ScrollCommand): Unit {
         requireContext()
@@ -1199,19 +1205,6 @@ class RuntimeSession {
                 }
             } finally {
                 lock.unlock()
-            }
-            if ((width != cachedWidth || height != cachedHeight) && cachedWidth >= 0 && cachedHeight >= 0) {
-                if (let Some(previousCaret) <- lastCaret) {
-                    var hasExplicit = false
-                    for (command in pendingEnsures) {
-                        if (command.target.sameNode(previousCaret.owner)) { hasExplicit = true }
-                    }
-                    if (!hasExplicit && previousCaret.owner.isValid()) {
-                        let ensure = ScrollCommand(previousCaret.owner,1,0,0,
-                            Some(Rect(previousCaret.localX,previousCaret.localY,1,1)),ScrollAlign.Nearest,ScrollAlign.Nearest)
-                        ensure.order = nextViewportIntent(); pendingEnsures.add(ensure)
-                    }
-                }
             }
             pendingCaret = None; trackCaret = true
             let frame: Frame

@@ -90,13 +90,20 @@ public class NodeRef {
         if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "ensure during lifecycle") }
         if (!value.session.focusManager.effective(value,false)) { throw UIException("InvalidProperty", "hidden target") }
         if (let Some(area) <- rect) {
-            if (area.x < 0 || area.y < 0 || area.x > value.logicalWidth || area.y > value.logicalHeight ||
-                area.width > value.logicalWidth-area.x || area.height > value.logicalHeight-area.y) {
+            if (area.x < 0 || area.y < 0) {
                 throw UIException("InvalidProperty", "rectangle outside content")
+            }
+            if (!value.session.geometryMayChange()) {
+                if (area.x > value.logicalWidth || area.y > value.logicalHeight ||
+                    area.width > value.logicalWidth-area.x || area.height > value.logicalHeight-area.y) {
+                    throw UIException("InvalidProperty", "rectangle outside content")
+                }
             }
             if (area.width == 0 || area.height == 0) { return }
         }
-        value.session.enqueueViewport(ScrollCommand(this,1,0,0,rect,horizontal,vertical))
+        let command = ScrollCommand(this,1,0,0,rect,horizontal,vertical)
+        command.explicitEnsure = true
+        value.session.enqueueViewport(command)
     }
     public func notify(change: ChangeKind): Unit {
         if (structureEvaluation.get().isSome()) {

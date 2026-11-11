@@ -23,13 +23,15 @@ func allocateMain(n: LayoutNode, mainSize: Int64, naturalBasis!: Bool = false): 
         } else {
             cc.minH
         }
+        let scrollHeight = if (naturalBasis && c.kind != 2) { child.scrollBasisHeight() } else { child.naturalH }
         if (cc.weight > 0) {
             if (totalWeight > Int64.Max - cc.weight) {
                 throw IllegalArgumentException("weight sum overflow")
             }
             totalWeight += cc.weight
             flexCount++
-            let natural = if (c.kind == 2) { cc.fixedW ?? child.naturalW } else { cc.fixedH ?? child.naturalH }
+            let natural = if (c.kind == 2) { cc.fixedW ?? child.naturalW }
+                else { cc.fixedH ?? scrollHeight }
             bases[i] = if (naturalBasis) { greater(minimum,natural) } else { lesser(minimum, mainSize) }
             if (totalBase > Int64.Max - bases[i]) {
                 throw IllegalArgumentException("minimum sum overflow")
@@ -39,7 +41,7 @@ func allocateMain(n: LayoutNode, mainSize: Int64, naturalBasis!: Bool = false): 
             let desired = if (c.kind == 2) {
                 cc.fixedW ?? child.naturalW
             } else {
-                cc.fixedH ?? child.naturalH
+                cc.fixedH ?? scrollHeight
             }
             sizes[i] = lesser(mainSize, greater(desired, minimum))
             occupied = sat(occupied, sizes[i])
