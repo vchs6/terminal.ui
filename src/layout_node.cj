@@ -16,6 +16,13 @@ class LayoutNode {
     var naturalW: Int64 = 0
     var naturalH: Int64 = 0
     var constrainedWidth: ?Int64 = None
+    var assignedWidth: Int64 = 0
+    var assignedHeight: Int64 = 0
+    var rootFallback = false
+    var plannedMain: Int64 = -1
+    var plannedNatural = false
+    var plannedSizes = Array<Int64>()
+    var plannedFree: Int64 = 0
     init(c: Component, session: RuntimeSession, inherited: Style, isRoot!: Bool = false, previewTheme!: ?Theme = None) {
         this.session = session
         component = c
@@ -95,13 +102,14 @@ class LayoutNode {
     // Recalculate only the natural heights affected by the allocated width.
     func constrain(width: Int64): Unit {
         if (constrainedWidth == Some(width)) { return }
-        constrainedWidth = Some(width)
+        constrainedWidth = Some(width); plannedMain = -1
         if (previewTheme.isNone()) { session.recordMeasure() }
         let available = innerWidth(width)
         if (component.kind == 3) {
             let canvas = component.canvas.getOrThrow()
             if (previewTheme.isNone()) {
-                let limits = Constraints(maxWidth:Some(available))
+                let axes = session.viewportAxes(component.readMount().getOrThrow()) ?? ScrollAxes.Off
+                let limits = Constraints(maxWidth:if (axes.horizontal()) { Option<Int64>.None } else { Some(available) })
                 component.canvasBinding("canvas-measure").trackConstrained({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
             }
             naturalH = sat(canvas.measured.height,verticalInsets())
@@ -128,6 +136,30 @@ class LayoutNode {
             }
             naturalH = sat(height,verticalInsets())
         }
+    }
+    // Reuse the same negotiated child sizes for paint after the finite pass.
+    func mainAllocation(mainSize: Int64, naturalBasis: Bool): (Array<Int64>, Int64) {
+        if (plannedMain == mainSize && plannedNatural == naturalBasis && plannedSizes.size == children.size) {
+            return (plannedSizes,plannedFree)
+        }
+        let (sizes,free) = allocateMain(this,mainSize,naturalBasis:naturalBasis)
+        plannedMain = mainSize; plannedNatural = naturalBasis; plannedSizes = sizes; plannedFree = free
+        (sizes,free)
+    }
+    // Natural size for the scrolling axis, stopping at fixed-size or nested
+    // vertical viewport boundaries while retaining the same LayoutNode tree.
+    func scrollingHeight(): Int64 {
+        if (component.kind == 0 || component.kind == 3) { return naturalH }
+        var content: Int64 = 0
+        for (child in children) {
+            let measured = if (let Some(fixed) <- child.resolved.fixedH) { fixed }
+                else if (child.component.viewportDeclared && child.component.viewportAxes.vertical()) { child.assignedHeight }
+                else { child.scrollingHeight() }
+            let height = greater(measured,child.resolved.minH)
+            if (component.kind == 1) { content = sat(content,height) } else { content = greater(content,height) }
+        }
+        if (component.kind == 1) { content = addGaps(content) }
+        sat(content,verticalInsets())
     }
     // Compare against the geometry that produced the cached measurement.
     func behaviorChangesLayout(inherited: Style, isRoot: Bool): Bool {

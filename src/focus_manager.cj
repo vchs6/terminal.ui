@@ -8,6 +8,7 @@ class FocusManager <: ObservableSource {
     var focused: ?RuntimeNode = None
     var previous = Array<RuntimeNode>()
     let requested = ArrayList<NodeRef>()
+    let requestedOrders = ArrayList<Int64>()
     init() {}
     func observe(): Unit {
         lock.lock(); let observed = version; lock.unlock()
@@ -43,12 +44,16 @@ class FocusManager <: ObservableSource {
         if (let Some(root) <- session.getOrThrow().root.readMount()) { collect(root,result) }
         result.toArray()
     }
-    func set(next: ?RuntimeNode): Unit {
+    func set(next: ?RuntimeNode, order!: Int64 = 0): Unit {
         let oldId = if (let Some(old) <- focused) { old.id } else { -1 }
         let newId = if (let Some(value) <- next) { value.id } else { -1 }
         if (oldId == newId) { return }
         let old = focused
         focused = next
+        session.getOrThrow().lastCaret = None
+        if (let Some(target) <- next) {
+            if (!session.getOrThrow().temporary) { session.getOrThrow().queueFocusEnsure(target.reference(),order) }
+        } else { session.getOrThrow().pendingFocusEnsure = None }
         if (let Some(previousNode) <- old) { session.getOrThrow().markChanged(previousNode,ChangeKind.Style) }
         session.getOrThrow().invalidateBehaviorStyle()
         changed()
@@ -56,7 +61,7 @@ class FocusManager <: ObservableSource {
     func cancelInvalidRequests(): Unit {
         var i: Int64 = 0
         while (i < requested.size) {
-            if (!requested[i].isValid()) { requested.remove(at:i) } else { i++ }
+            if (!requested[i].isValid()) { requested.remove(at:i); requestedOrders.remove(at:i) } else { i++ }
         }
     }
     func repair(): Unit {
@@ -80,13 +85,13 @@ class FocusManager <: ObservableSource {
                 set(replacement)
             }
         } else if (!current.isEmpty() && !session.getOrThrow().isStopping()) { set(Some(current[0])) }
-        for (ref in requested) {
+        for (i in 0..requested.size) {
             session.getOrThrow().useStructuralOps(1)
-            let node = ref.resolve()
+            let node = requested[i].resolve()
             if (!eligible(node)) { throw UIException("InvalidFocusTarget","node cannot receive focus") }
-            set(Some(node))
+            set(Some(node),order:requestedOrders[i])
         }
-        requested.clear()
+        requested.clear(); requestedOrders.clear()
         previous = current
     }
     func move(backward: Bool): Bool {

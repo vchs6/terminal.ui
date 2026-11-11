@@ -56,6 +56,48 @@ public class NodeRef {
         if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "focus during lifecycle") }
         value.session.enqueueFocus(this)
     }
+    public func viewportSnapshot(): ViewportSnapshot {
+        let value = resolve(); value.session.requireReadContext()
+        if (value.session.viewportAxes(value).isNone()) { throw UIException("InvalidProperty", "node has no viewport") }
+        value.viewportState.snapshot()
+    }
+    public func scrollTo(x: Int64, y: Int64): Bool {
+        let value = resolve(); value.session.requireContext()
+        if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "scroll during lifecycle") }
+        if (x < 0 || y < 0) { throw IllegalArgumentException("negative scroll position") }
+        let axes = match (value.session.viewportAxes(value)) {
+            case Some(current) => current
+            case None => throw UIException("InvalidProperty", "node has no viewport")
+        }
+        let state = value.viewportState; let snap = state.snapshot()
+        let oldX = state.queuedX ?? snap.offsetX; let oldY = state.queuedY ?? snap.offsetY
+        let nextX = if (axes.horizontal()) { lesser(x,greater(0,snap.contentWidth-snap.width)) } else { 0 }
+        let nextY = if (axes.vertical()) { lesser(y,greater(0,snap.contentHeight-snap.height)) } else { 0 }
+        if (nextX == oldX && nextY == oldY) { return false }
+        value.session.enqueueViewport(ScrollCommand(this,0,nextX,nextY,Option<Rect>.None,ScrollAlign.Nearest,ScrollAlign.Nearest))
+        true
+    }
+    public func scrollBy(dx: Int64, dy: Int64): Bool {
+        let value = resolve(); value.session.requireContext()
+        if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "scroll during lifecycle") }
+        if (value.session.viewportAxes(value).isNone()) { throw UIException("InvalidProperty", "node has no viewport") }
+        let state = value.viewportState; let snap = state.snapshot()
+        scrollTo(greater(0,signedAdd(state.queuedX ?? snap.offsetX,dx)),greater(0,signedAdd(state.queuedY ?? snap.offsetY,dy)))
+    }
+    public func ensureVisible(rect!: ?Rect = None, horizontal!: ScrollAlign = ScrollAlign.Nearest,
+        vertical!: ScrollAlign = ScrollAlign.Nearest): Unit {
+        let value = resolve(); value.session.requireContext()
+        if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "ensure during lifecycle") }
+        if (!value.session.focusManager.effective(value,false)) { throw UIException("InvalidProperty", "hidden target") }
+        if (let Some(area) <- rect) {
+            if (area.x < 0 || area.y < 0 || area.x > value.logicalWidth || area.y > value.logicalHeight ||
+                area.width > value.logicalWidth-area.x || area.height > value.logicalHeight-area.y) {
+                throw UIException("InvalidProperty", "rectangle outside content")
+            }
+            if (area.width == 0 || area.height == 0) { return }
+        }
+        value.session.enqueueViewport(ScrollCommand(this,1,0,0,rect,horizontal,vertical))
+    }
     public func notify(change: ChangeKind): Unit {
         if (structureEvaluation.get().isSome()) {
             throw UIException("ReentrantStructure", "node notification during structure evaluation")

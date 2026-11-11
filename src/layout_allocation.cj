@@ -1,7 +1,7 @@
 package cjtui
 
 // Shared allocation for measurement and painting.
-func allocateMain(n: LayoutNode, mainSize: Int64): (Array<Int64>, Int64) {
+func allocateMain(n: LayoutNode, mainSize: Int64, naturalBasis!: Bool = false): (Array<Int64>, Int64) {
     let c = n.component
     let r = n.resolved
     let count = n.children.size
@@ -29,7 +29,8 @@ func allocateMain(n: LayoutNode, mainSize: Int64): (Array<Int64>, Int64) {
             }
             totalWeight += cc.weight
             flexCount++
-            bases[i] = lesser(minimum, mainSize)
+            let natural = if (c.kind == 2) { cc.fixedW ?? child.naturalW } else { cc.fixedH ?? child.naturalH }
+            bases[i] = if (naturalBasis) { greater(minimum,natural) } else { lesser(minimum, mainSize) }
             if (totalBase > Int64.Max - bases[i]) {
                 throw IllegalArgumentException("minimum sum overflow")
             }

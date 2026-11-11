@@ -11,6 +11,13 @@ func signedAdd(a: Int64, b: Int64): Int64 {
     }
 }
 
+func signedSubtract(a: Int64, b: Int64): Int64 {
+    if (b == Int64.Min) {
+        return signedAdd(signedAdd(a, Int64.Max), 1)
+    }
+    signedAdd(a, -b)
+}
+
 func containsAxis(start: Int64, length: Int64, point: Int64): Bool {
     if (length <= 0 || point < start) { return false }
     point < signedAdd(start, length)
