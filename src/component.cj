@@ -21,134 +21,141 @@ public open class Component {
     var value: RichText
     let descriptionId = uniqueRuntimeId()
     let declarations = ArrayList<ChildDeclaration>()
-    var fg: ?Color = None
-    var bg: ?Color = None
-    var isBold: ?Bool = None
-    var isDim: ?Bool = None
-    var isItalic: ?Bool = None
-    var isUnderline: ?Bool = None
-    var isInverse: ?Bool = None
-    var isStrikethrough: ?Bool = None
-    var fixedW: ?Int64 = None
-    var fixedH: ?Int64 = None
-    var minW: Int64 = 0
-    var minH: Int64 = 0
-    var weight: Int64 = 0
-    var borderStyle: BorderStyle = BorderStyle.None
-    var borderFg: ?Color = None
-    var shadowEnabled = false
-    var shadowX: Int64 = 1
-    var shadowY: Int64 = 1
-    var shadowStyle = Style()
-    var pad: Int64 = 0
-    var spacing: Int64 = 0
-    var align: Alignment = Alignment.Start
-    var justify: Alignment = Alignment.Start
-    var textAlignment: Alignment = Alignment.Start
     func nonnegative(v: Int64): Unit {
         if (v < 0) {
             throw IllegalArgumentException("negative layout value")
         }
     }
-    public func width(v: Int64): Component {
+    var styleDeclaration = StyleRule()
+    var styleUses = Array<StyleUse>()
+    var styleStates = VisualStates()
+    var styleRole = ThemeRole.Generic
+    var paddingBindLeft = false
+    var paddingBindTop = false
+    var paddingBindRight = false
+    var paddingBindBottom = false
+    func detachPaddingSlot(name: String, state: VisualState): Unit {
+        if (state != VisualState.Normal) { return }
+        match (name) {
+            case "paddingLeft" => paddingBindLeft = false
+            case "paddingTop" => paddingBindTop = false
+            case "paddingRight" => paddingBindRight = false
+            case "paddingBottom" => paddingBindBottom = false
+            case _ => return
+        }
+        if (!paddingBindLeft && !paddingBindTop && !paddingBindRight && !paddingBindBottom) { removeBinding("padding") }
+    }
+    func slotName<T>(key: StyleKey<T>, state: VisualState): String {
+        let suffix = match (state) { case VisualState.Normal => "normal"; case VisualState.Focused => "focused"; case VisualState.Selected => "selected"; case VisualState.Disabled => "disabled" }
+        "style:" + key.name + ":" + suffix
+    }
+    func styleChange(name: String): ChangeKind {
+        if (name == "width" || name == "height" || name == "minWidth" || name == "minHeight" ||
+            name == "layoutWeight" || name == "paddingLeft" || name == "paddingTop" || name == "paddingRight" ||
+            name == "paddingBottom" || name == "gap" || name == "alignItems" || name == "justifyContent" ||
+            name == "border" || name == "textWrap") { ChangeKind.Layout } else { ChangeKind.Style }
+    }
+    func declarationChange(name: String, old: StyleRule, next: StyleRule, state: VisualState): ChangeKind {
+        if (name == "border") {
+            let before = old.value(StyleKeys.border,state:state)
+            let after = next.value(StyleKeys.border,state:state)
+            match ((before,after)) {
+                case (StyleValue.Value(a),StyleValue.Value(b)) =>
+                    if ((a == BorderStyle.None) == (b == BorderStyle.None)) { return ChangeKind.Style }
+                case _ => ()
+            }
+        }
+        styleChange(name)
+    }
+    func checkStyleTarget(name: String): Unit {
+        let textOnly = name == "textAlign" || name == "textWrap" || name == "textOverflow"
+        let containerOnly = name == "gap" || name == "alignItems" || name == "justifyContent"
+        if ((textOnly && kind != 0) || (containerOnly && kind == 0)) {
+            throw UIException("InvalidProperty", "style key is not supported by this primitive")
+        }
+    }
+    func applyStyle<T>(key: StyleKey<T>, value: StyleValue<T>, state: VisualState): Unit {
+        let next = styleDeclaration.withValue(key,value,state:state)
+        if (next != styleDeclaration) {
+            let change = declarationChange(key.name,styleDeclaration,next,state)
+            styleDeclaration = next; markChanged(change)
+        }
+    }
+    public func setStyle<T>(key: StyleKey<T>, value: StyleValue<T>, state!: VisualState = VisualState.Normal): Component {
+        checkStyleTarget(key.name)
+        let next = styleDeclaration.withValue(key,value,state:state)
+        detachPaddingSlot(key.name,state); removeBinding(slotName(key,state))
+        if (next != styleDeclaration) {
+            let change = declarationChange(key.name,styleDeclaration,next,state)
+            styleDeclaration = next; markChanged(change)
+        }
+        this
+    }
+    public func setStyle<T>(key: StyleKey<T>, value: () -> StyleValue<T>, state!: VisualState = VisualState.Normal): Component {
+        checkStyleTarget(key.name); detachPaddingSlot(key.name,state)
+        bind(slotName(key,state),styleChange(key.name),{=> applyStyle(key,value(),state)})
+    }
+    public func styles(value: Array<StyleUse>): Component {
+        removeBinding("styles"); applyStyles(value); this
+    }
+    func applyStyles(value: Array<StyleUse>): Unit {
+        var same = value.size == styleUses.size
+        if (same) { for (i in 0..value.size) { if (value[i] != styleUses[i]) { same = false; break } } }
+        if (!same) { styleUses = value.clone(); markChanged(ChangeKind.Layout) }
+    }
+    public func styles(value: () -> Array<StyleUse>): Component { bind("styles",ChangeKind.Layout,{=>applyStyles(value())}) }
+    public func visualStates(value: VisualStates): Component {
+        removeBinding("visualStates"); applyStates(value); this
+    }
+    func applyStates(value: VisualStates): Unit {
+        if (styleStates != value) { styleStates = value; markChanged(ChangeKind.Layout) }
+    }
+    public func visualStates(value: () -> VisualStates): Component { bind("visualStates",ChangeKind.Layout,{=>applyStates(value())}) }
+    public func themeRole(value: ThemeRole): Component {
         checkDefinitionChange()
-        nonnegative(v)
-        removeBinding("width")
-        markChanged(ChangeKind.Layout)
-        fixedW = v
+        mountLock.lock()
+        try {
+            if (everMounted || mounted.isSome() || mounting) { throw UIException("InvalidProperty","role is immutable after mounting") }
+            styleRole = value
+        } finally { mountLock.unlock() }
         this
     }
-    public func height(v: Int64): Component {
-        checkDefinitionChange()
-        nonnegative(v)
-        removeBinding("height")
-        markChanged(ChangeKind.Layout)
-        fixedH = v
-        this
-    }
-    public func widthAuto(): Component {
-        removeBinding("width"); markChanged(ChangeKind.Layout)
-        fixedW = None
-        this
-    }
-    public func heightAuto(): Component {
-        removeBinding("height"); markChanged(ChangeKind.Layout)
-        fixedH = None
-        this
-    }
-    public func minWidth(v: Int64): Component {
-        checkDefinitionChange()
-        nonnegative(v)
-        removeBinding("minWidth")
-        markChanged(ChangeKind.Layout)
-        minW = v
-        this
-    }
-    public func minHeight(v: Int64): Component {
-        checkDefinitionChange()
-        nonnegative(v)
-        removeBinding("minHeight")
-        markChanged(ChangeKind.Layout)
-        minH = v
-        this
-    }
-    public func layoutWeight(v: Int64): Component {
-        checkDefinitionChange()
-        nonnegative(v)
-        removeBinding("layoutWeight")
-        markChanged(ChangeKind.Layout)
-        weight = v
-        this
-    }
-    public func padding(v: Int64): Component {
-        checkDefinitionChange()
-        nonnegative(v)
+    public func width(v: Int64): Component { setStyle(StyleKeys.width,StyleValue<Dimension>.Value(Dimension.Cells(v))) }
+    public func height(v: Int64): Component { setStyle(StyleKeys.height,StyleValue<Dimension>.Value(Dimension.Cells(v))) }
+    public func widthAuto(): Component { setStyle(StyleKeys.width,StyleValue<Dimension>.Unset) }
+    public func heightAuto(): Component { setStyle(StyleKeys.height,StyleValue<Dimension>.Unset) }
+    public func minWidth(v: Int64): Component { setStyle(StyleKeys.minWidth,StyleValue<Int64>.Value(v)) }
+    public func minHeight(v: Int64): Component { setStyle(StyleKeys.minHeight,StyleValue<Int64>.Value(v)) }
+    public func layoutWeight(v: Int64): Component { setStyle(StyleKeys.layoutWeight,StyleValue<Int64>.Value(v)) }
+    public func padding(v: Int64): Component { padding(left:v,top:v,right:v,bottom:v) }
+    public func padding(left!: Int64 = 0,top!: Int64 = 0,right!: Int64 = 0,bottom!: Int64 = 0): Component {
+        nonnegative(left); nonnegative(top); nonnegative(right); nonnegative(bottom)
         removeBinding("padding")
-        markChanged(ChangeKind.Layout)
-        pad = v
-        this
+        setStyle(StyleKeys.paddingLeft,StyleValue<Int64>.Value(left))
+        setStyle(StyleKeys.paddingTop,StyleValue<Int64>.Value(top))
+        setStyle(StyleKeys.paddingRight,StyleValue<Int64>.Value(right))
+        setStyle(StyleKeys.paddingBottom,StyleValue<Int64>.Value(bottom)); this
     }
     public func gap(v: Int64): Component {
-        checkDefinitionChange()
-        nonnegative(v);
-        if (kind == 0) {
-            throw IllegalArgumentException("gap on text")
-        };
-        removeBinding("gap")
-        markChanged(ChangeKind.Layout)
-        spacing = v
-        this
+        if (kind == 0) { throw IllegalArgumentException("gap on text") }
+        setStyle(StyleKeys.gap,StyleValue<Int64>.Value(v))
     }
     public func alignItems(v: Alignment): Component {
-        checkDefinitionChange()
-        if (kind == 0) {
-            throw IllegalArgumentException("alignment on text")
-        };
-        removeBinding("alignItems")
-        markChanged(ChangeKind.Layout)
-        align = v
-        this
+        if (kind == 0) { throw IllegalArgumentException("alignment on text") }
+        setStyle(StyleKeys.alignItems,StyleValue<Alignment>.Value(v))
     }
     public func justifyContent(v: Alignment): Component {
-        checkDefinitionChange()
-        if (kind == 0 || v == Alignment.Stretch) {
-            throw IllegalArgumentException("invalid justification")
-        };
-        removeBinding("justifyContent")
-        markChanged(ChangeKind.Layout)
-        justify = v
-        this
+        if (kind == 0) { throw IllegalArgumentException("justification on text") }
+        setStyle(StyleKeys.justifyContent,StyleValue<Alignment>.Value(v))
     }
     public func textAlign(v: Alignment): Component {
-        checkDefinitionChange()
-        if (kind != 0 || v == Alignment.Stretch) {
-            throw IllegalArgumentException("invalid text alignment")
-        };
-        removeBinding("textAlign")
-        markChanged(ChangeKind.Layout)
-        textAlignment = v
-        this
+        if (kind != 0) { throw IllegalArgumentException("invalid text alignment") }
+        setStyle(StyleKeys.textAlign,StyleValue<Alignment>.Value(v))
     }
+    public func wrap(value: TextWrap): Component { setStyle(StyleKeys.textWrap,StyleValue<TextWrap>.Value(value)) }
+    public func wrap(value: () -> TextWrap): Component { setStyle(StyleKeys.textWrap,{=> StyleValue<TextWrap>.Value(value())}) }
+    public func overflow(value: TextOverflow): Component { setStyle(StyleKeys.textOverflow,StyleValue<TextOverflow>.Value(value)) }
+    public func overflow(value: () -> TextOverflow): Component { setStyle(StyleKeys.textOverflow,{=> StyleValue<TextOverflow>.Value(value())}) }
     public init() { this.kind = 1; this.value = RichText("") }
     public open func build(): Unit {}
     protected func finishConstruction(): Unit {
@@ -200,94 +207,39 @@ public open class Component {
     public func onKeyCapture(handler: (UIKeyEvent) -> Unit): Component { checkDefinitionChange(); captureHandler = Some(handler); this }
     init(kind: Int64, value: String) {
         this.kind = kind
+        this.styleRole = if (kind == 0) { ThemeRole.Text } else if (kind == 1) { ThemeRole.Column } else { ThemeRole.Row }
         this.value = RichText(value)
     }
-    public func border(value: BorderStyle): Component {
-        removeBinding("border")
-        markChanged(ChangeKind.Layout)
-        borderStyle = value
-        this
-    }
-    public func borderColor(value: Color): Component {
-        removeBinding("borderColor")
-        markChanged(ChangeKind.Style)
-        borderFg = value
-        this
-    }
+    public func border(value: BorderStyle): Component { setStyle(StyleKeys.border,StyleValue<BorderStyle>.Value(value)) }
+    public func borderColor(value: Color): Component { setStyle(StyleKeys.borderForeground,StyleValue<Color>.Value(value)) }
     public func shadow(offsetX!: Int64 = 1, offsetY!: Int64 = 1, style!: Style = Style(), enabled!: Bool = true): Component {
-        removeBinding("shadow"); markChanged(ChangeKind.Style)
-        shadowX = offsetX
-        shadowY = offsetY
-        shadowStyle = style
-        shadowEnabled = enabled
+        setStyle(StyleKeys.shadowOffsetX,StyleValue<Int64>.Value(offsetX))
+        setStyle(StyleKeys.shadowOffsetY,StyleValue<Int64>.Value(offsetY))
+        setStyle(StyleKeys.shadowEnabled,StyleValue<Bool>.Value(enabled))
+        setStyle(StyleKeys.shadowForeground,StyleValue<Color>.Value(style.foreground))
+        setStyle(StyleKeys.shadowBackground,StyleValue<Color>.Value(style.background))
+        setStyle(StyleKeys.shadowBold,StyleValue<Bool>.Value(style.bold))
+        setStyle(StyleKeys.shadowDim,StyleValue<Bool>.Value(style.dim))
+        setStyle(StyleKeys.shadowItalic,StyleValue<Bool>.Value(style.italic))
+        setStyle(StyleKeys.shadowUnderline,StyleValue<Bool>.Value(style.underline))
+        setStyle(StyleKeys.shadowInverse,StyleValue<Bool>.Value(style.inverse))
+        setStyle(StyleKeys.shadowStrikethrough,StyleValue<Bool>.Value(style.strikethrough))
         this
     }
-    public func foreground(value: Color): Component {
-        removeBinding("foreground")
-        markChanged(ChangeKind.Style)
-        fg = value
-        this
-    }
-    public func background(value: Color): Component {
-        removeBinding("background")
-        markChanged(ChangeKind.Style)
-        bg = value
-        this
-    }
-    public func bold(): Component {
-        bold(true)
-    }
-    public func bold(value: Bool): Component {
-        removeBinding("bold")
-        markChanged(ChangeKind.Style)
-        isBold = value
-        this
-    }
-    public func dim(): Component {
-        dim(true)
-    }
-    public func dim(value: Bool): Component {
-        removeBinding("dim")
-        markChanged(ChangeKind.Style)
-        isDim = value
-        this
-    }
-    public func italic(): Component {
-        italic(true)
-    }
-    public func italic(value: Bool): Component {
-        removeBinding("italic")
-        markChanged(ChangeKind.Style)
-        isItalic = value
-        this
-    }
-    public func underline(): Component {
-        underline(true)
-    }
-    public func underline(value: Bool): Component {
-        removeBinding("underline")
-        markChanged(ChangeKind.Style)
-        isUnderline = value
-        this
-    }
-    public func inverse(): Component {
-        inverse(true)
-    }
-    public func inverse(value: Bool): Component {
-        removeBinding("inverse")
-        markChanged(ChangeKind.Style)
-        isInverse = value
-        this
-    }
-    public func strikethrough(): Component {
-        strikethrough(true)
-    }
-    public func strikethrough(value: Bool): Component {
-        removeBinding("strikethrough")
-        markChanged(ChangeKind.Style)
-        isStrikethrough = value
-        this
-    }
+    public func foreground(value: Color): Component { setStyle(StyleKeys.foreground,StyleValue<Color>.Value(value)) }
+    public func background(value: Color): Component { setStyle(StyleKeys.background,StyleValue<Color>.Value(value)) }
+    public func bold(): Component { bold(true) }
+    public func bold(value: Bool): Component { setStyle(StyleKeys.bold,StyleValue<Bool>.Value(value)) }
+    public func dim(): Component { dim(true) }
+    public func dim(value: Bool): Component { setStyle(StyleKeys.dim,StyleValue<Bool>.Value(value)) }
+    public func italic(): Component { italic(true) }
+    public func italic(value: Bool): Component { setStyle(StyleKeys.italic,StyleValue<Bool>.Value(value)) }
+    public func underline(): Component { underline(true) }
+    public func underline(value: Bool): Component { setStyle(StyleKeys.underline,StyleValue<Bool>.Value(value)) }
+    public func inverse(): Component { inverse(true) }
+    public func inverse(value: Bool): Component { setStyle(StyleKeys.inverse,StyleValue<Bool>.Value(value)) }
+    public func strikethrough(): Component { strikethrough(true) }
+    public func strikethrough(value: Bool): Component { setStyle(StyleKeys.strikethrough,StyleValue<Bool>.Value(value)) }
     func removeBinding(name: String): Unit {
         checkDefinitionChange()
         var index: Int64 = 0
@@ -362,66 +314,41 @@ public open class Component {
         this.value = next
         markChanged(change)
     }
-    public func width(value: () -> Int64): Component {
-        bind("width", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (fixedW != next) { fixedW = next; markChanged(ChangeKind.Layout) } })
-    }
-    public func height(value: () -> Int64): Component {
-        bind("height", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (fixedH != next) { fixedH = next; markChanged(ChangeKind.Layout) } })
-    }
-    public func minWidth(value: () -> Int64): Component {
-        bind("minWidth", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (minW != next) { minW = next; markChanged(ChangeKind.Layout) } })
-    }
-    public func minHeight(value: () -> Int64): Component {
-        bind("minHeight", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (minH != next) { minH = next; markChanged(ChangeKind.Layout) } })
-    }
-    public func layoutWeight(value: () -> Int64): Component {
-        bind("layoutWeight", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (weight != next) { weight = next; markChanged(ChangeKind.Layout) } })
-    }
+    public func width(value: () -> Int64): Component { setStyle(StyleKeys.width,{=> StyleValue<Dimension>.Value(Dimension.Cells(value()))}) }
+    public func height(value: () -> Int64): Component { setStyle(StyleKeys.height,{=> StyleValue<Dimension>.Value(Dimension.Cells(value()))}) }
+    public func minWidth(value: () -> Int64): Component { setStyle(StyleKeys.minWidth,{=> StyleValue<Int64>.Value(value())}) }
+    public func minHeight(value: () -> Int64): Component { setStyle(StyleKeys.minHeight,{=> StyleValue<Int64>.Value(value())}) }
+    public func layoutWeight(value: () -> Int64): Component { setStyle(StyleKeys.layoutWeight,{=> StyleValue<Int64>.Value(value())}) }
+    public func gap(value: () -> Int64): Component { setStyle(StyleKeys.gap,{=> StyleValue<Int64>.Value(value())}) }
+    public func alignItems(value: () -> Alignment): Component { setStyle(StyleKeys.alignItems,{=> StyleValue<Alignment>.Value(value())}) }
+    public func justifyContent(value: () -> Alignment): Component { setStyle(StyleKeys.justifyContent,{=> StyleValue<Alignment>.Value(value())}) }
+    public func textAlign(value: () -> Alignment): Component { setStyle(StyleKeys.textAlign,{=> StyleValue<Alignment>.Value(value())}) }
+    public func border(value: () -> BorderStyle): Component { setStyle(StyleKeys.border,{=> StyleValue<BorderStyle>.Value(value())}) }
+    public func borderColor(value: () -> Color): Component { setStyle(StyleKeys.borderForeground,{=> StyleValue<Color>.Value(value())}) }
+    public func foreground(value: () -> Color): Component { setStyle(StyleKeys.foreground,{=> StyleValue<Color>.Value(value())}) }
+    public func background(value: () -> Color): Component { setStyle(StyleKeys.background,{=> StyleValue<Color>.Value(value())}) }
+    public func bold(value: () -> Bool): Component { setStyle(StyleKeys.bold,{=> StyleValue<Bool>.Value(value())}) }
+    public func dim(value: () -> Bool): Component { setStyle(StyleKeys.dim,{=> StyleValue<Bool>.Value(value())}) }
+    public func italic(value: () -> Bool): Component { setStyle(StyleKeys.italic,{=> StyleValue<Bool>.Value(value())}) }
+    public func underline(value: () -> Bool): Component { setStyle(StyleKeys.underline,{=> StyleValue<Bool>.Value(value())}) }
+    public func inverse(value: () -> Bool): Component { setStyle(StyleKeys.inverse,{=> StyleValue<Bool>.Value(value())}) }
+    public func strikethrough(value: () -> Bool): Component { setStyle(StyleKeys.strikethrough,{=> StyleValue<Bool>.Value(value())}) }
     public func padding(value: () -> Int64): Component {
-        bind("padding", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (pad != next) { pad = next; markChanged(ChangeKind.Layout) } })
+        checkDefinitionChange()
+        removeBinding(slotName(StyleKeys.paddingLeft,VisualState.Normal))
+        removeBinding(slotName(StyleKeys.paddingTop,VisualState.Normal))
+        removeBinding(slotName(StyleKeys.paddingRight,VisualState.Normal))
+        removeBinding(slotName(StyleKeys.paddingBottom,VisualState.Normal))
+        paddingBindLeft = true; paddingBindTop = true; paddingBindRight = true; paddingBindBottom = true
+        bind("padding",ChangeKind.Layout,{=>
+            let next = value(); nonnegative(next)
+            if (paddingBindLeft) { applyStyle(StyleKeys.paddingLeft,StyleValue<Int64>.Value(next),VisualState.Normal) }
+            if (paddingBindTop) { applyStyle(StyleKeys.paddingTop,StyleValue<Int64>.Value(next),VisualState.Normal) }
+            if (paddingBindRight) { applyStyle(StyleKeys.paddingRight,StyleValue<Int64>.Value(next),VisualState.Normal) }
+            if (paddingBindBottom) { applyStyle(StyleKeys.paddingBottom,StyleValue<Int64>.Value(next),VisualState.Normal) }
+        })
     }
-    public func gap(value: () -> Int64): Component {
-        bind("gap", ChangeKind.Layout, { => let next = value(); nonnegative(next); if (kind == 0) { throw IllegalArgumentException("gap on text") }; if (spacing != next) { spacing = next; markChanged(ChangeKind.Layout) } })
-    }
-    public func alignItems(value: () -> Alignment): Component {
-        bind("alignItems", ChangeKind.Layout, { => let next = value(); if (kind == 0) { throw IllegalArgumentException("alignment on text") }; if (align != next) { align = next; markChanged(ChangeKind.Layout) } })
-    }
-    public func justifyContent(value: () -> Alignment): Component {
-        bind("justifyContent", ChangeKind.Layout, { => let next = value(); if (kind == 0 || next == Alignment.Stretch) { throw IllegalArgumentException("invalid justification") }; if (justify != next) { justify = next; markChanged(ChangeKind.Layout) } })
-    }
-    public func textAlign(value: () -> Alignment): Component {
-        bind("textAlign", ChangeKind.Layout, { => let next = value(); if (kind != 0 || next == Alignment.Stretch) { throw IllegalArgumentException("invalid text alignment") }; if (textAlignment != next) { textAlignment = next; markChanged(ChangeKind.Layout) } })
-    }
-    public func border(value: () -> BorderStyle): Component {
-        bind("border", ChangeKind.Layout, { => let next = value(); if (borderStyle != next) { borderStyle = next; markChanged(ChangeKind.Layout) } })
-    }
-    public func borderColor(value: () -> Color): Component {
-        bind("borderColor", ChangeKind.Style, { => let next = value(); if (borderFg != next) { borderFg = next; markChanged(ChangeKind.Style) } })
-    }
-    public func foreground(value: () -> Color): Component {
-        bind("foreground", ChangeKind.Style, { => let next = value(); if (fg != next) { fg = next; markChanged(ChangeKind.Style) } })
-    }
-    public func background(value: () -> Color): Component {
-        bind("background", ChangeKind.Style, { => let next = value(); if (bg != next) { bg = next; markChanged(ChangeKind.Style) } })
-    }
-    public func bold(value: () -> Bool): Component {
-        bind("bold", ChangeKind.Style, { => let next = value(); if (isBold != next) { isBold = next; markChanged(ChangeKind.Style) } })
-    }
-    public func dim(value: () -> Bool): Component {
-        bind("dim", ChangeKind.Style, { => let next = value(); if (isDim != next) { isDim = next; markChanged(ChangeKind.Style) } })
-    }
-    public func italic(value: () -> Bool): Component {
-        bind("italic", ChangeKind.Style, { => let next = value(); if (isItalic != next) { isItalic = next; markChanged(ChangeKind.Style) } })
-    }
-    public func underline(value: () -> Bool): Component {
-        bind("underline", ChangeKind.Style, { => let next = value(); if (isUnderline != next) { isUnderline = next; markChanged(ChangeKind.Style) } })
-    }
-    public func inverse(value: () -> Bool): Component {
-        bind("inverse", ChangeKind.Style, { => let next = value(); if (isInverse != next) { isInverse = next; markChanged(ChangeKind.Style) } })
-    }
-    public func strikethrough(value: () -> Bool): Component {
-        bind("strikethrough", ChangeKind.Style, { => let next = value(); if (isStrikethrough != next) { isStrikethrough = next; markChanged(ChangeKind.Style) } })
-    }
+
 }
 
 public func Text(value: String): Component {

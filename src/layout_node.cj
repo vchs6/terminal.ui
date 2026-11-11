@@ -5,14 +5,16 @@ import std.collection.ArrayList
 class LayoutNode {
     let session: RuntimeSession
     let component: Component
+    var resolved: ResolvedStyle
     let children = ArrayList<LayoutNode>()
     let lines = ArrayList<ArrayList<String>>()
     let widths = ArrayList<Int64>()
     var naturalW: Int64 = 0
     var naturalH: Int64 = 0
-    init(c: Component, session: RuntimeSession) {
+    init(c: Component, session: RuntimeSession, inherited: Style, isRoot!: Bool = false) {
         this.session = session
         component = c
+        resolved = resolveStyle(c,session.theme,inherited,isRoot)
     }
     func measure(): Unit {
         session.recordMeasure()
@@ -44,11 +46,11 @@ class LayoutNode {
                     if (!child.isVisible) {
                         continue
                     }
-                    let n = LayoutNode(child, session);
+                    let n = LayoutNode(child, session, resolved.style);
                     n.measure();
                     children.add(n)
-                    let cw = greater(child.fixedW ?? n.naturalW, child.minW)
-                    let ch = greater(child.fixedH ?? n.naturalH, child.minH)
+                    let cw = greater(n.resolved.fixedW ?? n.naturalW, n.resolved.minW)
+                    let ch = greater(n.resolved.fixedH ?? n.naturalH, n.resolved.minH)
                     if (c.kind == 1) {
                         naturalW = greater(naturalW, cw)
                         naturalH = sat(naturalH, ch)
@@ -60,18 +62,18 @@ class LayoutNode {
             }
             for (_ in 1..children.size) {
                 if (c.kind == 1) {
-                    naturalH = sat(naturalH, c.spacing)
+                    naturalH = sat(naturalH, resolved.spacing)
                 } else {
-                    naturalW = sat(naturalW, c.spacing)
+                    naturalW = sat(naturalW, resolved.spacing)
                 }
             }
         }
-        let inset = sat(c.pad, if (c.borderStyle == BorderStyle.None) {
-            0
-        } else {
-            1
-        })
-        naturalW = sat(sat(naturalW, inset), inset)
-        naturalH = sat(sat(naturalH, inset), inset)
+        let border = if (resolved.borderStyle == BorderStyle.None) { 0 } else { 1 }
+        naturalW = sat(sat(naturalW,sat(resolved.padLeft,border)),sat(resolved.padRight,border))
+        naturalH = sat(sat(naturalH,sat(resolved.padTop,border)),sat(resolved.padBottom,border))
+    }
+    func refresh(inherited: Style, isRoot: Bool): Unit {
+        resolved = resolveStyle(component,session.theme,inherited,isRoot)
+        for (child in children) { child.refresh(resolved.style,false) }
     }
 }

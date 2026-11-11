@@ -23,6 +23,7 @@ let activeSession = ThreadLocal<RuntimeSession>()
 class RuntimeSession {
     let root: Component
     let limits: RuntimeLimits
+    let theme: Theme
     let id: Int64
     let threadId: Int64
     let threadNonce: Int64
@@ -61,8 +62,9 @@ class RuntimeSession {
     var cachedHeight: Int64 = -1
     init(root: Component, limits: RuntimeLimits, temporary!: Bool = false,
         application!: ?Application = Option<Application>.None, sessionOptions!: SessionOptions = SessionOptions(),
-        device!: Bool = false) {
+        device!: Bool = false, theme!: Theme = Theme.preset(ThemePreset.Classic)) {
         this.root = root
+        this.theme = theme
         this.limits = limits
         this.temporary = temporary
         this.application = match (application) {
