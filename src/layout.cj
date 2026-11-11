@@ -339,14 +339,18 @@ func overlayGeometry(session: RuntimeSession, record: OverlayRecord, frame: Fram
     let h = lesser(bottom-top,greater(node.resolved.fixedH ?? node.naturalH,node.resolved.minH))
     var x = signedAdd(left,(right-left-w)/2); var y = signedAdd(top,(bottom-top-h)/2)
     if (let Some(anchorRef) <- record.options.anchor) {
-        if (!anchorRef.isValid()) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true); return None }
+        if (!anchorRef.isValid()) {
+            if (commit) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+            return None
+        }
         let anchor = anchorRef.resolve()
         let ax = greater(left,greater(anchor.screenX,anchor.clipLeft))
         let ay = greater(top,greater(anchor.screenY,anchor.clipTop))
         let ar = lesser(right,lesser(signedAdd(anchor.screenX,anchor.layoutWidth),anchor.clipRight))
         let ab = lesser(bottom,lesser(signedAdd(anchor.screenY,anchor.layoutHeight),anchor.clipBottom))
         if (ar <= ax || ab <= ay || !session.focusManager.effective(anchor,false)) {
-            session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true); return None
+            if (commit) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+            return None
         }
         match (record.options.placement) {
             case OverlayPlacement.BelowStart =>
