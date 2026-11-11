@@ -53,6 +53,11 @@ public class NodeRef {
         if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "focus during lifecycle") }
         value.session.enqueueFocus(this)
     }
+    public func openOverlay(content: Component, options!: OverlayOptions = OverlayOptions()): OverlayHandle {
+        let value = resolve()
+        value.session.requireStructure()
+        value.session.openOverlay(value,content,options)
+    }
     public func viewportSnapshot(): ViewportSnapshot {
         let value = resolve(); value.session.requireReadContext()
         if (value.session.viewportAxes(value).isNone()) { throw UIException("InvalidProperty", "node has no viewport") }

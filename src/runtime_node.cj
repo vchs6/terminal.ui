@@ -7,6 +7,7 @@ class RuntimeNode {
     let session: RuntimeSession
     let id: Int64
     let parent: ?RuntimeNode
+    var overlayRoot = false
     let sequence = ArrayList<ChildEntry>()
     let viewportState = ViewportState()
     // Geometry is in the parent's logical content coordinates.

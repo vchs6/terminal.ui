@@ -39,6 +39,8 @@ class RuntimeSession {
     let posts = ArrayList<QueuedAction>()
     let commands = ArrayList<StructuralCommand>()
     let viewportCommands = ArrayList<ScrollCommand>()
+    let overlayRecords = ArrayList<OverlayRecord>()
+    let overlayPending = ArrayList<OverlayRecord>()
     let pendingEnsures = ArrayList<ScrollCommand>()
     var pendingFocusEnsure: ?ScrollCommand = None
     var viewportIntentSequence: Int64 = 0
@@ -503,6 +505,72 @@ class RuntimeSession {
             throw UIException("StaleReference", "node session is inactive")
         }
     }
+    func overlayAncestor(ancestor: RuntimeNode, node: RuntimeNode): Bool {
+        var cursor: ?RuntimeNode = Some(node)
+        while (let Some(current) <- cursor) {
+            if (current.id == ancestor.id) { return true }
+            cursor = current.parent
+        }
+        false
+    }
+    func openOverlay(owner: RuntimeNode, content: Component, options: OverlayOptions): OverlayHandle {
+        requireStructure()
+        if (options.mode == OverlayMode.Modal && !options.takeFocus) { throw IllegalArgumentException("modal requires focus") }
+        if (options.mode == OverlayMode.Passive && options.takeFocus) { throw IllegalArgumentException("passive cannot take focus") }
+        if (options.mode == OverlayMode.Modal && options.anchor.isSome()) { throw IllegalArgumentException("modal anchor") }
+        if (options.placement != OverlayPlacement.Center && options.anchor.isNone()) { throw IllegalArgumentException("placement requires anchor") }
+        if (let Some(hostRef) <- options.host) {
+            let host = hostRef.resolve()
+            if (host.session.id != id) { throw UIException("WrongUIContext", "foreign host") }
+            if (!host.component.isOverlayHost || !focusManager.effective(host,false) || !overlayAncestor(host,owner)) {
+                throw UIException("InvalidOverlayHost", "host must be a visible ancestor")
+            }
+        }
+        if (let Some(anchorRef) <- options.anchor) {
+            let anchor = anchorRef.resolve()
+            if (anchor.session.id != id) { throw UIException("WrongUIContext", "foreign anchor") }
+            if (!overlayAncestor(owner,anchor)) { throw UIException("InvalidOverlayAnchor", "anchor must descend from owner") }
+        }
+        if (commands.size + focusManager.requested.size + viewportCommands.size + overlayPending.size >= limits.structuralOpsPerBatch) {
+            throw UIException("CapacityExceeded", "command limit exceeded")
+        }
+        content.reserveMount()
+        let record = OverlayRecord(this,owner.reference(),content,options)
+        if (let Some(focused) <- focusManager.focused) { record.savedFocus = Some(focused.reference()) }
+        overlayRecords.add(record); overlayPending.add(record)
+        OverlayHandle(record)
+    }
+    func closeOverlay(record: OverlayRecord, reason: OverlayCloseReason): Unit {
+        requireStructure()
+        if (record.terminal.isSome()) { return }
+        if (record.root.isNone()) {
+            if (let Some(content) <- record.description) { content.releaseMount() }
+            record.description = None; record.terminal = Some(reason); record.changed()
+        } else { record.requested = Some(reason) }
+    }
+    func commitOverlays(): Unit {
+        let pending = overlayPending.toArray(); overlayPending.clear()
+        for (record in pending) {
+            if (record.terminal.isSome()) { continue }
+            useStructuralOps(1)
+            let owner = record.owner.resolve()
+            let content = record.description.getOrThrow()
+            content.releaseMount()
+            preflight([content],Some(owner))
+            let node = mount(content,Some(owner),owner.depth+1)
+            node.overlayRoot = true
+            publish([node],[])
+            record.root = Some(node.reference()); record.description = None; record.changed()
+            markChanged(owner,ChangeKind.Layout)
+        }
+        for (record in overlayRecords) {
+            if (let Some(reason) <- record.requested) {
+                record.requested = None
+                if (let Some(ref) <- record.root) { if (ref.isValid()) { unmount([ref.resolve()]) } }
+                record.root = None; record.terminal = Some(reason); record.changed()
+            }
+        }
+    }
     func enqueue(command: StructuralCommand): Unit {
         requireStructure()
         if (batchDepth == 0) {
@@ -919,6 +987,7 @@ class RuntimeSession {
             } finally {
                 committing = false
             }
+            commitOverlays()
             evaluateReady(cutoff)
             // Plans are prepared under dependency tracking, committed after evaluation has
             // restored its guards. Lifecycle writes can therefore schedule the next pass.
@@ -1286,6 +1355,13 @@ class RuntimeSession {
         if (!active) {
             return
         }
+        for (record in overlayRecords) {
+            if (record.terminal.isNone()) {
+                if (record.root.isNone()) { if (let Some(content) <- record.description) { content.releaseMount() } }
+                record.description = None; record.root = None; record.terminal = Some(OverlayCloseReason.OwnerGone); record.changed()
+            }
+        }
+        overlayPending.clear()
         lock.lock()
         try {
             active = false
