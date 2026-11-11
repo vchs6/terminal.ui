@@ -250,7 +250,12 @@ public func render(root: Component, width: Int64, height: Int64, glyphMode!: Gly
         try {
             let frame = session.enter({ =>
                 session.stabilize(turnCutoff)
-                session.validationWidth = width; session.validationHeight = height
+                // Only an application-root render updates the viewport used
+                // to validate a global theme candidate. Subtree export sizes
+                // belong to that export, not to the application root.
+                if (root.descriptionId == session.root.descriptionId) {
+                    session.validationWidth = width; session.validationHeight = height
+                }
                 session.applyPendingTheme()
                 session.selectLayoutGlyphPolicy(offlineGlyphPolicy(glyphMode))
                 let result = renderLayout(root, width, height, session)
