@@ -43,6 +43,7 @@ func validateThemeCandidate(session: RuntimeSession, theme: Theme): (?ThemeDiagn
                 }
             }
         }
+        validateCandidateLayout(session,theme)
     } catch (_: UIException) {
         return (Some(ThemeDiagnostic("InvalidCandidate",theme.sourceName,"","style cannot be applied to the current tree",Option<ThemeLocation>.None,"unavailable")), false)
     } catch (_: IllegalArgumentException) {

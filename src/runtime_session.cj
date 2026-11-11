@@ -58,6 +58,8 @@ class RuntimeSession {
     var layoutGlyphPolicy = GlyphRenderPolicy.unicode()
     var cachedGlyphMarker = ""
     var measuredGlyphMarker = ""
+    var validationWidth: Int64 = -1
+    var validationHeight: Int64 = -1
     var cachedWidth: Int64 = -1
     var cachedHeight: Int64 = -1
     init(root: Component, limits: RuntimeLimits, temporary!: Bool = false,

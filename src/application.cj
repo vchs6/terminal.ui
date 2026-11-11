@@ -301,6 +301,7 @@ public class Application {
             let frame = value.enter(
                 {
                     =>
+                        value.validationWidth = width; value.validationHeight = height
                         value.pump();
                         value.produce(width, height, false, glyphPolicy: policy)
                 }
