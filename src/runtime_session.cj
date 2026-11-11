@@ -158,6 +158,15 @@ class RuntimeSession {
             }
         }
     }
+    func invalidateBehaviorStyle(): Unit {
+        let rootNode = root.readMount()
+        if (rootNode.isNone()) { return }
+        var change = ChangeKind.Style
+        if (let Some(layout) <- measuredLayout) {
+            if (layout.behaviorChangesLayout(themeSeed(theme),true)) { change = ChangeKind.Layout }
+        }
+        markChanged(rootNode.getOrThrow(),change)
+    }
     func markChanged(node: RuntimeNode, change: ChangeKind): Unit {
         lock.lock()
         try {
@@ -512,8 +521,8 @@ class RuntimeSession {
     }
     func recordCommand(command: StructuralCommand): Unit {
         let parent = command.parent.resolve()
-        if (parent.component.kind == 0) {
-            throw UIException("InvalidParent", "text cannot own children")
+        if (parent.component.kind == 0 || parent.component.kind == 3) {
+            throw UIException("InvalidParent", "leaf cannot own children")
         }
         if (let Some(component) <- command.description) {
             if (component.readMount().isSome() || component.mounting) {
@@ -527,7 +536,16 @@ class RuntimeSession {
                 }
             }
         }
+        if (commands.size + focusManager.requested.size >= limits.structuralOpsPerBatch) {
+            throw UIException("CapacityExceeded", "command limit exceeded")
+        }
         commands.add(command)
+    }
+    func enqueueFocus(ref: NodeRef): Unit {
+        if (commands.size + focusManager.requested.size >= limits.structuralOpsPerBatch) {
+            throw UIException("CapacityExceeded", "command limit exceeded")
+        }
+        focusManager.requested.add(ref)
     }
     func useStructuralOps(count: Int64): Unit {
         if (count > limits.structuralOpsPerBatch - structuralOps) {
@@ -575,8 +593,8 @@ class RuntimeSession {
         if (parent.session.id != id) {
             throw UIException("WrongUIContext", "parent belongs to another session")
         }
-        if (parent.component.kind == 0) {
-            throw UIException("InvalidParent", "text cannot own children")
+        if (parent.component.kind == 0 || parent.component.kind == 3) {
+            throw UIException("InvalidParent", "leaf cannot own children")
         }
         if (command.kind == 0) {
             let index = commandAnchor(parent, command.anchor)
@@ -669,6 +687,7 @@ class RuntimeSession {
         } finally {
             lock.unlock()
         }
+        focusManager.cancelInvalidRequests()
         for (node in removed) {
             node.component.clearMount()
         }

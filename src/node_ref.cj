@@ -54,7 +54,7 @@ public class NodeRef {
     public func requestFocus(): Unit {
         let value = resolve(); value.session.requireContext()
         if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "focus during lifecycle") }
-        value.session.focusManager.requested.add(this)
+        value.session.enqueueFocus(this)
     }
     public func notify(change: ChangeKind): Unit {
         if (structureEvaluation.get().isSome()) {

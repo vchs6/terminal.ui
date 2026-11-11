@@ -12,6 +12,7 @@ class Binding {
     let category: ChangeKind
     let getter: () -> Unit
     let dependencies = ArrayList<BindingDependency>()
+    let naturalDependencies = ArrayList<BindingDependency>()
     let ownerLock = Mutex()
     var owner: ?RuntimeSession = None
     var node: ?RuntimeNode = None
@@ -49,11 +50,20 @@ class Binding {
         }
     }
     func evaluate(): Unit { track(getter) }
-    func track(action: () -> Unit): Unit {
+    func track(action: () -> Unit): Unit { trackSeeded(action,Array<BindingDependency>()) }
+    // Natural width and constrained height can both contribute to one layout.
+    func trackNatural(action: () -> Unit): Unit {
+        track(action)
+        naturalDependencies.clear()
+        for (entry in dependencies) { naturalDependencies.add(entry) }
+    }
+    func trackConstrained(action: () -> Unit): Unit { trackSeeded(action,naturalDependencies.toArray()) }
+    private func trackSeeded(action: () -> Unit, seed: Array<BindingDependency>): Unit {
         for (entry in dependencies) {
             entry.source.unsubscribe(this)
         }
         dependencies.clear()
+        for (entry in seed) { read(entry.source,entry.version) }
         let previous = evaluating.get()
         evaluating.set(Some(this))
         try {
@@ -94,5 +104,6 @@ class Binding {
             entry.source.unsubscribe(this)
         }
         dependencies.clear()
+        naturalDependencies.clear()
     }
 }

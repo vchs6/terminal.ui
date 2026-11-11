@@ -30,7 +30,7 @@ class LayoutNode {
             let canvas = c.canvas.getOrThrow()
             if (previewTheme.isNone()) {
                 let limits = Constraints()
-                c.canvasBinding("canvas-measure").track({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
+                c.canvasBinding("canvas-measure").trackNatural({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
             }
             naturalW = canvas.measured.width; naturalH = canvas.measured.height
         } else if (c.kind == 0) {
@@ -102,7 +102,7 @@ class LayoutNode {
             let canvas = component.canvas.getOrThrow()
             if (previewTheme.isNone()) {
                 let limits = Constraints(maxWidth:Some(available))
-                component.canvasBinding("canvas-measure").track({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
+                component.canvasBinding("canvas-measure").trackConstrained({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
             }
             naturalH = sat(canvas.measured.height,verticalInsets())
         } else if (component.kind == 0) {
@@ -128,6 +128,13 @@ class LayoutNode {
             }
             naturalH = sat(height,verticalInsets())
         }
+    }
+    // Compare against the geometry that produced the cached measurement.
+    func behaviorChangesLayout(inherited: Style, isRoot: Bool): Bool {
+        let next = resolveStyle(component,session.theme,inherited,isRoot)
+        if (layoutStyleDiff(resolved,next)) { return true }
+        for (child in children) { if (child.behaviorChangesLayout(next.style,false)) { return true } }
+        false
     }
     func refresh(inherited: Style, isRoot: Bool): Unit {
         inheritedStyle = inherited

@@ -20,15 +20,17 @@ class FocusManager <: ObservableSource {
     func effective(node: RuntimeNode, enabled: Bool): Bool {
         var cursor: ?RuntimeNode = Some(node)
         while (let Some(current) <- cursor) {
-            if (!current.valid || !current.committed || !current.component.isVisible) { return false }
+            if (!current.valid || !current.committed) { return false }
             if (enabled && !current.component.isEnabled) { return false }
+            if (!enabled && !current.component.isVisible) { return false }
             cursor = current.parent
         }
         true
     }
     func eligible(node: RuntimeNode): Bool {
         if (!node.component.isFocusable) { return false }
-        effective(node,true)
+        if (!effective(node,true)) { return false }
+        effective(node,false)
     }
     func collect(node: RuntimeNode, result: ArrayList<RuntimeNode>): Unit {
         if (eligible(node)) { result.add(node) }
@@ -48,8 +50,14 @@ class FocusManager <: ObservableSource {
         let old = focused
         focused = next
         if (let Some(previousNode) <- old) { session.getOrThrow().markChanged(previousNode,ChangeKind.Style) }
-        if (let Some(root) <- session.getOrThrow().root.readMount()) { session.getOrThrow().markChanged(root,ChangeKind.Style) }
+        session.getOrThrow().invalidateBehaviorStyle()
         changed()
+    }
+    func cancelInvalidRequests(): Unit {
+        var i: Int64 = 0
+        while (i < requested.size) {
+            if (!requested[i].isValid()) { requested.remove(at:i) } else { i++ }
+        }
     }
     func repair(): Unit {
         let current = candidates()
@@ -73,6 +81,7 @@ class FocusManager <: ObservableSource {
             }
         } else if (!current.isEmpty() && !session.getOrThrow().isStopping()) { set(Some(current[0])) }
         for (ref in requested) {
+            session.getOrThrow().useStructuralOps(1)
             let node = ref.resolve()
             if (!eligible(node)) { throw UIException("InvalidFocusTarget","node cannot receive focus") }
             set(Some(node))
