@@ -13,6 +13,7 @@ class Binding {
     let getter: () -> Unit
     let dependencies = ArrayList<BindingDependency>()
     let naturalDependencies = ArrayList<BindingDependency>()
+    let constrainedDependencies = ArrayList<BindingDependency>()
     let ownerLock = Mutex()
     var owner: ?RuntimeSession = None
     var node: ?RuntimeNode = None
@@ -57,7 +58,12 @@ class Binding {
         naturalDependencies.clear()
         for (entry in dependencies) { naturalDependencies.add(entry) }
     }
-    func trackConstrained(action: () -> Unit): Unit { trackSeeded(action,naturalDependencies.toArray()) }
+    func trackConstrained(action: () -> Unit): Unit {
+        trackSeeded(action,naturalDependencies.toArray())
+        constrainedDependencies.clear()
+        for (entry in dependencies) { constrainedDependencies.add(entry) }
+    }
+    func trackFinalConstrained(action: () -> Unit): Unit { trackSeeded(action,constrainedDependencies.toArray()) }
     private func trackSeeded(action: () -> Unit, seed: Array<BindingDependency>): Unit {
         for (entry in dependencies) {
             entry.source.unsubscribe(this)
@@ -105,5 +111,6 @@ class Binding {
         }
         dependencies.clear()
         naturalDependencies.clear()
+        constrainedDependencies.clear()
     }
 }
