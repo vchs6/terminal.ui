@@ -40,7 +40,7 @@ consumer functions. No row is counted as executed C behavior or task acceptance.
 | E13 | C-04 / shared errors | Wrong thread: handle getters/close/open owner all WrongUIContext; join worker, no thread-ID guess; closed no-op no exemption | recipe |
 | E14 | C-04 / C.1/shared errors | Invisible host InvalidOverlayHost; stale/foreign anchor StaleReference/WrongUIContext consistent with common guard; wrong visible current-session relation InvalidOverlayAnchor | recipe; overlapping error precedence not invented |
 | E15 | C-04 / shared errors | getter/measure/draw open/close rejects ReentrantEvaluation or existing structure-evaluation ReentrantStructure as applicable; lifecycle direct layer command LifecycleReentry; post-next-turn succeeds | recipe |
-| E16 | C-04 / shared errors | Root-only mountedNodes limit1, open layer would be node2: CapacityExceeded; structuralOpsPerBatch1 with two opens: CapacityExceeded; treeDepth1 root→layer exceeds: CapacityExceeded; no second unbounded queue | recipe |
+| E16 | C-04 / shared errors | Root-only mountedNodes limit1, open layer would be node2: CapacityExceeded; structuralOpsPerBatch1 with two opens: CapacityExceeded; treeDepth1 root0→ordinary owner1→Text layer2 exceeds: CapacityExceeded; root0→Text layer1 is legal with mountedNodes2; no second unbounded queue | recipe |
 | E17 | C-04 / shared errors | dependenciesPerBinding1 and draw reads two Observable sources: CapacityExceeded; measure/draw track separate sets; close cancels both. No assertion of M2 call counts | recipe |
 | E18 | C-04 / C.1/C.3 | Passive content with focusable/interacting descendants rejected IllegalArgumentException before exposing interactive passive target; exact actual accepted phase/source must be recorded | recipe |
 | G01–06 | C-03 / C.5 / output delta | Fixed hand grids: modal box fill/no backdrop; explicit transparent; normal background fill still opaque; holes vs spaces; base updates covered then latest on close; mounted render and independent snapshots | source surface_grids + golden |
@@ -92,7 +92,7 @@ wording correction under C.2. Full type correctness awaits actual C declarations
 | E01–12 | entry_errors.cj / entryValidation, foreignAndOldHandles |
 | E13–14 | context_and_limits.cj / threadAndAnchorValidation |
 | E15 | context_and_limits.cj / evaluationAndLifecycleGuards(0..2), lifecycleLayerCommands |
-| E16–18 | context_and_limits.cj / layerCapacity(0..2), layerDependencyBudget(false/true), interactivePassiveRejection |
+| E16–18 | context_and_limits.cj / layerDepthBoundary(), layerCapacity(0..2), layerDependencyBudget(false/true), interactivePassiveRejection |
 | G01–10 | surface_grids.cj / surfacesAndLatestBase, sourceBasedCaretOcclusion |
 | G11–12 | theme_and_host.cj / ownerThemeSurface, explicitHostClip |
 | G13–14 | anchor_geometry.cj / directionalAnchors, clippedAndLostAnchors |

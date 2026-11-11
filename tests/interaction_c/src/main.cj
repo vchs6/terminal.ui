@@ -26,7 +26,7 @@ main(): Int64 {
     stackedRestoration();ordinaryOwnedClosure();offscreenOwnerAndReason()
     primaryAndCleanup(false);primaryAndCleanup(true)
     threadAndAnchorValidation();for(phase in 0..3){evaluationAndLifecycleGuards(phase)}
-    lifecycleLayerCommands();for(which in 0..3){layerCapacity(which)}
+    lifecycleLayerCommands();layerDepthBoundary();for(which in 0..3){layerCapacity(which)}
     layerDependencyBudget(false);layerDependencyBudget(true);interactivePassiveRejection()
     ownerThemeSurface();explicitHostClip();directionalAnchors();clippedAndLostAnchors()
     decoratedLayerTargets();caretSpacesShadowAndClip()

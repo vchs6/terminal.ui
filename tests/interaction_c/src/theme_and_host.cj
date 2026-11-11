@@ -4,8 +4,8 @@ import cjtui.*
 func ownerThemeSurface():Unit {
     let owner=Box<?Component>(Option<Component>.None)
     let root=Column{owner.value=Some(Text("O").styles([StyleUse.Named("owner")]))}.styles([StyleUse.Named("host")]).overlayHost(true).viewport(ScrollAxes.Off)
-    let first=Theme.parse("schema_version=1\nname='first'\n[styles.host]\nbackground='#445566'\n[styles.owner]\nbackground='#112233'\n")
-    let second=Theme.parse("schema_version=1\nname='second'\n[styles.host]\nbackground='#445566'\n[styles.owner]\nbackground='#778899'\n")
+    let first=Theme.parse("schema_version=1\nname='first'\n[styles.host.text]\nbackground='#445566'\n[styles.owner.text]\nbackground='#112233'\n")
+    let second=Theme.parse("schema_version=1\nname='second'\n[styles.host.text]\nbackground='#445566'\n[styles.owner.text]\nbackground='#778899'\n")
     let app=Application(root,theme:first);app.startHeadless()
     let modal=Text("X").width(3).height(1).underline().inverse()
     app.batch({=>node(owner.value.getOrThrow()).openOverlay(modal,options:OverlayOptions(mode:OverlayMode.Modal,host:node(root)));()})
