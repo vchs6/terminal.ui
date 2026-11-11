@@ -61,9 +61,9 @@ func horizontalTable(): Unit {
         picture(app.snapshot(4, 1), "ABCD", "B01 horizontal initial")
         app.batch({ => ref(row).scrollTo(8, 0) })
         picture(app.snapshot(4, 1), "IJKL", "B01 horizontal tail")
-        app.dispatch(ref(row), KeyEvent("home", ""))
+        app.dispatch(ref(row), KeyEvent("home", text: ""))
         offset(row, 0, 0, "B04 horizontal Home")
-        app.dispatch(ref(row), KeyEvent("end", ""))
+        app.dispatch(ref(row), KeyEvent("end", text: ""))
         offset(row, 8, 0, "B04 horizontal End")
     } finally { app.dispose() }
 }

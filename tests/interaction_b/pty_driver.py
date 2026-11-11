@@ -81,7 +81,7 @@ def run(binary, destination):
     destination.mkdir(parents=True, exist_ok=True)
     master, slave = pty.openpty()
     child = None
-    metadata = {'classification': 'product-run-recording-needs-independent-oracle',
+    metadata = {'classification': 'public viewport dimensions/offset/activeTarget assertions plus raw damage evidence; no terminal emulator',
                 'binary': str(binary.resolve()),
                 'binary_sha256': hashlib.sha256(binary.read_bytes()).hexdigest(),
                 'TERM': os.environ.get('TERM', 'xterm-256color'), 'sizes': []}
@@ -89,22 +89,38 @@ def run(binary, destination):
     try:
         metadata['termios_before'] = attributes(slave)
         metadata['sizes'].append(resize(slave, 80, 24))
-        env = dict(os.environ, CJTUI_VIEWPORT_CASE='pty', TERM=metadata['TERM'])
+        env = dict(os.environ, CJTUI_VIEWPORT_CASE='pty', CJTUI_VIEWPORT_OUTPUT=str(destination.resolve()), TERM=metadata['TERM'])
         child = subprocess.Popen([str(binary.resolve())], stdin=slave, stdout=slave, stderr=slave,
                                  env=env, preexec_fn=lambda: controlling_terminal(slave), close_fds=True)
-        phases = [('initial', None, None), ('tail', None, b'\x1b[B'*100),
-                  ('smaller', (40, 10), None), ('restored', (80, 24), None), ('quit', None, b'q')]
-        for name, size, keys in phases:
+        phases = [('initial', None, None, [80,24,100,0]),
+                  ('tail', None, b'\x1b[B'*100, [80,24,100,76]),
+                  ('smaller', (40,10), None, [40,10,100,76]),
+                  ('smaller-tail', None, b'\x1b[B'*14, [40,10,100,90]),
+                  ('restored', (80,24), None, [80,24,100,76]),
+                  ('quit', None, b'q', None)]
+        queries=0
+        for name,size,keys,expected in phases:
+            begin=len(raw)
             if size:
-                metadata['sizes'].append(resize(slave, *size))
-                os.killpg(child.pid, signal.SIGWINCH)
-            if keys:
-                os.write(master, keys)
-            block = drain(master, 0.85 if name == 'initial' else 0.35)
-            raw.extend(block)
-            (destination/f'{name}.raw').write_bytes(block)
-            if name == 'initial':
-                metadata['termios_during'] = attributes(slave)
+                metadata['sizes'].append(resize(slave,*size));os.killpg(child.pid,signal.SIGWINCH)
+            if keys:os.write(master,keys)
+            if expected is not None:
+                until=time.monotonic()+10
+                while time.monotonic()<until:
+                    queries+=1;os.write(master,b's');statefile=destination/('state-'+str(queries))
+                    while not statefile.exists() and time.monotonic()<until:raw.extend(drain(master,.01))
+                    if not statefile.exists():raise RuntimeError('missing public viewport state')
+                    value=statefile.read_text().split('/')
+                    if len(value)!=6:continue
+                    got=list(map(int,value[:4]))
+                    if got[:2]!=expected[:2]:continue
+                    assert got==expected and value[4:]==['true','true'],(name,value,expected)
+                    metadata.setdefault('public_states',[]).append({'phase':name,'actual':value,'manual_expected':expected})
+                    break
+                else:raise RuntimeError('resize did not reach completed public geometry')
+            raw.extend(drain(master,.02))
+            (destination/f'{name}.raw').write_bytes(raw[begin:])
+            if name=='initial':metadata['termios_during']=attributes(slave)
         metadata['exit'] = child.wait(timeout=5)
         raw.extend(drain(master, 0.1))
         metadata['termios_after'] = attributes(slave)

@@ -14,7 +14,7 @@ func rootLongContent(): Unit {
         check(state.height == 24 && state.contentHeight == 100, "B01 finite extent 100")
         check(app.focusedNode().isNone(), "B04 empty focus domain stays None")
         check(app.activeTarget().getOrThrow().sameNode(ref(root)), "B04 actual root activeTarget")
-        app.dispatch(app.activeTarget().getOrThrow(), KeyEvent("down", ""))
+        app.dispatch(app.activeTarget().getOrThrow(), KeyEvent("down", text: ""))
         offset(root, 0, 1, "B04 implicit root defaults once")
         app.batch({ => check(ref(root).scrollTo(0, 76), "B01 accept tail") })
         let tail = app.snapshot(80, 24)
@@ -51,19 +51,19 @@ func rootWeightedCompatibility(): Unit {
 
 // Catches overflow escaping an independent viewport and scrolling fixed chrome.
 func fixedChromeAndBarriers(): Unit {
-    var body: ?Component = None
+    let body=Box<?Component>(Option<Component>.None)
     let root = Column({ =>
         Text("MENU").height(1)
-        body = ScrollView({ => hundredRows() }).layoutWeight(1)
+        body.value = ScrollView({ => hundredRows() }).layoutWeight(1)
         Text("STAT").height(1)
     })
     let app = Application(root)
     app.startHeadless()
     try {
         app.snapshot(4, 10)
-        check(ref(body).viewportSnapshot().height == 8, "B01 body receives eight rows")
+        check(ref(body.value).viewportSnapshot().height == 8, "B01 body receives eight rows")
         check(ref(root).viewportSnapshot().contentHeight == 10, "B02 independent viewport barrier")
-        app.batch({ => ref(body).scrollTo(0, 92) })
+        app.batch({ => ref(body.value).scrollTo(0, 92) })
         picture(app.snapshot(4, 10),
             "MENU\nr92 \nr93 \nr94 \nr95 \nr96 \nr97 \nr98 \nr99 \nSTAT", "B01 fixed chrome tail")
         offset(root, 0, 0, "B02 chrome root remains still")

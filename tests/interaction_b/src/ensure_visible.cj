@@ -5,10 +5,10 @@ import cjtui.*
 // Literal geometry: outer H4, spacer3, inner box H3/document H10, tail3.
 // Target row9 => inner7; visible row is outer local5 => nearest outer2.
 func nestedEnsure(): Unit {
-    var inner: ?Component = None
+    let inner=Box<?Component>(Option<Component>.None)
     let outer = Column({ =>
         Text("s\ns\ns").height(3)
-        inner = ScrollView({ => Text("0\n1\n2\n3\n4\n5\n6\n7\n8\n9") }).height(3)
+        inner.value = ScrollView({ => Text("0\n1\n2\n3\n4\n5\n6\n7\n8\n9") }).height(3)
         Text("t\nt\nt").height(3)
     })
         .viewport(ScrollAxes.Vertical)
@@ -16,17 +16,17 @@ func nestedEnsure(): Unit {
     app.startHeadless()
     try {
         app.snapshot(1, 4)
-        app.batch({ => ref(inner).ensureVisible(rect: Rect(0, 9, 1, 1)) })
+        app.batch({ => ref(inner.value).ensureVisible(rect: Rect(0, 9, 1, 1)) })
         app.snapshot(1, 4)
-        offset(inner, 0, 7, "B03 nearest inner")
+        offset(inner.value, 0, 7, "B03 nearest inner")
         offset(outer, 0, 2, "B03 nearest uses visible fragment")
         picture(app.snapshot(1, 4), "s\n7\n8\n9", "B03 nested target screen bottom")
         app.batch({ =>
-            ref(inner).scrollTo(0, 0); ref(outer).scrollTo(0, 0)
-            ref(inner).ensureVisible(rect: Rect(0, 8, 1, 1), vertical: ScrollAlign.Start)
+            ref(inner.value).scrollTo(0, 0); ref(outer).scrollTo(0, 0)
+            ref(inner.value).ensureVisible(rect: Rect(0, 8, 1, 1), vertical: ScrollAlign.Start)
         })
         app.snapshot(1, 4)
-        offset(inner, 0, 7, "B03 Start inner clamps")
+        offset(inner.value, 0, 7, "B03 Start inner clamps")
         offset(outer, 0, 4, "B03 Start outer visible fragment")
     } finally { app.dispose() }
 }

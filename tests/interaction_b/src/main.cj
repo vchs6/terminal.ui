@@ -4,6 +4,10 @@ import std.env.*
 
 main(): Int64 {
     if (getVariable("CJTUI_VIEWPORT_CASE") == Some("pty")) { return ptyFixture() }
+    if(let Some(mode)<-getVariable("CJTUI_VIEWPORT_CASE")){
+        if(mode=="same-turn" || mode=="caret-resize" || mode=="unicode"){return viewportDeviceSequence(mode)}
+        if(mode=="resource"){finiteExtentResource();return 0}
+    }
     rootLongContent()
     rootWeightedCompatibility()
     fixedChromeAndBarriers()
@@ -22,6 +26,11 @@ main(): Int64 {
     mixedIdentityRetention()
     readonlyPrelayoutAndStale()
     noViewportCapability()
+    caretHistoryInvalidation()
+    zeroHundredRoot();rootOverflowBoundaries();finiteExtentResource()
+    ensureTwoAxesAndNone();explicitIntentOrdering()
+    viewportReadonlyContexts();viewportPureMutationGuards();viewportValidationAndCapacity()
+    pendingViewportCancellation();viewportLifecyclePost();unicodeViewportClipping()
     println("PASS: executed interaction B public viewport assertions")
     return 0
 }

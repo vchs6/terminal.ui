@@ -9,8 +9,8 @@
     "source": "src/root_scrolling.cj:rootLongContent",
     "trigger": "80x24; implicit bare root; 100 literal ASCII row labels; min100x30",
     "expected": "Frame80x24; contentHeight100; offset0..76; tail starts r76 and ends r99; no focusable children => focus None, actual activeTarget root; down moves once",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-weight-short",
@@ -20,8 +20,8 @@
     "source": "src/root_scrolling.cj:rootWeightedCompatibility",
     "trigger": "V10, natural heights1/3, equal weights",
     "expected": "A at row0; B at rows5,6,7; 5/5 retained; root offset0",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-weight-overflow",
@@ -31,8 +31,8 @@
     "source": "src/root_scrolling.cj:rootWeightedCompatibility",
     "trigger": "V10, natural8/1, equal weights",
     "expected": "eight A rows then blank then B; 9/1; contentHeight10; no further expansion",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B01-chrome",
@@ -43,8 +43,8 @@
     "source": "src/root_scrolling.cj:fixedChromeAndBarriers",
     "trigger": "MENU1/body weight1/STAT1; V10 body100",
     "expected": "1/8/1; body offset92; root0; MENU then r92..r99 then STAT",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-fixed-barrier",
@@ -54,8 +54,8 @@
     "source": "src/root_scrolling.cj:fixedChromeAndBarriers",
     "trigger": "ordinary subtree height3 wraps100 rows; V10",
     "expected": "root contentHeight10, scrollBy down false; no root expansion to100",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-off",
@@ -65,8 +65,8 @@
     "source": "src/root_scrolling.cj:fixedChromeAndBarriers",
     "trigger": "explicit root Off, long document",
     "expected": "offset0; down scroll false, no implicit fallback",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-wrap",
@@ -76,8 +76,8 @@
     "source": "src/root_scrolling.cj:wrappedAndEmptyRoot",
     "trigger": "ABCDEFGHIJKL Grapheme wrap W4 V2",
     "expected": "extent3; initial ABCD/EFGH; scroll1 => EFGH/IJKL; no unbounded-width natural-height mistake",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-empty-zero",
@@ -87,8 +87,8 @@
     "source": "src/root_scrolling.cj:wrappedAndEmptyRoot",
     "trigger": "empty implicit root W0 V0",
     "expected": "Frame0x0, extent0, offset0, no divide-by-zero or stability loop",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-detached-mounted",
@@ -98,8 +98,8 @@
     "source": "src/root_scrolling.cj:detachedRootPolicy",
     "trigger": "same six-row description detached then mounted; W1 V3",
     "expected": "detached0/1/2 and no ref; mounted offset3 gives3/4/5 for both snapshot and global render",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B04-bool",
@@ -110,8 +110,8 @@
     "source": "src/commands.cj:acceptedCommandsAndClamping",
     "trigger": "Both extent10x4, viewport4x2; queue To6,2 twice; huge By; Int64.Min By",
     "expected": "Bool false,true,false,false,true,false for zero/end/repeated/positive saturation/negative saturation/negative at-start; final0,0",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-shrink",
@@ -121,8 +121,8 @@
     "source": "src/commands.cj:acceptedCommandsAndClamping",
     "trigger": "accept huge To then shrink content to X same batch",
     "expected": "accept true based on prior committed extent; final offset0,0 with latest extent",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-axes-zero",
@@ -132,8 +132,8 @@
     "source": "src/commands.cj:axesAndZeroResize",
     "trigger": "Both->Vertical then snapshot0x0 then10x4",
     "expected": "X resets0; node and actual focus identity retained; zero caret hidden; restored offsets clamp0",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B01-table",
@@ -144,8 +144,8 @@
     "source": "src/commands.cj:horizontalTable",
     "trigger": "Row three four-column ASCII cells; Horizontal viewport4x1",
     "expected": "ABCD initially; offset8 => IJKL; Home0; End8; Frame4x1",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B03-nested",
@@ -155,8 +155,8 @@
     "source": "src/ensure_visible.cj:nestedEnsure",
     "trigger": "outer V4: spacer3 inner box3/document10 tail3; target inner row9",
     "expected": "Nearest inner7 outer2; grid s/7/8/9; Start target8 => inner7 outer4 using visible target fragment",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B03-align",
@@ -166,8 +166,8 @@
     "source": "src/ensure_visible.cj:alignmentsAndOversizedTarget",
     "trigger": "root V6 row20 rect1x1; Center then End; oversized [10,40)",
     "expected": "Center18; End15; oversized containing current window retains15; empty rect unchanged; rect row100+1 InvalidProperty",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B04-order",
@@ -177,8 +177,8 @@
     "source": "src/default_actions.cj:defaultActionOrder",
     "trigger": "Target stop; inner Ancestor stop vs prevent; nested outer",
     "expected": "trace target;inner@0; then inner1/outer0 for stop or both0 for prevent; at inner end3 trace target;inner@3;outer; and outer1",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B04-target",
@@ -188,8 +188,8 @@
     "source": "src/default_actions.cj:targetPrevent",
     "trigger": "Target prevent on down",
     "expected": "all viewport offsets unchanged",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B04-page",
@@ -199,8 +199,8 @@
     "source": "src/default_actions.cj:pageSteps",
     "trigger": "manual normalized code pagedown/pageup; viewportH6 thenH1",
     "expected": "+5/-5, then minimum page step1; physical page decode is deferred to Keyboard114/117",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B01-public-combination",
@@ -212,8 +212,8 @@
     "source": "src/composition.cj:constructorComposition",
     "trigger": "same six-row ASCII description via ScrollView or Column.viewport(Vertical).focusable(true)",
     "expected": "extent6; initial a/b/c; down => b/c/d and offset1 for both; same real kernel",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B03-caret",
@@ -224,8 +224,8 @@
     "source": "src/caret_scrolling.cj:canvasHorizontalCaret",
     "trigger": "Canvas extent13 includes insertion blank at12; W4; explicit caret12 ensure1x1",
     "expected": "jkl-space; caret screen x3 visible; manual scroll0 remains abcd over repeated snapshots; W2 resize => l-space offset11",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-prelayout-query",
@@ -235,8 +235,8 @@
     "source": "src/lifecycle.cj:readonlyPrelayoutAndStale",
     "trigger": "onMount viewport query before any layout; direct lifecycle scroll; query twice after frame; dispose",
     "expected": "prelayout all six geometry/offset values0; lifecycle LifecycleReentry; query measure count unchanged; stale query StaleReference",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-capability",
@@ -246,8 +246,8 @@
     "source": "src/lifecycle.cj:noViewportCapability",
     "trigger": "plain child has no viewport; query/scroll",
     "expected": "InvalidProperty for query/scroll; explicit Off ancestor does not bestow capability",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-mixed-identity",
@@ -257,63 +257,70 @@
     "source": "src/identity.cj:mixedIdentityRetention",
     "trigger": "ForEach A B, insert manual M before B; focusA; reorder B A; zero/restore; Tab",
     "expected": "real sequence B M A; same focused A; zero retains identity; Tab wraps to focusable root; no clip-driven hidden/unmount",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106"
   },
   {
     "id": "B02-root-zero-100",
     "ac": [
       "B-02"
     ],
-    "source": "recipes.md#root-and-resource",
+    "source": "src/root_boundaries.cj:zeroHundredRoot",
     "trigger": "implicit bare100 rows actualH0 then24",
     "expected": "extent100, legal Y0..100; zero frame draws nothing; ensure zero axis does not locate; restored range0..76",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106",
+    "prepared_form": "public driver and manual golden; product UNEXECUTED"
   },
   {
     "id": "B02-other-barriers",
     "ac": [
       "B-02"
     ],
-    "source": "recipes.md#root-and-resource",
+    "source": "src/root_boundaries.cj:rootOverflowBoundaries",
     "trigger": "root explicit height3; nested ordinary Column; nested Horizontal vs Vertical viewport",
     "expected": "root fixed-height retains declaration; ordinary/Horizontal do not swallow unhandled vertical overflow; Vertical/Both do",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106",
+    "prepared_form": "public driver and manual golden; product UNEXECUTED"
   },
   {
     "id": "B02-pass-resource",
     "ac": [
       "B-02"
     ],
-    "source": "recipes.md#root-and-resource",
+    "source": "src/resource_extent.cj:finiteExtentResource + source-audit.json",
     "trigger": "implicit overflow and giant finite logical extent; actual80x24",
     "expected": "at most two root passes by independent product diff review; frame always80x24, no extent-sized Frame; public Canvas measure count is not a pass counter",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106",
+    "prepared_form": "public driver and manual golden; product UNEXECUTED",
+    "required_later_evidence": "105 sole layout source audit for two-pass/no extent Frame; resource RSS descriptive, no Canvas-count proxy"
   },
   {
     "id": "B03-nested-None",
     "ac": [
       "B-03"
     ],
-    "source": "recipes.md#ensure-and-caret",
+    "source": "src/ensure_geometry.cj:ensureTwoAxesAndNone / explicitIntentOrdering",
     "trigger": "inner target own viewport Some vs None, 2D axes, Nearest oversized outside/inside/tie",
     "expected": "Some handles own viewport; None starts at parent using layout box; disabled/zero axes unchanged; oversized tie Start",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106",
+    "prepared_form": "public driver and manual golden; product UNEXECUTED",
+    "clarification": "Unobservable tie\u2192Start remains105 source-audit duty; legal public keep/before/after/alignment/clamp tested, no forced jump golden"
   },
   {
     "id": "B03-new-caret-resize",
     "ac": [
       "B-03"
     ],
-    "source": "recipes.md#ensure-and-caret",
+    "source": "src/device_sequences.cj + device_sequences.py:same-turn / caret-resize; src/caret_history.cj",
     "trigger": "old completed caret12; actual window resize; event sets new caret2 and explicitly ensures same turn",
     "expected": "new caret2 wins older resize rect; use latest extent; no repeated paint commands; exact same-turn evidence requires actual accepted A event/resize pipeline",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106",
+    "prepared_form": "public driver and manual golden; product UNEXECUTED"
   },
   {
     "id": "B03-guard-priority",
@@ -321,11 +328,12 @@
       "B-02",
       "B-03"
     ],
-    "source": "recipes.md#guards",
+    "source": "src/viewport_guards.cj:readonly/pure/validation/capacity/cancel/lifecycle",
     "trigger": "same-UI getter/measure/draw read; attempted mutation; wrong thread/session; stale; hidden target; negative args",
     "expected": "readonly query legal and tracked; mutation ReentrantEvaluation (structural keeps ReentrantStructure); wrong UI WrongUIContext; stale StaleReference; hidden InvalidProperty; negative To IllegalArgumentException; do not invent unspecified combined-error priority",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106",
+    "prepared_form": "public driver and manual golden; product UNEXECUTED"
   },
   {
     "id": "B01-unicode-damage",
@@ -333,11 +341,12 @@
       "B-01",
       "B-02"
     ],
-    "source": "recipes.md#unicode-clipping",
-    "trigger": "horizontal Canvas logical A界B; W2 offset1 then2; move/shrink with fixed adjacent chrome",
-    "expected": "offset1 => full 界 cluster; offset2 => blank then B; no orphan continuation; adjacent chrome unchanged; diff clears old full cluster",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "source": "src/unicode_viewport.cj + device_sequences.py:unicode",
+    "trigger": "horizontal Canvas logical A\u754cB; W2 offset1 then2; move/shrink with fixed adjacent chrome",
+    "expected": "offset1 => full \u754c cluster; offset2 => blank then B; no orphan continuation; adjacent chrome unchanged; diff clears old full cluster",
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106",
+    "prepared_form": "public driver and manual golden; product UNEXECUTED"
   },
   {
     "id": "B01-real-pty",
@@ -345,10 +354,11 @@
       "B-01",
       "B-04"
     ],
-    "source": "pty_driver.py + src/pty_fixture.cj",
+    "source": "src/pty_fixture.cj + pty_driver.py:public-state/resize/activeTarget assertions",
     "trigger": "real PTY80x24; actual device down x100; resize40x10 then80x24; q",
     "expected": "initial rows0..23; tail76..99; smaller/restored extents reclamp; q stops; exact termios restore; no product run yet",
-    "status": "BLOCKED; preparation only",
-    "barrier": "A102/actual088/152 accepted source; actual B public APIs"
+    "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
+    "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106",
+    "prepared_form": "public driver and manual golden; product UNEXECUTED"
   }
 ]

@@ -32,7 +32,7 @@ func mixedIdentityRetention(): Unit {
         app.snapshot(0, 0)
         check(app.focusedNode().getOrThrow().sameNode(a), "B02 zero clip retains same focus")
         app.snapshot(1, 2)
-        app.dispatch(a, KeyEvent("tab", ""))
+        app.dispatch(a, KeyEvent("tab", text: ""))
         check(app.focusedNode().getOrThrow().sameNode(ref(root)), "B02 next Tab follows real order, wraps to parent")
         check(a.isValid() && b.isValid(), "B02 clipping never hides or unmounts data")
     } finally { app.dispose() }
