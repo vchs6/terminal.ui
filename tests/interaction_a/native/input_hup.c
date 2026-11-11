@@ -25,6 +25,11 @@ int poll(struct pollfd *fds,nfds_t n,int timeout) {
     if(!trace)return next_poll(fds,n,timeout);
     struct timespec begin,end;
     clock_gettime(CLOCK_MONOTONIC,&begin);
+    const char *enter=getenv("CJTUI_A_POLL_ENTER");
+    if(enter) for(nfds_t i=0;i<n;++i) if(fds[i].fd==STDIN_FILENO) {
+        FILE *out=fopen(enter,"a");
+        if(out){fprintf(out,"%lld %d\n",(long long)begin.tv_sec*1000000000LL+begin.tv_nsec,timeout);fclose(out);}
+    }
     int result=next_poll(fds,n,timeout);
     int saved_errno=errno;
     clock_gettime(CLOCK_MONOTONIC,&end);
