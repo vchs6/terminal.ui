@@ -82,6 +82,7 @@ public open class Component {
         }
     }
     public func setStyle<T>(key: StyleKey<T>, value: StyleValue<T>, state!: VisualState = VisualState.Normal): Component {
+        checkDefinitionChange()
         checkStyleTarget(key.name)
         let next = styleDeclaration.withValue(key,value,state:state)
         detachPaddingSlot(key.name,state); removeBinding(slotName(key,state))
@@ -92,6 +93,7 @@ public open class Component {
         this
     }
     public func setStyle<T>(key: StyleKey<T>, value: () -> StyleValue<T>, state!: VisualState = VisualState.Normal): Component {
+        checkDefinitionChange()
         checkStyleTarget(key.name); detachPaddingSlot(key.name,state)
         bind(slotName(key,state),styleChange(key.name),{=> applyStyle(key,value(),state)})
     }
@@ -351,27 +353,27 @@ public open class Component {
 
 }
 
-public func Text(value: String): Component {
+public func Text(value: String): Component { // cjlint-ignore !G.ENU.01 Public Text constructor and qualified ThemeRole.Text are distinct.
     let c = Component(0, value);
     attach(c);
     c
 }
 
-public func Text(value: () -> String): Component {
+public func Text(value: () -> String): Component { // cjlint-ignore !G.ENU.01 Public Text constructor and qualified ThemeRole.Text are distinct.
     let c = Component(0, "");
     c.text(value);
     attach(c);
     c
 }
 
-public func Text(value: RichText): Component {
+public func Text(value: RichText): Component { // cjlint-ignore !G.ENU.01 Public Text constructor and qualified ThemeRole.Text are distinct.
     let c = Component(0, "");
     c.text(value);
     attach(c);
     c
 }
 
-public func Text(value: () -> RichText): Component {
+public func Text(value: () -> RichText): Component { // cjlint-ignore !G.ENU.01 Public Text constructor and qualified ThemeRole.Text are distinct.
     let c = Component(0, "");
     c.text(value);
     attach(c);

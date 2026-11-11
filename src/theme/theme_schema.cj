@@ -8,7 +8,7 @@ import cangjie_toml.cangjie_toml.parser.*
 class ThemeSchema {
     let source: String
     let literal: ThemeLiteral
-    let variables: DataModelStruct
+    var variables: DataModelStruct
     let errors = ArrayList<ThemeException>()
     init(source: String, variables: DataModelStruct, parser: Parser) { this.source = source; literal = ThemeLiteral(source,parser); this.variables = variables }
     func fail(code: String, path: String): Nothing { throw themeFailure(code,source,path,"invalid theme value at ${path}") }

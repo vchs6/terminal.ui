@@ -44,13 +44,16 @@ func styleUseRule(use: StyleUse, theme: Theme): StyleRule {
 }
 func verifyStyleTarget(c: Component, rule: StyleRule): Unit {
     for (state in [VisualState.Normal,VisualState.Focused,VisualState.Selected,VisualState.Disabled]) {
-        if (c.kind == 0 && (isDeclared(rule.value(StyleKeys.gap,state:state)) ||
-            isDeclared(rule.value(StyleKeys.alignItems,state:state)) || isDeclared(rule.value(StyleKeys.justifyContent,state:state)))) {
-            throw UIException("InvalidProperty","container style applied to text")
-        }
-        if (c.kind != 0 && (isDeclared(rule.value(StyleKeys.textAlign,state:state)) ||
-            isDeclared(rule.value(StyleKeys.textWrap,state:state)) || isDeclared(rule.value(StyleKeys.textOverflow,state:state)))) {
-            throw UIException("InvalidProperty","text style applied to container")
+        if (c.kind == 0) {
+            let gap = isDeclared(rule.value(StyleKeys.gap,state:state))
+            let align = isDeclared(rule.value(StyleKeys.alignItems,state:state))
+            let justify = isDeclared(rule.value(StyleKeys.justifyContent,state:state))
+            if (gap || align || justify) { throw UIException("InvalidProperty","container style applied to text") }
+        } else {
+            let align = isDeclared(rule.value(StyleKeys.textAlign,state:state))
+            let wrap = isDeclared(rule.value(StyleKeys.textWrap,state:state))
+            let overflow = isDeclared(rule.value(StyleKeys.textOverflow,state:state))
+            if (align || wrap || overflow) { throw UIException("InvalidProperty","text style applied to container") }
         }
     }
 }
@@ -76,8 +79,9 @@ func resolveStyle(c: Component, theme: Theme, inherited: Style, isRoot: Bool): R
     let (strikethrough, strikethroughExplicit, _) = chooseStyle(c,theme,StyleKeys.strikethrough,inherited.strikethrough,false,Option<StyleRule>.None)
     result.style = Style(foreground:foreground, background:background, bold:bold, dim:dim, italic:italic, underline:underline, inverse:inverse, strikethrough:strikethrough)
     result.explicit = TextStylePatch(foreground: if (foregroundExplicit) { Some(foreground) } else { Option<Color>.None }, background: if (backgroundExplicit) { Some(background) } else { Option<Color>.None }, bold: if (boldExplicit) { Some(bold) } else { Option<Bool>.None }, dim: if (dimExplicit) { Some(dim) } else { Option<Bool>.None }, italic: if (italicExplicit) { Some(italic) } else { Option<Bool>.None }, underline: if (underlineExplicit) { Some(underline) } else { Option<Bool>.None }, inverse: if (inverseExplicit) { Some(inverse) } else { Option<Bool>.None }, strikethrough: if (strikethroughExplicit) { Some(strikethrough) } else { Option<Bool>.None })
+    let seedBackgroundDeclared = isDeclared(theme.textDefaults().value(StyleKeys.background))
     if (backgroundLocal) { result.fill = 2; result.fillStyle = result.style }
-    else if (isRoot && isDeclared(theme.textDefaults().value(StyleKeys.background))) {
+    else if (isRoot && seedBackgroundDeclared) {
         result.fill = 1; result.fillStyle = Style(background:inherited.background)
     }
     let (fixedWValue, _, _) = chooseStyle(c,theme,StyleKeys.width,Dimension.Auto,Dimension.Auto,Some(theme.spacingDefaults()))

@@ -12,5 +12,6 @@ func signedAdd(a: Int64, b: Int64): Int64 {
 }
 
 func containsAxis(start: Int64, length: Int64, point: Int64): Bool {
-    length > 0 && point >= start && point < signedAdd(start, length)
+    if (length <= 0 || point < start) { return false }
+    point < signedAdd(start, length)
 }

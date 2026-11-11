@@ -20,9 +20,8 @@ class ThemeDecoder {
     var spacing = StyleRule()
     init(source: String, root: DataModelStruct, parser: Parser) {
         this.source = source; this.root = root; this.parser = parser; this.literal = ThemeLiteral(source,parser)
-        let vars = root.get("variables")
-        let varTable = if (vars is DataModelNull) { DataModelStruct() } else { literalTable(vars,"variables") }
-        this.schema = ThemeSchema(source,varTable,parser)
+        // Materialize the optional table only after version and required root checks.
+        this.schema = ThemeSchema(source,DataModelStruct(),parser)
     }
     func fail(code: String,path: String): Nothing { throw themeFailure(code,source,path,"invalid theme value at ${path}") }
     func decode(path: ?String): Theme {
@@ -37,6 +36,8 @@ class ThemeDecoder {
             let n = UInt32(r)
             if (n < 32 || (n >= 127 && n <= 159)) { fail("InvalidValue","name") }
         }
+        let vars = root.get("variables")
+        if (let Some(table) <- (vars as DataModelStruct)) { schema.variables = table }
         for (entry in root.getFields()) {
             let k = entry.getName(); let v = entry.getData()
             try { match (k) {
@@ -111,7 +112,11 @@ class ThemeDecoder {
             let p = "variables." + entry.getName()
             if (!validThemeName(entry.getName())) { fail("InvalidName",p) }
             let rec = schema.table(entry.getData(),p)
-            for (f in rec.getFields()) { if (f.getName() != "type" && f.getName() != "value") { fail("UnknownKey",p + "." + f.getName()) } }
+            for (f in rec.getFields()) {
+                if (f.getName() != "type" && f.getName() != "value") {
+                    schema.errors.add(themeFailure("UnknownKey",source,p + "." + f.getName(),"unknown variable field"))
+                }
+            }
             let t = rec.get("type"); let v = rec.get("value")
             if (t is DataModelNull) { fail("MissingRequired",p + ".type") }
             if (v is DataModelNull) { fail("MissingRequired",p + ".value") }
