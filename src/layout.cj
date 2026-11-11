@@ -107,7 +107,8 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
     let naturalContentH = greater(0,neededH - lesser(neededH,n.verticalInsets()))
     // A zero-width viewport cannot constrain away the logical content used by
     // pending visibility requests; it still clips all painting at the box.
-    let contentW = if (axes.horizontal() || innerW == 0) { greater(innerW,naturalContentW) } else { innerW }
+    let zeroViewportWidth = if (innerW == 0) { viewport.isSome() } else { false }
+    let contentW = if (axes.horizontal() || zeroViewportWidth) { greater(innerW,naturalContentW) } else { innerW }
     let contentH = if (virtualY) { greater(innerH,naturalContentH) } else { innerH }
     let state = runtimeNode.viewportState
     if (n.previewTheme.isNone() && viewport.isSome()) { state.update(innerW,innerH,contentW,contentH,axes) }
@@ -276,7 +277,8 @@ func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
     let width = session.validationWidth
     let height = session.validationHeight
     if (width < 0 || height < 0 || !session.root.isVisible) { return }
-    let node = LayoutNode(session.root,session,themeSeed(theme),isRoot:true,previewTheme:Some(theme))
+    let node = LayoutNode(session.root,session,themeSeed(theme),isRoot:true,previewTheme:Some(theme),
+        previousMeasurement: session.measuredLayout)
     node.measure()
     let w = lesser(width,greater(node.resolved.fixedW ?? width,node.resolved.minW))
     let h = lesser(height,greater(node.resolved.fixedH ?? height,node.resolved.minH))

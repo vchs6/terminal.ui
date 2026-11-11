@@ -6,6 +6,7 @@ class LayoutNode {
     let session: RuntimeSession
     let component: Component
     let previewTheme: ?Theme
+    let previousMeasurement: ?LayoutNode
     var inheritedStyle: Style
     let rootNode: Bool
     var resolved: ResolvedStyle
@@ -15,6 +16,8 @@ class LayoutNode {
     let widths = ArrayList<Int64>()
     var naturalW: Int64 = 0
     var naturalH: Int64 = 0
+    var canvasNatural = Size(0,0)
+    var canvasConstrained = Size(0,0)
     var constrainedWidth: ?Int64 = None
     var assignedWidth: Int64 = 0
     var assignedHeight: Int64 = 0
@@ -23,10 +26,12 @@ class LayoutNode {
     var plannedNatural = false
     var plannedSizes = Array<Int64>()
     var plannedFree: Int64 = 0
-    init(c: Component, session: RuntimeSession, inherited: Style, isRoot!: Bool = false, previewTheme!: ?Theme = None) {
+    init(c: Component, session: RuntimeSession, inherited: Style, isRoot!: Bool = false, previewTheme!: ?Theme = None,
+        previousMeasurement!: ?LayoutNode = None) {
         this.session = session
         component = c
         this.previewTheme = previewTheme
+        this.previousMeasurement = previousMeasurement
         inheritedStyle = inherited; rootNode = isRoot
         resolved = resolveStyle(c,previewTheme ?? session.theme,inherited,isRoot)
     }
@@ -38,8 +43,13 @@ class LayoutNode {
             if (previewTheme.isNone()) {
                 let limits = Constraints()
                 c.canvasBinding("canvas-measure").trackNatural({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
+                canvasNatural = canvas.measured
+            } else if (let Some(previous) <- previousMeasurement) {
+                canvasNatural = previous.canvasNatural
+            } else {
+                canvasNatural = canvas.measured
             }
-            naturalW = canvas.measured.width; naturalH = canvas.measured.height
+            naturalW = canvasNatural.width; naturalH = canvasNatural.height
         } else if (c.kind == 0) {
             buildLines(0,false)
             for (width in widths) { naturalW = greater(naturalW,width) }
@@ -49,7 +59,14 @@ class LayoutNode {
                 if (let ChildEntry.MountedChild(runtimeChild) <- entry) {
                     let child = runtimeChild.component
                     if (!child.isVisible) { continue }
-                    let n = LayoutNode(child, session, resolved.style, previewTheme: previewTheme)
+                    var previousChild: ?LayoutNode = None
+                    if (let Some(previous) <- previousMeasurement) {
+                        for (entry in previous.children) {
+                            if (entry.component.descriptionId == child.descriptionId) { previousChild = Some(entry); break }
+                        }
+                    }
+                    let n = LayoutNode(child, session, resolved.style, previewTheme: previewTheme,
+                        previousMeasurement: previousChild)
                     n.measure(); children.add(n)
                     let cw = greater(n.resolved.fixedW ?? n.naturalW, n.resolved.minW)
                     let ch = greater(n.resolved.fixedH ?? n.naturalH, n.resolved.minH)
@@ -111,8 +128,13 @@ class LayoutNode {
                 let axes = session.viewportAxes(component.readMount().getOrThrow()) ?? ScrollAxes.Off
                 let limits = Constraints(maxWidth:if (axes.horizontal()) { Option<Int64>.None } else { Some(available) })
                 component.canvasBinding("canvas-measure").trackConstrained({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
+                canvasConstrained = canvas.measured
+            } else if (let Some(previous) <- previousMeasurement) {
+                canvasConstrained = previous.canvasConstrained
+            } else {
+                canvasConstrained = canvas.measured
             }
-            naturalH = sat(canvas.measured.height,verticalInsets())
+            naturalH = sat(canvasConstrained.height,verticalInsets())
         } else if (component.kind == 0) {
             buildLines(available,resolved.wrap == TextWrap.Grapheme)
             naturalH = sat(lines.size,verticalInsets())
