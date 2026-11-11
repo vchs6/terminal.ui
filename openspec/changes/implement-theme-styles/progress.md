@@ -31,3 +31,9 @@ T009决策与上游实证已归档[R15/key-budget-review](../../../docs/reviews/
 013025作者交INCOMPLETE（HEAD81cd/无产品提交），仅typed declarations/Theme数据模型；root实际调用handling-reports并读完整交接，未集成或标ready。作者确认停止因错误地把规模当结束理由，无平台/工具/context阻断。现同一L3周期拆A pureTheme/parser+values→B resolver/Component/Application→C layout+全测试包的串行检查点，复用原树/证据，无第二产品作者；原作者已继续A。固定新增08551986已交budget ACTUAL GO，独立测试overlay与product-onlycommit区分；预算源契约hash084b1623不变。最终086仍审完整BASE81cd..最终产品，不把检查点当有限交付或提前关闭任务。
 
 085 T009测试/独审原件归档R15/key-budget-tests36files=34原件+2wrapper；test-review182files=179原件+3wrapper（原index181entries+本体182源，完整formal/brief/KEYBUDGET三个Markdown源snapshot留外部hash/省略说明，原报告/index不改）。rootfresh34sourcecopy68SHA及179sourcecopy358SHA全同；当前npm run check实际23/23exit0仅metadata/OpenSpec。Budget测试固定51986/root92fe已交原实现作者，checkpointA正在继续；没有013025产品提交或提前通过。
+
+checkpointA开发固定0e46237c7e60d3d9e9fabb4587ac45c90321f4eb（父测试overlaydc77f8c等51986，BASE81cd）已有真实values-4 exit0，仍未审/未集成/不称A完成。原开发values-1 exit1诊断丢text.bold路径保留，修后全values通过不是独立验收。作者自审暴露137/264的TOML date→String来源类型、137可打印name、328跨表源码首错三个待独立核实覆盖点；root未代写修复，也未把作者自测当独立RED。独立Sol/high测试角色theme_glyph_test_refresh已恢复到新theme-schema-tests目录，测试分支BASE574c3a9；另自己的product-replay固定0e46237+testoverlay，按原formal条款手构publicTheme.parse反例和真实执行。不读作者目录/报告/推理，不改产品。原作者继续无冲突A文档/依赖分发，三类疑点等新增fixed tests；后续预算源码不回退，正式086仍全部完整源码范围。
+
+085 schema补充241a099349b7af0ec4379f2cc6529734a5177823（root99ef6ef）真实独立执行：publicbuild/positive0，164case88PASS/76FAIL，三组directbinary1；原values正常编译后在新增断言1，后续integration/16negative未运行。固定product0e46237，rawmanifestb8a66ce94ca12ac4efb4de160591b8d3819f6090c3040005ef4c2402430965f9，rootfresh90rawSHA全同。caller-source控制通过，不修内部helper猜测；原66文件/151预算/4preset保留。原实现代理已收到fixedtest+纯raw，ACTUAL GO修来源类型/name/首错，再完整values并续B/C。
+
+用户指出Token消耗与功能产出不配套。主代理据此合并同一功能的L4补充用例交接、审核和证据归档：该补充保留固定源码/实际RED/rawhash，随完整013025在086统一独审，不为每次补充再起独立资产审核/归档轮次；测试作者/实现/086审核/087执行/088验收仍分离，不降低必需验收。现有实现/测试代理复用，不新增代理。未完成产品已备份到远端wip/linux-theme-foundation@1d2d815，明确未审/有已知缺陷；main仍仅接受通过范围。完整主题产品最终按原main流程整体验收集成，无PR/发布。
