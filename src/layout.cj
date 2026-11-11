@@ -1,5 +1,7 @@
 package cjtui
 
+import std.collection.ArrayList
+
 func sat(a: Int64, b: Int64): Int64 {
     if (a > Int64.Max - b) {
         Int64.Max
@@ -124,6 +126,9 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
     let scrollY = if (axes.vertical()) { state.offsetY } else { 0 }
     let ix = signedAdd(boxX,-scrollX); let iy = signedAdd(boxY,-scrollY)
     if (n.previewTheme.isNone() && n.commitGeometry) {
+        runtimeNode.screenX = x; runtimeNode.screenY = y
+        runtimeNode.clipLeft = greater(clipL,x); runtimeNode.clipTop = greater(clipT,y)
+        runtimeNode.clipRight = right; runtimeNode.clipBottom = bottom
         runtimeNode.layoutWidth = w; runtimeNode.layoutHeight = h
         runtimeNode.contentX = leftPad; runtimeNode.contentY = topPad
         runtimeNode.logicalWidth = contentW; runtimeNode.logicalHeight = contentH
@@ -299,6 +304,70 @@ func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
     layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
 }
 
+func overlayInherited(session: RuntimeSession, owner: RuntimeNode): Style {
+    let chain = ArrayList<RuntimeNode>()
+    var cursor: ?RuntimeNode = Some(owner)
+    while (let Some(node) <- cursor) { chain.add(node); cursor = node.parent }
+    var style = themeSeed(session.theme); var i = chain.size
+    while (i > 0) {
+        i--; let node = chain[i]
+        style = resolveStyle(node.component,session.theme,style,node.parent.isNone()).style
+    }
+    style
+}
+
+func overlayGeometry(session: RuntimeSession, record: OverlayRecord, frame: Frame, commit: Bool): ?OverlayLayout {
+    if (record.terminal.isSome() || !record.owner.isValid()) { return None }
+    let rootRef = record.root
+    if (rootRef.isNone() || !rootRef.getOrThrow().isValid()) { return None }
+    let owner = record.owner.resolve()
+    var left: Int64 = 0; var top: Int64 = 0; var right = frame.width; var bottom = frame.height
+    if (let Some(hostRef) <- record.options.host) {
+        if (!hostRef.isValid()) { return None }
+        let host = hostRef.resolve()
+        let hw = if (session.viewportAxes(host).isSome()) { host.viewportState.width } else { host.logicalWidth }
+        let hh = if (session.viewportAxes(host).isSome()) { host.viewportState.height } else { host.logicalHeight }
+        let hx = signedAdd(host.screenX,host.contentX); let hy = signedAdd(host.screenY,host.contentY)
+        left = greater(host.clipLeft,hx); top = greater(host.clipTop,hy)
+        right = lesser(host.clipRight,signedAdd(hx,hw)); bottom = lesser(host.clipBottom,signedAdd(hy,hh))
+    }
+    right = greater(left,right); bottom = greater(top,bottom)
+    let node = LayoutNode(rootRef.getOrThrow().resolve().component,session,overlayInherited(session,owner),commitGeometry:commit)
+    node.measure()
+    let w = lesser(right-left,greater(node.resolved.fixedW ?? node.naturalW,node.resolved.minW))
+    node.constrain(w)
+    let h = lesser(bottom-top,greater(node.resolved.fixedH ?? node.naturalH,node.resolved.minH))
+    var x = signedAdd(left,(right-left-w)/2); var y = signedAdd(top,(bottom-top-h)/2)
+    if (let Some(anchorRef) <- record.options.anchor) {
+        if (!anchorRef.isValid()) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true); return None }
+        let anchor = anchorRef.resolve()
+        let ax = greater(left,greater(anchor.screenX,anchor.clipLeft))
+        let ay = greater(top,greater(anchor.screenY,anchor.clipTop))
+        let ar = lesser(right,lesser(signedAdd(anchor.screenX,anchor.layoutWidth),anchor.clipRight))
+        let ab = lesser(bottom,lesser(signedAdd(anchor.screenY,anchor.layoutHeight),anchor.clipBottom))
+        if (ar <= ax || ab <= ay || !session.focusManager.effective(anchor,false)) {
+            session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true); return None
+        }
+        match (record.options.placement) {
+            case OverlayPlacement.BelowStart =>
+                x = ax; let below = bottom-ab; let above = ay-top
+                y = if (below >= h || below >= above) { ab } else { ay-h }
+            case OverlayPlacement.AboveStart =>
+                x = ax; let above = ay-top; let below = bottom-ab
+                y = if (above >= h || above >= below) { ay-h } else { ab }
+            case OverlayPlacement.RightStart =>
+                y = ay; let rightSpace = right-ar; let leftSpace = ax-left
+                x = if (rightSpace >= w || rightSpace >= leftSpace) { ar } else { ax-w }
+            case OverlayPlacement.LeftStart =>
+                y = ay; let leftSpace = ax-left; let rightSpace = right-ar
+                x = if (leftSpace >= w || leftSpace >= rightSpace) { ax-w } else { ar }
+            case OverlayPlacement.Center => ()
+        }
+    }
+    x = lesser(greater(left,x),greater(left,right-w)); y = lesser(greater(top,y),greater(top,bottom-h))
+    Some(OverlayLayout(node,x,y,w,h,left,top,right,bottom))
+}
+
 func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession, reuse!: Bool = true): Frame {
     let frame = Frame(width, height)
     if (!root.isVisible) { return frame }
@@ -329,6 +398,16 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
     // Resolve current finite geometry before consuming deferred ensure intents.
     if (reuse) { session.focusedViewportResized = false }
     layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
+    let layers = ArrayList<OverlayLayout>()
+    if (mountedRoot) {
+        for (record in session.overlayRecords) {
+            if (let Some(layer) <- overlayGeometry(session,record,frame,reuse)) {
+                layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
+                    layer.left,layer.top,layer.right,layer.bottom)
+                layers.add(layer)
+            }
+        }
+    }
     if (reuse) {
         if (session.focusedViewportResized) {
             if (let Some(previousCaret) <- session.lastCaret) {
@@ -346,6 +425,19 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         applyPendingViewportEnsures(session)
     }
     paint(node, frame, 0, 0, w, h, 0, 0, width, height)
+    for (layer in layers) {
+        let overlay = Frame(width,height,transparent:true)
+        let previousCaret = session.pendingCaret
+        paint(layer.node,overlay,layer.x,layer.y,layer.width,layer.height,layer.left,layer.top,layer.right,layer.bottom)
+        if (let Some(previous) <- previousCaret) {
+            if (let Some(current) <- session.pendingCaret) {
+                if (refEq(previous,current) && previous.x >= 0 && previous.y >= 0 && previous.x < width && previous.y < height) {
+                    if (!overlay.cellAt(previous.x,previous.y).isTransparent) { session.pendingCaret = None }
+                }
+            }
+        }
+        frame.composite(overlay)
+    }
     frame
 }
 

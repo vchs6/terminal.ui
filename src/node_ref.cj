@@ -51,6 +51,7 @@ public class NodeRef {
     public func requestFocus(): Unit {
         let value = resolve(); value.session.requireContext()
         if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "focus during lifecycle") }
+        if (!value.session.inOverlayDomain(value)) { throw UIException("FocusOutsideDomain", "focus outside modal domain") }
         value.session.enqueueFocus(this)
     }
     public func openOverlay(content: Component, options!: OverlayOptions = OverlayOptions()): OverlayHandle {

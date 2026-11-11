@@ -24,6 +24,7 @@ class FocusManager <: ObservableSource {
             if (!current.valid || !current.committed) { return false }
             if (enabled && !current.component.isEnabled) { return false }
             if (!enabled && !current.component.isVisible) { return false }
+            if (enabled && current.overlayRoot) { break }
             cursor = current.parent
         }
         true
@@ -41,13 +42,34 @@ class FocusManager <: ObservableSource {
     }
     func candidates(): Array<RuntimeNode> {
         let result = ArrayList<RuntimeNode>()
-        if (let Some(root) <- session.getOrThrow().root.readMount()) { collect(root,result) }
+        let owner = session.getOrThrow()
+        if (owner.topModal().isNone()) {
+            if (let Some(root) <- owner.root.readMount()) { collect(root,result) }
+        }
+        for (record in owner.overlayRecords) {
+            if (record.terminal.isSome() || record.options.mode == OverlayMode.Passive) { continue }
+            if (let Some(rootRef) <- record.root) {
+                if (rootRef.isValid()) {
+                    let root = rootRef.resolve()
+                    if (owner.inOverlayDomain(root)) { collect(root,result) }
+                }
+            }
+        }
         result.toArray()
     }
     func set(next: ?RuntimeNode, order!: Int64 = 0): Unit {
         let oldId = if (let Some(old) <- focused) { old.id } else { -1 }
         let newId = if (let Some(value) <- next) { value.id } else { -1 }
         if (oldId == newId) { return }
+        if (let Some(target) <- next) {
+            if (let Some(reserved) <- session.getOrThrow().reservedLayer) {
+                if (let Some(rootRef) <- reserved.root) {
+                    if (rootRef.isValid()) {
+                        if (!session.getOrThrow().overlayAncestor(rootRef.resolve(),target)) { session.getOrThrow().reservedLayer = None }
+                    }
+                }
+            }
+        }
         let old = focused
         focused = next
         session.getOrThrow().lastCaret = None
@@ -67,7 +89,7 @@ class FocusManager <: ObservableSource {
     func repair(): Unit {
         let current = candidates()
         if (let Some(old) <- focused) {
-            if (!eligible(old)) {
+            if (!eligible(old) || !session.getOrThrow().inOverlayDomain(old)) {
                 var index: Int64 = -1
                 for (i in 0..previous.size) { if (previous[i].id == old.id) { index = i; break } }
                 var replacement: ?RuntimeNode = None
@@ -84,10 +106,20 @@ class FocusManager <: ObservableSource {
                 if (replacement.isNone() && !current.isEmpty()) { replacement = Some(current[0]) }
                 set(replacement)
             }
-        } else if (!current.isEmpty() && !session.getOrThrow().isStopping()) { set(Some(current[0])) }
+        } else if (!session.getOrThrow().isStopping()) {
+            if (let Some(reserved) <- session.getOrThrow().reservedLayer) {
+                if (let Some(rootRef) <- reserved.root) {
+                    if (rootRef.isValid()) {
+                        let choices = ArrayList<RuntimeNode>(); collect(rootRef.resolve(),choices)
+                        if (!choices.isEmpty()) { set(Some(choices[0])) }
+                    }
+                }
+            } else if (!current.isEmpty()) { set(Some(current[0])) }
+        }
         for (i in 0..requested.size) {
             session.getOrThrow().useStructuralOps(1)
             let node = requested[i].resolve()
+            if (!session.getOrThrow().inOverlayDomain(node)) { throw UIException("FocusOutsideDomain","focus outside modal domain") }
             if (!eligible(node)) { throw UIException("InvalidFocusTarget","node cannot receive focus") }
             set(Some(node),order:requestedOrders[i])
         }
