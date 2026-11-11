@@ -13,7 +13,7 @@ cjpm run
 
 按 `q` 退出，Ctrl-C 取消；程序需要实际 TTY。构建依赖及可选离线 Unicode 数据输入见 [原生构建](native-build.md)。
 
-首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、主题、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
+首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、动态主题加载、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
 
 低层可用 `Frame(width, height)` 和 `put(x, y, text, style: Style(...))` 写入网格，`cellAt` 查询，`toPlainText` 和 `toAnsi` 导出完整快照。负尺寸与越界查询报错；写入按边界裁剪，拒绝除换行外的控制字符。`render(root, width, height)` 使用同一网格渲染组件树。`Application(root).onKey { event => ... }.run()` 负责终端会话；文本按 Unicode 字符提供，`stop()` 可从回调退出。
 
@@ -31,7 +31,7 @@ cjpm run
 
 应用正常使用 `Application(root).run()`，框架每次启动会话读取实际标准输出设备的字形事实。确认是 Linux 文本 VT 且读取映射成功时，单个、单列、可打印并在 BMP 映射中的字符保留；其他字符簇按原列数回退为 ASCII。映射不可读时使用保守 ASCII，未知终端则采用保守 Unicode：逐标量显示宽度之和与原簇列数相等时保留，否则整簇替为等宽 `?`。单列边框回退复用 ASCII 边框字符。映射中缺少 `?` 时使用空格维持列数。已读取的映射在本次会话内固定；外部改变字体后，下次运行才重新探测。映射只表明内核槽位，不保证视觉字形或组合效果；终端需支持 UTF-8。
 
-高级用途可用 `app.glyphMode(GlyphMode.Unicode)` 强制原 Unicode、`GlyphMode.Ascii` 强制 ASCII 投影，`GlyphMode.Auto` 恢复自动选择。`app.terminalGlyphCapabilities()` 返回最近一次设备探测的只读事实，首次运行前为 `None`；覆盖模式不会改变事实。设备投影不改变业务文本、`Frame.cellAt` 或默认纯文本和 ANSI 快照。`snapshot` 和顶层 `render` 可指定 `glyphMode` 控制框架生成标记，默认为离线 Unicode，离线 Auto 也等同 Unicode；Ascii 不把业务文本转码。完整省略号截断布局仍待后续文本布局实现。
+高级用途可用 `app.glyphMode(GlyphMode.Unicode)` 强制原 Unicode、`GlyphMode.Ascii` 强制 ASCII 投影，`GlyphMode.Auto` 恢复自动选择。`app.terminalGlyphCapabilities()` 返回最近一次设备探测的只读事实，首次运行前为 `None`；覆盖模式不会改变事实。设备投影不改变业务文本、`Frame.cellAt` 或默认纯文本和 ANSI 快照。`snapshot` 和顶层 `render` 可指定 `glyphMode` 控制框架生成标记，默认为离线 Unicode，离线 Auto 也等同 Unicode；Ascii 不把业务文本转码。静态文字可用 `.wrap(TextWrap.Grapheme)` 按实际内容宽度整簇换行，或用 `.overflow(TextOverflow.Ellipsis)` 在水平截断时显示省略标记；显式 Ascii 使用可容纳的点号。四边内边距可分别以 `padding(left: ..., top: ..., right: ..., bottom: ...)` 设置。
 
 未知终端的保守规则针对 XTerm 398 和 XFCE4 Terminal 1.1.4 / VTE 0.80.1 观察到的字符簇推进差异，不检测字体，也不保证任意宿主、字体或 Unicode 版本的实际推进；库内两种宽度计算一致仅是保留条件。
 

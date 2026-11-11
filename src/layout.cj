@@ -93,27 +93,36 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
     let ib = lesser(bottom, sat(iy, innerH))
     if (c.kind == 0) {
         let clusters = richTextClusters(c.value)
-        var clusterIndex: Int64 = 0
-        let explicit = r.explicit
         for (i in 0..n.lines.size) {
-            let cy = sat(iy, i)
-            let free = if (n.widths[i] < innerW) {
-                innerW - n.widths[i]
-            } else {
-                0
-            }
-            var cx = sat(ix, offset(r.textAlignment, free))
-            for (g in n.lines[i]) {
-                let textStyle = explicit.resolve(clusters[clusterIndex].style.resolve(style))
-                clusterIndex++
-                let gw = displayWidth(g)
-                if (cy < ib && cx < ir && gw <= ir - cx) {
-                    frame.put(cx, cy, g, style: textStyle)
+            let cy = sat(iy,i)
+            let clipped = r.overflow == TextOverflow.Ellipsis && n.widths[i] > innerW && innerW > 0
+            let marker = if (clipped) { generatedEllipsis(n.session.layoutGlyphPolicy,innerW,ambiguousWide:false) } else { "" }
+            let markerWidth = displayWidth(marker)
+            let budget = innerW - markerWidth
+            let free = if (n.widths[i] < innerW) { innerW - n.widths[i] } else { 0 }
+            var cx = sat(ix,offset(r.textAlignment,free))
+            var used: Int64 = 0
+            var markerStyle = style
+            for (index in n.lines[i]) {
+                let span = clusters[index]
+                let gw = displayWidth(span.text)
+                let textStyle = r.explicit.resolve(span.style.resolve(style))
+                if (clipped && gw > 0 && (used > budget || gw > budget - used)) {
+                    markerStyle = textStyle
+                    break
                 }
-                cx = sat(cx, gw)
+                if (cy >= clipT && cy < ib && cx >= clipL && cx < ir && gw <= ir - cx) {
+                    frame.put(cx,cy,span.text,style:textStyle)
+                }
+                cx = sat(cx,gw); used = sat(used,gw)
             }
-            if (i + 1 < n.lines.size) {
-                clusterIndex++
+            if (clipped && cy >= clipT && cy < ib) {
+                var mx = sat(ix,innerW - markerWidth)
+                for (g in graphemeClusters(marker)) {
+                    let mw = displayWidth(g)
+                    if (mx >= clipL && mx < ir && mw <= ir - mx) { frame.put(mx,cy,g,style:markerStyle) }
+                    mx = sat(mx,mw)
+                }
             }
         }
         return
@@ -129,99 +138,7 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
         innerW
     }
     let count = n.children.size
-    let sizes = Array<Int64>(count, repeat: 0)
-    let bases = Array<Int64>(count, repeat: 0)
-    let remainders = Array<Int64>(count, repeat: 0)
-    var occupied: Int64 = 0
-    var totalWeight: Int64 = 0
-    var totalBase: Int64 = 0
-    var flexCount: Int64 = 0
-    for (i in 0..count) {
-        let child = n.children[i];
-        let cc = child.resolved
-        if (i > 0) {
-            occupied = sat(occupied, r.spacing)
-        }
-        let minimum = if (c.kind == 2) {
-            cc.minW
-        } else {
-            cc.minH
-        }
-        if (cc.weight > 0) {
-            if (totalWeight > Int64.Max - cc.weight) {
-                throw IllegalArgumentException("weight sum overflow")
-            }
-            totalWeight += cc.weight
-            flexCount++
-            bases[i] = lesser(minimum, mainSize)
-            if (totalBase > Int64.Max - bases[i]) {
-                throw IllegalArgumentException("minimum sum overflow")
-            }
-            totalBase += bases[i]
-        } else {
-            let desired = if (c.kind == 2) {
-                cc.fixedW ?? child.naturalW
-            } else {
-                cc.fixedH ?? child.naturalH
-            }
-            sizes[i] = lesser(mainSize, greater(desired, minimum))
-            occupied = sat(occupied, sizes[i])
-        }
-    }
-    let pool = if (occupied < mainSize) {
-        mainSize - occupied
-    } else {
-        0
-    }
-    if (flexCount > 0) {
-        let useMin = totalBase > pool
-        let denominator = if (useMin) {
-            totalBase
-        } else {
-            totalWeight
-        }
-        let amount = if (useMin) {
-            pool
-        } else {
-            pool - totalBase
-        }
-        var used: Int64 = 0
-        for (i in 0..count) {
-            let cc = n.children[i].resolved
-            if (cc.weight > 0) {
-                let basis = if (useMin) {
-                    bases[i]
-                } else {
-                    cc.weight
-                }
-                let (share, rem) = mulDiv(basis, amount, denominator)
-                sizes[i] = share + if (useMin) {
-                    0
-                } else {
-                    bases[i]
-                }
-                remainders[i] = rem
-                used += share
-            }
-        }
-        var remaining = amount - used
-        while (remaining > 0) {
-            var best: Int64 = -1
-            for (i in 0..count) {
-                if (n.children[i].resolved.weight > 0 && remainders[i] >= 0 && (best < 0 || remainders[i] > remainders[best])) {
-                    best = i
-                }
-            }
-            sizes[best]++;
-            remainders[best] = -1
-            remaining--
-        }
-    }
-    let free = if (flexCount == 0 && occupied < mainSize) {
-        mainSize - occupied
-    } else {
-        0
-    }
+    let (sizes,free) = allocateMain(n,mainSize)
     var cursor = offset(r.justify, free)
     for (i in 0..count) {
         let child = n.children[i];
@@ -292,6 +209,7 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
     node.refresh(themeSeed(session.theme), true)
     let w = lesser(width, greater(node.resolved.fixedW ?? width, node.resolved.minW))
     let h = lesser(height, greater(node.resolved.fixedH ?? height, node.resolved.minH))
+    node.constrain(w)
     paint(node, frame, 0, 0, w, h, 0, 0, width, height)
     frame
 }
