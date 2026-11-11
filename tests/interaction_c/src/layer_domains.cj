@@ -4,13 +4,13 @@ import cjtui.*
 
 func modalDomains(): Unit {
     let calls = Box<String>("")
-    let base = Box<?Component>(None)
+    let base = Box<?Component>(Option<Component>.None)
     let root = Column {base.value = Some(Text("base").focusable(true))}.viewport(ScrollAxes.Off)
     let app = Application(root).onKeyEvent({_ => calls.value += "APP;"}).onKey({_ => calls.value += "LEGACY;"})
     app.startHeadless()
     let outer = Column {Text("outer").focusable(true)}
     let popup = Column {Text("popup").focusable(true)}
-    let button = Box<?Component>(None)
+    let button = Box<?Component>(Option<Component>.None)
     let confirm = Column {
         button.value = Some(
             Text("confirm")
@@ -22,9 +22,9 @@ func modalDomains(): Unit {
         .onKeyCapture({_ => calls.value += "Cc;"})
         .onKey({_ => calls.value += "Cb;"})
         .defaultAction({_ => calls.value += "Ca;"}, phase: DefaultActionPhase.Ancestor)
-    let first = Box<?OverlayHandle>(None)
-    let second = Box<?OverlayHandle>(None)
-    let third = Box<?OverlayHandle>(None)
+    let first = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+    let second = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+    let third = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({
         => first.value = Some(
             node(base.value.getOrThrow()).openOverlay(outer, options: OverlayOptions(mode: OverlayMode.Modal)))
@@ -68,8 +68,8 @@ func escapeBarrierAndPrevent(): Unit {
             event.preventDefault()
         }
     })
-    let parent = Box<?OverlayHandle>(None)
-    let child = Box<?OverlayHandle>(None)
+    let parent = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+    let child = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({
         => parent.value = Some(node(root).openOverlay(modal, options: OverlayOptions(mode: OverlayMode.Modal)))
     })
@@ -85,13 +85,13 @@ func escapeBarrierAndPrevent(): Unit {
 }
 
 func emptyLayerReservation(): Unit {
-    let base = Box<?Component>(None)
+    let base = Box<?Component>(Option<Component>.None)
     let root = Column {base.value = Some(Text("base").focusable(true))}.viewport(ScrollAxes.Off)
     let app = Application(root)
     app.startHeadless()
     focused(app, node(base.value.getOrThrow()), "F01 I014 initial physical first base candidate")
     let empty = Column {Text("empty")}
-    let handle = Box<?OverlayHandle>(None)
+    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=> handle.value = Some(node(root).openOverlay(empty))})
     check(app.focusedNode().isNone(), "F02 empty takeFocus nonmodal reserves no-focus state")
     target(app, node(empty), "F02 activeTarget is layer root rather than nonfocusable child")

@@ -2,9 +2,9 @@ package interaction_c
 import cjtui.*
 
 func threadAndAnchorValidation():Unit {
-    let owner=Box<?Component>(None);let host=Box<?Component>(None);let anchor=Box<?Component>(None)
+    let owner=Box<?Component>(Option<Component>.None);let host=Box<?Component>(Option<Component>.None);let anchor=Box<?Component>(Option<Component>.None)
     let root=Column{host.value=Some(Column{owner.value=Some(Column{anchor.value=Some(Text("a"))})}.overlayHost(true))}.viewport(ScrollAxes.Off)
-    let app=Application(root);app.startHeadless();let r=node(owner.value.getOrThrow());let h=Box<?OverlayHandle>(None)
+    let app=Application(root);app.startHeadless();let r=node(owner.value.getOrThrow());let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>h.value=Some(r.openOverlay(Text("layer"),options:OverlayOptions(takeFocus:false)))})
     let old=h.value.getOrThrow()
     let worker=spawn{
@@ -29,7 +29,7 @@ func threadAndAnchorValidation():Unit {
 }
 
 func evaluationAndLifecycleGuards(phase:Int64):Unit {
-    let owner=Box<?Component>(None);let handle=Box<?OverlayHandle>(None);let armed=Observable<Bool>(false)
+    let owner=Box<?Component>(Option<Component>.None);let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None);let armed=Observable<Bool>(false)
     let guarded={=>if(armed.get()){
         code("ReentrantStructure",{=>node(owner.value.getOrThrow()).openOverlay(Text("bad"));()},"E15 evaluation open structure guard")
         code("ReentrantStructure",{=>handle.value.getOrThrow().close()},"E15 evaluation close structure guard")
@@ -45,7 +45,7 @@ func evaluationAndLifecycleGuards(phase:Int64):Unit {
     app.dispose()
 }
 func lifecycleLayerCommands():Unit {
-    let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless();let h=Box<?OverlayHandle>(None)
+    let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless();let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     let content=Text("layer").onMount({r=>
         code("LifecycleReentry",{=>r.openOverlay(Text("bad"));()},"E15 lifecycle direct open")
         code("LifecycleReentry",{=>h.value.getOrThrow().close()},"E15 lifecycle direct close")

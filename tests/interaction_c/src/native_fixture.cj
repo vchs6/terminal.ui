@@ -8,8 +8,8 @@ func nativeOverlayFixture():Int64 {
     let mode=getVariable("CJTUI_OVERLAY_NATIVE").getOrThrow()
     let primary=Exception("H01 callback primary");let ce=Exception("H01 C cleanup");let me=Exception("H01 M cleanup")
     let cleanup=Box<String>("");let trace=Box<String>("");let apps=Box<Int64>(0);let legacy=Box<Int64>(0)
-    let outer=Box<?OverlayHandle>(None);let popup=Box<?OverlayHandle>(None);let confirm=Box<?OverlayHandle>(None)
-    let appBox=Box<?Application>(None)
+    let outer=Box<?OverlayHandle>(Option<OverlayHandle>.None);let popup=Box<?OverlayHandle>(Option<OverlayHandle>.None);let confirm=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+    let appBox=Box<?Application>(Option<Application>.None)
     let report={name:String,value:String=>File.writeTo(directory+"/"+name,value.toArray())}
     let c=Column{
         Text("CONFIRM").focusable(true)

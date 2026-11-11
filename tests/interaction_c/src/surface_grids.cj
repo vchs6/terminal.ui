@@ -14,7 +14,7 @@ func surfacesAndLatestBase(): Unit {
     let app = Application(root)
     app.startHeadless()
     let opaque = Text("X").width(3).height(1)
-    let modal = Box<?OverlayHandle>(None)
+    let modal = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({
         => modal.value = Some(node(root).openOverlay(opaque, options: OverlayOptions(mode: OverlayMode.Modal)))
     })
@@ -37,7 +37,7 @@ func surfacesAndLatestBase(): Unit {
                 context.put(1, 0, " ")
         }
     )
-    let layer = Box<?OverlayHandle>(None)
+    let layer = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({
         => layer.value = Some(node(root).openOverlay(canvas, options: OverlayOptions(takeFocus: false)))
     })
@@ -71,7 +71,7 @@ func sourceBasedCaretOcclusion(): Unit {
             context.put(1, 0, "l")
         }
     })
-    let handle = Box<?OverlayHandle>(None)
+    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({
         => handle.value = Some(
             node(root).openOverlay(cover, options: OverlayOptions(mode: OverlayMode.Passive, takeFocus: false)))

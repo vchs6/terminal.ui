@@ -5,7 +5,7 @@ func escapeAndLogicalRouting():Unit {
     let mode=Observable<Int64>(0);let root=Column{Text("base").focusable(true)}.viewport(ScrollAxes.Off)
     let app=Application(root);app.startHeadless()
     let modal=Text("M").focusable(true).onKey({e=>if(mode.get()==0){e.preventDefault()}else{e.stopPropagation()}})
-    let h=Box<?OverlayHandle>(None)
+    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>h.value=Some(node(root).openOverlay(modal,options:OverlayOptions(mode:OverlayMode.Modal)))})
     app.batch({=>node(modal).openOverlay(Text("passive"),options:OverlayOptions(mode:OverlayMode.Passive,takeFocus:false));()})
     app.dispatch(node(modal),KeyEvent("escape"))
@@ -14,8 +14,8 @@ func escapeAndLogicalRouting():Unit {
     check(reason(h.value.getOrThrow())=="Escape","D07 stopPropagation permits Escape and passive is skipped")
     app.dispose()
 
-    let trace=Box<String>("");let owner=Box<?Component>(None)
-    let host=Box<?Component>(None)
+    let trace=Box<String>("");let owner=Box<?Component>(Option<Component>.None)
+    let host=Box<?Component>(Option<Component>.None)
     let outer=Column{host.value=Some(Column{owner.value=Some(Text("O").onKey({_=>trace.value+="O;"}))}.overlayHost(true).onKey({_=>trace.value+="H;"}))}.viewport(ScrollAxes.Off).onKey({_=>trace.value+="R;"})
     let b=Application(outer).onKeyEvent({_=>trace.value+="APP;"}).onKey({_=>trace.value+="LEGACY;"});b.startHeadless()
     let leaf=Text("L").focusable(true).onKey({_=>trace.value+="L;"})
@@ -28,8 +28,8 @@ func escapeAndLogicalRouting():Unit {
 }
 
 func modalTraversalAndDomainOpen():Unit {
-    let base=Box<?Component>(None);let root=Column{base.value=Some(Text("base").focusable(true))}.viewport(ScrollAxes.Off)
-    let app=Application(root);app.startHeadless();let a=Box<?Component>(None);let b=Box<?Component>(None)
+    let base=Box<?Component>(Option<Component>.None);let root=Column{base.value=Some(Text("base").focusable(true))}.viewport(ScrollAxes.Off)
+    let app=Application(root);app.startHeadless();let a=Box<?Component>(Option<Component>.None);let b=Box<?Component>(Option<Component>.None)
     let modal=Column{a.value=Some(Text("A").focusable(true));b.value=Some(Text("B").focusable(true))}
     app.batch({=>node(root).openOverlay(modal,options:OverlayOptions(mode:OverlayMode.Modal));()})
     app.batch({=>

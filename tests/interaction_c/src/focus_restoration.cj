@@ -2,10 +2,10 @@ package interaction_c
 import cjtui.*
 
 func hiddenOrUnmountedSaved(remove:Bool):Unit {
-    let saved=Box<?Component>(None);let previous=Box<?Component>(None)
+    let saved=Box<?Component>(Option<Component>.None);let previous=Box<?Component>(Option<Component>.None)
     let root=Column{previous.value=Some(Text("P").focusable(true));saved.value=Some(Text("S").focusable(true));Text("N").focusable(true)}.viewport(ScrollAxes.Off)
     let app=Application(root);app.startHeadless();let old=node(saved.value.getOrThrow());app.batch({=>old.requestFocus()})
-    let h=Box<?OverlayHandle>(None)
+    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>h.value=Some(node(root).openOverlay(Text("M").focusable(true),options:OverlayOptions(mode:OverlayMode.Modal)))})
     app.batch({=>if(remove){node(root).remove(old)}else{saved.value.getOrThrow().visible(false)}})
     app.batch({=>h.value.getOrThrow().close()})
@@ -16,10 +16,10 @@ func hiddenOrUnmountedSaved(remove:Bool):Unit {
 
 func physicalRestorationFallback(branch:Int64):Unit {
     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
-    let previous=Box<?Component>(None);let saved=Box<?Component>(None);let next=Box<?Component>(None)
+    let previous=Box<?Component>(Option<Component>.None);let saved=Box<?Component>(Option<Component>.None);let next=Box<?Component>(Option<Component>.None)
     let lower=Column{previous.value=Some(Text("P").focusable(true));saved.value=Some(Text("S").focusable(true));next.value=Some(Text("N").focusable(true))}
     app.batch({=>node(root).openOverlay(lower);()});app.batch({=>node(saved.value.getOrThrow()).requestFocus()})
-    let h=Box<?OverlayHandle>(None);app.batch({=>h.value=Some(node(root).openOverlay(Text("M").focusable(true),options:OverlayOptions(mode:OverlayMode.Modal)))})
+    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None);app.batch({=>h.value=Some(node(root).openOverlay(Text("M").focusable(true),options:OverlayOptions(mode:OverlayMode.Modal)))})
     app.batch({=>saved.value.getOrThrow().visible(false);if(branch>=1){next.value.getOrThrow().enabled(false)};if(branch>=2){previous.value.getOrThrow().enabled(false)}})
     let fresh=Text("F").focusable(true)
     if(branch==2){app.batch({=>node(lower).append(fresh)})}
@@ -34,7 +34,7 @@ func physicalRestorationFallback(branch:Int64):Unit {
 func stackedRestoration():Unit {
     let root=Column{Text("base").focusable(true)}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
     let lower=Text("M").focusable(true);let popup=Text("P").focusable(true);let confirm=Text("C").focusable(true)
-    let m=Box<?OverlayHandle>(None);let p=Box<?OverlayHandle>(None);let c=Box<?OverlayHandle>(None)
+    let m=Box<?OverlayHandle>(Option<OverlayHandle>.None);let p=Box<?OverlayHandle>(Option<OverlayHandle>.None);let c=Box<?OverlayHandle>(Option<OverlayHandle>.None)
     app.batch({=>m.value=Some(node(root).openOverlay(lower,options:OverlayOptions(mode:OverlayMode.Modal)))})
     app.batch({=>p.value=Some(node(lower).openOverlay(popup))})
     app.batch({=>c.value=Some(node(popup).openOverlay(confirm,options:OverlayOptions(mode:OverlayMode.Modal)))})
