@@ -66,7 +66,7 @@ public class PaintContext {
         session.pendingCaret = None
         let right = signedAdd(clipping.x,clipping.width); let bottom = signedAdd(clipping.y,clipping.height)
         if (visible && x >= clipping.x && x < right && y >= clipping.y && y < bottom) {
-            session.pendingCaret = Some(CaretRequest(node.reference(),signedAdd(originX,x),signedAdd(originY,y)))
+            session.pendingCaret = Some(CaretRequest(node.reference(),signedAdd(originX,x),signedAdd(originY,y),x,y))
         }
     }
 }

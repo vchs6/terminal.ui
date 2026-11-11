@@ -8,6 +8,16 @@ class RuntimeNode {
     let id: Int64
     let parent: ?RuntimeNode
     let sequence = ArrayList<ChildEntry>()
+    let viewportState = ViewportState()
+    // Geometry is in the parent's logical content coordinates.
+    var layoutX: Int64 = 0
+    var layoutY: Int64 = 0
+    var layoutWidth: Int64 = 0
+    var layoutHeight: Int64 = 0
+    var contentX: Int64 = 0
+    var contentY: Int64 = 0
+    var logicalWidth: Int64 = 0
+    var logicalHeight: Int64 = 0
     let depth: Int64
     var groupId: Int64 = 0
     var groupKey = ""
@@ -26,6 +36,8 @@ class RuntimeNode {
         this.session = session
         this.id = id
         this.parent = parent
+        viewportState.axes = if (component.viewportDeclared) { component.viewportAxes }
+            else if (parent.isNone() && !session.temporary) { ScrollAxes.Vertical } else { ScrollAxes.Off }
         depth = match (parent) {
             case Some(node) => node.depth + 1;
             case None => 0

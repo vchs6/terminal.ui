@@ -39,6 +39,10 @@ class RuntimeSession {
     let pendingNodes = ArrayList<PendingNodeChange>()
     let posts = ArrayList<QueuedAction>()
     let commands = ArrayList<StructuralCommand>()
+    let viewportCommands = ArrayList<ScrollCommand>()
+    let pendingEnsures = ArrayList<ScrollCommand>()
+    var pendingFocusEnsure: ?ScrollCommand = None
+    var viewportIntentSequence: Int64 = 0
     var structuralOps: Int64 = 0
     var committing = false
     var mountingCredit: Int64 = 0
@@ -56,6 +60,7 @@ class RuntimeSession {
     var frames: Int64 = 0
     var trackCaret = false
     var pendingCaret: ?CaretRequest = None
+    var lastCaret: ?CaretRequest = None
     var caret = CaretSnapshot(Option<NodeRef>.None,0,0,false)
     var cached: ?Frame = None
     var measuredLayout: ?LayoutNode = None
@@ -536,16 +541,98 @@ class RuntimeSession {
                 }
             }
         }
-        if (commands.size + focusManager.requested.size >= limits.structuralOpsPerBatch) {
+        if (commands.size + focusManager.requested.size + viewportCommands.size >= limits.structuralOpsPerBatch) {
             throw UIException("CapacityExceeded", "command limit exceeded")
         }
         commands.add(command)
     }
+    func nextViewportIntent(): Int64 {
+        if (viewportIntentSequence == Int64.Max) { throw UIException("CapacityExceeded", "viewport intent sequence exhausted") }
+        viewportIntentSequence++; viewportIntentSequence
+    }
     func enqueueFocus(ref: NodeRef): Unit {
-        if (commands.size + focusManager.requested.size >= limits.structuralOpsPerBatch) {
+        if (commands.size + focusManager.requested.size + viewportCommands.size >= limits.structuralOpsPerBatch) {
             throw UIException("CapacityExceeded", "command limit exceeded")
         }
-        focusManager.requested.add(ref)
+        let order = nextViewportIntent()
+        focusManager.requested.add(ref); focusManager.requestedOrders.add(order)
+    }
+    func syncViewportAxes(): Unit {
+        for (node in nodes) {
+            if (!node.valid || !node.committed) { continue }
+            if (let Some(axes) <- viewportAxes(node)) {
+                let state = node.viewportState
+                if (state.axes != axes) {
+                    state.update(state.width,state.height,state.contentWidth,state.contentHeight,axes)
+                }
+            }
+        }
+    }
+    func viewportAxes(node: RuntimeNode): ?ScrollAxes {
+        if (node.component.viewportDeclared) { return Some(node.component.viewportAxes) }
+        if (node.parent.isNone() && !temporary) { return Some(ScrollAxes.Vertical) }
+        None
+    }
+    func enqueueViewport(command: ScrollCommand): Unit {
+        requireContext()
+        if (inLifecycle) { throw UIException("LifecycleReentry", "viewport command during lifecycle") }
+        if (commands.size + focusManager.requested.size + viewportCommands.size >= limits.structuralOpsPerBatch) {
+            throw UIException("CapacityExceeded", "command limit exceeded")
+        }
+        command.order = nextViewportIntent()
+        viewportCommands.add(command)
+        if (command.kind == 0) {
+            let state = command.target.resolve().viewportState
+            state.queuedX = Some(command.x); state.queuedY = Some(command.y)
+        }
+        if (batchDepth == 0 && !inCallback) {
+            enter({=> stabilize(cutoff()) })
+        }
+    }
+    func queueFocusEnsure(ref: NodeRef, order: Int64): Unit {
+        let command = ScrollCommand(ref,1,0,0,Option<Rect>.None,ScrollAlign.Nearest,ScrollAlign.Nearest)
+        command.order = if (order == 0) { nextViewportIntent() } else { order }
+        pendingFocusEnsure = Some(command)
+    }
+    func viewportContains(ancestor: RuntimeNode, target: NodeRef): Bool {
+        if (!target.isValid()) { return false }
+        var current: ?RuntimeNode = Some(target.resolve())
+        while (let Some(node) <- current) {
+            if (node.id == ancestor.id) { return true }
+            current = node.parent
+        }
+        false
+    }
+    func commitViewportCommands(): Unit {
+        let ready = viewportCommands.toArray(); viewportCommands.clear()
+        for (command in ready) {
+            useStructuralOps(1)
+            if (!command.target.isValid()) { continue }
+            let node = command.target.resolve()
+            if (command.kind == 0) {
+                var pendingIndex: Int64 = 0
+                while (pendingIndex < pendingEnsures.size) {
+                    let earlier = pendingEnsures[pendingIndex]
+                    if (earlier.order < command.order && viewportContains(node,earlier.target)) {
+                        pendingEnsures.remove(at:pendingIndex)
+                    } else { pendingIndex++ }
+                }
+                if (let Some(focus) <- pendingFocusEnsure) {
+                    if (focus.order < command.order && viewportContains(node,focus.target)) { pendingFocusEnsure = None }
+                }
+                let state = node.viewportState
+                state.queuedX = None; state.queuedY = None
+                if (state.setOffset(command.x,command.y)) { markChanged(node,ChangeKind.Style) }
+            } else {
+                // A later ensure for the same generation supersedes the earlier one.
+                var i: Int64 = 0
+                while (i < pendingEnsures.size) {
+                    if (pendingEnsures[i].target.sameNode(command.target)) { pendingEnsures.remove(at:i) } else { i++ }
+                }
+                if (pendingEnsures.size >= limits.structuralOpsPerBatch) { throw UIException("CapacityExceeded", "ensure limit exceeded") }
+                pendingEnsures.add(command); markChanged(node,ChangeKind.Style)
+            }
+        }
     }
     func useStructuralOps(count: Int64): Unit {
         if (count > limits.structuralOpsPerBatch - structuralOps) {
@@ -688,6 +775,15 @@ class RuntimeSession {
             lock.unlock()
         }
         focusManager.cancelInvalidRequests()
+        var pendingIndex: Int64 = 0
+        while (pendingIndex < viewportCommands.size) {
+            if (!viewportCommands[pendingIndex].target.isValid()) { viewportCommands.remove(at:pendingIndex) } else { pendingIndex++ }
+        }
+        pendingIndex = 0
+        while (pendingIndex < pendingEnsures.size) {
+            if (!pendingEnsures[pendingIndex].target.isValid()) { pendingEnsures.remove(at:pendingIndex) } else { pendingIndex++ }
+        }
+        if (let Some(focus) <- pendingFocusEnsure) { if (!focus.target.isValid()) { pendingFocusEnsure = None } }
         for (node in removed) {
             node.component.clearMount()
         }
@@ -851,7 +947,9 @@ class RuntimeSession {
                 }
             }
             if (!hasReady(cutoff) && commands.isEmpty()) {
+                syncViewportAxes()
                 if (!temporary) { focusManager.repair() }
+                commitViewportCommands()
                 if (hasReady(cutoff)) { continue }
                 return
             }
@@ -1086,6 +1184,19 @@ class RuntimeSession {
             } finally {
                 lock.unlock()
             }
+            if ((width != cachedWidth || height != cachedHeight) && cachedWidth >= 0 && cachedHeight >= 0) {
+                if (let Some(previousCaret) <- lastCaret) {
+                    var hasExplicit = false
+                    for (command in pendingEnsures) {
+                        if (command.target.sameNode(previousCaret.owner)) { hasExplicit = true }
+                    }
+                    if (!hasExplicit && previousCaret.owner.isValid()) {
+                        let ensure = ScrollCommand(previousCaret.owner,1,0,0,
+                            Some(Rect(previousCaret.localX,previousCaret.localY,1,1)),ScrollAlign.Nearest,ScrollAlign.Nearest)
+                        ensure.order = nextViewportIntent(); pendingEnsures.add(ensure)
+                    }
+                }
+            }
             pendingCaret = None; trackCaret = true
             let frame: Frame
             try { frame = renderLayout(root, width, height, this) } finally { trackCaret = false }
@@ -1094,9 +1205,11 @@ class RuntimeSession {
                 if (request.x >= 0 && request.x < frame.width && request.y >= 0 && request.y < frame.height) {
                     if (!frame.cellAt(request.x,request.y).continuation) {
                         nextCaret = CaretSnapshot(Some(request.owner),request.x,request.y,true)
+                        lastCaret = Some(request)
                     }
                 }
             }
+            if (!nextCaret.visible) { lastCaret = None }
             caret = nextCaret
             recordFrame();
             cached = Some(frame)

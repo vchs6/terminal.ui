@@ -16,6 +16,8 @@ public open class Component {
     var mountEffect: ?(NodeRef) -> (() -> Unit) = None
     var keyHandler: ?(UIKeyEvent) -> Unit = None
     var captureHandler: ?(UIKeyEvent) -> Unit = None
+    var viewportDeclared = false
+    var viewportAxes = ScrollAxes.Off
     var isVisible = true
     var isEnabled = true
     var isFocusable = false
@@ -182,6 +184,21 @@ public open class Component {
         if (let Some(node) <- readMount()) {
             node.session.invalidateBehaviorStyle()
             node.session.focusManager.changed()
+        }
+    }
+    public func viewport(axes: ScrollAxes): Component {
+        removeBinding("viewport")
+        applyViewport(axes)
+        this
+    }
+    public func viewport(axes: () -> ScrollAxes): Component {
+        checkDefinitionChange()
+        if (!viewportDeclared) { viewportDeclared = true; markChanged(ChangeKind.Layout) }
+        bind("viewport",ChangeKind.Layout,{=> applyViewport(axes())})
+    }
+    func applyViewport(axes: ScrollAxes): Unit {
+        if (!viewportDeclared || viewportAxes != axes) {
+            viewportDeclared = true; viewportAxes = axes; markChanged(ChangeKind.Layout)
         }
     }
     public func focusable(value: Bool): Component {

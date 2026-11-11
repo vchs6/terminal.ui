@@ -95,17 +95,37 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
     let topPad = lesser(sat(r.padTop,borderInset), h)
     let innerW = w - leftPad - lesser(sat(r.padRight,borderInset), w - leftPad)
     let innerH = h - topPad - lesser(sat(r.padBottom,borderInset), h - topPad)
-    let ix = sat(x, leftPad);
-    let iy = sat(y, topPad)
-    let ir = lesser(right, sat(ix, innerW));
-    let ib = lesser(bottom, sat(iy, innerH))
+    let boxX = sat(x, leftPad); let boxY = sat(y, topPad)
+    let ir = lesser(right, sat(boxX, innerW)); let ib = lesser(bottom, sat(boxY, innerH))
+    let runtimeNode = c.readMount().getOrThrow()
+    let viewport = n.session.viewportAxes(runtimeNode)
+    let axes = viewport ?? ScrollAxes.Off
+    let implicitRoot = runtimeNode.parent.isNone() && !n.session.temporary && !c.viewportDeclared
+    let virtualY = axes.vertical() && (!implicitRoot || n.rootFallback)
+    let naturalContentW = greater(0,n.naturalW - lesser(n.naturalW,n.horizontalInsets()))
+    let neededH = n.scrollingHeight()
+    let naturalContentH = greater(0,neededH - lesser(neededH,n.verticalInsets()))
+    // A zero-width viewport cannot constrain away the logical content used by
+    // pending visibility requests; it still clips all painting at the box.
+    let contentW = if (axes.horizontal() || innerW == 0) { greater(innerW,naturalContentW) } else { innerW }
+    let contentH = if (virtualY) { greater(innerH,naturalContentH) } else { innerH }
+    let state = runtimeNode.viewportState
+    if (n.previewTheme.isNone() && viewport.isSome()) { state.update(innerW,innerH,contentW,contentH,axes) }
+    let scrollX = if (axes.horizontal()) { state.offsetX } else { 0 }
+    let scrollY = if (axes.vertical()) { state.offsetY } else { 0 }
+    let ix = signedAdd(boxX,-scrollX); let iy = signedAdd(boxY,-scrollY)
+    if (n.previewTheme.isNone()) {
+        runtimeNode.layoutWidth = w; runtimeNode.layoutHeight = h
+        runtimeNode.contentX = leftPad; runtimeNode.contentY = topPad
+        runtimeNode.logicalWidth = contentW; runtimeNode.logicalHeight = contentH
+    }
     if (c.kind == 3) {
         if (output.isNone()) { return }
         let frame = output.getOrThrow()
-        let left = greater(0,clipL - ix); let top = greater(0,clipT - iy)
-        let endX = greater(left,lesser(innerW,ir - ix)); let endY = greater(top,lesser(innerH,ib - iy))
+        let left = greater(0,signedSubtract(clipL,ix)); let top = greater(0,signedSubtract(clipT,iy))
+        let endX = greater(left,lesser(contentW,signedSubtract(ir,ix))); let endY = greater(top,lesser(contentH,signedSubtract(ib,iy)))
         let selected = resolveStyle(c,n.session.theme,n.inheritedStyle,n.rootNode,selected:true)
-        let context = PaintContext(n.session,c.readMount().getOrThrow(),frame,ix,iy,Size(innerW,innerH),
+        let context = PaintContext(n.session,c.readMount().getOrThrow(),frame,ix,iy,Size(contentW,contentH),
             Rect(left,top,endX-left,endY-top),r,selected)
         try { c.canvasBinding("canvas-draw").track({=> c.canvas.getOrThrow().draw(context) }) }
         finally { context.expire() }
@@ -117,11 +137,11 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
         let clusters = richTextClusters(c.value)
         for (i in 0..n.lines.size) {
             let cy = sat(iy,i)
-            let clipped = r.overflow == TextOverflow.Ellipsis && n.widths[i] > innerW && innerW > 0
-            let marker = if (clipped) { generatedEllipsis(n.session.layoutGlyphPolicy,innerW,ambiguousWide:false) } else { "" }
+            let clipped = r.overflow == TextOverflow.Ellipsis && n.widths[i] > contentW && contentW > 0
+            let marker = if (clipped) { generatedEllipsis(n.session.layoutGlyphPolicy,contentW,ambiguousWide:false) } else { "" }
             let markerWidth = displayWidth(marker)
-            let budget = innerW - markerWidth
-            let free = if (n.widths[i] < innerW) { innerW - n.widths[i] } else { 0 }
+            let budget = contentW - markerWidth
+            let free = if (n.widths[i] < contentW) { contentW - n.widths[i] } else { 0 }
             var cx = sat(ix,offset(r.textAlignment,free))
             var used: Int64 = 0
             var markerStyle = style
@@ -139,7 +159,7 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
                 cx = sat(cx,gw); used = sat(used,gw)
             }
             if (clipped && cy >= clipT && cy < ib) {
-                var mx = sat(ix,innerW - markerWidth)
+                var mx = sat(ix,contentW - markerWidth)
                 for (g in graphemeClusters(marker)) {
                     let mw = displayWidth(g)
                     if (mx >= clipL && mx < ir && mw <= ir - mx) { frame.put(mx,cy,g,style:markerStyle) }
@@ -149,18 +169,11 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
         }
         return
     }
-    let mainSize = if (c.kind == 2) {
-        innerW
-    } else {
-        innerH
-    }
-    let cross = if (c.kind == 2) {
-        innerH
-    } else {
-        innerW
-    }
+    let mainSize = if (c.kind == 2) { contentW } else { contentH }
+    let cross = if (c.kind == 2) { contentH } else { contentW }
     let count = n.children.size
-    let (sizes,free) = allocateMain(n,mainSize)
+    let naturalBasis = if (c.kind == 2) { axes.horizontal() } else { virtualY }
+    let (sizes,free) = n.mainAllocation(mainSize,naturalBasis)
     var cursor = offset(r.justify, free)
     for (i in 0..count) {
         let child = n.children[i];
@@ -205,11 +218,54 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
         } else {
             sizes[i]
         }
-        layoutPass(child, output, cx, cy, cw, ch, greater(clipL, ix), greater(clipT, iy), ir, ib)
+        if (n.previewTheme.isNone()) {
+            let childNode = child.component.readMount().getOrThrow()
+            childNode.layoutX = if (c.kind == 2) { cursor } else { crossOffset }
+            childNode.layoutY = if (c.kind == 2) { crossOffset } else { cursor }
+        }
+        layoutPass(child, output, cx, cy, cw, ch, greater(clipL, boxX), greater(clipT, boxY), ir, ib)
         cursor = sat(cursor, sizes[i])
         if (i + 1 < count) {
             cursor = sat(cursor, r.spacing)
         }
+    }
+}
+
+// First finite pass summary, following the existing allocator and same node tree.
+func summarizeVerticalOverflow(n: LayoutNode, width: Int64, height: Int64, result: VerticalOverflowSummary): Unit {
+    n.assignedWidth = width; n.assignedHeight = height
+    if (n.component.kind == 0 || n.component.kind == 3) {
+        if (n.naturalH > height) {
+            result.record(n.component.readMount().getOrThrow(),if (n.component.kind == 0) { "content-or-wrap" } else { "content" })
+        }
+        return
+    }
+    let b: Int64 = if (n.resolved.borderStyle == BorderStyle.None) { 0 } else { 1 }
+    let left = lesser(width,sat(n.resolved.padLeft,b)); let top = lesser(height,sat(n.resolved.padTop,b))
+    let iw = width-left-lesser(width-left,sat(n.resolved.padRight,b))
+    let ih = height-top-lesser(height-top,sat(n.resolved.padBottom,b))
+    let mainSize = if (n.component.kind == 2) { iw } else { ih }
+    let cross = if (n.component.kind == 2) { ih } else { iw }
+    let (sizes,_) = n.mainAllocation(mainSize,false)
+    var cursor: Int64 = 0
+    for (i in 0..n.children.size) {
+        let child = n.children[i]; let cr = child.resolved
+        let fixed = if (n.component.kind == 2) { cr.fixedH } else { cr.fixedW }
+        let minimum = if (n.component.kind == 2) { cr.minH } else { cr.minW }
+        let natural = if (n.component.kind == 2) { child.naturalH } else { child.naturalW }
+        var crossSize = lesser(cross,greater(fixed ?? natural,minimum))
+        if (n.resolved.align == Alignment.Stretch && fixed.isNone()) { crossSize = cross }
+        let cw = if (n.component.kind == 2) { sizes[i] } else { crossSize }
+        let ch = if (n.component.kind == 2) { crossSize } else { sizes[i] }
+        child.assignedWidth = cw; child.assignedHeight = ch
+        let declaredHeight = match (cr.fixedH) { case Some(fixedHeight) => greater(fixedHeight,cr.minH); case None => ch }
+        if (n.component.kind == 1 && (cursor > ih || declaredHeight > ih - cursor)) {
+            result.record(child.component.readMount().getOrThrow(),"descendant")
+        }
+        let barrier = cr.fixedH.isSome() || (child.component.viewportDeclared && child.component.viewportAxes.vertical())
+        if (!barrier) { summarizeVerticalOverflow(child,cw,ch,result) }
+        cursor = sat(cursor,sizes[i])
+        if (i + 1 < n.children.size) { cursor = sat(cursor,n.resolved.spacing) }
     }
 }
 
@@ -224,6 +280,11 @@ func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
     let w = lesser(width,greater(node.resolved.fixedW ?? width,node.resolved.minW))
     let h = lesser(height,greater(node.resolved.fixedH ?? height,node.resolved.minH))
     node.constrain(w)
+    if (!session.root.viewportDeclared && node.resolved.fixedH.isNone()) {
+        let summary = VerticalOverflowSummary()
+        summarizeVerticalOverflow(node,w,h,summary)
+        node.rootFallback = summary.present
+    }
     layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
 }
 
@@ -246,6 +307,17 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
     let w = lesser(width, greater(node.resolved.fixedW ?? width, node.resolved.minW))
     let h = lesser(height, greater(node.resolved.fixedH ?? height, node.resolved.minH))
     node.constrain(w)
+    let implicitRoot = sessionRoot && !session.temporary && !root.viewportDeclared
+    // Mounted M1 render is also a root consumer even when caching is disabled.
+    let mountedRoot = !session.temporary && root.descriptionId == session.root.descriptionId
+    if ((implicitRoot || mountedRoot) && !root.viewportDeclared && node.resolved.fixedH.isNone()) {
+        let summary = VerticalOverflowSummary()
+        summarizeVerticalOverflow(node,w,h,summary)
+        node.rootFallback = summary.present
+    } else { node.rootFallback = false }
+    // Resolve current finite geometry before consuming deferred ensure intents.
+    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
+    applyPendingViewportEnsures(session)
     paint(node, frame, 0, 0, w, h, 0, 0, width, height)
     frame
 }

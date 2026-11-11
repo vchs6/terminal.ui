@@ -411,6 +411,9 @@ public class Application {
                             while (i < path.size && !event.defaultPrevented) {
                                 event.setCurrent(path[i].reference())
                                 if (let Some(callback) <- ancestors[i]) { callback(event) }
+                                if (!event.defaultPrevented) {
+                                    if (viewportDefault(path[i],key)) { event.preventDefault() }
+                                }
                                 i++
                             }
                         } finally {
