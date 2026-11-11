@@ -33,4 +33,5 @@ func capacityBoundaries(): Unit {
     capacityFile("tokens-over.toml", "CapacityExceeded")
     capacityFile("declarations-at.toml", "SyntaxError")
     capacityFile("declarations-over.toml", "CapacityExceeded")
+    encodedKeyBudgetBoundaries()
 }
