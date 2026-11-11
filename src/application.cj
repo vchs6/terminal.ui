@@ -462,6 +462,11 @@ public class Application {
             dispose()
         }
     }
+    private func dispatchDeviceKey(key: KeyEvent): Unit {
+        if (let Some(target) <- activeTarget()) { dispatch(target,key) }
+        else if (key.code == "interrupt") { running = false }
+        else { dispatchHiddenKey(key) }
+    }
     public func run(): Unit {
         if (readSession().isSome()) {
             throw UIException("LifecycleReentry", "session already active")
@@ -601,6 +606,14 @@ public class Application {
                 if (value == -3) {
                     throw Exception("terminal input failed")
                 }
+                if (value >= 0 && decoder.state == 1 && lastInput >= 0) {
+                    let now = unsafe { cjt_monotonic_ms() }
+                    if (now < 0 || (now >= lastInput && now - lastInput >= 100)) {
+                        lastInput = -1
+                        if (let Some(escape) <- decoder.timeout()) { dispatchDeviceKey(escape) }
+                        if (readSession().isNone() || work.isStopping()) { break }
+                    }
+                }
                 let event = if (value >= 0) {
                     let decoded = decoder.feed(value)
                     if (decoder.state == 1) { lastInput = unsafe { cjt_monotonic_ms() } } else { lastInput = -1 }
@@ -611,14 +624,7 @@ public class Application {
                 } else { Option<KeyEvent>.None }
                 lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
                 match (event) {
-                    case Some(key) =>
-                        if (let Some(target) <- activeTarget()) {
-                            dispatch(target, key)
-                        } else if (key.code == "interrupt") {
-                            running = false
-                        } else {
-                            dispatchHiddenKey(key)
-                        }
+                    case Some(key) => dispatchDeviceKey(key)
                     case None => ()
                 }
             }
