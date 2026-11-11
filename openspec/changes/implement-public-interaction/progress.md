@@ -13,3 +13,5 @@ root已采纳I015异步一次600ms、唯一decoder/writer、Unknown不改显隐�
 098独立Sol/high仅prepare原b004fe597（base d8c5be0）已集成main；35testpaths/20CJ，正常basebuild0、consumer112缺Theme/A API=BLOCKED不算strongRED，shape20源compile0从未运行，native真实PTY/clock/writer夹具selftest0四负控，94向量70驱动24待集成recipe。084/088/152/interface-map实际屏障未齐，098不勾选、099未准入。103 viewport_test_preparation和108 overlay_test_preparation Sol/high各独立目录继续仅准备，测试正式路径分别interaction_b/interaction_c；不复制内核、不假早期API通过。
 
 103准备者询问B Page大小写与wrap来源。root核input K002已有pageup/pagedown精确code并给B同文注记；物理解码仍114/117而非B新增。Theme T004已有TextWrap/Grapheme便捷成员且仅静态Text合法，当前缺actual088只记上游BLOCKED，不是新公共API缺口。
+
+2026-11-11主代理复核实际main41f29f1：080/084/088/152/097已接受并集成，098不依赖092。实际接口映射已固定于SDD task-098-final-brief：唯一style_resolver/ResolvedStyle与Component声明槽、RuntimeSession/RuntimeNode/NodeRef、Application设备root分派及InputDecoder、SessionExtensionState/terminal_bridge/native单writer、LayoutNode/Frame/Glyph路径；Focus/Canvas/caret仍为新实现目标。原prepare缺Theme/Session屏障已解除，独立Sol/high测试角色复用原interaction-a-tests资产正式完成098、真实缺A API RED及native剩余集成fixture；099仍等固定098产物，未开始产品修改。不新建资产审核轮，不重复旧有效验证。

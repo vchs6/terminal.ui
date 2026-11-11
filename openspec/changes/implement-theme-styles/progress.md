@@ -45,3 +45,5 @@ Task 013025: fix round 1/5 complete (3 Important addressed, 0 open; 97df096..95c
 088最终PASS_FOUNDATION_SCOPE已封存（42行37passed/2限定复用/1基础包通过但releaseOPEN/1来源限制/1后续排除），当前0C/I/M；rootfresh验35条index，087fresh验564条index。647原件+10wrapper+截图总览集中归R15，rootfresh1294份source/copy SHA全同。产品7提交已cherry main73abef3，46产品路径与8d零差异，实际push成功；同一源码/依赖/环境/范围的087088结果按AGENTS11.1复用，未为cherry冷跑全suite。
 
 089实际source8d的foundation普通build/direct0后隔离async API编译1（7条确实缺类型/方法），原179c851资产/tree441cfd4d未改，无新testcommit，22行为未执行。真实RED原件34份归R15/async-red，2个原始.so外部hash/省略理由保留，不入仓。026原作者已从73abef3开独立branch进入完整async实施，数据层内部checkpoint ec506e7，不视026完成；WIP loading单独保留。后续090/091/092仍按角色分离，合并同功能验证/归档，不增零碎审核回合。
+
+TASK026 candidate797039d独立090完整审查为0C/1I/1M：候选漏检共享分配器的clipped minimum溢出，及加载文档陈旧。固定独立回归3040111已集成main41f29f1，有限4×1大min合法控制通过，Max×0实际Applied后overflow/关闭为RED。原作者round1修复4971528已推WIPloading；focused atomic/current与正常mandatorylint bundle退出0，独立090仅797..497必要影响范围复核进行中；091/092未准入，026不勾选。
