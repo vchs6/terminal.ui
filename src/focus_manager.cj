@@ -96,11 +96,11 @@ class FocusManager <: ObservableSource {
                 if (index >= 0) {
                     var i = index + 1
                     while (i < previous.size && replacement.isNone()) {
-                        if (eligible(previous[i])) { replacement = Some(previous[i]) }; i++
+                        if (eligible(previous[i]) && session.getOrThrow().inOverlayDomain(previous[i])) { replacement = Some(previous[i]) }; i++
                     }
                     i = index - 1
                     while (i >= 0 && replacement.isNone()) {
-                        if (eligible(previous[i])) { replacement = Some(previous[i]) }; i--
+                        if (eligible(previous[i]) && session.getOrThrow().inOverlayDomain(previous[i])) { replacement = Some(previous[i]) }; i--
                     }
                 }
                 if (replacement.isNone() && !current.isEmpty()) { replacement = Some(current[0]) }

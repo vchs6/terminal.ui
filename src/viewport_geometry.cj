@@ -45,6 +45,7 @@ func applyViewportEnsure(session: RuntimeSession, command: ScrollCommand): Unit 
         }
         x = rect.x; y = rect.y; w = rect.width; h = rect.height
     } else {
+        if (node.overlayRoot) { return }
         x = node.layoutX; y = node.layoutY; w = node.layoutWidth; h = node.layoutHeight
         match (node.parent) { case Some(parent) => node = parent; case None => return }
     }
@@ -63,6 +64,7 @@ func applyViewportEnsure(session: RuntimeSession, command: ScrollCommand): Unit 
             w = greater(0,right-x); h = greater(0,bottom-y)
             if (w == 0 || h == 0) { return }
         }
+        if (node.overlayRoot) { return }
         let parent = node.parent
         if (parent.isNone()) { return }
         x = signedAdd(signedAdd(node.layoutX,node.contentX),signedAdd(x,-ox))

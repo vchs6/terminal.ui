@@ -156,12 +156,6 @@ public class Application {
         if (let Some(value) <- readSession()) {
             value.requireReadContext(); value.focusManager.observe()
             if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
-            if (let Some(reserved) <- value.reservedLayer) {
-                if (let Some(rootRef) <- reserved.root) { if (rootRef.isValid()) { return Some(rootRef) } }
-            }
-            if (let Some(modal) <- value.topModal()) {
-                if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) { return Some(rootRef) } }
-            }
         }
         None
     }
@@ -169,6 +163,12 @@ public class Application {
         if (let Some(value) <- readSession()) {
             value.requireReadContext(); value.focusManager.observe()
             if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
+            if (let Some(reserved) <- value.reservedLayer) {
+                if (let Some(rootRef) <- reserved.root) { if (rootRef.isValid()) { return Some(rootRef) } }
+            }
+            if (let Some(modal) <- value.topModal()) {
+                if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) { return Some(rootRef) } }
+            }
             if (let Some(node) <- value.root.readMount()) {
                 if (value.focusManager.effective(node,true)) {
                     if (value.focusManager.effective(node,false)) { return Some(node.reference()) }
