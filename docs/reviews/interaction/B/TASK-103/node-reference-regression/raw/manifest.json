@@ -1,0 +1,186 @@
+{
+  "task": "baseline active NodeRef regression",
+  "utc": "2026-11-11T11:39:52.128619+00:00",
+  "test_sha": "7589521b6eb43661e41d2b97d6069656cce846c6",
+  "test_base": "a2974118ed31aec6b7da55e269dd321fb156c100",
+  "product_sha": "f8a028b39daf8a341576f304335d262544b9cca5",
+  "commands": [
+    {
+      "name": "build",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+      "utc": "2026-11-11T11:27:54.152114+00:00",
+      "exit": 0
+    },
+    {
+      "name": "run",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression/target/release/bin/main"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+      "utc": "2026-11-11T11:28:43.969645+00:00",
+      "exit": 0
+    },
+    {
+      "name": "build-final",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+      "utc": "2026-11-11T11:33:11.041281+00:00",
+      "exit": 0
+    },
+    {
+      "name": "run-final",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression/target/release/bin/main"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+      "utc": "2026-11-11T11:33:59.272009+00:00",
+      "exit": 0
+    },
+    {
+      "name": "build-independent",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+      "utc": "2026-11-11T11:36:39.207649+00:00",
+      "exit": 0
+    },
+    {
+      "name": "controls",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression/target/release/bin/main",
+        "controls"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+      "utc": "2026-11-11T11:37:25.808650+00:00",
+      "exit": 0
+    },
+    {
+      "name": "guard",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression/target/release/bin/main",
+        "guard"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+      "utc": "2026-11-11T11:37:25.842470+00:00",
+      "exit": 1
+    }
+  ],
+  "final_actual": {
+    "normal_build": 0,
+    "controls": 0,
+    "fresh_guard": 1,
+    "failed_iteration": 96,
+    "expected": "ReentrantEvaluation",
+    "actual": "StaleReference"
+  },
+  "prior_variants": "both direct0 GREEN retained; not counted as RED",
+  "external_history": "original author public stale-base2 raw retained, iteration28/exit1 is external history, not this fresh result",
+  "prehash": {
+    "path": "independent-process-prehash.json",
+    "sha256": "fc3f46f32735aa8ae267e9012efb80f0c09de1b2bfb6df3f444b6ca06c8d6f4d"
+  },
+  "source_files": {
+    "tests/node_reference_regression/.gitignore": "479534ac50fd154911056a55a13ff684c65778a2fc18498887734537d8efadf4",
+    "tests/node_reference_regression/README.md": "7f4a4e0218cccff573b516b218e85809cb87cd8c8b011ebf073bfad3537c4850",
+    "tests/node_reference_regression/cjpm.toml": "3fdaef2df407d429b77a237c16b346286f744d977ae4b860db7139319ac60548",
+    "tests/node_reference_regression/run.sh": "31dc25b96f8a1de9ba6cb7b41e2c496caeb5c0fac993ab8a6b54cea8734ba09a",
+    "tests/node_reference_regression/src/box.cj": "cbf14e567404db5effde9d5fafcb6cbb76f293d0fe8ed4a64404ad22a78f07dc",
+    "tests/node_reference_regression/src/checks.cj": "368f404ae6a865deca81dd84fa6c70b0623ca2906f2cadc3d45193631160f6d4",
+    "tests/node_reference_regression/src/gc_progress.cj": "36121b7cb45f8ccf2035ff026e7dcce8ed1f2cf7b3ea31760b9b633132537e2e",
+    "tests/node_reference_regression/src/getter_guard.cj": "be43440b5c5fddfe8ea2f9bfe006b91bb6055f3c058189770ffffc6eaab26d29",
+    "tests/node_reference_regression/src/lifetime_controls.cj": "8f3635116d0cc84f969c95028aa7157cbbbbf4cc47fc747ffa6a98d3640ede1a",
+    "tests/node_reference_regression/src/main.cj": "41e4ecfe0b8ab95ee3275f1fdefacad6cac48cc175de0217081e489aa0497697"
+  },
+  "raw_files": {
+    "raw/GC-progress-build-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/GC-progress-build-final.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/GC-progress-build-final.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "raw/GC-progress-run-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/GC-progress-run-final.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/GC-progress-run-final.stdout": "7c2a38a69458cf354724b6c30fb6b55c2c1b97b376ede037ad287d7d5fe59601",
+    "raw/GC-progress-source/box.cj": "cbf14e567404db5effde9d5fafcb6cbb76f293d0fe8ed4a64404ad22a78f07dc",
+    "raw/GC-progress-source/checks.cj": "368f404ae6a865deca81dd84fa6c70b0623ca2906f2cadc3d45193631160f6d4",
+    "raw/GC-progress-source/gc_progress.cj": "36121b7cb45f8ccf2035ff026e7dcce8ed1f2cf7b3ea31760b9b633132537e2e",
+    "raw/GC-progress-source/getter_guard.cj": "ad0b3572c61596c9eb3315b1b92b0dc45cd0978cf0a7f80c4c8f4d16e64801cd",
+    "raw/GC-progress-source/lifetime_controls.cj": "e0d15ba02aee233f766a5f32d7809e7c8d3ad9321de268af5bd2b7fb730eba82",
+    "raw/GC-progress-source/main.cj": "9464062014c51b63af4092a2d2c45296cd40376c0418f236a007502e85d33e5d",
+    "raw/build-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/build-final.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/build-final.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "raw/build-independent.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/build-independent.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/build-independent.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "raw/build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/build.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "raw/commands.json": "c40372b72ccb7f1e646c9a2b8eaf0e1feb77f4161b45a1d6abceb2b8f3629f29",
+    "raw/controls.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/controls.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/controls.stdout": "f72d1e7c2a0d7d44a8dc3d6823cacb2cd2914a86c22dccd9ff95e90667556395",
+    "raw/final-prehash.json": "d07e7f58e5e463129cb67af7e38d1e04190302e8e85a40793cab35dc56c9af04",
+    "raw/guard.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "raw/guard.stderr": "95fb1edf842600d2885f9798e206171b194ffb1c7395289f264459e4ee0c5491",
+    "raw/guard.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/independent-process-prehash.json": "fc3f46f32735aa8ae267e9012efb80f0c09de1b2bfb6df3f444b6ca06c8d6f4d",
+    "raw/initial-GC64-build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/initial-GC64-build.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/initial-GC64-build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "raw/initial-GC64-identity.json": "0496b9d1889120126d7845f4ea625beb6bbea068a471c1286faa70a08a597f73",
+    "raw/initial-GC64-run.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/initial-GC64-run.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/initial-GC64-run.stdout": "d22e06316f2f7606178086a56ef4739709fb1b0f118b2b294c4209fea4c3744f",
+    "raw/initial-GC64-source/box.cj": "cbf14e567404db5effde9d5fafcb6cbb76f293d0fe8ed4a64404ad22a78f07dc",
+    "raw/initial-GC64-source/checks.cj": "368f404ae6a865deca81dd84fa6c70b0623ca2906f2cadc3d45193631160f6d4",
+    "raw/initial-GC64-source/getter_guard.cj": "884d1cce3346377f86c1d6095e47261f6936d69ccbb7d6057ae478bba431d16f",
+    "raw/initial-GC64-source/lifetime_controls.cj": "f0796192c0444b0808d86586db77613f96df51b34122f90927e37af80e14ee25",
+    "raw/initial-GC64-source/main.cj": "8e1d9fd2e9bc24a6e5e12be62da2ebace50928ed5fc965fc365e1c709ee12d51",
+    "raw/original/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "raw/original/inputs.sha256": "453203ff060a54d4bc9b1f0f1807f496a1b7c91bcd54129316b33034789d6ee2",
+    "raw/original/stderr": "b8cfd4ad31a2bdc5ab7e7ba2a89e4c03ba873ac073c653e18a9457ad84a1ce55",
+    "raw/original/stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "raw/original/utc.txt": "213d775e2e3e5c64fc559e3bf5b62660a4dd35a4d1dfdf4698a9ecaf1a7c36fd",
+    "raw/original-evidence.json": "cfbbcf0e571147c0112a802e51615f25f8d5e906078b3ff1627162e0f885f4c9",
+    "raw/prehash.json": "7bb308e859494d2be223540702f40734505d4f85999eeb6f93e68dc458b79317",
+    "raw/run-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/run-final.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/run-final.stdout": "7c2a38a69458cf354724b6c30fb6b55c2c1b97b376ede037ad287d7d5fe59601",
+    "raw/run.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/run.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/run.stdout": "d22e06316f2f7606178086a56ef4739709fb1b0f118b2b294c4209fea4c3744f"
+  },
+  "binary": {
+    "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression/target/release/bin/main": "39fe2dbdbd376f9095ca634e704e3d4a2401d8a283c11f3afa6c5b6fc19eb07c"
+  },
+  "limits": {
+    "natural_mount_cycles": 500,
+    "public_GC_poll_cycles": 500,
+    "public_poll_sleep_ms": 1,
+    "direct_timeout_s": 60,
+    "no_GC_progress_exit": 2
+  },
+  "SDK_GC": "public std.runtime.gc(heavy:true), getGCCount; no private hook/FFI",
+  "existing_suites_unchanged": true,
+  "not_run": [
+    "old suites or hosts",
+    "B modified/uncommitted source",
+    "private index diagnostics",
+    "postfix product behavior"
+  ]
+}

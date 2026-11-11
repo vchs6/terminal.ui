@@ -1,0 +1,34 @@
+{
+  "argv": [
+    "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+    "-geometry",
+    "40x8+20+20",
+    "-T",
+    "TASK106 xterm unicode",
+    "-fa",
+    "DejaVu Sans Mono",
+    "-fs",
+    "16",
+    "-xrm",
+    "XTerm*printerCommand: /bin/cat >> /workspace/work/viewport-execution/raw/gui-hosts/xterm-unicode/native-grid.ansi",
+    "-xrm",
+    "XTerm*printAttributes: 2",
+    "-xrm",
+    "XTerm*VT100.translations: #override <Key>F6: print()",
+    "-e",
+    "python3",
+    "/workspace/work/viewport-execution/tools/record-host.py",
+    "/workspace/work/viewport-execution/product/tests/interaction_b/target/release/bin/main",
+    "/workspace/work/viewport-execution/raw/gui-hosts/xterm-unicode",
+    "visible"
+  ],
+  "env": {
+    "DISPLAY": ":196",
+    "HOME": "/workspace/work/viewport-execution/raw/gui-hosts/xterm-unicode/home",
+    "XDG_CONFIG_HOME": "/workspace/work/viewport-execution/raw/gui-hosts/xterm-unicode/home/config",
+    "XDG_CACHE_HOME": "/workspace/work/viewport-execution/raw/gui-hosts/xterm-unicode/home/cache",
+    "VIEWPORT_MODE": "unicode"
+  },
+  "utc": "2026-11-11T12:25:27.375231+00:00",
+  "binary_sha256": "229eb7a6189fb0d916bfec1dba992a15e01471e410d8bff2b6e98363dc621062"
+}

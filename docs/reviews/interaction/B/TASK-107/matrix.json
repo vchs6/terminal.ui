@@ -1,0 +1,653 @@
+{
+  "task": "TASK107",
+  "source": "62039552a26da295dcd710d7cfc40cb9e43ca5fd",
+  "rows": [
+    {
+      "id": "B01-root-100",
+      "ac": [
+        "B-01",
+        "B-02",
+        "B-04"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_scrolling.cj:rootLongContent",
+      "obligation": "Frame80x24; contentHeight100; offset0..76; tail starts r76 and ends r99; no focusable children => focus None, actual activeTarget root; down moves once",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-weight-short",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_scrolling.cj:rootWeightedCompatibility",
+      "obligation": "A at row0; B at rows5,6,7; 5/5 retained; root offset0",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-weight-overflow",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_scrolling.cj:rootWeightedCompatibility",
+      "obligation": "eight A rows then blank then B; 9/1; contentHeight10; no further expansion",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B01-chrome",
+      "ac": [
+        "B-01",
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_scrolling.cj:fixedChromeAndBarriers",
+      "obligation": "1/8/1; body offset92; root0; MENU then r92..r99 then STAT",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-fixed-barrier",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_scrolling.cj:fixedChromeAndBarriers",
+      "obligation": "root contentHeight10, scrollBy down false; no root expansion to100",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-off",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_scrolling.cj:fixedChromeAndBarriers",
+      "obligation": "offset0; down scroll false, no implicit fallback",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-wrap",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_scrolling.cj:wrappedAndEmptyRoot",
+      "obligation": "extent3; initial ABCD/EFGH; scroll1 => EFGH/IJKL; no unbounded-width natural-height mistake",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-empty-zero",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_scrolling.cj:wrappedAndEmptyRoot",
+      "obligation": "Frame0x0, extent0, offset0, no divide-by-zero or stability loop",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-detached-mounted",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_scrolling.cj:detachedRootPolicy",
+      "obligation": "detached0/1/2 and no ref; mounted offset3 gives3/4/5 for both snapshot and global render",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B04-bool",
+      "ac": [
+        "B-02",
+        "B-04"
+      ],
+      "oracle_source": "tests/interaction_b/src/commands.cj:acceptedCommandsAndClamping",
+      "obligation": "Bool false,true,false,false,true,false for zero/end/repeated/positive saturation/negative saturation/negative at-start; final0,0",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-shrink",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/commands.cj:acceptedCommandsAndClamping",
+      "obligation": "accept true based on prior committed extent; final offset0,0 with latest extent",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-axes-zero",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/commands.cj:axesAndZeroResize",
+      "obligation": "X resets0; node and actual focus identity retained; zero caret hidden; restored offsets clamp0",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B01-table",
+      "ac": [
+        "B-01",
+        "B-04"
+      ],
+      "oracle_source": "tests/interaction_b/src/commands.cj:horizontalTable",
+      "obligation": "ABCD initially; offset8 => IJKL; Home0; End8; Frame4x1",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B03-nested",
+      "ac": [
+        "B-03"
+      ],
+      "oracle_source": "tests/interaction_b/src/ensure_visible.cj:nestedEnsure",
+      "obligation": "Nearest inner7 outer2; grid s/7/8/9; Start target8 => inner7 outer4 using visible target fragment",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B03-align",
+      "ac": [
+        "B-03"
+      ],
+      "oracle_source": "tests/interaction_b/src/ensure_visible.cj:alignmentsAndOversizedTarget",
+      "obligation": "Center18; End15; oversized containing current window retains15; empty rect unchanged; rect row100+1 InvalidProperty",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B04-order",
+      "ac": [
+        "B-04"
+      ],
+      "oracle_source": "tests/interaction_b/src/default_actions.cj:defaultActionOrder",
+      "obligation": "trace target;inner@0; then inner1/outer0 for stop or both0 for prevent; at inner end3 trace target;inner@3;outer; and outer1",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B04-target",
+      "ac": [
+        "B-04"
+      ],
+      "oracle_source": "tests/interaction_b/src/default_actions.cj:targetPrevent",
+      "obligation": "all viewport offsets unchanged",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B04-page",
+      "ac": [
+        "B-04"
+      ],
+      "oracle_source": "tests/interaction_b/src/default_actions.cj:pageSteps",
+      "obligation": "+5/-5, then minimum page step1; physical page decode is deferred to Keyboard114/117",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": "Normalized KeyEvent pageup/pagedown only; physical key decoding belongs to later Keyboard."
+    },
+    {
+      "id": "B01-public-combination",
+      "ac": [
+        "B-01",
+        "B-02",
+        "B-04"
+      ],
+      "oracle_source": "tests/interaction_b/src/composition.cj:constructorComposition",
+      "obligation": "extent6; initial a/b/c; down => b/c/d and offset1 for both; same real kernel",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B03-caret",
+      "ac": [
+        "B-01",
+        "B-03"
+      ],
+      "oracle_source": "tests/interaction_b/src/caret_scrolling.cj:canvasHorizontalCaret",
+      "obligation": "jkl-space; caret screen x3 visible; manual scroll0 remains abcd over repeated snapshots; W2 resize => l-space offset11",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}",
+        "raw/b-device/detail/sequences/",
+        "raw/gui-hosts/xterm-{caret-resize,same-turn}/",
+        "raw/gui-vte-final/vte-{caret-resize,same-turn}/",
+        "raw/kernel-hosts-fenced/{caret-resize,same-turn}/"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-prelayout-query",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/lifecycle.cj:readonlyPrelayoutAndStale",
+      "obligation": "prelayout all six geometry/offset values0; lifecycle LifecycleReentry; query measure count unchanged; stale query StaleReference",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": "Only constant axes / zero geometry / no implicit measure and stale-ref checks. Getter axes during onMount remains M01; this row does not close it."
+    },
+    {
+      "id": "B02-capability",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/lifecycle.cj:noViewportCapability",
+      "obligation": "InvalidProperty for query/scroll; explicit Off ancestor does not bestow capability",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-mixed-identity",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/identity.cj:mixedIdentityRetention",
+      "obligation": "real sequence B M A; same focused A; zero retains identity; Tab wraps to focusable root; no clip-driven hidden/unmount",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-root-zero-100",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_boundaries.cj:zeroHundredRoot",
+      "obligation": "extent100, legal Y0..100; zero frame draws nothing; ensure zero axis does not locate; restored range0..76",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-other-barriers",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_boundaries.cj:rootOverflowBoundaries",
+      "obligation": "root fixed-height retains declaration; ordinary/Horizontal do not swallow unhandled vertical overflow; Vertical/Both do",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B02-pass-resource",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/resource_extent.cj:finiteExtentResource + source-audit.json",
+      "obligation": "at most two root passes by independent product diff review; frame always80x24, no extent-sized Frame; public Canvas measure count is not a pass counter",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}",
+        "raw/b-resource-gnutime/{command.json,stdout,stderr}"
+      ],
+      "limit": "Finite extent/actual Frame literals; GNU Time is descriptive. Internal at-most-two-root-pass proof belongs to 105 source review."
+    },
+    {
+      "id": "B03-nested-None",
+      "ac": [
+        "B-03"
+      ],
+      "oracle_source": "tests/interaction_b/src/ensure_geometry.cj:ensureTwoAxesAndNone / explicitIntentOrdering",
+      "obligation": "Some handles own viewport; None starts at parent using layout box; disabled/zero axes unchanged; oversized tie Start",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B03-new-caret-resize",
+      "ac": [
+        "B-03"
+      ],
+      "oracle_source": "tests/interaction_b/src/device_sequences.cj + device_sequences.py:same-turn / caret-resize; src/caret_history.cj",
+      "obligation": "new caret2 wins older resize rect; use latest extent; no repeated paint commands; exact same-turn evidence requires actual accepted A event/resize pipeline",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}",
+        "raw/b-device/detail/sequences/",
+        "raw/gui-hosts/xterm-{caret-resize,same-turn}/",
+        "raw/gui-vte-final/vte-{caret-resize,same-turn}/",
+        "raw/kernel-hosts-fenced/{caret-resize,same-turn}/"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B03-guard-priority",
+      "ac": [
+        "B-02",
+        "B-03"
+      ],
+      "oracle_source": "tests/interaction_b/src/viewport_guards.cj:readonly/pure/validation/capacity/cancel/lifecycle",
+      "obligation": "readonly query legal and tracked; mutation ReentrantEvaluation (structural keeps ReentrantStructure); wrong UI WrongUIContext; stale StaleReference; hidden InvalidProperty; negative To IllegalArgumentException; do not invent unspecified combined-error priority",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "B01-unicode-damage",
+      "ac": [
+        "B-01",
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/unicode_viewport.cj + device_sequences.py:unicode",
+      "obligation": "offset1 => full 界 cluster; offset2 => blank then B; no orphan continuation; adjacent chrome unchanged; diff clears old full cluster",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}",
+        "raw/b-device/detail/sequences/unicode/",
+        "raw/gui-hosts/xterm-unicode/",
+        "raw/gui-vte-final/vte-unicode/"
+      ],
+      "limit": "New B headless/PTY Unicode incl combining/ZWJ and genuine GUI CJK damage; no new VT Unicode/font coverage claim."
+    },
+    {
+      "id": "B01-real-pty",
+      "ac": [
+        "B-01",
+        "B-04"
+      ],
+      "oracle_source": "tests/interaction_b/src/pty_fixture.cj + pty_driver.py:public-state/resize/activeTarget assertions",
+      "obligation": "initial rows0..23; tail76..99; smaller/restored extents reclamp; q stops; exact termios restore",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-device/detail/basic/",
+        "raw/gui-hosts/xterm-pty/",
+        "raw/gui-vte-hosts/vte-pty/",
+        "raw/kernel-hosts-fenced/pty/"
+      ],
+      "limit": "Real Down input and physical resize; 100 Down + 14 Down retained. Five phases, not only headless entry."
+    },
+    {
+      "id": "B02-bare-canvas-implicit-root",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/root_canvas.cj:bareCanvasImplicitViewport",
+      "obligation": "implicit Vertical: PaintContext.size1x999, clip1x1, actual Frame1x1; existing no-viewport A small fixture explicitly Off retains size1x1",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-normal/{command.json,stdout,stderr}",
+        "raw/clean-b/{command.json,stdout,stderr}"
+      ],
+      "limit": ""
+    },
+    {
+      "id": "T105-I01",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/review_geometry.cj",
+      "obligation": "Horizontal weighted Row ABCD / EFGH; measurement and allocation agree",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-review9/{command.json,stdout,stderr}",
+        "raw/b-normal/stdout",
+        "raw/clean-b/stdout",
+        "/workspace/work/viewport-review/round2/report.md"
+      ],
+      "limit": "Nine distinct observations; isolated and full-entry executions are repeat observations, not extra unique cases."
+    },
+    {
+      "id": "T105-I02",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/review_geometry.cj",
+      "obligation": "Implicit fallback independent viewport first assigned height5 preserved; extent13, allocation5/8",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-review9/{command.json,stdout,stderr}",
+        "raw/b-normal/stdout",
+        "raw/clean-b/stdout",
+        "/workspace/work/viewport-review/round2/report.md"
+      ],
+      "limit": "Nine distinct observations; isolated and full-entry executions are repeat observations, not extra unique cases."
+    },
+    {
+      "id": "T105-I03",
+      "ac": [
+        "B-02",
+        "B-03"
+      ],
+      "oracle_source": "tests/interaction_b/src/review_geometry.cj",
+      "obligation": "Internal viewport shrink4→2 with unchanged app size restores old caret: offset11",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-review9/{command.json,stdout,stderr}",
+        "raw/b-normal/stdout",
+        "raw/clean-b/stdout",
+        "/workspace/work/viewport-review/round2/report.md"
+      ],
+      "limit": "Nine distinct observations; isolated and full-entry executions are repeat observations, not extra unique cases."
+    },
+    {
+      "id": "T105-I04",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/review_geometry.cj",
+      "obligation": "Mounted subtree export preserves committed viewport4 offset9 and App/M1 jkl ",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-review9/{command.json,stdout,stderr}",
+        "raw/b-normal/stdout",
+        "raw/clean-b/stdout",
+        "/workspace/work/viewport-review/round2/report.md"
+      ],
+      "limit": "Nine distinct observations; isolated and full-entry executions are repeat observations, not extra unique cases."
+    },
+    {
+      "id": "T105-I05",
+      "ac": [
+        "B-02",
+        "B-03"
+      ],
+      "oracle_source": "tests/interaction_b/src/review_geometry.cj",
+      "obligation": "Same-batch growth then ensure uses final extent; no stale-extent error",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-review9/{command.json,stdout,stderr}",
+        "raw/b-normal/stdout",
+        "raw/clean-b/stdout",
+        "/workspace/work/viewport-review/round2/report.md"
+      ],
+      "limit": "Nine distinct observations; isolated and full-entry executions are repeat observations, not extra unique cases."
+    },
+    {
+      "id": "T105-I06",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/review_geometry.cj",
+      "obligation": "Horizontal Canvas final measurement maxWidth=None,maxHeight=Some(2)",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-review9/{command.json,stdout,stderr}",
+        "raw/b-normal/stdout",
+        "raw/clean-b/stdout",
+        "/workspace/work/viewport-review/round2/report.md"
+      ],
+      "limit": "Nine distinct observations; isolated and full-entry executions are repeat observations, not extra unique cases."
+    },
+    {
+      "id": "T105-I07",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/review_theme_invalidation.cj",
+      "obligation": "T008 stable measurement survives export/invalidation; Failed preserves old theme/session/node refs",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-review9/{command.json,stdout,stderr}",
+        "raw/b-normal/stdout",
+        "raw/clean-b/stdout",
+        "/workspace/work/viewport-review/round2/report.md"
+      ],
+      "limit": "Nine distinct observations; isolated and full-entry executions are repeat observations, not extra unique cases."
+    },
+    {
+      "id": "T105-I05-stable",
+      "ac": [
+        "B-02",
+        "B-03"
+      ],
+      "oracle_source": "tests/interaction_b/src/review_round2.cj",
+      "obligation": "Growth stabilized but unlaid before next batch ensure: content13 offset9 jklm",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-review9/{command.json,stdout,stderr}",
+        "raw/b-normal/stdout",
+        "raw/clean-b/stdout",
+        "/workspace/work/viewport-review/round2/report.md"
+      ],
+      "limit": "Nine distinct observations; isolated and full-entry executions are repeat observations, not extra unique cases."
+    },
+    {
+      "id": "T105-I08",
+      "ac": [
+        "B-02"
+      ],
+      "oracle_source": "tests/interaction_b/src/review_round2.cj",
+      "obligation": "Retain intermediate measurement dependency: rows2→3 yields C/C/C/T/blank in actual snapshot and M1",
+      "verdict": "PASS",
+      "evidence": [
+        "raw/b-review9/{command.json,stdout,stderr}",
+        "raw/b-normal/stdout",
+        "raw/clean-b/stdout",
+        "/workspace/work/viewport-review/round2/report.md"
+      ],
+      "limit": "Nine distinct observations; isolated and full-entry executions are repeat observations, not extra unique cases."
+    },
+    {
+      "id": "T105-M01",
+      "ac": [
+        "B-01",
+        "B-02"
+      ],
+      "oracle_source": "design B.1; src/runtime_node.cj constructor and src/runtime_session.cj lifecycle then syncViewportAxes",
+      "obligation": "Mounted viewport(getter Both) onMount readonly snapshot must already report current axes Both with zero geometry",
+      "verdict": "DEFERRED_TASK024",
+      "evidence": [
+        "/workspace/work/viewport-review/report.md#T105-M01",
+        "/workspace/work/viewport-review/round2/findings.json",
+        "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-public-interaction/task-107-brief.md"
+      ],
+      "limit": "Actual known Off during onMount, Both after start returns. Not fixed and not waived for final Linux/release; constant-axes zero snapshot PASS is not equivalent."
+    }
+  ],
+  "counts": {
+    "original_formal": 31,
+    "bare_canvas_additional": 1,
+    "review_observations": 9,
+    "deferred_exact_obligation": 1,
+    "total_rows": 42,
+    "pass": 41,
+    "deferred": 1
+  },
+  "evidence_relative_root": "/workspace/work/viewport-execution",
+  "source_relative_root": "/workspace/work/viewport-execution/product"
+}

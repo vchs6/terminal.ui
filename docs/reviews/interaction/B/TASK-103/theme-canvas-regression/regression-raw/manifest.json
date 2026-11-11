@@ -1,0 +1,94 @@
+{
+  "task": "standalone Theme Canvas T008 regression",
+  "utc": "2026-11-11T10:37:53.587591+00:00",
+  "test_sha": "f57d72abaa6e51cd091d4e72b3e85c2fea1d8236",
+  "test_base": "e9ee2074225a1c7813bf2232337c527c6ccde1e9",
+  "baseline_source": "f8a028b39daf8a341576f304335d262544b9cca5",
+  "commands": [
+    {
+      "name": "build",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration",
+      "utc": "2026-11-11T10:35:40.322650+00:00",
+      "exit": 0
+    },
+    {
+      "name": "finite",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration/target/release/bin/main",
+        "finite"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration",
+      "utc": "2026-11-11T10:36:30.596260+00:00",
+      "exit": 0
+    },
+    {
+      "name": "control",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration/target/release/bin/main",
+        "control"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration",
+      "utc": "2026-11-11T10:36:30.622495+00:00",
+      "exit": 0
+    },
+    {
+      "name": "subtree",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration/target/release/bin/main",
+        "subtree"
+      ],
+      "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration",
+      "utc": "2026-11-11T10:36:30.649002+00:00",
+      "exit": 1
+    }
+  ],
+  "actual_exits": {
+    "build": 0,
+    "finite": 0,
+    "control": 0,
+    "subtree": 1
+  },
+  "classification": "two real positives and contract assertion RED; original observer0 is not counted as RED",
+  "prehash": "prehash.json",
+  "source_files": {
+    "tests/theme_canvas_integration/.gitignore": "479534ac50fd154911056a55a13ff684c65778a2fc18498887734537d8efadf4",
+    "tests/theme_canvas_integration/README.md": "1959e512b998883f4e10fc5fae7ab4e2d45a20fd0876c547a4abdd41cc8ba2c4",
+    "tests/theme_canvas_integration/cjpm.toml": "2ae169709b1814291ba15133cb35e746f0eefe83bb3bd4e7ccde4acb132ea186",
+    "tests/theme_canvas_integration/run.sh": "e023926285afdce5385d277608d1f18cb8b4cf7b07c814c9c4f969459d938283",
+    "tests/theme_canvas_integration/src/box.cj": "4765c113f631ccec032d70bf15ab913c8269e8abee33995a3bff6d5b29883b2f",
+    "tests/theme_canvas_integration/src/main.cj": "ce313e5d2d159d775033dff92f3e13cfedaaaff06c55a9e31b9dde6233299890"
+  },
+  "binary": {
+    "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration/target/release/bin/main": "d968ef5fd52cb54dc7d17839910916282ad3d3d31385663337f3d0fdacb6c871"
+  },
+  "raw_files": {
+    "prehash.json": "ce1a5a9639f059c1e1ce09309846687b79365cfd9ce27536b18188d8d1ff3156",
+    "finite.stdout": "46e76db84cd9c139b2049b30afb62cd22e51ba4adf300bb1d97e6e91591ac33d",
+    "subtree.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "subtree.stderr": "de33472a0794cab50142dbc08444365e219ef5be46d34c1c244d2ae60f829154",
+    "finite.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "control.stdout": "bfa20c2fb27f3e059b3a80060620e7b15bc21d247e9517f70b83ad226aaa4901",
+    "commands.json": "339d1a24602f075d538d43045a888162f113724cf1e29e21bb1db52bd582eebb",
+    "build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "build.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "control.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "control.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "subtree.stdout": "6886d228d9b1171a55eb4b83e47586a1351bca53c70f2a42157fc1a20a5bd201",
+    "finite.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  "original_probe_manifest_unchanged": "bc3fba519cee7ae96282914ef97464f04f898b1729a33ed2b048d0d960df5bae",
+  "B_tree_unchanged": true,
+  "B_behavior_executed": false,
+  "product_contract_changes": false
+}

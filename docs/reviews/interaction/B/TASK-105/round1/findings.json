@@ -1,0 +1,110 @@
+{
+  "task": "TASK105 scoped round1",
+  "utc": "2026-11-11T11:56:01.055693+00:00",
+  "base": "252c5adf9a7ecf5a0927c0f558c314a517a7d252",
+  "head": "5b08e34ded8d58b344706e8ffcf594225626f4b3",
+  "spec_verdict": "CHANGES_REQUIRED",
+  "quality_verdict": "CHANGES_REQUIRED",
+  "blocking_critical": 0,
+  "blocking_important": 2,
+  "original_dispositions": [
+    {
+      "id": "T105-I01",
+      "disposition": "ADDRESSED",
+      "basis": "横向 Row 的约束测量采用相同 natural 分配；ABCD/EFGH 固定回归为真。"
+    },
+    {
+      "id": "T105-I02",
+      "disposition": "ADDRESSED",
+      "basis": "第二 pass 的独立纵向 viewport 基准沿用 first-pass assignedHeight；固定5/8分配通过。"
+    },
+    {
+      "id": "T105-I03",
+      "disposition": "ADDRESSED",
+      "basis": "从实际祖先 viewport 尺寸变化触发旧 caret ensure；局部4→2变化得到offset11。"
+    },
+    {
+      "id": "T105-I04",
+      "disposition": "ADDRESSED",
+      "basis": "mounted export 不提交节点几何/viewport，不消耗 pending ensure；固定offset9/M1等价回归通过。"
+    },
+    {
+      "id": "T105-I05",
+      "disposition": "NOT_ADDRESSED",
+      "basis": "同一 batch 尚有 pending 时原反例已修，但已稳定且未layout的 dirty 几何仍被误判为可用旧extent。"
+    },
+    {
+      "id": "T105-I06",
+      "disposition": "ADDRESSED",
+      "basis": "最终 Canvas 非滚动轴确为有限约束；其新测量步骤引入独立依赖丢失问题 T105-I08。"
+    },
+    {
+      "id": "T105-I07",
+      "disposition": "ADDRESSED",
+      "basis": "RuntimeNode 保存 App 根布局测量事实，export不覆盖，layout invalidation后preview仍可读取；三个组合均Failed且原session存活。"
+    }
+  ],
+  "findings": [
+    {
+      "id": "T105-I05",
+      "severity": "Important",
+      "status": "OPEN",
+      "disposition": "NOT_ADDRESSED",
+      "title": "已稳定但未布局的几何仍用旧extent拒绝ensure",
+      "locations": [
+        "src/node_ref.cj:93",
+        "src/runtime_session.cj:573"
+      ],
+      "contract": "canonical design B.3: 业务/结构提交与依赖稳定 → 布局/钳制 → pending ensure；B.4: 按当前逻辑contentExtent判域。",
+      "probe_function": "dirtyExtent",
+      "minimum_reproducer": "Horizontal Canvas.measure读取Observable extent=4。snapshot(4,1)；batch仅extent.set(13)，结束完成绑定稳定但不产生帧；下一batch ensureVisible(Rect(12,0,1,1))。在第二batch内捕获UIException，再snapshot(4,1)。",
+      "expected": "旧几何已失效，应按布局后的extent13接纳合法rect，最终offset9。真正超出最终extent的目标仍应InvalidProperty。",
+      "actual": "DIRTY error=[InvalidProperty] content=13 offset=0 frame=[abcd]。",
+      "cause": "geometryMayChange仅看pendingBindings/pendingNodes/commands；稳定后这些队列为空，但measuredLayout已失效且logicalWidth仍是上一帧4。NodeRef立即以旧域拒绝，没有进入已有最终几何验证。",
+      "required_behavior": "判断几何是否仍有效必须覆盖已稳定而待layout的状态，保留合法参数/最终域错误及命令顺序契约。",
+      "raw": [
+        "probe/src/main.cj",
+        "raw/run.stdout",
+        "raw/run.exit",
+        "raw/probe-post-identity.json"
+      ]
+    },
+    {
+      "id": "T105-I08",
+      "severity": "Important",
+      "status": "OPEN",
+      "disposition": "NEW_DIRECT_DELTA",
+      "title": "最终双轴测量删除参与父布局的约束测量依赖",
+      "locations": [
+        "src/layout_node.cj:178",
+        "src/binding.cj:60"
+      ],
+      "contract": "canonical design A.1允许同帧多次约束测量；A.2测量依赖变化须使Layout+Paint失效；R004/本轮约束要求同逻辑输入snapshot与完整M1等价。",
+      "probe_function": "constrainedDependency",
+      "minimum_reproducer": "Column.viewport(Off)含Canvas和Text(\"T\")。Canvas.measure在maxWidth有值且maxHeight=None时返回Size(1,rows.get())，其他约束返回Size(1,1)；draw只按p.size.height绘制C，不读rows。rows初值2，snapshot(1,5)，rows.set(3)，对比snapshot(1,5)和render(root,1,5)。",
+      "expected": "用于父分配的rows依赖仍有效；更新后snapshot与M1均为C/C/C/T/空。",
+      "actual": "初始及更新后snapshot均C/C/T/空/空；同输入M1实际为C/C/C/T/空。",
+      "cause": "本delta新增constrainCanvasFinal调用同一trackConstrained；该函数每次先取消全部旧依赖，只seed naturalDependencies。新的有限高调用不读rows，因而删除此前有限宽/无限高测量的rows订阅；但父节点的高度分配仍使用该读值。原版本没有这个第二次受约束跟踪调用。",
+      "required_behavior": "保留所有仍参与当前布局结果的测量阶段依赖，并在相关输入改变时使该布局失效；不可用强制重画掩盖丢失订阅或合并paint依赖。",
+      "raw": [
+        "probe/src/main.cj",
+        "raw/run.stdout",
+        "raw/run.exit",
+        "raw/probe-post-identity.json"
+      ]
+    }
+  ],
+  "nr_prerequisite": {
+    "disposition": "ADDRESSED",
+    "basis": "NodeRef只保存session/node数值身份；全局index只索引活动已提交代际。publish retire/unmount/close在cleanup前撤销；get释放index锁后再取session锁，无反向嵌套。原UI owner/nonce/guard和owner-post有效性路径保留。application由活动session持有，close后index清空、notifyClosed断开owner；已dispose树不由公开handle持有。固定controls/observed GC/500 fresh-process guard exit0；baseline真实RED未改写。"
+  },
+  "deferred": [
+    {
+      "id": "T105-M01",
+      "severity": "Minor",
+      "status": "DEFERRED_TASK024",
+      "basis": "本轮明确延期，不作为新增阻断，不宣称已修。"
+    }
+  ],
+  "scope_limit": "只审9个产品delta文件及直接依赖/固定测试接线。未重开整个B，未重跑旧suite；最终clean消费与fresh设备/执行验收不是本源码结论。"
+}

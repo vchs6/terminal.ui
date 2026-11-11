@@ -1,0 +1,49 @@
+{
+  "task": "TASK105 scoped round2",
+  "utc": "2026-11-11T12:07:13.299243+00:00",
+  "base": "5b08e34ded8d58b344706e8ffcf594225626f4b3",
+  "head": "62039552a26da295dcd710d7cfc40cb9e43ca5fd",
+  "spec_verdict": "PASS",
+  "quality_verdict": "PASS",
+  "verdict_scope": "I05 remaining / I08 and direct effects of this three-file product delta; previous six dispositions and NR prerequisite are inherited, not reopened.",
+  "dispositions": [
+    {
+      "id": "T105-I05",
+      "disposition": "ADDRESSED",
+      "locations": [
+        "src/runtime_session.cj:573",
+        "src/node_ref.cj:93",
+        "src/viewport_geometry.cj:39"
+      ],
+      "basis": "geometryMayChange includes measuredLayout=None, covering stabilized but unlaid dirty geometry. Existing negative-coordinate checking and post-layout explicit-ensure domain checking remain. Fixed I05-stable now reports no error, content13, offset9, jklm; original same-batch growth and truly-invalid guard also pass."
+    },
+    {
+      "id": "T105-I08",
+      "disposition": "ADDRESSED",
+      "locations": [
+        "src/binding.cj:61",
+        "src/binding.cj:66",
+        "src/layout_node.cj:178"
+      ],
+      "basis": "Width-constrained tracking retains the natural+width measurement dependency set. Final two-axis tracking seeds from that set, preserving values still used for parent allocation while replacing final-stage reads. Existing read deduplication, dependency capacity, subscribe version checks and evaluation guard remain; dispose clears the added set. Fixed rows2→3 snapshot and full M1 both C/C/C/T/blank."
+    }
+  ],
+  "new_findings": [],
+  "blocking_critical": 0,
+  "blocking_important": 0,
+  "deferred": [
+    {
+      "id": "T105-M01",
+      "severity": "Minor",
+      "status": "DEFERRED_TASK024",
+      "note": "Unchanged explicit controller deferral; not claimed fixed."
+    }
+  ],
+  "combined_source_status": "Original whole review + round1 + this delta leave no open Critical/Important; source review PASS with M01 explicitly deferred.",
+  "evidence": "evidence.json and reviewed-hashes.json reference immutable source/test identity and pure original raw. No cold suite/probe rerun.",
+  "pending_or_not_covered": [
+    "Final fresh execution/device admission remains a later role.",
+    "Final clean-consumer/package identity is not claimed by this source review.",
+    "Affected A regression was still running per handoff; not independently verified here."
+  ]
+}

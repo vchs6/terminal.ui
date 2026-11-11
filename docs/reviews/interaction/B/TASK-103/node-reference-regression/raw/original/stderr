@@ -1,0 +1,15 @@
+An exception has occurred:
+Exception: iteration=28 code=StaleReference
+	 at viewport_stale_baseline::main::lambda.0()(/workspace/work/viewport-implementation/probe-base/src/main.cj:12)
+	 at cjtui::Component::text::lambda.0()(/workspace/work/interaction-implementation/source/src/component.cj:327)
+	 at cjtui::Binding::trackSeeded(() -> Unit, std.core::Array<...>)(/workspace/work/interaction-implementation/source/src/binding.cj:73)
+	 at cjtui::Binding::track(() -> Unit)(/workspace/work/interaction-implementation/source/src/binding.cj:53)
+	 at cjtui::Binding::evaluate()(/workspace/work/interaction-implementation/source/src/binding.cj:52)
+	 at cjtui::RuntimeSession::evaluateReady(Int64)(/workspace/work/interaction-implementation/source/src/runtime_session.cj:908)
+	 at cjtui::RuntimeSession::stabilize(Int64, Bool)(/workspace/work/interaction-implementation/source/src/runtime_session.cj:805)
+	 at cjtui::RuntimeSession::start::lambda.0()(/workspace/work/interaction-implementation/source/src/runtime_session.cj:937)
+	 at cjtui::RuntimeSession::enter<...>(() -> T0)(/workspace/work/interaction-implementation/source/src/runtime_session.cj:130)
+	 at cjtui::RuntimeSession::start()(/workspace/work/interaction-implementation/source/src/runtime_session.cj:921)
+	 at cjtui::Application::startSession(Bool)(/workspace/work/interaction-implementation/source/src/application.cj:242)
+	 at cjtui::Application::startHeadless()(/workspace/work/interaction-implementation/source/src/application.cj:223)
+	 at viewport_stale_baseline::main()(/workspace/work/viewport-implementation/probe-base/src/main.cj:18)

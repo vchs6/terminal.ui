@@ -1,0 +1,48 @@
+[
+  {
+    "name": "build",
+    "argv": [
+      "cjpm",
+      "build"
+    ],
+    "cwd": "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe",
+    "utc": "2026-11-11T10:28:31.832910+00:00",
+    "exit": 0
+  },
+  {
+    "name": "finite",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe/target/release/bin/main",
+      "finite"
+    ],
+    "cwd": "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe",
+    "utc": "2026-11-11T10:29:40.358323+00:00",
+    "exit": 0
+  },
+  {
+    "name": "control",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe/target/release/bin/main",
+      "control"
+    ],
+    "cwd": "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe",
+    "utc": "2026-11-11T10:29:40.385498+00:00",
+    "exit": 0
+  },
+  {
+    "name": "subtree",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe/target/release/bin/main",
+      "subtree"
+    ],
+    "cwd": "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe",
+    "utc": "2026-11-11T10:29:40.411963+00:00",
+    "exit": 0
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "name": "build",
+    "argv": [
+      "cjpm",
+      "build"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+    "utc": "2026-11-11T11:27:54.152114+00:00",
+    "exit": 0
+  },
+  {
+    "name": "run",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression/target/release/bin/main"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+    "utc": "2026-11-11T11:28:43.969645+00:00",
+    "exit": 0
+  },
+  {
+    "name": "build-final",
+    "argv": [
+      "cjpm",
+      "build"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+    "utc": "2026-11-11T11:33:11.041281+00:00",
+    "exit": 0
+  },
+  {
+    "name": "run-final",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression/target/release/bin/main"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+    "utc": "2026-11-11T11:33:59.272009+00:00",
+    "exit": 0
+  },
+  {
+    "name": "build-independent",
+    "argv": [
+      "cjpm",
+      "build"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+    "utc": "2026-11-11T11:36:39.207649+00:00",
+    "exit": 0
+  },
+  {
+    "name": "controls",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression/target/release/bin/main",
+      "controls"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+    "utc": "2026-11-11T11:37:25.808650+00:00",
+    "exit": 0
+  },
+  {
+    "name": "guard",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression/target/release/bin/main",
+      "guard"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/node_reference_regression",
+    "utc": "2026-11-11T11:37:25.842470+00:00",
+    "exit": 1
+  }
+]

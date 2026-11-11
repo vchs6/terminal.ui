@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "dbus-run-session",
+    "--",
+    "xfce4-terminal",
+    "--disable-server",
+    "--hide-menubar",
+    "--geometry=40x8+20+20",
+    "--title=TASK106 vte unicode",
+    "--command=python3 /workspace/work/viewport-execution/tools/record-host.py /workspace/work/viewport-execution/product/tests/interaction_b/target/release/bin/main /workspace/work/viewport-execution/raw/gui-vte-final/vte-unicode visible"
+  ],
+  "env": {
+    "DISPLAY": ":199",
+    "HOME": "/workspace/work/viewport-execution/raw/gui-vte-final/vte-unicode/home",
+    "XDG_CONFIG_HOME": "/workspace/work/viewport-execution/raw/gui-vte-final/vte-unicode/home/config",
+    "XDG_CACHE_HOME": "/workspace/work/viewport-execution/raw/gui-vte-final/vte-unicode/home/cache",
+    "VIEWPORT_MODE": "unicode",
+    "GTK_MODULES": "/workspace/work/viewport-execution/tools/vte-native-fullrows-module.so",
+    "VTE_NATIVE_CAPTURE_DIR": "/workspace/work/viewport-execution/raw/gui-vte-final/vte-unicode"
+  },
+  "utc": "2026-11-11T12:34:50.180637+00:00",
+  "binary_sha256": "229eb7a6189fb0d916bfec1dba992a15e01471e410d8bff2b6e98363dc621062"
+}

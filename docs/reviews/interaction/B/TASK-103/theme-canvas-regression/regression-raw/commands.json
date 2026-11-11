@@ -1,0 +1,48 @@
+[
+  {
+    "name": "build",
+    "argv": [
+      "cjpm",
+      "build"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration",
+    "utc": "2026-11-11T10:35:40.322650+00:00",
+    "exit": 0
+  },
+  {
+    "name": "finite",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration/target/release/bin/main",
+      "finite"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration",
+    "utc": "2026-11-11T10:36:30.596260+00:00",
+    "exit": 0
+  },
+  {
+    "name": "control",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration/target/release/bin/main",
+      "control"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration",
+    "utc": "2026-11-11T10:36:30.622495+00:00",
+    "exit": 0
+  },
+  {
+    "name": "subtree",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration/target/release/bin/main",
+      "subtree"
+    ],
+    "cwd": "/workspace/work/viewport-tests/final-preparation/replay/tests/theme_canvas_integration",
+    "utc": "2026-11-11T10:36:30.649002+00:00",
+    "exit": 1
+  }
+]

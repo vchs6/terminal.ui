@@ -1,0 +1,15 @@
+PASS: Applied has exact committed revision
+SYNC entered:gate-old.toml:1
+PASS: dispose closes an executing request before its real I/O returns
+PASS: accepted ThemeInfo remains Accepted/1/1
+PASS: Applied has exact committed revision
+PASS: restarted session has a fresh node generation
+PASS: accepted ThemeInfo remains Accepted/1/1
+PASS: restart never reuses an application request id
+SYNC release:gate-old.toml:1
+PASS: Applied has exact committed revision
+PASS: accepted ThemeInfo remains Fresh/2/3
+PASS: old-session completion cannot paint over the new session
+PASS: new-session request and old I/O cannot rewrite SessionClosed
+PASS: Applied has exact committed revision
+PASS CASE session-fence

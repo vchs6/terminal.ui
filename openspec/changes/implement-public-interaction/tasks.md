@@ -186,10 +186,10 @@
 ## 2. Unit B
 
 - [x] 2.1 TASK-103：冻结独立公共测试与RED；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
-- [ ] 2.2 TASK-104：实现有限公共单元并自验；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
-- [ ] 2.3 TASK-105：固定源码独立规格与质量审查；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
-- [ ] 2.4 TASK-106：独立执行与正常制品消费；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
-- [ ] 2.5 TASK-107：有限合同与父AC映射独立验收；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
+- [x] 2.2 TASK-104：实现有限公共单元并自验；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
+- [x] 2.3 TASK-105：固定源码独立规格与质量审查；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
+- [x] 2.4 TASK-106：独立执行与正常制品消费；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
+- [x] 2.5 TASK-107：有限合同与父AC映射独立验收；以本卡输入hash、B-01–B-04对应原始证据与明确结论验收。
 
 ### TASK-103: 冻结独立公共测试与RED
 
@@ -224,10 +224,10 @@
 
 **L4:**
 
-- [ ] 2.2.1 TASK-104.S1：将viewport能力加到通用节点、布局约束与有限extent中；显式轴直接B2，隐式App根保存viewport声明presence，旧有限布局产未承接overflow摘要后最多一次B2重协商，严格按I009例表保短内容5/5与固定栏边界；实现唯一offset/snapshot及pending命令，不分配全文Frame。
-- [ ] 2.2.2 TASK-104.S2：在同安全边界布局/钳制后处理ensure；用最后已完成caret rect做一次resize确保，新显式意图优先；Scalar坐标复用统一变换与整簇clip。
-- [ ] 2.2.3 TASK-104.S3：让每节点用户Ancestor先、未prevent再执行同viewport标准键滚；用公开Column+viewport+focusable组合ScrollView，删除重复滚动回调，写主体默认Vertical/固定栏/宽表例子与文档；按固定测试验证后提交product-only。
-- [ ] 2.2.4 TASK-104.S4：运行bash tests/interaction_b/run.sh及admission清单列出的受影响既有检查，记录实际exit；检查技术diff/实体文件/旧路径退役，提交产品hash给主代理。作者自验不是独立验收。
+- [x] 2.2.1 TASK-104.S1：将viewport能力加到通用节点、布局约束与有限extent中；显式轴直接B2，隐式App根保存viewport声明presence，旧有限布局产未承接overflow摘要后最多一次B2重协商，严格按I009例表保短内容5/5与固定栏边界；实现唯一offset/snapshot及pending命令，不分配全文Frame。
+- [x] 2.2.2 TASK-104.S2：在同安全边界布局/钳制后处理ensure；用最后已完成caret rect做一次resize确保，新显式意图优先；Scalar坐标复用统一变换与整簇clip。
+- [x] 2.2.3 TASK-104.S3：让每节点用户Ancestor先、未prevent再执行同viewport标准键滚；用公开Column+viewport+focusable组合ScrollView，删除重复滚动回调，写主体默认Vertical/固定栏/宽表例子与文档；按固定测试验证后提交product-only。
+- [x] 2.2.4 TASK-104.S4：运行bash tests/interaction_b/run.sh及admission清单列出的受影响既有检查，记录实际exit；检查技术diff/实体文件/旧路径退役，提交产品hash给主代理。作者自验不是独立验收。
 
 ### TASK-105: 固定源码独立规格与质量审查
 
@@ -243,9 +243,9 @@
 
 **L4:**
 
-- [ ] 2.3.1 TASK-105.S1：锁定base/product/test/contract hash，逐公开接口核对design本单位与B-01–B-04、上游交叉及错误优先级，交可达反例而非泛泛建议。
-- [ ] 2.3.2 TASK-105.S2：检查文件职责/单Runtime/单resolver/Frame/宽簇、生命周期与资源上限；核对退役安排“viewport offset/坐标/clip保持节点唯一权威，不给ScrollView另保存副本；普通非root Column/显式Off保原flex；隐式root先旧布局、有未承接overflow才B2第二pass，最多两pass。”。
-- [ ] 2.3.3 TASK-105.S3：输出spec/quality双verdict与发现严重度；发现回主代理，不私改代码/断言。收到新固定修复后仅复核受影响diff和相关失败证据，保留前次记录。
+- [x] 2.3.1 TASK-105.S1：锁定base/product/test/contract hash，逐公开接口核对design本单位与B-01–B-04、上游交叉及错误优先级，交可达反例而非泛泛建议。
+- [x] 2.3.2 TASK-105.S2：检查文件职责/单Runtime/单resolver/Frame/宽簇、生命周期与资源上限；核对退役安排“viewport offset/坐标/clip保持节点唯一权威，不给ScrollView另保存副本；普通非root Column/显式Off保原flex；隐式root先旧布局、有未承接overflow才B2第二pass，最多两pass。”。
+- [x] 2.3.3 TASK-105.S3：输出spec/quality双verdict与发现严重度；发现回主代理，不私改代码/断言。收到新固定修复后仅复核受影响diff和相关失败证据，保留前次记录。
 
 ### TASK-106: 独立执行与正常制品消费
 
@@ -261,10 +261,10 @@
 
 **L4:**
 
-- [ ] 2.4.1 TASK-106.S1：在自己的SDK/registry/cache配置下核hash，执行bash tests/interaction_b/run.sh并保存真实exit；随后仅执行admission清单相关既有回归，复用未变内容的有效证据。
-- [ ] 2.4.2 TASK-106.S2：正常cjpm bundle（不skip）后干净解包，正式公共消费者与例子仅改manifest路径构建运行；SDK/stdx前置按088交付记录，不借作者私有cjo。
-- [ ] 2.4.3 TASK-106.S3：执行真实PTY方向滚动/resize及恢复；未解码PageUp等仅报告headless默认动作覆盖，不扩协议支持声明。
-- [ ] 2.4.4 TASK-106.S4：保存逐命令raw、source/test/bundle/consumer SHA256与AC结果，发现失败回主代理而非直接修产品/测试；不以同PTY换TERM冒充多个真实宿主。
+- [x] 2.4.1 TASK-106.S1：在自己的SDK/registry/cache配置下核hash，执行bash tests/interaction_b/run.sh并保存真实exit；随后仅执行admission清单相关既有回归，复用未变内容的有效证据。
+- [x] 2.4.2 TASK-106.S2：正常cjpm bundle（不skip）后干净解包，正式公共消费者与例子仅改manifest路径构建运行；SDK/stdx前置按088交付记录，不借作者私有cjo。
+- [x] 2.4.3 TASK-106.S3：执行真实PTY方向滚动/resize及恢复；未解码PageUp等仅报告headless默认动作覆盖，不扩协议支持声明。
+- [x] 2.4.4 TASK-106.S4：保存逐命令raw、source/test/bundle/consumer SHA256与AC结果，发现失败回主代理而非直接修产品/测试；不以同PTY换TERM冒充多个真实宿主。
 
 ### TASK-107: 有限合同与父AC映射独立验收
 
@@ -280,9 +280,9 @@
 
 **L4:**
 
-- [ ] 2.5.1 TASK-107.S1：从原件核对B-01–B-04到测试、执行raw与技术diff的映射及hash，确认公开消费者和真实设备声明各有相应证据，不重复已有效suite。
-- [ ] 2.5.2 TASK-107.S2：核对父TASK-037完整AC与本单位边界：037纵/横视口与resize可按实际全范围证据判定，028完整单多行编辑仍未交付。
-- [ ] 2.5.3 TASK-107.S3：给有限结论与缺口列表，失败保持verifying/blocked并注明恢复条件；通过由主代理投影长期AC/任务并交下一单元，不凭任务勾选归档全部Linux。
+- [x] 2.5.1 TASK-107.S1：从原件核对B-01–B-04到测试、执行raw与技术diff的映射及hash，确认公开消费者和真实设备声明各有相应证据，不重复已有效suite。
+- [x] 2.5.2 TASK-107.S2：核对父TASK-037完整AC与本单位边界：037纵/横视口与resize可按实际全范围证据判定，028完整单多行编辑仍未交付。
+- [x] 2.5.3 TASK-107.S3：给有限结论与缺口列表，失败保持verifying/blocked并注明恢复条件；通过由主代理投影长期AC/任务并交下一单元，不凭任务勾选归档全部Linux。
 
 ## 3. Unit C
 

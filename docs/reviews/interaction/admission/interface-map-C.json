@@ -1,0 +1,153 @@
+{
+  "kind": "controller C admission source-location map; canonical specification remains design.md",
+  "accepted_product_original": "62039552a26da295dcd710d7cfc40cb9e43ca5fd",
+  "accepted_product_integrated": "9cfaaa24ac694403417bc55f36fac89137cd26d5",
+  "canonical_design_sha256": "3aa214946949afbaa79ab08a214bd2fb6bc6f9b3b2173f11d64225bc52b16ebd",
+  "source_tree": "6b63e7baab47c66e901bfbb1e415f1d83018823a",
+  "product_equivalence": "Root byte-compared consumed product paths/tests to accepted620; integration changes commit identities only.",
+  "accepted_gate_inputs": [
+    {
+      "gate": "TASK080",
+      "integrated_ancestor": "5de716ff68dd8ae7b5ecea2b5199b60187df19dc",
+      "public_evidence": "docs/reviews/R13/acceptance/report.md"
+    },
+    {
+      "gate": "TASK084",
+      "integrated_ancestor": "b08c92d130f8d066a6db11c9ca1bf4c9af17e3f0",
+      "public_evidence": "docs/reviews/R14/acceptance/report.md"
+    },
+    {
+      "gate": "TASK088",
+      "integrated_ancestor": "73abef371f7b31d986d66a9c20eb0caf4d5f86e3",
+      "public_evidence": "docs/reviews/R15/acceptance/report.md"
+    },
+    {
+      "gate": "TASK102",
+      "integrated_ancestor": "f3947d122edc13636140785bb4dedbeb59587a6d",
+      "public_evidence": "docs/reviews/interaction/A/TASK-102/report.md"
+    },
+    {
+      "gate": "TASK107",
+      "integrated_ancestor": "9cfaaa24ac694403417bc55f36fac89137cd26d5",
+      "public_evidence": "docs/reviews/interaction/B/TASK-107/report.md"
+    },
+    {
+      "gate": "TASK152",
+      "integrated_ancestor": "5b070e285132c27173cc09d0be9d27abd11fbedb",
+      "public_evidence": "docs/reviews/R18/acceptance/report.md"
+    },
+    {
+      "gate": "INTERFACE_MAP",
+      "integrated_ancestor": "9cfaaa24ac694403417bc55f36fac89137cd26d5",
+      "public_evidence": "docs/reviews/interaction/admission/interface-map-C.json"
+    },
+    {
+      "gate": "TEST_FREEZE",
+      "integrated_ancestor": "b134171cfc9c242844b37eb05853811837179f5c",
+      "public_evidence": "tests/interaction_c/final-preparation.md"
+    }
+  ],
+  "gate_interpretation": "Ancestor aliases identify root-integrated accepted components, not re-labeled original producer commits. Earlier R13/R14/R15/R18 evidence is finite, later A/B source/evidence covers directly affected integration paths.",
+  "owners": [
+    {
+      "path": "src/component.cj",
+      "sha256": "c70819db45a064d1bf8205cce49de25e9244534bcd123027ec4f82a24919db38",
+      "responsibility": "declarations and cached property binding slots; surface/overlayHost planned"
+    },
+    {
+      "path": "src/node_ref.cj",
+      "sha256": "b0444b767dc8dc58d46a6593438b84fa9b788812c3899b2456b4fd5c3817156d",
+      "responsibility": "existing mounted identity/viewport/commands; openOverlay planned"
+    },
+    {
+      "path": "src/node_index.cj",
+      "sha256": "1767c9347368d39d205ec07373219b32a02b17ab16c08a9b14e3febc643c1e11",
+      "responsibility": "single active-generation identity index"
+    },
+    {
+      "path": "src/runtime_node.cj",
+      "sha256": "1bdbe34db921161e39011022e93519e4014f39955d0e1394ed501fcdb96ab979",
+      "responsibility": "same node identity/lifetime, physical children, viewport state"
+    },
+    {
+      "path": "src/runtime_session.cj",
+      "sha256": "d404a5c3658230d35b5036492bc7b69c2c925734c5cf75489fb5263a36a7f3a8",
+      "responsibility": "sole owner/pump/commit/cleanup and stable measurement facts"
+    },
+    {
+      "path": "src/application.cj",
+      "sha256": "4cbe26b79f59e73529a8a4c66cefe5559039589caeaf57def7d4fc9313b26ffc",
+      "responsibility": "application entry and event/default boundaries"
+    },
+    {
+      "path": "src/focus_manager.cj",
+      "sha256": "bd397e0af5ade2fac75e05f691dd8880b458504e5910598d26b358669287350a",
+      "responsibility": "ordinary focus/active target; C domain/restore planned"
+    },
+    {
+      "path": "src/layout.cj",
+      "sha256": "a0cb1a42ff48d50d6f2d15e897d78f070a351808388966422e4de5b09b89474b",
+      "responsibility": "single M1 layout/paint/export; C portal composition planned"
+    },
+    {
+      "path": "src/layout_node.cj",
+      "sha256": "cca1b7932d4533ad890ade2e28fbd5f37c12442eaea71bc9eec18fe4147a5290",
+      "responsibility": "finite measure/overflow/viewport geometry"
+    },
+    {
+      "path": "src/drawing_geometry.cj",
+      "sha256": "a8dbcb1098ac784d006ae0288f9173f296d4b3a9dddeca41594f17aa3fdf92c1",
+      "responsibility": "shared clip/coordinate transforms"
+    },
+    {
+      "path": "src/paint_context.cj",
+      "sha256": "00b9e493d1b6a63f234a69eb2c1cee3ec85ebb221332dd8d4cdef745d3fd928d",
+      "responsibility": "scoped drawing/caret and selected style"
+    },
+    {
+      "path": "src/frame.cj",
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+      "responsibility": "same structured cells/transparency/wide continuation"
+    },
+    {
+      "path": "src/style_resolver.cj",
+      "sha256": "f58be0c18913a9f07a48b85098ad846a2875b5220fda8b80b6fbf43eaaa2dd95",
+      "responsibility": "sole typed style/theme resolver"
+    },
+    {
+      "path": "src/resolved_style.cj",
+      "sha256": "77bb0d1cec53ccd2087198e754209e82834ff0ced7cb791276c27a52b793adf8",
+      "responsibility": "resolved style/fill facts"
+    },
+    {
+      "path": "native/cjtui_terminal.c",
+      "sha256": "9b8c60a5dae0aa0d8d75fc7baf0586cac53c48d4842b3e2f7b730cd80130f7c2",
+      "responsibility": "existing Linux ANSI writer/input/resize ownership"
+    }
+  ],
+  "existing_A_B": "implemented and finite accepted after start/event committed geometry; see107",
+  "new_C_APIs": {
+    "implementation": "planned; normal compiler reports87 directly missing C APIs +39 cascades",
+    "names": [
+      "OverlayMode",
+      "OverlayPlacement",
+      "OverlayCloseReason",
+      "SurfaceMode",
+      "OverlayOptions",
+      "OverlayHandle",
+      "Component.surface",
+      "Component.overlayHost",
+      "NodeRef.openOverlay"
+    ],
+    "signature_evidence": "separate LANGUAGE_ONLY compile-only supplement; not actual cjtui member implementation or concrete constructor opacity"
+  },
+  "fixed_tests": "b134171cfc9c242844b37eb05853811837179f5c",
+  "prepare_manifest_sha256": "3d1935f7b1663ea1f827c451d4183a8ed15122c507c989129933f7af0f9d7368",
+  "declaration_language_manifest_sha256": "fc661b3cd3019426dd5ac5c8419b2cc69378851ac7283d0214241b67cf075393",
+  "known_pending": {
+    "id": "T105-M01",
+    "exact": "getter viewport axes inside onMount initially Off; start returns actualBoth",
+    "status": "DEFERRED_TASK024; not assumed fixed by C positive"
+  },
+  "formal108": "pending independent admission applicability/gate checks afterB107 acceptance; C behavior allUNEXECUTED; 109 not started"
+}

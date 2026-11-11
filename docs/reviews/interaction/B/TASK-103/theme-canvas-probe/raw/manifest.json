@@ -1,0 +1,105 @@
+{
+  "task": "limited Theme/Canvas integration probe",
+  "utc": "2026-11-11T10:32:18.073549+00:00",
+  "status": "REPRODUCED_T008_INTEGRATION_COUNTEREXAMPLE",
+  "product_sha": "f8a028b39daf8a341576f304335d262544b9cca5",
+  "commands": [
+    {
+      "name": "build",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe",
+      "utc": "2026-11-11T10:28:31.832910+00:00",
+      "exit": 0
+    },
+    {
+      "name": "finite",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe/target/release/bin/main",
+        "finite"
+      ],
+      "cwd": "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe",
+      "utc": "2026-11-11T10:29:40.358323+00:00",
+      "exit": 0
+    },
+    {
+      "name": "control",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe/target/release/bin/main",
+        "control"
+      ],
+      "cwd": "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe",
+      "utc": "2026-11-11T10:29:40.385498+00:00",
+      "exit": 0
+    },
+    {
+      "name": "subtree",
+      "argv": [
+        "timeout",
+        "60s",
+        "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe/target/release/bin/main",
+        "subtree"
+      ],
+      "cwd": "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe",
+      "utc": "2026-11-11T10:29:40.411963+00:00",
+      "exit": 0
+    }
+  ],
+  "pre_execution_hashes": "raw/prehash.json",
+  "source_inputs": {
+    "probe/cjpm.toml": "8e429d5476a1fa44f2127215a7fc551ff535bff6f21c0944603dfcc8c371eb02",
+    "probe/src/main.cj": "3cd6fee14f85abc325c237bfa4dde4ca21f161c6ba0fb1d5d6f4a82aa6990b7c",
+    "probe/src/box.cj": "660588c37ce9e7209036063cd99a6a7821d4d062993e8ffb978488d55c5108d1",
+    "probe/cangjie-repo.toml": "2f7b4c230aa5ff3e464c39733b273f6177b72bbb120428a382c06c240ba78b4d"
+  },
+  "binary": {
+    "/workspace/work/viewport-tests/theme-canvas-integration-probe/probe/target/release/bin/main": "9869f67182fa783c8bd07ce972d89ea1425757efd181f9aa183bf5e7808397be"
+  },
+  "dependency_lock": "3e1963ac32379555bb604022fe4d9618a72cdd48021d3bc6c33676de500d5aaf",
+  "accepted_dependency_applicability_index": {
+    "path": "/workspace/work/viewport-tests/admission/applicability.json",
+    "sha256": "2e732365b546b02a72430ebc4cd95923bb06bc1aae5433b1ffd799da69e9b5f4"
+  },
+  "formal": {
+    "path": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md",
+    "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+    "clause": "T008 and candidate layout paragraph350"
+  },
+  "product_worktree_tracked_changes": [],
+  "raw_files": {
+    "raw/build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/build.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "raw/commands.json": "dacbffcfc179a8d6b9fd239e1aea8ea754eab99cd94b0400586449e91ba46734",
+    "raw/control.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/control.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/control.stdout": "eda06eecec92385062cb895873e55f2b6727a9630b70565917427b5deda81a99",
+    "raw/finite.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/finite.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/finite.stdout": "1bc1954b96d4c8ed4eae515f36a96daf68dfdaee2f7bc844f988c270652ffbad",
+    "raw/observed.json": "c6dd4abad7b3a476267e0960fd53b9bd60a81aac2f5d2d164d6b4e48ff595488",
+    "raw/prehash.json": "b089429363340e9d3ea7e398d661bbed9837908fe09bdba6be64d20c80a7e0d8",
+    "raw/subtree.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "raw/subtree.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw/subtree.stdout": "6886d228d9b1171a55eb4b83e47586a1351bca53c70f2a42157fc1a20a5bd201"
+  },
+  "limits": {
+    "direct_process_timeout_s": 60,
+    "public_result_pump_max": 2000,
+    "yield_ms": 1,
+    "Frame_heights": 0
+  },
+  "not_run": [
+    "old B/A/Theme suites",
+    "extra variants",
+    "private cache inspection",
+    "product/contract/formal test mutation",
+    "implementation/root-cause review"
+  ]
+}

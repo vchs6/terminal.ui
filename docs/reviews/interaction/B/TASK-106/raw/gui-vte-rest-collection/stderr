@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/work/viewport-execution/tools/gui.py", line 78, in <module>
+    capture('initial',{0:4,1:1,2:13,4:0},['abcd']);key('o');capture('old-caret',{0:4,4:9,6:3},['jkl'])
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/viewport-execution/tools/gui.py", line 68, in capture
+    if time.monotonic()>end:raise AssertionError((name,stripped,lines_expected))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('initial', ['abc'], ['abcd'])

@@ -1,0 +1,75 @@
+{
+  "utc": "2026-11-11T12:57:00.137316+00:00",
+  "commands": {
+    "xterm": {
+      "argv": [
+        "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+        "-version"
+      ],
+      "exit": 0,
+      "stdout": "XTerm(398)\n",
+      "stderr": ""
+    },
+    "vte": {
+      "argv": [
+        "xfce4-terminal",
+        "--version"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "\n(xfce4-terminal:2948387): Gtk-WARNING **: 12:57:00.109: cannot open display: \n"
+    },
+    "xorg": {
+      "argv": [
+        "Xorg",
+        "-version"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "\nX.Org X Server 1.21.1.16\nX Protocol Version 11, Revision 0\nCurrent Operating System: Linux 5a154db51e9e 6.18.57 #1 SMP Tue Oct 20 21:56:04 UTC 2026 x86_64\nKernel command line: reboot=k panic=1 systemd.unit=kata-containers.target systemd.mask=systemd-networkd.service quiet root=/dev/pmem0p1 rootflags=dax,data=ordered,errors=remount-ro ro rootfstype=ext4 no_timer_check noreplace-smp systemd.log_target=console agent.container_pipe_size=1 agent.disable_erofs_overlay_volatile=true agent.erofs_overlay_reuse_upper=true cgroup_no_v1=all systemd.unified_cgroup_hierarchy=1 sysctl.vm.dirty_expire_centisecs=12000 sysctl.vm.dirty_writeback_centisecs=3000 agent.hotplug_timeout=25 agent.passfd_listener_port=1027\nxorg-server 2:21.1.16-1.3+deb13u4 (https://www.debian.org/support) \nCurrent version of pixman: 0.44.0\n\tBefore reporting problems, check http://wiki.x.org\n\tto make sure that you have the latest version.\n"
+    },
+    "font": {
+      "argv": [
+        "fc-match",
+        "DejaVu Sans Mono"
+      ],
+      "exit": 0,
+      "stdout": "DejaVuSansMono.ttf: \"DejaVu Sans Mono\" \"Book\"\n",
+      "stderr": "Fontconfig error: No writable cache directories\n"
+    },
+    "vte-library": {
+      "argv": [
+        "pkg-config",
+        "--modversion",
+        "vte-2.91"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Package vte-2.91 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `vte-2.91.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'vte-2.91', required by 'virtual:world', not found\n"
+    }
+  },
+  "tool_hashes_post_collection": {
+    "tools/gui.py": "d98e5b86b39f579ce82c854f9e1d2cc679cd806f5713126e16ddf88e2a1ec888",
+    "tools/finalize.py": "5530d6584107015371d8f042596c73e58248afb213b7724b985a2387e9062569",
+    "tools/start-vt.sh": "f7286f918e92c551691a094438bcd63decccec800d3eba8c6a79381b08dfcc77",
+    "tools/record-host.py": "1fe73da3e8ca207661f01afffc03a7d6d631f4442a7883b8ec976dbbb957e433",
+    "tools/pack-vt.py": "3e592db9caea113eb665dde4da13dfdf44d93343d8e324b9a31ac2ade093a8c9",
+    "tools/vt-supervisor.c": "753833bbab5f43307e21db49e953df2f6fa4d316df3ed70e6f09548aeb602a9c",
+    "tools/vt-init.sh": "31e35b4c45ce9d3b882aad044aa0ce24be19763a93194bf18a00ae87aadf8d9f",
+    "tools/vte-native-fullrows-module.so": "1ab08fa2d961d6a5e2b517321ab1d748aa352e6ba3f9a49229abf4fca8eeef8c",
+    "tools/host-facts.py": "249ba2c22bce0e1c93ac9edeb96ae3a7d3491575cc97b8972f64ec083316a74e",
+    "tools/record.py": "1d449edf9617821d3c202543ded97cb644be333788b6608c5376c56147b0301b",
+    "tools/vt.py": "06062815c1c33fe286d51b3422ca90bfba0bc30d20ee7a314b5d3b29ef0b309a",
+    "tools/package-check.py": "d2dccd26af45563251fb2395c24160809c99cfc988373b70e0336692747fecd1",
+    "tools/trace_bytes.py": "cd366a460aa87c95a63210006eafef9421ddec8eb10a234c603643da82175c7c",
+    "tools/xtest.py": "bdceb0473cfe547be32db4e603f1e18b406236714f4e83c9452dd08b90c3a51f",
+    "tools/vte-native-module.so": "efd4172d51d74cd1807611b25b4193e715162e408022bf24677fba3044de3d4c",
+    "tools/vte-native-original.so": "efd4172d51d74cd1807611b25b4193e715162e408022bf24677fba3044de3d4c",
+    "tools/vte-native-module.c": "8b6f756afea3ca312755393d717135ee9f8dc72c14878bac75a431ce6779bd6e",
+    "tools/xsize.py": "077e2f0b3e8d2b98feacf2c2fc8b232430de6b7144e288ad5820807b6b82552e",
+    "tools/clean-prepare.py": "df8e2e501dbfbe55c651157e7763c56d2be00b5f577b147e17c461fd1748dc6e",
+    "tools/vt-supervisor": "8ed5937164546c74e6840664e1caef44bdcc6957ce40b723828ef117318b0df8",
+    "tools/vte-native-rows-module.so": "a5673192312e743593d9be4928b781dc6cea8a390c66a6b58fa38976b5c28449"
+  },
+  "note": "Helper final hashes are post-collection, not retrospectively asserted pre hashes; command/pre-source and launch artifact hashes are independently captured."
+}

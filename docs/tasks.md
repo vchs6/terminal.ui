@@ -410,27 +410,25 @@ TASK-033（AC-033）、TASK-034（AC-034，语言）、TASK-035（AC-035）、TA
 
 ## 7. 通用内容滚动候选
 
-- [ ] 7.1 TASK-037：通用纵向视口及表格横向滚动；验收 AC-037：100行内容可经键盘访问全部行，宽表可横向访问；宽字符裁剪完整，resize保留有效偏移与焦点。
+- [x] 7.1 TASK-037：通用纵向视口及表格横向滚动；验收 AC-037：100行内容可经键盘访问全部行，宽表可横向访问；宽字符裁剪完整，resize保留有效偏移与焦点。
 
 ### TASK-037：通用视口滚动
 
 | 字段 | 定义 |
 |---|---|
-| level / parent / type | L3候选 / WP-003 / implementation |
-| classification / basis | execution候选；REQ-003.11已确认，独立承担内容访问，区别于尺寸协商和局部渲染优化 |
-| requirement_refs / workflow_ref | REQ-003.10/.11、REQ-009.1 / docs/tasks.md |
-| openspec_change_ref / planning_gaps | null；未启动产品变更 / 内容视口/滚动命令精确接口和边界待TASK-004冻结 |
-| objective / deliverables | 纵向内容视口、表格横向偏移、键盘滚动、裁剪/resize行为及公开例证 |
-| scope / impact | 容器内容访问与表格视口；不扩展业务排序、页面横向画布或完整表格业务功能 |
-| inputs / depends_on | 已冻结布局/输入/字符契约 / TASK-004、TASK-005、TASK-011、TASK-017 |
-| acceptance / verification | AC-037：80×24访问100行全部内容，横向访问宽表；边缘宽字符不拆，resize钳制偏移并保持有效焦点；精确命令在ready前细化 |
-| preconditions / status | 前置验收、具体变更、必需技能及DQ复核、产品实施授权 / planned |
-| required_skills / skill_evidence_refs | ready前按实现/测试/审查阶段确定 / 尚无产品执行证据 |
-| decision_refs / compatibility | 本轮design D-013 / 无已发布API迁移 |
-| quality_governance | 内容视口为唯一滚动职责；布局只计算区域，M2只优化绘制；无旧实现需退役 |
-| risks / evidence_refs | 偏移越界、宽字符与焦点不可见；后续用边界场景验证 / 当前仅设计证据 |
+| level / parent / type | L3 / WP-003 / implementation |
+| classification / basis | execution；REQ-003.10/.11、REQ-009.1，独立承担内容访问 |
+| workflow_ref / openspec_change_ref | docs/tasks.md / [implement-public-interaction](../openspec/changes/implement-public-interaction/tasks.md) Unit B；支持任务103–107状态只记该权威表 |
+| objective / deliverables | 通用Column/Row/Canvas viewport、ScrollView公共组合、默认纵向根兜底、横向访问、ensureVisible及公开viewport例子 |
+| scope / impact | 单节点offset/有限extent/统一坐标与整簇clip；业务排序、完整表格业务、完整编辑、C层与M2另行验收 |
+| inputs / depends_on | TASK004/005/011/017及已接受Runtime/Rich/Theme/Session；确切固定源码及测试见B验收原件 |
+| acceptance / verification | 原AC037：80×24访问100行、横向宽内容、宽字符完整、resize钳制及焦点保持；107已据真实PTY/XTerm/VTE/LinuxVT及公开消费者判定 |
+| preconditions / status | 用户已授权Linux实施及main推送；passed（原037范围），B.1 getter/onMount axes的M01明确延期TASK024 |
+| required_skills / skill_evidence_refs | Superpowers独立测试/实现/源码审核/执行/验收；[B有限验收](reviews/interaction/B/TASK-107/report.md) |
+| quality_governance | 唯一Runtime/节点/viewport状态/Frame/resolver；I009最多两次根协商，Root min不强撑实际Frame；保M1完整参考 |
+| risks / evidence_refs | 重要缺陷经原完整审核及两轮限定复核关闭；[原件及运行图](reviews/interaction/B/README.md)，有限验收不关闭C/Keyboard/M2/023/Linux |
 
-L4在进入ready前按冻结契约展开，不具备直接编码准入。TASK-027验证展示中的滚动集成，TASK-031验证滚动的局部渲染等价性，TASK-023/024按依赖完成最终集成。
+产品原固定源62039552已机械整合为main9cfaaa24，源码/正式测试逐字节相同。TASK027继续完整主题展示，TASK031继续局部渲染，TASK023/024继续最终集成；M01关闭前不得宣称全部B.1满足。
 
 ## 8. 必需跨平台后端候选
 

@@ -40,7 +40,7 @@
 | AC-034 | REQ-001 | SDK语言隔离调查交付 | TASK-034 |R5语言正负例、重跑及闭包/收集边界；不替代AC-002/004完整验收；实际证据：R5/evidence/README.md语言正负例；主代理重跑退出0| passed |
 | AC-035 | REQ-007 | 独立设计审核 | TASK-035 |R5受审版本、findings及修复独立复核；仅design_reviewed；实际证据：R5/re-review.md：5项发现verified，固定修复版本070623f1014a48bd559364747550c48332c16201| design_reviewed |
 | AC-036 | REQ-004、REQ-005 | 依赖选型有界调查交付 | TASK-036 |三项直接依赖及bitarray元数据/摘要、分段/宽度/ANSI和联合消费、失败及原生/许可边界；不替代AC-003完整集成；实际证据：R5/evidence/README.md、包摘要、分别及联合消费；原生/许可限制明确保留| passed |
-| AC-037 | REQ-003.10/.11、REQ-009.1 | 通用视口内容访问 | TASK-037 | 80×24访问100行、宽表横向、宽字符裁剪与resize偏移/焦点保持；产品证据待实现 | pending |
+| AC-037 | REQ-003.10/.11、REQ-009.1 | 通用视口内容访问 | TASK-037 | 80×24访问100行、宽表横向、宽字符裁剪与resize偏移/焦点保持；[B独立有限验收](reviews/interaction/B/TASK-107/report.md) | passed（原037范围；B.1 getter/onMount axes 的M01仍deferred TASK024） |
 | AC-038 | REQ-011 | Windows平台会话 | TASK-038 | Windows会话/依赖目标构建及字符UI核心场景，模式/尺寸/错误/恢复可复核；产品证据待实现 | pending |
 | AC-039 | REQ-011 | macOS平台会话 | TASK-039 | macOS会话/依赖目标构建及字符UI核心场景，模式/尺寸/错误/恢复可复核；产品证据待实现 | pending |
 | AC-040 | REQ-011 | HarmonyOS平台会话 | TASK-040 | HarmonyOS实际目标宿主交互、依赖构建/链接、权限/尺寸/恢复证据；不得以交叉编译或OpenHarmony/SSH替代；产品证据待实现 | pending |
@@ -161,11 +161,11 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-100 | REQ-003/004/007/009 | TASK-100 | A固定源码独立spec/quality | passed（有限Unit A；[证据](reviews/interaction/A/TASK-100/round2/report.md)） |
 | AC-101 | REQ-003/004/007/009 | TASK-101 | A独立执行/真实TTY/正常包消费 | passed（有限Unit A；[证据](reviews/interaction/A/TASK-101/report.md)） |
 | AC-102 | REQ-003/004/007/009 | TASK-102 | A有限验收/metadata，不提前关闭完整交互 | passed（有限Unit A；[证据](reviews/interaction/A/TASK-102/report.md)） |
-| AC-103 | REQ-003/004/007/009 | TASK-103 | 独立viewport/root fallback/滚动golden与RED | pending |
-| AC-104 | REQ-003/004/007/009 | TASK-104 | 单viewport坐标/滚动/ensureVisible实现 | pending |
-| AC-105 | REQ-003/004/007/009 | TASK-105 | B固定源码独立spec/quality | pending |
-| AC-106 | REQ-003/004/007/009 | TASK-106 | B独立执行/滚动回归与公开包消费 | pending |
-| AC-107 | REQ-003/004/007/009 | TASK-107 | 原037完整证据与metadata | pending |
+| AC-103 | REQ-003/004/007/009 | TASK-103 | 独立viewport/root fallback/滚动golden与RED | passed（[B有限验收](reviews/interaction/B/TASK-107/report.md)；M01明确延期，非全部Linux） |
+| AC-104 | REQ-003/004/007/009 | TASK-104 | 单viewport坐标/滚动/ensureVisible实现 | passed（[B有限验收](reviews/interaction/B/TASK-107/report.md)；M01明确延期，非全部Linux） |
+| AC-105 | REQ-003/004/007/009 | TASK-105 | B固定源码独立spec/quality | passed（[B有限验收](reviews/interaction/B/TASK-107/report.md)；M01明确延期，非全部Linux） |
+| AC-106 | REQ-003/004/007/009 | TASK-106 | B独立执行/滚动回归与公开包消费 | passed（[B有限验收](reviews/interaction/B/TASK-107/report.md)；M01明确延期，非全部Linux） |
+| AC-107 | REQ-003/004/007/009 | TASK-107 | 原037完整证据与metadata | passed（[B有限验收](reviews/interaction/B/TASK-107/report.md)；M01明确延期，非全部Linux） |
 | AC-108 | REQ-003/004/007/009 | TASK-108 | 独立多层/模态/透明/focus恢复golden与RED | pending |
 | AC-109 | REQ-003/004/007/009 | TASK-109 | 同Runtime覆盖层/宿主/输入域实现 | pending |
 | AC-110 | REQ-003/004/007/009 | TASK-110 | C固定源码独立spec/quality | pending |

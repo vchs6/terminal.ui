@@ -1,0 +1,19 @@
+PASS: observable theme query reevaluates only on UI owner
+SYNC entered:gate-observe.toml:1
+PASS: observable theme query reevaluates only on UI owner
+PASS: binding observes pending result without driving it
+PASS: background queries return before UI commit or file completion
+PASS: background queries execute no UI getter
+SYNC release:gate-observe.toml:1
+SYNC tick
+PASS: Applied has exact committed revision
+PASS: observable theme query reevaluates only on UI owner
+PASS: result and ThemeInfo notify existing typed binding automatically
+SYNC entered:gate-background.toml:1
+PASS: background values may be consumed as ordinary snapshots
+PASS: background read does not join UI binding dependency collection
+SYNC release:gate-background.toml:1
+SYNC tick
+PASS: Applied has exact committed revision
+PASS: later background-source changes do not invalidate unrelated UI binding
+PASS CASE observability

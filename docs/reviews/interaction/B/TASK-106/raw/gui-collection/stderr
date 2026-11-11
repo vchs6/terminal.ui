@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/work/viewport-execution/tools/gui.py", line 74, in <module>
+    capture('initial',{0:80,1:24,2:100,3:0},[f'r{i}' for i in range(24)]);key('Down',100);capture('tail',{0:80,1:24,2:100,3:76},[f'r{i}' for i in range(76,100)]);change_size(40,10);capture('smaller',{0:40,1:10,2:100,3:76},[f'r{i}' for i in range(76,86)]);key('Down',14);capture('smaller-tail',{0:40,1:10,2:100,3:90},[f'r{i}' for i in range(90,100)]);change_size(80,24);capture('restored',{0:80,1:24,2:100,3:76},[f'r{i}' for i in range(76,100)])
+                                                                                                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/viewport-execution/tools/gui.py", line 68, in capture
+    if time.monotonic()>end:raise AssertionError((name,stripped,lines_expected))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('smaller', ['r76                                     r77', 'r78                                     r79', 'r80                                     r81', 'r82                                     r83', 'r84                                     r85'], ['r76', 'r77', 'r78', 'r79', 'r80', 'r81', 'r82', 'r83', 'r84', 'r85'])

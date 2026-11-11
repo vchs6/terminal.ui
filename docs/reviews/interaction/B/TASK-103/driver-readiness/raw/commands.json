@@ -1,0 +1,70 @@
+[
+  {
+    "name": "readiness-controls",
+    "argv": [
+      "python3",
+      "tests/interaction_b/pty_driver.py",
+      "--self-test"
+    ],
+    "cwd": "/workspace/work/viewport-tests/driver-readiness/replay",
+    "utc": "2026-11-11T10:45:25.968880+00:00",
+    "env": {},
+    "exit": 0
+  },
+  {
+    "name": "device",
+    "argv": [
+      "bash",
+      "tests/interaction_b/run.sh",
+      "--device"
+    ],
+    "cwd": "/workspace/work/viewport-tests/driver-readiness/replay",
+    "utc": "2026-11-11T10:45:26.044489+00:00",
+    "env": {
+      "TERM": "xterm-256color",
+      "CJTUI_VIEWPORT_EVIDENCE": "/workspace/work/viewport-tests/driver-readiness/output/device"
+    },
+    "exit": 0
+  },
+  {
+    "name": "bare-canvas",
+    "argv": [
+      "timeout",
+      "60s",
+      "/workspace/work/viewport-tests/driver-readiness/replay/tests/interaction_b/target/release/bin/main"
+    ],
+    "cwd": "/workspace/work/viewport-tests/driver-readiness/replay",
+    "utc": "2026-11-11T10:47:25.367841+00:00",
+    "env": {
+      "CJTUI_VIEWPORT_CASE": "bare-canvas",
+      "TERM": "dumb",
+      "COLORTERM": ""
+    },
+    "exit": 0
+  },
+  {
+    "name": "resource",
+    "argv": [
+      "bash",
+      "tests/interaction_b/run.sh",
+      "--resource"
+    ],
+    "cwd": "/workspace/work/viewport-tests/driver-readiness/replay",
+    "utc": "2026-11-11T10:47:25.392379+00:00",
+    "env": {
+      "CJTUI_TIME_BIN": "/workspace/work/validation/gnu-time/extracted/usr/bin/time"
+    },
+    "exit": 0
+  },
+  {
+    "name": "A-regression",
+    "argv": [
+      "bash",
+      "tests/interaction_a/run.sh"
+    ],
+    "cwd": "/workspace/work/viewport-tests/driver-readiness/replay",
+    "utc": "2026-11-11T10:48:23.741691+00:00",
+    "env": {},
+    "exit": 0
+  }
+]

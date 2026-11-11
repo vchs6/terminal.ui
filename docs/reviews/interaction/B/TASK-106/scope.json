@@ -1,0 +1,346 @@
+{
+  "source": "62039552a26da295dcd710d7cfc40cb9e43ca5fd",
+  "design_sha256": "3aa214946949afbaa79ab08a214bd2fb6bc6f9b3b2173f11d64225bc52b16ebd",
+  "original_case_count": 31,
+  "bareCanvas_additional_count": 1,
+  "matrix_entry_count": 32,
+  "matrix_entries": [
+    {
+      "id": "B01-root-100",
+      "ac": [
+        "B-01",
+        "B-02",
+        "B-04"
+      ],
+      "source": "src/root_scrolling.cj:rootLongContent",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-weight-short",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_scrolling.cj:rootWeightedCompatibility",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-weight-overflow",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_scrolling.cj:rootWeightedCompatibility",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B01-chrome",
+      "ac": [
+        "B-01",
+        "B-02"
+      ],
+      "source": "src/root_scrolling.cj:fixedChromeAndBarriers",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-fixed-barrier",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_scrolling.cj:fixedChromeAndBarriers",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-off",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_scrolling.cj:fixedChromeAndBarriers",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-wrap",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_scrolling.cj:wrappedAndEmptyRoot",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-empty-zero",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_scrolling.cj:wrappedAndEmptyRoot",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-detached-mounted",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_scrolling.cj:detachedRootPolicy",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B04-bool",
+      "ac": [
+        "B-02",
+        "B-04"
+      ],
+      "source": "src/commands.cj:acceptedCommandsAndClamping",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-shrink",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/commands.cj:acceptedCommandsAndClamping",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-axes-zero",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/commands.cj:axesAndZeroResize",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B01-table",
+      "ac": [
+        "B-01",
+        "B-04"
+      ],
+      "source": "src/commands.cj:horizontalTable",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B03-nested",
+      "ac": [
+        "B-03"
+      ],
+      "source": "src/ensure_visible.cj:nestedEnsure",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B03-align",
+      "ac": [
+        "B-03"
+      ],
+      "source": "src/ensure_visible.cj:alignmentsAndOversizedTarget",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B04-order",
+      "ac": [
+        "B-04"
+      ],
+      "source": "src/default_actions.cj:defaultActionOrder",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B04-target",
+      "ac": [
+        "B-04"
+      ],
+      "source": "src/default_actions.cj:targetPrevent",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B04-page",
+      "ac": [
+        "B-04"
+      ],
+      "source": "src/default_actions.cj:pageSteps",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B01-public-combination",
+      "ac": [
+        "B-01",
+        "B-02",
+        "B-04"
+      ],
+      "source": "src/composition.cj:constructorComposition",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B03-caret",
+      "ac": [
+        "B-01",
+        "B-03"
+      ],
+      "source": "src/caret_scrolling.cj:canvasHorizontalCaret",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-prelayout-query",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/lifecycle.cj:readonlyPrelayoutAndStale",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-capability",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/lifecycle.cj:noViewportCapability",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-mixed-identity",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/identity.cj:mixedIdentityRetention",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-root-zero-100",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_boundaries.cj:zeroHundredRoot",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-other-barriers",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_boundaries.cj:rootOverflowBoundaries",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-pass-resource",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/resource_extent.cj:finiteExtentResource + source-audit.json",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B03-nested-None",
+      "ac": [
+        "B-03"
+      ],
+      "source": "src/ensure_geometry.cj:ensureTwoAxesAndNone / explicitIntentOrdering",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B03-new-caret-resize",
+      "ac": [
+        "B-03"
+      ],
+      "source": "src/device_sequences.cj + device_sequences.py:same-turn / caret-resize; src/caret_history.cj",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B03-guard-priority",
+      "ac": [
+        "B-02",
+        "B-03"
+      ],
+      "source": "src/viewport_guards.cj:readonly/pure/validation/capacity/cancel/lifecycle",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B01-unicode-damage",
+      "ac": [
+        "B-01",
+        "B-02"
+      ],
+      "source": "src/unicode_viewport.cj + device_sequences.py:unicode",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B01-real-pty",
+      "ac": [
+        "B-01",
+        "B-04"
+      ],
+      "source": "src/pty_fixture.cj + pty_driver.py:public-state/resize/activeTarget assertions",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    },
+    {
+      "id": "B02-bare-canvas-implicit-root",
+      "ac": [
+        "B-02"
+      ],
+      "source": "src/root_canvas.cj:bareCanvasImplicitViewport",
+      "result": "PASS via unchanged full ordinary entry b-normal and clean-b"
+    }
+  ],
+  "additional": "bareCanvas and nine review cases; review9 isolated and same-process are duplicate observations, not 18 unique cases. Eight public groups retain manual literal goldens. Actual device basic5+three sequences. NR controls/fresh500 and ThemeCanvas finite/control/subtree. Full A headless/runtime/themes and selected eight async admitted only.",
+  "hosts": [
+    {
+      "path": "raw/gui-hosts/xterm-pty",
+      "stages": 5,
+      "pngs": 10
+    },
+    {
+      "path": "raw/gui-hosts/xterm-caret-resize",
+      "stages": 3,
+      "pngs": 6
+    },
+    {
+      "path": "raw/gui-hosts/xterm-same-turn",
+      "stages": 4,
+      "pngs": 8
+    },
+    {
+      "path": "raw/gui-hosts/xterm-unicode",
+      "stages": 4,
+      "pngs": 8
+    },
+    {
+      "path": "raw/gui-vte-hosts/vte-pty",
+      "stages": 5,
+      "pngs": 10
+    },
+    {
+      "path": "raw/gui-vte-final/vte-caret-resize",
+      "stages": 3,
+      "pngs": 6
+    },
+    {
+      "path": "raw/gui-vte-final/vte-same-turn",
+      "stages": 4,
+      "pngs": 8
+    },
+    {
+      "path": "raw/gui-vte-final/vte-unicode",
+      "stages": 4,
+      "pngs": 8
+    },
+    {
+      "path": "raw/kernel-hosts-fenced/pty",
+      "stages": 5,
+      "pngs": 11
+    },
+    {
+      "path": "raw/kernel-hosts-fenced/caret-resize",
+      "stages": 3,
+      "pngs": 7
+    },
+    {
+      "path": "raw/kernel-hosts-fenced/same-turn",
+      "stages": 4,
+      "pngs": 9
+    }
+  ],
+  "resource": {
+    "elapsed_seconds": 0.02,
+    "max_rss_KiB": 26812,
+    "descriptive_only": true
+  },
+  "requested_role": "independent executor Sol/medium; actual serving configuration not independently certifiable",
+  "not_closed": [
+    "M01 getter axes onMount initial Off deferred TASK024",
+    "wholechecker TASK023 inventory themes/composition/benchmark known gate",
+    "full Linux release, M2, full widgets/menu/editing, complete Keyboard117, physical PageUp/PageDown",
+    "physical hardware/Android/HarmonyOS"
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "status": "CONFIRMED_DRIVER_AND_FIXTURE_CORRECTIONS",
+  "product_checkpoint": "9ea60af94319a46d3f9198832e52115c8f891713",
+  "test_sha": "69232b92adbe6b1d2baaa747fcb45b4c89b792a9",
+  "old_failure": "device1/2 raw starts echo s before product query/frame, collector missing-state timeout then forced cleanup",
+  "corrected_readiness": {
+    "monotonic_ns": 124631895811726,
+    "local_flags": 2608,
+    "wire_bytes": 2094,
+    "markers_hex": [
+      "7230",
+      "723233"
+    ],
+    "query_seen": true,
+    "raw_mode": true
+  },
+  "basic_public_states": [
+    {
+      "phase": "initial",
+      "actual": [
+        "80",
+        "24",
+        "100",
+        "0",
+        "true",
+        "true"
+      ],
+      "manual_expected": [
+        80,
+        24,
+        100,
+        0
+      ]
+    },
+    {
+      "phase": "tail",
+      "actual": [
+        "80",
+        "24",
+        "100",
+        "76",
+        "true",
+        "true"
+      ],
+      "manual_expected": [
+        80,
+        24,
+        100,
+        76
+      ]
+    },
+    {
+      "phase": "smaller",
+      "actual": [
+        "40",
+        "10",
+        "100",
+        "76",
+        "true",
+        "true"
+      ],
+      "manual_expected": [
+        40,
+        10,
+        100,
+        76
+      ]
+    },
+    {
+      "phase": "smaller-tail",
+      "actual": [
+        "40",
+        "10",
+        "100",
+        "90",
+        "true",
+        "true"
+      ],
+      "manual_expected": [
+        40,
+        10,
+        100,
+        90
+      ]
+    },
+    {
+      "phase": "restored",
+      "actual": [
+        "80",
+        "24",
+        "100",
+        "76",
+        "true",
+        "true"
+      ],
+      "manual_expected": [
+        80,
+        24,
+        100,
+        76
+      ]
+    }
+  ],
+  "actual_device_exit": 0,
+  "basic_termios_restored": true,
+  "sequence_results": [
+    {
+      "case": "caret-resize",
+      "exit": 0,
+      "termios_equal": true,
+      "readiness": {
+        "monotonic_ns": 124633915929956,
+        "local_flags": 2608,
+        "wire_bytes": 31,
+        "markers_hex": [
+          "61626364"
+        ],
+        "query_seen": true,
+        "raw_mode": true
+      }
+    },
+    {
+      "case": "same-turn",
+      "exit": 0,
+      "termios_equal": true,
+      "readiness": {
+        "monotonic_ns": 124634004329445,
+        "local_flags": 2608,
+        "wire_bytes": 31,
+        "markers_hex": [
+          "61626364"
+        ],
+        "query_seen": true,
+        "raw_mode": true
+      }
+    },
+    {
+      "case": "unicode",
+      "exit": 0,
+      "termios_equal": true,
+      "readiness": {
+        "monotonic_ns": 124634095087145,
+        "local_flags": 2608,
+        "wire_bytes": 25,
+        "markers_hex": [
+          "23412021"
+        ],
+        "query_seen": true,
+        "raw_mode": true
+      }
+    }
+  ],
+  "original31_entries_exact": true,
+  "existing8groups_golden_unchanged": true,
+  "A_fixture_only_change": "small Canvas explicitly viewport Off; all original1x1/clip/width assertions retained",
+  "new_B_control": "bareCanvasImplicitViewport size1x999 clip1x1 actualFrame1x1, exit0",
+  "A_full_current_entry_exit": 0,
+  "GNU_time": {
+    "path": "/workspace/work/validation/gnu-time/extracted/usr/bin/time",
+    "sha256": "efc0d1112e36ec76c14bf7508e287935cf1631d9d0d91fb532802d07aef51cea",
+    "download_manifest": "3d1a50084e5fb52a2b24810af09c9fb2d000cb0bcfef6b6c18ef7fc88bba5fc3"
+  },
+  "system_default_usr_bin_time_exists": false,
+  "resource_exit": 0,
+  "actual_max_RSS_KB": 26952,
+  "B_complete_acceptance_claim": false
+}
