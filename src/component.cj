@@ -18,6 +18,8 @@ public open class Component {
     var captureHandler: ?(UIKeyEvent) -> Unit = None
     var viewportDeclared = false
     var viewportAxes = ScrollAxes.Off
+    var surfaceMode: ?SurfaceMode = None
+    var isOverlayHost = false
     var isVisible = true
     var isEnabled = true
     var isFocusable = false
@@ -189,6 +191,22 @@ public open class Component {
     public func viewport(axes: ScrollAxes): Component {
         removeBinding("viewport")
         applyViewport(axes)
+        this
+    }
+    public func surface(value: SurfaceMode): Component {
+        removeBinding("surface")
+        applySurface(value)
+        this
+    }
+    public func surface(value: () -> SurfaceMode): Component {
+        bind("surface",ChangeKind.Style,{=> applySurface(value())})
+    }
+    func applySurface(value: SurfaceMode): Unit {
+        if (surfaceMode != Some(value)) { surfaceMode = Some(value); markChanged(ChangeKind.Style) }
+    }
+    public func overlayHost(value: Bool): Component {
+        checkDefinitionChange()
+        if (isOverlayHost != value) { isOverlayHost = value; markChanged(ChangeKind.Layout) }
         this
     }
     public func viewport(axes: () -> ScrollAxes): Component {
