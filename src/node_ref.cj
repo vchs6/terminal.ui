@@ -1,20 +1,17 @@
 package cjtui
 
 import std.collection.ArrayList
-import std.ref.{WeakRef, CleanupPolicy}
 
 public class NodeRef {
-    private let node: WeakRef<RuntimeNode>
     private let sessionId: Int64
     private let nodeId: Int64
     init(node: RuntimeNode) {
-        this.node = WeakRef<RuntimeNode>(node, CleanupPolicy.EAGER)
         sessionId = node.session.id
         nodeId = node.id
     }
     public func isValid(): Bool {
-        match (node.value) {
-            case Some(value) => value.session.isValid(value);
+        match (activeNodeIndex.get(nodeId)) {
+            case Some(value) => value.session.id == sessionId && value.session.isValid(value);
             case None => false
         }
     }
@@ -25,9 +22,9 @@ public class NodeRef {
         sessionId == session.id
     }
     func resolve(): RuntimeNode {
-        match (node.value) {
+        match (activeNodeIndex.get(nodeId)) {
             case Some(value) =>
-                if (value.session.isValid(value)) {
+                if (value.session.id == sessionId && value.session.isValid(value)) {
                     return value
                 }
             case None => ()
@@ -48,7 +45,7 @@ public class NodeRef {
     }
     public func application(): Application {
         let value = resolve(); value.session.requireReadContext()
-        if (let Some(weak) <- value.session.application) { if (let Some(app) <- weak.value) { return app } }
+        if (let Some(app) <- value.session.application) { return app }
         throw UIException("SessionInactive", "node has no application")
     }
     public func requestFocus(): Unit {
@@ -116,7 +113,7 @@ public class NodeRef {
         value.session.notify(value, change)
     }
     private func structureSession(): RuntimeSession {
-        match (node.value) {
+        match (activeNodeIndex.get(nodeId)) {
             case Some(value) =>
                 value.session.requireStructure();
                 value.session

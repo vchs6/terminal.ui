@@ -2,7 +2,6 @@ package cjtui
 
 import std.collection.{ArrayList, HashSet}
 import std.sync.Mutex
-import std.ref.{WeakRef, CleanupPolicy}
 
 let runtimeIdLock = Mutex()
 var nextRuntimeId: Int64 = 1
@@ -31,7 +30,7 @@ class RuntimeSession {
     let temporary: Bool
     let extensions: SessionExtensionState
     private var firstDeviceFailure: ?Exception = None
-    let application: ?WeakRef<Application>
+    var application: ?Application
     let lock = Mutex()
     let nodes = ArrayList<RuntimeNode>()
     let bindings = ArrayList<Binding>()
@@ -80,10 +79,7 @@ class RuntimeSession {
         this.theme = theme
         this.limits = limits
         this.temporary = temporary
-        this.application = match (application) {
-            case Some(app) => Some(WeakRef<Application>(app, CleanupPolicy.EAGER))
-            case None => None
-        }
+        this.application = application
         threadId = Thread.currentThread.id
         threadNonce = uiThreadIdentity().nonce
         id = uniqueRuntimeId()
@@ -766,9 +762,11 @@ class RuntimeSession {
             for (node in oldNodes) {
                 node.valid = false
                 node.pendingChange = None
+                activeNodeIndex.remove(node)
             }
             for (node in newNodes) {
                 node.committed = true
+                activeNodeIndex.add(node)
             }
         } finally {
             lock.unlock()
@@ -792,6 +790,7 @@ class RuntimeSession {
             for (node in removed) {
                 node.valid = false
                 node.pendingChange = None
+                activeNodeIndex.remove(node)
             }
         } finally {
             lock.unlock()
@@ -1156,9 +1155,7 @@ class RuntimeSession {
         applyPendingTheme()
     }
     func applyPendingTheme(): Unit {
-        if (let Some(weak) <- application) {
-            if (let Some(app) <- weak.value) { app.applyThemeCandidate(this) }
-        }
+        if (let Some(app) <- application) { app.applyThemeCandidate(this) }
     }
     func acceptTheme(value: Theme, layoutChanged: Bool): Unit {
         lock.lock()
@@ -1265,11 +1262,8 @@ class RuntimeSession {
         }
     }
     func notifyClosed(): Unit {
-        if (let Some(weak) <- application) {
-            if (let Some(app) <- weak.value) {
-                app.sessionClosed(this)
-            }
-        }
+        if (let Some(app) <- application) { app.sessionClosed(this) }
+        application = None
     }
     func closeFailure(primary: Exception): Exception {
         var result = prioritizeFailure(primary)
@@ -1303,13 +1297,12 @@ class RuntimeSession {
             for (node in nodes) {
                 node.valid = false
                 node.pendingChange = None
+                activeNodeIndex.remove(node)
             }
         } finally {
             lock.unlock()
         }
-        if (let Some(weak) <- application) {
-            if (let Some(app) <- weak.value) { app.closeThemeSession(id) }
-        }
+        if (let Some(app) <- application) { app.closeThemeSession(id) }
         for (node in nodes) {
             node.component.clearMount()
         }
