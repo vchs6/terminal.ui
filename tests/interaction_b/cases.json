@@ -360,5 +360,15 @@
     "status": "PREPARED_UNEXECUTED; A102/ACTUALGO barrier pending",
     "barrier": "Accepted A102 source binding and formal103 ACTUALGO; B product behavior awaits104/106",
     "prepared_form": "public driver and manual golden; product UNEXECUTED"
+  },
+  {
+    "id": "B02-bare-canvas-implicit-root",
+    "ac": [
+      "B-02"
+    ],
+    "source": "src/root_canvas.cj:bareCanvasImplicitViewport",
+    "trigger": "bare Canvas measure999x999, min10, actual1x1; no viewport declaration",
+    "expected": "implicit Vertical: PaintContext.size1x999, clip1x1, actual Frame1x1; existing no-viewport A small fixture explicitly Off retains size1x1",
+    "status": "added independent B semantic control; actual fixed checkpoint verification recorded externally"
   }
 ]

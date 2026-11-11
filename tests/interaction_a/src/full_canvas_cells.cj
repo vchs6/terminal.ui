@@ -28,7 +28,7 @@ func fullCanvasCells(): Unit {
     let small = Canvas({ _ => Size(999,999) },{ p =>
         check(p.size.width == 1 && p.size.height == 1,"min cannot exceed actual allocation")
         p.put(0,0,"界"); p.put(Int64.Max,Int64.Max,"A"); p.fill(Rect(Int64.Max,0,2,1))
-    }).minWidth(10).minHeight(10)
+    }).viewport(ScrollAxes.Off).minWidth(10).minHeight(10)
     let tiny = Application(small, theme:plainTheme()); tiny.startHeadless(); cell(tiny.snapshot(1,1),0,0," ",1,false,Style()); tiny.dispose()
 }
 

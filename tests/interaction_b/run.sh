@@ -16,7 +16,8 @@ if [[ ${1:-} == --device ]]; then
     python3 tests/interaction_b/pty_driver.py --binary tests/interaction_b/target/release/bin/main --output "$output/basic"
     python3 tests/interaction_b/device_sequences.py --binary tests/interaction_b/target/release/bin/main --output "$output/sequences"
 elif [[ ${1:-} == --resource ]]; then
-    CJTUI_VIEWPORT_CASE=resource TERM=dumb COLORTERM= /usr/bin/time -v timeout 60s tests/interaction_b/target/release/bin/main </dev/null
+    time_bin=${CJTUI_TIME_BIN:-/usr/bin/time}
+    CJTUI_VIEWPORT_CASE=resource TERM=dumb COLORTERM= "$time_bin" -v timeout 60s tests/interaction_b/target/release/bin/main </dev/null
 else
     TERM=dumb COLORTERM= timeout 60s tests/interaction_b/target/release/bin/main </dev/null
 fi

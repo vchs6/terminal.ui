@@ -59,6 +59,19 @@ def controlling_terminal(slave):
     fcntl.ioctl(slave, termios.TIOCSCTTY, 0)
 
 
+
+def readiness_observed(raw,local_flags,markers):
+    return not (local_flags & (termios.ICANON|termios.ECHO)) and b'\x1b[?25$p' in raw and all(x in raw for x in markers)
+
+def wait_ready(child,master,slave,raw,markers,timeout=10):
+    until=time.monotonic()+timeout
+    while time.monotonic()<until:
+        raw.extend(drain(master,.01));flags=termios.tcgetattr(slave)[3]
+        if readiness_observed(raw,flags,markers):
+            return dict(monotonic_ns=time.monotonic_ns(),local_flags=flags,wire_bytes=len(raw),markers_hex=[x.hex() for x in markers],query_seen=True,raw_mode=True)
+        if child.poll() is not None:raise RuntimeError('product exited before raw-open/first-frame readiness: '+str(child.returncode))
+    raise RuntimeError('product raw-open/first-frame readiness not observed')
+
 def self_test():
     master, slave = pty.openpty()
     try:
@@ -67,6 +80,11 @@ def self_test():
         assert resize(master, 40, 10) == [40, 10]
         assert dimensions(slave) == [40, 10]
         assert attributes(slave) == before
+        markers=(b'r0',b'r23');wire=b'\x1b[?25$p'+b'r0'+b'r23'
+        assert readiness_observed(wire,0,markers)
+        assert not readiness_observed(wire,termios.ICANON|termios.ECHO,markers)
+        assert not readiness_observed(b'\x1b[?25$p',0,markers)
+        assert not readiness_observed(b's',0,markers)
         # Negative control proves readback comparison can reject a wrong dimension.
         assert dimensions(slave) != [80, 24]
         print('HARNESS-ONLY: real PTY resize/readback and termios recording verified; no product run')
@@ -92,6 +110,7 @@ def run(binary, destination):
         env = dict(os.environ, CJTUI_VIEWPORT_CASE='pty', CJTUI_VIEWPORT_OUTPUT=str(destination.resolve()), TERM=metadata['TERM'])
         child = subprocess.Popen([str(binary.resolve())], stdin=slave, stdout=slave, stderr=slave,
                                  env=env, preexec_fn=lambda: controlling_terminal(slave), close_fds=True)
+        metadata['readiness']=wait_ready(child,master,slave,raw,(b'r0',b'r23'))
         phases = [('initial', None, None, [80,24,100,0]),
                   ('tail', None, b'\x1b[B'*100, [80,24,100,76]),
                   ('smaller', (40,10), None, [40,10,100,76]),
@@ -132,6 +151,10 @@ def run(binary, destination):
             os.killpg(child.pid, signal.SIGKILL)
             child.wait()
             metadata['forced_cleanup'] = True
+        if child is not None:
+            metadata.setdefault('exit',child.returncode)
+            metadata.setdefault('termios_after',attributes(slave))
+            metadata['termios_restored']=metadata['termios_after']==metadata['termios_before']
         (destination/'output.raw').write_bytes(raw)
         (destination/'metadata.json').write_text(json.dumps(metadata, indent=2)+'\n')
         os.close(master)

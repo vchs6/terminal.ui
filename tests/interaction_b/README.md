@@ -54,3 +54,10 @@ Fixture controls only validate mechanics/oracle strength. They are not B PASS.
 Accepted A102 binding/real B compile gap belong to later ACTUALGO103; product
 assertions, resource execution and real PTYs await104/106/107. Valid unchanged
 content checks may be reused by hash; no archive/review layer is added here.
+
+PTY drivers now wait for actual raw mode, the product query and literal initial
+frame markers before sending input; no readiness sleep or resend masking.
+Resource mode accepts `CJTUI_TIME_BIN` (default `/usr/bin/time`); use a genuine
+GNU Time binary, e.g. the validated Debian extraction in this environment.
+B02-bare-canvas-implicit-root separately checks logical1x999/clip1x1/Frame1x1;
+the old A non-viewport small fixture explicitly Off retains every1x1 assertion.
