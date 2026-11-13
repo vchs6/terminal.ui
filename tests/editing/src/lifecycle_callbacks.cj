@@ -106,4 +106,46 @@ func callbackTransactions(): Unit {
         check(v.get() == if (phase == "change") { "A" } else { "" }, "business write not rolled back")
         a.dispose()
     }
+    callbackIllegalArgumentCommit()
+}
+
+// F003/E002: a user's IllegalArgumentException is not an editor size rejection.
+func callbackIllegalArgumentCommit(): Unit {
+    let value = Observable<String>(""); let ctl = TextEditController()
+    let sentinel = IllegalArgumentException("EDIT_ONCHANGE_ILLEGAL_ARGUMENT_SENTINEL")
+    let changes = Box<Int64>(0); let issues = Box<Int64>(0); let tooLarge = Box<Int64>(0)
+    let cleanup = Box<Int64>(0); let observed = Box<?TextEditSnapshot>(Option<TextEditSnapshot>.None)
+    let node = TextInput(value, controller: Some(ctl), onChange: { text =>
+        changes.value++
+        let s = ctl.snapshot(); observed.value = Some(s)
+        check(text == "x" && value.get() == "x" && s.text == "x" &&
+            s.selection == TextSelection(1, 1) && s.revision == 1 &&
+            s.selectionRevision == 1 && s.canUndo && !s.canRedo,
+            "literal x source/local transaction committed before throwing onChange")
+        throw sentinel
+    }, onIssue: { issue =>
+        issues.value++; if (issue == TextEditIssue.InputTooLarge) { tooLarge.value++ }
+    }).onMount({_ => { => cleanup.value++ }})
+    let app = Application(node); app.startHeadless()
+    var caught = false; var same = false; var message = ""
+    try {
+        try { key(app, node, "text", text: "x") }
+        catch (error: IllegalArgumentException) {
+            caught = true; same = refEq(error, sentinel); message = error.message
+        }
+        check(caught && same && message == "EDIT_ONCHANGE_ILLEGAL_ARGUMENT_SENTINEL",
+            "key-default onChange preserves original IllegalArgumentException type/message/identity")
+        let seen = observed.value.getOrThrow()
+        check(changes.value == 1 && value.get() == "x" && seen.text == "x" &&
+            seen.selection == TextSelection(1, 1) && seen.revision == 1 &&
+            seen.selectionRevision == 1 && seen.canUndo && !seen.canRedo,
+            "throwing onChange keeps committed business and immutable local snapshot")
+        check(issues.value == 0 && tooLarge.value == 0,
+            "user IllegalArgumentException is not InputTooLarge or another edit issue")
+        let stats = app.stats()
+        check(!ctl.isValid() && cleanup.value == 1 && stats.mountedNodes == 0 &&
+            stats.activeBindings == 0 && stats.subscriptions == 0 && stats.pendingPosts == 0,
+            "throwing key-default callback follows failure cleanup and revokes controller")
+    } finally { app.dispose() }
+    check(cleanup.value == 1, "callback failure cleanup remains exactly once after dispose")
 }

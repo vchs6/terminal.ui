@@ -62,4 +62,28 @@ func validationBoundaries(): Unit {
         check(ui(hApp, { => h.redo() }) && ui(hApp, { => h.redo() }), "both budget records redo")
         state(h, "cc", 2, 2, true, false, "redo moves entries without changing aggregate budget")
     } finally { hApp.dispose() }
+    areaEnterAtTextLimit()
+}
+
+// E002: ordinary TextArea Enter is an atomic LF insertion subject to byte limits.
+func areaEnterAtTextLimit(): Unit {
+    let value = Observable<String>("x"); let ctl = TextEditController()
+    let changes = Box<Int64>(0); let issues = Box<Int64>(0); let tooLarge = Box<Int64>(0)
+    let area = TextArea(value, controller: Some(ctl), limits: TextEditLimits(maxTextBytes: 1),
+        onChange: {_ => changes.value++}, onIssue: { issue =>
+            issues.value++; if (issue == TextEditIssue.InputTooLarge) { tooLarge.value++ }
+        })
+    let app = Application(area); app.startHeadless()
+    try {
+        ui(app, { => ctl.select(TextSelection(1, 1)) })
+        exact(ctl, "x", 1, 1, 0, 1, "literal x at byte limit before Enter")
+        check(!ctl.snapshot().canUndo && !ctl.snapshot().canRedo, "initial limit-case history empty")
+        key(app, area, "enter")
+        exact(ctl, "x", 1, 1, 0, 1, "rejected LF preserves text/selection/both revisions")
+        state(ctl, "x", 1, 1, false, false, "rejected LF creates no undo/redo record")
+        check(value.get() == "x" && changes.value == 0 && issues.value == 1 && tooLarge.value == 1,
+            "ordinary Enter at maxTextBytes1 rejects once as InputTooLarge with no onChange")
+        check(ctl.isValid() && ref(area).isValid() && app.post({ => }),
+            "rejected Enter leaves the application healthy")
+    } finally { app.dispose() }
 }

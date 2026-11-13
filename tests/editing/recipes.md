@@ -25,3 +25,10 @@ All editor bodies below are frozen for future119 and UNEXECUTED at118; the posit
 At120, bind the actual race trace to the unique conditional-write failure and single Observable source-version owner. Inspect both local UInt64 revision prechecks/exhaustion and source-token publication without a public setter or fabricated2^64 executions. If this source proof or actual conflict trace is missing, retain insufficient_evidence. The real sink-delay copy vector likewise needs its raw prefix/FIFO-ACK/return order checked on119, not inferred from a worker existing.
 
 This freeze is a complete test delivery for118, not an editor behavior PASS,119 implementation,121 host acceptance or122 requirement completion. Real console/other host behavior, actual local clipboard contents and genuine Applied integration remain separate; samePTY+differentTERM is not multiple-host evidence. The runner never claims a screenshot or host support from raw OSC bytes.
+
+The narrow callback/Enter supplement preserves all rows above: lifecycle_callbacks
+adds key text x→committed source/snapshot→original IllegalArgumentException
+(type/message/identity)→cleanup, with no InputTooLarge; validation_boundaries adds
+TextArea x/maxTextBytes1/Enter→one InputTooLarge, zero edit/onChange, unchanged
+selection/revisions/history and healthy app. Both new runtime bodies remain
+UNEXECUTED until adopted by119; parser/fixture checks are not product execution.
