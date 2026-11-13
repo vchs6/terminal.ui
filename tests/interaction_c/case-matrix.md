@@ -102,3 +102,16 @@ wording correction under C.2. Full type correctness awaits actual C declarations
 
 No claim that a weak observer proves ownership, that a headless assertion proves
 native restoration, or that a PTY on another TERM is another host is made.
+
+
+## C109 targeted public regressions (post-freeze additions)
+
+| IDs | Contract and public entry |
+|---|---|
+| X01 | R004/I009/C.6: pure0×0 mounted export preserves application4×2 committed anchored layer/ref/offset and subsequent ensure6; export_turn_regressions.cj / pure-export |
+| X02 | C.1: ordinary top-level open rejects WrongUIContext without reserve/mount; same content opens in legal batch; export_turn_regressions.cj / open-turn |
+
+These are independent targeted assertions, not changes to old oracle values.
+Actual fixed-WIP executions and reached/unreached controls belong to their own
+raw manifest; neither compile errors nor actor historical observations are
+counted as this role's fresh behavioral RED.

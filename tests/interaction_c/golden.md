@@ -148,3 +148,21 @@ literal. Shadow Style(dim=true) and continuation are checked via Frame.cellAt.
 D08 correction under C.2: `L;O;H;R;APP;LEGACY;` includes H once because H is
 already the owner's ordinary ancestor. Geometry hosting adds no new event edge.
 P05 GC observations and future H02 are explicitly limited in final-preparation.
+
+
+## X01 pure mounted export / X02 active-turn entry regressions
+
+X01 actual application is4×2, Text A root with viewport Off, root-anchored
+BelowStart nonmodal Canvas viewport2×1/content8×1. Host clamps its y to1.
+At offset3 the literal application rows are `A   ` / `de  `; ensure cell6
+Nearest on a2-column viewport produces offset5 and `A   ` / `fg  `.
+A pure `render(root,0,0)` has an empty exported grid but cannot close the
+application's valid anchor/layer, replace refs, mutate its committed offset or
+consume the ensure. Batch may apply ensure now or leave it pending: preserve
+its observed committed offset, then assert the independently counted final5.
+No Application.snapshot(0,0) is substituted for the pure export.
+
+X02 top-level open on the owner thread after startHeadless is outside the C.1
+allowed event/post/batch domain: WrongUIContext before reservation/mount. The
+same content must subsequently open in batch and mount/clean exactly once.
+This does not replace existing pure/lifecycle/stale/foreign guard priorities.
