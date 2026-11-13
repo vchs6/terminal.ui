@@ -31,3 +31,25 @@ These two new bodies are runtime UNEXECUTED and not fully typechecked against
 an accepted E implementation at supplement freeze; no historical RED is claimed.
 Parser and fixture selfchecks are tool/schema evidence only. The source author
 must adopt this fixed test commit and run it against a frozen candidate.
+
+## TASK120 round1 finite review selectors
+
+Set `CJTUI_EDITING_REVIEW_CASE` to E120-I01/I02/I03/I04 and directly run the
+normally built editing consumer. Each selector is independent; old default
+suite and all old manual oracles are unchanged. I01 requires samebatch
+select2/sourceZ synchronization to update controller, bound label and full8×2
+grid to Z@1. I02 pure-renders TextInput abc3×1 and TextArea a/LF/b3×2, while
+mount/cleanup counts stay0, NodeRefs stayNone and controllers invalid.
+I03 independently creates preferred-column4 before undo and before redo:
+undo restores original gap1, Down must land4; redo restores edited gap2,
+Down must land6. Both observations precede the independent assertion.
+
+I04 is one public worker attempt, one fixed64KiB ASCII Backspace scenario.
+A real key handler releases a worker's single source.set(YZ); no private hook,
+fake source/version, sleeps or exact-window scheduling claims. Legal outcomes
+include onChange for old truncated text or newY, or one ConcurrentValueChanged
+without an edit. A worker write after a valid old edit can leave finalYZ and
+is allowed. A safe no-edit/no-issue return is classified INCONCLUSIVE, not proof
+of successful editing. A public exception/invalid stale edit is failure; ordinary non-hit
+or lateCAS is insufficient evidence for the source-proven early planning race.
+This finite scope does not rerun prior suites or change other frozen tests.
