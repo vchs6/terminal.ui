@@ -1,0 +1,10 @@
+# AC evidence separation
+
+| AC | Actual prerequisite | Existing preparation | Required future delivery (not claimed complete) |
+|---|---|---|---|
+| S01 | U080/U084/U102; W007 language proof | Existing consumer source and literal oracles only | 153 complete overload/negative-consumer coverage and compile against actual pinned input; later clean bundle/collector boundary proof in155–157. Missing target factory is expected compiler RED, never synthetic gate success. |
+| S02 | U102/I011 focus/default phases + U117 complete modifiers | Partial headless source; original gate77/synthetic experiment are historical tool facts | 153 add ctrl/alt/shift/consume/duplicate-caption/once/defaultPrevented and committed-event cases, device fixture and hand trace;156 actual PTY/hosts;157 assesses. |
+| S03 | U084 validation/Unicode + U088 resolver + U102/I012 | Caption source exists; exact style goldens missing | 153 add detached/mounted effective-disabled/focused/selected priority, explicit visual override, post-chain enabled, theme wrap and Unicode; no NodeRef imitation of detached state. |
+| S04 | U102 Canvas/Constraints/PaintContext + U088 style + accepted U107 viewport | Frame expectations prepared; natural-size/dependency/theme/viewport cases missing | 153 assert20×1 content natural size, finite0..1 including zero allocation, allocation vs logical extent, defaultStyle both segments; readset property via public observable traces +155 source inspection, not M2 count promise/new public hook. |
+| S05 | U080 generations/posts/stats + U102 cleanup + U117 device restoration + currentE122 | Partial lifetime/exception headless source only | 153 add unmount/remount, owner-post stale generation, shared model/public stats and native failure fixtures;156 records actual callback/getter failure recovery. No author selftest substitution. |
+| M01–M05 | U107/U112/U117 accepted; futureS157 missing | No formal158 target tests in this preflight | After157,158 owns menu retained identity/physical order/visibility, shared activation, PopupOpaque/noauto-close, Status naturalRow, Split exact tail-block and S regression. |

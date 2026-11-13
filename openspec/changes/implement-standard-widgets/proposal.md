@@ -1,6 +1,6 @@
 # 标准控件公开组合候选
 
-状态：required / planned / pending。2026-11-10 独立起草；待主代理裁决、正常 SDK 签名验证和独立 preflight。没有修改产品、正式测试或主仓任务状态；本文不是冻结记录。
+状态：required；2026-11-13 W001–W007/W006-S已冻结，历史SDK形状验证和独立增量preflight已核验，实际S公共前置已接受。153正式测试编写in_progress，154仍待冻结测试与真实目标RED；M158待S157。标准控件产品/行为/宿主验收仍pending；[最终S输入清单](../../../docs/reviews/widgets/S/input-manifest.json)记录当前准入，不把起草或签名编译当产品完成。
 
 ## Why
 

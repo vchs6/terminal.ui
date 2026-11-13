@@ -1,6 +1,10 @@
 # 标准控件支持任务候选
 
-本文件现为原TASK-029/019及支持153–162唯一任务状态入口，docs/tasks.md保留编号映射和原AC引用；当前全为planned且有前置阻塞，未开正式产品。L1=G-001，L2=WP-004；SplitPane关联WP-003/TASK-011，只覆盖公开组合。两单元，每单元五个独立角色；没有把L1/L2当编码任务。
+本文件现为原TASK-029/019及支持153–162唯一任务状态入口，docs/tasks.md保留编号映射和原AC引用；2026-11-13 S前置准入已独立核验，TASK153正式测试编写in_progress；154仍等153冻结测试与真实目标RED，M158仍等S157；尚未开标准控件产品实施。L1=G-001，L2=WP-004；SplitPane关联WP-003/TASK-011，只覆盖公开组合。两单元，每单元五个独立角色；没有把L1/L2当编码任务。
+
+## Current admission — 2026-11-13
+
+主代理冻结W001–W007及W006-S原文，包括最终axis在body前的SplitPane签名。独立增量preflight为READY_S_PRECONDITIONS：DQ01–14、十项任务自洽和45接口对已检查，无新必需冲突；既有WPF001/002均关闭。实际接受输入、来源及哈希见[最终S输入清单](../../../docs/reviews/widgets/S/input-manifest.json)；[独立准入表](../../../docs/reviews/widgets/S/admission/dq.md)与[接口检查](../../../docs/reviews/widgets/S/admission/sdd-preflight.md)。旧07/c732形状编译结果按宏/签名字节一致复用，不视为产品通过。以下历史候选措辞以当前准入说明为准。
 
 ## Admission
 
@@ -14,7 +18,7 @@
 
 - level=L3；classification=execution（用户标准控件目标已定，本候选工程决策经主代理冻结后执行）；openspec_change_ref=implement-standard-widgets；workflow_ref=本tasks.md；decision_refs=design W001–W006/W006-S及G001/I012上游接受记录；goal=G-001。
 - scope.includes=各卡指定单元交付及必要公开消费者/回归/文档；scope.excludes=输入编辑算法、runtime/layout/decoder/第二renderer、鼠标/拖动/虚拟化、完整四主题展示、跨平台/发布。S/M只消费117已验KeyEvent字段，不实现decoder。
-- status=planned；blockers=冻结/签名微编译/独立preflight/G001/I012接受/各卡依赖接受证据均未在本稿核验；planning_gaps=以上真实准入缺口及实际输入源/路径映射；evidence_refs=[]。不是新授权缺失，不再次向用户请求实施许可。
+- status=以各卡为准；153 in_progress（正式测试），154–157等待前序角色实际交付，158–162仍等待S157与其前序。S公共前置已核验；planning_gaps=153需完成现存准备稿覆盖缺口及真实目标RED，不把该未来交付误作缺上游；evidence_refs=最终S输入清单及独立preflight。
 - preconditions=Admission与本卡依赖全部满足；required_skills=测试角色TDD+verification、产品TDD+executing-plans+verification、审核requesting-code-review+verification、执行/验收verification；失败按需systematic-debugging，修复反馈按receiving-code-review。适用OpenSpec工作流及仓颉规范从实际环境读取，skill_evidence_refs在ready时记录来源/版本/可用性至该卡证据目录，当前未伪造已使用记录。
 - compatibility=所有已有公共primitive/组件块入口保留，同槽后写替换不改变；没有已发布本件widget API需兼容；公开callbacks异常/代际和主题优先级继承上游。quality_governance.compatibility_exceptions=[]。
 - quality_governance.necessity=已要求控件缺公开可用组合与独立证据；canonical_owner=业务checked/radio/menu顺序归应用，公开控件工厂组合行为，Runtime/focus/overlay/layout/Theme/Unicode仍原唯一权威；old_path_disposition=无旧widget公开实现需退役，沿用primitive，不增兼容别名；complexity_delta=有限工厂/一份菜单own refs索引，禁止第二业务状态或内核。非产品角色只写证据不改运行路径。
@@ -60,7 +64,7 @@
 | deliverables | 测试源码、预期帧/trace、正常消费者、RED日志与测试hash |
 | acceptance / verification | S01–S05：采用验收目录的条件→结果→证据；S计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅S文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | planned / 共同Admission与上述依赖未核验 / [] |
+| status / blockers / evidence_refs | in_progress / 无上游准入阻塞；测试交付未完成 / 最终S输入清单、独立准入表 |
 
 L4（每步均未执行）：
 
