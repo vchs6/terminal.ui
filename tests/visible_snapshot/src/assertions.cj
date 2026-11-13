@@ -66,6 +66,6 @@ func save(frame: Frame, plain: String, cells: Array<Array<ExpectedCell>>, name: 
 func open(app: Application, owner: Component, content: Component, mode: OverlayMode): OverlayHandle {
     let result = Array<?OverlayHandle>(1, repeat: Option<OverlayHandle>.None)
     app.batch({ => result[0] = Some(node(owner).openOverlay(content,
-        options: OverlayOptions(mode: mode, takeFocus: false))) })
+        options: OverlayOptions(mode: mode, takeFocus: mode == OverlayMode.Modal))) })
     result[0].getOrThrow()
 }

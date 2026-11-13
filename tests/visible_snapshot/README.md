@@ -1,10 +1,17 @@
-# C003 visible snapshot consumer — preparation only
+# C003 visible snapshot public consumer
 
-These tests are written against the frozen C003/G002/G007/G009/T014/T015 and
-overlay/viewport contracts. They have **not** been Cangjie typechecked, built,
-executed against the product, admitted, or accepted as TASK010. Resource priority
-belongs to TASK008. Root must first freeze accepted actual TASK008 source, the
-TASK010 input manifest, this test commit, and actual TASK010 admission.
+These tests use the frozen C003/G002/G007/G009/T014/T015 and overlay/viewport
+contracts. Actual TASK010.a author validation compiled and executed this public
+consumer with SDK 1.2.0 at accepted base `ecbf0999a392e5298e6e5bd15bd796dd9d40e582`.
+All 29 unchanged manual grids and actual file checks passed. This author result
+does not replace independent review, execution, or AC010 acceptance.
+
+The first actual run preserved a fixture failure: the original helper passed
+`takeFocus:false` for Modal, forbidden by the accepted overlay contract. The
+helper now enables focus for Modal only; literal grids/styles are unchanged.
+Original preparation is commit `54f31bc386f0990f9b796d1b1ce8b5f85689a131`.
+Raw history, exact inputs, binary/file hashes and results are indexed in
+`/workspace/work/visible-snapshot-formal-tests/evidence/index.json`.
 
 The consumer is ordinary CJPM source with `cjtui = { path = "../.." }`, using only
 public API. Its manifest follows the accepted `tests/interaction_c/cjpm.toml`
@@ -60,7 +67,7 @@ controls (missing blanks, malformed RGB/CUP, missing reset, mode controls,
 overwide glyph, incorrect style). A tool-selftest PASS proves only that tool;
 it is neither TASK010 RED/GREEN nor product evidence.
 
-## Real file errors and pending execution
+## Real file errors and execution
 
 Both public writers must throw actual SDK exceptions for directory, missing
 parent, embedded NUL and an unprivileged unwritable directory. NUL must not
@@ -72,7 +79,7 @@ write or add an SDK/product hook. Exception types/messages are logged from the
 actual runtime; atomic replacement is not required. If the SDK swallows a
 partial write, the test fails; it does not synthesize success or relabel it.
 
-After root's actual GO, in the root-frozen accepted product+test source checkout:
+In the root-frozen accepted product+test source checkout:
 
 ```sh
 # Use the actual SDK1.2/stdx/UCD/registry environment frozen by root, not an old relay.
@@ -88,9 +95,10 @@ sequence so exact file checks also detect missing truncation. `set -o pipefail` 
 tee. Use an unprivileged Linux user with `/dev/full`; otherwise the command
 reports infrastructure failure. It creates a fresh artifact directory by default;
 if overriding `CJTUI_VISIBLE_SNAPSHOT_FILES`, supply a new empty directory.
-No clean bundle/consumer, real host, screenshot or formal evidence is claimed.
+The recorded normal public-consumer build is formal TASK010.a author evidence;
+no bundle, separate clean-source consumer, real host or screenshot is claimed.
 
-Allowed preparation checks (already independent from product execution):
+Tool-only checks (independent from product execution):
 
 ```sh
 node tests/visible_snapshot/oracle_selftest.mjs
@@ -107,4 +115,4 @@ Contract/source links at preparation base `51529b7f5bce9c639d54876c378b54aa1cd3a
 `src/{application,frame,cell,overlay_options,overlay_handle,paint_context}.cj`;
 `tests/{interaction_b,interaction_c,glyphs,composition}/` for accepted public
 construction, file and headless helper shapes. These are source references,
-not a substitute for final010 type/runtime/source-freeze evidence.
+not a substitute for independent final010 review/execution/acceptance.
