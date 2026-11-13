@@ -344,12 +344,16 @@ func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int6
     if (let Some(hostRef) <- record.options.host) {
         if (!hostRef.isValid()) { return None }
         let host = hostRef.resolve()
-        let hostGeometry = geometry.get(host.id)
-        if (hostGeometry.isNone()) { return None }
-        let g = hostGeometry.getOrThrow()
-        let hx = signedAdd(g.screenX,g.contentX); let hy = signedAdd(g.screenY,g.contentY)
-        left = greater(g.clipLeft,hx); top = greater(g.clipTop,hy)
-        right = lesser(g.clipRight,signedAdd(hx,g.contentWidth)); bottom = lesser(g.clipBottom,signedAdd(hy,g.contentHeight))
+        // The application root is the built-in host over the actual frame,
+        // regardless of its own ordinary layout box.
+        if (host.parent.isSome()) {
+            let hostGeometry = geometry.get(host.id)
+            if (hostGeometry.isNone()) { return None }
+            let g = hostGeometry.getOrThrow()
+            let hx = signedAdd(g.screenX,g.contentX); let hy = signedAdd(g.screenY,g.contentY)
+            left = greater(g.clipLeft,hx); top = greater(g.clipTop,hy)
+            right = lesser(g.clipRight,signedAdd(hx,g.contentWidth)); bottom = lesser(g.clipBottom,signedAdd(hy,g.contentHeight))
+        }
     }
     right = greater(left,right); bottom = greater(top,bottom)
     let node = LayoutNode(rootRef.getOrThrow().resolve().component,session,overlayInherited(owner,preview ?? session.theme),
