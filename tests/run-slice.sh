@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 cjc --version
 cjpm --version
 case "${1:-all}" in
+  widgets_small) bash tests/widgets_small/run.sh ;;
   editing)
     bash tests/editing/run.sh
     for review_case in E120-I01 E120-I02 E120-I03 E120-I04; do
@@ -82,5 +83,5 @@ case "${1:-all}" in
     "$0" runtime
     "$0" resize-coherence
     ;;
-  *) echo "usage: $0 [editing|keyboard|native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [widgets_small|editing|keyboard|native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
 esac
