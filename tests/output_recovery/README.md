@@ -25,6 +25,7 @@ row/style reader; no second renderer/parser/Unicode width implementation is adde
 | Style-only target | `A`, `é` RGB(1,128,254)+bold; two default blanks | Every CUP/SGR/UTF8/reset byte boundary |
 | Unchanged target | Same dimensions, glyph policy, effective color profile and caret | Zero screen update transaction |
 | Caret-only movement | Same four cells; CUP `ESC[1;3H` | Every CUP byte boundary |
+| Known original caret management | Original visible report permits `ESC[?25l` for a target with no logical caret | Every management-phase byte boundary, separately from restore |
 | Startup | 2004 enable, exact 7-byte DECRQM, full target | Every byte boundary of each distinct transaction |
 | Optional title | save `ESC[22;2t`, OSC2 `é` BEL, restore `ESC[23;2t` | Shared writer and latch |
 | Clipboard | OSC52 `c;w6k=` BEL (`é` UTF8→Base64) | Shared writer and latch |

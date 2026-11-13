@@ -44,6 +44,10 @@ async function run(config) {
     await until(async()=>{pid=Number((await read(join(directory,'pid'))).toString());return pid>0;},'PID');
     const fatal=mode===1||mode===4;
     let armStart=0;
+    if(startup&&target>3) {
+      await until(()=>raw.includes(full),'first frame before managed-caret transition');
+      child.stdin.write(E+'?25;1$y');
+    }
     if(!startup) {
       await until(()=>raw.includes(full),'literal complete first frame');
       if(reply){child.stdin.write(E+'?25;1$y');await until(async()=>raw.includes(Buffer.from(E+'?25h'))||raw.includes(Buffer.from(E+'?25l')),'known original mode');}
@@ -158,7 +162,8 @@ else {
   const cases=[{scenario:'frame',bytes:short},{scenario:'style',bytes:style},{scenario:'caret',bytes:protocols.caret},
     {scenario:'title',bytes:protocols.save},{scenario:'title',bytes:protocols.set,target:2},{scenario:'clipboard',bytes:protocols.clipboard},
     {scenario:'frame',bytes:protocols.paste,startup:true,target:1},{scenario:'frame',bytes:protocols.query,startup:true,target:2},
-    {scenario:'frame',bytes:full,startup:true,target:3}];
+    {scenario:'frame',bytes:full,startup:true,target:3},
+    {scenario:'frame',bytes:protocols.caretHide,startup:true,reply:true,target:4}];
   for(const c of supplement?[]:cases)for(const mode of [1,4])for(let offset=0;offset<c.bytes.length;offset++) {
     await perform({...c,mode,offset,name:`cut-${c.scenario}-${c.startup?'startup':'action'}-${c.target??1}-${mode}-${offset}`});
   }
