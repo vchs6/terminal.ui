@@ -1,0 +1,268 @@
+{
+  "artifact_sha256": {
+    "READY.md": "973dbc079565ce56a11b2919034836d7218434e502d8136ebb8f03987a0b30f9",
+    "audit.py": "762f62cf51c0b27a2891fbdd4d73fdf76b711d6f65e1fbb22f4bd40b31421701",
+    "body-at-12.sha256.json": "8a04ce437ba2a985eae0f769c25e23486262649b9559b990305496f2fb052c94",
+    "env.sh": "e795d96ad8eedde1375251f5bdb94feb72db66712b66de35647abd2464d9f143",
+    "input-bindings.json": "de5cd1be718935176c8cbfb830c83b8537dd95535f88f89ffd07b9b5be212cfb",
+    "positive-at-11.sha256.json": "5adb9247499745ffb1761939e1302abc03f76d1ec5f9bd3d2e1b965770dbd613",
+    "receipt.py": "1457f17a55a88b048bab11ac8a1378906e2649cbb7f2c23f8309229e1fb7cdd5",
+    "red-at-05.sha256.json": "58ffff4d5b851d25f745a0d29b9e1449f951d9fb3a1786f86800f38b0bf2f70e",
+    "report.md": "feb9385e976bc8ba8d2650d618f1f6fa9f1064e8487b6d3bd6e2252d0e6637a6"
+  },
+  "authoritative_phases": [
+    "05-missing-editor-red",
+    "11-prerequisite-final-build",
+    "12-full-consumer-final-build",
+    "13-final-syntax-and-fixtures",
+    "14-final-positive-binary",
+    "15-final-audit"
+  ],
+  "base": "da9eaf4044cba917d12f441e041e164deb5eff80",
+  "coverage_status": "test freeze only; all E behavior/product PTY/real editor race unexecuted",
+  "created_utc": "2026-11-13T08:06:38.839386+00:00",
+  "phases": [
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; cjpm build"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing/prerequisites",
+        "end_utc": "2026-11-13T07:32:52.477123+00:00",
+        "exit": 1,
+        "start_utc": "2026-11-13T07:32:46.531371+00:00"
+      },
+      "exit": 1,
+      "manifest_sha256": "0cc0ed7d3cda68d3291351c73cbd52db656dfee1f78c9302a39c2e26a0d56d4d",
+      "phase": "01-prerequisite-build"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; cjpm build"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing/prerequisites",
+        "end_utc": "2026-11-13T07:34:40.882119+00:00",
+        "exit": 1,
+        "start_utc": "2026-11-13T07:33:26.144260+00:00"
+      },
+      "exit": 1,
+      "manifest_sha256": "2ad8ec0291da125d932935e6a85198ddf97d5c6e118c72045dc83db8e7ec85fc",
+      "phase": "02-prerequisite-build-configured"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; cjpm build"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing/prerequisites",
+        "end_utc": "2026-11-13T07:35:58.972900+00:00",
+        "exit": 0,
+        "start_utc": "2026-11-13T07:35:08.927815+00:00"
+      },
+      "exit": 0,
+      "manifest_sha256": "56b259607abc1775646ce9a914900767553638d56e42b3f72eb3d20b35928630",
+      "phase": "03-prerequisite-build-corrected"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; TERM=dumb COLORTERM= timeout 60s ./target/release/bin/main </dev/null"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing/prerequisites",
+        "end_utc": "2026-11-13T07:37:25.825956+00:00",
+        "exit": 0,
+        "start_utc": "2026-11-13T07:37:25.792609+00:00"
+      },
+      "exit": 0,
+      "manifest_sha256": "d545455ae967f4d06b7b6f5a41643147af70613eb1d30b93177a331701dd5a62",
+      "phase": "04-prerequisite-direct"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; cjpm build"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing/missing_api",
+        "end_utc": "2026-11-13T07:38:50.558083+00:00",
+        "exit": 1,
+        "start_utc": "2026-11-13T07:38:01.765985+00:00"
+      },
+      "exit": 1,
+      "manifest_sha256": "54002b22dae30d313cc852bd6518f2758f03380b97ca1c74fa33ca79e86ffdf0",
+      "phase": "05-missing-editor-red"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; mkdir -p /workspace/work/editing-tests/final/formatted; result=0; for file in tests/editing/src/*.cj; do cjfmt -f \"$file\" -o \"/workspace/work/editing-tests/final/formatted/$(basename \"$file\")\" || result=1; done; exit \"$result\""
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source",
+        "end_utc": "2026-11-13T07:45:54.538650+00:00",
+        "exit": 0,
+        "start_utc": "2026-11-13T07:45:52.810373+00:00"
+      },
+      "exit": 0,
+      "manifest_sha256": "dec5cf4c3f603e2103fb16a76947844a80a4d9051c12bc87e4e44ba0e221517d",
+      "phase": "06-future-parser"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; cjpm build"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing",
+        "end_utc": "2026-11-13T07:47:25.433426+00:00",
+        "exit": 1,
+        "start_utc": "2026-11-13T07:46:34.607155+00:00"
+      },
+      "exit": 1,
+      "manifest_sha256": "9b7c6c3be5fcd0f8dfb12d300f4aade33c3051f0dfb127708c332ab18afd55b1",
+      "phase": "07-full-consumer-build"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; bash tests/editing/run.sh --selftest; node --check tests/editing/pty.mjs; python3 -c 'import ast,pathlib; ast.parse(pathlib.Path(\"tests/editing/fixtures/product_pty.py\").read_text()); print(\"PASS Python driver syntax only\")'"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source",
+        "end_utc": "2026-11-13T07:48:03.246377+00:00",
+        "exit": 0,
+        "start_utc": "2026-11-13T07:48:02.750491+00:00"
+      },
+      "exit": 0,
+      "manifest_sha256": "77e15516bd57898827754e24d1b6238e802eeb9058ea1a2f832bd01f8263bc3c",
+      "phase": "08-fixture-selfchecks"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; cjpm build"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing",
+        "end_utc": "2026-11-13T07:49:14.526136+00:00",
+        "exit": 1,
+        "start_utc": "2026-11-13T07:48:25.879717+00:00"
+      },
+      "exit": 1,
+      "manifest_sha256": "c42c6eacba4189d1faf9a5b6a8c4657ef315105699159b773956b23cfbb90fff",
+      "phase": "09-full-consumer-corrected"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "set -e; source /workspace/work/editing-tests/final/env.sh; for file in tests/editing/src/*.cj tests/editing/prerequisites/src/*.cj tests/editing/missing_api/src/*.cj; do cjfmt -f \"$file\" -o \"/workspace/work/editing-tests/final/formatted/$(basename \"$(dirname \"$(dirname \"$file\")\")\")-$(basename \"$file\")\"; done"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source",
+        "end_utc": "2026-11-13T07:48:31.633461+00:00",
+        "exit": 0,
+        "start_utc": "2026-11-13T07:48:27.475852+00:00"
+      },
+      "exit": 0,
+      "manifest_sha256": "34234ae3a0e04c5c87c44856c6fc1815c986f82aa0bd7c601ec3b9e634f1aa78",
+      "phase": "10-future-parser-corrected"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; cjpm build"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing/prerequisites",
+        "end_utc": "2026-11-13T07:53:55.397373+00:00",
+        "exit": 0,
+        "start_utc": "2026-11-13T07:52:47.616122+00:00"
+      },
+      "exit": 0,
+      "manifest_sha256": "fc84cbd5d73eec52c364860e83fe30a916be06083cd747fc14b5b006cf57552e",
+      "phase": "11-prerequisite-final-build"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; cjpm build"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing",
+        "end_utc": "2026-11-13T07:53:52.835217+00:00",
+        "exit": 1,
+        "start_utc": "2026-11-13T07:52:49.360218+00:00"
+      },
+      "exit": 1,
+      "manifest_sha256": "86f13723025a18e9fc6ba0efdb889d976f0db6994a7ce682d19a265893a6243d",
+      "phase": "12-full-consumer-final-build"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "set -e; source /workspace/work/editing-tests/final/env.sh; for file in tests/editing/src/*.cj tests/editing/prerequisites/src/*.cj tests/editing/missing_api/src/*.cj; do cjfmt -f \"$file\" -o \"/workspace/work/editing-tests/final/formatted/$(basename \"$(dirname \"$(dirname \"$file\")\")\")-$(basename \"$file\")\"; done; bash -n tests/editing/run.sh; node --check tests/editing/pty.mjs; python3 -c 'import ast,pathlib; ast.parse(pathlib.Path(\"tests/editing/fixtures/product_pty.py\").read_text()); print(\"PASS driver syntax only\")'; bash tests/editing/run.sh --selftest"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source",
+        "end_utc": "2026-11-13T07:53:36.134314+00:00",
+        "exit": 0,
+        "start_utc": "2026-11-13T07:53:33.964827+00:00"
+      },
+      "exit": 0,
+      "manifest_sha256": "ac7bdc9b07ec02553bd36874b5e5e4dfa4370aac8ac928c94f5e77175648ab59",
+      "phase": "13-final-syntax-and-fixtures"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; TERM=dumb COLORTERM= timeout 60s ./target/release/bin/main </dev/null"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source/tests/editing/prerequisites",
+        "end_utc": "2026-11-13T08:03:31.782662+00:00",
+        "exit": 0,
+        "start_utc": "2026-11-13T08:03:31.700142+00:00"
+      },
+      "exit": 0,
+      "manifest_sha256": "7b9dad63439a01ad134eece3f479ee3938c8c27be25c503b7d5c7f443caa10ea",
+      "phase": "14-final-positive-binary"
+    },
+    {
+      "command": {
+        "argv": [
+          "bash",
+          "-lc",
+          "source /workspace/work/editing-tests/final/env.sh; python3 /workspace/work/editing-tests/final/audit.py"
+        ],
+        "cwd": "/workspace/work/editing-tests/final/source",
+        "end_utc": "2026-11-13T08:05:23.792214+00:00",
+        "exit": 0,
+        "start_utc": "2026-11-13T08:05:22.247908+00:00"
+      },
+      "exit": 0,
+      "manifest_sha256": "53f3ac201ee74b135e9c934fbb7fe24c5eca970daf0c6bba3678ed6002f7c06c",
+      "phase": "15-final-audit"
+    }
+  ],
+  "source_binding": "input-bindings.json; phase05 minimal, phase11/14 positive, phase12 body and phase13 parser inputs equal fixed test commit",
+  "test_commit": "e4596343fe878493f38b2371506d3f0fd9d5efd7"
+}

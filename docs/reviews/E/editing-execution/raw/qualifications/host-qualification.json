@@ -1,0 +1,608 @@
+{
+  "task": 121,
+  "fixed_source": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+  "utc": "2026-11-13T10:29:46.080663+00:00",
+  "hosts": [
+    {
+      "implementation": "xterm",
+      "version_identity": {
+        "host": "xterm",
+        "mapped": [
+          {
+            "pid": 650374,
+            "exe": "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+            "exe_sha256": "141372c1b48f0becdacc5649bbcbb0b26bb059c2e31f4a905c96ed0bdbad9b1d",
+            "loaded_vte": {}
+          }
+        ],
+        "version": "XTerm(398)\n",
+        "capability_source": "actual TTY and TERM plus product-native detection; raw probe traffic retained; explicit route Direct only in frozen test modes"
+      },
+      "terminal": {
+        "utc": "2026-11-13T10:22:59.430709+00:00",
+        "termios": [
+          17664,
+          5,
+          191,
+          35387,
+          15,
+          15,
+          [
+            "03",
+            "1c",
+            "7f",
+            "15",
+            "04",
+            "00",
+            "01",
+            "00",
+            "11",
+            "13",
+            "1a",
+            "00",
+            "12",
+            "0f",
+            "17",
+            "16",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00"
+          ]
+        ],
+        "tty": "/dev/pts/0",
+        "size": [
+          60,
+          12
+        ],
+        "TERM": "xterm",
+        "binary_sha256": "29008f50a28af44e28c990cd3da8a17fb50e52df395533ace314bb4945ad54b1",
+        "fixed_source_sha": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+      },
+      "execution": {
+        "utc": "2026-11-13T10:23:02.918484+00:00",
+        "termios": [
+          17664,
+          5,
+          191,
+          35387,
+          15,
+          15,
+          [
+            "03",
+            "1c",
+            "7f",
+            "15",
+            "04",
+            "00",
+            "01",
+            "00",
+            "11",
+            "13",
+            "1a",
+            "00",
+            "12",
+            "0f",
+            "17",
+            "16",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00"
+          ]
+        ],
+        "termios_equal": true,
+        "product_pid": "650380",
+        "product_exit": 0,
+        "tracer_exit": 0
+      },
+      "rendered_combining_CJK": true,
+      "emoji": {
+        "input_utf8_present": true,
+        "original_emoji_output_present": false,
+        "emitted_fallback_question_pair": true,
+        "note": "Actual emitted ?? degradation; not an inferred font failure. Original PNG/UTF8 input preserved."
+      },
+      "paste": {
+        "real_host_frames": [
+          "65cc81e4b8adf09f91a9e2808df09f92bb0d726f77",
+          "65cc81e4b8adf09f91a9e2808df09f92bb0d726f77"
+        ],
+        "TextInput": "Original single-reject-multiline PNG retains abc; control rejection oracle separately from frozen clean suite.",
+        "TextArea": "Actual combining/CJK/emoji+CR row host input and original output PNGs; standard navigation/undo/redo and resize50x10 captures.",
+        "frozen_golden_summary": "source=A\n\u4e2d\nother=\nchanges=3\nissues=\nkeyboard=\nresults=\n"
+      },
+      "copy": {
+        "example_delivery": {
+          "utc": "2026-11-13T10:23:00.734140+00:00",
+          "text": "c",
+          "scope": "external GUI delivery observation; does not upgrade product SentUnconfirmed to Applied"
+        },
+        "frozen_typed_results": "source=copy me\nother=\nchanges=0\nissues=CutUnconfirmed;\nkeyboard=\nresults=SentUnconfirmed/SentUnconfirmed/SentUnconfirmed\n",
+        "independent_direct_delivery": {
+          "utc": "2026-11-13T10:24:52.325671+00:00",
+          "text": "direct",
+          "scope": "external GUI delivery observation; does not upgrade product SentUnconfirmed to Applied"
+        },
+        "classification": "Typed SentUnconfirmed remains unconfirmed regardless of external GUI observation; no Applied producer."
+      },
+      "screenshots": [
+        "/workspace/work/editing-execution/raw/host-xterm-example/area-navigation.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/area-redo.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/area-undo.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/area-unicode-paste.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/resized.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/restored.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/running.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/single-copy.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/single-cut-retained.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/single-reject-multiline.png",
+        "/workspace/work/editing-execution/raw/host-xterm-example/single-selection.png"
+      ]
+    },
+    {
+      "implementation": "vte",
+      "version_identity": {
+        "host": "vte",
+        "mapped": [
+          {
+            "pid": 650481,
+            "exe": "/usr/bin/xfce4-terminal",
+            "exe_sha256": "752c95cbd8ac8f6d85ab96b102ba2c1212b626dfd3d3c70a89e901b0a5d03143",
+            "loaded_vte": {
+              "/usr/lib/x86_64-linux-gnu/libvte-2.91.so.0.8000.1": "e2e719555735ebeb0d72c3add313ff0a16f7ca4f8191d533a0252bddd076aba2"
+            }
+          }
+        ],
+        "version": "xfce4-terminal 1.1.4 (Xfce 4.20)\n\nCopyright (c) 2003-2024\n\tThe Xfce development team. All rights reserved.\n\nWritten by Benedikt Meurer <benny@xfce.org>,\nNick Schermer <nick@xfce.org>,\nIgor Zakharov <f2404@yandex.ru>,\nSergios - Anestis Kefalidis <sergioskefalidis@gmail.com>.\n\nPlease report bugs to <https://gitlab.xfce.org/apps/xfce4-terminal/>.\n",
+        "capability_source": "actual TTY and TERM plus product-native detection; raw probe traffic retained; explicit route Direct only in frozen test modes"
+      },
+      "terminal": {
+        "utc": "2026-11-13T10:23:37.418918+00:00",
+        "termios": [
+          17664,
+          5,
+          191,
+          35387,
+          15,
+          15,
+          [
+            "03",
+            "1c",
+            "7f",
+            "15",
+            "04",
+            "00",
+            "01",
+            "00",
+            "11",
+            "13",
+            "1a",
+            "00",
+            "12",
+            "0f",
+            "17",
+            "16",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00"
+          ]
+        ],
+        "tty": "/dev/pts/0",
+        "size": [
+          60,
+          12
+        ],
+        "TERM": "xterm-256color",
+        "binary_sha256": "29008f50a28af44e28c990cd3da8a17fb50e52df395533ace314bb4945ad54b1",
+        "fixed_source_sha": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+      },
+      "execution": {
+        "utc": "2026-11-13T10:23:40.610002+00:00",
+        "termios": [
+          17664,
+          5,
+          191,
+          35387,
+          15,
+          15,
+          [
+            "03",
+            "1c",
+            "7f",
+            "15",
+            "04",
+            "00",
+            "01",
+            "00",
+            "11",
+            "13",
+            "1a",
+            "00",
+            "12",
+            "0f",
+            "17",
+            "16",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00",
+            "00"
+          ]
+        ],
+        "termios_equal": true,
+        "product_pid": "650497",
+        "product_exit": 0,
+        "tracer_exit": 0
+      },
+      "rendered_combining_CJK": true,
+      "emoji": {
+        "input_utf8_present": true,
+        "original_emoji_output_present": false,
+        "emitted_fallback_question_pair": true,
+        "note": "Actual emitted ?? degradation; not an inferred font failure. Original PNG/UTF8 input preserved."
+      },
+      "paste": {
+        "real_host_frames": [
+          "65cc81e4b8adf09f91a9e2808df09f92bb0d726f77",
+          "65cc81e4b8adf09f91a9e2808df09f92bb0d726f77"
+        ],
+        "TextInput": "Original single-reject-multiline PNG retains abc; control rejection oracle separately from frozen clean suite.",
+        "TextArea": "Actual combining/CJK/emoji+CR row host input and original output PNGs; standard navigation/undo/redo and resize50x10 captures.",
+        "frozen_golden_summary": "source=A\n\u4e2d\nother=\nchanges=3\nissues=\nkeyboard=\nresults=\n"
+      },
+      "copy": {
+        "example_delivery": {
+          "utc": "2026-11-13T10:23:38.667820+00:00",
+          "text": "EXTERNAL-SENTINEL",
+          "scope": "external GUI delivery observation; does not upgrade product SentUnconfirmed to Applied"
+        },
+        "frozen_typed_results": "source=copy me\nother=\nchanges=0\nissues=CutUnconfirmed;\nkeyboard=\nresults=SentUnconfirmed/SentUnconfirmed/SentUnconfirmed\n",
+        "independent_direct_delivery": {
+          "utc": "2026-11-13T10:24:54.311702+00:00",
+          "text": "EXTERNAL-SENTINEL",
+          "scope": "external GUI delivery observation; does not upgrade product SentUnconfirmed to Applied"
+        },
+        "classification": "Typed SentUnconfirmed remains unconfirmed regardless of external GUI observation; no Applied producer."
+      },
+      "screenshots": [
+        "/workspace/work/editing-execution/raw/host-vte-example/area-navigation.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/area-redo.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/area-undo.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/area-unicode-paste.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/resized.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/restored.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/running.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/single-copy.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/single-cut-retained.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/single-reject-multiline.png",
+        "/workspace/work/editing-execution/raw/host-vte-example/single-selection.png"
+      ]
+    },
+    {
+      "implementation": "QEMU actual Linux kernel VT",
+      "virtual_hardware": true,
+      "version": [
+        "KERNEL Linux 6.12.107+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.107-1 (2026-08-29)",
+        "TTY=/dev/tty1 TERM=linux GRID=80x25 winsize_rc=0 VT_GETSTATE_rc=0 active=1 KDGKBTYPE_rc=0 keyboard=2 SCENE=example",
+        "VT_RESIZE request=60x12 rc=0 errno=0 readback_rc=0 actual=60x12",
+        "PRODUCT_ID uid=1000 euid=1000 gid=1000 stdout=/dev/tty1 scene=example",
+        "VT_RESIZE request=50x10 rc=0 errno=2 readback_rc=0 actual=50x10",
+        "RESTORE iflag=4500/4500 oflag=5/5 cflag=4bf/4bf lflag=8a3b/8a3b cc_equal=1 termios_equal=1"
+      ],
+      "execution": {
+        "qemu_exit": 0,
+        "product_exit": 0,
+        "product_pid": 137,
+        "termios_equal": true,
+        "virtual_hardware": true,
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 32205988220196
+          },
+          {
+            "keys": [
+              "a"
+            ],
+            "monotonic_ns": 32205989308047
+          },
+          {
+            "keys": [
+              "b"
+            ],
+            "monotonic_ns": 32206240851733
+          },
+          {
+            "keys": [
+              "c"
+            ],
+            "monotonic_ns": 32206492039292
+          },
+          {
+            "keys": [
+              "shift",
+              "left"
+            ],
+            "monotonic_ns": 32206744225191
+          },
+          {
+            "capture": "single-selection",
+            "monotonic_ns": 32208060103288
+          },
+          {
+            "keys": [
+              "ctrl",
+              "a"
+            ],
+            "monotonic_ns": 32208063915093
+          },
+          {
+            "capture": "single-selectall",
+            "monotonic_ns": 32209385489485
+          },
+          {
+            "keys": [
+              "ctrl",
+              "c"
+            ],
+            "monotonic_ns": 32209389308568
+          },
+          {
+            "keys": [
+              "ctrl",
+              "x"
+            ],
+            "monotonic_ns": 32209641732154
+          },
+          {
+            "capture": "single-copy-cut",
+            "monotonic_ns": 32210939523008
+          },
+          {
+            "keys": [
+              "shift",
+              "insert"
+            ],
+            "monotonic_ns": 32210942764669
+          },
+          {
+            "capture": "console-paste-key-observation",
+            "monotonic_ns": 32212259730916
+          },
+          {
+            "keys": [
+              "tab"
+            ],
+            "monotonic_ns": 32212261051867
+          },
+          {
+            "keys": [
+              "a"
+            ],
+            "monotonic_ns": 32212512522018
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 32212763806851
+          },
+          {
+            "keys": [
+              "b"
+            ],
+            "monotonic_ns": 32213015143040
+          },
+          {
+            "capture": "area-two-lines",
+            "monotonic_ns": 32214316077296
+          },
+          {
+            "keys": [
+              "up"
+            ],
+            "monotonic_ns": 32214320943931
+          },
+          {
+            "keys": [
+              "down"
+            ],
+            "monotonic_ns": 32214572252487
+          },
+          {
+            "keys": [
+              "home"
+            ],
+            "monotonic_ns": 32214823712144
+          },
+          {
+            "keys": [
+              "shift",
+              "end"
+            ],
+            "monotonic_ns": 32215075984018
+          },
+          {
+            "keys": [
+              "ctrl",
+              "z"
+            ],
+            "monotonic_ns": 32215328265792
+          },
+          {
+            "keys": [
+              "ctrl",
+              "y"
+            ],
+            "monotonic_ns": 32215584698539
+          },
+          {
+            "capture": "area-navigation-undo-redo",
+            "monotonic_ns": 32216882764001
+          },
+          {
+            "capture": "resize-transition",
+            "monotonic_ns": 32217930412140
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 32219227232624
+          },
+          {
+            "keys": [
+              "right"
+            ],
+            "monotonic_ns": 32219228195448
+          },
+          {
+            "keys": [
+              "ctrl",
+              "c"
+            ],
+            "monotonic_ns": 32219480227616
+          }
+        ],
+        "wire_stats": {
+          "input": {
+            "complete": 37,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          "output": {
+            "complete": 22,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        },
+        "clipboard": "Kernel VT has no observed local clipboard delivery/Applied adapter. ShiftInsert is retained as native keymap observation; no bracketed paste protocol asserted.",
+        "unicode": "Native default console keymap cannot generate supplied combining/CJK/emoji paste fixture; these host capabilities remain insufficient evidence, separately covered in actual GUI hosts and PTY.",
+        "resize": "actual kernel VT_RESIZE60x12\u219250x10 plus TIOCGWINSZ/native vcsa readback",
+        "utc": "2026-11-13T10:28:55.225293+00:00"
+      },
+      "actual_guest_read": "6162631b5b440103181b5b327e09610d621b5b411b5b421b5b317e1b5b347e1a191b5b4303",
+      "native_cell_observations": [
+        {
+          "capture": "area-two-lines",
+          "rows": 12,
+          "cols": 60,
+          "visible_native_rows": [
+            "Tab changes focus; Ctrl-C exits without a selection.        ",
+            "abc                                                         ",
+            "a                                                           ",
+            "b                                                           ",
+            "                                                            "
+          ]
+        },
+        {
+          "capture": "area-navigation-undo-redo",
+          "rows": 12,
+          "cols": 60,
+          "visible_native_rows": [
+            "Tab changes focus; Ctrl-C exits without a selection.        ",
+            "abc                                                         ",
+            "a                                                           ",
+            "b                                                           ",
+            "                                                            "
+          ]
+        },
+        {
+          "capture": "resized",
+          "rows": 10,
+          "cols": 50,
+          "visible_native_rows": [
+            "Tab changes focus; Ctrl-C exits without a selectio",
+            "abc                                               ",
+            "a                                                 ",
+            "b                                                 ",
+            "                                                  "
+          ]
+        }
+      ],
+      "frozen_sent_summary": "source=copy me\nother=\nchanges=0\nissues=CutUnconfirmed;\nkeyboard=\nresults=SentUnconfirmed/SentUnconfirmed/SentUnconfirmed\n",
+      "limits": [
+        "Native default keymap ShiftLeft\u2192ordinary ESC[D; ShiftEnd similarly lacks Shift modifier in actual read bytes. Standard CtrlA selection worked.",
+        "Combining/CJK/emoji host input and true terminal paste not exercised on this VT/keymap. No broad claim that kernel Unicode entry is impossible; earlier wording cannot generate means this fixture path was unavailable.",
+        "Kernel VT local clipboard delivery unavailable/unobserved; explicit Direct path emits SentUnconfirmed and retains cut; no Applied adapter.",
+        "VM VT is not physical-console hardware."
+      ],
+      "first_attempt": {
+        "collector_exit": 1,
+        "guest_supervisor_exit": 75,
+        "actual_product_exit": 0,
+        "termios_equal": true,
+        "actual_guest_read": "abc ESC[D 03",
+        "reason": "ShiftLeft produced unmodified Left, then no-selection CtrlC exited normally; driver continued requesting keys and timed out at barrier. Original requested-key list is not actual consumed-input proof."
+      },
+      "first_retry": "r1 fast captures were in-progress/earlier frames; actual r2 native cells show a/LF/b before and after resize. Delays were scheduling allowance, not proof; vcsa/PNG observations are the evidence.",
+      "screenshots": [
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/area-navigation-undo-redo.png",
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/area-two-lines.png",
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/console-paste-key-observation.png",
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/resize-transition.png",
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/resized.png",
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/restored.png",
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/running.png",
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/single-copy-cut.png",
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/single-selectall.png",
+        "/workspace/work/editing-execution/raw/host-vt-example-r2/single-selection.png"
+      ]
+    }
+  ],
+  "limits": [
+    "Finite editing execution only; full Linux acceptance and stale whole checker T087-G01 remain TASK023.",
+    "I04 exact early planning window remains source120 proof only, not forced/claimed by clean timing test.",
+    "Applied delete policy uses accepted source/manual golden, not genuine Applied integration.",
+    "Preserved normal-build exit1 is own missing-registry setup failure; corrected own config normal-build-r1 and normal mandatory bundle0."
+  ]
+}

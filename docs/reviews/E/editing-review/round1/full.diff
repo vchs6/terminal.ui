@@ -1,0 +1,1650 @@
+diff --git a/docs/product/text-editing.md b/docs/product/text-editing.md
+new file mode 100644
+index 00000000..018af8f9
+--- /dev/null
++++ b/docs/product/text-editing.md
+@@ -0,0 +1,17 @@
++# Text editing
++
++This release targets Linux ANSI terminals. Clipboard availability depends on the terminal and configured session capabilities.
++
++`TextInput` edits one line and calls `onSubmit` on Enter. `TextArea` edits multiple logical lines; Enter inserts a line break. Both take an `Observable<String>` and an optional `TextEditController`. Controllers expose selection, snapshots, replacement, undo, redo, copy and cut. Selection positions count grapheme-cluster gaps, not bytes. They are local to each mounted view even when views share an observable. Controllers become stale on unmount and can be reused on a later mount. Read snapshots on the UI owner thread; perform mutations in an event handler, posted action, or application batch.
++
++Arrow keys, Home, End, Shift selection, Ctrl-A, Ctrl-Z and Ctrl-Y provide basic editing. TextArea also handles Up, Down and Page keys. Tab changes focus and Escape is left to the application. Pasted CRLF and CR are normalized to LF; a multiline paste into TextInput is rejected as a whole. Other control characters and edits beyond the configured UTF-8 byte limit are rejected without changing the value. `onIssue` reports rejected terminal input.
++
++| Clipboard result | Copy | Cut |
++| --- | --- | --- |
++| Applied | Completed | Deletes only if the captured source, selection and session still match |
++| SentUnconfirmed | Sent without confirmation | Keeps text and reports `CutUnconfirmed` |
++| Unsupported, Unknown or Failed | Reports `ClipboardUnavailable` | Keeps text and reports `ClipboardUnavailable` |
++
++The terminal may intercept paste and send a paste event. Ctrl-V or Shift-Insert reaching the editor reports `PasteFromTerminalRequired`; the framework does not query the system clipboard. No current adapter confirms an Applied local-copy result.
++
++Background `Observable.set` and `notify` remain allowed. An editor commits against the source version it read; if a background update wins the race, the edit is rejected with `ConcurrentValueChanged` rather than overwriting it. An external update clears that view's undo and redo history. For delayed work, capture `controller.snapshot()` and pass it as `ifUnchanged` to `replaceSelection`; a stale snapshot returns false without changing the selection or value.
+diff --git a/examples/editing/cjpm.toml b/examples/editing/cjpm.toml
+new file mode 100644
+index 00000000..b1c70604
+--- /dev/null
++++ b/examples/editing/cjpm.toml
+@@ -0,0 +1,8 @@
++[package]
++cjc-version = "1.2.0"
++name = "editing_example"
++version = "0.0.0"
++src-dir = "src"
++output-type = "executable"
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/examples/editing/src/main.cj b/examples/editing/src/main.cj
+new file mode 100644
+index 00000000..ddeb65b5
+--- /dev/null
++++ b/examples/editing/src/main.cj
+@@ -0,0 +1,32 @@
++package editing_example
++
++import cjtui.*
++import std.env.getCommandLine
++
++main(): Int64 {
++    let name = Observable<String>("")
++    let notes = Observable<String>("")
++    let message = Observable<String>("Tab changes focus; Ctrl-C exits without a selection.")
++    let editor = TextEditController()
++    let root = Column {
++        Text({=> message.get()}).height(1)
++        TextInput(name, controller: Some(editor), onSubmit: {value => message.set("Hello, " + value)}).height(1)
++        TextArea(notes).height(4)
++    }
++    let app = Application(root)
++    if (getCommandLine().contains("--smoke")) {
++        app.startHeadless()
++        try {
++            app.batch({=> editor.replaceSelection("Ada")})
++            if (name.get() != "Ada") {
++                throw Exception("editing smoke failed")
++            }
++            println("PASS editing example")
++        } finally {
++            app.dispose()
++        }
++    } else {
++        app.run()
++    }
++    0
++}
+diff --git a/src/application.cj b/src/application.cj
+index a96df65b..193dc961 100644
+--- a/src/application.cj
++++ b/src/application.cj
+@@ -571,12 +571,14 @@ public class Application {
+                 else {
+                     var available = false
+                     if (let Some(target) <- pasteTarget[0]) {
+                         if (target.isValid() && readSession().isSome()) {
+                             let node = target.resolve(); let owner = current()
+-                            if (owner.focusManager.effective(node,true) && owner.focusManager.effective(node,false)) {
+-                                available = owner.inOverlayDomain(node)
++                            if (owner.focusManager.effective(node,true)) {
++                                if (owner.focusManager.effective(node,false)) {
++                                    available = owner.inOverlayDomain(node)
++                                }
+                             }
+                             if (available) { dispatch(target,key) }
+                         }
+                     }
+                     if (!available) { reportKeyboardIssue(KeyboardDiagnostic(KeyboardIssue.PasteTargetUnavailable, decoder.pasteOffset())) }
+diff --git a/src/component.cj b/src/component.cj
+index 583aaa7f..153e5074 100644
+--- a/src/component.cj
++++ b/src/component.cj
+@@ -12,10 +12,11 @@ public open class Component {
+     var failed = false
+     var mounted: ?RuntimeNode = None
+     var explicitKey: ?String = None
+     let bindings = ArrayList<Binding>()
+     var mountEffect: ?(NodeRef) -> (() -> Unit) = None
++    var intrinsicMountEffect: ?(NodeRef) -> (() -> Unit) = None
+     var keyHandler: ?(UIKeyEvent) -> Unit = None
+     var captureHandler: ?(UIKeyEvent) -> Unit = None
+     var viewportDeclared = false
+     var viewportAxes = ScrollAxes.Off
+     var surfaceMode: ?SurfaceMode = None
+diff --git a/src/node_ref.cj b/src/node_ref.cj
+index 13222bda..6dec76d4 100644
+--- a/src/node_ref.cj
++++ b/src/node_ref.cj
+@@ -106,10 +106,22 @@ public class NodeRef {
+         }
+         let command = ScrollCommand(this,1,0,0,rect,horizontal,vertical)
+         command.explicitEnsure = true
+         value.session.enqueueViewport(command)
+     }
++    // Caret geometry may become stale if a source changes before layout.
++    // Preserve public validation but discard a stale framework-owned request.
++    // Call only from an event, post or batch: before stabilization the newly
++    // enqueued command is still the tail of the existing viewport queue.
++    func ensureEditingCaret(rect: Rect): Unit {
++        ensureVisible(rect: Some(rect))
++        let session = resolve().session
++        if (!session.viewportCommands.isEmpty()) {
++            let command = session.viewportCommands[session.viewportCommands.size - 1]
++            if (command.target.sameNode(this) && command.kind == 1) { command.explicitEnsure = false }
++        }
++    }
+     public func notify(change: ChangeKind): Unit {
+         if (structureEvaluation.get().isSome()) {
+             throw UIException("ReentrantStructure", "node notification during structure evaluation")
+         }
+         if (evaluating.get().isSome()) {
+diff --git a/src/observable.cj b/src/observable.cj
+index dc861565..b530faf1 100644
+--- a/src/observable.cj
++++ b/src/observable.cj
+@@ -18,10 +18,39 @@ public class Observable<T> <: ObservableSource {
+         if (let Some(binding) <- evaluating.get()) {
+             binding.read(this, readVersion)
+         }
+         result
+     }
++    // Snapshot and conditional publication share the existing source lock and version.
++    func editingSnapshot(): (T, Int64) {
++        lock.lock()
++        try {
++            (value, version)
++        } finally {
++            lock.unlock()
++        }
++    }
++    func editingCommit(expected: Int64, next: T): ?Int64 {
++        if (evaluating.get().isSome() || structureEvaluation.get().isSome()) {
++            throw UIException("ReentrantEvaluation", "observable write during evaluation")
++        }
++        var committed: ?Int64 = None
++        lock.lock()
++        try {
++            if (version == expected) {
++                value = next
++                version++;
++                committed = Some(version)
++            }
++        } finally {
++            lock.unlock()
++        }
++        if (committed.isSome()) {
++            emit()
++        }
++        committed
++    }
+     public func set(value: T): Unit {
+         if (evaluating.get().isSome() || structureEvaluation.get().isSome()) {
+             throw UIException("ReentrantEvaluation", "observable write during evaluation")
+         }
+         lock.lock()
+diff --git a/src/runtime_node.cj b/src/runtime_node.cj
+index f018831f..af7ec269 100644
+--- a/src/runtime_node.cj
++++ b/src/runtime_node.cj
+@@ -40,10 +40,11 @@ class RuntimeNode {
+     var layoutDirty = true
+     var pendingChange: ?PendingNodeChange = None
+     var valid = true
+     var committed = false
+     var cleanup: ?() -> Unit = None
++    var intrinsicCleanup: ?() -> Unit = None
+     init(component: Component, session: RuntimeSession, id: Int64, parent: ?RuntimeNode) {
+         this.component = component
+         this.session = session
+         this.id = id
+         this.parent = parent
+diff --git a/src/runtime_session.cj b/src/runtime_session.cj
+index f9286338..86b43a60 100644
+--- a/src/runtime_session.cj
++++ b/src/runtime_session.cj
+@@ -30,10 +30,11 @@ class RuntimeSession {
+     let temporary: Bool
+     let extensions: SessionExtensionState
+     private var firstDeviceFailure: ?Exception = None
+     var application: ?Application
+     let lock = Mutex()
++    let outputGate = Mutex()
+     let nodes = ArrayList<RuntimeNode>()
+     let bindings = ArrayList<Binding>()
+     let pendingBindings = ArrayList<Binding>()
+     let pendingNodes = ArrayList<PendingNodeChange>()
+     let posts = ArrayList<QueuedAction>()
+@@ -1123,10 +1124,11 @@ class RuntimeSession {
+         while (pendingIndex < pendingEnsures.size) {
+             if (!pendingEnsures[pendingIndex].target.isValid()) { pendingEnsures.remove(at:pendingIndex) } else { pendingIndex++ }
+         }
+         if (let Some(focus) <- pendingFocusEnsure) { if (!focus.target.isValid()) { pendingFocusEnsure = None } }
+         for (node in removed) {
++            if (let Some(cleanup) <- node.intrinsicCleanup) { node.intrinsicCleanup = None; cleanup() }
+             node.component.clearMount()
+         }
+         let removedBindings = ArrayList<Binding>()
+         for (binding in bindings) {
+             if (let Some(owner) <- binding.node) {
+@@ -1278,10 +1280,15 @@ class RuntimeSession {
+                 for (node in pendingEffects) {
+                     if (!node.valid) {
+                         continue
+                     }
+                     node.effectStarted = true
++                    if (let Some(effect) <- node.component.intrinsicMountEffect) {
++                        inLifecycle = true
++                        try { node.intrinsicCleanup = Some(effect(node.reference())) }
++                        finally { inLifecycle = false }
++                    }
+                     if (let Some(effect) <- node.component.mountEffect) {
+                         inLifecycle = true
+                         try {
+                             node.cleanup = Some(effect(node.reference()))
+                         } finally {
+@@ -1404,16 +1411,15 @@ class RuntimeSession {
+         } finally {
+             lock.unlock()
+         }
+     }
+     func requestStop(): Unit {
+-        lock.lock();
++        outputGate.lock()
+         try {
+-            stopping = true
+-        } finally {
+-            lock.unlock()
+-        }
++            lock.lock()
++            try { stopping = true } finally { lock.unlock() }
++        } finally { outputGate.unlock() }
+     }
+     func recordDeviceFailure(): Unit {
+         if (firstDeviceFailure.isNone()) {
+             firstDeviceFailure = Some(SessionDeviceException(unsafe { cjt_output_unsafe() } != 0))
+         }
+@@ -1632,10 +1638,11 @@ class RuntimeSession {
+         } finally {
+             lock.unlock()
+         }
+         if (let Some(app) <- application) { app.closeThemeSession(id) }
+         for (node in nodes) {
++            if (let Some(cleanup) <- node.intrinsicCleanup) { node.intrinsicCleanup = None; cleanup() }
+             node.component.clearMount()
+         }
+         for (binding in bindings) {
+             binding.dispose()
+         }
+diff --git a/src/terminal_bridge.cj b/src/terminal_bridge.cj
+index 53020d14..23d70b37 100644
+--- a/src/terminal_bridge.cj
++++ b/src/terminal_bridge.cj
+@@ -51,21 +51,21 @@ func writeTerminal(value: String, session: RuntimeSession, checkCancel: Bool): S
+                 return SessionWriteResult(0, SessionIssue.AllocationFailed, false)
+             }
+         }
+         // Serialize requestStop's state change with the first native write.
+         // Once committed to a logical sequence, stop cannot split its bytes.
+-        session.lock.lock()
++        session.outputGate.lock()
+         try {
+-            if (checkCancel && session.stopping) {
++            if (checkCancel && session.isStopping()) {
+                 return SessionWriteResult(0, SessionIssue.Cancelled, false)
+             }
+             if (cjt_buffer_write() != 0) {
+                 return SessionWriteResult(cjt_buffer_emitted(), SessionIssue.WriteFailed, true)
+             }
+             return SessionWriteResult(cjt_buffer_emitted(), SessionIssue.NoIssue, true)
+         } finally {
+-            session.lock.unlock()
++            session.outputGate.unlock()
+         }
+     }
+ }
+ 
+ // Reserve the shared native buffer before the first save+set transaction byte.
+diff --git a/src/text/unicode.cj b/src/text/unicode.cj
+index 86abe1e1..8776c451 100644
+--- a/src/text/unicode.cj
++++ b/src/text/unicode.cj
+@@ -2,16 +2,21 @@ package cjtui.text
+ 
+ import std.collection.ArrayList
+ import unicode.GraphemeIterator
+ import unicodewidth.StringWidth
+ 
++// Shared segmentation provider for bounded or streaming consumers.
++public func graphemeIterator(value: String): GraphemeIterator {
++    GraphemeIterator(value)
++}
++
+ public func graphemeClusters(value: String): Array<String> {
+     if (value.isEmpty()) {
+         return Array<String>()
+     }
+     let result = ArrayList<String>()
+-    let iterator = GraphemeIterator(value)
++    let iterator = graphemeIterator(value)
+     while (true) {
+         match (iterator.next()) {
+             case None => break
+             case Some(cluster) => result.add(cluster.toString())
+         }
+diff --git a/src/text_area.cj b/src/text_area.cj
+new file mode 100644
+index 00000000..8b3bbc30
+--- /dev/null
++++ b/src/text_area.cj
+@@ -0,0 +1,7 @@
++package cjtui
++
++public func TextArea(value: Observable<String>, controller!: ?TextEditController = None,
++    limits!: TextEditLimits = TextEditLimits(), onChange!: (String) -> Unit = {_ =>},
++    onIssue!: (TextEditIssue) -> Unit = {_ =>}): Component {
++    editingFactory(value, controller, limits, true, onChange, {_ =>}, onIssue)
++}
+diff --git a/src/text_edit_controller.cj b/src/text_edit_controller.cj
+new file mode 100644
+index 00000000..72c8b2f3
+--- /dev/null
++++ b/src/text_edit_controller.cj
+@@ -0,0 +1,102 @@
++package cjtui
++
++import std.sync.Mutex
++
++public class TextEditController {
++    private let lock = Mutex()
++    private var current: ?TextEditSession = None
++    private let status = Observable<Int64>(0)
++    public init() {}
++    func attach(value: TextEditSession): Unit {
++        lock.lock()
++        try {
++            if (let Some(old) <- current) {
++                if (old.ref.isValid()) {
++                    throw UIException("AlreadyMounted", "controller already mounted")
++                }
++            }
++            current = Some(value)
++        } finally {
++            lock.unlock()
++        }
++        status.notify()
++    }
++    func detach(value: TextEditSession): Unit {
++        lock.lock()
++        try {
++            if (let Some(old) <- current) {
++                if (refEq(old, value)) {
++                    current = None
++                }
++            }
++        } finally {
++            lock.unlock()
++        }
++        status.notify()
++    }
++    public func isValid(): Bool {
++        status.get()
++        lock.lock()
++        try {
++            if (let Some(value) <- current) {
++                return value.ref.isValid()
++            };
++            false
++        } finally {
++            lock.unlock()
++        }
++    }
++    private func session(mutate: Bool): TextEditSession {
++        lock.lock()
++        var value: ?TextEditSession = None
++        try {
++            value = current
++        } finally {
++            lock.unlock()
++        }
++        let edit = match (value) {
++            case Some(current) => current
++            case None => throw UIException("StaleReference", "controller is detached")
++        }
++        let node = edit.ref.resolve()
++        if (mutate) {
++            node.session.requireContext()
++            if (node.session.inLifecycle) {
++                throw UIException("LifecycleReentry", "editor mutation during lifecycle")
++            }
++            if (!node.session.inActiveDomain() || (node.session.batchDepth == 0 && !node.session.inCallback)) {
++                throw UIException("WrongUIContext", "editor mutation requires an event, post or batch")
++            }
++        } else {
++            node.session.requireReadContext()
++        }
++        if (mutate && edit.notifying) {
++            throw UIException("LifecycleReentry", "editor callback reentry")
++        }
++        edit
++    }
++    public func snapshot(): TextEditSnapshot {
++        session(false).snapshot()
++    }
++    public func select(selection: TextSelection): Unit {
++        session(true).select(selection)
++    }
++    public func selectAll(): Unit {
++        session(true).selectAll()
++    }
++    public func replaceSelection(text: String, ifUnchanged!: ?TextEditSnapshot = None): Bool {
++        session(true).replace(text, ifUnchanged)
++    }
++    public func undo(): Bool {
++        session(true).undo()
++    }
++    public func redo(): Bool {
++        session(true).redo()
++    }
++    public func copy(): ?SessionResult {
++        session(true).copy(false)
++    }
++    public func cut(): ?SessionResult {
++        session(true).copy(true)
++    }
++}
+diff --git a/src/text_edit_issue.cj b/src/text_edit_issue.cj
+new file mode 100644
+index 00000000..221038be
+--- /dev/null
++++ b/src/text_edit_issue.cj
+@@ -0,0 +1,16 @@
++package cjtui
++
++public enum TextEditIssue <: Equatable<TextEditIssue> {
++    | MultilinePasteRejected | ControlCharacterRejected | InputTooLarge | ClipboardUnavailable | PasteFromTerminalRequired
++    | CutUnconfirmed | CutStale | ConcurrentValueChanged
++
++    public operator func ==(other: TextEditIssue): Bool {
++        match ((this, other)) {
++            case (MultilinePasteRejected, MultilinePasteRejected) | (ControlCharacterRejected, ControlCharacterRejected)
++                | (InputTooLarge, InputTooLarge) | (ClipboardUnavailable, ClipboardUnavailable)
++                | (PasteFromTerminalRequired, PasteFromTerminalRequired) | (CutUnconfirmed, CutUnconfirmed)
++                | (CutStale, CutStale) | (ConcurrentValueChanged, ConcurrentValueChanged) => true
++            case _ => false
++        }
++    }
++}
+diff --git a/src/text_edit_limits.cj b/src/text_edit_limits.cj
+new file mode 100644
+index 00000000..e64bb22c
+--- /dev/null
++++ b/src/text_edit_limits.cj
+@@ -0,0 +1,16 @@
++package cjtui
++
++public class TextEditLimits {
++    public let maxTextBytes: Int64
++    public let maxUndoEntries: Int64
++    public let maxUndoBytes: Int64
++    public init(maxTextBytes!: Int64 = 1048576, maxUndoEntries!: Int64 = 128, maxUndoBytes!: Int64 = 2097152) {
++        if (maxTextBytes <= 0 || maxTextBytes > 16777216 || maxUndoEntries <= 0 || maxUndoEntries > 65536 ||
++            maxUndoBytes <= 0 || maxUndoBytes > 67108864) {
++            throw IllegalArgumentException("invalid editing limits")
++        }
++        this.maxTextBytes = maxTextBytes
++        this.maxUndoEntries = maxUndoEntries
++        this.maxUndoBytes = maxUndoBytes
++    }
++}
+diff --git a/src/text_edit_owner.cj b/src/text_edit_owner.cj
+new file mode 100644
+index 00000000..2d02f55f
+--- /dev/null
++++ b/src/text_edit_owner.cj
+@@ -0,0 +1,5 @@
++package cjtui
++
++class TextEditOwner {
++    var session: ?TextEditSession = None
++}
+diff --git a/src/text_edit_record.cj b/src/text_edit_record.cj
+new file mode 100644
+index 00000000..8ab51306
+--- /dev/null
++++ b/src/text_edit_record.cj
+@@ -0,0 +1,17 @@
++package cjtui
++
++class TextEditRecord {
++    let before: String
++    let after: String
++    let beforeSelection: TextSelection
++    let afterSelection: TextSelection
++    init(before: String, after: String, beforeSelection: TextSelection, afterSelection: TextSelection) {
++        this.before = before
++        this.after = after
++        this.beforeSelection = beforeSelection
++        this.afterSelection = afterSelection
++    }
++    func bytes(): Int64 {
++        before.size + after.size
++    }
++}
+diff --git a/src/text_edit_session.cj b/src/text_edit_session.cj
+new file mode 100644
+index 00000000..b8f8f836
+--- /dev/null
++++ b/src/text_edit_session.cj
+@@ -0,0 +1,583 @@
++package cjtui
++
++import std.collection.ArrayList
++import cjtui.text.graphemeIterator
++
++class TextEditSession {
++    let ref: NodeRef
++    let source: Observable<String>
++    let limits: TextEditLimits
++    let multiline: Bool
++    let onChange: (String) -> Unit
++    let onSubmit: (String) -> Unit
++    let onIssue: (TextEditIssue) -> Unit
++    let identity = uniqueRuntimeId()
++    let signal = Observable<Int64>(0)
++    var text: String
++    var sourceVersion: Int64
++    var selection = TextSelection(0, 0)
++    var revision: UInt64 = 0
++    var selectionRevision: UInt64 = 0
++    var notifying = false
++    var preferredColumn: ?Int64 = None
++    let undoStack = ArrayList<TextEditRecord>()
++    let redoStack = ArrayList<TextEditRecord>()
++    init(ref: NodeRef, source: Observable<String>, limits: TextEditLimits, multiline: Bool, onChange: (String) -> Unit,
++        onSubmit: (String) -> Unit, onIssue: (TextEditIssue) -> Unit) {
++        this.ref = ref
++        this.source = source
++        this.limits = limits
++        this.multiline = multiline
++        this.onChange = onChange
++        this.onSubmit = onSubmit
++        this.onIssue = onIssue
++        let (initial, version) = source.editingSnapshot()
++        text = initial
++        sourceVersion = version
++        validate(initial)
++    }
++    func validate(value: String): Unit {
++        if (value.size > limits.maxTextBytes) {
++            throw IllegalArgumentException("text too large")
++        }
++        for (r in value.runes()) {
++            let c = UInt32(r)
++            if (c == 13 || (c == 10 && !multiline) || (c < 32 && c != 10) || (c >= 127 && c < 160)) {
++                throw IllegalArgumentException("invalid editing text")
++            }
++        }
++    }
++    func snapshot(): TextEditSnapshot {
++        signal.get();
++        source.get()
++        TextEditSnapshot(text, selection, revision, selectionRevision, !undoStack.isEmpty(), !redoStack.isEmpty(),
++            identity, sourceVersion)
++    }
++    func changed(): Unit {
++        signal.set(signal.get() + 1)
++        ref.notify(ChangeKind.Layout)
++        var x: Int64 = 0;
++        var y: Int64 = 0
++        let iterator = graphemeIterator(text)
++        var index: Int64 = 0
++        while (index < selection.caret) {
++            match (iterator.next()) {
++                case None => break
++                case Some(item) =>
++                    let cluster = item.toString()
++                    if (cluster == "\n") {
++                        x = 0
++                        y++
++                    } else {
++                        x += displayWidth(cluster)
++                    }
++                    index++
++            }
++        }
++        if (ref.isVisible()) {
++            ref.ensureEditingCaret(Rect(x, y, 1, 1))
++        }
++    }
++    func applySelection(next: TextSelection, count: Int64): Unit {
++        if (next.anchor > count || next.caret > count) {
++            throw IllegalArgumentException("selection beyond text")
++        }
++        preferredColumn = None
++        if (next != selection) {
++            if (selectionRevision == UInt64.Max) {
++                throw UIException("CapacityExceeded", "selection revision exhausted")
++            }
++            selection = next
++            selectionRevision++
++            changed()
++        }
++    }
++    func select(next: TextSelection): Unit {
++        sync()
++        applySelection(next, editingClusterCount(text))
++    }
++    func selectAll(): Unit {
++        sync()
++        let count = editingClusterCount(text)
++        applySelection(TextSelection(0, count), count)
++    }
++    func issue(value: TextEditIssue): Unit {
++        notifying = true
++        try {
++            onIssue(value)
++        } finally {
++            notifying = false
++        }
++    }
++    func sync(): Unit {
++        let (latest, version) = source.editingSnapshot()
++        if (version == sourceVersion) {
++            return
++        }
++        validate(latest)
++        if (revision == UInt64.Max) {
++            throw UIException("CapacityExceeded", "text revision exhausted")
++        }
++        let count = editingClusterCount(latest)
++        let next = TextSelection(lesser(selection.anchor, count), lesser(selection.caret, count))
++        if (next != selection && selectionRevision == UInt64.Max) {
++            throw UIException("CapacityExceeded", "selection revision exhausted")
++        }
++        text = latest
++        sourceVersion = version
++        revision++
++        if (next != selection) {
++            selection = next
++            selectionRevision++
++        }
++        undoStack.clear();
++        redoStack.clear()
++    }
++    // Every ordinary concurrent-value issue originates from this failed
++    // expected-version commit, following an atomic source snapshot.
++    func commit(next: String, reportConflict: Bool): ?Int64 {
++        let result = source.editingCommit(sourceVersion, next)
++        if (result.isNone() && reportConflict) {
++            sync()
++            issue(TextEditIssue.ConcurrentValueChanged)
++        }
++        result
++    }
++    func replace(input: String, guard: ?TextEditSnapshot, range!: ?TextSelection = None): Bool {
++        let (_, version) = source.editingSnapshot()
++        if (let Some(saved) <- guard) {
++            if (saved.identity != identity || saved.sourceVersion != version || saved.revision != revision ||
++                saved.selectionRevision != selectionRevision) {
++                return false
++            }
++        }
++        if (version != sourceVersion) {
++            sync()
++        }
++        let normalized = input.replace("\r\n", "\n").replace("\r", "\n")
++        validate(normalized)
++        let selectedRange = range ?? selection
++        let start = lesser(selectedRange.anchor, selectedRange.caret)
++        let end = greater(selectedRange.anchor, selectedRange.caret)
++        let before = StringBuilder();
++        let after = StringBuilder()
++        let iterator = graphemeIterator(text)
++        var index: Int64 = 0
++        while (true) {
++            match (iterator.next()) {
++                case None => break
++                case Some(item) =>
++                    if (index < start) {
++                        before.append(item.toString())
++                    } else if (index >= end) {
++                        after.append(item.toString())
++                    }
++                    index++
++            }
++        }
++        let prefix = before.toString() + normalized
++        let next = prefix + after.toString()
++        validate(next)
++        var bytes: Int64 = 0;
++        var caret: Int64 = 0
++        let nextIterator = graphemeIterator(next)
++        var nextCount: Int64 = 0
++        while (true) {
++            match (nextIterator.next()) {
++                case None => break
++                case Some(item) =>
++                    if (bytes < prefix.size) {
++                        bytes += item.toString().size
++                        caret++
++                    }
++                    nextCount++
++            }
++        }
++        let nextSelection = TextSelection(caret, caret)
++        if (next == text) {
++            applySelection(nextSelection, nextCount);
++            return false
++        }
++        if (revision == UInt64.Max || (nextSelection != selection && selectionRevision == UInt64.Max)) {
++            throw UIException("CapacityExceeded", "editing revision exhausted")
++        }
++        let old = text;
++        let oldSelection = selection
++        let committed = commit(next, guard.isNone())
++        if (committed.isNone()) {
++            return false
++        }
++        preferredColumn = None
++        text = next
++        sourceVersion = committed.getOrThrow()
++        revision++
++        if (nextSelection != selection) {
++            selection = nextSelection
++            selectionRevision++
++        }
++        redoStack.clear();
++        undoStack.add(TextEditRecord(old, next, oldSelection, nextSelection))
++        var total: Int64 = 0
++        for (record in undoStack) {
++            total += record.bytes()
++        }
++        while (undoStack.size > limits.maxUndoEntries || total > limits.maxUndoBytes) {
++            total -= undoStack.remove(at: 0).bytes()
++        }
++        changed();
++        notifying = true
++        try {
++            onChange(text)
++        } finally {
++            notifying = false
++        }
++        true
++    }
++    func selectedByteCount(): Int64 {
++        if (selection.anchor == selection.caret) {
++            return 0
++        }
++        let low = lesser(selection.anchor, selection.caret)
++        let high = greater(selection.anchor, selection.caret)
++        var result: Int64 = 0
++        let iterator = graphemeIterator(text)
++        var index: Int64 = 0
++        while (index < high) {
++            match (iterator.next()) {
++                case None => break
++                case Some(item) =>
++                    if (index >= low) {
++                        result += item.toString().size
++                    }
++                    index++
++            }
++        }
++        result
++    }
++    func keyboardInput(input: String): Unit {
++        var invalidControl = false
++        for (r in input.runes()) {
++            let c = UInt32(r)
++            if ((c < 32 && c != 10 && c != 13) || (c >= 127 && c < 160)) {
++                invalidControl = true
++            }
++        }
++        if (!multiline && (input.contains("\n") || input.contains("\r"))) {
++            issue(TextEditIssue.MultilinePasteRejected);
++            return
++        }
++        if (invalidControl) {
++            issue(TextEditIssue.ControlCharacterRejected);
++            return
++        }
++        let normalized = input.replace("\r\n", "\n").replace("\r", "\n")
++        let removed = selectedByteCount()
++        if (normalized.size > limits.maxTextBytes - (text.size - removed)) {
++            issue(TextEditIssue.InputTooLarge);
++            return
++        }
++        replace(normalized, Option<TextEditSnapshot>.None)
++    }
++    func handle(event: UIKeyEvent): Unit {
++        sync()
++        let key = event.key
++        if (key.code == "text" && !key.ctrl && !key.alt || key.code == "paste") {
++            keyboardInput(key.text)
++            event.preventDefault();
++            return
++        }
++        if (key.alt) {
++            return
++        }
++        if (key.code == "enter" && key.ctrl) {
++            return
++        }
++        if (key.code == "enter") {
++            if (multiline) {
++                keyboardInput("\n")
++            } else {
++                notifying = true
++                try {
++                    onSubmit(text)
++                } finally {
++                    notifying = false
++                }
++            }
++            event.preventDefault();
++            return
++        }
++        if (key.ctrl && key.code == "a") {
++            selectAll();
++            event.preventDefault();
++            return
++        }
++        if (key.ctrl && key.code == "z") {
++            undo();
++            event.preventDefault();
++            return
++        }
++        if (key.ctrl && key.code == "y") {
++            redo();
++            event.preventDefault();
++            return
++        }
++        if ((key.ctrl && key.code == "v") || (key.shift && key.code == "insert")) {
++            issue(TextEditIssue.PasteFromTerminalRequired);
++            event.preventDefault();
++            return
++        }
++        if (key.code == "interrupt" || (key.ctrl && key.code == "insert")) {
++            if (selection.anchor != selection.caret) {
++                copy(false);
++                event.preventDefault()
++            } else if (key.code != "interrupt") {
++                event.preventDefault()
++            }
++            return
++        }
++        if ((key.ctrl && key.code == "x") || (key.shift && key.code == "delete")) {
++            copy(true);
++            event.preventDefault();
++            return
++        }
++        if (key.ctrl && key.code != "home" && key.code != "end") {
++            return
++        }
++        if (!multiline && (key.code == "up" || key.code == "down" || key.code == "pageup" || key.code == "pagedown")) {
++            return
++        }
++        let iterator = graphemeIterator(text)
++        var count: Int64 = 0;
++        var row: Int64 = 0;
++        var rows: Int64 = 1
++        var lineStart: Int64 = 0;
++        var lineEnd: ?Int64 = None;
++        var column: Int64 = 0
++        while (true) {
++            match (iterator.next()) {
++                case None => break
++                case Some(item) =>
++                    let cluster = item.toString()
++                    if (cluster == "\n") {
++                        rows++
++                        if (count < selection.caret) {
++                            row++;
++                            lineStart = count + 1
++                            column = 0
++                        } else if (lineEnd.isNone()) {
++                            lineEnd = Some(count)
++                        }
++                    } else if (count < selection.caret) {
++                        column += displayWidth(cluster)
++                    }
++                    count++
++            }
++        }
++        if (key.code == "backspace" || key.code == "delete") {
++            var deletion = selection
++            if (selection.anchor == selection.caret) {
++                let other = if (key.code == "backspace") {
++                    greater(0, selection.caret - 1)
++                } else {
++                    lesser(count, selection.caret + 1)
++                }
++                deletion = TextSelection(selection.caret, other)
++            }
++            replace("", Option<TextEditSnapshot>.None, range: Some(deletion))
++            event.preventDefault();
++            return
++        }
++        var position = selection.caret
++        if (multiline && (key.code == "up" || key.code == "down" || key.code == "pageup" || key.code == "pagedown")) {
++            let desired = preferredColumn ?? column
++            let delta: Int64 = if (key.code == "up" || key.code == "pageup") {
++                -1
++            } else {
++                1
++            }
++            let steps = if (key.code == "pageup" || key.code == "pagedown") {
++                greater(1, ref.viewportSnapshot().height - 1)
++            } else {
++                1
++            }
++            let targetRow = lesser(rows - 1, greater(0, row + delta * steps))
++            let scan = graphemeIterator(text)
++            var scanRow: Int64 = 0;
++            var i: Int64 = 0;
++            var cursor: Int64 = 0;
++            var col: Int64 = 0;
++            var frozen = false
++            while (true) {
++                match (scan.next()) {
++                    case None => break
++                    case Some(item) =>
++                        let cluster = item.toString()
++                        if (cluster == "\n") {
++                            if (scanRow == targetRow) {
++                                break
++                            }
++                            scanRow++;
++                            cursor = i + 1
++                        } else if (scanRow == targetRow && !frozen) {
++                            let width = displayWidth(cluster)
++                            if (desired - col <= col + width - desired) {
++                                frozen = true
++                            } else {
++                                col += width
++                                cursor = i + 1
++                            }
++                        }
++                        i++
++                }
++            }
++            select(TextSelection(if (key.shift) {
++                selection.anchor
++            } else {
++                cursor
++            }, cursor))
++            preferredColumn = Some(desired)
++            event.preventDefault();
++            return
++        }
++        preferredColumn = None
++        if (key.code == "left") {
++            position = if (!key.shift && selection.anchor != selection.caret) {
++                lesser(selection.anchor, selection.caret)
++            } else {
++                greater(0, position - 1)
++            }
++        } else if (key.code == "right") {
++            position = if (!key.shift && selection.anchor != selection.caret) {
++                greater(selection.anchor, selection.caret)
++            } else {
++                lesser(count, position + 1)
++            }
++        } else if (key.code == "home") {
++            position = if (key.ctrl) {
++                0
++            } else {
++                lineStart
++            }
++        } else if (key.code == "end") {
++            position = if (key.ctrl) {
++                count
++            } else {
++                lineEnd ?? count
++            }
++        } else {
++            return
++        }
++        select(TextSelection(if (key.shift) {
++            selection.anchor
++        } else {
++            position
++        }, position))
++        event.preventDefault()
++    }
++    func history(backward: Bool): Bool {
++        sync()
++        let from = if (backward) {
++            undoStack
++        } else {
++            redoStack
++        }
++        let to = if (backward) {
++            redoStack
++        } else {
++            undoStack
++        }
++        if (from.isEmpty()) {
++            return false
++        }
++        let record = from[from.size - 1]
++        let next = if (backward) {
++            record.before
++        } else {
++            record.after
++        }
++        let nextSelection = if (backward) {
++            record.beforeSelection
++        } else {
++            record.afterSelection
++        }
++        if (revision == UInt64.Max || (nextSelection != selection && selectionRevision == UInt64.Max)) {
++            throw UIException("CapacityExceeded", "editing revision exhausted")
++        }
++        let committed = commit(next, true)
++        if (committed.isNone()) {
++            return false
++        }
++        from.remove(at: from.size - 1);
++        to.add(record)
++        sourceVersion = committed.getOrThrow()
++        text = next
++        revision++
++        if (nextSelection != selection) {
++            selection = nextSelection
++            selectionRevision++
++        }
++        changed();
++        notifying = true
++        try {
++            onChange(text)
++        } finally {
++            notifying = false
++        }
++        true
++    }
++    func undo(): Bool {
++        history(true)
++    }
++    func redo(): Bool {
++        history(false)
++    }
++    func copy(cut: Bool): ?SessionResult {
++        sync()
++        let start = lesser(selection.anchor, selection.caret);
++        let end = greater(selection.anchor, selection.caret)
++        if (start == end) {
++            return None
++        }
++        let selected = StringBuilder()
++        let iterator = graphemeIterator(text)
++        var index: Int64 = 0
++        while (index < end) {
++            match (iterator.next()) {
++                case None => break
++                case Some(item) =>
++                    if (index >= start) {
++                        selected.append(item.toString())
++                    }
++                    index++
++            }
++        }
++        let guard = snapshot()
++        let result = ref.application().copyLocalText(selected.toString())
++        if (cut) {
++            if (result.status == SessionStatus.Applied) {
++                let isCopy = match (result.operation) {
++                    case SessionOperation.CopyLocalText => true;
++                    case _ => false
++                }
++                var committed = false
++                if (isCopy) {
++                    if (ref.isValid()) {
++                        if (result.sessionId == ref.resolve().session.id) {
++                            committed = replace("", Some(guard))
++                        }
++                    }
++                }
++                if (!committed) {
++                    issue(TextEditIssue.CutStale)
++                }
++            } else if (result.status == SessionStatus.SentUnconfirmed) {
++                issue(TextEditIssue.CutUnconfirmed)
++            } else {
++                issue(TextEditIssue.ClipboardUnavailable)
++            }
++        } else if (result.status != SessionStatus.Applied && result.status != SessionStatus.SentUnconfirmed) {
++            issue(TextEditIssue.ClipboardUnavailable)
++        }
++        Some(result)
++    }
++}
+diff --git a/src/text_edit_snapshot.cj b/src/text_edit_snapshot.cj
+new file mode 100644
+index 00000000..d6416256
+--- /dev/null
++++ b/src/text_edit_snapshot.cj
+@@ -0,0 +1,23 @@
++package cjtui
++
++public class TextEditSnapshot {
++    public let text: String
++    public let selection: TextSelection
++    public let revision: UInt64
++    public let selectionRevision: UInt64
++    public let canUndo: Bool
++    public let canRedo: Bool
++    let identity: Int64
++    let sourceVersion: Int64
++    init(text: String, selection: TextSelection, revision: UInt64, selectionRevision: UInt64, canUndo: Bool,
++        canRedo: Bool, identity: Int64, sourceVersion: Int64) {
++        this.text = text
++        this.selection = selection
++        this.revision = revision
++        this.selectionRevision = selectionRevision
++        this.canUndo = canUndo
++        this.canRedo = canRedo
++        this.identity = identity
++        this.sourceVersion = sourceVersion
++    }
++}
+diff --git a/src/text_editing.cj b/src/text_editing.cj
+new file mode 100644
+index 00000000..2e0e692d
+--- /dev/null
++++ b/src/text_editing.cj
+@@ -0,0 +1,130 @@
++package cjtui
++
++import cjtui.text.graphemeIterator
++
++func editingClusterCount(value: String): Int64 {
++    let iterator = graphemeIterator(value)
++    var count: Int64 = 0
++    while (iterator.next().isSome()) {
++        count++
++    }
++    count
++}
++
++func editingFactory(value: Observable<String>, controller: ?TextEditController, limits: TextEditLimits, multiline: Bool,
++    onChange: (String) -> Unit, onSubmit: (String) -> Unit, onIssue: (TextEditIssue) -> Unit): Component {
++    let owner = TextEditOwner()
++    let component = Canvas(
++        {
++            constraints =>
++                let text = if (let Some(edit) <- owner.session) {
++                    edit.text
++                } else {
++                    value.get()
++                }
++                var width: Int64 = 0;
++                var line: Int64 = 0;
++                var height: Int64 = 1
++                let iterator = graphemeIterator(text)
++                while (true) {
++                    match (iterator.next()) {
++                        case None => break
++                        case Some(item) =>
++                            let cluster = item.toString()
++                            if (cluster == "\n") {
++                                width = greater(width, line + 1)
++                                line = 0
++                                height++
++                            } else {
++                                line += constraints.textWidth(cluster)
++                            }
++                    }
++                }
++                Size(greater(width, line + 1), height)
++        },
++        {
++            context => if (let Some(edit) <- owner.session) {
++                let lo = lesser(edit.selection.anchor, edit.selection.caret);
++                let hi = greater(edit.selection.anchor, edit.selection.caret)
++                var x: Int64 = 0;
++                var y: Int64 = 0
++                let clip = context.clip
++                context.fill(Rect(clip.x, clip.y, clip.width, clip.height))
++                let iterator = graphemeIterator(edit.text)
++                var count: Int64 = 0
++                while (true) {
++                    match (iterator.next()) {
++                        case None => break
++                        case Some(item) =>
++                            let cluster = item.toString()
++                            if (count == edit.selection.caret) {
++                                context.caret(x, y)
++                            }
++                            if (cluster == "\n") {
++                                if (count >= lo && count < hi && y >= clip.y && y < clip.y + clip.height) {
++                                    context.put(x, y, " ", selected: true)
++                                }
++                                x = 0
++                                y++
++                            } else {
++                                let width = context.textWidth(cluster)
++                                if (y >= clip.y && y < clip.y + clip.height && x >= clip.x && x + width <= clip.x + clip
++                                    .width) {
++                                    context.put(x, y, cluster, selected: count >= lo && count < hi)
++                                }
++                                x += width
++                            }
++                            count++
++                    }
++                }
++                if (edit.selection.caret == count) {
++                    context.caret(x, y)
++                }
++            }
++        }
++    )
++    component.themeRole(if (multiline) {
++        ThemeRole.TextArea
++    } else {
++        ThemeRole.TextInput
++    })
++    component.focusable(true).viewport(if (multiline) {
++        ScrollAxes.Both
++    } else {
++        ScrollAxes.Horizontal
++    })
++    component.bind(
++        "editing-source",
++        ChangeKind.Layout,
++        {
++            =>
++                value.get()
++                if (let Some(edit) <- owner.session) {
++                    edit.sync()
++                }
++        }
++    )
++    component.intrinsicMountEffect = Some(
++        {
++            ref =>
++                let edit = TextEditSession(ref, value, limits, multiline, onChange, onSubmit, onIssue)
++                if (let Some(control) <- controller) {
++                    control.attach(edit)
++                }
++                owner.session = Some(edit)
++                {
++                    =>
++                        if (let Some(control) <- controller) {
++                            control.detach(edit)
++                        }
++                        owner.session = None
++                }
++        }
++    )
++    component.defaultAction({
++        event => if (let Some(edit) <- owner.session) {
++            edit.handle(event)
++        }
++    })
++    component
++}
+diff --git a/src/text_input.cj b/src/text_input.cj
+new file mode 100644
+index 00000000..0cd18a32
+--- /dev/null
++++ b/src/text_input.cj
+@@ -0,0 +1,7 @@
++package cjtui
++
++public func TextInput(value: Observable<String>, controller!: ?TextEditController = None,
++    limits!: TextEditLimits = TextEditLimits(), onChange!: (String) -> Unit = {_ =>},
++    onSubmit!: (String) -> Unit = {_ =>}, onIssue!: (TextEditIssue) -> Unit = {_ =>}): Component {
++    editingFactory(value, controller, limits, false, onChange, onSubmit, onIssue)
++}
+diff --git a/src/text_selection.cj b/src/text_selection.cj
+new file mode 100644
+index 00000000..191f1fc8
+--- /dev/null
++++ b/src/text_selection.cj
+@@ -0,0 +1,16 @@
++package cjtui
++
++public struct TextSelection <: Equatable<TextSelection> {
++    public let anchor: Int64
++    public let caret: Int64
++    public init(anchor: Int64, caret: Int64) {
++        if (anchor < 0 || caret < 0) {
++            throw IllegalArgumentException("negative selection")
++        }
++        this.anchor = anchor
++        this.caret = caret
++    }
++    public operator func ==(other: TextSelection): Bool {
++        anchor == other.anchor && caret == other.caret
++    }
++}
+diff --git a/tests/editing/README.md b/tests/editing/README.md
+index 5cbf865b..71614a36 100644
+--- a/tests/editing/README.md
++++ b/tests/editing/README.md
+@@ -16,5 +16,18 @@ The ordinary runner builds and directly runs its binary, then builds the accepte
+ `src/concurrent_source.cj` uses actual Cangjie `spawn` and Mutex/Condition startup/completion handshakes. A worker performs at most65536 monotonic legal `Observable.set`s while the UI performs a fixed256KiB unguarded transaction, for at most8 rounds. A round counts as a conflict only with one actual ConcurrentValueChanged, false return, zero onChange/new undo and final worker value preserved. Precise read→commit attribution additionally requires fixed119 proof that this issue's only reachable locus is the atomic expected-version commit failure. No conflict or ambiguous attribution is insufficient_evidence. Public APIs do not force that internal scheduling point; no sleeps, fake values or test hooks substitute for it.
+ 
+ `pty.mjs --selftest` and `fixtures/handshake.mjs` still test transport/tool mechanics only. Product vectors use real Application.run, actual PTY output/termios, and the accepted OSpipe input remap for read0 and consumed-prefix receipts. `cut-race` holds the actual PTY sink after the OSC52 prefix until a real background source write acknowledges through a FIFO. Only actual SessionResult outcomes are consumed; Direct Unknown may completely emit SentUnconfirmed and must preserve data. No system clipboard read/query or fake Applied backend exists. Applied policy is a manual golden table plus future fixed-source proof, not an executed integration assertion.
+ 
+ The per-requirement source/golden and remaining proof boundaries are in `recipes.md`. Test-only helpers carry no product declarations; types each have one lowercase file.
++
++## Narrow callback/Enter supplement
++
++`callbackTransactions()` additionally dispatches literal key text x, requiring
++its onChange IllegalArgumentException sentinel to propagate unchanged after the
++source/local transaction commits, without an InputTooLarge issue, then cleanup.
++`validationBoundaries()` additionally dispatches ordinary TextArea Enter with
++source x/maxTextBytes1, requiring one InputTooLarge and no source/local/history
++mutation or onChange. The existing TextInput Enter-submit oracle is unchanged.
++These two new bodies are runtime UNEXECUTED and not fully typechecked against
++an accepted E implementation at supplement freeze; no historical RED is claimed.
++Parser and fixture selfchecks are tool/schema evidence only. The source author
++must adopt this fixed test commit and run it against a frozen candidate.
+diff --git a/tests/editing/recipes.md b/tests/editing/recipes.md
+index 90dc8f1e..58992d66 100644
+--- a/tests/editing/recipes.md
++++ b/tests/editing/recipes.md
+@@ -23,5 +23,12 @@ All editor bodies below are frozen for future119 and UNEXECUTED at118; the posit
+ `fixtures/oracle.py` keeps nine literal revision/string rows and eleven manual cut-policy rows. Those schema checks do not execute policy in the product. Applied+matching identities deletes once; Applied+wrong node/session/source/revisions/selection or conditional-write failure retains with CutStale. SentUnconfirmed always retains with CutUnconfirmed; Unsupported/Unknown/Failed retain with ClipboardUnavailable, including concurrent external writes. No branch synthesizes a SessionResult.
+ 
+ At120, bind the actual race trace to the unique conditional-write failure and single Observable source-version owner. Inspect both local UInt64 revision prechecks/exhaustion and source-token publication without a public setter or fabricated2^64 executions. If this source proof or actual conflict trace is missing, retain insufficient_evidence. The real sink-delay copy vector likewise needs its raw prefix/FIFO-ACK/return order checked on119, not inferred from a worker existing.
+ 
+ This freeze is a complete test delivery for118, not an editor behavior PASS,119 implementation,121 host acceptance or122 requirement completion. Real console/other host behavior, actual local clipboard contents and genuine Applied integration remain separate; samePTY+differentTERM is not multiple-host evidence. The runner never claims a screenshot or host support from raw OSC bytes.
++
++The narrow callback/Enter supplement preserves all rows above: lifecycle_callbacks
++adds key text x→committed source/snapshot→original IllegalArgumentException
++(type/message/identity)→cleanup, with no InputTooLarge; validation_boundaries adds
++TextArea x/maxTextBytes1/Enter→one InputTooLarge, zero edit/onChange, unchanged
++selection/revisions/history and healthy app. Both new runtime bodies remain
++UNEXECUTED until adopted by119; parser/fixture checks are not product execution.
+diff --git a/tests/editing/src/lifecycle_callbacks.cj b/tests/editing/src/lifecycle_callbacks.cj
+index 27cef6fe..50d97540 100644
+--- a/tests/editing/src/lifecycle_callbacks.cj
++++ b/tests/editing/src/lifecycle_callbacks.cj
+@@ -104,6 +104,48 @@ func callbackTransactions(): Unit {
+         } catch (e: Exception) { caught = e.message == "EDIT_CALLBACK" }
+         check(caught && !ctl.isValid(), "callback exception cleanup ${phase}")
+         check(v.get() == if (phase == "change") { "A" } else { "" }, "business write not rolled back")
+         a.dispose()
+     }
++    callbackIllegalArgumentCommit()
++}
++
++// F003/E002: a user's IllegalArgumentException is not an editor size rejection.
++func callbackIllegalArgumentCommit(): Unit {
++    let value = Observable<String>(""); let ctl = TextEditController()
++    let sentinel = IllegalArgumentException("EDIT_ONCHANGE_ILLEGAL_ARGUMENT_SENTINEL")
++    let changes = Box<Int64>(0); let issues = Box<Int64>(0); let tooLarge = Box<Int64>(0)
++    let cleanup = Box<Int64>(0); let observed = Box<?TextEditSnapshot>(Option<TextEditSnapshot>.None)
++    let node = TextInput(value, controller: Some(ctl), onChange: { text =>
++        changes.value++
++        let s = ctl.snapshot(); observed.value = Some(s)
++        check(text == "x" && value.get() == "x" && s.text == "x" &&
++            s.selection == TextSelection(1, 1) && s.revision == 1 &&
++            s.selectionRevision == 1 && s.canUndo && !s.canRedo,
++            "literal x source/local transaction committed before throwing onChange")
++        throw sentinel
++    }, onIssue: { issue =>
++        issues.value++; if (issue == TextEditIssue.InputTooLarge) { tooLarge.value++ }
++    }).onMount({_ => { => cleanup.value++ }})
++    let app = Application(node); app.startHeadless()
++    var caught = false; var same = false; var message = ""
++    try {
++        try { key(app, node, "text", text: "x") }
++        catch (error: IllegalArgumentException) {
++            caught = true; same = refEq(error, sentinel); message = error.message
++        }
++        check(caught && same && message == "EDIT_ONCHANGE_ILLEGAL_ARGUMENT_SENTINEL",
++            "key-default onChange preserves original IllegalArgumentException type/message/identity")
++        let seen = observed.value.getOrThrow()
++        check(changes.value == 1 && value.get() == "x" && seen.text == "x" &&
++            seen.selection == TextSelection(1, 1) && seen.revision == 1 &&
++            seen.selectionRevision == 1 && seen.canUndo && !seen.canRedo,
++            "throwing onChange keeps committed business and immutable local snapshot")
++        check(issues.value == 0 && tooLarge.value == 0,
++            "user IllegalArgumentException is not InputTooLarge or another edit issue")
++        let stats = app.stats()
++        check(!ctl.isValid() && cleanup.value == 1 && stats.mountedNodes == 0 &&
++            stats.activeBindings == 0 && stats.subscriptions == 0 && stats.pendingPosts == 0,
++            "throwing key-default callback follows failure cleanup and revokes controller")
++    } finally { app.dispose() }
++    check(cleanup.value == 1, "callback failure cleanup remains exactly once after dispose")
+ }
+diff --git a/tests/editing/src/validation_boundaries.cj b/tests/editing/src/validation_boundaries.cj
+index ceced5c5..ce2e42f6 100644
+--- a/tests/editing/src/validation_boundaries.cj
++++ b/tests/editing/src/validation_boundaries.cj
+@@ -60,6 +60,30 @@ func validationBoundaries(): Unit {
+         state(h, "aa", 0, 2, false, true, "oldest whole 2-byte record evicted")
+         check(!ui(hApp, { => h.undo() }), "combined byte budget leaves no half record")
+         check(ui(hApp, { => h.redo() }) && ui(hApp, { => h.redo() }), "both budget records redo")
+         state(h, "cc", 2, 2, true, false, "redo moves entries without changing aggregate budget")
+     } finally { hApp.dispose() }
++    areaEnterAtTextLimit()
++}
++
++// E002: ordinary TextArea Enter is an atomic LF insertion subject to byte limits.
++func areaEnterAtTextLimit(): Unit {
++    let value = Observable<String>("x"); let ctl = TextEditController()
++    let changes = Box<Int64>(0); let issues = Box<Int64>(0); let tooLarge = Box<Int64>(0)
++    let area = TextArea(value, controller: Some(ctl), limits: TextEditLimits(maxTextBytes: 1),
++        onChange: {_ => changes.value++}, onIssue: { issue =>
++            issues.value++; if (issue == TextEditIssue.InputTooLarge) { tooLarge.value++ }
++        })
++    let app = Application(area); app.startHeadless()
++    try {
++        ui(app, { => ctl.select(TextSelection(1, 1)) })
++        exact(ctl, "x", 1, 1, 0, 1, "literal x at byte limit before Enter")
++        check(!ctl.snapshot().canUndo && !ctl.snapshot().canRedo, "initial limit-case history empty")
++        key(app, area, "enter")
++        exact(ctl, "x", 1, 1, 0, 1, "rejected LF preserves text/selection/both revisions")
++        state(ctl, "x", 1, 1, false, false, "rejected LF creates no undo/redo record")
++        check(value.get() == "x" && changes.value == 0 && issues.value == 1 && tooLarge.value == 1,
++            "ordinary Enter at maxTextBytes1 rejects once as InputTooLarge with no onChange")
++        check(ctl.isValid() && ref(area).isValid() && app.post({ => }),
++            "rejected Enter leaves the application healthy")
++    } finally { app.dispose() }
+ }
+diff --git a/tests/run-slice.sh b/tests/run-slice.sh
+index 34c44dfe..33d0b9a8 100755
+--- a/tests/run-slice.sh
++++ b/tests/run-slice.sh
+@@ -3,10 +3,11 @@ set -euo pipefail
+ cd "$(dirname "$0")/.."
+ # The caller selects/sources SDK 1.2.0 and may configure an isolated CJPM cache.
+ cjc --version
+ cjpm --version
+ case "${1:-all}" in
++  editing) bash tests/editing/run.sh ;;
+   keyboard)
+     tests/keyboard/run.sh --pty
+     bash tests/keyboard/paste_argument/run.sh
+     bash tests/keyboard/i015_stage/run.sh
+     CJTUI_KEYBOARD_I015_PURE_CASE=malformed-drain bash tests/keyboard/i015_stage/run.sh --pure
+@@ -74,7 +75,7 @@ case "${1:-all}" in
+     "$0" capabilities
+     "$0" composition
+     "$0" runtime
+     "$0" resize-coherence
+     ;;
+-  *) echo "usage: $0 [keyboard|native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
++  *) echo "usage: $0 [editing|keyboard|native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
+ esac
+diff --git a/tests/session_extensions/README.md b/tests/session_extensions/README.md
+index 4591db06..d865effd 100644
+--- a/tests/session_extensions/README.md
++++ b/tests/session_extensions/README.md
+@@ -91,21 +91,30 @@ route-wrapped byte count, SentUnconfirmed/NoIssue/RestoreSentUnconfirmed. Ordina
+ post-fault copy still returns zero-byte Cancelled; run still reports the first
+ device failure. Exception wording is not frozen: the primary must be nonempty
+ and cannot be a controlled later callback/UI/native cleanup sentinel.
+ 
+ Native sequence/result/write records require complete save, selected sequence2
+-failure at byte0, and successful sequence3 pop before the first real native close.
+-All pre-close bytes equal save+pop; healthy same-process reopen output remains
++failure at byte0, successful sequence3 pop, then sequence4 exact `CSI ? 2004 l`
++before the first real native close. K004 requires restoring bracketed paste already
++requested at initialization; the real runner checks exactly one initial `2004h`
++and no premature disable before arming the fault. Enable need not be the first
++initialization bytes; a collector-only positive allows a preceding mode25 query.
++All pre-close bytes equal
++`save + pop + CSI ? 2004 l`; the extension-only wire remains exactly save+pop.
++The eight-byte disable is not the seven-byte mode25 query. No additional output
++is permitted by the exact sequence/result/byte checks; healthy same-process reopen output remains
+ separate. Existing partial-offset assertions are unchanged and still prohibit
+ all later output, including pop. One additional Direct offset0 configuration
+ combines later callback/UI cleanup failures, so safe scope release cannot be
+ skipped or replace the first error. No new operation, product hook or backend
+ is added.
+ 
+ `node tests/session_extensions/safe_pop_selftest.mjs` runs synthetic-observation
+ oracle controls only: all three routes, twelve malformed safe-cleanup observations
+-plus an unsafe-extra-pop negative per route (39 deliberate negatives). Normal
++plus six requested-mode controls and an unsafe-extra-pop negative per route
++(57 deliberate negatives). The synthetic Application observation includes the
++K004 mode lifecycle; it is not a real product execution. Normal
+ `run.sh selftest` additionally passes literal files through the existing real
+ native writer: the pre-existing injector fails only sequence2, permitting an
+ independent sequence3. Manual route hex vectors distinguish save/pop and exact
+ wrapping. The driver does not implement Session or manufacture public results;
+ its PASS proves fixture selection/observation only. Actual product cleanup must
+diff --git a/tests/session_extensions/oracle.mjs b/tests/session_extensions/oracle.mjs
+index 657cc317..2a258241 100644
+--- a/tests/session_extensions/oracle.mjs
++++ b/tests/session_extensions/oracle.mjs
+@@ -56,14 +56,24 @@ export function verifyHeadless(rows, wire) {
+   unavailable(rows, 'headless.title', 'SetHostTitle', 'NoDevice');
+   unavailable(rows, 'headless.icon', 'SetHostImageIcon', 'NoImageAdapter');
+   for (const name of ['clipboard','title','titleStack']) assert(rows.get(`headless.capabilities.${name}`).startsWith('Unsupported|KnownUnavailable|NoDevice|'), `headless ${name}`);
+   assert.equal(rows.get('cleanup.count'), '0');
+ }
++// K004: this Application fixture requested bracketed paste before arming faults.
++const pasteEnable=hex('1b5b3f3230303468'),pasteDisable=hex('1b5b3f323030346c');
++export function verifyKeyboardModeStartup(startup) {
++  const enabledAt=startup.indexOf(pasteEnable);
++  assert(enabledAt>=0,'K004 requested paste mode before fault arm');
++  assert.equal(startup.indexOf(pasteEnable,enabledAt+pasteEnable.length),-1,'paste mode enabled exactly once before fault arm');
++  assert.equal(startup.indexOf(pasteDisable),-1,'requested paste mode remains enabled before fault arm');
++}
+ // S007: complete save owns a scope even when set fails before its first byte.
+ function verifySafeSetCleanup(rows,wire,native,route,allWire) {
+   const save=wrap(hex(golden.saveHex),route),pop=wrap(hex(golden.popHex),route);
+   const expected=Buffer.concat([save,pop]);
++  // S008 zero-byte failure is synchronized: pop first, then K004 mode restore.
++  const preclose=Buffer.concat([expected,pasteDisable]);
+   assertWire(wire,expected,'saved scope after zero-byte set failure: one safe cleanup pop');
+   assertResult(rows,'fault',{operation:'SetHostTitle',status:'Failed',bytes:save.length,issue:'WriteFailed',offset:-1});
+   assert.equal(rows.get('fault.steps'),'2','complete save and failed set are distinct actual steps');
+   assert.equal(rows.get('fault.step0'),`SaveHostTitle|SentUnconfirmed|${save.length}|NoIssue`);
+   assert.equal(rows.get('fault.step1'),'SetHostTitle|Failed|0|WriteFailed');
+@@ -81,18 +91,18 @@ function verifySafeSetCleanup(rows,wire,native,route,allWire) {
+   const events=native.trim().split('\n').map(line=>line.split('\t'));
+   const close=events.findIndex(event=>event[0]==='close');
+   assert(close>=0,'real native close recorded after optional cleanup');
+   assert.equal(events[close][1],'0','actual native cleanup succeeds even when its return is later injected');
+   const before=events.slice(0,close);
+-  assert.deepEqual(before.filter(e=>e[0]==='sequence').map(e=>Number(e[1])),[1,2,3],'save, failed set, cleanup pop before first close');
++  assert.deepEqual(before.filter(e=>e[0]==='sequence').map(e=>Number(e[1])),[1,2,3,4],'save, failed set, cleanup pop, requested paste disable before first close');
+   assert.deepEqual(before.filter(e=>e[0]==='fault'),[['fault','2','0']],'selected second sequence fails at byte0');
+-  assert.deepEqual(before.filter(e=>e[0]==='sequence-result').map(e=>e.slice(1).map(Number)),[[0,save.length],[-1,0],[0,pop.length]]);
++  assert.deepEqual(before.filter(e=>e[0]==='sequence-result').map(e=>e.slice(1).map(Number)),[[0,save.length],[-1,0],[0,pop.length],[0,pasteDisable.length]]);
+   const writes=before.filter(e=>e[0]==='write');
+-  assert.equal(writes.reduce((n,e)=>n+Number(e[2]),0),expected.length,'no extra screen/control bytes before close');
+-  for(const [sequence,count] of [[1,save.length],[2,0],[3,pop.length]])
++  assert.equal(writes.reduce((n,e)=>n+Number(e[2]),0),preclose.length,'only save, pop and requested paste disable before close');
++  for(const [sequence,count] of [[1,save.length],[2,0],[3,pop.length],[4,pasteDisable.length]])
+     assert.equal(writes.filter(e=>Number(e[1])===sequence).reduce((n,e)=>n+Number(e[2]),0),count);
+-  assertWire(allWire.subarray(0,expected.length),expected,'all pre-close output is exactly save plus pop');
++  assertWire(allWire.subarray(0,preclose.length),preclose,'all pre-close output is exactly save plus pop plus requested paste disable');
+ }
+ export function verifyLive(rows, wire, native, scenario, route, offset = 0, allWire = wire) {
+   for(const forbidden of ['\x1b]0;','\x1b]1;','\x1b]52;c;?']) assert(!allWire.includes(Buffer.from(forbidden)),'no icon-name/both-title/clipboard-query protocol');
+   common(rows); assert.equal(rows.get('disposed'), 'yes', 'UI dispose happens');
+   assertResult(rows, 'after.inactive', fail('SessionInactive'));
+diff --git a/tests/session_extensions/run.mjs b/tests/session_extensions/run.mjs
+index a14e670a..917ce29a 100755
+--- a/tests/session_extensions/run.mjs
++++ b/tests/session_extensions/run.mjs
+@@ -3,11 +3,11 @@ import assert from 'node:assert/strict';
+ import { spawn, spawnSync } from 'node:child_process';
+ import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
+ import { tmpdir } from 'node:os';
+ import { resolve, join } from 'node:path';
+ import { sessionCases } from './cases.mjs';
+-import { common, verifyHeadless, verifyLive, parseResults, wrap, golden, hex } from './oracle.mjs';
++import { common, verifyHeadless, verifyLive, verifyKeyboardModeStartup, parseResults, wrap, golden, hex } from './oracle.mjs';
+ const binary=resolve(process.argv[2]);
+ const selected=process.argv.slice(3);
+ const artifacts=resolve(process.env.CJTUI_SESSION_ARTIFACTS??await mkdtemp(join(tmpdir(),'cjtui-session-')));
+ await mkdir(artifacts,{recursive:true});
+ const read=async path=>{try{return await readFile(path);}catch{return Buffer.alloc(0);}};
+@@ -38,10 +38,11 @@ async function run(config,index) {
+   async function until(predicate,label) {const deadline=Date.now()+12000;while(Date.now()<deadline){if(await predicate())return;if(finished)throw new Error(`early exit ${label}: ${stderr}; ${stdout.toString()}`);await delay(15);}throw new Error(`timeout ${label}`);}
+   try {
+     await until(async()=>{pid=Number((await read(join(dir,'pid'))).toString().trim());return pid>0;},'PID');
+     await until(()=>stdout.includes(Buffer.from('CJTUI_SESSION_READY')),'real first frame');
+     for(const forbidden of ['\x1b]52;','\x1b]2;','\x1b]0;','\x1b]1;','\x1b[22;2t','\x1b[23;2t']) assert(!stdout.includes(Buffer.from(forbidden)),'no unsolicited session protocol during startup');
++    if(scenario==='fault-set' && offset===0) verifyKeyboardModeStartup(stdout);
+     child.stdin.write('x');
+     if(scenario==='ledger-error'||scenario==='ledger-cancel') {
+       await until(async()=>(await read(env.CJTUI_SESSION_WIRE)).length>=wrap(hex(golden.saveHex),route).length+wrap(Buffer.from('\x1b]2;A\x07'),route).length*2,'two titles');
+       child.stdin.write(scenario==='ledger-error'?'e':'\x03');
+     }
+diff --git a/tests/session_extensions/safe_pop_selftest.mjs b/tests/session_extensions/safe_pop_selftest.mjs
+index 76631862..f30321a7 100644
+--- a/tests/session_extensions/safe_pop_selftest.mjs
++++ b/tests/session_extensions/safe_pop_selftest.mjs
+@@ -2,11 +2,14 @@
+ import assert from 'node:assert/strict';
+ import { spawnSync } from 'node:child_process';
+ import { mkdtempSync,readFileSync,writeFileSync,existsSync } from 'node:fs';
+ import { tmpdir } from 'node:os';
+ import { join,resolve } from 'node:path';
+-import { verifyLive } from './oracle.mjs';
++import { verifyLive,verifyKeyboardModeStartup } from './oracle.mjs';
++const enable=Buffer.from('1b5b3f3230303468','hex'),disable=Buffer.from('1b5b3f323030346c','hex');
++// Collector-only positive: a legitimate mode25 query may precede requested mode enable.
++verifyKeyboardModeStartup(Buffer.concat([Buffer.from('1b5b3f32352470','hex'),enable]));
+ const vectors=[
+  ['Direct','1b5b32323b3274','1b5d323b4107','1b5b32333b3274'],
+  ['TmuxPassthrough','1b50746d75783b1b1b5b32323b32741b5c','1b50746d75783b1b1b5d323b41071b5c','1b50746d75783b1b1b5b32333b32741b5c'],
+  ['ScreenPassthrough','1b501b5b32323b32741b5c','1b501b5d323b41071b5c','1b501b5b32333b32741b5c']
+ ];
+@@ -26,19 +29,25 @@ function observation(route,save,pop) {
+   ['cleanup.count','1'],['cleanup.0',`RestoreHostTitle|SentUnconfirmed|${p}|NoIssue|-1|RestoreSentUnconfirmed`],
+   ['cleanup.0.steps','1'],['cleanup.0.step0',`RestoreHostTitle|SentUnconfirmed|${p}|NoIssue`],
+   ['cleanup.again',`RestoreHostTitle|SentUnconfirmed|${p}|NoIssue|-1|RestoreSentUnconfirmed`],
+   ['cleanup.again.steps','1'],['cleanup.again.step0',`RestoreHostTitle|SentUnconfirmed|${p}|NoIssue`]
+  ]);
+- const native=`arm\t1\t0\nsequence\t1\t0\nwrite\t1\t${n}\nsequence-result\t0\t${n}\nsequence\t2\t0\nfault\t2\t0\nsequence-result\t-1\t0\nsequence\t3\t0\nwrite\t3\t${p}\nsequence-result\t0\t${p}\nclose\t0\t0\n`;
+- return {rows,native,wire:Buffer.concat([save,pop]),all:Buffer.concat([save,pop])};
++ const native=`arm\t1\t0\nsequence\t1\t0\nwrite\t1\t${n}\nsequence-result\t0\t${n}\nsequence\t2\t0\nfault\t2\t0\nsequence-result\t-1\t0\nsequence\t3\t0\nwrite\t3\t${p}\nsequence-result\t0\t${p}\nsequence\t4\t0\nwrite\t4\t8\nsequence-result\t0\t8\nclose\t0\t0\n`;
++ return {rows,native,startup:enable,wire:Buffer.concat([save,pop]),all:Buffer.concat([save,pop,disable])};
+ }
+ let positive=0,negative=0,nativeChecks=0;
+ for(const [route,saveHex,titleHex,popHex] of vectors) {
+  const save=Buffer.from(saveHex,'hex'),title=Buffer.from(titleHex,'hex'),pop=Buffer.from(popHex,'hex');
+- const check=o=>verifyLive(o.rows,o.wire,o.native,'fault-set',route,0,o.all);
++ const check=o=>{verifyKeyboardModeStartup(o.startup);verifyLive(o.rows,o.wire,o.native,'fault-set',route,0,o.all);};
+  check(observation(route,save,pop));positive++;
+  for(const [label,mutate] of [
++  ['no requested enable',o=>{o.startup=Buffer.alloc(0);}],
++  ['duplicate enable',o=>{o.startup=Buffer.concat([enable,enable]);}],
++  ['premature disable',o=>{o.startup=Buffer.concat([enable,disable]);}],
++  ['missing mode restore',o=>{o.all=Buffer.concat([save,pop]);}],
++  ['query is not mode restore',o=>{o.all=Buffer.concat([save,pop,Buffer.from('1b5b3f32352470','hex')]);}],
++  ['mode restore after close',o=>{o.native=o.native.replace('sequence\t4','close\t0\t0\nsequence\t4').replace(/close\t0\t0\n$/,'');}],
+   ['no pop',o=>{o.wire=save;o.all=save;o.native=o.native.slice(0,o.native.indexOf('sequence\t3'))+'close\t0\t0\n';}],
+   ['extra pop',o=>{o.wire=Buffer.concat([save,pop,pop]);o.all=o.wire;}],
+   ['lost cleanup record',o=>{for(const key of [...o.rows.keys()])if(key.startsWith('cleanup.'))o.rows.delete(key);o.rows.set('cleanup.count','0');}],
+   ['wrong cleanup status',o=>{for(const key of ['cleanup.0','cleanup.again']){o.rows.set(key,'RestoreHostTitle|Unknown|0|RestoreUnavailable|-1|Unavailable');o.rows.set(key+'.steps','0');o.rows.delete(key+'.step0');}}],
+   ['wrong cleanup step',o=>{for(const key of ['cleanup.0.step0','cleanup.again.step0'])o.rows.set(key,`SaveHostTitle|SentUnconfirmed|${pop.length}|NoIssue`);}],
+@@ -80,6 +89,6 @@ for(const [route,saveHex,titleHex,popHex] of vectors) {
+   const log=readFileSync(native,'utf8');assert.match(log,/fault\t2\t0\n/);
+   assert.deepEqual(log.split('\n').filter(s=>s.startsWith('sequence-result\t')),[`sequence-result\t0\t${save.length}`,'sequence-result\t-1\t0',`sequence-result\t0\t${pop.length}`]);
+   nativeChecks++;console.log(`PASS fixture-only ${route}: selected sequence2 zero fault, real writer sequence3 pop succeeds; artifacts=${dir}`);
+  }
+ }
+-console.log(`PASS fixture-only S007 safe-pop oracle: routes=${positive} deliberate-negative-controls=${negative} native-selection-checks=${nativeChecks}; no product runtime PASS`);
++console.log(`PASS fixture-only S007 safe-pop oracle: routes=${positive} deliberate-negative-controls=${negative} startup-prefix-controls=1 native-selection-checks=${nativeChecks}; no product runtime PASS`);

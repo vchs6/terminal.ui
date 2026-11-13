@@ -1,0 +1,215 @@
+[
+  {
+    "round_id": "E120-R1",
+    "revision": "043523cdb07d4de542174022dddfa5ed715b560d",
+    "acceptance_ref": "TASK120 / E001–E005 / AC028",
+    "severity": "major",
+    "review_severity": "Important",
+    "status": "verified",
+    "fix_revision": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+    "verification": {
+      "round_id": "E120-R2",
+      "fix_round": 1,
+      "revision": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+      "result": "ADDRESSED",
+      "proof": {
+        "result": "ADDRESSED",
+        "source": "text_edit_session.cj:105–137 publishes text/token/revisions/history before signalPending; editing-source getter uses sync(deferSignal:true); text_editing.cj:133–142 installs the sole framework-owned afterEvaluate handler. binding.cj:55–58 invokes it only after track succeeds; trackSeeded restores the evaluation guard at86–88, completes subscriptions89–91, and releases ownerLock92–99 before returning.",
+        "ordering": "If a consumer was already evaluated, signal.notify queues it again with committed state; if later in the ready batch, it sees committed state. Same-version sync returns without a new signal, so the added pass stabilizes. Snapshot remains a query. Getter failure skips the hook and propagates to existing runtime failure cleanup. The hook calls only signal invalidation, not user code. Disposal and intrinsic owner clearing remain unchanged; no hook is invoked by dispose.",
+        "execution": "fix1-editing stdout: controller=Z@1, getter=Z@1 and full grid Z / Z@1; selector PASS. Runtime core receipt exit0 retains getter guards and cleanup/failure behavior."
+      },
+      "evidence_refs": [
+        "round2/fix.diff",
+        "round2/fixed-source/src/binding.cj",
+        "round2/fixed-source/src/text_edit_session.cj",
+        "round2/fixed-source/src/text_editing.cj",
+        "round2/raw/fix1-editing/stdout",
+        "round2/raw/fix1-runtime/stdout"
+      ]
+    },
+    "id": "E120-I01",
+    "category": "state",
+    "target": "src/text_edit_session.cj:50–54,112–135; src/text_editing.cj:96–105",
+    "contract_ref": "E001 tracked, committed snapshot; F005 external synchronization; AGENTS §6/8",
+    "claim": "External synchronization does not invalidate the committed editor snapshot, so a snapshot-dependent binding evaluated earlier in the same batch remains permanently stale.",
+    "reproducer": {
+      "setup": "Mount TextInput(source=\"abc\",controller:c) and Text({=>c.snapshot().text + \"@\" + caret}) guarded by c.isValid(); render once.",
+      "actions": [
+        "In one app.batch, c.select(TextSelection(2,2)); source.set(\"Z\").",
+        "Read the committed controller snapshot and render the same application again."
+      ],
+      "expected": "Both controller and dependent Text show Z@1 after stabilization.",
+      "observed": "Controller is Z@1, while the getter and rendered label remain abc@2. select() queues the snapshot binding via signal before the source binding; the getter reads the new source version but old local state. sync() then publishes Z@1 without notifying signal, so it is not revisited."
+    },
+    "evidence_refs": [
+      "round1/probe/main.cj:9–34",
+      "round1/probe/run.stdout",
+      "src/runtime_session.cj:1338–1359",
+      "src/text_edit_session.cj:50–54,112–135"
+    ],
+    "required_change": "Publish/invalidate committed editor state in a safe phase so dependent bindings cannot miss synchronization. Preserve snapshot purity and do not fix this by pumping inside snapshot().",
+    "evidence_kind": "executed_public_probe_plus_source",
+    "spec_verdict": "pass_source_review_after_fix",
+    "quality_verdict": "pass_source_review_after_fix"
+  },
+  {
+    "round_id": "E120-R1",
+    "revision": "043523cdb07d4de542174022dddfa5ed715b560d",
+    "acceptance_ref": "TASK120 / E001–E005 / AC028",
+    "severity": "major",
+    "review_severity": "Important",
+    "status": "verified",
+    "fix_revision": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+    "verification": {
+      "round_id": "E120-R2",
+      "fix_round": 1,
+      "revision": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+      "result": "ADDRESSED",
+      "proof": {
+        "result": "ADDRESSED",
+        "source": "text_editing.cj:15–27 shares validation with mounted TextEditSession.validate. Both measure and draw choose committed edit state when mounted, otherwise read/validate the Observable and draw with TextSelection(0,0). All text/selection/LF/caret painting remains in the same Canvas callback. No intrinsic mount or controller attachment is added to temporary Runtime.",
+        "ordering": "Detached measure/draw only read source and local values; illegal initial LF/CR/control/size rejects via the same validator. Existing Runtime temporary mode still suppresses effects and public references. A real later mount creates fresh revision0/selection0 state.",
+        "execution": "fix1-editing stdout: input abc and area a/LF/b expected grids, mounts=0 cleanup=0 detachedBefore=true detachedAfter=true; selector PASS."
+      },
+      "evidence_refs": [
+        "round2/fix.diff",
+        "round2/fixed-source/src/binding.cj",
+        "round2/fixed-source/src/text_edit_session.cj",
+        "round2/fixed-source/src/text_editing.cj",
+        "round2/raw/fix1-editing/stdout",
+        "round2/raw/fix1-runtime/stdout"
+      ]
+    },
+    "id": "E120-I02",
+    "category": "export",
+    "target": "src/text_editing.cj:46,107–121; src/runtime_session.cj:1273–1298",
+    "contract_ref": "E004 single Canvas/M1 render; Runtime R004 and detached-render contract; AGENTS §5/8",
+    "claim": "Detached public render(TextInput/TextArea(...)) paints no editor text because its draw callback only runs with a persistent intrinsic mount session.",
+    "reproducer": {
+      "setup": "Construct detached TextInput(Observable<String>(\"abc\")).",
+      "actions": [
+        "Call render(component,3,1).toPlainText()."
+      ],
+      "expected": "The same Canvas path exports abc without running user mount/cleanup effects or publishing a controller/NodeRef.",
+      "observed": "The result is three spaces. Temporary Runtime suppresses mount effects, owner.session stays None, and the entire draw body is skipped. Measure still reads source, so this is silent loss of content, not an unsupported-operation error."
+    },
+    "evidence_refs": [
+      "round1/probe/main.cj:6–7",
+      "round1/probe/run.stdout",
+      "src/layout.cj:492–526",
+      "src/text_editing.cj:20–24,46–84"
+    ],
+    "required_change": "Provide validated pure editor display state for temporary render through the existing Canvas path; retain the detached render prohibition on lifecycle side effects and published handles.",
+    "evidence_kind": "executed_public_probe_plus_source",
+    "spec_verdict": "pass_source_review_after_fix",
+    "quality_verdict": "pass_source_review_after_fix"
+  },
+  {
+    "round_id": "E120-R1",
+    "revision": "043523cdb07d4de542174022dddfa5ed715b560d",
+    "acceptance_ref": "TASK120 / E001–E005 / AC028",
+    "severity": "major",
+    "review_severity": "Important",
+    "status": "verified",
+    "fix_revision": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+    "verification": {
+      "round_id": "E120-R2",
+      "fix_round": 1,
+      "revision": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+      "result": "ADDRESSED",
+      "proof": {
+        "result": "ADDRESSED",
+        "source": "text_edit_session.cj:525–533 performs the expected-version history commit, returns unchanged on failure, then clears preferredColumn before publishing the restored source/text/selection and changed()/onChange. Both undo and redo use this single history method.",
+        "execution": "fix1-editing stdout: undo restored1/down4 and redo restored2/down6; both independent histories passed."
+      },
+      "evidence_refs": [
+        "round2/fix.diff",
+        "round2/fixed-source/src/binding.cj",
+        "round2/fixed-source/src/text_edit_session.cj",
+        "round2/fixed-source/src/text_editing.cj",
+        "round2/raw/fix1-editing/stdout",
+        "round2/raw/fix1-runtime/stdout"
+      ]
+    },
+    "id": "E120-I03",
+    "category": "state",
+    "target": "src/text_edit_session.cj:477–526",
+    "contract_ref": "E003: horizontal movement/editing resets preferred display column; E002 undo/redo restores selection",
+    "claim": "Undo/redo publishes a new text and caret but leaves preferredColumn from a previous vertical move, so subsequent vertical navigation uses the wrong column.",
+    "reproducer": {
+      "setup": "TextArea(\"ab\\n12345\\nXY\"); select gap1, insert !, select gap8 (column4 on line2), then Down (clamped to column2 on line3, preferred4).",
+      "actions": [
+        "Undo restores original text and gap1 (column1).",
+        "Press Down again."
+      ],
+      "expected": "Down lands at gap4, column1 on line2.",
+      "observed": "Undo restores gap1, but Down lands at gap7, column4. history() never clears preferredColumn; ordinary replace() does."
+    },
+    "evidence_refs": [
+      "round1/probe/main.cj:35–49",
+      "round1/probe/run.stdout",
+      "src/text_edit_session.cj:392,438,477–526"
+    ],
+    "required_change": "Reset the preferred display column for successful undo and redo, consistently with other editing operations, and cover navigation after both history directions.",
+    "evidence_kind": "executed_public_probe_plus_source",
+    "spec_verdict": "pass_source_review_after_fix",
+    "quality_verdict": "pass_source_review_after_fix"
+  },
+  {
+    "round_id": "E120-R1",
+    "revision": "043523cdb07d4de542174022dddfa5ed715b560d",
+    "acceptance_ref": "TASK120 / E001–E005 / AC028",
+    "severity": "major",
+    "review_severity": "Important",
+    "status": "verified",
+    "fix_revision": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+    "verification": {
+      "round_id": "E120-R2",
+      "fix_round": 1,
+      "revision": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+      "result": "ADDRESSED",
+      "proof": {
+        "result": "ADDRESSED",
+        "source": "handle300–301 syncs once and captures expectedVersion. Text/paste and TextArea Enter carry it through keyboardInput304/316→replace297; deletion computes its range against the same local state and passes preparedVersion405. In replace151–153, prepared callers bypass the source-refresh branch154–165. No callback/pump/local synchronization runs between captured state and candidate calculation; permitted background writes alter only Observable. commit224 passes the captured version to the unchanged sole-lock conditional write.",
+        "old_counterexample": "After handle reads ax/v, a worker sets YZ/v+1. The fix still calculates the old deletion result x, but editingCommit(v,x) sees v+1 and returns None; commit then syncs latest YZ and emits the sole ConcurrentValueChanged. It cannot change expectedVersion to v+1 or commit Z as the old implementation did.",
+        "rejection_and_noop": "Keyboard control/multiline/byte prevalidation uses the same frozen local text/selection and rejection returns before candidate publication; replace does not resync to a larger value after size validation. Same-text prepared/guarded paths check actual source version before selection-only publication; a mismatch returns false (prepared path synchronizes the external value) without applying the old selection, no text write/history/onChange. Guarded controller replacements retain normal identity/revision/actual-source checks. No implicit retry is added.",
+        "race_attribution": "Only text_edit_session145 emits ConcurrentValueChanged, following editingCommit(expectedVersion,next)==None. Observable.cj lock/value/version/atomic snapshot and conditional helper are unchanged. Actual fix1-editing output has both original conflict and I04 selector conflict with zero edits, finalYZ and no history. These establish observed conflicts, not which internal pre-commit interval was hit.",
+        "limitation": "The specific early planning window is not forced by the public fixture. Closure of that source-proven original finding rests on the explicit version/data-flow proof above; no exact-window execution is claimed."
+      },
+      "evidence_refs": [
+        "round2/fix.diff",
+        "round2/fixed-source/src/binding.cj",
+        "round2/fixed-source/src/text_edit_session.cj",
+        "round2/fixed-source/src/text_editing.cj",
+        "round2/raw/fix1-editing/stdout",
+        "round2/raw/fix1-runtime/stdout"
+      ]
+    },
+    "id": "E120-I04",
+    "category": "state",
+    "target": "src/text_edit_session.cj:282,349–386,146–160,206",
+    "contract_ref": "E001 atomic read/compute/conditional commit and no retry of old paste/deletion intent; E002 keyboard rejection must preserve session",
+    "claim": "Keyboard preparation and replace() do not share one source snapshot: replace() can resynchronize to a newer source and successfully apply a deletion range computed from the old source.",
+    "reproducer": {
+      "setup": "Source=\"ax\", caret=1, source version v; dispatch Backspace while a permitted background writer is active.",
+      "actions": [
+        "handle.sync() reads ax/v.",
+        "While handle scans graphemes, background source.set(\"YZ\") commits v+1.",
+        "handle computes deletion range [0,1] from old text/selection.",
+        "replace() observes v+1 and syncs to YZ, but keeps the old range; it computes Z and successfully commits against v+1."
+      ],
+      "expected": "A background write after the edit snapshot wins: retain YZ, reject the old deletion with one ConcurrentValueChanged, no onChange/history for it.",
+      "observed": "The reachable source interleaving deletes Y from the background value, commits Z and emits onChange without a conflict. The later CAS is against the refreshed token, so it cannot detect this conflict. This specific interleaving is source-proven, not claimed executed. The same split also permits keyboard size prevalidation on old text followed by an IllegalArgumentException after replace refreshes to a larger value."
+    },
+    "evidence_refs": [
+      "src/text_edit_session.cj:282,349–386",
+      "src/text_edit_session.cj:146–160,178–180,204–219",
+      "src/observable.cj:24–50",
+      "canonical design.md:E001/E002"
+    ],
+    "required_change": "Capture the operation source/selection token once before keyboard planning and carry it through validation, range calculation and conditional commit. Reject intervening versions rather than silently rebasing the old intent; keep legitimate pre-operation external synchronization.",
+    "evidence_kind": "source_only_explicit_reachable_interleaving",
+    "spec_verdict": "pass_source_review_after_fix",
+    "quality_verdict": "pass_source_review_after_fix"
+  }
+]

@@ -1,0 +1,239 @@
+src/text_editing.cj-132-    )
+src/text_editing.cj-133-    // Only this internal source binding needs post-evaluation signal publication.
+src/text_editing.cj-134-    for (binding in component.bindings) {
+src/text_editing.cj-135-        if (binding.name == "editing-source") {
+src/text_editing.cj:136:            binding.afterEvaluate = Some({
+src/text_editing.cj-137-                => if (let Some(edit) <- owner.session) {
+src/text_editing.cj:138:                    edit.flushSnapshotSignal()
+src/text_editing.cj-139-                }
+src/text_editing.cj-140-            })
+src/text_editing.cj-141-        }
+src/text_editing.cj-142-    }
+--
+src/text_edit_session.cj-13-    let onIssue: (TextEditIssue) -> Unit
+src/text_edit_session.cj-14-    let identity = uniqueRuntimeId()
+src/text_edit_session.cj-15-    let signal = Observable<Int64>(0)
+src/text_edit_session.cj-16-    var text: String
+src/text_edit_session.cj:17:    var sourceVersion: Int64
+src/text_edit_session.cj-18-    var selection = TextSelection(0, 0)
+src/text_edit_session.cj-19-    var revision: UInt64 = 0
+src/text_edit_session.cj-20-    var selectionRevision: UInt64 = 0
+src/text_edit_session.cj-21-    var notifying = false
+--
+src/text_edit_session.cj-33-        this.onSubmit = onSubmit
+src/text_edit_session.cj-34-        this.onIssue = onIssue
+src/text_edit_session.cj-35-        let (initial, version) = source.editingSnapshot()
+src/text_edit_session.cj-36-        text = initial
+src/text_edit_session.cj:37:        sourceVersion = version
+src/text_edit_session.cj-38-        validate(initial)
+src/text_edit_session.cj-39-    }
+src/text_edit_session.cj-40-    func validate(value: String): Unit {
+src/text_edit_session.cj-41-        validateEditingValue(value, limits, multiline)
+--
+src/text_edit_session.cj-43-    func snapshot(): TextEditSnapshot {
+src/text_edit_session.cj-44-        signal.get();
+src/text_edit_session.cj-45-        source.get()
+src/text_edit_session.cj-46-        TextEditSnapshot(text, selection, revision, selectionRevision, !undoStack.isEmpty(), !redoStack.isEmpty(),
+src/text_edit_session.cj:47:            identity, sourceVersion)
+src/text_edit_session.cj-48-    }
+src/text_edit_session.cj-49-    func changed(): Unit {
+src/text_edit_session.cj-50-        signal.set(signal.get() + 1)
+src/text_edit_session.cj-51-        ref.notify(ChangeKind.Layout)
+--
+src/text_edit_session.cj-101-        } finally {
+src/text_edit_session.cj-102-            notifying = false
+src/text_edit_session.cj-103-        }
+src/text_edit_session.cj-104-    }
+src/text_edit_session.cj:105:    func flushSnapshotSignal(): Unit {
+src/text_edit_session.cj-106-        if (signalPending) {
+src/text_edit_session.cj-107-            signalPending = false
+src/text_edit_session.cj-108-            signal.notify()
+src/text_edit_session.cj-109-        }
+src/text_edit_session.cj-110-    }
+src/text_edit_session.cj:111:    func sync(deferSignal!: Bool = false): Unit {
+src/text_edit_session.cj-112-        let (latest, version) = source.editingSnapshot()
+src/text_edit_session.cj:113:        if (version == sourceVersion) {
+src/text_edit_session.cj-114-            return
+src/text_edit_session.cj-115-        }
+src/text_edit_session.cj-116-        validate(latest)
+src/text_edit_session.cj-117-        if (revision == UInt64.Max) {
+--
+src/text_edit_session.cj-122-        if (next != selection && selectionRevision == UInt64.Max) {
+src/text_edit_session.cj-123-            throw UIException("CapacityExceeded", "selection revision exhausted")
+src/text_edit_session.cj-124-        }
+src/text_edit_session.cj-125-        text = latest
+src/text_edit_session.cj:126:        sourceVersion = version
+src/text_edit_session.cj-127-        revision++
+src/text_edit_session.cj-128-        if (next != selection) {
+src/text_edit_session.cj-129-            selection = next
+src/text_edit_session.cj-130-            selectionRevision++
+--
+src/text_edit_session.cj-132-        undoStack.clear();
+src/text_edit_session.cj-133-        redoStack.clear()
+src/text_edit_session.cj-134-        signalPending = true
+src/text_edit_session.cj-135-        if (!deferSignal) {
+src/text_edit_session.cj:136:            flushSnapshotSignal()
+src/text_edit_session.cj-137-        }
+src/text_edit_session.cj-138-    }
+src/text_edit_session.cj-139-    // Every ordinary concurrent-value issue originates from this failed
+src/text_edit_session.cj-140-    // expected-version commit, following an atomic source snapshot.
+src/text_edit_session.cj:141:    func commit(next: String, expectedVersion: Int64, reportConflict: Bool): ?Int64 {
+src/text_edit_session.cj-142-        let result = source.editingCommit(expectedVersion, next)
+src/text_edit_session.cj-143-        if (result.isNone() && reportConflict) {
+src/text_edit_session.cj-144-            sync()
+src/text_edit_session.cj-145-            issue(TextEditIssue.ConcurrentValueChanged)
+src/text_edit_session.cj-146-        }
+src/text_edit_session.cj-147-        result
+src/text_edit_session.cj-148-    }
+src/text_edit_session.cj:149:    func replace(input: String, guard: ?TextEditSnapshot, range!: ?TextSelection = None, preparedVersion!: ?Int64 = None): Bool {
+src/text_edit_session.cj:150:        var expectedVersion = sourceVersion
+src/text_edit_session.cj:151:        if (let Some(prepared) <- preparedVersion) {
+src/text_edit_session.cj-152-            expectedVersion = prepared
+src/text_edit_session.cj-153-        } else {
+src/text_edit_session.cj-154-            let (_, version) = source.editingSnapshot()
+src/text_edit_session.cj-155-            if (let Some(saved) <- guard) {
+src/text_edit_session.cj:156:                if (saved.identity != identity || saved.sourceVersion != version || saved.revision != revision ||
+src/text_edit_session.cj-157-                    saved.selectionRevision != selectionRevision) {
+src/text_edit_session.cj-158-                    return false
+src/text_edit_session.cj-159-                }
+src/text_edit_session.cj-160-            }
+src/text_edit_session.cj:161:            if (version != sourceVersion) {
+src/text_edit_session.cj-162-                sync()
+src/text_edit_session.cj-163-            }
+src/text_edit_session.cj:164:            expectedVersion = sourceVersion
+src/text_edit_session.cj-165-        }
+src/text_edit_session.cj-166-        let normalized = input.replace("\r\n", "\n").replace("\r", "\n")
+src/text_edit_session.cj-167-        validate(normalized)
+src/text_edit_session.cj-168-        let selectedRange = range ?? selection
+--
+src/text_edit_session.cj-203-            }
+src/text_edit_session.cj-204-        }
+src/text_edit_session.cj-205-        let nextSelection = TextSelection(caret, caret)
+src/text_edit_session.cj-206-        if (next == text) {
+src/text_edit_session.cj:207:            if (guard.isSome() || preparedVersion.isSome()) {
+src/text_edit_session.cj-208-                let (_, currentVersion) = source.editingSnapshot()
+src/text_edit_session.cj-209-                if (currentVersion != expectedVersion) {
+src/text_edit_session.cj:210:                    if (preparedVersion.isSome()) {
+src/text_edit_session.cj-211-                        sync()
+src/text_edit_session.cj-212-                    }
+src/text_edit_session.cj-213-                    return false
+src/text_edit_session.cj-214-                }
+--
+src/text_edit_session.cj-226-            return false
+src/text_edit_session.cj-227-        }
+src/text_edit_session.cj-228-        preferredColumn = None
+src/text_edit_session.cj-229-        text = next
+src/text_edit_session.cj:230:        sourceVersion = committed.getOrThrow()
+src/text_edit_session.cj-231-        revision++
+src/text_edit_session.cj-232-        if (nextSelection != selection) {
+src/text_edit_session.cj-233-            selection = nextSelection
+src/text_edit_session.cj-234-            selectionRevision++
+--
+src/text_edit_session.cj-250-            notifying = false
+src/text_edit_session.cj-251-        }
+src/text_edit_session.cj-252-        true
+src/text_edit_session.cj-253-    }
+src/text_edit_session.cj:254:    func selectedByteCount(): Int64 {
+src/text_edit_session.cj-255-        if (selection.anchor == selection.caret) {
+src/text_edit_session.cj-256-            return 0
+src/text_edit_session.cj-257-        }
+src/text_edit_session.cj-258-        let low = lesser(selection.anchor, selection.caret)
+--
+src/text_edit_session.cj-271-            }
+src/text_edit_session.cj-272-        }
+src/text_edit_session.cj-273-        result
+src/text_edit_session.cj-274-    }
+src/text_edit_session.cj:275:    func keyboardInput(input: String, expectedVersion: Int64): Unit {
+src/text_edit_session.cj-276-        var invalidControl = false
+src/text_edit_session.cj-277-        for (r in input.runes()) {
+src/text_edit_session.cj-278-            let c = UInt32(r)
+src/text_edit_session.cj-279-            if ((c < 32 && c != 10 && c != 13) || (c >= 127 && c < 160)) {
+--
+src/text_edit_session.cj-293-        if (normalized.size > limits.maxTextBytes - (text.size - removed)) {
+src/text_edit_session.cj-294-            issue(TextEditIssue.InputTooLarge);
+src/text_edit_session.cj-295-            return
+src/text_edit_session.cj-296-        }
+src/text_edit_session.cj:297:        replace(normalized, Option<TextEditSnapshot>.None, preparedVersion: Some(expectedVersion))
+src/text_edit_session.cj-298-    }
+src/text_edit_session.cj:299:    func handle(event: UIKeyEvent): Unit {
+src/text_edit_session.cj-300-        sync()
+src/text_edit_session.cj:301:        let expectedVersion = sourceVersion
+src/text_edit_session.cj-302-        let key = event.key
+src/text_edit_session.cj-303-        if (key.code == "text" && !key.ctrl && !key.alt || key.code == "paste") {
+src/text_edit_session.cj-304-            keyboardInput(key.text, expectedVersion)
+src/text_edit_session.cj-305-            event.preventDefault();
+--
+src/text_edit_session.cj-401-                    lesser(count, selection.caret + 1)
+src/text_edit_session.cj-402-                }
+src/text_edit_session.cj-403-                deletion = TextSelection(selection.caret, other)
+src/text_edit_session.cj-404-            }
+src/text_edit_session.cj:405:            replace("", Option<TextEditSnapshot>.None, range: Some(deletion), preparedVersion: Some(expectedVersion))
+src/text_edit_session.cj-406-            event.preventDefault();
+src/text_edit_session.cj-407-            return
+src/text_edit_session.cj-408-        }
+src/text_edit_session.cj-409-        var position = selection.caret
+--
+src/text_edit_session.cj-492-            position
+src/text_edit_session.cj-493-        }, position))
+src/text_edit_session.cj-494-        event.preventDefault()
+src/text_edit_session.cj-495-    }
+src/text_edit_session.cj:496:    func history(backward: Bool): Bool {
+src/text_edit_session.cj-497-        sync()
+src/text_edit_session.cj-498-        let from = if (backward) {
+src/text_edit_session.cj-499-            undoStack
+src/text_edit_session.cj-500-        } else {
+--
+src/text_edit_session.cj-521-        }
+src/text_edit_session.cj-522-        if (revision == UInt64.Max || (nextSelection != selection && selectionRevision == UInt64.Max)) {
+src/text_edit_session.cj-523-            throw UIException("CapacityExceeded", "editing revision exhausted")
+src/text_edit_session.cj-524-        }
+src/text_edit_session.cj:525:        let committed = commit(next, sourceVersion, true)
+src/text_edit_session.cj-526-        if (committed.isNone()) {
+src/text_edit_session.cj-527-            return false
+src/text_edit_session.cj-528-        }
+src/text_edit_session.cj-529-        from.remove(at: from.size - 1);
+src/text_edit_session.cj-530-        to.add(record)
+src/text_edit_session.cj-531-        preferredColumn = None
+src/text_edit_session.cj:532:        sourceVersion = committed.getOrThrow()
+src/text_edit_session.cj-533-        text = next
+src/text_edit_session.cj-534-        revision++
+src/text_edit_session.cj-535-        if (nextSelection != selection) {
+src/text_edit_session.cj-536-            selection = nextSelection
+--
+src/binding.cj-11-    let name: String
+src/binding.cj-12-    let category: ChangeKind
+src/binding.cj-13-    let getter: () -> Unit
+src/binding.cj-14-    // Framework-owned post-publication work runs after evaluation guards and subscriptions.
+src/binding.cj:15:    var afterEvaluate: ?() -> Unit = None
+src/binding.cj-16-    let dependencies = ArrayList<BindingDependency>()
+src/binding.cj-17-    let naturalDependencies = ArrayList<BindingDependency>()
+src/binding.cj-18-    let constrainedDependencies = ArrayList<BindingDependency>()
+src/binding.cj-19-    let ownerLock = Mutex()
+--
+src/binding.cj-53-        }
+src/binding.cj-54-    }
+src/binding.cj-55-    func evaluate(): Unit {
+src/binding.cj-56-        track(getter)
+src/binding.cj:57:        if (let Some(action) <- afterEvaluate) { action() }
+src/binding.cj-58-    }
+src/binding.cj-59-    func track(action: () -> Unit): Unit { trackSeeded(action,Array<BindingDependency>()) }
+src/binding.cj-60-    // Natural width and constrained height can both contribute to one layout.
+src/binding.cj-61-    func trackNatural(action: () -> Unit): Unit {
+--
+src/observable.cj-20-        }
+src/observable.cj-21-        result
+src/observable.cj-22-    }
+src/observable.cj-23-    // Snapshot and conditional publication share the existing source lock and version.
+src/observable.cj:24:    func editingSnapshot(): (T, Int64) {
+src/observable.cj-25-        lock.lock()
+src/observable.cj-26-        try {
+src/observable.cj-27-            (value, version)
+src/observable.cj-28-        } finally {
+src/observable.cj-29-            lock.unlock()
+src/observable.cj-30-        }
+src/observable.cj-31-    }
+src/observable.cj:32:    func editingCommit(expected: Int64, next: T): ?Int64 {
+src/observable.cj-33-        if (evaluating.get().isSome() || structureEvaluation.get().isSome()) {
+src/observable.cj-34-            throw UIException("ReentrantEvaluation", "observable write during evaluation")
+src/observable.cj-35-        }
+src/observable.cj-36-        var committed: ?Int64 = None

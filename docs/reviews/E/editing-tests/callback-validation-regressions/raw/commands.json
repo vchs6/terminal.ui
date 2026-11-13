@@ -1,0 +1,26 @@
+[
+  {
+    "name": "parser",
+    "cwd": "/workspace/work/editing-tests/callback-validation-regressions/source",
+    "argv": [
+      "bash",
+      "-lc",
+      "set -e; source /workspace/work/validation/sdk/cangjie/envsetup.sh; cjc --version; cjfmt -f tests/editing/src/lifecycle_callbacks.cj -o /workspace/work/editing-tests/callback-validation-regressions/formatted/lifecycle_callbacks.cj; cjfmt -f tests/editing/src/validation_boundaries.cj -o /workspace/work/editing-tests/callback-validation-regressions/formatted/validation_boundaries.cj"
+    ],
+    "utc_start": "2026-11-13T09:12:39.048331+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T09:12:39.350046+00:00"
+  },
+  {
+    "name": "fixtures",
+    "cwd": "/workspace/work/editing-tests/callback-validation-regressions/source",
+    "argv": [
+      "bash",
+      "tests/editing/run.sh",
+      "--selftest"
+    ],
+    "utc_start": "2026-11-13T09:12:39.378141+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T09:12:39.575045+00:00"
+  }
+]

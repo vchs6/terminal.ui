@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "dbus-run-session",
+    "--",
+    "xfce4-terminal",
+    "--disable-server",
+    "--hide-menubar",
+    "--geometry=60x12+20+20",
+    "--title=TASK121 vte example",
+    "--command=python3 /workspace/work/editing-execution/tools/host-supervisor.py /workspace/work/editing-execution/clean-unpacked/cjtui-0.0.0/examples/editing/target/release/bin/main /workspace/work/editing-execution/raw/host-vte-example example"
+  ],
+  "env": {
+    "DISPLAY": ":199",
+    "HOME": "/workspace/work/editing-execution/raw/host-vte-example/home",
+    "XDG_CONFIG_HOME": "/workspace/work/editing-execution/raw/host-vte-example/home/config",
+    "XDG_CACHE_HOME": "/workspace/work/editing-execution/raw/host-vte-example/home/cache"
+  },
+  "fixed_source_sha": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+  "binary_sha256": "29008f50a28af44e28c990cd3da8a17fb50e52df395533ace314bb4945ad54b1",
+  "utc": "2026-11-13T10:23:37.259577+00:00",
+  "connection": "local X11 :199; actual XTEST key events, host-produced PTY input"
+}

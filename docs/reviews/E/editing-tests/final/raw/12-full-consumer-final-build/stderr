@@ -1,0 +1,796 @@
+[31merror[0m: undeclared type name 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/checks.cj:27:24:
+   [36m| [0m
+[36m27[0m [36m| [0mfunc state(controller: TextEditController, text: String, anchor: Int64, caret: Int64,[0m
+   [36m| [0m                       [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/checks.cj:43:24:
+   [36m| [0m
+[36m43[0m [36m| [0mfunc exact(controller: TextEditController, text: String, anchor: Int64, caret: Int64,[0m
+   [36m| [0m                       [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/clipboard.cj:14:28:
+   [36m| [0m
+[36m14[0m [36m| [0m    let issues = ArrayList<TextEditIssue>()[0m
+   [36m| [0m                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'TextEditIssue'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:9:28:
+  [36m| [0m
+[36m9[0m [36m| [0m    let issues = ArrayList<TextEditIssue>()[0m
+  [36m| [0m                           [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:21:28:
+   [36m| [0m
+[36m21[0m [36m| [0m    let issues = ArrayList<TextEditIssue>()[0m
+   [36m| [0m                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:10:28:
+   [36m| [0m
+[36m10[0m [36m| [0m    let issues = ArrayList<TextEditIssue>()[0m
+   [36m| [0m                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextSelection'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/checks.cj:30:44:
+   [36m| [0m
+[36m30[0m [36m| [0m    check(s.text == text && s.selection == TextSelection(anchor, caret) &&[0m
+   [36m| [0m                                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextSelection'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/checks.cj:46:44:
+   [36m| [0m
+[36m46[0m [36m| [0m    check(s.text == text && s.selection == TextSelection(anchor, caret) &&[0m
+   [36m| [0m                                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/clipboard.cj:12:15:
+   [36m| [0m
+[36m12[0m [36m| [0m    let ctl = TextEditController()[0m
+   [36m| [0m              [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/clipboard.cj:15:16:
+   [36m| [0m
+[36m15[0m [36m| [0m    let root = TextInput(source, controller: Some(ctl),[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/clipboard.cj:30:48:
+   [36m| [0m
+[36m30[0m [36m| [0m        check(issues.size == 1 && issues[0] == TextEditIssue.ClipboardUnavailable,[0m
+   [36m| [0m                                               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/clipboard.cj:37:48:
+   [36m| [0m
+[36m37[0m [36m| [0m        check(issues.size == 2 && issues[1] == TextEditIssue.ClipboardUnavailable &&[0m
+   [36m| [0m                                               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/clipboard_defaults.cj:6:13:
+  [36m| [0m
+[36m6[0m [36m| [0m    let c = TextEditController(); let issues = Box<Int64>(0); let changes = Box<Int64>(0)[0m
+  [36m| [0m            [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/clipboard_defaults.cj:7:16:
+  [36m| [0m
+[36m7[0m [36m| [0m    let root = TextInput(Observable<String>("abc"), controller: Some(c),[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/concurrent_source.cj:10:62:
+   [36m| [0m
+[36m10[0m [36m| [0m        let source = Observable<String>("worker:0"); let c = TextEditController()[0m
+   [36m| [0m                                                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/concurrent_source.cj:12:20:
+   [36m| [0m
+[36m12[0m [36m| [0m        let root = TextInput(source, controller: Some(c), onChange: {_ => changes.value++},[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/event_integration.cj:6:13:
+  [36m| [0m
+[36m6[0m [36m| [0m    let c = TextEditController(); let trace = Box<String>(""); let mode = Box<String>("normal")[0m
+  [36m| [0m            [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/event_integration.cj:9:32:
+  [36m| [0m
+[36m9[0m [36m| [0m        targetBox.value = Some(TextInput(Observable<String>(""), controller: Some(c),[0m
+  [36m| [0m                               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/event_integration.cj:33:67:
+   [36m| [0m
+[36m33[0m [36m| [0m    let area = Box<?Component>(Option<Component>.None); let ctl = TextEditController(); let sibling = Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m                                                                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/event_integration.cj:35:27:
+   [36m| [0m
+[36m35[0m [36m| [0m        area.value = Some(TextArea(Observable<String>("0\n1\n2\n3\n4\n5"), controller: Some(ctl)).height(2))[0m
+   [36m| [0m                          [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/event_integration.cj:36:30:
+   [36m| [0m
+[36m36[0m [36m| [0m        sibling.value = Some(TextInput(Observable<String>("s")))[0m
+   [36m| [0m                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/event_integration.cj:55:29:
+   [36m| [0m
+[36m55[0m [36m| [0m        single.value = Some(TextInput(Observable<String>("x")).height(1))[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/event_integration.cj:65:24:
+   [36m| [0m
+[36m65[0m [36m| [0m        let popupCtl = TextEditController(); let popup = TextInput(Observable<String>("modal"), controller: Some(popupCtl))[0m
+   [36m| [0m                       [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/event_integration.cj:65:58:
+   [36m| [0m
+[36m65[0m [36m| [0m        let popupCtl = TextEditController(); let popup = TextInput(Observable<String>("modal"), controller: Some(popupCtl))[0m
+   [36m| [0m                                                         [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/exact_viewport.cj:6:13:
+  [36m| [0m
+[36m6[0m [36m| [0m    let c = TextEditController(); let source = Observable<String>("A中B")[0m
+  [36m| [0m            [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/exact_viewport.cj:7:16:
+  [36m| [0m
+[36m7[0m [36m| [0m    let root = TextInput(source, controller: Some(c)); let app = Application(root, theme: plainTheme())[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/frame_viewport.cj:7:15:
+  [36m| [0m
+[36m7[0m [36m| [0m    let ctl = TextEditController()[0m
+  [36m| [0m              [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/frame_viewport.cj:8:16:
+  [36m| [0m
+[36m8[0m [36m| [0m    let root = TextInput(value, controller: Some(ctl))[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextSelection'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/frame_viewport.cj:31:43:
+   [36m| [0m
+[36m31[0m [36m| [0m        check(ctl.snapshot().selection == TextSelection(1,2),[0m
+   [36m| [0m                                          [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:8:15:
+  [36m| [0m
+[36m8[0m [36m| [0m    let ctl = TextEditController()[0m
+  [36m| [0m              [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:10:16:
+   [36m| [0m
+[36m10[0m [36m| [0m    let area = TextArea(value, controller: Some(ctl), onIssue: { issue => issues.add(issue) })[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:38:48:
+   [36m| [0m
+[36m38[0m [36m| [0m        check(issues.size == 1 && issues[0] == TextEditIssue.PasteFromTerminalRequired,[0m
+   [36m| [0m                                               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:42:48:
+   [36m| [0m
+[36m42[0m [36m| [0m        check(issues.size == 2 && issues[1] == TextEditIssue.PasteFromTerminalRequired,[0m
+   [36m| [0m                                               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:47:18:
+   [36m| [0m
+[36m47[0m [36m| [0m    let editor = TextEditController()[0m
+   [36m| [0m                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:49:18:
+   [36m| [0m
+[36m49[0m [36m| [0m    let single = TextInput(input, controller: Some(editor), onSubmit: { text =>[0m
+   [36m| [0m                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:63:15:
+   [36m| [0m
+[36m63[0m [36m| [0m    let ctl = TextEditController()[0m
+   [36m| [0m              [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:66:16:
+   [36m| [0m
+[36m66[0m [36m| [0m    let root = TextInput(value, controller: Some(ctl), onSubmit: {_ => submits.value++}).onKey({ event =>[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_matrix.cj:6:13:
+  [36m| [0m
+[36m6[0m [36m| [0m    let c = TextEditController(); let root = TextArea(Observable<String>("ab\n中x\ny\n1234"), controller: Some(c))[0m
+  [36m| [0m            [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_matrix.cj:6:46:
+  [36m| [0m
+[36m6[0m [36m| [0m    let c = TextEditController(); let root = TextArea(Observable<String>("ab\n中x\ny\n1234"), controller: Some(c))[0m
+  [36m| [0m                                             [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:6:13:
+  [36m| [0m
+[36m6[0m [36m| [0m    let c = TextEditController(); let source = Observable<String>("abc")[0m
+  [36m| [0m            [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:7:16:
+  [36m| [0m
+[36m7[0m [36m| [0m    let root = TextInput(source, controller: Some(c)); let app = Application(root)[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:10:33:
+   [36m| [0m
+[36m10[0m [36m| [0m    let duplicate = Application(TextArea(source, controller: Some(c)))[0m
+   [36m| [0m                                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:38:25:
+   [36m| [0m
+[36m38[0m [36m| [0m        let otherRoot = TextInput(Observable<String>("other")); let other = Application(otherRoot)[0m
+   [36m| [0m                        [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:46:13:
+   [36m| [0m
+[36m46[0m [36m| [0m    let c = TextEditController(); let peer = TextEditController()[0m
+   [36m| [0m            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:46:46:
+   [36m| [0m
+[36m46[0m [36m| [0m    let c = TextEditController(); let peer = TextEditController()[0m
+   [36m| [0m                                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:59:46:
+   [36m| [0m
+[36m59[0m [36m| [0m    let root = Column { rootBox.value = Some(TextInput(source, controller: Some(c),[0m
+   [36m| [0m                                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:78:30:
+   [36m| [0m
+[36m78[0m [36m| [0m        peerBox.value = Some(TextInput(peerSource, controller: Some(peer)))[0m
+   [36m| [0m                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:94:51:
+   [36m| [0m
+[36m94[0m [36m| [0m        let v = Observable<String>(""); let ctl = TextEditController()[0m
+   [36m| [0m                                                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/lifecycle_callbacks.cj:95:20:
+   [36m| [0m
+[36m95[0m [36m| [0m        let node = TextInput(v, controller: Some(ctl),[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/property_validation.cj:9:44:
+  [36m| [0m
+[36m9[0m [36m| [0m            let app = Application(decorate(TextArea(Observable<String>("a\nb"))))[0m
+  [36m| [0m                                           [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/property_validation.cj:14:59:
+   [36m| [0m
+[36m14[0m [36m| [0m        let source = Observable<String>("valid"); let c = TextEditController()[0m
+   [36m| [0m                                                          [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/property_validation.cj:15:31:
+   [36m| [0m
+[36m15[0m [36m| [0m        let app = Application(TextArea(source, controller: Some(c))); app.startHeadless()[0m
+   [36m| [0m                              [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/property_validation.cj:21:51:
+   [36m| [0m
+[36m21[0m [36m| [0m    let source = Observable<String>("A"); let c = TextEditController()[0m
+   [36m| [0m                                                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/property_validation.cj:22:16:
+   [36m| [0m
+[36m22[0m [36m| [0m    let root = TextArea(source, controller: Some(c)); let app = Application(root); app.startHeadless()[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/pty_scenario.cj:11:49:
+   [36m| [0m
+[36m11[0m [36m| [0m    let other = Observable<String>(""); let c = TextEditController(); let b = TextEditController()[0m
+   [36m| [0m                                                [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/pty_scenario.cj:11:79:
+   [36m| [0m
+[36m11[0m [36m| [0m    let other = Observable<String>(""); let c = TextEditController(); let b = TextEditController()[0m
+   [36m| [0m                                                                              [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/pty_scenario.cj:51:28:
+   [36m| [0m
+[36m51[0m [36m| [0m        first.value = Some(TextArea(source, controller: Some(c), onChange: {_ => changes.value++; report("changed", "yes")},[0m
+   [36m| [0m                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/pty_scenario.cj:57:29:
+   [36m| [0m
+[36m57[0m [36m| [0m        second.value = Some(TextArea(other, controller: Some(b), onChange: {_ => changes.value++; report("changed", "yes")}).height(2).onKey(receive))[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextSelection'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:7:18:
+  [36m| [0m
+[36m7[0m [36m| [0m    illegal({ => TextSelection(-1, 0); () })[0m
+  [36m| [0m                 [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextSelection'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:8:18:
+  [36m| [0m
+[36m8[0m [36m| [0m    illegal({ => TextSelection(0, -1); () })[0m
+  [36m| [0m                 [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:9:18:
+  [36m| [0m
+[36m9[0m [36m| [0m    illegal({ => TextEditLimits(maxTextBytes: 0); () })[0m
+  [36m| [0m                 [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:10:18:
+   [36m| [0m
+[36m10[0m [36m| [0m    illegal({ => TextEditLimits(maxTextBytes: 16777217); () })[0m
+   [36m| [0m                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:11:18:
+   [36m| [0m
+[36m11[0m [36m| [0m    illegal({ => TextEditLimits(maxUndoEntries: 65537); () })[0m
+   [36m| [0m                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:12:18:
+   [36m| [0m
+[36m12[0m [36m| [0m    illegal({ => TextEditLimits(maxUndoBytes: 67108865); () })[0m
+   [36m| [0m                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:13:18:
+   [36m| [0m
+[36m13[0m [36m| [0m    let limits = TextEditLimits(maxTextBytes: 4, maxUndoEntries: 2, maxUndoBytes: 20)[0m
+   [36m| [0m                 [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:18:22:
+   [36m| [0m
+[36m18[0m [36m| [0m    let controller = TextEditController()[0m
+   [36m| [0m                     [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:22:16:
+   [36m| [0m
+[36m22[0m [36m| [0m    let root = TextInput(value, controller: Some(controller),[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextSelection'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:33:51:
+   [36m| [0m
+[36m33[0m [36m| [0m        check(s.text == "first" && s.selection == TextSelection(0,0) &&[0m
+   [36m| [0m                                                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextSelection'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:56:51:
+   [36m| [0m
+[36m56[0m [36m| [0m        check(s.text == "first" && s.selection == TextSelection(0, 0) && s.revision == 0 && !s.canUndo,[0m
+   [36m| [0m                                                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:64:19:
+   [36m| [0m
+[36m64[0m [36m| [0m    let passive = TextArea(passiveValue)[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/public_api.cj:69:69:
+   [36m| [0m
+[36m69[0m [36m| [0m    let optionalValue = Observable<String>("x"); let optionalRoot = TextInput(optionalValue)[0m
+   [36m| [0m                                                                    [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/shared_source.cj:6:54:
+  [36m| [0m
+[36m6[0m [36m| [0m    let source = Observable<String>("abcd"); let a = TextEditController(); let b = TextEditController()[0m
+  [36m| [0m                                                     [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/shared_source.cj:6:84:
+  [36m| [0m
+[36m6[0m [36m| [0m    let source = Observable<String>("abcd"); let a = TextEditController(); let b = TextEditController()[0m
+  [36m| [0m                                                                                   [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/shared_source.cj:10:28:
+   [36m| [0m
+[36m10[0m [36m| [0m        first.value = Some(TextInput(source, controller: Some(a)))[0m
+   [36m| [0m                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/shared_source.cj:11:29:
+   [36m| [0m
+[36m11[0m [36m| [0m        second.value = Some(TextInput(source, controller: Some(b)))[0m
+   [36m| [0m                            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/theme_frames.cj:17:13:
+   [36m| [0m
+[36m17[0m [36m| [0m    let c = TextEditController(); let input = Box<?Component>(Option<Component>.None); let area = Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/theme_frames.cj:18:14:
+   [36m| [0m
+[36m18[0m [36m| [0m    let ac = TextEditController()[0m
+   [36m| [0m             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/theme_frames.cj:22:28:
+   [36m| [0m
+[36m22[0m [36m| [0m        input.value = Some(TextInput(Observable<String>("I"), controller: Some(c)))[0m
+   [36m| [0m                           [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/theme_frames.cj:23:27:
+   [36m| [0m
+[36m23[0m [36m| [0m        area.value = Some(TextArea(Observable<String>("A\nB"), controller: Some(ac)))[0m
+   [36m| [0m                          [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/theme_frames.cj:54:15:
+   [36m| [0m
+[36m54[0m [36m| [0m    let ctl = TextEditController(); let node = TextInput(Observable<String>("x"), controller: Some(ctl))[0m
+   [36m| [0m              [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/theme_frames.cj:54:48:
+   [36m| [0m
+[36m54[0m [36m| [0m    let ctl = TextEditController(); let node = TextInput(Observable<String>("x"), controller: Some(ctl))[0m
+   [36m| [0m                                               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/unicode_seams.cj:17:57:
+   [36m| [0m
+[36m17[0m [36m| [0m        let value = Observable<String>(row[0]); let c = TextEditController(); let changes = Box<Int64>(0)[0m
+   [36m| [0m                                                        [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/unicode_seams.cj:18:20:
+   [36m| [0m
+[36m18[0m [36m| [0m        let root = TextArea(value, controller: Some(c), onChange: {_ => changes.value++})[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/unicode_seams.cj:34:13:
+   [36m| [0m
+[36m34[0m [36m| [0m    let c = TextEditController(); let root = TextInput(Observable<String>(""), controller: Some(c))[0m
+   [36m| [0m            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/unicode_seams.cj:34:46:
+   [36m| [0m
+[36m34[0m [36m| [0m    let c = TextEditController(); let root = TextInput(Observable<String>(""), controller: Some(c))[0m
+   [36m| [0m                                             [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/unicode_transactions.cj:8:15:
+  [36m| [0m
+[36m8[0m [36m| [0m    let ctl = TextEditController()[0m
+  [36m| [0m              [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/unicode_transactions.cj:10:16:
+   [36m| [0m
+[36m10[0m [36m| [0m    let root = TextArea(value, controller: Some(ctl), onChange: { text => changes.add(text) })[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:6:24:
+  [36m| [0m
+[36m6[0m [36m| [0m    for (make in [{ => TextEditLimits(maxTextBytes: -1) }, { => TextEditLimits(maxUndoEntries: 0) },[0m
+  [36m| [0m                       [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:6:65:
+  [36m| [0m
+[36m6[0m [36m| [0m    for (make in [{ => TextEditLimits(maxTextBytes: -1) }, { => TextEditLimits(maxUndoEntries: 0) },[0m
+  [36m| [0m                                                                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:7:14:
+  [36m| [0m
+[36m7[0m [36m| [0m        { => TextEditLimits(maxUndoEntries: -1) }, { => TextEditLimits(maxUndoBytes: 0) },[0m
+  [36m| [0m             [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:7:57:
+  [36m| [0m
+[36m7[0m [36m| [0m        { => TextEditLimits(maxUndoEntries: -1) }, { => TextEditLimits(maxUndoBytes: 0) },[0m
+  [36m| [0m                                                        [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:8:14:
+  [36m| [0m
+[36m8[0m [36m| [0m        { => TextEditLimits(maxUndoBytes: -1) }]) { illegal({ => make(); () }) }[0m
+  [36m| [0m             [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:10:57:
+   [36m| [0m
+[36m10[0m [36m| [0m        let original = Observable<String>(bad); let c = TextEditController(); var caught = false[0m
+   [36m| [0m                                                        [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:11:35:
+   [36m| [0m
+[36m11[0m [36m| [0m        try { let a = Application(TextInput(original, controller: Some(c))); a.startHeadless(); a.dispose() }[0m
+   [36m| [0m                                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:15:13:
+   [36m| [0m
+[36m15[0m [36m| [0m    let c = TextEditController(); let value = Observable<String>("中"); let changes = Box<Int64>(0); let issues = Box<Int64>(0)[0m
+   [36m| [0m            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:16:16:
+   [36m| [0m
+[36m16[0m [36m| [0m    let root = TextInput(value, controller: Some(c), limits: TextEditLimits(maxTextBytes: 4),[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:40:19:
+   [36m| [0m
+[36m40[0m [36m| [0m    let byteCtl = TextEditController(); let bytes = Observable<String>(ascii(1048575))[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:41:20:
+   [36m| [0m
+[36m41[0m [36m| [0m    let byteRoot = TextInput(bytes, controller: Some(byteCtl),[0m
+   [36m| [0m                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:52:13:
+   [36m| [0m
+[36m52[0m [36m| [0m    let h = TextEditController(); let hRoot = TextInput(Observable<String>(""), controller: Some(h),[0m
+   [36m| [0m            [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_boundaries.cj:52:47:
+   [36m| [0m
+[36m52[0m [36m| [0m    let h = TextEditController(); let hRoot = TextInput(Observable<String>(""), controller: Some(h),[0m
+   [36m| [0m                                              [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:8:15:
+  [36m| [0m
+[36m8[0m [36m| [0m    let ctl = TextEditController()[0m
+  [36m| [0m              [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:12:16:
+   [36m| [0m
+[36m12[0m [36m| [0m    let root = TextInput(value, controller: Some(ctl),[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:23:48:
+   [36m| [0m
+[36m23[0m [36m| [0m        check(issues.size == 1 && issues[0] == TextEditIssue.MultilinePasteRejected,[0m
+   [36m| [0m                                               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:27:48:
+   [36m| [0m
+[36m27[0m [36m| [0m        check(issues.size == 2 && issues[1] == TextEditIssue.ControlCharacterRejected,[0m
+   [36m| [0m                                               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:31:48:
+   [36m| [0m
+[36m31[0m [36m| [0m        check(issues.size == 3 && issues[2] == TextEditIssue.ControlCharacterRejected,[0m
+   [36m| [0m                                               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditIssue'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:35:48:
+   [36m| [0m
+[36m35[0m [36m| [0m        check(issues.size == 4 && issues[3] == TextEditIssue.InputTooLarge,[0m
+   [36m| [0m                                               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:72:16:
+   [36m| [0m
+[36m72[0m [36m| [0m    let edit = TextEditController()[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:73:16:
+   [36m| [0m
+[36m73[0m [36m| [0m    let area = TextArea(multi, controller: Some(edit))[0m
+   [36m| [0m               [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:87:19:
+   [36m| [0m
+[36m87[0m [36m| [0m    let bounded = TextEditController()[0m
+   [36m| [0m                  [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+  [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:88:21:
+   [36m| [0m
+[36m88[0m [36m| [0m    let countRoot = TextInput(countValue, controller: Some(bounded))[0m
+   [36m| [0m                    [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditController'
+   [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:103:19:
+    [36m| [0m
+[36m103[0m [36m| [0m    let byteCtl = TextEditController()[0m
+    [36m| [0m                  [31m^ [0m
+    [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+   [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/validation_history.cj:104:20:
+    [36m| [0m
+[36m104[0m [36m| [0m    let byteRoot = TextInput(byteValue, controller: Some(byteCtl),[0m
+    [36m| [0m                   [31m^ [0m
+    [36m| [0m
+
+[33mwarning[0m: unused import 'std.collection.ArrayList'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/src/keyboard_defaults.cj:4:1:
+  [36m| [0m
+[36m4[0m [36m| [0mimport std.collection.ArrayList[0m
+  [36m| [0m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unused import[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+112 errors generated, 112 errors printed.
+1 warning generated, 1 warning printed.
+Error: failed to compile package `editing_contract`, return code is 1
+Error: cjpm build failed

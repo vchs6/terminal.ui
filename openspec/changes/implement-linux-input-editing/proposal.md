@@ -1,8 +1,8 @@
 # Linux keyboard input and text editing
 
-## Implementation status v1 — 2026-11-13
+## Implementation status v2 — 2026-11-13
 
-K001–K004已获独立117有限验收并集成main；[原件与限制](../../../docs/reviews/K/README.md)。下文Why保留立项时的问题背景，非当前K缺失声明。E001–E005的118正式测试已冻结，119固定候选22ca8cf7已通过120独立源码双审，四项Important经一轮修复全部关闭；候选在wip/linux-editing，未合入main。121独立制品/宿主执行中，122及完整Linux/父AC仍pending，本变更尚不整体归档。
+TASK113–122已完成有限K/E交付；E独立122为PASS_FINITE_E，接受源22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167对应main b71cb2ebd740a22eba3759abd35b9b0fff068bdd，产品/测试/例子/产品文档逐字节一致；[E原件、独立报告及真实截图](../../../docs/reviews/E/README.md)。TASK120初审四项Important在修复轮1全部关闭；121普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付，122规格/质量/证据均PASS_FINITE_E。完整Linux/AC041/024、父030/020/019/027及M1/M2仍未关闭；T087-G01→023、B-M01→024保留，整个OpenSpec变更待最终023/024汇合。
 
 ## Why
 

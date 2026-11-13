@@ -1,0 +1,11 @@
+{
+  "cwd": "/workspace/work/editing-tests/final/source",
+  "argv": [
+    "bash",
+    "-lc",
+    "source /workspace/work/editing-tests/final/env.sh; bash tests/editing/run.sh --selftest; node --check tests/editing/pty.mjs; python3 -c 'import ast,pathlib; ast.parse(pathlib.Path(\"tests/editing/fixtures/product_pty.py\").read_text()); print(\"PASS Python driver syntax only\")'"
+  ],
+  "start_utc": "2026-11-13T07:48:02.750491+00:00",
+  "exit": 0,
+  "end_utc": "2026-11-13T07:48:03.246377+00:00"
+}

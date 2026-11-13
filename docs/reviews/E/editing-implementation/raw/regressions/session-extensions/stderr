@@ -1,0 +1,56 @@
+FAIL {"scenario":"fault-set","route":"Direct","offset":0} AssertionError [ERR_ASSERTION]: save, failed set, cleanup pop before first close
++ actual - expected
+
+  [
+    1,
+    2,
+    3,
++   4
+  ]
+
+    at verifySafeSetCleanup (file:///workspace/work/editing-implementation/source/tests/session_extensions/oracle.mjs:86:10)
+    at verifyLive (file:///workspace/work/editing-implementation/source/tests/session_extensions/oracle.mjs:189:19)
+    at run (file:///workspace/work/editing-implementation/source/tests/session_extensions/run.mjs:54:5)
+    at async file:///workspace/work/editing-implementation/source/tests/session_extensions/run.mjs:78:8
+FAIL {"scenario":"fault-set","route":"TmuxPassthrough","offset":0} AssertionError [ERR_ASSERTION]: save, failed set, cleanup pop before first close
++ actual - expected
+
+  [
+    1,
+    2,
+    3,
++   4
+  ]
+
+    at verifySafeSetCleanup (file:///workspace/work/editing-implementation/source/tests/session_extensions/oracle.mjs:86:10)
+    at verifyLive (file:///workspace/work/editing-implementation/source/tests/session_extensions/oracle.mjs:189:19)
+    at run (file:///workspace/work/editing-implementation/source/tests/session_extensions/run.mjs:54:5)
+    at async file:///workspace/work/editing-implementation/source/tests/session_extensions/run.mjs:78:8
+FAIL {"scenario":"fault-set","route":"ScreenPassthrough","offset":0} AssertionError [ERR_ASSERTION]: save, failed set, cleanup pop before first close
++ actual - expected
+
+  [
+    1,
+    2,
+    3,
++   4
+  ]
+
+    at verifySafeSetCleanup (file:///workspace/work/editing-implementation/source/tests/session_extensions/oracle.mjs:86:10)
+    at verifyLive (file:///workspace/work/editing-implementation/source/tests/session_extensions/oracle.mjs:189:19)
+    at run (file:///workspace/work/editing-implementation/source/tests/session_extensions/run.mjs:54:5)
+    at async file:///workspace/work/editing-implementation/source/tests/session_extensions/run.mjs:78:8
+FAIL {"scenario":"fault-set","route":"Direct","offset":0,"uiFail":true,"callbackFail":true} AssertionError [ERR_ASSERTION]: save, failed set, cleanup pop before first close
++ actual - expected
+
+  [
+    1,
+    2,
+    3,
++   4
+  ]
+
+    at verifySafeSetCleanup (file:///workspace/work/editing-implementation/source/tests/session_extensions/oracle.mjs:86:10)
+    at verifyLive (file:///workspace/work/editing-implementation/source/tests/session_extensions/oracle.mjs:189:19)
+    at run (file:///workspace/work/editing-implementation/source/tests/session_extensions/run.mjs:54:5)
+    at async file:///workspace/work/editing-implementation/source/tests/session_extensions/run.mjs:78:8

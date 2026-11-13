@@ -1,0 +1,234 @@
+{
+  "round": "E120-R1",
+  "base": "f38c72784f440ff96a118233ad0237e1a1b57504",
+  "head": "043523cdb07d4de542174022dddfa5ed715b560d",
+  "classification": "execution: independent finite fixed-source specification and quality review",
+  "skills": [
+    "c5/requesting-code-review (reviewer role, no further delegation)",
+    "c5/verification-before-completion (reuse per AGENTS11.1; fresh focused observations and artifact checks)"
+  ],
+  "verdicts": {
+    "spec": "FAIL",
+    "quality": "FAIL"
+  },
+  "findings": [
+    "E120-I01",
+    "E120-I02",
+    "E120-I03",
+    "E120-I04"
+  ],
+  "canonical_raw_lookup": {
+    "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-linux-input-editing/task-120-raw-index.json",
+    "sha256": "7745e31b8650f7fec44cc3db69b81e13c826804787e225f87557af8a46738da5"
+  },
+  "source_and_warm_probe_inputs_sha256": {
+    "/workspace/work/editing-implementation/verification/src/text_edit_owner.cj": "5e48ad64962c974b55772761857e08321cbd7b9b7809a526350e910c4ae83a24",
+    "/workspace/work/editing-implementation/verification/src/text_edit_snapshot.cj": "8e9db4decf6f3537474212410684003ee977717f0805a6bc0c162faea7921ccb",
+    "/workspace/work/editing-implementation/verification/src/text_edit_controller.cj": "1ad63bfbb270f6e7814b704b8aae6b7471ce22666ade6c5e3b556d8dbd813fd2",
+    "/workspace/work/editing-implementation/verification/src/text_edit_issue.cj": "396cf008116b5501e3d500310be2cb18063f21ffe6d803e72605642d598ccc49",
+    "/workspace/work/editing-implementation/verification/src/text_edit_limits.cj": "d4ca5db12bb9cb0e66fe9b2254da3902bbbb9fff6a49890d65b3cbd3a442e1b0",
+    "/workspace/work/editing-implementation/verification/src/text_edit_record.cj": "7219e1cd618787451657014440f68e1532146378edb8a5501945af76501fbb90",
+    "/workspace/work/editing-implementation/verification/src/text_editing.cj": "0c1afe9ff49855034ed62f53ea5ed9d9f01319845f602cf9999069c5d6dea462",
+    "/workspace/work/editing-implementation/verification/src/text_edit_session.cj": "4c5abf1de84fb6a2d95c0196c645dcbcef2e02dfd7aa841d5a7a745370473ebe",
+    "/workspace/work/editing-implementation/verification/src/observable.cj": "744000914251fc0eb20e4f0d3335a9642de1bca78e5325ab540dfdfe486b9705",
+    "/workspace/work/editing-implementation/verification/src/observable_source.cj": "898d36caed711fddb8eefd31a3ac8eee14ebec1aad628db55bd0165b4afb8d7a",
+    "/workspace/work/editing-implementation/verification/src/runtime_session.cj": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b",
+    "/workspace/work/editing-implementation/verification/src/runtime_node.cj": "fb0c74ebe705dd2ab5efe44d51c91f405192a4291cfcc060838a4df819263017",
+    "/workspace/work/editing-implementation/verification/src/component.cj": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+    "/workspace/work/editing-implementation/verification/src/node_ref.cj": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805",
+    "/workspace/work/editing-implementation/verification/src/application.cj": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+    "/workspace/work/editing-implementation/verification/src/terminal_bridge.cj": "659798da1bf63458c3dff2b0a075ae899a9413589ee24ea00232b32df16cb523",
+    "/workspace/work/editing-implementation/verification/src/text/unicode.cj": "09a190283fbbcd9c58886e7182de79f138469903fe643762e22fa178374d8cdc",
+    "/workspace/work/editing-implementation/verification/src/layout.cj": "0fbeef2122d1c95125abe3dff3737eac4c39357d32c3f0c1eaecbcb63051fe43",
+    "/workspace/work/editing-implementation/verification/src/binding.cj": "cd4306b0d61d351b7331a0e6a34b34e440e3c5595cc83ef3d6627c7bec0eadcf",
+    "/workspace/work/editing-implementation/verification/openspec/changes/implement-linux-input-editing/design.md": "2434d2dffb09d95e4b96de2911f2a0a27b0c4f11be8058a2862c9f7b8f26bf04",
+    "/workspace/work/editing-implementation/verification/openspec/changes/implement-reactive-runtime/design.md": "dcfed7b4ca2e412bb075e923217bf2867556bfb1f8c7991a7384c519b830dbb7",
+    "/workspace/work/editing-implementation/verification/AGENTS.md": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/libansies.a": "ecd89d09880e4a0fa87b72f24cbb1a05e44199b90f59aa761055e85741fa134b",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/libansies.core.a": "839b3a392941cc5659d99f96e4c4e5cb41671f2fd8dff09ea61e13f06189316e",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/libansies.extensions.a": "de00a0e4c12303b5202b2fd3d405e9a0b1bd7e056bdd32cfe94f12b94a5ccb7a",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/libansies.api.a": "226a1ec538a8e32f096ca34f876a52bfe9dd6059ce2ddd2030d0a5e08e082d09",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/libansies.utils.a": "671299d5e1bfbbeb9c9ca48de8279cf35eebfcd60456c7a2bede6cf7ffe1ebdc",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.a": "b6aeece00109dc19b1bfa4144d346a1b3a22bef7b7f8b6bb83f0e8dfe935f924",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.cangjie_toml.lexer.a": "07b43cf5243918c6a58c883ea10ff7f9af00d9538a6aa9206bfaec41262204f1",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.test.cangjie_toml.from_toml.valid.a": "d98db639f0803fe3a0bd0d63cf172834a454b882dfb3aac433aa5cd93026da84",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.cangjie_toml.parser.a": "faa586c4de33b43eb48310e742b380091f954a702c4cd495dc94cc6fe929afc7",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.test.cangjie_toml.from_toml.invalid.a": "da27577370211e0dcfd346a2770960c51e6d42877e80b0aed66014535e561499",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.test.cangjie_toml.a": "1280af1cfea7f6f502b653e16c6d7f53da665d7ac3883889c68ac5a8179fd6a3",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.test.test_util.a": "2dae26cf66e969d717058bba36eca6f738a9813fe3cebe694b96fa38fca0d26b",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.test.cangjie_toml.util.a": "53a083d4552bcb8ebf0072b139a0d51ddbb55e5db46c5dafc035db9d56705106",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.cangjie_toml.util.a": "799d454d1a0b129147e2783c798e57e0d6f3b1382fc5427571827e395e9acda3",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.cangjie_toml.a": "194d1147532e35fab404f497d5579bb6b9af7f6db086dde3c29488273606e328",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.test.a": "fa86e12aa999874a17a7bf867c62a311f6d962beaaa1035e2fa9d49ac80823c5",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/libcangjie_toml.test.cangjie_toml.from_toml.a": "4925db064ea332a14c945681d677010e3900a1ee7db8a57f48af84f42b19050a",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicodewidth/libunicodewidth.a": "b17945729b80a7454fd2a478e400eb322620fdb1be016f90bb132e59d78bb8b0",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicodewidth/libunicodewidth.gen.a": "e2bdb7afeec379870ec25ea7c0d7bb572964dc25ad8ea2240fc412a67d6117a1",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/libcjtui.a": "cf1955af56235b926ae8d6e42a17fe018af872566a18fd598c9c82625c148bc4",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/libcjtui.theme.a": "d78eeb37908f2db3fbddba22aa253a70857ef50cf8fd6a98d547f38ce84e9fb4",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/libcjtui.style.a": "dfe32b8225a993717e837b5a0a70dc8e1775be0026daf11577c528c2ae072307",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/libcjtui.text.a": "7bf7c613cad3a87c33b974cb69e9afd2b7337725024e712014e1723c9de0c70c",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/libcjtui.geometry.a": "47a0504a773ecef26f5f6232d4de5526579317995db180948b2742fbd846e3f4",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/bitarray/libbitarray.a": "ce847ae91051cc0ed314eec6594edf3e5555bf350be8fa65a2c5221e52c5fba3",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/libunicode.test.a": "93c4aec73621a03089080fcf8a9b0be54517ef456ae68045002e935f8f855b7d",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/libunicode.a": "4d1927e6576ea4b5bb2e28e5fc59835b7103ed72704ed951b95cf9603f1a178e",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/libunicode.utf.a": "edd926da8661c0f8039a4730dce9c6763571fe4955042117fd3354477b7fd9f1",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/libunicode.types.a": "e52916ef79b3d0cbfa6026cb7a03354c827ce77a967f5fdc197d9eb0b408a214",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/libunicode.constants.a": "16d0bb5b8d65b70a5d55e0c6a3fdd12a4dd382e2473306ddccc1a8944504d6b0",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/bin/editing_contract.cjo": "db89b671c3d2e4380152e454488125036e70fa48a01ec464e368d9d2c5b44ed5",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/ansies.api.cjo": "5adcdfcd8b900226918f664cab44bd145971922e36c613bfea89a1ad08366a93",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/ansies.core.cjo": "ac4e9c69c38f3a2591c4be0abf2619734d823627b0372830b4ec659370b2a572",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/ansies.extensions.cjo": "d794144ccbfa79896e411e7cd75083b13d919933286b1094658dd073c93caf70",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/ansies.utils.cjo": "4d33596947743adfe022effe0e112b1ad395f0ab3592b757f1645895d48e839c",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/ansies/ansies.cjo": "2ccc383133faff2df44bc8c1dbbe543125600f285599500ac74425cba2fb3956",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.cangjie_toml.cjo": "2bf024c0dd598040b131c379ebfc66996e7c7fd6257411501aa89081f334f2f0",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.test.cangjie_toml.from_toml.valid.cjo": "e91fd4d0fe5d42ea7edf53e8b6124b5adcd851354139ff055bad86720ec97cc9",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.cangjie_toml.lexer.cjo": "0228f143a0130e82c0a2b00480a58e84c3e5bd65bf97e0da0a8ad6a7cc8b6c3f",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.test.cangjie_toml.cjo": "9ef712ac7cb034e066c51e5d9415c6c92118bfd66b11c03d3e91d36b7cc77884",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.test.cangjie_toml.from_toml.cjo": "9ac4210036c87a22b01bad4443c9bd52d1adfd9080d4c11f6a13f9550ebd2304",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.cjo": "e8f70b420a10257839949e15bcbb2aa3da598d1d1a8d653f23b8cc0a1a1a9563",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.test.cangjie_toml.from_toml.invalid.cjo": "e1c4933a42c009daffd33e9852db2aa61a09c7239080879c9f5405732bccb92a",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.test.test_util.cjo": "c1e4986adcad3b1a2ab9c49103d9e725b4046374a8a504087fa8859cdb9e1f78",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.test.cangjie_toml.util.cjo": "c518f8e63a4c27f3043bb925b070ddc55eb12276164f6d03ee36e55e7e1e8168",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.test.cjo": "474bdb65c7f00d13ccbce44837aee7de2aff143ecbe226859a525cfb61f5f9ea",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.cangjie_toml.util.cjo": "3f8a12c780186e640aeee68c291ad91088156ac6f8e83cc7e4273bacb74f005d",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cangjie_toml/cangjie_toml.cangjie_toml.parser.cjo": "cf67089f138dce2b40ac59aad2b4952557463475004aa3cd0bb4412b71cb4ecf",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicodewidth/unicodewidth.gen.cjo": "c53e9e5936e27b93828c6d29aee72dcfcc55782ee30c65e19f92cf64f310118e",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicodewidth/unicodewidth.cjo": "fb9145d8a1d41b29b01d19e32d93fdd677f422e6468bef7866e8decf87ea26fc",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/cjtui.cjo": "6454dcff29c8091955d114ce873b40456ab2aa5dac7af4125bb14fafa769431e",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/cjtui.theme.cjo": "406ef8a1166a13ae1c3492004881e4c753c3b37c8e0d9a3bc88ab44b0b4546c1",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/cjtui.geometry.cjo": "c8ba30d154d476ab8ade92f4953a0345f60407d77f73cd7f83d6b134aac797c3",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/cjtui.macros.cjo": "b387054e7312e0a840f9725c4cc6ac283a738e3ee5699237b05bafaa1119edbe",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/cjtui.style.cjo": "8f012dff66f482f4701f1affa07d53badcffe12d9e0abf522dde896d6d05bc0f",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/cjtui/cjtui.text.cjo": "7594aa38f09acc51b70d9460c047074fdeb5bfa0e136d799fe24f77526a56ff8",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/bitarray/bitarray.cjo": "ad2276d339595d85f0d7e397d7d4574fd4b300d7e8bc5b3c8a40e8cedb7b5446",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/unicode.types.cjo": "6997d9cd703bf119caeb4ed416fd3db1c0444903e06b758186345ac1ea1d9652",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/unicode.test.cjo": "4745bd9fe7b92d531d28dfa1e7f0fb135ffb6b8b47e6fcb9b31b38f45efab191",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/unicode.cjo": "c8a30511924a9ffd9a726e534e2fe6e7f8a6661afd542751efe1ff1cd44c220b",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/unicode.constants.cjo": "e2e73c5ff9c2ccb6b91b02c1095f3cc7b57f0ad13283cee4a122ad8547e78f18",
+    "/workspace/work/editing-implementation/verification/tests/editing/target/release/unicode/unicode.utf.cjo": "56297e410bb3dd1eb204ff263ce2320c2658e14cb00408b59cf16de6a1973195",
+    "/workspace/work/editing-implementation/verification/native/libcjtui_glyphs.a": "db4cdf35eb6d480719cca48dd9df2cff2b46330c5428f63a9019751a949076b7",
+    "/workspace/work/editing-implementation/verification/native/libcjtui_terminal.a": "c9ba953570aa4fbb25d21d94b36a012e06b70a4b0cbe833b6affb368b94213a4",
+    "/workspace/work/editing-implementation/verification/native/libcjtui_capabilities.a": "91e88b9d5609439379aada1a226f70b7e30ebc96b3ac0193f1e672f9c9cd057c",
+    "/workspace/work/editing-implementation/verification/native/libunicodedata.a": "96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03"
+  },
+  "copied_receipts": [
+    {
+      "origin": "/workspace/work/editing-implementation/raw/48-editing-expanded/exit",
+      "copy": "receipts/48-editing-expanded/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/48-editing-expanded/stdout",
+      "copy": "receipts/48-editing-expanded/stdout",
+      "sha256": "b613fd748bb306bc0cfb820d5f83dcb6cfe294f00fdf560d2b2fc0d044c7c87d",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/48-editing-expanded/stderr",
+      "copy": "receipts/48-editing-expanded/stderr",
+      "sha256": "7902af3df24ed7b894cb4543baef68f6cfccb87e101033b0cb18cbf18486621c",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/48-editing-expanded/source-commit",
+      "copy": "receipts/48-editing-expanded/source-commit",
+      "sha256": "c4ff916c2497e3d8482e8628b9f3d7b2b236405ecb4dd8c436a6020f863f6a47",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/48-editing-expanded/binary.sha256",
+      "copy": "receipts/48-editing-expanded/binary.sha256",
+      "sha256": "2848efd9c2c85ad5a8b1a7c349c30cf0928d684b9a52602330cb8538fcb4ccea",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/48-editing-expanded/input.sha256",
+      "copy": "receipts/48-editing-expanded/input.sha256",
+      "sha256": "f7a72e92bc24f597fdad37fc8c7baf6522fec05e4f5aa2004c239d0479478f8e",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/45-session-fixed/exit",
+      "copy": "receipts/45-session-fixed/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/45-session-fixed/artifacts/summary.json",
+      "copy": "receipts/45-session-fixed/artifacts/summary.json",
+      "sha256": "87fa5d3c7e762dd2dd0842d2d04d2dba32e4548169f4710a936a656aa8baebde",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/24-stop-proof/exit",
+      "copy": "receipts/24-stop-proof/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/24-stop-proof/stdout",
+      "copy": "receipts/24-stop-proof/stdout",
+      "sha256": "6c12e3191d3fa3446c690eed970dee5f84df8c64443626edeee5d20dfc4c7a2f",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/39-repeat-direct/exit",
+      "copy": "receipts/39-repeat-direct/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/39-repeat-direct/stdout",
+      "copy": "receipts/39-repeat-direct/stdout",
+      "sha256": "873aa78451aaa6fd0659fb871b421a006010238d056c62e32b13a8f209326986",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/41-lint-default/exit",
+      "copy": "receipts/41-lint-default/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/37-stream-lint/exit",
+      "copy": "receipts/37-stream-lint/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/42-example-final/exit",
+      "copy": "receipts/42-example-final/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/42-example-final/stdout",
+      "copy": "receipts/42-example-final/stdout",
+      "sha256": "f79cb7044d36cb37fd00fdf7fdf029dea3a4ff4dc8837aa6233dd2e58123c0ed",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/43-rich-final/exit",
+      "copy": "receipts/43-rich-final/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/43-rich-final/stdout",
+      "copy": "receipts/43-rich-final/stdout",
+      "sha256": "042357d12609b55349088ad56386a6f2013db5c1ebb5d52a630772c32438478d",
+      "root_digest_verified": true
+    }
+  ],
+  "probe_scope": "Small public consumer linked to existing fixed candidate libraries; not a new normal product build, suite, host or acceptance result. Runtime observations I01–I03; source-only schedule I04. Setup compilation errors retained separately.",
+  "counter_proof": "Text revision prechecks sync118, replace201, history503; selection revision checks applySelection87, sync123, replace201, history503. External exhaustion fails before local text/token publication, no business rollback. UInt64 paths source-reviewed only; existing Observable Int64 source version remains its distinct authority.",
+  "race_attribution": "raw48 issue=1, changed=false, changes=0. Production ConcurrentValueChanged only text_edit_session142, entered only when observable.editingCommit32–50 returns None, which occurs only version!=expected under original source lock. Expected sourceVersion comes from init34–36/sync113–127 atomic (value,version), or earlier successful own commit. No fake setter/worker overlap inference.",
+  "limitations": [
+    "Four required findings unresolved",
+    "Applied real producer unavailable; source policy only",
+    "No fresh host/bundle/clean consumer/full suite",
+    "B-M01 deferred024; T087-G01 pending023",
+    "No author self-assessment or role cross-contact"
+  ]
+}

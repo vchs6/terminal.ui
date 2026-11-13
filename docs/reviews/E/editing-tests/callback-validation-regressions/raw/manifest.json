@@ -1,0 +1,95 @@
+{
+  "schema": "editing-two-public-boundary-tests-1",
+  "utc_frozen": "2026-11-13T09:14:23.119859+00:00",
+  "test_only_fixed_sha": "9f430202e31e92c10b1eac5be9aebb3cfacb5688",
+  "test_base": "5e1f276634974e26abcefd9c342ed9b2da532758",
+  "report_sha256": "279623149255c7f471a8003743fc0857fbed2b5898353ae12af64f3a48e2af73",
+  "diff_sha256": "a18de16b9fb78a9f895195d9948e9bdead2d81510618d4d1c8ebbc951d6f9be0",
+  "test_files_sha256": {
+    "tests/editing/src/lifecycle_callbacks.cj": "105d7708b51f8ef1d7c445a687ab469d0ca7c06f629fc816054c6f0f44c01d71",
+    "tests/editing/src/validation_boundaries.cj": "97e35d5160f1a4b83990e5376dceb3cab9aeee3121222976146c44119d1c218e",
+    "tests/editing/README.md": "73599bf9226b17715a57fba639f5bd337aeff38a3dbfcd063fd8116834b99238",
+    "tests/editing/recipes.md": "abbd0e8898c1a08c9685529f70e4b2a758dcdfede9a0752dc09e7d0bbe7d8dc0"
+  },
+  "contract_sha256": {
+    "AGENTS.md": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+    "openspec/changes/implement-linux-input-editing/design.md": "72097dc0b33b644aad5443c7fc41fe17d12930c9a0dd649c317619d6a1186c5c"
+  },
+  "old_helpers_manual_oracles_entry_preserved": true,
+  "cases": [
+    {
+      "name": "callbackIllegalArgumentCommit",
+      "source": "tests/editing/src/lifecycle_callbacks.cj",
+      "manual_trigger": "emptyTextInput; key(text,x)",
+      "manual_expected": "source/localx committed beforecallback;selection1/1,revision1/selectionRevision1,undo available; exactIllegalArgumentException sentinel type/message/identity propagates; zeroissues;cleanup1/resources0;businessnotrolledback",
+      "runtime": "UNEXECUTED",
+      "body_typecheck": "UNEXECUTED"
+    },
+    {
+      "name": "areaEnterAtTextLimit",
+      "source": "tests/editing/src/validation_boundaries.cj",
+      "manual_trigger": "TextArea sourcex,maxTextBytes1;select1/1;keyEnter",
+      "manual_expected": "oneInputTooLarge;source/textx,selection1/1,revision0/selectionRevision1,emptyhistory unchanged;onChange0;healthyapp",
+      "runtime": "UNEXECUTED",
+      "body_typecheck": "UNEXECUTED"
+    }
+  ],
+  "checks_actual_cwd_utc_exit": [
+    {
+      "name": "parser",
+      "cwd": "/workspace/work/editing-tests/callback-validation-regressions/source",
+      "argv": [
+        "bash",
+        "-lc",
+        "set -e; source /workspace/work/validation/sdk/cangjie/envsetup.sh; cjc --version; cjfmt -f tests/editing/src/lifecycle_callbacks.cj -o /workspace/work/editing-tests/callback-validation-regressions/formatted/lifecycle_callbacks.cj; cjfmt -f tests/editing/src/validation_boundaries.cj -o /workspace/work/editing-tests/callback-validation-regressions/formatted/validation_boundaries.cj"
+      ],
+      "utc_start": "2026-11-13T09:12:39.048331+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T09:12:39.350046+00:00"
+    },
+    {
+      "name": "fixtures",
+      "cwd": "/workspace/work/editing-tests/callback-validation-regressions/source",
+      "argv": [
+        "bash",
+        "tests/editing/run.sh",
+        "--selftest"
+      ],
+      "utc_start": "2026-11-13T09:12:39.378141+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T09:12:39.575045+00:00"
+    }
+  ],
+  "check_interpretation": "cjfmt syntax/parser and fixture mechanics/schema only; no E API semantic resolution or product behavior claim",
+  "input_prepost_receipts": [
+    "prehash.json",
+    "posthash.json"
+  ],
+  "formatted_parser_outputs_sha256": {
+    "formatted/lifecycle_callbacks.cj": "b6be15fde3e00f18adb022b37443b118dd23a6505659713c664e913590a520e9",
+    "formatted/validation_boundaries.cj": "9915ce3f4bfc27565de1b0ef03108ec418f636c305227770fbfc5145d813be21"
+  },
+  "frozen_session_oracle_receipts_sha256": {
+    "/workspace/work/editing-tests/session-mode-oracle/raw/manifest.json": "2f81666311de0d7dec126a08922f20736912e63b14ec19055a0fbc4768f103d2",
+    "/workspace/work/editing-tests/session-mode-oracle/raw/reception-01/manifest.json": "dca5c8abceee642ba6ff7c2e7c1eb0df3a27dd1c25899ebe0815179572b577b0"
+  },
+  "source_clean": true,
+  "limits": [
+    "no mutableauthorworkspace productbuild/source/report reading",
+    "no newactualRED, oldsource reconstruction or candidate-derivedexpected",
+    "no product/spec/main/dispatcher/oldoracle edits",
+    "119adoption and execution on frozen candidate stillrequired"
+  ],
+  "raw_sha256": {
+    "commands.json": "172a70849a0952e5271dc40df840372ce4a2c3b80330cea05723742712a0ec55",
+    "fixtures.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "fixtures.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fixtures.stdout": "b2f909ad23fc29f17077e1bdae7244590621a5fd4c2ad5a89d7a86cc996ee69b",
+    "parser.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "parser.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "parser.stdout": "ee3a256c140dc3ff50a89e42c80959b93d99399766a922f8493de3d8bc0f671c",
+    "posthash.json": "88bc594a06436fe598730536bc8cb31118515821972e5ff221f6abe0c2a0b98e",
+    "prehash.json": "4c77f6d800b5e5dbcd97fd66e84c09a1755a88fb3ff70c6d911eeb93419bf353",
+    "record.py": "4b90bfbaab0ea9b9ea414a637cd14a5cf81f7d415686f92abacb71855b943db7"
+  }
+}

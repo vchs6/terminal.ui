@@ -1,0 +1,263 @@
+{
+  "schema": "independent-e120-round1-regressions-1",
+  "utc_frozen": "2026-11-13T10:01:16.430515+00:00",
+  "test_only_fixed_sha": "7880f83f94f3c47c1a0b9c803a80f485695f6fe8",
+  "test_base": "4b4a892e0b51b1d7570dcc6ae1d300ad3dd33015",
+  "fixed_product": "043523cdb07d4de542174022dddfa5ed715b560d",
+  "report_sha256": "abfbdaf4d38e34ea0987b9cd0102c379905aae42cfb63b8b1e5a74deb13d784c",
+  "diff_sha256": "de9728cfe72543f75b464912e32b9d7de967348ed7d22077debd298ccfabc4eb",
+  "test_files_sha256": {
+    "tests/editing/src/review_regressions.cj": "efa50d11509b256b22c466552516da86b09ff4e8a891cbcff0041293590a0cd2",
+    "tests/editing/src/main.cj": "14248caa3e6b7c51cb7d22cb21cb62a7f058afa5e87323cb1869ea4869c942e3",
+    "tests/editing/README.md": "ae94062fb13525fdfb1f9537a4f140fd075edde9dedfa07b3afb3ddf61fe3933"
+  },
+  "contract_sha256": {
+    "AGENTS.md": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+    "openspec/changes/implement-linux-input-editing/design.md": "72097dc0b33b644aad5443c7fc41fe17d12930c9a0dd649c317619d6a1186c5c",
+    "openspec/changes/implement-reactive-runtime/design.md": "dcfed7b4ca2e412bb075e923217bf2867556bfb1f8c7991a7384c519b830dbb7",
+    "openspec/changes/implement-public-interaction/design.md": "3aa214946949afbaa79ab08a214bd2fb6bc6f9b3b2173f11d64225bc52b16ebd"
+  },
+  "formal_finding_sha256": "4c9a5af75c9f414382d739956f94a2ed15b723b52bfa5500fc389f3cb8c5a6a6",
+  "actual_results": {
+    "E120-I01": {
+      "exit": 1,
+      "classification": "actual independent assertionRED",
+      "actual": "controllerZ@1,getterabc@2,frame Z/abc@2",
+      "expected": "controller/getterZ@1; exact8x2 Z/Z@1 grid"
+    },
+    "E120-I02": {
+      "exit": 1,
+      "classification": "actual independent assertionRED",
+      "actual": "bothplainframesblank; mount0cleanup0,refNone/controllerinvalid controls pass",
+      "expected": "inputabc3x1; area a/LF/b3x2; no lifecycle or handlepublication"
+    },
+    "E120-I03": {
+      "exit": 1,
+      "classification": "actual independent assertionRED",
+      "actual": "undo restored1/Down7;redo restored2/Down8",
+      "expected": "undoDown4;redoDown6",
+      "both_directions_observed_before_assertion": true
+    },
+    "E120-I04-initial": {
+      "exit": 1,
+      "classification": "exploratory fixture/oracle classificationfailure, NOTproductRED",
+      "actual": "errornone,changes0,issues0,finalYZ,historyempty",
+      "source": "initial-review_regressions.cj",
+      "attempts": 1
+    },
+    "E120-I04-final": {
+      "exit": 0,
+      "classification": "publicsafety control only; earlywindow INCONCLUSIVE/source-only",
+      "actual": "errornone,changes0,issues0,finalYZ,historyempty; distinctworker",
+      "attempts": 1,
+      "private_window_forced": false,
+      "lateCAS_reused_as_early_proof": false
+    }
+  },
+  "normal_sdk_builds": {
+    "initial_exit": 0,
+    "final_after_I04_fixture_correction_exit": 0,
+    "explanation": "finalbuild required for modifiedI04testbody; no productchange; originalthreevalidREDs content-equivalent andnotrerun"
+  },
+  "deterministic_RED_reuse_proof": "posthash.json: firstthreefunction/import/entry andallsharedhelpers exactbytes, samefixedproduct/config/SDK; initialtestedsource preserved",
+  "original_RED_binary_sha256": "dc2dce5129530ec669d919e55279e3a41372e5ade0712c582f891c1c4d637e11",
+  "final_control_binary_sha256": "42c7bef75b38a5585a2e5cb8d46c7717173f3204618a1b39b3de9e6a5d095b02",
+  "per_execution_actual_bin_prepost_receipts": [
+    "E120-I01.bin-pre.json",
+    "E120-I01.bin-post.json",
+    "E120-I02.bin-pre.json",
+    "E120-I02.bin-post.json",
+    "E120-I03.bin-pre.json",
+    "E120-I03.bin-post.json",
+    "E120-I04.bin-pre.json",
+    "E120-I04.bin-post.json",
+    "E120-I04-final.bin-pre.json",
+    "E120-I04-final.bin-post.json"
+  ],
+  "commands_actual_cwd_utc_exit": [
+    {
+      "name": "parser",
+      "cwd": "/workspace/work/editing-tests/review-round1/source",
+      "argv": [
+        "bash",
+        "-lc",
+        "set -e; source /workspace/work/validation/sdk/cangjie/envsetup.sh; cjc --version; cjfmt -f tests/editing/src/review_regressions.cj -o /workspace/work/editing-tests/review-round1/formatted/review_regressions.cj; cjfmt -f tests/editing/src/main.cj -o /workspace/work/editing-tests/review-round1/formatted/main.cj"
+      ],
+      "utc_start": "2026-11-13T09:54:58.093641+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T09:54:58.502895+00:00"
+    },
+    {
+      "name": "build",
+      "cwd": "/workspace/work/editing-tests/review-round1/replay/tests/editing",
+      "argv": [
+        "bash",
+        "-lc",
+        "set -e; source /workspace/work/validation/sdk/cangjie/envsetup.sh; export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env; export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip; exec cjpm build"
+      ],
+      "utc_start": "2026-11-13T09:54:58.541737+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T09:56:18.703858+00:00"
+    },
+    {
+      "name": "E120-I01",
+      "cwd": "/workspace/work/editing-tests/review-round1/replay/tests/editing",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nexport CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env\nexport CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip\nexport TERM=dumb COLORTERM= CJTUI_EDITING_REVIEW_CASE=E120-I01\nexec timeout 90s ./target/release/bin/main </dev/null"
+      ],
+      "utc_start": "2026-11-13T09:56:33.600518+00:00",
+      "exit": 1,
+      "utc_end": "2026-11-13T09:56:33.639632+00:00"
+    },
+    {
+      "name": "E120-I02",
+      "cwd": "/workspace/work/editing-tests/review-round1/replay/tests/editing",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nexport CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env\nexport CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip\nexport TERM=dumb COLORTERM= CJTUI_EDITING_REVIEW_CASE=E120-I02\nexec timeout 90s ./target/release/bin/main </dev/null"
+      ],
+      "utc_start": "2026-11-13T09:56:33.706754+00:00",
+      "exit": 1,
+      "utc_end": "2026-11-13T09:56:33.773653+00:00"
+    },
+    {
+      "name": "E120-I03",
+      "cwd": "/workspace/work/editing-tests/review-round1/replay/tests/editing",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nexport CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env\nexport CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip\nexport TERM=dumb COLORTERM= CJTUI_EDITING_REVIEW_CASE=E120-I03\nexec timeout 90s ./target/release/bin/main </dev/null"
+      ],
+      "utc_start": "2026-11-13T09:56:33.840115+00:00",
+      "exit": 1,
+      "utc_end": "2026-11-13T09:56:33.932692+00:00"
+    },
+    {
+      "name": "E120-I04",
+      "cwd": "/workspace/work/editing-tests/review-round1/replay/tests/editing",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nexport CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env\nexport CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip\nexport TERM=dumb COLORTERM= CJTUI_EDITING_REVIEW_CASE=E120-I04\nexec timeout 90s ./target/release/bin/main </dev/null"
+      ],
+      "utc_start": "2026-11-13T09:56:34.000001+00:00",
+      "exit": 1,
+      "utc_end": "2026-11-13T09:56:34.773696+00:00"
+    },
+    {
+      "name": "build-final",
+      "cwd": "/workspace/work/editing-tests/review-round1/replay/tests/editing",
+      "argv": [
+        "bash",
+        "-lc",
+        "set -e; source /workspace/work/validation/sdk/cangjie/envsetup.sh; export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env; export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip; exec cjpm build"
+      ],
+      "utc_start": "2026-11-13T09:58:13.502987+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T09:59:02.776785+00:00"
+    },
+    {
+      "name": "E120-I04-final",
+      "cwd": "/workspace/work/editing-tests/review-round1/replay/tests/editing",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nexport CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env\nexport CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip\nexport TERM=dumb COLORTERM= CJTUI_EDITING_REVIEW_CASE=E120-I04\nexec timeout 90s ./target/release/bin/main </dev/null"
+      ],
+      "utc_start": "2026-11-13T09:59:27.993607+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T09:59:28.770651+00:00"
+    },
+    {
+      "name": "audit",
+      "cwd": "/workspace/work/editing-tests/review-round1",
+      "argv": [
+        "python3",
+        "raw/audit.py"
+      ],
+      "utc_start": "2026-11-13T09:59:42.419939+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T09:59:43.454328+00:00"
+    }
+  ],
+  "input_prepost_receipts": [
+    "prehash.json",
+    "prehash-initial.json",
+    "prehash-final.json",
+    "posthash.json"
+  ],
+  "entry": {
+    "working_directory": "repository root",
+    "normal_build": "cd tests/editing && cjpm build",
+    "per_selector_command": "CJTUI_EDITING_REVIEW_CASE=E120-I01 TERM=dumb COLORTERM= timeout 90s tests/editing/target/release/bin/main </dev/null",
+    "other_selectors": [
+      "E120-I02",
+      "E120-I03",
+      "E120-I04"
+    ],
+    "dispatcher": "root/authorizedauthor owns wiring; not modified here",
+    "no_separate_runner_script": true
+  },
+  "limitations": [
+    "I04privateearlywindow remains source-proven only; publictimings/nonhit do not establishit",
+    "initialI04oraclefailure not productRED",
+    "no oldsuite/fullPTy/host/broadmatrix rerun",
+    "new tests only, no product/spec/mainbranch edits"
+  ],
+  "source_clean": true,
+  "raw_sha256": {
+    "E120-I01.bin-post.json": "2648a5e8c90e01345d17169baf9ca816a864467372162600f0970f52c52f32a6",
+    "E120-I01.bin-pre.json": "7f95dff8264f08885c648662cd3b5577b5def740fd9775ea88bf1e7f9ed1d29c",
+    "E120-I01.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "E120-I01.stderr": "e1280e8df2813c182f4e297eba29a0a8f3bb4a11711e45056369bd9fe0bdd16f",
+    "E120-I01.stdout": "fbf56d2561bdaf8be0b0fdbd9a6d69e3104b01a252702f405858c96059fc3ae6",
+    "E120-I02.bin-post.json": "b45ef37560e4ec9c68848385371989b965ae9037d660b2a423bf4637a148a0c0",
+    "E120-I02.bin-pre.json": "20752738a2e5e421fab2c7b45c1c25d3c61fd3af447aca0f64164d0153206af3",
+    "E120-I02.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "E120-I02.stderr": "7d9b814f0a75055db8567c7dbd8b73352e102b7652a32fd41cf1933a50016aef",
+    "E120-I02.stdout": "d7c2f4292bc6d7cbb0d5f2386359bf8af44e4b8c03ee438be5962f6e19d1076d",
+    "E120-I03.bin-post.json": "7d85e91e4d86c6b59798d9838914e96e1dabfdad70f4302a531414e15279492e",
+    "E120-I03.bin-pre.json": "23df1fea85431b779dc7991ea0304173e8329d80e5feeaec130410255671f408",
+    "E120-I03.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "E120-I03.stderr": "9eb411375dd861c4cb9a9918b5bd79e4e3d20c8bba53528a04ac804e616cec1b",
+    "E120-I03.stdout": "15f668633b2846d521acac22a524320988eddde9bff41cd98b22bbfa59082d7e",
+    "E120-I04-final.bin-post.json": "58ee023b23f7a8f2492bad9168a4ef95c1e30ace1a6063a65443332eacbd24c4",
+    "E120-I04-final.bin-pre.json": "641a25a2fbc09746fab67a351cb682ab6112923a64372d8fbf125db54cfeb843",
+    "E120-I04-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "E120-I04-final.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "E120-I04-final.stdout": "a688e91961b03dae09403a2d79da2180b32324891579070266be8fdb6b179149",
+    "E120-I04.bin-post.json": "162ae6ebe8f23e4a68e84bc229a78316a3ec6059ba5acdac6975359ea1605528",
+    "E120-I04.bin-pre.json": "2ca15977358606b86d79ba9409ee32cfe8176056363da4b507dc31bc5cd30554",
+    "E120-I04.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "E120-I04.stderr": "0470d4bb4714439ac5a83a19278b0f87d3c89a9d0aefbe53bdacdf8e79c5c0bf",
+    "E120-I04.stdout": "cdb1fccdaa1b6ecad669922c1a39b4c6c28f41bb5a619944358c0128cc65b21c",
+    "audit.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "audit.py": "8e695e6a40d7c5b2ba4c87001e3af4f92673f6df7440e892eed2c1dbe755270d",
+    "audit.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "audit.stdout": "001a5d27c6160ac86e2b43525bde46cf12bfcc634def2d5bae8247d84898e367",
+    "build-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "build-final.stderr": "a28eb4c38cc25aab7bfcf206ef636fe3ff1b06b28397e6429401c47ba923d307",
+    "build-final.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "build.stderr": "a28eb4c38cc25aab7bfcf206ef636fe3ff1b06b28397e6429401c47ba923d307",
+    "build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "commands.json": "a2fe4918076391c1b8f0804920b5626096be991c0322e95f151bebd237d43722",
+    "findings.frozen.json": "4c9a5af75c9f414382d739956f94a2ed15b723b52bfa5500fc389f3cb8c5a6a6",
+    "initial-review_regressions.cj": "06f5bb4fbd45da64bd6db7f97fed92988549d7c2012db17783df9ee987baf19e",
+    "parser.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "parser.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "parser.stdout": "ee3a256c140dc3ff50a89e42c80959b93d99399766a922f8493de3d8bc0f671c",
+    "posthash.json": "6da29d77f7a5d3f7386ecfb974386fec31c07dce77a8dfbde0a7fc282e7fc86a",
+    "prehash-final.json": "480b0b8360ed771b0fb49dee10a8c44b857ffbc2d312194d730e24d0ef2258bd",
+    "prehash-initial.json": "0e7941ede6b70bc620316e10090bf232ff09356bad202097bb05991e6d0810e5",
+    "prehash.json": "0e7941ede6b70bc620316e10090bf232ff09356bad202097bb05991e6d0810e5",
+    "record.py": "4b90bfbaab0ea9b9ea414a637cd14a5cf81f7d415686f92abacb71855b943db7"
+  },
+  "formatted_parser_outputs_sha256": {
+    "formatted/main.cj": "6630779b3f6ac917655be0c8a5c9bd9e5d7ca4e21e5c2a92e45703579a50aaf3",
+    "formatted/review_regressions.cj": "dee66a1254b09e589d18c94166bd4713f6e9841f9f2462ca5582ce63d2ff1b2c"
+  }
+}

@@ -1,0 +1,6 @@
+An exception has occurred:
+Exception: FAIL E120-I04 valid public keyboard/worker interleaving must not throw or apply an invalid stale deletion
+	 at editing_contract::check(Bool, std.core::String)(/workspace/work/editing-tests/review-round1/replay/tests/editing/src/checks.cj:6)
+	 at editing_contract::reviewKeyboardPlanningRace()(/workspace/work/editing-tests/review-round1/replay/tests/editing/src/review_regressions.cj:110)
+	 at editing_contract::reviewRegression(std.core::String)(/workspace/work/editing-tests/review-round1/replay/tests/editing/src/review_regressions.cj:118)
+	 at editing_contract::main()(/workspace/work/editing-tests/review-round1/replay/tests/editing/src/main.cj:5)

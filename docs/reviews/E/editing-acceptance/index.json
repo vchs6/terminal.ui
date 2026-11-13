@@ -1,0 +1,127 @@
+{
+  "task": 122,
+  "classification": "execution / independent finite acceptance",
+  "fixed_source": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+  "verdicts": {
+    "spec": "PASS_FINITE_E",
+    "quality": "PASS_FINITE_E",
+    "evidence": "PASS_FINITE_E"
+  },
+  "scope": [
+    "E001",
+    "E002",
+    "E003",
+    "E004",
+    "E005",
+    "F003",
+    "F004",
+    "F005",
+    "REQ009",
+    "AC028 editing",
+    "AC122"
+  ],
+  "canonical_root": "/workspace/work/terminal.ui",
+  "fixed_source_root": "/workspace/work/editing-execution/source",
+  "execution_root": "/workspace/work/editing-execution",
+  "review_root": "/workspace/work/editing-review",
+  "execution_final_index": {
+    "path": "/workspace/work/editing-execution/final-index.json",
+    "sha256": "2cb01f0ea6d3f3bf6fd64b0715d922d1c8bd3c36432608441cb84566c4865276"
+  },
+  "source_review_rounds": [
+    {
+      "path": "/workspace/work/editing-review/round1/index.json",
+      "sha256": "f9e44b4eb2814130f3f319355c2a356cdc9f57f17f7949d5eaf80da1400b8532",
+      "sha256sums": "a8779e8ef2975d6e92f0e064dd707cf721ed645db2411a23c257dc31dac40f0c"
+    },
+    {
+      "path": "/workspace/work/editing-review/round2/index.json",
+      "sha256": "64b15c1064372f61dbc7ac544cfb9424e9952ca86e50d695244ece31746cfdd4",
+      "sha256sums": "d2e7bf108591d030a02f3700db411a35f7a27b0fe9735f3b9455f5f51abb44b0"
+    }
+  ],
+  "package_sha256": "9a953a26b9c848df4e1426fb218f4059891f3bc319206c054ed98d115b8a1a11",
+  "binary_identity": {
+    "editing": {
+      "path": "/workspace/work/editing-execution/clean-unpacked/cjtui-0.0.0/tests/editing/target/release/bin/main",
+      "sha256": "f6906784539d2bb4575a18a641a3f3cda052eb79bb91385806045bf699ec0e0d",
+      "bytes": 19786080
+    },
+    "example": {
+      "path": "/workspace/work/editing-execution/clean-unpacked/cjtui-0.0.0/examples/editing/target/release/bin/main",
+      "sha256": "29008f50a28af44e28c990cd3da8a17fb50e52df395533ace314bb4945ad54b1",
+      "bytes": 18895760
+    }
+  },
+  "visual_originals": [
+    {
+      "path": "/workspace/work/editing-execution/raw/host-xterm-example/single-selection.png",
+      "sha256": "3042c7ce6ca67981b5cdd4b3e2d5b882ed2ad97921a64aa84b25124bbe31a9db"
+    },
+    {
+      "path": "/workspace/work/editing-execution/raw/host-xterm-example/area-unicode-paste.png",
+      "sha256": "08c372e0d508815f97b616c284636aaf113cbe86eb3bc4d1ed7c9f93df5d478c"
+    },
+    {
+      "path": "/workspace/work/editing-execution/raw/host-xterm-example/resized.png",
+      "sha256": "8c12364a24e03a564e163d2759b593a406b65372b06f4d453db16a2c2980eccb"
+    },
+    {
+      "path": "/workspace/work/editing-execution/raw/host-vte-example/single-cut-retained.png",
+      "sha256": "b4172f432fb1a1148bee82728be601ad2e2da4d8b0496f78fd27297c4d7fc841"
+    },
+    {
+      "path": "/workspace/work/editing-execution/raw/host-vte-example/resized.png",
+      "sha256": "e9dcfa7311d3d6a6bdcd958efec0d3596d025256712ca4a2ceb46d32843b1f9b"
+    },
+    {
+      "path": "/workspace/work/editing-execution/raw/host-vte-paste/pasted.png",
+      "sha256": "802323381807931e38e4ce26746c7c51e7a1164fc5418916e01f08b266d1fe19"
+    },
+    {
+      "path": "/workspace/work/editing-execution/raw/host-vt-example-r2/single-selectall.png",
+      "sha256": "eaeb751773bca3bc00767aa2a69f8bc59ca9f40665c4f65e81b50800eeb53544"
+    },
+    {
+      "path": "/workspace/work/editing-execution/raw/host-vt-example-r2/area-two-lines.png",
+      "sha256": "5ac6bafcad7e036a701395c354402fc5f20a40dc46f23c5831af6dc12beb92c7"
+    },
+    {
+      "path": "/workspace/work/editing-execution/raw/host-vt-example-r2/resized.png",
+      "sha256": "210fa12f54caddf39149a3a84543b1b4841fffee91536b5514c21b83f10833f3"
+    }
+  ],
+  "raw_receipts": {
+    "path": "original-SHA256SUMS",
+    "sha256": "80fd9799cf268fc50250efc2ace0992be59d003e77d56510fb06a425813a768a",
+    "selected_original_files": 184
+  },
+  "selected_evidence_check": {
+    "path": "selected-evidence-check.json",
+    "sha256": "04131a76c56a7a6c568f4a2b98438c12580712da1c564742dad75537912013bd"
+  },
+  "acceptance": {
+    "path": "acceptance.md",
+    "sha256": "ad21b5eed224c869dc8debbe5e2768874869c85f38cdd895d63c4f777f3ab1ba"
+  },
+  "requirement_matrix": {
+    "path": "requirement-matrix.md",
+    "sha256": "3d118adf5f3428682dea60abc43484a6c28270c22f047ea44799705554b244f2"
+  },
+  "proof_limits": [
+    "UInt64 exhaustion source-only",
+    "I04 precise early planning race source-only; actual observed CAS conflicts are not forced early-window evidence",
+    "No genuine Applied producer/integration",
+    "GUI emoji output ?? under documented automatic projection; no font-cause claim",
+    "VT native Shift modifiers lost; Unicode input/paste/local clipboard delivery insufficient evidence",
+    "VM is not physical hardware"
+  ],
+  "deferred": [
+    "B-M01 TASK024",
+    "T087-G01 TASK023",
+    "Full Linux/AC041/024 and parent030/020/019/027",
+    "M1/M2 overall acceptance",
+    "Release"
+  ],
+  "integration": "Controller to archive original evidence once and establish originalSHA-to-main alias/source equivalence; unchanged results reused."
+}

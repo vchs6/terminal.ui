@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "strace",
+    "-f",
+    "-xx",
+    "-s",
+    "65535",
+    "-e",
+    "trace=read,write,ioctl,poll,ppoll,rt_sigaction,openat,execve",
+    "-o",
+    "/workspace/work/editing-execution/raw/host-vte-example/product.strace",
+    "/workspace/work/editing-execution/clean-unpacked/cjtui-0.0.0/examples/editing/target/release/bin/main"
+  ],
+  "mode": "example",
+  "utc": "2026-11-13T10:23:37.489583+00:00"
+}

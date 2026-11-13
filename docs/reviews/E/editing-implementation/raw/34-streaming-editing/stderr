@@ -1,0 +1,226 @@
+[31merror[0m: lambda capturing mutable variables needs to be called directly
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:60:34:
+   [36m| [0m
+[36m60[0m [36m| [0m          editingEachCluster(text, {[0m
+   [36m| [0m [31m_[0m[31m_________________________________^[0m
+[36m61[0m [36m| [0m[31m|[0m             cluster, i => if (i < selection.caret) {[0m
+   [36m| [0m[31m|[0m ...[0m
+[36m69[0m [36m| [0m[31m|[0m         })[0m
+   [36m| [0m[31m|[0m[31m_[0m[31m________^[0m
+   [36m| [0m
+[34mnote[0m: 'x' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:63:21:
+   [36m| [0m
+[36m63[0m [36m| [0m                    x = 0[0m
+   [36m| [0m                    [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'y' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:64:21:
+   [36m| [0m
+[36m64[0m [36m| [0m                    y++[0m
+   [36m| [0m                    [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'x' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:66:21:
+   [36m| [0m
+[36m66[0m [36m| [0m                    x += displayWidth(cluster)[0m
+   [36m| [0m                    [34m^ [0m
+   [36m| [0m
+
+[31merror[0m: lambda capturing mutable variables needs to be called directly
+   [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:169:50:
+    [36m| [0m
+[36m169[0m [36m| [0m          let nextCount = editingEachCluster(next, {[0m
+    [36m| [0m [31m_[0m[31m_________________________________________________^[0m
+[36m170[0m [36m| [0m[31m|[0m             cluster, _ => if (bytes < prefix.size) {[0m
+    [36m| [0m[31m|[0m ...[0m
+[36m174[0m [36m| [0m[31m|[0m         })[0m
+    [36m| [0m[31m|[0m[31m_[0m[31m________^[0m
+    [36m| [0m
+[34mnote[0m: 'bytes' is mutable
+   [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:170:31:
+    [36m| [0m
+[36m170[0m [36m| [0m            cluster, _ => if (bytes < prefix.size) {[0m
+    [36m| [0m                              [34m^^^^^ [0m
+    [36m| [0m
+[34mnote[0m: 'bytes' is mutable
+   [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:171:17:
+    [36m| [0m
+[36m171[0m [36m| [0m                bytes += cluster.size[0m
+    [36m| [0m                [34m^^^^^ [0m
+    [36m| [0m
+[34mnote[0m: 'caret' is mutable
+   [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:172:17:
+    [36m| [0m
+[36m172[0m [36m| [0m                caret++[0m
+    [36m| [0m                [34m^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: lambda capturing mutable variables needs to be called directly
+   [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:222:34:
+    [36m| [0m
+[36m222[0m [36m| [0m          editingEachCluster(text, {[0m
+    [36m| [0m [31m_[0m[31m_________________________________^[0m
+[36m223[0m [36m| [0m[31m|[0m             cluster, i => if (i >= low && i < high) {[0m
+    [36m| [0m[31m|[0m ...[0m
+[36m226[0m [36m| [0m[31m|[0m         })[0m
+    [36m| [0m[31m|[0m[31m_[0m[31m________^[0m
+    [36m| [0m
+[34mnote[0m: 'result' is mutable
+   [36m==>[0m /workspace/work/editing-implementation/source/src/text_edit_session.cj:224:13:
+    [36m| [0m
+[36m224[0m [36m| [0m            result += cluster.size[0m
+    [36m| [0m            [34m^^^^^^ [0m
+    [36m| [0m
+
+[31merror[0m: lambda capturing mutable variables needs to be called directly
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:39:42:
+   [36m| [0m
+[36m39[0m [36m| [0m                  editingEachCluster(text, {[0m
+   [36m| [0m [31m_[0m[31m_________________________________________^[0m
+[36m40[0m [36m| [0m[31m|[0m                     cluster, _ => if (cluster == "\n") {[0m
+   [36m| [0m[31m|[0m ...[0m
+[36m47[0m [36m| [0m[31m|[0m                 })[0m
+   [36m| [0m[31m|[0m[31m_[0m[31m________________^[0m
+   [36m| [0m
+[34mnote[0m: 'width' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:41:25:
+   [36m| [0m
+[36m41[0m [36m| [0m                        width = greater(width, line + 1)[0m
+   [36m| [0m                        [34m^^^^^ [0m
+   [36m| [0m
+[34mnote[0m: 'width' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:41:41:
+   [36m| [0m
+[36m41[0m [36m| [0m                        width = greater(width, line + 1)[0m
+   [36m| [0m                                        [34m^^^^^ [0m
+   [36m| [0m
+[34mnote[0m: 'line' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:41:48:
+   [36m| [0m
+[36m41[0m [36m| [0m                        width = greater(width, line + 1)[0m
+   [36m| [0m                                               [34m^^^^ [0m
+   [36m| [0m
+[34mnote[0m: 'line' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:42:25:
+   [36m| [0m
+[36m42[0m [36m| [0m                        line = 0[0m
+   [36m| [0m                        [34m^^^^ [0m
+   [36m| [0m
+[34mnote[0m: 'height' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:43:25:
+   [36m| [0m
+[36m43[0m [36m| [0m                        height++[0m
+   [36m| [0m                        [34m^^^^^^ [0m
+   [36m| [0m
+[34mnote[0m: 'line' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:45:25:
+   [36m| [0m
+[36m45[0m [36m| [0m                        line += constraints.textWidth(cluster)[0m
+   [36m| [0m                        [34m^^^^ [0m
+   [36m| [0m
+
+[31merror[0m: lambda capturing mutable variables needs to be called directly
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:60:21:
+   [36m| [0m
+[36m60[0m [36m| [0m                      {[0m
+   [36m| [0m [31m_[0m[31m____________________^[0m
+[36m61[0m [36m| [0m[31m|[0m                         cluster, i =>[0m
+   [36m| [0m[31m|[0m ...[0m
+[36m79[0m [36m| [0m[31m|[0m                     }[0m
+   [36m| [0m[31m|[0m[31m_[0m[31m____________________^[0m
+   [36m| [0m
+[34mnote[0m: 'x' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:63:47:
+   [36m| [0m
+[36m63[0m [36m| [0m                                context.caret(x, y)[0m
+   [36m| [0m                                              [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'y' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:63:50:
+   [36m| [0m
+[36m63[0m [36m| [0m                                context.caret(x, y)[0m
+   [36m| [0m                                                 [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'y' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:66:58:
+   [36m| [0m
+[36m66[0m [36m| [0m                                if (i >= lo && i < hi && y >= clip.y && y < clip.y + clip.height) {[0m
+   [36m| [0m                                                         [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'y' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:66:73:
+   [36m| [0m
+[36m66[0m [36m| [0m                                if (i >= lo && i < hi && y >= clip.y && y < clip.y + clip.height) {[0m
+   [36m| [0m                                                                        [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'x' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:67:49:
+   [36m| [0m
+[36m67[0m [36m| [0m                                    context.put(x, y, " ", selected: true)[0m
+   [36m| [0m                                                [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'y' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:67:52:
+   [36m| [0m
+[36m67[0m [36m| [0m                                    context.put(x, y, " ", selected: true)[0m
+   [36m| [0m                                                   [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'x' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:69:33:
+   [36m| [0m
+[36m69[0m [36m| [0m                                x = 0[0m
+   [36m| [0m                                [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'y' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:70:33:
+   [36m| [0m
+[36m70[0m [36m| [0m                                y++[0m
+   [36m| [0m                                [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'y' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:73:37:
+   [36m| [0m
+[36m73[0m [36m| [0m                                if (y >= clip.y && y < clip.y + clip.height && x >= clip.x && x + width <= clip.x + clip[0m
+   [36m| [0m                                    [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'y' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:73:52:
+   [36m| [0m
+[36m73[0m [36m| [0m                                if (y >= clip.y && y < clip.y + clip.height && x >= clip.x && x + width <= clip.x + clip[0m
+   [36m| [0m                                                   [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'x' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:73:80:
+   [36m| [0m
+[36m73[0m [36m| [0m                                if (y >= clip.y && y < clip.y + clip.height && x >= clip.x && x + width <= clip.x + clip[0m
+   [36m| [0m                                                                               [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'x' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:73:95:
+   [36m| [0m
+[36m73[0m [36m| [0m                                if (y >= clip.y && y < clip.y + clip.height && x >= clip.x && x + width <= clip.x + clip[0m
+   [36m| [0m                                                                                              [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'x' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:75:49:
+   [36m| [0m
+[36m75[0m [36m| [0m                                    context.put(x, y, cluster, selected: i >= lo && i < hi)[0m
+   [36m| [0m                                                [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'y' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:75:52:
+   [36m| [0m
+[36m75[0m [36m| [0m                                    context.put(x, y, cluster, selected: i >= lo && i < hi)[0m
+   [36m| [0m                                                   [34m^ [0m
+   [36m| [0m
+[34mnote[0m: 'x' is mutable
+  [36m==>[0m /workspace/work/editing-implementation/source/src/text_editing.cj:77:33:
+   [36m| [0m
+[36m77[0m [36m| [0m                                x += width[0m
+   [36m| [0m                                [34m^ [0m
+   [36m| [0m
+
+5 errors generated, 5 errors printed.
+Error: failed to compile package `cjtui`, return code is 1
+Error: cjpm build failed

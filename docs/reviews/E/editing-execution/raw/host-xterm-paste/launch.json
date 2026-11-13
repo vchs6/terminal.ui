@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+    "-geometry",
+    "60x12+20+20",
+    "-T",
+    "TASK121 xterm paste",
+    "-fa",
+    "DejaVu Sans Mono",
+    "-fs",
+    "16",
+    "-xrm",
+    "XTerm*allowWindowOps: true",
+    "-e",
+    "python3",
+    "/workspace/work/editing-execution/tools/host-supervisor.py",
+    "/workspace/work/editing-execution/clean-unpacked/cjtui-0.0.0/tests/editing/target/release/bin/main",
+    "/workspace/work/editing-execution/raw/host-xterm-paste",
+    "paste"
+  ],
+  "env": {
+    "DISPLAY": ":199",
+    "HOME": "/workspace/work/editing-execution/raw/host-xterm-paste/home",
+    "XDG_CONFIG_HOME": "/workspace/work/editing-execution/raw/host-xterm-paste/home/config",
+    "XDG_CACHE_HOME": "/workspace/work/editing-execution/raw/host-xterm-paste/home/cache"
+  },
+  "fixed_source_sha": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+  "binary_sha256": "f6906784539d2bb4575a18a641a3f3cda052eb79bb91385806045bf699ec0e0d",
+  "utc": "2026-11-13T10:24:52.511995+00:00",
+  "connection": "local X11 :199; actual XTEST key events, host-produced PTY input"
+}

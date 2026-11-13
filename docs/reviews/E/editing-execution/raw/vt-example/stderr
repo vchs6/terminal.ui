@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/work/editing-execution/tools/vt.py", line 49, in <module>
+    capture('area-navigation-undo-redo');capture('resize-transition','RESIZED');time.sleep(.25);capture('resized')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/editing-execution/tools/vt.py", line 37, in capture
+    pattern=r'GRID seq=(\d+) phase='+phase+r' path=/dev/vcsa1 n=(\d+) hex=([0-9a-f]+)\r?\n';old=len(re.findall(pattern,serial()));control.sendall(b's' if phase=='RUNNING' else b'r');wait(lambda:len(re.findall(pattern,serial()))>old,'native cells '+name)
+                                                                                                                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/editing-execution/tools/vt.py", line 14, in wait
+    if p.poll() is not None and not allow_exit:raise RuntimeError('guest exit before '+label)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: guest exit before native cells area-navigation-undo-redo

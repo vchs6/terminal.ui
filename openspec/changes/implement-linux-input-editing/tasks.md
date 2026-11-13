@@ -1,8 +1,8 @@
 # Linux keyboard and text editing implementation plan
 
-当前控制器准入（2026-11-13，有限K完成）：TASK113正式测试、114实现、115独立双审、116实际执行、117独立有限验收已完成。接受产品c3c4642d84df57bbd9550d222ed22f602acd13ef对应main代码da9eaf4044cba917d12f441e041e164deb5eff80，产品路径逐字节一致；[K证据与SHA别名](../../../docs/reviews/K/README.md)。TASK118正式测试e4596343（main f38c7278）已冻结，前置消费者build/direct0、真实缺编辑API RED1；TASK119固定实现22ca8cf7已交付，TASK120独立规格与质量审核通过（初审4项Important，修复轮1全部关闭）；候选已推送wip/linux-editing，尚未合入main。TASK121独立普通制品/干净消费/真实宿主执行中，122有限验收待执行。仅K001–K004有限范围通过，不归档整个变更或关闭完整Linux/父AC。下列保留的候选措辞仅记录起草背景；当前状态以本段和逐任务勾选为准。
+当前控制器准入（2026-11-13，有限K/E完成）：TASK113–122已完成有限K/E交付；E独立122为PASS_FINITE_E，接受源22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167对应main b71cb2ebd740a22eba3759abd35b9b0fff068bdd，产品/测试/例子/产品文档逐字节一致；[E原件、独立报告及真实截图](../../../docs/reviews/E/README.md)。TASK120初审四项Important在修复轮1全部关闭；121普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付，122规格/质量/证据均PASS_FINITE_E。完整Linux/AC041/024、父030/020/019/027及M1/M2仍未关闭；T087-G01→023、B-M01→024保留，整个OpenSpec变更待最终023/024汇合。
 
-> **For agentic workers:** 本件已登记；K已有限验收，E待实现；后续由主代理按冻结合同与实际前置，按用户已选独立测试/产品/审查/执行/验收流程执行。REQUIRED SUB-SKILL: superpowers:subagent-driven-development；本起草角色不执行、不派代理。
+> **For agentic workers:** 本件已登记；K/E已有限验收；整体Linux仍待023/024；后续由主代理按冻结合同与实际前置，按用户已选独立测试/产品/审查/执行/验收流程执行。REQUIRED SUB-SKILL: superpowers:subagent-driven-development；本起草角色不执行、不派代理。
 
 **Goal:** 两个分别可验交付：完整有界键盘/paste；基于公共Canvas的单多行编辑。
 **Architecture:** 一KeyboardDecoder→现KeyEvent/UIKeyEvent/Runtime；编辑组合Canvas/focus/defaultAction/viewport/统一主题与Unicode，copy消费148–152原TASK030会话扩展。
@@ -11,7 +11,7 @@
 
 ## Global Constraints
 
-* 113–122为已登记L3，本tasks.md为唯一状态权威；113–120完成，121 in_progress，122 pending；docs/tasks仅编号映射，docs/acceptance记录有限事实。
+* 113–122为已登记L3，本tasks.md为唯一状态权威；113–122有限范围完成；完整Linux/父AC pending；docs/tasks仅编号映射，docs/acceptance记录有限事实。
 * 每类型一个小写下划线文件；公开旧KeyEvent/code/text/legacy行为和runtime生命周期保持。K新增签名已编译并有限验收；E新增签名已在固定候选22ca8cf7编译并通过源码双审，不允许产品作者凭空修公共约。
 * 保留唯一Component/Runtime/LayoutNode/Frame/Style/Unicode/ansies；控制器不持有可变全屏Frame，不加编辑kind，不实现标准Button/Checkbox/Menu。
 * 113–117键盘；118–122编辑；TASK030会话扩展148–152已另案规划，152验收固定后119消费，不夹进本产品周期。
@@ -38,10 +38,10 @@
 ## 2. Unit B — single-line and multiline text editing
 
 - [x] 2.1 TASK-118：冻结公共TextInput/TextArea/controller、Unicode事务/快捷键/主题视口/保守cut测试；所有前置实际API存在后取真正缺编辑API RED，交test-only版本。
-- [x] 2.2 TASK-119：通过公共Canvas/focus/viewport实现全部E001–E005和公开例子，消费已独立验收148–152会话扩展，固定118及受影响回归通过，交product-only提交。（固定源22ca8cf7；独立源码双审通过，宿主/制品与有限验收仍交121–122）
+- [x] 2.2 TASK-119：通过公共Canvas/focus/viewport实现全部E001–E005和公开例子，消费已独立验收148–152会话扩展，固定118及受影响回归通过，交product-only提交。（固定源22ca8cf7/main b71cb2eb；120源码双审通过，121执行与122有限验收完成）
 - [x] 2.3 TASK-120：独立审编辑固定diff与公共复用/结果真实性，交spec/quality双verdict，必需缺陷闭合。（22ca8cf7 PASS_FINITE_SOURCE；初审4项Important在修复轮1全部关闭，非完整Linux验收）
-- [ ] 2.4 TASK-121：独立执行公共CJPM消费者/Unicode/PTY/真实宿主/正常制品及干净消费，交真实exit/raw/PNG/hash，区分纯策略和宿主能力证据。（in_progress；固定源22ca8cf7，独立执行尚未交付）
-- [ ] 2.5 TASK-122：逐E001–E005与AC028核原件、公开文档和接口，交编辑有限验收；030全部宿主能力、020完整恢复、019菜单与027展示另汇合。
+- [x] 2.4 TASK-121：独立执行公共CJPM消费者/Unicode/PTY/真实宿主/正常制品及干净消费，交真实exit/raw/PNG/hash，区分纯策略和宿主能力证据。（固定源22ca8cf7，独立普通制品/干净消费及真实宿主执行完成；限制与原件见E归档）
+- [x] 2.5 TASK-122：逐E001–E005与AC028核原件、公开文档和接口，交编辑有限验收；030全部宿主能力、020完整恢复、019菜单与027展示另汇合。（PASS_FINITE_E；非完整Linux/父AC验收）
 
 ## L3 cards — shared fields and admission
 

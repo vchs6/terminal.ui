@@ -1,5 +1,7 @@
 # 产品说明
 
+单/多行公共编辑见[TextInput/TextArea](text-editing.md)；[有限E独立验收、原件与真实截图](../reviews/E/README.md)接受E001–E005，完整Linux/父AC仍待汇合。
+
 公共绘制、焦点和 caret 见 [交互原语](interaction.md)。键盘事件、粘贴与限制见 [键盘输入](keyboard-input.md)，示例位于 `examples/keyboard`。主题配置、解析和显式加载见 [主题配置](theme.md)。可选会话复制、宿主标题与恢复结果见 [会话扩展](session.md)，正常公共调用示例位于 `examples/session`。完整发送为 SentUnconfirmed；能力声明不等于宿主效果确认。
 
 cjtui 0.0.0 的首个切片提供 Linux ANSI TTY 文本界面：`Text`、`Row`、`Column` 组件块及前景色、背景色和粗体属性，Unicode 字符网格、纯文本与 ANSI 快照、键盘回调和终端尺寸变化时重排。普通应用无需发送 ANSI 或手动刷新。

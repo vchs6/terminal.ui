@@ -1,0 +1,56 @@
+{
+  "schema": "session-mode-oracle-test-reception-1",
+  "utc_frozen": "2026-11-13T09:03:51.544140+00:00",
+  "followup_fixed_sha": "b880cf9c4a02e4ba54d926599365d489fbb36716",
+  "parent_test_only_sha": "3e860b738a0c8d5e2a26920f8820cf952f9564a5",
+  "chain_base": "5e1f276634974e26abcefd9c342ed9b2da532758",
+  "source_files": {
+    "tests/session_extensions/README.md": {
+      "parent_sha256": "4ad22ffc11b5a02733d70974cac520dd796b76347e592a4b2a1f32da8ab2f032",
+      "fixed_sha256": "c6ef2db32ceb9f22e96ed18ce800b38e00bc405f63405819b3c7f548b59be8b2"
+    },
+    "tests/session_extensions/oracle.mjs": {
+      "parent_sha256": "4bbbd2e236547470c4c90ae225d4b6ca58e7ddbb96d52486b67ff2dea6792c02",
+      "fixed_sha256": "d4fc8fe0d81ff3012820a2ba32c8fdfbb8b05d190333d45d6098c861f477e91a"
+    },
+    "tests/session_extensions/safe_pop_selftest.mjs": {
+      "parent_sha256": "c5aa90086589b369a361be4a5121015f025d28d90fa4919cc884d4a47d066ea3",
+      "fixed_sha256": "9e3e72d026a682956d9a81d3b532b9b394c92d859a43d634d730f28f9b6d2fe3"
+    }
+  },
+  "new_report_sha256": "3c3735b864eab1eabc0987682a9bcdb317acc48351eab5251c20c2ee83c79504",
+  "new_diff_sha256": "c43d9930578cd8124b5211f9c327b4cc04f1a543c851e95ad3627b49ad3ee2d8",
+  "prior_immutable_manifest": {
+    "path": "/workspace/work/editing-tests/session-mode-oracle/raw/manifest.json",
+    "sha256": "2f81666311de0d7dec126a08922f20736912e63b14ec19055a0fbc4768f103d2",
+    "all_prior_raw_hashes_verified": true
+  },
+  "contract_correction": "K004: exactlyonce2004enable beforefaultarm; legitimateprecedinginit permitted; no prematuredisable",
+  "strict_invariants_unchanged": [
+    "exactmode2004disable afterpop beforeclose",
+    "allsequence/result/count/bytes guards",
+    "S007 and wholeverifyLive includingpartialUnsafe",
+    "firsterror/sentinel checks",
+    "all57 oracle negativecontrols"
+  ],
+  "new_positive": "collector-only seven-byte mode25query followedbyenable; no host/product simulation claim",
+  "actual_execution": {
+    "cwd": "/workspace/work/editing-tests/session-mode-oracle/source",
+    "argv": [
+      "node",
+      "tests/session_extensions/safe_pop_selftest.mjs"
+    ],
+    "utc_start": "2026-11-13T09:03:06.145247+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T09:03:06.221370+00:00"
+  },
+  "result": "oracle selfcheck exit0,3routepositives+1prefixpositive,57negatives,native0",
+  "product_compile_or_runtime": "NOT RUN; no33/278 rerun",
+  "source_clean": true,
+  "raw_sha256": {
+    "execution.json": "b9fe7e801fdd49ff370110961b2c9960b7aa974141f4f08bbfc2143c1891d02f",
+    "selfcheck.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "selfcheck.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "selfcheck.stdout": "815b213e78c9d22a0d226c55b4c4490594529873192d953c993db05e870d61a3"
+  }
+}

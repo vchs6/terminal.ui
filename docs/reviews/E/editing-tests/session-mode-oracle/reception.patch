@@ -1,0 +1,50 @@
+diff --git a/tests/session_extensions/README.md b/tests/session_extensions/README.md
+index b9d4471e..d865effd 100644
+--- a/tests/session_extensions/README.md
++++ b/tests/session_extensions/README.md
+@@ -96,7 +96,9 @@ Native sequence/result/write records require complete save, selected sequence2
+ failure at byte0, successful sequence3 pop, then sequence4 exact `CSI ? 2004 l`
+ before the first real native close. K004 requires restoring bracketed paste already
+ requested at initialization; the real runner checks exactly one initial `2004h`
+-and no premature disable before arming the fault. All pre-close bytes equal
++and no premature disable before arming the fault. Enable need not be the first
++initialization bytes; a collector-only positive allows a preceding mode25 query.
++All pre-close bytes equal
+ `save + pop + CSI ? 2004 l`; the extension-only wire remains exactly save+pop.
+ The eight-byte disable is not the seven-byte mode25 query. No additional output
+ is permitted by the exact sequence/result/byte checks; healthy same-process reopen output remains
+diff --git a/tests/session_extensions/oracle.mjs b/tests/session_extensions/oracle.mjs
+index c64d8f76..2a258241 100644
+--- a/tests/session_extensions/oracle.mjs
++++ b/tests/session_extensions/oracle.mjs
+@@ -61,8 +61,9 @@ export function verifyHeadless(rows, wire) {
+ // K004: this Application fixture requested bracketed paste before arming faults.
+ const pasteEnable=hex('1b5b3f3230303468'),pasteDisable=hex('1b5b3f323030346c');
+ export function verifyKeyboardModeStartup(startup) {
+-  assertWire(startup.subarray(0,pasteEnable.length),pasteEnable,'K004 requested paste mode before fault arm');
+-  assert.equal(startup.indexOf(pasteEnable,pasteEnable.length),-1,'paste mode enabled exactly once before fault arm');
++  const enabledAt=startup.indexOf(pasteEnable);
++  assert(enabledAt>=0,'K004 requested paste mode before fault arm');
++  assert.equal(startup.indexOf(pasteEnable,enabledAt+pasteEnable.length),-1,'paste mode enabled exactly once before fault arm');
+   assert.equal(startup.indexOf(pasteDisable),-1,'requested paste mode remains enabled before fault arm');
+ }
+ // S007: complete save owns a scope even when set fails before its first byte.
+diff --git a/tests/session_extensions/safe_pop_selftest.mjs b/tests/session_extensions/safe_pop_selftest.mjs
+index 28423c3d..f30321a7 100644
+--- a/tests/session_extensions/safe_pop_selftest.mjs
++++ b/tests/session_extensions/safe_pop_selftest.mjs
+@@ -6,6 +6,8 @@ import { tmpdir } from 'node:os';
+ import { join,resolve } from 'node:path';
+ import { verifyLive,verifyKeyboardModeStartup } from './oracle.mjs';
+ const enable=Buffer.from('1b5b3f3230303468','hex'),disable=Buffer.from('1b5b3f323030346c','hex');
++// Collector-only positive: a legitimate mode25 query may precede requested mode enable.
++verifyKeyboardModeStartup(Buffer.concat([Buffer.from('1b5b3f32352470','hex'),enable]));
+ const vectors=[
+  ['Direct','1b5b32323b3274','1b5d323b4107','1b5b32333b3274'],
+  ['TmuxPassthrough','1b50746d75783b1b1b5b32323b32741b5c','1b50746d75783b1b1b5d323b41071b5c','1b50746d75783b1b1b5b32333b32741b5c'],
+@@ -89,4 +91,4 @@ for(const [route,saveHex,titleHex,popHex] of vectors) {
+   nativeChecks++;console.log(`PASS fixture-only ${route}: selected sequence2 zero fault, real writer sequence3 pop succeeds; artifacts=${dir}`);
+  }
+ }
+-console.log(`PASS fixture-only S007 safe-pop oracle: routes=${positive} deliberate-negative-controls=${negative} native-selection-checks=${nativeChecks}; no product runtime PASS`);
++console.log(`PASS fixture-only S007 safe-pop oracle: routes=${positive} deliberate-negative-controls=${negative} startup-prefix-controls=1 native-selection-checks=${nativeChecks}; no product runtime PASS`);

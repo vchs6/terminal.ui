@@ -32,3 +32,5 @@ cjpm run
 - [总体架构设计](https://github.com/vchs6/terminal.ui/blob/main/docs/architecture.md)：模块、数据模型、状态/事件、布局/多层、渲染和恢复设计。
 - [用户构造设计](https://github.com/vchs6/terminal.ui/blob/main/docs/ui-construction.md)：声明式构造、状态/事件关联、U1–U5 和接口冻结边界。
 - [工程任务与验收入口](https://github.com/vchs6/terminal.ui/blob/main/docs/README.md)：任务、证据、流程规格和开发环境。
+
+有限单/多行编辑：[产品用法](docs/product/text-editing.md)、[独立验收与真实终端原件](docs/reviews/E/README.md)。完整Linux/父AC仍待后续汇合。

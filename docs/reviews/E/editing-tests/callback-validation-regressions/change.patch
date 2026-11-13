@@ -1,0 +1,120 @@
+diff --git a/tests/editing/README.md b/tests/editing/README.md
+index 5cbf865b..71614a36 100644
+--- a/tests/editing/README.md
++++ b/tests/editing/README.md
+@@ -18,3 +18,16 @@ The ordinary runner builds and directly runs its binary, then builds the accepte
+ `pty.mjs --selftest` and `fixtures/handshake.mjs` still test transport/tool mechanics only. Product vectors use real Application.run, actual PTY output/termios, and the accepted OSpipe input remap for read0 and consumed-prefix receipts. `cut-race` holds the actual PTY sink after the OSC52 prefix until a real background source write acknowledges through a FIFO. Only actual SessionResult outcomes are consumed; Direct Unknown may completely emit SentUnconfirmed and must preserve data. No system clipboard read/query or fake Applied backend exists. Applied policy is a manual golden table plus future fixed-source proof, not an executed integration assertion.
+ 
+ The per-requirement source/golden and remaining proof boundaries are in `recipes.md`. Test-only helpers carry no product declarations; types each have one lowercase file.
++
++## Narrow callback/Enter supplement
++
++`callbackTransactions()` additionally dispatches literal key text x, requiring
++its onChange IllegalArgumentException sentinel to propagate unchanged after the
++source/local transaction commits, without an InputTooLarge issue, then cleanup.
++`validationBoundaries()` additionally dispatches ordinary TextArea Enter with
++source x/maxTextBytes1, requiring one InputTooLarge and no source/local/history
++mutation or onChange. The existing TextInput Enter-submit oracle is unchanged.
++These two new bodies are runtime UNEXECUTED and not fully typechecked against
++an accepted E implementation at supplement freeze; no historical RED is claimed.
++Parser and fixture selfchecks are tool/schema evidence only. The source author
++must adopt this fixed test commit and run it against a frozen candidate.
+diff --git a/tests/editing/recipes.md b/tests/editing/recipes.md
+index 90dc8f1e..58992d66 100644
+--- a/tests/editing/recipes.md
++++ b/tests/editing/recipes.md
+@@ -25,3 +25,10 @@ All editor bodies below are frozen for future119 and UNEXECUTED at118; the posit
+ At120, bind the actual race trace to the unique conditional-write failure and single Observable source-version owner. Inspect both local UInt64 revision prechecks/exhaustion and source-token publication without a public setter or fabricated2^64 executions. If this source proof or actual conflict trace is missing, retain insufficient_evidence. The real sink-delay copy vector likewise needs its raw prefix/FIFO-ACK/return order checked on119, not inferred from a worker existing.
+ 
+ This freeze is a complete test delivery for118, not an editor behavior PASS,119 implementation,121 host acceptance or122 requirement completion. Real console/other host behavior, actual local clipboard contents and genuine Applied integration remain separate; samePTY+differentTERM is not multiple-host evidence. The runner never claims a screenshot or host support from raw OSC bytes.
++
++The narrow callback/Enter supplement preserves all rows above: lifecycle_callbacks
++adds key text x→committed source/snapshot→original IllegalArgumentException
++(type/message/identity)→cleanup, with no InputTooLarge; validation_boundaries adds
++TextArea x/maxTextBytes1/Enter→one InputTooLarge, zero edit/onChange, unchanged
++selection/revisions/history and healthy app. Both new runtime bodies remain
++UNEXECUTED until adopted by119; parser/fixture checks are not product execution.
+diff --git a/tests/editing/src/lifecycle_callbacks.cj b/tests/editing/src/lifecycle_callbacks.cj
+index 27cef6fe..50d97540 100644
+--- a/tests/editing/src/lifecycle_callbacks.cj
++++ b/tests/editing/src/lifecycle_callbacks.cj
+@@ -106,4 +106,46 @@ func callbackTransactions(): Unit {
+         check(v.get() == if (phase == "change") { "A" } else { "" }, "business write not rolled back")
+         a.dispose()
+     }
++    callbackIllegalArgumentCommit()
++}
++
++// F003/E002: a user's IllegalArgumentException is not an editor size rejection.
++func callbackIllegalArgumentCommit(): Unit {
++    let value = Observable<String>(""); let ctl = TextEditController()
++    let sentinel = IllegalArgumentException("EDIT_ONCHANGE_ILLEGAL_ARGUMENT_SENTINEL")
++    let changes = Box<Int64>(0); let issues = Box<Int64>(0); let tooLarge = Box<Int64>(0)
++    let cleanup = Box<Int64>(0); let observed = Box<?TextEditSnapshot>(Option<TextEditSnapshot>.None)
++    let node = TextInput(value, controller: Some(ctl), onChange: { text =>
++        changes.value++
++        let s = ctl.snapshot(); observed.value = Some(s)
++        check(text == "x" && value.get() == "x" && s.text == "x" &&
++            s.selection == TextSelection(1, 1) && s.revision == 1 &&
++            s.selectionRevision == 1 && s.canUndo && !s.canRedo,
++            "literal x source/local transaction committed before throwing onChange")
++        throw sentinel
++    }, onIssue: { issue =>
++        issues.value++; if (issue == TextEditIssue.InputTooLarge) { tooLarge.value++ }
++    }).onMount({_ => { => cleanup.value++ }})
++    let app = Application(node); app.startHeadless()
++    var caught = false; var same = false; var message = ""
++    try {
++        try { key(app, node, "text", text: "x") }
++        catch (error: IllegalArgumentException) {
++            caught = true; same = refEq(error, sentinel); message = error.message
++        }
++        check(caught && same && message == "EDIT_ONCHANGE_ILLEGAL_ARGUMENT_SENTINEL",
++            "key-default onChange preserves original IllegalArgumentException type/message/identity")
++        let seen = observed.value.getOrThrow()
++        check(changes.value == 1 && value.get() == "x" && seen.text == "x" &&
++            seen.selection == TextSelection(1, 1) && seen.revision == 1 &&
++            seen.selectionRevision == 1 && seen.canUndo && !seen.canRedo,
++            "throwing onChange keeps committed business and immutable local snapshot")
++        check(issues.value == 0 && tooLarge.value == 0,
++            "user IllegalArgumentException is not InputTooLarge or another edit issue")
++        let stats = app.stats()
++        check(!ctl.isValid() && cleanup.value == 1 && stats.mountedNodes == 0 &&
++            stats.activeBindings == 0 && stats.subscriptions == 0 && stats.pendingPosts == 0,
++            "throwing key-default callback follows failure cleanup and revokes controller")
++    } finally { app.dispose() }
++    check(cleanup.value == 1, "callback failure cleanup remains exactly once after dispose")
+ }
+diff --git a/tests/editing/src/validation_boundaries.cj b/tests/editing/src/validation_boundaries.cj
+index ceced5c5..ce2e42f6 100644
+--- a/tests/editing/src/validation_boundaries.cj
++++ b/tests/editing/src/validation_boundaries.cj
+@@ -62,4 +62,28 @@ func validationBoundaries(): Unit {
+         check(ui(hApp, { => h.redo() }) && ui(hApp, { => h.redo() }), "both budget records redo")
+         state(h, "cc", 2, 2, true, false, "redo moves entries without changing aggregate budget")
+     } finally { hApp.dispose() }
++    areaEnterAtTextLimit()
++}
++
++// E002: ordinary TextArea Enter is an atomic LF insertion subject to byte limits.
++func areaEnterAtTextLimit(): Unit {
++    let value = Observable<String>("x"); let ctl = TextEditController()
++    let changes = Box<Int64>(0); let issues = Box<Int64>(0); let tooLarge = Box<Int64>(0)
++    let area = TextArea(value, controller: Some(ctl), limits: TextEditLimits(maxTextBytes: 1),
++        onChange: {_ => changes.value++}, onIssue: { issue =>
++            issues.value++; if (issue == TextEditIssue.InputTooLarge) { tooLarge.value++ }
++        })
++    let app = Application(area); app.startHeadless()
++    try {
++        ui(app, { => ctl.select(TextSelection(1, 1)) })
++        exact(ctl, "x", 1, 1, 0, 1, "literal x at byte limit before Enter")
++        check(!ctl.snapshot().canUndo && !ctl.snapshot().canRedo, "initial limit-case history empty")
++        key(app, area, "enter")
++        exact(ctl, "x", 1, 1, 0, 1, "rejected LF preserves text/selection/both revisions")
++        state(ctl, "x", 1, 1, false, false, "rejected LF creates no undo/redo record")
++        check(value.get() == "x" && changes.value == 0 && issues.value == 1 && tooLarge.value == 1,
++            "ordinary Enter at maxTextBytes1 rejects once as InputTooLarge with no onChange")
++        check(ctl.isValid() && ref(area).isValid() && app.post({ => }),
++            "rejected Enter leaves the application healthy")
++    } finally { app.dispose() }
+ }

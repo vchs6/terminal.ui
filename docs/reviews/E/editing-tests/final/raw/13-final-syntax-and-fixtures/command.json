@@ -1,0 +1,11 @@
+{
+  "cwd": "/workspace/work/editing-tests/final/source",
+  "argv": [
+    "bash",
+    "-lc",
+    "set -e; source /workspace/work/editing-tests/final/env.sh; for file in tests/editing/src/*.cj tests/editing/prerequisites/src/*.cj tests/editing/missing_api/src/*.cj; do cjfmt -f \"$file\" -o \"/workspace/work/editing-tests/final/formatted/$(basename \"$(dirname \"$(dirname \"$file\")\")\")-$(basename \"$file\")\"; done; bash -n tests/editing/run.sh; node --check tests/editing/pty.mjs; python3 -c 'import ast,pathlib; ast.parse(pathlib.Path(\"tests/editing/fixtures/product_pty.py\").read_text()); print(\"PASS driver syntax only\")'; bash tests/editing/run.sh --selftest"
+  ],
+  "start_utc": "2026-11-13T07:53:33.964827+00:00",
+  "exit": 0,
+  "end_utc": "2026-11-13T07:53:36.134314+00:00"
+}

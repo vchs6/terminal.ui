@@ -1,0 +1,228 @@
+{
+  "schema": "session-requested-keyboard-mode-oracle-maintenance-1",
+  "utc_frozen": "2026-11-13T08:54:47.612956+00:00",
+  "test_only_fixed_sha": "3e860b738a0c8d5e2a26920f8820cf952f9564a5",
+  "test_base": "5e1f276634974e26abcefd9c342ed9b2da532758",
+  "report_sha256": "49b83582e3272ca0d4cac965983bcbded64813d8510ddb62b45e5fbb00320862",
+  "diff_sha256": "fb352d2eebaebf6fe6ecd239481a7d827cff292e0f6bd081a57bb75370ce975e",
+  "test_source_files": {
+    "tests/session_extensions/README.md": {
+      "base_sha256": "3924e6257091dbd38a7a3be8c1eb6b08a9904a4855278e6b5e6a7985512765cd",
+      "new_sha256": "4ad22ffc11b5a02733d70974cac520dd796b76347e592a4b2a1f32da8ab2f032"
+    },
+    "tests/session_extensions/oracle.mjs": {
+      "base_sha256": "a7f3e72953c38ac762e36e39a7170a1e16cd14e0c1ee29f0f971a653ce6fc0a7",
+      "new_sha256": "4bbbd2e236547470c4c90ae225d4b6ca58e7ddbb96d52486b67ff2dea6792c02"
+    },
+    "tests/session_extensions/run.mjs": {
+      "base_sha256": "4eca33e1f6169e11bb4ed9ced4e8045a18f460940906f33c28915497ace3fb24",
+      "new_sha256": "d8373f350012a6f43ecd6433a8afe3367cea74ad74b6d3f11b85994c96337ca2"
+    },
+    "tests/session_extensions/safe_pop_selftest.mjs": {
+      "base_sha256": "11ae199d816f0700b61132623c45856c3b7d117cc5dfa4b52bd416cb297f7818",
+      "new_sha256": "c5aa90086589b369a361be4a5121015f025d28d90fa4919cc884d4a47d066ea3"
+    }
+  },
+  "contracts_sha256": {
+    "openspec/changes/implement-linux-input-editing/design.md": "72097dc0b33b644aad5443c7fc41fe17d12930c9a0dd649c317619d6a1186c5c",
+    "openspec/changes/implement-session-extensions/design.md": "13d28b28aea0c023ad8865d1b62fb83b594847cefd5e26eecaee195a9d5a10a5",
+    "AGENTS.md": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd"
+  },
+  "causality": "sameactualfourzero-byte fault-set failures in pristineacceptedK and currentE; exact8byte2004disable requiredbyK004 andsafeunderS008zero-byte; oldoracle omittedit",
+  "manual_protocol": {
+    "enable_hex": "1b5b3f3230303468",
+    "disable_hex": "1b5b3f323030346c",
+    "mode25_query_hex": "1b5b3f32352470",
+    "enable_disable_bytes": 8,
+    "mode25_query_bytes": 7,
+    "allowed_preclose": "routeWrapped(save)+routeWrapped(pop)+exact bare mode2004disable, and no other write",
+    "basis": "K004 requested2004 finally restoration; S007 owned title scope cleanup; S008 zero-byte failure remains synchronized, partial failure silent"
+  },
+  "original_evidence_index_receipts": {
+    "accepted-K": {
+      "index": "/workspace/work/editing-implementation/raw/19-baseline-fault-set/SHA256SUMS",
+      "index_sha256": "52f061e6466c2cb9b44864e11f3374012238774def39638f302642b867151963",
+      "index_receipt_sha256": "a989b7e5e82293f24ebc03eae41623182b2e1e4be9340064b44127ad36256054"
+    },
+    "current-E": {
+      "index": "/workspace/work/editing-implementation/raw/regressions/SHA256SUMS",
+      "index_sha256": "948a047cf1cbd072fa6267fa3a9f562ff660ff7cbaa3586f5b7fb7105a3d3d5e",
+      "index_receipt_sha256": "e612ca824cdb1a0d7f47cccbaedcddf6e5e1056c6f9c030d0a66d5d6e663dd32"
+    }
+  },
+  "original_inputs_sha256": {
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/SHA256SUMS": "52f061e6466c2cb9b44864e11f3374012238774def39638f302642b867151963",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/SHA256SUMS.sha256": "a989b7e5e82293f24ebc03eae41623182b2e1e4be9340064b44127ad36256054",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/pid": "326ed202762b314a4fbeb19bbb5a7deca1733dc3cce9c6b501f1ee512f0acbf8",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/wire.bin": "5898ed2d809bbe1043129164536f200f9d1fd498f2e3fdb79c221b4d6a894678",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/session.raw": "11f5ca71edefa8a148b7eb87a38f2b10c02a48de2d62191bfdeb623041f11a7e",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/results.tsv": "ae8ad05c893c95247addf0bb1bbcb666ce42062533972533f2682cada8bf449d",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/all-wire.bin": "1588fa3d1d911fcf46641e1be2bd7d00b15b65477d1b892aee29a57ab2f5612f",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/tty": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/session.sh": "d6b7403e7a5145c37183ea63b3b681a2b7d56ee18c809bf2adec250929c82033",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/launch.json": "d3770256f0cef213652a494d420f27c162367711b2a4ca1dd3193d01b470dd11",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/000-fault-set-Direct-0/native.tsv": "4a127aaa748fe9ad1d9249610ee7ee5aa125684c0dbfead617fb89587d608179",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/pid": "a8a3f26f3112ef0e0dbb938a51408bf6035051b19fec817c9094d9513697c424",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/wire.bin": "8068844ca92fd9810ccbe298063cb4755d37475918488fa64ce76bc7160ea7d8",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/session.raw": "1f5f5fad432ed8404e137ed1adc96482d9d4ec15dae49c5d9b8695d93a93a06b",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/results.tsv": "f2aba7d8dbdda3591ef7daf0b10df93b9fc62a113573de332bff8836888e2c5c",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/all-wire.bin": "c90d48cadee942c15af532ef87d854773c2d04e8e82c0e0f649ec3fdaea17e22",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/tty": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/session.sh": "d6b7403e7a5145c37183ea63b3b681a2b7d56ee18c809bf2adec250929c82033",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/launch.json": "403837abc3ee3b61c341b2d71c66ec615917045babcc171d101d48d75832c400",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/006-fault-set-TmuxPassthrough-0/native.tsv": "ac44b9e718717424221dff141381efeff1c49389c184c43a2cba4d11a7dd24bb",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/pid": "8fcfb3716e38927cdede8623f792fd4d15d939669d41e4bf9230d3468bcf72f2",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/wire.bin": "363452a49ba4557bfb8e700723c858dced624c1fc3c9809ef2697e39b5190e21",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/session.raw": "c3e60ccad677442f87e9518ca1aeaf7e52cb4676838480d26365268a46608643",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/results.tsv": "79a088050213f03ce1de289d0a67baf9d78884ce64a888d4b33c03abde2f4d95",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/all-wire.bin": "19257b7c91340267087cc3312b45e303040bf258b46c3c2e5b8432fe36722c2a",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/tty": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/session.sh": "d6b7403e7a5145c37183ea63b3b681a2b7d56ee18c809bf2adec250929c82033",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/launch.json": "f36b838a1f182ae1c687887d8388d4c02dde55b0fbf3d1a08a67ff3fa006c705",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/022-fault-set-ScreenPassthrough-0/native.tsv": "9b1d17e16999cfd61e94ffc90dab65347a46e5aefddbabe5c6ab548aa315437d",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/pid": "e0b63b6af3f4e7aa0eb188e88d0b3f05e4227f458516ccee414bad5db4d80f12",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/wire.bin": "5898ed2d809bbe1043129164536f200f9d1fd498f2e3fdb79c221b4d6a894678",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/session.raw": "11f5ca71edefa8a148b7eb87a38f2b10c02a48de2d62191bfdeb623041f11a7e",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/results.tsv": "a5f2c84112762f6369aa8c0ba35dbfb23fea616dbdb5406bc869b21ae854ac22",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/all-wire.bin": "1588fa3d1d911fcf46641e1be2bd7d00b15b65477d1b892aee29a57ab2f5612f",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/tty": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/session.sh": "d6b7403e7a5145c37183ea63b3b681a2b7d56ee18c809bf2adec250929c82033",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/launch.json": "398e52b9758b101f47523e244062949c6931a418f2021b8dc7d241be78951897",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/artifacts/032-fault-set-Direct-0-aggregate/native.tsv": "4a127aaa748fe9ad1d9249610ee7ee5aa125684c0dbfead617fb89587d608179",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/source-commit": "0e0b9cd6c841b0ba21e4173589435abb7cda36ccc303d2037037794a62ea8954",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/binary.sha256": "bd83883dde2cca8683094ae61d5152086b79d4c4943d573af1890879d9bc8a35",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/stdout": "929272c6271d9b1516ff2f466e241592a218c4b2d67d3e3e8c7eef3f810487e0",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/stderr": "41c96622d1319a45b4846689c615729db3305efe5ee87d3e064a726e0d9b02bc",
+    "/workspace/work/editing-implementation/raw/19-baseline-fault-set/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "/workspace/work/editing-implementation/raw/regressions/SHA256SUMS": "948a047cf1cbd072fa6267fa3a9f562ff660ff7cbaa3586f5b7fb7105a3d3d5e",
+    "/workspace/work/editing-implementation/raw/regressions/SHA256SUMS.sha256": "e612ca824cdb1a0d7f47cccbaedcddf6e5e1056c6f9c030d0a66d5d6e663dd32",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/pid": "2498484c30737fd09848cbd76ba0cc6089ab72b911684a269cd2b225718e70b5",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/wire.bin": "5898ed2d809bbe1043129164536f200f9d1fd498f2e3fdb79c221b4d6a894678",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/session.raw": "11f5ca71edefa8a148b7eb87a38f2b10c02a48de2d62191bfdeb623041f11a7e",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/results.tsv": "ae8ad05c893c95247addf0bb1bbcb666ce42062533972533f2682cada8bf449d",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/all-wire.bin": "1588fa3d1d911fcf46641e1be2bd7d00b15b65477d1b892aee29a57ab2f5612f",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/tty": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/session.sh": "d6b7403e7a5145c37183ea63b3b681a2b7d56ee18c809bf2adec250929c82033",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/launch.json": "8d0fa1b0df501f5ce5867f069cf4f835861e9257505f9bec09aff086410d1d41",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/038-fault-set-Direct-0/native.tsv": "4a127aaa748fe9ad1d9249610ee7ee5aa125684c0dbfead617fb89587d608179",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/pid": "28f6bbaad0aa39ccc55704e11e333199f90eac28b0a2de43a9f2b9fbfe4954dc",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/wire.bin": "8068844ca92fd9810ccbe298063cb4755d37475918488fa64ce76bc7160ea7d8",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/session.raw": "1f5f5fad432ed8404e137ed1adc96482d9d4ec15dae49c5d9b8695d93a93a06b",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/results.tsv": "f2aba7d8dbdda3591ef7daf0b10df93b9fc62a113573de332bff8836888e2c5c",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/all-wire.bin": "c90d48cadee942c15af532ef87d854773c2d04e8e82c0e0f649ec3fdaea17e22",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/tty": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/session.sh": "d6b7403e7a5145c37183ea63b3b681a2b7d56ee18c809bf2adec250929c82033",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/launch.json": "c998e79ed6e6c85d27567b25d1f6662107822c1c74a0112bc3627e2fa2f074ac",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/125-fault-set-TmuxPassthrough-0/native.tsv": "ac44b9e718717424221dff141381efeff1c49389c184c43a2cba4d11a7dd24bb",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/pid": "076b4de1d9155109eb7ebfb5783951bc53f9ebdaae57166649473c8e258e1c59",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/wire.bin": "363452a49ba4557bfb8e700723c858dced624c1fc3c9809ef2697e39b5190e21",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/session.raw": "c3e60ccad677442f87e9518ca1aeaf7e52cb4676838480d26365268a46608643",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/results.tsv": "79a088050213f03ce1de289d0a67baf9d78884ce64a888d4b33c03abde2f4d95",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/all-wire.bin": "19257b7c91340267087cc3312b45e303040bf258b46c3c2e5b8432fe36722c2a",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/tty": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/session.sh": "d6b7403e7a5145c37183ea63b3b681a2b7d56ee18c809bf2adec250929c82033",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/launch.json": "7032be0bd86075798a9ec08affc8d8281859b860ce98eeb3d5b4b748301cd217",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/230-fault-set-ScreenPassthrough-0/native.tsv": "9b1d17e16999cfd61e94ffc90dab65347a46e5aefddbabe5c6ab548aa315437d",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/pid": "bc94b00dd023b44452a48eb525ff4ef3a6a769d6bef338f39453b20f9edd5f34",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/wire.bin": "5898ed2d809bbe1043129164536f200f9d1fd498f2e3fdb79c221b4d6a894678",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/session.raw": "11f5ca71edefa8a148b7eb87a38f2b10c02a48de2d62191bfdeb623041f11a7e",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/results.tsv": "a5f2c84112762f6369aa8c0ba35dbfb23fea616dbdb5406bc869b21ae854ac22",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/all-wire.bin": "1588fa3d1d911fcf46641e1be2bd7d00b15b65477d1b892aee29a57ab2f5612f",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/after": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/tty": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/session.sh": "d6b7403e7a5145c37183ea63b3b681a2b7d56ee18c809bf2adec250929c82033",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/before": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/launch.json": "359a88da96afe98884eaa5ce0eae0c7ab3f0d8a6b5615aa7ce682f23c67293f2",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/artifacts/277-fault-set-Direct-0-aggregate/native.tsv": "4a127aaa748fe9ad1d9249610ee7ee5aa125684c0dbfead617fb89587d608179",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/stdout": "c22b34aa37003c759a7a501bfc5f4b7beaa3f9da11ffe32818c26387dff7e18e",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/stderr": "dcceacfa670c157092149ff15fddda1909b5f797f12c518e6cce28f21f66593c",
+    "/workspace/work/editing-implementation/raw/regressions/session-extensions/exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "/workspace/work/editing-implementation/raw/regressions/product-input.sha256": "e4e4dedadd4e51c0e9993bc16e2c7116469d7858814471eb18b8476d610dfa83",
+    "/workspace/work/editing-implementation/raw/regressions/product-post-check": "21987ff0818c15b2b6192850b7a7f687c6b8036f50258fb339186f2f7b3c2fb2",
+    "/workspace/work/editing-implementation/raw/regressions/binaries.sha256": "bc804d33f562af23049324037871c9b7a60f0494509539c2ad93ef114e48e4b3"
+  },
+  "checks": {
+    "synthetic_oracle_selfcheck": {
+      "actual_exit": 0,
+      "positive": 3,
+      "negative": 57,
+      "native_product_checks": 0,
+      "receipt": "selfcheck.receipt.json",
+      "note": "tool-observed alreadyvalidresult reused;stdout copiedverbatim;notrerun"
+    },
+    "stored_observation_replay": {
+      "actual_exit": 0,
+      "cases": 8,
+      "scope": "oracle-only replay of unchanged existing productraw; no new productGREEN claim"
+    },
+    "preserved_exact": {
+      "verifyLive_including_partialUnsafe": true,
+      "first_error_sentinel_checks": true
+    },
+    "product_compile_and_runtime": "NOT RUN; existingactualRED preserved; authorwillrunfixedfault-set33"
+  },
+  "commands_actual_cwd_utc_exit": [
+    {
+      "name": "collect",
+      "cwd": "/workspace/work/editing-tests/session-mode-oracle",
+      "argv": [
+        "python3",
+        "raw/collect.py"
+      ],
+      "utc_start": "2026-11-13T08:53:23.549965+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T08:53:23.602467+00:00"
+    },
+    {
+      "name": "replay",
+      "cwd": "/workspace/work/editing-tests/session-mode-oracle",
+      "argv": [
+        "node",
+        "raw/replay.mjs",
+        "/workspace/work/editing-tests/session-mode-oracle"
+      ],
+      "utc_start": "2026-11-13T08:53:23.630871+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T08:53:23.677186+00:00"
+    }
+  ],
+  "source_clean": true,
+  "raw_sha256": {
+    "audit.json": "5f6db06f61ceef0490beb99adb60ffa9d1ba14b25a8c3181621c9af2b19d81b0",
+    "collect.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "collect.py": "c0a4205d8e6ada69b09009b107c592a545ef2423440ab0a81e5b4c1beb69630d",
+    "collect.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "collect.stdout": "30527084bd5f8ff8d3215b4682a19ed5db6f0e8a9194062dc6314dd36bad131d",
+    "commands.json": "cadcd3d33070bc547d3962dc6622df87a0ca2b1dad9d34c4a6eea050bcc2805b",
+    "proof.json": "2fffafc30ef78a485edbc6b5164eff75531e33931a5f3d18e5c6391954006ac5",
+    "record.py": "4b90bfbaab0ea9b9ea414a637cd14a5cf81f7d415686f92abacb71855b943db7",
+    "replay.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "replay.mjs": "1d713764755da5f2879800712b3d3b8c8b28d2bade29d6ef2701f275eb7bbc80",
+    "replay.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "replay.stdout": "3a422c8200d2bc5455458b3a5cdd10c62f438ceaf13ac06e63897137bd19cfd9",
+    "selfcheck.receipt.json": "6ef820eba6d587a6a815178bcb1345f1b14467252d5181c0db6ee0f7b829378a",
+    "selfcheck.stdout": "5817024ea6879d08d40b551dd9ebbd03c26837a17d10281bea4d9c594f85b206"
+  }
+}

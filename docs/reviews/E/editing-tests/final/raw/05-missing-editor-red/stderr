@@ -1,0 +1,38 @@
+[31merror[0m: undeclared identifier 'TextEditController'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/missing_api/src/main.cj:5:22:
+  [36m| [0m
+[36m5[0m [36m| [0m    let controller = TextEditController()[0m
+  [36m| [0m                     [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/missing_api/src/main.cj:6:17:
+  [36m| [0m
+[36m6[0m [36m| [0m    let input = TextInput(Observable<String>("a"), controller: Some(controller))[0m
+  [36m| [0m                [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: no matching function for operator '()' function call
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/missing_api/src/main.cj:7:16:
+  [36m| [0m
+[36m7[0m [36m| [0m    let area = TextArea(Observable<String>("b"))[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextSelection'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/missing_api/src/main.cj:8:21:
+  [36m| [0m
+[36m8[0m [36m| [0m    let selection = TextSelection(0, 0)[0m
+  [36m| [0m                    [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'TextEditLimits'
+ [36m==>[0m /workspace/work/editing-tests/final/source/tests/editing/missing_api/src/main.cj:9:18:
+  [36m| [0m
+[36m9[0m [36m| [0m    let limits = TextEditLimits()[0m
+  [36m| [0m                 [31m^ [0m
+  [36m| [0m
+
+5 errors generated, 5 errors printed.
+Error: failed to compile package `editing_missing_api`, return code is 1
+Error: cjpm build failed

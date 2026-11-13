@@ -1,0 +1,176 @@
+{
+  "round": "E120-R2",
+  "fix_round": 1,
+  "base": "043523cdb07d4de542174022dddfa5ed715b560d",
+  "head": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+  "scope": "Original I01–I04 plus new breakage introduced by fix diff only; initial full source review otherwise retained",
+  "verdicts": {
+    "spec": "PASS_FINITE_SOURCE",
+    "quality": "PASS_FINITE_SOURCE"
+  },
+  "findings": {
+    "E120-I01": "ADDRESSED",
+    "E120-I02": "ADDRESSED",
+    "E120-I03": "ADDRESSED",
+    "E120-I04": "ADDRESSED"
+  },
+  "source_proofs": {
+    "E120-I01": {
+      "result": "ADDRESSED",
+      "source": "text_edit_session.cj:105–137 publishes text/token/revisions/history before signalPending; editing-source getter uses sync(deferSignal:true); text_editing.cj:133–142 installs the sole framework-owned afterEvaluate handler. binding.cj:55–58 invokes it only after track succeeds; trackSeeded restores the evaluation guard at86–88, completes subscriptions89–91, and releases ownerLock92–99 before returning.",
+      "ordering": "If a consumer was already evaluated, signal.notify queues it again with committed state; if later in the ready batch, it sees committed state. Same-version sync returns without a new signal, so the added pass stabilizes. Snapshot remains a query. Getter failure skips the hook and propagates to existing runtime failure cleanup. The hook calls only signal invalidation, not user code. Disposal and intrinsic owner clearing remain unchanged; no hook is invoked by dispose.",
+      "execution": "fix1-editing stdout: controller=Z@1, getter=Z@1 and full grid Z / Z@1; selector PASS. Runtime core receipt exit0 retains getter guards and cleanup/failure behavior."
+    },
+    "E120-I02": {
+      "result": "ADDRESSED",
+      "source": "text_editing.cj:15–27 shares validation with mounted TextEditSession.validate. Both measure and draw choose committed edit state when mounted, otherwise read/validate the Observable and draw with TextSelection(0,0). All text/selection/LF/caret painting remains in the same Canvas callback. No intrinsic mount or controller attachment is added to temporary Runtime.",
+      "ordering": "Detached measure/draw only read source and local values; illegal initial LF/CR/control/size rejects via the same validator. Existing Runtime temporary mode still suppresses effects and public references. A real later mount creates fresh revision0/selection0 state.",
+      "execution": "fix1-editing stdout: input abc and area a/LF/b expected grids, mounts=0 cleanup=0 detachedBefore=true detachedAfter=true; selector PASS."
+    },
+    "E120-I03": {
+      "result": "ADDRESSED",
+      "source": "text_edit_session.cj:525–533 performs the expected-version history commit, returns unchanged on failure, then clears preferredColumn before publishing the restored source/text/selection and changed()/onChange. Both undo and redo use this single history method.",
+      "execution": "fix1-editing stdout: undo restored1/down4 and redo restored2/down6; both independent histories passed."
+    },
+    "E120-I04": {
+      "result": "ADDRESSED",
+      "source": "handle300–301 syncs once and captures expectedVersion. Text/paste and TextArea Enter carry it through keyboardInput304/316→replace297; deletion computes its range against the same local state and passes preparedVersion405. In replace151–153, prepared callers bypass the source-refresh branch154–165. No callback/pump/local synchronization runs between captured state and candidate calculation; permitted background writes alter only Observable. commit224 passes the captured version to the unchanged sole-lock conditional write.",
+      "old_counterexample": "After handle reads ax/v, a worker sets YZ/v+1. The fix still calculates the old deletion result x, but editingCommit(v,x) sees v+1 and returns None; commit then syncs latest YZ and emits the sole ConcurrentValueChanged. It cannot change expectedVersion to v+1 or commit Z as the old implementation did.",
+      "rejection_and_noop": "Keyboard control/multiline/byte prevalidation uses the same frozen local text/selection and rejection returns before candidate publication; replace does not resync to a larger value after size validation. Same-text prepared/guarded paths check actual source version before selection-only publication; a mismatch returns false (prepared path synchronizes the external value) without applying the old selection, no text write/history/onChange. Guarded controller replacements retain normal identity/revision/actual-source checks. No implicit retry is added.",
+      "race_attribution": "Only text_edit_session145 emits ConcurrentValueChanged, following editingCommit(expectedVersion,next)==None. Observable.cj lock/value/version/atomic snapshot and conditional helper are unchanged. Actual fix1-editing output has both original conflict and I04 selector conflict with zero edits, finalYZ and no history. These establish observed conflicts, not which internal pre-commit interval was hit.",
+      "limitation": "The specific early planning window is not forced by the public fixture. Closure of that source-proven original finding rests on the explicit version/data-flow proof above; no exact-window execution is claimed."
+    }
+  },
+  "changed_product_input_manifest_matches": {
+    "src/binding.cj": "47adef7827c77797a9a3f0d8a2c7fdf74448a34e956843e53933f9e985a933b3",
+    "src/text_edit_session.cj": "b132b5407da05f6978bccd2ea06222dfb6403974997e2e489251b60f5d4086f6",
+    "src/text_editing.cj": "4df2e0244abbacaca8e4a09dd714826877da511ceadaaa8bd5e204c244d1d9e2"
+  },
+  "raw_lookup": {
+    "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-linux-input-editing/task-120-r1-raw-index.json",
+    "sha256": "e72317a6013e6e9271e532b9b9aa1200d6cbeb3dcab76bb82a6fd5b6c5ec03cd"
+  },
+  "copied_receipts": [
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-editing/command.txt",
+      "copy": "raw/fix1-editing/command.txt",
+      "sha256": "5411301345f310edbd1d2e9a75c1befbd5717508f1262400c7e7e0d77d284d5e",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-editing/exit",
+      "copy": "raw/fix1-editing/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-editing/stdout",
+      "copy": "raw/fix1-editing/stdout",
+      "sha256": "661f72930dfb660fee9ed367174d5623387e96e35a762e493348445ec238ac07",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-editing/stderr",
+      "copy": "raw/fix1-editing/stderr",
+      "sha256": "e0ad423b5fbbf8f0dcf328c8d917307cb8236cf5f37c434654c2b470ecd7c2a4",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-editing/source-commit",
+      "copy": "raw/fix1-editing/source-commit",
+      "sha256": "f505b201a5dc9adaf44bd2baa349fabb63c7ff4e60102511a2e8e5c5fd0cf38d",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-editing/input.sha256",
+      "copy": "raw/fix1-editing/input.sha256",
+      "sha256": "2df53f6f547298f79b9aaa33cb845f4f3483da68c5c736083697105bf006861c",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-editing/input-post-check",
+      "copy": "raw/fix1-editing/input-post-check",
+      "sha256": "6a15064006814367819885566eac23adb6452adffae2852f80f1b60339478d58",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-editing/binary.sha256",
+      "copy": "raw/fix1-editing/binary.sha256",
+      "sha256": "4a55c2699a9c61bb79de998426efe2e07eaed8737fe42a3fad3cc5b085fa4d3a",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-editing/test-equivalence.txt",
+      "copy": "raw/fix1-editing/test-equivalence.txt",
+      "sha256": "b06242d109bd5465b51cb9a091c3c6686cffb1f01c2e360f77e814fa9e655240",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-runtime/command.txt",
+      "copy": "raw/fix1-runtime/command.txt",
+      "sha256": "39de736b38549b1114e5637a329e68015f7e09ff62c1ed8d245c33245f3cd060",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-runtime/exit",
+      "copy": "raw/fix1-runtime/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-runtime/stdout",
+      "copy": "raw/fix1-runtime/stdout",
+      "sha256": "fd2c7a5b058dbaacd1c94504cdfdd7b6f923be16c3c9ed36d601273008424e26",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-runtime/stderr",
+      "copy": "raw/fix1-runtime/stderr",
+      "sha256": "40f770db9ab7dafd42ba3224f0553cbfac1e0e3a0f49947ae772a44d2bdcf05d",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-runtime/source-commit",
+      "copy": "raw/fix1-runtime/source-commit",
+      "sha256": "f505b201a5dc9adaf44bd2baa349fabb63c7ff4e60102511a2e8e5c5fd0cf38d",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-lint/exit",
+      "copy": "raw/fix1-lint/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-lint/severity-counts.json",
+      "copy": "raw/fix1-lint/severity-counts.json",
+      "sha256": "954725ccb83f40d11277ea352595005f008195ee247deb3067dc51cf8d6fb7a7",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-lint-plain/exit",
+      "copy": "raw/fix1-lint-plain/exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "root_digest_verified": true
+    },
+    {
+      "origin": "/workspace/work/editing-implementation/raw/fix1-lint-plain/severity-counts.json",
+      "copy": "raw/fix1-lint-plain/severity-counts.json",
+      "sha256": "06896f296b88a13081251dd8b833faea56859548d916b6e76494188f6904bda4",
+      "root_digest_verified": true
+    }
+  ],
+  "review_package": {
+    "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-linux-input-editing/task-120-r1-review-package.txt",
+    "sha256": "b0c30334d95e49646065541096bf5c9c8248b3dc08b6cab2e06701b454ed4e46"
+  },
+  "initial_evidence": "../round1/index.json",
+  "method": "Direct fixed git diff and source control-flow review; retained version-bound execution receipts reused. No new execution required because existing public selector observations match original reproducers and the remaining race question is settled by data flow.",
+  "limits": [
+    "Early I04 scheduling window not runtime-forced",
+    "No new full suite/bundle/clean consumer/host execution",
+    "UInt64 exhaustion remains static proof",
+    "Applied unavailable",
+    "B-M01/T087-G01 remain deferred/pending"
+  ]
+}

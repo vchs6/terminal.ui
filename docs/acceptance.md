@@ -31,7 +31,7 @@
 | AC-025 | REQ-008 | 分类主题配置解析与诊断 | TASK-025 | 合法单文件主题形成结构化配置；未知字段/非法值/坏引用带位置错误，不执行代码 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
 | AC-026 | REQ-008 | 应用主动主题重载与原子替换 | TASK-026 | 有效重载同批次生效；失败保留旧主题，旧请求不覆盖较新请求，状态/焦点保留；当前 Component/NodeRef/Observable 状态范围，完整焦点/编辑控件后续汇合 | passed（当前异步范围；[独立验收](reviews/R15/theme-loading/acceptance/report.md)） |
 | AC-027 | REQ-008、REQ-006 | 四套预置主题及统一组件展示 | TASK-027 | 深/浅/高对比/经典主题用同一展示应用，覆盖组件状态、受限色和窄屏；制品独立运行；产品证据待实现 | pending |
-| AC-028 | REQ-001.8、REQ-009 | 基础输入编辑与标准快捷操作 | TASK-028 | 单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交；产品证据待实现 | pending |
+| AC-028 | REQ-001.8、REQ-009 | 基础输入编辑与标准快捷操作 | TASK-028 | 单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交；E001–E005有限编辑已获122 PASS_FINITE_E，见[E原件](reviews/E/README.md)；父级完整汇合保留 | finite_passed（完整父AC pending） |
 | AC-029 | REQ-001.8、REQ-009 | 按钮标签与选择进度基础组件 | TASK-029 | 标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致；产品证据待实现 | pending |
 | AC-030 | REQ-010 | 可选会话能力与本地剪贴板通道 | TASK-030 | SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心；产品证据待实现 | pending |
 | AC-031 | REQ-004.8 | M2局部布局绘制及基线对照 | TASK-031 | 局部负载减少无关工作，移动/遮挡/宽字符/resize与M1帧结果一致，记录CPU/分配/输出及大范围退化；产品证据待实现 | pending |
@@ -195,13 +195,13 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-115 | REQ-009/010/007/011 | TASK-115 | 固定键盘增量独立双审 | passed（[独立源码双审最终PASS](reviews/K/keyboard-review/round-03/report.md)；原两轮FAIL保留） |
 | AC-116 | REQ-009/010/007/011 | TASK-116 | 独立真实输入/模态目标/退出恢复与普通包消费 | passed（[独立实际执行](reviews/K/keyboard-execution/report.md)；16阶段exit0、229包成员、三真实实现及宿主限制） |
 | AC-117 | REQ-009/010/007/011 | TASK-117 | 有限键盘合同及metadata，完整编辑仍待验 | passed（[独立PASS_FINITE_K](reviews/K/keyboard-acceptance/acceptance.md)；不关闭完整父AC/Linux） |
-| AC-118 | REQ-009/010/007/011 | TASK-118 | 独立Unicode事务/历史/竞态/控件golden与RED | passed（测试e4596343/main f38c7278冻结；前置build/direct0、真实缺编辑API RED1；后续固定实现与源码审核见AC119–120，独立执行/有限验收仍待121–122） |
-| AC-119 | REQ-009/010/007/011 | TASK-119 | 公共Canvas单多行输入/控制器/标准快捷键实现 | passed（固定候选22ca8cf7已交付并获120源码双审；wip/linux-editing，未合入main；制品/宿主仍待121–122） |
-| AC-120 | REQ-009/010/007/011 | TASK-120 | 固定编辑增量独立双审 | passed（22ca8cf7，spec/quality PASS_FINITE_SOURCE；初审四项Important在修复轮1全部关闭；源码结论不替代121/122，证据待有限E单次归档） |
-| AC-121 | REQ-009/010/007/011 | TASK-121 | 独立编辑/剪贴板结果/主题/viewport/真实终端消费 | in_progress（固定候选22ca8cf7，独立执行尚未交付） |
-| AC-122 | REQ-009/010/007/011 | TASK-122 | 原028完整证据及metadata，030父项按真实paste/cut汇合 | pending |
+| AC-118 | REQ-009/010/007/011 | TASK-118 | 独立Unicode事务/历史/竞态/控件golden与RED | passed（独立测试及supplements已冻结；真实缺API RED与前置成功原件见[E归档](reviews/E/README.md)） |
+| AC-119 | REQ-009/010/007/011 | TASK-119 | 公共Canvas单多行输入/控制器/标准快捷键实现 | passed（接受源22ca8cf7/main b71cb2eb；公开Canvas编辑实现，作者证明独立列于[E归档](reviews/E/README.md)） |
+| AC-120 | REQ-009/010/007/011 | TASK-120 | 固定编辑增量独立双审 | passed（spec/quality PASS_FINITE_SOURCE；初审四项Important修复轮1全部关闭；[双轮原件](reviews/E/README.md)） |
+| AC-121 | REQ-009/010/007/011 | TASK-121 | 独立编辑/剪贴板结果/主题/viewport/真实终端消费 | passed（普通build/bundle、干净消费与真实XTerm/VTE/kernelVT执行完成；宿主及source-only限制见[E归档](reviews/E/README.md)） |
+| AC-122 | REQ-009/010/007/011 | TASK-122 | 原028完整证据及metadata，030父项按真实paste/cut汇合 | passed（PASS_FINITE_E，spec/quality/evidence通过；[独立验收与矩阵](reviews/E/editing-acceptance/acceptance.md)，完整Linux/父AC另汇合） |
 
-唯一任务状态见[输入编辑变更](../openspec/changes/implement-linux-input-editing/tasks.md)，候选与签名微验证不当产品通过。
+唯一任务状态见[输入编辑变更](../openspec/changes/implement-linux-input-editing/tasks.md)，有限K/E证据见[K归档](reviews/K/README.md)与[E归档](reviews/E/README.md)，完整Linux/父AC未关闭。
 
 ## M2与公开基准质量验收
 

@@ -35,4 +35,4 @@ Linux优先及依赖风险处理：[R7输入与决策](reviews/R7/input.md)。�
 
 Linux全阶段继续实施：[总执行计划](linux-completion-plan.md)。具体任务状态仍由工程任务及其变更引用维护。
 
-归一化键盘有限交付：[K证据归档](reviews/K/README.md)、[审查索引](reviews/README.md)。独立117接受K001–K004；118实际测试进行中，编辑及完整父AC/Linux仍待后续验收。
+归一化键盘有限交付：[K证据归档](reviews/K/README.md)、[审查索引](reviews/README.md)。独立117接受K001–K004；独立122接受E001–E005有限编辑；[E原件与真实截图](reviews/E/README.md)。完整父AC/Linux仍待023/024汇合。
