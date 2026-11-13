@@ -1,3 +1,9 @@
+# Current TASK113 formal admission
+
+See [formal-admission.md](formal-admission.md) and [formal-integration-ledger.md](formal-integration-ledger.md) for root ACTUALGO, current fixed prerequisites, entry, manual oracles and exact UNEXECUTED limits. The original preparation text below is immutable historical context, not the current admission status.
+
+---
+
 # TASK113 keyboard test preparation
 
 This is test-only **PREPARATION**, frozen against input design

@@ -10,6 +10,7 @@ main(): Int64 {
     temporalCases()
     resourceCases()
     publicApiCases()
+    protocolReportCases()
     println("PASS public KeyboardDecoder contract; device integration remains separate")
     0
 }
