@@ -67,3 +67,5 @@ TASK083独立实际FAIL R14T083001，两真实GUI t delta仅CUP第3行却第4行
 2026-11-13：异步主题026、公共交互A/B/C已依次完成有限验收；实际状态权威见各change tasks和docs/acceptance。C原产品7f431765经独立112接受并机械集成main283e59b1，产品路径与受检源码字节一致；原014/018完整AC已映射。C独立111正常mandatory bundle/220成员、干净完整公共消费者与公开例子、五PTY及三宿主H01/原生caret均有固定原件。71张最终场景原PNG及125其他历史/瞬时图分类保留；VT Unknown物理隐藏证据不足但符合I015降级，不声称物理隐藏成功。整C原件与验收见[公开归档](../docs/reviews/interaction/C/README.md)。
 
 下一正式工作为Keyboard113冻结复核→114–117，再118–122编辑、153–162控件/菜单、完整M1/027展示、M2及最终Linux023/024等门槛；其他OS仍后置。旧B-M01 getter axes/onMount Off须024关闭；T087-G01最终制品检查仍须023关闭。C历史作者可变索引旧版本未保留和外部编译中间件限制已在112明确，不用新构建冒充旧原件，不影响已固定最终独立111证据。不因此次C有限验收停止用户的完整Linux目标，未发布。
+
+2026-11-13 当前恢复指针：main `83b264db784af638f3c6554bef595316ecdb0e3c` 已公开[正式158报告与固定测试身份](../docs/reviews/widgets/M/README.md)；独立测试原e59d5c9f→main9ec836ce，前置build/direct0和真正缺M目标RED已记录。当前159由fresh独立Terra/high角色在 `/workspace/work/widgets-composite-implementation/source` 实际实施；typing/runtime/headless/native/clean-bundle尚待产品与后续独立角色交付。唯一状态仍在[standard-widgets tasks](changes/implement-standard-widgets/tasks.md)，本日志不另列checklist。下一阶段仍为完整功能M1/027→M2局部布局绘制→最终Linux023/024；M/027/041/Linux未关闭，旧执行指针只保留历史。
