@@ -61,13 +61,14 @@ main(): Int64 {
                         }
                     }
                     focusTrace[0] += name + ";"
-                    report("focus", focusTrace[0])
                     if (let Some(handle) <- held[0]) {
                         report("open", "${handle.isOpen()}")
                         if (let Some(reason) <- handle.closeReason()) {
                             report("reason", if (reason == OverlayCloseReason.Requested) { "Requested" } else { "Escape" })
                         }
                     }
+                    // Publish this observation only after every payload file.
+                    report("focus", focusTrace[0])
                 case _ => ()
             }
         }

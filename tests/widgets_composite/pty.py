@@ -90,6 +90,7 @@ def run(binary, output, mode):
             view = view[os.write(master, view):]
 
     focus_expected = []
+    escape_expected = [0]
 
     def fence(want):
         focus_expected.append(want)
@@ -98,9 +99,10 @@ def run(binary, output, mode):
         await_condition(lambda: text("focus") == expected, "public focus trace " + expected)
 
     def escape():
-        old = text("escape_seen")
+        escape_expected[0] += 1
+        expected = str(escape_expected[0])
         send(b"\x1b")
-        await_condition(lambda: text("escape_seen") != old, "standalone Escape decoded")
+        await_condition(lambda: text("escape_seen") == expected, "standalone Escape decoded")
 
     try:
         await_condition(lambda: b"M_WIDGETS_READY" in raw and b"\x1b[" in raw, "actual native first frame")
