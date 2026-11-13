@@ -163,23 +163,35 @@ public class Application {
         if (let Some(value) <- readSession()) {
             value.requireReadContext(); value.focusManager.observe()
             if (let Some(node) <- value.focusManager.focused) {
-                if (value.focusManager.effective(node,true) && value.focusManager.effective(node,false) && value.inOverlayDomain(node)) { return Some(node.reference()) }
+                if (value.focusManager.effective(node,true)) {
+                    if (value.focusManager.effective(node,false)) {
+                        if (value.inOverlayDomain(node)) { return Some(node.reference()) }
+                    }
+                }
             }
             if (let Some(reserved) <- value.reservedLayer) {
                 if (let Some(rootRef) <- reserved.root) { if (rootRef.isValid()) {
                     let root = rootRef.resolve()
-                    if (value.focusManager.effective(root,true) && value.focusManager.effective(root,false) && value.inOverlayDomain(root)) { return Some(rootRef) }
+                    if (value.focusManager.effective(root,true)) {
+                        if (value.focusManager.effective(root,false)) {
+                            if (value.inOverlayDomain(root)) { return Some(rootRef) }
+                        }
+                    }
                 } }
             }
             if (let Some(modal) <- value.topModal()) {
                 if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) {
                     let root = rootRef.resolve()
-                    if (value.focusManager.effective(root,true) && value.focusManager.effective(root,false)) { return Some(rootRef) }
+                    if (value.focusManager.effective(root,true)) {
+                        if (value.focusManager.effective(root,false)) { return Some(rootRef) }
+                    }
                 } }
             }
             if (value.topModal().isNone()) {
                 if (let Some(node) <- value.root.readMount()) {
-                    if (value.focusManager.effective(node,true) && value.focusManager.effective(node,false)) { return Some(node.reference()) }
+                    if (value.focusManager.effective(node,true)) {
+                        if (value.focusManager.effective(node,false)) { return Some(node.reference()) }
+                    }
                 }
             }
         }

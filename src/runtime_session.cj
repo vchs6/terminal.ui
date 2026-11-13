@@ -548,7 +548,13 @@ class RuntimeSession {
         if (let Some(hostRef) <- options.host) {
             let host = hostRef.resolve()
             if (host.session.id != id) { throw UIException("WrongUIContext", "foreign host") }
-            if ((host.parent.isSome() && !host.component.isOverlayHost) || !focusManager.effective(host,false) || !overlayAncestor(host,owner)) {
+            if (host.parent.isSome() && !host.component.isOverlayHost) {
+                throw UIException("InvalidOverlayHost", "host must be a visible ancestor")
+            }
+            if (!focusManager.effective(host,false)) {
+                throw UIException("InvalidOverlayHost", "host must be a visible ancestor")
+            }
+            if (!overlayAncestor(host,owner)) {
                 throw UIException("InvalidOverlayHost", "host must be a visible ancestor")
             }
         }
@@ -1013,7 +1019,8 @@ class RuntimeSession {
         while (scan < oldNodes.size) {
             let owner = oldNodes[scan]
             for (record in overlayRecords) {
-                if (record.terminal.isSome() || !record.owner.sameNode(owner.reference())) { continue }
+                if (record.terminal.isSome()) { continue }
+                if (!record.owner.sameNode(owner.reference())) { continue }
                 if (let Some(rootRef) <- record.root) {
                     if (let Some(layerRoot) <- retainedNode(rootRef)) { collectSubtree(layerRoot,oldNodes) }
                 }
@@ -1063,7 +1070,8 @@ class RuntimeSession {
         while (scan < removed.size) {
             let owner = removed[scan]
             for (record in overlayRecords) {
-                if (record.terminal.isSome() || !record.owner.sameNode(owner.reference())) { continue }
+                if (record.terminal.isSome()) { continue }
+                if (!record.owner.sameNode(owner.reference())) { continue }
                 if (let Some(rootRef) <- record.root) {
                     if (let Some(layerRoot) <- retainedNode(rootRef)) {
                         if (restoreRecord.isNone()) {

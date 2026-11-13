@@ -376,7 +376,9 @@ func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int6
         let ay = greater(top,greater(g.screenY,g.clipTop))
         let ar = lesser(right,lesser(signedAdd(g.screenX,g.boxWidth),g.clipRight))
         let ab = lesser(bottom,lesser(signedAdd(g.screenY,g.boxHeight),g.clipBottom))
-        if (ar <= ax || ab <= ay || !session.focusManager.effective(anchor,false)) {
+        var anchorGone = ar <= ax || ab <= ay
+        if (!anchorGone) { anchorGone = !session.focusManager.effective(anchor,false) }
+        if (anchorGone) {
             if (commit && !deferClose) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
             return None
         }
