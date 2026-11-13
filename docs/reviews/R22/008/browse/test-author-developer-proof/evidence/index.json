@@ -1,0 +1,398 @@
+{
+  "schema": 1,
+  "task": "ACTUAL008.a",
+  "role": "Independent formal test design + baseline; not product author, executor or acceptance",
+  "assignedModel": "Sol/high per controller; actual serving model/effort not independently observable",
+  "utc": "2026-11-13T17:52:15.565Z",
+  "base": "51529b7f5bce9c639d54876c378b54aa1cd3aaf2",
+  "testCommit": "9d224da8f74997fa8329a84c798c61e5a57d2fc9",
+  "firstFreeze": "6a6ac8eb439b754bffb6eab6d7e3ba052b06a2f9",
+  "changed": [
+    "tests/output_recovery/.gitignore",
+    "tests/output_recovery/README.md",
+    "tests/output_recovery/cjpm.toml",
+    "tests/output_recovery/native/output_fault.c",
+    "tests/output_recovery/run.mjs",
+    "tests/output_recovery/run.sh",
+    "tests/output_recovery/src/checks.cj",
+    "tests/output_recovery/src/live.cj",
+    "tests/output_recovery/src/main.cj"
+  ],
+  "productDelta": "",
+  "workingTree": "",
+  "tests": [
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/.gitignore",
+      "bytes": 31,
+      "sha256": "cd3a938545a78000bcc8fe9c128ff792256ef870e5bb7b74293f4a1e85c75fb4"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/README.md",
+      "bytes": 5379,
+      "sha256": "61365666502a35a0c00dd20e22752408d8d73403ad0e7830d5f70ce36127a5e3"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/cjpm.toml",
+      "bytes": 382,
+      "sha256": "871ad3642c8a154dd17e1a870d044d6aea4c9ba691f416c3b72299bc9e69c518"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/native/output_fault.c",
+      "bytes": 5719,
+      "sha256": "7f2077d4aac8ec82de5cfe2b47d326165978c7614648d6bf6ba4286253f433b3"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/run.mjs",
+      "bytes": 15231,
+      "sha256": "bb879832d76dab823db3e9c3689b31c8daaef3ccb7250e395bcb5747d6aba745"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/run.sh",
+      "bytes": 534,
+      "sha256": "eef70c431db5b00ca34891d9b85906b8fb7997ddb2c4099f1b966413bec23891"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/src/checks.cj",
+      "bytes": 1150,
+      "sha256": "bb9482818fe4755a9de0cbca37d2e379357789c2be2c3994fd026666aa692c9b"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/src/live.cj",
+      "bytes": 3163,
+      "sha256": "939c5746ed867f894cc97d4c8cbee3044093146afc7d8f7545e38b222a35147d"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/src/main.cj",
+      "bytes": 497,
+      "sha256": "8d0c55496894ea5db42ffb464dc84180a690b343057f98beada5ca13ed6da7df"
+    }
+  ],
+  "product": [
+    {
+      "path": "/workspace/work/output-recovery-tests/source/AGENTS.md",
+      "bytes": 35500,
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/src/application.cj",
+      "bytes": 36153,
+      "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/src/frame.cj",
+      "bytes": 12900,
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/src/runtime_session.cj",
+      "bytes": 66044,
+      "sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/src/session_extension_state.cj",
+      "bytes": 9123,
+      "sha256": "c0893f5b3fccec9b42d90cae1bd9ffd18bf5a712d2f35c7fb7f19de81abceef9"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/src/terminal_bridge.cj",
+      "bytes": 2436,
+      "sha256": "659798da1bf63458c3dff2b0a075ae899a9413589ee24ea00232b32df16cb523"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/src/terminal_projected_row.cj",
+      "bytes": 1869,
+      "sha256": "8b0a60a64125834945d0e5294dd5e05605df67222df5f118006d6dab6a376974"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/native/cjtui_terminal.c",
+      "bytes": 4769,
+      "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/build.cj",
+      "bytes": 191,
+      "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/cjpm.toml",
+      "bytes": 1541,
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/session_extensions/native/session_fault.c",
+      "bytes": 4880,
+      "sha256": "6c06839496fcdecba757d7e42f4786cb1e37d62dcfcad5d929cfbe6a92963b22"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/colors/pty.mjs",
+      "bytes": 19635,
+      "sha256": "96ace9fa46e97b14bf8653a06a2a8e730a8ce6dd306697794ed3c9ff23e90ae5"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/support/terminal_size.c",
+      "bytes": 1209,
+      "sha256": "e55159cf591dfe735930405551b1cfd520cb37b38a3b9a4068b69fe0e135e3eb"
+    }
+  ],
+  "frozenInputs": [
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R22/008/input-manifest.json",
+      "bytes": 83652,
+      "sha256": "6f10c6eb41e83164bae545cb3b7fd93fa56fffd4f6613ca9b85755fa9c81a3fb"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R22/008/admission/index.json",
+      "bytes": 1605,
+      "sha256": "d137d921dc02d96609c5bc68a8665da72d23bdede17b0bc0b58f3110b5a7c27b"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R22/008/admission/input-map.json",
+      "bytes": 49212,
+      "sha256": "63046e871cdebe13f1fcc3a6e4c63372417b5e926588a1b7f60cea94c9205bad"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R22/008/admission/tool-readiness.json",
+      "bytes": 3221,
+      "sha256": "6a83fcb336967c4b1be4f1aa9ade96046ce402ddf97a1289a63ee0fa59b2c4bf"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-session-extensions/design.md",
+      "bytes": 27248,
+      "sha256": "13d28b28aea0c023ad8865d1b62fb83b594847cefd5e26eecaee195a9d5a10a5"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/design.md",
+      "bytes": 76152,
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-color-style-output/design.md",
+      "bytes": 19047,
+      "sha256": "f04d61528ceed056e942521fc71973eff18c8344e89d275a2e93242e1db9ac88"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/acceptance.md",
+      "bytes": 38353,
+      "sha256": "289bd29df470e3b327088324d5230aa101c88ef36f3bf7e1f1bf9895b403aaf1"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/development/cangjie-conventions.md",
+      "bytes": 2357,
+      "sha256": "9dce8d4a6f68701a9a862fe057bf26be40f27a0a8d0296f73131ffe6ef2da99a"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-008-tests-brief.md",
+      "bytes": 12700,
+      "sha256": "2cdad7934878cd94b5fec556a0d51b7babc5288aeac29e41e2ec3389dca2061c"
+    }
+  ],
+  "environment": {
+    "record": {
+      "path": "/workspace/work/output-recovery-tests/evidence/environment.txt",
+      "bytes": 430,
+      "sha256": "15e34c7f0a31445f3dc2d006460b9d9f7b83764511a4835258304ca918e08f47"
+    },
+    "env": {
+      "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+      "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+    },
+    "config": {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/cangjie-repo.toml",
+      "bytes": 133,
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+    },
+    "lock": {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/cjpm.lock",
+      "bytes": 198,
+      "sha256": "8a39ce781f5d3364ff26c7994383bd8f3463da52b926d1d026fe0b4f881fff4c"
+    },
+    "sdkInputs": [
+      {
+        "path": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+        "bytes": 8027,
+        "sha256": "179d4e52c8a8d29a23d28691351f2b0897391243e5d5cb873f8a8e4502f2a288"
+      },
+      {
+        "path": "/workspace/work/validation/sdk/cangjie/bin/cjc",
+        "bytes": 72906096,
+        "sha256": "023be1bb2ded1078906fc91919b3c1175ad14436ad88d23d505f7b8dcd0d7118"
+      },
+      {
+        "path": "/workspace/work/validation/sdk/cangjie/tools/bin/cjpm",
+        "bytes": 15266336,
+        "sha256": "a565d86540656c62340aacf6ac89c175b50c1f4d9ba4f69cee6a0fdacdee412d"
+      },
+      {
+        "path": "/workspace/work/linux-build-recon/stdx-env/linux_x86_64_llvm/static/stdx/libstdx.encoding.json.a",
+        "bytes": 324646,
+        "sha256": "04deef4053387ba3ae06c5ca9bf42c40119817f31513a5ac7ffc4f5a91bd0fca"
+      },
+      {
+        "path": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+        "bytes": 9101877,
+        "sha256": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e"
+      },
+      {
+        "path": "/workspace/work/CangjieSkills/.agents/skills/cangjie-coding/SKILL.md",
+        "bytes": 5230,
+        "sha256": "b67db56c22d5cc552d31558f317cff3ce7e498d00a055a95c1702e1758a4e560"
+      }
+    ],
+    "registry": "https://pkg.cangjie-lang.cn/registry",
+    "cache": "/workspace/work/viewport-tests/cache",
+    "oldRelay": "offline; neither started nor used",
+    "copies": "No SDK or dependency-cache copies; own standard build artifacts remain external to Git."
+  },
+  "ownArtifacts": [
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/target/release/bin/main",
+      "bytes": 19041872,
+      "sha256": "c77f87222831545d01e1a96b10c1ef7fc7c301a0a0297f8acc7d087ec339c527"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/native/output_fault.o",
+      "bytes": 10576,
+      "sha256": "1064dd5d1165fdc81197b5fa4e7324136a4e36781a514f3cb2092311a03bb258"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/native/liboutput_fault.a",
+      "bytes": 10854,
+      "sha256": "88bbbc802160f153189e9bc5a1e41aec4c47322975f289a22b113e1732e23be2"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/native/terminal-size",
+      "bytes": 16368,
+      "sha256": "f726922b78adac8fc3d58fb90db5be56b2a2902985c4c5675a58a9570b410fd7"
+    }
+  ],
+  "commands": [
+    {
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh; export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip; ./tests/output_recovery/run.sh build",
+      "cwd": "/workspace/work/output-recovery-tests/source",
+      "exit": 0,
+      "stdout": "build-5.stdout",
+      "stderr": "build-5.stderr",
+      "note": "Ordinary CJPM build and normal product hook. Dependency test packages may be compiled by CJPM; this is not a claim their tests executed."
+    },
+    {
+      "command": "CJTUI_RECOVERY_ARTIFACTS=/workspace/work/output-recovery-tests/evidence/final-baseline ./tests/output_recovery/run.sh run",
+      "testCommit": "6a6ac8eb439b754bffb6eab6d7e3ba052b06a2f9",
+      "exit": 1,
+      "cases": 326,
+      "failures": 1,
+      "summary": {
+        "path": "/workspace/work/output-recovery-tests/evidence/final-baseline/summary.json",
+        "bytes": 30534,
+        "sha256": "1e17ebdb84652fd3589d3c49f7784fa5a3982e60ec099d9f63703514714324d9"
+      }
+    },
+    {
+      "command": "CJTUI_RECOVERY_ARTIFACTS=/workspace/work/output-recovery-tests/evidence/caret-management ./tests/output_recovery/run.sh run --only=cut-frame-startup-4",
+      "testCommit": "9d224da8f74997fa8329a84c798c61e5a57d2fc9",
+      "exit": 0,
+      "cases": 12,
+      "failures": 0,
+      "summary": {
+        "path": "/workspace/work/output-recovery-tests/evidence/caret-management/summary.json",
+        "bytes": 1301,
+        "sha256": "ee8266246c8bdb8d76f809cd72dc786ff5b1a565d5cf8ecb0563c39e884d559a"
+      }
+    },
+    {
+      "command": "node --check tests/output_recovery/run.mjs; bash -n tests/output_recovery/run.sh; git diff --cached --check",
+      "exit": 0
+    }
+  ],
+  "aggregate": {
+    "cases": 338,
+    "green": 337,
+    "red": 1,
+    "redCase": "normal-caret",
+    "expectedInjectedFaults": "GREEN only if all strict expected failure/byte/cleanup/reopen checks pass",
+    "everyDirectConsumerExit": 0,
+    "forcedTerminations": 0,
+    "primaryErrors": {
+      "terminal write failed": 24,
+      "terminal write failed; ParserUnsynchronized; visual state not restored": 283,
+      "host title restore failed; visual title state not confirmed": 14
+    }
+  },
+  "red": {
+    "contract": "C002 and AC008 unchanged grid/caret/effective profile must emit zero updates; root adjudicated the redundant CUP as actual product RED",
+    "reproduction": "run.sh run --normal --only=normal-caret",
+    "beforeTransactions": 4,
+    "afterTransactions": 5,
+    "unexpectedWireHex": "1b5b313b3348",
+    "rawDirectory": "/workspace/work/output-recovery-tests/evidence/final-baseline/normal-caret",
+    "sourceLocation": "src/application.cj:652-654",
+    "firstError": "same frame/profile/caret emits zero screen bytes: 5 !== 4",
+    "runFailure": false,
+    "cleanup": 1,
+    "resources": "0/0/0/0"
+  },
+  "proofObligations": [
+    {
+      "file": "src/application.cj",
+      "lines": [
+        660,
+        683
+      ],
+      "obligation": "Only successful complete writer output commits Frame/profile/glyph/dimensions/caret; allocation failure retries complete baseline. RuntimeStats.frames is generated targets and cannot establish successful commits after fatal stop."
+    },
+    {
+      "file": "native/cjtui_terminal.c",
+      "lines": [
+        60,
+        69,
+        108,
+        122
+      ],
+      "obligation": "Real native close restores termios/signals/frees buffer without output; partial fatal latches unsafe until process termination, zero fatal does not invent partial unsafe; exact bytes are exposed by the unique existing writer."
+    }
+  ],
+  "reuse": {
+    "policy": "AGENTS11.1; accepted upstream evidence retains original scope and is not all asserted source-identical after later increments.",
+    "priorInputs": "Public input manifest binds accepted R10/070/S152/I112/I117/E122/finalM162 originals and limitations.",
+    "thisRole": "326 cases at firstFreeze reused for final descendant because only new startup-target>3 branch/one literal matrix item/README row were added; no old case enters new branch; product/Cj/native/binary unchanged. New 12 managed-caret cases actually executed.",
+    "methods": [
+      "Existing S152 link/syscall wrapper adapted test-only",
+      "Existing colors independent row/style interpreter imported unchanged",
+      "Existing support atomic terminal-size helper compiled into own ignored path"
+    ]
+  },
+  "fixtureFailures": {
+    "retained": true,
+    "notProductRed": [
+      "build* initial Cell.text/PaintContext.style/missing convert import fixture mistakes",
+      "normal-initial/normal-2 attempts before binary existed",
+      "normal-3 redundant default-SGR literal expectation",
+      "supplement automatic-title-cleanup exception-text expectation; corrected14/14 rerun retained"
+    ],
+    "productRedOnly": "normal-caret"
+  },
+  "skills": {
+    "read": [
+      "superpowers:using-superpowers (subagent-stop applies)",
+      "superpowers:test-driven-development + writing-good-tests",
+      "superpowers:verification-before-completion",
+      "superpowers:systematic-debugging",
+      "superpowers:brainstorming (existing fixed root design/task; no new product design)",
+      "CangjieSkills cangjie-coding 277f2e1234ca5217496966887243c679653887a8",
+      "Project cangjie-conventions pinned cangjie-rules 40bacab1dafc7c5710a9b14c5c5c86898feed63c"
+    ],
+    "application": "No production code authored. Formal tests establish real baseline and counterexample before later independent product author. SDK actual1.2 overrides old default skill version."
+  },
+  "limits": [
+    "Not full TASK008 or Linux/release acceptance",
+    "No new safe terminal resynchronization/recovery claim; stop is explicit",
+    "Real PTY bytes and native restore evidence do not prove GUI physical effects",
+    "Independent source ordering review/execution/acceptance remain later roles",
+    "No budget-sized Cartesian payload matrix; existing rich/budget/decoder scopes retain accepted evidence"
+  ],
+  "artifactsManifest": {
+    "path": "/workspace/work/output-recovery-tests/evidence/artifacts.sha256",
+    "bytes": 2082915,
+    "sha256": "c20d69d54b20cae1ac697b7ea26f208f2be4b58d27a6eafa319d2dfe9211b281"
+  },
+  "inventoryFiles": 12789
+}

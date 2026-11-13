@@ -1,0 +1,248 @@
+{
+  "schema": 1,
+  "task": "ACTUAL008.a bounded caret supplement",
+  "status": "FIXTURE_PRECONDITION_NOT_MET_STOPPED",
+  "utc": "2026-11-13T23:25:14.999Z",
+  "base": "51529b7f5bce9c639d54876c378b54aa1cd3aaf2",
+  "fixedTests": "9d224da8f74997fa8329a84c798c61e5a57d2fc9",
+  "supplementCommit": null,
+  "sourceStatus": "clean; no product or test edits retained",
+  "attempt": "one positive-control attempt; no nonempty frame/profile rewrite produced",
+  "classification": "fixture failure, not adjudicated product RED",
+  "expectedProfileWireHex": "1b5b306d1b5b313b314841c3a920201b5b306d1b5b313b3348",
+  "actualProfileWireHex": "1b5b313b3348",
+  "wrapperExit": 1,
+  "direct": {
+    "code": 0,
+    "signal": null,
+    "finished": true
+  },
+  "cleanup": "UI once; 0/0/0/0 resources; termios equal; close0; all signals restored",
+  "command": "/workspace/work/output-caret-test-supplement/evidence/run-command.sh",
+  "original338": "not rerun; original337GREEN/normal-caretRED retained under original index",
+  "builds": "none; exact existing binary via CJTUI_RECOVERY_BINARY; no native helper compilation",
+  "limit": "D030 equivalent default-style profiles emit no row update; current caret driver offers no text/emphasis mutation",
+  "requiredReview": "verify post-text CUP with unchanged logical visible caret",
+  "skills": [
+    "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/test-driven-development/SKILL.md",
+    "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/test-driven-development/writing-good-tests.md",
+    "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/verification-before-completion/SKILL.md",
+    "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/using-git-worktrees/SKILL.md",
+    "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/systematic-debugging/SKILL.md"
+  ],
+  "skillProvenance": "cloud c6 snapshot read in this session; TDD requires no invented RED and user scope forbids full rerun/build",
+  "frozenInputs": [
+    {
+      "path": "/workspace/work/output-recovery-tests/evidence/index.json",
+      "bytes": 17236,
+      "sha256": "81282ca345b093bd0c487e7d01ed6d0e1ff903b465b0476cd01a0ab6fb3c2324"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/evidence/artifacts.sha256",
+      "bytes": 2082915,
+      "sha256": "c20d69d54b20cae1ac697b7ea26f208f2be4b58d27a6eafa319d2dfe9211b281"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/report.md",
+      "bytes": 3518,
+      "sha256": "37080a7d981b1f06eb40ff1e8829475dce9802bace3c931c4c9088b64f2da293"
+    },
+    {
+      "path": "/workspace/work/output-recovery-tests/source/tests/output_recovery/target/release/bin/main",
+      "bytes": 19041872,
+      "sha256": "c77f87222831545d01e1a96b10c1ef7fc7c301a0a0297f8acc7d087ec339c527"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/source/AGENTS.md",
+      "bytes": 35500,
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/source/tests/output_recovery/src/live.cj",
+      "bytes": 3163,
+      "sha256": "939c5746ed867f894cc97d4c8cbee3044093146afc7d8f7545e38b222a35147d"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/source/tests/output_recovery/run.mjs",
+      "bytes": 15231,
+      "sha256": "bb879832d76dab823db3e9c3689b31c8daaef3ccb7250e395bcb5747d6aba745"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/source/tests/output_recovery/README.md",
+      "bytes": 5379,
+      "sha256": "61365666502a35a0c00dd20e22752408d8d73403ad0e7830d5f70ce36127a5e3"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-008-tests-brief.md",
+      "bytes": 12700,
+      "sha256": "2cdad7934878cd94b5fec556a0d51b7babc5288aeac29e41e2ec3389dca2061c"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-color-style-output/design.md",
+      "bytes": 19047,
+      "sha256": "f04d61528ceed056e942521fc71973eff18c8344e89d275a2e93242e1db9ac88"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/design.md",
+      "bytes": 76152,
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+      "bytes": 8027,
+      "sha256": "179d4e52c8a8d29a23d28691351f2b0897391243e5d5cb873f8a8e4502f2a288"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/attempt.patch",
+      "bytes": 8724,
+      "sha256": "92df2e2ab5aebb84ceb5feb5d4463da09cc0968a0710ef097c1f251bc1a11e65"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/ack",
+      "bytes": 3,
+      "sha256": "8a798890fe93817163b10b5f7bd2ca4d25d84c52739a645a889c173eee7d9d3d"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/all-wire.bin",
+      "bytes": 20,
+      "sha256": "d5d1bc81cd635dedea7b9935b53a87250e7300a9c350b8e0dba2788569e5849f"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/exit.json",
+      "bytes": 40,
+      "sha256": "d7900bf841dcb4de5c543c9a40158b101f0020963ddf7aad85a12074723b9560"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/launch.json",
+      "bytes": 316,
+      "sha256": "72dd9075fd7a3e06c8218a26f5622327a5b7c441a27b6babe50102191e91ce8d"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/launch.sh",
+      "bytes": 166,
+      "sha256": "615a44a994de56668fad1f15e7f2c3a2bb978ec8a859ad5807a277dddd400398"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/native.tsv",
+      "bytes": 269,
+      "sha256": "e6a7c7fe6de0c71bf63d4893134272985e8a025c8f0b36fa1de001ecd59c4ccb"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/pid",
+      "bytes": 8,
+      "sha256": "cc64fbbba674a9389f257822c4b1bd71976f4c39ff10be234aac5141403bbefe"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/result",
+      "bytes": 17,
+      "sha256": "601184dc05ce16b22bb631ada520d1c904eabba892edc17c7172ba4a5ffaea6c"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/rewrite-actual.bin",
+      "bytes": 6,
+      "sha256": "dc9feec83d537e01ff1fa89a557cd1f6a627ba6556c50a1d1ada7b0ade5c0d8e"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/rewrite-expected.bin",
+      "bytes": 25,
+      "sha256": "c4b52304469296c55469f62bd70921b372cd2e6dda69ce22a90eca432aa8765e"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/session.raw",
+      "bytes": 60,
+      "sha256": "a2a1202675050a2263c5eafef3d90269d63eb26c9ce773ba641fbdfcdd55eb78"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/transaction-001.bin",
+      "bytes": 8,
+      "sha256": "dfe5456fed7d6508bcf91708c48eb9d48213ca34668e6238e94cace519f39755"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/transaction-002.bin",
+      "bytes": 7,
+      "sha256": "f19411dafb155e1992d913da998c3a8c08301719bf3b59bfaf87a436494f4cdb"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/transaction-003.bin",
+      "bytes": 25,
+      "sha256": "26e75d9a67357f4517668a909973c9c3289ce0ba9e10caead17e4cda4e491410"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/transaction-004.bin",
+      "bytes": 6,
+      "sha256": "dc9feec83d537e01ff1fa89a557cd1f6a627ba6556c50a1d1ada7b0ade5c0d8e"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/transaction-005.bin",
+      "bytes": 6,
+      "sha256": "dc9feec83d537e01ff1fa89a557cd1f6a627ba6556c50a1d1ada7b0ade5c0d8e"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/transaction-006.bin",
+      "bytes": 8,
+      "sha256": "30bd97c63fea7c0b9944d97a1dfd74ebb982be38458e6e374b3b36ad4cf3886f"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/normal-caret-profile-rewrite/tty",
+      "bytes": 11,
+      "sha256": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/baseline/summary.json",
+      "bytes": 1055,
+      "sha256": "8f096130c85cc79962d8826d3823f8cd39f2eea2806c54c7176bd448c5bcdb2a"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/run-command.sh",
+      "bytes": 1239,
+      "sha256": "29ff84f10b6298c9fad6bdcad36de96410c6f61cf95abd7072a46c1410542662"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/run.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/run.stderr",
+      "bytes": 761,
+      "sha256": "56af2901ea3ce16746be8cda217cade569b61a23404b6c7de6bf040ab8da8401"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/run.stdout",
+      "bytes": 108,
+      "sha256": "f6f2eeb6920d33b577146ae20f0cd536d2beef2f118c29a87ff3f5e9ef06d8f2"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/seal.mjs",
+      "bytes": 6116,
+      "sha256": "25509e47a2cd525e5c0f92a93624c413153d920ec39a69c800905f342224012d"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/evidence/verification.json",
+      "bytes": 2657,
+      "sha256": "a5e248b2ad38bdcee1a8f0e74222d3187f10abcfc7004fbc1e4d683757266953"
+    },
+    {
+      "path": "/workspace/work/output-caret-test-supplement/report.md",
+      "bytes": 2385,
+      "sha256": "4b4877fe97beaff90029c25534c519fb8a65f3adc9ef41c3b73690685abad524"
+    }
+  ]
+}

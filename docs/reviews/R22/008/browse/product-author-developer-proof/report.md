@@ -1,0 +1,16 @@
+# TASK008.c product author report
+- Base 5a6819ffd2226ad31e725669209b94607f2b1e63; source-only commit 80d21e071537898cde27f1c7de4328ab6f27d991.
+- Frozen tests 9d224da8f74997fa8329a84c798c61e5a57d2fc9; base test subtree identical. Original evidence index SHA256 81282ca345b093bd0c487e7d01ed6d0e1ff903b465b0476cd01a0ab6fb3c2324.
+- Frozen RED raw caret-red-final: same-frame transaction count 4→5; duplicated CUP 1b5b313b3348.
+- Application emits visible caret CUP on a real pose change or nonempty frame bytes; successful committed pose is session-local and advances only in the existing commit branch.
+- Allocation retry retains prior caret pose and invalidates frame baseline; fatal/cancellation do not commit; visibility probe management is unchanged.
+- Self-review: no public API, extra writer, type, dependency, test edit or alternate render path; hidden-to-visible and full rewrite require CUP. Empty projected profile difference need not write.
+- `tests/output_recovery/run.sh build`: first failed registry configuration; after adding ignored test-local cache config exit 0.
+- `tests/output_recovery/run.sh run`: exit 0; 338 cases, 0 failures. Developer evidence only, not independent acceptance.
+- `cjpm bundle`: exit 0; project tests 0; human lint output 789 warnings, 0 errors. CJP SHA256 cf4fafe513f46523cda60d8173262fb442b3db8c75875d7771dc7b6a726bb285.
+- Direct `cjlint` JSON: exit 0; 791 SUGGESTIONS, 0 MANDATORY, 0 ERROR; separate invocation/scope. Added baselineCaret G.VAR.02 is intentionally retained for session lifetime.
+- `cjfmt` changed-line ranges: zero diff; `git diff --check` clean.
+- Configured archive boundary checker: exit 1, rejects themes/light.toml. Base manifest includes themes while checker allowlist excludes it; existing T087/TASK023 concern, unresolved here. Bundle is not a release check.
+- Frozen tests do not establish unchanged visible caret plus nonempty profile rewrite; source review must verify the explicit output-nonempty condition and successful baseline ordering.
+- Binary SHA256 904bcdea9bda5886b413aea2552452a9ec0c468f7d226cef069fb2db9a079f13. Environment, commands, raw outputs, input hashes and all run artifacts indexed in evidence/index.json.
+- Skills: systematic-debugging, TDD, git-worktrees, verification-before-completion; pinned CangjieSkills 277f2e12 and cangjie-rules 40bacab1; SDK1.2 takes precedence.

@@ -1,0 +1,87 @@
+{
+  "utc": "2026-11-13T23:25:14.992Z",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/workspace/work/output-caret-test-supplement/source",
+      "status": 0,
+      "stdout": "9d224da8f74997fa8329a84c798c61e5a57d2fc9\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/workspace/work/output-caret-test-supplement/source",
+      "status": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--name-only",
+        "9d224da8f74997fa8329a84c798c61e5a57d2fc9"
+      ],
+      "cwd": "/workspace/work/output-caret-test-supplement/source",
+      "status": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/workspace/work/output-caret-test-supplement/source",
+      "status": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "tests/output_recovery/run.mjs"
+      ],
+      "cwd": "/workspace/work/output-caret-test-supplement/source",
+      "status": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "summary": {
+    "binary": "/workspace/work/output-recovery-tests/source/tests/output_recovery/target/release/bin/main",
+    "cases": 1,
+    "failures": 1,
+    "outcomes": [
+      {
+        "name": "normal-caret-profile-rewrite",
+        "passed": false,
+        "error": "AssertionError [ERR_ASSERTION]: unchanged visible caret is positioned after the nonempty profile rewrite\n+ actual - expected\n\n+ Buffer(6) [Uint8Array] [\n- Buffer(25) [Uint8Array] [\n    27,\n    91,\n-   48,\n-   109,\n-   27,\n-   91,\n    49,\n    59,\n-   49,\n-   72,\n-   65,\n-   195,\n-   169,\n-   32,\n-   32,\n-   27,\n-   91,\n-   48,\n-   109,\n-   27,\n-   91,\n-   49,\n-   59,\n    51,\n    72\n  ]\n\n    at run (file:///workspace/work/output-caret-test-supplement/source/tests/output_recovery/run.mjs:134:14)\n    at async perform (file:///workspace/work/output-caret-test-supplement/source/tests/output_recovery/run.mjs:168:87)\n    at async file:///workspace/work/output-caret-test-supplement/source/tests/output_recovery/run.mjs:179:17"
+      }
+    ],
+    "utc": "2026-11-13T23:22:41.695Z"
+  },
+  "direct": {
+    "code": 0,
+    "signal": null,
+    "finished": true
+  },
+  "originalFrozenHashesUnchanged": true,
+  "noLocalTargetOrNativeHelper": true,
+  "termiosEqual": true,
+  "signalLines": [
+    "signal-restored\t28\t1",
+    "signal-restored\t2\t1",
+    "signal-restored\t15\t1"
+  ]
+}
