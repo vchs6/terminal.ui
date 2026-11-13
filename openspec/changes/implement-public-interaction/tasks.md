@@ -286,7 +286,7 @@
 
 ## 3. Unit C
 
-- [ ] 3.1 TASK-108：冻结独立公共测试与RED；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
+- [x] 3.1 TASK-108：冻结独立公共测试与RED；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
 - [ ] 3.2 TASK-109：实现有限公共单元并自验；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
 - [ ] 3.3 TASK-110：固定源码独立规格与质量审查；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
 - [ ] 3.4 TASK-111：独立执行与正常制品消费；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
@@ -306,10 +306,10 @@
 
 **L4:**
 
-- [ ] 3.1.1 TASK-108.S1：按C-01/C-05建立同type普通/层实例和三级modal/popup消费者，人工trace域边界、app/legacy零调用、interrupt与Escape顺序；在107固定源取缺overlay API RED。
-- [ ] 3.1.2 TASK-108.S2：按C-02/C-04覆盖owner隐藏/卸载/仅disabled、非顶层关闭不误关兄弟、pending cancel、失效恢复、双挂载、非法host/anchor、stale/跨session与cleanup异常。
-- [ ] 3.1.3 TASK-108.S3：按C-03固定透明/opaque/主题无背景modal/阴影/caret与host clip网格，滚动锚点完全不可见触发AnchorGone；底层状态变更后关闭显示最新内容。
-- [ ] 3.1.4 TASK-108.S4：冻结测试及运行说明，入口为bash tests/interaction_c/run.sh；明确其内部正常cjpm build和直接binary执行命令及预期exit，记录docs/reviews/interaction/C/TASK-108/manifest.json后交主代理。
+- [x] 3.1.1 TASK-108.S1：按C-01/C-05建立同type普通/层实例和三级modal/popup消费者，人工trace域边界、app/legacy零调用、interrupt与Escape顺序；在107固定源取缺overlay API RED。
+- [x] 3.1.2 TASK-108.S2：按C-02/C-04覆盖owner隐藏/卸载/仅disabled、非顶层关闭不误关兄弟、pending cancel、失效恢复、双挂载、非法host/anchor、stale/跨session与cleanup异常。
+- [x] 3.1.3 TASK-108.S3：按C-03固定透明/opaque/主题无背景modal/阴影/caret与host clip网格，滚动锚点完全不可见触发AnchorGone；底层状态变更后关闭显示最新内容。
+- [x] 3.1.4 TASK-108.S4：冻结测试及运行说明，入口为bash tests/interaction_c/run.sh；明确其内部正常cjpm build和直接binary执行命令及预期exit，记录docs/reviews/interaction/C/TASK-108/manifest.json后交主代理。
 
 ### TASK-109: 实现有限公共单元并自验
 

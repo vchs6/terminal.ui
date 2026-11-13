@@ -166,7 +166,7 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-105 | REQ-003/004/007/009 | TASK-105 | B固定源码独立spec/quality | passed（[B有限验收](reviews/interaction/B/TASK-107/report.md)；M01明确延期，非全部Linux） |
 | AC-106 | REQ-003/004/007/009 | TASK-106 | B独立执行/滚动回归与公开包消费 | passed（[B有限验收](reviews/interaction/B/TASK-107/report.md)；M01明确延期，非全部Linux） |
 | AC-107 | REQ-003/004/007/009 | TASK-107 | 原037完整证据与metadata | passed（[B有限验收](reviews/interaction/B/TASK-107/report.md)；M01明确延期，非全部Linux） |
-| AC-108 | REQ-003/004/007/009 | TASK-108 | 独立多层/模态/透明/focus恢复golden与RED | pending |
+| AC-108 | REQ-003/004/007/009 | TASK-108 | 独立多层/模态/透明/focus恢复golden与RED | passed（正式测试冻结/真实缺C API编译RED；C产品行为未执行） |
 | AC-109 | REQ-003/004/007/009 | TASK-109 | 同Runtime覆盖层/宿主/输入域实现 | pending |
 | AC-110 | REQ-003/004/007/009 | TASK-110 | C固定源码独立spec/quality | pending |
 | AC-111 | REQ-003/004/007/009 | TASK-111 | C独立真实终端/层集成与公开制品消费 | pending |
