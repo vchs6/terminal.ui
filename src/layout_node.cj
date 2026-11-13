@@ -8,6 +8,18 @@ class LayoutNode {
     let previewTheme: ?Theme
     let previousMeasurement: ?LayoutNode
     let commitGeometry: Bool
+    var screenX: Int64 = 0
+    var screenY: Int64 = 0
+    var clipLeft: Int64 = 0
+    var clipTop: Int64 = 0
+    var clipRight: Int64 = 0
+    var clipBottom: Int64 = 0
+    var boxWidth: Int64 = 0
+    var boxHeight: Int64 = 0
+    var contentX: Int64 = 0
+    var contentY: Int64 = 0
+    var contentWidth: Int64 = 0
+    var contentHeight: Int64 = 0
     var inheritedStyle: Style
     let rootNode: Bool
     var resolved: ResolvedStyle

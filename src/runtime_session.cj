@@ -544,18 +544,11 @@ class RuntimeSession {
         for (record in overlayRecords) { if (record.requested.isSome()) { count++ } }
         count
     }
-    func openOverlay(owner: RuntimeNode, content: Component, options: OverlayOptions): OverlayHandle {
-        requireStructure()
-        if (!inActiveDomain()) { throw UIException("WrongUIContext", "overlay opening requires an active UI turn") }
-        if (!inOverlayDomain(owner)) { throw UIException("FocusOutsideDomain", "owner outside modal domain") }
-        if (options.mode == OverlayMode.Modal && !options.takeFocus) { throw IllegalArgumentException("modal requires focus") }
-        if (options.mode == OverlayMode.Passive && options.takeFocus) { throw IllegalArgumentException("passive cannot take focus") }
-        if (options.mode == OverlayMode.Modal && options.anchor.isSome()) { throw IllegalArgumentException("modal anchor") }
-        if (options.placement != OverlayPlacement.Center && options.anchor.isNone()) { throw IllegalArgumentException("placement requires anchor") }
+    func validateOverlayRelations(owner: RuntimeNode, options: OverlayOptions): Unit {
         if (let Some(hostRef) <- options.host) {
             let host = hostRef.resolve()
             if (host.session.id != id) { throw UIException("WrongUIContext", "foreign host") }
-            if (!host.component.isOverlayHost || !focusManager.effective(host,false) || !overlayAncestor(host,owner)) {
+            if ((host.parent.isSome() && !host.component.isOverlayHost) || !focusManager.effective(host,false) || !overlayAncestor(host,owner)) {
                 throw UIException("InvalidOverlayHost", "host must be a visible ancestor")
             }
         }
@@ -564,6 +557,16 @@ class RuntimeSession {
             if (anchor.session.id != id) { throw UIException("WrongUIContext", "foreign anchor") }
             if (!overlayAncestor(owner,anchor)) { throw UIException("InvalidOverlayAnchor", "anchor must descend from owner") }
         }
+    }
+    func openOverlay(owner: RuntimeNode, content: Component, options: OverlayOptions): OverlayHandle {
+        requireStructure()
+        if (!inActiveDomain()) { throw UIException("WrongUIContext", "overlay opening requires an active UI turn") }
+        if (!inOverlayDomain(owner)) { throw UIException("FocusOutsideDomain", "owner outside modal domain") }
+        if (options.mode == OverlayMode.Modal && !options.takeFocus) { throw IllegalArgumentException("modal requires focus") }
+        if (options.mode == OverlayMode.Passive && options.takeFocus) { throw IllegalArgumentException("passive cannot take focus") }
+        if (options.mode == OverlayMode.Modal && options.anchor.isSome()) { throw IllegalArgumentException("modal anchor") }
+        if (options.placement != OverlayPlacement.Center && options.anchor.isNone()) { throw IllegalArgumentException("placement requires anchor") }
+        validateOverlayRelations(owner,options)
         if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
             throw UIException("CapacityExceeded", "command limit exceeded")
         }
@@ -624,6 +627,7 @@ class RuntimeSession {
             if (record.terminal.isSome()) { continue }
             useStructuralOps(1)
             let owner = record.owner.resolve()
+            validateOverlayRelations(owner,record.options)
             let content = record.description.getOrThrow()
             content.releaseMount()
             preflight([content],Some(owner))
@@ -680,53 +684,45 @@ class RuntimeSession {
         }
         if (!roots.isEmpty()) { unmount(roots.toArray()) }
         if (record.owner.isValid()) { markChanged(record.owner.resolve(),ChangeKind.Layout) }
-        if (ownsFocus && restore) {
-            reservedLayer = None
-            var next: ?RuntimeNode = None
-            if (let Some(saved) <- record.savedFocus) {
-                if (saved.isValid()) {
-                    let candidate = saved.resolve()
-                    if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } }
-                }
-            }
-            var ancestor: ?RuntimeNode = if (record.owner.isValid()) { Some(record.owner.resolve()) } else { Option<RuntimeNode>.None }
-            while (next.isNone() && ancestor.isSome()) {
-                let current = ancestor.getOrThrow()
-                let choices = ArrayList<RuntimeNode>(); focusManager.collect(current,choices)
-                for (candidate in choices) { if (inOverlayDomain(candidate)) { next = Some(candidate); break } }
-                ancestor = current.parent
-            }
-            if (next.isNone()) {
-                var savedIndex: Int64 = -1
-                if (let Some(saved) <- record.savedFocus) {
-                    for (i in 0..record.savedOrder.size) { if (saved.sameNode(record.savedOrder[i])) { savedIndex = i; break } }
-                }
-                if (savedIndex >= 0) {
-                    var i = savedIndex + 1
-                    while (i < record.savedOrder.size && next.isNone()) {
-                        let ref = record.savedOrder[i]
-                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
-                        i++
-                    }
-                    i = savedIndex - 1
-                    while (i >= 0 && next.isNone()) {
-                        let ref = record.savedOrder[i]
-                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
-                        i--
-                    }
-                }
-            }
-            focusManager.set(next)
-        }
+        if (ownsFocus && restore) { restoreOverlayFocus(record) }
     }
-    func closeOwnedOverlays(roots: Array<RuntimeNode>): Unit {
-        for (record in overlayRecords) {
-            if (record.terminal.isSome() || !record.owner.isValid()) { continue }
-            let owner = record.owner.resolve()
-            for (root in roots) {
-                if (overlayAncestor(root,owner)) { closeOverlayTree(record,OverlayCloseReason.OwnerGone,true); break }
+    func restoreOverlayFocus(record: OverlayRecord): Unit {
+        reservedLayer = None
+        var next: ?RuntimeNode = None
+        if (let Some(saved) <- record.savedFocus) {
+            if (saved.isValid()) {
+                let candidate = saved.resolve()
+                if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } }
             }
         }
+        var ancestor: ?RuntimeNode = if (record.owner.isValid()) { Some(record.owner.resolve()) } else { Option<RuntimeNode>.None }
+        while (next.isNone() && ancestor.isSome()) {
+            let current = ancestor.getOrThrow()
+            let choices = ArrayList<RuntimeNode>(); focusManager.collect(current,choices)
+            for (candidate in choices) { if (inOverlayDomain(candidate)) { next = Some(candidate); break } }
+            ancestor = current.parent
+        }
+        if (next.isNone()) {
+            var savedIndex: Int64 = -1
+            if (let Some(saved) <- record.savedFocus) {
+                for (i in 0..record.savedOrder.size) { if (saved.sameNode(record.savedOrder[i])) { savedIndex = i; break } }
+            }
+            if (savedIndex >= 0) {
+                var i = savedIndex + 1
+                while (i < record.savedOrder.size && next.isNone()) {
+                    let ref = record.savedOrder[i]
+                    if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
+                    i++
+                }
+                i = savedIndex - 1
+                while (i >= 0 && next.isNone()) {
+                    let ref = record.savedOrder[i]
+                    if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
+                    i--
+                }
+            }
+        }
+        focusManager.set(next)
     }
     func closeHiddenOverlays(): Unit {
         for (record in overlayRecords) {
@@ -1007,6 +1003,19 @@ class RuntimeSession {
         for (node in retiring) {
             collectSubtree(node, oldNodes)
         }
+        // Publish replacement nodes and revoke every owned layer in one index
+        // transition, including layers attached to retired dynamic owners.
+        var scan: Int64 = 0
+        while (scan < oldNodes.size) {
+            let owner = oldNodes[scan]
+            for (record in overlayRecords) {
+                if (record.terminal.isSome() || !record.owner.sameNode(owner.reference())) { continue }
+                if (let Some(rootRef) <- record.root) {
+                    if (let Some(layerRoot) <- retainedNode(rootRef)) { collectSubtree(layerRoot,oldNodes) }
+                }
+            }
+            scan++
+        }
         lock.lock()
         try {
             for (node in oldNodes) {
@@ -1022,6 +1031,12 @@ class RuntimeSession {
             lock.unlock()
         }
     }
+    // A retiring node can already be absent from the public active index while
+    // its runtime storage is retained for the ensuing cleanup phase.
+    func retainedNode(ref: NodeRef): ?RuntimeNode {
+        for (node in nodes) { if (ref.sameNode(node.reference())) { return Some(node) } }
+        None
+    }
     func collectSubtree(node: RuntimeNode, result: ArrayList<RuntimeNode>): Unit {
         result.add(node)
         for (entry in node.sequence) {
@@ -1031,10 +1046,44 @@ class RuntimeSession {
         }
     }
     func unmount(roots: Array<RuntimeNode>): Unit {
-        closeOwnedOverlays(roots)
         let removed = ArrayList<RuntimeNode>()
         for (node in roots) {
             collectSubtree(node, removed)
+        }
+        // Follow ownership by stable identity, including generations already
+        // retired by a dynamic-group publication. Revoke the complete closure
+        // before invoking any user cleanup.
+        var restoreRecord: ?OverlayRecord = None
+        var scan: Int64 = 0
+        while (scan < removed.size) {
+            let owner = removed[scan]
+            for (record in overlayRecords) {
+                if (record.terminal.isSome() || !record.owner.sameNode(owner.reference())) { continue }
+                if (let Some(rootRef) <- record.root) {
+                    if (let Some(layerRoot) <- retainedNode(rootRef)) {
+                        if (restoreRecord.isNone()) {
+                            var ownsFocus = false
+                            if (let Some(focused) <- focusManager.focused) { ownsFocus = overlayAncestor(layerRoot,focused) }
+                            if (let Some(reserved) <- reservedLayer) {
+                                if (let Some(target) <- reserved.root) {
+                                    if (let Some(targetNode) <- retainedNode(target)) {
+                                        if (overlayAncestor(layerRoot,targetNode)) { ownsFocus = true }
+                                    }
+                                }
+                            }
+                            if (ownsFocus) { restoreRecord = Some(record) }
+                        }
+                        collectSubtree(layerRoot,removed)
+                    }
+                }
+                if (let Some(content) <- record.description) { content.releaseMount() }
+                record.description = None; record.root = None; record.requested = None
+                record.terminal = Some(OverlayCloseReason.OwnerGone); record.changed()
+                if (let Some(reserved) <- reservedLayer) {
+                    if (refEq(reserved,record)) { reservedLayer = None }
+                }
+            }
+            scan++
         }
         lock.lock()
         try {
@@ -1130,6 +1179,7 @@ class RuntimeSession {
         if (let Some(error) <- failure) {
             throw error
         }
+        if (let Some(record) <- restoreRecord) { restoreOverlayFocus(record) }
     }
     func hasReady(cutoff: Int64): Bool {
         lock.lock()

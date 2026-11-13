@@ -162,16 +162,24 @@ public class Application {
     public func activeTarget(): ?NodeRef {
         if (let Some(value) <- readSession()) {
             value.requireReadContext(); value.focusManager.observe()
-            if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
+            if (let Some(node) <- value.focusManager.focused) {
+                if (value.focusManager.effective(node,true) && value.focusManager.effective(node,false) && value.inOverlayDomain(node)) { return Some(node.reference()) }
+            }
             if (let Some(reserved) <- value.reservedLayer) {
-                if (let Some(rootRef) <- reserved.root) { if (rootRef.isValid()) { return Some(rootRef) } }
+                if (let Some(rootRef) <- reserved.root) { if (rootRef.isValid()) {
+                    let root = rootRef.resolve()
+                    if (value.focusManager.effective(root,true) && value.focusManager.effective(root,false) && value.inOverlayDomain(root)) { return Some(rootRef) }
+                } }
             }
             if (let Some(modal) <- value.topModal()) {
-                if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) { return Some(rootRef) } }
+                if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) {
+                    let root = rootRef.resolve()
+                    if (value.focusManager.effective(root,true) && value.focusManager.effective(root,false)) { return Some(rootRef) }
+                } }
             }
-            if (let Some(node) <- value.root.readMount()) {
-                if (value.focusManager.effective(node,true)) {
-                    if (value.focusManager.effective(node,false)) { return Some(node.reference()) }
+            if (value.topModal().isNone()) {
+                if (let Some(node) <- value.root.readMount()) {
+                    if (value.focusManager.effective(node,true) && value.focusManager.effective(node,false)) { return Some(node.reference()) }
                 }
             }
         }
@@ -356,6 +364,9 @@ public class Application {
             throw UIException("WrongUIContext", "target belongs to another session")
         }
         if (!value.inOverlayDomain(targetNode)) { throw UIException("FocusOutsideDomain", "target outside modal domain") }
+        if (let Some(layer) <- value.layerFor(targetNode)) {
+            if (layer.options.mode == OverlayMode.Passive) { throw UIException("InvalidProperty", "passive layer cannot be a keyboard target") }
+        }
         let path = ArrayList<RuntimeNode>()
         var cursor: ?RuntimeNode = Some(targetNode)
         var checkEnabled = true
