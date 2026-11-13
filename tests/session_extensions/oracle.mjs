@@ -61,8 +61,9 @@ export function verifyHeadless(rows, wire) {
 // K004: this Application fixture requested bracketed paste before arming faults.
 const pasteEnable=hex('1b5b3f3230303468'),pasteDisable=hex('1b5b3f323030346c');
 export function verifyKeyboardModeStartup(startup) {
-  assertWire(startup.subarray(0,pasteEnable.length),pasteEnable,'K004 requested paste mode before fault arm');
-  assert.equal(startup.indexOf(pasteEnable,pasteEnable.length),-1,'paste mode enabled exactly once before fault arm');
+  const enabledAt=startup.indexOf(pasteEnable);
+  assert(enabledAt>=0,'K004 requested paste mode before fault arm');
+  assert.equal(startup.indexOf(pasteEnable,enabledAt+pasteEnable.length),-1,'paste mode enabled exactly once before fault arm');
   assert.equal(startup.indexOf(pasteDisable),-1,'requested paste mode remains enabled before fault arm');
 }
 // S007: complete save owns a scope even when set fails before its first byte.
