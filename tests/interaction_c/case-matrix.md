@@ -115,3 +115,22 @@ These are independent targeted assertions, not changes to old oracle values.
 Actual fixed-WIP executions and reached/unreached controls belong to their own
 raw manifest; neither compile errors nor actor historical observations are
 counted as this role's fresh behavioral RED.
+
+## TASK110 finding regressions (append-only supplement)
+
+| Selector | Public behavior / authority |
+|---|---|
+| C-I01 | C.4: ordinary owner remove revokes all owned generations/owner posts before deepest-first layer cleanup |
+| C-I02 | C.2/C.4: both If and ForEach owner retirement terminate owned modal OwnerGone, cleanup once, restore base target |
+| C-I03 | A.4/C.7: hidden content contributes no cells; hidden/disabled takeFocus layer root cannot remain activeTarget |
+| C-I04 | B ensure/C.6: same frame uses offset3 geometry; offscreen anchor closes AnchorGone |
+| C-I05 | T008/C.2: overlay effective layout overflow fails candidate before publication, retaining Old/session/refs/picture |
+| C-I06 | T008/C.2: overlay ownership weight1 cannot overflow ordinary Row child weight Int64.Max |
+| C-I07 | C.2: explicit root host uses built-in root capability without overlayHost(true) |
+| C-I08 | Shared host error/C.2: pending host capability revoked in same batch fails InvalidOverlayHost; unified failure cleanup |
+| C-I09 | C.3/A.4 plus diagnostic ruling: Passive dispatch InvalidProperty and no owner handler; NonModal positive control |
+| C-I10 | R004/I009/C.6: first pure export and changed-size exports compose using current temporary geometry, preserving committed state |
+
+All ten selectors run independently against one normally built actual consumer.
+I05's callback preflight prohibition cannot be isolated from normal layout by a
+cross-snapshot total counter and is left to source review, explicitly unclaimed.
