@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Real Linux PTY only; future product consumer. No emulator/backend/interposer."""
-import argparse, errno, fcntl, hashlib, json, os, pty, select, signal, struct, subprocess, termios, time
+import argparse, errno, fcntl, hashlib, json, os, select, signal, struct, subprocess, termios, time
 from pathlib import Path
 
 def sha(path):
@@ -9,7 +9,7 @@ def sha(path):
 def run(binary, output, mode):
     directory = output / mode
     directory.mkdir(parents=True, exist_ok=False)
-    master, slave = pty.openpty()
+    master, slave = os.openpty()
     fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack('HHHH', 6, 40, 0, 0))
     before = subprocess.check_output(['stty', '-g'], stdin=slave).decode().strip()
     raw, sent, events = bytearray(), bytearray(), []
