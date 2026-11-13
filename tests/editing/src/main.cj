@@ -2,6 +2,7 @@ package editing_contract
 import std.env.getVariable
 
 main(): Int64 {
+    if (let Some(selected) <- getVariable("CJTUI_EDITING_REVIEW_CASE")) { reviewRegression(selected); return 0 }
     if (let Some(mode) <- getVariable("CJTUI_EDITING_MODE")) { liveEditing(mode); return 0 }
     publicConstructors()
     controllerLifecycle()
