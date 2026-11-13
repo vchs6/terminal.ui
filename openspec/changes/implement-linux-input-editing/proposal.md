@@ -2,7 +2,7 @@
 
 ## Implementation status v1 — 2026-11-13
 
-K001–K004已获独立117有限验收并集成main；[原件与限制](../../../docs/reviews/K/README.md)。下文Why保留立项时的问题背景，非当前K缺失声明。E001–E005未实现，118实际独立测试进行中；119–122和完整Linux/父AC仍pending，本变更尚不整体归档。
+K001–K004已获独立117有限验收并集成main；[原件与限制](../../../docs/reviews/K/README.md)。下文Why保留立项时的问题背景，非当前K缺失声明。E001–E005正在独立工作区实施；118正式测试已冻结，119实现中，120–122和完整Linux/父AC仍pending，本变更尚不整体归档。
 
 ## Why
 

@@ -1,6 +1,6 @@
 # Linux keyboard and text editing implementation plan
 
-当前控制器准入（2026-11-13，有限K完成）：TASK113正式测试、114实现、115独立双审、116实际执行、117独立有限验收已完成。接受产品c3c4642d84df57bbd9550d222ed22f602acd13ef对应main代码da9eaf4044cba917d12f441e041e164deb5eff80，产品路径逐字节一致；[K证据与SHA别名](../../../docs/reviews/K/README.md)。TASK118实际独立测试进行中（in_progress），未完成；119–122仍pending。仅K001–K004有限范围通过，不归档整个变更或关闭完整Linux/父AC。下列保留的候选措辞仅记录起草背景；当前状态以本段和逐任务勾选为准。
+当前控制器准入（2026-11-13，有限K完成）：TASK113正式测试、114实现、115独立双审、116实际执行、117独立有限验收已完成。接受产品c3c4642d84df57bbd9550d222ed22f602acd13ef对应main代码da9eaf4044cba917d12f441e041e164deb5eff80，产品路径逐字节一致；[K证据与SHA别名](../../../docs/reviews/K/README.md)。TASK118正式测试e4596343（main f38c7278）已冻结，前置消费者build/direct0、真实缺编辑API RED1；TASK119独立实现进行中，120–122未完成。仅K001–K004有限范围通过，不归档整个变更或关闭完整Linux/父AC。下列保留的候选措辞仅记录起草背景；当前状态以本段和逐任务勾选为准。
 
 > **For agentic workers:** 本件已登记；K已有限验收，E待实现；后续由主代理按冻结合同与实际前置，按用户已选独立测试/产品/审查/执行/验收流程执行。REQUIRED SUB-SKILL: superpowers:subagent-driven-development；本起草角色不执行、不派代理。
 
@@ -37,15 +37,15 @@
 
 ## 2. Unit B — single-line and multiline text editing
 
-- [ ] 2.1 TASK-118（in_progress，实际独立测试进行中，未完成）：冻结公共TextInput/TextArea/controller、Unicode事务/快捷键/主题视口/保守cut测试；所有前置实际API存在后取真正缺编辑API RED，交test-only版本。
-- [ ] 2.2 TASK-119：通过公共Canvas/focus/viewport实现全部E001–E005和公开例子，消费已独立验收148–152会话扩展，固定118及受影响回归通过，交product-only提交。
+- [x] 2.1 TASK-118：冻结公共TextInput/TextArea/controller、Unicode事务/快捷键/主题视口/保守cut测试；所有前置实际API存在后取真正缺编辑API RED，交test-only版本。
+- [ ] 2.2 TASK-119：通过公共Canvas/focus/viewport实现全部E001–E005和公开例子，消费已独立验收148–152会话扩展，固定118及受影响回归通过，交product-only提交。（in_progress；独立实现尚未验收）
 - [ ] 2.3 TASK-120：独立审编辑固定diff与公共复用/结果真实性，交spec/quality双verdict，必需缺陷闭合。
 - [ ] 2.4 TASK-121：独立执行公共CJPM消费者/Unicode/PTY/真实宿主/正常制品及干净消费，交真实exit/raw/PNG/hash，区分纯策略和宿主能力证据。
 - [ ] 2.5 TASK-122：逐E001–E005与AC028核原件、公开文档和接口，交编辑有限验收；030全部宿主能力、020完整恢复、019菜单与027展示另汇合。
 
 ## L3 cards — shared fields and admission
 
-以下字段与下表逐行合并构成每个L3的完整卡：level=L3，L1=G001；113/115/116/117/118/120/121/122父WP005，114/119父WP004。classification=execution候选（既定Linux目标内实现），K已冻结、preflight及113–117有限验收完成；E按实际前置准入、118进行中；public签名、事务、资源预算的工程决策引用本design及主代理freeze记录。workflow_ref/openspec_change_ref指本正式变更目录；K evidence_refs见docs/reviews/K，E未造通过日志。
+以下字段与下表逐行合并构成每个L3的完整卡：level=L3，L1=G001；113/115/116/117/118/120/121/122父WP005，114/119父WP004。classification=execution候选（既定Linux目标内实现），K已冻结、preflight及113–117有限验收完成；E按实际前置准入、118已冻结、119实现中；public签名、事务、资源预算的工程决策引用本design及主代理freeze记录。workflow_ref/openspec_change_ref指本正式变更目录；K evidence_refs见docs/reviews/K，E未造通过日志。
 
 requirement_refs：A=REQ009.1/.5、REQ010.1/.4输入侧、REQ011.2/003004边界；B=REQ001.8、REQ009.1–.5、REQ010.1/.4与REQ003.11。AC113–122仅支持步骤的交付证据别名，不取代原AC：114映射003/004归一化输入合同、017选目标桥接、030paste接收、020清理、041设备输入；119映射028编辑完整范围、030copy结果消费、020恢复集成，viewport原AC037仍交其单元。019/029不在范围。
 
