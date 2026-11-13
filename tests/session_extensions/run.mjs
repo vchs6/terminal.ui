@@ -5,7 +5,7 @@ import { mkdtemp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { sessionCases } from './cases.mjs';
-import { common, verifyHeadless, verifyLive, parseResults, wrap, golden, hex } from './oracle.mjs';
+import { common, verifyHeadless, verifyLive, verifyKeyboardModeStartup, parseResults, wrap, golden, hex } from './oracle.mjs';
 const binary=resolve(process.argv[2]);
 const selected=process.argv.slice(3);
 const artifacts=resolve(process.env.CJTUI_SESSION_ARTIFACTS??await mkdtemp(join(tmpdir(),'cjtui-session-')));
@@ -40,6 +40,7 @@ async function run(config,index) {
     await until(async()=>{pid=Number((await read(join(dir,'pid'))).toString().trim());return pid>0;},'PID');
     await until(()=>stdout.includes(Buffer.from('CJTUI_SESSION_READY')),'real first frame');
     for(const forbidden of ['\x1b]52;','\x1b]2;','\x1b]0;','\x1b]1;','\x1b[22;2t','\x1b[23;2t']) assert(!stdout.includes(Buffer.from(forbidden)),'no unsolicited session protocol during startup');
+    if(scenario==='fault-set' && offset===0) verifyKeyboardModeStartup(stdout);
     child.stdin.write('x');
     if(scenario==='ledger-error'||scenario==='ledger-cancel') {
       await until(async()=>(await read(env.CJTUI_SESSION_WIRE)).length>=wrap(hex(golden.saveHex),route).length+wrap(Buffer.from('\x1b]2;A\x07'),route).length*2,'two titles');

@@ -58,10 +58,19 @@ export function verifyHeadless(rows, wire) {
   for (const name of ['clipboard','title','titleStack']) assert(rows.get(`headless.capabilities.${name}`).startsWith('Unsupported|KnownUnavailable|NoDevice|'), `headless ${name}`);
   assert.equal(rows.get('cleanup.count'), '0');
 }
+// K004: this Application fixture requested bracketed paste before arming faults.
+const pasteEnable=hex('1b5b3f3230303468'),pasteDisable=hex('1b5b3f323030346c');
+export function verifyKeyboardModeStartup(startup) {
+  assertWire(startup.subarray(0,pasteEnable.length),pasteEnable,'K004 requested paste mode before fault arm');
+  assert.equal(startup.indexOf(pasteEnable,pasteEnable.length),-1,'paste mode enabled exactly once before fault arm');
+  assert.equal(startup.indexOf(pasteDisable),-1,'requested paste mode remains enabled before fault arm');
+}
 // S007: complete save owns a scope even when set fails before its first byte.
 function verifySafeSetCleanup(rows,wire,native,route,allWire) {
   const save=wrap(hex(golden.saveHex),route),pop=wrap(hex(golden.popHex),route);
   const expected=Buffer.concat([save,pop]);
+  // S008 zero-byte failure is synchronized: pop first, then K004 mode restore.
+  const preclose=Buffer.concat([expected,pasteDisable]);
   assertWire(wire,expected,'saved scope after zero-byte set failure: one safe cleanup pop');
   assertResult(rows,'fault',{operation:'SetHostTitle',status:'Failed',bytes:save.length,issue:'WriteFailed',offset:-1});
   assert.equal(rows.get('fault.steps'),'2','complete save and failed set are distinct actual steps');
@@ -83,14 +92,14 @@ function verifySafeSetCleanup(rows,wire,native,route,allWire) {
   assert(close>=0,'real native close recorded after optional cleanup');
   assert.equal(events[close][1],'0','actual native cleanup succeeds even when its return is later injected');
   const before=events.slice(0,close);
-  assert.deepEqual(before.filter(e=>e[0]==='sequence').map(e=>Number(e[1])),[1,2,3],'save, failed set, cleanup pop before first close');
+  assert.deepEqual(before.filter(e=>e[0]==='sequence').map(e=>Number(e[1])),[1,2,3,4],'save, failed set, cleanup pop, requested paste disable before first close');
   assert.deepEqual(before.filter(e=>e[0]==='fault'),[['fault','2','0']],'selected second sequence fails at byte0');
-  assert.deepEqual(before.filter(e=>e[0]==='sequence-result').map(e=>e.slice(1).map(Number)),[[0,save.length],[-1,0],[0,pop.length]]);
+  assert.deepEqual(before.filter(e=>e[0]==='sequence-result').map(e=>e.slice(1).map(Number)),[[0,save.length],[-1,0],[0,pop.length],[0,pasteDisable.length]]);
   const writes=before.filter(e=>e[0]==='write');
-  assert.equal(writes.reduce((n,e)=>n+Number(e[2]),0),expected.length,'no extra screen/control bytes before close');
-  for(const [sequence,count] of [[1,save.length],[2,0],[3,pop.length]])
+  assert.equal(writes.reduce((n,e)=>n+Number(e[2]),0),preclose.length,'only save, pop and requested paste disable before close');
+  for(const [sequence,count] of [[1,save.length],[2,0],[3,pop.length],[4,pasteDisable.length]])
     assert.equal(writes.filter(e=>Number(e[1])===sequence).reduce((n,e)=>n+Number(e[2]),0),count);
-  assertWire(allWire.subarray(0,expected.length),expected,'all pre-close output is exactly save plus pop');
+  assertWire(allWire.subarray(0,preclose.length),preclose,'all pre-close output is exactly save plus pop plus requested paste disable');
 }
 export function verifyLive(rows, wire, native, scenario, route, offset = 0, allWire = wire) {
   for(const forbidden of ['\x1b]0;','\x1b]1;','\x1b]52;c;?']) assert(!allWire.includes(Buffer.from(forbidden)),'no icon-name/both-title/clipboard-query protocol');
