@@ -1,0 +1,1495 @@
+{
+  "schema": 1,
+  "task": "008",
+  "classification": "execution: frozen C001/C002 formal-test admission metadata only",
+  "status": "IN_PROGRESS_FORMAL_TEST_DESIGN_ONLY",
+  "admission_verdict": "READY_008_FORMAL_TEST_PRECONDITIONS",
+  "root_adopted": true,
+  "admission": {
+    "report": "admission/report.md",
+    "index": "admission/index.json",
+    "index_sha256": "d137d921dc02d96609c5bc68a8665da72d23bdede17b0bc0b58f3110b5a7c27b",
+    "copy_receipts": "admission/source-copy-index.json",
+    "input_map": "admission/input-map.json",
+    "dq": "admission/dq.json",
+    "readiness_delta": "admission/readiness-delta.json",
+    "tools": "admission/tool-readiness.json",
+    "original_verification": "admission/verification.json",
+    "sealed_original_outputs": 8
+  },
+  "source_aliases": {
+    "accepted_source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+    "integrated_product_main": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+    "current_input_main": "2ebe9a0734a16d886a20589e0c8523cc094643ff",
+    "scopes": [
+      "src",
+      "native",
+      "tests",
+      "examples",
+      "cjpm.toml",
+      "build.cj",
+      "themes",
+      "benchmarks",
+      "docs/product"
+    ],
+    "Git_diff_name_only": "",
+    "scope_note": "Accepted combined product/test inputs remain identical; status/evidence metadata evolves separately. Historical upstream sources are not each claimed byte-identical after later accepted increments."
+  },
+  "actual_accepted_upstream": [
+    {
+      "task": "Runtime080",
+      "accepted_source": "216b2ab5f2315f4be19467b7e49f4047aec78ab9",
+      "scope": "PASS_FINITE_C; AC015/016/032 accepted. Runtime/identity/collector single owner; historical C167 no longer current gate.",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R13/acceptance/report.md",
+          "sha256": "a7b48c75b98c5dc9f4496deb99abaceab1c79966aef9adc007c48cbbd03f2dd7",
+          "bytes": 13520,
+          "role": "accepted upstream Runtime080 report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R13/acceptance/reviewed-hashes.json",
+          "sha256": "173727e63b66165e5928f2b3d21557df4beb694b41855dc3604eaacf2a974d64",
+          "bytes": 1229124,
+          "role": "accepted upstream Runtime080 index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "RichText084",
+      "accepted_source": "199f00076c1a79cfa6d0be92e7be09366e1a06af",
+      "scope": "PASS_FINITE; canonical plain-text validation, Unicode/Text path. No second caption Unicode implementation.",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R14/acceptance/report.md",
+          "sha256": "7205b80233b1c0fcaaf660446663a6feaceb75bb31a8e4af1bc149a9a5eed1f9",
+          "bytes": 9627,
+          "role": "accepted upstream RichText084 report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R14/acceptance/reviewed-hashes.json",
+          "sha256": "ac959d93d5de2bca8916a8e2f8a4dfa9bb090ad41d4f29df9e1e52d95d7f4cbd",
+          "bytes": 355639,
+          "role": "accepted upstream RichText084 index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "Theme088",
+      "accepted_source": "8d75233c664fd61be08d441f74d464cbcdff2d9c",
+      "scope": "PASS_FOUNDATION_SCOPE; T087-G01 remains final023 deferred, not S153 admission blocker.",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R15/acceptance/report.md",
+          "sha256": "57f580545f2eb938f46c696bed11519676a0d10760c6f808cb4bc5360a1444c7",
+          "bytes": 9796,
+          "role": "accepted upstream Theme088 report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R15/acceptance/reviewed-hashes.json",
+          "sha256": "6b7cd4418b7cd4c6ebdb745fa678f70e675b3f0096363652115c0471905ecb62",
+          "bytes": 3413,
+          "role": "accepted upstream Theme088 index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "Theme092",
+      "accepted_source": "fa6a46ec339ea0f098dea521c814226a7a373c7e",
+      "scope": "PASS_ASYNC_SCOPE; additional accepted upstream, not a new widget requirement.",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R15/theme-loading/acceptance/report.md",
+          "sha256": "cc5bee8ff8136e332627e295e981960d4b4b910ad186ac6a4cd2a1596298606a",
+          "bytes": 7977,
+          "role": "accepted upstream Theme092 report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R15/theme-loading/acceptance/reviewed-hashes.json",
+          "sha256": "bde29f8cf024f0fd07dcd0e54a09884cf0a0c10c6d6a2320ee5a2a6806cc8ccc",
+          "bytes": 45119,
+          "role": "accepted upstream Theme092 index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "Glyph097",
+      "accepted_source": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "scope": "PASS_FINITE_SCOPE; Auto/output fallback retained; no full Linux/font claim.",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R16/acceptance/report.md",
+          "sha256": "32c7a4b8a8874d7712f485086831517f85f7327c2edada5539f6634438343abe",
+          "bytes": 10198,
+          "role": "accepted upstream Glyph097 report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R16/acceptance/reviewed-hashes.json",
+          "sha256": "12f7a8376333e4b58eb9087ec45e4b3304814d5b571b821a9ecf6bd370c778d0",
+          "bytes": 32107,
+          "role": "accepted upstream Glyph097 index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "InteractionA102/I011/I012",
+      "accepted_source": "f8a028b39daf8a341576f304335d262544b9cca5",
+      "scope": "PASS_FINITE_UNIT_A A01–A06; public Canvas/defaultAction/focus/application and unified real disabled/focused composition. Current layout.cj Canvas draw path includes zero/empty clip; future S04 must assert target behavior.",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/interaction/A/TASK-102/report.md",
+          "sha256": "539c9a4db07d055b28ed6931194e5729301a2a3c41182b52ae0ca3d2b2830712",
+          "bytes": 11530,
+          "role": "accepted upstream InteractionA102/I011/I012 report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/interaction/A/TASK-102/evidence-index.json",
+          "sha256": "d530bc0beb5928be715fd6774879af5b5862f8a321ce61156e8b88036b8eadeb",
+          "bytes": 1788,
+          "role": "accepted upstream InteractionA102/I011/I012 index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "ViewportB107",
+      "accepted_source": "62039552a26da295dcd710d7cfc40cb9e43ca5fd",
+      "scope": "PASS_FINITE_UNIT_B; one deferred T105-M01 getter axes during onMount. Use committed geometry/start-return/event boundary; no widget dependency on this deferred observation. M prerequisite; optional S04 viewport coverage can use accepted path.",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/interaction/B/TASK-107/report.md",
+          "sha256": "19a4c5effc9d6b4fae252877f69d4c6bd6dc44297065932af2a4fad835ee0bdd",
+          "bytes": 7314,
+          "role": "accepted upstream ViewportB107 report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/interaction/B/TASK-107/evidence-index.json",
+          "sha256": "6411021d9005959b907c35516d6af6e5e11dad203106ad53cc77c25ba0232f72",
+          "bytes": 9841,
+          "role": "accepted upstream ViewportB107 index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "OverlayC112",
+      "accepted_source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "scope": "PASS_FINITE_UNIT_C; M prerequisite. Unknown VT physical caret hiding remains limited, not silently passed.",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/interaction/C/overlay-acceptance/acceptance.md",
+          "sha256": "702cd9f253fbc005821920875eccc865f7cf1dfad4847c87ed13a27ef0d8c123",
+          "bytes": 4830,
+          "role": "accepted upstream OverlayC112 report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/interaction/C/overlay-acceptance/evidence-index.json",
+          "sha256": "bde6a33222a6ac7ed3df86199209b97ef73ab057427be6d8739f4d71d9dab511",
+          "bytes": 17855,
+          "role": "accepted upstream OverlayC112 index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "Keyboard117",
+      "accepted_source": "c3c4642d84df57bbd9550d222ed22f602acd13ef",
+      "scope": "PASS_FINITE_K; shared complete ctrl/alt/shift activation input, no later M guard patch or decoder fork. Host modifier limitations retain protocol/source evidence qualifications.",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/K/keyboard-acceptance/acceptance.md",
+          "sha256": "206e69c04eaf89bfe654eff6fbf2b1d4235fba3c7d77a0192a7934bc524596f6",
+          "bytes": 4748,
+          "role": "accepted upstream Keyboard117 report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/K/keyboard-acceptance/index.json",
+          "sha256": "48328d9f1af9543b3372abb8c4c5387d2e893a2e01eff6a811f6b41927401c80",
+          "bytes": 930459,
+          "role": "accepted upstream Keyboard117 index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "Finite editing E122/current combined input",
+      "accepted_source": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+      "scope": "Later accepted combined source already present. Public E mechanical archive is not a product dependency. No new E implementation review.",
+      "references": [
+        {
+          "path": "/workspace/work/editing-acceptance/acceptance.md",
+          "sha256": "ad21b5eed224c869dc8debbe5e2768874869c85f38cdd895d63c4f777f3ab1ba",
+          "bytes": 4016,
+          "role": "accepted upstream Finite editing E122/current combined input report"
+        },
+        {
+          "path": "/workspace/work/editing-acceptance/index.json",
+          "sha256": "c9828b315fe21d8c927077a36ca6da2b747eec4b87178d36c1b21b703e491def",
+          "bytes": 5069,
+          "role": "accepted upstream Finite editing E122/current combined input index"
+        }
+      ],
+      "later_source_policy": "Historical accepted sources are not claimed individually identical after later accepted increments; current combined input bound separately."
+    },
+    {
+      "task": "S157",
+      "verdict": "PASS_FINITE_S",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-acceptance/index.json",
+          "sha256": "6358811fc9e1eaa31c2258facc4a3e06f1b5bf6c47dc306f12b6fad90154662c",
+          "bytes": 31712,
+          "role": "accepted S157 acceptance_index"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-acceptance/acceptance.md",
+          "sha256": "953675dfc90faf38858893cc42ee7c50f26ef51fc8b505e2cf2bd9e45e30d7d8",
+          "bytes": 3733,
+          "role": "accepted S157 acceptance_report"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-execution/final-index.json",
+          "sha256": "9d15fcee7473101f21edec529063d380d0d2dc0f5d75b006498e5927239b78a0",
+          "bytes": 5799,
+          "role": "accepted S157 execution_index"
+        }
+      ]
+    },
+    {
+      "task": "Session152",
+      "accepted_source": "83094ca92acab37ed0a38042e2e40ead55049f41",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/report.md",
+          "sha256": "9a3668ca67f3573d70cd4c2cb833d7081579136b4047aa1322f219590e140fb0",
+          "bytes": 13400,
+          "role": "accepted Session152 finite evidence",
+          "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+          "repository_path": "docs/reviews/R18/acceptance/report.md",
+          "git_blob": "8ed81940cfba2319cdc3ca4b2ad613d757fdca9e",
+          "working_bytes_match": true
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/hash-manifest.json",
+          "sha256": "b5db4589170a942e7fdd42319ff58b9b15a62ba5678d75b9c34b0ec893ba3946",
+          "bytes": 1117061,
+          "role": "accepted Session152 finite evidence",
+          "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+          "repository_path": "docs/reviews/R18/acceptance/hash-manifest.json",
+          "git_blob": "69410ccb735308fd3df279dc2b6bbcc8b5e0c1ec",
+          "working_bytes_match": true
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/acceptance-matrix.json",
+          "sha256": "37657ef383e0001b19c9781f4f1c7475aa900ba11af973ae9bab26d9d2f5fbfc",
+          "bytes": 24200,
+          "role": "accepted Session152 finite evidence",
+          "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+          "repository_path": "docs/reviews/R18/acceptance/acceptance-matrix.json",
+          "git_blob": "fa71f31dd1903535c0c657756a85793dea891849",
+          "working_bytes_match": true
+        }
+      ]
+    },
+    {
+      "task": "R10",
+      "accepted_source": "8af39f6c8882772b946ae1d9507361f8a6082388",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R10/acceptance/report.md",
+          "sha256": "129f720f8f03727603e9df401e833984c2700c5dfa4af6d18b5f27b803037c7b",
+          "bytes": 31753,
+          "role": "accepted R10 finite evidence",
+          "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+          "repository_path": "docs/reviews/R10/acceptance/report.md",
+          "git_blob": "e4d267270c4a1a7c521d286c46470bbdf7d9c78c",
+          "working_bytes_match": true
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R10/acceptance/final-metadata-evidence.json",
+          "sha256": "510e4fad518eb5b39aa16fdb8117becc0c57fd4d8e7d67a54c4d578244bf98ad",
+          "bytes": 7868,
+          "role": "accepted R10 finite evidence",
+          "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+          "repository_path": "docs/reviews/R10/acceptance/final-metadata-evidence.json",
+          "git_blob": "4bbe0922ef94b8d8d1a9cea9b3b27a4bb7a791b3",
+          "working_bytes_match": true
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R10/acceptance/verdicts.json",
+          "sha256": "3d6e1caa2468ead17012b065bb3d0d5f9162ed721ab164dad9605e6ad5cda6b0",
+          "bytes": 2339,
+          "role": "accepted R10 finite evidence",
+          "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+          "repository_path": "docs/reviews/R10/acceptance/verdicts.json",
+          "git_blob": "0ea1b1d5ff07f209f255e496ea1dd142bf01c0bb",
+          "working_bytes_match": true
+        }
+      ]
+    },
+    {
+      "task": "070",
+      "accepted_source": "5c2a7e7d956b5d8c0284e96514276608616bf8a6",
+      "references": [
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R11/acceptance/final-verdict.json",
+          "sha256": "3046a73e17d9abc339542e7356fd88134c70f12dbf00c6da2d89df7dc69ba8a8",
+          "bytes": 1264,
+          "role": "accepted 070 finite evidence",
+          "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+          "repository_path": "docs/reviews/R11/acceptance/final-verdict.json",
+          "git_blob": "254d635f5908bf75d84bd40528390971b4560ea7",
+          "working_bytes_match": true
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R11/acceptance/final-projection-report.md",
+          "sha256": "25e173cf4227dd96d9020e1d923f9a17d60660f1e78839d6bea93a3e2466cb14",
+          "bytes": 4463,
+          "role": "accepted 070 finite evidence",
+          "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+          "repository_path": "docs/reviews/R11/acceptance/final-projection-report.md",
+          "git_blob": "afc0442dfeddf7fbb57dcb4ed97743d170298fce",
+          "working_bytes_match": true
+        }
+      ]
+    },
+    {
+      "task": "M162",
+      "verdict": "PASS_FINITE_M",
+      "accepted_source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "references": [
+        {
+          "path": "/workspace/work/widgets-composite-acceptance/index.json",
+          "sha256": "b1c92e7440efbc3cf4b2688bb5d3c5c50a7262e3a24ad1123776cc9c8f64c5eb",
+          "bytes": 2975,
+          "role": "actual162 authoritative admission prerequisite"
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/final-index.json",
+          "sha256": "b126ef3d726c4b5e01a6d145e70f519d87bae210c26de68f60101c98f8b50d51",
+          "bytes": 6463,
+          "role": "actual161 independent execution upstream"
+        },
+        {
+          "path": "/workspace/work/widgets-composite-acceptance/ac-results.json",
+          "sha256": "eba9f4c42f48bec0cce798b664b1a0ef7f684000f783ae80c170f1b0a879efe9",
+          "bytes": 9149,
+          "role": "actual162 finite acceptance decisions"
+        },
+        {
+          "path": "/workspace/work/widgets-composite-acceptance/source-test-contract-receipts.json",
+          "sha256": "c737a1a99e3013cbb1e8961292843811554dc0fc4397eef62db16b2951e80518",
+          "bytes": 8967,
+          "role": "actual162 fixed source/test references"
+        }
+      ]
+    }
+  ],
+  "fixed_reference_bindings": [
+    {
+      "path": "/workspace/work/terminal.ui/AGENTS.md",
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "bytes": 35500,
+      "role": "canonical requirement/governance; selected008/common/shared-interface scope",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "AGENTS.md",
+      "git_blob": "faacd7230b0215d5344d753ebb55d3b821034fb6",
+      "working_bytes_match": true,
+      "public_repository_path": "AGENTS.md",
+      "publication_observed_sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/ENGINEERING_TASK_DECOMPOSITION.md",
+      "sha256": "d8f43ef8c6f63ffcd1b4b640e0a343a694948c8283b1f17de725ee07aa0a4666",
+      "bytes": 15886,
+      "role": "canonical requirement/governance; selected008/common/shared-interface scope",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "ENGINEERING_TASK_DECOMPOSITION.md",
+      "git_blob": "ab1fe54c5f141840d134b6be09134b80a2caf6da",
+      "working_bytes_match": true,
+      "public_repository_path": "ENGINEERING_TASK_DECOMPOSITION.md",
+      "publication_observed_sha256": "d8f43ef8c6f63ffcd1b4b640e0a343a694948c8283b1f17de725ee07aa0a4666",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/BATTLE_PROTOCOL.md",
+      "sha256": "fc954ffa193e78aaa76c641e85729ab488eb6951ef32fa5c94a378812fcba959",
+      "bytes": 14053,
+      "role": "canonical requirement/governance; selected008/common/shared-interface scope",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "BATTLE_PROTOCOL.md",
+      "git_blob": "097f095968fc4afe8240d34fc710a3819116311d",
+      "working_bytes_match": true,
+      "public_repository_path": "BATTLE_PROTOCOL.md",
+      "publication_observed_sha256": "fc954ffa193e78aaa76c641e85729ab488eb6951ef32fa5c94a378812fcba959",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/complete-linux-integration/design.md",
+      "sha256": "6f40454ebfa2160da6a9e43f4c8501e022013a9919b252d43ac7d63a6e641001",
+      "bytes": 12137,
+      "role": "canonical requirement/governance; selected008/common/shared-interface scope",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "openspec/changes/complete-linux-integration/design.md",
+      "git_blob": "67dced0df3382703e7d7c0e5343000e7f130233c",
+      "working_bytes_match": true,
+      "public_repository_path": "openspec/changes/complete-linux-integration/design.md",
+      "publication_observed_sha256": "6f40454ebfa2160da6a9e43f4c8501e022013a9919b252d43ac7d63a6e641001",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/complete-linux-integration/tasks.md",
+      "sha256": "b915f0441c42ea096b7ca7bd20a80bd2ee98b96ee2ad4d766458b7fd7d9be2d0",
+      "bytes": 16602,
+      "role": "canonical requirement/governance; selected008/common/shared-interface scope",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "openspec/changes/complete-linux-integration/tasks.md",
+      "git_blob": "fd1348bbfa7740c3ee0a3ca658444900d0f5387d",
+      "working_bytes_match": true,
+      "public_repository_path": "openspec/changes/complete-linux-integration/tasks.md",
+      "publication_observed_sha256": "b915f0441c42ea096b7ca7bd20a80bd2ee98b96ee2ad4d766458b7fd7d9be2d0",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-session-extensions/design.md",
+      "sha256": "13d28b28aea0c023ad8865d1b62fb83b594847cefd5e26eecaee195a9d5a10a5",
+      "bytes": 27248,
+      "role": "canonical requirement/governance; selected008/common/shared-interface scope",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "openspec/changes/implement-session-extensions/design.md",
+      "git_blob": "a3d2925e8c9ca233dbc96c147cdbf8686ba86e7e",
+      "working_bytes_match": true,
+      "public_repository_path": "openspec/changes/implement-session-extensions/design.md",
+      "publication_observed_sha256": "13d28b28aea0c023ad8865d1b62fb83b594847cefd5e26eecaee195a9d5a10a5",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/design.md",
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4",
+      "bytes": 76152,
+      "role": "canonical requirement/governance; selected008/common/shared-interface scope",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "openspec/changes/implement-public-interaction/design.md",
+      "git_blob": "00fc90147ff3a9c630cb7444502fb0765c41eeee",
+      "working_bytes_match": true,
+      "public_repository_path": "openspec/changes/implement-public-interaction/design.md",
+      "publication_observed_sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/acceptance.md",
+      "sha256": "01450ca0ac46f98ffec7ee1bb35fb35e97783320e2d4135422f0ebc44a24d64f",
+      "bytes": 37803,
+      "role": "canonical requirement/governance; selected008/common/shared-interface scope",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/acceptance.md",
+      "git_blob": "ed88d3deaddebcb876acc3774ddbc112b2823b24",
+      "working_bytes_match": false,
+      "public_repository_path": "docs/acceptance.md",
+      "publication_observed_sha256": "9925d0dbd1bf612f2fff463ada09f6bfea106bd9294d551b6eb2a7bc0e0da83c",
+      "publication_observed_matches_fixed_reference": false,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/tasks.md",
+      "sha256": "aacb2c62492655767950679a345a466436eeb3258f8fb3981e0aa6ad8d377edd",
+      "bytes": 61400,
+      "role": "canonical requirement/governance; selected008/common/shared-interface scope",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/tasks.md",
+      "git_blob": "9eab8a793b23001e93f5289e02106d556d6a9f62",
+      "working_bytes_match": true,
+      "public_repository_path": "docs/tasks.md",
+      "publication_observed_sha256": "aacb2c62492655767950679a345a466436eeb3258f8fb3981e0aa6ad8d377edd",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/linux-closeout-preflight/report.md",
+      "sha256": "e3e1b4aeae14b7c7000e2e2feb1d28bbc54e74dda5337de05db73ad131cc3edc",
+      "bytes": 13358,
+      "role": "inherited original planning definitions/closed findings; no overwrite",
+      "public_repository_path": "docs/reviews/R22/preflight/report.md",
+      "publication_observed_sha256": "e3e1b4aeae14b7c7000e2e2feb1d28bbc54e74dda5337de05db73ad131cc3edc",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/linux-closeout-preflight/dq.json",
+      "sha256": "aaa79585ca4d8e3dbad9669a238ea1aaee1c437977dc78713f51072f2d305675",
+      "bytes": 3503,
+      "role": "inherited original planning definitions/closed findings; no overwrite",
+      "public_repository_path": "docs/reviews/R22/preflight/dq.json",
+      "publication_observed_sha256": "aaa79585ca4d8e3dbad9669a238ea1aaee1c437977dc78713f51072f2d305675",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/linux-closeout-preflight/reviewed-hashes.json",
+      "sha256": "1e3387236da5a871a23f7c2206dea9b98e69098be329641f5e7448a106de3858",
+      "bytes": 13754,
+      "role": "inherited original planning definitions/closed findings; no overwrite",
+      "public_repository_path": "docs/reviews/R22/preflight/reviewed-hashes.json",
+      "publication_observed_sha256": "1e3387236da5a871a23f7c2206dea9b98e69098be329641f5e7448a106de3858",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/linux-closeout-preflight/scoped-r1/report.md",
+      "sha256": "75fb7f32e58cccf672b193a646ed8112c83f19e71ce2e55cbbf4bc058b9bd3d5",
+      "bytes": 3114,
+      "role": "inherited original planning definitions/closed findings; no overwrite",
+      "public_repository_path": "docs/reviews/R22/preflight/scoped-r1/report.md",
+      "publication_observed_sha256": "75fb7f32e58cccf672b193a646ed8112c83f19e71ce2e55cbbf4bc058b9bd3d5",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/linux-closeout-preflight/scoped-r1/dq.json",
+      "sha256": "1cbc62f5e3a20eed6fef94604b51ddbf13f0edd664ac4de00a94503e32afceff",
+      "bytes": 1397,
+      "role": "inherited original planning definitions/closed findings; no overwrite",
+      "public_repository_path": "docs/reviews/R22/preflight/scoped-r1/dq.json",
+      "publication_observed_sha256": "1cbc62f5e3a20eed6fef94604b51ddbf13f0edd664ac4de00a94503e32afceff",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/linux-closeout-preflight/scoped-r1/findings.json",
+      "sha256": "8c972ed3d6097476d0bfb1aeb66dafd4c1aff5ccb274fe4addedf4287c1b9c33",
+      "bytes": 6648,
+      "role": "inherited original planning definitions/closed findings; no overwrite",
+      "public_repository_path": "docs/reviews/R22/preflight/scoped-r1/findings.json",
+      "publication_observed_sha256": "8c972ed3d6097476d0bfb1aeb66dafd4c1aff5ccb274fe4addedf4287c1b9c33",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/linux-closeout-preflight/scoped-r1/reviewed-hashes.json",
+      "sha256": "25cce4eadd7f12034cdb24acad409bc8703d71e3845819b8911a6318313e943e",
+      "bytes": 1913,
+      "role": "inherited original planning definitions/closed findings; no overwrite",
+      "public_repository_path": "docs/reviews/R22/preflight/scoped-r1/reviewed-hashes.json",
+      "publication_observed_sha256": "25cce4eadd7f12034cdb24acad409bc8703d71e3845819b8911a6318313e943e",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-008-preflight-brief.md",
+      "sha256": "1eda68f5458e17c8b514946b372a570397af6d5e238c1433b2c72e9072342366",
+      "bytes": 4217,
+      "role": "root assigned scope and writer barrier",
+      "public_repository_path": ".superpowers/sdd/tasks-complete-linux-integration/task-008-preflight-brief.md",
+      "publication_observed_sha256": "1eda68f5458e17c8b514946b372a570397af6d5e238c1433b2c72e9072342366",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/widgets/M/input-manifest.json",
+      "sha256": "1476fe275e6f0f0129eeb78d7df2d3fd9f7411dd7564f27e59b5a82dc433b23b",
+      "bytes": 52460,
+      "role": "historical upstream map only; old M gates superseded by actual162",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/reviews/widgets/M/input-manifest.json",
+      "git_blob": "51ed74b3997508d16e89f629bfa090221c496c06",
+      "working_bytes_match": false,
+      "public_repository_path": "docs/reviews/widgets/M/input-manifest.json",
+      "publication_observed_sha256": "3a6ee6ce952fe45479cf7ef6bfcf91ac328e6f1643ad9c9040df8efd59418379",
+      "publication_observed_matches_fixed_reference": false,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R13/acceptance/report.md",
+      "sha256": "a7b48c75b98c5dc9f4496deb99abaceab1c79966aef9adc007c48cbbd03f2dd7",
+      "bytes": 13520,
+      "role": "accepted upstream Runtime080 report",
+      "public_repository_path": "docs/reviews/R13/acceptance/report.md",
+      "publication_observed_sha256": "a7b48c75b98c5dc9f4496deb99abaceab1c79966aef9adc007c48cbbd03f2dd7",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R13/acceptance/reviewed-hashes.json",
+      "sha256": "173727e63b66165e5928f2b3d21557df4beb694b41855dc3604eaacf2a974d64",
+      "bytes": 1229124,
+      "role": "accepted upstream Runtime080 index",
+      "public_repository_path": "docs/reviews/R13/acceptance/reviewed-hashes.json",
+      "publication_observed_sha256": "173727e63b66165e5928f2b3d21557df4beb694b41855dc3604eaacf2a974d64",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R14/acceptance/report.md",
+      "sha256": "7205b80233b1c0fcaaf660446663a6feaceb75bb31a8e4af1bc149a9a5eed1f9",
+      "bytes": 9627,
+      "role": "accepted upstream RichText084 report",
+      "public_repository_path": "docs/reviews/R14/acceptance/report.md",
+      "publication_observed_sha256": "7205b80233b1c0fcaaf660446663a6feaceb75bb31a8e4af1bc149a9a5eed1f9",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R14/acceptance/reviewed-hashes.json",
+      "sha256": "ac959d93d5de2bca8916a8e2f8a4dfa9bb090ad41d4f29df9e1e52d95d7f4cbd",
+      "bytes": 355639,
+      "role": "accepted upstream RichText084 index",
+      "public_repository_path": "docs/reviews/R14/acceptance/reviewed-hashes.json",
+      "publication_observed_sha256": "ac959d93d5de2bca8916a8e2f8a4dfa9bb090ad41d4f29df9e1e52d95d7f4cbd",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R15/acceptance/report.md",
+      "sha256": "57f580545f2eb938f46c696bed11519676a0d10760c6f808cb4bc5360a1444c7",
+      "bytes": 9796,
+      "role": "accepted upstream Theme088 report",
+      "public_repository_path": "docs/reviews/R15/acceptance/report.md",
+      "publication_observed_sha256": "57f580545f2eb938f46c696bed11519676a0d10760c6f808cb4bc5360a1444c7",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R15/acceptance/reviewed-hashes.json",
+      "sha256": "6b7cd4418b7cd4c6ebdb745fa678f70e675b3f0096363652115c0471905ecb62",
+      "bytes": 3413,
+      "role": "accepted upstream Theme088 index",
+      "public_repository_path": "docs/reviews/R15/acceptance/reviewed-hashes.json",
+      "publication_observed_sha256": "6b7cd4418b7cd4c6ebdb745fa678f70e675b3f0096363652115c0471905ecb62",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R15/theme-loading/acceptance/report.md",
+      "sha256": "cc5bee8ff8136e332627e295e981960d4b4b910ad186ac6a4cd2a1596298606a",
+      "bytes": 7977,
+      "role": "accepted upstream Theme092 report",
+      "public_repository_path": "docs/reviews/R15/theme-loading/acceptance/report.md",
+      "publication_observed_sha256": "cc5bee8ff8136e332627e295e981960d4b4b910ad186ac6a4cd2a1596298606a",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R15/theme-loading/acceptance/reviewed-hashes.json",
+      "sha256": "bde29f8cf024f0fd07dcd0e54a09884cf0a0c10c6d6a2320ee5a2a6806cc8ccc",
+      "bytes": 45119,
+      "role": "accepted upstream Theme092 index",
+      "public_repository_path": "docs/reviews/R15/theme-loading/acceptance/reviewed-hashes.json",
+      "publication_observed_sha256": "bde29f8cf024f0fd07dcd0e54a09884cf0a0c10c6d6a2320ee5a2a6806cc8ccc",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R16/acceptance/report.md",
+      "sha256": "32c7a4b8a8874d7712f485086831517f85f7327c2edada5539f6634438343abe",
+      "bytes": 10198,
+      "role": "accepted upstream Glyph097 report",
+      "public_repository_path": "docs/reviews/R16/acceptance/report.md",
+      "publication_observed_sha256": "32c7a4b8a8874d7712f485086831517f85f7327c2edada5539f6634438343abe",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R16/acceptance/reviewed-hashes.json",
+      "sha256": "12f7a8376333e4b58eb9087ec45e4b3304814d5b571b821a9ecf6bd370c778d0",
+      "bytes": 32107,
+      "role": "accepted upstream Glyph097 index",
+      "public_repository_path": "docs/reviews/R16/acceptance/reviewed-hashes.json",
+      "publication_observed_sha256": "12f7a8376333e4b58eb9087ec45e4b3304814d5b571b821a9ecf6bd370c778d0",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/interaction/A/TASK-102/report.md",
+      "sha256": "539c9a4db07d055b28ed6931194e5729301a2a3c41182b52ae0ca3d2b2830712",
+      "bytes": 11530,
+      "role": "accepted upstream InteractionA102/I011/I012 report",
+      "public_repository_path": "docs/reviews/interaction/A/TASK-102/report.md",
+      "publication_observed_sha256": "539c9a4db07d055b28ed6931194e5729301a2a3c41182b52ae0ca3d2b2830712",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/interaction/A/TASK-102/evidence-index.json",
+      "sha256": "d530bc0beb5928be715fd6774879af5b5862f8a321ce61156e8b88036b8eadeb",
+      "bytes": 1788,
+      "role": "accepted upstream InteractionA102/I011/I012 index",
+      "public_repository_path": "docs/reviews/interaction/A/TASK-102/evidence-index.json",
+      "publication_observed_sha256": "d530bc0beb5928be715fd6774879af5b5862f8a321ce61156e8b88036b8eadeb",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/interaction/B/TASK-107/report.md",
+      "sha256": "19a4c5effc9d6b4fae252877f69d4c6bd6dc44297065932af2a4fad835ee0bdd",
+      "bytes": 7314,
+      "role": "accepted upstream ViewportB107 report",
+      "public_repository_path": "docs/reviews/interaction/B/TASK-107/report.md",
+      "publication_observed_sha256": "19a4c5effc9d6b4fae252877f69d4c6bd6dc44297065932af2a4fad835ee0bdd",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/interaction/B/TASK-107/evidence-index.json",
+      "sha256": "6411021d9005959b907c35516d6af6e5e11dad203106ad53cc77c25ba0232f72",
+      "bytes": 9841,
+      "role": "accepted upstream ViewportB107 index",
+      "public_repository_path": "docs/reviews/interaction/B/TASK-107/evidence-index.json",
+      "publication_observed_sha256": "6411021d9005959b907c35516d6af6e5e11dad203106ad53cc77c25ba0232f72",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/interaction/C/overlay-acceptance/acceptance.md",
+      "sha256": "702cd9f253fbc005821920875eccc865f7cf1dfad4847c87ed13a27ef0d8c123",
+      "bytes": 4830,
+      "role": "accepted upstream OverlayC112 report",
+      "public_repository_path": "docs/reviews/interaction/C/overlay-acceptance/acceptance.md",
+      "publication_observed_sha256": "702cd9f253fbc005821920875eccc865f7cf1dfad4847c87ed13a27ef0d8c123",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/interaction/C/overlay-acceptance/evidence-index.json",
+      "sha256": "bde6a33222a6ac7ed3df86199209b97ef73ab057427be6d8739f4d71d9dab511",
+      "bytes": 17855,
+      "role": "accepted upstream OverlayC112 index",
+      "public_repository_path": "docs/reviews/interaction/C/overlay-acceptance/evidence-index.json",
+      "publication_observed_sha256": "bde6a33222a6ac7ed3df86199209b97ef73ab057427be6d8739f4d71d9dab511",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/K/keyboard-acceptance/acceptance.md",
+      "sha256": "206e69c04eaf89bfe654eff6fbf2b1d4235fba3c7d77a0192a7934bc524596f6",
+      "bytes": 4748,
+      "role": "accepted upstream Keyboard117 report",
+      "public_repository_path": "docs/reviews/K/keyboard-acceptance/acceptance.md",
+      "publication_observed_sha256": "206e69c04eaf89bfe654eff6fbf2b1d4235fba3c7d77a0192a7934bc524596f6",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/K/keyboard-acceptance/index.json",
+      "sha256": "48328d9f1af9543b3372abb8c4c5387d2e893a2e01eff6a811f6b41927401c80",
+      "bytes": 930459,
+      "role": "accepted upstream Keyboard117 index",
+      "public_repository_path": "docs/reviews/K/keyboard-acceptance/index.json",
+      "publication_observed_sha256": "48328d9f1af9543b3372abb8c4c5387d2e893a2e01eff6a811f6b41927401c80",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/editing-acceptance/acceptance.md",
+      "sha256": "ad21b5eed224c869dc8debbe5e2768874869c85f38cdd895d63c4f777f3ab1ba",
+      "bytes": 4016,
+      "role": "accepted upstream Finite editing E122/current combined input report",
+      "public_repository_path": "docs/reviews/E/editing-acceptance/acceptance.md",
+      "publication_observed_sha256": "ad21b5eed224c869dc8debbe5e2768874869c85f38cdd895d63c4f777f3ab1ba",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/editing-acceptance/index.json",
+      "sha256": "c9828b315fe21d8c927077a36ca6da2b747eec4b87178d36c1b21b703e491def",
+      "bytes": 5069,
+      "role": "accepted upstream Finite editing E122/current combined input index",
+      "public_repository_path": "docs/reviews/E/editing-acceptance/index.json",
+      "publication_observed_sha256": "c9828b315fe21d8c927077a36ca6da2b747eec4b87178d36c1b21b703e491def",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-acceptance/index.json",
+      "sha256": "6358811fc9e1eaa31c2258facc4a3e06f1b5bf6c47dc306f12b6fad90154662c",
+      "bytes": 31712,
+      "role": "accepted S157 acceptance_index",
+      "public_repository_path": "docs/reviews/widgets/S/widgets-small-acceptance/index.json",
+      "publication_observed_sha256": "6358811fc9e1eaa31c2258facc4a3e06f1b5bf6c47dc306f12b6fad90154662c",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-acceptance/acceptance.md",
+      "sha256": "953675dfc90faf38858893cc42ee7c50f26ef51fc8b505e2cf2bd9e45e30d7d8",
+      "bytes": 3733,
+      "role": "accepted S157 acceptance_report",
+      "public_repository_path": "docs/reviews/widgets/S/widgets-small-acceptance/acceptance.md",
+      "publication_observed_sha256": "953675dfc90faf38858893cc42ee7c50f26ef51fc8b505e2cf2bd9e45e30d7d8",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-execution/final-index.json",
+      "sha256": "9d15fcee7473101f21edec529063d380d0d2dc0f5d75b006498e5927239b78a0",
+      "bytes": 5799,
+      "role": "accepted S157 execution_index",
+      "public_repository_path": "docs/reviews/widgets/S/widgets-small-execution/final-index.json",
+      "publication_observed_sha256": "9d15fcee7473101f21edec529063d380d0d2dc0f5d75b006498e5927239b78a0",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/report.md",
+      "sha256": "9a3668ca67f3573d70cd4c2cb833d7081579136b4047aa1322f219590e140fb0",
+      "bytes": 13400,
+      "role": "accepted Session152 finite evidence",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/reviews/R18/acceptance/report.md",
+      "git_blob": "8ed81940cfba2319cdc3ca4b2ad613d757fdca9e",
+      "working_bytes_match": true,
+      "public_repository_path": "docs/reviews/R18/acceptance/report.md",
+      "publication_observed_sha256": "9a3668ca67f3573d70cd4c2cb833d7081579136b4047aa1322f219590e140fb0",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/hash-manifest.json",
+      "sha256": "b5db4589170a942e7fdd42319ff58b9b15a62ba5678d75b9c34b0ec893ba3946",
+      "bytes": 1117061,
+      "role": "accepted Session152 finite evidence",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/reviews/R18/acceptance/hash-manifest.json",
+      "git_blob": "69410ccb735308fd3df279dc2b6bbcc8b5e0c1ec",
+      "working_bytes_match": true,
+      "public_repository_path": "docs/reviews/R18/acceptance/hash-manifest.json",
+      "publication_observed_sha256": "b5db4589170a942e7fdd42319ff58b9b15a62ba5678d75b9c34b0ec893ba3946",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/acceptance-matrix.json",
+      "sha256": "37657ef383e0001b19c9781f4f1c7475aa900ba11af973ae9bab26d9d2f5fbfc",
+      "bytes": 24200,
+      "role": "accepted Session152 finite evidence",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/reviews/R18/acceptance/acceptance-matrix.json",
+      "git_blob": "fa71f31dd1903535c0c657756a85793dea891849",
+      "working_bytes_match": true,
+      "public_repository_path": "docs/reviews/R18/acceptance/acceptance-matrix.json",
+      "publication_observed_sha256": "37657ef383e0001b19c9781f4f1c7475aa900ba11af973ae9bab26d9d2f5fbfc",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R10/acceptance/report.md",
+      "sha256": "129f720f8f03727603e9df401e833984c2700c5dfa4af6d18b5f27b803037c7b",
+      "bytes": 31753,
+      "role": "accepted R10 finite evidence",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/reviews/R10/acceptance/report.md",
+      "git_blob": "e4d267270c4a1a7c521d286c46470bbdf7d9c78c",
+      "working_bytes_match": true,
+      "public_repository_path": "docs/reviews/R10/acceptance/report.md",
+      "publication_observed_sha256": "129f720f8f03727603e9df401e833984c2700c5dfa4af6d18b5f27b803037c7b",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R10/acceptance/final-metadata-evidence.json",
+      "sha256": "510e4fad518eb5b39aa16fdb8117becc0c57fd4d8e7d67a54c4d578244bf98ad",
+      "bytes": 7868,
+      "role": "accepted R10 finite evidence",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/reviews/R10/acceptance/final-metadata-evidence.json",
+      "git_blob": "4bbe0922ef94b8d8d1a9cea9b3b27a4bb7a791b3",
+      "working_bytes_match": true,
+      "public_repository_path": "docs/reviews/R10/acceptance/final-metadata-evidence.json",
+      "publication_observed_sha256": "510e4fad518eb5b39aa16fdb8117becc0c57fd4d8e7d67a54c4d578244bf98ad",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R10/acceptance/verdicts.json",
+      "sha256": "3d6e1caa2468ead17012b065bb3d0d5f9162ed721ab164dad9605e6ad5cda6b0",
+      "bytes": 2339,
+      "role": "accepted R10 finite evidence",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/reviews/R10/acceptance/verdicts.json",
+      "git_blob": "0ea1b1d5ff07f209f255e496ea1dd142bf01c0bb",
+      "working_bytes_match": true,
+      "public_repository_path": "docs/reviews/R10/acceptance/verdicts.json",
+      "publication_observed_sha256": "3d6e1caa2468ead17012b065bb3d0d5f9162ed721ab164dad9605e6ad5cda6b0",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R11/acceptance/final-verdict.json",
+      "sha256": "3046a73e17d9abc339542e7356fd88134c70f12dbf00c6da2d89df7dc69ba8a8",
+      "bytes": 1264,
+      "role": "accepted 070 finite evidence",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/reviews/R11/acceptance/final-verdict.json",
+      "git_blob": "254d635f5908bf75d84bd40528390971b4560ea7",
+      "working_bytes_match": true,
+      "public_repository_path": "docs/reviews/R11/acceptance/final-verdict.json",
+      "publication_observed_sha256": "3046a73e17d9abc339542e7356fd88134c70f12dbf00c6da2d89df7dc69ba8a8",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R11/acceptance/final-projection-report.md",
+      "sha256": "25e173cf4227dd96d9020e1d923f9a17d60660f1e78839d6bea93a3e2466cb14",
+      "bytes": 4463,
+      "role": "accepted 070 finite evidence",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "docs/reviews/R11/acceptance/final-projection-report.md",
+      "git_blob": "afc0442dfeddf7fbb57dcb4ed97743d170298fce",
+      "working_bytes_match": true,
+      "public_repository_path": "docs/reviews/R11/acceptance/final-projection-report.md",
+      "publication_observed_sha256": "25e173cf4227dd96d9020e1d923f9a17d60660f1e78839d6bea93a3e2466cb14",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-acceptance/index.json",
+      "sha256": "b1c92e7440efbc3cf4b2688bb5d3c5c50a7262e3a24ad1123776cc9c8f64c5eb",
+      "bytes": 2975,
+      "role": "actual162 authoritative admission prerequisite",
+      "public_repository_path": "docs/reviews/widgets/M/acceptance162/index.json",
+      "publication_observed_sha256": "b1c92e7440efbc3cf4b2688bb5d3c5c50a7262e3a24ad1123776cc9c8f64c5eb",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-execution/final-index.json",
+      "sha256": "b126ef3d726c4b5e01a6d145e70f519d87bae210c26de68f60101c98f8b50d51",
+      "bytes": 6463,
+      "role": "actual161 independent execution upstream",
+      "public_repository_path": "docs/reviews/widgets/M/execution161/final-index.json",
+      "publication_observed_sha256": "b126ef3d726c4b5e01a6d145e70f519d87bae210c26de68f60101c98f8b50d51",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-acceptance/ac-results.json",
+      "sha256": "eba9f4c42f48bec0cce798b664b1a0ef7f684000f783ae80c170f1b0a879efe9",
+      "bytes": 9149,
+      "role": "actual162 finite acceptance decisions",
+      "public_repository_path": "docs/reviews/widgets/M/acceptance162/ac-results.json",
+      "publication_observed_sha256": "eba9f4c42f48bec0cce798b664b1a0ef7f684000f783ae80c170f1b0a879efe9",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-acceptance/source-test-contract-receipts.json",
+      "sha256": "c737a1a99e3013cbb1e8961292843811554dc0fc4397eef62db16b2951e80518",
+      "bytes": 8967,
+      "role": "actual162 fixed source/test references",
+      "public_repository_path": "docs/reviews/widgets/M/acceptance162/source-test-contract-receipts.json",
+      "publication_observed_sha256": "c737a1a99e3013cbb1e8961292843811554dc0fc4397eef62db16b2951e80518",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/application.cj",
+      "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+      "bytes": 36153,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/application.cj",
+      "git_blob": "193dc961c268e2ec730563c0071e64e0001979df",
+      "working_bytes_match": true,
+      "public_repository_path": "src/application.cj",
+      "publication_observed_sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/frame.cj",
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+      "bytes": 12900,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/frame.cj",
+      "git_blob": "7ad627b0652266f3a8e2ad320a1a5982fb5308e7",
+      "working_bytes_match": true,
+      "public_repository_path": "src/frame.cj",
+      "publication_observed_sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/terminal_bridge.cj",
+      "sha256": "659798da1bf63458c3dff2b0a075ae899a9413589ee24ea00232b32df16cb523",
+      "bytes": 2436,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/terminal_bridge.cj",
+      "git_blob": "23d70b3704696eb5b29a3ce14ea88b0e17596986",
+      "working_bytes_match": true,
+      "public_repository_path": "src/terminal_bridge.cj",
+      "publication_observed_sha256": "659798da1bf63458c3dff2b0a075ae899a9413589ee24ea00232b32df16cb523",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/runtime_stats.cj",
+      "sha256": "84082f03df45963bb2c2eb8da154653e553fd7b7bc7df1b711522265bdbb3a9b",
+      "bytes": 728,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/runtime_stats.cj",
+      "git_blob": "974de090347c967bebc9043f99a5783b07400635",
+      "working_bytes_match": true,
+      "public_repository_path": "src/runtime_stats.cj",
+      "publication_observed_sha256": "84082f03df45963bb2c2eb8da154653e553fd7b7bc7df1b711522265bdbb3a9b",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/native/cjtui_terminal.c",
+      "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4",
+      "bytes": 4769,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "native/cjtui_terminal.c",
+      "git_blob": "c3ea201e5463364cbea3abb537cf2de7d4336fd9",
+      "working_bytes_match": true,
+      "public_repository_path": "native/cjtui_terminal.c",
+      "publication_observed_sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/caret_probe.cj",
+      "sha256": "a12988c0ccabe646b9b4eb1160382f530dfdedddd4a67b90a9ac78fea5df45a5",
+      "bytes": 1318,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/caret_probe.cj",
+      "git_blob": "96bfcd9052047d9009dd2b7bd8f9b56dbbbf1043",
+      "working_bytes_match": true,
+      "public_repository_path": "src/caret_probe.cj",
+      "publication_observed_sha256": "a12988c0ccabe646b9b4eb1160382f530dfdedddd4a67b90a9ac78fea5df45a5",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/session_result.cj",
+      "sha256": "e9874706043e7f0e9552adc66555c716f9d5b5b5a2e511813b70ebe97a8f63f3",
+      "bytes": 1524,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/session_result.cj",
+      "git_blob": "5c392809f6bf3913427d166260c7fcda9a04a3c2",
+      "working_bytes_match": true,
+      "public_repository_path": "src/session_result.cj",
+      "publication_observed_sha256": "e9874706043e7f0e9552adc66555c716f9d5b5b5a2e511813b70ebe97a8f63f3",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/session_options.cj",
+      "sha256": "5f6191b55550967cccbbbc12988af7c1924ab2cb536a218bf76febe5d2d7b54b",
+      "bytes": 515,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/session_options.cj",
+      "git_blob": "7d9f5a22f451ec91db420f4a17ce52f5314ff34e",
+      "working_bytes_match": true,
+      "public_repository_path": "src/session_options.cj",
+      "publication_observed_sha256": "5f6191b55550967cccbbbc12988af7c1924ab2cb536a218bf76febe5d2d7b54b",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/session_device_exception.cj",
+      "sha256": "1dc607b3afe6b063ffefcff4f2c6ababc08843bc866099de8c09538b91e25f8a",
+      "bytes": 281,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/session_device_exception.cj",
+      "git_blob": "3c49e79454f9e3819fe38b93c78c95751838d308",
+      "working_bytes_match": true,
+      "public_repository_path": "src/session_device_exception.cj",
+      "publication_observed_sha256": "1dc607b3afe6b063ffefcff4f2c6ababc08843bc866099de8c09538b91e25f8a",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/ui_cleanup_exception.cj",
+      "sha256": "e94605384f3495df6c7303fd866cddbfc20b987db398a7794d9d27f4372cfc09",
+      "bytes": 1905,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/ui_cleanup_exception.cj",
+      "git_blob": "c516af38f6329a067dcbd73e8a92d952921f4536",
+      "working_bytes_match": true,
+      "public_repository_path": "src/ui_cleanup_exception.cj",
+      "publication_observed_sha256": "e94605384f3495df6c7303fd866cddbfc20b987db398a7794d9d27f4372cfc09",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/src/runtime_session.cj",
+      "sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b",
+      "bytes": 66044,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "src/runtime_session.cj",
+      "git_blob": "86b43a603d6e62d18c5c70606698eef5543c8b87",
+      "working_bytes_match": true,
+      "public_repository_path": "src/runtime_session.cj",
+      "publication_observed_sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/cjpm.toml",
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828",
+      "bytes": 1541,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "cjpm.toml",
+      "git_blob": "2d80ae78d3e7d88808565a3c7e41be657138190e",
+      "working_bytes_match": true,
+      "public_repository_path": "cjpm.toml",
+      "publication_observed_sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/build.cj",
+      "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9",
+      "bytes": 191,
+      "role": "current signature/phase/owner readiness only, not source correctness review",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "build.cj",
+      "git_blob": "ba203970b1597b0ffe1b7c91ce2be06eea644331",
+      "working_bytes_match": true,
+      "public_repository_path": "build.cj",
+      "publication_observed_sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/tests/application-lifecycle/run.sh",
+      "sha256": "cafc2624c7c7956c5b73109561dcdbcb4d55a1bd59a997da6e604499bc6d476a",
+      "bytes": 621,
+      "role": "existing native fault method and scoped reuse",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "tests/application-lifecycle/run.sh",
+      "git_blob": "d9af1fb4af6982244a925273f860f78b4b820eff",
+      "working_bytes_match": true,
+      "public_repository_path": "tests/application-lifecycle/run.sh",
+      "publication_observed_sha256": "cafc2624c7c7956c5b73109561dcdbcb4d55a1bd59a997da6e604499bc6d476a",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/tests/application-lifecycle/native/close_wrap.c",
+      "sha256": "7087e2f673689253115e7f9ece56ed8b97ecb3fc4f738680278f8e79d1000d05",
+      "bytes": 723,
+      "role": "existing native fault method and scoped reuse",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "tests/application-lifecycle/native/close_wrap.c",
+      "git_blob": "3b6c768a05fd4c8c25a5afecf353b0edd8071cf2",
+      "working_bytes_match": true,
+      "public_repository_path": "tests/application-lifecycle/native/close_wrap.c",
+      "publication_observed_sha256": "7087e2f673689253115e7f9ece56ed8b97ecb3fc4f738680278f8e79d1000d05",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/tests/application-lifecycle/pty.mjs",
+      "sha256": "ac69244e07e8dc7f64545d7e01aa562ef0bdcdadc87cb2dde3251edf77ac28d5",
+      "bytes": 6146,
+      "role": "existing native fault method and scoped reuse",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "tests/application-lifecycle/pty.mjs",
+      "git_blob": "e4584926246c65e68c3aa3d2b65a53e393f4968b",
+      "working_bytes_match": true,
+      "public_repository_path": "tests/application-lifecycle/pty.mjs",
+      "publication_observed_sha256": "ac69244e07e8dc7f64545d7e01aa562ef0bdcdadc87cb2dde3251edf77ac28d5",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/tests/session_extensions/run.sh",
+      "sha256": "9e47a741b7137c609e068eb5495cdfc952fcd4a7425ce67e6adda46459f2938d",
+      "bytes": 1466,
+      "role": "existing native fault method and scoped reuse",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "tests/session_extensions/run.sh",
+      "git_blob": "9ecf3e5ce81c351520f7103ad7217130e1db7b50",
+      "working_bytes_match": true,
+      "public_repository_path": "tests/session_extensions/run.sh",
+      "publication_observed_sha256": "9e47a741b7137c609e068eb5495cdfc952fcd4a7425ce67e6adda46459f2938d",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/tests/session_extensions/native/session_fault.c",
+      "sha256": "6c06839496fcdecba757d7e42f4786cb1e37d62dcfcad5d929cfbe6a92963b22",
+      "bytes": 4880,
+      "role": "existing native fault method and scoped reuse",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "tests/session_extensions/native/session_fault.c",
+      "git_blob": "50aba2f1a241d3398cd8914e675c4603533668fa",
+      "working_bytes_match": true,
+      "public_repository_path": "tests/session_extensions/native/session_fault.c",
+      "publication_observed_sha256": "6c06839496fcdecba757d7e42f4786cb1e37d62dcfcad5d929cfbe6a92963b22",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/tests/interaction_a/run.sh",
+      "sha256": "45cd23f0fcf6214b852519de71ff48537cd25c414742946b31e1b4195fc03601",
+      "bytes": 2624,
+      "role": "existing native fault method and scoped reuse",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "tests/interaction_a/run.sh",
+      "git_blob": "d6f4c769ff0803081b67175768a7d981e62d43b3",
+      "working_bytes_match": true,
+      "public_repository_path": "tests/interaction_a/run.sh",
+      "publication_observed_sha256": "45cd23f0fcf6214b852519de71ff48537cd25c414742946b31e1b4195fc03601",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/tests/interaction_a/native/write_fault.c",
+      "sha256": "f25ca63ca23578d9ed417f6edf225a96e48a2f4b4887ffe1eb98bd3dff4cf31d",
+      "bytes": 2617,
+      "role": "existing native fault method and scoped reuse",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "tests/interaction_a/native/write_fault.c",
+      "git_blob": "704f6e419a5c008df3750608ce161d6253417436",
+      "working_bytes_match": true,
+      "public_repository_path": "tests/interaction_a/native/write_fault.c",
+      "publication_observed_sha256": "f25ca63ca23578d9ed417f6edf225a96e48a2f4b4887ffe1eb98bd3dff4cf31d",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/tests/keyboard/native/write_fault.c",
+      "sha256": "6eb12816320e88b3f682fa15b9760e79cc6c53d738b854868a28adc3fc24ea22",
+      "bytes": 1510,
+      "role": "existing native fault method and scoped reuse",
+      "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+      "repository_path": "tests/keyboard/native/write_fault.c",
+      "git_blob": "3f4e2b64d8b6c9a8287141ed3ada96077cc68e14",
+      "working_bytes_match": true,
+      "public_repository_path": "tests/keyboard/native/write_fault.c",
+      "publication_observed_sha256": "6eb12816320e88b3f682fa15b9760e79cc6c53d738b854868a28adc3fc24ea22",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "fixed committed Git context at declared revision; current status metadata may differ"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-execution/raw/normal-build/phase-index.json",
+      "sha256": "26f80eeb1b07c1eeb0de4ac6dd8c44914d9289035209fae8dcadcd6fc9195b84",
+      "bytes": 686,
+      "role": "actual161 normal environment/build evidence reused",
+      "public_repository_path": "docs/reviews/widgets/M/execution161/raw/normal-build/phase-index.json",
+      "publication_observed_sha256": "26f80eeb1b07c1eeb0de4ac6dd8c44914d9289035209fae8dcadcd6fc9195b84",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-execution/raw/normal-build/index.json",
+      "sha256": "c983b1544b4c2fa7a19bac279e957bcceb02c65115c54d75b642ed6d9c095c7b",
+      "bytes": 567,
+      "role": "actual161 normal environment/build evidence reused",
+      "public_repository_path": "docs/reviews/widgets/M/execution161/raw/normal-build/index.json",
+      "publication_observed_sha256": "c983b1544b4c2fa7a19bac279e957bcceb02c65115c54d75b642ed6d9c095c7b",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-execution/raw/normal-build/command.json",
+      "sha256": "6ad47a706010c96fccc0174d337ba1b17170aff6351d1ea3ce9e7927045ac247",
+      "bytes": 266,
+      "role": "actual161 normal environment/build evidence reused",
+      "public_repository_path": "docs/reviews/widgets/M/execution161/raw/normal-build/command.json",
+      "publication_observed_sha256": "6ad47a706010c96fccc0174d337ba1b17170aff6351d1ea3ce9e7927045ac247",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-execution/raw/normal-bundle/phase-index.json",
+      "sha256": "2fa902a60fce4553da203bb32f635a11314c8cfe2d0ff4611e097c51d9377226",
+      "bytes": 691,
+      "role": "actual161 normal environment/build evidence reused",
+      "public_repository_path": "docs/reviews/widgets/M/execution161/raw/normal-bundle/phase-index.json",
+      "publication_observed_sha256": "2fa902a60fce4553da203bb32f635a11314c8cfe2d0ff4611e097c51d9377226",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-execution/raw/normal-bundle/index.json",
+      "sha256": "9221c84da350798094743d332f6188915704f7ffedaa1cd41c4fee9669f93f8d",
+      "bytes": 568,
+      "role": "actual161 normal environment/build evidence reused",
+      "public_repository_path": "docs/reviews/widgets/M/execution161/raw/normal-bundle/index.json",
+      "publication_observed_sha256": "9221c84da350798094743d332f6188915704f7ffedaa1cd41c4fee9669f93f8d",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-execution/raw/normal-bundle/command.json",
+      "sha256": "3749c42ffd3f1cab4cf760aefe7ac2a29496554140fe09f0c3c52f16eda415eb",
+      "bytes": 267,
+      "role": "actual161 normal environment/build evidence reused",
+      "public_repository_path": "docs/reviews/widgets/M/execution161/raw/normal-bundle/command.json",
+      "publication_observed_sha256": "3749c42ffd3f1cab4cf760aefe7ac2a29496554140fe09f0c3c52f16eda415eb",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-implementation/source/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133,
+      "role": "existing normal HTTPS registry configuration only; no author reasoning",
+      "public_repository_path": null,
+      "publication_observed_sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+      "sha256": "179d4e52c8a8d29a23d28691351f2b0897391243e5d5cb873f8a8e4502f2a288",
+      "bytes": 8027,
+      "role": "normal toolchain/data readiness",
+      "public_repository_path": null,
+      "publication_observed_sha256": "179d4e52c8a8d29a23d28691351f2b0897391243e5d5cb873f8a8e4502f2a288",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    },
+    {
+      "path": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+      "sha256": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e",
+      "bytes": 9101877,
+      "role": "normal toolchain/data readiness",
+      "public_repository_path": null,
+      "publication_observed_sha256": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e",
+      "publication_observed_matches_fixed_reference": true,
+      "binding_kind": "retained original current bytes verified"
+    }
+  ],
+  "planning_preflight_reuse": {
+    "fixed_revision": "59bea18063a4f830e93844ac194169167b165132",
+    "closed_findings": [
+      "LC-PF001",
+      "LC-PF002",
+      "LC-PF003"
+    ],
+    "original_definitions": "../preflight/report.md",
+    "original_DQ": "../preflight/dq.json",
+    "final_scoped_report": "../preflight/scoped-r1/report.md",
+    "final_scoped_DQ": "../preflight/scoped-r1/dq.json",
+    "policy": "Reuse unchanged original14DQ/task-self/interface definitions. Initialdf9612e failure history preserved; no broad future-card audit repeated."
+  },
+  "current_interfaces": {
+    "owner": "existing Application/Frame/native single writer",
+    "source_signature_bindings": "admission/input-map.json exact c5 Git paths/blobs",
+    "public_entries": [
+      "Application.run(): Unit",
+      "Application.stop(): Unit",
+      "Application.stats(): RuntimeStats",
+      "Application.post(action: () -> Unit): Bool",
+      "Application.terminalCapabilities(): ?TerminalCapabilities",
+      "Application.caretSnapshot(): CaretSnapshot",
+      "Application.sessionCleanupResults(): Array<SessionResult>",
+      "Frame.cellAt(x: Int64, y: Int64): Cell",
+      "Frame.toPlainText(): String",
+      "Frame.toAnsi(colorMode!: ColorMode = ColorMode.TrueColor): String"
+    ],
+    "new_API_or_backend": false,
+    "observability": [
+      {
+        "claim": "phase separation and actual emitted bytes",
+        "available": "public callbacks/post with file/control markers, real PTY all-wire, test-local syscall trace and public session results; capture lifecycle and failed phase before cleanup."
+      },
+      {
+        "claim": "successful device baseline",
+        "available": "same/changed/shortened/style/resize/profile public frame sequences + exact all-wire and controlled phase markers; independent source ordering for stopped branches.",
+        "limit": "RuntimeStats.frames measures frame generation, not successful device commits; zero-output alone is not baseline proof; memory replay is not realTTY recovery."
+      },
+      {
+        "claim": "fatal partial vs zero failure",
+        "available": "actual byte-prefix syscall returns, run error/cleanup results, same-process public run reopen, termios/signal/free trace; second app cannot clear process unsafe."
+      },
+      {
+        "claim": "query/caret modes",
+        "available": "Application.terminalCapabilities() immutable status plus caretSnapshot() logical coordinates and raw wire; Known/Unknown from actual protocol behavior, never assumed visible."
+      },
+      {
+        "claim": "primary and cleanup errors",
+        "available": "public exception/cleanup results plus real close wrapper return and native trace; preserve business-first/device-first ordering."
+      }
+    ],
+    "fault_method": {
+      "reuse": "existing session_extensions --wrap=write/cjt_buffer_write/cjt_buffer_add/cjt_open/cjt_close/poll and interaction_a literal-transaction selector; real product writer/native ownership retained",
+      "required_formal_delta": "C002 zero/partial fatal, each actual CUP/SGR/UTF8/2004/title/caret/query/restoration prefix, successful short writes, EINTR, zero return and EIO; actual sequence-specific offsets frozen by independent author",
+      "R10_scope": "Original lifecycle wrapper and Cj consumer unchanged at current source; pty oracle changed to atomic resize/settled grid. Reuse unchanged accepted scenarios and actual later evidence; do not label all original R10 paths byte-identical.",
+      "no_probe_needed": true
+    }
+  },
+  "normal_tooling": {
+    "source": "admission/tool-readiness.json",
+    "SDK": "1.2.0",
+    "native": "gcc14.2/ar2.44",
+    "versions": "Original read-only version/path observations, not a new build or probe",
+    "registry": "https://pkg.cangjie-lang.cn/registry",
+    "old_relay": "18973 offline; not a prerequisite",
+    "normal_paths": [
+      {
+        "path": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/linux-build-recon/stdx-env/linux_x86_64_llvm/static/stdx",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/viewport-tests/cache/repository",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/widgets-composite-execution/raw/normal-build/phase-index.json",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/widgets-composite-execution/raw/normal-bundle/phase-index.json",
+        "exists": true
+      }
+    ],
+    "copy_policy": "SDK/stdx/UCD/cache remain original references, never copied"
+  },
+  "formal_test_activity": {
+    "canonical_activity": "008.a independent formal-test design",
+    "assigned_role": "root to assign independent Sol/high",
+    "output": "tests/output_recovery/run.sh plus frozen consumers/native fault fixtures",
+    "test_revision": null,
+    "test_tree": null,
+    "RED": null,
+    "GREEN": null,
+    "implementation_ready": false,
+    "product_author_barrier": "No product author/behavior changes until actual frozen independent tests and actual counterexample or evidence judgment; root serializes the shared writer."
+  },
+  "contracts": {
+    "required": "C002 actual current sequence prefixes, successful short writes, EINTR, zero-return/EIO, primary/cleanup errors, termios/signal/free and same-process reopen",
+    "partial_fatal": "process unsafe; stop later frame/mode/title/clipboard bytes; no CAN/ST/SGR recovery",
+    "zero_fatal": "ends current run; do not invent partial unsafe",
+    "baseline": "RuntimeStats.frames counts generated frames, never successful device commits; combine actual raw/control phases and independent source-ordering proof when stop prevents observable continuation",
+    "R10": "Reuse unchanged accepted fence scopes; enumerate actual new caret/query/input/2004/title sequences, never guessed exact offsets or in-memory recovery as realTTY proof"
+  },
+  "future_gates": "010/020/021 and final cards retain planned status and own gates. 027 remains theme authority; M1/M2/041/023/024/wholeLinux/release remain open. B-M01→024/T087→023 mandatory; M160-S01 open nonblocking.",
+  "version": "0.0.0"
+}

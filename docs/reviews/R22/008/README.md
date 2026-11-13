@@ -1,0 +1,11 @@
+# TASK008 formal-test admission
+
+Root adopts **READY_008_FORMAL_TEST_PRECONDITIONS**: [independent original report](admission/report.md), [sealed index](admission/index.json), [DQ delta](admission/dq.json), [method/observability delta](admission/readiness-delta.json), [read-only tool availability](admission/tool-readiness.json) and [copy receipts](admission/source-copy-index.json). The [actual input manifest](input-manifest.json) binds accepted070/R10/152/117/112/122/162 and supporting prerequisites, with exact source6e→mainc5→current2ebe product/test equality.
+
+Only independent **008.a formal-test design** is active. No008 test SHA, RED or GREEN has been delivered; product implementation is not ready. Overall008 is in progress and its parent checkbox/AC remain pending. The [canonical task card](../../../../openspec/changes/complete-linux-integration/tasks.md) owns activity status; no duplicate checklist is maintained here.
+
+Use the existing public Application/Frame and real native single-writer fault seams. RuntimeStats.frames is frame generation, not successful device commits. Baseline proof combines controlled raw/control phases and independent source ordering for branches that stop. Partial+fatal stops later frame/mode/title/clipboard bytes and remains process-unsafe; zero+fatal stops the run without inventing partial unsafe. No new API, backend, unsafe CAN/ST recovery or memory-replay-as-realTTY claim is admitted.
+
+[Original planning definitions](../preflight/report.md) and [final59bea scoped preflight](../preflight/scoped-r1/report.md) are reused; initial failure history stays unchanged. Current writer/caret/input/query/2004/title sequences need actual fixed008 tests; unchanged R10 scope is reused without broad cold reruns. Original admission files preserve their then-current M-archive wording; the [M archive](../../widgets/M/README.md) is now public. Fixed c5 Git bindings retain historical status metadata without relabelling current bytes as old observations.
+
+010/020/021 keep their own gates. Complete M1,027/041,M2,023/024,wholeLinux and release remain open; B-M01→024/T087→023 remain mandatory. No product/test/checker changes or builds were performed to publish this admission.

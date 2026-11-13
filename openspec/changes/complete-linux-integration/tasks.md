@@ -11,7 +11,7 @@
 
 主代理只契约/集成；测试编写Sol/high、产品Sol/high或Terra/high、独立审核和复杂验收Astra/high、确定命令执行Sol/medium，各自目录和上下文，固定输入，不交接产品作者推理/自评。纯证据索引和AC投影由原验收职责承接，不另造五角色。任何真实产品/示例/发行检查行为变化须测试作者先给真实反例，再产品作者修，独立审核、独立执行、独立验收；若没有源码缺口则按实际证据关闭，不造无谓代码。
 
-一个实体一文件，纯函数内聚；无第二renderer/parser/Unicode表/runtime。未变code/deps/env/config/scope证据按AGENTS11.1复用，不能因新任务/文档再冷跑。真实新增/受影响失败必须验证。正常bundle与repositorycheck不是完整release。所有required需有独立证据；不publish。独立规划preflight59bea180已通过，原001/002/003/004/008/010/020/021/023/024/041唯一状态现由本文件承接；全部仍planned，不等于产品ready。docs/tasks只保留原范围/依赖与引用，AC只在docs/acceptance维护。
+一个实体一文件，纯函数内聚；无第二renderer/parser/Unicode表/runtime。未变code/deps/env/config/scope证据按AGENTS11.1复用，不能因新任务/文档再冷跑。真实新增/受影响失败必须验证。正常bundle与repositorycheck不是完整release。所有required需有独立证据；不publish。独立规划preflight59bea180已通过，原001/002/003/004/008/010/020/021/023/024/041唯一状态现由本文件承接；除008以独立正式测试设计范围in_progress外，其余仍planned；任何卡均不据此变产品ready。docs/tasks只保留原范围/依赖与引用，AC只在docs/acceptance维护。
 
 ## Review Focus
 
@@ -23,13 +23,15 @@
 
 ## Shared L3 card fields
 
-以下与各卡合成完整定义：`level=L3; goal=G001; classification=execution; workflow_ref=本tasks; openspec_change_ref=complete-linux-integration; status=planned; evidence_refs=[]`。属于原任务的具体WP/REQ/原AC沿docs/tasks，不重编号，不制造父L3嵌套L3。`preconditions`=独立preflight无未决Important+该卡全部实际输入固定+共享作者写屏障；没有则仅准备、不准入产品。`required_skills`=TDD/仓颉coding（代码角色）、verification、按需systematic-debugging、SDD/review（各实际职责）；来源复用docs/reviews/R11/skills.json及AGENTS14固定参考，实际使用由对应角色落盘。`decision_refs=C001–C009/L001–L006`；兼容为保留现已冻结API/原断言，不造新公共签名。`quality_governance`：必要性为原完整AC缺口，canonical owner是功能design现路径，旧路径只补真实缺口不保留并行机制，复杂度限测试/集成/必要小修。影响/风险在各卡和Review Focus。工具/SDK/终端须实际可用并有raw；不认证无法观测的实际serving model。
+以下与各卡合成完整定义：`level=L3; goal=G001; classification=execution; workflow_ref=本tasks; openspec_change_ref=complete-linux-integration; status=planned（008例外：overall in_progress，仅008.a独立正式测试设计活动）；evidence_refs=[]（008见docs/reviews/R22/008/input-manifest.json）`。属于原任务的具体WP/REQ/原AC沿docs/tasks，不重编号，不制造父L3嵌套L3。`preconditions`=独立preflight无未决Important+该卡全部实际输入固定+共享作者写屏障；没有则仅准备、不准入产品。`required_skills`=TDD/仓颉coding（代码角色）、verification、按需systematic-debugging、SDD/review（各实际职责）；来源复用docs/reviews/R11/skills.json及AGENTS14固定参考，实际使用由对应角色落盘。`decision_refs=C001–C009/L001–L006`；兼容为保留现已冻结API/原断言，不造新公共签名。`quality_governance`：必要性为原完整AC缺口，canonical owner是功能design现路径，旧路径只补真实缺口不保留并行机制，复杂度限测试/集成/必要小修。影响/风险在各卡和Review Focus。工具/SDK/终端须实际可用并有raw；不认证无法观测的实际serving model。
 
 每个有产品行为的原任务L4按五活动顺序：独立测试作者冻结正常/边界/失败字面golden与实际RED/缺证据；独立产品作者取得固定测试后写最小产品/example/checker并固定提交；独立审核者只收合同/test/source/diff/raw双verdict；执行者按确定入口构建并直接binary记录真exit/raw/SHA/UTC，实际宿主原PNG；验收者按原AC和源/原件/hash判断，root只集成状态。各角色不同agent/工作目录，不把一个作者自测当最终GREEN。仅文档冻结/证据投影任务由独立审查/验收原职责完成，无假RED要求。
 
 ## M1集成卡
 
 - [ ] 1.1 原TASK-008：按C002关闭完整输出失败与基线契约（WP002/REQ004；implementation及独立质量活动）。
+
+当前status=in_progress；活动008.a=独立正式测试设计（root安排Sol/high），008.b–e尚未完成。Root采用[独立008准入](../../../docs/reviews/R22/008/README.md) READY_008_FORMAL_TEST_PRECONDITIONS；[固定实际输入](../../../docs/reviews/R22/008/input-manifest.json)为accepted6e→mainc5→current2ebe，同产品/测试scope Gitdiff0。尚无008正式测试SHA/RED/GREEN，不标implementation ready，父008复选框与AC008仍pending。原59bea规划14DQ/task-self/interface定义复用，当前准入仅008实际前置；不重复全未来卡审核。
 
 输入=070/R10、已接受152/117/112/122/162及最终M1全部模式/帧/caret、固定测试。输出=tests/output_recovery/正式消费者及原生fault夹具、现src/application.cj/frame.cj与native/cjtui_terminal.c必要真实缺口、产品恢复说明与R22/008证据。排除M2算法。
 L4 008.a：手写相同帧/缩短/仅样式/resize/能力切换与C002所有截断位置预期；正常build/direct命令及期望停止/unsafe。008.b：固定来源回放原R10并仅补新writer/caret/input边界，真实RED只因产品违反正式策略。008.c：产品作者修对应唯一owner，固定提交。008.d：独立双审核→测试执行；native资源/错误/输出raw不可用时不足。008.e：按AC008原文接受安全恢复或明确停止分支，记录可证明边界，不用只零输出断言替代成功baseline确认。CLI入口 `tests/output_recovery/run.sh`（普通development test wrapper，不是产品依赖）。
@@ -93,4 +95,4 @@ L4 024.a：验收者Astra/high核最终source/package/deps与各原件hash、真
 
 自查：C002–C009各有明确原任务/输入/输出/路径/独立角色/原AC，接口不扩张，001/002/003/004/041各自独立状态/文件/原AC，汇合组无状态且共享证据；027/022/031/030仍原权威，不重复。M1→M2→最终矩阵无完整041前置循环；021→027单向；各补充consumer只能消费已实际存在上游。
 
-独立preflight初df9612e两Important/一Minor与最终59bea180限定复核已闭合，原件在/workspace/work/linux-closeout-preflight。根已机械迁移唯一状态，所有卡仍planned，不据规划结论直接开始本change产品；当前Rich等原有已准入工作继续。若固定合同需要新公共API，回root单独精确化/preflight，不能以收尾名义随意扩展。
+独立preflight初df9612e两Important/一Minor与最终59bea180限定复核已闭合，原件在/workspace/work/linux-closeout-preflight。根已机械迁移唯一状态；008在实际独立准入后仅正式测试设计in_progress，其余卡仍planned，不据规划或测试准入结论直接开始本change产品；当前Rich等原有已准入工作继续。若固定合同需要新公共API，回root单独精确化/preflight，不能以收尾名义随意扩展。
