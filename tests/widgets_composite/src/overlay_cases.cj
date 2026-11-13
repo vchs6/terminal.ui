@@ -12,8 +12,13 @@ func open(app: Application, owner: NodeRef, content: Component, options: Overlay
 // reset, orphan nested layers, stale restored frame/focus or invalid ownership.
 func popupOwnership(): Unit {
     let model = Observable<String>("ijklmnop")
-    let trigger = Text("abcdefgh").focusable(true)
-    let root = Column { trigger; Text({ => model.get() }); Text("qrstuvwx") }.viewport(ScrollAxes.Off)
+    let triggerSlot = Array<?Component>(1, repeat: Option<Component>.None)
+    let root = Column {
+        triggerSlot[0] = Some(Text("abcdefgh").focusable(true))
+        Text({ => model.get() })
+        Text("qrstuvwx")
+    }.viewport(ScrollAxes.Off)
+    let trigger = triggerSlot[0].getOrThrow()
     let app = Application(root)
     app.startHeadless()
     try {
@@ -45,9 +50,11 @@ func popupOwnership(): Unit {
 
 func popupEscapeBoundaries(): Unit {
     for (mode in 0..4) {
-        let trigger = Text("T").focusable(true)
+        let triggerSlot = Array<?Component>(1, repeat: Option<Component>.None)
+        let root = Column { triggerSlot[0] = Some(Text("T").focusable(true)) }
+        let trigger = triggerSlot[0].getOrThrow()
         let prevent = [mode == 3]
-        let app = Application(Column { trigger }).onKeyEvent({ event =>
+        let app = Application(root).onKeyEvent({ event =>
             if (prevent[0] && event.key.code == "escape") { event.preventDefault() }
         })
         app.startHeadless()
@@ -87,8 +94,10 @@ func popupEscapeBoundaries(): Unit {
 }
 
 func nestedPopup(): Unit {
-    let trigger = Text("base").focusable(true)
-    let app = Application(Column { trigger })
+    let triggerSlot = Array<?Component>(1, repeat: Option<Component>.None)
+    let root = Column { triggerSlot[0] = Some(Text("base").focusable(true)) }
+    let trigger = triggerSlot[0].getOrThrow()
+    let app = Application(root)
     app.startHeadless()
     try {
         focus(app, mounted(trigger))
@@ -113,10 +122,15 @@ func nestedPopup(): Unit {
 
 func popupOwnerAndAnchor(): Unit {
     for (anchorCase in [false, true]) {
-        let anchor = Text("anchor").focusable(true)
-        let owner = Column { anchor }
-        let fallback = Text("fallback").focusable(true)
-        let root = Column { owner; fallback }
+        let components = Array<?Component>(2, repeat: Option<Component>.None)
+        let root = Column {
+            components[1] = Some(Column {
+                components[0] = Some(Text("anchor").focusable(true))
+            })
+            Text("fallback").focusable(true)
+        }
+        let anchor = components[0].getOrThrow()
+        let owner = components[1].getOrThrow()
         let app = Application(root)
         app.startHeadless()
         try {

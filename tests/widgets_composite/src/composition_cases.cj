@@ -34,8 +34,14 @@ func localTheme(): Unit {
     split.startHeadless()
     try { check(split.snapshot(2, 1).cellAt(0, 0).style == Style(foreground: Color.Magenta, background: Color.Black), "M05 SplitPane theme role") }
     finally { split.dispose() }
-    let trigger = Text("abcdefgh").focusable(true)
-    let base = Application(Column { trigger; Text("ijklmnop"); Text("qrstuvwx") }, theme: theme)
+    let triggerSlot = Array<?Component>(1, repeat: Option<Component>.None)
+    let root = Column {
+        triggerSlot[0] = Some(Text("abcdefgh").focusable(true))
+        Text("ijklmnop")
+        Text("qrstuvwx")
+    }
+    let trigger = triggerSlot[0].getOrThrow()
+    let base = Application(root, theme: theme)
     base.startHeadless()
     try {
         base.snapshot(8, 3)
@@ -56,9 +62,10 @@ func localTheme(): Unit {
 
 func sharedPanels(): Unit {
     let model = Observable<String>("old")
-    let first = SharedPanel(model)
+    let firstSlot = Array<?Component>(1, repeat: Option<Component>.None)
+    let root = SplitPane(axis: SplitAxis.Vertical) { firstSlot[0] = Some(SharedPanel(model)) }
+    let first = firstSlot[0].getOrThrow()
     let second = SharedPanel(model).width(8).height(4)
-    let root = SplitPane(axis: SplitAxis.Vertical) { first }
     let app = Application(root)
     app.startHeadless()
     try {

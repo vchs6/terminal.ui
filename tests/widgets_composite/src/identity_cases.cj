@@ -83,9 +83,12 @@ func menuIdentity(): Unit {
 
 func duplicateBatch(): Unit {
     let source = Observable<Array<MenuEntry>>([MenuEntry("a", "A")])
-    let menu = HorizontalMenu({ => source.get() }, {_ => ()})
+    let menuSlot = Array<?Component>(1, repeat: Option<Component>.None)
     let cleanups = [0]
-    let root = Column { menu }.onMount({ _ => { => cleanups[0]++ } })
+    let root = Column {
+        menuSlot[0] = Some(HorizontalMenu({ => source.get() }, {_ => ()}))
+    }.onMount({ _ => { => cleanups[0]++ } })
+    let menu = menuSlot[0].getOrThrow()
     let app = Application(root)
     app.startHeadless()
     let previous = mounted(menu).children()[0]
