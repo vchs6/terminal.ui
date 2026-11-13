@@ -24,6 +24,7 @@ public class KeyboardDecoder {
     private var utfStart: Int64 = 0
     private var utfAlt = false
     private var c1Csi = false
+    private var c1PrefixBytes: Int64 = 1
     private var keys = ArrayList<KeyEvent>()
     private var issues = ArrayList<KeyboardDiagnostic>()
     var onEvent: ?(KeyEvent) -> Unit = None
@@ -94,16 +95,21 @@ public class KeyboardDecoder {
         start = at; state = 4; osc = isOsc; stringRemaining = 0; stringC2 = false
         issue(KeyboardIssue.UnsupportedSequence, at)
     }
-    private func c1(code: UInt32, at: Int64): Unit {
+    private func c1(code: UInt32, at: Int64, encoded!: Bool = false): Unit {
         if (code == 0x9b) {
-            state = 2; start = at; sequence.clear(); sequence.add(0x9b)
+            state = 2; start = at; sequence.clear()
+            if (encoded) { sequence.add(0xc2) }
+            sequence.add(0x9b); c1PrefixBytes = if (encoded) { 2 } else { 1 }
             c1Csi = true; drained = false; malformed = false; intermediate = false
+            if (sequence.size > limits.maxSequenceBytes) {
+                drained = true; issue(KeyboardIssue.SequenceTooLong, start); sequence.clear()
+            }
         } else if (code == 0x90 || code == 0x98 || code == 0x9d || code == 0x9e || code == 0x9f) {
             beginString(at, code == 0x9d)
         } else { state = 0; issue(KeyboardIssue.UnsupportedSequence, at) }
     }
     private func scalar(code: UInt32, at: Int64, alt: Bool): Unit {
-        if (code >= 128 && code < 160) { c1(code, at); return }
+        if (code >= 128 && code < 160) { c1(code, at, encoded: true); return }
         state = 0; event(KeyEvent("text", text: String(Rune(code)), alt: alt))
     }
     private func consume(byte: Int32, at: Int64): Unit {
@@ -183,7 +189,7 @@ public class KeyboardDecoder {
         }
         var body = text
         if (c1Csi) {
-            if (raw.size > 1) { body = String.fromUtf8(raw.slice(1, raw.size - 1)) }
+            if (raw.size > c1PrefixBytes) { body = String.fromUtf8(raw.slice(c1PrefixBytes, raw.size - c1PrefixBytes)) }
         } else if (text.startsWith("\u{1b}[")) {
             body = String.fromUtf8(raw.slice(2, raw.size - 2))
         } else if (text.startsWith("\u{1b}O")) {
@@ -258,8 +264,10 @@ public class KeyboardDecoder {
         if (endPrefix.size == marker.size) {
             endPrefix.clear(); state = 0
             if (!drained) {
-                try { event(KeyEvent("paste", text: String.fromUtf8(paste.toArray()))) }
-                catch (_: IllegalArgumentException) { issue(KeyboardIssue.InvalidPasteEncoding, start) }
+                let text: ?String = try { Some(String.fromUtf8(paste.toArray())) }
+                    catch (_: IllegalArgumentException) { Option<String>.None }
+                if (let Some(value) <- text) { event(KeyEvent("paste", text: value)) }
+                else { issue(KeyboardIssue.InvalidPasteEncoding, start) }
             }
             paste.clear()
         }

@@ -374,11 +374,11 @@ public class Application {
     public func dispatch(target: NodeRef, key: KeyEvent): Unit {
         let value = current()
         value.requireBoundary()
-        validateKeyboardEvent(key)
         if (value.isStopping()) {
             dispose();
             throw UIException("SessionInactive", "session stopped")
         }
+        validateKeyboardEvent(key)
         let targetNode = target.resolve()
         if (targetNode.session.id != value.id) {
             throw UIException("WrongUIContext", "target belongs to another session")
@@ -568,7 +568,9 @@ public class Application {
                     if (let Some(target) <- pasteTarget[0]) {
                         if (target.isValid() && readSession().isSome()) {
                             let node = target.resolve(); let owner = current()
-                            available = owner.focusManager.effective(node,true) && owner.focusManager.effective(node,false) && owner.inOverlayDomain(node)
+                            if (owner.focusManager.effective(node,true) && owner.focusManager.effective(node,false)) {
+                                available = owner.inOverlayDomain(node)
+                            }
                             if (available) { dispatch(target,key) }
                         }
                     }
@@ -752,7 +754,8 @@ public class Application {
                 case Some(first) => failure = Some(aggregateCleanup(first, error))
             }
         }
-        if (pasteEnabled && unsafe { cjt_output_unsafe() } == 0) {
+        let canRestorePaste = if (pasteEnabled) { unsafe { cjt_output_unsafe() } == 0 } else { false }
+        if (canRestorePaste) {
             if (let Some(work) <- deviceSession) {
                 let written = writeTerminal("\u{1b}[?2004l",work,false)
                 if (written.issue != SessionIssue.NoIssue) {
