@@ -1,0 +1,389 @@
+{
+  "scope": "H01 five modes on three distinct real implementations; source/binary identity preserved. Does not include separate nativecaret vector.",
+  "cases": [
+    {
+      "host": "xterm",
+      "mode": "interrupt",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-c/xterm-interrupt/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-c/xterm-interrupt/base.png",
+          "sha256": "500072220e57a9ac97fa224ac94618104af86d32b846d5c230de3a9c450af78a"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-interrupt/confirmation.png",
+          "sha256": "8119533c3602cf44c9221edd005c97a277fd3c9e69ee07771c3fa946ad355781"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-interrupt/restored-session.png",
+          "sha256": "f946cd917e7e50a4a0c89fa4c4685079c916772eb05008b12a59c7928739252f"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "xterm",
+      "mode": "prevent",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-c/xterm-prevent/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-c/xterm-prevent/base.png",
+          "sha256": "500072220e57a9ac97fa224ac94618104af86d32b846d5c230de3a9c450af78a"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-prevent/confirmation.png",
+          "sha256": "8119533c3602cf44c9221edd005c97a277fd3c9e69ee07771c3fa946ad355781"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-prevent/prevented.png",
+          "sha256": "8119533c3602cf44c9221edd005c97a277fd3c9e69ee07771c3fa946ad355781"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-prevent/restored-session.png",
+          "sha256": "f946cd917e7e50a4a0c89fa4c4685079c916772eb05008b12a59c7928739252f"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "xterm",
+      "mode": "escape",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-c/xterm-escape/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-c/xterm-escape/base.png",
+          "sha256": "500072220e57a9ac97fa224ac94618104af86d32b846d5c230de3a9c450af78a"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-escape/confirmation.png",
+          "sha256": "8119533c3602cf44c9221edd005c97a277fd3c9e69ee07771c3fa946ad355781"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-escape/escaped-to-popup.png",
+          "sha256": "3d14163dd05191fdaffa84ddf7dcfb1b302d43a17abdfef17f247ba9b57e1707"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-escape/restored-session.png",
+          "sha256": "dc2c7b429a8ca939f2c1bbc9cf71ce9ffc208b09e28cc9776424661de392a913"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "xterm",
+      "mode": "signal",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-c/xterm-signal/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-c/xterm-signal/base.png",
+          "sha256": "500072220e57a9ac97fa224ac94618104af86d32b846d5c230de3a9c450af78a"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-signal/confirmation.png",
+          "sha256": "8119533c3602cf44c9221edd005c97a277fd3c9e69ee07771c3fa946ad355781"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-signal/restored-session.png",
+          "sha256": "f946cd917e7e50a4a0c89fa4c4685079c916772eb05008b12a59c7928739252f"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "xterm",
+      "mode": "callback-error",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-c/xterm-callback-error/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-c/xterm-callback-error/base.png",
+          "sha256": "500072220e57a9ac97fa224ac94618104af86d32b846d5c230de3a9c450af78a"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-callback-error/confirmation.png",
+          "sha256": "8119533c3602cf44c9221edd005c97a277fd3c9e69ee07771c3fa946ad355781"
+        },
+        {
+          "path": "raw/final-gui-c/xterm-callback-error/restored-session.png",
+          "sha256": "8851c35718c9fc4ef6e12f6315cb6ccd948cb08500f75e68cd06e289222449d1"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "vte",
+      "mode": "interrupt",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-c/vte-interrupt/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-c/vte-interrupt/base.png",
+          "sha256": "4195b8534c8df636ef196b56deb7d55e1b715a019f7385bde45569ab0a1e6d6c"
+        },
+        {
+          "path": "raw/final-gui-c/vte-interrupt/confirmation.png",
+          "sha256": "a1181acd4ae24d22091711a0496da70c232e580711f6c9c80d8cfecae3bbe649"
+        },
+        {
+          "path": "raw/final-gui-c/vte-interrupt/restored-session.png",
+          "sha256": "6db1eb3dbc6f320e4baea3a683facd7b22b20ed269c0b88c587bc2d72139e136"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "vte",
+      "mode": "prevent",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-vte-retry/vte-prevent/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-vte-retry/vte-prevent/base.png",
+          "sha256": "4195b8534c8df636ef196b56deb7d55e1b715a019f7385bde45569ab0a1e6d6c"
+        },
+        {
+          "path": "raw/final-gui-vte-retry/vte-prevent/confirmation.png",
+          "sha256": "a1181acd4ae24d22091711a0496da70c232e580711f6c9c80d8cfecae3bbe649"
+        },
+        {
+          "path": "raw/final-gui-vte-retry/vte-prevent/prevented.png",
+          "sha256": "a1181acd4ae24d22091711a0496da70c232e580711f6c9c80d8cfecae3bbe649"
+        },
+        {
+          "path": "raw/final-gui-vte-retry/vte-prevent/restored-session.png",
+          "sha256": "6db1eb3dbc6f320e4baea3a683facd7b22b20ed269c0b88c587bc2d72139e136"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "vte",
+      "mode": "escape",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-vte-remaining/vte-escape/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-vte-remaining/vte-escape/base.png",
+          "sha256": "4195b8534c8df636ef196b56deb7d55e1b715a019f7385bde45569ab0a1e6d6c"
+        },
+        {
+          "path": "raw/final-gui-vte-remaining/vte-escape/confirmation.png",
+          "sha256": "a1181acd4ae24d22091711a0496da70c232e580711f6c9c80d8cfecae3bbe649"
+        },
+        {
+          "path": "raw/final-gui-vte-remaining/vte-escape/escaped-to-popup.png",
+          "sha256": "4ee7c7eda0c0d6c2454a7cfe1b2feeb6217871ff4126a5cb08aacfce6f8436f3"
+        },
+        {
+          "path": "raw/final-gui-vte-remaining/vte-escape/restored-session.png",
+          "sha256": "37f869a43387de2c35d40d216c364779de729b52432d3e11479d9a4d1e9b5733"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "vte",
+      "mode": "signal",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-vte-remaining/vte-signal/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-vte-remaining/vte-signal/base.png",
+          "sha256": "4195b8534c8df636ef196b56deb7d55e1b715a019f7385bde45569ab0a1e6d6c"
+        },
+        {
+          "path": "raw/final-gui-vte-remaining/vte-signal/confirmation.png",
+          "sha256": "a1181acd4ae24d22091711a0496da70c232e580711f6c9c80d8cfecae3bbe649"
+        },
+        {
+          "path": "raw/final-gui-vte-remaining/vte-signal/restored-session.png",
+          "sha256": "6db1eb3dbc6f320e4baea3a683facd7b22b20ed269c0b88c587bc2d72139e136"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "vte",
+      "mode": "callback-error",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-gui-vte-remaining/vte-callback-error/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-gui-vte-remaining/vte-callback-error/base.png",
+          "sha256": "4195b8534c8df636ef196b56deb7d55e1b715a019f7385bde45569ab0a1e6d6c"
+        },
+        {
+          "path": "raw/final-gui-vte-remaining/vte-callback-error/confirmation.png",
+          "sha256": "a1181acd4ae24d22091711a0496da70c232e580711f6c9c80d8cfecae3bbe649"
+        },
+        {
+          "path": "raw/final-gui-vte-remaining/vte-callback-error/restored-session.png",
+          "sha256": "3f27f93960bbdce2802c7d360cca37079e31b4ef2decaba35973d6f35427f4e1"
+        }
+      ],
+      "virtual_hardware": false
+    },
+    {
+      "host": "linux-vt",
+      "mode": "interrupt",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-vt-c/interrupt/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-vt-c/interrupt/base.png",
+          "sha256": "cafba1f39655a5ae55a8238296779257515e98360b54465fb1b260db1231bbda"
+        },
+        {
+          "path": "raw/final-vt-c/interrupt/confirmation.png",
+          "sha256": "6bd8a41cdb5cb31c890d2b8b28fc64607a1d2a8012e0fda0aca0e54c3152813a"
+        },
+        {
+          "path": "raw/final-vt-c/interrupt/restored-session.png",
+          "sha256": "b56b46701e54834f223e851f5b80a433a20194b71029734c7ff49b5867e59bd9"
+        }
+      ],
+      "virtual_hardware": true
+    },
+    {
+      "host": "linux-vt",
+      "mode": "prevent",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-vt-c/prevent/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-vt-c/prevent/base.png",
+          "sha256": "cafba1f39655a5ae55a8238296779257515e98360b54465fb1b260db1231bbda"
+        },
+        {
+          "path": "raw/final-vt-c/prevent/confirmation.png",
+          "sha256": "6bd8a41cdb5cb31c890d2b8b28fc64607a1d2a8012e0fda0aca0e54c3152813a"
+        },
+        {
+          "path": "raw/final-vt-c/prevent/prevented.png",
+          "sha256": "6bd8a41cdb5cb31c890d2b8b28fc64607a1d2a8012e0fda0aca0e54c3152813a"
+        },
+        {
+          "path": "raw/final-vt-c/prevent/restored-session.png",
+          "sha256": "18366f29d68a269fac28b002e098f322ab7c995d373d988108be760988316b65"
+        }
+      ],
+      "virtual_hardware": true
+    },
+    {
+      "host": "linux-vt",
+      "mode": "escape",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-vt-c/escape/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-vt-c/escape/base.png",
+          "sha256": "cafba1f39655a5ae55a8238296779257515e98360b54465fb1b260db1231bbda"
+        },
+        {
+          "path": "raw/final-vt-c/escape/confirmation.png",
+          "sha256": "6bd8a41cdb5cb31c890d2b8b28fc64607a1d2a8012e0fda0aca0e54c3152813a"
+        },
+        {
+          "path": "raw/final-vt-c/escape/escaped-to-popup.png",
+          "sha256": "c183d437ac7aa0d6d0a1a7022849c1a1bac97aa0f5728f98222b4e86ad24c9dc"
+        },
+        {
+          "path": "raw/final-vt-c/escape/restored-session.png",
+          "sha256": "157e60486811e326ea3840115d4859ff2a39c447cb4c8e4cfdd0c8700cf8e76d"
+        }
+      ],
+      "virtual_hardware": true
+    },
+    {
+      "host": "linux-vt",
+      "mode": "signal",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-vt-c/signal/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-vt-c/signal/base.png",
+          "sha256": "cafba1f39655a5ae55a8238296779257515e98360b54465fb1b260db1231bbda"
+        },
+        {
+          "path": "raw/final-vt-c/signal/confirmation.png",
+          "sha256": "6bd8a41cdb5cb31c890d2b8b28fc64607a1d2a8012e0fda0aca0e54c3152813a"
+        },
+        {
+          "path": "raw/final-vt-c/signal/restored-session.png",
+          "sha256": "b56b46701e54834f223e851f5b80a433a20194b71029734c7ff49b5867e59bd9"
+        }
+      ],
+      "virtual_hardware": true
+    },
+    {
+      "host": "linux-vt",
+      "mode": "callback-error",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+      "result_path": "raw/final-vt-c/callback-error/result.json",
+      "product_exit": 0,
+      "termios_equal": true,
+      "png": [
+        {
+          "path": "raw/final-vt-c/callback-error/base.png",
+          "sha256": "cafba1f39655a5ae55a8238296779257515e98360b54465fb1b260db1231bbda"
+        },
+        {
+          "path": "raw/final-vt-c/callback-error/confirmation.png",
+          "sha256": "6bd8a41cdb5cb31c890d2b8b28fc64607a1d2a8012e0fda0aca0e54c3152813a"
+        },
+        {
+          "path": "raw/final-vt-c/callback-error/restored-session.png",
+          "sha256": "ff59e2f22315ea95e96480855a746827de17cd7f80922b79c0c60b6d6d4225c8"
+        }
+      ],
+      "virtual_hardware": true
+    }
+  ]
+}

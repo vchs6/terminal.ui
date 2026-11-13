@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/work/overlay-execution/tools/h01_gui.py", line 80, in <module>
+    for mode in ([a.mode] if a.mode else MODES):one(binary,a.output.resolve()/(host+'-'+mode),host,mode,a.display)
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/overlay-execution/tools/h01_gui.py", line 65, in one
+    wait(lambda:(out/'terminal-after.json').exists(),hp)
+  File "/workspace/work/overlay-execution/tools/h01_gui.py", line 16, in wait
+    if child.poll() is not None:raise RuntimeError('host exited before barrier')
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: host exited before barrier

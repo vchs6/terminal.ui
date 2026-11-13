@@ -1,0 +1,37 @@
+{"receive": {"QMP": {"version": {"qemu": {"micro": 13, "minor": 0, "major": 10}, "package": "Debian 1:10.0.13+ds-0+deb13u1"}, "capabilities": ["oob"]}}, "utc": "2026-11-13T02:44:23.792594+00:00"}
+{"send": {"execute": "qmp_capabilities", "id": 1}, "utc": "2026-11-13T02:44:23.792646+00:00"}
+{"receive": {"return": {}, "id": 1}, "utc": "2026-11-13T02:44:23.801388+00:00"}
+{"send": {"execute": "query-version", "id": 2}, "utc": "2026-11-13T02:44:23.801413+00:00"}
+{"receive": {"return": {"qemu": {"micro": 13, "minor": 0, "major": 10}, "package": "Debian 1:10.0.13+ds-0+deb13u1"}, "id": 2}, "utc": "2026-11-13T02:44:23.802101+00:00"}
+{"send": {"execute": "query-kvm", "id": 3}, "utc": "2026-11-13T02:44:23.802115+00:00"}
+{"receive": {"return": {"enabled": false, "present": true}, "id": 3}, "utc": "2026-11-13T02:44:23.802414+00:00"}
+{"send": {"execute": "screendump", "id": 4, "arguments": {"filename": "/workspace/work/overlay-execution/raw/final-vt-c/callback-error/base.png", "format": "png"}}, "utc": "2026-11-13T02:44:30.649723+00:00"}
+{"receive": {"return": {}, "id": 4}, "utc": "2026-11-13T02:44:30.656412+00:00"}
+{"send": {"execute": "input-send-event", "id": 5, "arguments": {"events": [{"type": "key", "data": {"down": true, "key": {"type": "qcode", "data": "m"}}}]}}, "utc": "2026-11-13T02:44:30.656709+00:00"}
+{"receive": {"return": {}, "id": 5}, "utc": "2026-11-13T02:44:30.657527+00:00"}
+{"send": {"execute": "input-send-event", "id": 6, "arguments": {"events": [{"type": "key", "data": {"down": false, "key": {"type": "qcode", "data": "m"}}}]}}, "utc": "2026-11-13T02:44:30.657542+00:00"}
+{"receive": {"return": {}, "id": 6}, "utc": "2026-11-13T02:44:30.657954+00:00"}
+{"send": {"execute": "input-send-event", "id": 7, "arguments": {"events": [{"type": "key", "data": {"down": true, "key": {"type": "qcode", "data": "p"}}}]}}, "utc": "2026-11-13T02:44:30.728638+00:00"}
+{"receive": {"return": {}, "id": 7}, "utc": "2026-11-13T02:44:30.729392+00:00"}
+{"send": {"execute": "input-send-event", "id": 8, "arguments": {"events": [{"type": "key", "data": {"down": false, "key": {"type": "qcode", "data": "p"}}}]}}, "utc": "2026-11-13T02:44:30.729417+00:00"}
+{"receive": {"return": {}, "id": 8}, "utc": "2026-11-13T02:44:30.729802+00:00"}
+{"send": {"execute": "input-send-event", "id": 9, "arguments": {"events": [{"type": "key", "data": {"down": true, "key": {"type": "qcode", "data": "c"}}}]}}, "utc": "2026-11-13T02:44:30.841164+00:00"}
+{"receive": {"return": {}, "id": 9}, "utc": "2026-11-13T02:44:30.841766+00:00"}
+{"send": {"execute": "input-send-event", "id": 10, "arguments": {"events": [{"type": "key", "data": {"down": false, "key": {"type": "qcode", "data": "c"}}}]}}, "utc": "2026-11-13T02:44:30.841781+00:00"}
+{"receive": {"return": {}, "id": 10}, "utc": "2026-11-13T02:44:30.842187+00:00"}
+{"send": {"execute": "input-send-event", "id": 11, "arguments": {"events": [{"type": "key", "data": {"down": true, "key": {"type": "qcode", "data": "x"}}}]}}, "utc": "2026-11-13T02:44:31.096167+00:00"}
+{"receive": {"return": {}, "id": 11}, "utc": "2026-11-13T02:44:31.096902+00:00"}
+{"send": {"execute": "input-send-event", "id": 12, "arguments": {"events": [{"type": "key", "data": {"down": false, "key": {"type": "qcode", "data": "x"}}}]}}, "utc": "2026-11-13T02:44:31.096928+00:00"}
+{"receive": {"return": {}, "id": 12}, "utc": "2026-11-13T02:44:31.097332+00:00"}
+{"send": {"execute": "screendump", "id": 13, "arguments": {"filename": "/workspace/work/overlay-execution/raw/final-vt-c/callback-error/confirmation.png", "format": "png"}}, "utc": "2026-11-13T02:44:31.311426+00:00"}
+{"receive": {"return": {}, "id": 13}, "utc": "2026-11-13T02:44:31.314317+00:00"}
+{"send": {"execute": "input-send-event", "id": 14, "arguments": {"events": [{"type": "key", "data": {"down": true, "key": {"type": "qcode", "data": "shift"}}}]}}, "utc": "2026-11-13T02:44:31.314718+00:00"}
+{"receive": {"return": {}, "id": 14}, "utc": "2026-11-13T02:44:31.315192+00:00"}
+{"send": {"execute": "input-send-event", "id": 15, "arguments": {"events": [{"type": "key", "data": {"down": true, "key": {"type": "qcode", "data": "1"}}}]}}, "utc": "2026-11-13T02:44:31.315204+00:00"}
+{"receive": {"return": {}, "id": 15}, "utc": "2026-11-13T02:44:31.315654+00:00"}
+{"send": {"execute": "input-send-event", "id": 16, "arguments": {"events": [{"type": "key", "data": {"down": false, "key": {"type": "qcode", "data": "1"}}}]}}, "utc": "2026-11-13T02:44:31.315666+00:00"}
+{"receive": {"return": {}, "id": 16}, "utc": "2026-11-13T02:44:31.316049+00:00"}
+{"send": {"execute": "input-send-event", "id": 17, "arguments": {"events": [{"type": "key", "data": {"down": false, "key": {"type": "qcode", "data": "shift"}}}]}}, "utc": "2026-11-13T02:44:31.316057+00:00"}
+{"receive": {"return": {}, "id": 17}, "utc": "2026-11-13T02:44:31.316452+00:00"}
+{"send": {"execute": "screendump", "id": 18, "arguments": {"filename": "/workspace/work/overlay-execution/raw/final-vt-c/callback-error/restored-session.png", "format": "png"}}, "utc": "2026-11-13T02:44:31.509629+00:00"}
+{"receive": {"return": {}, "id": 18}, "utc": "2026-11-13T02:44:31.512715+00:00"}

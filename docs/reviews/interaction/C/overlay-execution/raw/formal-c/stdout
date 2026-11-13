@@ -1,0 +1,499 @@
+cjpm build success
+PASS S01 public defaults and immutable option fields
+PASS S02 exact public placement constructors
+PASS S03 both surface overloads preserve an unmounted component
+PASS P01 accepted pending is open but unpublished
+PASS P01 pending cancellation has immutable terminal reason
+PASS P01 cancelled content never mounts or cleans
+PASS P02 close is idempotent in original UI domain
+PASS P02 original-thread terminal query survives dispose
+PASS P02 no retained mounted resources
+PASS N01 handle publishes the actual custom-component mount
+PASS N01 overlay never enters ordinary child sequence
+PASS N02 same SettingsPanel type in normal and layer positions: expected [A       
+taAltail
+        ], actual [A       
+taAltail
+        ]
+PASS N02 one business model updates both real instances: expected [BC      
+taBCtail
+        ], actual [BC      
+taBCtail
+        ]
+PASS N03 host resize repositions without rebuilding or changing identities
+PASS N03 layer close revokes only layer generation
+PASS D01 modal route truncates owner chain and both application handlers
+PASS D02 explicit dispatch cannot bypass highest modal: expected FocusOutsideDomain, actual FocusOutsideDomain
+PASS D02 domain rejection precedes user callbacks
+PASS D03 Escape after Target consumes before Ancestor
+PASS D03 Escape closes only closest allowed layer
+PASS D04 unprevented modal interrupt exits whole application
+PASS D04 modal interrupt never calls base handlers
+PASS D04 interrupt releases complete session
+PASS D05 closest closeOnEscape false blocks parent cancellation
+PASS D06 preventDefault keeps modal application active
+PASS F01 I014 initial physical first base candidate
+PASS F02 empty takeFocus nonmodal reserves no-focus state
+PASS F02 activeTarget is layer root rather than nonfocusable child
+PASS F03 new base candidate cannot steal empty-layer reservation
+PASS F04 first late candidate inside reserved layer takes focus
+PASS F05 nonmodal Tab wraps to base physical first
+PASS F05 closing background layer does not restore over current focus
+PASS F06 nonmodal takeFocus false preserves focus
+PASS F07 passive never takes focus or reserves target
+PASS L02 owner disabled neither closes layer nor crosses ownership enabled boundary
+PASS L01 dependent work accepted within the closing turn
+PASS L01 all dependent tokens revoked before deepest cleanup
+PASS L01 complete dependent closure invalid before any parent cleanup
+PASS L01 closed subscriptions and owner work revoked before cleanup
+PASS L03 owner hidden closes complete dependent closure
+PASS L03 dependent deepest layer cleans before parent exactly once
+PASS L04 higher unrelated sibling survives non-top close
+PASS L04 background closure never steals current sibling focus
+PASS L03 cancelled owner work never runs after close
+PASS L03 closed cleanups not repeated by session dispose
+PASS F08 disabled saved trigger leaves modal eligible
+PASS F09 disabled saved ref falls back to nearest owner ancestor first eligible
+PASS L05 aggregate preserves deepest first error objects and order
+PASS L05 every dependent cleanup attempted once despite exceptions
+PASS L05 exception shutdown releases all resources
+PASS L05 second dispose repeats no throwing cleanup
+PASS E01 modal cannot opt out of focus
+PASS E02 passive rejects default takeFocus true conflict
+PASS E03 modal rejects anchor
+PASS E04 directional placement requires anchor
+PASS E05 host must be owner or logical ancestor: expected InvalidOverlayHost, actual InvalidOverlayHost
+PASS E06 explicit host requires capability: expected InvalidOverlayHost, actual InvalidOverlayHost
+PASS E07 anchor must be owner or logical descendant: expected InvalidOverlayAnchor, actual InvalidOverlayAnchor
+PASS E08 mounted content cannot be reused as a layer: expected AlreadyMounted, actual AlreadyMounted
+PASS E08 rejected duplicate leaves original generation valid
+PASS E09 stale owner rejects before opening: expected StaleReference, actual StaleReference
+PASS E10 terminal old handle remains readable in original UI domain
+PASS E11 old handle query in new active session rejected: expected WrongUIContext, actual WrongUIContext
+PASS E11 closed no-op does not bypass session check: expected WrongUIContext, actual WrongUIContext
+PASS E12 foreign-session host rejected: expected WrongUIContext, actual WrongUIContext
+PASS G01 modal fills only its centered layout box: expected [abcdefgh
+ijX  nop
+qrstuvwx], actual [abcdefgh
+ijX  nop
+qrstuvwx]
+PASS G02 explicit transparent overrides default modal surface: expected [abcdefgh
+ijXlmnop
+qrstuvwx], actual [abcdefgh
+ijXlmnop
+qrstuvwx]
+PASS G03 transparent surface does not cancel explicit background fill: expected [abcdefgh
+ijX  nop
+qrstuvwx], actual [abcdefgh
+ijX  nop
+qrstuvwx]
+PASS G04 underlying bindings update while covered: expected [abcdefgh
+IJX  NOP
+qrstuvwx], actual [abcdefgh
+IJX  NOP
+qrstuvwx]
+PASS G04 close exposes latest base rather than saved screen: expected [abcdefgh
+IJKLMNOP
+qrstuvwx], actual [abcdefgh
+IJKLMNOP
+qrstuvwx]
+PASS G05 written space opaque while next untouched cell is a hole: expected [abcdefgh
+IJX MNOP
+qrstuvwx], actual [abcdefgh
+IJX MNOP
+qrstuvwx]
+PASS G06 mounted full M1 render consumes committed layers: expected [abcdefgh
+IJX MNOP
+qrstuvwx], actual [abcdefgh
+IJX MNOP
+qrstuvwx]
+PASS G06 headless plain snapshot has no device syntax
+PASS G06 old snapshot remains independent after close: expected [abcdefgh
+IJX MNOP
+qrstuvwx], actual [abcdefgh
+IJX MNOP
+qrstuvwx]
+PASS G07 focused base Canvas supplies visible caret
+PASS G08 transparent hole keeps logical caret visible
+PASS G09 same glyph and style opaque source hides caret despite identical final pixels
+PASS G09 passive visual does not steal logical focus
+PASS G10 closing visual cover restores caret from latest target
+PASS P03 duplicate pending reservation: expected AlreadyMounted, actual AlreadyMounted
+PASS P03 only first reservation mounts
+PASS P04 build/mount primary preserved and existing cleanup once
+PASS P04 no pending publication after failure
+PASS P04 session failure releases resources
+PASS P04 build/mount primary preserved and existing cleanup once
+PASS P04 no pending publication after failure
+PASS P04 session failure releases resources
+PASS P05 disposed owner resources0
+PASS P05 retained terminal handle publishes no owner nodes
+OBSERVATION_ONLY P05 gcProgress=true weakOwnerCleared=true; weak retention requires source review, no GC leak PASS
+PASS N04 layer not an ordinary marker or child
+PASS N04 ordinary identity unchanged 0
+PASS N04 ordinary identity unchanged 1
+PASS N04 ordinary identity unchanged 2
+PASS N04 ordinary identity unchanged 3
+PASS N04 physical keyed/manual order B M A
+PASS N04 keyed change preserves layer generation
+PASS N05 moved anchor geometry and retained scrolled paint: expected [S     
+O     
+P     
+      
+      
+      ], actual [S     
+O     
+P     
+      
+      
+      ]
+PASS N05 owner move retains owner/layer/local offset
+PASS N06 paint context expires after layer draw: expected ExpiredPaintContext, actual ExpiredPaintContext
+PASS N06 expiry does not revoke actual layer node
+PASS N06 close revokes layer generation: expected StaleReference, actual StaleReference
+PASS D07 Target preventDefault keeps modal and passive open
+PASS D07 stopPropagation permits Escape and passive is skipped
+PASS D08 owner chain and base handlers; host adds no event-parent edge
+PASS D09 lower owner open rejected: expected FocusOutsideDomain, actual FocusOutsideDomain
+PASS D09 lower domain focus rejected: expected FocusOutsideDomain, actual FocusOutsideDomain
+PASS D10 modal ordinary first
+PASS D10 forward ordinary and layer commit order
+PASS D10 forward ordinary and layer commit order
+PASS D10 forward ordinary and layer commit order
+PASS D10 forward ordinary and layer commit order
+PASS D10 exact reverse, no base
+PASS D10 exact reverse, no base
+PASS D10 exact reverse, no base
+PASS D10 exact reverse, no base
+PASS F10/F11 hidden retains generation; remove revokes
+PASS F10/F11 nearest surviving owner ancestor first eligible
+PASS F10/F11 hidden retains generation; remove revokes
+PASS F10/F11 nearest surviving owner ancestor first eligible
+PASS F12 physical successor outside empty owner subtree
+PASS F12 old predecessor when successor ineligible
+PASS F12 new domain first when old candidates absent
+PASS F12 all empty keeps None
+PASS F12 empty base domain target
+PASS F13 top modal restores lower dependent focus
+PASS F13 lower modal original focus restored
+PASS F13 closed dependents remain terminal
+PASS F13 cascade restores base focus once at final boundary
+PASS L06 ordinary ancestor removal closes overlay full closure
+PASS L06 unrelated sibling survives
+PASS L07 offscreen owner is not hidden
+PASS L07 zero clip does not close unanchored layer
+PASS L07 explicit hidden closes
+PASS L07 owner removal wins simultaneous anchor loss
+PASS L08 original callback/draw identity and cleanup order
+PASS L08 failure releases complete session
+PASS L08 no repeated cleanup
+PASS L08 original callback/draw identity and cleanup order
+PASS L08 failure releases complete session
+PASS L08 no repeated cleanup
+PASS E13 worker handle query: expected WrongUIContext, actual WrongUIContext
+PASS E13 worker content: expected WrongUIContext, actual WrongUIContext
+PASS E13 worker reason: expected WrongUIContext, actual WrongUIContext
+PASS E13 worker close: expected WrongUIContext, actual WrongUIContext
+PASS E13 worker open: expected WrongUIContext, actual WrongUIContext
+PASS E13 worker joined
+PASS E13 closed no-op still guarded: expected WrongUIContext, actual WrongUIContext
+PASS E13 closed worker joined
+PASS E14 invisible host rejected: expected InvalidOverlayHost, actual InvalidOverlayHost
+PASS E14 stale anchor: expected StaleReference, actual StaleReference
+PASS E14 foreign anchor: expected WrongUIContext, actual WrongUIContext
+PASS E15 evaluation open structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 evaluation close structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 rejected evaluation commands preserve live layer
+PASS E15 evaluation open structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 evaluation close structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 evaluation open structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 evaluation close structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 evaluation open structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 evaluation close structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 rejected evaluation commands preserve live layer
+PASS E15 evaluation open structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 evaluation close structure guard: expected ReentrantStructure, actual ReentrantStructure
+PASS E15 rejected evaluation commands preserve live layer
+PASS E15 lifecycle direct open: expected LifecycleReentry, actual LifecycleReentry
+PASS E15 lifecycle direct close: expected LifecycleReentry, actual LifecycleReentry
+PASS E15 lifecycle post accepted
+PASS E15 next-turn post closes successfully
+PASS E16 root0 to Text layer1 is legal at treeDepth1 and has exactly two real nodes
+PASS E16 legal depth boundary releases complete session
+PASS E16 shared node/command/depth budget: expected CapacityExceeded, actual CapacityExceeded
+PASS E16 no retained layer queue
+PASS E16 shared node/command/depth budget: expected CapacityExceeded, actual CapacityExceeded
+PASS E16 no retained layer queue
+PASS E16 shared node/command/depth budget: expected CapacityExceeded, actual CapacityExceeded
+PASS E16 no retained layer queue
+PASS E17 measure and draw separate single-source subscriptions
+PASS E17 both computation records released
+PASS E17 draw two dependencies exceed1: expected CapacityExceeded, actual CapacityExceeded
+PASS E17 both computation records released
+PASS E18 passive interactive descendants rejected
+PASS E18 rejected content leaves no resources
+PASS G11 modal surface spaces use full inherited owner style
+PASS G11 no full-screen modal backdrop
+PASS G11 enabled does not inherit over owner edge
+PASS G11 theme commit control
+PASS G11 theme update changes filled modal spaces without local Default
+PASS G12 escapes owner1x1; popup/shadow never escape host6x3: expected [PPPPPP  
+PPPPPP  
+PPPPPP  
+TTTTTTTT], actual [PPPPPP  
+PPPPPP  
+PPPPPP  
+TTTTTTTT]
+PASS G13 manual directional/flip/clamp grid: expected [0000000000
+          
+....AA    
+    PPP   
+    PPP   
+          ], actual [0000000000
+          
+....AA    
+    PPP   
+    PPP   
+          ]
+PASS G13 still-visible anchor keeps published layer open
+PASS G13 resize keeps actual layer identity
+PASS G13 manual directional/flip/clamp grid: expected [0000PPP000
+    PPP   
+....AA    
+          
+          
+          ], actual [0000PPP000
+    PPP   
+....AA    
+          
+          
+          ]
+PASS G13 still-visible anchor keeps published layer open
+PASS G13 resize keeps actual layer identity
+PASS G13 manual directional/flip/clamp grid: expected [0000000000
+          
+....AAPPP 
+      PPP 
+          
+          ], actual [0000000000
+          
+....AAPPP 
+      PPP 
+          
+          ]
+PASS G13 still-visible anchor keeps published layer open
+PASS G13 resize keeps actual layer identity
+PASS G13 manual directional/flip/clamp grid: expected [0000000000
+          
+.PPPAA    
+ PPP      
+          
+          ], actual [0000000000
+          
+.PPPAA    
+ PPP      
+          
+          ]
+PASS G13 still-visible anchor keeps published layer open
+PASS G13 resize keeps actual layer identity
+PASS G13 manual directional/flip/clamp grid: expected [0000000000
+          
+          
+    PPP   
+    PPP   
+....AA    ], actual [0000000000
+          
+          
+    PPP   
+    PPP   
+....AA    ]
+PASS G13 still-visible anchor keeps published layer open
+PASS G13 resize keeps actual layer identity
+PASS G13 manual directional/flip/clamp grid: expected [0000000000
+          
+.........A
+       PPP
+       PPP
+          ], actual [0000000000
+          
+.........A
+       PPP
+       PPP
+          ]
+PASS G13 still-visible anchor keeps published layer open
+PASS G13 resize keeps actual layer identity
+PASS G13 equal side space retains Below then clamps to host: expected [0000000000
+....PPP   
+    PPP   ], actual [0000000000
+....PPP   
+    PPP   ]
+PASS G14 partial anchor uses visible intersection: expected [    
+PPil], actual [    
+PPil]
+PASS G14 disabled anchor keeps geometry/layer
+PASS G14 fully clipped anchor closes without unmount
+PASS G14 hidden/unmounted anchor closes
+PASS G14 hidden/unmounted anchor closes
+PASS G14 unanchored modal survives zero host
+PASS G15 rounded border/wide cell/shadow hand grid: expected [abcdefgh
+ab╭──╮gh
+ab│界│░h
+ab╰──╯░h
+abc░░░░h], actual [abcdefgh
+ab╭──╮gh
+ab│界│░h
+ab╰──╯░h
+abc░░░░h]
+PASS G15 actual continuation and explicit shadow style
+PASS G15 moved old/new/shadow ranges: expected [abcdefgh  
+abc╭──╮h  
+abc│界│░  
+abc╰──╯░  
+abcd░░░░  ], actual [abcdefgh  
+abc╭──╮h  
+abc│界│░  
+abc╰──╯░  
+abcd░░░░  ]
+PASS G15 shrink discards clipped wide cluster: expected [abcdefgh
+ab╭─╮fgh
+ab│ │░gh
+ab╰─╯░gh
+abc░░░gh], actual [abcdefgh
+ab╭─╮fgh
+ab│ │░gh
+ab╰─╯░gh
+abc░░░gh]
+PASS G15 no orphan half cluster
+PASS G15 close restores all current base cells: expected [abcdefgh
+abcdefgh
+abcdefgh
+abcdefgh
+abcdefgh], actual [abcdefgh
+abcdefgh
+abcdefgh
+abcdefgh
+abcdefgh]
+PASS G16 initial caret visible
+PASS G16 shadow contribution occludes caret
+PASS G16 close reveals base caret
+PASS G16 zero axis hides without clamp
+PASS G16 actual clip hides without clamp
+PASS G16 styled opaque space occludes matching background
+PASS G16 continuation caret hidden normal form
+PASS X01 committed application4x2/anchored viewport offset3 control: expected [A   
+de  ], actual [A   
+de  ]
+PASS X01 live committed layer control
+X01 pure0x0 open=true reason=None rootValid=true layerValid=true offset=3 previous=3
+PASS X01 actual pure export has zero dimensions
+PASS X01 pure export must preserve committed anchored layer and identity
+PASS X01 pure export preserves handle/root generation
+PASS X01 pure export preserves committed viewport offset
+PASS X01 original active application still owns both real nodes
+PASS X01 next application target honors ensure6 and original4x2 geometry: expected [A   
+fg  ], actual [A   
+fg  ]
+PASS X01 pending ensure survives pure export
+X02 top-level open code=WrongUIContext handleReturned=false mounts=0 mounted=1
+PASS X02 top-level open outside event/post/batch rejects WrongUIContext
+PASS X02 rejection has no reservation/mount side effects
+PASS X02 same content legally opens in batch after rejection
+PASS X02 same content reserved/mounted exactly once in legal turn
+PASS X02 legal batch content cleanup once
+PASS C-I01 nested owned layers mounted control
+C-I01 allRevokedAtCleanup=true ownerPostRejected=true trace=N;L; mounted=1
+PASS C-I01 revoke ordinary owner and whole overlay closure before any cleanup
+PASS C-I01 deepest-first exactly-once cleanup leaves root only
+PASS C-I01 owned handles terminate OwnerGone
+PASS C-I02 modal mounted before retirement each=false
+C-I02 each=false ownerValid=false layerValid=false open=false reason=OwnerGone cleanup=1 activeIsRoot=true
+PASS C-I02 modal mounted before retirement each=true
+C-I02 each=true ownerValid=false layerValid=false open=false reason=OwnerGone cleanup=1 activeIsRoot=true
+PASS C-I02 If and ForEach retirement close owned modal once and restore base root
+PASS C-I03 visible centered layer control: expected [BPB], actual [BPB]
+PASS C-I03 takeFocus layer root control
+C-I03 hidden=[BBB] refVisible=false hiddenTargetEligible=true disabled=[BPB] disabledTargetEligible=true
+PASS C-I03 hidden content root contributes no cells: expected [BBB], actual [BBB]
+PASS C-I03 hidden and disabled roots cannot remain active targets
+PASS C-I03 disabled content remains visible: expected [BPB], actual [BPB]
+PASS C-I04 initial scroll content control: expected [A  
+1  ], actual [A  
+1  ]
+PASS C-I04 visible anchored overlay control: expected [A  
+P  ], actual [A  
+P  ]
+C-I04 offset=3 open=false reason=AnchorGone frame=[3  
+4  ]
+PASS C-I04 ensure target row4 in two rows commits offset3
+PASS C-I04 same frame uses post-ensure anchor intersection
+PASS C-I04 no floating layer after anchor scrolls out of host: expected [3  
+4  ], actual [3  
+4  ]
+PASS C-I05 legal old zero-area huge-width layout control
+C-I05 result=Failed error=[] theme=Old revision=0 active=true rootValid=true layerValid=true mounts=1 cleanups=0
+PASS C-I05 predictable overlay minimum sum overflow rejected before publication
+PASS C-I05 failed candidate retains accepted theme identity
+PASS C-I05 rejection preserves active original mounted session
+PASS C-I05 original zero-area picture remains usable
+PASS C-I06 valid ordinary max weight plus independent layer control: expected [BP ], actual [BP ]
+PASS C-I06 overlay excluded from public ordinary children
+C-I06 result=Applied theme=Next frame=[BP ]
+PASS C-I06 overlay ownership weight never sums into ordinary flow
+PASS C-I06 unchanged legal theme preserves composed picture: expected [BP ], actual [BP ]
+C-I07 explicitRootHost code=None returned=true
+PASS C-I07 explicit application root has built-in host capability
+PASS C-I07 explicit root host commits real content
+PASS C-I07 explicit root host centered geometry: expected [BP ], actual [BP ]
+C-I08 code=InvalidOverlayHost open=false mounts=0 cleanups=0 rootValid=false mounted=0
+PASS C-I08 pending commit revalidates revoked host capability
+PASS C-I08 illegal pending content never mounts or publishes
+PASS C-I08 structural failure revokes original session
+PASS C-I08 unified failure cleanup releases all resources
+PASS C-I09 normal NonModal dispatch reaches owner control
+C-I09 passiveDispatch code=InvalidProperty ownerCalls=0
+PASS C-I09 Passive explicit keyboard target rejected before business route
+PASS C-I10 first export has no preceding application snapshot
+C-I10 first3x2=[A  
+P  ] fresh5x3=[A    
+     
+P    ] committed3x2=[A  
+P  ] larger5x3=[A    
+     
+P    ] smaller1x1=[P] freshPreserved=true committedPreserved=true
+PASS C-I10 first pure export includes current anchored layer: expected [A  
+P  ], actual [A  
+P  ]
+PASS C-I10 fresh export uses its own5x3 geometry: expected [A    
+     
+P    ], actual [A    
+     
+P    ]
+PASS C-I10 fresh exports leave application committed viewports untouched
+PASS C-I10 first real application snapshot remains usable: expected [A  
+P  ], actual [A  
+P  ]
+PASS C-I10 resized export uses current temporary host geometry: expected [A    
+     
+P    ], actual [A    
+     
+P    ]
+PASS C-I10 one-cell export composes anchored layer at clamped origin: expected [P], actual [P]
+PASS C-I10 different export sizes preserve live handle refs and application3x2 committed geometry
+PASS R1-I01 explicit OWNER focus control modal=false
+R1-I01 modal=false first=false next=true ownerValid=false
+PASS R1-I01 ordinary owner generation removed
+PASS R1-I01 ordinary removal without overlay retains A physical successor NEXT
+PASS R1-I01 explicit OWNER focus control modal=true
+PASS R1-I01 modal content has focus before owner removal
+R1-I01 modal=true first=true next=false ownerValid=false
+PASS R1-I01 ordinary owner generation removed
+PASS R1-I01 removal closes owned modal OwnerGone
+PASS R1-I01 invalid saved focus restores nearest surviving owner ancestor first eligible FIRST before physical NEXT
+PASS R1-I02 actual terminal5x1 with ordinary root1x1 control explicit=false: expected [B    ], actual [B    ]
+PASS R1-I02 root host accepts and mounts natural1x1 P explicit=false
+R1-I02 explicit=false frame=[B P  ]
+PASS R1-I02 default built-in root host centers P in actual5x1 terminal
+PASS R1-I02 actual terminal5x1 with ordinary root1x1 control explicit=true: expected [B    ], actual [B    ]
+PASS R1-I02 root host accepts and mounts natural1x1 P explicit=true
+R1-I02 explicit=true frame=[B P  ]
+PASS R1-I02 explicit built-in root host uses terminal bounds rather than ordinary1x1 root box; actual [B P  ]

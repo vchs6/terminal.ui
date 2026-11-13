@@ -1,0 +1,9 @@
+[package]
+name = "language_only_consumer"
+version = "0.0.0"
+cjc-version = "1.2.0"
+output-type = "static"
+compile-option = "--error-count-limit all"
+[dependencies]
+language_only = { path = "../library" }
+cjtui = { path = "../../replay" }

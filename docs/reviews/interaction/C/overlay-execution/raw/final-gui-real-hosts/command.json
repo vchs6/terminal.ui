@@ -1,0 +1,40 @@
+{
+  "argv": [
+    "python3",
+    "tools/h01_gui.py",
+    "--go",
+    "GO-final.json",
+    "--binary",
+    "product/tests/interaction_c/target/release/bin/main",
+    "--output",
+    "/workspace/work/overlay-execution/raw/final-gui-c",
+    "--display",
+    ":199"
+  ],
+  "actual_argv": [
+    "bash",
+    "-c",
+    "source /workspace/work/overlay-execution/env.sh\nexec \"$@\"",
+    "task111",
+    "python3",
+    "tools/h01_gui.py",
+    "--go",
+    "GO-final.json",
+    "--binary",
+    "product/tests/interaction_c/target/release/bin/main",
+    "--output",
+    "/workspace/work/overlay-execution/raw/final-gui-c",
+    "--display",
+    ":199"
+  ],
+  "cwd": "/workspace/work/overlay-execution",
+  "utcStart": "2026-11-13T02:42:46.242774+00:00",
+  "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+  "env": {
+    "SDK_ENV": "/workspace/work/overlay-execution/env.sh",
+    "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+    "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+  },
+  "exit": 1,
+  "utcEnd": "2026-11-13T02:42:54.327973+00:00"
+}

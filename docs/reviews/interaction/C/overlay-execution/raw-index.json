@@ -1,0 +1,578 @@
+{
+  "utc": "2026-11-13T03:03:16.616513+00:00",
+  "commands": [
+    {
+      "name": "caret-pack-vt",
+      "record": "raw/caret-pack-vt/command.json",
+      "source": "abd0ef62a6d4a45fa2c30de2d19dcb7ead8d89a8",
+      "argv": [
+        "python3",
+        "tools/pack-vt.py",
+        "--go",
+        "GO-caret.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--supervisor",
+        "tools/vt-supervisor-caret",
+        "--output",
+        "caret-vt-c.cpio.gz"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:58:47.248520+00:00",
+      "utcEnd": "2026-11-13T02:58:53.338536+00:00",
+      "exit": 0
+    },
+    {
+      "name": "caret-real-gui",
+      "record": "raw/caret-real-gui/command.json",
+      "source": "abd0ef62a6d4a45fa2c30de2d19dcb7ead8d89a8",
+      "argv": [
+        "python3",
+        "tools/caret_gui.py",
+        "--go",
+        "GO-caret.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--output",
+        "/workspace/work/overlay-execution/raw/caret-gui-c"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:58:47.275672+00:00",
+      "utcEnd": "2026-11-13T02:58:52.579387+00:00",
+      "exit": 0
+    },
+    {
+      "name": "caret-real-vt",
+      "record": "raw/caret-real-vt/command.json",
+      "source": "abd0ef62a6d4a45fa2c30de2d19dcb7ead8d89a8",
+      "argv": [
+        "python3",
+        "tools/caret_vt.py",
+        "--go",
+        "GO-caret.json",
+        "--initrd",
+        "caret-vt-c.cpio.gz",
+        "--output",
+        "/workspace/work/overlay-execution/raw/caret-vt-c"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:59:46.257468+00:00",
+      "utcEnd": "2026-11-13T02:59:58.848674+00:00",
+      "exit": 0
+    },
+    {
+      "name": "caret-vt-supervisor-build",
+      "record": "raw/caret-vt-supervisor-build/command.json",
+      "source": "abd0ef62a6d4a45fa2c30de2d19dcb7ead8d89a8",
+      "argv": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "vt-supervisor.c",
+        "-o",
+        "vt-supervisor-caret"
+      ],
+      "cwd": "/workspace/work/overlay-execution/tools",
+      "utcStart": "2026-11-13T02:58:06.709237+00:00",
+      "utcEnd": "2026-11-13T02:58:06.834854+00:00",
+      "exit": 0
+    },
+    {
+      "name": "clean-full-c-build",
+      "record": "raw/clean-full-c-build/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/overlay-execution/clean-consumer/tests/interaction_c",
+      "utcStart": "2026-11-13T02:44:56.416732+00:00",
+      "utcEnd": "2026-11-13T02:46:27.115548+00:00",
+      "exit": 0
+    },
+    {
+      "name": "clean-full-c-run",
+      "record": "raw/clean-full-c-run/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "env",
+        "TERM=dumb",
+        "COLORTERM=",
+        "timeout",
+        "45s",
+        "./target/release/bin/main"
+      ],
+      "cwd": "/workspace/work/overlay-execution/clean-consumer/tests/interaction_c",
+      "utcStart": "2026-11-13T02:47:21.319016+00:00",
+      "utcEnd": "2026-11-13T02:47:22.270686+00:00",
+      "exit": 0
+    },
+    {
+      "name": "clean-overlay-example-build",
+      "record": "raw/clean-overlay-example-build/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/overlay-execution/clean-consumer/examples/overlay",
+      "utcStart": "2026-11-13T02:47:21.273687+00:00",
+      "utcEnd": "2026-11-13T02:48:26.594744+00:00",
+      "exit": 0
+    },
+    {
+      "name": "clean-overlay-example-smoke",
+      "record": "raw/clean-overlay-example-smoke/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "./target/release/bin/main",
+        "--smoke"
+      ],
+      "cwd": "/workspace/work/overlay-execution/clean-consumer/examples/overlay",
+      "utcStart": "2026-11-13T02:49:41.297967+00:00",
+      "utcEnd": "2026-11-13T02:49:41.594012+00:00",
+      "exit": 0
+    },
+    {
+      "name": "collector-final-syntax",
+      "record": "raw/collector-final-syntax/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "-m",
+        "py_compile",
+        "tools/host_supervisor.py",
+        "tools/h01_gui.py",
+        "tools/h01_vt.py",
+        "tools/h01_expected.py",
+        "tools/clean-package.py"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:40:22.558682+00:00",
+      "utcEnd": "2026-11-13T02:40:22.627252+00:00",
+      "exit": 0
+    },
+    {
+      "name": "collector-grid-controls",
+      "record": "raw/collector-grid-controls/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "-c",
+        "import sys;sys.path.insert(0,\"tools\");from h01_expected import expected_rows,judge_rows;v=expected_rows(\"confirmation\");judge_rows(\"confirmation\",v);bad=v.copy();bad[4]=\"X\"+bad[4][1:];rejected=False\ntry:judge_rows(\"confirmation\",bad)\nexcept RuntimeError:rejected=True\nassert rejected\ntry:judge_rows(\"base\",[])\nexcept RuntimeError:pass\nelse:raise RuntimeError(\"missing grid accepted\")\nprint(\"TOOLS_ONLY one-cell corruption and missing grid rejected; literal labels/Center coordinates from frozen source/design\")"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:37:40.440520+00:00",
+      "utcEnd": "2026-11-13T02:37:40.465477+00:00",
+      "exit": 0
+    },
+    {
+      "name": "collector-pid-control",
+      "record": "raw/collector-pid-control/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "-c",
+        "import sys,pathlib;sys.path.insert(0,\"tools\");from host_supervisor import traced_pid;assert traced_pid(pathlib.Path(\"raw/gui-c/xterm-interrupt/product.strace\"),pathlib.Path(\"/workspace/work/overlay-execution/product/tests/interaction_c/target/release/bin/main\"))==65721;assert traced_pid(pathlib.Path(\"raw/gui-c/xterm-interrupt/product.strace\"),pathlib.Path(\"/wrong\")) is None;print(\"TOOLS_ONLY exact successful execve PID and mismatched path rejection\")"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:33:14.288726+00:00",
+      "utcEnd": "2026-11-13T02:33:14.349212+00:00",
+      "exit": 0
+    },
+    {
+      "name": "final-formal-c",
+      "record": "raw/final-formal-c/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "bash",
+        "tests/interaction_c/run.sh"
+      ],
+      "cwd": "/workspace/work/overlay-execution/product",
+      "utcStart": "2026-11-13T02:41:20.837606+00:00",
+      "utcEnd": "2026-11-13T02:42:19.970043+00:00",
+      "exit": 0
+    },
+    {
+      "name": "final-gui-real-hosts",
+      "record": "raw/final-gui-real-hosts/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "tools/h01_gui.py",
+        "--go",
+        "GO-final.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--output",
+        "/workspace/work/overlay-execution/raw/final-gui-c",
+        "--display",
+        ":199"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:42:46.242774+00:00",
+      "utcEnd": "2026-11-13T02:42:54.327973+00:00",
+      "exit": 1
+    },
+    {
+      "name": "final-gui-vte-prevent-retry",
+      "record": "raw/final-gui-vte-prevent-retry/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "tools/h01_gui.py",
+        "--go",
+        "GO-final.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--output",
+        "/workspace/work/overlay-execution/raw/final-gui-vte-retry",
+        "--display",
+        ":199",
+        "--host",
+        "vte",
+        "--mode",
+        "prevent"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:43:58.100970+00:00",
+      "utcEnd": "2026-11-13T02:43:59.382863+00:00",
+      "exit": 0
+    },
+    {
+      "name": "final-gui-vte-remaining",
+      "record": "raw/final-gui-vte-remaining/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "-c",
+        "import sys,pathlib;sys.path.insert(0,\"tools\");from h01_gui import one;b=pathlib.Path(\"product/tests/interaction_c/target/release/bin/main\").resolve();out=pathlib.Path(\"raw/final-gui-vte-remaining\").resolve()\nfor mode in [\"escape\",\"signal\",\"callback-error\"]:one(b,out/(\"vte-\"+mode),\"vte\",mode,\":199\")"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:44:47.991530+00:00",
+      "utcEnd": "2026-11-13T02:44:51.406949+00:00",
+      "exit": 0
+    },
+    {
+      "name": "final-independent-pty",
+      "record": "raw/final-independent-pty/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "product/tests/interaction_c/pty_driver.py",
+        "--binary",
+        "/workspace/work/overlay-execution/product/tests/interaction_c/target/release/bin/main",
+        "--output",
+        "/workspace/work/overlay-execution/raw/final-independent-pty-cases"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:42:46.177197+00:00",
+      "utcEnd": "2026-11-13T02:42:47.188852+00:00",
+      "exit": 0
+    },
+    {
+      "name": "final-mandatory-bundle",
+      "record": "raw/final-mandatory-bundle/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "cjpm",
+        "bundle"
+      ],
+      "cwd": "/workspace/work/overlay-execution/product",
+      "utcStart": "2026-11-13T02:42:46.211097+00:00",
+      "utcEnd": "2026-11-13T02:43:58.854150+00:00",
+      "exit": 0
+    },
+    {
+      "name": "final-pack-vt",
+      "record": "raw/final-pack-vt/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "tools/pack-vt.py",
+        "--go",
+        "GO-final.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--supervisor",
+        "tools/vt-supervisor",
+        "--output",
+        "final-vt-c.cpio.gz"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:42:46.255112+00:00",
+      "utcEnd": "2026-11-13T02:42:52.350084+00:00",
+      "exit": 0
+    },
+    {
+      "name": "final-package-check",
+      "record": "raw/final-package-check/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "tools/clean-package.py"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:44:07.518833+00:00",
+      "utcEnd": "2026-11-13T02:44:08.138100+00:00",
+      "exit": 1
+    },
+    {
+      "name": "final-package-check-v2",
+      "record": "raw/final-package-check-v2/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "tools/clean-package.py"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:44:46.589197+00:00",
+      "utcEnd": "2026-11-13T02:44:47.144581+00:00",
+      "exit": 0
+    },
+    {
+      "name": "final-vt-real-host",
+      "record": "raw/final-vt-real-host/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "tools/h01_vt.py",
+        "--go",
+        "GO-final.json",
+        "--initrd",
+        "final-vt-c.cpio.gz",
+        "--output",
+        "/workspace/work/overlay-execution/raw/final-vt-c"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:43:28.624783+00:00",
+      "utcEnd": "2026-11-13T02:44:36.226724+00:00",
+      "exit": 0
+    },
+    {
+      "name": "fixture-controls",
+      "record": "raw/fixture-controls/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "bash",
+        "tests/interaction_c/run.sh",
+        "fixture-controls"
+      ],
+      "cwd": "/workspace/work/overlay-execution/product",
+      "utcStart": "2026-11-13T02:30:03.250637+00:00",
+      "utcEnd": "2026-11-13T02:30:03.317927+00:00",
+      "exit": 0
+    },
+    {
+      "name": "formal-c",
+      "record": "raw/formal-c/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "bash",
+        "tests/interaction_c/run.sh"
+      ],
+      "cwd": "/workspace/work/overlay-execution/product",
+      "utcStart": "2026-11-13T02:29:05.598674+00:00",
+      "utcEnd": "2026-11-13T02:30:36.826020+00:00",
+      "exit": 0
+    },
+    {
+      "name": "gui-real-hosts",
+      "record": "raw/gui-real-hosts/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "tools/h01_gui.py",
+        "--go",
+        "GO.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--output",
+        "/workspace/work/overlay-execution/raw/gui-c",
+        "--display",
+        ":199"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:31:35.866052+00:00",
+      "utcEnd": "2026-11-13T02:31:37.154282+00:00",
+      "exit": 1
+    },
+    {
+      "name": "gui-real-hosts-v2",
+      "record": "raw/gui-real-hosts-v2/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "tools/h01_gui.py",
+        "--go",
+        "GO.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--output",
+        "/workspace/work/overlay-execution/raw/gui-c-v2",
+        "--display",
+        ":199"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:33:15.222537+00:00",
+      "utcEnd": "2026-11-13T02:33:27.145474+00:00",
+      "exit": 0
+    },
+    {
+      "name": "independent-pty",
+      "record": "raw/independent-pty/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "product/tests/interaction_c/pty_driver.py",
+        "--binary",
+        "/workspace/work/overlay-execution/product/tests/interaction_c/target/release/bin/main",
+        "--output",
+        "/workspace/work/overlay-execution/raw/independent-pty-cases"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:30:46.668143+00:00",
+      "utcEnd": "2026-11-13T02:30:47.355139+00:00",
+      "exit": 0
+    },
+    {
+      "name": "mandatory-bundle",
+      "record": "raw/mandatory-bundle/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "cjpm",
+        "bundle"
+      ],
+      "cwd": "/workspace/work/overlay-execution/product",
+      "utcStart": "2026-11-13T02:30:45.212412+00:00",
+      "utcEnd": "2026-11-13T02:31:53.974355+00:00",
+      "exit": 1
+    },
+    {
+      "name": "native-caret-collector-syntax",
+      "record": "raw/native-caret-collector-syntax/command.json",
+      "source": "abd0ef62a6d4a45fa2c30de2d19dcb7ead8d89a8",
+      "argv": [
+        "python3",
+        "-m",
+        "py_compile",
+        "tools/caret_gui.py",
+        "tools/caret_vt.py",
+        "tools/caret_common.py",
+        "tools/host_supervisor.py"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:58:05.664840+00:00",
+      "utcEnd": "2026-11-13T02:58:05.705051+00:00",
+      "exit": 0
+    },
+    {
+      "name": "native-caret-consumer-build",
+      "record": "raw/native-caret-consumer-build/command.json",
+      "source": "eea178fe0c8866a50e4a641f4df0f34769a67051",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/overlay-execution/product/tests/interaction_c",
+      "utcStart": "2026-11-13T02:53:04.918412+00:00",
+      "utcEnd": "2026-11-13T02:54:03.269093+00:00",
+      "exit": 1
+    },
+    {
+      "name": "native-caret-consumer-build-fixed",
+      "record": "raw/native-caret-consumer-build-fixed/command.json",
+      "source": "abd0ef62a6d4a45fa2c30de2d19dcb7ead8d89a8",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/overlay-execution/product/tests/interaction_c",
+      "utcStart": "2026-11-13T02:54:01.455754+00:00",
+      "utcEnd": "2026-11-13T02:54:57.987708+00:00",
+      "exit": 0
+    },
+    {
+      "name": "pack-new-vt",
+      "record": "raw/pack-new-vt/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "tools/pack-vt.py",
+        "--go",
+        "GO.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--supervisor",
+        "tools/vt-supervisor",
+        "--output",
+        "vt-c.cpio.gz"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:31:35.896572+00:00",
+      "utcEnd": "2026-11-13T02:31:41.910383+00:00",
+      "exit": 0
+    },
+    {
+      "name": "vt-real-host",
+      "record": "raw/vt-real-host/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "tools/h01_vt.py",
+        "--go",
+        "GO.json",
+        "--initrd",
+        "vt-c.cpio.gz",
+        "--output",
+        "/workspace/work/overlay-execution/raw/vt-c"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:33:15.222530+00:00",
+      "utcEnd": "2026-11-13T02:33:22.157061+00:00",
+      "exit": 1
+    },
+    {
+      "name": "vt-real-host-v2",
+      "record": "raw/vt-real-host-v2/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "tools/h01_vt.py",
+        "--go",
+        "GO.json",
+        "--initrd",
+        "vt-c.cpio.gz",
+        "--output",
+        "/workspace/work/overlay-execution/raw/vt-c-v2"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:34:31.148936+00:00",
+      "utcEnd": "2026-11-13T02:35:39.560621+00:00",
+      "exit": 0
+    },
+    {
+      "name": "vt-supervisor-build",
+      "record": "raw/vt-supervisor-build/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-O2",
+        "vt-supervisor.c",
+        "-o",
+        "vt-supervisor"
+      ],
+      "cwd": "/workspace/work/overlay-execution/tools",
+      "utcStart": "2026-11-13T02:30:03.264157+00:00",
+      "utcEnd": "2026-11-13T02:30:03.429956+00:00",
+      "exit": 0
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "sdk",
+    "cwd": "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/native-caret/raw/env.sh\ncjc --version\ncjpm --version"
+    ],
+    "utc_start": "2026-11-13T02:46:39.455194+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T02:46:39.583962+00:00"
+  },
+  {
+    "name": "build",
+    "cwd": "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/native-caret/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T02:46:39.617061+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T02:47:58.625338+00:00"
+  },
+  {
+    "name": "native-caret",
+    "cwd": "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/native-caret/raw/env.sh\nexport TERM=xterm-256color\nexec python3 /workspace/work/overlay-tests/native-caret/replay/tests/interaction_c/native_caret_pty.py --binary /workspace/work/overlay-tests/native-caret/replay/tests/interaction_c/target/release/bin/main --output /workspace/work/overlay-tests/native-caret/raw/controlled-visible --cursor-reply 1"
+    ],
+    "utc_start": "2026-11-13T02:48:30.816807+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T02:48:39.103400+00:00"
+  },
+  {
+    "name": "native-caret-row-fence",
+    "cwd": "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/native-caret/raw/env.sh\nexport TERM=xterm-256color\nexec python3 /workspace/work/overlay-tests/native-caret/replay/tests/interaction_c/native_caret_pty.py --binary /workspace/work/overlay-tests/native-caret/replay/tests/interaction_c/target/release/bin/main --output /workspace/work/overlay-tests/native-caret/raw/controlled-visible-final --cursor-reply 1"
+    ],
+    "utc_start": "2026-11-13T02:49:40.271756+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T02:49:40.637551+00:00"
+  },
+  {
+    "name": "audit",
+    "cwd": "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/native-caret/raw/env.sh\nexec python3 /workspace/work/overlay-tests/native-caret/raw/audit.py"
+    ],
+    "utc_start": "2026-11-13T02:51:00.125488+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T02:51:01.356145+00:00"
+  }
+]

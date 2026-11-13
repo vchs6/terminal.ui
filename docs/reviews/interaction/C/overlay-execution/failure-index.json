@@ -1,0 +1,122 @@
+{
+  "failures": [
+    {
+      "name": "final-gui-real-hosts",
+      "record": "raw/final-gui-real-hosts/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "tools/h01_gui.py",
+        "--go",
+        "GO-final.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--output",
+        "/workspace/work/overlay-execution/raw/final-gui-c",
+        "--display",
+        ":199"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:42:46.242774+00:00",
+      "utcEnd": "2026-11-13T02:42:54.327973+00:00",
+      "exit": 1,
+      "classification": "Final7f successful XTerm5/VTEinterrupt remain valid; VTEprevent first-frame native capture read before commit. Collector aborted this incomplete vector; targeted retry0 and remaining3 completed. No product failure conclusion from aborted vector.",
+      "png_under_command": []
+    },
+    {
+      "name": "final-package-check",
+      "record": "raw/final-package-check/command.json",
+      "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "argv": [
+        "python3",
+        "tools/clean-package.py"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:44:07.518833+00:00",
+      "utcEnd": "2026-11-13T02:44:08.138100+00:00",
+      "exit": 1,
+      "classification": "External staging assumed every C manifest had ../..; baseline manifest has ../../..; stage failed before any clean product run. Kept attempt1 and fixed generic path-only mapping.",
+      "png_under_command": []
+    },
+    {
+      "name": "gui-real-hosts",
+      "record": "raw/gui-real-hosts/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "tools/h01_gui.py",
+        "--go",
+        "GO.json",
+        "--binary",
+        "product/tests/interaction_c/target/release/bin/main",
+        "--output",
+        "/workspace/work/overlay-execution/raw/gui-c",
+        "--display",
+        ":199"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:31:35.866052+00:00",
+      "utcEnd": "2026-11-13T02:31:37.154282+00:00",
+      "exit": 1,
+      "classification": "Historical f331 external supervisor PID discovery failed after actual product exit0; original binary terminal exit retained in strace; collector1.",
+      "png_under_command": []
+    },
+    {
+      "name": "mandatory-bundle",
+      "record": "raw/mandatory-bundle/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "cjpm",
+        "bundle"
+      ],
+      "cwd": "/workspace/work/overlay-execution/product",
+      "utcStart": "2026-11-13T02:30:45.212412+00:00",
+      "utcEnd": "2026-11-13T02:31:53.974355+00:00",
+      "exit": 1,
+      "classification": "Historical f331 mandatorylint actual11 G.EXP.03 errors, bundle1. Fixed upstream; final7f normal bundle0.",
+      "png_under_command": []
+    },
+    {
+      "name": "native-caret-consumer-build",
+      "record": "raw/native-caret-consumer-build/command.json",
+      "source": "eea178fe0c8866a50e4a641f4df0f34769a67051",
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "cwd": "/workspace/work/overlay-execution/product/tests/interaction_c",
+      "utcStart": "2026-11-13T02:53:04.918412+00:00",
+      "utcEnd": "2026-11-13T02:54:03.269093+00:00",
+      "exit": 1,
+      "classification": "Own wrong-baseline checkout of testcommit eea (parent3fc) caused missing C API compiler1; no execution. Corrected by applying only four testfiles atop fixed7f, product/test equality checked, own abd0ef62 build0.",
+      "png_under_command": []
+    },
+    {
+      "name": "vt-real-host",
+      "record": "raw/vt-real-host/command.json",
+      "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+      "argv": [
+        "python3",
+        "tools/h01_vt.py",
+        "--go",
+        "GO.json",
+        "--initrd",
+        "vt-c.cpio.gz",
+        "--output",
+        "/workspace/work/overlay-execution/raw/vt-c"
+      ],
+      "cwd": "/workspace/work/overlay-execution",
+      "utcStart": "2026-11-13T02:33:15.222530+00:00",
+      "utcEnd": "2026-11-13T02:33:22.157061+00:00",
+      "exit": 1,
+      "classification": "Historical f331 serial reader accepted partial hex line, collector1; raw header804 and partial346 bytes prove reader boundary; complete-line barrier fixes external collector.",
+      "png_under_command": []
+    }
+  ],
+  "historical_failure_png_roots": [
+    "raw/gui-c/xterm-interrupt",
+    "raw/vt-c/interrupt"
+  ],
+  "transient_real_png": "Recorded by stage-transient-N.png; never reconstructed",
+  "final_vte_prevent_no_png": "raw/final-gui-c/vte-prevent failed before first PNG command; native blank rows retained; no original image exists"
+}

@@ -1,0 +1,126 @@
+{
+  "accepted_B_original": "62039552a26da295dcd710d7cfc40cb9e43ca5fd",
+  "accepted_B_integrated": "9cfaaa24ac694403417bc55f36fac89137cd26d5",
+  "current_base": "ffd1f0d6afe193ce5ca87f8d5c4572b9fb5971ea",
+  "frozen_consumer": "b134171cfc9c242844b37eb05853811837179f5c",
+  "contract_sha256": "3aa214946949afbaa79ab08a214bd2fb6bc6f9b3b2173f11d64225bc52b16ebd",
+  "source_tree": "6b63e7baab47c66e901bfbb1e415f1d83018823a",
+  "prep_manifest_sha256": "3d1935f7b1663ea1f827c451d4183a8ed15122c507c989129933f7af0f9d7368",
+  "language_manifest_sha256": "fc661b3cd3019426dd5ac5c8419b2cc69378851ac7283d0214241b67cf075393",
+  "unchanged_prior_runtime_input_count": 191,
+  "only_existing_metadata_changes": [
+    "tests/interaction_c/README.md",
+    "tests/interaction_c/gate-selftest.sh",
+    "tests/interaction_c/run.sh"
+  ],
+  "15_controller_owner_hashes_equal": [
+    "src/component.cj",
+    "src/node_ref.cj",
+    "src/node_index.cj",
+    "src/runtime_node.cj",
+    "src/runtime_session.cj",
+    "src/application.cj",
+    "src/focus_manager.cj",
+    "src/layout.cj",
+    "src/layout_node.cj",
+    "src/drawing_geometry.cj",
+    "src/paint_context.cj",
+    "src/frame.cj",
+    "src/style_resolver.cj",
+    "src/resolved_style.cj",
+    "native/cjtui_terminal.c"
+  ],
+  "current_gates": [
+    {
+      "gate": "TASK080",
+      "source_sha": "5de716ff68dd8ae7b5ecea2b5199b60187df19dc",
+      "ancestor": true,
+      "evidence": "docs/reviews/R13/acceptance/report.md",
+      "evidence_sha256": "a7b48c75b98c5dc9f4496deb99abaceab1c79966aef9adc007c48cbbd03f2dd7"
+    },
+    {
+      "gate": "TASK084",
+      "source_sha": "b08c92d130f8d066a6db11c9ca1bf4c9af17e3f0",
+      "ancestor": true,
+      "evidence": "docs/reviews/R14/acceptance/report.md",
+      "evidence_sha256": "7205b80233b1c0fcaaf660446663a6feaceb75bb31a8e4af1bc149a9a5eed1f9"
+    },
+    {
+      "gate": "TASK088",
+      "source_sha": "73abef371f7b31d986d66a9c20eb0caf4d5f86e3",
+      "ancestor": true,
+      "evidence": "docs/reviews/R15/acceptance/report.md",
+      "evidence_sha256": "57f580545f2eb938f46c696bed11519676a0d10760c6f808cb4bc5360a1444c7"
+    },
+    {
+      "gate": "TASK102",
+      "source_sha": "f3947d122edc13636140785bb4dedbeb59587a6d",
+      "ancestor": true,
+      "evidence": "docs/reviews/interaction/A/TASK-102/report.md",
+      "evidence_sha256": "539c9a4db07d055b28ed6931194e5729301a2a3c41182b52ae0ca3d2b2830712"
+    },
+    {
+      "gate": "TASK107",
+      "source_sha": "9cfaaa24ac694403417bc55f36fac89137cd26d5",
+      "ancestor": true,
+      "evidence": "docs/reviews/interaction/B/TASK-107/report.md",
+      "evidence_sha256": "19a4c5effc9d6b4fae252877f69d4c6bd6dc44297065932af2a4fad835ee0bdd"
+    },
+    {
+      "gate": "TASK152",
+      "source_sha": "5b070e285132c27173cc09d0be9d27abd11fbedb",
+      "ancestor": true,
+      "evidence": "docs/reviews/R18/acceptance/report.md",
+      "evidence_sha256": "9a3668ca67f3573d70cd4c2cb833d7081579136b4047aa1322f219590e140fb0"
+    },
+    {
+      "gate": "INTERFACE_MAP",
+      "source_sha": "9cfaaa24ac694403417bc55f36fac89137cd26d5",
+      "ancestor": true,
+      "evidence": "docs/reviews/interaction/admission/interface-map-C.json",
+      "evidence_sha256": "1279a535a5e8d7497961e0546ade81000d81295d865783ed2557bcf56f1399f9"
+    },
+    {
+      "gate": "TEST_FREEZE",
+      "source_sha": "b134171cfc9c242844b37eb05853811837179f5c",
+      "ancestor": true,
+      "evidence": "tests/interaction_c/admission.current.json",
+      "evidence_sha256": "3ae9bd5b4003b7921d0b603ce45ff7e61d073be48e809d889b4d3ef38b4cc23c"
+    }
+  ],
+  "sdk_tools_sha256": {
+    "/workspace/work/validation/sdk/cangjie/envsetup.sh": "179d4e52c8a8d29a23d28691351f2b0897391243e5d5cb873f8a8e4502f2a288",
+    "/workspace/work/validation/sdk/cangjie/bin/cjc": "023be1bb2ded1078906fc91919b3c1175ad14436ad88d23d505f7b8dcd0d7118",
+    "/workspace/work/validation/sdk/cangjie/tools/bin/cjpm": "a565d86540656c62340aacf6ac89c175b50c1f4d9ba4f69cee6a0fdacdee412d"
+  },
+  "environment_script_equal": true,
+  "shared_dependency_baseline": {
+    "path": "/workspace/work/theme-execution/raw/dependency-source-hashes.json",
+    "sha256": "bd4f5749187208c87d56fa597ccd2f0a787e1684c4a7c0aeefc7086c615d9e06",
+    "count": 375,
+    "all_equal": true
+  },
+  "shared_stdx_baseline": {
+    "path": "/workspace/work/theme-execution/raw/stdx-hashes.json",
+    "sha256": "ffc2f10ae4d96439d1c7051a69042c92dcdbacc4105b248d552d36feadaff55d",
+    "count": 371,
+    "all_equal": true
+  },
+  "UCD_sha256": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e",
+  "declaration_probe_inputs_unchanged": true,
+  "original_prep_raw_unchanged": true,
+  "reused_actual_results": {
+    "positive_build": 0,
+    "positive_direct": 0,
+    "missing_C_compile_exit": 1,
+    "missing_C_direct_diagnostics": 87,
+    "missing_C_cascades": 39,
+    "language_only_compile": 0,
+    "language_only_execution_count": 0
+  },
+  "formal108_test_freeze": true,
+  "C_behavior": "UNEXECUTED",
+  "C_product_or_body_typecheck": "not proved; actual C implementation absent",
+  "no_product_rerun": true,
+  "reason": "Only admission metadata/driver controls changed; consumed source, C bodies/manifests/goldens, SDK, dependencies, configs, env and scope match earlier actual results per AGENTS11.1."
+}

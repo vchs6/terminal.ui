@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "cjpm",
+    "bundle"
+  ],
+  "actual_argv": [
+    "strace",
+    "-f",
+    "-s",
+    "4096",
+    "-e",
+    "trace=execve,exit_group",
+    "-o",
+    "/workspace/work/overlay-execution/raw/mandatory-bundle/process-exit.strace",
+    "bash",
+    "-c",
+    "source /workspace/work/overlay-execution/env.sh\nexec \"$@\"",
+    "task111",
+    "cjpm",
+    "bundle"
+  ],
+  "cwd": "/workspace/work/overlay-execution/product",
+  "utcStart": "2026-11-13T02:30:45.212412+00:00",
+  "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+  "env": {
+    "SDK_ENV": "/workspace/work/overlay-execution/env.sh",
+    "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+    "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+  },
+  "exit": 1,
+  "utcEnd": "2026-11-13T02:31:53.974355+00:00"
+}

@@ -1,0 +1,47 @@
+I01 first=[ABCD] tail=[EFGH]
+PASS B review I01
+I02 innerHeight=5 first=[i
+i
+i
+i
+i
+A
+A
+A
+A
+A] tail=[i
+i
+A
+A
+A
+A
+A
+A
+A
+A]
+PASS B review I02
+I03 frame=[l   ] view=2 offset=11 caret=true
+PASS B review I03
+I04 afterExportView=4 offset=9 app=[jkl ] M1=[jkl ]
+PASS B review I04
+I05 growing same-batch ensure error=[]
+PASS B review I05
+I06 last maxWidth=None maxHeight=Some(2)
+PASS B review I06
+I07 export=false invalidation=true failed=true error=[] info=Old/0 active=true rootRef=true canvasRef=true measureDelta=3 getterDelta=1
+I07 export=true invalidation=false failed=true error=[] info=Old/0 active=true rootRef=true canvasRef=true measureDelta=0 getterDelta=0
+I07 export=true invalidation=true failed=true error=[] info=Old/0 active=true rootRef=true canvasRef=true measureDelta=3 getterDelta=1
+PASS B review I07
+I05-stable error=[] content=13 offset=9 frame=[jklm]
+PASS B review I05-stable
+I08 actual=[C
+C
+C
+T
+ ] M1=[C
+C
+C
+T
+ ]
+PASS B review I08
+PASS: executed interaction B public viewport assertions

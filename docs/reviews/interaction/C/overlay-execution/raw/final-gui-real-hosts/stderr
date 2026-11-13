@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/workspace/work/overlay-execution/tools/h01_gui.py", line 92, in <module>
+    for mode in ([a.mode] if a.mode else MODES):one(binary,a.output.resolve()/(host+'-'+mode),host,mode,a.display)
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/overlay-execution/tools/h01_gui.py", line 70, in one
+    capture('base','BASE-OVERLAY-READY');key('m');ack('M','mounted');key('p');ack('P','mounted');key('c');ack('C','mounted');key('x');ack('trace',TRACE);capture('confirmation','CONFIRM')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/overlay-execution/tools/h01_gui.py", line 66, in capture
+    raise RuntimeError('native source label not committed: '+expected)
+RuntimeError: native source label not committed: BASE-OVERLAY-READY

@@ -1,0 +1,97 @@
+[33mwarning[0m: unused function:'ownerRevocation'
+  [36m==>[0m /workspace/work/overlay-review/probe/src/main.cj:4:1:
+   [36m| [0m
+[36m4[0m  [36m| [0m  func ownerRevocation():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m5[0m  [36m| [0m[33m|[0m     let owner=Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m15[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'hiddenLayer'
+  [36m==>[0m /workspace/work/overlay-review/probe/src/main.cj:16:1:
+   [36m| [0m
+[36m16[0m [36m| [0m  func hiddenLayer():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m17[0m [36m| [0m[33m|[0m     let root=Text("BBB").viewport(ScrollAxes.Off);let layer=Text("P")[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m25[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'builtinHost'
+  [36m==>[0m /workspace/work/overlay-review/probe/src/main.cj:26:1:
+   [36m| [0m
+[36m26[0m [36m| [0m  func builtinHost():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m27[0m [36m| [0m[33m|[0m     let root=Text("B").viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m33[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'revokedHost'
+  [36m==>[0m /workspace/work/overlay-review/probe/src/main.cj:34:1:
+   [36m| [0m
+[36m34[0m [36m| [0m  func revokedHost():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m35[0m [36m| [0m[33m|[0m     let host=Box<?Component>(Option<Component>.None);let owner=Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m43[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'ensureAnchor'
+  [36m==>[0m /workspace/work/overlay-review/probe/src/main.cj:44:1:
+   [36m| [0m
+[36m44[0m [36m| [0m  func ensureAnchor():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m45[0m [36m| [0m[33m|[0m     let anchor=Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m56[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'missedOverlayValidation'
+  [36m==>[0m /workspace/work/overlay-review/probe/src/main.cj:60:1:
+   [36m| [0m
+[36m60[0m [36m| [0m  func missedOverlayValidation():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m61[0m [36m| [0m[33m|[0m     let old=Theme.parse("schema_version=1\nname='Old'\n[styles.grow.spacing]\nweight=0\nmin_width=0\n")[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m73[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'spuriousOverlayWeight'
+  [36m==>[0m /workspace/work/overlay-review/probe/src/main.cj:74:1:
+   [36m| [0m
+[36m74[0m [36m| [0m  func spuriousOverlayWeight():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m75[0m [36m| [0m[33m|[0m     let old=Theme.parse("schema_version=1\nname='Old'\n");let next=Theme.parse("schema_version=1\nname='Next'\n")[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m84[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'passiveDispatch'
+  [36m==>[0m /workspace/work/overlay-review/probe/src/main.cj:85:1:
+   [36m| [0m
+[36m85[0m [36m| [0m  func passiveDispatch():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m86[0m [36m| [0m[33m|[0m     let calls=Box<Int64>(0);let root=Text("B").onKey({_=>calls.value++})[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m93[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+8 warnings generated, 8 warnings printed.

@@ -1,0 +1,347 @@
+{
+  "utc_start": "2026-11-13T02:49:40.317474+00:00",
+  "cwd": "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c",
+  "binary": "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c/target/release/bin/main",
+  "binary_pre_sha256": "f66a26368c3ade7dc14c8a77d22db03acd1c9d3a0b611e059a36631d8a03f3ab",
+  "reply": "1",
+  "size": [
+    8,
+    3
+  ],
+  "before_termios": [
+    1280,
+    5,
+    191,
+    35387,
+    15,
+    15,
+    [
+      [
+        3
+      ],
+      [
+        28
+      ],
+      [
+        127
+      ],
+      [
+        21
+      ],
+      [
+        4
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        17
+      ],
+      [
+        19
+      ],
+      [
+        26
+      ],
+      [
+        0
+      ],
+      [
+        18
+      ],
+      [
+        15
+      ],
+      [
+        23
+      ],
+      [
+        22
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ]
+  ],
+  "events": [
+    {
+      "input_hex": "1b5b3f32353b312479",
+      "wire_offset_before": 63,
+      "monotonic_ns": 4669404684972
+    },
+    {
+      "input_hex": "73",
+      "wire_offset_before": 75,
+      "monotonic_ns": 4669414961539
+    },
+    {
+      "query_fence": "base",
+      "wire_offset_after": 75,
+      "monotonic_ns": 4669435316791
+    },
+    {
+      "input_hex": "6f",
+      "wire_offset_before": 75,
+      "monotonic_ns": 4669435331493
+    },
+    {
+      "paint_fence": "covered",
+      "wire_start": 75,
+      "wire_observed_end": 103,
+      "expected_changed_row": "row1: ij   nop"
+    },
+    {
+      "input_hex": "73",
+      "wire_offset_before": 103,
+      "monotonic_ns": 4669455879870
+    },
+    {
+      "query_fence": "covered",
+      "wire_offset_after": 103,
+      "monotonic_ns": 4669476192258
+    },
+    {
+      "input_hex": "63",
+      "wire_offset_before": 103,
+      "monotonic_ns": 4669476330595
+    },
+    {
+      "paint_fence": "restored",
+      "wire_start": 103,
+      "wire_observed_end": 137,
+      "expected_changed_row": "row1: ijklmnop"
+    },
+    {
+      "input_hex": "73",
+      "wire_offset_before": 137,
+      "monotonic_ns": 4669496837285
+    },
+    {
+      "query_fence": "restored",
+      "wire_offset_after": 137,
+      "monotonic_ns": 4669517123719
+    },
+    {
+      "input_hex": "71",
+      "wire_offset_before": 137,
+      "monotonic_ns": 4669517134766
+    }
+  ],
+  "states": {
+    "base": {
+      "stage": "base",
+      "logicalVisible": "true",
+      "owner": "base",
+      "x": "3",
+      "y": "1",
+      "focusBase": "true",
+      "handleOpen": "false",
+      "cursorStatus": "original-visible",
+      "savedCursorStatus": "original-visible"
+    },
+    "covered": {
+      "stage": "covered",
+      "logicalVisible": "false",
+      "owner": "None",
+      "x": "0",
+      "y": "0",
+      "focusBase": "true",
+      "handleOpen": "true",
+      "cursorStatus": "original-visible",
+      "savedCursorStatus": "original-visible"
+    },
+    "restored": {
+      "stage": "restored",
+      "logicalVisible": "true",
+      "owner": "base",
+      "x": "3",
+      "y": "1",
+      "focusBase": "true",
+      "handleOpen": "false",
+      "cursorStatus": "original-visible",
+      "savedCursorStatus": "original-visible"
+    }
+  },
+  "argv": [
+    "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c/target/release/bin/main"
+  ],
+  "env": {
+    "CJTUI_OVERLAY_NATIVE_CARET": "opaque",
+    "CJTUI_OVERLAY_CARET_OUTPUT": "/workspace/work/overlay-tests/native-caret/raw/controlled-visible-final",
+    "TERM": "xterm-256color"
+  },
+  "readiness": {
+    "monotonic_ns": 4669404662668,
+    "local_flags": 2608,
+    "wire_bytes": 63,
+    "markers_hex": [
+      "4142434445464748",
+      "696a6b6c6d6e6f70",
+      "5152535455565758"
+    ],
+    "query_seen": true,
+    "raw_mode": true
+  },
+  "product_exit": 0,
+  "after_termios": [
+    1280,
+    5,
+    191,
+    35387,
+    15,
+    15,
+    [
+      [
+        3
+      ],
+      [
+        28
+      ],
+      [
+        127
+      ],
+      [
+        21
+      ],
+      [
+        4
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        17
+      ],
+      [
+        19
+      ],
+      [
+        26
+      ],
+      [
+        0
+      ],
+      [
+        18
+      ],
+      [
+        15
+      ],
+      [
+        23
+      ],
+      [
+        22
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ]
+  ],
+  "classification": "logical and known-mode hide/show/CUP wire PASS; controlled PTY is not a real-host pixel claim",
+  "result": "PASS",
+  "utc_end": "2026-11-13T02:49:40.608600+00:00",
+  "binary_post_sha256": "f66a26368c3ade7dc14c8a77d22db03acd1c9d3a0b611e059a36631d8a03f3ab"
+}

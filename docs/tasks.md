@@ -58,13 +58,13 @@ L1 G-001：从零开发 cjtui 并形成可发布制品。
 - TASK-011：状态/准入/实际依赖已转至 [布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)，保留原AC-011和需求映射。
 - TASK-012：状态/准入/实际依赖已转至 [布局装饰变更](../openspec/changes/implement-layout-decoration/tasks.md)，保留原AC-012和需求映射。
 - TASK-013：状态/准入/实际依赖转至[主题样式变更](../openspec/changes/implement-theme-styles/tasks.md)，保留原AC-013与需求映射。
-- [ ] 3.14 TASK-014：自定义组件跨容器复用；验收 AC-014：同组件用于普通容器与弹窗无需修改内核。
+- [x] 3.14 TASK-014：自定义组件跨容器复用；验收 AC-014：同组件用于普通容器与弹窗无需修改内核。
 ## 4. WP-004
 
 - [ ] 4.15 TASK-015：稳定身份与卸载订阅释放；验收 AC-015：列表重排保留正确局部状态，卸载后订阅和引用失效。
 - [ ] 4.16 TASK-016：状态批处理与 UI 调度；验收 AC-016：后台状态经过调度，批量修改合并刷新，长短文本切换无残留。
 - [ ] 4.17 TASK-017：键盘导航和有效焦点；验收 AC-017：禁用、卸载和空焦点集合有确定行为，无失效引用。
-- [ ] 4.18 TASK-018：覆盖层嵌套与关闭恢复；验收 AC-018：父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态。
+- [x] 4.18 TASK-018：覆盖层嵌套与关闭恢复；验收 AC-018：父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态。
 - TASK-019：状态/准入/实际依赖转至[标准控件变更](../openspec/changes/implement-standard-widgets/tasks.md)，保留原AC-019与需求映射。
 - 4.20 TASK-020：应用退出与终端模式恢复；验收 AC-020：正常退出、异常和取消均恢复光标及终端模式。；唯一状态已转[Linux收尾tasks](../openspec/changes/complete-linux-integration/tasks.md)，本文仅保留原范围/依赖定义。
 ## 5. WP-005
@@ -547,7 +547,7 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 
 ## Linux 全阶段连续实施
 
-持久运行时支持TASK071–080唯一状态在[reactive-runtime tasks](../openspec/changes/implement-reactive-runtime/tasks.md)。014/015/016/032本表原完整AC保持；构造/绑定子接口分阶段交付，列表/混合结构完成后独立验收再关闭相应原任务，014跨弹窗仍等018。精确接口与分段前置见该design第6节。
+持久运行时支持TASK071–080唯一状态在[reactive-runtime tasks](../openspec/changes/implement-reactive-runtime/tasks.md)。014/015/016/032本表原完整AC保持；构造/绑定子接口分阶段交付，列表/混合结构由R13验收；014跨弹窗已由C-05同类型组件普通/覆盖层两实例及干净公开例子验证，见C独立验收。精确接口与分段前置见该design第6节。
 
 当前用户要求完成全部 Linux；[总执行计划](linux-completion-plan.md)与[恢复日志](../openspec/linux-completion-progress.md)协调全部稳定任务，不维护第二份完成复选框。TASK-067–070（测试/审核/执行/验收支持）唯一状态在[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，对应 AC-067–070。TASK-010 仍由本表维护；文件原语在该增量交付，实际可见覆盖层快照在018后汇合，不提前标完整通过。
 
@@ -557,7 +557,7 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 
 Linux VT自动字形子接口支持TASK093–097唯一状态在[字形适配变更](../openspec/changes/implement-linux-vt-glyph-fallback/tasks.md)，追踪原041但不转移其全量验收；093–097已按R16有限验收；主题013消费已接受生成标记策略，真实ellipsis布局仍由013/085追加/088验收。
 
-公共交互支持TASK098–112唯一状态在[public-interaction tasks](../openspec/changes/implement-public-interaction/tasks.md)：A绘制/焦点追踪017、B纵横视口追踪037、C覆盖层追踪018；独立preflight与正式签名微验证前均planned，原父状态仍以完整AC关闭。
+公共交互支持TASK098–112唯一状态在[public-interaction tasks](../openspec/changes/implement-public-interaction/tasks.md)：A绘制/焦点追踪017、B纵横视口追踪037、C覆盖层追踪018；三单位及098–112均完成有限验收，原014/018完整AC已由C-05及父018四项证据关闭；菜单/标准Modal、输入编辑、M2及完整Linux另阶段。
 
 可选会话能力TASK148–152唯一状态在[session-extensions tasks](../openspec/changes/implement-session-extensions/tasks.md)，追踪030并联004/020/041既有接口；copyLocalText同步结果供028编辑消费，不另建剪贴板队列。完整030粘贴与真实SSH仍待实际证据，图片无adapter如实降级。
 

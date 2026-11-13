@@ -1,0 +1,2446 @@
+61e4de9d Keep mounted export isolated from committed overlays
+f88493b1 test: correct overlay depth theme and anchor fixture inputs
+68161d37 Validate passive layers and shared command limits
+9145009b Document overlay use with shared component example
+4c656c4f Honor overlay closure and focus restoration boundaries
+9ff71dfd test: disambiguate optional None constructors in overlay consumers
+0269e8fc Connect overlay routing and finite frame composition
+00db2bab Stage overlay nodes through the existing runtime
+f4637a1c Add public overlay option and surface declarations
+ docs/product/interaction.md                      |  10 +
+ examples/overlay/cjpm.toml                       |   8 +
+ examples/overlay/src/box_overlay.cj              |   7 +
+ examples/overlay/src/main.cj                     |  31 +++
+ examples/overlay/src/settings_panel.cj           |   8 +
+ src/application.cj                               |  25 ++-
+ src/component.cj                                 |  18 ++
+ src/focus_manager.cj                             |  44 +++-
+ src/layout.cj                                    |  96 ++++++++
+ src/node_ref.cj                                  |   6 +
+ src/overlay_close_reason.cj                      |   8 +
+ src/overlay_handle.cj                            |  16 ++
+ src/overlay_layout.cj                            |  19 ++
+ src/overlay_mode.cj                              |   7 +
+ src/overlay_options.cj                           |  15 ++
+ src/overlay_placement.cj                         |   8 +
+ src/overlay_record.cj                            |  35 +++
+ src/runtime_node.cj                              |   8 +
+ src/runtime_session.cj                           | 269 ++++++++++++++++++++++-
+ src/style_resolver.cj                            |   7 +-
+ src/surface_mode.cj                              |   7 +
+ src/viewport_geometry.cj                         |   2 +
+ tests/interaction_c/admission.current.json       |  29 ++-
+ tests/interaction_c/case-matrix.md               |   4 +-
+ tests/interaction_c/src/anchor_geometry.cj       |  21 +-
+ tests/interaction_c/src/close_lifecycle.cj       |  20 +-
+ tests/interaction_c/src/context_and_limits.cj    |  27 ++-
+ tests/interaction_c/src/decorations_and_caret.cj |   4 +-
+ tests/interaction_c/src/domain_edges.cj          |  10 +-
+ tests/interaction_c/src/entry_errors.cj          |   6 +-
+ tests/interaction_c/src/focus_restoration.cj     |  10 +-
+ tests/interaction_c/src/layer_domains.cj         |  18 +-
+ tests/interaction_c/src/lifecycle_edges.cj       |  10 +-
+ tests/interaction_c/src/main.cj                  |   2 +-
+ tests/interaction_c/src/native_fixture.cj        |   4 +-
+ tests/interaction_c/src/ordinary_identity.cj     |   8 +-
+ tests/interaction_c/src/pending_and_identity.cj  |   6 +-
+ tests/interaction_c/src/pending_failures.cj      |   6 +-
+ tests/interaction_c/src/surface_grids.cj         |   6 +-
+ tests/interaction_c/src/theme_and_host.cj        |   8 +-
+ 40 files changed, 763 insertions(+), 90 deletions(-)
+diff --git a/docs/product/interaction.md b/docs/product/interaction.md
+index 770b93c8..63949952 100644
+--- a/docs/product/interaction.md
++++ b/docs/product/interaction.md
+@@ -8,10 +8,20 @@
+ 
+ `examples/interaction_primitives` 展示普通 Text 默认动作、Canvas 进度与 Canvas caret。运行 `cjpm run` 使用终端，按 `q` 退出；构建后可用 `target/release/bin/main --smoke` 执行无终端快照。完整输入编辑、标准控件与覆盖层能力另行交付。
+ 
+ ## 视口与滚动
+ 
+ 应用根没有显式声明视口时，默认支持纵向滚动；短内容首先保留普通布局分配，仅当内容在实际尺寸下溢出时才协商滚动内容。`.viewport(ScrollAxes.Off)` 可显式关闭根的默认滚动。一般将可变长度主体放在 `ScrollView { ... }`，将菜单和状态栏留在普通容器中；`ScrollView` 是可聚焦的纵向 `Column` 组合。宽表可使用 `.viewport(ScrollAxes.Horizontal)`，`Both` 同时启用两个轴。
+ 
+ 挂载后的 `NodeRef.viewportSnapshot()` 返回上次提交的实际宽高、有限内容尺寸、偏移与轴。`scrollTo` 和 `scrollBy` 返回是否接受了偏移变化；尺寸变化后偏移会重新钳制。`ensureVisible` 使用节点内容坐标，或不带矩形请求整个节点布局盒；可选择 `Nearest`、`Start`、`Center`、`End` 对齐。用户祖先默认动作先执行，未阻止时视口处理方向键、PageUp/PageDown、Home/End；不能继续滚动时事件可交给外层。
+ 
+ `examples/viewport` 展示固定头尾、可滚动主体及可横向滚动的宽表。进入目录运行 `cjpm run`，使用 Tab 切换焦点、方向键滚动、`q` 退出；构建后的 `--smoke` 运行无终端快照。
++
++## 覆盖层
++
++挂载后的节点可在事件、批次或 post 中通过 `NodeRef.openOverlay` 打开另一份未挂载的组件，返回的 `OverlayHandle` 提供关闭、当前内容引用和终态原因。层的逻辑 owner 决定生命周期、事件路径和主题继承；显式 host 只限定位置与裁剪，且须是 owner 或其祖先。普通 `children()` 不包含覆盖层。
++
++`OverlayMode.Modal` 限制键盘焦点与输入域，默认对层的布局盒填充不透明表面；`NonModal` 不限制焦点遍历，`Passive` 不夺取焦点。`surface(SurfaceMode.Transparent)` 可覆盖默认表面意图，但不会取消组件自身或主题明确声明的背景填充。关闭层后显示底层最新状态，而不是打开时的旧画面。Escape 默认关闭最近允许关闭的交互层；未被阻止的 interrupt 仍退出整个应用。
++
++可将同一自定义组件类型的不同实例用于普通区域和层内容，并共享业务 Observable；同一个组件实例不能同时挂载两处。锚定弹层使用 owner 自身或其后代作为 anchor，并受 host 与终端的实际裁剪约束。
++
++`examples/overlay` 展示同一自定义面板类型在普通区域与模态层中的两份实例。运行 `cjpm run` 后按 Enter 打开，按 Escape 关闭；构建后的 `--smoke` 使用无终端快照。
+diff --git a/examples/overlay/cjpm.toml b/examples/overlay/cjpm.toml
+new file mode 100644
+index 00000000..044087e2
+--- /dev/null
++++ b/examples/overlay/cjpm.toml
+@@ -0,0 +1,8 @@
++[package]
++cjc-version = "1.2.0"
++name = "overlay_example"
++version = "0.0.0"
++src-dir = "src"
++output-type = "executable"
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/examples/overlay/src/box_overlay.cj b/examples/overlay/src/box_overlay.cj
+new file mode 100644
+index 00000000..50534ee9
+--- /dev/null
++++ b/examples/overlay/src/box_overlay.cj
+@@ -0,0 +1,7 @@
++package overlay_example
++import cjtui.*
++
++class BoxOverlay {
++    var value: ?OverlayHandle = Option<OverlayHandle>.None
++    init() {}
++}
+diff --git a/examples/overlay/src/main.cj b/examples/overlay/src/main.cj
+new file mode 100644
+index 00000000..be768c3d
+--- /dev/null
++++ b/examples/overlay/src/main.cj
+@@ -0,0 +1,31 @@
++package overlay_example
++import cjtui.*
++import std.env.getCommandLine
++
++main(): Int64 {
++    let model = Observable<String>("Shared setting")
++    let open = Text("Enter: open modal; Escape: close; q: quit").focusable(true)
++    let root = Column { open; SettingsPanel(model) }.viewport(ScrollAxes.Off)
++    open.defaultAction({event =>
++        if (event.key.code == "enter") {
++            event.currentTarget.openOverlay(SettingsPanel(model).width(20).height(3),
++                options:OverlayOptions(mode:OverlayMode.Modal))
++            event.preventDefault()
++        }
++    })
++    let app = Application(root)
++    app.onKey({event => if (event.text == "q") { app.stop() }})
++    if (getCommandLine().contains("--smoke")) {
++        app.startHeadless()
++        try {
++            let handle = BoxOverlay()
++            app.batch({=> handle.value = Some(root.reference().getOrThrow().openOverlay(
++                SettingsPanel(model).width(20).height(3),options:OverlayOptions(mode:OverlayMode.Modal))) })
++            model.set("Updated setting")
++            if (!app.snapshot(30,5).toPlainText().contains("Updated setting")) { throw Exception("missing shared setting") }
++            app.batch({=> handle.value.getOrThrow().close()})
++            println("PASS overlay example")
++        } finally { app.dispose() }
++    } else { app.run() }
++    0
++}
+diff --git a/examples/overlay/src/settings_panel.cj b/examples/overlay/src/settings_panel.cj
+new file mode 100644
+index 00000000..cc2dfb21
+--- /dev/null
++++ b/examples/overlay/src/settings_panel.cj
+@@ -0,0 +1,8 @@
++package overlay_example
++import cjtui.*
++
++class SettingsPanel <: Component {
++    let model: Observable<String>
++    init(model: Observable<String>) { this.model = model; finishConstruction() }
++    public override func build(): Unit { Text({=> model.get()}) }
++}
+diff --git a/src/application.cj b/src/application.cj
+index db4041ba..057ccf4f 100644
+--- a/src/application.cj
++++ b/src/application.cj
+@@ -156,20 +156,26 @@ public class Application {
+         if (let Some(value) <- readSession()) {
+             value.requireReadContext(); value.focusManager.observe()
+             if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
+         }
+         None
+     }
+     public func activeTarget(): ?NodeRef {
+         if (let Some(value) <- readSession()) {
+             value.requireReadContext(); value.focusManager.observe()
+             if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
++            if (let Some(reserved) <- value.reservedLayer) {
++                if (let Some(rootRef) <- reserved.root) { if (rootRef.isValid()) { return Some(rootRef) } }
++            }
++            if (let Some(modal) <- value.topModal()) {
++                if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) { return Some(rootRef) } }
++            }
+             if (let Some(node) <- value.root.readMount()) {
+                 if (value.focusManager.effective(node,true)) {
+                     if (value.focusManager.effective(node,false)) { return Some(node.reference()) }
+                 }
+             }
+         }
+         None
+     }
+     public func onKeyEvent(handler: (UIKeyEvent) -> Unit): Application {
+         eventHandler = Some(handler)
+@@ -342,27 +348,34 @@ public class Application {
+         let value = current()
+         value.requireBoundary()
+         if (value.isStopping()) {
+             dispose();
+             throw UIException("SessionInactive", "session stopped")
+         }
+         let targetNode = target.resolve()
+         if (targetNode.session.id != value.id) {
+             throw UIException("WrongUIContext", "target belongs to another session")
+         }
++        if (!value.inOverlayDomain(targetNode)) { throw UIException("FocusOutsideDomain", "target outside modal domain") }
+         let path = ArrayList<RuntimeNode>()
+         var cursor: ?RuntimeNode = Some(targetNode)
++        var checkEnabled = true
++        let modal = value.topModal()
+         while (let Some(node) <- cursor) {
+-            if (!node.component.isVisible || !node.component.isEnabled) {
++            if (!node.component.isVisible || (checkEnabled && !node.component.isEnabled)) {
+                 throw UIException("InvalidProperty", "hidden target")
+             }
+             path.add(node);
++            if (node.overlayRoot) { checkEnabled = false }
++            if (let Some(layer) <- modal) {
++                if (let Some(rootRef) <- layer.root) { if (rootRef.sameNode(node.reference())) { break } }
++            }
+             cursor = node.parent
+         }
+         let captures = Array<?(UIKeyEvent) -> Unit>(path.size,{i => path[i].component.captureHandler})
+         let bubbles = Array<?(UIKeyEvent) -> Unit>(path.size,{i => path[i].component.keyHandler})
+         let ancestors = Array<?(UIKeyEvent) -> Unit>(path.size,{i => path[i].component.ancestorDefault})
+         let targetDefault = targetNode.component.targetDefault
+         let savedAppHandler = eventHandler
+         let savedLegacy = handler
+         let event = UIKeyEvent(key, target)
+         let turnCutoff = value.cutoff()
+@@ -382,36 +395,42 @@ public class Application {
+                                 }
+                             }
+                             i = 0
+                             while (i < path.size && !event.stopped) {
+                                 event.setCurrent(path[i].reference())
+                                 if (let Some(callback) <- bubbles[i]) {
+                                     callback(event)
+                                 }
+                                 i++
+                             }
+-                            if (!event.stopped) {
++                            if (!event.stopped && modal.isNone()) {
+                                 if (let Some(callback) <- savedAppHandler) {
+                                     callback(event)
+                                 }
+                             }
+-                            if (!event.stopped && key.code != "interrupt") {
++                            if (!event.stopped && key.code != "interrupt" && modal.isNone()) {
+                                 savedLegacy(key)
+                             }
+                             if (!event.defaultPrevented) {
+                                 event.setCurrent(target)
+                                 if (let Some(callback) <- targetDefault) { callback(event) }
+                             }
+                             if (!event.defaultPrevented) {
+                                 if (key.code == "interrupt") { value.requestStop(); running = false; event.preventDefault() }
+                                 else if (key.code == "tab" || key.code == "backtab") {
+                                     if (value.focusManager.move(key.code == "backtab")) { event.preventDefault() }
++                                } else if (key.code == "escape") {
++                                    if (let Some(layer) <- value.layerFor(targetNode)) {
++                                        if (layer.options.mode != OverlayMode.Passive && layer.options.closeOnEscape) {
++                                            value.closeOverlay(layer,OverlayCloseReason.Escape); event.preventDefault()
++                                        }
++                                    }
+                                 }
+                             }
+                             i = 0
+                             while (i < path.size && !event.defaultPrevented) {
+                                 event.setCurrent(path[i].reference())
+                                 if (let Some(callback) <- ancestors[i]) { callback(event) }
+                                 if (!event.defaultPrevented) {
+                                     if (viewportDefault(path[i],key)) { event.preventDefault() }
+                                 }
+                                 i++
+diff --git a/src/component.cj b/src/component.cj
+index d340d524..583aaa7f 100644
+--- a/src/component.cj
++++ b/src/component.cj
+@@ -11,20 +11,22 @@ public open class Component {
+     var built = false
+     var failed = false
+     var mounted: ?RuntimeNode = None
+     var explicitKey: ?String = None
+     let bindings = ArrayList<Binding>()
+     var mountEffect: ?(NodeRef) -> (() -> Unit) = None
+     var keyHandler: ?(UIKeyEvent) -> Unit = None
+     var captureHandler: ?(UIKeyEvent) -> Unit = None
+     var viewportDeclared = false
+     var viewportAxes = ScrollAxes.Off
++    var surfaceMode: ?SurfaceMode = None
++    var isOverlayHost = false
+     var isVisible = true
+     var isEnabled = true
+     var isFocusable = false
+     var targetDefault: ?(UIKeyEvent) -> Unit = None
+     var ancestorDefault: ?(UIKeyEvent) -> Unit = None
+     let kind: Int64
+     var canvas: ?CanvasState = None
+     var value: RichText
+     let descriptionId = uniqueRuntimeId()
+     let declarations = ArrayList<ChildDeclaration>()
+@@ -184,20 +186,36 @@ public open class Component {
+         if (let Some(node) <- readMount()) {
+             node.session.invalidateBehaviorStyle()
+             node.session.focusManager.changed()
+         }
+     }
+     public func viewport(axes: ScrollAxes): Component {
+         removeBinding("viewport")
+         applyViewport(axes)
+         this
+     }
++    public func surface(value: SurfaceMode): Component {
++        removeBinding("surface")
++        applySurface(value)
++        this
++    }
++    public func surface(value: () -> SurfaceMode): Component {
++        bind("surface",ChangeKind.Style,{=> applySurface(value())})
++    }
++    func applySurface(value: SurfaceMode): Unit {
++        if (surfaceMode != Some(value)) { surfaceMode = Some(value); markChanged(ChangeKind.Style) }
++    }
++    public func overlayHost(value: Bool): Component {
++        checkDefinitionChange()
++        if (isOverlayHost != value) { isOverlayHost = value; markChanged(ChangeKind.Layout) }
++        this
++    }
+     public func viewport(axes: () -> ScrollAxes): Component {
+         checkDefinitionChange()
+         if (!viewportDeclared) { viewportDeclared = true; markChanged(ChangeKind.Layout) }
+         bind("viewport",ChangeKind.Layout,{=> applyViewport(axes())})
+     }
+     func applyViewport(axes: ScrollAxes): Unit {
+         if (!viewportDeclared || viewportAxes != axes) {
+             viewportDeclared = true; viewportAxes = axes; markChanged(ChangeKind.Layout)
+         }
+     }
+diff --git a/src/focus_manager.cj b/src/focus_manager.cj
+index 2c85fd32..7082d386 100644
+--- a/src/focus_manager.cj
++++ b/src/focus_manager.cj
+@@ -17,84 +17,118 @@ class FocusManager <: ObservableSource {
+     func changed(): Unit {
+         lock.lock(); version++; lock.unlock()
+         emit()
+     }
+     func effective(node: RuntimeNode, enabled: Bool): Bool {
+         var cursor: ?RuntimeNode = Some(node)
+         while (let Some(current) <- cursor) {
+             if (!current.valid || !current.committed) { return false }
+             if (enabled && !current.component.isEnabled) { return false }
+             if (!enabled && !current.component.isVisible) { return false }
++            if (enabled && current.overlayRoot) { break }
+             cursor = current.parent
+         }
+         true
+     }
+     func eligible(node: RuntimeNode): Bool {
+         if (!node.component.isFocusable) { return false }
+         if (!effective(node,true)) { return false }
+         effective(node,false)
+     }
+     func collect(node: RuntimeNode, result: ArrayList<RuntimeNode>): Unit {
+         if (eligible(node)) { result.add(node) }
+         for (entry in node.sequence) {
+             if (let ChildEntry.MountedChild(child) <- entry) { collect(child,result) }
+         }
+     }
+     func candidates(): Array<RuntimeNode> {
+         let result = ArrayList<RuntimeNode>()
+-        if (let Some(root) <- session.getOrThrow().root.readMount()) { collect(root,result) }
++        let owner = session.getOrThrow()
++        if (owner.topModal().isNone()) {
++            if (let Some(root) <- owner.root.readMount()) { collect(root,result) }
++        }
++        for (record in owner.overlayRecords) {
++            if (record.terminal.isSome() || record.options.mode == OverlayMode.Passive) { continue }
++            if (let Some(rootRef) <- record.root) {
++                if (rootRef.isValid()) {
++                    let root = rootRef.resolve()
++                    if (owner.inOverlayDomain(root)) { collect(root,result) }
++                }
++            }
++        }
+         result.toArray()
+     }
+     func set(next: ?RuntimeNode, order!: Int64 = 0): Unit {
+         let oldId = if (let Some(old) <- focused) { old.id } else { -1 }
+         let newId = if (let Some(value) <- next) { value.id } else { -1 }
+         if (oldId == newId) { return }
++        if (let Some(target) <- next) {
++            if (let Some(reserved) <- session.getOrThrow().reservedLayer) {
++                if (let Some(rootRef) <- reserved.root) {
++                    if (rootRef.isValid()) {
++                        if (!session.getOrThrow().overlayAncestor(rootRef.resolve(),target)) { session.getOrThrow().reservedLayer = None }
++                    }
++                }
++            }
++        }
+         let old = focused
+         focused = next
+         session.getOrThrow().lastCaret = None
+         if (let Some(target) <- next) {
+             if (!session.getOrThrow().temporary) { session.getOrThrow().queueFocusEnsure(target.reference(),order) }
+         } else { session.getOrThrow().pendingFocusEnsure = None }
+         if (let Some(previousNode) <- old) { session.getOrThrow().markChanged(previousNode,ChangeKind.Style) }
+         session.getOrThrow().invalidateBehaviorStyle()
+         changed()
+     }
+     func cancelInvalidRequests(): Unit {
+         var i: Int64 = 0
+         while (i < requested.size) {
+             if (!requested[i].isValid()) { requested.remove(at:i); requestedOrders.remove(at:i) } else { i++ }
+         }
+     }
+     func repair(): Unit {
+         let current = candidates()
+         if (let Some(old) <- focused) {
+-            if (!eligible(old)) {
++            let oldEligible = eligible(old)
++            let oldInDomain = session.getOrThrow().inOverlayDomain(old)
++            if (!oldEligible || !oldInDomain) {
+                 var index: Int64 = -1
+                 for (i in 0..previous.size) { if (previous[i].id == old.id) { index = i; break } }
+                 var replacement: ?RuntimeNode = None
+                 if (index >= 0) {
+                     var i = index + 1
+                     while (i < previous.size && replacement.isNone()) {
+-                        if (eligible(previous[i])) { replacement = Some(previous[i]) }; i++
++                        if (eligible(previous[i])) { if (session.getOrThrow().inOverlayDomain(previous[i])) { replacement = Some(previous[i]) } }; i++
+                     }
+                     i = index - 1
+                     while (i >= 0 && replacement.isNone()) {
+-                        if (eligible(previous[i])) { replacement = Some(previous[i]) }; i--
++                        if (eligible(previous[i])) { if (session.getOrThrow().inOverlayDomain(previous[i])) { replacement = Some(previous[i]) } }; i--
+                     }
+                 }
+                 if (replacement.isNone() && !current.isEmpty()) { replacement = Some(current[0]) }
+                 set(replacement)
+             }
+-        } else if (!current.isEmpty() && !session.getOrThrow().isStopping()) { set(Some(current[0])) }
++        } else if (!session.getOrThrow().isStopping()) {
++            if (let Some(reserved) <- session.getOrThrow().reservedLayer) {
++                if (let Some(rootRef) <- reserved.root) {
++                    if (rootRef.isValid()) {
++                        let choices = ArrayList<RuntimeNode>(); collect(rootRef.resolve(),choices)
++                        if (!choices.isEmpty()) { set(Some(choices[0])) }
++                    }
++                }
++            } else if (!current.isEmpty()) { set(Some(current[0])) }
++        }
+         for (i in 0..requested.size) {
+             session.getOrThrow().useStructuralOps(1)
+             let node = requested[i].resolve()
++            if (!session.getOrThrow().inOverlayDomain(node)) { throw UIException("FocusOutsideDomain","focus outside modal domain") }
+             if (!eligible(node)) { throw UIException("InvalidFocusTarget","node cannot receive focus") }
+             set(Some(node),order:requestedOrders[i])
+         }
+         requested.clear(); requestedOrders.clear()
+         previous = current
+     }
+     func move(backward: Bool): Bool {
+         let current = candidates()
+         if (current.isEmpty()) { return false }
+         var index: Int64 = if (backward) { 0 } else { -1 }
+diff --git a/src/layout.cj b/src/layout.cj
+index 5f6ed014..f98eb44e 100644
+--- a/src/layout.cj
++++ b/src/layout.cj
+@@ -1,12 +1,14 @@
+ package cjtui
+ 
++import std.collection.ArrayList
++
+ func sat(a: Int64, b: Int64): Int64 {
+     if (a > Int64.Max - b) {
+         Int64.Max
+     } else {
+         a + b
+     }
+ }
+ 
+ func lesser(a: Int64, b: Int64): Int64 {
+     if (a < b) {
+@@ -117,20 +119,23 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h:
+             if (let Some(caret) <- n.session.lastCaret) {
+                 if (n.session.viewportContains(runtimeNode,caret.owner)) { n.session.focusedViewportResized = true }
+             }
+         }
+         state.update(innerW,innerH,contentW,contentH,axes)
+     }
+     let scrollX = if (axes.horizontal()) { state.offsetX } else { 0 }
+     let scrollY = if (axes.vertical()) { state.offsetY } else { 0 }
+     let ix = signedAdd(boxX,-scrollX); let iy = signedAdd(boxY,-scrollY)
+     if (n.previewTheme.isNone() && n.commitGeometry) {
++        runtimeNode.screenX = x; runtimeNode.screenY = y
++        runtimeNode.clipLeft = greater(clipL,x); runtimeNode.clipTop = greater(clipT,y)
++        runtimeNode.clipRight = right; runtimeNode.clipBottom = bottom
+         runtimeNode.layoutWidth = w; runtimeNode.layoutHeight = h
+         runtimeNode.contentX = leftPad; runtimeNode.contentY = topPad
+         runtimeNode.logicalWidth = contentW; runtimeNode.logicalHeight = contentH
+     }
+     if (c.kind == 3) {
+         if (output.isNone()) { return }
+         let frame = output.getOrThrow()
+         let left = greater(0,signedSubtract(greater(clipL,boxX),ix))
+         let top = greater(0,signedSubtract(greater(clipT,boxY),iy))
+         let endX = greater(left,lesser(contentW,signedSubtract(ir,ix))); let endY = greater(top,lesser(contentH,signedSubtract(ib,iy)))
+@@ -292,20 +297,88 @@ func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
+     let h = lesser(height,greater(node.resolved.fixedH ?? height,node.resolved.minH))
+     node.constrain(w)
+     if (!session.root.viewportDeclared && node.resolved.fixedH.isNone()) {
+         let summary = VerticalOverflowSummary()
+         summarizeVerticalOverflow(node,w,h,summary)
+         node.rootFallback = summary.present
+     }
+     layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
+ }
+ 
++func overlayInherited(session: RuntimeSession, owner: RuntimeNode): Style {
++    let chain = ArrayList<RuntimeNode>()
++    var cursor: ?RuntimeNode = Some(owner)
++    while (let Some(node) <- cursor) { chain.add(node); cursor = node.parent }
++    var style = themeSeed(session.theme); var i = chain.size
++    while (i > 0) {
++        i--; let node = chain[i]
++        style = resolveStyle(node.component,session.theme,style,node.parent.isNone()).style
++    }
++    style
++}
++
++func overlayGeometry(session: RuntimeSession, record: OverlayRecord, frame: Frame, commit: Bool): ?OverlayLayout {
++    if (record.terminal.isSome() || !record.owner.isValid()) { return None }
++    let rootRef = record.root
++    if (rootRef.isNone() || !rootRef.getOrThrow().isValid()) { return None }
++    let owner = record.owner.resolve()
++    var left: Int64 = 0; var top: Int64 = 0; var right = frame.width; var bottom = frame.height
++    if (let Some(hostRef) <- record.options.host) {
++        if (!hostRef.isValid()) { return None }
++        let host = hostRef.resolve()
++        let hw = if (session.viewportAxes(host).isSome()) { host.viewportState.width } else { host.logicalWidth }
++        let hh = if (session.viewportAxes(host).isSome()) { host.viewportState.height } else { host.logicalHeight }
++        let hx = signedAdd(host.screenX,host.contentX); let hy = signedAdd(host.screenY,host.contentY)
++        left = greater(host.clipLeft,hx); top = greater(host.clipTop,hy)
++        right = lesser(host.clipRight,signedAdd(hx,hw)); bottom = lesser(host.clipBottom,signedAdd(hy,hh))
++    }
++    right = greater(left,right); bottom = greater(top,bottom)
++    let node = LayoutNode(rootRef.getOrThrow().resolve().component,session,overlayInherited(session,owner),commitGeometry:commit)
++    node.measure()
++    let w = lesser(right-left,greater(node.resolved.fixedW ?? node.naturalW,node.resolved.minW))
++    node.constrain(w)
++    let h = lesser(bottom-top,greater(node.resolved.fixedH ?? node.naturalH,node.resolved.minH))
++    var x = signedAdd(left,(right-left-w)/2); var y = signedAdd(top,(bottom-top-h)/2)
++    if (let Some(anchorRef) <- record.options.anchor) {
++        if (!anchorRef.isValid()) {
++            if (commit) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
++            return None
++        }
++        let anchor = anchorRef.resolve()
++        let ax = greater(left,greater(anchor.screenX,anchor.clipLeft))
++        let ay = greater(top,greater(anchor.screenY,anchor.clipTop))
++        let ar = lesser(right,lesser(signedAdd(anchor.screenX,anchor.layoutWidth),anchor.clipRight))
++        let ab = lesser(bottom,lesser(signedAdd(anchor.screenY,anchor.layoutHeight),anchor.clipBottom))
++        if (ar <= ax || ab <= ay || !session.focusManager.effective(anchor,false)) {
++            if (commit) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
++            return None
++        }
++        match (record.options.placement) {
++            case OverlayPlacement.BelowStart =>
++                x = ax; let below = bottom-ab; let above = ay-top
++                y = if (below >= h || below >= above) { ab } else { ay-h }
++            case OverlayPlacement.AboveStart =>
++                x = ax; let above = ay-top; let below = bottom-ab
++                y = if (above >= h || above >= below) { ay-h } else { ab }
++            case OverlayPlacement.RightStart =>
++                y = ay; let rightSpace = right-ar; let leftSpace = ax-left
++                x = if (rightSpace >= w || rightSpace >= leftSpace) { ar } else { ax-w }
++            case OverlayPlacement.LeftStart =>
++                y = ay; let leftSpace = ax-left; let rightSpace = right-ar
++                x = if (leftSpace >= w || leftSpace >= rightSpace) { ax-w } else { ar }
++            case OverlayPlacement.Center => ()
++        }
++    }
++    x = lesser(greater(left,x),greater(left,right-w)); y = lesser(greater(top,y),greater(top,bottom-h))
++    Some(OverlayLayout(node,x,y,w,h,left,top,right,bottom))
++}
++
+ func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession, reuse!: Bool = true): Frame {
+     let frame = Frame(width, height)
+     if (!root.isVisible) { return frame }
+     // Public render may target a mounted subtree in the same session.
+     // Only the application root owns this reusable measurement.
+     let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
+     let node = if (sessionRoot && session.measuredLayout.isSome()) {
+         session.measuredLayout.getOrThrow()
+     } else {
+         let measured = LayoutNode(root, session, themeSeed(session.theme), isRoot: true, commitGeometry: reuse)
+@@ -322,37 +395,60 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
+     // Mounted M1 render is also a root consumer even when caching is disabled.
+     let mountedRoot = !session.temporary && root.descriptionId == session.root.descriptionId
+     if ((implicitRoot || mountedRoot) && !root.viewportDeclared && node.resolved.fixedH.isNone()) {
+         let summary = VerticalOverflowSummary()
+         summarizeVerticalOverflow(node,w,h,summary)
+         node.rootFallback = summary.present
+     } else { node.rootFallback = false }
+     // Resolve current finite geometry before consuming deferred ensure intents.
+     if (reuse) { session.focusedViewportResized = false }
+     layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
++    let layers = ArrayList<OverlayLayout>()
++    if (mountedRoot) {
++        for (record in session.overlayRecords) {
++            if (let Some(layer) <- overlayGeometry(session,record,frame,reuse)) {
++                layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
++                    layer.left,layer.top,layer.right,layer.bottom)
++                layers.add(layer)
++            }
++        }
++    }
+     if (reuse) {
+         if (session.focusedViewportResized) {
+             if (let Some(previousCaret) <- session.lastCaret) {
+                 var hasExplicit = false
+                 for (command in session.pendingEnsures) {
+                     if (command.target.sameNode(previousCaret.owner)) { hasExplicit = true }
+                 }
+                 if (!hasExplicit && previousCaret.owner.isValid()) {
+                     let ensure = ScrollCommand(previousCaret.owner,1,0,0,
+                         Some(Rect(previousCaret.localX,previousCaret.localY,1,1)),ScrollAlign.Nearest,ScrollAlign.Nearest)
+                     ensure.order = session.nextViewportIntent(); session.pendingEnsures.add(ensure)
+                 }
+             }
+         }
+         applyPendingViewportEnsures(session)
+     }
+     paint(node, frame, 0, 0, w, h, 0, 0, width, height)
++    for (layer in layers) {
++        let overlay = Frame(width,height,transparent:true)
++        let previousCaret = session.pendingCaret
++        paint(layer.node,overlay,layer.x,layer.y,layer.width,layer.height,layer.left,layer.top,layer.right,layer.bottom)
++        if (let Some(previous) <- previousCaret) {
++            if (let Some(current) <- session.pendingCaret) {
++                if (refEq(previous,current) && previous.x >= 0 && previous.y >= 0 && previous.x < width && previous.y < height) {
++                    if (!overlay.cellAt(previous.x,previous.y).isTransparent) { session.pendingCaret = None }
++                }
++            }
++        }
++        frame.composite(overlay)
++    }
+     frame
+ }
+ 
+ public func render(root: Component, width: Int64, height: Int64, glyphMode!: GlyphMode = GlyphMode.Unicode): Frame {
+     if (let Some(node) <- root.readMount()) {
+         let session = node.session
+         session.requireBoundary()
+         if (session.isStopping()) {
+             session.closeStopped()
+             throw UIException("SessionInactive", "session stopped")
+diff --git a/src/node_ref.cj b/src/node_ref.cj
+index 28b3e56e..13222bda 100644
+--- a/src/node_ref.cj
++++ b/src/node_ref.cj
+@@ -44,22 +44,28 @@ public class NodeRef {
+         value.session.focusManager.effective(value,false)
+     }
+     public func application(): Application {
+         let value = resolve(); value.session.requireReadContext()
+         if (let Some(app) <- value.session.application) { return app }
+         throw UIException("SessionInactive", "node has no application")
+     }
+     public func requestFocus(): Unit {
+         let value = resolve(); value.session.requireContext()
+         if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "focus during lifecycle") }
++        if (!value.session.inOverlayDomain(value)) { throw UIException("FocusOutsideDomain", "focus outside modal domain") }
+         value.session.enqueueFocus(this)
+     }
++    public func openOverlay(content: Component, options!: OverlayOptions = OverlayOptions()): OverlayHandle {
++        let value = resolve()
++        value.session.requireStructure()
++        value.session.openOverlay(value,content,options)
++    }
+     public func viewportSnapshot(): ViewportSnapshot {
+         let value = resolve(); value.session.requireReadContext()
+         if (value.session.viewportAxes(value).isNone()) { throw UIException("InvalidProperty", "node has no viewport") }
+         value.viewportState.snapshot()
+     }
+     public func scrollTo(x: Int64, y: Int64): Bool {
+         let value = resolve(); value.session.requireContext()
+         if (value.session.inLifecycle) { throw UIException("LifecycleReentry", "scroll during lifecycle") }
+         if (x < 0 || y < 0) { throw IllegalArgumentException("negative scroll position") }
+         let axes = match (value.session.viewportAxes(value)) {
+diff --git a/src/overlay_close_reason.cj b/src/overlay_close_reason.cj
+new file mode 100644
+index 00000000..f22e1046
+--- /dev/null
++++ b/src/overlay_close_reason.cj
+@@ -0,0 +1,8 @@
++package cjtui
++public enum OverlayCloseReason <: Equatable<OverlayCloseReason> {
++    | Requested | Escape | OwnerGone | OwnerHidden | AnchorGone
++    public operator func ==(other: OverlayCloseReason): Bool {
++        match ((this,other)) { case (Requested,Requested) | (Escape,Escape) | (OwnerGone,OwnerGone) |
++            (OwnerHidden,OwnerHidden) | (AnchorGone,AnchorGone) => true; case _ => false }
++    }
++}
+diff --git a/src/overlay_handle.cj b/src/overlay_handle.cj
+new file mode 100644
+index 00000000..570c8614
+--- /dev/null
++++ b/src/overlay_handle.cj
+@@ -0,0 +1,16 @@
++package cjtui
++
++public class OverlayHandle {
++    private let record: OverlayRecord
++    init(record: OverlayRecord) { this.record = record }
++    public func isOpen(): Bool { record.guard(); record.observe(); record.terminal.isNone() }
++    public func content(): ?NodeRef { record.guard(); record.observe(); if (record.terminal.isSome()) { None } else { record.root } }
++    public func closeReason(): ?OverlayCloseReason { record.guard(); record.observe(); record.terminal }
++    public func close(): Unit {
++        record.guard()
++        if (record.terminal.isSome()) { return }
++        let session = record.owner.resolve().session
++        session.requireStructure()
++        session.closeOverlay(record,OverlayCloseReason.Requested)
++    }
++}
+diff --git a/src/overlay_layout.cj b/src/overlay_layout.cj
+new file mode 100644
+index 00000000..5c55b432
+--- /dev/null
++++ b/src/overlay_layout.cj
+@@ -0,0 +1,19 @@
++package cjtui
++
++// Per-frame geometry for the same mounted layer node and the common layout path.
++class OverlayLayout {
++    let node: LayoutNode
++    let x: Int64
++    let y: Int64
++    let width: Int64
++    let height: Int64
++    let left: Int64
++    let top: Int64
++    let right: Int64
++    let bottom: Int64
++    init(node: LayoutNode, x: Int64, y: Int64, width: Int64, height: Int64,
++        left: Int64, top: Int64, right: Int64, bottom: Int64) {
++        this.node = node; this.x = x; this.y = y; this.width = width; this.height = height
++        this.left = left; this.top = top; this.right = right; this.bottom = bottom
++    }
++}
+diff --git a/src/overlay_mode.cj b/src/overlay_mode.cj
+new file mode 100644
+index 00000000..a12d34e5
+--- /dev/null
++++ b/src/overlay_mode.cj
+@@ -0,0 +1,7 @@
++package cjtui
++public enum OverlayMode <: Equatable<OverlayMode> {
++    | Modal | NonModal | Passive
++    public operator func ==(other: OverlayMode): Bool {
++        match ((this,other)) { case (Modal,Modal) | (NonModal,NonModal) | (Passive,Passive) => true; case _ => false }
++    }
++}
+diff --git a/src/overlay_options.cj b/src/overlay_options.cj
+new file mode 100644
+index 00000000..a1052aae
+--- /dev/null
++++ b/src/overlay_options.cj
+@@ -0,0 +1,15 @@
++package cjtui
++
++public struct OverlayOptions {
++    public let mode: OverlayMode
++    public let host: ?NodeRef
++    public let anchor: ?NodeRef
++    public let placement: OverlayPlacement
++    public let closeOnEscape: Bool
++    public let takeFocus: Bool
++    public init(mode!: OverlayMode = OverlayMode.NonModal, host!: ?NodeRef = None, anchor!: ?NodeRef = None,
++        placement!: OverlayPlacement = OverlayPlacement.Center, closeOnEscape!: Bool = true, takeFocus!: Bool = true) {
++        this.mode = mode; this.host = host; this.anchor = anchor; this.placement = placement
++        this.closeOnEscape = closeOnEscape; this.takeFocus = takeFocus
++    }
++}
+diff --git a/src/overlay_placement.cj b/src/overlay_placement.cj
+new file mode 100644
+index 00000000..d9dd8741
+--- /dev/null
++++ b/src/overlay_placement.cj
+@@ -0,0 +1,8 @@
++package cjtui
++public enum OverlayPlacement <: Equatable<OverlayPlacement> {
++    | Center | BelowStart | AboveStart | RightStart | LeftStart
++    public operator func ==(other: OverlayPlacement): Bool {
++        match ((this,other)) { case (Center,Center) | (BelowStart,BelowStart) | (AboveStart,AboveStart) |
++            (RightStart,RightStart) | (LeftStart,LeftStart) => true; case _ => false }
++    }
++}
+diff --git a/src/overlay_record.cj b/src/overlay_record.cj
+new file mode 100644
+index 00000000..24b7e2b1
+--- /dev/null
++++ b/src/overlay_record.cj
+@@ -0,0 +1,35 @@
++package cjtui
++
++// One record refers to the existing mounted generation; it owns no second tree.
++class OverlayRecord <: ObservableSource {
++    let owner: NodeRef
++    let options: OverlayOptions
++    let sessionId: Int64
++    let threadId: Int64
++    let threadNonce: Int64
++    var description: ?Component
++    var root: ?NodeRef = None
++    var savedFocus: ?NodeRef = None
++    var savedOrder = Array<NodeRef>()
++    var terminal: ?OverlayCloseReason = None
++    var requested: ?OverlayCloseReason = None
++    var focusPending = false
++    init(session: RuntimeSession, owner: NodeRef, description: Component, options: OverlayOptions) {
++        this.owner = owner; this.options = options; this.description = Some(description)
++        sessionId = session.id; threadId = session.threadId; threadNonce = session.threadNonce
++    }
++    func guard(): Unit {
++        let nonce = uiThreadIdentity().nonce
++        if (Thread.currentThread.id != threadId || nonce != threadNonce) {
++            throw UIException("WrongUIContext", "wrong UI thread")
++        }
++        if (let Some(current) <- activeSession.get()) {
++            if (current.id != sessionId) { throw UIException("WrongUIContext", "another session owns the active callback") }
++        }
++    }
++    func observe(): Unit {
++        lock.lock(); let observed = version; lock.unlock()
++        if (let Some(binding) <- evaluating.get()) { binding.read(this,observed) }
++    }
++    func changed(): Unit { lock.lock(); version++; lock.unlock(); emit() }
++}
+diff --git a/src/runtime_node.cj b/src/runtime_node.cj
+index a08dc174..f018831f 100644
+--- a/src/runtime_node.cj
++++ b/src/runtime_node.cj
+@@ -1,19 +1,27 @@
+ package cjtui
+ 
+ import std.collection.ArrayList
+ 
+ class RuntimeNode {
+     let component: Component
+     let session: RuntimeSession
+     let id: Int64
+     let parent: ?RuntimeNode
++    var overlayRoot = false
++    var overlayModal = false
++    var screenX: Int64 = 0
++    var screenY: Int64 = 0
++    var clipLeft: Int64 = 0
++    var clipTop: Int64 = 0
++    var clipRight: Int64 = 0
++    var clipBottom: Int64 = 0
+     let sequence = ArrayList<ChildEntry>()
+     let viewportState = ViewportState()
+     // Geometry is in the parent's logical content coordinates.
+     var layoutX: Int64 = 0
+     var layoutY: Int64 = 0
+     var layoutWidth: Int64 = 0
+     var layoutHeight: Int64 = 0
+     var contentX: Int64 = 0
+     var contentY: Int64 = 0
+     var logicalWidth: Int64 = 0
+diff --git a/src/runtime_session.cj b/src/runtime_session.cj
+index 627a4bed..2e4b63de 100644
+--- a/src/runtime_session.cj
++++ b/src/runtime_session.cj
+@@ -32,20 +32,23 @@ class RuntimeSession {
+     private var firstDeviceFailure: ?Exception = None
+     var application: ?Application
+     let lock = Mutex()
+     let nodes = ArrayList<RuntimeNode>()
+     let bindings = ArrayList<Binding>()
+     let pendingBindings = ArrayList<Binding>()
+     let pendingNodes = ArrayList<PendingNodeChange>()
+     let posts = ArrayList<QueuedAction>()
+     let commands = ArrayList<StructuralCommand>()
+     let viewportCommands = ArrayList<ScrollCommand>()
++    let overlayRecords = ArrayList<OverlayRecord>()
++    let overlayPending = ArrayList<OverlayRecord>()
++    var reservedLayer: ?OverlayRecord = None
+     let pendingEnsures = ArrayList<ScrollCommand>()
+     var pendingFocusEnsure: ?ScrollCommand = None
+     var viewportIntentSequence: Int64 = 0
+     var structuralOps: Int64 = 0
+     var committing = false
+     var mountingCredit: Int64 = 0
+     var active = true
+     var acceptingPosts = false
+     var changed = true
+     var stopping = false
+@@ -496,20 +499,267 @@ class RuntimeSession {
+         if (inLifecycle) {
+             throw UIException("LifecycleReentry", "structure operation during lifecycle")
+         }
+         if (structureEvaluation.get().isSome() || evaluating.get().isSome() || committing) {
+             throw UIException("ReentrantStructure", "structure operation during evaluation or commit")
+         }
+         if (!active) {
+             throw UIException("StaleReference", "node session is inactive")
+         }
+     }
++    func overlayAncestor(ancestor: RuntimeNode, node: RuntimeNode): Bool {
++        var cursor: ?RuntimeNode = Some(node)
++        while (let Some(current) <- cursor) {
++            if (current.id == ancestor.id) { return true }
++            cursor = current.parent
++        }
++        false
++    }
++    func topModal(): ?OverlayRecord {
++        var i = overlayRecords.size
++        while (i > 0) {
++            i--; let record = overlayRecords[i]
++            if (record.terminal.isNone() && record.root.isSome() && record.options.mode == OverlayMode.Modal) { return Some(record) }
++        }
++        None
++    }
++    func inOverlayDomain(node: RuntimeNode): Bool {
++        if (let Some(modal) <- topModal()) {
++            if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) { return overlayAncestor(rootRef.resolve(),node) } }
++            return false
++        }
++        true
++    }
++    func layerFor(node: RuntimeNode): ?OverlayRecord {
++        var i = overlayRecords.size
++        while (i > 0) {
++            i--; let record = overlayRecords[i]
++            if (let Some(rootRef) <- record.root) {
++                if (rootRef.isValid()) { if (overlayAncestor(rootRef.resolve(),node)) { return Some(record) } }
++            }
++        }
++        None
++    }
++    func pendingOverlayCount(): Int64 {
++        var count = overlayPending.size
++        for (record in overlayRecords) { if (record.requested.isSome()) { count++ } }
++        count
++    }
++    func openOverlay(owner: RuntimeNode, content: Component, options: OverlayOptions): OverlayHandle {
++        requireStructure()
++        if (!inActiveDomain()) { throw UIException("WrongUIContext", "overlay opening requires an active UI turn") }
++        if (!inOverlayDomain(owner)) { throw UIException("FocusOutsideDomain", "owner outside modal domain") }
++        if (options.mode == OverlayMode.Modal && !options.takeFocus) { throw IllegalArgumentException("modal requires focus") }
++        if (options.mode == OverlayMode.Passive && options.takeFocus) { throw IllegalArgumentException("passive cannot take focus") }
++        if (options.mode == OverlayMode.Modal && options.anchor.isSome()) { throw IllegalArgumentException("modal anchor") }
++        if (options.placement != OverlayPlacement.Center && options.anchor.isNone()) { throw IllegalArgumentException("placement requires anchor") }
++        if (let Some(hostRef) <- options.host) {
++            let host = hostRef.resolve()
++            if (host.session.id != id) { throw UIException("WrongUIContext", "foreign host") }
++            if (!host.component.isOverlayHost || !focusManager.effective(host,false) || !overlayAncestor(host,owner)) {
++                throw UIException("InvalidOverlayHost", "host must be a visible ancestor")
++            }
++        }
++        if (let Some(anchorRef) <- options.anchor) {
++            let anchor = anchorRef.resolve()
++            if (anchor.session.id != id) { throw UIException("WrongUIContext", "foreign anchor") }
++            if (!overlayAncestor(owner,anchor)) { throw UIException("InvalidOverlayAnchor", "anchor must descend from owner") }
++        }
++        if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
++            throw UIException("CapacityExceeded", "command limit exceeded")
++        }
++        content.reserveMount()
++        let record = OverlayRecord(this,owner.reference(),content,options)
++        if (let Some(focused) <- focusManager.focused) { record.savedFocus = Some(focused.reference()) }
++        let candidates = focusManager.candidates()
++        record.savedOrder = Array<NodeRef>(candidates.size,{i => candidates[i].reference()})
++        overlayRecords.add(record); overlayPending.add(record)
++        OverlayHandle(record)
++    }
++    func closeOverlay(record: OverlayRecord, reason: OverlayCloseReason): Unit {
++        requireStructure()
++        if (record.terminal.isSome()) { return }
++        if (record.requested.isSome()) { return }
++        if (record.root.isSome()) {
++            if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
++                throw UIException("CapacityExceeded", "command limit exceeded")
++            }
++        }
++        if (record.root.isNone()) {
++            if (let Some(content) <- record.description) { content.releaseMount() }
++            record.description = None; record.terminal = Some(reason); record.changed()
++        } else { record.requested = Some(reason) }
++    }
++    func interactiveOverlayContent(content: Component): Bool {
++        if (content.isFocusable || content.keyHandler.isSome() || content.captureHandler.isSome() ||
++            content.targetDefault.isSome() || content.ancestorDefault.isSome()) { return true }
++        for (entry in content.declarations) {
++            if (let ChildDeclaration.DeclaredComponent(child) <- entry) {
++                if (interactiveOverlayContent(child)) { return true }
++            }
++        }
++        false
++    }
++    func interactiveOverlayNode(node: RuntimeNode): Bool {
++        let content = node.component
++        if (content.isFocusable || content.keyHandler.isSome() || content.captureHandler.isSome() ||
++            content.targetDefault.isSome() || content.ancestorDefault.isSome()) { return true }
++        for (entry in node.sequence) {
++            if (let ChildEntry.MountedChild(child) <- entry) { if (interactiveOverlayNode(child)) { return true } }
++        }
++        false
++    }
++    func validatePassiveOverlays(): Unit {
++        for (record in overlayRecords) {
++            if (record.options.mode != OverlayMode.Passive || record.terminal.isSome()) { continue }
++            if (let Some(root) <- record.root) {
++                if (root.isValid()) { if (interactiveOverlayNode(root.resolve())) {
++                    throw IllegalArgumentException("passive overlay cannot contain interactive nodes")
++                } }
++            }
++        }
++    }
++    func commitOverlays(): Unit {
++        let pending = overlayPending.toArray(); overlayPending.clear()
++        for (record in pending) {
++            if (record.terminal.isSome()) { continue }
++            useStructuralOps(1)
++            let owner = record.owner.resolve()
++            let content = record.description.getOrThrow()
++            content.releaseMount()
++            preflight([content],Some(owner))
++            if (record.options.mode == OverlayMode.Passive) {
++                if (interactiveOverlayContent(content)) { throw IllegalArgumentException("passive overlay cannot contain interactive nodes") }
++            }
++            let node = mount(content,Some(owner),owner.depth+1)
++            node.overlayRoot = true
++            node.overlayModal = record.options.mode == OverlayMode.Modal
++            publish([node],[])
++            record.root = Some(node.reference()); record.description = None; record.changed()
++            record.focusPending = record.options.takeFocus
++            markChanged(owner,ChangeKind.Layout)
++        }
++        for (record in overlayRecords) {
++            if (let Some(reason) <- record.requested) {
++                closeOverlayTree(record,reason,true)
++            }
++        }
++        var index: Int64 = 0
++        while (index < overlayRecords.size) {
++            if (overlayRecords[index].terminal.isSome()) { overlayRecords.remove(at:index) } else { index++ }
++        }
++    }
++    func closeOverlayTree(record: OverlayRecord, reason: OverlayCloseReason, restore: Bool): Unit {
++        if (record.terminal.isSome()) { return }
++        var rootNode: ?RuntimeNode = None
++        if (let Some(ref) <- record.root) { if (ref.isValid()) { rootNode = Some(ref.resolve()) } }
++        var ownsFocus = false
++        if (let Some(root) <- rootNode) {
++            if (let Some(focused) <- focusManager.focused) { ownsFocus = overlayAncestor(root,focused) }
++            if (let Some(reserved) <- reservedLayer) {
++                if (let Some(reservedRoot) <- reserved.root) { if (reservedRoot.isValid()) {
++                    if (overlayAncestor(root,reservedRoot.resolve())) { ownsFocus = true }
++                } }
++            }
++        }
++        let closing = ArrayList<OverlayRecord>(); closing.add(record)
++        if (let Some(root) <- rootNode) {
++            for (child in overlayRecords) {
++                if (!refEq(child,record) && child.terminal.isNone() && child.owner.isValid()) {
++                    if (overlayAncestor(root,child.owner.resolve())) { closing.add(child) }
++                }
++            }
++        }
++        let roots = ArrayList<RuntimeNode>()
++        for (entry in closing) {
++            if (let Some(ref) <- entry.root) { if (ref.isValid()) { roots.add(ref.resolve()) } }
++            entry.requested = None
++            entry.terminal = Some(if (refEq(entry,record)) { reason } else { OverlayCloseReason.OwnerGone })
++            entry.root = None
++            if (let Some(content) <- entry.description) { content.releaseMount() }
++            entry.description = None; entry.changed()
++        }
++        if (!roots.isEmpty()) { unmount(roots.toArray()) }
++        if (record.owner.isValid()) { markChanged(record.owner.resolve(),ChangeKind.Layout) }
++        if (ownsFocus && restore) {
++            reservedLayer = None
++            var next: ?RuntimeNode = None
++            if (let Some(saved) <- record.savedFocus) {
++                if (saved.isValid()) {
++                    let candidate = saved.resolve()
++                    if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } }
++                }
++            }
++            var ancestor: ?RuntimeNode = if (record.owner.isValid()) { Some(record.owner.resolve()) } else { Option<RuntimeNode>.None }
++            while (next.isNone() && ancestor.isSome()) {
++                let current = ancestor.getOrThrow()
++                let choices = ArrayList<RuntimeNode>(); focusManager.collect(current,choices)
++                for (candidate in choices) { if (inOverlayDomain(candidate)) { next = Some(candidate); break } }
++                ancestor = current.parent
++            }
++            if (next.isNone()) {
++                var savedIndex: Int64 = -1
++                if (let Some(saved) <- record.savedFocus) {
++                    for (i in 0..record.savedOrder.size) { if (saved.sameNode(record.savedOrder[i])) { savedIndex = i; break } }
++                }
++                if (savedIndex >= 0) {
++                    var i = savedIndex + 1
++                    while (i < record.savedOrder.size && next.isNone()) {
++                        let ref = record.savedOrder[i]
++                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
++                        i++
++                    }
++                    i = savedIndex - 1
++                    while (i >= 0 && next.isNone()) {
++                        let ref = record.savedOrder[i]
++                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
++                        i--
++                    }
++                }
++            }
++            focusManager.set(next)
++        }
++    }
++    func closeOwnedOverlays(roots: Array<RuntimeNode>): Unit {
++        for (record in overlayRecords) {
++            if (record.terminal.isSome() || !record.owner.isValid()) { continue }
++            let owner = record.owner.resolve()
++            for (root in roots) {
++                if (overlayAncestor(root,owner)) { closeOverlayTree(record,OverlayCloseReason.OwnerGone,true); break }
++            }
++        }
++    }
++    func closeHiddenOverlays(): Unit {
++        for (record in overlayRecords) {
++            if (record.terminal.isSome() || !record.owner.isValid()) { continue }
++            if (!focusManager.effective(record.owner.resolve(),false)) {
++                closeOverlayTree(record,OverlayCloseReason.OwnerHidden,true)
++            } else if (let Some(anchor) <- record.options.anchor) {
++                if (!anchor.isValid()) { closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
++                else if (!focusManager.effective(anchor.resolve(),false)) { closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
++            }
++        }
++    }
++    func applyOverlayFocus(): Unit {
++        for (record in overlayRecords) {
++            if (!record.focusPending || record.terminal.isSome()) { continue }
++            record.focusPending = false
++            if (let Some(rootRef) <- record.root) {
++                if (rootRef.isValid()) {
++                    let choices = ArrayList<RuntimeNode>()
++                    focusManager.collect(rootRef.resolve(),choices)
++                    reservedLayer = Some(record)
++                    focusManager.set(if (choices.isEmpty()) { Option<RuntimeNode>.None } else { Some(choices[0]) })
++                }
++            }
++        }
++    }
+     func enqueue(command: StructuralCommand): Unit {
+         requireStructure()
+         if (batchDepth == 0) {
+             try {
+                 enter(
+                     {
+                         =>
+                             recordCommand(command);
+                             stabilize(cutoff())
+                     }
+@@ -531,31 +781,31 @@ class RuntimeSession {
+                 throw UIException("AlreadyMounted", "component already mounted")
+             }
+             for (pending in commands) {
+                 if (let Some(reserved) <- pending.description) {
+                     if (reserved.descriptionId == component.descriptionId) {
+                         throw UIException("AlreadyMounted", "description already reserved")
+                     }
+                 }
+             }
+         }
+-        if (commands.size + focusManager.requested.size + viewportCommands.size >= limits.structuralOpsPerBatch) {
++        if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
+             throw UIException("CapacityExceeded", "command limit exceeded")
+         }
+         commands.add(command)
+     }
+     func nextViewportIntent(): Int64 {
+         if (viewportIntentSequence == Int64.Max) { throw UIException("CapacityExceeded", "viewport intent sequence exhausted") }
+         viewportIntentSequence++; viewportIntentSequence
+     }
+     func enqueueFocus(ref: NodeRef): Unit {
+-        if (commands.size + focusManager.requested.size + viewportCommands.size >= limits.structuralOpsPerBatch) {
++        if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
+             throw UIException("CapacityExceeded", "command limit exceeded")
+         }
+         let order = nextViewportIntent()
+         focusManager.requested.add(ref); focusManager.requestedOrders.add(order)
+     }
+     func syncViewportAxes(): Unit {
+         for (node in nodes) {
+             if (!node.valid || !node.committed) { continue }
+             if (let Some(axes) <- viewportAxes(node)) {
+                 let state = node.viewportState
+@@ -571,21 +821,21 @@ class RuntimeSession {
+         None
+     }
+     func geometryMayChange(): Bool {
+         lock.lock()
+         try { measuredLayout.isNone() || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty() }
+         finally { lock.unlock() }
+     }
+     func enqueueViewport(command: ScrollCommand): Unit {
+         requireContext()
+         if (inLifecycle) { throw UIException("LifecycleReentry", "viewport command during lifecycle") }
+-        if (commands.size + focusManager.requested.size + viewportCommands.size >= limits.structuralOpsPerBatch) {
++        if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
+             throw UIException("CapacityExceeded", "command limit exceeded")
+         }
+         command.order = nextViewportIntent()
+         if (command.kind == 1) {
+             let target = command.target.resolve()
+             var current: ?RuntimeNode = if (command.rect.isSome()) { Some(target) } else { target.parent }
+             while (let Some(node) <- current) {
+                 if (viewportAxes(node).isSome()) {
+                     let snap = node.viewportState.snapshot()
+                     if (snap.width == 0) { command.zeroWidth.add(node.id) }
+@@ -774,20 +1024,21 @@ class RuntimeSession {
+     }
+     func collectSubtree(node: RuntimeNode, result: ArrayList<RuntimeNode>): Unit {
+         result.add(node)
+         for (entry in node.sequence) {
+             if (let ChildEntry.MountedChild(child) <- entry) {
+                 collectSubtree(child, result)
+             }
+         }
+     }
+     func unmount(roots: Array<RuntimeNode>): Unit {
++        closeOwnedOverlays(roots)
+         let removed = ArrayList<RuntimeNode>()
+         for (node in roots) {
+             collectSubtree(node, removed)
+         }
+         lock.lock()
+         try {
+             for (node in removed) {
+                 node.valid = false
+                 node.pendingChange = None
+                 activeNodeIndex.remove(node)
+@@ -912,21 +1163,24 @@ class RuntimeSession {
+             committing = true
+             try {
+                 let readyCommands = commands.toArray()
+                 commands.clear()
+                 for (command in readyCommands) {
+                     commitCommand(command)
+                 }
+             } finally {
+                 committing = false
+             }
++            commitOverlays()
+             evaluateReady(cutoff)
++            validatePassiveOverlays()
++            closeHiddenOverlays()
+             // Plans are prepared under dependency tracking, committed after evaluation has
+             // restored its guards. Lifecycle writes can therefore schedule the next pass.
+             let groups = ArrayList<DynamicGroup>()
+             for (node in nodes) {
+                 for (entry in node.sequence) {
+                     if (let ChildEntry.GroupMarker(group) <- entry) {
+                         if (group.plan.isSome()) {
+                             groups.add(group)
+                         }
+                     }
+@@ -962,21 +1216,21 @@ class RuntimeSession {
+                         try {
+                             node.cleanup = Some(effect(node.reference()))
+                         } finally {
+                             inLifecycle = false
+                         }
+                     }
+                 }
+             }
+             if (!hasReady(cutoff) && commands.isEmpty()) {
+                 syncViewportAxes()
+-                if (!temporary) { focusManager.repair() }
++                if (!temporary) { applyOverlayFocus(); focusManager.repair() }
+                 commitViewportCommands()
+                 if (hasReady(cutoff)) { continue }
+                 return
+             }
+         }
+     }
+     func evaluateReady(cutoff: Int64): Unit {
+         let ready = ArrayList<Binding>()
+         let laterBindings = ArrayList<Binding>()
+         let laterNodes = ArrayList<PendingNodeChange>()
+@@ -1279,20 +1533,27 @@ class RuntimeSession {
+         try {
+             close()
+         } finally {
+             notifyClosed()
+         }
+     }
+     func close(): Unit {
+         if (!active) {
+             return
+         }
++        for (record in overlayRecords) {
++            if (record.terminal.isNone()) {
++                if (record.root.isNone()) { if (let Some(content) <- record.description) { content.releaseMount() } }
++                record.description = None; record.root = None; record.terminal = Some(OverlayCloseReason.OwnerGone); record.changed()
++            }
++        }
++        overlayPending.clear()
+         lock.lock()
+         try {
+             active = false
+             acceptingPosts = false
+             posts.clear();
+             pendingBindings.clear();
+             pendingNodes.clear();
+             commands.clear()
+             for (node in nodes) {
+                 node.valid = false
+diff --git a/src/style_resolver.cj b/src/style_resolver.cj
+index 557baadf..2a5033d5 100644
+--- a/src/style_resolver.cj
++++ b/src/style_resolver.cj
+@@ -82,21 +82,26 @@ func resolveStyle(c: Component, theme: Theme, inherited: Style, isRoot: Bool, se
+     let (background, backgroundExplicit, backgroundLocal) = chooseStyle(c,theme,states,StyleKeys.background,inherited.background,Color.Default,Option<StyleRule>.None)
+     let (bold, boldExplicit, _) = chooseStyle(c,theme,states,StyleKeys.bold,inherited.bold,false,Option<StyleRule>.None)
+     let (dim, dimExplicit, _) = chooseStyle(c,theme,states,StyleKeys.dim,inherited.dim,false,Option<StyleRule>.None)
+     let (italic, italicExplicit, _) = chooseStyle(c,theme,states,StyleKeys.italic,inherited.italic,false,Option<StyleRule>.None)
+     let (underline, underlineExplicit, _) = chooseStyle(c,theme,states,StyleKeys.underline,inherited.underline,false,Option<StyleRule>.None)
+     let (inverse, inverseExplicit, _) = chooseStyle(c,theme,states,StyleKeys.inverse,inherited.inverse,false,Option<StyleRule>.None)
+     let (strikethrough, strikethroughExplicit, _) = chooseStyle(c,theme,states,StyleKeys.strikethrough,inherited.strikethrough,false,Option<StyleRule>.None)
+     result.style = Style(foreground:foreground, background:background, bold:bold, dim:dim, italic:italic, underline:underline, inverse:inverse, strikethrough:strikethrough)
+     result.explicit = TextStylePatch(foreground: if (foregroundExplicit) { Some(foreground) } else { Option<Color>.None }, background: if (backgroundExplicit) { Some(background) } else { Option<Color>.None }, bold: if (boldExplicit) { Some(bold) } else { Option<Bool>.None }, dim: if (dimExplicit) { Some(dim) } else { Option<Bool>.None }, italic: if (italicExplicit) { Some(italic) } else { Option<Bool>.None }, underline: if (underlineExplicit) { Some(underline) } else { Option<Bool>.None }, inverse: if (inverseExplicit) { Some(inverse) } else { Option<Bool>.None }, strikethrough: if (strikethroughExplicit) { Some(strikethrough) } else { Option<Bool>.None })
+     let seedBackgroundDeclared = isDeclared(theme.textDefaults().value(StyleKeys.background))
+-    if (backgroundLocal) { result.fill = 2; result.fillStyle = result.style }
++    var surfaceOpaque = c.surfaceMode == Some(SurfaceMode.Opaque)
++    if (c.surfaceMode.isNone()) {
++        if (let Some(node) <- c.readMount()) { surfaceOpaque = node.overlayModal }
++    }
++    if (surfaceOpaque) { result.fill = 2; result.fillStyle = result.style }
++    else if (backgroundLocal) { result.fill = 2; result.fillStyle = result.style }
+     else if (isRoot && seedBackgroundDeclared) {
+         result.fill = 1; result.fillStyle = Style(background:inherited.background)
+     }
+     let (fixedWValue, _, _) = chooseStyle(c,theme,states,StyleKeys.width,Dimension.Auto,Dimension.Auto,Some(theme.spacingDefaults()))
+     result.fixedW = match (fixedWValue) { case Dimension.Cells(v) => Some(v); case Dimension.Auto => Option<Int64>.None }
+     let (fixedHValue, _, _) = chooseStyle(c,theme,states,StyleKeys.height,Dimension.Auto,Dimension.Auto,Some(theme.spacingDefaults()))
+     result.fixedH = match (fixedHValue) { case Dimension.Cells(v) => Some(v); case Dimension.Auto => Option<Int64>.None }
+     let (minWValue, _, _) = chooseStyle(c,theme,states,StyleKeys.minWidth,0,0,Some(theme.spacingDefaults()))
+     result.minW = minWValue
+     let (minHValue, _, _) = chooseStyle(c,theme,states,StyleKeys.minHeight,0,0,Some(theme.spacingDefaults()))
+diff --git a/src/surface_mode.cj b/src/surface_mode.cj
+new file mode 100644
+index 00000000..3c939bc6
+--- /dev/null
++++ b/src/surface_mode.cj
+@@ -0,0 +1,7 @@
++package cjtui
++public enum SurfaceMode <: Equatable<SurfaceMode> {
++    | Transparent | Opaque
++    public operator func ==(other: SurfaceMode): Bool {
++        match ((this,other)) { case (Transparent,Transparent) | (Opaque,Opaque) => true; case _ => false }
++    }
++}
+diff --git a/src/viewport_geometry.cj b/src/viewport_geometry.cj
+index d774e617..85b1712f 100644
+--- a/src/viewport_geometry.cj
++++ b/src/viewport_geometry.cj
+@@ -38,38 +38,40 @@ func applyViewportEnsure(session: RuntimeSession, command: ScrollCommand): Unit
+     var node = target
+     var x: Int64 = 0; var y: Int64 = 0; var w: Int64 = 0; var h: Int64 = 0
+     if (let Some(rect) <- command.rect) {
+         if (rect.x < 0 || rect.y < 0 || rect.x > node.logicalWidth || rect.y > node.logicalHeight ||
+             rect.width > node.logicalWidth-rect.x || rect.height > node.logicalHeight-rect.y) {
+             if (command.explicitEnsure) { throw UIException("InvalidProperty", "rectangle outside content") }
+             return
+         }
+         x = rect.x; y = rect.y; w = rect.width; h = rect.height
+     } else {
++        if (node.overlayRoot) { return }
+         x = node.layoutX; y = node.layoutY; w = node.layoutWidth; h = node.layoutHeight
+         match (node.parent) { case Some(parent) => node = parent; case None => return }
+     }
+     while (true) {
+         let axes = session.viewportAxes(node)
+         var ox: Int64 = 0; var oy: Int64 = 0
+         if (let Some(active) <- axes) {
+             let view = node.viewportState.snapshot()
+             ox = if (active.horizontal() && !command.zeroWidth.contains(node.id)) { viewportAlignedOffset(view.offsetX,view.width,view.contentWidth,x,w,command.horizontal) } else { view.offsetX }
+             oy = if (active.vertical() && !command.zeroHeight.contains(node.id)) { viewportAlignedOffset(view.offsetY,view.height,view.contentHeight,y,h,command.vertical) } else { view.offsetY }
+             if (node.viewportState.setOffset(ox,oy)) { session.markChanged(node,ChangeKind.Style) }
+             // Carry only the visible fragment through the next outer viewport.
+             let right = lesser(signedAdd(x,w),signedAdd(ox,view.width))
+             let bottom = lesser(signedAdd(y,h),signedAdd(oy,view.height))
+             x = greater(x,ox); y = greater(y,oy)
+             w = greater(0,right-x); h = greater(0,bottom-y)
+             if (w == 0 || h == 0) { return }
+         }
++        if (node.overlayRoot) { return }
+         let parent = node.parent
+         if (parent.isNone()) { return }
+         x = signedAdd(signedAdd(node.layoutX,node.contentX),signedAdd(x,-ox))
+         y = signedAdd(signedAdd(node.layoutY,node.contentY),signedAdd(y,-oy))
+         node = parent.getOrThrow()
+     }
+ }
+ 
+ func applyPendingViewportEnsures(session: RuntimeSession): Unit {
+     let pending = session.pendingEnsures.toArray(); session.pendingEnsures.clear()
+diff --git a/tests/interaction_c/admission.current.json b/tests/interaction_c/admission.current.json
+index f888c7cc..2feb7bc1 100644
+--- a/tests/interaction_c/admission.current.json
++++ b/tests/interaction_c/admission.current.json
+@@ -55,12 +55,39 @@
+       "public_evidence": "tests/interaction_c/admission.current.json"
+     }
+   ],
+   "limits": {
+     "M01": "viewport getter axes inside onMount Off; deferred TASK024; no C positive assumes fixed",
+     "opaque_handle_constructor": "actual concrete constructor opacity remains109 implementation/110 source review/real consumers; abstract language projection is not proof",
+     "H02": "future accepted Keyboard117; unexecuted/outside TASK108 implementation",
+     "P05": "terminal/resources asserted; bounded public GC observation only; strong weak ownership source review110",
+     "D08": "pre-freeze C.2 correction: host adds/replaces no parent edge; ancestor host appears once in owner order"
+   },
+-  "109_product_GO": "only root issues actual author GO after final fixed test handoff"
++  "109_product_GO": "only root issues actual author GO after final fixed test handoff",
++  "equivalent_none_type_spelling_correction": {
++    "prior_syntax_sha": "fd2861747912f9778582ea3968c2be48cca296b5",
++    "frozen_semantic_oracle_sha": "b134171cfc9c242844b37eb05853811837179f5c",
++    "syntax_identity": "containing test-only commit; exact new SHA bound by external type-correction manifest",
++    "fixed_compile_product": "00db2babc840e2a5be00525e0b16f98b944d0f22",
++    "only_Cj_change": "83 Box<?T>(None) expressions qualified to Box<?T>(Option<T>.None); semantic oracle/trace/layout/lifecycle/API unchanged",
++    "scope": "normal compile only; no C behavior execution or product PASS",
++    "historical_typecheck_field": "the original consumer_body_typecheck field describes pre-C fd286 preparation, preserved as historical context; actual corrected build result is separate evidence",
++    "historical_records_unchanged": true
++  },
++  "shared_runtime_depth_fixture_correction": {
++    "prior_syntax_sha": "2165212a417bd3a5c8900a694a7727440704631c",
++    "authority": "canonical C Shared treeDepth budget and original Runtime root0/child=parent+1/reject only depth>limit",
++    "corrected_negative": "treeDepth1 root0 -> ordinary owner1 -> Text layer2 yields CapacityExceeded",
++    "added_boundary_positive": "treeDepth1 root0 -> Text layer1 is legal; exactly2 real mounted nodes",
++    "preserved": "which0 mountedNodes1 and which1 structuralOpsPerBatch1 error/budget/cleanup assertions; all other C oracles",
++    "scope": "only E16 fixture topology was incorrect; historical preparation and original failure preserved; finite focused checks recorded separately",
++    "syntax_identity": "containing test-only commit, full SHA pinned by external depth-correction manifest"
++  },
++  "same_batch_fixture_input_corrections": {
++    "G11": "only four named-style table headers gain .text per existing Theme schema; all colors/surface/inheritance assertions unchanged",
++    "G13": "identity-only resize preserves known anchor intersection: top5 keeps height6 with width9; left9 keeps width10 with height5; other cases9x5; all initial literal grids unchanged",
++    "G14": "fully clipped/hidden/unmounted AnchorGone negative body unchanged",
++    "source_scope": "same fixed4c; finite focused public checks only; historical wrong-fixture raw preserved separately",
++    "G14_initial_grid": "independent same-input no-overlay control on fixed4c is four spaces/newline/tail; transparent PP covers only columns0..1, so C.5 preserves il and only initial literal becomes four spaces/newline/PPil",
++    "historical_flags": "inherited C_behavior and preparation/typecheck flags describe original admission chronology; current finite focused execution evidence is separate, not whole-suite/acceptance"
++  }
+ }
+diff --git a/tests/interaction_c/case-matrix.md b/tests/interaction_c/case-matrix.md
+index 2d2a45e5..46f7fc0d 100644
+--- a/tests/interaction_c/case-matrix.md
++++ b/tests/interaction_c/case-matrix.md
+@@ -33,21 +33,21 @@ consumer functions. No row is counted as executed C behavior or task acceptance.
+ | L01–04 | C-02/C-04 / C.2/C.4/R012 | owner disabled keeps layer; owner hidden closes dependent layer-of-layer; all tokens/subscriptions/owner queues gone before cleanup; deepest first once; unrelated top sibling survives/current focus retained | source close_lifecycle |
+ | L05 | C-04 / C.4/R017 | Child+parent cleanup throw: primary exact child exception object, parent in extras, order C;P;, all attempted once, resources0, second dispose no cleanup | source close_lifecycle |
+ | L06 | C-02 / C.4 | Ordinary descendant owns its own layer; remove ancestor closes ordinary+overlay full dependency closure including grandlayer; unrelated siblings survive | recipe |
+ | L07 | C-02 / C.4/C.6 | Owner explicit hidden closes OwnerHidden; merely offscreen/clip/zero viewport does not; owner remove wins OwnerGone over anchor invalid | recipe |
+ | L08 | C-04 / shared errors/R017 | Original callback/draw exception plus two cleanup throws: original object/type primary, extras in actual cleanup order, no finally error masking; native recovery separately | recipe |
+ | E01–09 | C-04 / C.1/C.6/shared errors | Conflicting focus flags, modal anchor, missing directional anchor IllegalArgumentException; bad host capability/ancestry InvalidOverlayHost; bad anchor relation InvalidOverlayAnchor; double mount AlreadyMounted; stale owner StaleReference | source entry_errors |
+ | E10–12 | C-04 / C.1/shared errors | Terminal handle same-thread readable after dispose; getter/closed-close under new active session WrongUIContext; foreign-session host WrongUIContext | source entry_errors |
+ | E13 | C-04 / shared errors | Wrong thread: handle getters/close/open owner all WrongUIContext; join worker, no thread-ID guess; closed no-op no exemption | recipe |
+ | E14 | C-04 / C.1/shared errors | Invisible host InvalidOverlayHost; stale/foreign anchor StaleReference/WrongUIContext consistent with common guard; wrong visible current-session relation InvalidOverlayAnchor | recipe; overlapping error precedence not invented |
+ | E15 | C-04 / shared errors | getter/measure/draw open/close rejects ReentrantEvaluation or existing structure-evaluation ReentrantStructure as applicable; lifecycle direct layer command LifecycleReentry; post-next-turn succeeds | recipe |
+-| E16 | C-04 / shared errors | Root-only mountedNodes limit1, open layer would be node2: CapacityExceeded; structuralOpsPerBatch1 with two opens: CapacityExceeded; treeDepth1 root→layer exceeds: CapacityExceeded; no second unbounded queue | recipe |
++| E16 | C-04 / shared errors | Root-only mountedNodes limit1, open layer would be node2: CapacityExceeded; structuralOpsPerBatch1 with two opens: CapacityExceeded; treeDepth1 root0→ordinary owner1→Text layer2 exceeds: CapacityExceeded; root0→Text layer1 is legal with mountedNodes2; no second unbounded queue | recipe |
+ | E17 | C-04 / shared errors | dependenciesPerBinding1 and draw reads two Observable sources: CapacityExceeded; measure/draw track separate sets; close cancels both. No assertion of M2 call counts | recipe |
+ | E18 | C-04 / C.1/C.3 | Passive content with focusable/interacting descendants rejected IllegalArgumentException before exposing interactive passive target; exact actual accepted phase/source must be recorded | recipe |
+ | G01–06 | C-03 / C.5 / output delta | Fixed hand grids: modal box fill/no backdrop; explicit transparent; normal background fill still opaque; holes vs spaces; base updates covered then latest on close; mounted render and independent snapshots | source surface_grids + golden |
+ | G07–10 | C-03 / A.6/C.5 | Base caret visible; passive hole leaves visible; exact same-pixel opaque glyph hides; focus unchanged; close reveals latest logical caret | source surface_grids + golden |
+ | G11 | C-03 / C.2/C.5/I012/ThemeT015 | Owner named-style O vs host named-style H in one Application theme; inherited modal space style O; switch theme repaints, no local Default; ordinary disabled state does not cross owner edge | recipe; actual Theme088 public source unresolved |
+ | G12 | C-03 / C.2/C.6 | Explicit ancestor host clip permits escaping owner ordinary clip but never host/terminal; shadow likewise clipped; host affects geometry only | recipe + golden |
+ | G13 | C-03 / C.6/B.1 | Exact directional anchors/flip/tie/clamp/host-constrained natural size; each related scroll/resize layout repositions with same node identity/offset | recipe + golden |
+ | G14 | C-03 / C.6 | Partial clip uses intersection; fully invisible anchored nonmodal AnchorGone; hidden/unmounted anchor closes; disabled anchor stays; modal cannot anchor/zero clip doesn't close it | recipe + golden |
+ | G15 | C-03 / Frame/C.5/C.6 | Rounded border+shadow, move/shrink/close invalidate old/new and shadow ranges; clipped wide glyph never leaves half cluster; expected decoration fixture frozen manually from authority | recipe + golden |
+ | G16 | C-03 / A.6 | Opaque styled space/shadow occludes caret even if colors match; continuation/clip/zero axis hidden normal form None,0,0,false; no clamping | recipe + golden |
+@@ -85,20 +85,20 @@ wording correction under C.2. Full type correctness awaits actual C declarations
+ | F10–11 | focus_restoration.cj / hiddenOrUnmountedSaved(false/true) |
+ | F12 | focus_restoration.cj / physicalRestorationFallback(0..3), public final outcomes; no invented transient focus callback |
+ | F13 | focus_restoration.cj / stackedRestoration; merged internal focus restoration source audit TASK110 |
+ | L01–04 | close_lifecycle.cj / dependentClosure |
+ | L05 | close_lifecycle.cj / cleanupAggregation |
+ | L06–07 | lifecycle_edges.cj / ordinaryOwnedClosure, offscreenOwnerAndReason |
+ | L08 | lifecycle_edges.cj / primaryAndCleanup(false/true); native_fixture callback-error for real-run aggregation |
+ | E01–12 | entry_errors.cj / entryValidation, foreignAndOldHandles |
+ | E13–14 | context_and_limits.cj / threadAndAnchorValidation |
+ | E15 | context_and_limits.cj / evaluationAndLifecycleGuards(0..2), lifecycleLayerCommands |
+-| E16–18 | context_and_limits.cj / layerCapacity(0..2), layerDependencyBudget(false/true), interactivePassiveRejection |
++| E16–18 | context_and_limits.cj / layerDepthBoundary(), layerCapacity(0..2), layerDependencyBudget(false/true), interactivePassiveRejection |
+ | G01–10 | surface_grids.cj / surfacesAndLatestBase, sourceBasedCaretOcclusion |
+ | G11–12 | theme_and_host.cj / ownerThemeSurface, explicitHostClip |
+ | G13–14 | anchor_geometry.cj / directionalAnchors, clippedAndLostAnchors |
+ | G15–16 | decorations_and_caret.cj / decoratedLayerTargets, caretSpacesShadowAndClip |
+ | H01 | native_fixture.cj + pty_driver.py; five real-process modes (interrupt/prevent/Escape/SIGINT/callback-error), existing B PTY primitives; native-host-recipe for original-host PNG and accepted close-fault infrastructure |
+ | H02 | Future accepted Keyboard117; explicitly not implemented or executed now |
+ 
+ No claim that a weak observer proves ownership, that a headless assertion proves
+ native restoration, or that a PTY on another TERM is another host is made.
+diff --git a/tests/interaction_c/src/anchor_geometry.cj b/tests/interaction_c/src/anchor_geometry.cj
+index 048e7e98..e298cf07 100644
+--- a/tests/interaction_c/src/anchor_geometry.cj
++++ b/tests/interaction_c/src/anchor_geometry.cj
+@@ -1,54 +1,57 @@
+ package interaction_c
+ import cjtui.*
+ 
+ func anchorPlacement(placement:OverlayPlacement,top:Int64,left:Int64,expected:String):Unit {
+-    let anchor=Box<?Component>(None)
++    let anchor=Box<?Component>(Option<Component>.None)
+     let root=Column{
+         Text("0000000000").height(top)
+         Row{Text(if(left==9){"........."}else{"...."}).width(left);anchor.value=Some(Text(if(left==9){"A"}else{"AA"}).width(if(left==9){1}else{2}))}.height(1)
+     }.viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless();app.snapshot(10,6)
+     let popup=Canvas({_=>Size(3,2)},{p=>p.put(0,0,"PPP");p.put(0,1,"PPP")})
+-    let h=Box<?OverlayHandle>(None)
++    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>h.value=Some(node(root).openOverlay(popup,options:OverlayOptions(anchor:node(anchor.value.getOrThrow()),placement:placement,takeFocus:false)))})
+     let old=node(popup);picture(app.snapshot(10,6),expected,"G13 manual directional/flip/clamp grid")
+-    app.snapshot(9,5);check(old.sameNode(h.value.getOrThrow().content().getOrThrow()),"G13 resize keeps actual layer identity")
++    // Keep the known anchor intersecting the host; fully clipped is G14.
++    app.snapshot(if(left==9){10}else{9},if(top==5){6}else{5})
++    check(h.value.getOrThrow().isOpen() && h.value.getOrThrow().content().isSome(),"G13 still-visible anchor keeps published layer open")
++    check(old.sameNode(h.value.getOrThrow().content().getOrThrow()),"G13 resize keeps actual layer identity")
+     app.dispose()
+ }
+ func directionalAnchors():Unit {
+     anchorPlacement(OverlayPlacement.BelowStart,2,4,"0000000000\n          \n....AA    \n    PPP   \n    PPP   \n          ")
+     anchorPlacement(OverlayPlacement.AboveStart,2,4,"0000PPP000\n    PPP   \n....AA    \n          \n          \n          ")
+     anchorPlacement(OverlayPlacement.RightStart,2,4,"0000000000\n          \n....AAPPP \n      PPP \n          \n          ")
+     anchorPlacement(OverlayPlacement.LeftStart,2,4,"0000000000\n          \n.PPPAA    \n PPP      \n          \n          ")
+     anchorPlacement(OverlayPlacement.BelowStart,5,4,"0000000000\n          \n          \n    PPP   \n    PPP   \n....AA    ")
+     anchorPlacement(OverlayPlacement.BelowStart,2,9,"0000000000\n          \n.........A\n       PPP\n       PPP\n          ")
+-    let a=Box<?Component>(None);let root=Column{Text("0000000000").height(1);Row{Text("....").width(4);a.value=Some(Text("AA").width(2))}.height(1)}.viewport(ScrollAxes.Off)
++    let a=Box<?Component>(Option<Component>.None);let root=Column{Text("0000000000").height(1);Row{Text("....").width(4);a.value=Some(Text("AA").width(2))}.height(1)}.viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless();app.snapshot(10,3)
+     app.batch({=>node(root).openOverlay(Canvas({_=>Size(3,2)},{p=>p.put(0,0,"PPP");p.put(0,1,"PPP")}),options:OverlayOptions(anchor:node(a.value.getOrThrow()),placement:OverlayPlacement.BelowStart,takeFocus:false));()})
+     picture(app.snapshot(10,3),"0000000000\n....PPP   \n    PPP   ","G13 equal side space retains Below then clamps to host")
+     app.dispose()
+ }
+ 
+ func clippedAndLostAnchors():Unit {
+-    let anchor=Box<?Component>(None);let root=ScrollView({=>anchor.value=Some(Text("AAAA").height(2));Text("tail").height(6)})
++    let anchor=Box<?Component>(Option<Component>.None);let root=ScrollView({=>anchor.value=Some(Text("AAAA").height(2));Text("tail").height(6)})
+     let app=Application(root);app.startHeadless();app.snapshot(4,2)
+     app.batch({=>node(root).scrollTo(0,1);()});app.snapshot(4,2)
+-    let h=Box<?OverlayHandle>(None)
++    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>h.value=Some(node(root).openOverlay(Text("PP").width(2).height(1),options:OverlayOptions(anchor:node(anchor.value.getOrThrow()),placement:OverlayPlacement.BelowStart,takeFocus:false)))})
+-    picture(app.snapshot(4,2),"    \nPP  ","G14 partial anchor uses visible intersection")
++    picture(app.snapshot(4,2),"    \nPPil","G14 partial anchor uses visible intersection")
+     app.batch({=>anchor.value.getOrThrow().enabled(false)});app.snapshot(4,2)
+     check(h.value.getOrThrow().isOpen(),"G14 disabled anchor keeps geometry/layer")
+     app.batch({=>node(root).scrollTo(0,2);()});app.snapshot(4,2)
+     check(reason(h.value.getOrThrow())=="AnchorGone" && node(anchor.value.getOrThrow()).isValid(),"G14 fully clipped anchor closes without unmount")
+     for(remove in [false,true]){
+         app.batch({=>node(root).scrollTo(0,0);()});app.snapshot(4,2)
+-        let next=Box<?OverlayHandle>(None)
++        let next=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+         app.batch({=>next.value=Some(node(root).openOverlay(Text("PP"),options:OverlayOptions(anchor:node(anchor.value.getOrThrow()),placement:OverlayPlacement.BelowStart,takeFocus:false)))})
+         app.batch({=>if(remove){node(root).remove(node(anchor.value.getOrThrow()))}else{anchor.value.getOrThrow().visible(false)}})
+         check(reason(next.value.getOrThrow())=="AnchorGone","G14 hidden/unmounted anchor closes")
+         if(!remove){app.batch({=>anchor.value.getOrThrow().visible(true)})}
+     }
+-    let modal=Box<?OverlayHandle>(None);app.batch({=>modal.value=Some(node(root).openOverlay(Text("M"),options:OverlayOptions(mode:OverlayMode.Modal)))})
++    let modal=Box<?OverlayHandle>(Option<OverlayHandle>.None);app.batch({=>modal.value=Some(node(root).openOverlay(Text("M"),options:OverlayOptions(mode:OverlayMode.Modal)))})
+     app.snapshot(0,0);check(modal.value.getOrThrow().isOpen(),"G14 unanchored modal survives zero host")
+     app.dispose()
+ }
+diff --git a/tests/interaction_c/src/close_lifecycle.cj b/tests/interaction_c/src/close_lifecycle.cj
+index 85d60cf0..3ba97c4d 100644
+--- a/tests/interaction_c/src/close_lifecycle.cj
++++ b/tests/interaction_c/src/close_lifecycle.cj
+@@ -1,26 +1,26 @@
+ package interaction_c
+ 
+ import cjtui.*
+ 
+ func dependentClosure(): Unit {
+-    let owner = Box<?Component>(None)
++    let owner = Box<?Component>(Option<Component>.None)
+     let root = Column {
+         owner.value = Some(Text("owner").focusable(true))
+         Text("sibling").focusable(true)
+     }.viewport(ScrollAxes.Off)
+     let app = Application(root)
+     app.startHeadless()
+     let trace = Box<String>("")
+     let watched = Observable<String>("A")
+-    let inner = Box<?NodeRef>(None)
+-    let outerRef = Box<?NodeRef>(None)
++    let inner = Box<?NodeRef>(Option<NodeRef>.None)
++    let outerRef = Box<?NodeRef>(Option<NodeRef>.None)
+     let outer = Column {Text({=> watched.get()})}.onMount(
+         {
+             reference =>
+                 outerRef.value = Some(reference)
+                 {
+                     =>
+                         check(!outerRef.value.getOrThrow().isValid() && !inner.value.getOrThrow().isValid(),
+                             "L01 complete dependent closure invalid before any parent cleanup")
+                         check(app.stats().subscriptions == 0 && app.stats().pendingPosts == 0,
+                             "L01 closed subscriptions and owner work revoked before cleanup")
+@@ -33,23 +33,23 @@ func dependentClosure(): Unit {
+             reference =>
+                 inner.value = Some(reference)
+                 {
+                     =>
+                         check(!outerRef.value.getOrThrow().isValid() && !inner.value.getOrThrow().isValid(),
+                             "L01 all dependent tokens revoked before deepest cleanup")
+                         trace.value += "I;"
+                 }
+         }
+     )
+-    let first = Box<?OverlayHandle>(None)
+-    let nested = Box<?OverlayHandle>(None)
+-    let sibling = Box<?OverlayHandle>(None)
++    let first = Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    let nested = Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    let sibling = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({
+         => first.value = Some(
+             node(owner.value.getOrThrow()).openOverlay(outer, options: OverlayOptions(takeFocus: false)))
+     })
+     app.batch({
+         => nested.value = Some(node(outer).openOverlay(child, options: OverlayOptions(takeFocus: false)))
+     })
+     let unrelated = Text("unrelated").focusable(true)
+     app.batch({=> sibling.value = Some(node(root).openOverlay(unrelated))})
+     let siblingRef = node(unrelated)
+@@ -70,33 +70,33 @@ func dependentClosure(): Unit {
+     check(sibling.value.getOrThrow().isOpen() && siblingRef.isValid(),
+         "L04 higher unrelated sibling survives non-top close")
+     focused(app, siblingRef, "L04 background closure never steals current sibling focus")
+     app.snapshot(10, 3)
+     check(trace.value == "I;O;", "L03 cancelled owner work never runs after close")
+     app.dispose()
+     check(trace.value == "I;O;", "L03 closed cleanups not repeated by session dispose")
+ }
+ 
+ func savedFocusFallback(): Unit {
+-    let first = Box<?Component>(None)
+-    let next = Box<?Component>(None)
+-    let previous = Box<?Component>(None)
++    let first = Box<?Component>(Option<Component>.None)
++    let next = Box<?Component>(Option<Component>.None)
++    let previous = Box<?Component>(Option<Component>.None)
+     let root = Column {
+         previous.value = Some(Text("previous").focusable(true))
+         first.value = Some(Text("saved").focusable(true))
+         next.value = Some(Text("next").focusable(true))
+     }.viewport(ScrollAxes.Off)
+     let app = Application(root)
+     app.startHeadless()
+     app.batch({=> node(first.value.getOrThrow()).requestFocus()})
+     let layer = Text("modal").focusable(true)
+-    let handle = Box<?OverlayHandle>(None)
++    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({
+         => handle.value = Some(
+             node(first.value.getOrThrow()).openOverlay(layer, options: OverlayOptions(mode: OverlayMode.Modal)))
+     })
+     app.batch({=> first.value.getOrThrow().enabled(false)})
+     check(node(layer).isEnabled(), "F08 disabled saved trigger leaves modal eligible")
+     app.batch({=> handle.value.getOrThrow().close()})
+     // C.4 nearest surviving owner ancestor (root) has first eligible = previous.
+     // This precedence intentionally comes before A's old physical successor.
+     focused(app, node(previous.value.getOrThrow()),
+diff --git a/tests/interaction_c/src/context_and_limits.cj b/tests/interaction_c/src/context_and_limits.cj
+index 7ccf8230..6ae388fc 100644
+--- a/tests/interaction_c/src/context_and_limits.cj
++++ b/tests/interaction_c/src/context_and_limits.cj
+@@ -1,17 +1,17 @@
+ package interaction_c
+ import cjtui.*
+ 
+ func threadAndAnchorValidation():Unit {
+-    let owner=Box<?Component>(None);let host=Box<?Component>(None);let anchor=Box<?Component>(None)
++    let owner=Box<?Component>(Option<Component>.None);let host=Box<?Component>(Option<Component>.None);let anchor=Box<?Component>(Option<Component>.None)
+     let root=Column{host.value=Some(Column{owner.value=Some(Column{anchor.value=Some(Text("a"))})}.overlayHost(true))}.viewport(ScrollAxes.Off)
+-    let app=Application(root);app.startHeadless();let r=node(owner.value.getOrThrow());let h=Box<?OverlayHandle>(None)
++    let app=Application(root);app.startHeadless();let r=node(owner.value.getOrThrow());let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>h.value=Some(r.openOverlay(Text("layer"),options:OverlayOptions(takeFocus:false)))})
+     let old=h.value.getOrThrow()
+     let worker=spawn{
+         code("WrongUIContext",{=>old.isOpen();()},"E13 worker handle query")
+         code("WrongUIContext",{=>old.content();()},"E13 worker content")
+         code("WrongUIContext",{=>old.closeReason();()},"E13 worker reason")
+         code("WrongUIContext",{=>old.close()},"E13 worker close")
+         code("WrongUIContext",{=>r.openOverlay(Text("bad"));()},"E13 worker open")
+         true
+     };check(worker.get(Duration.second*5),"E13 worker joined")
+@@ -22,54 +22,69 @@ func threadAndAnchorValidation():Unit {
+     app.batch({=>code("InvalidOverlayHost",{=>node(host.value.getOrThrow()).openOverlay(Text("bad"),options:OverlayOptions(host:node(host.value.getOrThrow())));()},"E14 invisible host rejected")})
+     app.batch({=>host.value.getOrThrow().visible(true)})
+     let stale=node(anchor.value.getOrThrow());app.batch({=>r.remove(stale)})
+     app.batch({=>code("StaleReference",{=>r.openOverlay(Text("bad"),options:OverlayOptions(anchor:stale,placement:OverlayPlacement.BelowStart));()},"E14 stale anchor")})
+     let otherRoot=Text("foreign");let other=Application(otherRoot);other.startHeadless();let foreignAnchor=node(otherRoot)
+     app.batch({=>code("WrongUIContext",{=>r.openOverlay(Text("bad"),options:OverlayOptions(anchor:foreignAnchor,placement:OverlayPlacement.BelowStart));()},"E14 foreign anchor")})
+     other.dispose();app.dispose()
+ }
+ 
+ func evaluationAndLifecycleGuards(phase:Int64):Unit {
+-    let owner=Box<?Component>(None);let handle=Box<?OverlayHandle>(None);let armed=Observable<Bool>(false)
++    let owner=Box<?Component>(Option<Component>.None);let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None);let armed=Observable<Bool>(false)
+     let guarded={=>if(armed.get()){
+         code("ReentrantStructure",{=>node(owner.value.getOrThrow()).openOverlay(Text("bad"));()},"E15 evaluation open structure guard")
+         code("ReentrantStructure",{=>handle.value.getOrThrow().close()},"E15 evaluation close structure guard")
+     }}
+     let root=Column{
+         owner.value=Some(Text("owner"))
+         if(phase==0){Text({=>guarded();"getter"})}
+         else {Canvas({_=>if(phase==1){guarded()};Size(1,1)},{_=>if(phase==2){guarded()}})}
+     }.viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless()
+     app.batch({=>handle.value=Some(node(owner.value.getOrThrow()).openOverlay(Text("live"),options:OverlayOptions(takeFocus:false)))})
+     armed.set(true);app.snapshot(6,2);check(handle.value.getOrThrow().isOpen(),"E15 rejected evaluation commands preserve live layer")
+     app.dispose()
+ }
+ func lifecycleLayerCommands():Unit {
+-    let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless();let h=Box<?OverlayHandle>(None)
++    let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless();let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     let content=Text("layer").onMount({r=>
+         code("LifecycleReentry",{=>r.openOverlay(Text("bad"));()},"E15 lifecycle direct open")
+         code("LifecycleReentry",{=>h.value.getOrThrow().close()},"E15 lifecycle direct close")
+         check(app.post(r,{=>h.value.getOrThrow().close()}),"E15 lifecycle post accepted")
+         {=>}
+     })
+     app.batch({=>h.value=Some(node(root).openOverlay(content))});app.snapshot(4,1)
+     check(!h.value.getOrThrow().isOpen(),"E15 next-turn post closes successfully");app.dispose()
+ }
+ 
+ func layerCapacity(which:Int64):Unit {
+-    let root=Column{}.viewport(ScrollAxes.Off)
++    let owner=Box<?Component>(Option<Component>.None)
++    // Shared runtime starts at root0: only the depth case adds ordinary owner1.
++    let root=Column{if(which==2){owner.value=Some(Text("owner"))}}.viewport(ScrollAxes.Off)
+     let limits=if(which==0){RuntimeLimits(mountedNodes:1)}else if(which==1){RuntimeLimits(structuralOpsPerBatch:1)}else{RuntimeLimits(treeDepth:1)}
+     let app=Application(root,limits:limits);app.startHeadless()
+-    code("CapacityExceeded",{=>app.batch({=>node(root).openOverlay(Text("one"));if(which==1){node(root).openOverlay(Text("two"))};()})},"E16 shared node/command/depth budget")
++    code("CapacityExceeded",{=>app.batch({=>
++        if(which==2){node(owner.value.getOrThrow()).openOverlay(Text("one"))}else{node(root).openOverlay(Text("one"))}
++        if(which==1){node(root).openOverlay(Text("two"))};()
++    })},"E16 shared node/command/depth budget")
+     app.dispose();released(app,"E16 no retained layer queue")
+ }
++
++func layerDepthBoundary():Unit {
++    let root=Column{}.viewport(ScrollAxes.Off)
++    let app=Application(root,limits:RuntimeLimits(treeDepth:1));app.startHeadless()
++    let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    app.batch({=>handle.value=Some(node(root).openOverlay(Text("one")))})
++    check(handle.value.getOrThrow().isOpen() && handle.value.getOrThrow().content().getOrThrow().isValid() && app.stats().mountedNodes==2,
++        "E16 root0 to Text layer1 is legal at treeDepth1 and has exactly two real nodes")
++    app.dispose();released(app,"E16 legal depth boundary releases complete session")
++}
+ func layerDependencyBudget(exceed:Bool):Unit {
+     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root,limits:RuntimeLimits(dependenciesPerBinding:1));app.startHeadless()
+     let a=Observable<Int64>(1);let b=Observable<Int64>(2)
+     let c=Canvas({_=>Size(a.get(),1)},{p=>p.put(0,0,"${if(exceed){a.get()+b.get()}else{b.get()}}")})
+     let action={=>app.batch({=>node(root).openOverlay(c,options:OverlayOptions(takeFocus:false));()});app.snapshot(3,1);()}
+     if(exceed){code("CapacityExceeded",action,"E17 draw two dependencies exceed1")}
+     else {action();check(app.stats().subscriptions==2,"E17 measure and draw separate single-source subscriptions")}
+     app.dispose();released(app,"E17 both computation records released")
+ }
+ func interactivePassiveRejection():Unit {
+diff --git a/tests/interaction_c/src/decorations_and_caret.cj b/tests/interaction_c/src/decorations_and_caret.cj
+index 789ac77f..472e33a3 100644
+--- a/tests/interaction_c/src/decorations_and_caret.cj
++++ b/tests/interaction_c/src/decorations_and_caret.cj
+@@ -1,16 +1,16 @@
+ package interaction_c
+ import cjtui.*
+ 
+ func decoratedLayerTargets():Unit {
+     let root=Canvas({_=>Size(8,5)},{p=>for(y in 0..5){p.put(0,y,"abcdefgh")}}).viewport(ScrollAxes.Off)
+-    let app=Application(root);app.startHeadless();let h=Box<?OverlayHandle>(None)
++    let app=Application(root);app.startHeadless();let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     let popup=Canvas({_=>Size(2,1)},{p=>p.put(0,0,"界")}).width(4).height(3).surface(SurfaceMode.Opaque).border(BorderStyle.Rounded).shadow(style:Style(dim:true))
+     app.batch({=>h.value=Some(node(root).openOverlay(popup,options:OverlayOptions(takeFocus:false)))})
+     let first=app.snapshot(8,5)
+     picture(first,"abcdefgh\nab╭──╮gh\nab│界│░h\nab╰──╯░h\nabc░░░░h","G15 rounded border/wide cell/shadow hand grid")
+     check(first.cellAt(4,2).continuation && first.cellAt(6,2).style.dim,"G15 actual continuation and explicit shadow style")
+     picture(app.snapshot(10,5),"abcdefgh  \nabc╭──╮h  \nabc│界│░  \nabc╰──╯░  \nabcd░░░░  ","G15 moved old/new/shadow ranges")
+     app.batch({=>popup.width(3)})
+     let small=app.snapshot(8,5)
+     picture(small,"abcdefgh\nab╭─╮fgh\nab│ │░gh\nab╰─╯░gh\nabc░░░gh","G15 shrink discards clipped wide cluster")
+     check(small.cellAt(3,2).grapheme==" " && !small.cellAt(3,2).continuation,"G15 no orphan half cluster")
+@@ -18,21 +18,21 @@ func decoratedLayerTargets():Unit {
+     picture(app.snapshot(8,5),"abcdefgh\nabcdefgh\nabcdefgh\nabcdefgh\nabcdefgh","G15 close restores all current base cells")
+     app.dispose()
+ }
+ func hiddenCaret(app:Application,name:String):Unit {
+     let c=app.caretSnapshot();check(!c.visible && c.owner.isNone() && c.x==0 && c.y==0,name)
+ }
+ func caretSpacesShadowAndClip():Unit {
+     let root=Canvas({_=>Size(8,5)},{p=>p.put(2,1,"界");p.caret(6,2)}).focusable(true).viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless();app.snapshot(8,5)
+     check(app.caretSnapshot().visible,"G16 initial caret visible")
+-    let h=Box<?OverlayHandle>(None)
++    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     let shadow=Text("").width(4).height(3).shadow()
+     app.batch({=>h.value=Some(node(root).openOverlay(shadow,options:OverlayOptions(mode:OverlayMode.Passive,takeFocus:false)))})
+     app.snapshot(8,5);hiddenCaret(app,"G16 shadow contribution occludes caret")
+     app.batch({=>h.value.getOrThrow().close()});app.snapshot(8,5);check(app.caretSnapshot().visible,"G16 close reveals base caret")
+     app.snapshot(0,5);hiddenCaret(app,"G16 zero axis hides without clamp")
+     app.snapshot(4,2);hiddenCaret(app,"G16 actual clip hides without clamp")
+     app.dispose()
+     let blank=Canvas({_=>Size(8,3)},{p=>p.caret(3,1)}).focusable(true).viewport(ScrollAxes.Off)
+     let b=Application(blank);b.startHeadless();b.snapshot(8,3)
+     b.batch({=>node(blank).openOverlay(Canvas({_=>Size(3,1)},{p=>p.put(1,0," ",patch:TextStylePatch(background:Color.Default))}),options:OverlayOptions(mode:OverlayMode.Passive,takeFocus:false));()})
+diff --git a/tests/interaction_c/src/domain_edges.cj b/tests/interaction_c/src/domain_edges.cj
+index 1513d178..53c908ee 100644
+--- a/tests/interaction_c/src/domain_edges.cj
++++ b/tests/interaction_c/src/domain_edges.cj
+@@ -1,42 +1,42 @@
+ package interaction_c
+ import cjtui.*
+ 
+ func escapeAndLogicalRouting():Unit {
+     let mode=Observable<Int64>(0);let root=Column{Text("base").focusable(true)}.viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless()
+     let modal=Text("M").focusable(true).onKey({e=>if(mode.get()==0){e.preventDefault()}else{e.stopPropagation()}})
+-    let h=Box<?OverlayHandle>(None)
++    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>h.value=Some(node(root).openOverlay(modal,options:OverlayOptions(mode:OverlayMode.Modal)))})
+     app.batch({=>node(modal).openOverlay(Text("passive"),options:OverlayOptions(mode:OverlayMode.Passive,takeFocus:false));()})
+     app.dispatch(node(modal),KeyEvent("escape"))
+     check(h.value.getOrThrow().isOpen(),"D07 Target preventDefault keeps modal and passive open")
+     mode.set(1);app.dispatch(node(modal),KeyEvent("escape"))
+     check(reason(h.value.getOrThrow())=="Escape","D07 stopPropagation permits Escape and passive is skipped")
+     app.dispose()
+ 
+-    let trace=Box<String>("");let owner=Box<?Component>(None)
+-    let host=Box<?Component>(None)
++    let trace=Box<String>("");let owner=Box<?Component>(Option<Component>.None)
++    let host=Box<?Component>(Option<Component>.None)
+     let outer=Column{host.value=Some(Column{owner.value=Some(Text("O").onKey({_=>trace.value+="O;"}))}.overlayHost(true).onKey({_=>trace.value+="H;"}))}.viewport(ScrollAxes.Off).onKey({_=>trace.value+="R;"})
+     let b=Application(outer).onKeyEvent({_=>trace.value+="APP;"}).onKey({_=>trace.value+="LEGACY;"});b.startHeadless()
+     let leaf=Text("L").focusable(true).onKey({_=>trace.value+="L;"})
+     b.batch({=>node(owner.value.getOrThrow()).openOverlay(leaf,options:OverlayOptions(host:node(host.value.getOrThrow())));()})
+     trace.value="";b.dispatch(node(leaf),KeyEvent("text",text:"x"))
+     // Host is already an ordinary ancestor here. It appears ONCE in owner order,
+     // never as an extra geometry-parent edge ahead of O.
+     check(trace.value=="L;O;H;R;APP;LEGACY;","D08 owner chain and base handlers; host adds no event-parent edge")
+     b.dispose()
+ }
+ 
+ func modalTraversalAndDomainOpen():Unit {
+-    let base=Box<?Component>(None);let root=Column{base.value=Some(Text("base").focusable(true))}.viewport(ScrollAxes.Off)
+-    let app=Application(root);app.startHeadless();let a=Box<?Component>(None);let b=Box<?Component>(None)
++    let base=Box<?Component>(Option<Component>.None);let root=Column{base.value=Some(Text("base").focusable(true))}.viewport(ScrollAxes.Off)
++    let app=Application(root);app.startHeadless();let a=Box<?Component>(Option<Component>.None);let b=Box<?Component>(Option<Component>.None)
+     let modal=Column{a.value=Some(Text("A").focusable(true));b.value=Some(Text("B").focusable(true))}
+     app.batch({=>node(root).openOverlay(modal,options:OverlayOptions(mode:OverlayMode.Modal));()})
+     app.batch({=>
+         code("FocusOutsideDomain",{=>node(base.value.getOrThrow()).openOverlay(Text("bad"));()},"D09 lower owner open rejected")
+         code("FocusOutsideDomain",{=>node(base.value.getOrThrow()).requestFocus()},"D09 lower domain focus rejected")
+     })
+     let p=Text("P").focusable(true);let q=Text("Q").focusable(true)
+     app.batch({=>node(modal).openOverlay(p,options:OverlayOptions(takeFocus:false));node(modal).openOverlay(q,options:OverlayOptions(takeFocus:false));()})
+     focused(app,node(a.value.getOrThrow()),"D10 modal ordinary first")
+     for(c in [b.value.getOrThrow(),p,q,a.value.getOrThrow()]){app.dispatch(app.focusedNode().getOrThrow(),KeyEvent("tab"));focused(app,node(c),"D10 forward ordinary and layer commit order")}
+diff --git a/tests/interaction_c/src/entry_errors.cj b/tests/interaction_c/src/entry_errors.cj
+index d5a2963c..2612ad1f 100644
+--- a/tests/interaction_c/src/entry_errors.cj
++++ b/tests/interaction_c/src/entry_errors.cj
+@@ -1,17 +1,17 @@
+ package interaction_c
+ 
+ import cjtui.*
+ 
+ func entryValidation(): Unit {
+-    let ordinary = Box<?Component>(None)
+-    let stranger = Box<?Component>(None)
++    let ordinary = Box<?Component>(Option<Component>.None)
++    let stranger = Box<?Component>(Option<Component>.None)
+     let root = Column {
+         ordinary.value = Some(Text("owner"))
+         stranger.value = Some(Column {Text("not ancestor")}.overlayHost(true))
+     }.viewport(ScrollAxes.Off)
+     let app = Application(root)
+     app.startHeadless()
+     app.batch(
+         {
+             =>
+                 illegal(
+@@ -104,21 +104,21 @@ func entryValidation(): Unit {
+             }
+         )
+     }, "E09 stale owner rejects before opening")
+     app.dispose()
+ }
+ 
+ func foreignAndOldHandles(): Unit {
+     let root = Column {Text("one")}.viewport(ScrollAxes.Off)
+     let app = Application(root)
+     app.startHeadless()
+-    let handle = Box<?OverlayHandle>(None)
++    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=> handle.value = Some(node(root).openOverlay(Text("layer"), options: OverlayOptions(takeFocus: false)))})
+     app.dispose()
+     let old = handle.value.getOrThrow()
+     check(!old.isOpen() && old.content().isNone(), "E10 terminal old handle remains readable in original UI domain")
+     app.startHeadless()
+     app.batch(
+         {
+             =>
+                 code(
+                     "WrongUIContext",
+diff --git a/tests/interaction_c/src/focus_restoration.cj b/tests/interaction_c/src/focus_restoration.cj
+index 5743b447..256c8a45 100644
+--- a/tests/interaction_c/src/focus_restoration.cj
++++ b/tests/interaction_c/src/focus_restoration.cj
+@@ -1,47 +1,47 @@
+ package interaction_c
+ import cjtui.*
+ 
+ func hiddenOrUnmountedSaved(remove:Bool):Unit {
+-    let saved=Box<?Component>(None);let previous=Box<?Component>(None)
++    let saved=Box<?Component>(Option<Component>.None);let previous=Box<?Component>(Option<Component>.None)
+     let root=Column{previous.value=Some(Text("P").focusable(true));saved.value=Some(Text("S").focusable(true));Text("N").focusable(true)}.viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless();let old=node(saved.value.getOrThrow());app.batch({=>old.requestFocus()})
+-    let h=Box<?OverlayHandle>(None)
++    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>h.value=Some(node(root).openOverlay(Text("M").focusable(true),options:OverlayOptions(mode:OverlayMode.Modal)))})
+     app.batch({=>if(remove){node(root).remove(old)}else{saved.value.getOrThrow().visible(false)}})
+     app.batch({=>h.value.getOrThrow().close()})
+     check(old.isValid()!=remove,"F10/F11 hidden retains generation; remove revokes")
+     focused(app,node(previous.value.getOrThrow()),"F10/F11 nearest surviving owner ancestor first eligible")
+     app.dispose()
+ }
+ 
+ func physicalRestorationFallback(branch:Int64):Unit {
+     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
+-    let previous=Box<?Component>(None);let saved=Box<?Component>(None);let next=Box<?Component>(None)
++    let previous=Box<?Component>(Option<Component>.None);let saved=Box<?Component>(Option<Component>.None);let next=Box<?Component>(Option<Component>.None)
+     let lower=Column{previous.value=Some(Text("P").focusable(true));saved.value=Some(Text("S").focusable(true));next.value=Some(Text("N").focusable(true))}
+     app.batch({=>node(root).openOverlay(lower);()});app.batch({=>node(saved.value.getOrThrow()).requestFocus()})
+-    let h=Box<?OverlayHandle>(None);app.batch({=>h.value=Some(node(root).openOverlay(Text("M").focusable(true),options:OverlayOptions(mode:OverlayMode.Modal)))})
++    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None);app.batch({=>h.value=Some(node(root).openOverlay(Text("M").focusable(true),options:OverlayOptions(mode:OverlayMode.Modal)))})
+     app.batch({=>saved.value.getOrThrow().visible(false);if(branch>=1){next.value.getOrThrow().enabled(false)};if(branch>=2){previous.value.getOrThrow().enabled(false)}})
+     let fresh=Text("F").focusable(true)
+     if(branch==2){app.batch({=>node(lower).append(fresh)})}
+     app.batch({=>h.value.getOrThrow().close()})
+     if(branch==0){focused(app,node(next.value.getOrThrow()),"F12 physical successor outside empty owner subtree")}
+     else if(branch==1){focused(app,node(previous.value.getOrThrow()),"F12 old predecessor when successor ineligible")}
+     else if(branch==2){focused(app,node(fresh),"F12 new domain first when old candidates absent")}
+     else {check(app.focusedNode().isNone(),"F12 all empty keeps None");target(app,node(root),"F12 empty base domain target")}
+     app.dispose()
+ }
+ 
+ func stackedRestoration():Unit {
+     let root=Column{Text("base").focusable(true)}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
+     let lower=Text("M").focusable(true);let popup=Text("P").focusable(true);let confirm=Text("C").focusable(true)
+-    let m=Box<?OverlayHandle>(None);let p=Box<?OverlayHandle>(None);let c=Box<?OverlayHandle>(None)
++    let m=Box<?OverlayHandle>(Option<OverlayHandle>.None);let p=Box<?OverlayHandle>(Option<OverlayHandle>.None);let c=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>m.value=Some(node(root).openOverlay(lower,options:OverlayOptions(mode:OverlayMode.Modal)))})
+     app.batch({=>p.value=Some(node(lower).openOverlay(popup))})
+     app.batch({=>c.value=Some(node(popup).openOverlay(confirm,options:OverlayOptions(mode:OverlayMode.Modal)))})
+     app.batch({=>c.value.getOrThrow().close()});focused(app,node(popup),"F13 top modal restores lower dependent focus")
+     app.batch({=>p.value.getOrThrow().close()});focused(app,node(lower),"F13 lower modal original focus restored")
+     app.batch({=>node(lower).openOverlay(Text("P2").focusable(true));()})
+     app.batch({=>m.value.getOrThrow().close()});check(!p.value.getOrThrow().isOpen() && !c.value.getOrThrow().isOpen(),"F13 closed dependents remain terminal")
+     focused(app,node(root).children()[0],"F13 cascade restores base focus once at final boundary")
+     app.dispose()
+ }
+diff --git a/tests/interaction_c/src/layer_domains.cj b/tests/interaction_c/src/layer_domains.cj
+index 966bf99a..5eb890c3 100644
+--- a/tests/interaction_c/src/layer_domains.cj
++++ b/tests/interaction_c/src/layer_domains.cj
+@@ -1,37 +1,37 @@
+ package interaction_c
+ 
+ import cjtui.*
+ 
+ func modalDomains(): Unit {
+     let calls = Box<String>("")
+-    let base = Box<?Component>(None)
++    let base = Box<?Component>(Option<Component>.None)
+     let root = Column {base.value = Some(Text("base").focusable(true))}.viewport(ScrollAxes.Off)
+     let app = Application(root).onKeyEvent({_ => calls.value += "APP;"}).onKey({_ => calls.value += "LEGACY;"})
+     app.startHeadless()
+     let outer = Column {Text("outer").focusable(true)}
+     let popup = Column {Text("popup").focusable(true)}
+-    let button = Box<?Component>(None)
++    let button = Box<?Component>(Option<Component>.None)
+     let confirm = Column {
+         button.value = Some(
+             Text("confirm")
+                 .focusable(true)
+                 .onKeyCapture({_ => calls.value += "Tc;"})
+                 .onKey({_ => calls.value += "Tb;"})
+                 .defaultAction({_ => calls.value += "Td;"}))
+     }
+         .onKeyCapture({_ => calls.value += "Cc;"})
+         .onKey({_ => calls.value += "Cb;"})
+         .defaultAction({_ => calls.value += "Ca;"}, phase: DefaultActionPhase.Ancestor)
+-    let first = Box<?OverlayHandle>(None)
+-    let second = Box<?OverlayHandle>(None)
+-    let third = Box<?OverlayHandle>(None)
++    let first = Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    let second = Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    let third = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({
+         => first.value = Some(
+             node(base.value.getOrThrow()).openOverlay(outer, options: OverlayOptions(mode: OverlayMode.Modal)))
+     })
+     app.batch({=> second.value = Some(node(outer).openOverlay(popup))})
+     app.batch({
+         => third.value = Some(node(popup).openOverlay(confirm, options: OverlayOptions(mode: OverlayMode.Modal)))
+     })
+     calls.value = ""
+     app.dispatch(node(button.value.getOrThrow()), KeyEvent("text", text: "x"))
+@@ -61,44 +61,44 @@ func nodeReferenceAlive(component: Component): Bool {
+ func escapeBarrierAndPrevent(): Unit {
+     let root = Column {Text("base").focusable(true)}.viewport(ScrollAxes.Off)
+     let app = Application(root)
+     app.startHeadless()
+     let modal = Text("modal").focusable(true)
+     let blocker = Text("blocker").focusable(true).onKeyCapture({
+         event => if (event.key.code == "interrupt") {
+             event.preventDefault()
+         }
+     })
+-    let parent = Box<?OverlayHandle>(None)
+-    let child = Box<?OverlayHandle>(None)
++    let parent = Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    let child = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({
+         => parent.value = Some(node(root).openOverlay(modal, options: OverlayOptions(mode: OverlayMode.Modal)))
+     })
+     app.batch({
+         => child.value = Some(node(modal).openOverlay(blocker, options: OverlayOptions(closeOnEscape: false)))
+     })
+     app.dispatch(node(blocker), KeyEvent("escape"))
+     check(parent.value.getOrThrow().isOpen() && child.value.getOrThrow().isOpen(),
+         "D05 closest closeOnEscape false blocks parent cancellation")
+     app.dispatch(node(blocker), KeyEvent("interrupt"))
+     check(node(blocker).isValid(), "D06 preventDefault keeps modal application active")
+     app.dispose()
+ }
+ 
+ func emptyLayerReservation(): Unit {
+-    let base = Box<?Component>(None)
++    let base = Box<?Component>(Option<Component>.None)
+     let root = Column {base.value = Some(Text("base").focusable(true))}.viewport(ScrollAxes.Off)
+     let app = Application(root)
+     app.startHeadless()
+     focused(app, node(base.value.getOrThrow()), "F01 I014 initial physical first base candidate")
+     let empty = Column {Text("empty")}
+-    let handle = Box<?OverlayHandle>(None)
++    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=> handle.value = Some(node(root).openOverlay(empty))})
+     check(app.focusedNode().isNone(), "F02 empty takeFocus nonmodal reserves no-focus state")
+     target(app, node(empty), "F02 activeTarget is layer root rather than nonfocusable child")
+     app.batch({=> node(root).append(Text("new base").focusable(true))})
+     check(app.focusedNode().isNone(), "F03 new base candidate cannot steal empty-layer reservation")
+     let late = Text("late").focusable(true)
+     app.batch({=> node(empty).append(late)})
+     focused(app, node(late), "F04 first late candidate inside reserved layer takes focus")
+     app.dispatch(node(late), KeyEvent("tab"))
+     focused(app, node(base.value.getOrThrow()), "F05 nonmodal Tab wraps to base physical first")
+diff --git a/tests/interaction_c/src/lifecycle_edges.cj b/tests/interaction_c/src/lifecycle_edges.cj
+index ea7345dd..17751e7b 100644
+--- a/tests/interaction_c/src/lifecycle_edges.cj
++++ b/tests/interaction_c/src/lifecycle_edges.cj
+@@ -1,41 +1,41 @@
+ package interaction_c
+ import cjtui.*
+ 
+ func ordinaryOwnedClosure():Unit {
+-    let branch=Box<?Component>(None);let owner=Box<?Component>(None)
++    let branch=Box<?Component>(Option<Component>.None);let owner=Box<?Component>(Option<Component>.None)
+     let root=Column{branch.value=Some(Column{owner.value=Some(Text("owner"))})}.viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless();let trace=Box<String>("")
+     let first=Text("first").onMount({_=>{=>trace.value+="P;"}})
+     let child=Text("child").onMount({_=>{=>trace.value+="C;"}})
+-    let h=Box<?OverlayHandle>(None);let c=Box<?OverlayHandle>(None);let sibling=Box<?OverlayHandle>(None)
++    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None);let c=Box<?OverlayHandle>(Option<OverlayHandle>.None);let sibling=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>h.value=Some(node(owner.value.getOrThrow()).openOverlay(first))})
+     app.batch({=>c.value=Some(node(first).openOverlay(child))})
+     app.batch({=>sibling.value=Some(node(root).openOverlay(Text("sibling"),options:OverlayOptions(takeFocus:false)))})
+     app.batch({=>node(root).remove(node(branch.value.getOrThrow()))})
+     check(reason(h.value.getOrThrow())=="OwnerGone" && !c.value.getOrThrow().isOpen() && trace.value=="C;P;","L06 ordinary ancestor removal closes overlay full closure")
+     check(sibling.value.getOrThrow().isOpen(),"L06 unrelated sibling survives")
+     app.dispose()
+ }
+ 
+ func offscreenOwnerAndReason():Unit {
+-    let owner=Box<?Component>(None);let root=ScrollView({=>owner.value=Some(Text("O").height(1));Text("tail").height(10)})
++    let owner=Box<?Component>(Option<Component>.None);let root=ScrollView({=>owner.value=Some(Text("O").height(1));Text("tail").height(10)})
+     let app=Application(root);app.startHeadless();app.snapshot(4,2)
+-    let h=Box<?OverlayHandle>(None)
++    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>h.value=Some(node(owner.value.getOrThrow()).openOverlay(Text("P"),options:OverlayOptions(takeFocus:false)))})
+     app.batch({=>node(root).scrollTo(0,5);()});app.snapshot(4,2)
+     check(h.value.getOrThrow().isOpen(),"L07 offscreen owner is not hidden")
+     app.snapshot(0,0);check(h.value.getOrThrow().isOpen(),"L07 zero clip does not close unanchored layer")
+     app.batch({=>owner.value.getOrThrow().visible(false)})
+     check(reason(h.value.getOrThrow())=="OwnerHidden","L07 explicit hidden closes")
+     app.batch({=>owner.value.getOrThrow().visible(true)});app.snapshot(4,2)
+-    let anchored=Box<?OverlayHandle>(None)
++    let anchored=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>node(root).scrollTo(0,0);()});app.snapshot(4,2)
+     app.batch({=>anchored.value=Some(node(owner.value.getOrThrow()).openOverlay(Text("A"),options:OverlayOptions(anchor:node(owner.value.getOrThrow()),placement:OverlayPlacement.BelowStart,takeFocus:false)))})
+     app.batch({=>node(root).remove(node(owner.value.getOrThrow()))})
+     check(reason(anchored.value.getOrThrow())=="OwnerGone","L07 owner removal wins simultaneous anchor loss")
+     app.dispose()
+ }
+ 
+ func primaryAndCleanup(draw:Bool):Unit {
+     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
+     let original=Exception("L08 ORIGINAL");let parentError=Exception("L08 PARENT");let childError=Exception("L08 CHILD");let trace=Box<String>("")
+diff --git a/tests/interaction_c/src/main.cj b/tests/interaction_c/src/main.cj
+index 32543755..81ebc123 100644
+--- a/tests/interaction_c/src/main.cj
++++ b/tests/interaction_c/src/main.cj
+@@ -19,16 +19,16 @@ main(): Int64 {
+     surfacesAndLatestBase()
+     sourceBasedCaretOcclusion()
+     duplicateReservation();pendingFailure(false);pendingFailure(true);releasedOwnerObservation()
+     mixedOrdinaryIdentity();ownerMoveAndPaintLifetime()
+     escapeAndLogicalRouting();modalTraversalAndDomainOpen()
+     hiddenOrUnmountedSaved(false);hiddenOrUnmountedSaved(true)
+     for(branch in 0..4){physicalRestorationFallback(branch)}
+     stackedRestoration();ordinaryOwnedClosure();offscreenOwnerAndReason()
+     primaryAndCleanup(false);primaryAndCleanup(true)
+     threadAndAnchorValidation();for(phase in 0..3){evaluationAndLifecycleGuards(phase)}
+-    lifecycleLayerCommands();for(which in 0..3){layerCapacity(which)}
++    lifecycleLayerCommands();layerDepthBoundary();for(which in 0..3){layerCapacity(which)}
+     layerDependencyBudget(false);layerDependencyBudget(true);interactivePassiveRejection()
+     ownerThemeSurface();explicitHostClip();directionalAnchors();clippedAndLostAnchors()
+     decoratedLayerTargets();caretSpacesShadowAndClip()
+     return 0
+ }
+diff --git a/tests/interaction_c/src/native_fixture.cj b/tests/interaction_c/src/native_fixture.cj
+index 85989964..95c97a41 100644
+--- a/tests/interaction_c/src/native_fixture.cj
++++ b/tests/interaction_c/src/native_fixture.cj
+@@ -1,22 +1,22 @@
+ package interaction_c
+ import cjtui.*
+ import std.env.*
+ import std.fs.*
+ 
+ func nativeOverlayFixture():Int64 {
+     let directory=getVariable("CJTUI_OVERLAY_OUTPUT").getOrThrow()
+     let mode=getVariable("CJTUI_OVERLAY_NATIVE").getOrThrow()
+     let primary=Exception("H01 callback primary");let ce=Exception("H01 C cleanup");let me=Exception("H01 M cleanup")
+     let cleanup=Box<String>("");let trace=Box<String>("");let apps=Box<Int64>(0);let legacy=Box<Int64>(0)
+-    let outer=Box<?OverlayHandle>(None);let popup=Box<?OverlayHandle>(None);let confirm=Box<?OverlayHandle>(None)
+-    let appBox=Box<?Application>(None)
++    let outer=Box<?OverlayHandle>(Option<OverlayHandle>.None);let popup=Box<?OverlayHandle>(Option<OverlayHandle>.None);let confirm=Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    let appBox=Box<?Application>(Option<Application>.None)
+     let report={name:String,value:String=>File.writeTo(directory+"/"+name,value.toArray())}
+     let c=Column{
+         Text("CONFIRM").focusable(true)
+             .onKeyCapture({_=>trace.value+="Tc;"})
+             .onKey({_=>trace.value+="Tb;"})
+             .defaultAction({e=>trace.value+="Td;";if(e.key.text=="q"){appBox.value.getOrThrow().stop();e.preventDefault()};if(e.key.text=="!"){throw primary}})
+     }.onKeyCapture({e=>trace.value="Cc;";if(mode=="prevent" && e.key.code=="interrupt"){e.preventDefault();report("prevent","active")}})
+      .onKey({_=>trace.value+="Cb;"})
+      .defaultAction({e=>trace.value+="Ca;";if(e.key.text=="x"){report("trace","${trace.value}|${apps.value}|${legacy.value}")}},phase:DefaultActionPhase.Ancestor)
+      .onMount({_=>apps.value=0;legacy.value=0;report("C","mounted");{=>cleanup.value+="C;";report("C-clean","once");if(mode=="callback-error"){throw ce}}})
+diff --git a/tests/interaction_c/src/ordinary_identity.cj b/tests/interaction_c/src/ordinary_identity.cj
+index 622f5ba5..a88c93e8 100644
+--- a/tests/interaction_c/src/ordinary_identity.cj
++++ b/tests/interaction_c/src/ordinary_identity.cj
+@@ -3,38 +3,38 @@ import cjtui.*
+ import std.collection.*
+ 
+ func mixedOrdinaryIdentity():Unit {
+     let show=Observable<Bool>(true);let keys=Observable<Array<String>>(["A","B"]);let entries=ArrayList<Component>()
+     let root=Column{
+         If({=>show.get()},{=>Text("if")})
+         ForEach<String>({=>keys.get()},{s=>s},{item=>entries.add(Text({=>item.value}).key(item.value))})
+     }.viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless();let a=node(entries[0]);let b=node(entries[1]);let manual=Text("M")
+     app.batch({=>node(root).insertBefore(b,manual)})
+-    let before=node(root).children();let layer=Text("layer");let h=Box<?OverlayHandle>(None)
++    let before=node(root).children();let layer=Text("layer");let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>h.value=Some(node(root).openOverlay(layer,options:OverlayOptions(takeFocus:false)))})
+     let after=node(root).children()
+     check(after.size==before.size,"N04 layer not an ordinary marker or child")
+     for(i in 0..before.size){check(before[i].sameNode(after[i]),"N04 ordinary identity unchanged ${i}")}
+     app.batch({=>keys.set(["B","A"]);show.set(false)})
+     let moved=node(root).children()
+     check(moved.size==3 && moved[0].sameNode(b) && moved[1].sameNode(node(manual)) && moved[2].sameNode(a),"N04 physical keyed/manual order B M A")
+     check(h.value.getOrThrow().content().getOrThrow().sameNode(node(layer)),"N04 keyed change preserves layer generation")
+     app.dispose()
+ }
+ 
+ func ownerMoveAndPaintLifetime():Unit {
+-    let owner=Box<?Component>(None);let root=Column{owner.value=Some(Text("O").height(1));Text("S").height(1)}.viewport(ScrollAxes.Off)
++    let owner=Box<?Component>(Option<Component>.None);let root=Column{owner.value=Some(Text("O").height(1));Text("S").height(1)}.viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless();app.snapshot(6,6)
+-    let paint=Box<?PaintContext>(None)
++    let paint=Box<?PaintContext>(Option<PaintContext>.None)
+     let popup=Canvas({_=>Size(3,8)},{p=>paint.value=Some(p);p.put(0,3,"P")}).viewport(ScrollAxes.Vertical).width(3).height(2)
+-    let h=Box<?OverlayHandle>(None)
++    let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>h.value=Some(node(owner.value.getOrThrow()).openOverlay(popup,options:OverlayOptions(anchor:node(owner.value.getOrThrow()),placement:OverlayPlacement.BelowStart,takeFocus:false)))})
+     app.snapshot(6,6);let old=node(popup);let ownerRef=node(owner.value.getOrThrow())
+     app.batch({=>old.scrollTo(0,3);node(root).moveToEnd(ownerRef)})
+     picture(app.snapshot(6,6),"S     \nO     \nP     \n      \n      \n      ","N05 moved anchor geometry and retained scrolled paint")
+     check(old.sameNode(node(popup)) && ownerRef.sameNode(node(owner.value.getOrThrow())) && old.viewportSnapshot().offsetY==3,"N05 owner move retains owner/layer/local offset")
+     code("ExpiredPaintContext",{=>paint.value.getOrThrow().size;()},"N06 paint context expires after layer draw")
+     check(old.isValid(),"N06 expiry does not revoke actual layer node")
+     app.batch({=>h.value.getOrThrow().close()})
+     code("StaleReference",{=>old.isVisible();()},"N06 close revokes layer generation")
+     app.dispose()
+diff --git a/tests/interaction_c/src/pending_and_identity.cj b/tests/interaction_c/src/pending_and_identity.cj
+index ce84aa28..401612f4 100644
+--- a/tests/interaction_c/src/pending_and_identity.cj
++++ b/tests/interaction_c/src/pending_and_identity.cj
+@@ -1,20 +1,20 @@
+ package interaction_c
+ 
+ import cjtui.*
+ 
+ func pendingCancellation(): Unit {
+     let root = Column {Text("base")}.viewport(ScrollAxes.Off)
+     let app = Application(root)
+     let mounts = Box<Int64>(0)
+     let cleanups = Box<Int64>(0)
+-    let saved = Box<?OverlayHandle>(None)
++    let saved = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.startHeadless()
+     app.batch(
+         {
+             =>
+                 let content = Text("never").onMount(
+                     {
+                         _ =>
+                             mounts.value++
+                             {=> cleanups.value++}
+                     }
+@@ -33,36 +33,36 @@ func pendingCancellation(): Unit {
+     app.batch({=> handle.close()})
+     check(reason(handle) == "Requested", "P02 close is idempotent in original UI domain")
+     app.dispose()
+     check(!handle.isOpen() && reason(handle) == "Requested" && handle.content().isNone(),
+         "P02 original-thread terminal query survives dispose")
+     released(app, "P02 no retained mounted resources")
+ }
+ 
+ func sharedTypeAndIdentity(): Unit {
+     let model = Observable<String>("A")
+-    let ordinary = Box<?SettingsPanel>(None)
++    let ordinary = Box<?SettingsPanel>(Option<SettingsPanel>.None)
+     let root = Column {
+         let panel = SettingsPanel(model)
+         panel.width(3).height(1)
+         ordinary.value = Some(panel)
+         Text("tailtail")
+     }.viewport(ScrollAxes.Off)
+     let app = Application(root)
+     app.startHeadless()
+     let owner = node(root)
+     let before = owner.children()
+     let normal = ordinary.value.getOrThrow()
+     let normalRef = node(normal)
+     let layer = SettingsPanel(model)
+     layer.width(3).height(1)
+-    let handle = Box<?OverlayHandle>(None)
++    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({
+         => handle.value = Some(
+             owner.openOverlay(layer, options: OverlayOptions(mode: OverlayMode.NonModal, takeFocus: false)))
+     })
+     let mounted = handle.value.getOrThrow().content().getOrThrow()
+     check(mounted.sameNode(node(layer)), "N01 handle publishes the actual custom-component mount")
+     let after = owner.children()
+     check(after.size == before.size && after[0].sameNode(before[0]) && after[1].sameNode(before[1]),
+         "N01 overlay never enters ordinary child sequence")
+     picture(app.snapshot(8, 3), "A       \ntaAltail\n        ",
+diff --git a/tests/interaction_c/src/pending_failures.cj b/tests/interaction_c/src/pending_failures.cj
+index 929bdedb..a7053662 100644
+--- a/tests/interaction_c/src/pending_failures.cj
++++ b/tests/interaction_c/src/pending_failures.cj
+@@ -1,43 +1,43 @@
+ package interaction_c
+ import cjtui.*
+ import std.ref.*
+ import std.runtime.*
+ import std.sync.*
+ 
+ func duplicateReservation():Unit {
+     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
+     let mounts=Box<Int64>(0);let content=Text("one").onMount({_=>mounts.value++;{=>}})
+-    let first=Box<?OverlayHandle>(None)
++    let first=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({=>first.value=Some(node(root).openOverlay(content));code("AlreadyMounted",{=>node(root).openOverlay(content);()},"P03 duplicate pending reservation")})
+     check(first.value.getOrThrow().isOpen() && mounts.value==1,"P03 only first reservation mounts")
+     app.dispose()
+ }
+ 
+ func pendingFailure(mount:Bool):Unit {
+     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
+     let failure=Exception("P04 original ${mount}");let cleaned=Box<Int64>(0)
+     let parent=Text("old").onMount({_=>{=>cleaned.value++}})
+     app.batch({=>node(root).openOverlay(parent,options:OverlayOptions(takeFocus:false));()})
+-    let handle=Box<?OverlayHandle>(None)
++    let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     let bad:Component=if(mount){Text("bad").onMount({_=>throw failure})}else{BrokenPanel(failure)}
+     var caught=false
+     try{app.batch({=>handle.value=Some(node(root).openOverlay(bad))})}catch(e:Exception){caught=refEq(e,failure)}
+     check(caught && cleaned.value==1,"P04 build/mount primary preserved and existing cleanup once")
+     check(!handle.value.getOrThrow().isOpen() && handle.value.getOrThrow().content().isNone(),"P04 no pending publication after failure")
+     released(app,"P04 session failure releases resources");app.dispose()
+ }
+ 
+ // EAGER collection is explicitly not guaranteed by SDK. P05 is an observation,
+ // never a deterministic leak PASS merely because this observer was cleared.
+ func releasedOwnerObservation():Unit {
+-    let weak=Box<?WeakRef<Application>>(None);let retained=Box<?OverlayHandle>(None)
++    let weak=Box<?WeakRef<Application>>(Option<WeakRef<Application>>.None);let retained=Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     makeReleasedOwner(weak,retained)
+     let before=getGCCount();gc(heavy:true)
+     for(_ in 0..5000){if(getGCCount()>before){break};sleep(Duration.millisecond)}
+     check(!retained.value.getOrThrow().isOpen() && retained.value.getOrThrow().content().isNone(),"P05 retained terminal handle publishes no owner nodes")
+     println("OBSERVATION_ONLY P05 gcProgress=${getGCCount()>before} weakOwnerCleared=${weak.value.getOrThrow().value.isNone()}; weak retention requires source review, no GC leak PASS")
+ }
+ func makeReleasedOwner(weak:Box<?WeakRef<Application>>,retained:Box<?OverlayHandle>):Unit {
+     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
+     app.batch({=>retained.value=Some(node(root).openOverlay(Text("old")))})
+     app.dispose();released(app,"P05 disposed owner resources0")
+diff --git a/tests/interaction_c/src/surface_grids.cj b/tests/interaction_c/src/surface_grids.cj
+index 3c4daa1a..bacf4b0e 100644
+--- a/tests/interaction_c/src/surface_grids.cj
++++ b/tests/interaction_c/src/surface_grids.cj
+@@ -7,21 +7,21 @@ import cjtui.*
+ func surfacesAndLatestBase(): Unit {
+     let value = Observable<String>("ijklmnop")
+     let root = Column {
+         Text("abcdefgh");
+         Text({=> value.get()});
+         Text("qrstuvwx")
+     }.viewport(ScrollAxes.Off)
+     let app = Application(root)
+     app.startHeadless()
+     let opaque = Text("X").width(3).height(1)
+-    let modal = Box<?OverlayHandle>(None)
++    let modal = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({
+         => modal.value = Some(node(root).openOverlay(opaque, options: OverlayOptions(mode: OverlayMode.Modal)))
+     })
+     picture(app.snapshot(8, 3), "abcdefgh\nijX  nop\nqrstuvwx", "G01 modal fills only its centered layout box")
+     opaque.surface(SurfaceMode.Transparent)
+     picture(app.snapshot(8, 3), "abcdefgh\nijXlmnop\nqrstuvwx",
+         "G02 explicit transparent overrides default modal surface")
+     opaque.background(Color.Default)
+     picture(app.snapshot(8, 3), "abcdefgh\nijX  nop\nqrstuvwx",
+         "G03 transparent surface does not cancel explicit background fill")
+@@ -30,21 +30,21 @@ func surfacesAndLatestBase(): Unit {
+     app.batch({=> modal.value.getOrThrow().close()})
+     picture(app.snapshot(8, 3), "abcdefgh\nIJKLMNOP\nqrstuvwx", "G04 close exposes latest base rather than saved screen")
+     let canvas = Canvas(
+         {_ => Size(3, 1)},
+         {
+             context =>
+                 context.put(0, 0, "X")
+                 context.put(1, 0, " ")
+         }
+     )
+-    let layer = Box<?OverlayHandle>(None)
++    let layer = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({
+         => layer.value = Some(node(root).openOverlay(canvas, options: OverlayOptions(takeFocus: false)))
+     })
+     let saved = app.snapshot(8, 3)
+     picture(saved, "abcdefgh\nIJX MNOP\nqrstuvwx", "G05 written space opaque while next untouched cell is a hole")
+     picture(render(root, 8, 3), "abcdefgh\nIJX MNOP\nqrstuvwx", "G06 mounted full M1 render consumes committed layers")
+     check(!saved.toPlainText().contains("\u{1b}"), "G06 headless plain snapshot has no device syntax")
+     app.batch({=> layer.value.getOrThrow().close()})
+     picture(saved, "abcdefgh\nIJX MNOP\nqrstuvwx", "G06 old snapshot remains independent after close")
+     app.dispose()
+@@ -64,21 +64,21 @@ func sourceBasedCaretOcclusion(): Unit {
+     let app = Application(root)
+     app.startHeadless()
+     let original = app.snapshot(8, 3).toPlainText()
+     check(app.caretSnapshot().visible, "G07 focused base Canvas supplies visible caret")
+     let drawn = Observable<Bool>(false)
+     let cover = Canvas({_ => Size(3, 1)}, {
+         context => if (drawn.get()) {
+             context.put(1, 0, "l")
+         }
+     })
+-    let handle = Box<?OverlayHandle>(None)
++    let handle = Box<?OverlayHandle>(Option<OverlayHandle>.None)
+     app.batch({
+         => handle.value = Some(
+             node(root).openOverlay(cover, options: OverlayOptions(mode: OverlayMode.Passive, takeFocus: false)))
+     })
+     check(app.snapshot(8, 3).toPlainText() == original && app.caretSnapshot().visible,
+         "G08 transparent hole keeps logical caret visible")
+     drawn.set(true)
+     check(app.snapshot(8, 3).toPlainText() == original && !app.caretSnapshot().visible,
+         "G09 same glyph and style opaque source hides caret despite identical final pixels")
+     focused(app, node(root), "G09 passive visual does not steal logical focus")
+diff --git a/tests/interaction_c/src/theme_and_host.cj b/tests/interaction_c/src/theme_and_host.cj
+index 017b27ab..0da62f54 100644
+--- a/tests/interaction_c/src/theme_and_host.cj
++++ b/tests/interaction_c/src/theme_and_host.cj
+@@ -1,34 +1,34 @@
+ package interaction_c
+ import cjtui.*
+ 
+ func ownerThemeSurface():Unit {
+-    let owner=Box<?Component>(None)
++    let owner=Box<?Component>(Option<Component>.None)
+     let root=Column{owner.value=Some(Text("O").styles([StyleUse.Named("owner")]))}.styles([StyleUse.Named("host")]).overlayHost(true).viewport(ScrollAxes.Off)
+-    let first=Theme.parse("schema_version=1\nname='first'\n[styles.host]\nbackground='#445566'\n[styles.owner]\nbackground='#112233'\n")
+-    let second=Theme.parse("schema_version=1\nname='second'\n[styles.host]\nbackground='#445566'\n[styles.owner]\nbackground='#778899'\n")
++    let first=Theme.parse("schema_version=1\nname='first'\n[styles.host.text]\nbackground='#445566'\n[styles.owner.text]\nbackground='#112233'\n")
++    let second=Theme.parse("schema_version=1\nname='second'\n[styles.host.text]\nbackground='#445566'\n[styles.owner.text]\nbackground='#778899'\n")
+     let app=Application(root,theme:first);app.startHeadless()
+     let modal=Text("X").width(3).height(1).underline().inverse()
+     app.batch({=>node(owner.value.getOrThrow()).openOverlay(modal,options:OverlayOptions(mode:OverlayMode.Modal,host:node(root)));()})
+     let a=app.snapshot(8,3)
+     check(a.cellAt(3,1).grapheme==" " && a.cellAt(3,1).style.background==Color.Rgb(0x11,0x22,0x33) && a.cellAt(3,1).style.underline && a.cellAt(3,1).style.inverse,"G11 modal surface spaces use full inherited owner style")
+     check(a.cellAt(7,2).style.background==Color.Rgb(0x44,0x55,0x66),"G11 no full-screen modal backdrop")
+     app.batch({=>owner.value.getOrThrow().enabled(false)})
+     check(node(modal).isEnabled(),"G11 enabled does not inherit over owner edge")
+     let request=app.loadTheme(ThemeSource.Prepared(second));let b=app.snapshot(8,3)
+     check(match(request.result()){case Some(ThemeResult.Applied(_))=>true;case _=>false},"G11 theme commit control")
+     check(b.cellAt(3,1).style.background==Color.Rgb(0x77,0x88,0x99) && b.cellAt(3,1).style.inverse,"G11 theme update changes filled modal spaces without local Default")
+     app.dispose()
+ }
+ 
+ func explicitHostClip():Unit {
+-    let host=Box<?Component>(None);let owner=Box<?Component>(None)
++    let host=Box<?Component>(Option<Component>.None);let owner=Box<?Component>(Option<Component>.None)
+     let root=Column{
+         host.value=Some(Column{owner.value=Some(Text("O").width(1).height(1))}.width(6).height(3).overlayHost(true))
+         Text("TTTTTTTT").height(1)
+     }.viewport(ScrollAxes.Off)
+     let app=Application(root);app.startHeadless();app.snapshot(8,4)
+     let popup=Canvas({_=>Size(9,6)},{p=>for(y in 0..6){p.put(0,y,"PPPPPPPPP")}}).shadow()
+     app.batch({=>node(owner.value.getOrThrow()).openOverlay(popup,options:OverlayOptions(host:node(host.value.getOrThrow()),takeFocus:false));()})
+     picture(app.snapshot(8,4),"PPPPPP  \nPPPPPP  \nPPPPPP  \nTTTTTTTT","G12 escapes owner1x1; popup/shadow never escape host6x3")
+     app.dispose()
+ }

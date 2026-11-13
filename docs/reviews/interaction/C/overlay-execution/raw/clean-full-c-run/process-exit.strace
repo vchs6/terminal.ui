@@ -1,0 +1,52 @@
+87633 execve("/usr/bin/bash", ["bash", "-c", "source /workspace/work/overlay-execution/env.sh\nexec \"$@\"", "task111", "env", "TERM=dumb", "COLORTERM=", "timeout", "45s", "./target/release/bin/main"], 0x7ffcd0ccf1e0 /* 67 vars */) = 0
+87637 exit_group(0)                     = ?
+87637 +++ exited with 0 +++
+87633 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=87637, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+87638 exit_group(0)                     = ?
+87638 +++ exited with 0 +++
+87633 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=87638, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+87641 execve("/usr/bin/realpath", ["realpath", "/workspace/work/validation/sdk/cangjie/envsetup.sh"], 0x556c4ede94a0 /* 67 vars */) = 0
+87641 exit_group(0)                     = ?
+87641 +++ exited with 0 +++
+87640 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=87641, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+87640 exit_group(0)                     = ?
+87640 +++ exited with 0 +++
+87639 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=87640, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+87642 exit_group(0)                     = ?
+87642 +++ exited with 0 +++
+87639 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=87642, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+87639 exit_group(0)                     = ?
+87639 +++ exited with 0 +++
+87633 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=87639, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+87643 execve("/usr/bin/uname", ["uname", "-s"], 0x556c4edee1d0 /* 67 vars */) = 0
+87643 exit_group(0)                     = ?
+87643 +++ exited with 0 +++
+87633 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=87643, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+87644 execve("/usr/bin/uname", ["uname", "-m"], 0x556c4edee340 /* 67 vars */) = 0
+87644 exit_group(0)                     = ?
+87644 +++ exited with 0 +++
+87633 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=87644, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+87633 execve("/usr/bin/env", ["env", "TERM=dumb", "COLORTERM=", "timeout", "45s", "./target/release/bin/main"], 0x556c4edd7900 /* 70 vars */) = 0
+87633 execve("/workspace/work/validation/sdk/cangjie/bin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/workspace/work/validation/sdk/cangjie/tools/bin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/home/agent/.local/bin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/opt/codex/bin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/usr/local/sbin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/usr/local/bin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/usr/sbin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = -1 ENOENT (No such file or directory)
+87633 execve("/usr/bin/timeout", ["timeout", "45s", "./target/release/bin/main"], 0x7fff352ba4c0 /* 70 vars */) = 0
+87649 execve("./target/release/bin/main", ["./target/release/bin/main"], 0x7fffc4008758 /* 70 vars */) = 0
+87652 +++ exited with 0 +++
+87651 +++ exited with 0 +++
+87650 +++ exited with 0 +++
+87655 +++ exited with 0 +++
+87649 exit_group(0)                     = ?
+87672 +++ exited with 0 +++
+87649 +++ exited with 0 +++
+87633 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=87649, si_uid=1000, si_status=0, si_utime=56 /* 0.56 s */, si_stime=19 /* 0.19 s */} ---
+87633 exit_group(0)                     = ?
+87633 +++ exited with 0 +++

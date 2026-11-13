@@ -1,0 +1,32 @@
+{
+  "argv": [
+    "bash",
+    "tests/interaction_c/run.sh"
+  ],
+  "actual_argv": [
+    "strace",
+    "-f",
+    "-s",
+    "4096",
+    "-e",
+    "trace=execve,exit_group",
+    "-o",
+    "/workspace/work/overlay-execution/raw/formal-c/process-exit.strace",
+    "bash",
+    "-c",
+    "source /workspace/work/overlay-execution/env.sh\nexec \"$@\"",
+    "task111",
+    "bash",
+    "tests/interaction_c/run.sh"
+  ],
+  "cwd": "/workspace/work/overlay-execution/product",
+  "utcStart": "2026-11-13T02:29:05.598674+00:00",
+  "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+  "env": {
+    "SDK_ENV": "/workspace/work/overlay-execution/env.sh",
+    "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+    "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+  },
+  "exit": 0,
+  "utcEnd": "2026-11-13T02:30:36.826020+00:00"
+}

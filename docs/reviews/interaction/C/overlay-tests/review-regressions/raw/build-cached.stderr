@@ -1,0 +1,25 @@
+[33mwarning[0m: unused import 'std.sync.*'
+ [36m==>[0m /workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c/src/pending_failures.cj:5:1:
+  [36m| [0m
+[36m5[0m [36m| [0mimport std.sync.*[0m
+  [36m| [0m[33m^^^^^^^^^^^^^^^^^ unused import[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[31merror[0m: lambda capturing mutable variables needs to be called directly
+   [36m==>[0m /workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c/src/review_regressions.cj:145:19:
+    [36m| [0m
+[36m145[0m [36m| [0m        app.batch({=>try{handle.value=Some(node(root).openOverlay(Text("P"),options:OverlayOptions(host:node(root),takeFocus:false)))}catch(e:UIException){observed=e.code}})[0m
+    [36m| [0m                  [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ [0m
+    [36m| [0m
+[34mnote[0m: 'observed' is mutable
+   [36m==>[0m /workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c/src/review_regressions.cj:145:156:
+    [36m| [0m
+[36m145[0m [36m| [0m        app.batch({=>try{handle.value=Some(node(root).openOverlay(Text("P"),options:OverlayOptions(host:node(root),takeFocus:false)))}catch(e:UIException){observed=e.code}})[0m
+    [36m| [0m                                                                                                                                                           [34m^^^^^^^^ [0m
+    [36m| [0m
+
+1 error generated, 1 error printed.
+1 warning generated, 1 warning printed.
+Error: failed to compile package `interaction_c`, return code is 1
+Error: cjpm build failed

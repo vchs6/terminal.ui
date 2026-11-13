@@ -1,0 +1,527 @@
+{
+  "task": "TASK112",
+  "verdict": "PASS_FINITE_UNIT_C",
+  "utc": "2026-11-13T03:13:52.585727+00:00",
+  "acceptance": {
+    "path": "/workspace/work/overlay-acceptance/acceptance.md",
+    "sha256": "702cd9f253fbc005821920875eccc865f7cf1dfad4847c87ed13a27ef0d8c123",
+    "bytes": 4830
+  },
+  "scope": "C-01..C-05 and full original AC-018 only; no product or suite rerun",
+  "execution_manifest": {
+    "path": "/workspace/work/overlay-execution/stablemanifest.json",
+    "sha256": "cda293604be2e912103e0358c3fcd28f7c24af4511337b591d1036ee0a592ad2",
+    "bytes": 1032219
+  },
+  "fresh_integrity": {
+    "files_checked": 4639,
+    "bytes_checked": 433699788,
+    "size_or_sha_mismatches": [],
+    "report_hash_verified": "827d46383410ed938f9741bbde77d56815f4f2ec8f671df1e32fb4540bbecea4",
+    "product_files_compared_to_git_and_input_manifest": 156,
+    "product_mismatches": [],
+    "cjp_file_members_compared_byte_for_byte_to_7f": 220,
+    "cjp_mismatches": []
+  },
+  "identity": {
+    "product_source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+    "formal_H01_clean_test": "3fcba825c6739fdfa6f4204b033866f864160d2b",
+    "native_caret_test": "eea178fe0c8866a50e4a641f4df0f34769a67051",
+    "own_caret_combination": "abd0ef62a6d4a45fa2c30de2d19dcb7ead8d89a8"
+  },
+  "binaries": {
+    "formal_and_H01": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+    "native_caret": "a4663f3ad288cb931b0d8b43e8df9b42f54b621a9e8fce3fff5e801b401ce3c0",
+    "clean_full_C": "4e44a3864cd8d35b959d3fb485da0f5e440b005c0cf6d38a3e9867b8eab8378d",
+    "clean_example": "8f9247fff55a420d9da584c3d16dd0d42c446f72164d227903c1e95aabbc5e9b",
+    "CJP": "49dabd23f71bb7c8ede00949fbc836afef6875130d732dc6e9a0177deecc247f",
+    "note": "formal command rebuilt f331 ELF to 7f ELF as expected; mandatory bundle retained H01 ELF; native test combination later produced separate ELF. No same-ELF claim across these scopes."
+  },
+  "raw_references_under_execution_manifest": {
+    "indexes": [
+      "raw-index.json",
+      "artifacts-index.json",
+      "external-hashes.json",
+      "omissions.json",
+      "failure-index.json"
+    ],
+    "formal": "raw/final-formal-c/{command.json,stdout,stderr,exit,input-pre.json,input-post.json,source-comparison.json,bin-before.json,bin-after.json,process-exit.strace}",
+    "mandatory": "raw/final-mandatory-bundle/{command.json,stdout,stderr,exit,config-pre.json,config-post.json,source-comparison.json,process-exit.strace}",
+    "package": [
+      "raw/package/package.json",
+      "raw/package/member-inventory.json",
+      "raw/package/consumer-source-comparison.json",
+      "raw/package/clean-source-post.json",
+      "raw/clean-full-c-build",
+      "raw/clean-full-c-run",
+      "raw/clean-overlay-example-build",
+      "raw/clean-overlay-example-smoke"
+    ],
+    "H01": [
+      "raw/final-independent-pty-cases/*/metadata.json",
+      "raw/final-h01-index.json",
+      "raw/final-gui-c",
+      "raw/final-gui-vte-retry",
+      "raw/final-gui-vte-remaining",
+      "raw/final-vt-c"
+    ],
+    "caret": [
+      "artifacts/7f/native-caret-identity.json",
+      "raw/native-caret-consumer-build-fixed",
+      "raw/caret-gui-c/xterm",
+      "raw/caret-gui-c/vte",
+      "raw/caret-vt-c/caret"
+    ],
+    "reused_inputs": [
+      "input-preparation/final-reuse-map.json",
+      "input-preparation/native-reuse-bindings.json",
+      "input-preparation/final7f-inputs.json",
+      "input-preparation/final-external-input-post.json"
+    ]
+  },
+  "observations": {
+    "formal_exit": 0,
+    "formal_PASS_assertions": 297,
+    "clean_full_C_exit": 0,
+    "clean_stdout_equals_formal_minus_build_line": true,
+    "mandatory_bundle_exit": 0,
+    "cjlint_execve_observed": true,
+    "bundle_builtin_test_total": 0,
+    "clean_scope_excludes_new_native_caret": true,
+    "manifest_dependency_path_changes": 3,
+    "H01_pty_modes": 5,
+    "H01_real_hosts": 3,
+    "H01_modes_per_host": 5,
+    "H01_success_PNG": 51,
+    "H01_product_exits_all_zero": true,
+    "H01_termios_all_equal": true,
+    "caret_all_three_product_exits_zero": true,
+    "caret_all_three_cleanup": 1,
+    "caret_all_three_resources": "0/0/0/0",
+    "caret_logical_sequence": [
+      "base visible (3,1)",
+      "covered None hidden (0,0)",
+      "base restored visible (3,1)"
+    ],
+    "caret_grid_middle_rows": [
+      "ijklmnop",
+      "ij   nop",
+      "ijklmnop"
+    ],
+    "known_hosts": [
+      "XTerm398",
+      "VTE0.80.1"
+    ],
+    "known_wire": "real reply1; 25h, opaque paint then25l, restored paint/CUP2;4/25h; original visibility retained",
+    "unknown_host": "QEMU10.0.13/Linux6.12.107 kernelVT",
+    "unknown_wire_counts": {
+      "25h": 0,
+      "25l": 0,
+      "25s": 0,
+      "25r": 0
+    },
+    "unknown_physical_hide": "insufficient_evidence; compliant I015 automatic degradation, not a finite C failure"
+  },
+  "case_mapping": {
+    "C-01": {
+      "verdict": "pass",
+      "fixtures": [
+        "D01-D10",
+        "H01"
+      ],
+      "raw": [
+        "formal",
+        "H01"
+      ]
+    },
+    "C-02": {
+      "verdict": "pass",
+      "fixtures": [
+        "F01-F13",
+        "L01-L08",
+        "C-I01",
+        "C-I02",
+        "C-I03",
+        "R1-I01"
+      ],
+      "raw": [
+        "formal",
+        "H01"
+      ]
+    },
+    "C-03": {
+      "verdict": "pass_with_I015_boundary",
+      "fixtures": [
+        "G01-G16",
+        "X01",
+        "C-I04",
+        "C-I05",
+        "C-I06",
+        "C-I07",
+        "C-I10",
+        "R1-I02",
+        "native-caret opaque"
+      ],
+      "raw": [
+        "formal",
+        "caret"
+      ],
+      "T008_no_callback_preflight": "Independent110 round1 source review; C-I05 proves rejection/old theme/session but not total callback count"
+    },
+    "C-04": {
+      "verdict": "pass",
+      "fixtures": [
+        "P01-P05",
+        "E01-E18",
+        "X02",
+        "C-I08",
+        "C-I09",
+        "L05",
+        "L08",
+        "H01"
+      ],
+      "raw": [
+        "formal",
+        "H01"
+      ],
+      "weak_retention": "Independent110 source review; P05 GC observation not treated as deterministic leak proof"
+    },
+    "C-05": {
+      "verdict": "pass",
+      "fixtures": [
+        "S01-S03",
+        "N01-N06"
+      ],
+      "raw": [
+        "formal",
+        "package"
+      ]
+    }
+  },
+  "parent_AC018": {
+    "text": "父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态",
+    "parts": [
+      {
+        "part": "父层关闭清子层",
+        "via": "C-02/L01-L06",
+        "verdict": "pass"
+      },
+      {
+        "part": "模态隔离",
+        "via": "C-01/D/H01",
+        "verdict": "pass"
+      },
+      {
+        "part": "原焦点失效时回退",
+        "via": "C-02/F08-F13/R1-I01",
+        "verdict": "pass"
+      },
+      {
+        "part": "下层显示最新状态",
+        "via": "C-03/G04",
+        "verdict": "pass"
+      }
+    ],
+    "recommendation": "root may close original AC018 scope; no authority state edited here"
+  },
+  "contracts": [
+    {
+      "path": "/workspace/work/terminal.ui/AGENTS.md",
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "bytes": 35500
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/design.md",
+      "sha256": "3aa214946949afbaa79ab08a214bd2fb6bc6f9b3b2173f11d64225bc52b16ebd",
+      "bytes": 75532
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/tasks.md",
+      "sha256": "29e08f4277a144f0af966c9eaabf19512d46977d10b51e0a5edfbf07aff7f9d2",
+      "bytes": 51663
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md",
+      "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+      "bytes": 52833
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/tasks.md",
+      "sha256": "0b41868a56ecac2dd539ae49b6584869a5176ecfce65e5e2328c9754cc7bf7d6",
+      "bytes": 61111
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/acceptance.md",
+      "sha256": "e52489f48f944b08a10765e91237fab7975668cb21132863e5973f65fb02b42b",
+      "bytes": 33687
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-public-interaction/task-112-brief.md",
+      "sha256": "36f4335b8728db081b521e018f4903e07341bf71044b1d07e6d4a365799f2b4e",
+      "bytes": 2480
+    }
+  ],
+  "independent_reviews": [
+    {
+      "round": "initial",
+      "report": {
+        "path": "/workspace/work/overlay-review/report.md",
+        "sha256": "f30b3720279395ab599f8bce9a028919c6ff162141f1a1cdc58ea779f132a0b0",
+        "bytes": 3987
+      },
+      "findings": {
+        "path": "/workspace/work/overlay-review/findings.json",
+        "sha256": "a6f601221577c88653544d71f57c5a62f8af99b896ff02f5cfc27484e58645a8",
+        "bytes": 12674
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-review/raw/manifest.json",
+        "sha256": "eacba188b862940f8eb6097e18d1cfbca8ade13f70eea385328e4c2ba53818f7",
+        "bytes": 28799
+      }
+    },
+    {
+      "round": "round1",
+      "report": {
+        "path": "/workspace/work/overlay-review/round1/report.md",
+        "sha256": "19fb3738f365f30cd1cecae2d082545137528d21fc66863dda1254bf8ebb5896",
+        "bytes": 3040
+      },
+      "findings": {
+        "path": "/workspace/work/overlay-review/round1/findings.json",
+        "sha256": "58bada4a47d07c1d305c52b13081d6021b68f9a5ff19953b9b948663d4994b88",
+        "bytes": 7135
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-review/round1/rawmanifest.json",
+        "sha256": "19aa26145e512fadc89302cf1c300a38d02a22cf4fa82ba8710353d69f847196",
+        "bytes": 65117
+      }
+    },
+    {
+      "round": "round2",
+      "report": {
+        "path": "/workspace/work/overlay-review/round2/report.md",
+        "sha256": "4af1a3e1011107ecff2906220ab9995373e58d6d8588d1444e802a9b7b058b1b",
+        "bytes": 1382
+      },
+      "findings": {
+        "path": "/workspace/work/overlay-review/round2/findings.json",
+        "sha256": "c7af474c2057d6e911fbd5d13765f2e406f9e60c0c2ba5ba86b7b3720e47997a",
+        "bytes": 2285
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-review/round2/rawmanifest.json",
+        "sha256": "ee969d23f167e103001a6f7cde35b50fb17837d96b66ede42fcecd3a62eece65",
+        "bytes": 11151
+      }
+    },
+    {
+      "round": "round3",
+      "report": {
+        "path": "/workspace/work/overlay-review/round3/report.md",
+        "sha256": "952d366d29c2864acd743a5ecc0e8c279f7ae2c24e3281d5ddb2ba9e4216e92f",
+        "bytes": 1382
+      },
+      "findings": {
+        "path": "/workspace/work/overlay-review/round3/findings.json",
+        "sha256": "62cb3d77067355674261c5a4b3bcf7493ac2cbfe53ba6772be3fa061d2e3a545",
+        "bytes": 2569
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-review/round3/rawmanifest.json",
+        "sha256": "40ee3fb0cf8c816f43fd80226c32765acaffd8fcfdff4ceb90d2d5f7c68d25b8",
+        "bytes": 5808
+      }
+    }
+  ],
+  "independent_test_stages": [
+    {
+      "stage": "final-preparation",
+      "report": {
+        "path": "/workspace/work/overlay-tests/final-preparation/report.md",
+        "sha256": "9a6aac04e3b330af94da7d76048a509ed2930f497eedb66a341babc42b08624c",
+        "bytes": 2807
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-tests/final-preparation/raw/manifest.json",
+        "sha256": "3d1935f7b1663ea1f827c451d4183a8ed15122c507c989129933f7af0f9d7368",
+        "bytes": 10898
+      }
+    },
+    {
+      "stage": "admission",
+      "report": {
+        "path": "/workspace/work/overlay-tests/admission/report.md",
+        "sha256": "c9f75701f6bf1ef74296de3e0de1c6ab4319ad3ec495b171ee436a28fde83717",
+        "bytes": 3041
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-tests/admission/raw/manifest.json",
+        "sha256": "3c6c1a4476e76f1616208f72f57cbe2c49dc1cc310903c881f9623f60e4b5f2f",
+        "bytes": 11347
+      }
+    },
+    {
+      "stage": "type-correction",
+      "report": {
+        "path": "/workspace/work/overlay-tests/type-correction/report.md",
+        "sha256": "bb98ea4c1b2968c91918f020ec6f9bece4a0f663871e0ada076b257f1c15ed3d",
+        "bytes": 2045
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-tests/type-correction/raw/manifest.json",
+        "sha256": "662c09d3e115222dd5e694c9c5efb82b90c15391d92fcabc43978cf1a2f6d67c",
+        "bytes": 6970
+      }
+    },
+    {
+      "stage": "depth-correction",
+      "report": {
+        "path": "/workspace/work/overlay-tests/depth-correction/report.md",
+        "sha256": "555a6e83179095f7804bf3b77d6b28af0c57181e381bfcd75e8e25e8fa08b891",
+        "bytes": 2798
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-tests/depth-correction/raw/manifest.json",
+        "sha256": "50b3afd53c59eb83a501c49ad8dbe3fddf55903882dfea8475c516df457346f4",
+        "bytes": 13455
+      }
+    },
+    {
+      "stage": "export-turn-regressions",
+      "report": {
+        "path": "/workspace/work/overlay-tests/export-turn-regressions/report.md",
+        "sha256": "d259723ed41ee766d4e48331d457ae52bb53c8456edc7f31684a80f37f379c05",
+        "bytes": 1838
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-tests/export-turn-regressions/raw/manifest.json",
+        "sha256": "14a0ec854d3f5d06709ff06f9f1ae984e7c6a5fb2a673c3f5bae0fe4649a1626",
+        "bytes": 34778
+      }
+    },
+    {
+      "stage": "review-regressions",
+      "report": {
+        "path": "/workspace/work/overlay-tests/review-regressions/report.md",
+        "sha256": "f07c1d13ab290d74ab0f38eefc1b142b1f66136c40e0c7dcdd0ab9563e5e11d6",
+        "bytes": 2209
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-tests/review-regressions/raw/manifest.json",
+        "sha256": "542221d949008d6e53f459b158fb30935106fc4342fdfac0930d0c91b360f2ac",
+        "bytes": 189403
+      }
+    },
+    {
+      "stage": "review-regressions/round2",
+      "report": {
+        "path": "/workspace/work/overlay-tests/review-regressions/round2/report.md",
+        "sha256": "9f2f9cc54c3c09bcef59e542edaf437648cba5f1ed2d662dbff65c0ca65268f1",
+        "bytes": 1504
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-tests/review-regressions/round2/raw/manifest.json",
+        "sha256": "b5ea4c7afa56507fd43f573b48a5e3b41b052b31a72a8ee054ae79be9ba87de3",
+        "bytes": 334251
+      }
+    },
+    {
+      "stage": "native-caret",
+      "report": {
+        "path": "/workspace/work/overlay-tests/native-caret/report.md",
+        "sha256": "120dcfd111c64ecd7f1368db8576e5ec50071d1985b6e42e2e9902ac1b429568",
+        "bytes": 1956
+      },
+      "manifest": {
+        "path": "/workspace/work/overlay-tests/native-caret/raw/manifest.json",
+        "sha256": "77f84037acf15573d949d77764d7f9e511a7dfd2c8206647ac2f96bfae453620",
+        "bytes": 380697
+      }
+    }
+  ],
+  "review_hash_reconciliation": {
+    "initial": {
+      "references": 201,
+      "current_original_match": 196,
+      "historical_git_match": 5
+    },
+    "round1": {
+      "references": 416,
+      "current_original_match": 347,
+      "historical_git_match": 3,
+      "receipt_classified_external_intermediate": 65,
+      "superseded_author_manifest": 1
+    },
+    "round2": {
+      "references": 69,
+      "current_original_match": 66,
+      "historical_git_match": 2,
+      "superseded_author_manifest": 1
+    },
+    "round3": {
+      "references": 31,
+      "current_original_match": 31
+    }
+  },
+  "historical_limits": {
+    "superseded_author_manifest_path": "/workspace/work/overlay-implementation/raw/manifest.json",
+    "unavailable_old_index_hashes": [
+      "71a28b0c04d49421587e2c5f686d153582214fe5fb1f98b0b30cd4d361feb66b",
+      "7d8b1fd8697d3191dfab255138b55c85ae7e5ad64e3340e54b5e76a851dcecbc"
+    ],
+    "classification": "Historical mutable index snapshots unavailable; original independent review manifests still bind underlying raw directly. No reconstructed replacement and no claim that old index bytes are retained.",
+    "intermediate_receipt": {
+      "path": "/workspace/work/validation/overlay-review-external-intermediates-20261113.json",
+      "sha256": "74c80865704785aa87529e6d23d2411386e3ae05eb1d86f23c162e39cdd9a2d4",
+      "bytes": 93828
+    },
+    "receipt_entries": 124,
+    "at_cleanup_same_original": 121,
+    "already_overwritten_before_cleanup": 3,
+    "overwritten_names": [
+      "libcjtui.a",
+      "interaction_c.cjo",
+      "cjtui.cjo"
+    ],
+    "impact": "Historical source via git and original probes/raw retained; old archive/cjo build tree not self-contained. Does not invalidate final independent111 complete manifest, bundle, clean consumer or actual host runs."
+  },
+  "residuals": [
+    {
+      "id": "VT_PHYSICAL_HIDE",
+      "status": "insufficient_evidence",
+      "blocking_finite_C": false,
+      "reason": "I015 Unknown disallows mode25 control; zero commands and correct logical state observed."
+    },
+    {
+      "id": "B-M01",
+      "status": "deferred TASK024",
+      "scope": "getter axes/onMount Off unchanged"
+    },
+    {
+      "id": "H02",
+      "status": "future Keyboard117",
+      "scope": "cross-layer bracketed paste"
+    },
+    {
+      "id": "OUTSIDE_FINITE_C",
+      "status": "not_closed",
+      "tasks": [
+        "019",
+        "020",
+        "023",
+        "024",
+        "027",
+        "028",
+        "029",
+        "030",
+        "M2",
+        "Linux overall",
+        "other OS"
+      ],
+      "note": "VM VT is not physical hardware; shared official viewer unverified."
+    }
+  ],
+  "role": "No product build/run, test rerun, authors contacted, product/test/spec/main writes, archive copy or subagents; PREPARE preserved. verification-before-completion applied via fresh integrity and obligation review under AGENTS11.1."
+}

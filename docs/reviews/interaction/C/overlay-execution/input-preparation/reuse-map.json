@@ -1,0 +1,60 @@
+{
+  "fixed": "f8f0493a7f5aa3b74bd59bdc7e6d82af6696426d",
+  "AGENTS": "11.1 +13.2",
+  "groups": {
+    "native_decoder_and_capabilities": {
+      "decision": "REUSE_UNCHANGED_UPSTREAM_ONLY",
+      "evidence": "/workspace/work/viewport-execution/raw/identity/reuse.json",
+      "evidence_sha256": "dec5cd0c40f74637b845244b9e5cc424361139a0327fcbc8aecb619c4c9e31b7",
+      "content_bindings": "native-reuse-bindings.json",
+      "files": 19,
+      "all_equal": true,
+      "scope": "Finite upstream decoder/native writer/probe clock and capability/glyph/Unicode facts only; all19 bindings equal. Does not establish C-domain routing, overlay compositor/caret integration or new C native recovery."
+    },
+    "SDK_dependencies_and_stdx": {
+      "decision": "REUSE_IDENTICAL_INPUTS",
+      "deps375_equal": true,
+      "stdx371_equal": true,
+      "sdk_files": 800,
+      "evidence": [
+        "dependencies375-prehash.json",
+        "stdx371-prehash.json",
+        "sdk-prehash.json",
+        "ucd-prehash.json"
+      ],
+      "scope": "Input equivalence only; no old output copied into own target."
+    },
+    "B_layout_focus_and_viewport": {
+      "decision": "DO_NOT_REUSE_OLD_INTEGRATION_AS_CURRENT_C_PASS",
+      "old_evidence": "/workspace/work/viewport-execution/raw/b-normal/command.json",
+      "reason": "C changed application/component/focus/layout/runtime/node_ref/viewport_geometry, though B fixture sources unchanged. Preserve historical accepted B evidence; do not rerun old B real-host/resource/clean bundles merely for handoff. Current C formal/shared-consumer covers new integration; admission required affected existing checks remain prospective."
+    },
+    "theme": {
+      "decision": "REUSE_UNCHANGED_UPSTREAM_BOUNDARY; CURRENT_RESOLVER_INTEGRATION_REQUIRES_CURRENT_EVIDENCE",
+      "old_evidence": [
+        "/workspace/work/viewport-execution/raw/affected-themes/command.json",
+        "/workspace/work/viewport-execution/raw/theme-canvas/command.json"
+      ],
+      "reason": "Theme inputs/schema/load modules are baseline; C changes style_resolver and theme_candidate_validation. Old whole integration exit0 cannot be relabeled current C. Frozen C theme/surface cases and minimal required theme integration after GO cover changed boundary; do not cold-run historical entire theme/native host suites."
+    },
+    "author_f8_development_raw": {
+      "decision": "DEVELOPMENT_EVIDENCE_ONLY_NOT_INDEPENDENT111",
+      "permitted_raw": [
+        "/workspace/work/overlay-implementation/raw/fix-r1-dev3",
+        "/workspace/work/overlay-implementation/raw/fix-r1-regressions"
+      ],
+      "scope": "No author target/package/report consumed. Author self-run does not replace independent C formal/mandatory bundle/clean/native execution."
+    },
+    "new_C": {
+      "decision": "MUST_RUN_AFTER_FORMAL_GO",
+      "planned": [
+        "bash tests/interaction_c/run.sh",
+        "normal cjpm bundle (mandatory lint, no skip)",
+        "clean unpacked public C consumer and examples/overlay, dependency manifest path only",
+        "new frozen PTY five modes",
+        "new XTerm398/VTE0.80.1/QEMU kernelVT five modes"
+      ],
+      "scope": "No result currently claimed; frozen alias equality and eight-row table check are input preparation only."
+    }
+  }
+}

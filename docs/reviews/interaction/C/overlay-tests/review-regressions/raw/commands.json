@@ -1,0 +1,206 @@
+[
+  {
+    "name": "sdk",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\ncjc --version\ncjpm --version\ncommand -v cjc\ncommand -v cjpm"
+    ],
+    "utc_start": "2026-11-13T01:50:42.724445+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T01:50:43.158233+00:00"
+  },
+  {
+    "name": "build",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T01:51:23.923161+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:51:24.115212+00:00"
+  },
+  {
+    "name": "build-cached",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T01:52:09.318011+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:53:30.121383+00:00"
+  },
+  {
+    "name": "build-formal",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T01:53:17.314005+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T01:54:11.051434+00:00"
+  },
+  {
+    "name": "C-I01",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I01\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:22.505343+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:22.541733+00:00"
+  },
+  {
+    "name": "C-I02",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I02\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:22.568971+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:22.613203+00:00"
+  },
+  {
+    "name": "C-I03",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I03\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:22.639597+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:22.675115+00:00"
+  },
+  {
+    "name": "C-I04",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I04\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:22.700534+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:22.746349+00:00"
+  },
+  {
+    "name": "C-I05",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I05\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:22.775873+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:22.810810+00:00"
+  },
+  {
+    "name": "C-I06",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I06\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:22.838369+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:22.899385+00:00"
+  },
+  {
+    "name": "C-I07",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I07\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:22.924872+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:22.956609+00:00"
+  },
+  {
+    "name": "C-I08",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I08\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:22.982768+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:23.015444+00:00"
+  },
+  {
+    "name": "C-I09",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I09\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:23.039824+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:23.104986+00:00"
+  },
+  {
+    "name": "C-I10",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I10\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:54:23.132088+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:54:23.163151+00:00"
+  },
+  {
+    "name": "build-I10-corrected",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T01:55:06.993325+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T01:55:54.422001+00:00"
+  },
+  {
+    "name": "C-I10-corrected",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW=C-I10\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T01:56:31.076439+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T01:56:31.143060+00:00"
+  },
+  {
+    "name": "audit",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/raw/env.sh\nexec python3 /workspace/work/overlay-tests/review-regressions/raw/audit.py"
+    ],
+    "utc_start": "2026-11-13T01:57:38.432282+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T01:57:39.674958+00:00"
+  }
+]

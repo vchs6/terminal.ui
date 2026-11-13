@@ -1,0 +1,50 @@
+{
+  "utc": "2026-11-13T03:05:35.425900+00:00",
+  "omissions": [
+    {
+      "path": "environment/Xorg.199.log",
+      "reason": "Preparation-only live server/shell log; exact final snapshot retained in environment/final-live-snapshots; active server may append after task."
+    },
+    {
+      "path": "environment/xorg.stdout",
+      "reason": "Preparation-only live server/shell log; exact final snapshot retained in environment/final-live-snapshots; active server may append after task."
+    },
+    {
+      "path": "environment/xorg.stderr",
+      "reason": "Preparation-only live server/shell log; exact final snapshot retained in environment/final-live-snapshots; active server may append after task."
+    },
+    {
+      "path": "environment/xterm-shell-isolated.stdout",
+      "reason": "Preparation-only live server/shell log; exact final snapshot retained in environment/final-live-snapshots; active server may append after task."
+    },
+    {
+      "path": "environment/xterm-shell-isolated.stderr",
+      "reason": "Preparation-only live server/shell log; exact final snapshot retained in environment/final-live-snapshots; active server may append after task."
+    },
+    {
+      "path": "environment/vte-shell-isolated.stdout",
+      "reason": "Preparation-only live server/shell log; exact final snapshot retained in environment/final-live-snapshots; active server may append after task."
+    },
+    {
+      "path": "environment/vte-shell-isolated.stderr",
+      "reason": "Preparation-only live server/shell log; exact final snapshot retained in environment/final-live-snapshots; active server may append after task."
+    },
+    {
+      "prefix": "product/.git/",
+      "reason": "Own shared-object checkout metadata; fixed source SHA, tracked bytes, sparse patterns/commands and copied product sources retained. Not a runtime artifact."
+    },
+    {
+      "any_component": "__pycache__",
+      "reason": "Regenerable Python bytecode; all collector source preserved."
+    },
+    {
+      "prefix": "environment/host-home/",
+      "reason": "Live empty-shell preparation HOME/cache, not candidate launch config; actual candidate per-run HOME/config retained in raw."
+    },
+    {
+      "path": "environment/host-home/cache/at-spi/bus_199",
+      "reason": "Ended VM Unix socket has no portable file bytes; QMP/serial/argv protocol evidence retained."
+    }
+  ],
+  "note": "No original raw/PNG/source/actual ELF/CJP deleted; all own compiled intermediates retained. External author intermediate cleanup is root receipt referenced in external-hashes."
+}

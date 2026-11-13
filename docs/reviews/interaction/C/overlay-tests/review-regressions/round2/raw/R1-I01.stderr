@@ -1,0 +1,8 @@
+An exception has occurred:
+Exception: FAIL R1-I01 invalid saved focus restores nearest surviving owner ancestor first eligible FIRST before physical NEXT
+	 at interaction_c::check(Bool, std.core::String)(/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c/src/assertions.cj:7)
+	 at interaction_c::focused(cjtui::Application, cjtui::NodeRef, std.core::String)(/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c/src/assertions.cj:21)
+	 at interaction_c::round2OwnerRemovalFocus(Bool)(/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c/src/round2_review_regressions.cj:31)
+	 at interaction_c::round2ModalOwnerRestoration()(/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c/src/round2_review_regressions.cj:39)
+	 at interaction_c::round2ReviewRegression(std.core::String)(/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c/src/round2_review_regressions.cj:65)
+	 at interaction_c::main()(/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c/src/main.cj:7)

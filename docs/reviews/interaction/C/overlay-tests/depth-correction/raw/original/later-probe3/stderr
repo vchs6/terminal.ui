@@ -1,0 +1,422 @@
+[33mwarning[0m: unused import 'std.sync.*'
+ [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/pending_failures.cj:5:1:
+  [36m| [0m
+[36m5[0m [36m| [0mimport std.sync.*[0m
+  [36m| [0m[33m^^^^^^^^^^^^^^^^^ unused import[0m
+  [36m| [0m
+  [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'hiddenOrUnmountedSaved'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/focus_restoration.cj:4:1:
+   [36m| [0m
+[36m4[0m  [36m| [0m  func hiddenOrUnmountedSaved(remove:Bool):Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m5[0m  [36m| [0m[33m|[0m     let saved=Box<?Component>(Option<Component>.None);let previous=Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m15[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'ordinaryOwnedClosure'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/lifecycle_edges.cj:4:1:
+   [36m| [0m
+[36m4[0m  [36m| [0m  func ordinaryOwnedClosure():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m5[0m  [36m| [0m[33m|[0m     let branch=Box<?Component>(Option<Component>.None);let owner=Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m18[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'ownerThemeSurface'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/theme_and_host.cj:4:1:
+   [36m| [0m
+[36m4[0m  [36m| [0m  func ownerThemeSurface():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m5[0m  [36m| [0m[33m|[0m     let owner=Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m21[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'escapeAndLogicalRouting'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/domain_edges.cj:4:1:
+   [36m| [0m
+[36m4[0m  [36m| [0m  func escapeAndLogicalRouting():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m5[0m  [36m| [0m[33m|[0m     let mode=Observable<Int64>(0);let root=Column{Text("base").focusable(true)}.viewport(ScrollAxes.Off)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m28[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'threadAndAnchorValidation'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/context_and_limits.cj:4:1:
+   [36m| [0m
+[36m4[0m  [36m| [0m  func threadAndAnchorValidation():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m5[0m  [36m| [0m[33m|[0m     let owner=Box<?Component>(Option<Component>.None);let host=Box<?Component>(Option<Component>.None);let anchor=Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m29[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'mixedOrdinaryIdentity'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/ordinary_identity.cj:5:1:
+   [36m| [0m
+[36m5[0m  [36m| [0m  func mixedOrdinaryIdentity():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m6[0m  [36m| [0m[33m|[0m     let show=Observable<Bool>(true);let keys=Observable<Array<String>>(["A","B"]);let entries=ArrayList<Component>()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m23[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'pendingCancellation'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/pending_and_identity.cj:5:1:
+   [36m| [0m
+[36m5[0m  [36m| [0m  func pendingCancellation(): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m6[0m  [36m| [0m[33m|[0m     let root = Column {Text("base")}.viewport(ScrollAxes.Off)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m39[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'modalDomains'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/layer_domains.cj:5:1:
+   [36m| [0m
+[36m5[0m  [36m| [0m  func modalDomains(): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m6[0m  [36m| [0m[33m|[0m     let calls = Box<String>("")[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m55[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'dependentClosure'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/close_lifecycle.cj:5:1:
+   [36m| [0m
+[36m5[0m  [36m| [0m  func dependentClosure(): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m6[0m  [36m| [0m[33m|[0m     let owner = Box<?Component>(Option<Component>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m77[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'entryValidation'
+   [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/entry_errors.cj:5:1:
+    [36m| [0m
+[36m5[0m   [36m| [0m  func entryValidation(): Unit {[0m
+    [36m| [0m [33m_[0m[33m^[0m
+[36m6[0m   [36m| [0m[33m|[0m     let ordinary = Box<?Component>(Option<Component>.None)[0m
+    [36m| [0m[33m|[0m ...[0m
+[36m108[0m [36m| [0m[33m|[0m }[0m
+    [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'nativeOverlayFixture'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/native_fixture.cj:6:1:
+   [36m| [0m
+[36m6[0m  [36m| [0m  func nativeOverlayFixture():Int64 {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m7[0m  [36m| [0m[33m|[0m     let directory=getVariable("CJTUI_OVERLAY_OUTPUT").getOrThrow()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m42[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'duplicateReservation'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/pending_failures.cj:7:1:
+   [36m| [0m
+[36m7[0m  [36m| [0m  func duplicateReservation():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m8[0m  [36m| [0m[33m|[0m     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m14[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'surfacesAndLatestBase'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/surface_grids.cj:7:1:
+   [36m| [0m
+[36m7[0m  [36m| [0m  func surfacesAndLatestBase(): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m8[0m  [36m| [0m[33m|[0m     let value = Observable<String>("ijklmnop")[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m51[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'publicShapes'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/public_shapes.cj:8:1:
+   [36m| [0m
+[36m8[0m  [36m| [0m  func publicShapes(): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m9[0m  [36m| [0m[33m|[0m     let defaults = OverlayOptions()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m26[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'pendingFailure'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/pending_failures.cj:16:1:
+   [36m| [0m
+[36m16[0m [36m| [0m  func pendingFailure(mount:Bool):Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m17[0m [36m| [0m[33m|[0m     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m28[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'physicalRestorationFallback'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/focus_restoration.cj:17:1:
+   [36m| [0m
+[36m17[0m [36m| [0m  func physicalRestorationFallback(branch:Int64):Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m18[0m [36m| [0m[33m|[0m     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m32[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'offscreenOwnerAndReason'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/lifecycle_edges.cj:20:1:
+   [36m| [0m
+[36m20[0m [36m| [0m  func offscreenOwnerAndReason():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m21[0m [36m| [0m[33m|[0m     let owner=Box<?Component>(Option<Component>.None);let root=ScrollView({=>owner.value=Some(Text("O").height(1));Text("tail").height(10)})[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m37[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'ownerMoveAndPaintLifetime'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/ordinary_identity.cj:25:1:
+   [36m| [0m
+[36m25[0m [36m| [0m  func ownerMoveAndPaintLifetime():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m26[0m [36m| [0m[33m|[0m     let owner=Box<?Component>(Option<Component>.None);let root=Column{owner.value=Some(Text("O").height(1));Text("S").height(1)}.viewport(ScrollAxes.Off)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m41[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'modalTraversalAndDomainOpen'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/domain_edges.cj:30:1:
+   [36m| [0m
+[36m30[0m [36m| [0m  func modalTraversalAndDomainOpen():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m31[0m [36m| [0m[33m|[0m     let base=Box<?Component>(Option<Component>.None);let root=Column{base.value=Some(Text("base").focusable(true))}.viewport(ScrollAxes.Off)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m45[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'evaluationAndLifecycleGuards'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/context_and_limits.cj:31:1:
+   [36m| [0m
+[36m31[0m [36m| [0m  func evaluationAndLifecycleGuards(phase:Int64):Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m32[0m [36m| [0m[33m|[0m     let owner=Box<?Component>(Option<Component>.None);let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None);let armed=Observable<Bool>(false)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m46[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'releasedOwnerObservation'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/pending_failures.cj:32:1:
+   [36m| [0m
+[36m32[0m [36m| [0m  func releasedOwnerObservation():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m33[0m [36m| [0m[33m|[0m     let weak=Box<?WeakRef<Application>>(Option<WeakRef<Application>>.None);let retained=Box<?OverlayHandle>(Option<OverlayHandle>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m39[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'stackedRestoration'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/focus_restoration.cj:34:1:
+   [36m| [0m
+[36m34[0m [36m| [0m  func stackedRestoration():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m35[0m [36m| [0m[33m|[0m     let root=Column{Text("base").focusable(true)}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m47[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'primaryAndCleanup'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/lifecycle_edges.cj:39:1:
+   [36m| [0m
+[36m39[0m [36m| [0m  func primaryAndCleanup(draw:Bool):Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m40[0m [36m| [0m[33m|[0m     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m51[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'sharedTypeAndIdentity'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/pending_and_identity.cj:41:1:
+   [36m| [0m
+[36m41[0m [36m| [0m  func sharedTypeAndIdentity(): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m42[0m [36m| [0m[33m|[0m     let model = Observable<String>("A")[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m80[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'lifecycleLayerCommands'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/context_and_limits.cj:47:1:
+   [36m| [0m
+[36m47[0m [36m| [0m  func lifecycleLayerCommands():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m48[0m [36m| [0m[33m|[0m     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless();let h=Box<?OverlayHandle>(Option<OverlayHandle>.None)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m57[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'sourceBasedCaretOcclusion'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/surface_grids.cj:53:1:
+   [36m| [0m
+[36m53[0m [36m| [0m  func sourceBasedCaretOcclusion(): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m54[0m [36m| [0m[33m|[0m     let root = Canvas([0m
+   [36m| [0m[33m|[0m ...[0m
+[36m89[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'layerCapacity'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/context_and_limits.cj:59:1:
+   [36m| [0m
+[36m59[0m [36m| [0m  func layerCapacity(which:Int64):Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m60[0m [36m| [0m[33m|[0m     let root=Column{}.viewport(ScrollAxes.Off)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m65[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'escapeBarrierAndPrevent'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/layer_domains.cj:61:1:
+   [36m| [0m
+[36m61[0m [36m| [0m  func escapeBarrierAndPrevent(): Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m62[0m [36m| [0m[33m|[0m     let root = Column {Text("base").focusable(true)}.viewport(ScrollAxes.Off)[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m85[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'layerDependencyBudget'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/context_and_limits.cj:66:1:
+   [36m| [0m
+[36m66[0m [36m| [0m  func layerDependencyBudget(exceed:Bool):Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m67[0m [36m| [0m[33m|[0m     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root,limits:RuntimeLimits(dependenciesPerBinding:1));app.startHeadless()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m74[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'interactivePassiveRejection'
+  [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/context_and_limits.cj:75:1:
+   [36m| [0m
+[36m75[0m [36m| [0m  func interactivePassiveRejection():Unit {[0m
+   [36m| [0m [33m_[0m[33m^[0m
+[36m76[0m [36m| [0m[33m|[0m     let root=Column{}.viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()[0m
+   [36m| [0m[33m|[0m ...[0m
+[36m79[0m [36m| [0m[33m|[0m }[0m
+   [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+   [36m| [0m
+   [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'savedFocusFallback'
+   [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/close_lifecycle.cj:79:1:
+    [36m| [0m
+[36m79[0m  [36m| [0m  func savedFocusFallback(): Unit {[0m
+    [36m| [0m [33m_[0m[33m^[0m
+[36m80[0m  [36m| [0m[33m|[0m     let first = Box<?Component>(Option<Component>.None)[0m
+    [36m| [0m[33m|[0m ...[0m
+[36m105[0m [36m| [0m[33m|[0m }[0m
+    [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'emptyLayerReservation'
+   [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/layer_domains.cj:87:1:
+    [36m| [0m
+[36m87[0m  [36m| [0m  func emptyLayerReservation(): Unit {[0m
+    [36m| [0m [33m_[0m[33m^[0m
+[36m88[0m  [36m| [0m[33m|[0m     let base = Box<?Component>(Option<Component>.None)[0m
+    [36m| [0m[33m|[0m ...[0m
+[36m126[0m [36m| [0m[33m|[0m }[0m
+    [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'cleanupAggregation'
+   [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/close_lifecycle.cj:107:1:
+    [36m| [0m
+[36m107[0m [36m| [0m  func cleanupAggregation(): Unit {[0m
+    [36m| [0m [33m_[0m[33m^[0m
+[36m108[0m [36m| [0m[33m|[0m     let root = Column {Text("base")}.viewport(ScrollAxes.Off)[0m
+    [36m| [0m[33m|[0m ...[0m
+[36m155[0m [36m| [0m[33m|[0m }[0m
+    [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+[33mwarning[0m: unused function:'foreignAndOldHandles'
+   [36m==>[0m /workspace/work/overlay-implementation/later-probe/src/entry_errors.cj:110:1:
+    [36m| [0m
+[36m110[0m [36m| [0m  func foreignAndOldHandles(): Unit {[0m
+    [36m| [0m [33m_[0m[33m^[0m
+[36m111[0m [36m| [0m[33m|[0m     let root = Column {Text("one")}.viewport(ScrollAxes.Off)[0m
+    [36m| [0m[33m|[0m ...[0m
+[36m154[0m [36m| [0m[33m|[0m }[0m
+    [36m| [0m[33m|[0m[33m_[0m[33m^ unused function[0m
+    [36m| [0m
+    [36m#[0m [0mnote[0m: this warning can be suppressed by setting the compiler option `-Woff unused`
+
+35 warnings generated, 35 warnings printed.
+An exception has occurred:
+NoneValueException
+	 at interaction_c::anchorPlacement(cjtui::OverlayPlacement, Int64, Int64, std.core::String)(/workspace/work/overlay-implementation/later-probe/src/anchor_geometry.cj:15)
+	 at interaction_c::directionalAnchors()(/workspace/work/overlay-implementation/later-probe/src/anchor_geometry.cj:23)
+	 at interaction_c::main()(/workspace/work/overlay-implementation/later-probe/src/main.cj:3)

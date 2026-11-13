@@ -1,0 +1,35 @@
+{
+  "argv": [
+    "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+    "-geometry",
+    "40x10+20+20",
+    "-T",
+    "TASK111 xterm escape",
+    "-fa",
+    "DejaVu Sans Mono",
+    "-fs",
+    "16",
+    "-xrm",
+    "XTerm*printerCommand: /bin/cat >> /workspace/work/overlay-execution/raw/final-gui-c/xterm-escape/native-grid.ansi",
+    "-xrm",
+    "XTerm*printAttributes: 2",
+    "-xrm",
+    "XTerm*VT100.translations: #override <Key>F6: print()",
+    "-e",
+    "python3",
+    "/workspace/work/overlay-execution/tools/host_supervisor.py",
+    "/workspace/work/overlay-execution/product/tests/interaction_c/target/release/bin/main",
+    "/workspace/work/overlay-execution/raw/final-gui-c/xterm-escape",
+    "escape"
+  ],
+  "cwd": "/workspace/work/overlay-execution",
+  "utc": "2026-11-13T02:42:48.884010+00:00",
+  "binary": "/workspace/work/overlay-execution/product/tests/interaction_c/target/release/bin/main",
+  "binary_sha256": "087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68",
+  "env": {
+    "DISPLAY": ":199",
+    "HOME": "/workspace/work/overlay-execution/raw/final-gui-c/xterm-escape/home",
+    "XDG_CONFIG_HOME": "/workspace/work/overlay-execution/raw/final-gui-c/xterm-escape/home/config",
+    "XDG_CACHE_HOME": "/workspace/work/overlay-execution/raw/final-gui-c/xterm-escape/home/cache"
+  }
+}

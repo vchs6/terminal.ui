@@ -287,10 +287,10 @@
 ## 3. Unit C
 
 - [x] 3.1 TASK-108：冻结独立公共测试与RED；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
-- [ ] 3.2 TASK-109：实现有限公共单元并自验；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
-- [ ] 3.3 TASK-110：固定源码独立规格与质量审查；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
-- [ ] 3.4 TASK-111：独立执行与正常制品消费；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
-- [ ] 3.5 TASK-112：有限合同与父AC映射独立验收；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
+- [x] 3.2 TASK-109：实现有限公共单元并自验；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
+- [x] 3.3 TASK-110：固定源码独立规格与质量审查；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
+- [x] 3.4 TASK-111：独立执行与正常制品消费；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
+- [x] 3.5 TASK-112：有限合同与父AC映射独立验收；以本卡输入hash、C-01–C-05对应原始证据与明确结论验收。
 
 ### TASK-108: 冻结独立公共测试与RED
 
@@ -325,10 +325,10 @@
 
 **L4:**
 
-- [ ] 3.2.1 TASK-109.S1：在同Runtime节点上增加owner关系种类与有界层记录，open/close预留与提交接原代际/cleanup；host只管几何clip，普通children序列及动态组语义保留。
-- [ ] 3.2.2 TASK-109.S2：接当前modal域、nonmodal目标层/Tab序列、Passive规则、Escape与依赖闭包关闭的一次焦点恢复；禁止域外dispatch，错误统一FocusOutsideDomain。
-- [ ] 3.2.3 TASK-109.S3：接surface额外fill意图/同resolver与Frame透明合成、anchor定位/旧新阴影失效/caret遮挡；公开同type复用例子和文档，验证固定测试与必要回归后提交product-only。
-- [ ] 3.2.4 TASK-109.S4：运行bash tests/interaction_c/run.sh及admission清单列出的受影响既有检查，记录实际exit；检查技术diff/实体文件/旧路径退役，提交产品hash给主代理。作者自验不是独立验收。
+- [x] 3.2.1 TASK-109.S1：在同Runtime节点上增加owner关系种类与有界层记录，open/close预留与提交接原代际/cleanup；host只管几何clip，普通children序列及动态组语义保留。
+- [x] 3.2.2 TASK-109.S2：接当前modal域、nonmodal目标层/Tab序列、Passive规则、Escape与依赖闭包关闭的一次焦点恢复；禁止域外dispatch，错误统一FocusOutsideDomain。
+- [x] 3.2.3 TASK-109.S3：接surface额外fill意图/同resolver与Frame透明合成、anchor定位/旧新阴影失效/caret遮挡；公开同type复用例子和文档，验证固定测试与必要回归后提交product-only。
+- [x] 3.2.4 TASK-109.S4：运行bash tests/interaction_c/run.sh及admission清单列出的受影响既有检查，记录实际exit；检查技术diff/实体文件/旧路径退役，提交产品hash给主代理。作者自验不是独立验收。
 
 ### TASK-110: 固定源码独立规格与质量审查
 
@@ -344,9 +344,9 @@
 
 **L4:**
 
-- [ ] 3.3.1 TASK-110.S1：锁定base/product/test/contract hash，逐公开接口核对design本单位与C-01–C-05、上游交叉及错误优先级，交可达反例而非泛泛建议。
-- [ ] 3.3.2 TASK-110.S2：检查文件职责/单Runtime/单resolver/Frame/宽簇、生命周期与资源上限；核对退役安排“不建立第二Component树/Runtime/renderer或截图恢复；overlay边不进入普通children，不给theme新增第二fill解析；A框架Escape无层时无动作，在本期接真实层取消。”。
-- [ ] 3.3.3 TASK-110.S3：输出spec/quality双verdict与发现严重度；发现回主代理，不私改代码/断言。收到新固定修复后仅复核受影响diff和相关失败证据，保留前次记录。
+- [x] 3.3.1 TASK-110.S1：锁定base/product/test/contract hash，逐公开接口核对design本单位与C-01–C-05、上游交叉及错误优先级，交可达反例而非泛泛建议。
+- [x] 3.3.2 TASK-110.S2：检查文件职责/单Runtime/单resolver/Frame/宽簇、生命周期与资源上限；核对退役安排“不建立第二Component树/Runtime/renderer或截图恢复；overlay边不进入普通children，不给theme新增第二fill解析；A框架Escape无层时无动作，在本期接真实层取消。”。
+- [x] 3.3.3 TASK-110.S3：输出spec/quality双verdict与发现严重度；发现回主代理，不私改代码/断言。收到新固定修复后仅复核受影响diff和相关失败证据，保留前次记录。
 
 ### TASK-111: 独立执行与正常制品消费
 
@@ -362,10 +362,10 @@
 
 **L4:**
 
-- [ ] 3.4.1 TASK-111.S1：在自己的SDK/registry/cache配置下核hash，执行bash tests/interaction_c/run.sh并保存真实exit；随后仅执行admission清单相关既有回归，复用未变内容的有效证据。
-- [ ] 3.4.2 TASK-111.S2：正常cjpm bundle（不skip）后干净解包，正式公共消费者与例子仅改manifest路径构建运行；SDK/stdx前置按088交付记录，不借作者私有cjo。
-- [ ] 3.4.3 TASK-111.S3：执行真实PTY多层域/取消/interrupt/caret遮挡与退出恢复，另保存headless手工golden对应输出。
-- [ ] 3.4.4 TASK-111.S4：保存逐命令raw、source/test/bundle/consumer SHA256与AC结果，发现失败回主代理而非直接修产品/测试；不以同PTY换TERM冒充多个真实宿主。
+- [x] 3.4.1 TASK-111.S1：在自己的SDK/registry/cache配置下核hash，执行bash tests/interaction_c/run.sh并保存真实exit；随后仅执行admission清单相关既有回归，复用未变内容的有效证据。
+- [x] 3.4.2 TASK-111.S2：正常cjpm bundle（不skip）后干净解包，正式公共消费者与例子仅改manifest路径构建运行；SDK/stdx前置按088交付记录，不借作者私有cjo。
+- [x] 3.4.3 TASK-111.S3：执行真实PTY多层域/取消/interrupt/caret遮挡与退出恢复，另保存headless手工golden对应输出。
+- [x] 3.4.4 TASK-111.S4：保存逐命令raw、source/test/bundle/consumer SHA256与AC结果，发现失败回主代理而非直接修产品/测试；不以同PTY换TERM冒充多个真实宿主。
 
 ### TASK-112: 有限合同与父AC映射独立验收
 
@@ -381,9 +381,9 @@
 
 **L4:**
 
-- [ ] 3.5.1 TASK-112.S1：从原件核对C-01–C-05到测试、执行raw与技术diff的映射及hash，确认公开消费者和真实设备声明各有相应证据，不重复已有效suite。
-- [ ] 3.5.2 TASK-112.S2：核对父TASK-018完整AC与本单位边界：018层所有权/模态/焦点恢复可按实际全范围证据判定；019菜单与标准Modal/027全主题展示另阶段，020完整恢复合同仍需其全部证据。
-- [ ] 3.5.3 TASK-112.S3：给有限结论与缺口列表，失败保持verifying/blocked并注明恢复条件；通过由主代理投影长期AC/任务并交下一单元，不凭任务勾选归档全部Linux。
+- [x] 3.5.1 TASK-112.S1：从原件核对C-01–C-05到测试、执行raw与技术diff的映射及hash，确认公开消费者和真实设备声明各有相应证据，不重复已有效suite。
+- [x] 3.5.2 TASK-112.S2：核对父TASK-018完整AC与本单位边界：018层所有权/模态/焦点恢复可按实际全范围证据判定；019菜单与标准Modal/027全主题展示另阶段，020完整恢复合同仍需其全部证据。
+- [x] 3.5.3 TASK-112.S3：给有限结论与缺口列表，失败保持verifying/blocked并注明恢复条件；通过由主代理投影长期AC/任务并交下一单元，不凭任务勾选归档全部Linux。
 
 ## DQ and source checks
 

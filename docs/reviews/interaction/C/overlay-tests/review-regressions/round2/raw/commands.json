@@ -1,0 +1,62 @@
+[
+  {
+    "name": "sdk",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/round2/raw/env.sh\ncjc --version\ncjpm --version"
+    ],
+    "utc_start": "2026-11-13T02:19:13.407124+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T02:19:13.645944+00:00"
+  },
+  {
+    "name": "build",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/round2/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T02:19:14.275189+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T02:20:28.708232+00:00"
+  },
+  {
+    "name": "R1-I01",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/round2/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW_R2=R1-I01\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T02:20:42.679479+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T02:20:42.760038+00:00"
+  },
+  {
+    "name": "R1-I02",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/round2/raw/env.sh\nexport CJTUI_OVERLAY_REVIEW_R2=R1-I02\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T02:20:42.823022+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T02:20:42.881119+00:00"
+  },
+  {
+    "name": "audit",
+    "cwd": "/workspace/work/overlay-tests/review-regressions/round2/replay/tests/interaction_c",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/overlay-tests/review-regressions/round2/raw/env.sh\nexec python3 /workspace/work/overlay-tests/review-regressions/round2/raw/audit.py"
+    ],
+    "utc_start": "2026-11-13T02:20:42.937073+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T02:20:43.973802+00:00"
+  }
+]

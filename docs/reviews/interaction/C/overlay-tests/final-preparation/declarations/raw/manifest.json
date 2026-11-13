@@ -1,0 +1,52 @@
+{
+  "scope": "NOT_EXECUTED LANGUAGE_ONLY static declarations and cross-package compile consumer",
+  "fixed_source": "62039552a26da295dcd710d7cfc40cb9e43ca5fd",
+  "prep_test": "b134171cfc9c242844b37eb05853811837179f5c",
+  "prep_manifest_sha256": "3d1935f7b1663ea1f827c451d4183a8ed15122c507c989129933f7af0f9d7368",
+  "inputs_unchanged_after_build": true,
+  "final_input_hashes": {
+    "declarations/run.sh": "eab0f21a444abe4ae3c4afdfb40ed0c6720f4970821e5149dea0eda2c1c4f50c",
+    "declarations/README.md": "7d22e9a5b26b1a7738a84438e9064115956a54b917784e10b57ef7c27b7cd79d",
+    "declarations/library/cjpm.toml": "ca4d045e81b6029250cfa3fad8001bed8bb703de596a62574a39ec763b4d8589",
+    "declarations/library/cangjie-repo.toml": "2f7b4c230aa5ff3e464c39733b273f6177b72bbb120428a382c06c240ba78b4d",
+    "declarations/consumer/cjpm.toml": "5579951eafdfda47557ecb65e4cfd77f8fa841a01d08e37bd98148451c2a2d48",
+    "declarations/consumer/cangjie-repo.toml": "2f7b4c230aa5ff3e464c39733b273f6177b72bbb120428a382c06c240ba78b4d",
+    "declarations/library/src/node_ref_overlay_signatures.cj": "01ae47bb787a13499b0f65d79821f0541fd185e18bc9857730381ba27990980e",
+    "declarations/library/src/surface_mode.cj": "7c0197603abcb58e3a5063c270112dbe9f6ef5a76e6fc079bc64a2efd37aa2c0",
+    "declarations/library/src/overlay_mode.cj": "ca422d321a599931da4ac946fc09cea13392223226313b44ad47e7485c24a775",
+    "declarations/library/src/overlay_handle.cj": "e12956a12be617888f55278a857ea66d362bf3861d395c64cd053cd75f8fb9e0",
+    "declarations/library/src/overlay_options.cj": "e76a16245f72a3619033c3846ede6215c03a3197a5e671ea4d34b1c822735b91",
+    "declarations/library/src/component_overlay_signatures.cj": "71aa876e068a2a7ff80797403a9a3d3073dfcd2a3e77ff9325f473a22f497596",
+    "declarations/library/src/overlay_close_reason.cj": "6d92fd22f6a6039306cc703d87fbe386460ad4011fac14c4650f9b019b9e6a83",
+    "declarations/library/src/overlay_placement.cj": "3704df9a990b129819b6ccc3195cea3a07dfbd613dfa7a5327953aae3a06456f",
+    "declarations/consumer/src/signatures.cj": "640ffe168d0a5ca505606a391019e1e1bb07f6d1bbc4e2e5ab9d1f57f59b8520"
+  },
+  "initial_abstract_default_build": 1,
+  "final_compile_only_build": 0,
+  "binary_execution_count": 0,
+  "outputs_sha256": {
+    "/workspace/work/overlay-tests/final-preparation/declarations/consumer/target/release/language_only/language_only.cjo": "1d6e89e946cb63484995ea99f11c5e7ab39d4a4df5cc596ac7a7cc2b4ba368f2",
+    "/workspace/work/overlay-tests/final-preparation/declarations/consumer/target/release/language_only/liblanguage_only.a": "26e125500d16270b4b57a5a0c38f58b2502ed2cbdc8148e9b8d7bcd48feb4000",
+    "/workspace/work/overlay-tests/final-preparation/declarations/consumer/target/release/language_only_consumer/liblanguage_only_consumer.a": "c21e2a6187ebe8cfa52f0225026638785fe9d666c60e355da2be45a029ac4ed0",
+    "/workspace/work/overlay-tests/final-preparation/declarations/consumer/target/release/language_only_consumer/language_only_consumer.cjo": "5ce78b4db7273f280d34c7a1e363ff8bc8546df8227119fc1c9e61f70fc36e78"
+  },
+  "lock_sha256": "622a15e53c3b8de94033182c587f8a402447cf112787a70755c5b0855bd18d7d",
+  "raw_sha256": {
+    "prehash.json": "37ca46e480ce34c7a3a54a02b1b4c859d424804bf10ac79c154cac5acb8f545f",
+    "final-prehash.json": "ad2d80b3db983af3cca114d171c0a55c69a8c5fb3351192262830cfebdde5b30",
+    "final-build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "final-build.stderr": "88ec31411f4f2cfde18327a347e4ac6ddec4d8b6b90e0d9b250d802eca7850f3",
+    "build.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "commands.json": "964d49eb889bc29aa4f1344a8e13f525dec23efa7fcb5e9e82bbc266bc4f096b",
+    "build.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "build.stderr": "5c9a25f71d719cf4f3543502886b022f1a26d3bd7e0d3e19730b00cf1f5cb72d",
+    "first-node-ref-overlay-signatures.cj": "ad783f2aaac6b9d0c532c49e8227bbefa945fd3c7ea4f1478768cabbe4218dcd",
+    "final-build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  "limitations": [
+    "Abstract receiver projection does not add members to actual cjtui Component/NodeRef.",
+    "Only default-argument openOverlay requires throw-only sentinel body; OverlayOptions initialization is declaration-only; neither executed.",
+    "Actual concrete OverlayHandle constructor opacity remains 109/110 and real consumers.",
+    "No C product behavior/positive/full future C type-check; original126 missingC diagnostics remain valid."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "argv": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/host_supervisor.py",
+    "tools/h01_gui.py",
+    "tools/h01_vt.py",
+    "tools/h01_expected.py",
+    "tools/clean-package.py"
+  ],
+  "actual_argv": [
+    "bash",
+    "-c",
+    "source /workspace/work/overlay-execution/env.sh\nexec \"$@\"",
+    "task111",
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/host_supervisor.py",
+    "tools/h01_gui.py",
+    "tools/h01_vt.py",
+    "tools/h01_expected.py",
+    "tools/clean-package.py"
+  ],
+  "cwd": "/workspace/work/overlay-execution",
+  "utcStart": "2026-11-13T02:40:22.558682+00:00",
+  "source": "f331995c760edd8f65e85d8dcf4a298da7df2707",
+  "env": {
+    "SDK_ENV": "/workspace/work/overlay-execution/env.sh",
+    "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+    "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+  },
+  "exit": 0,
+  "utcEnd": "2026-11-13T02:40:22.627252+00:00"
+}

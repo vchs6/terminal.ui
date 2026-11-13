@@ -1,0 +1,109 @@
+[
+  {
+    "action": "killpg SIGTERM",
+    "pid": 5624,
+    "cwd": "/workspace/work/overlay-execution",
+    "utcStart": "2026-11-13T01:37:12.259630+00:00",
+    "utcEnd": "2026-11-13T01:37:12.260814+00:00",
+    "exit": 0
+  },
+  {
+    "action": "killpg SIGTERM",
+    "pid": 5625,
+    "cwd": "/workspace/work/overlay-execution",
+    "utcStart": "2026-11-13T01:37:12.260904+00:00",
+    "utcEnd": "2026-11-13T01:37:12.261590+00:00",
+    "exit": 0
+  },
+  {
+    "action": "launch",
+    "argv": [
+      "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+      "-geometry",
+      "80x24+20+20",
+      "-T",
+      "TASK111 environment only XTerm",
+      "-fa",
+      "DejaVu Sans Mono",
+      "-fs",
+      "16",
+      "-e",
+      "/bin/bash",
+      "--noprofile",
+      "--norc"
+    ],
+    "cwd": "/workspace/work/overlay-execution",
+    "utc": "2026-11-13T01:37:12.263651+00:00",
+    "pid": 5872,
+    "env": {
+      "DISPLAY": ":199",
+      "HOME": "/workspace/work/overlay-execution/environment/host-home",
+      "XDG_CONFIG_HOME": "/workspace/work/overlay-execution/environment/host-home/config",
+      "XDG_CACHE_HOME": "/workspace/work/overlay-execution/environment/host-home/cache",
+      "XDG_DATA_HOME": "/workspace/work/overlay-execution/environment/host-home/data"
+    },
+    "exit": null,
+    "state": "running; no completed exit"
+  },
+  {
+    "action": "launch",
+    "argv": [
+      "dbus-run-session",
+      "--",
+      "xfce4-terminal",
+      "--disable-server",
+      "--hide-menubar",
+      "--geometry=80x24+680+20",
+      "--title=TASK111 environment only VTE",
+      "--command",
+      "/bin/bash --noprofile --norc"
+    ],
+    "cwd": "/workspace/work/overlay-execution",
+    "utc": "2026-11-13T01:37:12.264191+00:00",
+    "pid": 5873,
+    "env": {
+      "DISPLAY": ":199",
+      "HOME": "/workspace/work/overlay-execution/environment/host-home",
+      "XDG_CONFIG_HOME": "/workspace/work/overlay-execution/environment/host-home/config",
+      "XDG_CACHE_HOME": "/workspace/work/overlay-execution/environment/host-home/cache",
+      "XDG_DATA_HOME": "/workspace/work/overlay-execution/environment/host-home/data"
+    },
+    "exit": null,
+    "state": "running; no completed exit"
+  },
+  {
+    "argv": [
+      "xwininfo",
+      "-display",
+      ":199",
+      "-root",
+      "-tree"
+    ],
+    "cwd": "/workspace/work/overlay-execution",
+    "utcStart": "2026-11-13T01:37:13.264349+00:00",
+    "utcEnd": "2026-11-13T01:37:13.266578+00:00",
+    "exit": 0
+  },
+  {
+    "argv": [
+      "sh",
+      "-c",
+      "command -v import strace xdpyinfo xwininfo"
+    ],
+    "cwd": "/workspace/work/overlay-execution",
+    "utcStart": "2026-11-13T01:37:13.266586+00:00",
+    "utcEnd": "2026-11-13T01:37:13.267722+00:00",
+    "exit": 0
+  },
+  {
+    "argv": [
+      "ps",
+      "-eo",
+      "pid,ppid,comm,args"
+    ],
+    "cwd": "/workspace/work/overlay-execution",
+    "utcStart": "2026-11-13T01:37:13.267727+00:00",
+    "utcEnd": "2026-11-13T01:37:13.273766+00:00",
+    "exit": 0
+  }
+]

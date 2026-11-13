@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "import sys,pathlib;sys.path.insert(0,\"tools\");from h01_gui import one;b=pathlib.Path(\"product/tests/interaction_c/target/release/bin/main\").resolve();out=pathlib.Path(\"raw/final-gui-vte-remaining\").resolve()\nfor mode in [\"escape\",\"signal\",\"callback-error\"]:one(b,out/(\"vte-\"+mode),\"vte\",mode,\":199\")"
+  ],
+  "actual_argv": [
+    "bash",
+    "-c",
+    "source /workspace/work/overlay-execution/env.sh\nexec \"$@\"",
+    "task111",
+    "python3",
+    "-c",
+    "import sys,pathlib;sys.path.insert(0,\"tools\");from h01_gui import one;b=pathlib.Path(\"product/tests/interaction_c/target/release/bin/main\").resolve();out=pathlib.Path(\"raw/final-gui-vte-remaining\").resolve()\nfor mode in [\"escape\",\"signal\",\"callback-error\"]:one(b,out/(\"vte-\"+mode),\"vte\",mode,\":199\")"
+  ],
+  "cwd": "/workspace/work/overlay-execution",
+  "utcStart": "2026-11-13T02:44:47.991530+00:00",
+  "source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+  "env": {
+    "SDK_ENV": "/workspace/work/overlay-execution/env.sh",
+    "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+    "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+  },
+  "exit": 0,
+  "utcEnd": "2026-11-13T02:44:51.406949+00:00"
+}

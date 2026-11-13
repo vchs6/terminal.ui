@@ -1,5 +1,7 @@
 # SDD ledger — plan: openspec/changes/implement-public-interaction/tasks.md
 
+当前状态（2026-11-13）：A/B/C 三单位及 TASK098–112 已完成有限验收；原014/018完整AC通过，已验C产品代码推送main283e59b1。整C原件/截图归档进行；下一阶段Keyboard113。B-M01、全部控件/编辑/展示/M2/最终Linux仍待后续。以下保留各阶段历史记录，不把旧planned/RED文本当当前状态。
+
 主代理采用独立interaction合同及I001–010：同Canvas/focus/viewport/overlay公开primitive，三有限单元098–112，原017/037/018完整AC仍待实现。根默认纵滚两pass兼容及通用viewport默认动作由root收敛，不是用户额外点选。现全为planned，独立SDK签名微验证及preflight待开展，产品等共享屏障，不并行写权威源。使用brainstorming/writing-plans/SDD、OpenSpec new/status/validate，不重复已有用户授权确认。
 
 独立SDK微验证识别ScrollAxes.None污染裸Option None构造；主代理I013改最终值Off无alias，正常consumer裸None微编译0，不转嫁消费者修代码。widgets/input独立设计发现离线禁用外观和公共服务装配缺口，主代理I011统一readonly NodeRef.application，I012统一resolver实际disabled/focus OR声明态；新增集成测试边界，回原preflight最终限定核。根状态仍planned，产品未准入。
@@ -70,3 +72,6 @@ TASK110 已完成固定61e4de9d全量有限审核：spec/quality均FAIL，0 Crit
 
 111的7f431765正常mandatorybundle已实际exit0；CJP49dabd23f71bb7c8ede00949fbc836afef6875130d732dc6e9a0177deecc247f，220成员逐字节等于固定git，clean完整C消费者与examples/overlay --smoke fresh build/direct均0。最终H01同ELF087db92082f4630d41bd7e183b0f5e16e50274455d2fda564c151cf533d27d68在五PTY及真实XTerm/VTE/VM kernelVT共15模式均exit0/termios相等，51成功原PNG；失败采集原件分类保留。
 新增单一nativecaret公开向量冻结eea178fe（mainbbd48744）：8×3基本画面→Passive opaque覆盖→关闭恢复。受控reply1 PTY build/driver/child均0，真实caret/聚焦/网格/wire/termios恢复通过，原H01字节未改，manifest77f84037acf15573d949d77764d7f9e511a7dfd2c8206647ac2f96bfae453620。第一次reader只等最小diff造成超时的工具失败保留，修为接受实际整行绘制而未改产品。仍待此向量三真实host和111最终稳定索引，再交112接受，未声明C或Linux全部完成。
+
+TASK112最终PASS_FINITE_UNIT_C，acceptance SHA702cd9f253fbc005821920875eccc865f7cf1dfad4847c87ed13a27ef0d8c123/evidence-index bde6a33222a6ac7ed3df86199209b97ef73ab057427be6d8739f4d71d9dab511；111 stablemanifestcda293604be2e912103e0358c3fcd28f7c24af4511337b591d1036ee0a592ad2，root及独立112各核4639原件0差异。原C01–05及父018四项完整义务通过，014同组件普通/覆盖层复用由C05及clean例子证明。最终H01 51+nativecaret20=71原PNG，全部196中其余125保历史/瞬时分类。VT Unknown物理隐藏仍insufficient，按I015实际零显隐命令满足降级契约，不能声称物理隐藏成功。历史作者可变索引旧71a/7d8无快照与124外部中间件限制明确保留，独立各轮raw清单及最终111原件固定。
+10产品提交已机械集成main283e59b15b6e6b094e409b185bbf01b38b9a9d79并推送，src/native/build/manifest/themes/examples/docsproduct/README/license/scripts对已验7f431765 byte-diff0；最新C tests对eea178fe byte-diff0，独立testoverlays已在main未重复cherry，无冲突或额外改动，不因整合冷重跑功能suite。单次整个C证据归档进行，父014/018和109–112据实际证据投影；旧B-M01仍须024关闭，其他M1组件/键盘编辑/展示/M2/finalLinux后续继续，未发布。

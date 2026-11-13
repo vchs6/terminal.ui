@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "strace",
+    "-f",
+    "-xx",
+    "-s",
+    "65535",
+    "-e",
+    "trace=read,write,ioctl,rt_sigaction,poll,ppoll,openat,execve",
+    "-o",
+    "/workspace/work/overlay-execution/raw/caret-gui-c/vte/product.strace",
+    "/workspace/work/overlay-execution/product/tests/interaction_c/target/release/bin/main"
+  ],
+  "cwd": "/workspace/work/overlay-execution",
+  "utc": "2026-11-13T02:58:50.271676+00:00"
+}

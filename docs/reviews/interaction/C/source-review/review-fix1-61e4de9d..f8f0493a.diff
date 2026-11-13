@@ -1,0 +1,1241 @@
+f8f0493a fix: preserve overlay lifecycle and frame geometry
+f1a982d8 test: freeze ten public overlay review regressions
+21b90e74 test: regress mounted pure export and overlay active turns
+
+ src/application.cj                                 |  23 ++-
+ src/layout.cj                                      |  84 +++++---
+ src/layout_node.cj                                 |  12 ++
+ src/runtime_session.cj                             | 152 +++++++++-----
+ src/theme_candidate_validation.cj                  |   2 +-
+ tests/interaction_c/README.md                      |  45 ++++
+ tests/interaction_c/case-matrix.md                 |  32 +++
+ tests/interaction_c/golden.md                      |  55 +++++
+ tests/interaction_c/src/export_turn_regressions.cj |  63 ++++++
+ tests/interaction_c/src/main.cj                    |   4 +
+ tests/interaction_c/src/review_regressions.cj      | 229 +++++++++++++++++++++
+ 11 files changed, 620 insertions(+), 81 deletions(-)
+
+diff --git a/src/application.cj b/src/application.cj
+index 057ccf4f..34fe5ae5 100644
+--- a/src/application.cj
++++ b/src/application.cj
+@@ -155,30 +155,38 @@ public class Application {
+     public func focusedNode(): ?NodeRef {
+         if (let Some(value) <- readSession()) {
+             value.requireReadContext(); value.focusManager.observe()
+             if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
+         }
+         None
+     }
+     public func activeTarget(): ?NodeRef {
+         if (let Some(value) <- readSession()) {
+             value.requireReadContext(); value.focusManager.observe()
+-            if (let Some(node) <- value.focusManager.focused) { return Some(node.reference()) }
++            if (let Some(node) <- value.focusManager.focused) {
++                if (value.focusManager.effective(node,true) && value.focusManager.effective(node,false) && value.inOverlayDomain(node)) { return Some(node.reference()) }
++            }
+             if (let Some(reserved) <- value.reservedLayer) {
+-                if (let Some(rootRef) <- reserved.root) { if (rootRef.isValid()) { return Some(rootRef) } }
++                if (let Some(rootRef) <- reserved.root) { if (rootRef.isValid()) {
++                    let root = rootRef.resolve()
++                    if (value.focusManager.effective(root,true) && value.focusManager.effective(root,false) && value.inOverlayDomain(root)) { return Some(rootRef) }
++                } }
+             }
+             if (let Some(modal) <- value.topModal()) {
+-                if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) { return Some(rootRef) } }
++                if (let Some(rootRef) <- modal.root) { if (rootRef.isValid()) {
++                    let root = rootRef.resolve()
++                    if (value.focusManager.effective(root,true) && value.focusManager.effective(root,false)) { return Some(rootRef) }
++                } }
+             }
+-            if (let Some(node) <- value.root.readMount()) {
+-                if (value.focusManager.effective(node,true)) {
+-                    if (value.focusManager.effective(node,false)) { return Some(node.reference()) }
++            if (value.topModal().isNone()) {
++                if (let Some(node) <- value.root.readMount()) {
++                    if (value.focusManager.effective(node,true) && value.focusManager.effective(node,false)) { return Some(node.reference()) }
+                 }
+             }
+         }
+         None
+     }
+     public func onKeyEvent(handler: (UIKeyEvent) -> Unit): Application {
+         eventHandler = Some(handler)
+         this
+     }
+     func current(): RuntimeSession {
+@@ -349,20 +357,23 @@ public class Application {
+         value.requireBoundary()
+         if (value.isStopping()) {
+             dispose();
+             throw UIException("SessionInactive", "session stopped")
+         }
+         let targetNode = target.resolve()
+         if (targetNode.session.id != value.id) {
+             throw UIException("WrongUIContext", "target belongs to another session")
+         }
+         if (!value.inOverlayDomain(targetNode)) { throw UIException("FocusOutsideDomain", "target outside modal domain") }
++        if (let Some(layer) <- value.layerFor(targetNode)) {
++            if (layer.options.mode == OverlayMode.Passive) { throw UIException("InvalidProperty", "passive layer cannot be a keyboard target") }
++        }
+         let path = ArrayList<RuntimeNode>()
+         var cursor: ?RuntimeNode = Some(targetNode)
+         var checkEnabled = true
+         let modal = value.topModal()
+         while (let Some(node) <- cursor) {
+             if (!node.component.isVisible || (checkEnabled && !node.component.isEnabled)) {
+                 throw UIException("InvalidProperty", "hidden target")
+             }
+             path.add(node);
+             if (node.overlayRoot) { checkEnabled = false }
+diff --git a/src/layout.cj b/src/layout.cj
+index f98eb44e..6149825e 100644
+--- a/src/layout.cj
++++ b/src/layout.cj
+@@ -1,13 +1,14 @@
+ package cjtui
+ 
+ import std.collection.ArrayList
++import std.collection.HashMap
+ 
+ func sat(a: Int64, b: Int64): Int64 {
+     if (a > Int64.Max - b) {
+         Int64.Max
+     } else {
+         a + b
+     }
+ }
+ 
+ func lesser(a: Int64, b: Int64): Int64 {
+@@ -65,21 +66,21 @@ func mulDiv(a: Int64, b: Int64, d: Int64): (Int64, Int64) {
+     (q, r)
+ }
+ 
+ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
+     clipR: Int64, clipB: Int64): Unit {
+     layoutPass(n,Some(frame),x,y,w,h,clipL,clipT,clipR,clipB)
+ }
+ 
+ // Shared geometry and allocator for normal paint and side-effect-free preflight.
+ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
+-    clipR: Int64, clipB: Int64): Unit {
++    clipR: Int64, clipB: Int64, geometry!: ?HashMap<Int64, LayoutNode> = None): Unit {
+     if (output.isSome()) { n.session.recordPaint() }
+     let c = n.component
+     let r = n.resolved
+     let style = r.style
+     let right = lesser(clipR, sat(x, w));
+     let bottom = lesser(clipB, sat(y, h))
+     if (let Some(frame) <- output) {
+         let rect = Rect(x, y, w, h)
+         if (r.shadowEnabled) {
+             frame.shadowClipped(rect, r.shadowX, r.shadowY, r.shadowStyle, clipL, clipT, clipR, clipB)
+@@ -118,20 +119,29 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h:
+         if (state.width != innerW || state.height != innerH) {
+             if (let Some(caret) <- n.session.lastCaret) {
+                 if (n.session.viewportContains(runtimeNode,caret.owner)) { n.session.focusedViewportResized = true }
+             }
+         }
+         state.update(innerW,innerH,contentW,contentH,axes)
+     }
+     let scrollX = if (axes.horizontal()) { state.offsetX } else { 0 }
+     let scrollY = if (axes.vertical()) { state.offsetY } else { 0 }
+     let ix = signedAdd(boxX,-scrollX); let iy = signedAdd(boxY,-scrollY)
++    if (let Some(map) <- geometry) {
++        n.screenX = x; n.screenY = y
++        n.clipLeft = greater(clipL,x); n.clipTop = greater(clipT,y)
++        n.clipRight = right; n.clipBottom = bottom
++        n.boxWidth = w; n.boxHeight = h; n.contentX = leftPad; n.contentY = topPad
++        n.contentWidth = if (viewport.isSome()) { innerW } else { contentW }
++        n.contentHeight = if (viewport.isSome()) { innerH } else { contentH }
++        map[runtimeNode.id] = n
++    }
+     if (n.previewTheme.isNone() && n.commitGeometry) {
+         runtimeNode.screenX = x; runtimeNode.screenY = y
+         runtimeNode.clipLeft = greater(clipL,x); runtimeNode.clipTop = greater(clipT,y)
+         runtimeNode.clipRight = right; runtimeNode.clipBottom = bottom
+         runtimeNode.layoutWidth = w; runtimeNode.layoutHeight = h
+         runtimeNode.contentX = leftPad; runtimeNode.contentY = topPad
+         runtimeNode.logicalWidth = contentW; runtimeNode.logicalHeight = contentH
+     }
+     if (c.kind == 3) {
+         if (output.isNone()) { return }
+@@ -231,21 +241,21 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h:
+         let ch = if (c.kind == 2) {
+             crossSize
+         } else {
+             sizes[i]
+         }
+         if (n.previewTheme.isNone() && n.commitGeometry) {
+             let childNode = child.component.readMount().getOrThrow()
+             childNode.layoutX = if (c.kind == 2) { cursor } else { crossOffset }
+             childNode.layoutY = if (c.kind == 2) { crossOffset } else { cursor }
+         }
+-        layoutPass(child, output, cx, cy, cw, ch, greater(clipL, boxX), greater(clipT, boxY), ir, ib)
++        layoutPass(child, output, cx, cy, cw, ch, greater(clipL, boxX), greater(clipT, boxY), ir, ib, geometry:geometry)
+         cursor = sat(cursor, sizes[i])
+         if (i + 1 < count) {
+             cursor = sat(cursor, r.spacing)
+         }
+     }
+ }
+ 
+ // First finite pass summary, following the existing allocator and same node tree.
+ func summarizeVerticalOverflow(n: LayoutNode, width: Int64, height: Int64, result: VerticalOverflowSummary): Unit {
+     n.assignedWidth = width; n.assignedHeight = height
+@@ -294,69 +304,83 @@ func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
+         previousMeasurement: session.measuredLayout)
+     node.measure()
+     let w = lesser(width,greater(node.resolved.fixedW ?? width,node.resolved.minW))
+     let h = lesser(height,greater(node.resolved.fixedH ?? height,node.resolved.minH))
+     node.constrain(w)
+     if (!session.root.viewportDeclared && node.resolved.fixedH.isNone()) {
+         let summary = VerticalOverflowSummary()
+         summarizeVerticalOverflow(node,w,h,summary)
+         node.rootFallback = summary.present
+     }
+-    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
++    let geometry = HashMap<Int64, LayoutNode>()
++    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height,geometry:Some(geometry))
++    for (record in session.overlayRecords) {
++        if (let Some(layer) <- overlayGeometry(session,record,width,height,false,geometry,preview:Some(theme))) {
++            layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
++                layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
++        }
++    }
+ }
+ 
+-func overlayInherited(session: RuntimeSession, owner: RuntimeNode): Style {
++func overlayInherited(owner: RuntimeNode, theme: Theme): Style {
+     let chain = ArrayList<RuntimeNode>()
+     var cursor: ?RuntimeNode = Some(owner)
+     while (let Some(node) <- cursor) { chain.add(node); cursor = node.parent }
+-    var style = themeSeed(session.theme); var i = chain.size
++    var style = themeSeed(theme); var i = chain.size
+     while (i > 0) {
+         i--; let node = chain[i]
+-        style = resolveStyle(node.component,session.theme,style,node.parent.isNone()).style
++        style = resolveStyle(node.component,theme,style,node.parent.isNone()).style
+     }
+     style
+ }
+ 
+-func overlayGeometry(session: RuntimeSession, record: OverlayRecord, frame: Frame, commit: Bool): ?OverlayLayout {
++func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int64, height: Int64, commit: Bool,
++    geometry: HashMap<Int64, LayoutNode>, preview!: ?Theme = None, deferClose!: Bool = false): ?OverlayLayout {
+     if (record.terminal.isSome() || !record.owner.isValid()) { return None }
+     let rootRef = record.root
+     if (rootRef.isNone() || !rootRef.getOrThrow().isValid()) { return None }
+     let owner = record.owner.resolve()
+-    var left: Int64 = 0; var top: Int64 = 0; var right = frame.width; var bottom = frame.height
++    if (!session.focusManager.effective(rootRef.getOrThrow().resolve(),false)) { return None }
++    var left: Int64 = 0; var top: Int64 = 0; var right = width; var bottom = height
+     if (let Some(hostRef) <- record.options.host) {
+         if (!hostRef.isValid()) { return None }
+         let host = hostRef.resolve()
+-        let hw = if (session.viewportAxes(host).isSome()) { host.viewportState.width } else { host.logicalWidth }
+-        let hh = if (session.viewportAxes(host).isSome()) { host.viewportState.height } else { host.logicalHeight }
+-        let hx = signedAdd(host.screenX,host.contentX); let hy = signedAdd(host.screenY,host.contentY)
+-        left = greater(host.clipLeft,hx); top = greater(host.clipTop,hy)
+-        right = lesser(host.clipRight,signedAdd(hx,hw)); bottom = lesser(host.clipBottom,signedAdd(hy,hh))
++        let hostGeometry = geometry.get(host.id)
++        if (hostGeometry.isNone()) { return None }
++        let g = hostGeometry.getOrThrow()
++        let hx = signedAdd(g.screenX,g.contentX); let hy = signedAdd(g.screenY,g.contentY)
++        left = greater(g.clipLeft,hx); top = greater(g.clipTop,hy)
++        right = lesser(g.clipRight,signedAdd(hx,g.contentWidth)); bottom = lesser(g.clipBottom,signedAdd(hy,g.contentHeight))
+     }
+     right = greater(left,right); bottom = greater(top,bottom)
+-    let node = LayoutNode(rootRef.getOrThrow().resolve().component,session,overlayInherited(session,owner),commitGeometry:commit)
++    let node = LayoutNode(rootRef.getOrThrow().resolve().component,session,overlayInherited(owner,preview ?? session.theme),
++        previewTheme:preview,commitGeometry:commit)
+     node.measure()
+     let w = lesser(right-left,greater(node.resolved.fixedW ?? node.naturalW,node.resolved.minW))
+     node.constrain(w)
+     let h = lesser(bottom-top,greater(node.resolved.fixedH ?? node.naturalH,node.resolved.minH))
+     var x = signedAdd(left,(right-left-w)/2); var y = signedAdd(top,(bottom-top-h)/2)
+     if (let Some(anchorRef) <- record.options.anchor) {
+         if (!anchorRef.isValid()) {
+-            if (commit) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
++            if (commit && !deferClose) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+             return None
+         }
+         let anchor = anchorRef.resolve()
+-        let ax = greater(left,greater(anchor.screenX,anchor.clipLeft))
+-        let ay = greater(top,greater(anchor.screenY,anchor.clipTop))
+-        let ar = lesser(right,lesser(signedAdd(anchor.screenX,anchor.layoutWidth),anchor.clipRight))
+-        let ab = lesser(bottom,lesser(signedAdd(anchor.screenY,anchor.layoutHeight),anchor.clipBottom))
++        let anchorGeometry = geometry.get(anchor.id)
++        if (anchorGeometry.isNone()) { return None }
++        let g = anchorGeometry.getOrThrow()
++        let ax = greater(left,greater(g.screenX,g.clipLeft))
++        let ay = greater(top,greater(g.screenY,g.clipTop))
++        let ar = lesser(right,lesser(signedAdd(g.screenX,g.boxWidth),g.clipRight))
++        let ab = lesser(bottom,lesser(signedAdd(g.screenY,g.boxHeight),g.clipBottom))
+         if (ar <= ax || ab <= ay || !session.focusManager.effective(anchor,false)) {
+-            if (commit) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
++            if (commit && !deferClose) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+             return None
+         }
+         match (record.options.placement) {
+             case OverlayPlacement.BelowStart =>
+                 x = ax; let below = bottom-ab; let above = ay-top
+                 y = if (below >= h || below >= above) { ab } else { ay-h }
+             case OverlayPlacement.AboveStart =>
+                 x = ax; let above = ay-top; let below = bottom-ab
+                 y = if (above >= h || above >= below) { ay-h } else { ab }
+             case OverlayPlacement.RightStart =>
+@@ -394,46 +418,60 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
+     let implicitRoot = sessionRoot && !session.temporary && !root.viewportDeclared
+     // Mounted M1 render is also a root consumer even when caching is disabled.
+     let mountedRoot = !session.temporary && root.descriptionId == session.root.descriptionId
+     if ((implicitRoot || mountedRoot) && !root.viewportDeclared && node.resolved.fixedH.isNone()) {
+         let summary = VerticalOverflowSummary()
+         summarizeVerticalOverflow(node,w,h,summary)
+         node.rootFallback = summary.present
+     } else { node.rootFallback = false }
+     // Resolve current finite geometry before consuming deferred ensure intents.
+     if (reuse) { session.focusedViewportResized = false }
+-    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
++    let geometry = HashMap<Int64, LayoutNode>()
++    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height,geometry:Some(geometry))
+     let layers = ArrayList<OverlayLayout>()
+     if (mountedRoot) {
+         for (record in session.overlayRecords) {
+-            if (let Some(layer) <- overlayGeometry(session,record,frame,reuse)) {
++            if (let Some(layer) <- overlayGeometry(session,record,width,height,reuse,geometry,deferClose:reuse)) {
+                 layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
+-                    layer.left,layer.top,layer.right,layer.bottom)
++                    layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
+                 layers.add(layer)
+             }
+         }
+     }
+     if (reuse) {
+         if (session.focusedViewportResized) {
+             if (let Some(previousCaret) <- session.lastCaret) {
+                 var hasExplicit = false
+                 for (command in session.pendingEnsures) {
+                     if (command.target.sameNode(previousCaret.owner)) { hasExplicit = true }
+                 }
+                 if (!hasExplicit && previousCaret.owner.isValid()) {
+                     let ensure = ScrollCommand(previousCaret.owner,1,0,0,
+                         Some(Rect(previousCaret.localX,previousCaret.localY,1,1)),ScrollAlign.Nearest,ScrollAlign.Nearest)
+                     ensure.order = session.nextViewportIntent(); session.pendingEnsures.add(ensure)
+                 }
+             }
+         }
+         applyPendingViewportEnsures(session)
++        // Ensures can scroll the anchor or host; derive the painted layers
++        // from the resulting geometry in the same frame.
++        geometry.clear(); layers.clear()
++        layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height,geometry:Some(geometry))
++        if (mountedRoot) {
++            for (record in session.overlayRecords) {
++                if (let Some(layer) <- overlayGeometry(session,record,width,height,true,geometry)) {
++                    layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
++                        layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
++                    layers.add(layer)
++                }
++            }
++        }
+     }
+     paint(node, frame, 0, 0, w, h, 0, 0, width, height)
+     for (layer in layers) {
+         let overlay = Frame(width,height,transparent:true)
+         let previousCaret = session.pendingCaret
+         paint(layer.node,overlay,layer.x,layer.y,layer.width,layer.height,layer.left,layer.top,layer.right,layer.bottom)
+         if (let Some(previous) <- previousCaret) {
+             if (let Some(current) <- session.pendingCaret) {
+                 if (refEq(previous,current) && previous.x >= 0 && previous.y >= 0 && previous.x < width && previous.y < height) {
+                     if (!overlay.cellAt(previous.x,previous.y).isTransparent) { session.pendingCaret = None }
+diff --git a/src/layout_node.cj b/src/layout_node.cj
+index 6f5a4716..f1bca83c 100644
+--- a/src/layout_node.cj
++++ b/src/layout_node.cj
+@@ -1,20 +1,32 @@
+ package cjtui
+ 
+ import std.collection.ArrayList
+ 
+ class LayoutNode {
+     let session: RuntimeSession
+     let component: Component
+     let previewTheme: ?Theme
+     let previousMeasurement: ?LayoutNode
+     let commitGeometry: Bool
++    var screenX: Int64 = 0
++    var screenY: Int64 = 0
++    var clipLeft: Int64 = 0
++    var clipTop: Int64 = 0
++    var clipRight: Int64 = 0
++    var clipBottom: Int64 = 0
++    var boxWidth: Int64 = 0
++    var boxHeight: Int64 = 0
++    var contentX: Int64 = 0
++    var contentY: Int64 = 0
++    var contentWidth: Int64 = 0
++    var contentHeight: Int64 = 0
+     var inheritedStyle: Style
+     let rootNode: Bool
+     var resolved: ResolvedStyle
+     let children = ArrayList<LayoutNode>()
+     // Indices retain the original grapheme identity across soft and hard lines.
+     let lines = ArrayList<ArrayList<Int64>>()
+     let widths = ArrayList<Int64>()
+     var naturalW: Int64 = 0
+     var naturalH: Int64 = 0
+     var canvasNatural = Size(0,0)
+diff --git a/src/runtime_session.cj b/src/runtime_session.cj
+index 2e4b63de..97afeeff 100644
+--- a/src/runtime_session.cj
++++ b/src/runtime_session.cj
+@@ -537,40 +537,43 @@ class RuntimeSession {
+                 if (rootRef.isValid()) { if (overlayAncestor(rootRef.resolve(),node)) { return Some(record) } }
+             }
+         }
+         None
+     }
+     func pendingOverlayCount(): Int64 {
+         var count = overlayPending.size
+         for (record in overlayRecords) { if (record.requested.isSome()) { count++ } }
+         count
+     }
+-    func openOverlay(owner: RuntimeNode, content: Component, options: OverlayOptions): OverlayHandle {
+-        requireStructure()
+-        if (!inActiveDomain()) { throw UIException("WrongUIContext", "overlay opening requires an active UI turn") }
+-        if (!inOverlayDomain(owner)) { throw UIException("FocusOutsideDomain", "owner outside modal domain") }
+-        if (options.mode == OverlayMode.Modal && !options.takeFocus) { throw IllegalArgumentException("modal requires focus") }
+-        if (options.mode == OverlayMode.Passive && options.takeFocus) { throw IllegalArgumentException("passive cannot take focus") }
+-        if (options.mode == OverlayMode.Modal && options.anchor.isSome()) { throw IllegalArgumentException("modal anchor") }
+-        if (options.placement != OverlayPlacement.Center && options.anchor.isNone()) { throw IllegalArgumentException("placement requires anchor") }
++    func validateOverlayRelations(owner: RuntimeNode, options: OverlayOptions): Unit {
+         if (let Some(hostRef) <- options.host) {
+             let host = hostRef.resolve()
+             if (host.session.id != id) { throw UIException("WrongUIContext", "foreign host") }
+-            if (!host.component.isOverlayHost || !focusManager.effective(host,false) || !overlayAncestor(host,owner)) {
++            if ((host.parent.isSome() && !host.component.isOverlayHost) || !focusManager.effective(host,false) || !overlayAncestor(host,owner)) {
+                 throw UIException("InvalidOverlayHost", "host must be a visible ancestor")
+             }
+         }
+         if (let Some(anchorRef) <- options.anchor) {
+             let anchor = anchorRef.resolve()
+             if (anchor.session.id != id) { throw UIException("WrongUIContext", "foreign anchor") }
+             if (!overlayAncestor(owner,anchor)) { throw UIException("InvalidOverlayAnchor", "anchor must descend from owner") }
+         }
++    }
++    func openOverlay(owner: RuntimeNode, content: Component, options: OverlayOptions): OverlayHandle {
++        requireStructure()
++        if (!inActiveDomain()) { throw UIException("WrongUIContext", "overlay opening requires an active UI turn") }
++        if (!inOverlayDomain(owner)) { throw UIException("FocusOutsideDomain", "owner outside modal domain") }
++        if (options.mode == OverlayMode.Modal && !options.takeFocus) { throw IllegalArgumentException("modal requires focus") }
++        if (options.mode == OverlayMode.Passive && options.takeFocus) { throw IllegalArgumentException("passive cannot take focus") }
++        if (options.mode == OverlayMode.Modal && options.anchor.isSome()) { throw IllegalArgumentException("modal anchor") }
++        if (options.placement != OverlayPlacement.Center && options.anchor.isNone()) { throw IllegalArgumentException("placement requires anchor") }
++        validateOverlayRelations(owner,options)
+         if (commands.size + focusManager.requested.size + viewportCommands.size + pendingOverlayCount() >= limits.structuralOpsPerBatch) {
+             throw UIException("CapacityExceeded", "command limit exceeded")
+         }
+         content.reserveMount()
+         let record = OverlayRecord(this,owner.reference(),content,options)
+         if (let Some(focused) <- focusManager.focused) { record.savedFocus = Some(focused.reference()) }
+         let candidates = focusManager.candidates()
+         record.savedOrder = Array<NodeRef>(candidates.size,{i => candidates[i].reference()})
+         overlayRecords.add(record); overlayPending.add(record)
+         OverlayHandle(record)
+@@ -617,20 +620,21 @@ class RuntimeSession {
+                 } }
+             }
+         }
+     }
+     func commitOverlays(): Unit {
+         let pending = overlayPending.toArray(); overlayPending.clear()
+         for (record in pending) {
+             if (record.terminal.isSome()) { continue }
+             useStructuralOps(1)
+             let owner = record.owner.resolve()
++            validateOverlayRelations(owner,record.options)
+             let content = record.description.getOrThrow()
+             content.releaseMount()
+             preflight([content],Some(owner))
+             if (record.options.mode == OverlayMode.Passive) {
+                 if (interactiveOverlayContent(content)) { throw IllegalArgumentException("passive overlay cannot contain interactive nodes") }
+             }
+             let node = mount(content,Some(owner),owner.depth+1)
+             node.overlayRoot = true
+             node.overlayModal = record.options.mode == OverlayMode.Modal
+             publish([node],[])
+@@ -673,67 +677,59 @@ class RuntimeSession {
+         for (entry in closing) {
+             if (let Some(ref) <- entry.root) { if (ref.isValid()) { roots.add(ref.resolve()) } }
+             entry.requested = None
+             entry.terminal = Some(if (refEq(entry,record)) { reason } else { OverlayCloseReason.OwnerGone })
+             entry.root = None
+             if (let Some(content) <- entry.description) { content.releaseMount() }
+             entry.description = None; entry.changed()
+         }
+         if (!roots.isEmpty()) { unmount(roots.toArray()) }
+         if (record.owner.isValid()) { markChanged(record.owner.resolve(),ChangeKind.Layout) }
+-        if (ownsFocus && restore) {
+-            reservedLayer = None
+-            var next: ?RuntimeNode = None
++        if (ownsFocus && restore) { restoreOverlayFocus(record) }
++    }
++    func restoreOverlayFocus(record: OverlayRecord): Unit {
++        reservedLayer = None
++        var next: ?RuntimeNode = None
++        if (let Some(saved) <- record.savedFocus) {
++            if (saved.isValid()) {
++                let candidate = saved.resolve()
++                if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } }
++            }
++        }
++        var ancestor: ?RuntimeNode = if (record.owner.isValid()) { Some(record.owner.resolve()) } else { Option<RuntimeNode>.None }
++        while (next.isNone() && ancestor.isSome()) {
++            let current = ancestor.getOrThrow()
++            let choices = ArrayList<RuntimeNode>(); focusManager.collect(current,choices)
++            for (candidate in choices) { if (inOverlayDomain(candidate)) { next = Some(candidate); break } }
++            ancestor = current.parent
++        }
++        if (next.isNone()) {
++            var savedIndex: Int64 = -1
+             if (let Some(saved) <- record.savedFocus) {
+-                if (saved.isValid()) {
+-                    let candidate = saved.resolve()
+-                    if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } }
+-                }
++                for (i in 0..record.savedOrder.size) { if (saved.sameNode(record.savedOrder[i])) { savedIndex = i; break } }
+             }
+-            var ancestor: ?RuntimeNode = if (record.owner.isValid()) { Some(record.owner.resolve()) } else { Option<RuntimeNode>.None }
+-            while (next.isNone() && ancestor.isSome()) {
+-                let current = ancestor.getOrThrow()
+-                let choices = ArrayList<RuntimeNode>(); focusManager.collect(current,choices)
+-                for (candidate in choices) { if (inOverlayDomain(candidate)) { next = Some(candidate); break } }
+-                ancestor = current.parent
+-            }
+-            if (next.isNone()) {
+-                var savedIndex: Int64 = -1
+-                if (let Some(saved) <- record.savedFocus) {
+-                    for (i in 0..record.savedOrder.size) { if (saved.sameNode(record.savedOrder[i])) { savedIndex = i; break } }
++            if (savedIndex >= 0) {
++                var i = savedIndex + 1
++                while (i < record.savedOrder.size && next.isNone()) {
++                    let ref = record.savedOrder[i]
++                    if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
++                    i++
+                 }
+-                if (savedIndex >= 0) {
+-                    var i = savedIndex + 1
+-                    while (i < record.savedOrder.size && next.isNone()) {
+-                        let ref = record.savedOrder[i]
+-                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
+-                        i++
+-                    }
+-                    i = savedIndex - 1
+-                    while (i >= 0 && next.isNone()) {
+-                        let ref = record.savedOrder[i]
+-                        if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
+-                        i--
+-                    }
++                i = savedIndex - 1
++                while (i >= 0 && next.isNone()) {
++                    let ref = record.savedOrder[i]
++                    if (ref.isValid()) { let candidate = ref.resolve(); if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } } }
++                    i--
+                 }
+             }
+-            focusManager.set(next)
+-        }
+-    }
+-    func closeOwnedOverlays(roots: Array<RuntimeNode>): Unit {
+-        for (record in overlayRecords) {
+-            if (record.terminal.isSome() || !record.owner.isValid()) { continue }
+-            let owner = record.owner.resolve()
+-            for (root in roots) {
+-                if (overlayAncestor(root,owner)) { closeOverlayTree(record,OverlayCloseReason.OwnerGone,true); break }
+-            }
+         }
++        focusManager.set(next)
+     }
+     func closeHiddenOverlays(): Unit {
+         for (record in overlayRecords) {
+             if (record.terminal.isSome() || !record.owner.isValid()) { continue }
+             if (!focusManager.effective(record.owner.resolve(),false)) {
+                 closeOverlayTree(record,OverlayCloseReason.OwnerHidden,true)
+             } else if (let Some(anchor) <- record.options.anchor) {
+                 if (!anchor.isValid()) { closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+                 else if (!focusManager.effective(anchor.resolve(),false)) { closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+             }
+@@ -1000,49 +996,102 @@ class RuntimeSession {
+     // isValid never expose staged additions or count retiring and replacement nodes twice.
+     func publish(added: Array<RuntimeNode>, retiring: Array<RuntimeNode>): Unit {
+         let newNodes = ArrayList<RuntimeNode>()
+         let oldNodes = ArrayList<RuntimeNode>()
+         for (node in added) {
+             collectSubtree(node, newNodes)
+         }
+         for (node in retiring) {
+             collectSubtree(node, oldNodes)
+         }
++        // Publish replacement nodes and revoke every owned layer in one index
++        // transition, including layers attached to retired dynamic owners.
++        var scan: Int64 = 0
++        while (scan < oldNodes.size) {
++            let owner = oldNodes[scan]
++            for (record in overlayRecords) {
++                if (record.terminal.isSome() || !record.owner.sameNode(owner.reference())) { continue }
++                if (let Some(rootRef) <- record.root) {
++                    if (let Some(layerRoot) <- retainedNode(rootRef)) { collectSubtree(layerRoot,oldNodes) }
++                }
++            }
++            scan++
++        }
+         lock.lock()
+         try {
+             for (node in oldNodes) {
+                 node.valid = false
+                 node.pendingChange = None
+                 activeNodeIndex.remove(node)
+             }
+             for (node in newNodes) {
+                 node.committed = true
+                 activeNodeIndex.add(node)
+             }
+         } finally {
+             lock.unlock()
+         }
+     }
++    // A retiring node can already be absent from the public active index while
++    // its runtime storage is retained for the ensuing cleanup phase.
++    func retainedNode(ref: NodeRef): ?RuntimeNode {
++        for (node in nodes) { if (ref.sameNode(node.reference())) { return Some(node) } }
++        None
++    }
+     func collectSubtree(node: RuntimeNode, result: ArrayList<RuntimeNode>): Unit {
+         result.add(node)
+         for (entry in node.sequence) {
+             if (let ChildEntry.MountedChild(child) <- entry) {
+                 collectSubtree(child, result)
+             }
+         }
+     }
+     func unmount(roots: Array<RuntimeNode>): Unit {
+-        closeOwnedOverlays(roots)
+         let removed = ArrayList<RuntimeNode>()
+         for (node in roots) {
+             collectSubtree(node, removed)
+         }
++        // Follow ownership by stable identity, including generations already
++        // retired by a dynamic-group publication. Revoke the complete closure
++        // before invoking any user cleanup.
++        var restoreRecord: ?OverlayRecord = None
++        var scan: Int64 = 0
++        while (scan < removed.size) {
++            let owner = removed[scan]
++            for (record in overlayRecords) {
++                if (record.terminal.isSome() || !record.owner.sameNode(owner.reference())) { continue }
++                if (let Some(rootRef) <- record.root) {
++                    if (let Some(layerRoot) <- retainedNode(rootRef)) {
++                        if (restoreRecord.isNone()) {
++                            var ownsFocus = false
++                            if (let Some(focused) <- focusManager.focused) { ownsFocus = overlayAncestor(layerRoot,focused) }
++                            if (let Some(reserved) <- reservedLayer) {
++                                if (let Some(target) <- reserved.root) {
++                                    if (let Some(targetNode) <- retainedNode(target)) {
++                                        if (overlayAncestor(layerRoot,targetNode)) { ownsFocus = true }
++                                    }
++                                }
++                            }
++                            if (ownsFocus) { restoreRecord = Some(record) }
++                        }
++                        collectSubtree(layerRoot,removed)
++                    }
++                }
++                if (let Some(content) <- record.description) { content.releaseMount() }
++                record.description = None; record.root = None; record.requested = None
++                record.terminal = Some(OverlayCloseReason.OwnerGone); record.changed()
++                if (let Some(reserved) <- reservedLayer) {
++                    if (refEq(reserved,record)) { reservedLayer = None }
++                }
++            }
++            scan++
++        }
+         lock.lock()
+         try {
+             for (node in removed) {
+                 node.valid = false
+                 node.pendingChange = None
+                 activeNodeIndex.remove(node)
+             }
+         } finally {
+             lock.unlock()
+         }
+@@ -1123,20 +1172,21 @@ class RuntimeSession {
+                 }
+             }
+         }
+         for (node in removed) {
+             node.component.releaseMount();
+             node.sequence.clear()
+         }
+         if (let Some(error) <- failure) {
+             throw error
+         }
++        if (let Some(record) <- restoreRecord) { restoreOverlayFocus(record) }
+     }
+     func hasReady(cutoff: Int64): Bool {
+         lock.lock()
+         try {
+             for (binding in pendingBindings) {
+                 if (binding.active && binding.dirty && binding.dirtySequence <= cutoff) {
+                     return true
+                 }
+             }
+             for (pending in pendingNodes) {
+diff --git a/src/theme_candidate_validation.cj b/src/theme_candidate_validation.cj
+index a67875c9..3dcaff60 100644
+--- a/src/theme_candidate_validation.cj
++++ b/src/theme_candidate_validation.cj
+@@ -19,21 +19,21 @@ func validateThemeCandidate(session: RuntimeSession, theme: Theme): (?ThemeDiagn
+             let oldInherited = match (node.parent) {
+                 case Some(parent) => oldStyles.get(parent.id).getOrThrow()
+                 case None => themeSeed(session.theme)
+             }
+             let old = resolveStyle(node.component,session.theme,oldInherited,node.parent.isNone())
+             oldStyles[node.id] = old.style
+             let resolved = resolveStyle(node.component,theme,inherited,node.parent.isNone())
+             if (layoutStyleDiff(old,resolved)) { layoutChanged = true }
+             styles[node.id] = resolved.style
+             if (let Some(parent) <- node.parent) {
+-                if (node.component.isVisible && resolved.weight > 0) {
++                if (!node.overlayRoot && node.component.isVisible && resolved.weight > 0) {
+                     let previous = weights.get(parent.id) ?? 0
+                     if (previous > Int64.Max - resolved.weight) {
+                         return (Some(ThemeDiagnostic("InvalidCandidate",theme.sourceName,"","layout weight sum overflow",Option<ThemeLocation>.None,"unavailable")), false)
+                     }
+                     weights[parent.id] = previous + resolved.weight
+                 }
+             }
+         }
+         validateCandidateLayout(session,theme)
+     } catch (_: UIException) {
+diff --git a/tests/interaction_c/README.md b/tests/interaction_c/README.md
+index e4436b6a..fe4d71c0 100644
+--- a/tests/interaction_c/README.md
++++ b/tests/interaction_c/README.md
+@@ -113,10 +113,55 @@ The entry automatically prefers the current table; invalid current data is a
+ hard77, with no fallback or environment override. Only absence selects the old
+ closed table. Every required gate must occur once, have ACCEPTED/full commit
+ SHA/actual HEAD ancestry/existing evidence. Relative evidence resolves from the
+ repository root, independently of the caller's current directory.
+ `preparation` now validates the current admission and returns0 without compiling.
+ Default/formal still uses normal `cjpm build`, then direct binary only on build0.
+ Before C implementation, the existing actual missing-C compiler RED applies;
+ C behavior remains UNEXECUTED. `gate-selftest.sh` exercises accepted metadata,
+ rejection cases, legacy fallback and nonzero-compiler/no-binary boundaries using
+ tools-only sentinels in an isolated small Git fixture, never a C implementation.
++
++
++## Targeted pure-export / active-turn regressions
++
++Compile normally with `cd tests/interaction_c && cjpm build`, then run each
++actual binary independently from the repository root:
++
++```sh
++CJTUI_OVERLAY_REGRESSION=pure-export timeout 45s tests/interaction_c/target/release/bin/main
++CJTUI_OVERLAY_REGRESSION=open-turn timeout 45s tests/interaction_c/target/release/bin/main
++```
++
++Expected0 once those contracts are implemented; nonzero is an assertion/build
++failure, never skipped. Default formal consumer also invokes both new cases.
++No old oracle or guard precedence is changed. X01 uses a legal batch ensure
++followed by an outer-boundary export, not forbidden render reentry in batch.
++
++## TASK110 review regression supplement (C-I01–C-I10)
++
++The added public assertions are in `src/review_regressions.cj`. Build once with
++`cd tests/interaction_c && cjpm build`; run every selector independently from
++that directory so an earlier assertion cannot hide another finding:
++
++```sh
++for id in C-I01 C-I02 C-I03 C-I04 C-I05 C-I06 C-I07 C-I08 C-I09 C-I10; do
++  CJTUI_OVERLAY_REVIEW="$id" timeout 45s ./target/release/bin/main </dev/null
++done
++```
++
++Each selector expects status 0 after its contract is implemented; a nonzero
++assertion is a failure, never a skip. The default consumer also invokes all ten.
++I02 observes both If and ForEach retirement before asserting; I03 records hidden
++and disabled states before asserting. I10 performs its first two pure exports
++without any preceding Application.snapshot, then checks resized exports after
++an actual committed application frame. All expected pictures are hand derived
++in golden.md. No old assertion or oracle is changed.
++
++I09 follows the explicit diagnostic ruling for this supplement: Passive is not
++a keyboard target; reject dispatch with existing `InvalidProperty`, with zero
++owner handler calls, after a normal NonModal positive control.
++I05 asserts failed theme transaction, Old identity, live session and unchanged
++usable zero-area picture. Prohibiting user measure/draw during candidate
++preflight remains a source-review responsibility: normal snapshot itself may
++legitimately call those callbacks, so total calls across snapshots are not a
++valid zero-call oracle. Full Unit C/native/package acceptance is separate.
+diff --git a/tests/interaction_c/case-matrix.md b/tests/interaction_c/case-matrix.md
+index 46f7fc0d..68de55ef 100644
+--- a/tests/interaction_c/case-matrix.md
++++ b/tests/interaction_c/case-matrix.md
+@@ -95,10 +95,42 @@ wording correction under C.2. Full type correctness awaits actual C declarations
+ | E16–18 | context_and_limits.cj / layerDepthBoundary(), layerCapacity(0..2), layerDependencyBudget(false/true), interactivePassiveRejection |
+ | G01–10 | surface_grids.cj / surfacesAndLatestBase, sourceBasedCaretOcclusion |
+ | G11–12 | theme_and_host.cj / ownerThemeSurface, explicitHostClip |
+ | G13–14 | anchor_geometry.cj / directionalAnchors, clippedAndLostAnchors |
+ | G15–16 | decorations_and_caret.cj / decoratedLayerTargets, caretSpacesShadowAndClip |
+ | H01 | native_fixture.cj + pty_driver.py; five real-process modes (interrupt/prevent/Escape/SIGINT/callback-error), existing B PTY primitives; native-host-recipe for original-host PNG and accepted close-fault infrastructure |
+ | H02 | Future accepted Keyboard117; explicitly not implemented or executed now |
+ 
+ No claim that a weak observer proves ownership, that a headless assertion proves
+ native restoration, or that a PTY on another TERM is another host is made.
++
++
++## C109 targeted public regressions (post-freeze additions)
++
++| IDs | Contract and public entry |
++|---|---|
++| X01 | R004/I009/C.6: pure0×0 mounted export preserves application4×2 committed anchored layer/ref/offset and subsequent ensure6; export_turn_regressions.cj / pure-export |
++| X02 | C.1: ordinary top-level open rejects WrongUIContext without reserve/mount; same content opens in legal batch; export_turn_regressions.cj / open-turn |
++
++These are independent targeted assertions, not changes to old oracle values.
++Actual fixed-WIP executions and reached/unreached controls belong to their own
++raw manifest; neither compile errors nor actor historical observations are
++counted as this role's fresh behavioral RED.
++
++## TASK110 finding regressions (append-only supplement)
++
++| Selector | Public behavior / authority |
++|---|---|
++| C-I01 | C.4: ordinary owner remove revokes all owned generations/owner posts before deepest-first layer cleanup |
++| C-I02 | C.2/C.4: both If and ForEach owner retirement terminate owned modal OwnerGone, cleanup once, restore base target |
++| C-I03 | A.4/C.7: hidden content contributes no cells; hidden/disabled takeFocus layer root cannot remain activeTarget |
++| C-I04 | B ensure/C.6: same frame uses offset3 geometry; offscreen anchor closes AnchorGone |
++| C-I05 | T008/C.2: overlay effective layout overflow fails candidate before publication, retaining Old/session/refs/picture |
++| C-I06 | T008/C.2: overlay ownership weight1 cannot overflow ordinary Row child weight Int64.Max |
++| C-I07 | C.2: explicit root host uses built-in root capability without overlayHost(true) |
++| C-I08 | Shared host error/C.2: pending host capability revoked in same batch fails InvalidOverlayHost; unified failure cleanup |
++| C-I09 | C.3/A.4 plus diagnostic ruling: Passive dispatch InvalidProperty and no owner handler; NonModal positive control |
++| C-I10 | R004/I009/C.6: first pure export and changed-size exports compose using current temporary geometry, preserving committed state |
++
++All ten selectors run independently against one normally built actual consumer.
++I05's callback preflight prohibition cannot be isolated from normal layout by a
++cross-snapshot total counter and is left to source review, explicitly unclaimed.
+diff --git a/tests/interaction_c/golden.md b/tests/interaction_c/golden.md
+index d38d433e..cc9521f3 100644
+--- a/tests/interaction_c/golden.md
++++ b/tests/interaction_c/golden.md
+@@ -141,10 +141,65 @@ escape host clip. This explicitly separates owner clip from geometry host clip.
+ G15 at8×5: layer4×3 centered `(2,1)`, Rounded `╭──╮/│界│/╰──╯`, shadow(1,1)
+ uses `░` only in the shifted outer rectangle outside the original box, exactly
+ as the existing decoration design states. Row2 shadow is x6, bottom shadow
+ row4 is x3..6. Resizing host to10 moves x to3; shrinking to width3 clips the
+ 2-column cluster entirely and clears its continuation. Every expected row is a
+ literal. Shadow Style(dim=true) and continuation are checked via Frame.cellAt.
+ 
+ D08 correction under C.2: `L;O;H;R;APP;LEGACY;` includes H once because H is
+ already the owner's ordinary ancestor. Geometry hosting adds no new event edge.
+ P05 GC observations and future H02 are explicitly limited in final-preparation.
++
++
++## X01 pure mounted export / X02 active-turn entry regressions
++
++X01 actual application is4×2, Text A root with viewport Off, root-anchored
++BelowStart nonmodal Canvas viewport2×1/content8×1. Host clamps its y to1.
++At offset3 the literal application rows are `A   ` / `de  `; ensure cell6
++Nearest on a2-column viewport produces offset5 and `A   ` / `fg  `.
++A pure `render(root,0,0)` has an empty exported grid but cannot close the
++application's valid anchor/layer, replace refs, mutate its committed offset or
++consume the ensure. Batch may apply ensure now or leave it pending: preserve
++its observed committed offset, then assert the independently counted final5.
++No Application.snapshot(0,0) is substituted for the pure export.
++
++X02 top-level open on the owner thread after startHeadless is outside the C.1
++allowed event/post/batch domain: WrongUIContext before reservation/mount. The
++same content must subsequently open in batch and mount/clean exactly once.
++This does not replace existing pure/lifecycle/stale/foreign guard priorities.
++
++## C-I01–C-I10 manual expectations
++
++C-I01: ordinary root -> owner owns outer layer -> nested layer. Removing owner
++first invalidates all three saved generations. Both cleanups observe invalid
++refs and rejected owner posts; cleanup order is literal `N;L;`, once each; only
++root remains mounted. Both layer handles terminate OwnerGone.
++C-I02: If true / ForEach one key each create one owner and one modal. Retiring
++that owner leaves root only, with activeTarget=root, modal OwnerGone and one
++cleanup. Observations are taken before session disposal in both variants.
++C-I03: base `BBB`, centered one-cell P gives `BPB`. Hidden layer yields `BBB`;
++disabled but visible layer yields `BPB`. A returned activeTarget is always
++visible and enabled (absence is permitted when no eligible domain root exists).
++C-I04: five rows A/1/2/3/4 in viewport3×2 initially `A  ` / `1  `; root-anchored
++BelowStart one-cell layer replaces row1 with `P  `. Ensuring logical row4
++Nearest gives offset3: literal rows `3  ` / `4  `. Anchor A is wholly clipped,
++so same target frame closes the layer AnchorGone and contains no P.
++C-I05: width Int64.Max × height0 is a legal empty frame. Old grow weight0/min0
++is valid. Next gives both Row children weight1/minWidth Int64.Max: the sum
++cannot fit, so transaction is Failed before publication, Old info remains,
++original refs/session remain valid and the empty old picture is reusable.
++C-I06: ordinary Row has one max-weight B child, with P in an independent layer.
++At3×1 the literal is `BP `; an equivalent named Next theme must Applied. The
++layer weight is outside the ordinary flow sum, and children().size is1.
++C-I07: explicit built-in root host needs no explicit host flag. Text B plus
++centered P at3×1 yields `BP ` and a committed open handle.
++C-I08: pending open reserves content, then explicit non-root host loses its
++capability before commit: InvalidOverlayHost, no mount/cleanup of pending
++content, closed handle/no ref, and the structural failure releases session.
++C-I09: normal NonModal target calls owner handler once. Passive target rejects
++InvalidProperty before routing and owner calls remain zero.
++C-I10: root Text A viewport Off is the whole temporary viewport anchor. P has
++natural1×1. Both below/above spaces are exhausted; clamp gives bottom row.
++Fresh pure3×2 is `A  ` / `P  `; fresh or resized5×3 is `A    ` / `     ` /
++`P    `;1×1 is `P`. Fresh exports preserve initial0×0 committed viewports;
++after real3×2 snapshot, resized pure exports preserve both committed viewport
++snapshots and original open handle/root/content generations.
+diff --git a/tests/interaction_c/src/export_turn_regressions.cj b/tests/interaction_c/src/export_turn_regressions.cj
+new file mode 100644
+index 00000000..453e21d3
+--- /dev/null
++++ b/tests/interaction_c/src/export_turn_regressions.cj
+@@ -0,0 +1,63 @@
++package interaction_c
++import cjtui.*
++
++func pureExportPreservesCommittedOverlay():Unit {
++    let root=Text("A").viewport(ScrollAxes.Off)
++    let app=Application(root);app.startHeadless()
++    try {
++        app.snapshot(4,2)
++        let rootRef=node(root)
++        let content=Canvas({_=>Size(8,1)},{p=>p.put(0,0,"abcdefgh")}).viewport(ScrollAxes.Horizontal).width(2).height(1)
++        let saved=Box<?OverlayHandle>(Option<OverlayHandle>.None)
++        app.batch({=>saved.value=Some(rootRef.openOverlay(content,options:OverlayOptions(anchor:rootRef,placement:OverlayPlacement.BelowStart,takeFocus:false)))})
++        let handle=saved.value.getOrThrow();let layer=handle.content().getOrThrow()
++        app.snapshot(4,2)
++        app.batch({=>layer.scrollTo(3,0);()})
++        picture(app.snapshot(4,2),"A   \nde  ","X01 committed application4x2/anchored viewport offset3 control")
++        check(handle.isOpen() && layer.isValid() && layer.viewportSnapshot().offsetX==3,"X01 live committed layer control")
++        // A legal turn may leave ensure for the next layout or already apply it.
++        // Preserve whichever geometry is committed, then prove the hand target.
++        app.batch({=>layer.ensureVisible(rect:Rect(6,0,1,1))})
++        let committedOffset=layer.viewportSnapshot().offsetX
++        let exported=render(root,0,0)
++        let actualOffset=if(layer.isValid()){layer.viewportSnapshot().offsetX}else{-1}
++        println("X01 pure0x0 open=${handle.isOpen()} reason=${reason(handle)} rootValid=${rootRef.isValid()} layerValid=${layer.isValid()} offset=${actualOffset} previous=${committedOffset}")
++        check(exported.width==0 && exported.height==0,"X01 actual pure export has zero dimensions")
++        check(handle.isOpen() && layer.isValid() && handle.content().getOrThrow().sameNode(layer),"X01 pure export must preserve committed anchored layer and identity")
++        check(reason(handle)=="None" && node(root).sameNode(rootRef),"X01 pure export preserves handle/root generation")
++        check(layer.viewportSnapshot().offsetX==committedOffset,"X01 pure export preserves committed viewport offset")
++        check(rootRef.application().stats().mountedNodes==2,"X01 original active application still owns both real nodes")
++        picture(app.snapshot(4,2),"A   \nfg  ","X01 next application target honors ensure6 and original4x2 geometry")
++        check(layer.viewportSnapshot().offsetX==5 && handle.isOpen(),"X01 pending ensure survives pure export")
++    } finally {app.dispose()}
++}
++
++func overlayOpenRequiresActiveTurn():Unit {
++    let root=Column{}.viewport(ScrollAxes.Off)
++    let app=Application(root);app.startHeadless()
++    let mounts=Box<Int64>(0);let cleanups=Box<Int64>(0)
++    let content=Text("allowed").onMount({_=>mounts.value++;{=>cleanups.value++}})
++    try {
++        let owner=node(root);let before=app.stats().mountedNodes
++        let unexpected=Box<?OverlayHandle>(Option<OverlayHandle>.None)
++        var observed="NO_ERROR"
++        try {unexpected.value=Some(owner.openOverlay(content,options:OverlayOptions(takeFocus:false)))}catch(e:UIException){observed=e.code}
++        println("X02 top-level open code=${observed} handleReturned=${unexpected.value.isSome()} mounts=${mounts.value} mounted=${app.stats().mountedNodes}")
++        check(observed=="WrongUIContext","X02 top-level open outside event/post/batch rejects WrongUIContext")
++        check(unexpected.value.isNone() && mounts.value==0 && cleanups.value==0 && content.reference().isNone() && app.stats().mountedNodes==before,"X02 rejection has no reservation/mount side effects")
++        let accepted=Box<?OverlayHandle>(Option<OverlayHandle>.None)
++        app.batch({=>accepted.value=Some(owner.openOverlay(content,options:OverlayOptions(takeFocus:false)))})
++        check(accepted.value.getOrThrow().isOpen() && accepted.value.getOrThrow().content().getOrThrow().sameNode(node(content)),"X02 same content legally opens in batch after rejection")
++        check(mounts.value==1 && app.stats().mountedNodes==before+1,"X02 same content reserved/mounted exactly once in legal turn")
++    } finally {app.dispose()}
++    check(cleanups.value==1,"X02 legal batch content cleanup once")
++}
++
++func exportTurnRegression(name:String):Int64 {
++    match(name){
++        case "pure-export"=>pureExportPreservesCommittedOverlay()
++        case "open-turn"=>overlayOpenRequiresActiveTurn()
++        case _=>throw Exception("unknown export/turn regression ${name}")
++    }
++    return 0
++}
+diff --git a/tests/interaction_c/src/main.cj b/tests/interaction_c/src/main.cj
+index 81ebc123..b9212660 100644
+--- a/tests/interaction_c/src/main.cj
++++ b/tests/interaction_c/src/main.cj
+@@ -1,16 +1,18 @@
+ package interaction_c
+ import std.env.*
+ 
+ // This binary is built and run ONLY after actual accepted A/B/Theme/Session
+ // admission. Missing those dependencies is BLOCKED, never behavioral RED.
+ main(): Int64 {
++    if(let Some(name)<-getVariable("CJTUI_OVERLAY_REVIEW")){return reviewRegression(name)}
++    if(let Some(name)<-getVariable("CJTUI_OVERLAY_REGRESSION")){return exportTurnRegression(name)}
+     if(getVariable("CJTUI_OVERLAY_NATIVE").isSome()){return nativeOverlayFixture()}
+     publicShapes()
+     pendingCancellation()
+     sharedTypeAndIdentity()
+     modalDomains()
+     escapeBarrierAndPrevent()
+     emptyLayerReservation()
+     dependentClosure()
+     savedFocusFallback()
+     cleanupAggregation()
+@@ -23,12 +25,14 @@ main(): Int64 {
+     escapeAndLogicalRouting();modalTraversalAndDomainOpen()
+     hiddenOrUnmountedSaved(false);hiddenOrUnmountedSaved(true)
+     for(branch in 0..4){physicalRestorationFallback(branch)}
+     stackedRestoration();ordinaryOwnedClosure();offscreenOwnerAndReason()
+     primaryAndCleanup(false);primaryAndCleanup(true)
+     threadAndAnchorValidation();for(phase in 0..3){evaluationAndLifecycleGuards(phase)}
+     lifecycleLayerCommands();layerDepthBoundary();for(which in 0..3){layerCapacity(which)}
+     layerDependencyBudget(false);layerDependencyBudget(true);interactivePassiveRejection()
+     ownerThemeSurface();explicitHostClip();directionalAnchors();clippedAndLostAnchors()
+     decoratedLayerTargets();caretSpacesShadowAndClip()
++    pureExportPreservesCommittedOverlay();overlayOpenRequiresActiveTurn()
++    for(name in ["C-I01","C-I02","C-I03","C-I04","C-I05","C-I06","C-I07","C-I08","C-I09","C-I10"]){reviewRegression(name)}
+     return 0
+ }
+diff --git a/tests/interaction_c/src/review_regressions.cj b/tests/interaction_c/src/review_regressions.cj
+new file mode 100644
+index 00000000..4d1f6991
+--- /dev/null
++++ b/tests/interaction_c/src/review_regressions.cj
+@@ -0,0 +1,229 @@
++package interaction_c
++import cjtui.*
++
++// C-I01: ordinary removal must revoke every owned generation before cleanup.
++func reviewOwnerRevocation():Unit {
++    let owner=Box<?Component>(Option<Component>.None)
++    let root=Column{owner.value=Some(Text("O"))}.viewport(ScrollAxes.Off)
++    let app=Application(root);app.startHeadless();let ownerRef=node(owner.value.getOrThrow())
++    let allRevoked=Box<Bool>(true);let postRejected=Box<Bool>(true);let trace=Box<String>("")
++    let outer=Box<?NodeRef>(Option<NodeRef>.None);let inner=Box<?NodeRef>(Option<NodeRef>.None)
++    let observe={=>allRevoked.value=allRevoked.value && !ownerRef.isValid() && !outer.value.getOrThrow().isValid() && !inner.value.getOrThrow().isValid();postRejected.value=postRejected.value && !app.post(ownerRef,{=>})}
++    let layer=Column{Text("L")}.onMount({_=>{=>observe();trace.value+="L;"}})
++    let nested=Text("N").onMount({_=>{=>observe();trace.value+="N;"}})
++    let first=Box<?OverlayHandle>(Option<OverlayHandle>.None);let second=Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    try {
++        app.batch({=>first.value=Some(ownerRef.openOverlay(layer,options:OverlayOptions(takeFocus:false)))})
++        outer.value=Some(node(layer))
++        app.batch({=>second.value=Some(node(layer).openOverlay(nested,options:OverlayOptions(takeFocus:false)))})
++        inner.value=Some(node(nested))
++        check(first.value.getOrThrow().isOpen() && second.value.getOrThrow().isOpen(),"C-I01 nested owned layers mounted control")
++        app.batch({=>node(root).remove(ownerRef)})
++        println("C-I01 allRevokedAtCleanup=${allRevoked.value} ownerPostRejected=${postRejected.value} trace=${trace.value} mounted=${app.stats().mountedNodes}")
++        check(allRevoked.value && postRejected.value,"C-I01 revoke ordinary owner and whole overlay closure before any cleanup")
++        check(trace.value=="N;L;" && app.stats().mountedNodes==1,"C-I01 deepest-first exactly-once cleanup leaves root only")
++        check(!first.value.getOrThrow().isOpen() && !second.value.getOrThrow().isOpen() && reason(first.value.getOrThrow())=="OwnerGone" && reason(second.value.getOrThrow())=="OwnerGone","C-I01 owned handles terminate OwnerGone")
++    }finally{app.dispose()}
++}
++
++// Both ordinary declarative retirement mechanisms must close the modal domain.
++func reviewRetirement(useEach:Bool):Bool {
++    let show=Observable<Bool>(true);let keys=Observable<Array<String>>(["owner"])
++    let owner=Box<?Component>(Option<Component>.None)
++    let root=if(useEach){Column{ForEach<String>({=>keys.get()},{s=>s},{_=>owner.value=Some(Text("O"))})}}else{Column{If({=>show.get()},{=>owner.value=Some(Text("O"))})}}
++    root.viewport(ScrollAxes.Off)
++    let cleanups=Box<Int64>(0);let modal=Text("P").onMount({_=>{=>cleanups.value++}})
++    let app=Application(root);app.startHeadless();let savedOwner=node(owner.value.getOrThrow())
++    let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None);var correct=false
++    try {
++        app.batch({=>handle.value=Some(savedOwner.openOverlay(modal,options:OverlayOptions(mode:OverlayMode.Modal)))})
++        let savedLayer=node(modal);check(handle.value.getOrThrow().isOpen() && savedLayer.isValid(),"C-I02 modal mounted before retirement each=${useEach}")
++        app.batch({=>if(useEach){keys.set([])}else{show.set(false)}})
++        let h=handle.value.getOrThrow();let active=app.activeTarget()
++        correct= !savedOwner.isValid() && !savedLayer.isValid() && !h.isOpen() && reason(h)=="OwnerGone" && cleanups.value==1 && active.isSome() && active.getOrThrow().sameNode(node(root))
++        println("C-I02 each=${useEach} ownerValid=${savedOwner.isValid()} layerValid=${savedLayer.isValid()} open=${h.isOpen()} reason=${reason(h)} cleanup=${cleanups.value} activeIsRoot=${active.isSome() && active.getOrThrow().sameNode(node(root))}")
++    }finally{app.dispose()}
++    return correct
++}
++func reviewDeclarativeOwner():Unit {
++    let ifCorrect=reviewRetirement(false);let eachCorrect=reviewRetirement(true)
++    check(ifCorrect && eachCorrect,"C-I02 If and ForEach retirement close owned modal once and restore base root")
++}
++
++func reviewHiddenAndDisabledLayer():Unit {
++    let root=Text("BBB").viewport(ScrollAxes.Off);let layer=Text("P")
++    let app=Application(root);app.startHeadless()
++    try {
++        app.batch({=>node(root).openOverlay(layer,options:OverlayOptions(takeFocus:true));()})
++        picture(app.snapshot(3,1),"BPB","C-I03 visible centered layer control")
++        target(app,node(layer),"C-I03 takeFocus layer root control")
++        app.batch({=>layer.visible(false)})
++        let hidden=app.snapshot(3,1);let hiddenTarget=app.activeTarget()
++        let hiddenEligible=hiddenTarget.isNone() || (hiddenTarget.getOrThrow().isVisible() && hiddenTarget.getOrThrow().isEnabled())
++        let hiddenRefVisible=node(layer).isVisible()
++        app.batch({=>layer.visible(true);layer.enabled(false)})
++        let disabled=app.snapshot(3,1);let disabledTarget=app.activeTarget()
++        let disabledEligible=disabledTarget.isNone() || (disabledTarget.getOrThrow().isVisible() && disabledTarget.getOrThrow().isEnabled())
++        println("C-I03 hidden=[${hidden.toPlainText()}] refVisible=${hiddenRefVisible} hiddenTargetEligible=${hiddenEligible} disabled=[${disabled.toPlainText()}] disabledTargetEligible=${disabledEligible}")
++        picture(hidden,"BBB","C-I03 hidden content root contributes no cells")
++        check(!hiddenRefVisible && hiddenEligible && disabledEligible,"C-I03 hidden and disabled roots cannot remain active targets")
++        picture(disabled,"BPB","C-I03 disabled content remains visible")
++    }finally{app.dispose()}
++}
++
++func reviewEnsureAnchor():Unit {
++    let anchor=Box<?Component>(Option<Component>.None)
++    let root=ScrollView{anchor.value=Some(Text("A"));Text("1\n2\n3\n4")}
++    let app=Application(root);app.startHeadless();let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    try {
++        picture(app.snapshot(3,2),"A  \n1  ","C-I04 initial scroll content control")
++        app.batch({=>handle.value=Some(node(root).openOverlay(Text("P"),options:OverlayOptions(anchor:node(anchor.value.getOrThrow()),placement:OverlayPlacement.BelowStart,takeFocus:false)))})
++        picture(app.snapshot(3,2),"A  \nP  ","C-I04 visible anchored overlay control")
++        app.batch({=>node(root).ensureVisible(rect:Rect(0,4,1,1))})
++        let frame=app.snapshot(3,2);let h=handle.value.getOrThrow();let offset=node(root).viewportSnapshot().offsetY
++        println("C-I04 offset=${offset} open=${h.isOpen()} reason=${reason(h)} frame=[${frame.toPlainText()}]")
++        check(offset==3,"C-I04 ensure target row4 in two rows commits offset3")
++        check(!h.isOpen() && reason(h)=="AnchorGone","C-I04 same frame uses post-ensure anchor intersection")
++        picture(frame,"3  \n4  ","C-I04 no floating layer after anchor scrolls out of host")
++    }finally{app.dispose()}
++}
++
++func reviewThemeResult(request:ThemeRequest):String {
++    match(request.result()){
++        case Some(ThemeResult.Applied(_))=>"Applied"
++        case Some(ThemeResult.Failed(_))=>"Failed"
++        case Some(ThemeResult.Superseded(_))=>"Superseded"
++        case Some(ThemeResult.SessionClosed)=>"SessionClosed"
++        case None=>"Pending"
++    }
++}
++func reviewOverlayCandidate():Unit {
++    let old=Theme.parse("schema_version=1\nname='Old'\n[styles.grow.spacing]\nweight=0\nmin_width=0\n")
++    let next=Theme.parse("schema_version=1\nname='Next'\n[styles.grow.spacing]\nweight=1\nmin_width=9223372036854775807\n")
++    let mounts=Box<Int64>(0);let cleanups=Box<Int64>(0)
++    let root=Column{}.viewport(ScrollAxes.Off)
++    let layer=Row{Text("a").styles([StyleUse.Named("grow")]);Text("b").styles([StyleUse.Named("grow")])}.onMount({_=>mounts.value++;{=>cleanups.value++}})
++    let app=Application(root,theme:old);app.startHeadless()
++    try {
++        app.batch({=>node(root).openOverlay(layer,options:OverlayOptions(takeFocus:false));()})
++        let owner=node(root);let saved=node(layer)
++        let baseline=app.snapshot(Int64.Max,0);let info=app.themeInfo()
++        check(baseline.width==Int64.Max && baseline.height==0 && info.name=="Old" && mounts.value==1,"C-I05 legal old zero-area huge-width layout control")
++        let request=app.loadTheme(ThemeSource.Prepared(next));var error=""
++        try{app.snapshot(Int64.Max,0)}catch(e:Exception){error=e.message}
++        let active=app.post({=>});let current=app.themeInfo()
++        println("C-I05 result=${reviewThemeResult(request)} error=[${error}] theme=${current.name} revision=${current.revision} active=${active} rootValid=${owner.isValid()} layerValid=${saved.isValid()} mounts=${mounts.value} cleanups=${cleanups.value}")
++        check(error.isEmpty() && reviewThemeResult(request)=="Failed","C-I05 predictable overlay minimum sum overflow rejected before publication")
++        check(current.name=="Old" && current.revision==info.revision && current.requestId==info.requestId,"C-I05 failed candidate retains accepted theme identity")
++        check(active && owner.isValid() && saved.isValid() && mounts.value==1 && cleanups.value==0,"C-I05 rejection preserves active original mounted session")
++        let after=app.snapshot(Int64.Max,0)
++        check(after.width==Int64.Max && after.height==0 && after.toPlainText()==baseline.toPlainText(),"C-I05 original zero-area picture remains usable")
++        // Public snapshot includes legitimate layout. No cross-snapshot zero-call
++        // oracle is used for measure/draw; forbidden preflight is source-audited.
++    }finally{app.dispose()}
++}
++
++func reviewOverlayWeight():Unit {
++    let old=Theme.parse("schema_version=1\nname='Old'\n");let next=Theme.parse("schema_version=1\nname='Next'\n")
++    let root=Row{Text("B").layoutWeight(Int64.Max)}.viewport(ScrollAxes.Off)
++    let app=Application(root,theme:old);app.startHeadless()
++    try {
++        app.batch({=>node(root).openOverlay(Text("P").layoutWeight(1),options:OverlayOptions(takeFocus:false));()})
++        picture(app.snapshot(3,1),"BP ","C-I06 valid ordinary max weight plus independent layer control")
++        check(node(root).children().size==1,"C-I06 overlay excluded from public ordinary children")
++        let request=app.loadTheme(ThemeSource.Prepared(next));let frame=app.snapshot(3,1)
++        println("C-I06 result=${reviewThemeResult(request)} theme=${app.themeInfo().name} frame=[${frame.toPlainText()}]")
++        check(reviewThemeResult(request)=="Applied" && app.themeInfo().name=="Next","C-I06 overlay ownership weight never sums into ordinary flow")
++        picture(frame,"BP ","C-I06 unchanged legal theme preserves composed picture")
++    }finally{app.dispose()}
++}
++
++func reviewExplicitRootHost():Unit {
++    let root=Text("B").viewport(ScrollAxes.Off);let app=Application(root);app.startHeadless()
++    let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None);let observed=Box<String>("None")
++    try {
++        app.batch({=>try{handle.value=Some(node(root).openOverlay(Text("P"),options:OverlayOptions(host:node(root),takeFocus:false)))}catch(e:UIException){observed.value=e.code}})
++        println("C-I07 explicitRootHost code=${observed.value} returned=${handle.value.isSome()}")
++        check(observed.value=="None" && handle.value.isSome(),"C-I07 explicit application root has built-in host capability")
++        check(handle.value.getOrThrow().isOpen() && handle.value.getOrThrow().content().isSome(),"C-I07 explicit root host commits real content")
++        picture(app.snapshot(3,1),"BP ","C-I07 explicit root host centered geometry")
++    }finally{app.dispose()}
++}
++
++func reviewRevokedPendingHost():Unit {
++    let host=Box<?Component>(Option<Component>.None);let owner=Box<?Component>(Option<Component>.None)
++    let root=Column{host.value=Some(Column{owner.value=Some(Text("O"))}.overlayHost(true))}.viewport(ScrollAxes.Off)
++    let mounts=Box<Int64>(0);let cleanups=Box<Int64>(0)
++    let content=Text("P").onMount({_=>mounts.value++;{=>cleanups.value++}})
++    let app=Application(root);app.startHeadless();let rootRef=node(root)
++    let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None);var observed="None"
++    try {
++        try{app.batch({=>handle.value=Some(node(owner.value.getOrThrow()).openOverlay(content,options:OverlayOptions(host:node(host.value.getOrThrow()),takeFocus:false)));host.value.getOrThrow().overlayHost(false);()})}catch(e:UIException){observed=e.code}
++        println("C-I08 code=${observed} open=${handle.value.getOrThrow().isOpen()} mounts=${mounts.value} cleanups=${cleanups.value} rootValid=${rootRef.isValid()} mounted=${app.stats().mountedNodes}")
++        check(observed=="InvalidOverlayHost","C-I08 pending commit revalidates revoked host capability")
++        check(!handle.value.getOrThrow().isOpen() && handle.value.getOrThrow().content().isNone() && mounts.value==0 && cleanups.value==0 && content.reference().isNone(),"C-I08 illegal pending content never mounts or publishes")
++        check(!rootRef.isValid(),"C-I08 structural failure revokes original session")
++        released(app,"C-I08 unified failure cleanup releases all resources")
++    }finally{app.dispose()}
++}
++
++func reviewPassiveDispatch():Unit {
++    let calls=Box<Int64>(0);let root=Text("B").viewport(ScrollAxes.Off).onKey({_=>calls.value++})
++    let app=Application(root);app.startHeadless();let normal=Text("N");let passive=Text("P")
++    let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    try {
++        app.batch({=>handle.value=Some(node(root).openOverlay(normal,options:OverlayOptions(takeFocus:false)))})
++        app.dispatch(node(normal),KeyEvent("text",text:"x"))
++        check(calls.value==1,"C-I09 normal NonModal dispatch reaches owner control")
++        app.batch({=>handle.value.getOrThrow().close();()});calls.value=0
++        app.batch({=>node(root).openOverlay(passive,options:OverlayOptions(mode:OverlayMode.Passive,takeFocus:false));()})
++        var observed="None"
++        try{app.dispatch(node(passive),KeyEvent("text",text:"x"))}catch(e:UIException){observed=e.code}
++        println("C-I09 passiveDispatch code=${observed} ownerCalls=${calls.value}")
++        check(observed=="InvalidProperty" && calls.value==0,"C-I09 Passive explicit keyboard target rejected before business route")
++    }finally{app.dispose()}
++}
++
++func reviewSameViewport(a:ViewportSnapshot,b:ViewportSnapshot):Bool {
++    return a.width==b.width && a.height==b.height && a.contentWidth==b.contentWidth && a.contentHeight==b.contentHeight && a.offsetX==b.offsetX && a.offsetY==b.offsetY && a.axes==b.axes
++}
++func reviewPureExportGeometry():Unit {
++    let root=Text("A").viewport(ScrollAxes.Off);let layer=Text("P").viewport(ScrollAxes.Off)
++    let app=Application(root);app.startHeadless();let rootRef=node(root)
++    let handle=Box<?OverlayHandle>(Option<OverlayHandle>.None)
++    try {
++        app.batch({=>handle.value=Some(rootRef.openOverlay(layer,options:OverlayOptions(anchor:rootRef,placement:OverlayPlacement.BelowStart,takeFocus:false)))})
++        let h=handle.value.getOrThrow();let saved=node(layer);let rootBefore=rootRef.viewportSnapshot();let layerBefore=saved.viewportSnapshot()
++        check(rootBefore.width==0 && rootBefore.height==0 && h.isOpen(),"C-I10 first export has no preceding application snapshot")
++        let first=render(root,3,2);let second=render(root,5,3)
++        let freshPreserved=h.isOpen() && saved.isValid() && reviewSameViewport(rootBefore,rootRef.viewportSnapshot()) && reviewSameViewport(layerBefore,saved.viewportSnapshot())
++        let committed=app.snapshot(3,2);let rootCommitted=rootRef.viewportSnapshot();let layerCommitted=saved.viewportSnapshot()
++        let larger=render(root,5,3);let smaller=render(root,1,1)
++        let committedPreserved=h.isOpen() && reason(h)=="None" && node(root).sameNode(rootRef) && h.content().getOrThrow().sameNode(saved) && reviewSameViewport(rootCommitted,rootRef.viewportSnapshot()) && reviewSameViewport(layerCommitted,saved.viewportSnapshot())
++        println("C-I10 first3x2=[${first.toPlainText()}] fresh5x3=[${second.toPlainText()}] committed3x2=[${committed.toPlainText()}] larger5x3=[${larger.toPlainText()}] smaller1x1=[${smaller.toPlainText()}] freshPreserved=${freshPreserved} committedPreserved=${committedPreserved}")
++        picture(first,"A  \nP  ","C-I10 first pure export includes current anchored layer")
++        picture(second,"A    \n     \nP    ","C-I10 fresh export uses its own5x3 geometry")
++        check(freshPreserved,"C-I10 fresh exports leave application committed viewports untouched")
++        picture(committed,"A  \nP  ","C-I10 first real application snapshot remains usable")
++        picture(larger,"A    \n     \nP    ","C-I10 resized export uses current temporary host geometry")
++        picture(smaller,"P","C-I10 one-cell export composes anchored layer at clamped origin")
++        check(committedPreserved,"C-I10 different export sizes preserve live handle refs and application3x2 committed geometry")
++    }finally{app.dispose()}
++}
++
++func reviewRegression(name:String):Int64 {
++    match(name){
++        case "C-I01"=>reviewOwnerRevocation()
++        case "C-I02"=>reviewDeclarativeOwner()
++        case "C-I03"=>reviewHiddenAndDisabledLayer()
++        case "C-I04"=>reviewEnsureAnchor()
++        case "C-I05"=>reviewOverlayCandidate()
++        case "C-I06"=>reviewOverlayWeight()
++        case "C-I07"=>reviewExplicitRootHost()
++        case "C-I08"=>reviewRevokedPendingHost()
++        case "C-I09"=>reviewPassiveDispatch()
++        case "C-I10"=>reviewPureExportGeometry()
++        case _=>throw Exception("unknown formal review regression ${name}")
++    }
++    return 0
++}
+

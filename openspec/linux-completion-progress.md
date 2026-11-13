@@ -63,3 +63,7 @@ TASK083独立实际FAIL R14T083001，两真实GUI t delta仅CUP第3行却第4行
 2026-11-11 Glyph093–097有限子接口最终PASS：独立095/096/097完成，当前源1f67/rootb3，final09733项矩阵明确30pass+有限P30pass+接口pass/layoutpending+父pending，0C/I/M。R16/execution保留真实kernel7轮/GUI2宿主39原PNG、21PPM、普通uid1000产品及受控GIO失败；P30仅本固定kernel正常组合，不关闭full041等父项。rootfresh1391sourcecopy2782SHA全同。097已封存curated41文件/40index/artifacts603d70f0…，独立机械归档中。Theme085固定原74b1+追加2b16交付已准；013025唯一产品Terra/high ACTUAL GO最终BASE81cd29c/独立theme-implementation源，当前正在实施，不等ThemeGREEN才开始。后续按086087088→089真实RED026→交互/输入/控件→完整M1→M2→finalrelease，不以此次有限通过结束用户全部Linux目标。
 
 2026-11-11 Theme基础013/025、085–088最终独立接受，当前0C/I/M；正常8d包175成员/干净SDK+stdx公开消费、12真实XTerm/VTE原PNG及布局/Glyph前缀证据归R15。root已推已验产品main73abef3（与8d的46产品路径同源），完整矩阵有限复用/来源限制保留。T087-G01 wholechecker仍exit1：themes允许表滞后、composition/benchmark未交付，按既有023.a–d最终必修，不能称release/Linux完成。089真实异步API缺失RED已交；026实现ACTUAL GO，独立源BASE73abef3，数据层checkpoint非完成。下一持续026→090091092→交互A/B/C→输入编辑→控件→完整M1/027→M2→最终Linux门禁，不停在本基础增量。
+
+2026-11-13：异步主题026、公共交互A/B/C已依次完成有限验收；实际状态权威见各change tasks和docs/acceptance。C原产品7f431765经独立112接受并机械集成main283e59b1，产品路径与受检源码字节一致；原014/018完整AC已映射。C独立111正常mandatory bundle/220成员、干净完整公共消费者与公开例子、五PTY及三宿主H01/原生caret均有固定原件。71张最终场景原PNG及125其他历史/瞬时图分类保留；VT Unknown物理隐藏证据不足但符合I015降级，不声称物理隐藏成功。整C原件与验收见[公开归档](../docs/reviews/interaction/C/README.md)。
+
+下一正式工作为Keyboard113冻结复核→114–117，再118–122编辑、153–162控件/菜单、完整M1/027展示、M2及最终Linux023/024等门槛；其他OS仍后置。旧B-M01 getter axes/onMount Off须024关闭；T087-G01最终制品检查仍须023关闭。C历史作者可变索引旧版本未保留和外部编译中间件限制已在112明确，不用新构建冒充旧原件，不影响已固定最终独立111证据。不因此次C有限验收停止用户的完整Linux目标，未发布。

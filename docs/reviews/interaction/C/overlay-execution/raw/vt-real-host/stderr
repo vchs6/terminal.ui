@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/work/overlay-execution/tools/h01_vt.py", line 78, in <module>
+    for mode in ([a.mode] if a.mode else MODES):one(a.output.resolve()/mode,mode,a.initrd.resolve())
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/overlay-execution/tools/h01_vt.py", line 53, in one
+    capture('base');key('m');ack('M','mounted');key('p');ack('P','mounted');key('c');ack('C','mounted');key('x');ack('trace',TRACE);capture('confirmation')
+    ^^^^^^^^^^^^^^^
+  File "/workspace/work/overlay-execution/tools/h01_vt.py", line 51, in capture
+    seq,n,data=matches[-1];raw=bytes.fromhex(data);assert raw[:2]==bytes([10,40]) and len(raw)==804
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

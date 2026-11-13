@@ -1,0 +1,9 @@
+{"receive": {"QMP": {"version": {"qemu": {"micro": 13, "minor": 0, "major": 10}, "package": "Debian 1:10.0.13+ds-0+deb13u1"}, "capabilities": ["oob"]}}, "utc": "2026-11-13T02:33:15.479023+00:00"}
+{"send": {"execute": "qmp_capabilities", "id": 1}, "utc": "2026-11-13T02:33:15.479078+00:00"}
+{"receive": {"return": {}, "id": 1}, "utc": "2026-11-13T02:33:15.548618+00:00"}
+{"send": {"execute": "query-version", "id": 2}, "utc": "2026-11-13T02:33:15.548674+00:00"}
+{"receive": {"return": {"qemu": {"micro": 13, "minor": 0, "major": 10}, "package": "Debian 1:10.0.13+ds-0+deb13u1"}, "id": 2}, "utc": "2026-11-13T02:33:15.551255+00:00"}
+{"send": {"execute": "query-kvm", "id": 3}, "utc": "2026-11-13T02:33:15.551279+00:00"}
+{"receive": {"return": {"enabled": false, "present": true}, "id": 3}, "utc": "2026-11-13T02:33:15.551603+00:00"}
+{"send": {"execute": "screendump", "id": 4, "arguments": {"filename": "/workspace/work/overlay-execution/raw/vt-c/interrupt/base.png", "format": "png"}}, "utc": "2026-11-13T02:33:22.129123+00:00"}
+{"receive": {"return": {}, "id": 4}, "utc": "2026-11-13T02:33:22.133324+00:00"}
