@@ -1,0 +1,39 @@
+{
+  "cwd": "/workspace/work/widgets-composite-tests/notify-kind-fix/evidence/notify-proof",
+  "SDK": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+  "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+  "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+  "registry": "https://pkg.cangjie-lang.cn/registry",
+  "cache": "/workspace/work/viewport-tests/cache",
+  "commands": [
+    {
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "exit": 0,
+      "stdout_stderr": "/workspace/work/widgets-composite-tests/notify-kind-fix/evidence/proof-build.log"
+    },
+    {
+      "argv": [
+        "timeout",
+        "45s",
+        "target/release/bin/main"
+      ],
+      "env": {
+        "TERM": "dumb",
+        "COLORTERM": ""
+      },
+      "stdin": "/dev/null",
+      "exit": 0,
+      "stdout_stderr": "/workspace/work/widgets-composite-tests/notify-kind-fix/evidence/proof-run.log"
+    }
+  ],
+  "timestamp_note": "Original tool invocations did not capture exact start/end timestamps; no inferred timestamps are asserted.",
+  "intermediate_failure": {
+    "build_exit": 0,
+    "run_exit": 1,
+    "log": "/workspace/work/widgets-composite-tests/notify-kind-fix/evidence/proof-run-collector-fixture-error.log",
+    "classification": "independent proof setup; children constructed outside collector; fixed with in-block construction, no oracle change"
+  }
+}

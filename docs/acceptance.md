@@ -14,7 +14,7 @@
 | AC-008 | REQ-004 | 差分提交与写失败恢复 | TASK-008 | 无变化不输出；部分写失败不提交基线，安全重同步后完整重绘；无法确认时停止输出并报错；证据待实施时链接 | pending |
 | AC-009 | REQ-005 | 有界增量 ANSI 输入适配 | TASK-009 | 跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传；[R14独立验收](reviews/R14/acceptance/report.md) | passed（[R14有限验收](reviews/R14/acceptance/report.md)） |
 | AC-010 | REQ-005 | 完整彩色与纯文本快照 | TASK-010 | 含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告；证据待实施时链接 | pending |
-| AC-011 | REQ-003 | 横纵与弹性尺寸协商 | TASK-011 | 窄屏、零尺寸和非整除弹性分配有确定结果；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
+| AC-011 | REQ-003 | 横纵与弹性尺寸协商 | TASK-011 | 窄屏、零尺寸和非整除弹性分配有确定结果；[M04 Split薄组合追加证据](reviews/widgets/M/acceptance162/ac-results.json)不替代原范围；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
 | AC-012 | REQ-003 | 圆角边框与阴影绘制区域 | TASK-012 | 阴影只扩展绘制；移动/缩小清旧区，服从祖先裁剪；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
 | AC-013 | REQ-001 | 主题、样式复用及显式复位 | TASK-013 | 四级优先顺序和继承/复位行为明确，运行时仅样式变化也更新 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
 | AC-014 | REQ-001 | 自定义组件跨容器复用 | TASK-014 | 同组件用于普通容器与弹窗无需修改内核；见C固定原件与独立有限验收 | passed（[C独立有限验收](reviews/interaction/C/overlay-acceptance/acceptance.md)；原AC完整范围） |
@@ -22,7 +22,7 @@
 | AC-016 | REQ-002 | 状态批处理与 UI 调度 | TASK-016 | 后台状态经过调度，批量修改合并刷新，长短文本切换无残留；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
 | AC-017 | REQ-003 | 键盘导航和有效焦点 | TASK-017 | 禁用、卸载和空焦点集合有确定行为，无失效引用；普通域已验收，视口/层域及完整输入后续汇合 | passed（普通域焦点范围；[有限验收](reviews/interaction/A/TASK-102/report.md)） |
 | AC-018 | REQ-003 | 覆盖层嵌套与关闭恢复 | TASK-018 | 父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态；见C固定原件与独立有限验收 | passed（[C独立有限验收](reviews/interaction/C/overlay-acceptance/acceptance.md)；原AC完整范围） |
-| AC-019 | REQ-003 | 菜单与状态条组合行为 | TASK-019 | 水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合；证据待实施时链接 | pending |
+| AC-019 | REQ-003 | 菜单与状态条组合行为 | TASK-019 | 水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合；[M01–M05有限162证据](reviews/widgets/M/acceptance162/acceptance.md)已交付，原父AC完整汇合仍待主代理判定 | pending |
 | AC-020 | REQ-004、REQ-011 | 应用退出与终端模式恢复 | TASK-020 | 当前在冻结Linux配置正常退出、异常及取消均按平台契约清理模式/光标；其他OS后续扩展；证据待实施时链接 | pending |
 | AC-021 | REQ-001 | 交付 U1–U5 公开接口示例 | TASK-021 | M1 minimal/composition独立项目构建；不同业务U5无内核特判；四主题完整展示归AC-027，M2归AC-031；证据待实施时链接 | pending |
 | AC-022 | REQ-004 | 交付可重复渲染基准项目 | TASK-022 | 固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果；证据待实施时链接 | pending |
@@ -247,8 +247,8 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-158 | REQ-001/003/004/007 | TASK-158 | 独立菜单/状态/分区/层组合golden | passed（[正式测试交付](reviews/widgets/M/test158/report.md)，e59d5c9f/main9ec836ce；51手工case、前置build/direct0含42S修饰键排除、孤立6缺API编译RED1/classifier0；非M行为通过） |
 | AC-159 | REQ-001/003/004/007 | TASK-159 | 公共菜单/状态条/SplitPane实现 | passed（[作者实现/开发验证](reviews/widgets/M/author159/task-159-report.md)，product6f7d6fee/verification6e3f26aa；formal0、headless53/PTY0/21/22、normal example/bundle0；非独立161或162通过） |
 | AC-160 | REQ-001/003/004/007 | TASK-160 | 菜单组合独立双审 | passed（[独立spec/quality PASSED](reviews/widgets/M/review160/report.md)，固定6e3f26aa/testsad100；0contractdefects，M160-S01 open非阻塞测试精度建议保留；非161/162通过） |
-| AC-161 | REQ-001/003/004/007 | TASK-161 | 菜单导航/取消/窄屏及制品独立执行 | in_progress（独立Sol/medium正常包/干净消费与3实际宿主执行中；尚无新M执行PASS） |
-| AC-162 | REQ-001/003/004/007 | TASK-162 | 原019完整证据与metadata | pending |
+| AC-161 | REQ-001/003/004/007 | TASK-161 | 菜单导航/取消/窄屏及制品独立执行 | passed（[独立161](reviews/widgets/M/execution161/report.md)：正常bundle/干净消费者、53headless、PTY0/21/22及3实际宿主device/example，ASCII/default Classic有限范围） |
+| AC-162 | REQ-001/003/004/007 | TASK-162 | 原019完整证据与metadata | passed（[独立PASS_FINITE_M](reviews/widgets/M/acceptance162/acceptance.md)：M01–M05/受影响S02；parent019/011原完整AC、027/041/fullLinux仍待汇合） |
 
 唯一任务状态见[具体变更](../openspec/changes/implement-standard-widgets/tasks.md)，规划和探针不代表产品已完成。
 

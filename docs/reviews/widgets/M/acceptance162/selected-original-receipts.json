@@ -1,0 +1,126 @@
+[
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/chosen-popup-still-open.png",
+    "sha256": "e2236c0c5b200a5a328406c14ee429800fbabf3aa0609e45718ec66d70742e12",
+    "observation": "P/X/R remains visible after choice; R cyan/underlined, B/X visibly dim; counts require raw chosen/focus.",
+    "original": true,
+    "viewed_with": "view_image",
+    "limits": "Pixels establish visible settled state only; no cleanup/callback-count inference."
+  },
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-vte-normal/nested-modal.png",
+    "sha256": "85070cd82eeeb017c8296642a4f83e41271a2ccedbafc214a1d9d37cc4182725",
+    "observation": "N cyan/underlined overlays the parent middle entry; parent P/R remain visible.",
+    "original": true,
+    "viewed_with": "view_image",
+    "limits": "Pixels establish visible settled state only; no cleanup/callback-count inference."
+  },
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-vte-normal/nested-escape-parent-retained.png",
+    "sha256": "42ed2353e42de0f43919d5936f0e98afa8893ff63e90a28a0b1920b7d6df943a",
+    "observation": "N disappears, disabled X returns, parent P regains focus styling; raw trace confirms p.",
+    "original": true,
+    "viewed_with": "view_image",
+    "limits": "Pixels establish visible settled state only; no cleanup/callback-count inference."
+  },
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/resized.png",
+    "sha256": "0c7dccbc73a29208a84652e1a1d875c11fa839ec53b90c4cb500614301ea2ec8",
+    "observation": "Settled 50x10 normal scene shows NEW twice, C focused; no popup residue.",
+    "original": true,
+    "viewed_with": "view_image",
+    "limits": "Pixels establish visible settled state only; no cleanup/callback-count inference."
+  },
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/resized.png",
+    "sha256": "7232cef6ed9a31be5343cf73270cfa5b1711aba15f2b283da992902b9a31a8bc",
+    "observation": "Settled 50x10 example keeps Options focus and Selected: close on last row.",
+    "original": true,
+    "viewed_with": "view_image",
+    "limits": "Pixels establish visible settled state only; no cleanup/callback-count inference."
+  },
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-xterm-example/popup-close-entry.png",
+    "sha256": "1f356eb9f5c06b714fcfdab8a22374fb0eaa192ade6358a3be6286993ea1ca3a",
+    "observation": "Documented example shows focused Close overlay and Selected: open base status.",
+    "original": true,
+    "viewed_with": "view_image",
+    "limits": "Pixels establish visible settled state only; no cleanup/callback-count inference."
+  },
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/resize-transition-vcsa.bin",
+    "sha256": "e5c4aa09ebd3a4fe680574064ab2157311910ff79e8049d06f1e90cff98a2e6e",
+    "rows": 10,
+    "columns": 50,
+    "visible_rows": [
+      "M_WIDGETS_READY                                   ",
+      "ABC                                               ",
+      "NEW                                               ",
+      "NEW                                               ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  "
+    ],
+    "observation": "Original VT cells; transition is not used as settled output."
+  },
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/resized-vcsa.bin",
+    "sha256": "9d537c4f2d25d775e039cf5703648dc69614082c120d89283624687dd472f4a5",
+    "rows": 10,
+    "columns": 50,
+    "visible_rows": [
+      "M_WIDGETS_READY                                   ",
+      "ABC                                               ",
+      "NEW                                               ",
+      "NEW                                               ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  "
+    ],
+    "observation": "Settled original VT cells agree with viewed PNG."
+  },
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/resize-transition-vcsa.bin",
+    "sha256": "fe5c489be1aa86d38440507f19628112bc80b4fc2f72eb78538e5d5941347e6e",
+    "rows": 10,
+    "columns": 50,
+    "visible_rows": [
+      "OpenSave                                          ",
+      "Options                                           ",
+      "First pane Second pan                             ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  "
+    ],
+    "observation": "Original VT cells; transition is not used as settled output."
+  },
+  {
+    "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/resized-vcsa.bin",
+    "sha256": "869f1ca6f28177a013d52a49dceefa4b216f5349da3fd371c8993c0dcfe31abd",
+    "rows": 10,
+    "columns": 50,
+    "visible_rows": [
+      "OpenSave                                          ",
+      "Options                                           ",
+      "First pane Second pan                             ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "                                                  ",
+      "Selected: close                                   "
+    ],
+    "observation": "Settled original VT cells agree with viewed PNG."
+  }
+]

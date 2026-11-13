@@ -1,0 +1,35 @@
+{
+  "result": "PASS",
+  "driver_run_AST_except_escape_counter": "UNCHANGED",
+  "device_tokens_except_focus_report_relocation": "UNCHANGED",
+  "new_sample_publication_order": [
+    "open if present",
+    "reason if present",
+    "unique accumulated focus marker last"
+  ],
+  "same_root_cause_audit": [
+    {
+      "field": "focus/open/reason",
+      "result": "Payloads precede the unique cumulative completion fence; readers already wait exact new full focus value."
+    },
+    {
+      "field": "escape_seen",
+      "result": "Exact hand-counted next complete counter replaces any-change predicate; this acknowledges decoder recognition, followed by next-event public state fence."
+    },
+    {
+      "field": "chosen",
+      "result": "Existing readers require exact full cumulative values; no arbitrary-change predicate or marker-before-required-payload read."
+    },
+    {
+      "field": "summary/error/resources/cleanup",
+      "result": "All are read only after actual child process exit, after writer completion; unchanged."
+    },
+    {
+      "field": "optional absent reason while open",
+      "result": "Reader checks reason only for closed handle observations; presence/meaning unchanged."
+    }
+  ],
+  "all_53_catalogue_cases_and_strict_mode_oracle": "BYTE_UNCHANGED",
+  "no_sleep_retry_or_watchdog_change": true,
+  "scope": "Only this fixture publication protocol, not products/backends"
+}

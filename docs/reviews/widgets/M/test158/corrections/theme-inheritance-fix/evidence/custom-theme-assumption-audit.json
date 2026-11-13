@@ -1,0 +1,44 @@
+{
+  "scope": "Bounded M05 custom Theme parsing versus default-preset/Inline assumptions, with related existing layout/prerequisite parses",
+  "result": "PASS_SOURCE_AUDIT",
+  "rows": [
+    {
+      "configuration": "local-theme.toml via Theme.readFile",
+      "expectations": "MenuItem focused/disabled, StatusBar explicit/named/role and SplitPane text styles",
+      "audit": "Self-contained global text declares all six Bool fields false; local role/state foreground/background fields and named style are declared. No Classic fallback is needed. All Style expectations remain unchanged."
+    },
+    {
+      "configuration": "seedTheme parsed custom foreground-only HorizontalMenu role",
+      "expectations": "Exact Style(background:Black) blank",
+      "audit": "T015 seed fill explicitly expects framework defaults for other7 fields, not Classic role fallback. Unchanged."
+    },
+    {
+      "configuration": "normal-focused parsed custom MenuItem rule",
+      "expectations": "Original exact Red with underline=true",
+      "audit": "Corrected setup explicitly declares normal underline=true; focused rule changes red only. Same-source normal\u2192focused field cascade is the sole source of true."
+    },
+    {
+      "configuration": "focused-only parsed custom MenuItem rule",
+      "expectations": "New exact Red with underline=false and all other default fields",
+      "audit": "Explicit control for complete custom-theme constructor replacement and absent fields. No preset merge."
+    },
+    {
+      "configuration": "StatusBar height-only Theme.parse in layout and prerequisite",
+      "expectations": "Plain text grid and theme height, not Classic style values",
+      "audit": "No style inheritance/preset fallback assertion. Unchanged."
+    },
+    {
+      "configuration": "Default Theme omitted in SharedPanel/other basic consumers",
+      "expectations": "Default preset is actually selected by the constructor; no parsed custom Theme mixed in",
+      "audit": "Legitimate default configuration, no changed behavior or extra S/A audit."
+    },
+    {
+      "configuration": "Inline/local overrides under an actual preset",
+      "expectations": "Root clarification: may preserve unspecified fields from that selected preset",
+      "audit": "Distinct supported configuration, not the source for any parsed-custom-theme assertion in M05. No new Inline test or preset merge added."
+    }
+  ],
+  "no_product_preset_or_decoder_change": true,
+  "no_cold_build_or_new_consumer": true,
+  "limitations": "Current target typing/runtime is delegated to159 cached formal runner; no new behavior pass from static audit."
+}

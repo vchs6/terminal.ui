@@ -1,0 +1,842 @@
+{
+  "scope": "Exactly the 11 formal headless/device/prerequisite CJ files; collector bare preconstructed-value expressions only",
+  "result": "PASS",
+  "old_affected_collector_blocks": [
+    {
+      "file": "tests/widgets_composite/device/src/main.cj",
+      "constructor": "SplitPane",
+      "line": 25,
+      "bare_top_level_identifiers": [
+        {
+          "name": "menu",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/composition_cases.cj",
+      "constructor": "Column",
+      "line": 38,
+      "bare_top_level_identifiers": [
+        {
+          "name": "trigger",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/composition_cases.cj",
+      "constructor": "SplitPane",
+      "line": 61,
+      "bare_top_level_identifiers": [
+        {
+          "name": "first",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/identity_cases.cj",
+      "constructor": "Column",
+      "line": 88,
+      "bare_top_level_identifiers": [
+        {
+          "name": "menu",
+          "line": 88
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/interaction_cases.cj",
+      "constructor": "Column",
+      "line": 12,
+      "bare_top_level_identifiers": [
+        {
+          "name": "menu",
+          "line": 12
+        },
+        {
+          "name": "outside",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/interaction_cases.cj",
+      "constructor": "Column",
+      "line": 112,
+      "bare_top_level_identifiers": [
+        {
+          "name": "target",
+          "line": 112
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/overlay_cases.cj",
+      "constructor": "Column",
+      "line": 16,
+      "bare_top_level_identifiers": [
+        {
+          "name": "trigger",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/overlay_cases.cj",
+      "constructor": "Column",
+      "line": 50,
+      "bare_top_level_identifiers": [
+        {
+          "name": "trigger",
+          "line": 50
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/overlay_cases.cj",
+      "constructor": "Column",
+      "line": 91,
+      "bare_top_level_identifiers": [
+        {
+          "name": "trigger",
+          "line": 91
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/overlay_cases.cj",
+      "constructor": "Column",
+      "line": 117,
+      "bare_top_level_identifiers": [
+        {
+          "name": "anchor",
+          "line": 117
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/overlay_cases.cj",
+      "constructor": "Column",
+      "line": 119,
+      "bare_top_level_identifiers": [
+        {
+          "name": "owner",
+          "line": 119
+        },
+        {
+          "name": "fallback",
+          "line": 119
+        }
+      ]
+    }
+  ],
+  "old_affected_block_count": 11,
+  "new_bare_preconstructed_value_expressions": 0,
+  "files": [
+    {
+      "file": "tests/widgets_composite/device/src/main.cj",
+      "sha256": "dd795db1288b7d0ab52964231d28f184a5949b51b13c541516b1f3fb1646e555",
+      "before_blocks": [
+        {
+          "constructor": "SplitPane",
+          "line": 25,
+          "bare_top_level_identifiers": [
+            {
+              "name": "menu",
+              "line": 27
+            }
+          ]
+        },
+        {
+          "constructor": "ScrollView",
+          "line": 28,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 32,
+          "bare_top_level_identifiers": []
+        }
+      ],
+      "after_blocks": [
+        {
+          "constructor": "SplitPane",
+          "line": 20,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "ScrollView",
+          "line": 28,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 32,
+          "bare_top_level_identifiers": []
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/prerequisite/src/main.cj",
+      "sha256": "71fea29c64bc97108662109f70ec2a6232b0463826c4a775391571cd6a372776",
+      "before_blocks": [
+        {
+          "constructor": "Column",
+          "line": 11,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 28,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Row",
+          "line": 45,
+          "bare_top_level_identifiers": []
+        }
+      ],
+      "after_blocks": [
+        {
+          "constructor": "Column",
+          "line": 11,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 28,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Row",
+          "line": 45,
+          "bare_top_level_identifiers": []
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/prerequisite/src/original_contracts.cj",
+      "sha256": "1692423a597ead9ab535cc0e721af2ec86940b9dc51e292b770980395e9ac986",
+      "before_blocks": [
+        {
+          "constructor": "Row",
+          "line": 9,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Row",
+          "line": 9,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 18,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Row",
+          "line": 18,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Row",
+          "line": 22,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 23,
+          "bare_top_level_identifiers": []
+        }
+      ],
+      "after_blocks": [
+        {
+          "constructor": "Row",
+          "line": 9,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Row",
+          "line": 9,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 18,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Row",
+          "line": 18,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Row",
+          "line": 22,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 23,
+          "bare_top_level_identifiers": []
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/prerequisite/src/s02_cases.cj",
+      "sha256": "f33a9b6d3749e9ee015a91d51bafd89346283449140fcac2b4fbe861d2f76753",
+      "before_blocks": [],
+      "after_blocks": []
+    },
+    {
+      "file": "tests/widgets_composite/src/composition_cases.cj",
+      "sha256": "a1b8e6b70864c0e5add4d0121b9070a464e64d42f71ce3d077e58f794da24ca7",
+      "before_blocks": [
+        {
+          "constructor": "StatusBar",
+          "line": 19,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 25,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 29,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 33,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 38,
+          "bare_top_level_identifiers": [
+            {
+              "name": "trigger",
+              "line": 38
+            }
+          ]
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 61,
+          "bare_top_level_identifiers": [
+            {
+              "name": "first",
+              "line": 61
+            }
+          ]
+        }
+      ],
+      "after_blocks": [
+        {
+          "constructor": "StatusBar",
+          "line": 19,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 25,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 29,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 33,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 38,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 66,
+          "bare_top_level_identifiers": []
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/identity_cases.cj",
+      "sha256": "6923642b6dd9c27f23663b8cae4ba3ae5b301cd5b6d624fad360f5104703a1fe",
+      "before_blocks": [
+        {
+          "constructor": "Column",
+          "line": 22,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 25,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 26,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 27,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 88,
+          "bare_top_level_identifiers": [
+            {
+              "name": "menu",
+              "line": 88
+            }
+          ]
+        }
+      ],
+      "after_blocks": [
+        {
+          "constructor": "Column",
+          "line": 22,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 25,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 26,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 27,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 88,
+          "bare_top_level_identifiers": []
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/interaction_cases.cj",
+      "sha256": "0ec71b0e2ce5d19894f03fff5570b23e5d845adf7d68a5145690e18b9cca303e",
+      "before_blocks": [
+        {
+          "constructor": "Column",
+          "line": 12,
+          "bare_top_level_identifiers": [
+            {
+              "name": "menu",
+              "line": 12
+            },
+            {
+              "name": "outside",
+              "line": 12
+            }
+          ]
+        },
+        {
+          "constructor": "Column",
+          "line": 112,
+          "bare_top_level_identifiers": [
+            {
+              "name": "target",
+              "line": 112
+            }
+          ]
+        },
+        {
+          "constructor": "Column",
+          "line": 127,
+          "bare_top_level_identifiers": []
+        }
+      ],
+      "after_blocks": [
+        {
+          "constructor": "Column",
+          "line": 11,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 115,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 134,
+          "bare_top_level_identifiers": []
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/layout_cases.cj",
+      "sha256": "6b1fc74556adae9296c14027cddc788b46c51116069a73c40158f8452cff0e08",
+      "before_blocks": [
+        {
+          "constructor": "Column",
+          "line": 8,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 8,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 9,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 9,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 10,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 10,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 11,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 11,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 12,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 12,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 13,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 13,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 17,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 17,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 21,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 21,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 25,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 27,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 32,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 33,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 35,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 36,
+          "bare_top_level_identifiers": []
+        }
+      ],
+      "after_blocks": [
+        {
+          "constructor": "Column",
+          "line": 8,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 8,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 9,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 9,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 10,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 10,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 11,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 11,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 12,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 12,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 13,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 13,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 17,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 17,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 21,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 21,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 25,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 27,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 32,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 33,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 35,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "SplitPane",
+          "line": 36,
+          "bare_top_level_identifiers": []
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/main.cj",
+      "sha256": "1c061a72ec5e7cc7e654fef59cc4770fd5e8573ac589d6176eef85ea47ff49b2",
+      "before_blocks": [],
+      "after_blocks": []
+    },
+    {
+      "file": "tests/widgets_composite/src/overlay_cases.cj",
+      "sha256": "eb3c1990a82909fcd94aebf41990f284e2f5f6b483845ee56a6835f4cfedcd52",
+      "before_blocks": [
+        {
+          "constructor": "Column",
+          "line": 16,
+          "bare_top_level_identifiers": [
+            {
+              "name": "trigger",
+              "line": 16
+            }
+          ]
+        },
+        {
+          "constructor": "Column",
+          "line": 50,
+          "bare_top_level_identifiers": [
+            {
+              "name": "trigger",
+              "line": 50
+            }
+          ]
+        },
+        {
+          "constructor": "Column",
+          "line": 91,
+          "bare_top_level_identifiers": [
+            {
+              "name": "trigger",
+              "line": 91
+            }
+          ]
+        },
+        {
+          "constructor": "Column",
+          "line": 117,
+          "bare_top_level_identifiers": [
+            {
+              "name": "anchor",
+              "line": 117
+            }
+          ]
+        },
+        {
+          "constructor": "Column",
+          "line": 119,
+          "bare_top_level_identifiers": [
+            {
+              "name": "owner",
+              "line": 119
+            },
+            {
+              "name": "fallback",
+              "line": 119
+            }
+          ]
+        }
+      ],
+      "after_blocks": [
+        {
+          "constructor": "Column",
+          "line": 16,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 54,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 98,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 126,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "Column",
+          "line": 127,
+          "bare_top_level_identifiers": []
+        }
+      ]
+    },
+    {
+      "file": "tests/widgets_composite/src/shared_panel.cj",
+      "sha256": "ebaa3a13e6f80b5a1dc1b806b40631fec8314d7acb372701b1df9eb18952752d",
+      "before_blocks": [
+        {
+          "constructor": "ScrollView",
+          "line": 11,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 12,
+          "bare_top_level_identifiers": []
+        }
+      ],
+      "after_blocks": [
+        {
+          "constructor": "ScrollView",
+          "line": 11,
+          "bare_top_level_identifiers": []
+        },
+        {
+          "constructor": "StatusBar",
+          "line": 12,
+          "bare_top_level_identifiers": []
+        }
+      ]
+    }
+  ],
+  "manual_checks": [
+    "Dynamic insertBefore/append and Application/openOverlay passing existing components are supported and intentionally unchanged",
+    "SharedPanel.build constructs its three children inside the runtime collector; no preconstructed child expression there",
+    "No production or constructor-collector semantic change; let-held optional Component arrays only preserve the original object handles"
+  ],
+  "limitations": "Bounded source audit and preservation checks, not a compiler or M runtime pass"
+}

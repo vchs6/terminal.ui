@@ -2,6 +2,6 @@
 
 [Finite K keyboard archive](K/README.md) preserves TASK113–117 originals and independent PASS_FINITE_K with scoped host qualifications. Finite editing118–122 is now accepted separately in the [E archive](E/README.md); full parent/Linux acceptance remains open. Existing numbered R and interaction A/B/C evidence remains at its original paths, linked from the [acceptance matrix](../acceptance.md).
 
-[有限S基础控件归档](widgets/S/README.md)保存153–157原件、独立PASS_FINITE_S及50张真实原始PNG；M和完整Linux仍未交付。
+[有限S基础控件归档](widgets/S/README.md)保存153–157原件、独立PASS_FINITE_S及50张真实原始PNG；有限M已另获接受，完整Linux继续。
 
-[M正式测试准入](widgets/M/README.md)公开READY_M_PRECONDITIONS原件与输入清单；158正式测试已冻结并取得真正缺API RED；159作者已交固定候选和developer证据；160独立规格/质量PASSED（0contractdefects/1open非阻塞建议）；161执行in_progress，162 planned，M尚未独立验收。
+[有限M组合控件归档](widgets/M/README.md)统一保存158初始RED与8次独立修正、159developer proof、160双审、161普通包/干净消费/3宿主device与example原件、162独立PASS_FINITE_M及65原PNG。153–162有限角色完成；M160-S01 open非阻塞，parent019/011/020/030、027/041/fullM1/M2/023024与wholeLinux继续。

@@ -1,0 +1,92 @@
+{
+  "M01": {
+    "verdict": "passed_review",
+    "proof": [
+      "menu_entry.cj:3-15 immutable fields, exact nonempty key and canonical caption validation",
+      "horizontal_menu.cj:3-6 and popup_menu.cj:3-6 copy constant arrays",
+      "menu_composition.cj:6-25 retains ListItem, reads value.label/value.enabled; callback immutable item.key",
+      "foreach_group.cj retained cells update values and preflight keys before additions; node_ref.sameNode compares stable session/node IDs",
+      "menu_refs.cj onMount registration and closure removal work after invalidation because sameNode does not resolve refs"
+    ],
+    "tests": [
+      "entryAndShapes",
+      "menuIdentity",
+      "duplicateBatch"
+    ],
+    "evidence": "formal-fenced.log headless pass; fixed ForEach/public-runtime accepted input reuse"
+  },
+  "M02": {
+    "verdict": "passed_review",
+    "proof": [
+      "menuNavigate checks own entry identity and actual focus; filters public currentTarget.children order by valid/enabled/visible refs; no private tree or business order",
+      "Single eligible entry consumes; no candidate or orthogonal key leaves defaults untouched; requestFocus queues public ensureVisible",
+      "widgetActivation excludes all ctrl/alt/shift; only enter or exactly ASCII text space; event.preventDefault precedes onChoose",
+      "Application.dispatch enforces enabled/visible/overlay domain before routing; Target/Ancestor slots and preventDefault preserve once-only default ownership",
+      "Tab framework default precedes Ancestor, so menu cannot trap Tab; root defaultAction later replacement uses ordinary Component slot"
+    ],
+    "tests": [
+      "navigation(false/true)",
+      "navigationBoundaries",
+      "activationMatrix(false/true)",
+      "PTY exact 23-focus trace and 4 choices"
+    ],
+    "evidence": "formal-fenced.log and pty-fenced raw; M160-S01 optional diagnostic precision suggestion"
+  },
+  "M03": {
+    "verdict": "passed_review",
+    "proof": [
+      "PopupMenu is Column plus role and public opaque surface, no explicit background reset, Application, handle lookup or close behavior",
+      "onChoose only requests key; business owns OverlayHandle.close; public C handles Escape, nested modal domain, owner/anchor removal, dependency closure and latest underlying frame",
+      "empty/all-disabled popup has no fake item; public activeTarget routes Escape"
+    ],
+    "tests": [
+      "popupOwnership",
+      "popupEscapeBoundaries",
+      "nestedPopup",
+      "popupOwnerAndAnchor",
+      "actual PTY nested cancel/explicit close"
+    ],
+    "evidence": "headless exact grids/reasons/focus and fixed native raw"
+  },
+  "M04": {
+    "verdict": "passed_review",
+    "proof": [
+      "StatusBar directly returns Row(body).themeRole(StatusBar); no height/visible override or screen position",
+      "SplitPane named axis before trailing named body selects Row/Column, sets role only; no implicit weight, separator, mouse or alternate layout",
+      "Original accepted011 constraints/rounding unchanged"
+    ],
+    "tests": [
+      "statusAndSplitFrames: empty/single/multiline, explicit/theme heights, 1/0 widths and heights, odd remainder, 1:2:3, nested axes",
+      "prerequisite originalContracts"
+    ],
+    "evidence": "literal grids in complete fixed test consumers and formal-fenced.log"
+  },
+  "M05": {
+    "verdict": "passed_review",
+    "proof": [
+      "SharedPanel uses one Application, independent instances and common Observable; menu+ScrollView+StatusBar+SplitPane remain ordinary composition",
+      "Four container roles plus MenuItem consume same resolver; actual custom theme has no implicit Classic merge (ThemeDecoder empty roles; Application ThemeLoader(theme)); exact full-style tests retain normal-to-focused inheritance",
+      "No swallowed product errors; own ref cleanup follows Runtime lifecycle; old refs not resurrected; no copied business selected state or secondary runtime",
+      "W002/I012 real states OR declared states in unchanged resolver; no new false-state override; LEGACY-PROP-001 existing typed/getter/constant boundary unchanged"
+    ],
+    "tests": [
+      "localTheme",
+      "sharedPanels",
+      "callbackRecovery",
+      "callback/getter actual PTY failures"
+    ],
+    "evidence": "formal-fenced.log, actual exit21/22 sentinels and resource0/cleanup1; original accepted S/I012 evidence reused by manifest"
+  },
+  "S02": {
+    "verdict": "passed_review",
+    "proof": [
+      "widget_activation.cj and S controls unchanged from accepted BASE; M consumes shared helper",
+      "Both fixed prerequisite and M consumer assert three controls x seven nonempty modifier masks x Enter/Space =42 exclusions; accepted S positive/event-phase/controlled-state/native tests remain unchanged"
+    ],
+    "tests": [
+      "affectedS02",
+      "acceptedS02"
+    ],
+    "evidence": "formal-fenced.log accepted prerequisite and M pass; historical S scope not relabelled new M native/theme coverage"
+  }
+}

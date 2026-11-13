@@ -1,0 +1,62 @@
+{
+  "proof_cwd": "/workspace/work/widgets-composite-tests/theme-fill-fix/evidence/row-proof",
+  "SDK": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+  "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+  "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+  "cache": "/workspace/work/viewport-tests/cache",
+  "registry": "https://pkg.cangjie-lang.cn/registry",
+  "actual": [
+    {
+      "argv": [
+        "cjpm",
+        "build"
+      ],
+      "exit": 0,
+      "log": "/workspace/work/widgets-composite-tests/theme-fill-fix/evidence/proof-build.log"
+    },
+    {
+      "argv": [
+        "timeout",
+        "45s",
+        "target/release/bin/main"
+      ],
+      "environment": {
+        "TERM": "dumb",
+        "COLORTERM": ""
+      },
+      "stdin": "/dev/null",
+      "exit": 0,
+      "log": "/workspace/work/widgets-composite-tests/theme-fill-fix/evidence/proof-run.log"
+    },
+    {
+      "cwd": "/workspace/work/widgets-composite-tests/theme-fill-fix/source",
+      "argv": [
+        "cjfmt",
+        "-f",
+        "tests/widgets_composite/src/composition_cases.cj",
+        "-o",
+        "/workspace/work/widgets-composite-tests/theme-fill-fix/evidence/parsed/composition_cases.cj"
+      ],
+      "exit": 0,
+      "log": "/workspace/work/widgets-composite-tests/theme-fill-fix/evidence/parse.log"
+    },
+    {
+      "cwd": "/workspace/work/widgets-composite-tests/theme-fill-fix/source",
+      "argv": [
+        "bash",
+        "tests/widgets_composite/run.sh",
+        "self-test"
+      ],
+      "exit": 0,
+      "log": "/workspace/work/widgets-composite-tests/theme-fill-fix/evidence/self-test.log"
+    }
+  ],
+  "timing_note": "Original tool calls did not record exact start/end timestamps; none are inferred.",
+  "not_run": [
+    "M cjpm build",
+    "M headless suite",
+    "M native real PTY",
+    "full Theme/C suites",
+    "old missing-target RED"
+  ]
+}

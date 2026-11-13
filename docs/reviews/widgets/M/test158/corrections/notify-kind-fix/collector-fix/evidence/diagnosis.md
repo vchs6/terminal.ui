@@ -1,0 +1,14 @@
+The accepted collector registers components when their constructors execute inside its body. A bare expression containing an already constructed Component does not attach it. The independent accepted primitive proof first reproduced missing references from Row { first; disabled }; corrected in-block Text construction then built and ran0 while preserving the color/focus/ref/eligibility/callback expectations. No product semantics are added here.
+
+The bounded11-file audit found11 collector blocks with this exact error. Fixes are in five files:
+- identity_cases.cj duplicateBatch: construct retained menu inside its Column, preserve cleanup hook.
+- interaction_cases.cj navigation: construct menu and outside target inside Column; activationMatrix: construct target inside parent Column. Existing public insertBefore for the extra component remains unchanged. The public ChangeKind.Style correction is retained.
+- overlay_cases.cj popupOwnership, popupEscapeBoundaries, nestedPopup: construct trigger in its actual parent. popupOwnerAndAnchor: construct owner inside root and anchor inside owner; fallback directly inside root. Overlay content passed through openOverlay remains an intentionally preconstructed Component accepted by that public API.
+- composition_cases.cj localTheme: construct trigger inside base Column. sharedPanels: construct first SharedPanel inside SplitPane and retain the same instance for refs, shared model, later remount and cleanup; second instance remains overlay content. All stated8×4 and overlay style goldens stay unchanged.
+- device/src/main.cj: construct menu inside native root SplitPane and retain its handle for public focus observations. Choose/error callback bodies, ready header, mode model, native driver and cleanup expectations are unchanged.
+
+SharedPanel.build, layout cases, all three accepted-prerequisite files and main dispatch have no bare preconstructed child-expression defect. Existing Application(root), render(root), openOverlay(content), append/insertBefore(component) uses are public mounting entrypoints and intentionally retained.
+
+Source checks only: bounded collector inventory, identical oracle/callback/assertion token sequences, unchanged catalogue/theme/COVERAGE/PTY-driver bytes, formatter parser acceptance of five output copies and clean test-only Git diff. These establish the correction's scope and parseability, not M target type correctness or runtime behavior. No TASK159 product source or author reasoning was consulted. No M stand-ins, old suite reruns or missing-target probes were introduced.
+
+Applicable workflow and skill reads are reused from this role's earlier preserved delivery and notify delta: TDD, systematic-debugging, receiving-code-review, verification-before-completion, worktree, Cangjie coding and OpenSpec change implement-standard-widgets. This correction is execution of the accepted constructor/collector contract; root owns shared task-state integration.

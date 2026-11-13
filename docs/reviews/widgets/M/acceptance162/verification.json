@@ -1,0 +1,977 @@
+{
+  "task": 162,
+  "utc": "2026-11-13T16:52:46.270689+00:00",
+  "status": "PASS_ORIGINAL_EVIDENCE_AUDIT",
+  "product_reexecution": false,
+  "phases": [
+    {
+      "command": "cjpm build",
+      "cwd": "/workspace/work/widgets-composite-execution/source",
+      "utc_start": "2026-11-13T16:31:19.325561+00:00",
+      "utc_end": "2026-11-13T16:32:37.383379+00:00",
+      "exit": 0
+    },
+    {
+      "command": "cjpm bundle",
+      "cwd": "/workspace/work/widgets-composite-execution/source",
+      "utc_start": "2026-11-13T16:32:37.411442+00:00",
+      "utc_end": "2026-11-13T16:33:36.385082+00:00",
+      "exit": 0
+    },
+    {
+      "command": "python3 tools/package-clean.py",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "utc_start": "2026-11-13T16:35:02.051636+00:00",
+      "utc_end": "2026-11-13T16:35:02.194426+00:00",
+      "exit": 0
+    },
+    {
+      "command": "CJTUI_COMPOSITE_PTY_OUTPUT=/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts bash tests/widgets_composite/run.sh formal",
+      "cwd": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0",
+      "utc_start": "2026-11-13T16:35:02.226115+00:00",
+      "utc_end": "2026-11-13T16:38:37.768784+00:00",
+      "exit": 0
+    },
+    {
+      "command": "cjpm build",
+      "cwd": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/examples/widgets_composition",
+      "utc_start": "2026-11-13T16:35:03.644931+00:00",
+      "utc_end": "2026-11-13T16:36:47.922132+00:00",
+      "exit": 0
+    },
+    {
+      "command": "python3 tools/gui.py xterm example",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "utc_start": "2026-11-13T16:37:18.487848+00:00",
+      "utc_end": "2026-11-13T16:37:24.825919+00:00",
+      "exit": 0
+    },
+    {
+      "command": "python3 tools/gui.py vte example",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "utc_start": "2026-11-13T16:37:58.665074+00:00",
+      "utc_end": "2026-11-13T16:38:04.879944+00:00",
+      "exit": 0
+    },
+    {
+      "command": "python3 tools/gui.py xterm normal",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "utc_start": "2026-11-13T16:38:32.545482+00:00",
+      "utc_end": "2026-11-13T16:38:43.996654+00:00",
+      "exit": 0
+    },
+    {
+      "command": "python3 tools/gui.py vte normal",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "utc_start": "2026-11-13T16:38:44.045903+00:00",
+      "utc_end": "2026-11-13T16:38:55.197425+00:00",
+      "exit": 0
+    },
+    {
+      "command": "python3 tools/pack-vt.py",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "utc_start": "2026-11-13T16:38:55.236168+00:00",
+      "utc_end": "2026-11-13T16:39:04.888777+00:00",
+      "exit": 0
+    },
+    {
+      "command": "python3 tools/vt.py normal",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "utc_start": "2026-11-13T16:39:04.920366+00:00",
+      "utc_end": "2026-11-13T16:39:46.341864+00:00",
+      "exit": 0
+    },
+    {
+      "command": "python3 tools/vt.py example",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "utc_start": "2026-11-13T16:39:46.375234+00:00",
+      "utc_end": "2026-11-13T16:40:13.598379+00:00",
+      "exit": 0
+    }
+  ],
+  "pty": [
+    {
+      "mode": "normal",
+      "direct_exit": 0,
+      "exact_termios": true,
+      "cleanup": 1,
+      "resources": "0/0/0/0",
+      "mode25": "Unknown; zero controls",
+      "paste2004": [
+        "h",
+        "l"
+      ]
+    },
+    {
+      "mode": "callback-failure",
+      "direct_exit": 21,
+      "exact_termios": true,
+      "cleanup": 1,
+      "resources": "0/0/0/0",
+      "mode25": "Unknown; zero controls",
+      "paste2004": [
+        "h",
+        "l"
+      ]
+    },
+    {
+      "mode": "getter-failure",
+      "direct_exit": 22,
+      "exact_termios": true,
+      "cleanup": 1,
+      "resources": "0/0/0/0",
+      "mode25": "Unknown; zero controls",
+      "paste2004": [
+        "h",
+        "l"
+      ]
+    }
+  ],
+  "hosts": [
+    {
+      "host": "xterm",
+      "scene": "normal",
+      "product_exit": 0,
+      "exact_termios": true,
+      "mode25": "Known visible 1 -> 1; hide/show pair",
+      "source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "binary_sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305",
+      "capture_utc": "2026-11-13T16:38:32.679454+00:00",
+      "resize": "60x12 -> 50x10",
+      "transport": "local X11 :199; XTEST keys→actual host PTY"
+    },
+    {
+      "host": "xterm",
+      "scene": "example",
+      "product_exit": 0,
+      "exact_termios": true,
+      "mode25": "Known visible 1 -> 1; hide/show pair",
+      "source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "binary_sha256": "53f119dfda35c15f0328a3b1bcceb7371163a52eaa243e3a0d0495e7fbdf487d",
+      "capture_utc": "2026-11-13T16:37:18.549720+00:00",
+      "resize": "60x12 -> 50x10",
+      "transport": "local X11 :199; XTEST keys→actual host PTY"
+    },
+    {
+      "host": "vte",
+      "scene": "normal",
+      "product_exit": 0,
+      "exact_termios": true,
+      "mode25": "Known visible 1 -> 1; hide/show pair",
+      "source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "binary_sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305",
+      "capture_utc": "2026-11-13T16:38:44.134852+00:00",
+      "resize": "60x12 -> 50x10",
+      "transport": "local X11 :199; XTEST keys→actual host PTY"
+    },
+    {
+      "host": "vte",
+      "scene": "example",
+      "product_exit": 0,
+      "exact_termios": true,
+      "mode25": "Known visible 1 -> 1; hide/show pair",
+      "source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "binary_sha256": "53f119dfda35c15f0328a3b1bcceb7371163a52eaa243e3a0d0495e7fbdf487d",
+      "capture_utc": "2026-11-13T16:37:58.742839+00:00",
+      "resize": "60x12 -> 50x10",
+      "transport": "local X11 :199; XTEST keys→actual host PTY"
+    },
+    {
+      "host": "vt",
+      "scene": "normal",
+      "product_exit": 0,
+      "exact_termios": true,
+      "mode25": "Unknown; no controls; physical visibility unproved",
+      "source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "binary_sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305",
+      "capture_utc": "2026-11-13T16:39:05.043494+00:00",
+      "resize": "60x12 -> 50x10",
+      "transport": "QEMU TCG emulated keyboard → actual Linux kernel VT tty1; serial observer channel does not inject PTY bytes"
+    },
+    {
+      "host": "vt",
+      "scene": "example",
+      "product_exit": 0,
+      "exact_termios": true,
+      "mode25": "Unknown; no controls; physical visibility unproved",
+      "source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "binary_sha256": "53f119dfda35c15f0328a3b1bcceb7371163a52eaa243e3a0d0495e7fbdf487d",
+      "capture_utc": "2026-11-13T16:39:46.469796+00:00",
+      "resize": "60x12 -> 50x10",
+      "transport": "QEMU TCG emulated keyboard → actual Linux kernel VT tty1; serial observer channel does not inject PTY bytes"
+    }
+  ],
+  "package": {
+    "members": 263,
+    "frozen_inputs": 30,
+    "archive_sha256": "99da9c9dca77299c1ac90b8076424b505af5e9d2eed096c599ebf0d6294c2e44",
+    "audit": "Root full hash/safe-source equality audit reused; selected M delivered files and all frozen consumer bytes rechecked."
+  },
+  "reuse": "Root verified22indices/294raw/24top/65PNG/4binaries after environment resume; this audit checks selective receipt bindings and exact observations, not a new host run.",
+  "receipts": {
+    "/workspace/work/widgets-composite-execution/final-index.json": {
+      "bytes": 6463,
+      "sha256": "b126ef3d726c4b5e01a6d145e70f519d87bae210c26de68f60101c98f8b50d51"
+    },
+    "/workspace/work/widgets-composite-review/index.json": {
+      "bytes": 1865,
+      "sha256": "da8bf5213acd6c01d3b216b0de3a321abf8eebad6207ba70d11cd6590741482e"
+    },
+    "/workspace/work/widgets-composite-execution/raw/final-verification/verification.json": {
+      "bytes": 112987,
+      "sha256": "3dce5ddfcef07aba2d61470650331ef4033be56c24bf0457ad630dabd3f762f3"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/horizontal_menu.cj": {
+      "bytes": 536,
+      "sha256": "82ec996108f22f9719bc51bc2d89e95c8480afcecc9f5346f4e722e4b1af2ef9"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/menu_composition.cj": {
+      "bytes": 2261,
+      "sha256": "414140d146d4bb5ca1635ee7fc71b8ce755fee6ef2fbf383acd4634649ecbd22"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/menu_entry.cj": {
+      "bytes": 410,
+      "sha256": "8d4461057889c4e79fd4deee2a996347afa659f1ea3f2a0dd653a6f15a51ffd1"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/menu_refs.cj": {
+      "bytes": 599,
+      "sha256": "48e7c4f0ba644f12e0f233764a780cc71658d746f3ce2d0767299aca41fce7f3"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/popup_menu.cj": {
+      "bytes": 557,
+      "sha256": "8e09ce5fe9f5535a6e807fbd9527895d257b721fc17636afb9171ee64bd02632"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/split_axis.cj": {
+      "bytes": 69,
+      "sha256": "fae2b29386fd4b0e74026cf76dd2e6346836f46d5aceb98ffba5538bc791f458"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/split_pane.cj": {
+      "bytes": 283,
+      "sha256": "5be7960d78f9071b9a56cde9299239a78f64e6a963eab870e239579f31b51e47"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/status_bar.cj": {
+      "bytes": 115,
+      "sha256": "106dfcfc7a65d09ee7c25b2d135d09b21bc262c589cd880ad5662dad36fea7d5"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/widget_activation.cj": {
+      "bytes": 292,
+      "sha256": "69e2fb2458a7bc100dab146940d3723b874076ad0edd68a8b2fde3f8727039a2"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/application.cj": {
+      "bytes": 36153,
+      "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/foreach_group.cj": {
+      "bytes": 3695,
+      "sha256": "3cd6361f2ffed81ba1e5cf2383f898a2a243107c62cafeac19485d6866dc60b2"
+    },
+    "/workspace/work/widgets-composite-execution/source/src/node_ref.cj": {
+      "bytes": 8452,
+      "sha256": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805"
+    },
+    "/workspace/work/widgets-composite-execution/source/docs/product/widgets.md": {
+      "bytes": 3292,
+      "sha256": "216f118505deecd2f42ab252c5726c86c72ce3090612ed254075f31d6b7be574"
+    },
+    "/workspace/work/widgets-composite-execution/source/examples/widgets_composition/src/main.cj": {
+      "bytes": 1580,
+      "sha256": "ed45457e7f6b6a1fbeb6cdcd1cde294b6f9a1b67afb8e83a2d64a3e5cca6c052"
+    },
+    "/workspace/work/widgets-composite-execution/source/examples/widgets_composition/cjpm.toml": {
+      "bytes": 170,
+      "sha256": "6bd326dbdb90d0cebeaad23ff18d8c73a81bf6cdb747fab4ef3cc32165e6ec18"
+    },
+    "/workspace/work/widgets-composite-execution/source/cjpm.toml": {
+      "bytes": 1541,
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/.gitignore": {
+      "bytes": 61,
+      "sha256": "45ffdff3b3f79553713174b726d1be28258858a8b853c5d1648ee5fe18f6e646"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/.gitignore": {
+      "bytes": 61,
+      "sha256": "45ffdff3b3f79553713174b726d1be28258858a8b853c5d1648ee5fe18f6e646"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/COVERAGE.md": {
+      "bytes": 6219,
+      "sha256": "f17f4dd234ec8354f6c5f91e8aeb436a523351d242387ef6a9aa52e4d3389dd5"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/COVERAGE.md": {
+      "bytes": 6219,
+      "sha256": "f17f4dd234ec8354f6c5f91e8aeb436a523351d242387ef6a9aa52e4d3389dd5"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/README.md": {
+      "bytes": 5222,
+      "sha256": "13be7e3f876d87508b6b2d470698f842320bcebd451325f09b7a4dcc84eea37c"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/README.md": {
+      "bytes": 5222,
+      "sha256": "13be7e3f876d87508b6b2d470698f842320bcebd451325f09b7a4dcc84eea37c"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/cjpm.toml": {
+      "bytes": 415,
+      "sha256": "b64176b56f5e06ef4b82721a2219a8a0f80dc66836b3be336291b20aedb7d8e5"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/cjpm.toml": {
+      "bytes": 415,
+      "sha256": "b64176b56f5e06ef4b82721a2219a8a0f80dc66836b3be336291b20aedb7d8e5"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/classify_red.py": {
+      "bytes": 1578,
+      "sha256": "2e04dbb795f839895f48d3ada7dbe9dcb92a38b079a137e5411e6b868701b057"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/classify_red.py": {
+      "bytes": 1578,
+      "sha256": "2e04dbb795f839895f48d3ada7dbe9dcb92a38b079a137e5411e6b868701b057"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/device/cjpm.toml": {
+      "bytes": 377,
+      "sha256": "4d7ab0aae1a3c6d179e337e8599cd2312cb9807cdb60547a145d403da4ae3f9a"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/device/cjpm.toml": {
+      "bytes": 377,
+      "sha256": "4d7ab0aae1a3c6d179e337e8599cd2312cb9807cdb60547a145d403da4ae3f9a"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/device/src/main.cj": {
+      "bytes": 6148,
+      "sha256": "10f045df549ddb030caf74d3c2e76b2186894b65f853a4928cfa52f7fa6d38d1"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/device/src/main.cj": {
+      "bytes": 6148,
+      "sha256": "10f045df549ddb030caf74d3c2e76b2186894b65f853a4928cfa52f7fa6d38d1"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/expected.json": {
+      "bytes": 8629,
+      "sha256": "8bc1a5e0f6aec5fc1774ee376277015b965c7c88fc042219ea85ab7e06be6489"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/expected.json": {
+      "bytes": 8629,
+      "sha256": "8bc1a5e0f6aec5fc1774ee376277015b965c7c88fc042219ea85ab7e06be6489"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/fixtures/local-theme.toml": {
+      "bytes": 674,
+      "sha256": "5bd3d245dc545f7ac3b6293ee4e5e4ced23b7fada22a99a4a1cfb2052bb6ae1a"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/fixtures/local-theme.toml": {
+      "bytes": 674,
+      "sha256": "5bd3d245dc545f7ac3b6293ee4e5e4ced23b7fada22a99a4a1cfb2052bb6ae1a"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/input-manifest.json": {
+      "bytes": 39200,
+      "sha256": "a709f7fdc2648e1a4ebb483b84da02916da95d4e4c05c0ec53bfb43db6d381bb"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/input-manifest.json": {
+      "bytes": 39200,
+      "sha256": "a709f7fdc2648e1a4ebb483b84da02916da95d4e4c05c0ec53bfb43db6d381bb"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/missing_targets/cjpm.toml": {
+      "bytes": 355,
+      "sha256": "f6a18f236059ebce54731c6223212692f318b77bf1f13269dfa616d62a2cf7d2"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/missing_targets/cjpm.toml": {
+      "bytes": 355,
+      "sha256": "f6a18f236059ebce54731c6223212692f318b77bf1f13269dfa616d62a2cf7d2"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/missing_targets/src/main.cj": {
+      "bytes": 421,
+      "sha256": "84b56428912b92afeb84345dd62f219fc97645115383beeab8dc75530f11322e"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/missing_targets/src/main.cj": {
+      "bytes": 421,
+      "sha256": "84b56428912b92afeb84345dd62f219fc97645115383beeab8dc75530f11322e"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/oracle.py": {
+      "bytes": 2187,
+      "sha256": "9c92e9398cf0805feff1a54e81bd9c078569e60f30804e2bad7c38af05aca1d2"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/oracle.py": {
+      "bytes": 2187,
+      "sha256": "9c92e9398cf0805feff1a54e81bd9c078569e60f30804e2bad7c38af05aca1d2"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/prerequisite/cjpm.toml": {
+      "bytes": 360,
+      "sha256": "20880dca25dc6b1273537a5832856b4fd6c5c2c4cb27485c487e0198b9c4aa19"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/prerequisite/cjpm.toml": {
+      "bytes": 360,
+      "sha256": "20880dca25dc6b1273537a5832856b4fd6c5c2c4cb27485c487e0198b9c4aa19"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/prerequisite/src/main.cj": {
+      "bytes": 2663,
+      "sha256": "71fea29c64bc97108662109f70ec2a6232b0463826c4a775391571cd6a372776"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/prerequisite/src/main.cj": {
+      "bytes": 2663,
+      "sha256": "71fea29c64bc97108662109f70ec2a6232b0463826c4a775391571cd6a372776"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/prerequisite/src/original_contracts.cj": {
+      "bytes": 1436,
+      "sha256": "1692423a597ead9ab535cc0e721af2ec86940b9dc51e292b770980395e9ac986"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/prerequisite/src/original_contracts.cj": {
+      "bytes": 1436,
+      "sha256": "1692423a597ead9ab535cc0e721af2ec86940b9dc51e292b770980395e9ac986"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/prerequisite/src/s02_cases.cj": {
+      "bytes": 964,
+      "sha256": "f33a9b6d3749e9ee015a91d51bafd89346283449140fcac2b4fbe861d2f76753"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/prerequisite/src/s02_cases.cj": {
+      "bytes": 964,
+      "sha256": "f33a9b6d3749e9ee015a91d51bafd89346283449140fcac2b4fbe861d2f76753"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/pty.py": {
+      "bytes": 8489,
+      "sha256": "d5204a05c37760f622438e9c763a114c24ffdb3f5e335da34787e1c799b89cc6"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/pty.py": {
+      "bytes": 8489,
+      "sha256": "d5204a05c37760f622438e9c763a114c24ffdb3f5e335da34787e1c799b89cc6"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/pty_fence_selftest.py": {
+      "bytes": 4579,
+      "sha256": "ed6e08ce2210deb7dc5820928cc94d55b776e60333619d4736776be9dd45cfc0"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/pty_fence_selftest.py": {
+      "bytes": 4579,
+      "sha256": "ed6e08ce2210deb7dc5820928cc94d55b776e60333619d4736776be9dd45cfc0"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/pty_mode_selftest.py": {
+      "bytes": 2672,
+      "sha256": "5c659df1622f21d485715052497c40894a8f2247531d3959b4bdff3fa77f98d3"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/pty_mode_selftest.py": {
+      "bytes": 2672,
+      "sha256": "5c659df1622f21d485715052497c40894a8f2247531d3959b4bdff3fa77f98d3"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/pty_selftest.py": {
+      "bytes": 2037,
+      "sha256": "aef85dbe7de2c493930a9a1ae16f0573f6b9948f60e71579e176ca225de88672"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/pty_selftest.py": {
+      "bytes": 2037,
+      "sha256": "aef85dbe7de2c493930a9a1ae16f0573f6b9948f60e71579e176ca225de88672"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/run.sh": {
+      "bytes": 1417,
+      "sha256": "919498cd3dc351c41fc055244b8bb954ad6d1fe1cc2dd7dd8fc09c21735fbb2f"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/run.sh": {
+      "bytes": 1417,
+      "sha256": "919498cd3dc351c41fc055244b8bb954ad6d1fe1cc2dd7dd8fc09c21735fbb2f"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/src/composition_cases.cj": {
+      "bytes": 9173,
+      "sha256": "58bf37d253af78a8164228d16af4be35c666633baf17a2726420d4d717825ea1"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/src/composition_cases.cj": {
+      "bytes": 9173,
+      "sha256": "58bf37d253af78a8164228d16af4be35c666633baf17a2726420d4d717825ea1"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/src/identity_cases.cj": {
+      "bytes": 5571,
+      "sha256": "6923642b6dd9c27f23663b8cae4ba3ae5b301cd5b6d624fad360f5104703a1fe"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/src/identity_cases.cj": {
+      "bytes": 5571,
+      "sha256": "6923642b6dd9c27f23663b8cae4ba3ae5b301cd5b6d624fad360f5104703a1fe"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/src/interaction_cases.cj": {
+      "bytes": 8603,
+      "sha256": "0ec71b0e2ce5d19894f03fff5570b23e5d845adf7d68a5145690e18b9cca303e"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/src/interaction_cases.cj": {
+      "bytes": 8603,
+      "sha256": "0ec71b0e2ce5d19894f03fff5570b23e5d845adf7d68a5145690e18b9cca303e"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/src/layout_cases.cj": {
+      "bytes": 3304,
+      "sha256": "6b1fc74556adae9296c14027cddc788b46c51116069a73c40158f8452cff0e08"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/src/layout_cases.cj": {
+      "bytes": 3304,
+      "sha256": "6b1fc74556adae9296c14027cddc788b46c51116069a73c40158f8452cff0e08"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/src/main.cj": {
+      "bytes": 1595,
+      "sha256": "1c061a72ec5e7cc7e654fef59cc4770fd5e8573ac589d6176eef85ea47ff49b2"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/src/main.cj": {
+      "bytes": 1595,
+      "sha256": "1c061a72ec5e7cc7e654fef59cc4770fd5e8573ac589d6176eef85ea47ff49b2"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/src/overlay_cases.cj": {
+      "bytes": 7941,
+      "sha256": "55e330b387bcd924aab90e19dc03117081393ac942172ae00d07f2e045fc930e"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/src/overlay_cases.cj": {
+      "bytes": 7941,
+      "sha256": "55e330b387bcd924aab90e19dc03117081393ac942172ae00d07f2e045fc930e"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/src/shared_panel.cj": {
+      "bytes": 499,
+      "sha256": "ebaa3a13e6f80b5a1dc1b806b40631fec8314d7acb372701b1df9eb18952752d"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/src/shared_panel.cj": {
+      "bytes": 499,
+      "sha256": "ebaa3a13e6f80b5a1dc1b806b40631fec8314d7acb372701b1df9eb18952752d"
+    },
+    "/workspace/work/widgets-composite-execution/source/tests/widgets_composite/target-red.sh": {
+      "bytes": 896,
+      "sha256": "40831d7eb1ce51a8cdf0dbdc1b3b051ec217bc5525e545c066449b4c692eae82"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/target-red.sh": {
+      "bytes": 896,
+      "sha256": "40831d7eb1ce51a8cdf0dbdc1b3b051ec217bc5525e545c066449b4c692eae82"
+    },
+    "/workspace/work/terminal.ui/AGENTS.md": {
+      "bytes": 35500,
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd"
+    },
+    "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/design.md": {
+      "bytes": 25698,
+      "sha256": "70070f180f1006f1b09ecb32f5c1c16082d7a9057203b4437af995ee4071889c"
+    },
+    "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md": {
+      "bytes": 10888,
+      "sha256": "f427d1f89df03c7aef5dd5b474091181fcb04d9837bbaa1541a019b6bc76e23a"
+    },
+    "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/tasks.md": {
+      "bytes": 28853,
+      "sha256": "ca1dc9e7ebed9b603186fb2fa23a443af2d170a124386c4ad466e991fd83cccf"
+    },
+    "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md": {
+      "bytes": 52833,
+      "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4"
+    },
+    "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/design.md": {
+      "bytes": 76152,
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4"
+    },
+    "/workspace/work/terminal.ui/openspec/changes/implement-layout-decoration/design.md": {
+      "bytes": 11093,
+      "sha256": "1a28823e9cb7f1b02317ef709131b900b8a599289eeec6e71a0678dac70a6d85"
+    },
+    "/workspace/work/terminal.ui/openspec/changes/implement-reactive-runtime/design.md": {
+      "bytes": 40090,
+      "sha256": "dcfed7b4ca2e412bb075e923217bf2867556bfb1f8c7991a7384c519b830dbb7"
+    },
+    "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-standard-widgets/theme-inheritance-clarification.md": {
+      "bytes": 1565,
+      "sha256": "9f43cf251c44c1eae05ec2d2d2a6f5994e495bd3671552265c9d124897a06019"
+    },
+    "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-standard-widgets/task-162-brief.md": {
+      "bytes": 13589,
+      "sha256": "8b7b75769931ec0befd87808e3f59f2f191d90bfec1053c4af824694f8a6b055"
+    },
+    "/workspace/work/widgets-composite-execution/raw/normal-build/command.json": {
+      "bytes": 266,
+      "sha256": "6ad47a706010c96fccc0174d337ba1b17170aff6351d1ea3ce9e7927045ac247"
+    },
+    "/workspace/work/widgets-composite-execution/raw/normal-build/stdout": {
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    "/workspace/work/widgets-composite-execution/raw/normal-build/stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/workspace/work/widgets-composite-execution/raw/normal-bundle/command.json": {
+      "bytes": 267,
+      "sha256": "3749c42ffd3f1cab4cf760aefe7ac2a29496554140fe09f0c3c52f16eda415eb"
+    },
+    "/workspace/work/widgets-composite-execution/raw/normal-bundle/stdout": {
+      "bytes": 146395,
+      "sha256": "ea5c3003ba4ae178c7bc1b788594df6bec7dce6ca728fe5ac9457fab1dd59f04"
+    },
+    "/workspace/work/widgets-composite-execution/raw/normal-bundle/stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/command.json": {
+      "bytes": 412,
+      "sha256": "09ca8fa85fcaa7159b285282f1fd2f663575ba9bceb0533d94f0300b322213cd"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/stdout": {
+      "bytes": 178,
+      "sha256": "c5bb392b5b76eaa5da77faaa48c19d8d81ca260fa6b2ee5c5bf783040a813d6f"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/stderr": {
+      "bytes": 1015,
+      "sha256": "7b325cfe9e5c9b01cc9ca78d2e6c91618afed6b6ad56126fb6c8a63b22d613c1"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-example-build/command.json": {
+      "bytes": 306,
+      "sha256": "163d8b2af79ce0ad11d26efc8e0e0fdaeae7a53645eebbe3f558d38a1eaf2b2a"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-example-build/stdout": {
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-example-build/stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/workspace/work/widgets-composite-execution/raw/package-audit/manifest.json": {
+      "bytes": 50250,
+      "sha256": "db98152cd4a1de2ba906babd08695fafacbdd65a616e44e9a8ce8e7e93035435"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/examples/widgets_composition/src/main.cj": {
+      "bytes": 1580,
+      "sha256": "ed45457e7f6b6a1fbeb6cdcd1cde294b6f9a1b67afb8e83a2d64a3e5cca6c052"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/src/split_axis.cj": {
+      "bytes": 69,
+      "sha256": "fae2b29386fd4b0e74026cf76dd2e6346836f46d5aceb98ffba5538bc791f458"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/src/menu_refs.cj": {
+      "bytes": 599,
+      "sha256": "48e7c4f0ba644f12e0f233764a780cc71658d746f3ce2d0767299aca41fce7f3"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/src/menu_composition.cj": {
+      "bytes": 2261,
+      "sha256": "414140d146d4bb5ca1635ee7fc71b8ce755fee6ef2fbf383acd4634649ecbd22"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/src/split_pane.cj": {
+      "bytes": 283,
+      "sha256": "5be7960d78f9071b9a56cde9299239a78f64e6a963eab870e239579f31b51e47"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/src/popup_menu.cj": {
+      "bytes": 557,
+      "sha256": "8e09ce5fe9f5535a6e807fbd9527895d257b721fc17636afb9171ee64bd02632"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/src/horizontal_menu.cj": {
+      "bytes": 536,
+      "sha256": "82ec996108f22f9719bc51bc2d89e95c8480afcecc9f5346f4e722e4b1af2ef9"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/src/menu_entry.cj": {
+      "bytes": 410,
+      "sha256": "8d4461057889c4e79fd4deee2a996347afa659f1ea3f2a0dd653a6f15a51ffd1"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/src/status_bar.cj": {
+      "bytes": 115,
+      "sha256": "106dfcfc7a65d09ee7c25b2d135d09b21bc262c589cd880ad5662dad36fea7d5"
+    },
+    "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/docs/product/widgets.md": {
+      "bytes": 3292,
+      "sha256": "216f118505deecd2f42ab252c5726c86c72ce3090612ed254075f31d6b7be574"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/normal/metadata.json": {
+      "bytes": 9979,
+      "sha256": "5a541341e45f5b2d5285e7dc3869b23e386dc2187ce6577c71cfe9f769bc2daa"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/normal/stdout.raw": {
+      "bytes": 3380,
+      "sha256": "c6cc7d177a4ab6557e547c560f0ac133fed0d49193ef6a5ff2110204368bbd22"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/normal/stdin.raw": {
+      "bytes": 81,
+      "sha256": "9b0157d789a27c561a54c73569b4ebd4b0399be10ed4f9e1a3dafb61f5b0d8e6"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/normal/summary": {
+      "bytes": 71,
+      "sha256": "92f05860c268d7fcb432c4334265c897b7ebdc0ff2c5ccfe624728c45b684af3"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/normal/focus": {
+      "bytes": 46,
+      "sha256": "17e5cc724204611f7ada6fab38b1654629242e95f0d486c1a1bc4f8a7c2d7708"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/callback-failure/metadata.json": {
+      "bytes": 3061,
+      "sha256": "46eec9854f8fe78f444b3b973a087c02741036dadf9109f6893f474fefeac47b"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/callback-failure/stdout.raw": {
+      "bytes": 337,
+      "sha256": "e7a23e33827bd6b8592d198cafde9ebbe0f716c6ce91d0e94140fedff8c7cd09"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/callback-failure/stdin.raw": {
+      "bytes": 1,
+      "sha256": "9d1e0e2d9459d06523ad13e28a4093c2316baafe7aec5b25f30eba2e113599c4"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/callback-failure/summary": {
+      "bytes": 55,
+      "sha256": "1483336712d3811832790ed033901c4e52568e64786d61817da4b5b9d2339328"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/callback-failure/error": {
+      "bytes": 26,
+      "sha256": "a6ee2eb5f60cd8dbcccc35cd130c5ebccc6a7f0b5c228af2aa6a8834bc164223"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/getter-failure/metadata.json": {
+      "bytes": 3059,
+      "sha256": "9e83b8df182a4c56d5786e6938ab2564349af8621fe54d9148640f8e6161b947"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/getter-failure/stdout.raw": {
+      "bytes": 337,
+      "sha256": "e7a23e33827bd6b8592d198cafde9ebbe0f716c6ce91d0e94140fedff8c7cd09"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/getter-failure/stdin.raw": {
+      "bytes": 1,
+      "sha256": "cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/getter-failure/summary": {
+      "bytes": 55,
+      "sha256": "0c0da014e00280ae1947b992388b4f78a7c370185de2ca4d2a07158d9d2943b0"
+    },
+    "/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts/getter-failure/error": {
+      "bytes": 24,
+      "sha256": "0e4c7013a6e65e7fb54154d34cd6c4e4a2b858219afeaca730304059d70fc1c0"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/result.json": {
+      "bytes": 8446,
+      "sha256": "b16b94469c2bee8cbb946b9e04b02d6c091f9c06e3a67b046415eb4565c4d8cb"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/launch.json": {
+      "bytes": 1144,
+      "sha256": "c67ba926611b8fea3a1289e284f3cf521eb02af524d86b659e50b85976bd1fab"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/output.raw": {
+      "bytes": 5877,
+      "sha256": "9cb9bd47bb9ee8b16b05a4bf5712d21eb378f5a89fd282e37816f9dd3d879e51"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/input.raw": {
+      "bytes": 90,
+      "sha256": "a533e88d88c79a4f27f50e08914c128af9759b57b44ad686f86c01ba30d30dd7"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/terminal-before.json": {
+      "bytes": 1115,
+      "sha256": "38621c962f1d89735a4808f83ef9e351e66f5e9d8ca257066517e0eb7047c6b9"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/terminal-after.json": {
+      "bytes": 1005,
+      "sha256": "0efbb1ae5cadbc6e71c7ee69e3bbbc088f84bd2ef2a82aa315357c95acc4ef65"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/host-identity.json": {
+      "bytes": 389,
+      "sha256": "4425c0a42e619682d4a2a28f628e3c59d2d06eedaa052bc5a0cd1716c908995c"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/focus": {
+      "bytes": 46,
+      "sha256": "17e5cc724204611f7ada6fab38b1654629242e95f0d486c1a1bc4f8a7c2d7708"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/chosen": {
+      "bytes": 16,
+      "sha256": "8a64d63715e937b2a852ca8e71fd1916eeb38436a552bbac64aa78a6ace4561d"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/reason": {
+      "bytes": 9,
+      "sha256": "2d9e28289facab94b41f9592b7f55bc4fc10fed54e789669468e8da31c9a5caf"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/summary": {
+      "bytes": 71,
+      "sha256": "92f05860c268d7fcb432c4334265c897b7ebdc0ff2c5ccfe624728c45b684af3"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-example/result.json": {
+      "bytes": 3961,
+      "sha256": "4091c016451053e3185aa030ad80d7a59c1f6a0ce43c4a624a29ae11924b5cfb"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-example/launch.json": {
+      "bytes": 1148,
+      "sha256": "7cb18ae07ae93a8443422aa770bdc9ac78018013833262ae39cda989282e3bd0"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-example/output.raw": {
+      "bytes": 2764,
+      "sha256": "8ad6641d8827c23a1e62fc6e83aa6dfdda0e54f9091febc031c7902e3b42a249"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-example/input.raw": {
+      "bytes": 24,
+      "sha256": "e54cc9995d5d774df0a861bd4819652184d0d17b9b43c6dcf78626026e1c0b27"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-example/terminal-before.json": {
+      "bytes": 1115,
+      "sha256": "8bc7fb6d16707164d83a2f1bca37488fba49b7eab5ff4b10ea0df70cd0dab728"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-example/terminal-after.json": {
+      "bytes": 1005,
+      "sha256": "c0e32f683c85b62daa8ed720cb175ec25c4501fde0d371dbede5f666a4228319"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-example/host-identity.json": {
+      "bytes": 389,
+      "sha256": "cde99530797b7b7fdf2a6b5bd4a6efef1048fa763d6e2afeeeab15bb2cdc50cc"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/result.json": {
+      "bytes": 8444,
+      "sha256": "1dd97e0e60e097f3548dcb07dced6adc5ab7ef7d9133c1a94345d2ddec0999f2"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/launch.json": {
+      "bytes": 1074,
+      "sha256": "f2f1b8770f28dd67d4589ad03f86468bafa106fc366fa51e2a62893818e49785"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/output.raw": {
+      "bytes": 5877,
+      "sha256": "39c7d0bf69d0538e30637db1d6752484dd1f191212f1650129ed1debee136832"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/input.raw": {
+      "bytes": 90,
+      "sha256": "a190e4d8113b9bdccabb19315f3f0e150f19d984798266e56e97f9e71a493391"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/terminal-before.json": {
+      "bytes": 1124,
+      "sha256": "df12de1a0c5c9f9a54b94cee85a52963be27d83d70ed775d84bea5b9158ed7ad"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/terminal-after.json": {
+      "bytes": 1005,
+      "sha256": "0d2fdf0cd366a2a1ad892629e964a61e121c9e4e738a13806841477538a02488"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/host-identity.json": {
+      "bytes": 831,
+      "sha256": "d3d089d1a07cc0e1cca2873b579ebd0e7d257ffc48e835ec1787adcefa318e9a"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/focus": {
+      "bytes": 46,
+      "sha256": "17e5cc724204611f7ada6fab38b1654629242e95f0d486c1a1bc4f8a7c2d7708"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/chosen": {
+      "bytes": 16,
+      "sha256": "8a64d63715e937b2a852ca8e71fd1916eeb38436a552bbac64aa78a6ace4561d"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/reason": {
+      "bytes": 9,
+      "sha256": "2d9e28289facab94b41f9592b7f55bc4fc10fed54e789669468e8da31c9a5caf"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/summary": {
+      "bytes": 71,
+      "sha256": "92f05860c268d7fcb432c4334265c897b7ebdc0ff2c5ccfe624728c45b684af3"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-example/result.json": {
+      "bytes": 3959,
+      "sha256": "f8fa62de49543e4668b6fcdf91abf6d15d9047098794f5a7a5b45880d91b254b"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-example/launch.json": {
+      "bytes": 1078,
+      "sha256": "063274f5f08ed675fc94b5ff48d2e22230c52416ea84cad9a2a635c139cdd7d7"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-example/output.raw": {
+      "bytes": 2764,
+      "sha256": "8ad6641d8827c23a1e62fc6e83aa6dfdda0e54f9091febc031c7902e3b42a249"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-example/input.raw": {
+      "bytes": 24,
+      "sha256": "e54cc9995d5d774df0a861bd4819652184d0d17b9b43c6dcf78626026e1c0b27"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-example/terminal-before.json": {
+      "bytes": 1124,
+      "sha256": "ec109118b3889e6e6a01a687c657c4c90b3c51b356d52feac2fb0d167df9ae23"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-example/terminal-after.json": {
+      "bytes": 1005,
+      "sha256": "5bb16141a13942ce96c319b2ec487faadc9af961bec4166582c284df9ae3b9f9"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-example/host-identity.json": {
+      "bytes": 831,
+      "sha256": "09737e955a496add39ec20ff0f8786dab6f39fa925bf3ca8ac937bb2e2e2aa87"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/result.json": {
+      "bytes": 7453,
+      "sha256": "aa2406eea1bdf77abc762758ebea14f0408ce0909589bffc56c80b58dc673ccd"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/launch.json": {
+      "bytes": 1819,
+      "sha256": "8803feb3df16ef7a101cd075ae599e8ed67ac572d38a392bffaeafcbcb4bd847"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/output.raw": {
+      "bytes": 5689,
+      "sha256": "6e8e59f9d8e4ea6f8a4b7ad4f181b1b1ae3b369df324c9f9cc939bf70c01c4cc"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/input.raw": {
+      "bytes": 76,
+      "sha256": "21cb53b05c872d36427ce877a086706eefa9f995e2c2e3769aee7f43baf25090"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/evidence/termios-before.bin": {
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/evidence/termios-after.bin": {
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/serial.log": {
+      "bytes": 3143829,
+      "sha256": "546658e8bbc0a0a3b1dbffdd8e6d6802c4c435c2a71e9111446752adf10a869a"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/evidence/focus": {
+      "bytes": 46,
+      "sha256": "17e5cc724204611f7ada6fab38b1654629242e95f0d486c1a1bc4f8a7c2d7708"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/evidence/chosen": {
+      "bytes": 16,
+      "sha256": "8a64d63715e937b2a852ca8e71fd1916eeb38436a552bbac64aa78a6ace4561d"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/evidence/reason": {
+      "bytes": 9,
+      "sha256": "2d9e28289facab94b41f9592b7f55bc4fc10fed54e789669468e8da31c9a5caf"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/evidence/summary": {
+      "bytes": 71,
+      "sha256": "92f05860c268d7fcb432c4334265c897b7ebdc0ff2c5ccfe624728c45b684af3"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/result.json": {
+      "bytes": 2809,
+      "sha256": "7b3fa26e47b2e50803dd2b5cc41870d91985a75d145fb944cbb1a129bd9c0afb"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/launch.json": {
+      "bytes": 1823,
+      "sha256": "88af66f8652b1eac258c95baee10c88fe693a6ceed162e0375aa079b1a3dec6a"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/output.raw": {
+      "bytes": 2712,
+      "sha256": "772b82d1cc858832af6b1ff089d354d43b3f6aec8ee5cd9e67b8c944e4108969"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/input.raw": {
+      "bytes": 16,
+      "sha256": "1938eac5f2e2cc5a600a0b4221168a625b6a4340a3e1e97f876f9b4bcf6be510"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/evidence/termios-before.bin": {
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/evidence/termios-after.bin": {
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/serial.log": {
+      "bytes": 2541722,
+      "sha256": "264f0042ad70fbb72ec7efe0609ecced029897776418ff164cabde3691aa357f"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/chosen-popup-still-open.png": {
+      "bytes": 8184,
+      "sha256": "e2236c0c5b200a5a328406c14ee429800fbabf3aa0609e45718ec66d70742e12"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/nested-modal.png": {
+      "bytes": 2939,
+      "sha256": "85070cd82eeeb017c8296642a4f83e41271a2ccedbafc214a1d9d37cc4182725"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vte-normal/nested-escape-parent-retained.png": {
+      "bytes": 2956,
+      "sha256": "42ed2353e42de0f43919d5936f0e98afa8893ff63e90a28a0b1920b7d6df943a"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/resized.png": {
+      "bytes": 872,
+      "sha256": "0c7dccbc73a29208a84652e1a1d875c11fa839ec53b90c4cb500614301ea2ec8"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/resized.png": {
+      "bytes": 1197,
+      "sha256": "7232cef6ed9a31be5343cf73270cfa5b1711aba15f2b283da992902b9a31a8bc"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-xterm-example/popup-close-entry.png": {
+      "bytes": 12138,
+      "sha256": "1f356eb9f5c06b714fcfdab8a22374fb0eaa192ade6358a3be6286993ea1ca3a"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/resize-transition-vcsa.bin": {
+      "bytes": 1004,
+      "sha256": "e5c4aa09ebd3a4fe680574064ab2157311910ff79e8049d06f1e90cff98a2e6e"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-normal/resized-vcsa.bin": {
+      "bytes": 1004,
+      "sha256": "9d537c4f2d25d775e039cf5703648dc69614082c120d89283624687dd472f4a5"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/resize-transition-vcsa.bin": {
+      "bytes": 1004,
+      "sha256": "fe5c489be1aa86d38440507f19628112bc80b4fc2f72eb78538e5d5941347e6e"
+    },
+    "/workspace/work/widgets-composite-execution/raw/host-vt-example/resized-vcsa.bin": {
+      "bytes": 1004,
+      "sha256": "869f1ca6f28177a013d52a49dceefa4b216f5349da3fd371c8993c0dcfe31abd"
+    }
+  }
+}

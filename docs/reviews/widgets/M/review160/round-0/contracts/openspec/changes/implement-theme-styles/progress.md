@@ -1,0 +1,59 @@
+# SDD ledger — plan: openspec/changes/implement-theme-styles/tasks.md
+
+主代理采用独立theme-contract-draft的typed/schema主体并第10节精确裁决：根文本种子、后named优先、复位、来源mask/fill、latest request wins、单worker+最新信箱、结果可观察、typed能力矩阵、真正wrap测量与四边padding、四preset固定设计文件。候选尚待独立builder/preflight，产品/正式测试未开工。前置runtime/RichText仍实施中，准备合同不代表任何原AC完成。
+
+独立linux_source_audit追加主题parser资源补证：34隔离进程、约1KiB深inline/dotted明显CPU/RSS、深512/2048在CPU预算未返回；未观察stack abort，不能把kill冒充库诊断。上游公开Lexer快速处理同输入且区分字符串/quoted-key内括号点，选择Lexer结构预算预检再Parser，不新增词法/辅助进程。具体预算及累计路径在T009冻结；原始/workspace/work/theme-parser-safety/report.md与fixed inputs/raw/hash后续选取归档。
+
+TOML正常依赖/官方stdx/干净路径消费实证复用R11/build-recon，不重复依赖寻找或旧套件。主代理已实际用brainstorming/writing-plans/SDD组织本候选；用户已长期授权自主路线/独立角色/direct-main，不再设置重复审批菜单。027展示仍planned等实际全部控件后补精确L4，不用固定preset文档冒充整展示通过。
+
+独立theme_preflight首轮固定aca55fc发现3 Important（Theme跨包读取桥、Classic seed fill影响旧反显空白、wrap零宽/超宽行高）及DQ12索引Minor。主代理T014/T015新增纯只读Theme defaults/role/named/source路径桥，精确行高表，并把global seed仅background的填底色与本地background完整Style fill区分；无Classic特殊renderer、preset字节不变。docs/tasks原013/025/026/027状态转本tasks，新增085–092映射/AC唯一行齐全。待固定修文后独立定点复核，未派主题正式测试/产品。
+
+独立preflight d4a92238最终ready、DQ01–14闭合，仅085准入，013/025仍等080+084实际输入，027planned。085作者theme_test_author指定Sol/high独立source/privatecache已开工，旧库正常build0、新values消费者真实RED1缺cjtui.theme；声明-only静态发现with为关键字。主代理T016改成员为withValue（未实现无alias义务），非EOF/CommentStart/token和KeyStart/table声明计数精确化；原失败保存。作者用真实上游Lexer核65536/65537token、16384/16385decl及variables/styles4096预算未交叉撞，仍未运行产品或声明GREEN。此限定语法/计数修文回原preflight核，不重做已通过方案讨论。
+
+085测试原74b1a5ac已集成105337d（47files，20Cj消费者+16负例），旧rootbuild0、仅缺cjtui.theme真实RED1，声明-only静态不运行/非GREEN，证据R15/test-design；foundation013产品屏障080/084+glyph097仍未满足。089同独立Sol/high作者在theme-load-tests先准备异步独立手工期望/真实I/O竞争，async-only RED等基础088后，不拿当前缺包冒充特定功能失败。容量/单candidate内部不变量由090源码审核联合黑盒语义核，不加测试专用公开计数。FIFO非普通文件支持不可静默当需求，必要用合法测试进程read gate做真实普通文件握手，不造fakeworker。
+
+089准备原83fac077已集成179c851，仅准备交付；实际async-only RED仍等088，089/026/092不得提前完成。
+
+085 Glyph追加独立testonly2b16ce9d5975410265283cfce9ef127b3ad1f74d已集成b932b69，16新增文件556行，原47file/16negative/4preset固定字节0差异。新正常root/Glyphpositive/languageholder/getset/3真实controlledPTY input0；Theme target缺cjtui.theme RED1及offline缺overflow等20ERROR/device缺8API，未来ellipsis/7device断言未运行非GREEN。手goldenW4ABCDE UnicodeABC… vsAsciiA...、offlineAscii é...业务Unicode不变、实际Row宽/pad/hardline/cache/render-snapshot/file等追加。空map全blank不足证明前缀预算，独立testadapterinclude原glyphwrapper仅过滤U2026→已有A，104pair/ASCII/dots/?/é保留；实际literal…→? control可区别未来正确A...与错误ABC?，不改共享093fixture/不加productionhook/非真kernel。R15/glyph-refresh98files96原件，rootfresh核96sourcecopy192SHA。当前013025只读预研ready，仍等097接受与最终085交付准入；不能等ThemeGREEN再准产品形成环。
+
+2026-11-11：独立097最终report/findings/33项矩阵PASS_FINITE_SCOPE0C/I/M，root已读并fresh核1391sourcecopy2782SHA及src/native/cjpm同b3。085原74b1+追加2b16交付已固定，真实缺Theme API RED成立，原47file/16negative/4preset不改。013+025 ACTUAL GO：复用原独立Terra/high theme_implementation（仅只读预研，无先写产品）固定BASE81cd29c，/workspace/work/theme-implementation/source；唯一brief .superpowers/sdd/tasks-implement-theme-styles/task-013-025-brief.md current handoff覆盖历史门槛。作者独占产品，root仅合同/归档/集成。013025/086087088尚未交付，通过结果不得预填。下一步固定全部产品diff独审→独立正常执行→原件验收，然后089真实asyncRED/026。
+
+013025实施中发现T009单key段1024UTF8预算的转义测量缺口：上游publicLexer给StringEsc原payload，privateParser.keyString/replaceEscapes才解码；原合同未明确encoded/decoded，不能由产品作者静默选或复制decoder。分类decision，root只读源码确认接口形状，候选A按publickeytoken.value原始UTF8作Parser前词法资源预算（1024inclusive，escape拼写保留），B需合法publicdecode/上游适配，C取消预算/提前Parser不推荐；语义同树等价在预算门后。独立theme_key_budget_review Astra/high窄Battle+真实上游Lexer实证已开工，/workspace/work/theme-key-budget-review，候选仅ignoredbrief，未冻结新行为或修改旧085。产品作者继续其它部分，预算等最终裁决；后续独立测试角色补最小转义边界，不让作者改预期。无需重复用户授权。
+
+T009窄独立Battle中间实证：正常SDK/自有cache/未改upstream0.2.3，40publicLexer探针全过，外部调用privatekeyString/replaceEscapes两例编译拒；无明确decoded预算承诺。root选择A作为源输入词法预算，正式design139及末尾T009明确rawtoken.value/1024inclusive/escape保留/quote排除/所有键上下文和值位置区分、103×Uescape1030先CapacityExceeded、语义等价在预算门后。独立reviewer正限定核正式wording并封存；产品budget未放行，待独立补测试固定。writing-plans实际用于补现085/013025 L4，不新造L3或改变公共API。
+
+T009正式wording独立窄复核PASS_NARROW_FORMAL_WORDING，designSHA084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4，KB01 formal歧义已闭合；KB02仅未选B的公开decoder缺口，KB03新增产品测试仍待。独立085 Sol/high theme_glyph_test_refresh恢复到新目录theme-key-budget-tests，BASE51a22fe/testonly，要求所有原断言不变、只追加raw/escaped上下文边界/valuecomment/1030与103及预算内语义等价；不读产品作者目录。预算实现等固定追加，013025其它继续。决策实证原180index归档时完整设计snapshot不复制，保外部hash/精确省略说明、原report/index字节不改；root机械archive处理中。
+
+T009决策与上游实证已归档[R15/key-budget-review](../../../docs/reviews/R15/key-budget-review/report.md)：源实际181files/原index180entries含完整设计snapshot；归档180原件（179indexpayload+原index本体）+3wrapper，共183，唯一完整设计snapshot外部保hash/理由，不改原报告或index，不声称完整index自包含重放。rootfresh180sourcecopy360SHA0差异，正式designhash084b1623不变；当前npm run check实际23/23exit0仅metadata/OpenSpec。新增测试及013025产品仍未完成。
+
+085 T009追加51986bb（root92fe4f3）已独立spec PASS_TEST_ASSET_SCOPE/quality PASS_STATIC_TEST_ASSET_SCOPE0C/I/M；独立重算63原源/41旧生成/16negative/4preset保留，132边界/151新增、最大1846bytes、完整接线。缺Theme实际SDKexit1，新增Cj消费者未完整typecheck/行为未执行，不能冒行为RED/GREEN。测试原件R15/key-budget-tests34份rootfresh68hash全同，独立review原件随后归档。
+
+013025作者交INCOMPLETE（HEAD81cd/无产品提交），仅typed declarations/Theme数据模型；root实际调用handling-reports并读完整交接，未集成或标ready。作者确认停止因错误地把规模当结束理由，无平台/工具/context阻断。现同一L3周期拆A pureTheme/parser+values→B resolver/Component/Application→C layout+全测试包的串行检查点，复用原树/证据，无第二产品作者；原作者已继续A。固定新增08551986已交budget ACTUAL GO，独立测试overlay与product-onlycommit区分；预算源契约hash084b1623不变。最终086仍审完整BASE81cd..最终产品，不把检查点当有限交付或提前关闭任务。
+
+085 T009测试/独审原件归档R15/key-budget-tests36files=34原件+2wrapper；test-review182files=179原件+3wrapper（原index181entries+本体182源，完整formal/brief/KEYBUDGET三个Markdown源snapshot留外部hash/省略说明，原报告/index不改）。rootfresh34sourcecopy68SHA及179sourcecopy358SHA全同；当前npm run check实际23/23exit0仅metadata/OpenSpec。Budget测试固定51986/root92fe已交原实现作者，checkpointA正在继续；没有013025产品提交或提前通过。
+
+checkpointA开发固定0e46237c7e60d3d9e9fabb4587ac45c90321f4eb（父测试overlaydc77f8c等51986，BASE81cd）已有真实values-4 exit0，仍未审/未集成/不称A完成。原开发values-1 exit1诊断丢text.bold路径保留，修后全values通过不是独立验收。作者自审暴露137/264的TOML date→String来源类型、137可打印name、328跨表源码首错三个待独立核实覆盖点；root未代写修复，也未把作者自测当独立RED。独立Sol/high测试角色theme_glyph_test_refresh已恢复到新theme-schema-tests目录，测试分支BASE574c3a9；另自己的product-replay固定0e46237+testoverlay，按原formal条款手构publicTheme.parse反例和真实执行。不读作者目录/报告/推理，不改产品。原作者继续无冲突A文档/依赖分发，三类疑点等新增fixed tests；后续预算源码不回退，正式086仍全部完整源码范围。
+
+085 schema补充241a099349b7af0ec4379f2cc6529734a5177823（root99ef6ef）真实独立执行：publicbuild/positive0，164case88PASS/76FAIL，三组directbinary1；原values正常编译后在新增断言1，后续integration/16negative未运行。固定product0e46237，rawmanifestb8a66ce94ca12ac4efb4de160591b8d3819f6090c3040005ef4c2402430965f9，rootfresh90rawSHA全同。caller-source控制通过，不修内部helper猜测；原66文件/151预算/4preset保留。原实现代理已收到fixedtest+纯raw，ACTUAL GO修来源类型/name/首错，再完整values并续B/C。
+
+用户指出Token消耗与功能产出不配套。主代理据此合并同一功能的L4补充用例交接、审核和证据归档：该补充保留固定源码/实际RED/rawhash，随完整013025在086统一独审，不为每次补充再起独立资产审核/归档轮次；测试作者/实现/086审核/087执行/088验收仍分离，不降低必需验收。现有实现/测试代理复用，不新增代理。未完成产品已备份到远端wip/linux-theme-foundation@1d2d815，明确未审/有已知缺陷；main仍仅接受通过范围。完整主题产品最终按原main流程整体验收集成，无PR/发布。
+
+086完整候选97df096独审最终CHANGES_REQUIRED（0C/3I/1M）：版本/必需字段优先、变量记录源码首错、拒绝setStyle仍破坏padding绑定均由真实probe确认，公开状态/继承文档待补。最小正式回归61e531已集成33a5122，两个消费者正向0、三组行为RED1，旧73源保留；无额外资产审核/归档。原作者round1/5同批修3I/M及正常bundle-c强制lint失败；原bundle实际exit1，clean consumer/C后回归未启动。root已读fix-loop；修后仅97..fix限定复核。环境故障已恢复，源身份post-run哈希限制保留，不提前准入087/088或合产品main。
+
+Task 013025: fix round 1/5 complete (3 Important addressed, 0 open; 97df096..95c1186; M01 addressed). 非阻断D01随后仅删4行未用helper，95c1186..8d75233独立限定核验CLOSED；最终086 spec/quality均PASS_SOURCE_REVIEW，无遗留发现。175成员/正常bundle与cleanconsumer0属95范围，8d包不冒同字节已验。最终源码8d已推WIP，原作者开发回归完成，087原独立Sol/medium执行者已实际准入固定8d并复用自有准备环境；088原独立Astra角色只读准备pending matrix并行，未提前验收。维持同功能合并、内容有效复用及无额外L4归档轮次。
+
+088最终PASS_FOUNDATION_SCOPE已封存（42行37passed/2限定复用/1基础包通过但releaseOPEN/1来源限制/1后续排除），当前0C/I/M；rootfresh验35条index，087fresh验564条index。647原件+10wrapper+截图总览集中归R15，rootfresh1294份source/copy SHA全同。产品7提交已cherry main73abef3，46产品路径与8d零差异，实际push成功；同一源码/依赖/环境/范围的087088结果按AGENTS11.1复用，未为cherry冷跑全suite。
+
+089实际source8d的foundation普通build/direct0后隔离async API编译1（7条确实缺类型/方法），原179c851资产/tree441cfd4d未改，无新testcommit，22行为未执行。真实RED原件34份归R15/async-red，2个原始.so外部hash/省略理由保留，不入仓。026原作者已从73abef3开独立branch进入完整async实施，数据层内部checkpoint ec506e7，不视026完成；WIP loading单独保留。后续090/091/092仍按角色分离，合并同功能验证/归档，不增零碎审核回合。
+
+TASK026 candidate797039d独立090完整审查为0C/1I/1M：候选漏检共享分配器的clipped minimum溢出，及加载文档陈旧。固定独立回归3040111已集成main41f29f1，有限4×1大min合法控制通过，Max×0实际Applied后overflow/关闭为RED。原作者round1修复4971528已推WIPloading；focused atomic/current与正常mandatorylint bundle退出0，独立090仅797..497必要影响范围复核进行中；091/092未准入，026不勾选。
+
+Task 026: fix round 1/5 (M01 addressed, 1 Important open — I01 partially fixed; commits797039d..4971528). 独立090 round1证实直接Row/Column根快照已拒绝，但实际顺序为根snapshot(Max,0)→loadTheme→render(mountedText,1,1)触发全局候选提交→根snapshot；子树尺寸覆写根验证尺寸导致Applied后溢出/sessionclosed。独立最小Row正式回归追加中，等待fixedtest+真实RED后同一作者round2修复。round1原件manifest7ceb4bb8959a07ea9bab1b6a0291c7b7cdc4941f4dd15dcd314002c07e222da3，213prehash来源已核，无commit-only重跑。
+
+Round2准入：独立42行最小子树回归71f9312已集成/推送main8797749；固定497普通gate/foundation/API/consumer build均0，single atomic direct1：root-only与有限合法控制已通过，mounted subtree入口Applied1后原根minimum sum overflow/postfalse/ref失效。纯rawmanifest0a179eb98eedd6e60c8127d1dc72013cf4ed2bcb12f244bb628b1d3f57ca836e，root已读实际stdout/stderr。原Terra作者ACTUAL fix round2/5，精确顺序根snapshot→load→subtree render提交→根snapshot；测试角色恢复098。
+
+Task 026: fix round 2/5 complete (I01 addressed, 0 open;4971528..fa6a46e). 独立090最终spec/quality均PASS_SOURCE_REVIEW，root实际验证round2全部6条hash；原完整审查/两回合范围与证据限制保留。最终fa6已推WIP，091原Sol/medium独立执行角色已ACTUAL GO，自有SDK/cache/inputhash准备就绪，运行固定22case/必要布局回归/正常bundleclean；092仅准备不提前验收。
+
+TASK091全部当前执行通过：fixedfa6原22实际0（含两次独立atomic回归）、layout/完整Theme integration0、正常mandatorylint bundle0（508warnings保留）、184CJP成员字节等fa6、干净完整consumer源码build0与latest-success/atomic两代表实际0、真实PTY接受后部分写EIO记录保持Applied/ThemeInfo且termios/信号恢复；unsafevisual明确未恢复。稳定manifest e7fc2d30586e99ab4236eb9455be98842c5de5f347f2e442a581cd1207b529a4，rootfresh277条checksum0。092独立PASS_ASYNC_SCOPE：33行32当前满足/1后续排除，0C/I/M；manifest f6aa39e3539fe7261e39f3202125d52830a3f2f8f8825f742f3ce528115be7ca，rootfresh22条checksum0，未重复运行产品。026/090–092当前范围关闭，027/023/全Linux/M2仍OPEN。
+
+产品四提交ec506e7/797039d/4971528/fa6a46e仅机械cherry为main2a8eda0/ba1b17f/42c7f1c/5f5342f，排除已在main的两个测试overlay；rootactual产品/正式tests与fa6 diff0，main5f5342f已实际推送。后续仅文档状态投影不冒新制品已构建；相同代码/依赖/环境/配置/范围复用091092有效证据。归档只做一次R15/theme-loading，继续098正式测试→099完整交互实现，不以本项关闭停止Linux总目标。

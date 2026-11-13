@@ -57,4 +57,4 @@ TASK-006、011、012 及既有支持任务保持已验范围，不重新实现�
 
 ## 当前执行入口
 
-当前：main `83b264db784af638f3c6554bef595316ecdb0e3c` 已记录[标准控件正式测试158及159实施进展](../openspec/changes/implement-standard-widgets/tasks.md)：固定测试原 `e59d5c9f` 对应main `9ec836ce`，前置成功及真正目标缺API RED已交付；159由独立Terra/high角色实际实施，160–162等待前序固定产物。已接受的A/B/C/K/E/S有限证据按原范围复用，未把M测试交付当M行为通过。后续顺序保持完整功能M1/027集成→M2局部布局绘制与对照基准→最终Linux023/024等门槛；完整Linux尚未验收。上文裁决中的阶段状态为历史记录，当前唯一任务状态见各change tasks；本索引不另维护复选框。全阶段恢复日志：[Linux总执行日志](../openspec/linux-completion-progress.md)。
+当前：组合工厂已在main `c5a875f09cbb4f6fdb49eefaff14343e0d519630` 集成；独立153–162有限S/M角色完成，M01–M05/受影响S02独立PASS_FINITE_M，[单一M原件/独立结论/65PNG](reviews/widgets/M/README.md)与[唯一任务状态](../openspec/changes/implement-standard-widgets/tasks.md)可复核。后续继续008/010/020/021/027完整功能M1恢复/快照/模式/组合示例/主题展示集成→M2局部布局绘制与对照基准→最终Linux023/024。父019/011/020/030、027/041完整范围、B-M01→024与T087→023保留；未发布。历史裁决状态不另作当前checklist。

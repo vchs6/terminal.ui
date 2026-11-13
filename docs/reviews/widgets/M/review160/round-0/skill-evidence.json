@@ -1,0 +1,24 @@
+{
+  "classification": "execution review, fixed canonical contracts; no new design or product changes",
+  "role": "Independent TASK160 source/spec and quality reviewer; requested Astra/high; serving identity not independently attestable",
+  "budget": "One finite full review; default Battle maximum60 minutes/3 scoped repair rounds; no repair round performed",
+  "skills": [
+    {
+      "name": "superpowers:requesting-code-review",
+      "source": "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/requesting-code-review/SKILL.md",
+      "use": "Independent review receiver; exact BASE/HEAD and full package, no subdelegation per binding task."
+    },
+    {
+      "name": "superpowers:verification-before-completion",
+      "source": "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/verification-before-completion/SKILL.md",
+      "use": "Verified artifacts, hashes, source/test Git bindings, actual raw observations and diff-check; reused unchanged tests as AGENTS11.1 explicitly directs."
+    },
+    {
+      "name": "openspec-explore",
+      "source": "/workspace/work/terminal.ui/.agents/skills/openspec-explore/SKILL.md",
+      "version": "1.0/generatedBy1.14.3",
+      "use": "Read-only contract exploration/status; no proposal/spec/task edits. PATH invocation127 corrected to existing repo node_modules/.bin/openspec; status0."
+    }
+  ],
+  "authorization": "Assigned evidence outputs in own new review directory; product/test/spec/main immutable."
+}

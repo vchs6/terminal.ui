@@ -1,0 +1,354 @@
+{
+  "schema": 1,
+  "task": 158,
+  "role": "independent formal test author; assigned Sol/high, serving identity not certified",
+  "test_commit": "f8e4604b0e17df533a43117aaa375c60b9251ab5",
+  "base_main": "d108badb8cc86b383508f9743a6dad613b363662",
+  "frozen_at_utc": "2026-11-13T15:21:48.088099+00:00",
+  "changed_sources": [
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/source/tests/widgets_composite/device/src/main.cj",
+      "bytes": 6069,
+      "sha256": "44e8716eeff35db519c97714e091806916c97a634141fb2898159bdce52cdc69"
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/widgets-composite-tests/device-typing-fix/report.md",
+    "bytes": 1895,
+    "sha256": "d55d4194230cce13e15214cc59a063ed083a5940a71d110522e59a21742c98be"
+  },
+  "evidence_files": [
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/commands.json",
+      "bytes": 1450,
+      "sha256": "c3b2259df16fa4b8a360502ec52bb008ce689ea5c9519168ce6500d6350732b2"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/compiler-access-success.strace",
+      "bytes": 495931,
+      "sha256": "561d1f9ad7b57a5ed52fc4b42ce4d9f2bae402491291afb258c86210467de936"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/compiler-access.strace",
+      "bytes": 478328,
+      "sha256": "869b60ff4f621aed844a175660269907cd618c89d6c917ab48bb6ec48918aa24"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/diagnosis.md",
+      "bytes": 3519,
+      "sha256": "e25929da2c8924312101f491c220c3c51aae978f7666fc5eb9b9e281bf4c6827"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-final.command.json",
+      "bytes": 4805,
+      "sha256": "5c01060d4f71b474670eac5512a6a11adae9b199cff1313ef1a85a918bfcd83f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-final.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-final.log",
+      "bytes": 3083,
+      "sha256": "ea92037c2cc9d08a7559b3f1093fad86930b43290db76f8b90341e6f82bb9b1b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link-libraries.command.json",
+      "bytes": 2005,
+      "sha256": "0d5368dfe9053fa8283388e61415eba3e5528c939fc0242c88d6563417ee106a"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link-libraries.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link-libraries.log",
+      "bytes": 46711,
+      "sha256": "cef1f8b80d62ee32b79948a77faf8bac0ba633a40dcdb8093b5600721f01ef25"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link.command.json",
+      "bytes": 1315,
+      "sha256": "d72f90f3dbf40b854af828354ea93fbd4f8f1868b55a151f6521481830f2cdb1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link.log",
+      "bytes": 29480,
+      "sha256": "7f62432b984c2b3f7ee7e647d59c78856b3b509ea46920239d6b8adf52c1a11b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-success.command.json",
+      "bytes": 4770,
+      "sha256": "945abe22a1821eac5108acdea863d826ebfc2dd20d058edc1b04195f7c6790dc"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-success.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-success.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/original-formal-inheritance-fixed.log",
+      "bytes": 3813,
+      "sha256": "01b2a674204518570dc62790193a0ce1f1bb689f9b513601554045c83f515f3e"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/preservation.json",
+      "bytes": 777,
+      "sha256": "45ec507adb1ba123f84f11b77ebde6a8591aa53f5091df81a396c025080dabee"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/prior-preservation.json",
+      "bytes": 1630,
+      "sha256": "d02433320120105be88341af5f5be367ea27d2218d1adf1459b71c03158bd4e8"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-inputs.json",
+      "bytes": 25383,
+      "sha256": "a92639a149b457e6e75dc53589f4178d2c4d1dc4c57f2bef56b5294631668055"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-compound-build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-compound-build.log",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-compound-run.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-compound-run.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-probe/cjpm.lock",
+      "bytes": 24,
+      "sha256": "7b09643cc3e7107d2a0f09605871366c547525d40221945a60bee8a9a5e3f3b0"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-probe/cjpm.toml",
+      "bytes": 318,
+      "sha256": "9a84d896fdc560a1e5f3df95acefc35a6b12c77df8ff11c19670e2a37ad6ae33"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-probe/src/main.cj",
+      "bytes": 409,
+      "sha256": "e1e42ae589dfc0e3a2e1f891398ce4766a4eb3b9f548deacbcf8608d0dd06f4c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/build.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/build.log",
+      "bytes": 432,
+      "sha256": "8820f1cc09d7680bec5f354f93691828fd84e2eb29beaa6eacd48b4b0a0e5da1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/command.json",
+      "bytes": 240,
+      "sha256": "b8f0a541358e170ba16373c7150111ecf4e8f8d24e30e87703dca0fedb0c095f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/main",
+      "bytes": 3254640,
+      "sha256": "7ece727f4ea135e01f9715e57744edf256a7a7fdadc0b3309ea7d16f820d0b94"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/main.cj",
+      "bytes": 913,
+      "sha256": "18b118351f8aa5a5eaba700a9f9bdb99633e12ce647130d45c33d7b2925c0f97"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/nested_array_probe.cjo",
+      "bytes": 3344,
+      "sha256": "affd83bb5003d4ffaac666d92bf446f120355680690a23550962baad182df933"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/main.cj",
+      "bytes": 902,
+      "sha256": "d8a4cc7d78d852cee54ee30a35a452b4a69d54e70cb3421b77e19afa0306e337"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-after/device",
+      "bytes": 19113360,
+      "sha256": "690d138cb3645674b6da527c67a31a5d64bb7c54daf8320da052f95fa35fe2a8"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-after/widgets_composite_device.cjo",
+      "bytes": 4240,
+      "sha256": "daddaadaee4c653cd1320aeba267151a4a2363f8eab440ef205c62ff86af8003"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-before.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-before.log",
+      "bytes": 2217,
+      "sha256": "6fce16d63344d278244ee7fe0a5d8f590252ee04ec4423e7d7acc83e0c7daa87"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variant-commands.json",
+      "bytes": 1212,
+      "sha256": "648359fa5c693569edc155ca19daff6d6bd041b85a5a7ef77c0df285d330ac0c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/build.log",
+      "bytes": 668,
+      "sha256": "e20f5766c5da5e4aee9ecda3c910732d0abaaca3709de81c172fa60658df04ac"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/libvariant.a",
+      "bytes": 240188,
+      "sha256": "fec506a76bbb6629fd18ebce50693531f50b6692517b28f97dd2e8bcc798a5c5"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/main.cj",
+      "bytes": 6069,
+      "sha256": "44e8716eeff35db519c97714e091806916c97a634141fb2898159bdce52cdc69"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/widgets_composite_device.cjo",
+      "bytes": 4240,
+      "sha256": "daddaadaee4c653cd1320aeba267151a4a2363f8eab440ef205c62ff86af8003"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/typed-key/build.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/typed-key/build.log",
+      "bytes": 2574,
+      "sha256": "5fb083f0a3b30e8a17cf2306977df31c36b3bd6665ad0708cbef18ec979eb284"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/typed-key/main.cj",
+      "bytes": 6066,
+      "sha256": "a97af639f846962e14a1fbf17a40c470c16fa4211f0ef409713162b123ee1f13"
+    }
+  ],
+  "actual_SDK_simple_probe_binary": {
+    "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-probe/target/release/bin/main",
+    "bytes": 1044624,
+    "sha256": "7180c076355e634fe60b629a0aed803409b3fcd7d87779e5468002eba2d76474"
+  },
+  "final_device_executable": {
+    "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-after/device",
+    "bytes": 19113360,
+    "sha256": "690d138cb3645674b6da527c67a31a5d64bb7c54daf8320da052f95fa35fe2a8"
+  },
+  "prior_indices": [
+    {
+      "index": {
+        "path": "/workspace/work/widgets-composite-tests/final/evidence/index.json",
+        "bytes": 17401,
+        "sha256": "96ecf0e4892fdb593828a2c424ee1cfc3f501bddffea29d294e5b22f45f1ed12"
+      },
+      "bound_source_entries_reverified": 28
+    },
+    {
+      "index": {
+        "path": "/workspace/work/widgets-composite-tests/notify-kind-fix/evidence/index.json",
+        "bytes": 6011,
+        "sha256": "efa3a7bb64be0f8c78e7ee7a434cd67fb0d46ef5a9c1c89a503d5255233b626b"
+      },
+      "bound_source_entries_reverified": 1
+    },
+    {
+      "index": {
+        "path": "/workspace/work/widgets-composite-tests/notify-kind-fix/collector-fix/evidence/index.json",
+        "bytes": 8465,
+        "sha256": "922708fcbe10372bc8179b1bd1edc16d423d23ddc10eef0cd601ab904a95dbca"
+      },
+      "bound_source_entries_reverified": 5
+    },
+    {
+      "index": {
+        "path": "/workspace/work/widgets-composite-tests/modal-handler-fix/evidence/index.json",
+        "bytes": 7447,
+        "sha256": "38ee76373a98e8413074115185bb663e4d1caeb34e081ff1556978c7d18c4234"
+      },
+      "bound_source_entries_reverified": 4
+    },
+    {
+      "index": {
+        "path": "/workspace/work/widgets-composite-tests/theme-fill-fix/evidence/index.json",
+        "bytes": 9259,
+        "sha256": "0b6e6813178010e1ab134b9c3c8a5d430f533dd2b5f2a83a5c48a2b35ae3bb05"
+      },
+      "bound_source_entries_reverified": 4
+    },
+    {
+      "index": {
+        "path": "/workspace/work/widgets-composite-tests/theme-inheritance-fix/evidence/index.json",
+        "bytes": 7552,
+        "sha256": "8762620af68811158316ce2f9f2d6d8f01e63c3f6a33ac36f800e7624bd69a24"
+      },
+      "bound_source_entries_reverified": 3
+    }
+  ],
+  "public_module_inputs": "public-inputs.json (106 actual metadata/library hashes plus root-designated CJP/normal module/native hashes)",
+  "results": {
+    "original_full_public_consumer": {
+      "exit": 1,
+      "diagnostics": 7
+    },
+    "typed_key_control": {
+      "exit": 1,
+      "diagnostics": 7
+    },
+    "one_line_expansion_public_static_consumer": {
+      "exit": 0,
+      "warning": "main unused under staticlib mode only"
+    },
+    "SDK_simple_compound_build": 0,
+    "SDK_simple_compound_run": 0,
+    "SDK_nested_context_negative": 1,
+    "SDK_nested_context_expanded_compile": 0,
+    "complete_device_exe_compile_link": 0,
+    "final_diagnostic_log_bytes": 0,
+    "owner_source_reads": 0,
+    "catalogue_cases_unchanged": 53,
+    "M_device_binary_run": "NOT_EXECUTED",
+    "M_real_PTY": "NOT_EXECUTED",
+    "independent161": "NOT_CLAIMED"
+  },
+  "limits": "Fixed public-artifact API typing/linking evidence only. Runtime and true PTY remain159/161. Context-specific compiler observation; no internal-cause or universal syntax claim."
+}

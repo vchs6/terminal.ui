@@ -1,0 +1,813 @@
+{
+  "schema": 1,
+  "unit": "M",
+  "task": 158,
+  "status": "158_COMPLETE_FORMAL_TEST_FREEZE_159_IN_PROGRESS_160_162_PLANNED",
+  "classification": "execution: accepted frozen contracts and M158 readiness metadata; no new API decision",
+  "admission": {
+    "verdict": "READY_M_PRECONDITIONS",
+    "root_adopted": true,
+    "index": "admission/index.json",
+    "sha256": "e3474e6b6925dfc2f72d72a0aa5a70cdb69f0c50248a937fc00da700b28b4771",
+    "scope": "TASK158 formal independent tests only",
+    "M159_ready": true,
+    "M159_gate_resolution": "Actual formal158 delivered fixed tests and genuine target-only missing-API RED; root independently validated fixed inputs before dispatching159."
+  },
+  "product_source": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "code_equivalent_main": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+  "public_archive_main": "d78e0a85523c34da352aba266df044b78add414c",
+  "accepted_S": {
+    "verdict": "PASS_FINITE_S",
+    "acceptance_index": {
+      "repository_path": "docs/reviews/widgets/S/widgets-small-acceptance/index.json",
+      "sha256": "6358811fc9e1eaa31c2258facc4a3e06f1b5bf6c47dc306f12b6fad90154662c",
+      "bytes": 31712
+    },
+    "acceptance_report": {
+      "repository_path": "docs/reviews/widgets/S/widgets-small-acceptance/acceptance.md",
+      "sha256": "953675dfc90faf38858893cc42ee7c50f26ef51fc8b505e2cf2bd9e45e30d7d8",
+      "bytes": 3733
+    },
+    "source_review_report": {
+      "repository_path": "docs/reviews/widgets/S/widgets-small-review/report.md",
+      "sha256": "81a492f18a16f6947b5dfd11248fe9fecc529e84eb675a4b082f6490ebd75455",
+      "bytes": 2575
+    },
+    "source_review_inputs": {
+      "repository_path": "docs/reviews/widgets/S/widgets-small-review/round-0/inputs.json",
+      "sha256": "89fa58fb9edb69f11aaaf34cb3ff6c9a6ee8784f262afee2aa04b53e7917ee67",
+      "bytes": 1998
+    },
+    "execution_index": {
+      "repository_path": "docs/reviews/widgets/S/widgets-small-execution/final-index.json",
+      "sha256": "9d15fcee7473101f21edec529063d380d0d2dc0f5d75b006498e5927239b78a0",
+      "bytes": 5799
+    },
+    "execution_report": {
+      "repository_path": "docs/reviews/widgets/S/widgets-small-execution/report.md",
+      "sha256": "2d9fb8b5f2691f203b50da64c8ad7eceb172b1b4ba53a5b8098a4bf0d3e45c01",
+      "bytes": 3186
+    },
+    "alias_map": "../S/controller/main-map.json",
+    "source_main_equivalence": "Root verified accepted S source and main product scopes byte-equal; reused unchanged; no functional reruns"
+  },
+  "accepted_upstream": [
+    {
+      "id": "U080",
+      "task": "Runtime080",
+      "accepted_original_source": "216b2ab5f2315f4be19467b7e49f4047aec78ab9",
+      "report": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R13/acceptance/report.md",
+        "repository_path": "docs/reviews/R13/acceptance/report.md",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "a7b48c75b98c5dc9f4496deb99abaceab1c79966aef9adc007c48cbbd03f2dd7",
+        "git_blob": "13e3243a491e39dcd00c0355ab4b4cb0c3e7fc47"
+      },
+      "index": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R13/acceptance/reviewed-hashes.json",
+        "repository_path": "docs/reviews/R13/acceptance/reviewed-hashes.json",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "173727e63b66165e5928f2b3d21557df4beb694b41855dc3604eaacf2a974d64",
+        "git_blob": "baaf74ce45069ac30166d0ffb034c528d1f6cad4"
+      },
+      "current_capability_paths": [
+        {
+          "path": "/workspace/work/terminal.ui/src/component.cj",
+          "repository_path": "src/component.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+          "git_blob": "153e5074c4e02461efb6f03314c4a301a1ec6f4b"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/node_ref.cj",
+          "repository_path": "src/node_ref.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805",
+          "git_blob": "6dec76d4aef5ea294cba91d553240b6bf395a6fc"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/observable.cj",
+          "repository_path": "src/observable.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "744000914251fc0eb20e4f0d3335a9642de1bca78e5325ab540dfdfe486b9705",
+          "git_blob": "b530faf11d14ac7036e67758ae50878dd382350d"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/list_item.cj",
+          "repository_path": "src/list_item.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "45289c3ddaed90c620fb4c9051d0698a33ad091b706702a614a1967b747086e4",
+          "git_blob": "1f800450fa8dbb5fda619c67fe9f273f9d0a923d"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/dynamic_group.cj",
+          "repository_path": "src/dynamic_group.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "c4955b8c322c5d24b11eb212cfe7ddf5962a106a6bc82d93aadcae8a97634217",
+          "git_blob": "e0844237218d6212e82c2025529c4cf38b7be1c5"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/runtime_session.cj",
+          "repository_path": "src/runtime_session.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b",
+          "git_blob": "86b43a603d6e62d18c5c70606698eef5543c8b87"
+        }
+      ],
+      "scope": "PASS_FINITE_C; AC015/016/032 accepted. Runtime/identity/collector single owner; historical C167 no longer current gate.",
+      "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
+    },
+    {
+      "id": "U084",
+      "task": "RichText084",
+      "accepted_original_source": "199f00076c1a79cfa6d0be92e7be09366e1a06af",
+      "report": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R14/acceptance/report.md",
+        "repository_path": "docs/reviews/R14/acceptance/report.md",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "7205b80233b1c0fcaaf660446663a6feaceb75bb31a8e4af1bc149a9a5eed1f9",
+        "git_blob": "b2735f176b7ff182b9aea54e7ecfbd91f3ec7444"
+      },
+      "index": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R14/acceptance/reviewed-hashes.json",
+        "repository_path": "docs/reviews/R14/acceptance/reviewed-hashes.json",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "ac959d93d5de2bca8916a8e2f8a4dfa9bb090ad41d4f29df9e1e52d95d7f4cbd",
+        "git_blob": "248fffb0a981d3aa0b2e852992397456856af77a"
+      },
+      "current_capability_paths": [
+        {
+          "path": "/workspace/work/terminal.ui/src/exports.cj",
+          "repository_path": "src/exports.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "f258a51ef0b7f7354206616a25519c6572e4c640a27ac4743e4a6391c7e87bf0",
+          "git_blob": "e0f6702a83276eb01d8f6744a7a0e7dfba097f08"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/text/validation.cj",
+          "repository_path": "src/text/validation.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "cf7bd3c7a141cb617804451a5e4ac538d26167ba2992b39eabfc46bb4910a980",
+          "git_blob": "da249ea62d5edd35b71e8166fa047bc5e56d4efa"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/text_validation.cj",
+          "repository_path": "src/text_validation.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "b14b891ea790790c9177949cfe4fe8e24d04f1114da5fdec664eefddd0df0e41",
+          "git_blob": "9ed425978c7bc3a7cc82e3cf5caa94cfb2bea3a0"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/text/rich_text.cj",
+          "repository_path": "src/text/rich_text.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "c7c2ea1a6f93916952598eaef8836b7c8e6f3e01eb772eddd2af383e2ba6e47f",
+          "git_blob": "a8cb5e08cd09289050f051533b4cc95adb24688c"
+        }
+      ],
+      "scope": "PASS_FINITE; canonical plain-text validation, Unicode/Text path. No second caption Unicode implementation.",
+      "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
+    },
+    {
+      "id": "U088",
+      "task": "Theme088",
+      "accepted_original_source": "8d75233c664fd61be08d441f74d464cbcdff2d9c",
+      "report": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R15/acceptance/report.md",
+        "repository_path": "docs/reviews/R15/acceptance/report.md",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "57f580545f2eb938f46c696bed11519676a0d10760c6f808cb4bc5360a1444c7",
+        "git_blob": "6e94aeba92781a5f449f6c9e947e997245fd94ab"
+      },
+      "index": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R15/acceptance/reviewed-hashes.json",
+        "repository_path": "docs/reviews/R15/acceptance/reviewed-hashes.json",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "6b7cd4418b7cd4c6ebdb745fa678f70e675b3f0096363652115c0471905ecb62",
+        "git_blob": "0e30d601c1ef1fdddb0cba988bb07d89e2e1a601"
+      },
+      "current_capability_paths": [
+        {
+          "path": "/workspace/work/terminal.ui/src/component.cj",
+          "repository_path": "src/component.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+          "git_blob": "153e5074c4e02461efb6f03314c4a301a1ec6f4b"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/style_resolver.cj",
+          "repository_path": "src/style_resolver.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "3064fbd717c63364375f53203c4068ac3a26096657948293b63e94b4bc0c8e46",
+          "git_blob": "2a5033d531e287fe4108fd51dac3c1247c376cb7"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/theme/theme_role.cj",
+          "repository_path": "src/theme/theme_role.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "2378b38e5e02dbfc77c21051eae7954a4bb92860787fb7098495b635fdeea5dd",
+          "git_blob": "cb31814f9b94bc611e947a6a97d1ac6ccc28d188"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/style/visual_states.cj",
+          "repository_path": "src/style/visual_states.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "bed99051cedd691d707dd9c60e06b4bec5c2ec6fd03fed87a934d00d61472c15",
+          "git_blob": "9f151957be1ded35e3148cd4b95b59ae724f1f5f"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/theme/theme.cj",
+          "repository_path": "src/theme/theme.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "bbd8cf1c66a6b4071b6c750cf8d58e1477aa1e862dfaf3a111204be4a908072f",
+          "git_blob": "5d2d247df6b642ecf1ca5c8965107f557142b822"
+        }
+      ],
+      "scope": "PASS_FOUNDATION_SCOPE; T087-G01 remains final023 deferred, not S153 admission blocker.",
+      "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
+    },
+    {
+      "id": "U092",
+      "task": "Theme092",
+      "accepted_original_source": "fa6a46ec339ea0f098dea521c814226a7a373c7e",
+      "report": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R15/theme-loading/acceptance/report.md",
+        "repository_path": "docs/reviews/R15/theme-loading/acceptance/report.md",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "cc5bee8ff8136e332627e295e981960d4b4b910ad186ac6a4cd2a1596298606a",
+        "git_blob": "58b05f72b40b8478df57ab6757deea47336be395"
+      },
+      "index": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R15/theme-loading/acceptance/reviewed-hashes.json",
+        "repository_path": "docs/reviews/R15/theme-loading/acceptance/reviewed-hashes.json",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "bde29f8cf024f0fd07dcd0e54a09884cf0a0c10c6d6a2320ee5a2a6806cc8ccc",
+        "git_blob": "808e395eaee4957e9e6da7974e615937085ce846"
+      },
+      "current_capability_paths": [
+        {
+          "path": "/workspace/work/terminal.ui/src/theme_loader.cj",
+          "repository_path": "src/theme_loader.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "4ca1342bc0ca5c5c87df749727aa1f90216d919120581908774a87a3abb18902",
+          "git_blob": "e81a6b04a77f5297ed3e2d6670e311964aa61339"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/application.cj",
+          "repository_path": "src/application.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+          "git_blob": "193dc961c268e2ec730563c0071e64e0001979df"
+        }
+      ],
+      "scope": "PASS_ASYNC_SCOPE; additional accepted upstream, not a new widget requirement.",
+      "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
+    },
+    {
+      "id": "U097",
+      "task": "Glyph097",
+      "accepted_original_source": "1f67e27358254e9daef637b5c2f5a93707ee7cef",
+      "report": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R16/acceptance/report.md",
+        "repository_path": "docs/reviews/R16/acceptance/report.md",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "32c7a4b8a8874d7712f485086831517f85f7327c2edada5539f6634438343abe",
+        "git_blob": "21e55f2a184d409fb28066cf84dc256daed7057a"
+      },
+      "index": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R16/acceptance/reviewed-hashes.json",
+        "repository_path": "docs/reviews/R16/acceptance/reviewed-hashes.json",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "12f7a8376333e4b58eb9087ec45e4b3304814d5b571b821a9ecf6bd370c778d0",
+        "git_blob": "09540446a3c252b205cb8593fdac4553eed4ba9f"
+      },
+      "current_capability_paths": [
+        {
+          "path": "/workspace/work/terminal.ui/src/terminal_render_profile.cj",
+          "repository_path": "src/terminal_render_profile.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "7bc43434dba17aa52915c783911d491e4a20f9faf9a649ff7fee34b00b8827a8",
+          "git_blob": "6d0ea2683eb26fa13313ea449386e2e727db9922"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/frame.cj",
+          "repository_path": "src/frame.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+          "git_blob": "7ad627b0652266f3a8e2ad320a1a5982fb5308e7"
+        }
+      ],
+      "scope": "PASS_FINITE_SCOPE; Auto/output fallback retained; no full Linux/font claim.",
+      "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
+    },
+    {
+      "id": "U102",
+      "task": "InteractionA102/I011/I012",
+      "accepted_original_source": "f8a028b39daf8a341576f304335d262544b9cca5",
+      "report": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/interaction/A/TASK-102/report.md",
+        "repository_path": "docs/reviews/interaction/A/TASK-102/report.md",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "539c9a4db07d055b28ed6931194e5729301a2a3c41182b52ae0ca3d2b2830712",
+        "git_blob": "576b1c419aa5790a314924b9656f0ae4afcdd8ca"
+      },
+      "index": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/interaction/A/TASK-102/evidence-index.json",
+        "repository_path": "docs/reviews/interaction/A/TASK-102/evidence-index.json",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "d530bc0beb5928be715fd6774879af5b5862f8a321ce61156e8b88036b8eadeb",
+        "git_blob": "d32fc2c8835919cddf07da0344df92788c83bda9"
+      },
+      "current_capability_paths": [
+        {
+          "path": "/workspace/work/terminal.ui/src/canvas.cj",
+          "repository_path": "src/canvas.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "0bd3d7c5674d6fc89e914c6c03657b4948370afb665bb1f42c129b3265e268c2",
+          "git_blob": "f49ddf302475721ee2763b7461e862a749b89b7d"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/constraints.cj",
+          "repository_path": "src/constraints.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "ea50d54ea38696e8218b0de5e339777051cc438bb1a1c440ee5c8651e2902add",
+          "git_blob": "676adadc65462802b9f1791b3e48c3290aded9dd"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/paint_context.cj",
+          "repository_path": "src/paint_context.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "00b9e493d1b6a63f234a69eb2c1cee3ec85ebb221332dd8d4cdef745d3fd928d",
+          "git_blob": "953939fbf7d4fff50a916de2556a44252c8c80d4"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/component.cj",
+          "repository_path": "src/component.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+          "git_blob": "153e5074c4e02461efb6f03314c4a301a1ec6f4b"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/node_ref.cj",
+          "repository_path": "src/node_ref.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805",
+          "git_blob": "6dec76d4aef5ea294cba91d553240b6bf395a6fc"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/application.cj",
+          "repository_path": "src/application.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+          "git_blob": "193dc961c268e2ec730563c0071e64e0001979df"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/style_resolver.cj",
+          "repository_path": "src/style_resolver.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "3064fbd717c63364375f53203c4068ac3a26096657948293b63e94b4bc0c8e46",
+          "git_blob": "2a5033d531e287fe4108fd51dac3c1247c376cb7"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/layout.cj",
+          "repository_path": "src/layout.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "0fbeef2122d1c95125abe3dff3737eac4c39357d32c3f0c1eaecbcb63051fe43",
+          "git_blob": "af7cdd100dcf91fdcbc8bc6371404dd68fc68256"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/ui_key_event.cj",
+          "repository_path": "src/ui_key_event.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "d7c22acd58f73140cb631b283bad469d199b61e73c26c63d39f3a287f2c6990c",
+          "git_blob": "f3cb997e16d420e4cce0afda73be97ca60bbfd70"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/default_action_phase.cj",
+          "repository_path": "src/default_action_phase.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "f2e070fd63c190258428ccdabe3f51ce8858bc95e36afb1dcee8c0a023b9d297",
+          "git_blob": "2d58ad7ba64230dfe87f0a11267b8a8f0ef77349"
+        }
+      ],
+      "scope": "PASS_FINITE_UNIT_A A01–A06; public Canvas/defaultAction/focus/application and unified real disabled/focused composition. Current layout.cj Canvas draw path includes zero/empty clip; future S04 must assert target behavior.",
+      "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
+    },
+    {
+      "id": "U107",
+      "task": "ViewportB107",
+      "accepted_original_source": "62039552a26da295dcd710d7cfc40cb9e43ca5fd",
+      "report": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/interaction/B/TASK-107/report.md",
+        "repository_path": "docs/reviews/interaction/B/TASK-107/report.md",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "19a4c5effc9d6b4fae252877f69d4c6bd6dc44297065932af2a4fad835ee0bdd",
+        "git_blob": "9f2593e8e4d1e1d4b4b16213a4bf2c03f9553141"
+      },
+      "index": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/interaction/B/TASK-107/evidence-index.json",
+        "repository_path": "docs/reviews/interaction/B/TASK-107/evidence-index.json",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "6411021d9005959b907c35516d6af6e5e11dad203106ad53cc77c25ba0232f72",
+        "git_blob": "bb5f92832547906abc2fc8392f1c770227bd96a9"
+      },
+      "current_capability_paths": [
+        {
+          "path": "/workspace/work/terminal.ui/src/component.cj",
+          "repository_path": "src/component.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+          "git_blob": "153e5074c4e02461efb6f03314c4a301a1ec6f4b"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/node_ref.cj",
+          "repository_path": "src/node_ref.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805",
+          "git_blob": "6dec76d4aef5ea294cba91d553240b6bf395a6fc"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/layout.cj",
+          "repository_path": "src/layout.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "0fbeef2122d1c95125abe3dff3737eac4c39357d32c3f0c1eaecbcb63051fe43",
+          "git_blob": "af7cdd100dcf91fdcbc8bc6371404dd68fc68256"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/scroll_axes.cj",
+          "repository_path": "src/scroll_axes.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "df61a42e0203e53883e95d846b898be965981a5d84ab902d807056c7f2cf4861",
+          "git_blob": "e657d78ab1f058dc01c9359a05080b9477be91f0"
+        }
+      ],
+      "scope": "PASS_FINITE_UNIT_B; one deferred T105-M01 getter axes during onMount. Use committed geometry/start-return/event boundary; no widget dependency on this deferred observation. M prerequisite; optional S04 viewport coverage can use accepted path.",
+      "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
+    },
+    {
+      "id": "U112",
+      "task": "OverlayC112",
+      "accepted_original_source": "7f43176505aa3c392afc5fc897181a9eeba89e6e",
+      "report": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/interaction/C/overlay-acceptance/acceptance.md",
+        "repository_path": "docs/reviews/interaction/C/overlay-acceptance/acceptance.md",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "702cd9f253fbc005821920875eccc865f7cf1dfad4847c87ed13a27ef0d8c123",
+        "git_blob": "e7df0bd6d6f7eb7b33f561bae78a3b758f99b6cc"
+      },
+      "index": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/interaction/C/overlay-acceptance/evidence-index.json",
+        "repository_path": "docs/reviews/interaction/C/overlay-acceptance/evidence-index.json",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "bde6a33222a6ac7ed3df86199209b97ef73ab057427be6d8739f4d71d9dab511",
+        "git_blob": "5fd7776cca3b10fab3513dda5b2fedbfe28f367e"
+      },
+      "current_capability_paths": [
+        {
+          "path": "/workspace/work/terminal.ui/src/node_ref.cj",
+          "repository_path": "src/node_ref.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805",
+          "git_blob": "6dec76d4aef5ea294cba91d553240b6bf395a6fc"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/component.cj",
+          "repository_path": "src/component.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+          "git_blob": "153e5074c4e02461efb6f03314c4a301a1ec6f4b"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/overlay_handle.cj",
+          "repository_path": "src/overlay_handle.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "04ecd265cb4979a2357b8d7fcdc470f0bf415d28006c54d63e2b300719f893bd",
+          "git_blob": "570c8614eae1383b84ffa8a863f755777b526bb6"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/overlay_options.cj",
+          "repository_path": "src/overlay_options.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "1baa88a8157123c2004550f0ca4b2d52147f4d5030c7caaa52f5847a0126dab7",
+          "git_blob": "a1052aae0d1a35ca2bddb747bf9f13f43b2825a4"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/surface_mode.cj",
+          "repository_path": "src/surface_mode.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "1c884dfde7ce1aac280db2d056303ccc686ab9dc4807ad10ad270f22bfbd5cc9",
+          "git_blob": "3c939bc695b20d79b488adac907ba33b7366f545"
+        }
+      ],
+      "scope": "PASS_FINITE_UNIT_C; M prerequisite. Unknown VT physical caret hiding remains limited, not silently passed.",
+      "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
+    },
+    {
+      "id": "U117",
+      "task": "Keyboard117",
+      "accepted_original_source": "c3c4642d84df57bbd9550d222ed22f602acd13ef",
+      "report": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/K/keyboard-acceptance/acceptance.md",
+        "repository_path": "docs/reviews/K/keyboard-acceptance/acceptance.md",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "206e69c04eaf89bfe654eff6fbf2b1d4235fba3c7d77a0192a7934bc524596f6",
+        "git_blob": "dd6f87d2cbc3882d2a3ceff24f6acb5533f9bb6a"
+      },
+      "index": {
+        "path": "/workspace/work/terminal.ui/docs/reviews/K/keyboard-acceptance/index.json",
+        "repository_path": "docs/reviews/K/keyboard-acceptance/index.json",
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "sha256": "48328d9f1af9543b3372abb8c4c5387d2e893a2e01eff6a811f6b41927401c80",
+        "git_blob": "71183934af737e194e8e226f7149a848aa8e1b15"
+      },
+      "current_capability_paths": [
+        {
+          "path": "/workspace/work/terminal.ui/src/key_event.cj",
+          "repository_path": "src/key_event.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "1a780514938b6f32f521605b961745d4ad47a448822613ae0d0a9cce78849e99",
+          "git_blob": "94dc3dd0f4fcd68ecbf491379d32ab3aee180ed8"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/keyboard_decoder.cj",
+          "repository_path": "src/keyboard_decoder.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "4f3ebcffb0e809a8f3b08d98afff46554f56297ed64a2a9cb6d7517e183b4beb",
+          "git_blob": "a79a22ae1d49c8a66554908a1b3ce3287efe1b8e"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/keyboard_validation.cj",
+          "repository_path": "src/keyboard_validation.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "af34aeae48b56accc1d984dc02017140a4c73de045f8a40f2f57ae796ae51ebb",
+          "git_blob": "be8022d095802fffa30f97453456e022edee0c2c"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/src/ui_key_event.cj",
+          "repository_path": "src/ui_key_event.cj",
+          "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+          "sha256": "d7c22acd58f73140cb631b283bad469d199b61e73c26c63d39f3a287f2c6990c",
+          "git_blob": "f3cb997e16d420e4cce0afda73be97ca60bbfd70"
+        }
+      ],
+      "scope": "PASS_FINITE_K; shared complete ctrl/alt/shift activation input, no later M guard patch or decoder fork. Host modifier limitations retain protocol/source evidence qualifications.",
+      "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
+    },
+    {
+      "id": "U122",
+      "task": "Finite editing E122/current combined input",
+      "accepted_original_source": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167",
+      "report": {
+        "path": "/workspace/work/editing-acceptance/acceptance.md",
+        "sha256": "ad21b5eed224c869dc8debbe5e2768874869c85f38cdd895d63c4f777f3ab1ba"
+      },
+      "index": {
+        "path": "/workspace/work/editing-acceptance/index.json",
+        "sha256": "c9828b315fe21d8c927077a36ca6da2b747eec4b87178d36c1b21b703e491def"
+      },
+      "linked_indexes": [
+        {
+          "path": "/workspace/work/editing-acceptance/requirement-matrix.md",
+          "sha256": "3d118adf5f3428682dea60abc43484a6c28270c22f047ea44799705554b244f2"
+        },
+        {
+          "path": "/workspace/work/editing-execution/final-index.json",
+          "sha256": "2cb01f0ea6d3f3bf6fd64b0715d922d1c8bd3c36432608441cb84566c4865276"
+        }
+      ],
+      "verdicts": {
+        "spec": "PASS_FINITE_E",
+        "quality": "PASS_FINITE_E",
+        "evidence": "PASS_FINITE_E"
+      },
+      "main_equality": {
+        "revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
+        "paths": [
+          "src",
+          "native",
+          "tests",
+          "examples",
+          "cjpm.toml",
+          "build.cj"
+        ],
+        "command": "git diff --name-only 22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167 b71cb2ebd740a22eba3759abd35b9b0fff068bdd -- src native tests examples cjpm.toml build.cj",
+        "output": ""
+      },
+      "scope": "Later accepted combined source already present. Public E mechanical archive is not a product dependency. No new E implementation review."
+    }
+  ],
+  "upstream_provenance": {
+    "manifest": "../S/input-manifest.json",
+    "sha256": "6ded0eb3087ef95960df4f3e82621805ac3d3dc7afbf2f60d629a85f34bb0095",
+    "policy": "Reuse all accepted upstream source/report/hash mappings from S; B107/C112/K117 and Runtime/RichText/Theme/Glyph remain accepted. B-M01 deferred024 is not assumed fixed; normal committed boundary contracts only."
+  },
+  "frozen_contracts": {
+    "adopted": [
+      "W001",
+      "W002",
+      "W003",
+      "W004",
+      "W005",
+      "W006",
+      "W007",
+      "W006-S",
+      "LEGACY-PROP-001"
+    ],
+    "signatures_values_ownership_changed": false,
+    "S_manifest_contract_hashes": [
+      {
+        "path": "openspec/changes/implement-standard-widgets/design.md",
+        "sha256": "349e93f2ce9682c754d951edf26c09bb97fb4e0f80d954b81e5c1c4936570bbc"
+      },
+      {
+        "path": "openspec/changes/implement-standard-widgets/tasks.md",
+        "sha256": "f092d1e8921c3aa82bfcb2c85497dd1e6a06f067d5db33c8069d8b075e830015"
+      },
+      {
+        "path": "openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md",
+        "sha256": "f427d1f89df03c7aef5dd5b474091181fcb04d9837bbaa1541a019b6bc76e23a"
+      }
+    ],
+    "preflight_bound_contracts": [
+      {
+        "path": "/workspace/work/terminal.ui/AGENTS.md",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/ENGINEERING_TASK_DECOMPOSITION.md",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "d8f43ef8c6f63ffcd1b4b640e0a343a694948c8283b1f17de725ee07aa0a4666"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/BATTLE_PROTOCOL.md",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "fc954ffa193e78aaa76c641e85729ab488eb6951ef32fa5c94a378812fcba959"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/design.md",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "349e93f2ce9682c754d951edf26c09bb97fb4e0f80d954b81e5c1c4936570bbc"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/tasks.md",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "f092d1e8921c3aa82bfcb2c85497dd1e6a06f067d5db33c8069d8b075e830015"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "f427d1f89df03c7aef5dd5b474091181fcb04d9837bbaa1541a019b6bc76e23a"
+      }
+    ],
+    "status_metadata_note": "New canonical admission/status headers supersede historical S precondition wording; frozen API signatures/values/ownership remain unchanged."
+  },
+  "historical_M_preparation": {
+    "original_main": "b3988b02a03d95ab52c4e98cda926ddb30e58d28",
+    "followup_main": "b2dd42821b54b7861b74c7da397f11c9676338b6",
+    "unchanged": true,
+    "files": [
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/README.md",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "e10c264eadc8f0b0e5da2a0780f107ef55ccdc0856d8012f65f8d595b25d0932"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/check_admission.py",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "cf80bed916aa3d8091f4bfc7409d8f691e9d9a348d49d742b1f5d5435ddf9a78"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/cjpm.toml",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "7ebb02ed1e3d58bbd2139e344430a06de634feb1b65f3f1dfeefca390209b6c9"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/expected.json",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "98f4902717fbaee95f8f077532ac5cf3828904b8a805594e3729d36dd1ee7692"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/gate_negative_control.sh",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "d8a6fe33ebfb29e4fd09b1bf36f504787b2a49e63122de5da968b23f83fab5a5"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/oracle.py",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "9c92e9398cf0805feff1a54e81bd9c078569e60f30804e2bad7c38af05aca1d2"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/pty_selftest.py",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "ed7d100ab118e37a9da563ed938c3d10b431111971637310170eed8bce84cd83"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/run.sh",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "e062038172cbd19db6fce293593d7c498b55ad5c48cc02ad440f7bb57a3cd5fe"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/src/interaction_cases.cj",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "b6fd2bdfb1875e0fa69968d3422968a3c6284fbe14f13915a3956ef3126c827a"
+      },
+      {
+        "path": "/workspace/work/terminal.ui/tests/widgets_composite/src/main.cj",
+        "revision": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+        "sha256": "aa1cca5d77431b8a68274bcc962d1b8d8133b33225da76bd3104a06df7e67d03"
+      }
+    ],
+    "role_report": {
+      "path": "/workspace/work/widgets-composite-tests/report.md",
+      "sha256": "91a03c21767ac5399ec37e60a9f6c7dd049b21730b769dff2e67f3baa3adf4c1"
+    },
+    "status": "old preparation; old77/synthetic gate are not current missing prerequisite or genuine target RED"
+  },
+  "formal_test_delivery": {
+    "assigned_role": "independent test author",
+    "assigned_model": "Sol/high",
+    "serving_model_attestation": "not available from tools",
+    "status": "complete; independent formal158 fixed tests and genuine target RED delivered",
+    "scope": [
+      "M01 own entry refs/retained values and business order",
+      "M02 navigation, complete modifiers and once activation",
+      "M03 reusable opaque Popup and business explicit close/inline/Escape",
+      "M04 natural Row StatusBar and ordinary SplitPane layout",
+      "M05 shared model instances/local theme and exception recovery",
+      "affected S02 regression and exact frozen expected results",
+      "actual prerequisite verification and genuine target-only missing-API RED"
+    ],
+    "test_commit": "e59d5c9fe8493c9ceadc9861fd865d933fe70450",
+    "test_tree": "9f55ae8abe56a366285ea6abd3069fdf504b7814",
+    "target_RED_receipt": {
+      "raw_root": "/workspace/work/widgets-composite-tests/final/evidence",
+      "isolated_compiler": "missing-targets-build.log",
+      "isolated_compiler_exit": 1,
+      "expected_missing_target_diagnostics": 6,
+      "classifier": "target-red-classification-final.log",
+      "classifier_exit": 0
+    },
+    "note": "Formal158 test delivery completed. Missing-API RED and test-tool controls are not M behavior PASS. Original intermediate fixture/setup failure records remain unchanged; final formal.log controls accepted prerequisite result.",
+    "main_alias": "9ec836cef9c137b87c928a049aa8452b3a83b301",
+    "report": {
+      "repository_path": "docs/reviews/widgets/M/test158/report.md",
+      "sha256": "fb82e860d7032886409a90ac8e30070fc30ddb6c2530a4f590d7edc4b46bc083",
+      "original": "/workspace/work/widgets-composite-tests/final/report.md"
+    },
+    "evidence_index": {
+      "repository_path": "docs/reviews/widgets/M/test158/evidence/index.json",
+      "sha256": "96ecf0e4892fdb593828a2c424ee1cfc3f501bddffea29d294e5b22f45f1ed12",
+      "original": "/workspace/work/widgets-composite-tests/final/evidence/index.json"
+    },
+    "catalogue_cases": 51,
+    "root_validation": {
+      "reported_by": "root controller",
+      "source_report_raw_hashes": 71,
+      "committed_test_inputs": 28,
+      "result": "PASS",
+      "note": "Reused root validation; no full copy/source/test re-audit by metadata role."
+    },
+    "results": {
+      "accepted_prerequisite_build": 0,
+      "accepted_prerequisite_direct": 0,
+      "accepted_S_modifier_exclusions": 42,
+      "isolated_missing_M_targets": 6,
+      "isolated_compiler_exit": 1,
+      "classifier_exit": 0,
+      "full_consumer_missing_M_diagnostics": 75,
+      "device_missing_factory_diagnostics": 2,
+      "M_typing_runtime_headless": "pending actual159 APIs",
+      "M_native_PTY": "not executed; no binary",
+      "M_clean_bundle_consumer": "pending159"
+    }
+  },
+  "producer_gates": {
+    "159": "in_progress; actual independent Terra/high implementation consumes completed fixed158 tests without edits",
+    "160": "planned; wait fixed159 product and158 tests",
+    "161": "planned; wait independent160 executable review",
+    "162": "planned; wait independent161 original execution evidence"
+  },
+  "deferred": [
+    "parent019/020/030",
+    "027/041 full integrated all-state/Unicode/four-theme showcase",
+    "B-M01→024",
+    "T087→023",
+    "full Linux",
+    "M1/M2",
+    "release"
+  ],
+  "reuse": "Prior14DQ/10self/45pair and unchanged W007 SDK/macro facts reused; no repeated broad review or cold suites.",
+  "implementation_role": {
+    "task": 159,
+    "status": "in_progress",
+    "assigned_model": "Terra/high",
+    "independence": "fresh product role; fixed independent tests unchanged",
+    "workspace": "/workspace/work/widgets-composite-implementation/source",
+    "base_main": "9ec836cef9c137b87c928a049aa8452b3a83b301",
+    "report_expected": "/workspace/work/widgets-composite-implementation/task-159-report.md",
+    "evidence_index_expected": "/workspace/work/widgets-composite-implementation/evidence/final-index.json",
+    "fixed_product_commit": null,
+    "note": "Actual dispatch authorized by root; product source/typing/runtime not yet delivered."
+  }
+}

@@ -1,0 +1,400 @@
+{
+  "schema": 1,
+  "task": 158,
+  "role": "independent formal test author",
+  "classification": "execution of frozen contracts",
+  "assigned_model_role": "Sol/high",
+  "serving_model": "not tool-certified",
+  "test_commit": "e59d5c9fe8493c9ceadc9861fd865d933fe70450",
+  "base_main": "d78e0a85523c34da352aba266df044b78add414c",
+  "manifest_publication_main": "60653f18bd8cc3411ae0a8601bedc2c0137d1ea5",
+  "accepted_S_source": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "frozen_at_utc": "2026-11-13T13:59:27.660590+00:00",
+  "source_files": [
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/.gitignore",
+      "bytes": 61,
+      "sha256": "45ffdff3b3f79553713174b726d1be28258858a8b853c5d1648ee5fe18f6e646"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/COVERAGE.md",
+      "bytes": 5691,
+      "sha256": "980beeafde04f749047de643d4be821cc1cf13fcd0301ba70b0278d3ca21a41c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/README.md",
+      "bytes": 4800,
+      "sha256": "9101679a677b5905c2ad1a61ff1dabc0a9a7b16d4b6933c56c2deaf90a168f0b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/cjpm.toml",
+      "bytes": 415,
+      "sha256": "b64176b56f5e06ef4b82721a2219a8a0f80dc66836b3be336291b20aedb7d8e5"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/classify_red.py",
+      "bytes": 1578,
+      "sha256": "2e04dbb795f839895f48d3ada7dbe9dcb92a38b079a137e5411e6b868701b057"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/device/cjpm.toml",
+      "bytes": 377,
+      "sha256": "4d7ab0aae1a3c6d179e337e8599cd2312cb9807cdb60547a145d403da4ae3f9a"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/device/src/main.cj",
+      "bytes": 5342,
+      "sha256": "6ed5e93ec69fd860a8249542e5af3cce1440e5005f65b8c3b7ced06c3cb0332b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/expected.json",
+      "bytes": 8117,
+      "sha256": "4c085dbadb7468f2d22ec42a73eab2478c4b7f69c01d26b0a952cd4b4fc53ad1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/fixtures/local-theme.toml",
+      "bytes": 653,
+      "sha256": "6faa6f779a3d0c74127e1dd76f4aea88cca4fdee91f9b5a7b6342437ec491f0f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/input-manifest.json",
+      "bytes": 39200,
+      "sha256": "a709f7fdc2648e1a4ebb483b84da02916da95d4e4c05c0ec53bfb43db6d381bb"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/missing_targets/cjpm.toml",
+      "bytes": 355,
+      "sha256": "f6a18f236059ebce54731c6223212692f318b77bf1f13269dfa616d62a2cf7d2"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/missing_targets/src/main.cj",
+      "bytes": 421,
+      "sha256": "84b56428912b92afeb84345dd62f219fc97645115383beeab8dc75530f11322e"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/oracle.py",
+      "bytes": 2187,
+      "sha256": "9c92e9398cf0805feff1a54e81bd9c078569e60f30804e2bad7c38af05aca1d2"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/prerequisite/cjpm.toml",
+      "bytes": 360,
+      "sha256": "20880dca25dc6b1273537a5832856b4fd6c5c2c4cb27485c487e0198b9c4aa19"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/prerequisite/src/main.cj",
+      "bytes": 2663,
+      "sha256": "71fea29c64bc97108662109f70ec2a6232b0463826c4a775391571cd6a372776"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/prerequisite/src/original_contracts.cj",
+      "bytes": 1436,
+      "sha256": "1692423a597ead9ab535cc0e721af2ec86940b9dc51e292b770980395e9ac986"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/prerequisite/src/s02_cases.cj",
+      "bytes": 964,
+      "sha256": "f33a9b6d3749e9ee015a91d51bafd89346283449140fcac2b4fbe861d2f76753"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/pty.py",
+      "bytes": 6986,
+      "sha256": "6f1a686e5c71f2807e09158ef7d10ed698678c460d31792dbad2e81fdc4729aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/pty_selftest.py",
+      "bytes": 2037,
+      "sha256": "aef85dbe7de2c493930a9a1ae16f0573f6b9948f60e71579e176ca225de88672"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/run.sh",
+      "bytes": 1334,
+      "sha256": "d210d3eda5331ace3c0b59f628fe7abf222078048c556be618e23aa2557be4e8"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/src/composition_cases.cj",
+      "bytes": 7556,
+      "sha256": "b7b27a79ce832f1ef598024cc3a1ac15a946f96fdd16626af63d243d95a73081"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/src/identity_cases.cj",
+      "bytes": 5447,
+      "sha256": "d7868ddcc4c13f1d1a52c495003bb01c07d9d570373238a6d04e92079fecb50f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/src/interaction_cases.cj",
+      "bytes": 8281,
+      "sha256": "9214b9267350e6770cc5eb2438d050a71cf751357967d730621f82ffdff2307c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/src/layout_cases.cj",
+      "bytes": 3304,
+      "sha256": "6b1fc74556adae9296c14027cddc788b46c51116069a73c40158f8452cff0e08"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/src/main.cj",
+      "bytes": 1595,
+      "sha256": "1c061a72ec5e7cc7e654fef59cc4770fd5e8573ac589d6176eef85ea47ff49b2"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/src/overlay_cases.cj",
+      "bytes": 7075,
+      "sha256": "aeed726ce759d4f2f5dbb767b2cfedf23cd59b3093858c1db0439d2c78b3a0a1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/src/shared_panel.cj",
+      "bytes": 499,
+      "sha256": "ebaa3a13e6f80b5a1dc1b806b40631fec8314d7acb372701b1df9eb18952752d"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/source/tests/widgets_composite/target-red.sh",
+      "bytes": 896,
+      "sha256": "40831d7eb1ce51a8cdf0dbdc1b3b051ec217bc5525e545c066449b4c692eae82"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/build-config.json",
+      "bytes": 2301,
+      "sha256": "30ea1bca9dd41682a8eb983c5465982244df61b58cf079a0f1f2ee82c686e13a"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/cjc-help.txt",
+      "bytes": 11660,
+      "sha256": "f6795b2e54fb0d9193a1faca508c9b872c9bf59cb63de1b8b29ce3bc2adedb5f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/classifier-extra-diagnostic.log",
+      "bytes": 2015,
+      "sha256": "9c24c5c7965b2f082765a1cf1402fbf38b83ad16c818403541c073673ba97212"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/classifier-negative-control.command.json",
+      "bytes": 574,
+      "sha256": "aab69a93f18dcbe13f8ea16819dec39f1034165376a8589da28c677ce0b5c399"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/classifier-negative-control.log",
+      "bytes": 1853,
+      "sha256": "51d99d5d16b11c65eedfcb8becba7aeed62aa7265f6786a0e2fa97ed6ab0e081"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/device-build.command.json",
+      "bytes": 1028,
+      "sha256": "b44f80e780bc838c29e2fc76d93117c26e60ec292349a4978afe3a87c39a59eb"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/device-build.log",
+      "bytes": 886,
+      "sha256": "224603cda0a9c39b2a4d233abe4697bf0332ee9497266d1d21553d675264acfe"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/fixture-corrections.md",
+      "bytes": 1205,
+      "sha256": "0afc94d19329429224bd2e4e22bb9e59cac9cad2f424dd74857767026a432f44"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/formal.command.json",
+      "bytes": 793,
+      "sha256": "8d976d5b63df27c644456b885e3d20c01f2f8459f993bc314e81d092a534f288"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/formal.log",
+      "bytes": 29205,
+      "sha256": "bc3e007fee191ff65ae2df2d9e5f611ef3516cb4ed7bb92b24ce74e81a69ffdd"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/full-consumer-build.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/full-consumer-build.log",
+      "bytes": 28746,
+      "sha256": "4c7e90d1abf9127e41dfb39261d78858adc2d9554c8680823d4734b2d8fafd9b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/full-red-attribution.json",
+      "bytes": 12279,
+      "sha256": "07a82cb81388304eda68b2ce3662da5d6072cd08fb3b821abbfb3cf59d82293c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/inputs.json",
+      "bytes": 3824,
+      "sha256": "aa9fb0f61b881fdb8298b5306977c2481313cd1e791f86f0731a09ef05474a0f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/missing-targets-build.command.json",
+      "bytes": 1025,
+      "sha256": "300366d19b025efa863fbd0c2cf05716825c3a5c5bba832a19971417e7a32abc"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/missing-targets-build.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/missing-targets-build.log",
+      "bytes": 1978,
+      "sha256": "b6df67f30f9ed87bb8a57b2f669214a0d33daa5cabbfc55df0f537e831725966"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/openspec-apply.json",
+      "bytes": 15456,
+      "sha256": "4b8fed217e6a179a7e26d291fb80b73946b4923a7eefa24ac78beb7bbd3d75e9"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/openspec-list.json",
+      "bytes": 320,
+      "sha256": "9f9c42d424948a5a4f5e827f44878fd8493b730772ca6aa5a1fc9fdba59a1b08"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/openspec-status.json",
+      "bytes": 3299,
+      "sha256": "b0a14f4216976d352bcefccb33e09cbeb17f58e92415dca4fb2baf6ceee035e1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/openspec-validate.command.json",
+      "bytes": 879,
+      "sha256": "12b99b2696191a0692009a97ee435ab8f17b1c273a19cfc702fcd26d699e17f8"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/openspec-validate.log",
+      "bytes": 169,
+      "sha256": "dab9f765a1c1103b1bab8a4c4cab5ee3568a08ecc5a6939951af39cee0f71cd0"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/prerequisite-artifacts.json",
+      "bytes": 41277,
+      "sha256": "8533aba21d79b54053268996ca6536612ec67121a3d5cd965d0b7e80ec210075"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/prerequisite-build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/prerequisite-build.log",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/prerequisite-run-fixture-error.log",
+      "bytes": 560,
+      "sha256": "78df019878d87bd38bef5149f4aaf79d9c51b40f322a7f60be7b5e42e27dfefc"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/prerequisite-run-nested-fixture-error.log",
+      "bytes": 569,
+      "sha256": "eb2c595ea86aa8fc53ef7c74a15e3dfcf1258ef47b1267c00da4eaa18d1173a4"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/prerequisite-run.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/prerequisite-run.log",
+      "bytes": 569,
+      "sha256": "eb2c595ea86aa8fc53ef7c74a15e3dfcf1258ef47b1267c00da4eaa18d1173a4"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/run-recorded.py",
+      "bytes": 1070,
+      "sha256": "4095f5cb15f97f2ee6522c2a6af45aac22b52cfd88192157ba68474e28e95b41"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/self-test-final.command.json",
+      "bytes": 814,
+      "sha256": "653522ff98af9ee26b3a545b8b98bf98b4c3f4bb40317a39724a65c2ad6dfcd6"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/self-test-final.log",
+      "bytes": 138,
+      "sha256": "ad657e8ae17acb3a01667853546c98daea5c3da62745d9deb9dec4c0209a173a"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/self-test-frozen.command.json",
+      "bytes": 816,
+      "sha256": "500be29a9f220be77588650b51be6922a347cbb3a77c25e51bef1ad726b4901f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/self-test-frozen.log",
+      "bytes": 138,
+      "sha256": "ad657e8ae17acb3a01667853546c98daea5c3da62745d9deb9dec4c0209a173a"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/self-test.command.json",
+      "bytes": 802,
+      "sha256": "5150708b9e1a2fe462376947c8d870a610e9a64edea0673e3afa045308614ef8"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/self-test.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/self-test.log",
+      "bytes": 138,
+      "sha256": "d0ba25d7df3add033fed8d3cf0059e2c2c1894a7ab74df490c191966dbbff6e1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/skills.md",
+      "bytes": 2859,
+      "sha256": "4dd30cbc6db2af4de8d6390af5178b5354de26a3c78a9193f404a42599ebeafe"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/target-red-classification-final.command.json",
+      "bytes": 988,
+      "sha256": "d0115ee61151eec985c0cd7f0f6d7c0997d96b057ee81c8b5525248b583d8a34"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/target-red-classification-final.log",
+      "bytes": 131,
+      "sha256": "eaaae826f228b2b1c1a4654c8041ea3725477aeb929c609d64a13b185cde2853"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/target-red-classification.command.json",
+      "bytes": 976,
+      "sha256": "61a23c84845f9e682219566506f002073e8efa3bc1c4351f094551ca8d8682ca"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/final/evidence/target-red-classification.log",
+      "bytes": 131,
+      "sha256": "eaaae826f228b2b1c1a4654c8041ea3725477aeb929c609d64a13b185cde2853"
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/widgets-composite-tests/final/report.md",
+    "bytes": 2154,
+    "sha256": "fb82e860d7032886409a90ac8e30070fc30ddb6c2530a4f590d7edc4b46bc083"
+  },
+  "results": {
+    "accepted_prerequisite_build": 0,
+    "accepted_prerequisite_run": 0,
+    "accepted_S_modifier_exclusions": 42,
+    "formal_exit": 1,
+    "isolated_target_compiler_exit": 1,
+    "isolated_target_diagnostics": 6,
+    "classifier_exit": 0,
+    "full_consumer_diagnostics": 75,
+    "device_build_exit": 1,
+    "device_missing_factory_diagnostics": 2,
+    "tool_selftests": 0,
+    "openspec_strict_validate": 0,
+    "M_runtime": "BLOCKED_BY_ABSENT_TASK159_APIS",
+    "native_M_PTY": "NOT_EXECUTED_NO_BINARY",
+    "full_target_type_correctness": "PENDING_TASK159",
+    "bundle_consumer": "PENDING_TASK159",
+    "target_red_wrapper": "recipe shell syntax checked; actual isolated build and classifier executed separately"
+  },
+  "intermediate_records": "prerequisite-build/run standalone logs predate final fixture corrections; formal.log is authoritative final source run. Fixture errors explicitly preserved and never target RED.",
+  "boundaries": [
+    "No production edits",
+    "No stubs or shadow widget/runtime types",
+    "No generated expected values from target output",
+    "No author runtime PASS or independent acceptance grant",
+    "Old preparation and raw logs preserved"
+  ],
+  "coverage": "source/tests/widgets_composite/COVERAGE.md"
+}

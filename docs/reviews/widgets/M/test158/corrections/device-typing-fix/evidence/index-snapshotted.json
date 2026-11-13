@@ -1,0 +1,895 @@
+{
+  "schema": 2,
+  "task": 158,
+  "test_commit": "f8e4604b0e17df533a43117aaa375c60b9251ab5",
+  "base_main": "d108badb8cc86b383508f9743a6dad613b363662",
+  "frozen_at_utc": "2026-11-13T15:25:53.509833+00:00",
+  "role": "Independent formal test-author maintenance; assigned Sol/high, serving identity not certified",
+  "changed_sources": [
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/source/tests/widgets_composite/device/src/main.cj",
+      "bytes": 6069,
+      "sha256": "44e8716eeff35db519c97714e091806916c97a634141fb2898159bdce52cdc69"
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/widgets-composite-tests/device-typing-fix/report-snapshotted.md",
+    "bytes": 2010,
+    "sha256": "2a272fca22373fd781f4d5987e6b0522012352feeb439e645470b1ca6fdb50de"
+  },
+  "final_device_executable": {
+    "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-after/device",
+    "bytes": 19113360,
+    "sha256": "690d138cb3645674b6da527c67a31a5d64bb7c54daf8320da052f95fa35fe2a8"
+  },
+  "canonical_public_inputs": [
+    {
+      "path": "/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o",
+      "bytes": 2736,
+      "sha256": "37af2040527c75078f900a29ea4a71b22576aa5c26f1f29af7b5935cebbe571e"
+    },
+    {
+      "path": "/lib/gcc/x86_64-linux-gnu/14/crtendS.o",
+      "bytes": 1152,
+      "sha256": "8981687575c10a2e2146947bce387769cbd118f5b8c5dda489f514dc7d2ed4c7"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/Scrt1.o",
+      "bytes": 1640,
+      "sha256": "4ca31259aee8415b60fe566c00cecfa5858f1103296b8043f175ccf2489f00ec"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/crti.o",
+      "bytes": 1072,
+      "sha256": "78acef26a7007f5320c98633376f2903e33895e694fbc2b91d189b38addbca8a"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/crtn.o",
+      "bytes": 648,
+      "sha256": "121f2a5f12b13471dd8c7dabe3ff334df08540c270564d1a2b3c47ecbd8d3101"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libbfd-2.44-system.so",
+      "bytes": 1463360,
+      "sha256": "7a27acdd82e38dbddd8568d54de0df4358e71a3c387d5c1d999d369450c1bf6a"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libc.so",
+      "bytes": 283,
+      "sha256": "fe2a4ce2930fc6b3966aa987fae808375446c8d3823b8c21792e991aad9c75df"
+    },
+    {
+      "path": "/lib/x86_64-linux-gnu/libm.so",
+      "bytes": 140,
+      "sha256": "55de4a3e12e17c3e2b18eb95ee21b3f46a8893ea6cab68c0a1c3a5caaf32e6cf"
+    },
+    {
+      "path": "/usr/lib/x86_64-linux-gnu/libc_nonshared.a",
+      "bytes": 5098,
+      "sha256": "22a836e3aff767b559a703d42bde40fdb0e550297dbd99dd565f6a68b3ae8dda"
+    },
+    {
+      "path": "/workspace/work/linux-build-recon/stdx/cangjie-stdx-linux-x64-1.2.0-beta.02.1/static/stdx/libstdx.a",
+      "bytes": 8134,
+      "sha256": "fe65401f00a3679a16567fedac29d3430d10782e0639009fde3a62d158d8f72a"
+    },
+    {
+      "path": "/workspace/work/linux-build-recon/stdx/cangjie-stdx-linux-x64-1.2.0-beta.02.1/static/stdx/libstdx.serialization.serialization.a",
+      "bytes": 165216,
+      "sha256": "60c10323b828ee6ee823205fc4ea5b35bdb9667eefdde044519cfe900507a86c"
+    },
+    {
+      "path": "/workspace/work/linux-build-recon/stdx/cangjie-stdx-linux-x64-1.2.0-beta.02.1/static/stdx/stdx.serialization.serialization.cjo",
+      "bytes": 60456,
+      "sha256": "be2bd10452307689ac4b478d8494c548ad0934b5cdec09319b68e9a1127683e5"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/cjld.lds",
+      "bytes": 15476,
+      "sha256": "074e67ac4a46b0469e9fd50361bc83dca98425230cb3dde6ea543787affbadfa"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/cjstart.o",
+      "bytes": 4560,
+      "sha256": "cdcc6c92b91d13f74cdcaa59d2536f6e9caac3e9936b098707a812ffa6ece92c"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libboundscheck.so",
+      "bytes": 71744,
+      "sha256": "a362a9d32c74a21054dba0dd8b3b5dd2788f489d47754dff880159637748e9be"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-binary.a",
+      "bytes": 165630,
+      "sha256": "dc1b32b9e1a9751901264993acabfe8b533340e86526ef79ee7ab2b2f6d6d722"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-collection.a",
+      "bytes": 1360316,
+      "sha256": "0999ccaeb06e318e515b4d6959aae6e00635228b32710d9e236468cdbc690779"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-collection.concurrent.a",
+      "bytes": 340608,
+      "sha256": "060b0c5291aff2c220c8de47cbcbc6ca8e0b8f2582d358636d74e536040ebc04"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-convert.a",
+      "bytes": 332894,
+      "sha256": "09032cb84c8b5bd08444d5d7e679ae2311e8458694c1c02e475c91b1fb6b51ed"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-core.a",
+      "bytes": 1513354,
+      "sha256": "da1e5c7a3d94f797862499500c3edd903405d9b57105c2adda27b7a871e9f17f"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-env.a",
+      "bytes": 184932,
+      "sha256": "0bf3a058e9291fbc507f60266893be117ccaecfbf0335955d9fe1baf18cfe3c4"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-fs.a",
+      "bytes": 414340,
+      "sha256": "e88ae2cb7ec1c2663a7d90fad83f9196f143a19012b618c89adcea3363423efc"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-io.a",
+      "bytes": 229210,
+      "sha256": "3f7fcf80f42088f47be6d9bfd8533547f7aec2471f96372b1c70ff7ccacbaa67"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-math.a",
+      "bytes": 570166,
+      "sha256": "5add250013f60df9cbc2bd8ff0ec4e03dfa536ebc405aee28298792e6106f1ba"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-net.a",
+      "bytes": 1694538,
+      "sha256": "bd8104712c19eff4f1a298955ba7337db0166d04efea43347b94085b7614d248"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-overflow.a",
+      "bytes": 688470,
+      "sha256": "399bb4917a64bfb4981e0d02dd3280366be51b53c16897c156e8582f4204cc2e"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-process.a",
+      "bytes": 282400,
+      "sha256": "3b8ea41b10ad0a8c5dcee847240ec0aa92f2b0723d056258b833dbd08a0d140f"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-random.a",
+      "bytes": 66050,
+      "sha256": "9fa0dd2ad515e072b5f51ef30ff47863c507f3340071b3216a99f64fe1b630e1"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-regex.a",
+      "bytes": 857470,
+      "sha256": "3b3c4fe0aaa937d61472c819dd27824d7195b949896677b81056093fee1c3ab0"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-runtime.a",
+      "bytes": 137650,
+      "sha256": "b842fb04535c36b55ac05104195b36c06eccfb1bd83bef9aaf29df9bfec4252e"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-sort.a",
+      "bytes": 268234,
+      "sha256": "7f2d6bdc6096486c2f20fa31fa87e0e9820e1485c0d82ea748fd1bf2ee510058"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-sync.a",
+      "bytes": 469272,
+      "sha256": "6d277cc08f19e251583d3f84658e885167432d461b0da592cf15d0017dbf5aa5"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-time.a",
+      "bytes": 555372,
+      "sha256": "10e53ceb4b2d2008a609833622df9ccc18b910b0e9dd7881dface397adeb9b5a"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-unicode.a",
+      "bytes": 354602,
+      "sha256": "dae3412313bf7f8881d3ebfbf1662a6cd53fd30ca7d74626cb3cf8a312d32b2c"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-unittest.a",
+      "bytes": 5504652,
+      "sha256": "ca272e94d67614f1b40739434a8a3848a9b25d16d1f382b9741e169ea39afa05"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-unittest.common.a",
+      "bytes": 655298,
+      "sha256": "acdac165e29a7fc3400c1a938827c1a9b7eca9d6024b1d3322ad719bb3760cf7"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-unittest.diff.a",
+      "bytes": 350884,
+      "sha256": "b6e40ea313a1dceb15ac2868af3f67944fafb6f9ce018da29ca70a90527f6f84"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-unittest.mock.a",
+      "bytes": 1294374,
+      "sha256": "03d94b9ad1de8f18af6112c7790b2c6abcc178f9ffbfb097afcae0af9498ae37"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-unittest.mock.internal.a",
+      "bytes": 113184,
+      "sha256": "f5bfb9d99ceb2c58773be63839c002d15b301da2bfef3a707b151d31d4c39614"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libcangjie-std-unittest.prop_test.a",
+      "bytes": 1988822,
+      "sha256": "8063a3635520d64dbd3b3c7aba81e51916320fb3fc04e7a2b8340289b97fc079"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/lib/linux_x86_64_cjnative/libclang_rt-builtins.a",
+      "bytes": 268632,
+      "sha256": "1e4c823e03d5b6ecc54288027e9b1e54f9a301e0e8510cb15365d65c01f46966"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.binary.cjo",
+      "bytes": 49568,
+      "sha256": "4bb3a0fa1f10fcff2cc77e899f29e2d842dd74c9732f12e650d65da4151fa423"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.collection.cjo",
+      "bytes": 1144064,
+      "sha256": "71f549e81483d65a44d40c6455158752f386f4ba14e1be196fd61e26c987a0f0"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.collection.concurrent.cjo",
+      "bytes": 173368,
+      "sha256": "88ea9b1b4e0d87ee951c83e9f76138a43e3e9411119b8ca24d968c94d212c82b"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.convert.cjo",
+      "bytes": 72456,
+      "sha256": "b21f574b169ffa6f7fba0884a52f0a369b55b04380b6d6aa7952c778b79142b2"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.core.cjo",
+      "bytes": 2007088,
+      "sha256": "3c847730ea1c4ab69e079dc3d5f73e473c509476b78b032e64d8ba1611dee307"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.env.cjo",
+      "bytes": 72992,
+      "sha256": "39002c792fc5b38d06ff7222f669215acf3989778b3712a56498f5b31f20467b"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.fs.cjo",
+      "bytes": 88584,
+      "sha256": "62a0850d48d014b0c134078b0f7402ef51c4cb9d27b0d23696c89d15200e8626"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.io.cjo",
+      "bytes": 125440,
+      "sha256": "880164f38c7cf05a0695d51c05a2f48db15fd42c69779796375539512959dab2"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.math.cjo",
+      "bytes": 284928,
+      "sha256": "1da39e3d0ff4503fff91a5e3008039881e212a7d4c51a21c8b42ee74abc2cda8"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.net.cjo",
+      "bytes": 632048,
+      "sha256": "126539ee7ec70b6c2101af4b64222b29f9ad3ab86c803f859836cf9951246321"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.overflow.cjo",
+      "bytes": 393064,
+      "sha256": "5ce3d79d611ad4d5cb3af7222c444a27906c110ea2bc4d7a1e04ae73ef498454"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.process.cjo",
+      "bytes": 138792,
+      "sha256": "50fa066394edaffae3df3e6800fadcbca013e1e9c903a7aab63c079a089addea"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.random.cjo",
+      "bytes": 23960,
+      "sha256": "2614de6bc6a9fcc94f728ad5bb2e68a3dcfccdecf198d7fe5ed0461ce0e04de1"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.regex.cjo",
+      "bytes": 81616,
+      "sha256": "049842470214c0c31515614c97d03b70db9b231d196a0a529189ed86f378c0b8"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.runtime.cjo",
+      "bytes": 66888,
+      "sha256": "ac2e195135e64f66692e59fbbf3efd2c9c00e396c19acedfa34bee3155420086"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.sort.cjo",
+      "bytes": 84840,
+      "sha256": "173b3edceff8262104ad8d336b2c5b23a08d17671f111c20e36294666900764c"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.sync.cjo",
+      "bytes": 498480,
+      "sha256": "55aba08bc6871e639faf3f877c630c73536e6ad283664a675c920e46fc4088f8"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.time.cjo",
+      "bytes": 271536,
+      "sha256": "a067019299a7ab9455bd85677b206ae4ec8fec3e3a4d8e403b03597ac188f075"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.unicode.cjo",
+      "bytes": 26584,
+      "sha256": "d039ccab3a494b3267c296f00248c834f558429532d5d126460c75a42f00c040"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.unittest.cjo",
+      "bytes": 1483592,
+      "sha256": "63e6c4050de75db69f0270cda3f19b920d6ea6e84a1223f4cf2ee7e4e88a4919"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.unittest.common.cjo",
+      "bytes": 195936,
+      "sha256": "a1cf4a98745610b465d46dda6dcc6ddea8e132565205d21aa016c0ed7c649cc8"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.unittest.diff.cjo",
+      "bytes": 24520,
+      "sha256": "716568c26f0dd01697fa4ecdf7fc3f58fa8aadf786cda111edc2995dd368ef25"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.unittest.mock.cjo",
+      "bytes": 388888,
+      "sha256": "97e0be9ef9a135d81408a325329477dc8e45a39924cc1cc8ec5d00febd962065"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.unittest.mock.internal.cjo",
+      "bytes": 66496,
+      "sha256": "f2afe3a2493cb83dd6970a44d4e98b2a424c9d109c230529db1dcfdbc096be1a"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/modules/linux_x86_64_cjnative/std/std.unittest.prop_test.cjo",
+      "bytes": 335272,
+      "sha256": "7af0a89a0556dcfd97b5ccc51f84ad2c0394bca0ef994dd0e1e81966282c6a92"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative/libcangjie-runtime.so",
+      "bytes": 4392824,
+      "sha256": "2e32485852cbc8648c1298c23f2d1ff5f90bdb6c0331da20b29ee3d97d03e167"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/third_party/llvm/bin/../lib/libLLVM-15.so",
+      "bytes": 72704704,
+      "sha256": "df1ec23d707259ea6b86a5741e06c4e12b71ebdeae70921f46e2a0a71ffd3571"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/native/libcjtui_capabilities.a",
+      "bytes": 7378,
+      "sha256": "91e88b9d5609439379aada1a226f70b7e30ebc96b3ac0193f1e672f9c9cd057c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/native/libcjtui_glyphs.a",
+      "bytes": 2512,
+      "sha256": "db4cdf35eb6d480719cca48dd9df2cff2b46330c5428f63a9019751a949076b7"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/native/libcjtui_terminal.a",
+      "bytes": 6700,
+      "sha256": "c9ba953570aa4fbb25d21d94b36a012e06b70a4b0cbe833b6affb368b94213a4"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/native/libunicodedata.a",
+      "bytes": 234778,
+      "sha256": "96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/ansies/ansies.core.cjo",
+      "bytes": 143424,
+      "sha256": "163ecca868ef43f6488870ef520ddf65ace5b6298917093adcd8777c842c20de"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/ansies/libansies.a",
+      "bytes": 11436,
+      "sha256": "ecd89d09880e4a0fa87b72f24cbb1a05e44199b90f59aa761055e85741fa134b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/ansies/libansies.api.a",
+      "bytes": 302206,
+      "sha256": "14a47e0d517b456d88ce4c9941bb9dea2043e22c6e07a0f22ff1e7461e6ea6b2"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/ansies/libansies.core.a",
+      "bytes": 841040,
+      "sha256": "3d8079670049457719ef238ce9809573beed1daff967ee70bda265e7c1582d3c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/ansies/libansies.extensions.a",
+      "bytes": 203192,
+      "sha256": "e67ffb71ebbed262be29a4465cff00635361703950a83a6542631f59d077d453"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/ansies/libansies.utils.a",
+      "bytes": 83366,
+      "sha256": "1a436f2fc82033d9e622fb6f86eae13bbc2e0f0f9a101a8af16e24ea32b2ca51"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/bitarray/libbitarray.a",
+      "bytes": 265256,
+      "sha256": "57657e6b9f2e281ef42515a27506ea8794d36bc997b973eb806708fe9eb7653a"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cangjie_toml/cangjie_toml.cangjie_toml.lexer.cjo",
+      "bytes": 58792,
+      "sha256": "b5aec2b6e8c73ca6dd33f10118e6bf993bf69f6dacb0f0155a57a18519c3773b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cangjie_toml/cangjie_toml.cangjie_toml.parser.cjo",
+      "bytes": 35880,
+      "sha256": "6de1b11c8516bd671aa41e93ed149d054d4986083058e566d411f94d1c6b98fe"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cangjie_toml/cangjie_toml.cangjie_toml.util.cjo",
+      "bytes": 5456,
+      "sha256": "a98d9aa947ae42f55dd68948cd517743d0536397be7712de7675d89c954b26f1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cangjie_toml/libcangjie_toml.a",
+      "bytes": 11716,
+      "sha256": "b6aeece00109dc19b1bfa4144d346a1b3a22bef7b7f8b6bb83f0e8dfe935f924"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cangjie_toml/libcangjie_toml.cangjie_toml.a",
+      "bytes": 128598,
+      "sha256": "d67261add3b883be63ee8b2c10ee568c61a01b4d58f41f720388f6628520b526"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cangjie_toml/libcangjie_toml.cangjie_toml.lexer.a",
+      "bytes": 319944,
+      "sha256": "20f364258368fffd0a662380bf3571ed795e9d26de660d6ddd228f5bd8d51ba3"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cangjie_toml/libcangjie_toml.cangjie_toml.parser.a",
+      "bytes": 423102,
+      "sha256": "5252a142cc0b4410f6ee6c708fee9b42d0927763afdc54778e09052d53e8d521"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cangjie_toml/libcangjie_toml.cangjie_toml.util.a",
+      "bytes": 77494,
+      "sha256": "5bc4f5e53416f4a26004b966d0b126769b24cb87b649ce49dcfc10ef440edd0f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/cjtui.cjo",
+      "bytes": 1023912,
+      "sha256": "2d2090c920d081f0e07c478aaa2e898668b964ee616f662067a6bafd90b30f68"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/cjtui.geometry.cjo",
+      "bytes": 3656,
+      "sha256": "c8ba30d154d476ab8ade92f4953a0345f60407d77f73cd7f83d6b134aac797c3"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/cjtui.style.cjo",
+      "bytes": 106584,
+      "sha256": "45a837f57c043f92de1d43468ad498b6e046f7ff2b7f284baadafa56c8d9ea82"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/cjtui.text.cjo",
+      "bytes": 52864,
+      "sha256": "ca026207050dc0583de47791ca685a1a27c60c985af14bf83f931511b23322d1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/cjtui.theme.cjo",
+      "bytes": 95888,
+      "sha256": "9c5ab1b82187c67ea79835e07728f104abb39e851703d04adc5d0140eab7b6b2"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/libcjtui.a",
+      "bytes": 2987888,
+      "sha256": "0b63d38f17fa668c76cb87fdacba3314248ca9dcf515eedd7b45acf30fae0d98"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/libcjtui.geometry.a",
+      "bytes": 16164,
+      "sha256": "b1787386730c228956c94d678b967d08363e7187f2b6ef93de853d24db02d059"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/libcjtui.style.a",
+      "bytes": 709788,
+      "sha256": "9636f72d6b4dd9a780cf3c9ded41d710fdab8f96858a383a33e7ab2216227cfd"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/libcjtui.text.a",
+      "bytes": 263204,
+      "sha256": "22e3d9e56a21d053ddc2b96f2858ba374a2dc866d154cb9017b6ddd52a17fb32"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/cjtui/libcjtui.theme.a",
+      "bytes": 472218,
+      "sha256": "2ef57029634923ea63465bb46298b7f6c316b1166cb8dad486b0b97208c4d3a2"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/unicode/libunicode.a",
+      "bytes": 312428,
+      "sha256": "3ce648fe8da25a1be74c836956adca4ccbd91a3f768a14111fa6181171887c8e"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/unicode/libunicode.constants.a",
+      "bytes": 126952,
+      "sha256": "14e2fb4eb8a105a37d7ba381d5bdb5bfd2ff2c9d7e763e784314a2d1e6634188"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/unicode/libunicode.types.a",
+      "bytes": 381062,
+      "sha256": "681eeae58bf5312d34b5c2e58f248873a2b6d4a95192a788dbbe57314791e262"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/unicode/libunicode.utf.a",
+      "bytes": 66086,
+      "sha256": "20bdab2d35a568dcb812ca8e71de032b64126c59c5600a4e8da0cf3fd5773804"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/unicode/unicode.cjo",
+      "bytes": 92016,
+      "sha256": "c8a30511924a9ffd9a726e534e2fe6e7f8a6661afd542751efe1ff1cd44c220b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/unicode/unicode.types.cjo",
+      "bytes": 96424,
+      "sha256": "6997d9cd703bf119caeb4ed416fd3db1c0444903e06b758186345ac1ea1d9652"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/unicodewidth/libunicodewidth.a",
+      "bytes": 755778,
+      "sha256": "e4100e6ad676eddd041b8ccd950d0a28ba4adb88215f8d6b4f242d80f07221b8"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/target/release/unicodewidth/libunicodewidth.gen.a",
+      "bytes": 355130,
+      "sha256": "bfd2f68b3ab98eb5465b0676ad5d7b696d085e28e3c31b8270856b78f46f45a4"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-after/widgets_composite_device.cjo",
+      "bytes": 4240,
+      "sha256": "daddaadaee4c653cd1320aeba267151a4a2363f8eab440ef205c62ff86af8003"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-implementation/evidence/cjtui-6f-historical.cjp",
+      "bytes": 170488,
+      "sha256": "4c7a10c9ed2f87456ccc998c551c0ade6f475e0d5ba8d81abff6c2014897df93"
+    }
+  ],
+  "snapshot_mapping": {
+    "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-snapshot-map.json",
+    "bytes": 57135,
+    "sha256": "2075f4d50371fa7d568aab015b1ded35a52119f4f8937e91e38b4d0b81db9feb"
+  },
+  "compile_time_observation_index": {
+    "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/index.json",
+    "bytes": 15136,
+    "sha256": "5416d4eb283bb2afc312fd9ff0899f8cbe5f02683dbb54092b39bcdc3f9db546"
+  },
+  "compile_time_observation_checksum": {
+    "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/index.sha256",
+    "bytes": 77,
+    "sha256": "bd3d0a8b77cbc2bb0dcc51cf4e48600d50aa7ae404ac9f12945ce27cb566fcf9"
+  },
+  "lifetime_rule": "Only canonical_public_inputs are persistent input verification targets. Original producer paths embedded in historical logs/maps/old index record what was read during compilation, not a promise those mutable owner paths remain unchanged.",
+  "evidence_files": [
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/commands.json",
+      "bytes": 1450,
+      "sha256": "c3b2259df16fa4b8a360502ec52bb008ce689ea5c9519168ce6500d6350732b2"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/compiler-access-success.strace",
+      "bytes": 495931,
+      "sha256": "561d1f9ad7b57a5ed52fc4b42ce4d9f2bae402491291afb258c86210467de936"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/compiler-access.strace",
+      "bytes": 478328,
+      "sha256": "869b60ff4f621aed844a175660269907cd618c89d6c917ab48bb6ec48918aa24"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/diagnosis.md",
+      "bytes": 3519,
+      "sha256": "e25929da2c8924312101f491c220c3c51aae978f7666fc5eb9b9e281bf4c6827"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-final.command.json",
+      "bytes": 4805,
+      "sha256": "5c01060d4f71b474670eac5512a6a11adae9b199cff1313ef1a85a918bfcd83f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-final.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-final.log",
+      "bytes": 3083,
+      "sha256": "ea92037c2cc9d08a7559b3f1093fad86930b43290db76f8b90341e6f82bb9b1b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link-libraries.command.json",
+      "bytes": 2005,
+      "sha256": "0d5368dfe9053fa8283388e61415eba3e5528c939fc0242c88d6563417ee106a"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link-libraries.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link-libraries.log",
+      "bytes": 46711,
+      "sha256": "cef1f8b80d62ee32b79948a77faf8bac0ba633a40dcdb8093b5600721f01ef25"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link.command.json",
+      "bytes": 1315,
+      "sha256": "d72f90f3dbf40b854af828354ea93fbd4f8f1868b55a151f6521481830f2cdb1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-link.log",
+      "bytes": 29480,
+      "sha256": "7f62432b984c2b3f7ee7e647d59c78856b3b509ea46920239d6b8adf52c1a11b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-success.command.json",
+      "bytes": 4770,
+      "sha256": "945abe22a1821eac5108acdea863d826ebfc2dd20d058edc1b04195f7c6790dc"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-success.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/exe-success.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/index.json",
+      "bytes": 15136,
+      "sha256": "5416d4eb283bb2afc312fd9ff0899f8cbe5f02683dbb54092b39bcdc3f9db546"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/index.sha256",
+      "bytes": 77,
+      "sha256": "bd3d0a8b77cbc2bb0dcc51cf4e48600d50aa7ae404ac9f12945ce27cb566fcf9"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/original-formal-inheritance-fixed.log",
+      "bytes": 3813,
+      "sha256": "01b2a674204518570dc62790193a0ce1f1bb689f9b513601554045c83f515f3e"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/preservation.json",
+      "bytes": 777,
+      "sha256": "45ec507adb1ba123f84f11b77ebde6a8591aa53f5091df81a396c025080dabee"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/prior-preservation.json",
+      "bytes": 1630,
+      "sha256": "d02433320120105be88341af5f5be367ea27d2218d1adf1459b71c03158bd4e8"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-inputs.json",
+      "bytes": 25383,
+      "sha256": "a92639a149b457e6e75dc53589f4178d2c4d1dc4c57f2bef56b5294631668055"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/native/libcjtui_capabilities.a",
+      "bytes": 7378,
+      "sha256": "91e88b9d5609439379aada1a226f70b7e30ebc96b3ac0193f1e672f9c9cd057c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/native/libcjtui_glyphs.a",
+      "bytes": 2512,
+      "sha256": "db4cdf35eb6d480719cca48dd9df2cff2b46330c5428f63a9019751a949076b7"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/native/libcjtui_terminal.a",
+      "bytes": 6700,
+      "sha256": "c9ba953570aa4fbb25d21d94b36a012e06b70a4b0cbe833b6affb368b94213a4"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-module-snapshot/native/libunicodedata.a",
+      "bytes": 234778,
+      "sha256": "96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/public-snapshot-map.json",
+      "bytes": 57135,
+      "sha256": "2075f4d50371fa7d568aab015b1ded35a52119f4f8937e91e38b4d0b81db9feb"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-compound-build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-compound-build.log",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-compound-run.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-compound-run.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-probe/cjpm.lock",
+      "bytes": 24,
+      "sha256": "7b09643cc3e7107d2a0f09605871366c547525d40221945a60bee8a9a5e3f3b0"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-probe/cjpm.toml",
+      "bytes": 318,
+      "sha256": "9a84d896fdc560a1e5f3df95acefc35a6b12c77df8ff11c19670e2a37ad6ae33"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-probe/src/main.cj",
+      "bytes": 409,
+      "sha256": "e1e42ae589dfc0e3a2e1f891398ce4766a4eb3b9f548deacbcf8608d0dd06f4c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/build.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/build.log",
+      "bytes": 432,
+      "sha256": "8820f1cc09d7680bec5f354f93691828fd84e2eb29beaa6eacd48b4b0a0e5da1"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/command.json",
+      "bytes": 240,
+      "sha256": "b8f0a541358e170ba16373c7150111ecf4e8f8d24e30e87703dca0fedb0c095f"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/main",
+      "bytes": 3254640,
+      "sha256": "7ece727f4ea135e01f9715e57744edf256a7a7fdadc0b3309ea7d16f820d0b94"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/main.cj",
+      "bytes": 913,
+      "sha256": "18b118351f8aa5a5eaba700a9f9bdb99633e12ce647130d45c33d7b2925c0f97"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/expanded/nested_array_probe.cjo",
+      "bytes": 3344,
+      "sha256": "affd83bb5003d4ffaac666d92bf446f120355680690a23550962baad182df933"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-variants/main.cj",
+      "bytes": 902,
+      "sha256": "d8a4cc7d78d852cee54ee30a35a452b4a69d54e70cb3421b77e19afa0306e337"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-after/device",
+      "bytes": 19113360,
+      "sha256": "690d138cb3645674b6da527c67a31a5d64bb7c54daf8320da052f95fa35fe2a8"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-after/widgets_composite_device.cjo",
+      "bytes": 4240,
+      "sha256": "daddaadaee4c653cd1320aeba267151a4a2363f8eab440ef205c62ff86af8003"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-before.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/typing-before.log",
+      "bytes": 2217,
+      "sha256": "6fce16d63344d278244ee7fe0a5d8f590252ee04ec4423e7d7acc83e0c7daa87"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variant-commands.json",
+      "bytes": 1212,
+      "sha256": "648359fa5c693569edc155ca19daff6d6bd041b85a5a7ef77c0df285d330ac0c"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/build.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/build.log",
+      "bytes": 668,
+      "sha256": "e20f5766c5da5e4aee9ecda3c910732d0abaaca3709de81c172fa60658df04ac"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/libvariant.a",
+      "bytes": 240188,
+      "sha256": "fec506a76bbb6629fd18ebce50693531f50b6692517b28f97dd2e8bcc798a5c5"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/main.cj",
+      "bytes": 6069,
+      "sha256": "44e8716eeff35db519c97714e091806916c97a634141fb2898159bdce52cdc69"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/expanded-add/widgets_composite_device.cjo",
+      "bytes": 4240,
+      "sha256": "daddaadaee4c653cd1320aeba267151a4a2363f8eab440ef205c62ff86af8003"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/typed-key/build.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/typed-key/build.log",
+      "bytes": 2574,
+      "sha256": "5fb083f0a3b30e8a17cf2306977df31c36b3bd6665ad0708cbef18ec979eb284"
+    },
+    {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/variants/typed-key/main.cj",
+      "bytes": 6066,
+      "sha256": "a97af639f846962e14a1fbf17a40c470c16fa4211f0ef409713162b123ee1f13"
+    }
+  ],
+  "results": {
+    "original_full_public_consumer": {
+      "exit": 1,
+      "diagnostics": 7
+    },
+    "typed_key_control": {
+      "exit": 1,
+      "diagnostics": 7
+    },
+    "one_line_expansion_public_static_consumer": {
+      "exit": 0,
+      "warning": "main unused under staticlib mode only"
+    },
+    "SDK_simple_compound_build": 0,
+    "SDK_simple_compound_run": 0,
+    "SDK_nested_context_negative": 1,
+    "SDK_nested_context_expanded_compile": 0,
+    "complete_device_exe_compile_link": 0,
+    "final_diagnostic_log_bytes": 0,
+    "owner_source_reads": 0,
+    "catalogue_cases_unchanged": 53,
+    "M_device_binary_run": "NOT_EXECUTED",
+    "M_real_PTY": "NOT_EXECUTED",
+    "independent161": "NOT_CLAIMED"
+  },
+  "snapshot_results": {
+    "producer_owned_actual_read_files": 37,
+    "copied_bytes": 11080312,
+    "all_compile_observed_before_source_snapshot_after_source_hashes_equal": true,
+    "shared_CJP_SDK_stdx_system_not_copied": true,
+    "original_mutable_paths_may_be_rebuilt": true,
+    "repeated_compile": "NOT_PERFORMED",
+    "device_or_PTY_runtime": "NOT_EXECUTED"
+  },
+  "limits": "Fixed public-artifact API typing/linking evidence only. Runtime and true PTY remain159/161. Context-specific compiler observation; no internal-cause or universal syntax claim."
+}

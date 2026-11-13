@@ -1,0 +1,32 @@
+{
+  "cwd": "/workspace/work/widgets-composite-tests/pty-restore-fix/source",
+  "actual": [
+    {
+      "argv": [
+        "python3",
+        "tests/widgets_composite/pty_mode_selftest.py"
+      ],
+      "exit": 0,
+      "log": "/workspace/work/widgets-composite-tests/pty-restore-fix/evidence/mode-oracle-selftest.log"
+    },
+    {
+      "argv": [
+        "bash",
+        "tests/widgets_composite/run.sh",
+        "self-test"
+      ],
+      "exit": 0,
+      "log": "/workspace/work/widgets-composite-tests/pty-restore-fix/evidence/all-tool-selftest.log"
+    }
+  ],
+  "offline_captured_wire_check": "captured-normal-wire-check.json: only byte policy checked, no native replay",
+  "not_run": [
+    "M binary",
+    "new native PTY",
+    "Known-mode matrix",
+    "cold public build",
+    "C/S suites",
+    "six-target RED"
+  ],
+  "timing_note": "Exact start/end times not captured; none inferred."
+}

@@ -1,0 +1,337 @@
+{
+  "task": 161,
+  "stage": "PREP_ONLY_WAIT_160_FINAL_GO",
+  "utc": "2026-11-13T16:12:51.448892+00:00",
+  "classification": "execution; deterministic commands in existing independent Sol/medium role",
+  "skill_refs": [
+    "c5/verification-before-completion (already invoked in this executor session)",
+    "c4/cloud-environment-runtime (already invoked; no redundant probes)"
+  ],
+  "requirements": [
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-standard-widgets/task-161-prepare-brief.md",
+      "sha256": "3ec8e9539c6639d01e85f2cf441234e096d060e2574ff0d4c70a6f9e4011a173"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-standard-widgets/task-161-brief.md",
+      "sha256": "288ae0aa8c3a1135826a53bd6385cd0452cbf39c3d83ae8120f10083e52338c3"
+    }
+  ],
+  "frozen_tests": {
+    "root": "/workspace/work/widgets-composite-tests/pty-fence-fix/source/tests/widgets_composite",
+    "revision": "ad100b79956de30fe65c6d561f11be67186821d5",
+    "files": [
+      {
+        "path": "COVERAGE.md",
+        "sha256": "f17f4dd234ec8354f6c5f91e8aeb436a523351d242387ef6a9aa52e4d3389dd5"
+      },
+      {
+        "path": "README.md",
+        "sha256": "13be7e3f876d87508b6b2d470698f842320bcebd451325f09b7a4dcc84eea37c"
+      },
+      {
+        "path": "cjpm.toml",
+        "sha256": "b64176b56f5e06ef4b82721a2219a8a0f80dc66836b3be336291b20aedb7d8e5"
+      },
+      {
+        "path": "classify_red.py",
+        "sha256": "2e04dbb795f839895f48d3ada7dbe9dcb92a38b079a137e5411e6b868701b057"
+      },
+      {
+        "path": "device/cjpm.toml",
+        "sha256": "4d7ab0aae1a3c6d179e337e8599cd2312cb9807cdb60547a145d403da4ae3f9a"
+      },
+      {
+        "path": "device/src/main.cj",
+        "sha256": "10f045df549ddb030caf74d3c2e76b2186894b65f853a4928cfa52f7fa6d38d1"
+      },
+      {
+        "path": "expected.json",
+        "sha256": "8bc1a5e0f6aec5fc1774ee376277015b965c7c88fc042219ea85ab7e06be6489"
+      },
+      {
+        "path": "fixtures/local-theme.toml",
+        "sha256": "5bd3d245dc545f7ac3b6293ee4e5e4ced23b7fada22a99a4a1cfb2052bb6ae1a"
+      },
+      {
+        "path": "input-manifest.json",
+        "sha256": "a709f7fdc2648e1a4ebb483b84da02916da95d4e4c05c0ec53bfb43db6d381bb"
+      },
+      {
+        "path": "missing_targets/cjpm.toml",
+        "sha256": "f6a18f236059ebce54731c6223212692f318b77bf1f13269dfa616d62a2cf7d2"
+      },
+      {
+        "path": "missing_targets/src/main.cj",
+        "sha256": "84b56428912b92afeb84345dd62f219fc97645115383beeab8dc75530f11322e"
+      },
+      {
+        "path": "oracle.py",
+        "sha256": "9c92e9398cf0805feff1a54e81bd9c078569e60f30804e2bad7c38af05aca1d2"
+      },
+      {
+        "path": "prerequisite/cjpm.toml",
+        "sha256": "20880dca25dc6b1273537a5832856b4fd6c5c2c4cb27485c487e0198b9c4aa19"
+      },
+      {
+        "path": "prerequisite/src/main.cj",
+        "sha256": "71fea29c64bc97108662109f70ec2a6232b0463826c4a775391571cd6a372776"
+      },
+      {
+        "path": "prerequisite/src/original_contracts.cj",
+        "sha256": "1692423a597ead9ab535cc0e721af2ec86940b9dc51e292b770980395e9ac986"
+      },
+      {
+        "path": "prerequisite/src/s02_cases.cj",
+        "sha256": "f33a9b6d3749e9ee015a91d51bafd89346283449140fcac2b4fbe861d2f76753"
+      },
+      {
+        "path": "pty.py",
+        "sha256": "d5204a05c37760f622438e9c763a114c24ffdb3f5e335da34787e1c799b89cc6"
+      },
+      {
+        "path": "pty_fence_selftest.py",
+        "sha256": "ed6e08ce2210deb7dc5820928cc94d55b776e60333619d4736776be9dd45cfc0"
+      },
+      {
+        "path": "pty_mode_selftest.py",
+        "sha256": "5c659df1622f21d485715052497c40894a8f2247531d3959b4bdff3fa77f98d3"
+      },
+      {
+        "path": "pty_selftest.py",
+        "sha256": "aef85dbe7de2c493930a9a1ae16f0573f6b9948f60e71579e176ca225de88672"
+      },
+      {
+        "path": "run.sh",
+        "sha256": "919498cd3dc351c41fc055244b8bb954ad6d1fe1cc2dd7dd8fc09c21735fbb2f"
+      },
+      {
+        "path": "src/composition_cases.cj",
+        "sha256": "58bf37d253af78a8164228d16af4be35c666633baf17a2726420d4d717825ea1"
+      },
+      {
+        "path": "src/identity_cases.cj",
+        "sha256": "6923642b6dd9c27f23663b8cae4ba3ae5b301cd5b6d624fad360f5104703a1fe"
+      },
+      {
+        "path": "src/interaction_cases.cj",
+        "sha256": "0ec71b0e2ce5d19894f03fff5570b23e5d845adf7d68a5145690e18b9cca303e"
+      },
+      {
+        "path": "src/layout_cases.cj",
+        "sha256": "6b1fc74556adae9296c14027cddc788b46c51116069a73c40158f8452cff0e08"
+      },
+      {
+        "path": "src/main.cj",
+        "sha256": "1c061a72ec5e7cc7e654fef59cc4770fd5e8573ac589d6176eef85ea47ff49b2"
+      },
+      {
+        "path": "src/overlay_cases.cj",
+        "sha256": "55e330b387bcd924aab90e19dc03117081393ac942172ae00d07f2e045fc930e"
+      },
+      {
+        "path": "src/shared_panel.cj",
+        "sha256": "ebaa3a13e6f80b5a1dc1b806b40631fec8314d7acb372701b1df9eb18952752d"
+      },
+      {
+        "path": "target-red.sh",
+        "sha256": "40831d7eb1ce51a8cdf0dbdc1b3b051ec217bc5525e545c066449b4c692eae82"
+      }
+    ]
+  },
+  "provisional_raw_lookup": {
+    "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-standard-widgets/task-160-raw-only-index.json",
+    "sha256": "abe93370e9416c9b9165fde4a27473ddf9cdca450ede527a58754c3c42d04335",
+    "note": "Lookup read only; candidate source hashes provisional, no implementation report/reasoning or candidate code consumed."
+  },
+  "readonly_method_readiness": [
+    {
+      "path": "/workspace/work/widgets-small-execution/final-index.json",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/editing-execution/final-index.json",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/tools/gui.py",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/tools/vt.py",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/tools/host-supervisor.py",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/tools/vt-supervisor.c",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/tools/pack-vt.py",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/tools/xtest.py",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/tools/xsize.py",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/tools/trace_bytes.py",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/linux-build-recon/stdx-env",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/viewport-tests/cache",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/usr/bin/xfce4-terminal",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/linux-console-hosts/hosts/debian/usr/bin/qemu-system-x86_64",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/workspace/work/linux-console-hosts/packages/linux",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    },
+    {
+      "path": "/tmp/.X11-unix/X199",
+      "exists": true,
+      "status": "readonly path existence; prior known method/environment readiness reused"
+    }
+  ],
+  "prior_indices": [
+    {
+      "path": "/workspace/work/widgets-small-execution/final-index.json",
+      "sha256": "9d15fcee7473101f21edec529063d380d0d2dc0f5d75b006498e5927239b78a0"
+    },
+    {
+      "path": "/workspace/work/editing-execution/final-index.json",
+      "sha256": "2cb01f0ea6d3f3bf6fd64b0715d922d1c8bd3c36432608441cb84566c4865276"
+    }
+  ],
+  "available_bytes": 278147072,
+  "planned_commands": [
+    {
+      "phase": "source",
+      "command": "git clone --shared --no-checkout <ROOT_FINAL_SOURCE> source; git sparse-checkout set --no-cone /* !/docs/reviews/ !/.superpowers/; git checkout --detach <ROOT_ACCEPTED_SHA>",
+      "note": "Actual invocations will use safe argv and literal sparse patterns; no checkout now."
+    },
+    {
+      "phase": "normal-build",
+      "cwd": "source",
+      "command": "source ../env.sh; cjpm build"
+    },
+    {
+      "phase": "normal-bundle",
+      "cwd": "source",
+      "command": "source ../env.sh; cjpm bundle",
+      "mandatory": "No skip flags; expected old whole-checker T087 failure is separate final023 scope."
+    },
+    {
+      "phase": "source-equal-package-audit",
+      "command": "python3 tools/package-clean.py <OWN_CJP> <ROOT_ACCEPTED_SHA> <FROZEN_TEST_TREE>",
+      "note": "Planned own transport/audit harness, not yet written/run; safe regular-member/exact delivered-source equality, unpack fresh, copy byte-equal frozen tests only."
+    },
+    {
+      "phase": "clean-full-consumer",
+      "cwd": "clean/cjtui-0.0.0",
+      "command": "CJTUI_COMPOSITE_PTY_OUTPUT=<OWN_NEW_RAW>/artifacts bash tests/widgets_composite/run.sh formal",
+      "note": "Exactly one full prerequisite/headless/device+3PTY suite; no target-red.sh, redundant dirty suite, or no-reply oracle applied to real hosts."
+    },
+    {
+      "phase": "clean-public-example",
+      "cwd": "clean/cjtui-0.0.0/examples/widgets_composition",
+      "command": "cjpm build; target/release/bin/main",
+      "note": "Example direct run will be attached through actual host launch/capture; exact public input recipe read after final GO."
+    },
+    {
+      "phase": "hosts",
+      "command": "Own adapted GUI/VT instrumentation drives unchanged device normal/error modes and unchanged public example",
+      "note": "Business keys/files/goldens remain exact independently frozen; transport only may translate hardware keys, no new Cj business fixtures."
+    },
+    {
+      "phase": "source-impact-reuse",
+      "command": "Bind final source/test tree and changed shared paths to S156 plus supplied42-modifier raw evidence; supplement only changed scope"
+    },
+    {
+      "phase": "seal",
+      "command": "Create immutable per-phase manifests + original PNG catalogue + final-index.json + report\u226425lines after actual execution"
+    }
+  ],
+  "host_routes": [
+    {
+      "host": "XTerm398",
+      "route": "XTEST real key events \u2192 actual XTerm on Xorg:199 \u2192 product TTY",
+      "capture": "Original X11 PNG + strace actual read/write + settled frozen focus/chosen files"
+    },
+    {
+      "host": "XFCE1.1.4/VTE0.80.1",
+      "route": "XTEST real keys \u2192 actual VTE on Xorg:199 \u2192 product TTY",
+      "capture": "Original X11 PNG + actual native bytes/status/termios"
+    },
+    {
+      "host": "QEMU10.0.13/kernel6.12.107",
+      "route": "QMP emulated hardware keys \u2192 real kernel VT tty1; separate serial evidence channel",
+      "capture": "Original QMP PNG + native vcsa + actual read bytes/direct exit; VM is not physical hardware, no VM image copy"
+    }
+  ],
+  "transport_constraints": {
+    "frozen_normal_sequence": "Use pty.py literal focus fences a;c;a;c;a;c;a then Enter/Space; exclude actual AltSpace/paste; Tab; popup arrows/End; choose stays open; standalone Escape; nested modal Escape; modelNEW; explicit close; callback-close; q. Capture focus/chosen/open/reason/escape_seen/summary files exactly as frozen, no inferred target-output expectations.",
+    "frozen_error_modes": {
+      "callback": "Enter\u2192M_NATIVE_CALLBACK_SENTINEL/direct21",
+      "getter": "g\u2192M_NATIVE_GETTER_SENTINEL/direct22",
+      "all": "cleanup1/resources0/0/0/0/exact termios"
+    },
+    "mode25": "Artificial raw PTY fixture intentionally never replies and owns assert_unanswered_probe_modes exclusively. Real host adapter must record actual pre/post original mode25 observations/reports and emitted restoration controls; allow natural Known results, no forced capabilities or fake replies. Unknown/unobservable VT visibility remains qualified.",
+    "settled_screens": "Capture after actual frozen file/visible progress with bounded settled observation, not merely requested-key events or filename labels. Preserve all originals; do not redraw.",
+    "coverage": "Native fixture/example captions appear ASCII/Classic. New M Unicode/disabled/explicit/four-theme scope only if actually present; otherwise separate headless/source proof and unchanged backend reuse. 027/041/fullLinux remain open."
+  },
+  "blockers": [
+    "TASK160 final accepted source/review and root ACTUAL GO not supplied; all provisional candidates may change.",
+    "Root must bind final independent test hash/tree, raw-only inputs and any valid shared-scope/S regression equivalence before actual checks.",
+    "Capacity must be reconfirmed/reserved by root at actual GO; no independent cleanup or SDK/cache/VM-image copy.",
+    "No product build/test/host verdict exists for this executor M role; exact actual results await GO."
+  ]
+}

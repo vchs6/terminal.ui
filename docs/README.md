@@ -37,4 +37,4 @@ Linux全阶段继续实施：[总执行计划](linux-completion-plan.md)。具�
 
 归一化键盘有限交付：[K证据归档](reviews/K/README.md)、[审查索引](reviews/README.md)。独立117接受K001–K004；独立122接受E001–E005有限编辑；[E原件与真实截图](reviews/E/README.md)。完整父AC/Linux仍待023/024汇合。
 
-基础控件Label/Button/Checkbox/Radio/Progress已获[有限S独立验收](reviews/widgets/S/README.md)；M158为下一项正式测试，027/041集成展示与完整Linux保留。
+基础控件Label/Button/Checkbox/Radio/Progress已获[有限S独立验收](reviews/widgets/S/README.md)；组合菜单/状态栏/分区已获[有限M独立验收与65原PNG](reviews/widgets/M/README.md)；继续008/010/020/021/027集成→M2→最终Linux，父项与027/041完整范围保留。

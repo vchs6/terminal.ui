@@ -1,0 +1,58 @@
+{
+  "task": 162,
+  "verdict": "PASS_FINITE_M",
+  "spec_verdict": "PASS",
+  "quality_verdict": "PASS",
+  "evidence_verdict": "PASS_FINITE_SCOPE",
+  "method": "Requirements-first independent reading of W001-W007/W006-S/LEGACY-PROP-001, actual product and complete fixed consumer, relevant accepted C/T contracts, original independent161 raw and minimally representative original images. Not a case-count inference or producer-report endorsement.",
+  "M01": {
+    "verdict": "PASS",
+    "requirements": "Immutable nonempty exact key/default enabled; single-line caption; exact overloads/raw blocks register one root; latest values on retained key; caller order and array untouched; duplicate atomicity; removed/readded refs do not revive.",
+    "source": ["src/menu_entry.cj", "src/horizontal_menu.cj", "src/popup_menu.cj", "src/menu_composition.cj", "src/menu_refs.cj", "src/foreach_group.cj"],
+    "observations": "entryAndShapes/menuIdentity/duplicateBatch execute through the full clean runner: explicit key/error/caption, AB/A-B grids and whole-wide-char clipping, stable a/b/c identities, Beta2Alpha2C latest text, new generation, source order, constant copy and exact DuplicateKey. Invalid batch is checked before any additions in unchanged ForEach.prepare; cleanup test alone would not establish pre-mount atomicity.",
+    "limitations": "No new key/Unicode/runtime engine; caption clipping delegates to accepted Text. Headless literal Unicode is not native Unicode-host coverage."
+  },
+  "M02": {
+    "verdict": "PASS",
+    "requirements": "Horizontal left/right and popup up/down; Home/End/wrap/eligible filtering/single/empty/all-disabled; own-entry refs follow public physical children; Tab does not trap; focused Target requests stable key once; modifier and propagation contract.",
+    "source": ["src/menu_composition.cj", "src/menu_refs.cj", "src/widget_activation.cj", "src/application.cj"],
+    "observations": "Both navigation fixtures assert c,a,a,c,a,a then manual c,a,b order, unchanged business a,b,c, skipped inserted nonentry, Tab exit. Activation fixtures check unfocused0, Enter/Space1 each, all seven nonempty modifier masks, paste/multispace/NBSP0, three prevent paths0/stop-only1. Original native normal scenes independently reproduce a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;p;n;p;c;p;c;p;c; and h:a;h:a;p:r;p:p; with disabled B/X omitted.",
+    "nonblocking": "M160-S01 broad UIException rejection cannot alone prove exact error code, but source preflight is independently precise InvalidProperty for this valid same-session/domain mounted disabled ancestry; callback remains0. No contract defect observed."
+  },
+  "M03": {
+    "verdict": "PASS",
+    "requirements": "Reusable opaque popup content; no second Application or automatic choice close; real/inline, nested modal and blocked/cancel Escape; explicit onChoose close; owner/anchor invalidation; focus and latest-frame restoration.",
+    "source": ["src/popup_menu.cj", "src/menu_composition.cj", "openspec/changes/implement-public-interaction/design.md C.1-C.6"],
+    "observations": "popupOwnership asserts exact opaque ijX  nop and latest IJKLMNOP after explicit close; popupEscapeBoundaries checks empty/all-disabled activeTarget, closeOnEscape false, preventDefault, base handler isolation and inline survival; nestedPopup checks child-only and dependent parent closure; owner/anchor tests assert exact OwnerGone/AnchorGone. Actual native choices retain popup, Escape restores c, nested child restores p while parent remains, and explicit callback close yields Requested; selected originals visibly agree.",
+    "reuse": "Anchor clipping and dependency/domain algorithms remain accepted C owner; no overlay implementation changes in fixed source. No new claim that every C case was re-executed."
+  },
+  "M04": {
+    "verdict": "PASS",
+    "requirements": "StatusBar natural Row, no docking/forced height; theme and explicit priority; narrow/zero; ordinary axes/weights/odd remainder/nested Split with no private visible mutation.",
+    "source": ["src/status_bar.cj", "src/split_axis.cj", "src/split_pane.cj", "tests/widgets_composite/src/layout_cases.cj"],
+    "observations": "Literal empty/single/multiline rows, theme height1/explicit height2, zero-width newline and zero-height empty, A  B / vertical odd remainder, ABBBCCCC for1:2:3 and A  C /blank/B nested grid; visible refs remain true after0x0. Original prerequisites exercise accepted primitive layout; settled original example/device native resize reaches50x10 without stale status loss.",
+    "quality": "Factories only choose ordinary Row/Column and role; exact W007 axis-before-named-body signature preserves raw trailing blocks. No new layout algorithm or implicit weights."
+  },
+  "M05": {
+    "verdict": "PASS",
+    "requirements": "Ordinary and overlay instances of same custom panel, one runtime/shared application model; menu/ScrollView/StatusBar/Split; full local-role style priority; recover errors/resources without business loss; normal packaged public example.",
+    "source": ["tests/widgets_composite/src/shared_panel.cj", "tests/widgets_composite/src/composition_cases.cj", "examples/widgets_composition/src/main.cj", "docs/product/widgets.md"],
+    "observations": "sharedPanels checks distinct refs/one Application, old/new/latest/post exact grids, model retained after disposal and valid remount. localTheme compares complete Style values for four container roles plus MenuItem, explicit>reusable>theme, local versus global seed fill, and custom-theme normal→focused inheritance/no implicit preset merge. callbackRecovery and original native exit21/22 retain first sentinel and cleanup1/resources0. Clean public example compiles, opens/closes its held overlay and resizes on three actual host implementations.",
+    "quality": "Only eight new small M source files; lifecycle-owned own-ref list is UI bookkeeping, not copied business selection/order. No private runtime/kind/renderer/decoder/Unicode/theme engine or terminal output. Existing defaults/legacy slots and owners preserved."
+  },
+  "S02": {
+    "verdict": "PASS_AFFECTED_SCOPE",
+    "observations": "Shared activation and accepted S files unchanged from baseline; unchanged clean prerequisite and full M consumer each exercise three controls×seven masks×two activation forms=42 exclusions with committed focus. Accepted original S positive/controlled-state/propagation/native results remain original evidence at their existing environment/configuration/scope, not new M native claims."
+  },
+  "evidence_assessment": {
+    "normal_package": "Normal cjpm build and cjpm bundle receipts0; source-equal safe package263 members;30 byte-equal frozen consumer inputs; formal runner actually builds/runs prerequisites, full headless and device plus3PTY; example separate clean build0. Tests use public cjtui dependency, literal independent frames/styles/traces, no private stand-ins.",
+    "actual_hosts": "XTerm398 and loaded VTE0.80.1 in XFCE1.1.4 have actual executable/library identity and XTEST→host PTY traces. QEMU10.0.13 uses emulated keys→actual Linux6.12.107 tty1, serial observer and native vcsa. TERM labels alone are not the host proof. All six direct products exit0; input traces and settled captures follow event fences/output quieting.",
+    "restoration": "PTY no-reply path: exact termios, query25 once, zero25 h/l/s/r, zero1049 and ordered2004 h/l. Actual GUI probes naturally report visible1 before/after, input raw contains real reply, product hides/restores. VT natural probe no reply and zero25 controls; exact termios independently byte-equal. No forced unknown-to-visible restoration claim.",
+    "capture_limits": "Six original PNGs visually inspected; selected VT original cells independently decoded at50x10. Intermediate resize-transition is explicitly not settled. Images establish visible state, not callback count/resource cleanup. Native literal Unicode/explicit palette/full all-state/four-theme coverage not claimed.",
+    "historical_failures": "Original source/header/payload-race and wrong Unknown-cursor oracle failures remain historical failures, not relabelled passing. T087 whole-checker theme allowlist exit1 remains open; successful normal bundle/clean consumer does not clear it.",
+    "environment": "Original captured Debian13/CangjieCJPM1.2.0/stdx1.2.0-beta.02.1/UCD17/config receipts bound in161. Environment resumed subsequently; no assertion of a fresh host run or current-environment equivalence. Root post-resume full original hash audit reused; own selective raw/source/test/contract audit is fresh."
+  },
+  "mandatory_finite_gaps": [],
+  "remaining_mandatory_scope": ["B-M01→TASK024 benchmarks", "T087→TASK023 package checker theme allowlist", "Runtime M2 partial layout/paint and measured performance", "TASK027/041 full four-theme/all-component/all-state and Unicode native showcase", "Whole Linux and parent019/020/030/release closure"],
+  "handoff": "Root may integrate only the fixed finite M candidate and record161/162 completion. U2/U4/U5 composition evidence is finite, not complete parent/showcase acceptance. No source/test/spec/main changes made here."
+}

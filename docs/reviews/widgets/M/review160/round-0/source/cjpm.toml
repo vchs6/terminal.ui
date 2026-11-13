@@ -1,0 +1,31 @@
+[dependencies]
+cangjie_toml = { version = "0.2.3" }
+ansies = { version = "1.3.113" }
+unicode = { version = "0.1.0" }
+unicodewidth = { version = "0.1.113" }
+
+[package]
+  cjc-version = "1.2.0"
+  name = "cjtui"
+  description = "Declarative terminal UI framework for Cangjie"
+  version = "0.0.0"
+  target-dir = "target"
+  src-dir = "src"
+  output-type = "static"
+  compile-option = ""
+  override-compile-option = ""
+  link-option = ""
+  repository = "https://github.com/vchs6/terminal.ui"
+  license = ["MulanPSL-2.0"]
+  # CJPM bundle/publish boundary: source distribution, not the GitHub source archive.
+  include = ["/build.cj", "/native", "/third_party/licenses", "/src", "/examples", "/themes", "/benchmarks", "/docs/product", "/LICENSE", "/NOTICE", "/CHANGELOG.md"]
+  exclude = ["/openspec", "/docs/development", "/docs/decisions", "/docs/reviews", "/docs/requirements.md", "/docs/ui-construction.md", "/docs/architecture.md", "/docs/tasks.md", "/docs/acceptance.md", "/AGENTS.md", "/BATTLE_PROTOCOL.md", "/ENGINEERING_TASK_DECOMPOSITION.md", "/CONTRIBUTING.md", "/scripts", "/tests", "/node_modules", "/package.json", "/package-lock.json", "**/*.a", "**/*.o", "/.cjtui-build", "**/build-script-cache", "**/target", "**/cjpm.lock", "**/cangjie-repo.toml"]
+
+[ffi.c]
+unicodedata = { path = "./native" }
+cjtui_terminal = { path = "./native" }
+cjtui_capabilities = { path = "./native" }
+cjtui_glyphs = { path = "./native" }
+
+[target.x86_64-unknown-linux-gnu.bin-dependencies]
+path-option = ["${CANGJIE_STDX_PATH}/linux_x86_64_llvm/static/stdx"]

@@ -1,10 +1,10 @@
 # 标准控件支持任务候选
 
-本文件为TASK029/019及153–162唯一任务状态入口，docs/tasks.md只保留编号映射。S01–S05的TASK153–157已完成：独立157为PASS_FINITE_S（spec/quality/evidence PASS），接受源1df1325f7b51777d8adab62f950c936051aa5876对应main 85998ead2b53cb8e6a6ab8c69e5e3efb8739411f；源码/native/构建/包配置/examples/tests/控件产品文档逐字节一致。[有限S原件与真实宿主图](../../../docs/reviews/widgets/S/README.md)。五个公开控件Label/Button/Checkbox/Radio/Progress已交付；155独立双审0具体缺陷，156普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付。M158正式独立测试已完成：原测试e59d5c9f对应main9ec836ce，51手工catalogue cases；前置build/direct0（含42项S修饰键排除），孤立6项缺M目标编译RED1/classifier0。M159已交付产品候选6f7d6fee，固定验证源6e3f26aa及独立测试ad100b79/tree ff16e53f；作者formal runner0、53项headless与真实PTY退出0/21/22、正常example build/bundle0属developer proof，非161真实宿主/162验收。M160独立spec/quality PASSED，0contractdefects、1条open非阻塞测试精度建议M160-S01（当前源码exactInvalidProperty已核，未修、不作产品缺陷）。固定6e3f26aa/testsad100不变；161独立Sol/medium执行in_progress，尚无新M真实宿主/clean-consumer PASS，162 planned。M候选产品尚未合入main，完整M/父019/027/Linux保持未接受。新native S只覆盖ASCII/default Classic；Unicode/disabled/explicit palette是headless S/source155及限定E后端机制复用，完整all-state/Unicode/four-theme展示仍属027/041。完整Linux/M/M1M2/父019/020/030/发布未关闭，B-M01→024、T087→023保留。
+本文件为TASK029/019及153–162唯一任务状态入口，docs/tasks.md只保留编号映射。TASK153–157有限S已独立PASS_FINITE_S；TASK158–162有限M及受影响S02已独立PASS_FINITE_M（spec/quality/evidence PASS），角色均complete。四个公开工厂HorizontalMenu/PopupMenu/StatusBar/SplitPane与MenuEntry/SplitAxis已交付；[一次性M原件归档](../../../docs/reviews/widgets/M/README.md)链接独立审核、执行、验收及65原PNG。author6f7d6fee→accepted6e3f26aa→mainc5a875f0，最终testsad100/treeff16；[精确别名](../../../docs/reviews/widgets/M/main-map.json)。M160-S01仍open非阻塞建议，未修，不作产品缺陷。原失败/修正历史保留，不以新结果改写。
 
 ## Current admission — 2026-11-13
 
-主代理采纳READY_M_PRECONDITIONS；正式158已冻结e59d5c9f→main9ec836ce，[固定报告](../../../docs/reviews/widgets/M/test158/report.md)与[输入清单](../../../docs/reviews/widgets/M/input-manifest.json)记录真实前置成功及目标缺API RED。原准入delta与所有失败历史保持。159作者已交固定产品候选与developer证据，160独立规格/质量通过（0contractdefects/1open非阻塞建议），161独立实际执行中，162等待原始执行交付；W001–W007/W006-S/LEGACY-PROP-001未改。完整M/027/041/Linux未关闭。
+Root采纳实际独立162 PASS_FINITE_M后集成mainc5；161已独立交付正常bundle、干净消费者、53headless、PTY0/21/22与XTerm/VTE/kernelVT共6实际device/example运行。Native为ASCII/default Classic，GUI天然Known可见1→1，VT天然无reply/Unknown且VM非物理；027/041全状态/Unicode/四主题展示未接受。W001–W007/W006-S/LEGACY-PROP-001未改。继续008/010/020/021/027完整M1集成→M2→最终Linux023/024；parent019/011/020/030完整AC、B-M01→024、T087→023、wholeLinux与release未关闭。AGENTS11.1复用固定输入既有证据，无archive功能重跑，正式OpenSpec全stage归档保留至023/024。
 
 ## Admission
 
@@ -18,7 +18,7 @@
 
 - level=L3；classification=execution（用户标准控件目标已定，本候选工程决策经主代理冻结后执行）；openspec_change_ref=implement-standard-widgets；workflow_ref=本tasks.md；decision_refs=design W001–W006/W006-S及G001/I012上游接受记录；goal=G-001。
 - scope.includes=各卡指定单元交付及必要公开消费者/回归/文档；scope.excludes=输入编辑算法、runtime/layout/decoder/第二renderer、鼠标/拖动/虚拟化、完整四主题展示、跨平台/发布。S/M只消费117已验KeyEvent字段，不实现decoder。
-- status=153–157 complete（有限S正式测试/产品/独立双审/独立执行/独立验收已交付）；158 complete（固定测试e59d5c9f/main9ec836ce及真正目标RED），159 complete（作者实现/验证，固定6e3f26aa），160 complete（独立spec/quality PASSED，M160-S01 open非阻塞），161 in_progress（独立Sol/medium执行），162 planned；planning_gaps=M独立执行/验收未交付；作者typing/runtime自验不替代独立结果，027/041整体展示与完整Linux保留；evidence_refs=最终S输入清单、独立157与有限S归档。
+- status=153–162 complete，仅有限S/M角色与M01–M05/受影响S02接受；planning_gaps=本有限单元无阻塞，父项/fullM1/027/041/M2/023/024完整验收另汇合；evidence_refs=最终S/M输入清单、独立157/162与一次性有限归档。
 - preconditions=Admission与本卡依赖全部满足；required_skills=测试角色TDD+verification、产品TDD+executing-plans+verification、审核requesting-code-review+verification、执行/验收verification；失败按需systematic-debugging，修复反馈按receiving-code-review。适用OpenSpec工作流及仓颉规范从实际环境读取，skill_evidence_refs在ready时记录来源/版本/可用性至该卡证据目录，当前未伪造已使用记录。
 - compatibility=所有已有公共primitive/组件块入口保留，同槽后写替换不改变；没有已发布本件widget API需兼容；公开callbacks异常/代际和主题优先级继承上游。quality_governance.compatibility_exceptions=[LEGACY-PROP-001：保持已接受layout旧常量快捷入口IllegalArgumentException；typed/getter/样式能力检查严格InvalidProperty，见design限定裁决]。
 - quality_governance.necessity=已要求控件缺公开可用组合与独立证据；canonical_owner=业务checked/radio/menu顺序归应用，公开控件工厂组合行为，Runtime/focus/overlay/layout/Theme/Unicode仍原唯一权威；old_path_disposition=无旧widget公开实现需退役，沿用primitive，不增兼容别名；complexity_delta=有限工厂/一份菜单own refs索引，禁止第二业务状态或内核。非产品角色只写证据不改运行路径。
@@ -164,9 +164,9 @@ L4（本有限S角色步骤已交付，原件见归档）：
 | deliverables | 测试源码、手工帧/焦点trace、RED和hash |
 | acceptance / verification | M01–M05及受影响S02回归：采用验收目录的条件→结果→证据；M计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅M文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | complete / 正式测试冻结及真正目标RED已交付；M产品已有作者验证，独立160–162仍待交付 / e59d5c9f→main9ec836ce、正式158报告/index、M输入清单 |
+| status / blockers / evidence_refs | complete / 独立测试及后续8次修正冻结，最终ad100/treeff16；原始RED与失败历史保留 / 正式158与corrections原报告/index、M输入清单 |
 
-L4（本正式测试角色已实际交付；产品行为验证仍待159）：
+L4（本正式测试及独立修正角色已交付；后续独立162有限接受另列）：
 
 - [x] TASK-158.S1：映射M01–M05并构造items替换/duplicate/disabled/remove/manual move案例。检查结果：业务顺序不被改、ForEach retained值可观察，预期不来自实现。
 - [x] TASK-158.S2：编写overlay真实键取消/恢复与Status自然Row/Split权重窄屏精确期望。检查结果：内联不假关层；空/全disabled可Esc；无截图代替原始行为。
@@ -184,7 +184,7 @@ L4（本正式测试角色已实际交付；产品行为验证仍待159）：
 | deliverables | 产品固定提交、组合例子、指南、开发验证 |
 | acceptance / verification | M01–M05及受影响S02回归：采用验收目录的条件→结果→证据；M计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅M文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | complete / 作者产品与developer验证已交付；独立审查/执行/验收未完成 / product6f7d6fee、verification6e3f26aa、testsad100/treeff16e53f、M作者原件/index |
+| status / blockers / evidence_refs | complete / 作者产品与developer验证已交付，162接受后mainc5集成 / product6f7d6fee→accepted6e3f26aa→mainc5、testsad100/treeff16、M作者原件/index |
 
 L4（作者实施与开发验证已交付；后续独立结论另计）：
 
@@ -224,13 +224,13 @@ L4（本独立固定源审核已交付；执行与验收另计）：
 | deliverables | 命令/环境/原始PTY和日志/hash、执行结果 |
 | acceptance / verification | M01–M05及受影响S02回归：采用验收目录的条件→结果→证据；M计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅M文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | in_progress / ACTUAL独立Sol/medium执行中；尚无新M制品/宿主PASS / fixed6e3f26aa、testsad100/treeff16e53f、独立160原件与M输入清单 |
+| status / blockers / evidence_refs | complete / 正常包、干净消费者、53headless、PTY0/21/22和3实际宿主device/example有限执行交付 / execution161/report.md与final-index；22phase/65原PNG |
 
-L4（每步均未执行）：
+L4（本有限角色各步已交付，原始报告/矩阵/receipts见M归档）：
 
-- [ ] TASK-161.S1：隔离固定源/测试/依赖输入，验证公共bundle消费者入口。检查结果：所有依赖来自接受源，不以当前共享HEAD当固定输入。
-- [ ] TASK-161.S2：执行widgets_composite/run.sh及受影响S回归、原布局/overlay必要检查。检查结果：菜单导航真实键含循环/Home/End/Esc/Tab，精确帧与模型可复核。
-- [ ] TASK-161.S3：输出原始退出恢复与故障结果，标明未获环境证据。检查结果：不以截图或合成按键日志冒充真实终端，不越权修测试。
+- [x] TASK-161.S1：隔离固定源/测试/依赖输入，验证公共bundle消费者入口。检查结果：所有依赖来自接受源，不以当前共享HEAD当固定输入。
+- [x] TASK-161.S2：执行widgets_composite/run.sh及受影响S回归、原布局/overlay必要检查。检查结果：菜单导航真实键含循环/Home/End/Esc/Tab，精确帧与模型可复核。
+- [x] TASK-161.S3：输出原始退出恢复与故障结果，标明未获环境证据。检查结果：不以截图或合成按键日志冒充真实终端，不越权修测试。
 
 ### TASK-162：独立验收组合控件
 
@@ -244,13 +244,13 @@ L4（每步均未执行）：
 | deliverables | 接受/拒绝报告、父范围矩阵、固定源manifest |
 | acceptance / verification | M01–M05及受影响S02回归：采用验收目录的条件→结果→证据；M计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅M文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | planned / 共同Admission与上述依赖未核验 / [] |
+| status / blockers / evidence_refs | complete / 独立Astra/high PASS_FINITE_M；spec/quality/evidence PASS，root采纳 / M/acceptance162/acceptance.md、ac-results.json、index.json |
 
-L4（每步均未执行）：
+L4（本有限角色各步已交付，原始报告/矩阵/receipts见M归档）：
 
-- [ ] TASK-162.S1：对齐158–161内容hash和独立角色链，检查全部M与S受影响AC。检查结果：源/测试/命令与审核结论严格对应。
-- [ ] TASK-162.S2：复核真实输入、业务顺序、popup focus/cancel与窄屏手工预期。检查结果：缺任一必需证据不标完整接受，不凭截图或数量代替。
-- [ ] TASK-162.S3：交接固定源及U2/U4/U5、TASK027后续集成边界。检查结果：只给主代理状态同步建议；不自动宣布Linux整体/主题展示完成。
+- [x] TASK-162.S1：对齐158–161内容hash和独立角色链，检查全部M与S受影响AC。检查结果：源/测试/命令与审核结论严格对应。
+- [x] TASK-162.S2：复核真实输入、业务顺序、popup focus/cancel与窄屏手工预期。检查结果：缺任一必需证据不标完整接受，不凭截图或数量代替。
+- [x] TASK-162.S3：交接固定源及U2/U4/U5、TASK027后续集成边界。检查结果：只给主代理状态同步建议；不自动宣布Linux整体/主题展示完成。
 
 ## DQ初始状态及父项闭合
 

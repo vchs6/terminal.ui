@@ -1,0 +1,12 @@
+cjpm build success
+TASK158_ACCEPTED_PREREQUISITE_PASS
+[31merror[0m: 'Paint' is not a member of enum 'ChangeKind'
+  [36m==>[0m /workspace/work/widgets-composite-implementation/source/tests/widgets_composite/src/interaction_cases.cj:64:72:
+   [36m| [0m
+[36m64[0m [36m| [0m        app.batch({ => mounted(single).children()[1].notify(ChangeKind.Paint) })[0m
+   [36m| [0m                                                                       [31m^^^^^ [0m
+   [36m| [0m
+
+1 error generated, 1 error printed.
+Error: failed to compile package `widgets_composite`, return code is 1
+Error: cjpm build failed

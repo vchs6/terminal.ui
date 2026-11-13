@@ -1,0 +1,3957 @@
+{
+  "task": 161,
+  "fixed_source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+  "product_commit": "6f7d6feeb18b714d10300505d02e163d97b6c68a",
+  "independent_test_revision": "ad100b79956de30fe65c6d561f11be67186821d5",
+  "test_tree": "ff16e53ffe8156950088fd3c7d4654f972c830cc",
+  "review_index": {
+    "path": "/workspace/work/widgets-composite-review/index.json",
+    "sha256": "da8bf5213acd6c01d3b216b0de3a321abf8eebad6207ba70d11cd6590741482e"
+  },
+  "new_required_phases": [
+    {
+      "command": "cjpm build",
+      "cwd": "/workspace/work/widgets-composite-execution/source",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:31:19.325561+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:32:37.383379+00:00"
+    },
+    {
+      "command": "cjpm bundle",
+      "cwd": "/workspace/work/widgets-composite-execution/source",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:32:37.411442+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:33:36.385082+00:00"
+    },
+    {
+      "command": "python3 tools/package-clean.py",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:35:02.051636+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:35:02.194426+00:00"
+    },
+    {
+      "command": "CJTUI_COMPOSITE_PTY_OUTPUT=/workspace/work/widgets-composite-execution/raw/clean-full-runner/artifacts bash tests/widgets_composite/run.sh formal",
+      "cwd": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:35:02.226115+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:38:37.768784+00:00"
+    },
+    {
+      "command": "cjpm build",
+      "cwd": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/examples/widgets_composition",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:35:03.644931+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:36:47.922132+00:00"
+    },
+    {
+      "command": "python3 tools/gui.py xterm example",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:37:18.487848+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:37:24.825919+00:00"
+    },
+    {
+      "command": "python3 tools/gui.py vte example",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:37:58.665074+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:38:04.879944+00:00"
+    },
+    {
+      "command": "python3 tools/gui.py xterm normal",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:38:32.545482+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:38:43.996654+00:00"
+    },
+    {
+      "command": "python3 tools/gui.py vte normal",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:38:44.045903+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:38:55.197425+00:00"
+    },
+    {
+      "command": "python3 tools/pack-vt.py",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:38:55.236168+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:39:04.888777+00:00"
+    },
+    {
+      "command": "python3 tools/vt.py normal",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:39:04.920366+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:39:46.341864+00:00"
+    },
+    {
+      "command": "python3 tools/vt.py example",
+      "cwd": "/workspace/work/widgets-composite-execution",
+      "source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+      "utc_start": "2026-11-13T16:39:46.375234+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T16:40:13.598379+00:00"
+    }
+  ],
+  "binaries": {
+    "prerequisite": {
+      "path": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/prerequisite/target/release/bin/main",
+      "bytes": 19091016,
+      "sha256": "9de6dd4238124fc1f75a39572708a0e4f388da4baa5fd6d299801c46d1de3655"
+    },
+    "headless": {
+      "path": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/target/release/bin/main",
+      "bytes": 19520984,
+      "sha256": "f6b577fed957d66d6adac008dd7ff2c7b6f39769c153ff629d117d7df80ae0f5"
+    },
+    "device": {
+      "path": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/device/target/release/bin/main",
+      "bytes": 19081496,
+      "sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305"
+    },
+    "example": {
+      "path": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/examples/widgets_composition/target/release/bin/main",
+      "bytes": 19027520,
+      "sha256": "53f119dfda35c15f0328a3b1bcceb7371163a52eaa243e3a0d0495e7fbdf487d"
+    }
+  },
+  "PTY": [
+    {
+      "mode": "normal",
+      "binary": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/device/target/release/bin/main",
+      "binary_sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305",
+      "cwd": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0",
+      "before_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "events": [
+        {
+          "observed": "actual native first frame",
+          "monotonic_ns": 54405430996064
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405431003936
+        },
+        {
+          "observed": "public focus trace a;",
+          "monotonic_ns": 54405451378831
+        },
+        {
+          "input_hex": "1b5b43",
+          "monotonic_ns": 54405451385351
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405451395316
+        },
+        {
+          "observed": "public focus trace a;c;",
+          "monotonic_ns": 54405455086451
+        },
+        {
+          "input_hex": "1b5b43",
+          "monotonic_ns": 54405455090457
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405455099210
+        },
+        {
+          "observed": "public focus trace a;c;a;",
+          "monotonic_ns": 54405458779879
+        },
+        {
+          "input_hex": "1b5b46",
+          "monotonic_ns": 54405458783495
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405458791427
+        },
+        {
+          "observed": "public focus trace a;c;a;c;",
+          "monotonic_ns": 54405482944938
+        },
+        {
+          "input_hex": "1b5b48",
+          "monotonic_ns": 54405482948573
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405482981052
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;",
+          "monotonic_ns": 54405487300360
+        },
+        {
+          "input_hex": "1b5b44",
+          "monotonic_ns": 54405487302924
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405487313219
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;",
+          "monotonic_ns": 54405491181090
+        },
+        {
+          "input_hex": "1b5b48",
+          "monotonic_ns": 54405491184014
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405491194940
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;",
+          "monotonic_ns": 54405495853135
+        },
+        {
+          "input_hex": "0d20",
+          "monotonic_ns": 54405495856130
+        },
+        {
+          "observed": "Enter and Space each choose once",
+          "monotonic_ns": 54405516122052
+        },
+        {
+          "input_hex": "1b20",
+          "monotonic_ns": 54405516125417
+        },
+        {
+          "input_hex": "1b5b3230307e201b5b3230317e",
+          "monotonic_ns": 54405516134150
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405516136704
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;",
+          "monotonic_ns": 54405536372570
+        },
+        {
+          "input_hex": "09",
+          "monotonic_ns": 54405536408223
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405536433721
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;",
+          "monotonic_ns": 54405559656847
+        },
+        {
+          "input_hex": "6f",
+          "monotonic_ns": 54405559661574
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405559688124
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;",
+          "monotonic_ns": 54405584119832
+        },
+        {
+          "input_hex": "1b5b42",
+          "monotonic_ns": 54405584130277
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405584156587
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;",
+          "monotonic_ns": 54405607903488
+        },
+        {
+          "input_hex": "1b5b41",
+          "monotonic_ns": 54405607908756
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405607940093
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;",
+          "monotonic_ns": 54405612736616
+        },
+        {
+          "input_hex": "1b5b46",
+          "monotonic_ns": 54405612739781
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405612762505
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;",
+          "monotonic_ns": 54405617412554
+        },
+        {
+          "input_hex": "0d",
+          "monotonic_ns": 54405617414487
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405617434236
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;",
+          "monotonic_ns": 54405637805641
+        },
+        {
+          "input_hex": "1b",
+          "monotonic_ns": 54405637869967
+        },
+        {
+          "observed": "standalone Escape decoded",
+          "monotonic_ns": 54405770140513
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405770427373
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;",
+          "monotonic_ns": 54405843759234
+        },
+        {
+          "input_hex": "6f",
+          "monotonic_ns": 54405850500483
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405850970848
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;p;",
+          "monotonic_ns": 54405967865496
+        },
+        {
+          "input_hex": "6e",
+          "monotonic_ns": 54405967915161
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54405968136843
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;p;n;",
+          "monotonic_ns": 54406108087481
+        },
+        {
+          "input_hex": "1b",
+          "monotonic_ns": 54406108143214
+        },
+        {
+          "observed": "standalone Escape decoded",
+          "monotonic_ns": 54406209295606
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54406209301144
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;p;n;p;",
+          "monotonic_ns": 54406241829664
+        },
+        {
+          "input_hex": "1b",
+          "monotonic_ns": 54406241865968
+        },
+        {
+          "observed": "standalone Escape decoded",
+          "monotonic_ns": 54406343129956
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54406343135615
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;p;n;p;c;",
+          "monotonic_ns": 54406367010368
+        },
+        {
+          "input_hex": "75",
+          "monotonic_ns": 54406367014394
+        },
+        {
+          "input_hex": "6f",
+          "monotonic_ns": 54406367039622
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54406367043257
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;p;n;p;c;p;",
+          "monotonic_ns": 54406396221334
+        },
+        {
+          "input_hex": "63",
+          "monotonic_ns": 54406396226622
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54406396252350
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;p;n;p;c;p;c;",
+          "monotonic_ns": 54406422946957
+        },
+        {
+          "input_hex": "65",
+          "monotonic_ns": 54406422978644
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54406423004303
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;p;n;p;c;p;c;p;",
+          "monotonic_ns": 54406451533125
+        },
+        {
+          "input_hex": "0d",
+          "monotonic_ns": 54406451537091
+        },
+        {
+          "input_hex": "23",
+          "monotonic_ns": 54406451591743
+        },
+        {
+          "observed": "public focus trace a;c;a;c;a;c;a;a;c;p;r;p;r;r;c;p;n;p;c;p;c;p;c;",
+          "monotonic_ns": 54406478173661
+        },
+        {
+          "input_hex": "71",
+          "monotonic_ns": 54406478228663
+        },
+        {
+          "observed": "direct product exit",
+          "monotonic_ns": 54406500822986
+        }
+      ],
+      "route": "real PTY; direct product binary",
+      "exit": 0,
+      "after_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "focus_trace": [
+        "a",
+        "c",
+        "a",
+        "c",
+        "a",
+        "c",
+        "a",
+        "a",
+        "c",
+        "p",
+        "r",
+        "p",
+        "r",
+        "r",
+        "c",
+        "p",
+        "n",
+        "p",
+        "c",
+        "p",
+        "c",
+        "p",
+        "c"
+      ],
+      "summary": {
+        "calls": "4",
+        "chosen": "h:a;h:a;p:r;p:p;",
+        "model": "NEW",
+        "cleanups": "1",
+        "resources": "0/0/0/0"
+      },
+      "mode_oracle": {
+        "query_count": 1,
+        "valid_input_reports": 0,
+        "mode25_hlsr": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "alternate1049_hl": [
+          0,
+          0
+        ],
+        "paste2004_hl": [
+          1,
+          1
+        ],
+        "reply_fixture": "unanswered; Pending/Unknown wire policy"
+      },
+      "result": "PASS"
+    },
+    {
+      "mode": "callback-failure",
+      "binary": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/device/target/release/bin/main",
+      "binary_sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305",
+      "cwd": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0",
+      "before_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "events": [
+        {
+          "observed": "actual native first frame",
+          "monotonic_ns": 54406574416479
+        },
+        {
+          "input_hex": "0d",
+          "monotonic_ns": 54406574422849
+        },
+        {
+          "observed": "direct product exit",
+          "monotonic_ns": 54406594758825
+        }
+      ],
+      "route": "real PTY; direct product binary",
+      "exit": 21,
+      "after_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "focus_trace": [],
+      "summary": {
+        "calls": "1",
+        "chosen": "",
+        "model": "old",
+        "cleanups": "1",
+        "resources": "0/0/0/0"
+      },
+      "mode_oracle": {
+        "query_count": 1,
+        "valid_input_reports": 0,
+        "mode25_hlsr": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "alternate1049_hl": [
+          0,
+          0
+        ],
+        "paste2004_hl": [
+          1,
+          1
+        ],
+        "reply_fixture": "unanswered; Pending/Unknown wire policy"
+      },
+      "result": "PASS"
+    },
+    {
+      "mode": "getter-failure",
+      "binary": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/device/target/release/bin/main",
+      "binary_sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305",
+      "cwd": "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0",
+      "before_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "events": [
+        {
+          "observed": "actual native first frame",
+          "monotonic_ns": 54406657526292
+        },
+        {
+          "input_hex": "67",
+          "monotonic_ns": 54406657532401
+        },
+        {
+          "observed": "direct product exit",
+          "monotonic_ns": 54406677910531
+        }
+      ],
+      "route": "real PTY; direct product binary",
+      "exit": 22,
+      "after_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "focus_trace": [],
+      "summary": {
+        "calls": "0",
+        "chosen": "",
+        "model": "bad",
+        "cleanups": "1",
+        "resources": "0/0/0/0"
+      },
+      "mode_oracle": {
+        "query_count": 1,
+        "valid_input_reports": 0,
+        "mode25_hlsr": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "alternate1049_hl": [
+          0,
+          0
+        ],
+        "paste2004_hl": [
+          1,
+          1
+        ],
+        "reply_fixture": "unanswered; Pending/Unknown wire policy"
+      },
+      "result": "PASS"
+    }
+  ],
+  "actual_hosts": [
+    {
+      "host": "xterm",
+      "mode": "normal",
+      "result": {
+        "host": "xterm",
+        "mode": "normal",
+        "frontend_exit": 0,
+        "terminal": {
+          "utc": "2026-11-13T16:38:43.309252+00:00",
+          "termios": [
+            17664,
+            5,
+            191,
+            35387,
+            15,
+            15,
+            [
+              "03",
+              "1c",
+              "7f",
+              "15",
+              "04",
+              "00",
+              "01",
+              "00",
+              "11",
+              "13",
+              "1a",
+              "00",
+              "12",
+              "0f",
+              "17",
+              "16",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00"
+            ]
+          ],
+          "termios_equal": true,
+          "product_pid": "997594",
+          "product_exit": 0,
+          "tracer_exit": 0,
+          "mode25": {
+            "label": "after",
+            "utc": "2026-11-13T16:38:43.307093+00:00",
+            "query_hex": "1b5b3f32352470",
+            "reply_hex": "1b5b3f32353b312479",
+            "status": 1,
+            "method": "External fixture observes actual host DECRQM reply; does not set mode/capability or fake reply; own temporary raw input restored.",
+            "termios_restored": true
+          },
+          "known_original_mode_restored": true
+        },
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 54402502524752
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54402624041703
+          },
+          {
+            "key": [
+              "Right"
+            ],
+            "monotonic_ns": 54402724601532
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54402825027340
+          },
+          {
+            "key": [
+              "Right"
+            ],
+            "monotonic_ns": 54402925617413
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54403025968233
+          },
+          {
+            "key": [
+              "End"
+            ],
+            "monotonic_ns": 54403126489700
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54403226881881
+          },
+          {
+            "key": [
+              "Home"
+            ],
+            "monotonic_ns": 54403327616017
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54403428668193
+          },
+          {
+            "key": [
+              "Left"
+            ],
+            "monotonic_ns": 54403529221472
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54403629614701
+          },
+          {
+            "key": [
+              "Home"
+            ],
+            "monotonic_ns": 54403730214374
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54403830611133
+          },
+          {
+            "capture": "horizontal-navigation",
+            "monotonic_ns": 54404302079623
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54404402387028
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 54404503365789
+          },
+          {
+            "key": [
+              "Alt_L",
+              "space"
+            ],
+            "monotonic_ns": 54404604047656
+          },
+          {
+            "key": [
+              "Shift_L",
+              "Insert"
+            ],
+            "monotonic_ns": 54404866909607
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54404967476095
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 54405068291680
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54405168766584
+          },
+          {
+            "key": [
+              "o"
+            ],
+            "monotonic_ns": 54405269522521
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54405370043248
+          },
+          {
+            "capture": "popup-open",
+            "monotonic_ns": 54406012604788
+          },
+          {
+            "key": [
+              "Down"
+            ],
+            "monotonic_ns": 54406121923155
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54406223853632
+          },
+          {
+            "key": [
+              "Up"
+            ],
+            "monotonic_ns": 54406324414125
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54406424877702
+          },
+          {
+            "key": [
+              "End"
+            ],
+            "monotonic_ns": 54406525463844
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54406625932058
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54406726380012
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54406826761607
+          },
+          {
+            "capture": "chosen-popup-still-open",
+            "monotonic_ns": 54407269056362
+          },
+          {
+            "key": [
+              "Escape"
+            ],
+            "monotonic_ns": 54407369317445
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54407490404110
+          },
+          {
+            "capture": "escape-restored",
+            "monotonic_ns": 54407933038785
+          },
+          {
+            "key": [
+              "o"
+            ],
+            "monotonic_ns": 54408033354666
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54408135138583
+          },
+          {
+            "key": [
+              "n"
+            ],
+            "monotonic_ns": 54408243391652
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54408354279081
+          },
+          {
+            "capture": "nested-modal",
+            "monotonic_ns": 54408897359381
+          },
+          {
+            "key": [
+              "Escape"
+            ],
+            "monotonic_ns": 54408998495158
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54409120352509
+          },
+          {
+            "capture": "nested-escape-parent-retained",
+            "monotonic_ns": 54409565062532
+          },
+          {
+            "key": [
+              "Escape"
+            ],
+            "monotonic_ns": 54409665340904
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54409786331566
+          },
+          {
+            "key": [
+              "u"
+            ],
+            "monotonic_ns": 54409886936686
+          },
+          {
+            "key": [
+              "o"
+            ],
+            "monotonic_ns": 54409987295989
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54410087770324
+          },
+          {
+            "capture": "latest-model-layer",
+            "monotonic_ns": 54410687756164
+          },
+          {
+            "key": [
+              "c"
+            ],
+            "monotonic_ns": 54410788851991
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54410891178003
+          },
+          {
+            "key": [
+              "e"
+            ],
+            "monotonic_ns": 54410991819148
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54411092383668
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54411192956581
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54411293423550
+          },
+          {
+            "capture": "explicit-callback-close",
+            "monotonic_ns": 54411770324317
+          },
+          {
+            "frozen_focus_trace": [
+              "a",
+              "c",
+              "a",
+              "c",
+              "a",
+              "c",
+              "a",
+              "a",
+              "c",
+              "p",
+              "r",
+              "p",
+              "r",
+              "r",
+              "c",
+              "p",
+              "n",
+              "p",
+              "c",
+              "p",
+              "c",
+              "p",
+              "c"
+            ],
+            "escape_count": 3
+          },
+          {
+            "resize_cells": [
+              50,
+              10
+            ],
+            "pixels": [
+              654,
+              264
+            ]
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 54412236358298
+          },
+          {
+            "key": [
+              "q"
+            ],
+            "monotonic_ns": 54412336617169
+          },
+          {
+            "capture": "restored",
+            "monotonic_ns": 54412884790360
+          }
+        ],
+        "summary": {
+          "calls": "4",
+          "chosen": "h:a;h:a;p:r;p:p;",
+          "model": "NEW",
+          "cleanups": "1",
+          "resources": "0/0/0/0"
+        },
+        "wire_stats": [
+          {
+            "complete": 90,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          {
+            "complete": 28,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        ],
+        "oracle_source": "Unchanged tests/widgets_composite/pty.py literal23focus/4choice/close/model/summary expectations; transport maps actual host keys/paste. Artificial no-reply mode oracle deliberately not applied here.",
+        "unicode": "Existing native example/device captions ASCII only; new M Unicode host captions unexercised; headless M literal Unicode and unchanged accepted E projection are separate evidence.",
+        "theme": "Classic focused/selected appearance observed; disabled/explicit custom palette only frozen headless suite, not claimed new native evidence."
+      },
+      "identity": {
+        "identities": [
+          {
+            "pid": 997589,
+            "exe": "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+            "exe_sha256": "141372c1b48f0becdacc5649bbcbb0b26bb059c2e31f4a905c96ed0bdbad9b1d",
+            "vte": {}
+          }
+        ],
+        "version": "XTerm(398)\n",
+        "capability_source": "Actual TERM/TTY native detection with raw probes, classic default theme; no synthetic reply"
+      },
+      "launch": {
+        "argv": [
+          "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+          "-geometry",
+          "60x12+20+20",
+          "-T",
+          "TASK161 xterm normal",
+          "-fa",
+          "DejaVu Sans Mono",
+          "-fs",
+          "16",
+          "-e",
+          "python3",
+          "/workspace/work/widgets-composite-execution/tools/host-supervisor.py",
+          "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/device/target/release/bin/main",
+          "/workspace/work/widgets-composite-execution/raw/host-xterm-normal",
+          "normal"
+        ],
+        "fixed_source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+        "binary_sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305",
+        "utc": "2026-11-13T16:38:32.679454+00:00",
+        "uid": 1000,
+        "connection": "local X11 :199; XTEST keys\u2192actual host PTY",
+        "config": {
+          "DISPLAY": ":199",
+          "HOME": "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/home",
+          "XDG_CONFIG_HOME": "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/home/config",
+          "XDG_CACHE_HOME": "/workspace/work/widgets-composite-execution/raw/host-xterm-normal/home/cache"
+        }
+      },
+      "actual_read_bytes_sha256": "a533e88d88c79a4f27f50e08914c128af9759b57b44ad686f86c01ba30d30dd7",
+      "actual_output_bytes_sha256": "9cb9bd47bb9ee8b16b05a4bf5712d21eb378f5a89fd282e37816f9dd3d879e51",
+      "native_cells": []
+    },
+    {
+      "host": "xterm",
+      "mode": "example",
+      "result": {
+        "host": "xterm",
+        "mode": "example",
+        "frontend_exit": 0,
+        "terminal": {
+          "utc": "2026-11-13T16:37:24.255691+00:00",
+          "termios": [
+            17664,
+            5,
+            191,
+            35387,
+            15,
+            15,
+            [
+              "03",
+              "1c",
+              "7f",
+              "15",
+              "04",
+              "00",
+              "01",
+              "00",
+              "11",
+              "13",
+              "1a",
+              "00",
+              "12",
+              "0f",
+              "17",
+              "16",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00"
+            ]
+          ],
+          "termios_equal": true,
+          "product_pid": "993681",
+          "product_exit": 0,
+          "tracer_exit": 0,
+          "mode25": {
+            "label": "after",
+            "utc": "2026-11-13T16:37:24.253881+00:00",
+            "query_hex": "1b5b3f32352470",
+            "reply_hex": "1b5b3f32353b312479",
+            "status": 1,
+            "method": "External fixture observes actual host DECRQM reply; does not set mode/capability or fake reply; own temporary raw input restored.",
+            "termios_restored": true
+          },
+          "known_original_mode_restored": true
+        },
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 54328417652104
+          },
+          {
+            "key": [
+              "Right"
+            ],
+            "monotonic_ns": 54328542715686
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54328643059179
+          },
+          {
+            "capture": "menu-save",
+            "monotonic_ns": 54329118090163
+          },
+          {
+            "key": [
+              "Home"
+            ],
+            "monotonic_ns": 54329218471292
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 54329318919222
+          },
+          {
+            "capture": "menu-open",
+            "monotonic_ns": 54329759963948
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 54329860260139
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 54329960863081
+          },
+          {
+            "capture": "options-focus",
+            "monotonic_ns": 54330432281860
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54330532584088
+          },
+          {
+            "capture": "popup-close-entry",
+            "monotonic_ns": 54331004103630
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54331104447841
+          },
+          {
+            "capture": "callback-close",
+            "monotonic_ns": 54331577702925
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54331678040732
+          },
+          {
+            "capture": "popup-for-escape",
+            "monotonic_ns": 54332125389245
+          },
+          {
+            "key": [
+              "Escape"
+            ],
+            "monotonic_ns": 54332225787902
+          },
+          {
+            "capture": "escape-close",
+            "monotonic_ns": 54332719280435
+          },
+          {
+            "resize_cells": [
+              50,
+              10
+            ],
+            "pixels": [
+              654,
+              264
+            ]
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 54333184096157
+          },
+          {
+            "key": [
+              "q"
+            ],
+            "monotonic_ns": 54333284365006
+          },
+          {
+            "capture": "restored",
+            "monotonic_ns": 54333725282880
+          }
+        ],
+        "summary": {},
+        "wire_stats": [
+          {
+            "complete": 24,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          {
+            "complete": 17,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        ],
+        "oracle_source": "Unchanged tests/widgets_composite/pty.py literal23focus/4choice/close/model/summary expectations; transport maps actual host keys/paste. Artificial no-reply mode oracle deliberately not applied here.",
+        "unicode": "Existing native example/device captions ASCII only; new M Unicode host captions unexercised; headless M literal Unicode and unchanged accepted E projection are separate evidence.",
+        "theme": "Classic focused/selected appearance observed; disabled/explicit custom palette only frozen headless suite, not claimed new native evidence."
+      },
+      "identity": {
+        "identities": [
+          {
+            "pid": 993676,
+            "exe": "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+            "exe_sha256": "141372c1b48f0becdacc5649bbcbb0b26bb059c2e31f4a905c96ed0bdbad9b1d",
+            "vte": {}
+          }
+        ],
+        "version": "XTerm(398)\n",
+        "capability_source": "Actual TERM/TTY native detection with raw probes, classic default theme; no synthetic reply"
+      },
+      "launch": {
+        "argv": [
+          "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+          "-geometry",
+          "60x12+20+20",
+          "-T",
+          "TASK161 xterm example",
+          "-fa",
+          "DejaVu Sans Mono",
+          "-fs",
+          "16",
+          "-e",
+          "python3",
+          "/workspace/work/widgets-composite-execution/tools/host-supervisor.py",
+          "/workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/examples/widgets_composition/target/release/bin/main",
+          "/workspace/work/widgets-composite-execution/raw/host-xterm-example",
+          "example"
+        ],
+        "fixed_source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+        "binary_sha256": "53f119dfda35c15f0328a3b1bcceb7371163a52eaa243e3a0d0495e7fbdf487d",
+        "utc": "2026-11-13T16:37:18.549720+00:00",
+        "uid": 1000,
+        "connection": "local X11 :199; XTEST keys\u2192actual host PTY",
+        "config": {
+          "DISPLAY": ":199",
+          "HOME": "/workspace/work/widgets-composite-execution/raw/host-xterm-example/home",
+          "XDG_CONFIG_HOME": "/workspace/work/widgets-composite-execution/raw/host-xterm-example/home/config",
+          "XDG_CACHE_HOME": "/workspace/work/widgets-composite-execution/raw/host-xterm-example/home/cache"
+        }
+      },
+      "actual_read_bytes_sha256": "e54cc9995d5d774df0a861bd4819652184d0d17b9b43c6dcf78626026e1c0b27",
+      "actual_output_bytes_sha256": "8ad6641d8827c23a1e62fc6e83aa6dfdda0e54f9091febc031c7902e3b42a249",
+      "native_cells": []
+    },
+    {
+      "host": "vte",
+      "mode": "normal",
+      "result": {
+        "host": "vte",
+        "mode": "normal",
+        "frontend_exit": 0,
+        "terminal": {
+          "utc": "2026-11-13T16:38:54.505537+00:00",
+          "termios": [
+            17664,
+            5,
+            191,
+            35387,
+            15,
+            15,
+            [
+              "03",
+              "1c",
+              "7f",
+              "15",
+              "04",
+              "00",
+              "01",
+              "00",
+              "11",
+              "13",
+              "1a",
+              "00",
+              "12",
+              "0f",
+              "17",
+              "16",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00"
+            ]
+          ],
+          "termios_equal": true,
+          "product_pid": "997691",
+          "product_exit": 0,
+          "tracer_exit": 0,
+          "mode25": {
+            "label": "after",
+            "utc": "2026-11-13T16:38:54.502821+00:00",
+            "query_hex": "1b5b3f32352470",
+            "reply_hex": "1b5b3f32353b312479",
+            "status": 1,
+            "method": "External fixture observes actual host DECRQM reply; does not set mode/capability or fake reply; own temporary raw input restored.",
+            "termios_restored": true
+          },
+          "known_original_mode_restored": true
+        },
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 54413882518764
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54414018069932
+          },
+          {
+            "key": [
+              "Right"
+            ],
+            "monotonic_ns": 54414118882193
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54414219280014
+          },
+          {
+            "key": [
+              "Right"
+            ],
+            "monotonic_ns": 54414319871775
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54414420304317
+          },
+          {
+            "key": [
+              "End"
+            ],
+            "monotonic_ns": 54414521003028
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54414621422862
+          },
+          {
+            "key": [
+              "Home"
+            ],
+            "monotonic_ns": 54414722021563
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54414822385513
+          },
+          {
+            "key": [
+              "Left"
+            ],
+            "monotonic_ns": 54414926426546
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54415038304762
+          },
+          {
+            "key": [
+              "Home"
+            ],
+            "monotonic_ns": 54415153006083
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54415253649211
+          },
+          {
+            "capture": "horizontal-navigation",
+            "monotonic_ns": 54415696566550
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54415796824766
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 54415897162687
+          },
+          {
+            "key": [
+              "Alt_L",
+              "space"
+            ],
+            "monotonic_ns": 54415997977032
+          },
+          {
+            "key": [
+              "Shift_L",
+              "Insert"
+            ],
+            "monotonic_ns": 54416222824570
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54416323317464
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 54416424572108
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54416525095346
+          },
+          {
+            "key": [
+              "o"
+            ],
+            "monotonic_ns": 54416625686946
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54416726160431
+          },
+          {
+            "capture": "popup-open",
+            "monotonic_ns": 54417384358114
+          },
+          {
+            "key": [
+              "Down"
+            ],
+            "monotonic_ns": 54417493097525
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54417593529247
+          },
+          {
+            "key": [
+              "Up"
+            ],
+            "monotonic_ns": 54417694996652
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54417795369405
+          },
+          {
+            "key": [
+              "End"
+            ],
+            "monotonic_ns": 54417895931082
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54417996371678
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54418096975192
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54418197479032
+          },
+          {
+            "capture": "chosen-popup-still-open",
+            "monotonic_ns": 54418639559667
+          },
+          {
+            "key": [
+              "Escape"
+            ],
+            "monotonic_ns": 54418739849351
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54418861103920
+          },
+          {
+            "capture": "escape-restored",
+            "monotonic_ns": 54419302605686
+          },
+          {
+            "key": [
+              "o"
+            ],
+            "monotonic_ns": 54419402887703
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54419506348338
+          },
+          {
+            "key": [
+              "n"
+            ],
+            "monotonic_ns": 54419623599823
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54419732787100
+          },
+          {
+            "capture": "nested-modal",
+            "monotonic_ns": 54420230611516
+          },
+          {
+            "key": [
+              "Escape"
+            ],
+            "monotonic_ns": 54420331242496
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54420452259249
+          },
+          {
+            "capture": "nested-escape-parent-retained",
+            "monotonic_ns": 54420895409407
+          },
+          {
+            "key": [
+              "Escape"
+            ],
+            "monotonic_ns": 54420995743482
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54421116795117
+          },
+          {
+            "key": [
+              "u"
+            ],
+            "monotonic_ns": 54421217361310
+          },
+          {
+            "key": [
+              "o"
+            ],
+            "monotonic_ns": 54421317802357
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54421418192792
+          },
+          {
+            "capture": "latest-model-layer",
+            "monotonic_ns": 54421907840685
+          },
+          {
+            "key": [
+              "c"
+            ],
+            "monotonic_ns": 54422008851015
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54422109300794
+          },
+          {
+            "key": [
+              "e"
+            ],
+            "monotonic_ns": 54422209895971
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54422310277846
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54422411216867
+          },
+          {
+            "key": [
+              "Shift_L",
+              "3"
+            ],
+            "monotonic_ns": 54422511603109
+          },
+          {
+            "capture": "explicit-callback-close",
+            "monotonic_ns": 54422956168627
+          },
+          {
+            "frozen_focus_trace": [
+              "a",
+              "c",
+              "a",
+              "c",
+              "a",
+              "c",
+              "a",
+              "a",
+              "c",
+              "p",
+              "r",
+              "p",
+              "r",
+              "r",
+              "c",
+              "p",
+              "n",
+              "p",
+              "c",
+              "p",
+              "c",
+              "p",
+              "c"
+            ],
+            "escape_count": 3
+          },
+          {
+            "resize_cells": [
+              50,
+              10
+            ],
+            "pixels": [
+              517,
+              192
+            ]
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 54423423591292
+          },
+          {
+            "key": [
+              "q"
+            ],
+            "monotonic_ns": 54423523862771
+          },
+          {
+            "capture": "restored",
+            "monotonic_ns": 54424048989363
+          }
+        ],
+        "summary": {
+          "calls": "4",
+          "chosen": "h:a;h:a;p:r;p:p;",
+          "model": "NEW",
+          "cleanups": "1",
+          "resources": "0/0/0/0"
+        },
+        "wire_stats": [
+          {
+            "complete": 90,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          {
+            "complete": 28,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        ],
+        "oracle_source": "Unchanged tests/widgets_composite/pty.py literal23focus/4choice/close/model/summary expectations; transport maps actual host keys/paste. Artificial no-reply mode oracle deliberately not applied here.",
+        "unicode": "Existing native example/device captions ASCII only; new M Unicode host captions unexercised; headless M literal Unicode and unchanged accepted E projection are separate evidence.",
+        "theme": "Classic focused/selected appearance observed; disabled/explicit custom palette only frozen headless suite, not claimed new native evidence."
+      },
+      "identity": {
+        "identities": [
+          {
+            "pid": 997675,
+            "exe": "/usr/bin/xfce4-terminal",
+            "exe_sha256": "752c95cbd8ac8f6d85ab96b102ba2c1212b626dfd3d3c70a89e901b0a5d03143",
+            "vte": {
+              "/usr/lib/x86_64-linux-gnu/libvte-2.91.so.0.8000.1": "e2e719555735ebeb0d72c3add313ff0a16f7ca4f8191d533a0252bddd076aba2"
+            }
+          }
+        ],
+        "version": "xfce4-terminal 1.1.4 (Xfce 4.20)\n\nCopyright (c) 2003-2024\n\tThe Xfce development team. All rights reserved.\n\nWritten by Benedikt Meurer <benny@xfce.org>,\nNick Schermer <nick@xfce.org>,\nIgor Zakharov <f2404@yandex.ru>,\nSergios - Anestis Kefalidis <sergioskefalidis@gmail.com>.\n\nPlease report bugs to <https://gitlab.xfce.org/apps/xfce4-terminal/>.\n",
+        "capability_source": "Actual TERM/TTY native detection with raw probes, classic default theme; no synthetic reply"
+      },
+      "launch": {
+        "argv": [
+          "dbus-run-session",
+          "--",
+          "xfce4-terminal",
+          "--disable-server",
+          "--hide-menubar",
+          "--geometry=60x12+20+20",
+          "--title=TASK161 vte normal",
+          "--command=python3 /workspace/work/widgets-composite-execution/tools/host-supervisor.py /workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/tests/widgets_composite/device/target/release/bin/main /workspace/work/widgets-composite-execution/raw/host-vte-normal normal"
+        ],
+        "fixed_source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+        "binary_sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305",
+        "utc": "2026-11-13T16:38:44.134852+00:00",
+        "uid": 1000,
+        "connection": "local X11 :199; XTEST keys\u2192actual host PTY",
+        "config": {
+          "DISPLAY": ":199",
+          "HOME": "/workspace/work/widgets-composite-execution/raw/host-vte-normal/home",
+          "XDG_CONFIG_HOME": "/workspace/work/widgets-composite-execution/raw/host-vte-normal/home/config",
+          "XDG_CACHE_HOME": "/workspace/work/widgets-composite-execution/raw/host-vte-normal/home/cache"
+        }
+      },
+      "actual_read_bytes_sha256": "a190e4d8113b9bdccabb19315f3f0e150f19d984798266e56e97f9e71a493391",
+      "actual_output_bytes_sha256": "39c7d0bf69d0538e30637db1d6752484dd1f191212f1650129ed1debee136832",
+      "native_cells": []
+    },
+    {
+      "host": "vte",
+      "mode": "example",
+      "result": {
+        "host": "vte",
+        "mode": "example",
+        "frontend_exit": 0,
+        "terminal": {
+          "utc": "2026-11-13T16:38:04.318430+00:00",
+          "termios": [
+            17664,
+            5,
+            191,
+            35387,
+            15,
+            15,
+            [
+              "03",
+              "1c",
+              "7f",
+              "15",
+              "04",
+              "00",
+              "01",
+              "00",
+              "11",
+              "13",
+              "1a",
+              "00",
+              "12",
+              "0f",
+              "17",
+              "16",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00"
+            ]
+          ],
+          "termios_equal": true,
+          "product_pid": "997520",
+          "product_exit": 0,
+          "tracer_exit": 0,
+          "mode25": {
+            "label": "after",
+            "utc": "2026-11-13T16:38:04.316601+00:00",
+            "query_hex": "1b5b3f32352470",
+            "reply_hex": "1b5b3f32353b312479",
+            "status": 1,
+            "method": "External fixture observes actual host DECRQM reply; does not set mode/capability or fake reply; own temporary raw input restored.",
+            "termios_restored": true
+          },
+          "known_original_mode_restored": true
+        },
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 54368541628321
+          },
+          {
+            "key": [
+              "Right"
+            ],
+            "monotonic_ns": 54368690870407
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54368791344667
+          },
+          {
+            "capture": "menu-save",
+            "monotonic_ns": 54369231794051
+          },
+          {
+            "key": [
+              "Home"
+            ],
+            "monotonic_ns": 54369332310755
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 54369432795046
+          },
+          {
+            "capture": "menu-open",
+            "monotonic_ns": 54369920611102
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 54370021344937
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 54370121868658
+          },
+          {
+            "capture": "options-focus",
+            "monotonic_ns": 54370561099969
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54370661477369
+          },
+          {
+            "capture": "popup-close-entry",
+            "monotonic_ns": 54371101352717
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54371201770653
+          },
+          {
+            "capture": "callback-close",
+            "monotonic_ns": 54371642338088
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 54371742758904
+          },
+          {
+            "capture": "popup-for-escape",
+            "monotonic_ns": 54372183715227
+          },
+          {
+            "key": [
+              "Escape"
+            ],
+            "monotonic_ns": 54372284071627
+          },
+          {
+            "capture": "escape-close",
+            "monotonic_ns": 54372775331392
+          },
+          {
+            "resize_cells": [
+              50,
+              10
+            ],
+            "pixels": [
+              517,
+              192
+            ]
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 54373237719231
+          },
+          {
+            "key": [
+              "q"
+            ],
+            "monotonic_ns": 54373338104402
+          },
+          {
+            "capture": "restored",
+            "monotonic_ns": 54373778455849
+          }
+        ],
+        "summary": {},
+        "wire_stats": [
+          {
+            "complete": 24,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          {
+            "complete": 17,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        ],
+        "oracle_source": "Unchanged tests/widgets_composite/pty.py literal23focus/4choice/close/model/summary expectations; transport maps actual host keys/paste. Artificial no-reply mode oracle deliberately not applied here.",
+        "unicode": "Existing native example/device captions ASCII only; new M Unicode host captions unexercised; headless M literal Unicode and unchanged accepted E projection are separate evidence.",
+        "theme": "Classic focused/selected appearance observed; disabled/explicit custom palette only frozen headless suite, not claimed new native evidence."
+      },
+      "identity": {
+        "identities": [
+          {
+            "pid": 997504,
+            "exe": "/usr/bin/xfce4-terminal",
+            "exe_sha256": "752c95cbd8ac8f6d85ab96b102ba2c1212b626dfd3d3c70a89e901b0a5d03143",
+            "vte": {
+              "/usr/lib/x86_64-linux-gnu/libvte-2.91.so.0.8000.1": "e2e719555735ebeb0d72c3add313ff0a16f7ca4f8191d533a0252bddd076aba2"
+            }
+          }
+        ],
+        "version": "xfce4-terminal 1.1.4 (Xfce 4.20)\n\nCopyright (c) 2003-2024\n\tThe Xfce development team. All rights reserved.\n\nWritten by Benedikt Meurer <benny@xfce.org>,\nNick Schermer <nick@xfce.org>,\nIgor Zakharov <f2404@yandex.ru>,\nSergios - Anestis Kefalidis <sergioskefalidis@gmail.com>.\n\nPlease report bugs to <https://gitlab.xfce.org/apps/xfce4-terminal/>.\n",
+        "capability_source": "Actual TERM/TTY native detection with raw probes, classic default theme; no synthetic reply"
+      },
+      "launch": {
+        "argv": [
+          "dbus-run-session",
+          "--",
+          "xfce4-terminal",
+          "--disable-server",
+          "--hide-menubar",
+          "--geometry=60x12+20+20",
+          "--title=TASK161 vte example",
+          "--command=python3 /workspace/work/widgets-composite-execution/tools/host-supervisor.py /workspace/work/widgets-composite-execution/clean/cjtui-0.0.0/examples/widgets_composition/target/release/bin/main /workspace/work/widgets-composite-execution/raw/host-vte-example example"
+        ],
+        "fixed_source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+        "binary_sha256": "53f119dfda35c15f0328a3b1bcceb7371163a52eaa243e3a0d0495e7fbdf487d",
+        "utc": "2026-11-13T16:37:58.742839+00:00",
+        "uid": 1000,
+        "connection": "local X11 :199; XTEST keys\u2192actual host PTY",
+        "config": {
+          "DISPLAY": ":199",
+          "HOME": "/workspace/work/widgets-composite-execution/raw/host-vte-example/home",
+          "XDG_CONFIG_HOME": "/workspace/work/widgets-composite-execution/raw/host-vte-example/home/config",
+          "XDG_CACHE_HOME": "/workspace/work/widgets-composite-execution/raw/host-vte-example/home/cache"
+        }
+      },
+      "actual_read_bytes_sha256": "e54cc9995d5d774df0a861bd4819652184d0d17b9b43c6dcf78626026e1c0b27",
+      "actual_output_bytes_sha256": "8ad6641d8827c23a1e62fc6e83aa6dfdda0e54f9091febc031c7902e3b42a249",
+      "native_cells": []
+    },
+    {
+      "host": "vt",
+      "mode": "normal",
+      "result": {
+        "qemu_exit": 0,
+        "product_exit": 0,
+        "product_pid": 138,
+        "termios_equal": true,
+        "virtual_hardware": true,
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 54443653458077
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54443655571236
+          },
+          {
+            "keys": [
+              "right"
+            ],
+            "monotonic_ns": 54443952112854
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54444203974272
+          },
+          {
+            "keys": [
+              "right"
+            ],
+            "monotonic_ns": 54444556793378
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54444809088387
+          },
+          {
+            "keys": [
+              "end"
+            ],
+            "monotonic_ns": 54445161466085
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54445414524789
+          },
+          {
+            "keys": [
+              "home"
+            ],
+            "monotonic_ns": 54445766871996
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54446018839980
+          },
+          {
+            "keys": [
+              "left"
+            ],
+            "monotonic_ns": 54446371384303
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54446623224442
+          },
+          {
+            "keys": [
+              "home"
+            ],
+            "monotonic_ns": 54446975895940
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54447227872718
+          },
+          {
+            "capture": "horizontal-navigation",
+            "monotonic_ns": 54448629289217
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 54448630483458
+          },
+          {
+            "keys": [
+              "spc"
+            ],
+            "monotonic_ns": 54448881813834
+          },
+          {
+            "keys": [
+              "alt",
+              "spc"
+            ],
+            "monotonic_ns": 54449301245254
+          },
+          {
+            "keys": [
+              "shift",
+              "insert"
+            ],
+            "monotonic_ns": 54449554363383
+          },
+          {
+            "native_paste": "Kernel ShiftInsert actual keymap only; no terminal clipboard/bracketed paste support asserted; artificial PTY covers exact paste vector."
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54449807896443
+          },
+          {
+            "keys": [
+              "tab"
+            ],
+            "monotonic_ns": 54450163852207
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54450416404192
+          },
+          {
+            "keys": [
+              "o"
+            ],
+            "monotonic_ns": 54450771466907
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54451031362318
+          },
+          {
+            "capture": "popup-open",
+            "monotonic_ns": 54452504376839
+          },
+          {
+            "keys": [
+              "down"
+            ],
+            "monotonic_ns": 54452505468906
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54452758261888
+          },
+          {
+            "keys": [
+              "up"
+            ],
+            "monotonic_ns": 54453190934429
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54453444172713
+          },
+          {
+            "keys": [
+              "end"
+            ],
+            "monotonic_ns": 54453800403034
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54454054058303
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 54454409228774
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54454661402370
+          },
+          {
+            "capture": "chosen-popup-still-open",
+            "monotonic_ns": 54456075238113
+          },
+          {
+            "keys": [
+              "esc"
+            ],
+            "monotonic_ns": 54456076254588
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54456494944335
+          },
+          {
+            "capture": "escape-restored",
+            "monotonic_ns": 54457838764732
+          },
+          {
+            "keys": [
+              "o"
+            ],
+            "monotonic_ns": 54457839765193
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54458092390074
+          },
+          {
+            "keys": [
+              "n"
+            ],
+            "monotonic_ns": 54458445729115
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54458697934597
+          },
+          {
+            "capture": "nested-modal",
+            "monotonic_ns": 54460099860274
+          },
+          {
+            "keys": [
+              "esc"
+            ],
+            "monotonic_ns": 54460100927675
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54460577285219
+          },
+          {
+            "capture": "nested-escape-parent-retained",
+            "monotonic_ns": 54461918777919
+          },
+          {
+            "keys": [
+              "esc"
+            ],
+            "monotonic_ns": 54461919569426
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54462399072201
+          },
+          {
+            "keys": [
+              "u"
+            ],
+            "monotonic_ns": 54462691333323
+          },
+          {
+            "keys": [
+              "o"
+            ],
+            "monotonic_ns": 54462942430332
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54463194301158
+          },
+          {
+            "capture": "latest-model-layer",
+            "monotonic_ns": 54464596768357
+          },
+          {
+            "keys": [
+              "c"
+            ],
+            "monotonic_ns": 54464597564080
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54464849573370
+          },
+          {
+            "keys": [
+              "e"
+            ],
+            "monotonic_ns": 54465210137710
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54465462354019
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 54465816263921
+          },
+          {
+            "keys": [
+              "shift",
+              "3"
+            ],
+            "monotonic_ns": 54466069246984
+          },
+          {
+            "capture": "explicit-callback-close",
+            "monotonic_ns": 54467475891899
+          },
+          {
+            "frozen_focus_trace": [
+              "a",
+              "c",
+              "a",
+              "c",
+              "a",
+              "c",
+              "a",
+              "a",
+              "c",
+              "p",
+              "r",
+              "p",
+              "r",
+              "r",
+              "c",
+              "p",
+              "n",
+              "p",
+              "c",
+              "p",
+              "c",
+              "p",
+              "c"
+            ],
+            "escape_count": 3
+          },
+          {
+            "capture": "resize-transition",
+            "monotonic_ns": 54468546716320
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 54469599994077
+          },
+          {
+            "keys": [
+              "q"
+            ],
+            "monotonic_ns": 54469601211173
+          }
+        ],
+        "wire_stats": {
+          "input": {
+            "complete": 76,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          "output": {
+            "complete": 26,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        },
+        "summary": {
+          "calls": "4",
+          "chosen": "h:a;h:a;p:r;p:p;",
+          "model": "NEW",
+          "cleanups": "1",
+          "resources": "0/0/0/0"
+        },
+        "oracle_source": "Unchanged tests/widgets_composite/pty.py literal23focus/4choice/close/model/summary; actual QMP generated kernel input, no new Cj oracle.",
+        "unicode": "ASCII native fixture only; new M Unicode host caption projection not exercised; independent headless M and unchanged accepted E backend evidence remain distinct.",
+        "theme": "Classic focus/selected native appearance only; disabled/explicit custom palette is headless M evidence, not new native proof.",
+        "resize": "actual kernel VT_RESIZE60x12 to50x10 with native vcsa/readback",
+        "utc": "2026-11-13T16:39:46.332108+00:00"
+      },
+      "identity": [
+        "KERNEL Linux 6.12.107+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.107-1 (2026-08-29)",
+        "TTY=/dev/tty1 TERM=linux GRID=80x25 winsize_rc=0 VT_GETSTATE_rc=0 active=1 KDGKBTYPE_rc=0 keyboard=2 SCENE=normal",
+        "VT_RESIZE request=60x12 rc=0 errno=0 readback_rc=0 actual=60x12",
+        "EXTERNAL_MODE25 phase=BEFORE query=1 reply_hex= no_mode_force=1",
+        "PRODUCT_ID uid=1000 euid=1000 gid=1000 stdout=/dev/tty1 scene=normal",
+        "VT_RESIZE request=50x10 rc=0 errno=2 readback_rc=0 actual=50x10",
+        "EXTERNAL_MODE25 phase=AFTER query=1 reply_hex= no_mode_force=1",
+        "RESTORE iflag=4500/4500 oflag=5/5 cflag=4bf/4bf lflag=8a3b/8a3b cc_equal=1 termios_equal=1"
+      ],
+      "launch": {
+        "argv": [
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/bin/qemu-system-x86_64",
+          "-accel",
+          "tcg",
+          "-cpu",
+          "max",
+          "-machine",
+          "pc",
+          "-m",
+          "512",
+          "-smp",
+          "1",
+          "-no-reboot",
+          "-nic",
+          "none",
+          "-L",
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/share/qemu",
+          "-bios",
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/bios-256k.bin",
+          "-device",
+          "VGA,romfile=/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/vgabios-stdvga.bin",
+          "-vga",
+          "none",
+          "-display",
+          "none",
+          "-serial",
+          "file:/workspace/work/widgets-composite-execution/raw/host-vt-normal/serial.log",
+          "-chardev",
+          "socket,id=probe,path=/workspace/work/widgets-composite-execution/raw/host-vt-normal/control.sock,server=on,wait=off",
+          "-serial",
+          "chardev:probe",
+          "-qmp",
+          "unix:/workspace/work/widgets-composite-execution/raw/host-vt-normal/qmp.sock,server=on,wait=off",
+          "-kernel",
+          "/workspace/work/linux-console-hosts/packages/linux",
+          "-initrd",
+          "/workspace/work/widgets-composite-execution/widgets-composite-vt.cpio.gz",
+          "-append",
+          "console=tty0 console=ttyS0,115200 rdinit=/init nomodeset vga=normal loglevel=4 scene=normal"
+        ],
+        "virtual_hardware": true,
+        "fixed_source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+        "binary_sha256": "fbcca6abb98cb04e89d226b3509c816590cf24034c999f53b2ed7b52ca00d305",
+        "initrd_sha256": "1caef629b7d1586b1f7cbae343650c821c474f39dc0e67eb6740125389abdee5",
+        "kernel_sha256": "2b2358b37674d2505350528875bb17afae2a36522a9e8a9417eaca65a7da0e08",
+        "utc": "2026-11-13T16:39:05.043494+00:00",
+        "connection": "QEMU TCG emulated keyboard \u2192 actual Linux kernel VT tty1; serial observer channel does not inject PTY bytes"
+      },
+      "actual_read_bytes_sha256": "21cb53b05c872d36427ce877a086706eefa9f995e2c2e3769aee7f43baf25090",
+      "actual_output_bytes_sha256": "6e8e59f9d8e4ea6f8a4b7ad4f181b1b1ae3b369df324c9f9cc939bf70c01c4cc",
+      "native_cells": [
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/chosen-popup-still-open-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "M_WIDGETS_READY                                             ",
+            "ABC                                                         ",
+            "old                                                         ",
+            "old                                                         ",
+            "                             P                              ",
+            "                             X                              ",
+            "                             R                              ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/escape-restored-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "M_WIDGETS_READY                                             ",
+            "ABC                                                         ",
+            "old                                                         ",
+            "old                                                         ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/explicit-callback-close-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "M_WIDGETS_READY                                             ",
+            "ABC                                                         ",
+            "NEW                                                         ",
+            "NEW                                                         ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/horizontal-navigation-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "M_WIDGETS_READY                                             ",
+            "ABC                                                         ",
+            "old                                                         ",
+            "old                                                         ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/latest-model-layer-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "M_WIDGETS_READY                                             ",
+            "ABC                                                         ",
+            "NEW                                                         ",
+            "NEW                                                         ",
+            "                             P                              ",
+            "                             X                              ",
+            "                             R                              ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/nested-escape-parent-retained-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "M_WIDGETS_READY                                             ",
+            "ABC                                                         ",
+            "old                                                         ",
+            "old                                                         ",
+            "                             P                              ",
+            "                             X                              ",
+            "                             R                              ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/nested-modal-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "M_WIDGETS_READY                                             ",
+            "ABC                                                         ",
+            "old                                                         ",
+            "old                                                         ",
+            "                             P                              ",
+            "                             N                              ",
+            "                             R                              ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/popup-open-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "M_WIDGETS_READY                                             ",
+            "ABC                                                         ",
+            "old                                                         ",
+            "old                                                         ",
+            "                             P                              ",
+            "                             X                              ",
+            "                             R                              ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/resize-transition-vcsa.bin",
+          "rows": 10,
+          "columns": 50,
+          "visible_rows": [
+            "M_WIDGETS_READY                                   ",
+            "ABC                                               ",
+            "NEW                                               ",
+            "NEW                                               ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/resized-vcsa.bin",
+          "rows": 10,
+          "columns": 50,
+          "visible_rows": [
+            "M_WIDGETS_READY                                   ",
+            "ABC                                               ",
+            "NEW                                               ",
+            "NEW                                               ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-normal/running-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "M_WIDGETS_READY                                             ",
+            "ABC                                                         ",
+            "old                                                         ",
+            "old                                                         ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            "
+          ]
+        }
+      ]
+    },
+    {
+      "host": "vt",
+      "mode": "example",
+      "result": {
+        "qemu_exit": 0,
+        "product_exit": 0,
+        "product_pid": 140,
+        "termios_equal": true,
+        "virtual_hardware": true,
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 54485104120652
+          },
+          {
+            "keys": [
+              "right"
+            ],
+            "monotonic_ns": 54485105128503
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 54485356778979
+          },
+          {
+            "capture": "menu-save",
+            "monotonic_ns": 54486653305987
+          },
+          {
+            "keys": [
+              "home"
+            ],
+            "monotonic_ns": 54486654096092
+          },
+          {
+            "keys": [
+              "spc"
+            ],
+            "monotonic_ns": 54486905715540
+          },
+          {
+            "capture": "menu-open",
+            "monotonic_ns": 54488201808658
+          },
+          {
+            "keys": [
+              "tab"
+            ],
+            "monotonic_ns": 54488202675463
+          },
+          {
+            "keys": [
+              "tab"
+            ],
+            "monotonic_ns": 54488454301651
+          },
+          {
+            "capture": "options-focus",
+            "monotonic_ns": 54489750769408
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 54489751525562
+          },
+          {
+            "capture": "popup-close-entry",
+            "monotonic_ns": 54491048924542
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 54491049769469
+          },
+          {
+            "capture": "callback-close",
+            "monotonic_ns": 54492346492535
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 54492347320467
+          },
+          {
+            "capture": "popup-for-escape",
+            "monotonic_ns": 54493646990823
+          },
+          {
+            "keys": [
+              "esc"
+            ],
+            "monotonic_ns": 54493647914348
+          },
+          {
+            "capture": "escape-close",
+            "monotonic_ns": 54494944718795
+          },
+          {
+            "capture": "resize-transition",
+            "monotonic_ns": 54496032795915
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 54497078335129
+          },
+          {
+            "keys": [
+              "q"
+            ],
+            "monotonic_ns": 54497080085795
+          }
+        ],
+        "wire_stats": {
+          "input": {
+            "complete": 16,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          "output": {
+            "complete": 15,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        },
+        "summary": {},
+        "oracle_source": "Unchanged tests/widgets_composite/pty.py literal23focus/4choice/close/model/summary; actual QMP generated kernel input, no new Cj oracle.",
+        "unicode": "ASCII native fixture only; new M Unicode host caption projection not exercised; independent headless M and unchanged accepted E backend evidence remain distinct.",
+        "theme": "Classic focus/selected native appearance only; disabled/explicit custom palette is headless M evidence, not new native proof.",
+        "resize": "actual kernel VT_RESIZE60x12 to50x10 with native vcsa/readback",
+        "utc": "2026-11-13T16:40:13.590061+00:00"
+      },
+      "identity": [
+        "KERNEL Linux 6.12.107+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.107-1 (2026-08-29)",
+        "TTY=/dev/tty1 TERM=linux GRID=80x25 winsize_rc=0 VT_GETSTATE_rc=0 active=1 KDGKBTYPE_rc=0 keyboard=2 SCENE=example",
+        "VT_RESIZE request=60x12 rc=0 errno=0 readback_rc=0 actual=60x12",
+        "EXTERNAL_MODE25 phase=BEFORE query=1 reply_hex= no_mode_force=1",
+        "PRODUCT_ID uid=1000 euid=1000 gid=1000 stdout=/dev/tty1 scene=example",
+        "VT_RESIZE request=50x10 rc=0 errno=2 readback_rc=0 actual=50x10",
+        "EXTERNAL_MODE25 phase=AFTER query=1 reply_hex= no_mode_force=1",
+        "RESTORE iflag=4500/4500 oflag=5/5 cflag=4bf/4bf lflag=8a3b/8a3b cc_equal=1 termios_equal=1"
+      ],
+      "launch": {
+        "argv": [
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/bin/qemu-system-x86_64",
+          "-accel",
+          "tcg",
+          "-cpu",
+          "max",
+          "-machine",
+          "pc",
+          "-m",
+          "512",
+          "-smp",
+          "1",
+          "-no-reboot",
+          "-nic",
+          "none",
+          "-L",
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/share/qemu",
+          "-bios",
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/bios-256k.bin",
+          "-device",
+          "VGA,romfile=/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/vgabios-stdvga.bin",
+          "-vga",
+          "none",
+          "-display",
+          "none",
+          "-serial",
+          "file:/workspace/work/widgets-composite-execution/raw/host-vt-example/serial.log",
+          "-chardev",
+          "socket,id=probe,path=/workspace/work/widgets-composite-execution/raw/host-vt-example/control.sock,server=on,wait=off",
+          "-serial",
+          "chardev:probe",
+          "-qmp",
+          "unix:/workspace/work/widgets-composite-execution/raw/host-vt-example/qmp.sock,server=on,wait=off",
+          "-kernel",
+          "/workspace/work/linux-console-hosts/packages/linux",
+          "-initrd",
+          "/workspace/work/widgets-composite-execution/widgets-composite-vt.cpio.gz",
+          "-append",
+          "console=tty0 console=ttyS0,115200 rdinit=/init nomodeset vga=normal loglevel=4 scene=example"
+        ],
+        "virtual_hardware": true,
+        "fixed_source_sha": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+        "binary_sha256": "53f119dfda35c15f0328a3b1bcceb7371163a52eaa243e3a0d0495e7fbdf487d",
+        "initrd_sha256": "1caef629b7d1586b1f7cbae343650c821c474f39dc0e67eb6740125389abdee5",
+        "kernel_sha256": "2b2358b37674d2505350528875bb17afae2a36522a9e8a9417eaca65a7da0e08",
+        "utc": "2026-11-13T16:39:46.469796+00:00",
+        "connection": "QEMU TCG emulated keyboard \u2192 actual Linux kernel VT tty1; serial observer channel does not inject PTY bytes"
+      },
+      "actual_read_bytes_sha256": "1938eac5f2e2cc5a600a0b4221168a625b6a4340a3e1e97f876f9b4bcf6be510",
+      "actual_output_bytes_sha256": "772b82d1cc858832af6b1ff089d354d43b3f6aec8ee5cd9e67b8c944e4108969",
+      "native_cells": [
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/callback-close-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "OpenSave                                                    ",
+            "Options                                                     ",
+            "First pane Second pan                                       ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "Selected: close                                             "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/escape-close-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "OpenSave                                                    ",
+            "Options                                                     ",
+            "First pane Second pan                                       ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "Selected: close                                             "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/menu-open-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "OpenSave                                                    ",
+            "Options                                                     ",
+            "First pane Second pan                                       ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "Selected: open                                              "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/menu-save-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "OpenSave                                                    ",
+            "Options                                                     ",
+            "First pane Second pan                                       ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "Selected: save                                              "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/options-focus-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "OpenSave                                                    ",
+            "Options                                                     ",
+            "First pane Second pan                                       ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "Selected: open                                              "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/popup-close-entry-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "OpenSave                                                    ",
+            "Options                                                     ",
+            "First pane Second pan                                       ",
+            "                                                            ",
+            "                                                            ",
+            "                           Close                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "Selected: open                                              "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/popup-for-escape-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "OpenSave                                                    ",
+            "Options                                                     ",
+            "First pane Second pan                                       ",
+            "                                                            ",
+            "                                                            ",
+            "                           Close                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "Selected: close                                             "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/resize-transition-vcsa.bin",
+          "rows": 10,
+          "columns": 50,
+          "visible_rows": [
+            "OpenSave                                          ",
+            "Options                                           ",
+            "First pane Second pan                             ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/resized-vcsa.bin",
+          "rows": 10,
+          "columns": 50,
+          "visible_rows": [
+            "OpenSave                                          ",
+            "Options                                           ",
+            "First pane Second pan                             ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "                                                  ",
+            "Selected: close                                   "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-composite-execution/raw/host-vt-example/running-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "OpenSave                                                    ",
+            "Options                                                     ",
+            "First pane Second pan                                       ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "                                                            ",
+            "Ready                                                       "
+          ]
+        }
+      ]
+    }
+  ],
+  "environment": {
+    "OS": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.6\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+    "uname": [
+      "Linux",
+      "6832e21a9462",
+      "6.18.57",
+      "#1 SMP Tue Oct 20 21:56:04 UTC 2026",
+      "x86_64",
+      ""
+    ],
+    "ABI": "x86_64-unknown-linux-gnu",
+    "uid": 1000,
+    "SDK": "Cangjie/CJPM1.2.0 (same supplied/hash-bound toolchain)",
+    "stdx": "1.2.0-beta.02.1",
+    "loaded_VTE": [
+      0,
+      80,
+      1
+    ],
+    "config": "[repository.cache]\npath = \"/workspace/work/viewport-tests/cache\"\n[repository.home]\nregistry = \"https://pkg.cangjie-lang.cn/registry\"\n",
+    "UCD_sha256": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e"
+  },
+  "preserved_prior_evidence": [
+    {
+      "index": "/workspace/work/widgets-small-execution/final-index.json",
+      "sha256": "9d15fcee7473101f21edec529063d380d0d2dc0f5d75b006498e5927239b78a0",
+      "bound_raw_unchanged": true
+    },
+    {
+      "index": "/workspace/work/editing-execution/final-index.json",
+      "sha256": "2cb01f0ea6d3f3bf6fd64b0715d922d1c8bd3c36432608441cb84566c4865276",
+      "bound_raw_unchanged": true
+    }
+  ],
+  "known_T087": "Supplied historical whole-checker exit1 themes/light.toml allowlist mismatch retained. Not repeated or labelled passed; own mandatory normal bundle0 and exact-source clean consumer independent.",
+  "coverage_limits": "New actual M fixture/example ASCII/Classic only; disabledB/X skip exercised. Explicit palette/literalUnicode remain headless/source proof; all-four-theme/all-component027/041/physical-console/fullLinux later. Kernel mode25 original visibility Unknown, no fake report or external mode force.",
+  "UTC": "2026-11-13T16:44:35.406541+00:00"
+}

@@ -1,0 +1,461 @@
+{
+  "schema": 2,
+  "authority": "Hand-authored observations; executable assertions are in src/*.cj. No target output used.",
+  "cases": {
+    "M01-entry": {
+      "key": " a ",
+      "enabled": true,
+      "invalid_key": "InvalidKey",
+      "bad_caption": "IllegalArgumentException"
+    },
+    "M01-replace-reorder": {
+      "source_keys": [
+        "b",
+        "a",
+        "c"
+      ],
+      "physical_keys": [
+        "b",
+        "a",
+        "c"
+      ],
+      "labels": [
+        "Beta2",
+        "Alpha2",
+        "C"
+      ],
+      "enabled": [
+        false,
+        true,
+        true
+      ],
+      "same_ref": [
+        "a",
+        "b",
+        "c"
+      ],
+      "focused_key": "a",
+      "frame": "Beta2Alpha2C"
+    },
+    "M01-duplicate": {
+      "error": "DuplicateKey",
+      "resources": "0/0/0/0",
+      "cleanup_calls": 1,
+      "old_ref_valid": false,
+      "source_keys": [
+        "new",
+        "dup",
+        "dup"
+      ]
+    },
+    "M01-remove-readd": {
+      "old_ref_valid": false,
+      "new_generation": true
+    },
+    "M01-constant-copy": {
+      "source_after": "B",
+      "frame": "A"
+    },
+    "M02-horizontal": {
+      "initial": "a",
+      "keys": [
+        "right",
+        "right",
+        "home",
+        "end",
+        "left",
+        "up"
+      ],
+      "focus_after": [
+        "c",
+        "a",
+        "a",
+        "c",
+        "a",
+        "a"
+      ],
+      "consumed": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ]
+    },
+    "M02-popup": {
+      "initial": "a",
+      "keys": [
+        "down",
+        "down",
+        "home",
+        "end",
+        "up",
+        "left"
+      ],
+      "focus_after": [
+        "c",
+        "a",
+        "a",
+        "c",
+        "a",
+        "a"
+      ],
+      "consumed": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ]
+    },
+    "M02-one-eligible": {
+      "keys": [
+        "up",
+        "down",
+        "home",
+        "end"
+      ],
+      "focus_after": [
+        "a",
+        "a",
+        "a",
+        "a"
+      ],
+      "consumed": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "callback_calls": 0
+    },
+    "M02-no-eligible": {
+      "focused_key": null,
+      "key": "down",
+      "consumed": false,
+      "callback_calls": 0
+    },
+    "M02-manual-move": {
+      "source_keys": [
+        "a",
+        "b",
+        "c"
+      ],
+      "physical_keys": [
+        "c",
+        "a",
+        "b"
+      ],
+      "initial": "c",
+      "key": "right",
+      "focus_after": [
+        "a"
+      ]
+    },
+    "M02-tab": {
+      "physical_keys": [
+        "c",
+        "manual",
+        "a",
+        "b"
+      ],
+      "initial": "a",
+      "key": "tab",
+      "focus_after": "outside"
+    },
+    "M02-nonentry-child": {
+      "initial": "manual",
+      "keys": [
+        "right",
+        "enter"
+      ],
+      "focus_after": "manual",
+      "callback_calls": 0,
+      "consumed": false
+    },
+    "M02-modified": {
+      "keys": [
+        "enter",
+        "space",
+        "alt-space",
+        "ctrl-enter",
+        "shift-enter",
+        "paste-space"
+      ],
+      "callback_counts": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_seven_modifier_masks_per_activation": 0
+    },
+    "M02-event-phases": {
+      "capture_prevent": 0,
+      "bubble_prevent": 0,
+      "app_prevent": 0,
+      "capture_stop_only": 1,
+      "unfocused": 0,
+      "disabled_ancestor": 0
+    },
+    "M03-select-stays-open": {
+      "chosen": [
+        "a"
+      ],
+      "open_after_choose": true
+    },
+    "M03-select-app-close": {
+      "open_after_choose": false,
+      "close_reason": "Requested",
+      "focus_after_close": "trigger"
+    },
+    "M03-escape": {
+      "open_after_escape": false,
+      "close_reason": "Escape",
+      "focus_after_close": "trigger"
+    },
+    "M03-inline-escape": {
+      "old_ref_valid": true,
+      "focus_after": "a"
+    },
+    "M03-blocked-escape": {
+      "open_after_escape": true
+    },
+    "M03-owner-gone": {
+      "open_after_owner_removal": false,
+      "close_reason": "OwnerGone"
+    },
+    "M03-empty-escape": {
+      "focused_key": null,
+      "open_after_escape": false,
+      "close_reason": "Escape"
+    },
+    "M03-all-disabled-escape": {
+      "focused_key": null,
+      "open_after_escape": false,
+      "close_reason": "Escape"
+    },
+    "M03-nested-escape": {
+      "parent_open": true,
+      "child_open": false,
+      "focus_after_close": "parent-entry"
+    },
+    "M03-dependent-close": {
+      "parent_open": false,
+      "child_open": false,
+      "focus_after_close": "trigger"
+    },
+    "M03-anchor-gone": {
+      "open_after_anchor_removal": false,
+      "close_reason": "AnchorGone"
+    },
+    "M03-opaque": {
+      "grid": [
+        "abcdefgh",
+        "ijX  nop",
+        "qrstuvwx"
+      ]
+    },
+    "M03-background-latest": {
+      "grid": [
+        "abcdefgh",
+        "IJKLMNOP",
+        "qrstuvwx"
+      ]
+    },
+    "M04-status-empty": {
+      "grid": [
+        "Z   ",
+        "    "
+      ]
+    },
+    "M04-status-single": {
+      "grid": [
+        "OK  ",
+        "Z   "
+      ]
+    },
+    "M04-status-multiline": {
+      "grid": [
+        "A   ",
+        "B   ",
+        "Z   "
+      ]
+    },
+    "M04-status-explicit-height": {
+      "grid": [
+        "A   ",
+        "Z   ",
+        "    "
+      ]
+    },
+    "M04-status-theme-height": {
+      "grid": [
+        "A   ",
+        "Z   ",
+        "    "
+      ]
+    },
+    "M04-status-theme-override": {
+      "grid": [
+        "A   ",
+        "B   ",
+        "Z   "
+      ]
+    },
+    "M04-status-narrow": {
+      "grid": [
+        "O",
+        "Z"
+      ]
+    },
+    "M04-zero-width-two-rows": {
+      "plain": "\n"
+    },
+    "M04-split-horizontal-odd": {
+      "grid": [
+        "A  B "
+      ]
+    },
+    "M04-split-vertical-odd": {
+      "grid": [
+        "A",
+        " ",
+        " ",
+        "B",
+        " "
+      ]
+    },
+    "M04-split-no-implicit-weights": {
+      "grid": [
+        "AB   "
+      ]
+    },
+    "M04-split-weights-123": {
+      "grid": [
+        "ABBBCCCC"
+      ]
+    },
+    "M04-split-nested": {
+      "grid": [
+        "A  C ",
+        "     ",
+        "B    "
+      ]
+    },
+    "M04-split-narrow": {
+      "grid": [
+        "A"
+      ],
+      "business_visible": true
+    },
+    "M04-zero": {
+      "grid": [],
+      "business_visible": true
+    },
+    "M05-shared-model": {
+      "grid": [
+        "A       ",
+        "new     ",
+        "new     ",
+        "        "
+      ],
+      "same_application": true,
+      "distinct_refs": true
+    },
+    "M05-post-close": {
+      "grid": [
+        "A       ",
+        "latest  ",
+        "latest  ",
+        "        "
+      ]
+    },
+    "M05-callback-throw": {
+      "callback_calls": 1,
+      "first_error": "M_CALLBACK_SENTINEL",
+      "cleanup_calls": 1,
+      "old_ref_valid": false,
+      "resources": "0/0/0/0"
+    },
+    "M05-getter-throw": {
+      "first_error": "M_GETTER_SENTINEL",
+      "source_key": "bad",
+      "resources": "0/0/0/0"
+    },
+    "M05-color-inheritance": {
+      "foreground": "red",
+      "background": "default",
+      "bold": false,
+      "dim": false,
+      "italic": false,
+      "underline": true,
+      "inverse": false,
+      "strikethrough": false
+    },
+    "S02-complete-modifiers": {
+      "controls": [
+        "Button",
+        "Checkbox",
+        "Radio"
+      ],
+      "modifier_masks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "callbacks": 0
+    },
+    "M03-modal-root-blocked-escape": {
+      "blocked_open": true,
+      "after_allow_open": false,
+      "focus_after_close": "trigger"
+    },
+    "M01-duplicate-label": {
+      "labels": [
+        "same",
+        "same"
+      ],
+      "distinct_refs": true,
+      "chosen_key": "b"
+    },
+    "M05-horizontal-root-style": {
+      "foreground": "red",
+      "background": "black",
+      "bold": false,
+      "dim": false,
+      "italic": false,
+      "underline": false,
+      "inverse": false,
+      "strikethrough": false
+    },
+    "M05-horizontal-global-seed-style": {
+      "foreground": "default",
+      "background": "black",
+      "bold": false,
+      "dim": false,
+      "italic": false,
+      "underline": false,
+      "inverse": false,
+      "strikethrough": false
+    },
+    "M05-custom-theme-no-preset-fallback": {
+      "foreground": "red",
+      "background": "default",
+      "bold": false,
+      "dim": false,
+      "italic": false,
+      "underline": false,
+      "inverse": false,
+      "strikethrough": false
+    }
+  }
+}

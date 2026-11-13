@@ -1,0 +1,6 @@
+Two test setup mistakes were found through actual accepted-prerequisite execution and corrected without production changes or weak expected values.
+
+1. `prerequisite-run-fixture-error.log`: opening an overlay directly between turns raises WrongUIContext / active UI turn. Existing public contract and accepted C112 examples require Application.batch. The fixture now opens inside batch and commits queued focus before any dispatch. Subsequent formal.log shows the accepted prerequisite PASS.
+2. `prerequisite-run-nested-fixture-error.log`: a nested cross-axis child without explicit height keeps its natural height. The fixture intended a3-row inner split. It now declares inner.height(3) explicitly; the manually derived3-row grid is unchanged. Subsequent formal.log shows the accepted primitive golden passes. No product output was copied into an expected value.
+
+The earlier uncorrected prerequisite-build/run standalone files are intermediate artifacts; final formal.log and its exact command record are authoritative for the final prerequisite source. The first duplicated generated dependencies header was corrected before any successful build; it was fixture setup and never counted as target RED.
