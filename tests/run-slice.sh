@@ -5,7 +5,12 @@ cd "$(dirname "$0")/.."
 cjc --version
 cjpm --version
 case "${1:-all}" in
-  editing) bash tests/editing/run.sh ;;
+  editing)
+    bash tests/editing/run.sh
+    for review_case in E120-I01 E120-I02 E120-I03 E120-I04; do
+      TERM=dumb COLORTERM= CJTUI_EDITING_REVIEW_CASE="$review_case" timeout 90s tests/editing/target/release/bin/main </dev/null
+    done
+    ;;
   keyboard)
     tests/keyboard/run.sh --pty
     bash tests/keyboard/paste_argument/run.sh

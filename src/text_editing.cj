@@ -11,6 +11,19 @@ func editingClusterCount(value: String): Int64 {
     count
 }
 
+// Shared validation for mounted editors and pure detached Canvas rendering.
+func validateEditingValue(value: String, limits: TextEditLimits, multiline: Bool): Unit {
+    if (value.size > limits.maxTextBytes) {
+        throw IllegalArgumentException("text too large")
+    }
+    for (r in value.runes()) {
+        let c = UInt32(r)
+        if (c == 13 || (c == 10 && !multiline) || (c < 32 && c != 10) || (c >= 127 && c < 160)) {
+            throw IllegalArgumentException("invalid editing text")
+        }
+    }
+}
+
 func editingFactory(value: Observable<String>, controller: ?TextEditController, limits: TextEditLimits, multiline: Bool,
     onChange: (String) -> Unit, onSubmit: (String) -> Unit, onIssue: (TextEditIssue) -> Unit): Component {
     let owner = TextEditOwner()
@@ -20,7 +33,9 @@ func editingFactory(value: Observable<String>, controller: ?TextEditController, 
                 let text = if (let Some(edit) <- owner.session) {
                     edit.text
                 } else {
-                    value.get()
+                    let initial = value.get();
+                    validateEditingValue(initial, limits, multiline);
+                    initial
                 }
                 var width: Int64 = 0;
                 var line: Int64 = 0;
@@ -43,21 +58,33 @@ func editingFactory(value: Observable<String>, controller: ?TextEditController, 
                 Size(greater(width, line + 1), height)
         },
         {
-            context => if (let Some(edit) <- owner.session) {
-                let lo = lesser(edit.selection.anchor, edit.selection.caret);
-                let hi = greater(edit.selection.anchor, edit.selection.caret)
+            context =>
+                let text = if (let Some(edit) <- owner.session) {
+                    edit.text
+                } else {
+                    let initial = value.get();
+                    validateEditingValue(initial, limits, multiline);
+                    initial
+                }
+                let selection = if (let Some(edit) <- owner.session) {
+                    edit.selection
+                } else {
+                    TextSelection(0, 0)
+                }
+                let lo = lesser(selection.anchor, selection.caret);
+                let hi = greater(selection.anchor, selection.caret)
                 var x: Int64 = 0;
                 var y: Int64 = 0
                 let clip = context.clip
                 context.fill(Rect(clip.x, clip.y, clip.width, clip.height))
-                let iterator = graphemeIterator(edit.text)
+                let iterator = graphemeIterator(text)
                 var count: Int64 = 0
                 while (true) {
                     match (iterator.next()) {
                         case None => break
                         case Some(item) =>
                             let cluster = item.toString()
-                            if (count == edit.selection.caret) {
+                            if (count == selection.caret) {
                                 context.caret(x, y)
                             }
                             if (cluster == "\n") {
@@ -77,10 +104,9 @@ func editingFactory(value: Observable<String>, controller: ?TextEditController, 
                             count++
                     }
                 }
-                if (edit.selection.caret == count) {
+                if (selection.caret == count) {
                     context.caret(x, y)
                 }
-            }
         }
     )
     component.themeRole(if (multiline) {
@@ -100,10 +126,20 @@ func editingFactory(value: Observable<String>, controller: ?TextEditController, 
             =>
                 value.get()
                 if (let Some(edit) <- owner.session) {
-                    edit.sync()
+                    edit.sync(deferSignal: true)
                 }
         }
     )
+    // Only this internal source binding needs post-evaluation signal publication.
+    for (binding in component.bindings) {
+        if (binding.name == "editing-source") {
+            binding.afterEvaluate = Some({
+                => if (let Some(edit) <- owner.session) {
+                    edit.flushSnapshotSignal()
+                }
+            })
+        }
+    }
     component.intrinsicMountEffect = Some(
         {
             ref =>
