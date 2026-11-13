@@ -4,6 +4,7 @@ import std.env.*
 // This binary is built and run ONLY after actual accepted A/B/Theme/Session
 // admission. Missing those dependencies is BLOCKED, never behavioral RED.
 main(): Int64 {
+    if(let Some(name)<-getVariable("CJTUI_OVERLAY_REVIEW_R2")){return round2ReviewRegression(name)}
     if(let Some(name)<-getVariable("CJTUI_OVERLAY_REVIEW")){return reviewRegression(name)}
     if(let Some(name)<-getVariable("CJTUI_OVERLAY_REGRESSION")){return exportTurnRegression(name)}
     if(getVariable("CJTUI_OVERLAY_NATIVE").isSome()){return nativeOverlayFixture()}
@@ -34,5 +35,6 @@ main(): Int64 {
     decoratedLayerTargets();caretSpacesShadowAndClip()
     pureExportPreservesCommittedOverlay();overlayOpenRequiresActiveTurn()
     for(name in ["C-I01","C-I02","C-I03","C-I04","C-I05","C-I06","C-I07","C-I08","C-I09","C-I10"]){reviewRegression(name)}
+    round2ModalOwnerRestoration();round2ExplicitRootBounds()
     return 0
 }

@@ -134,3 +134,13 @@ counted as this role's fresh behavioral RED.
 All ten selectors run independently against one normally built actual consumer.
 I05's callback preflight prohibition cannot be isolated from normal layout by a
 cross-snapshot total counter and is left to source review, explicitly unclaimed.
+
+## Round2 fix-delta boundaries
+
+| Selector | Frozen public contract and independent assertion |
+|---|---|
+| R1-I01 | A.4 ordinary removal remains NEXT; C.4 removal of modal owner with invalid saved focus first selects FIRST from nearest surviving owner ancestor root |
+| R1-I02 | C.2/C.6 actual5×1 built-in root host centers natural1×1 P at column2, both with None and explicit root host, despite ordinary root fixed1×1 |
+
+Two standalone public selectors only; no prior ten-selector/full suite rerun
+is implied by their fresh targeted execution.
