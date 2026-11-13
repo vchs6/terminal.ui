@@ -1,0 +1,265 @@
+{
+  "status": "preparation-only-no-runtime",
+  "base": "5a6819ffd2226ad31e725669209b94607f2b1e63",
+  "policy": "AGENTS11.1: reuse only unchanged source/deps/env/config/scope; no new commit/role cold rerun. Newly prepared consumers have no runtime evidence. No SDK/cache/Git-history/raw copies.",
+  "helpers": [
+    {
+      "path": "tests/interaction_a/fixtures/pty_capture.py",
+      "git_blob": "84b879ecf904447f958609bccce4bd681e498791",
+      "sha256": "48fa73609e9bbc81eb2b884b147ca8fcebf9eecfafae71d59a54fff14c43120a",
+      "bytes": 3598,
+      "use": "direct",
+      "scope": "Directly import Capture/restored. Real PTY, exact before/after termios, literal raw and process exit; no A build recipe import."
+    },
+    {
+      "path": "tests/session_extensions/native/session_fault.c",
+      "git_blob": "50aba2f1a241d3398cd8914e675c4603533668fa",
+      "sha256": "6c06839496fcdecba757d7e42f4786cb1e37d62dcfcad5d929cfbe6a92963b22",
+      "bytes": 4880,
+      "use": "direct",
+      "scope": "Link unchanged existing native wrapper. Real product open/close, handler address/mask observations, close-failure injected after real close. No reset of process unsafe. No bytecut scenarios added."
+    },
+    {
+      "path": "tests/application-lifecycle/pty.mjs",
+      "git_blob": "e4584926246c65e68c3aa3d2b65a53e393f4968b",
+      "sha256": "ac69244e07e8dc7f64545d7e01aa562ef0bdcdadc87cb2dde3251edf77ac28d5",
+      "bytes": 6146,
+      "use": "reference",
+      "scope": "q/callback/CtrlC/real close-error and resize historical scope only; current oracle uses atomic resize. Do not claim all historical bytes unchanged."
+    },
+    {
+      "path": "tests/application-lifecycle/native/close_wrap.c",
+      "git_blob": "3b6c768a05fd4c8c25a5afecf353b0edd8071cf2",
+      "sha256": "7087e2f673689253115e7f9ece56ed8b97ecb3fc4f738680278f8e79d1000d05",
+      "bytes": 723,
+      "use": "reference",
+      "scope": "Original actual-close-before-error injection method, not a second implementation in020."
+    },
+    {
+      "path": "tests/support/terminal_frames.mjs",
+      "git_blob": "b1bc190b1d603c0155571712ed57ec0a0c5c9950",
+      "sha256": "4a9ecfd661a7db4d1bee9b8098726ebc80f13bdae346e728bb4cf31cb3626ab1",
+      "bytes": 2903,
+      "use": "reference",
+      "scope": "Existing grid/resize helper of historical lifecycle harness; not imported by new literal-mode driver."
+    },
+    {
+      "path": "tests/session_extensions/cases.mjs",
+      "git_blob": "c953f29ae7a612c5534d399738dc8ff3453160d1",
+      "sha256": "e1a895972aa7d3cb47d662c1b25c01226b310b621780a4c48c78b0e6d4351324",
+      "bytes": 1705,
+      "use": "reference",
+      "scope": "Reuse ledger-close/error/cancel, unknown-title/no-request, invalid/disabled and already accepted fault cases only within exact unchanged scope; full matrix not rerun by020."
+    },
+    {
+      "path": "tests/session_extensions/oracle.mjs",
+      "git_blob": "2a2582413c38f7eb7363855290022e56fa19edce",
+      "sha256": "d4fc8fe0d81ff3012820a2ba32c8fdfbb8b05d190333d45d6098c861f477e91a",
+      "bytes": 19249,
+      "use": "reference",
+      "scope": "Existing title scope/result/native/unsafe rules; retain historical raw bindings, no new OSC parser."
+    },
+    {
+      "path": "tests/session_extensions/host-oracle.mjs",
+      "git_blob": "0135a2a3b85c7ee4947e7b8ff3832e9ed6c01d4b",
+      "sha256": "d2cc2521674e830b5cd3bead6830c3e2434e137ed8b2610c286e9a3aea6b7214",
+      "bytes": 4957,
+      "use": "reference",
+      "scope": "Actual host title/clipboard/icon and PNG/raw provenance; unknown title never claimed restored."
+    },
+    {
+      "path": "tests/interaction_a/fixtures/native_cases.py",
+      "git_blob": "d4b2b87ba1fe73099a6a2c37933663bf95f9d28f",
+      "sha256": "68639d9c06f5cc67ec32634494fde8107c4b8de27d6d9894f2a431ccbe2b6fee",
+      "bytes": 10456,
+      "use": "reference",
+      "scope": "I015 stop/signal/draw/cleanup/unsafe cases reused within accepted scope; historical A -3 EOF oracle is not current K EOF proof. Do not invoke its native-building functions in preparation."
+    },
+    {
+      "path": "tests/interaction_c/src/close_lifecycle.cj",
+      "git_blob": "3ba97c4d575caa4bc0a3d409dee564d8d51da924",
+      "sha256": "2ffc357c3956fc42bee2c677282c7d93452f9f7740de243af102b7d4b01b9b33",
+      "bytes": 6387,
+      "use": "reference",
+      "scope": "Dependent layer token revocation, deepest-first cleanup and exception aggregation; only accepted112 original scope reused."
+    },
+    {
+      "path": "tests/interaction_c/src/context_and_limits.cj",
+      "git_blob": "6ae388fc7e384bb5bca0b29a3f1a18713cdc5a5b",
+      "sha256": "76aaa6e882e80ab1e20d0938d433da34a2fe8568db986061bef073b02d92c10d",
+      "bytes": 6688,
+      "use": "reference",
+      "scope": "Old handle thread/session guard and joined worker controls in finite C; does not prove new live worker shutdown/restart."
+    },
+    {
+      "path": "tests/interaction_c/src/native_caret_fixture.cj",
+      "git_blob": "64d9f7bbd33c071e3632d953fe8effd5a5ee02d8",
+      "sha256": "ee38f4d4ab6fdca3b340efaf29fecb8c040db8b5257f49079c9e604b0f746da0",
+      "bytes": 4338,
+      "use": "reference",
+      "scope": "Logical caret/focus/layer observation uses prior completed frame through public API. Actual known/unknown host scope retained."
+    },
+    {
+      "path": "src/application.cj",
+      "git_blob": "193dc961c268e2ec730563c0071e64e0001979df",
+      "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+      "bytes": 36153,
+      "use": "contract",
+      "scope": "Public Application signatures, run exit/restoration order, resources and single native owner; readonly authoritative source, not author reasoning."
+    },
+    {
+      "path": "src/runtime_stats.cj",
+      "git_blob": "974de090347c967bebc9043f99a5783b07400635",
+      "sha256": "84082f03df45963bb2c2eb8da154653e553fd7b7bc7df1b711522265bdbb3a9b",
+      "bytes": 728,
+      "use": "contract",
+      "scope": "Resources observable; frames is frame generation, not successful output count."
+    },
+    {
+      "path": "native/cjtui_terminal.c",
+      "git_blob": "c3ea201e5463364cbea3abb537cf2de7d4336fd9",
+      "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4",
+      "bytes": 4769,
+      "use": "contract",
+      "scope": "Readonly actual raw/handler/owner/free and read EOF/HUP implementation; source observation is not fresh runtime proof."
+    }
+  ],
+  "evidence_indices": [
+    {
+      "path": "docs/reviews/R10/README.md",
+      "git_blob": "5927525553af4cce9ec69cb7c6a9a18c24f77952",
+      "sha256": "9ca942ad8bfd20c2c82cda72c85821638c18cdc14e404ab93dfd3221f29699ff",
+      "bytes": 5841,
+      "use": "existing-scoped-evidence-index",
+      "scope": "Finite historical color/normal/error/CtrlC host evidence; no new caret/2004/runtime scope inferred."
+    },
+    {
+      "path": "docs/reviews/interaction/A/README.md",
+      "git_blob": "19fbcd86ad2c9a00a3af1332d85b51dc82b9f04f",
+      "sha256": "ec8411e6de9e18d45d2da1d0a8443366a424e6bcb1aac8b4a75311e9db977b81",
+      "bytes": 3787,
+      "use": "existing-scoped-evidence-index",
+      "scope": "Accepted102 finite I015 known-original/Unknown caret scopes and final accepted host records, excluding failed collectors."
+    },
+    {
+      "path": "docs/reviews/interaction/C/README.md",
+      "git_blob": "ca61ee1a5bb3cdc3627a954e81acb4f8924eee23",
+      "sha256": "ee007a8eb85d8e6915804b885eeeb258088516824de3c4bf62b870627d7044cf",
+      "bytes": 6792,
+      "use": "existing-scoped-evidence-index",
+      "scope": "Accepted112 finite layers/cleanup/native caret; PNG alone does not prove native visibility."
+    },
+    {
+      "path": "docs/reviews/K/README.md",
+      "git_blob": "162f78196f12acc9509c22412611eb6f93efc841",
+      "sha256": "9b971a56df346002ecedd1c5509d80504cec8a21942429a10ef58c6a53404048",
+      "bytes": 12711,
+      "use": "existing-scoped-evidence-index",
+      "scope": "Accepted117 finite K. Real OSpipe/TTY read0/POLLIN|HUP EOF differs from natural-host EOF; requested2004/termios cleanup only."
+    },
+    {
+      "path": "docs/reviews/E/README.md",
+      "git_blob": "ee869576310b7151541e211d5587386ccc0bd816",
+      "sha256": "818316414fbe130aebc56cf0e5dca8106ee0560f2dd503cb3d8f9e24d875ed77",
+      "bytes": 8034,
+      "use": "existing-scoped-evidence-index",
+      "scope": "Accepted122 finite editing evidence, only unchanged input/component scope; not complete020."
+    },
+    {
+      "path": "docs/reviews/widgets/M/README.md",
+      "git_blob": "f50cfaf740bfaf8463d3e8632ce14314a9906b7b",
+      "sha256": "bb9185fa809da8c684a49b4fb32d0c3150695cd7792700098ade34c2463adc84",
+      "bytes": 4598,
+      "use": "existing-scoped-evidence-index",
+      "scope": "Accepted162 finite M component evidence; final020 component delta still required."
+    },
+    {
+      "path": "docs/reviews/R22/008/input-manifest.json",
+      "git_blob": "b3f7a1319822cb9ce5591239d6e6da97873d9392",
+      "sha256": "6f10c6eb41e83164bae545cb3b7fd93fa56fffd4f6613ca9b85755fa9c81a3fb",
+      "bytes": 83652,
+      "use": "existing-scoped-evidence-index",
+      "scope": "Pinned SDK1.2.0/native toolchain/read-only SDK/stdx/UCD/cache references and Session152 inputs; formal accepted008 manifest will supersede admission context only."
+    }
+  ],
+  "finite152_input_reference": {
+    "task": "Session152",
+    "accepted_source": "83094ca92acab37ed0a38042e2e40ead55049f41",
+    "references": [
+      {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/report.md",
+        "sha256": "9a3668ca67f3573d70cd4c2cb833d7081579136b4047aa1322f219590e140fb0",
+        "bytes": 13400,
+        "role": "accepted Session152 finite evidence",
+        "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+        "repository_path": "docs/reviews/R18/acceptance/report.md",
+        "git_blob": "8ed81940cfba2319cdc3ca4b2ad613d757fdca9e",
+        "working_bytes_match": true
+      },
+      {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/hash-manifest.json",
+        "sha256": "b5db4589170a942e7fdd42319ff58b9b15a62ba5678d75b9c34b0ec893ba3946",
+        "bytes": 1117061,
+        "role": "accepted Session152 finite evidence",
+        "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+        "repository_path": "docs/reviews/R18/acceptance/hash-manifest.json",
+        "git_blob": "69410ccb735308fd3df279dc2b6bbcc8b5e0c1ec",
+        "working_bytes_match": true
+      },
+      {
+        "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/acceptance-matrix.json",
+        "sha256": "37657ef383e0001b19c9781f4f1c7475aa900ba11af973ae9bab26d9d2f5fbfc",
+        "bytes": 24200,
+        "role": "accepted Session152 finite evidence",
+        "revision": "c5a875f09cbb4f6fdb49eefaff14343e0d519630",
+        "repository_path": "docs/reviews/R18/acceptance/acceptance-matrix.json",
+        "git_blob": "fa71f31dd1903535c0c657756a85793dea891849",
+        "working_bytes_match": true
+      }
+    ]
+  },
+  "normal_tooling_reference": {
+    "source": "admission/tool-readiness.json",
+    "SDK": "1.2.0",
+    "native": "gcc14.2/ar2.44",
+    "versions": "Original read-only version/path observations, not a new build or probe",
+    "registry": "https://pkg.cangjie-lang.cn/registry",
+    "old_relay": "18973 offline; not a prerequisite",
+    "normal_paths": [
+      {
+        "path": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/linux-build-recon/stdx-env/linux_x86_64_llvm/static/stdx",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/viewport-tests/cache/repository",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/widgets-composite-execution/raw/normal-build/phase-index.json",
+        "exists": true
+      },
+      {
+        "path": "/workspace/work/widgets-composite-execution/raw/normal-bundle/phase-index.json",
+        "exists": true
+      }
+    ],
+    "copy_policy": "SDK/stdx/UCD/cache remain original references, never copied"
+  },
+  "actual008": "pending accepted source/root admission; no338 matrix duplicated; existing primary/additional/unsafe/native scopes only after exact accepted binding",
+  "checks_not_executed": [
+    "Cangjie/native compilation",
+    "product/runtime consumer",
+    "PTY/process matrix",
+    "actual terminal/window/PNG collection",
+    "independent review/acceptance",
+    "whole020/M1/M2/Linux/release"
+  ]
+}
