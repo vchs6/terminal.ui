@@ -6,6 +6,8 @@ import { tmpdir } from 'node:os';
 import { join,resolve } from 'node:path';
 import { verifyLive,verifyKeyboardModeStartup } from './oracle.mjs';
 const enable=Buffer.from('1b5b3f3230303468','hex'),disable=Buffer.from('1b5b3f323030346c','hex');
+// Collector-only positive: a legitimate mode25 query may precede requested mode enable.
+verifyKeyboardModeStartup(Buffer.concat([Buffer.from('1b5b3f32352470','hex'),enable]));
 const vectors=[
  ['Direct','1b5b32323b3274','1b5d323b4107','1b5b32333b3274'],
  ['TmuxPassthrough','1b50746d75783b1b1b5b32323b32741b5c','1b50746d75783b1b1b5d323b41071b5c','1b50746d75783b1b1b5b32333b32741b5c'],
@@ -89,4 +91,4 @@ for(const [route,saveHex,titleHex,popHex] of vectors) {
   nativeChecks++;console.log(`PASS fixture-only ${route}: selected sequence2 zero fault, real writer sequence3 pop succeeds; artifacts=${dir}`);
  }
 }
-console.log(`PASS fixture-only S007 safe-pop oracle: routes=${positive} deliberate-negative-controls=${negative} native-selection-checks=${nativeChecks}; no product runtime PASS`);
+console.log(`PASS fixture-only S007 safe-pop oracle: routes=${positive} deliberate-negative-controls=${negative} startup-prefix-controls=1 native-selection-checks=${nativeChecks}; no product runtime PASS`);

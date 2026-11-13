@@ -96,7 +96,9 @@ Native sequence/result/write records require complete save, selected sequence2
 failure at byte0, successful sequence3 pop, then sequence4 exact `CSI ? 2004 l`
 before the first real native close. K004 requires restoring bracketed paste already
 requested at initialization; the real runner checks exactly one initial `2004h`
-and no premature disable before arming the fault. All pre-close bytes equal
+and no premature disable before arming the fault. Enable need not be the first
+initialization bytes; a collector-only positive allows a preceding mode25 query.
+All pre-close bytes equal
 `save + pop + CSI ? 2004 l`; the extension-only wire remains exactly save+pop.
 The eight-byte disable is not the seven-byte mode25 query. No additional output
 is permitted by the exact sequence/result/byte checks; healthy same-process reopen output remains
