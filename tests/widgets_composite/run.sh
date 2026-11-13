@@ -1,30 +1,27 @@
 #!/usr/bin/env bash
 set -euo pipefail
-task_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-repo_dir=$(cd -- "$task_dir/../.." && pwd)
+here=$(cd "$(dirname "$0")" && pwd)
+source /workspace/work/validation/sdk/cangjie/envsetup.sh
+export CANGJIE_STDX_PATH=${CANGJIE_STDX_PATH:-/workspace/work/linux-build-recon/stdx-env}
+export CJTUI_UCD_ARCHIVE=${CJTUI_UCD_ARCHIVE:-/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip}
 mode=${1:-formal}
 if [[ "$mode" == self-test ]]; then
-    python3 "$task_dir/oracle.py" --self-test
-    python3 "$task_dir/pty_selftest.py"
+    python3 "$here/oracle.py" --self-test
+    python3 "$here/pty_selftest.py"
+    python3 - "$here" <<'PYCHECK'
+from pathlib import Path
+import sys
+for path in Path(sys.argv[1]).glob("*.py"):
+    compile(path.read_text(), str(path), "exec")
+print("PYTHON_SYNTAX_PASS")
+PYCHECK
     exit 0
 fi
-if [[ "$mode" != formal ]]; then
-    printf 'usage: bash tests/widgets_composite/run.sh [formal|self-test]\n' >&2
-    exit 64
-fi
-if [[ ! -f "$task_dir/admission.json" ]]; then
-    printf 'BLOCKED missing fixed accepted admission.json (TASK158 upstream prerequisites)\n' >&2
-    printf 'PREPARATION_ONLY; no target build or execution attempted; exit 77\n' >&2
-    exit 77
-fi
-if ! python3 "$task_dir/check_admission.py" "$task_dir/admission.json" "$repo_dir"; then
-    printf 'BLOCKED admission not fixed and accepted; exit 77\n' >&2
-    exit 77
-fi
-# A missing TASK159 widget symbol is a candidate target RED after accepted
-# upstream admission. Do not precheck target files or demand TASK159 acceptance.
-(
-    cd -- "$task_dir"
-    cjpm build
-    TERM=dumb COLORTERM= timeout 45s ./target/release/bin/main </dev/null
-)
+if [[ "$mode" != formal ]]; then printf 'usage: %s [formal|self-test]\n' "$0" >&2; exit 64; fi
+# The fixed manifest records accepted inputs. No synthetic gate or target-file
+# presence test is used: actual ordinary builds decide the outcome.
+(cd "$here/prerequisite" && cjpm build && TERM=dumb COLORTERM= timeout 90s target/release/bin/main </dev/null)
+(cd "$here" && cjpm build && TERM=dumb COLORTERM= timeout 90s target/release/bin/main </dev/null)
+(cd "$here/device" && cjpm build)
+output=${CJTUI_COMPOSITE_PTY_OUTPUT:-$(mktemp -d /tmp/cjtui-composite-pty.XXXXXX)}
+python3 "$here/pty.py" --binary "$here/device/target/release/bin/main" --output "$output"

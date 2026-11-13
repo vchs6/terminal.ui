@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Check the PTY capture tool only; this child is not a product fixture."""
 import os
-import pty
 import select
 import subprocess
 import sys
@@ -41,7 +40,7 @@ def collect(master, wanted, timeout=5):
 
 
 def main():
-    master, slave = pty.openpty()
+    master, slave = os.openpty()
     original = termios.tcgetattr(slave)
     try:
         child = subprocess.Popen([sys.executable, "-c", CHILD], stdin=slave, stdout=slave, stderr=slave)
