@@ -5,7 +5,13 @@ cd "$(dirname "$0")/.."
 cjc --version
 cjpm --version
 case "${1:-all}" in
-  keyboard) tests/keyboard/run.sh --pty ;;
+  keyboard)
+    tests/keyboard/run.sh --pty
+    bash tests/keyboard/paste_argument/run.sh
+    bash tests/keyboard/i015_stage/run.sh
+    CJTUI_KEYBOARD_I015_PURE_CASE=malformed-drain bash tests/keyboard/i015_stage/run.sh --pure
+    CJTUI_KEYBOARD_I015_PURE_CASE=alt-invalid-offset bash tests/keyboard/i015_stage/run.sh --pure
+    ;;
   native-session) tests/native-session/run.sh ;;
   native-smoke)
     (cd tests/native-smoke && cjpm build)
