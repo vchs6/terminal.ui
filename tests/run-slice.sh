@@ -11,7 +11,7 @@ case "${1:-all}" in
     bash tests/keyboard/i015_stage/run.sh
     CJTUI_KEYBOARD_I015_PURE_CASE=malformed-drain bash tests/keyboard/i015_stage/run.sh --pure
     CJTUI_KEYBOARD_I015_PURE_CASE=alt-invalid-offset bash tests/keyboard/i015_stage/run.sh --pure
-    for case_name in K115-01 K115-02 K115-03 K115-04; do
+    for case_name in K115-01 K115-02 K115-03 K115-04 K115-R1-01; do
       CJTUI_K115_CASE="$case_name" bash tests/keyboard/review_regressions/run.sh
     done
     CJTUI_K115_CASE=K115-05 CJTUI_K115_ARTIFACTS="${CJTUI_K115_ARTIFACTS:-$(mktemp -d)/native}" bash tests/keyboard/review_regressions/run.sh

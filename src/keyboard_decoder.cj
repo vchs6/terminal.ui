@@ -162,8 +162,12 @@ public class KeyboardDecoder {
                 if (!drained) { malformedSequence() }
             } else {
                 if (utfC1Candidate) { appendSequence(194) }
-                if (!drained || !utfAlt) { issue(KeyboardIssue.InvalidUtf8, utfStart) }
-                state = 0
+                if (drained && utfAlt) {
+                    // The invalid byte remains part of the overlong sequence.
+                    state = 2
+                } else {
+                    issue(KeyboardIssue.InvalidUtf8, utfStart); state = 0
+                }
             }
             consume(byte, at); return
         }
