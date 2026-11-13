@@ -558,6 +558,11 @@ public class Application {
             }
             let decoder = KeyboardDecoder(limits: keyboardLimits)
             decoder.caretProbe = Some(probe)
+            decoder.inputActive = Some({ =>
+                if (!running) { false }
+                else if (let Some(work) <- readSession()) { !work.isStopping() }
+                else { false }
+            })
             let pasteTarget: Array<?NodeRef> = [None]
             decoder.onPasteStart = Some({ => pasteTarget[0] = activeTarget() })
             decoder.onIssue = Some({diagnostic => reportKeyboardIssue(diagnostic)})
