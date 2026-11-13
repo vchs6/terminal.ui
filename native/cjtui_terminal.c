@@ -85,9 +85,12 @@ int cjt_read(int timeout) {
     int p = poll(&pfd, 1, timeout);
     if (p < 0) return errno == EINTR ? (interrupted ? -2 : -5) : -3;
     if (!p) return -1;
-    if (pfd.revents & (POLLERR | POLLHUP | POLLNVAL)) return -3;
+    if (pfd.revents & POLLNVAL) return -3;
+    /* A hangup may arrive together with readable buffered bytes. */
+    if (!(pfd.revents & (POLLIN | POLLHUP))) return -3;
     ssize_t n = read(STDIN_FILENO, &ch, 1);
     if (n == 1) return ch;
+    if (n == 0) return -4;
     if (n < 0 && (errno == EINTR || errno == EAGAIN)) return -5;
     return -3;
 }
