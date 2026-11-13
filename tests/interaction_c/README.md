@@ -136,3 +136,32 @@ Expected0 once those contracts are implemented; nonzero is an assertion/build
 failure, never skipped. Default formal consumer also invokes both new cases.
 No old oracle or guard precedence is changed. X01 uses a legal batch ensure
 followed by an outer-boundary export, not forbidden render reentry in batch.
+
+## TASK110 review regression supplement (C-I01–C-I10)
+
+The added public assertions are in `src/review_regressions.cj`. Build once with
+`cd tests/interaction_c && cjpm build`; run every selector independently from
+that directory so an earlier assertion cannot hide another finding:
+
+```sh
+for id in C-I01 C-I02 C-I03 C-I04 C-I05 C-I06 C-I07 C-I08 C-I09 C-I10; do
+  CJTUI_OVERLAY_REVIEW="$id" timeout 45s ./target/release/bin/main </dev/null
+done
+```
+
+Each selector expects status 0 after its contract is implemented; a nonzero
+assertion is a failure, never a skip. The default consumer also invokes all ten.
+I02 observes both If and ForEach retirement before asserting; I03 records hidden
+and disabled states before asserting. I10 performs its first two pure exports
+without any preceding Application.snapshot, then checks resized exports after
+an actual committed application frame. All expected pictures are hand derived
+in golden.md. No old assertion or oracle is changed.
+
+I09 follows the explicit diagnostic ruling for this supplement: Passive is not
+a keyboard target; reject dispatch with existing `InvalidProperty`, with zero
+owner handler calls, after a normal NonModal positive control.
+I05 asserts failed theme transaction, Old identity, live session and unchanged
+usable zero-area picture. Prohibiting user measure/draw during candidate
+preflight remains a source-review responsibility: normal snapshot itself may
+legitimately call those callbacks, so total calls across snapshots are not a
+valid zero-call oracle. Full Unit C/native/package acceptance is separate.

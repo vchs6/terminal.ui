@@ -166,3 +166,40 @@ X02 top-level open on the owner thread after startHeadless is outside the C.1
 allowed event/post/batch domain: WrongUIContext before reservation/mount. The
 same content must subsequently open in batch and mount/clean exactly once.
 This does not replace existing pure/lifecycle/stale/foreign guard priorities.
+
+## C-I01–C-I10 manual expectations
+
+C-I01: ordinary root -> owner owns outer layer -> nested layer. Removing owner
+first invalidates all three saved generations. Both cleanups observe invalid
+refs and rejected owner posts; cleanup order is literal `N;L;`, once each; only
+root remains mounted. Both layer handles terminate OwnerGone.
+C-I02: If true / ForEach one key each create one owner and one modal. Retiring
+that owner leaves root only, with activeTarget=root, modal OwnerGone and one
+cleanup. Observations are taken before session disposal in both variants.
+C-I03: base `BBB`, centered one-cell P gives `BPB`. Hidden layer yields `BBB`;
+disabled but visible layer yields `BPB`. A returned activeTarget is always
+visible and enabled (absence is permitted when no eligible domain root exists).
+C-I04: five rows A/1/2/3/4 in viewport3×2 initially `A  ` / `1  `; root-anchored
+BelowStart one-cell layer replaces row1 with `P  `. Ensuring logical row4
+Nearest gives offset3: literal rows `3  ` / `4  `. Anchor A is wholly clipped,
+so same target frame closes the layer AnchorGone and contains no P.
+C-I05: width Int64.Max × height0 is a legal empty frame. Old grow weight0/min0
+is valid. Next gives both Row children weight1/minWidth Int64.Max: the sum
+cannot fit, so transaction is Failed before publication, Old info remains,
+original refs/session remain valid and the empty old picture is reusable.
+C-I06: ordinary Row has one max-weight B child, with P in an independent layer.
+At3×1 the literal is `BP `; an equivalent named Next theme must Applied. The
+layer weight is outside the ordinary flow sum, and children().size is1.
+C-I07: explicit built-in root host needs no explicit host flag. Text B plus
+centered P at3×1 yields `BP ` and a committed open handle.
+C-I08: pending open reserves content, then explicit non-root host loses its
+capability before commit: InvalidOverlayHost, no mount/cleanup of pending
+content, closed handle/no ref, and the structural failure releases session.
+C-I09: normal NonModal target calls owner handler once. Passive target rejects
+InvalidProperty before routing and owner calls remain zero.
+C-I10: root Text A viewport Off is the whole temporary viewport anchor. P has
+natural1×1. Both below/above spaces are exhausted; clamp gives bottom row.
+Fresh pure3×2 is `A  ` / `P  `; fresh or resized5×3 is `A    ` / `     ` /
+`P    `;1×1 is `P`. Fresh exports preserve initial0×0 committed viewports;
+after real3×2 snapshot, resized pure exports preserve both committed viewport
+snapshots and original open handle/root/content generations.
