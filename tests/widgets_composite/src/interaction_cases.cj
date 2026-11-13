@@ -7,9 +7,13 @@ import cjtui.*
 func navigation(popup: Bool): Unit {
     let entries = [MenuEntry("a", "A"), MenuEntry("b", "B", enabled: false), MenuEntry("c", "C")]
     let calls = [0]
-    let menu = if (popup) { PopupMenu(entries, {_ => calls[0]++}) } else { HorizontalMenu(entries, {_ => calls[0]++}) }
-    let outside = Text("outside").focusable(true)
-    let root = Column { menu; outside }
+    let components = Array<?Component>(2, repeat: Option<Component>.None)
+    let root = Column {
+        components[0] = Some(if (popup) { PopupMenu(entries, {_ => calls[0]++}) } else { HorizontalMenu(entries, {_ => calls[0]++}) })
+        components[1] = Some(Text("outside").focusable(true))
+    }
+    let menu = components[0].getOrThrow()
+    let outside = components[1].getOrThrow()
     let captured = Array<?UIKeyEvent>(1, repeat: Option<UIKeyEvent>.None)
     let app = Application(root).onKeyEvent({ event => captured[0] = Some(event) })
     app.startHeadless()
@@ -61,7 +65,7 @@ func navigationBoundaries(): Unit {
             focused(app, a, "M02 single eligible focus stable")
             check(captured[0].getOrThrow().defaultPrevented && calls[0] == 0, "M02 single navigation consumed without selection")
         }
-        app.batch({ => mounted(single).children()[1].notify(ChangeKind.Paint) })
+        app.batch({ => mounted(single).children()[1].notify(ChangeKind.Style) })
     } finally { app.dispose() }
     for (disabled in [false, true]) {
         let empty = PopupMenu(if (disabled) { [MenuEntry("a", "A", enabled: false)] } else { Array<MenuEntry>() }, {_ => calls[0]++})
@@ -107,9 +111,12 @@ func activationMatrix(popup: Bool): Unit {
     } finally { app.dispose() }
     for (mode in 0..4) {
         let requests = [0]
-        let target = if (popup) { PopupMenu([MenuEntry("a", "A")], {_ => requests[0]++}) }
-            else { HorizontalMenu([MenuEntry("a", "A")], {_ => requests[0]++}) }
-        let parent = Column { target }
+        let targetSlot = Array<?Component>(1, repeat: Option<Component>.None)
+        let parent = Column {
+            targetSlot[0] = Some(if (popup) { PopupMenu([MenuEntry("a", "A")], {_ => requests[0]++}) }
+                else { HorizontalMenu([MenuEntry("a", "A")], {_ => requests[0]++}) })
+        }
+        let target = targetSlot[0].getOrThrow()
         if (mode == 0) { parent.onKeyCapture({ e => e.preventDefault() }) }
         if (mode == 1) { parent.onKey({ e => e.preventDefault() }) }
         if (mode == 3) { parent.onKeyCapture({ e => e.stopPropagation() }) }

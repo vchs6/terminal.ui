@@ -16,21 +16,22 @@ main(): Int64 {
     let nested = Array<?OverlayHandle>(1, repeat: Option<OverlayHandle>.None)
     let popupRoot = Array<?Component>(1, repeat: Option<Component>.None)
     let nestedRoot = Array<?Component>(1, repeat: Option<Component>.None)
-    let menu = HorizontalMenu([MenuEntry("a", "A"), MenuEntry("b", "B", enabled: false), MenuEntry("c", "C")], { key =>
-        calls[0]++
-        if (mode == "callback-failure") { throw Exception("M_NATIVE_CALLBACK_SENTINEL") }
-        chosen[0] += "h:" + key + ";"
-        report("chosen", chosen[0])
-    })
+    let menuSlot = Array<?Component>(1, repeat: Option<Component>.None)
     let root = SplitPane(axis: SplitAxis.Vertical) {
         Text("M_WIDGETS_READY")
-        menu
+        menuSlot[0] = Some(HorizontalMenu([MenuEntry("a", "A"), MenuEntry("b", "B", enabled: false), MenuEntry("c", "C")], { key =>
+            calls[0]++
+            if (mode == "callback-failure") { throw Exception("M_NATIVE_CALLBACK_SENTINEL") }
+            chosen[0] += "h:" + key + ";"
+            report("chosen", chosen[0])
+        }))
         ScrollView { Text({ =>
             if (model.get() == "bad") { throw Exception("M_NATIVE_GETTER_SENTINEL") }
             model.get()
         }) }.height(1)
         StatusBar { Text({ => model.get() }) }
     }.onMount({ _ => { => cleanups[0]++ } })
+    let menu = menuSlot[0].getOrThrow()
     let app = Application(root)
     app.onKeyEvent({ event =>
         if (event.key.code == "escape") { escapes[0]++; report("escape_seen", "${escapes[0]}") }
