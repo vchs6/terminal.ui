@@ -4,4 +4,4 @@
 
 [有限S基础控件归档](widgets/S/README.md)保存153–157原件、独立PASS_FINITE_S及50张真实原始PNG；M和完整Linux仍未交付。
 
-[M正式测试准入](widgets/M/README.md)公开READY_M_PRECONDITIONS原件与输入清单；158正式测试已冻结并取得真正缺API RED；159作者已交固定候选和developer证据；160独立审查in_progress，161–162 planned，M行为尚未独立验收。
+[M正式测试准入](widgets/M/README.md)公开READY_M_PRECONDITIONS原件与输入清单；158正式测试已冻结并取得真正缺API RED；159作者已交固定候选和developer证据；160独立规格/质量PASSED（0contractdefects/1open非阻塞建议）；161执行in_progress，162 planned，M尚未独立验收。

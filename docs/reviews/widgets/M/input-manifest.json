@@ -2,7 +2,7 @@
   "schema": 1,
   "unit": "M",
   "task": 158,
-  "status": "158_COMPLETE_159_COMPLETE_DEVELOPER_VERIFICATION_160_IN_PROGRESS_161_162_PLANNED",
+  "status": "158_159_160_COMPLETE_SOURCE_REVIEW_PASSED_161_IN_PROGRESS_162_PLANNED",
   "classification": "execution: accepted frozen contracts and M158 readiness metadata; no new API decision",
   "admission": {
     "verdict": "READY_M_PRECONDITIONS",
@@ -796,9 +796,9 @@
   },
   "producer_gates": {
     "159": "complete developer implementation/verification; not independent execution or acceptance",
-    "160": "in_progress independentAstra/high fixed-source review; no verdict delivered",
-    "161": "planned; waits independent160 executable review then actual own ordinary package/clean consumers/hosts",
-    "162": "planned; wait independent161 original execution evidence"
+    "160": "complete independent fixed-source spec/quality passed;0contractdefects,1open nonblocking suggestion",
+    "161": "in_progress independent Sol/medium normal package/clean consumers and3actualhosts; no execution PASS delivered",
+    "162": "planned; waits fixed independent161 evidence and full finite requirement judgment"
   },
   "deferred": [
     "parent019/020/030",
@@ -951,14 +951,77 @@
   },
   "source_review_role": {
     "task": 160,
-    "status": "in_progress",
+    "status": "complete; specification/quality PASSED",
     "assigned_model": "Astra/high",
     "independence": "fresh independent reviewer, no implementation-author self-assessment supplied as verdict",
     "fixed_source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
     "product_commit": "6f7d6feeb18b714d10300505d02e163d97b6c68a",
     "test_revision": "ad100b79956de30fe65c6d561f11be67186821d5",
     "test_tree": "ff16e53ffe8156950088fd3c7d4654f972c830cc",
-    "contract_snapshot": "Reviewer preserves received canonical contract bytes before metadata status changes; frozen semantics unchanged.",
-    "verdict": null
+    "contract_snapshot": {
+      "original_root": "/workspace/work/widgets-composite-review/round-0/contracts",
+      "canonical_revision": "ad100b79956de30fe65c6d561f11be67186821d5",
+      "layout": "original repository-relative hierarchy; original reviewer bytes preserved",
+      "seal": {
+        "path": "round-0/seal.json",
+        "sha256": "a9b390261e292f14a728a3e63dbf88b40150bdfd5f7abe0e4265effef5e7232f",
+        "sealed_files": 390
+      },
+      "publication": "complete390 snapshots deferred to finalM archive"
+    },
+    "verdict": {
+      "spec": "passed",
+      "quality": "passed",
+      "contract_defects": 0,
+      "nonblocking_suggestions": 1
+    },
+    "public_report": "review160/report.md",
+    "public_findings": "review160/findings.json",
+    "public_index": "review160/index.json",
+    "index_sha256": "da8bf5213acd6c01d3b216b0de3a321abf8eebad6207ba70d11cd6590741482e",
+    "root_validation": {
+      "reported_by": "root controller",
+      "immutable_seal_files": 390,
+      "indexed_input_raw_hashes": 315,
+      "SDK_config_hashes": 9,
+      "result": "verified; metadata role reuses prior audit"
+    },
+    "suggestions": [
+      {
+        "id": "M160-S01",
+        "status": "open",
+        "blocking": false,
+        "kind": "test diagnostic precision suggestion; no observed product defect",
+        "detail": "Disabled-ancestor assertion may require exact InvalidProperty instead of broad UIException; current source exact InvalidProperty rejection verified.",
+        "root_disposition": "Keep fixed version and proceed; no source/test fix round; do not claim repaired."
+      }
+    ],
+    "note": "No source fix round. Fixed6e3f26aa and testsad100/treeff16 unchanged. Review source verdict does not grant actual three-host/clean consumer or162 acceptance."
+  },
+  "independent_execution_role": {
+    "task": 161,
+    "status": "in_progress",
+    "assigned_model": "Sol/medium",
+    "workspace": "/workspace/work/widgets-composite-execution",
+    "fixed_source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+    "test_revision": "ad100b79956de30fe65c6d561f11be67186821d5",
+    "test_tree": "ff16e53ffe8156950088fd3c7d4654f972c830cc",
+    "scope": [
+      "own ordinary build/bundle",
+      "clean public package consumers",
+      "actual XTerm/VTE/kernelVT example and frozen device runs",
+      "original native PNG/raw/process/termios/source-package-binary bindings"
+    ],
+    "result": null,
+    "note": "ACTUAL161 dispatched; no new independent M host/execution PASS delivered.162 remains planned."
+  },
+  "current_source_routing": {
+    "accepted_S_main": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+    "M_product_commit": "6f7d6feeb18b714d10300505d02e163d97b6c68a",
+    "M_verification_source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+    "M_work_branch": "wip/linux-widgets-composite",
+    "M_work_branch_head": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+    "M_product_main_alias": null,
+    "integration_gate": "M product not integrated into main product until162 finite acceptance; no source fix round."
   }
 }

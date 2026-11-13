@@ -246,8 +246,8 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-157 | REQ-001/003/004/007 | TASK-157 | 原029完整证据和metadata | passed（[独立PASS_FINITE_S](reviews/widgets/S/widgets-small-acceptance/acceptance.md)，S01–S05通过；完整Linux/M及027/041展示另汇合） |
 | AC-158 | REQ-001/003/004/007 | TASK-158 | 独立菜单/状态/分区/层组合golden | passed（[正式测试交付](reviews/widgets/M/test158/report.md)，e59d5c9f/main9ec836ce；51手工case、前置build/direct0含42S修饰键排除、孤立6缺API编译RED1/classifier0；非M行为通过） |
 | AC-159 | REQ-001/003/004/007 | TASK-159 | 公共菜单/状态条/SplitPane实现 | passed（[作者实现/开发验证](reviews/widgets/M/author159/task-159-report.md)，product6f7d6fee/verification6e3f26aa；formal0、headless53/PTY0/21/22、normal example/bundle0；非独立161或162通过） |
-| AC-160 | REQ-001/003/004/007 | TASK-160 | 菜单组合独立双审 | in_progress（独立Astra/high固定6e3f26aa及testsad100审查；尚无spec/quality verdict） |
-| AC-161 | REQ-001/003/004/007 | TASK-161 | 菜单导航/取消/窄屏及制品独立执行 | pending |
+| AC-160 | REQ-001/003/004/007 | TASK-160 | 菜单组合独立双审 | passed（[独立spec/quality PASSED](reviews/widgets/M/review160/report.md)，固定6e3f26aa/testsad100；0contractdefects，M160-S01 open非阻塞测试精度建议保留；非161/162通过） |
+| AC-161 | REQ-001/003/004/007 | TASK-161 | 菜单导航/取消/窄屏及制品独立执行 | in_progress（独立Sol/medium正常包/干净消费与3实际宿主执行中；尚无新M执行PASS） |
 | AC-162 | REQ-001/003/004/007 | TASK-162 | 原019完整证据与metadata | pending |
 
 唯一任务状态见[具体变更](../openspec/changes/implement-standard-widgets/tasks.md)，规划和探针不代表产品已完成。
