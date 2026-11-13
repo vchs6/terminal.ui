@@ -22,7 +22,7 @@ main(): Int64 {
         menuSlot[0] = Some(HorizontalMenu([MenuEntry("a", "A"), MenuEntry("b", "B", enabled: false), MenuEntry("c", "C")], { key =>
             calls[0]++
             if (mode == "callback-failure") { throw Exception("M_NATIVE_CALLBACK_SENTINEL") }
-            chosen[0] += "h:" + key + ";"
+            chosen[0] = chosen[0] + "h:" + key + ";"
             report("chosen", chosen[0])
         }))
         ScrollView { Text({ =>
