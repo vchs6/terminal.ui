@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 cjc --version
 cjpm --version
 case "${1:-all}" in
+  keyboard) tests/keyboard/run.sh --pty ;;
   native-session) tests/native-session/run.sh ;;
   native-smoke)
     (cd tests/native-smoke && cjpm build)
@@ -65,5 +66,5 @@ case "${1:-all}" in
     "$0" runtime
     "$0" resize-coherence
     ;;
-  *) echo "usage: $0 [native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [keyboard|native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
 esac

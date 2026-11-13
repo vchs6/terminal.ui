@@ -13,6 +13,8 @@ public class Application {
     private var session: ?RuntimeSession = None
     private var latestStats = RuntimeStats(0, 0, 0, 0, 0, 0, 0, 0)
     private var eventHandler: ?(UIKeyEvent) -> Unit = None
+    private var keyboardIssueHandler: ?(KeyboardDiagnostic) -> Unit = None
+    private let keyboardLimits: KeyboardLimits
     private var colorOverride: ?ColorMode = None
     private var lastCapabilities: ?TerminalCapabilities = None
     private var configuredGlyphMode = GlyphMode.Auto
@@ -20,14 +22,16 @@ public class Application {
     private var configuredSessionOptions = SessionOptions()
     private var lastSessionCapabilities: ?SessionCapabilities = None
     private var lastSessionCleanup = Array<SessionResult>()
-    public init(root: Component, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto, theme!: Theme = Theme.preset(ThemePreset.Classic)) {
+    public init(root: Component, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto, theme!: Theme = Theme.preset(ThemePreset.Classic), keyboardLimits!: KeyboardLimits = KeyboardLimits()) {
         this.root = root
+        this.keyboardLimits = keyboardLimits
         this.themeLoader = ThemeLoader(theme)
         this.limits = limits
         this.configuredGlyphMode = glyphMode
     }
-    public init(root: Component, colorMode!: ColorMode, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto, theme!: Theme = Theme.preset(ThemePreset.Classic)) {
+    public init(root: Component, colorMode!: ColorMode, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto, theme!: Theme = Theme.preset(ThemePreset.Classic), keyboardLimits!: KeyboardLimits = KeyboardLimits()) {
         this.root = root
+        this.keyboardLimits = keyboardLimits
         this.themeLoader = ThemeLoader(theme)
         this.limits = limits
         this.configuredGlyphMode = glyphMode
@@ -134,6 +138,9 @@ public class Application {
     public func onKey(handler: (KeyEvent) -> Unit): Application {
         this.handler = handler
         this
+    }
+    public func onKeyboardIssue(handler: (KeyboardDiagnostic) -> Unit): Application {
+        keyboardIssueHandler = Some(handler); this
     }
     public func stop(): Unit {
         if (let Some(value) <- readSession()) {
@@ -367,6 +374,7 @@ public class Application {
     public func dispatch(target: NodeRef, key: KeyEvent): Unit {
         let value = current()
         value.requireBoundary()
+        validateKeyboardEvent(key)
         if (value.isStopping()) {
             dispose();
             throw UIException("SessionInactive", "session stopped")
@@ -440,7 +448,7 @@ public class Application {
                             if (!event.defaultPrevented) {
                                 if (key.code == "interrupt") { value.requestStop(); running = false; event.preventDefault() }
                                 else if (key.code == "tab" || key.code == "backtab") {
-                                    if (value.focusManager.move(key.code == "backtab")) { event.preventDefault() }
+                                    if (value.focusManager.move(key.code == "backtab" || key.shift)) { event.preventDefault() }
                                 } else if (key.code == "escape") {
                                     if (let Some(layer) <- value.layerFor(targetNode)) {
                                         if (layer.options.mode != OverlayMode.Passive && layer.options.closeOnEscape) {
@@ -514,6 +522,14 @@ public class Application {
         else if (key.code == "interrupt") { running = false }
         else { dispatchHiddenKey(key) }
     }
+    private func reportKeyboardIssue(diagnostic: KeyboardDiagnostic): Unit {
+        if (let Some(callback) <- keyboardIssueHandler) {
+            batch({ =>
+                let work = current(); work.inCallback = true
+                try { callback(diagnostic) } finally { work.inCallback = false }
+            })
+        }
+    }
     public func run(): Unit {
         if (readSession().isSome()) {
             throw UIException("LifecycleReentry", "session already active")
@@ -528,6 +544,7 @@ public class Application {
         var restoreFailed = false
         let probe = CaretProbe()
         var deviceSession: ?RuntimeSession = None
+        var pasteEnabled = false
         try {
             startSession(true)
             running = readSession().isSome()
@@ -539,11 +556,34 @@ public class Application {
                 case Some(value) => value
                 case None => capabilities.colorMode
             }
-            let decoder = InputDecoder()
+            let decoder = KeyboardDecoder(limits: keyboardLimits)
             decoder.caretProbe = Some(probe)
+            let pasteTarget: Array<?NodeRef> = [None]
+            decoder.onPasteStart = Some({ => pasteTarget[0] = activeTarget() })
+            decoder.onIssue = Some({diagnostic => reportKeyboardIssue(diagnostic)})
+            decoder.onEvent = Some({key =>
+                if (key.code != "paste") { dispatchDeviceKey(key) }
+                else {
+                    var available = false
+                    if (let Some(target) <- pasteTarget[0]) {
+                        if (target.isValid() && readSession().isSome()) {
+                            let node = target.resolve(); let owner = current()
+                            available = owner.focusManager.effective(node,true) && owner.focusManager.effective(node,false) && owner.inOverlayDomain(node)
+                            if (available) { dispatch(target,key) }
+                        }
+                    }
+                    if (!available) { reportKeyboardIssue(KeyboardDiagnostic(KeyboardIssue.PasteTargetUnavailable, decoder.pasteOffset())) }
+                    pasteTarget[0] = Option<NodeRef>.None
+                }
+            })
             if (let Some(work) <- readSession()) {
                 deviceSession = Some(work)
                 if (!work.isStopping()) {
+                    let enabled = writeTerminal("\u{1b}[?2004h",work,true)
+                    if (enabled.issue == SessionIssue.Cancelled) { running = false }
+                    else if (enabled.issue == SessionIssue.AllocationFailed) { throw Exception("paste mode allocation failed") }
+                    else if (enabled.issue != SessionIssue.NoIssue) { work.recordDeviceFailure(); work.throwDeviceFailure() }
+                    else { pasteEnabled = true }
                     let before = unsafe { cjt_monotonic_ms() }
                     if (before < 0 || before > Int64.Max - 600) { probe.status = "unknown-clock" }
                     else {
@@ -642,12 +682,12 @@ public class Application {
                     if (probe.status == "pending") { readTimeout = lesser(readTimeout,probe.deadline - now) }
                     lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
                 }
-                if (decoder.state == 1 && lastInput >= 0) {
+                if (decoder.waitingIdle() && lastInput >= 0) {
                     let now = unsafe { cjt_monotonic_ms() }
                     if (now < 0) { lastInput = -1; untimedIdleRemaining = 100 }
                     else if (now >= lastInput) { readTimeout = lesser(readTimeout,greater(0,100 - (now - lastInput))) }
                 }
-                if (decoder.state == 1 && untimedIdleRemaining > 0) {
+                if (decoder.waitingIdle() && untimedIdleRemaining > 0) {
                     readTimeout = lesser(readTimeout,untimedIdleRemaining)
                 }
                 let value = readByte(Int32(readTimeout))
@@ -660,52 +700,46 @@ public class Application {
                 if (value == -3) {
                     throw Exception("terminal input failed")
                 }
+                if (value == -4) {
+                    decoder.finish(); running = false; continue
+                }
                 if (value == -5) { continue }
-                if (value == -1 && decoder.state == 1 && untimedIdleRemaining > 0) {
+                if (value == -1 && decoder.waitingIdle() && untimedIdleRemaining > 0) {
                     untimedIdleRemaining -= lesser(untimedIdleRemaining,readTimeout)
                     if (untimedIdleRemaining == 0) {
                         lastInput = -1
-                        if (let Some(escape) <- decoder.timeout()) { dispatchDeviceKey(escape) }
+                        decoder.timeout()
                         if (readSession().isNone() || work.isStopping()) { break }
                         continue
                     }
                 }
-                if (value >= 0 && decoder.state == 1 && lastInput >= 0) {
+                if (value >= 0 && decoder.waitingIdle() && lastInput >= 0) {
                     let now = unsafe { cjt_monotonic_ms() }
                     if (now < 0) {
-                        // A failed sample is not evidence that the just-read
-                        // byte arrived after the keyboard idle interval.
                         lastInput = -1; untimedIdleRemaining = 100
                     } else if (now >= lastInput && now - lastInput >= 100) {
                         lastInput = -1
-                        if (let Some(escape) <- decoder.timeout()) { dispatchDeviceKey(escape) }
+                        decoder.timeout()
                         if (readSession().isNone() || work.isStopping()) { break }
                     }
                 }
-                let event = if (value >= 0) {
-                    let decoded = decoder.feed(value)
-                    if (decoder.state == 1) {
+                if (value >= 0) {
+                    decoder.feed([UInt8(value)])
+                    if (decoder.waitingIdle()) {
                         lastInput = unsafe { cjt_monotonic_ms() }
                         untimedIdleRemaining = if (lastInput < 0) { 100 } else { 0 }
                     } else { lastInput = -1; untimedIdleRemaining = 0 }
-                    decoded
-                } else if (decoder.state == 1 && lastInput >= 0) {
+                } else if (decoder.waitingIdle() && lastInput >= 0) {
                     let now = unsafe { cjt_monotonic_ms() }
                     if (now < 0) {
-                        // Only the just-completed poll interval is known to
-                        // have elapsed; an earlier probe wake may be shorter.
                         lastInput = -1
                         untimedIdleRemaining = greater(0,100 - readTimeout)
-                        if (untimedIdleRemaining == 0) { decoder.timeout() } else { Option<KeyEvent>.None }
+                        if (untimedIdleRemaining == 0) { decoder.timeout() }
                     } else if (now >= lastInput && now - lastInput >= 100) {
                         lastInput = -1; decoder.timeout()
-                    } else { Option<KeyEvent>.None }
-                } else { Option<KeyEvent>.None }
-                lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
-                match (event) {
-                    case Some(key) => dispatchDeviceKey(key)
-                    case None => ()
+                    }
                 }
+                lastCapabilities = Some(capabilities.withCursorStatus(probe.status))
             }
         } catch (error: Exception) {
             failure = Some(error)
@@ -716,6 +750,15 @@ public class Application {
             match (failure) {
                 case None => failure = Some(error)
                 case Some(first) => failure = Some(aggregateCleanup(first, error))
+            }
+        }
+        if (pasteEnabled && unsafe { cjt_output_unsafe() } == 0) {
+            if (let Some(work) <- deviceSession) {
+                let written = writeTerminal("\u{1b}[?2004l",work,false)
+                if (written.issue != SessionIssue.NoIssue) {
+                    let error = SessionDeviceException(unsafe { cjt_output_unsafe() } != 0)
+                    match (failure) { case None => failure = Some(error); case Some(first) => failure = Some(aggregateCleanup(first,error)) }
+                }
             }
         }
         if (probe.known() && probe.managed && probe.currentVisible != probe.originalVisible) {
