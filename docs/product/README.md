@@ -1,10 +1,10 @@
 # 产品说明
 
-单/多行公共编辑见[TextInput/TextArea](text-editing.md)；[有限E独立验收、原件与真实截图](../reviews/E/README.md)接受E001–E005，完整Linux/父AC仍待汇合。
+当前已接受公共 Canvas/焦点/caret、视口滚动与覆盖层，使用方法见[交互原语](interaction.md)，独立证据分别见[A绘制与焦点](../reviews/interaction/A/README.md)、[B视口与滚动](../reviews/interaction/B/README.md)、[C覆盖层](../reviews/interaction/C/README.md)。归一化键盘/paste已获[有限K验收](../reviews/K/README.md)；单/多行[TextInput/TextArea](text-editing.md)已获[有限E验收](../reviews/E/README.md)。这些已接受范围不等于完整Linux验收。
 
-公共绘制、焦点和 caret 见 [交互原语](interaction.md)。键盘事件、粘贴与限制见 [键盘输入](keyboard-input.md)，示例位于 `examples/keyboard`。主题配置、解析和显式加载见 [主题配置](theme.md)。可选会话复制、宿主标题与恢复结果见 [会话扩展](session.md)，正常公共调用示例位于 `examples/session`。完整发送为 SentUnconfirmed；能力声明不等于宿主效果确认。
+键盘事件、粘贴与限制见[键盘输入](keyboard-input.md)，示例位于 `examples/keyboard`。主题配置、解析和显式加载见[主题配置](theme.md)。可选剪贴板复制、宿主标题与恢复结果见[会话扩展](session.md)，正常公共调用示例位于 `examples/session`；这些可选操作完整发送后仍仅返回 `SentUnconfirmed`，不确认宿主效果，不返回 `Applied` 或 `RestoreConfirmed`。图片图标返回 `Unsupported/NoImageAdapter`。
 
-cjtui 0.0.0 的首个切片提供 Linux ANSI TTY 文本界面：`Text`、`Row`、`Column` 组件块及前景色、背景色和粗体属性，Unicode 字符网格、纯文本与 ANSI 快照、键盘回调和终端尺寸变化时重排。普通应用无需发送 ANSI 或手动刷新。
+cjtui 0.0.0 的历史首个切片提供 Linux ANSI TTY 文本界面：`Text`、`Row`、`Column` 组件块及前景色、背景色和粗体属性，Unicode 字符网格、纯文本与 ANSI 快照、键盘回调和终端尺寸变化时重排。普通应用无需发送 ANSI 或手动刷新。
 
 使用仓颉 SDK 1.2.0，在 Linux ANSI 终端中从源码运行最小示例：
 
@@ -15,7 +15,7 @@ cjpm run
 
 按 `q` 退出，Ctrl-C 取消；程序需要实际 TTY。构建依赖及可选离线 Unicode 数据输入见 [原生构建](native-build.md)。
 
-首片采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。更多组件、M2 局部更新及完整 Linux 能力仍待实现和验收；Windows、macOS、HarmonyOS 是后续必需目标，尚未实现。当前未发布发行版。
+当前依赖采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。基础五控件已获[有限S验收](../reviews/widgets/S/README.md)，新native S证据仅覆盖ASCII/default Classic；Unicode/disabled/explicit palette另有headless与源码证据。菜单/状态栏/分区的[正式测试158已固定，159实际实现中](../reviews/widgets/M/README.md)。M2局部布局与局部绘制尚未实现或验收，不能把现有失效通知和完整帧差分输出当作M2；完整M1集成、027/041展示及最终Linux验收仍待汇合。Windows、macOS、HarmonyOS尚未实现，当前未发布发行版。
 
 低层可用 `Frame(width, height)` 和 `put(x, y, text, style: Style(...))` 写入网格，`cellAt` 查询，`toPlainText` 和 `toAnsi` 导出完整快照。负尺寸与越界查询报错；写入按边界裁剪，拒绝除换行外的控制字符。`render(root, width, height)` 使用同一网格渲染组件树。`Application(root).onKey { event => ... }.run()` 负责终端会话；文本按 Unicode 字符提供，`stop()` 可从回调退出。
 
@@ -44,7 +44,7 @@ cjpm run
 
 可观察状态与持久组件示例位于 `examples/reactive`。在 SDK 1.2.0 环境中运行 `cd examples/reactive && cjpm run`；按任意键递增，Ctrl-C 退出。源码同时导入 `cjtui`、`cjtui.*` 和 `cjtui.macros.*`，使用 `@Component`、带显式类型和初值的 `@State` 与 `@Bind` 声明绑定。普通表达式按初值求取；对自动更新的属性使用 `@Bind(expr)` 或类型明确的 `{ => expr }` getter。
 
-`Observable<T>` 可由多个视图共享；`set` 和 `notify` 可从后台线程调用，框架在 UI 会话处理绑定。终端循环在无阻塞用户回调时最多每 100 毫秒检查一次更新。可变对象内部的更改由应用同步，并显式调用 `notify`。`Application.post` 将回调投递到会话，`batch` 合并 UI 变更；`startHeadless`、`snapshot` 和 `dispose` 支持无终端消费。`visible(false)` 保留节点与状态但不占布局。`render` 是无终端的完整帧导出，脱离活动会话导出时不运行挂载副作用。焦点和覆盖层仍在开发。
+`Observable<T>` 可由多个视图共享；`set` 和 `notify` 可从后台线程调用，框架在 UI 会话处理绑定。终端循环在无阻塞用户回调时最多每 100 毫秒检查一次更新。可变对象内部的更改由应用同步，并显式调用 `notify`。`Application.post` 将回调投递到会话，`batch` 合并 UI 变更；`startHeadless`、`snapshot` 和 `dispose` 支持无终端消费。`visible(false)` 保留节点与状态但不占布局。`render` 是无终端的完整帧导出，脱离活动会话导出时不运行挂载副作用。焦点、默认动作路由、视口滚动与覆盖层已有上述独立接受的公共实现，具体边界见[交互原语](interaction.md)。
 
 
 `If(condition, thenBody, elseBody: ...)` 和 `ForEach<T>(items, key, body)` 提供响应式条件与列表；普通 `if` / `for` 只在组件首次构造时执行。它们没有额外布局盒，生成的组件直接进入父节点。`If` 活跃分支可以为空，最多一个根；`ForEach` 每个 key 必须有一个根，复合项使用 `Column` 或 `Row`。key 必须非空且在本组唯一；框架保留数据顺序，不推断排序或数据保留规则。

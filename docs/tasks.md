@@ -549,7 +549,7 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 
 持久运行时支持TASK071–080唯一状态在[reactive-runtime tasks](../openspec/changes/implement-reactive-runtime/tasks.md)。014/015/016/032本表原完整AC保持；构造/绑定子接口分阶段交付，列表/混合结构由R13验收；014跨弹窗已由C-05同类型组件普通/覆盖层两实例及干净公开例子验证，见C独立验收。精确接口与分段前置见该design第6节。
 
-当前用户要求完成全部 Linux；[总执行计划](linux-completion-plan.md)与[恢复日志](../openspec/linux-completion-progress.md)协调全部稳定任务，不维护第二份完成复选框。TASK-067–070（测试/审核/执行/验收支持）唯一状态在[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，对应 AC-067–070。TASK-010 仍由本表维护；文件原语在该增量交付，实际可见覆盖层快照在018后汇合，不提前标完整通过。
+当前用户要求完成全部 Linux；[总执行计划](linux-completion-plan.md)与[恢复日志](../openspec/linux-completion-progress.md)协调全部稳定任务，不维护第二份完成复选框。TASK-067–070（测试/审核/执行/验收支持）唯一状态在[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，对应 AC-067–070。TASK-010 唯一复选框与状态已转[complete-linux-integration tasks](../openspec/changes/complete-linux-integration/tasks.md)；本表只保留原范围/依赖与编号映射。文件原语和覆盖层相关既有证据按已接受范围复用，完整010汇合由该收尾变更维护。
 
 有界富文本支持TASK081–084唯一状态在[implement-rich-text](../openspec/changes/implement-rich-text/tasks.md)，对应AC081–084；原009状态同变更，010仍保持实际可见层前置。
 
