@@ -16,6 +16,16 @@ func localTheme(): Unit {
         check(frame.cellAt(0, 0).style == Style(foreground: Color.Blue, background: Color.Black), "M05 focused MenuItem exact Style includes inherited fields")
         check(frame.cellAt(1, 0).style == Style(foreground: Color.Red, background: Color.Black), "M05 disabled MenuItem exact Style overrides Classic dim")
     } finally { app.dispose() }
+    // T015: global seed background fills use only the seed background;
+    // a foreground-only menu role must not turn its blank cells opaque red.
+    let seedTheme = Theme.parse("schema_version = 1\nname = \"M-seed-only\"\n[text]\nforeground = \"white\"\nbackground = \"black\"\n[components.horizontal_menu.text]\nforeground = \"red\"\n")
+    let seedMenu = HorizontalMenu([MenuEntry("a", "A")], {_ => ()})
+    let seedApp = Application(seedMenu, theme: seedTheme)
+    seedApp.startHeadless()
+    try {
+        check(seedApp.snapshot(4, 1).cellAt(3, 0).style == Style(background: Color.Black),
+            "M05 foreground-only HorizontalMenu role preserves exact global seed fill Style")
+    } finally { seedApp.dispose() }
     let bar = StatusBar { Text("S") }.styles([StyleUse.Named("reused")]).foreground(Color.Red)
     let styled = Application(bar, theme: theme)
     styled.startHeadless()
