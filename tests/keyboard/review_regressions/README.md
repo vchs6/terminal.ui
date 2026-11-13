@@ -29,3 +29,16 @@ the independent review's fixed-source/SDK disassembly proof is its evidence.
 No memory-hook, synthetic measurement, RSS claim, or large input is added here.
 Old issue-throws regression and all prior suites remain unchanged; this scope
 does not claim those suites were rerun or validate real terminal hosts.
+
+## K115 round2 narrow follow-up
+
+Select `CJTUI_K115_CASE=K115-R1-01` with the same run.sh. Only this pure
+selector is added; original01–05 functions, helpers, native consumer and
+oracles are unchanged. Literal `ESC E4 31 41 42` at maxSequenceBytes1 is
+observed at all two-block splits and bytewise, followed by the fixed
+`feed(ESC C2); timeout(); feed(31 41 42); finish()` control at the same limit.
+Both require only SequenceTooLong@0 and plain text B. Digits1/finalA remain
+in the established error drain; neither InvalidUtf8 nor leaked1/A is allowed.
+All observations precede the new selector's independent assertion. No native
+case or old selector is run for this follow-up. The oracle follows K001 raw
+budget, K002/F002 error isolation and the frozen timeout budget ruling.

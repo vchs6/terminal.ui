@@ -83,6 +83,6 @@ func nativeStop():Unit {
 }
 main():Int64 {
     let selected=getVariable("CJTUI_K115_CASE").getOrThrow()
-    if(selected=="K115-05"){nativeStop()}else{pure(selected)}
+    if(selected=="K115-05"){nativeStop()}else if(selected=="K115-R1-01"){roundTwo()}else{pure(selected)}
     println("PASS ${selected}");0
 }
