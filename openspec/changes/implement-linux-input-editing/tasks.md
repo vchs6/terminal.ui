@@ -1,6 +1,6 @@
 # Linux keyboard and text editing implementation plan
 
-当前控制器准入（2026-11-13）：PF001–004已独立限定闭合，F006/F007已独立复核，交互112与会话152等实际前置已接受。TASK113正式测试冻结c96cc601完成，114在独立产品工作区实施中；下列旧candidate/planned描述保留起草背景，不能代替逐任务的固定证据及勾选，也不代表115–122提前ready。
+当前控制器准入（2026-11-13）：PF001–004已独立限定闭合，F006/F007已独立复核，交互112与会话152等实际前置已接受。TASK113正式测试冻结c96cc601完成；TASK114候选源码已固定为5baa09f33251e9f572640a2f6d4ae46245f7eea8并保存于远端wip/linux-keyboard，完整键盘入口退出0，最终直接lint无错误诊断；TASK115独立源码审核正在进行，116/117尚未验收，键盘产品尚未合入main。下列旧candidate/planned描述保留起草背景，不能代替逐任务的固定证据及勾选，也不代表115–122提前ready。
 
 > **For agentic workers:** 本件仍为独立候选planned；主代理冻结并通过独立preflight后，按用户已选独立测试/产品/审查/执行/验收流程执行。REQUIRED SUB-SKILL: superpowers:subagent-driven-development；本起草角色不执行、不派代理。
 
