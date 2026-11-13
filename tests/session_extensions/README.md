@@ -93,8 +93,13 @@ device failure. Exception wording is not frozen: the primary must be nonempty
 and cannot be a controlled later callback/UI/native cleanup sentinel.
 
 Native sequence/result/write records require complete save, selected sequence2
-failure at byte0, and successful sequence3 pop before the first real native close.
-All pre-close bytes equal save+pop; healthy same-process reopen output remains
+failure at byte0, successful sequence3 pop, then sequence4 exact `CSI ? 2004 l`
+before the first real native close. K004 requires restoring bracketed paste already
+requested at initialization; the real runner checks exactly one initial `2004h`
+and no premature disable before arming the fault. All pre-close bytes equal
+`save + pop + CSI ? 2004 l`; the extension-only wire remains exactly save+pop.
+The eight-byte disable is not the seven-byte mode25 query. No additional output
+is permitted by the exact sequence/result/byte checks; healthy same-process reopen output remains
 separate. Existing partial-offset assertions are unchanged and still prohibit
 all later output, including pop. One additional Direct offset0 configuration
 combines later callback/UI cleanup failures, so safe scope release cannot be
@@ -103,7 +108,9 @@ is added.
 
 `node tests/session_extensions/safe_pop_selftest.mjs` runs synthetic-observation
 oracle controls only: all three routes, twelve malformed safe-cleanup observations
-plus an unsafe-extra-pop negative per route (39 deliberate negatives). Normal
+plus six requested-mode controls and an unsafe-extra-pop negative per route
+(57 deliberate negatives). The synthetic Application observation includes the
+K004 mode lifecycle; it is not a real product execution. Normal
 `run.sh selftest` additionally passes literal files through the existing real
 native writer: the pre-existing injector fails only sequence2, permitting an
 independent sequence3. Manual route hex vectors distinguish save/pop and exact

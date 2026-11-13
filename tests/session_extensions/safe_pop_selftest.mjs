@@ -4,7 +4,8 @@ import { spawnSync } from 'node:child_process';
 import { mkdtempSync,readFileSync,writeFileSync,existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join,resolve } from 'node:path';
-import { verifyLive } from './oracle.mjs';
+import { verifyLive,verifyKeyboardModeStartup } from './oracle.mjs';
+const enable=Buffer.from('1b5b3f3230303468','hex'),disable=Buffer.from('1b5b3f323030346c','hex');
 const vectors=[
  ['Direct','1b5b32323b3274','1b5d323b4107','1b5b32333b3274'],
  ['TmuxPassthrough','1b50746d75783b1b1b5b32323b32741b5c','1b50746d75783b1b1b5d323b41071b5c','1b50746d75783b1b1b5b32333b32741b5c'],
@@ -28,15 +29,21 @@ function observation(route,save,pop) {
   ['cleanup.again',`RestoreHostTitle|SentUnconfirmed|${p}|NoIssue|-1|RestoreSentUnconfirmed`],
   ['cleanup.again.steps','1'],['cleanup.again.step0',`RestoreHostTitle|SentUnconfirmed|${p}|NoIssue`]
  ]);
- const native=`arm\t1\t0\nsequence\t1\t0\nwrite\t1\t${n}\nsequence-result\t0\t${n}\nsequence\t2\t0\nfault\t2\t0\nsequence-result\t-1\t0\nsequence\t3\t0\nwrite\t3\t${p}\nsequence-result\t0\t${p}\nclose\t0\t0\n`;
- return {rows,native,wire:Buffer.concat([save,pop]),all:Buffer.concat([save,pop])};
+ const native=`arm\t1\t0\nsequence\t1\t0\nwrite\t1\t${n}\nsequence-result\t0\t${n}\nsequence\t2\t0\nfault\t2\t0\nsequence-result\t-1\t0\nsequence\t3\t0\nwrite\t3\t${p}\nsequence-result\t0\t${p}\nsequence\t4\t0\nwrite\t4\t8\nsequence-result\t0\t8\nclose\t0\t0\n`;
+ return {rows,native,startup:enable,wire:Buffer.concat([save,pop]),all:Buffer.concat([save,pop,disable])};
 }
 let positive=0,negative=0,nativeChecks=0;
 for(const [route,saveHex,titleHex,popHex] of vectors) {
  const save=Buffer.from(saveHex,'hex'),title=Buffer.from(titleHex,'hex'),pop=Buffer.from(popHex,'hex');
- const check=o=>verifyLive(o.rows,o.wire,o.native,'fault-set',route,0,o.all);
+ const check=o=>{verifyKeyboardModeStartup(o.startup);verifyLive(o.rows,o.wire,o.native,'fault-set',route,0,o.all);};
  check(observation(route,save,pop));positive++;
  for(const [label,mutate] of [
+  ['no requested enable',o=>{o.startup=Buffer.alloc(0);}],
+  ['duplicate enable',o=>{o.startup=Buffer.concat([enable,enable]);}],
+  ['premature disable',o=>{o.startup=Buffer.concat([enable,disable]);}],
+  ['missing mode restore',o=>{o.all=Buffer.concat([save,pop]);}],
+  ['query is not mode restore',o=>{o.all=Buffer.concat([save,pop,Buffer.from('1b5b3f32352470','hex')]);}],
+  ['mode restore after close',o=>{o.native=o.native.replace('sequence\t4','close\t0\t0\nsequence\t4').replace(/close\t0\t0\n$/,'');}],
   ['no pop',o=>{o.wire=save;o.all=save;o.native=o.native.slice(0,o.native.indexOf('sequence\t3'))+'close\t0\t0\n';}],
   ['extra pop',o=>{o.wire=Buffer.concat([save,pop,pop]);o.all=o.wire;}],
   ['lost cleanup record',o=>{for(const key of [...o.rows.keys()])if(key.startsWith('cleanup.'))o.rows.delete(key);o.rows.set('cleanup.count','0');}],
