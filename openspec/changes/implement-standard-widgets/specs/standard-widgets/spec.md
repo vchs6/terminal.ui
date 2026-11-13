@@ -11,8 +11,15 @@
 
 #### Scenario: 非法主题能力不静默忽略
 
-- **WHEN** 应用对Progress设置静态文字wrap属性或对Text根控件设置容器gap属性
-- **THEN** 沿唯一能力验证得到InvalidProperty，不因主题角色名获得不存在的primitive能力
+- **WHEN** 应用通过typed setStyle、getter属性或已解析的命名/Inline样式把容器gap应用到Text根控件，或给Progress设置静态文字wrap属性
+- **THEN** 沿唯一能力验证抛UIException("InvalidProperty")，不因主题角色名获得不存在的primitive能力
+
+#### Scenario: 继承的旧常量快捷入口保留异常契约
+
+- **WHEN** 应用在Text根Label/Button/Checkbox/Radio/MenuItem调用既有gap(Int64)、alignItems(Alignment)或justifyContent(Alignment)等布局合同明确不适用的旧常量快捷入口
+- **THEN** 与原Text一致立即抛IllegalArgumentException并保留旧设置；不得获得容器能力，也不得改成按widget角色区分的异常；旧容器textAlign与非法Stretch等既有边界同样保持
+
+此LEGACY-PROP-001仅保留已有布局入口合同；新typed/getter/样式目标检查仍严格InvalidProperty。主题配置已知role不支持字段仍为UnsupportedProperty诊断，程序化非法样式数值仍按T013原边界抛IllegalArgumentException。
 
 ### Requirement: 精确受控签名与单行Unicode caption
 

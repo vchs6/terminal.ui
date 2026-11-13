@@ -17,15 +17,15 @@
   "frozen_contracts": [
     {
       "path": "openspec/changes/implement-standard-widgets/design.md",
-      "sha256": "b9e7964a8f0ac14fd9aa7fe742000dec72c185ad7606e340c26216efd83b8123"
+      "sha256": "349e93f2ce9682c754d951edf26c09bb97fb4e0f80d954b81e5c1c4936570bbc"
     },
     {
       "path": "openspec/changes/implement-standard-widgets/tasks.md",
-      "sha256": "e02d2200d8ac5f0ad2047c2118db3c0bd4d4de4490189e02352c9848b4d54bf7"
+      "sha256": "c1b369162d3c65c0ccd5e07b599106597bbe6973f457a95106f7408f8b426e7c"
     },
     {
       "path": "openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md",
-      "sha256": "d44a200aaf764283ee382e012e538ab019f12f7c59b5f57441c417b3267961e1"
+      "sha256": "f427d1f89df03c7aef5dd5b474091181fcb04d9837bbaa1541a019b6bc76e23a"
     }
   ],
   "status_delta_only": "Current design/tasks/proposal admission notes supersede historical warnings; signatures, semantics, budgets and ownership unchanged from reviewed source.",
@@ -793,5 +793,12 @@
       "sha256": "e0db917d96e3e7cfd53b9efd463fe97363192f02ff0b308f91deb32cf4e57536"
     },
     "results": "Actual prerequisite normal build/direct0; five isolated compiler1 each solely missing own factory; parser/tools0. Typing correction changes only two explicit Option<UIKeyEvent>.None; oracles unchanged. Target behavior/PTY/Bool rejection/clean bundle pending154–157."
+  },
+  "compatibility_ruling": {
+    "id": "LEGACY-PROP-001",
+    "decision": "Preserve explicit accepted layout legacy constant-shortcut IllegalArgumentException; typed/getter/resolved style target capability stays UIException InvalidProperty. No widget-specific bypass or catch-any oracle.",
+    "evidence": "admission/gap-contract-decision/report.md",
+    "hashrefs_sha256": "bf16eee051b764626c378581a6b911d16ec1cbf15f2731a6e5f1e0e10a50b7d4",
+    "tradeoff": "Inherited legacy entry versus typed/getter error type remains different; limited existing contract, no new API exception."
   }
 }

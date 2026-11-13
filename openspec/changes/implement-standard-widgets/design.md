@@ -153,3 +153,9 @@ getter/业务callback/纯绘制失败沿Runtime统一UIException/原异常与cle
 本change已成为019/029及153–162唯一任务状态入口，docs/tasks只保编号/原AC引用，旧候选“尚未转移”措辞不再适用。用户范围与S等待117/Popup内容默认Opaque且不自动close/StatusBar自然Row/I012统一态裁决均已采纳，产品仍planned。原provenance/root-decisions独立原件仅来源，不是消费者构建依赖。
 
 SplitPane最终精确签名为`public func SplitPane(axis!: SplitAxis = SplitAxis.Horizontal, body!: () -> Unit): Component`。SDK1.2固定现宏已正常编译原始`SplitPane { ... }`及`SplitPane(axis: SplitAxis.Vertical) { ... }.width(20)`；旧body先axis后的签名使named axis尾随块报重复axis，故修正未实现API签名而不改宏/不要求用户显式lambda对象。其他新增重载/泛型callback/Float64 API同轮仅语言验证，不是产品GREEN。
+
+## 既有属性错误兼容裁决 — LEGACY-PROP-001（2026-11-13）
+
+Text根控件继承原primitive，不覆盖Component方法。layout-decoration设计已明确Text常量gap/alignItems/justifyContent、容器textAlign等旧不适用快捷入口立即IllegalArgumentException并保留旧设置；保持该公开合同，不为控件新增kind或按themeRole分支。typed setStyle、getter属性、已解析命名/Inline样式的目标能力检查仍严格UIException("InvalidProperty")；Progress的Canvas.wrap和fraction非法值规则不变。主题配置UnsupportedProperty及程序化数值IllegalArgumentException边界沿原Theme合同，不作全入口异常归一。
+
+原S场景未区分这些入口，与已接受布局旧合同冲突；本裁决明确有限兼容例外，测试必须逐路径断言具体类型/code，不能catch任意异常或接受两种类型。[独立限定建议](../../../docs/reviews/widgets/S/admission/gap-contract-decision/report.md)与原件哈希给出依据。代价是旧快捷入口与typed/getter入口异常类型不同；例外不扩大到新API。

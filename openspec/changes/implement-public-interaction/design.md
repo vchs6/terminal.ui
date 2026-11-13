@@ -520,3 +520,7 @@ Application.terminalCapabilities()原只读入口返回完整不可变值快照�
 时间精确判定可用原生link fault clock shim/受控PTY oracle（仅测试，不加公开可写时钟）；短读/错误/overflow路径均有原件。正式实际XTerm/VTE/VT在visible和hidden两种受控初态运行同一无override产品，PNG多帧避blink、原bytes/termios/exit/version/config/src/hash；Unknown全wire无25h/l/s/r，逻辑snapshot与有效CUP仍正确。query/帧/caret-only/cleanup零/部分错误遵S008，unsafe后零后续output并保留native资源清理/首错/reopen拒绝。复用未变S008证据，仅补query/caret新边界，不重复全矩阵。
 
 未来113/114继承同一精确内部reply分支、payload隔离/F003顺序/4096预算，无接点public KeyboardDecoder仍UnsupportedSequence，maxSequenceBytes=8/9/64不豁免9byte报告。reply实际100ms timeout打断后沿K002回normal/诊断，不保证任意间隔可重新拼回。152/080/084/088实际接受后方可098完整准入；独立preflight仅设计事实，不替代该产品屏障。
+
+### 既有快捷属性入口的错误兼容限定（LEGACY-PROP-001）
+
+本错误表的“不适用能力/主题属性 InvalidProperty”适用于新typed/getter/已解析样式应用与Canvas能力入口；不撤销layout-decoration已接受的旧常量快捷setter合同：Text的gap/alignItems/justifyContent、容器textAlign等既有种类不适用入口立即IllegalArgumentException并保持旧设置。新控件继承相同Component入口，不能按角色改异常；主题配置诊断和程序化非法数值继续各自原边界。参见[标准控件兼容裁决](../implement-standard-widgets/design.md)。
