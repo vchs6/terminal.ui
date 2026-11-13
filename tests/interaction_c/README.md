@@ -185,3 +185,53 @@ R1-I02 independently checks both default and explicit root host against literal
 `B P  ` on the actual5×1 frame with a fixed1×1 ordinary root. Existing oracles
 and prior selector bodies are unchanged. Print-only review probes are concrete
 reproduction material, not asserting RED or acceptance evidence.
+
+## C03 native caret occlusion supplement (one vector)
+
+`CJTUI_OVERLAY_NATIVE_CARET=opaque` selects `native_caret_fixture.cj` before
+other entries, independently of the unchanged H01 `CJTUI_OVERLAY_NATIVE` modes.
+Use normal `cd tests/interaction_c && cjpm build`; the final native executable
+is the same public consumer binary. In an actual terminal of at least8×3:
+
+```sh
+mkdir -p /absolute/output-directory
+CJTUI_OVERLAY_NATIVE_CARET=opaque CJTUI_OVERLAY_CARET_OUTPUT=/absolute/output-directory ./tests/interaction_c/target/release/bin/main
+```
+
+| Stage | Input | Hand-derived body8×3 / logical caret |
+|---|---|---|
+| base | after first paint, `s` | `ABCDEFGH` / `ijklmnop` / `QRSTUVWX`; visible owner=base at(3,1) |
+| covered | `o`, observe paint, then `s` | `ABCDEFGH` / `ij   nop` / `QRSTUVWX`; canonical hidden owner=None at(0,0) |
+| restored | `c`, observe paint, then `s` | original three rows; original base caret(3,1) visible again |
+| exit | after restored query, `q` | actual process exits0, all resources0, base cleanup once, termios restored |
+
+The ordinary Canvas body is fixed8×3 with a non-root explicit overlayHost;
+Passive centered3×1 opaque spaces cover columns2..4 of its middle row without
+changing logical focus. No native selector prints or hand-writes terminal
+ANSI. `s` only reads public `caretSnapshot` and immutable `terminalCapabilities`
+from the previously completed frame. `Application.snapshot/render` cannot be
+reentered from run callbacks. `action-*` files only acknowledge queued
+commands: they are never paint fences. Collectors must first observe actual
+painted rows, then send the separate `s` key and await its complete `state-*`
+file; the single native UI loop completes the preceding writer transaction
+before it can process that query. Preserve raw input/output and fence offsets.
+
+A plain PTY controlled reply may be verified with the existing B primitives:
+
+```sh
+python3 tests/interaction_c/native_caret_pty.py --binary tests/interaction_c/target/release/bin/main --output /new/absolute/capture --cursor-reply 1
+```
+
+This recorder freezes the literal changed row1=`ij   nop` then `ijklmnop`, and
+known-mode CUP at ANSI2;4, hide/show, original-mode cleanup, actual exit and
+exact termios. Reply1 means controlled original-visible;2 means original-hidden;
+none waits for the actual public Unknown diagnostic. These are one logical
+vector's I015 capability classifications, not extra product scenarios.
+On real XTerm/VTE let the real host reply: capture actual visibility/CUP and
+original-state restoration with native wire and PNG evidence. With kernelVT
+Unknown, all paths must have zero25h/l/s/r; the logical hidden state still
+passes, but a physically visible native cursor is unmanaged/insufficient
+physical-hide evidence, never a claimed hide success. Capture immutable
+cursorVisibilityStatus and savedCursorStatus, real host dimensions/config,
+true executable hash/exit/termios and stage screenshots separately. Do not
+inject a synthetic known reply while claiming an actual-host capability.
