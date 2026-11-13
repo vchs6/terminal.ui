@@ -14,6 +14,7 @@ public open class Component {
     var explicitKey: ?String = None
     let bindings = ArrayList<Binding>()
     var mountEffect: ?(NodeRef) -> (() -> Unit) = None
+    var intrinsicMountEffect: ?(NodeRef) -> (() -> Unit) = None
     var keyHandler: ?(UIKeyEvent) -> Unit = None
     var captureHandler: ?(UIKeyEvent) -> Unit = None
     var viewportDeclared = false

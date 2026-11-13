@@ -108,6 +108,18 @@ public class NodeRef {
         command.explicitEnsure = true
         value.session.enqueueViewport(command)
     }
+    // Caret geometry may become stale if a source changes before layout.
+    // Preserve public validation but discard a stale framework-owned request.
+    // Call only from an event, post or batch: before stabilization the newly
+    // enqueued command is still the tail of the existing viewport queue.
+    func ensureEditingCaret(rect: Rect): Unit {
+        ensureVisible(rect: Some(rect))
+        let session = resolve().session
+        if (!session.viewportCommands.isEmpty()) {
+            let command = session.viewportCommands[session.viewportCommands.size - 1]
+            if (command.target.sameNode(this) && command.kind == 1) { command.explicitEnsure = false }
+        }
+    }
     public func notify(change: ChangeKind): Unit {
         if (structureEvaluation.get().isSome()) {
             throw UIException("ReentrantStructure", "node notification during structure evaluation")

@@ -53,9 +53,9 @@ func writeTerminal(value: String, session: RuntimeSession, checkCancel: Bool): S
         }
         // Serialize requestStop's state change with the first native write.
         // Once committed to a logical sequence, stop cannot split its bytes.
-        session.lock.lock()
+        session.outputGate.lock()
         try {
-            if (checkCancel && session.stopping) {
+            if (checkCancel && session.isStopping()) {
                 return SessionWriteResult(0, SessionIssue.Cancelled, false)
             }
             if (cjt_buffer_write() != 0) {
@@ -63,7 +63,7 @@ func writeTerminal(value: String, session: RuntimeSession, checkCancel: Bool): S
             }
             return SessionWriteResult(cjt_buffer_emitted(), SessionIssue.NoIssue, true)
         } finally {
-            session.lock.unlock()
+            session.outputGate.unlock()
         }
     }
 }

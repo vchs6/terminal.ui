@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 cjc --version
 cjpm --version
 case "${1:-all}" in
+  editing) bash tests/editing/run.sh ;;
   keyboard)
     tests/keyboard/run.sh --pty
     bash tests/keyboard/paste_argument/run.sh
@@ -76,5 +77,5 @@ case "${1:-all}" in
     "$0" runtime
     "$0" resize-coherence
     ;;
-  *) echo "usage: $0 [keyboard|native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
+  *) echo "usage: $0 [editing|keyboard|native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
 esac

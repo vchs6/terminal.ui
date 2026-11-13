@@ -32,6 +32,7 @@ class RuntimeSession {
     private var firstDeviceFailure: ?Exception = None
     var application: ?Application
     let lock = Mutex()
+    let outputGate = Mutex()
     let nodes = ArrayList<RuntimeNode>()
     let bindings = ArrayList<Binding>()
     let pendingBindings = ArrayList<Binding>()
@@ -1125,6 +1126,7 @@ class RuntimeSession {
         }
         if (let Some(focus) <- pendingFocusEnsure) { if (!focus.target.isValid()) { pendingFocusEnsure = None } }
         for (node in removed) {
+            if (let Some(cleanup) <- node.intrinsicCleanup) { node.intrinsicCleanup = None; cleanup() }
             node.component.clearMount()
         }
         let removedBindings = ArrayList<Binding>()
@@ -1280,6 +1282,11 @@ class RuntimeSession {
                         continue
                     }
                     node.effectStarted = true
+                    if (let Some(effect) <- node.component.intrinsicMountEffect) {
+                        inLifecycle = true
+                        try { node.intrinsicCleanup = Some(effect(node.reference())) }
+                        finally { inLifecycle = false }
+                    }
                     if (let Some(effect) <- node.component.mountEffect) {
                         inLifecycle = true
                         try {
@@ -1406,12 +1413,11 @@ class RuntimeSession {
         }
     }
     func requestStop(): Unit {
-        lock.lock();
+        outputGate.lock()
         try {
-            stopping = true
-        } finally {
-            lock.unlock()
-        }
+            lock.lock()
+            try { stopping = true } finally { lock.unlock() }
+        } finally { outputGate.unlock() }
     }
     func recordDeviceFailure(): Unit {
         if (firstDeviceFailure.isNone()) {
@@ -1634,6 +1640,7 @@ class RuntimeSession {
         }
         if (let Some(app) <- application) { app.closeThemeSession(id) }
         for (node in nodes) {
+            if (let Some(cleanup) <- node.intrinsicCleanup) { node.intrinsicCleanup = None; cleanup() }
             node.component.clearMount()
         }
         for (binding in bindings) {

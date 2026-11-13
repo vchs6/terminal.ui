@@ -20,6 +20,35 @@ public class Observable<T> <: ObservableSource {
         }
         result
     }
+    // Snapshot and conditional publication share the existing source lock and version.
+    func editingSnapshot(): (T, Int64) {
+        lock.lock()
+        try {
+            (value, version)
+        } finally {
+            lock.unlock()
+        }
+    }
+    func editingCommit(expected: Int64, next: T): ?Int64 {
+        if (evaluating.get().isSome() || structureEvaluation.get().isSome()) {
+            throw UIException("ReentrantEvaluation", "observable write during evaluation")
+        }
+        var committed: ?Int64 = None
+        lock.lock()
+        try {
+            if (version == expected) {
+                value = next
+                version++;
+                committed = Some(version)
+            }
+        } finally {
+            lock.unlock()
+        }
+        if (committed.isSome()) {
+            emit()
+        }
+        committed
+    }
     public func set(value: T): Unit {
         if (evaluating.get().isSome() || structureEvaluation.get().isSome()) {
             throw UIException("ReentrantEvaluation", "observable write during evaluation")
