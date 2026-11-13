@@ -9,6 +9,7 @@ if [[ "$mode" == self-test ]]; then
     python3 "$here/oracle.py" --self-test
     python3 "$here/pty_selftest.py"
     python3 "$here/pty_mode_selftest.py"
+    python3 "$here/pty_fence_selftest.py"
     python3 - "$here" <<'PYCHECK'
 from pathlib import Path
 import sys
