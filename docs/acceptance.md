@@ -190,7 +190,7 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-113 | REQ-009/010/007/011 | TASK-113 | 独立字节/分块/粘贴目标/EOF公平性golden与RED | pending |
+| AC-113 | REQ-009/010/007/011 | TASK-113 | 独立字节/分块/粘贴目标/EOF公平性golden与RED | passed（正式测试c96cc601冻结、当前上游baseline0/缺Keyboard API真实编译RED1；新K行为待114） |
 | AC-114 | REQ-009/010/007/011 | TASK-114 | 唯一KeyboardDecoder/设备/2004模式实现 | pending |
 | AC-115 | REQ-009/010/007/011 | TASK-115 | 固定键盘增量独立双审 | pending |
 | AC-116 | REQ-009/010/007/011 | TASK-116 | 独立真实输入/模态目标/退出恢复与普通包消费 | pending |

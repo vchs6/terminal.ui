@@ -1,5 +1,7 @@
 # Linux keyboard and text editing implementation plan
 
+当前控制器准入（2026-11-13）：PF001–004已独立限定闭合，F006/F007已独立复核，交互112与会话152等实际前置已接受。TASK113正式测试冻结c96cc601完成，114在独立产品工作区实施中；下列旧candidate/planned描述保留起草背景，不能代替逐任务的固定证据及勾选，也不代表115–122提前ready。
+
 > **For agentic workers:** 本件仍为独立候选planned；主代理冻结并通过独立preflight后，按用户已选独立测试/产品/审查/执行/验收流程执行。REQUIRED SUB-SKILL: superpowers:subagent-driven-development；本起草角色不执行、不派代理。
 
 **Goal:** 两个分别可验交付：完整有界键盘/paste；基于公共Canvas的单多行编辑。
@@ -27,7 +29,7 @@
 
 ## 1. Unit A — complete keyboard normalization and paste
 
-- [ ] 1.1 TASK-113：冻结公共KeyboardDecoder/KeyEvent与真实PTY输入测试，先取得正常构建基线和真实缺API RED；交test-only提交/raw/hash。
+- [x] 1.1 TASK-113：冻结公共KeyboardDecoder/KeyEvent与真实PTY输入测试，先取得正常构建基线和真实缺API RED；交test-only提交/raw/hash。
 - [ ] 1.2 TASK-114：实现唯一decoder、设备读取/目标锁/公平pump/EOF和模式恢复桥接，公共消费者与固定113及受影响回归通过，交product-only提交和产品文档。
 - [ ] 1.3 TASK-115：独立审固定合同/tests/product diff，交spec/quality双verdict，必需缺陷无未关闭项。
 - [ ] 1.4 TASK-116：独立普通build、直接binary、PTY/宿主、normal bundle和干净消费者执行；交真实exit/raw/版本/PNG/hash。
