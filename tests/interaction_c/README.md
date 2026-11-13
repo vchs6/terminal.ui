@@ -120,3 +120,19 @@ Before C implementation, the existing actual missing-C compiler RED applies;
 C behavior remains UNEXECUTED. `gate-selftest.sh` exercises accepted metadata,
 rejection cases, legacy fallback and nonzero-compiler/no-binary boundaries using
 tools-only sentinels in an isolated small Git fixture, never a C implementation.
+
+
+## Targeted pure-export / active-turn regressions
+
+Compile normally with `cd tests/interaction_c && cjpm build`, then run each
+actual binary independently from the repository root:
+
+```sh
+CJTUI_OVERLAY_REGRESSION=pure-export timeout 45s tests/interaction_c/target/release/bin/main
+CJTUI_OVERLAY_REGRESSION=open-turn timeout 45s tests/interaction_c/target/release/bin/main
+```
+
+Expected0 once those contracts are implemented; nonzero is an assertion/build
+failure, never skipped. Default formal consumer also invokes both new cases.
+No old oracle or guard precedence is changed. X01 uses a legal batch ensure
+followed by an outer-boundary export, not forbidden render reentry in batch.
