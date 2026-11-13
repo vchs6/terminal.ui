@@ -33,29 +33,12 @@ main(): Int64 {
     }.onMount({ _ => { => cleanups[0]++ } })
     let menu = menuSlot[0].getOrThrow()
     let app = Application(root)
-    app.onKeyEvent({ event =>
+    // C.3 routes modal shortcuts to the content root and suppresses base
+    // app/legacy handlers. The same public trace runs in each active domain.
+    let trace = { event: UIKeyEvent =>
         if (event.key.code == "escape") { escapes[0]++; report("escape_seen", "${escapes[0]}") }
         if (event.key.code == "text") {
             match (event.key.text) {
-                case "q" => event.preventDefault(); app.stop()
-                case "u" => event.preventDefault(); model.set("NEW")
-                case "g" => event.preventDefault(); model.set("bad")
-                case "o" | "e" =>
-                    event.preventDefault()
-                    let explicitClose = event.key.text == "e"
-                    let popup = PopupMenu([MenuEntry("p", "P"), MenuEntry("x", "X", enabled: false), MenuEntry("r", "R")], { key =>
-                        calls[0]++; chosen[0] += "p:" + key + ";"; report("chosen", chosen[0])
-                        if (explicitClose) { held[0].getOrThrow().close() }
-                    })
-                    popupRoot[0] = Some(popup)
-                    held[0] = Some(root.reference().getOrThrow().openOverlay(popup,
-                        options: OverlayOptions(mode: OverlayMode.Modal)))
-                case "n" =>
-                    event.preventDefault()
-                    let child = PopupMenu([MenuEntry("n", "N")], { _ => () })
-                    nestedRoot[0] = Some(child)
-                    nested[0] = Some(popupRoot[0].getOrThrow().reference().getOrThrow().openOverlay(child,
-                        options: OverlayOptions(mode: OverlayMode.Modal)))
                 case "c" => event.preventDefault(); held[0].getOrThrow().close()
                 case "#" =>
                     event.preventDefault()
@@ -85,6 +68,41 @@ main(): Int64 {
                             report("reason", if (reason == OverlayCloseReason.Requested) { "Requested" } else { "Escape" })
                         }
                     }
+                case _ => ()
+            }
+        }
+    }
+    let modalHandler = { event: UIKeyEvent =>
+        trace(event)
+        if (event.key.code == "text") {
+            match (event.key.text) {
+                case "n" =>
+                    event.preventDefault()
+                    let child = PopupMenu([MenuEntry("n", "N")], { _ => () }).onKey(trace)
+                    nestedRoot[0] = Some(child)
+                    nested[0] = Some(popupRoot[0].getOrThrow().reference().getOrThrow().openOverlay(child,
+                        options: OverlayOptions(mode: OverlayMode.Modal)))
+                case _ => ()
+            }
+        }
+    }
+    app.onKeyEvent({ event =>
+        trace(event)
+        if (event.key.code == "text") {
+            match (event.key.text) {
+                case "q" => event.preventDefault(); app.stop()
+                case "u" => event.preventDefault(); model.set("NEW")
+                case "g" => event.preventDefault(); model.set("bad")
+                case "o" | "e" =>
+                    event.preventDefault()
+                    let explicitClose = event.key.text == "e"
+                    let popup = PopupMenu([MenuEntry("p", "P"), MenuEntry("x", "X", enabled: false), MenuEntry("r", "R")], { key =>
+                        calls[0]++; chosen[0] += "p:" + key + ";"; report("chosen", chosen[0])
+                        if (explicitClose) { held[0].getOrThrow().close() }
+                    }).onKey(modalHandler)
+                    popupRoot[0] = Some(popup)
+                    held[0] = Some(root.reference().getOrThrow().openOverlay(popup,
+                        options: OverlayOptions(mode: OverlayMode.Modal)))
                 case _ => ()
             }
         }

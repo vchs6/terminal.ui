@@ -54,20 +54,21 @@ func popupEscapeBoundaries(): Unit {
         let root = Column { triggerSlot[0] = Some(Text("T").focusable(true)) }
         let trigger = triggerSlot[0].getOrThrow()
         let prevent = [mode == 3]
-        let app = Application(root).onKeyEvent({ event =>
-            if (prevent[0] && event.key.code == "escape") { event.preventDefault() }
-        })
+        let baseCalls = [0]; let legacyCalls = [0]
+        let app = Application(root).onKeyEvent({ _ => baseCalls[0]++ }).onKey({ _ => legacyCalls[0]++ })
         app.startHeadless()
         try {
             focus(app, mounted(trigger))
             let values = if (mode == 0) { Array<MenuEntry>() } else { [MenuEntry("a", "A", enabled: false)] }
-            let popup = PopupMenu(values, {_ => ()})
+            let popup = PopupMenu(values, {_ => ()}).onKey({ event =>
+                if (prevent[0] && event.key.code == "escape") { event.preventDefault() }
+            })
             let handle = open(app, mounted(trigger), popup,
                 OverlayOptions(mode: OverlayMode.Modal, closeOnEscape: mode != 2))
             check(app.focusedNode().isNone(), "M03 empty/all-disabled has no fake focus item")
             app.dispatch(app.activeTarget().getOrThrow(), KeyEvent("escape"))
             if (mode == 3) {
-                check(handle.isOpen(), "M03 app preventDefault blocks Escape")
+                check(handle.isOpen(), "M03 modal root preventDefault blocks Escape")
                 prevent[0] = false
                 app.dispatch(app.activeTarget().getOrThrow(), KeyEvent("escape"))
                 check(!handle.isOpen(), "M03 later allowed Escape closes")
@@ -78,6 +79,7 @@ func popupEscapeBoundaries(): Unit {
                 check(!handle.isOpen() && handle.closeReason().getOrThrow() == OverlayCloseReason.Escape,
                     "M03 empty/all-disabled activeTarget Escape closes")
             }
+            check(baseCalls[0] == 0 && legacyCalls[0] == 0, "M03 modal keys never reach base app or legacy handlers")
             focused(app, mounted(trigger), "M03 canceled layer restores focus")
         } finally { app.dispose() }
     }
