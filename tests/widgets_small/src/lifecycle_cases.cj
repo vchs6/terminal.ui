@@ -7,9 +7,10 @@ func assertLifetime(value: Bool, caseName: String): Unit {
 }
 
 func lifecycleCases(): Unit {
-    var cleanups = 0
+    remountAndWorkerPosts()
+    let cleanups = [0]
     let failing = Button("raise", { => throw Exception("WIDGET_CALLBACK_SENTINEL") })
-        .onMount({ _ => { => cleanups++ } })
+        .onMount({ _ => { => cleanups[0]++ } })
     let app = Application(failing)
     app.startHeadless()
     let stale = failing.reference().getOrThrow()
@@ -17,7 +18,7 @@ func lifecycleCases(): Unit {
     try { app.dispatch(stale, KeyEvent("enter")) }
     catch (error: Exception) { caught = error.message.contains("WIDGET_CALLBACK_SENTINEL") }
     assertLifetime(caught, "callback first error survives cleanup")
-    assertLifetime(cleanups == 1 && !stale.isValid(), "failed session cleans once and invalidates old ref")
+    assertLifetime(cleanups[0] == 1 && !stale.isValid(), "failed session cleans once and invalidates old ref")
 
     let model = Observable<String>("A")
     let first = Application(Label({ => model.get() }))

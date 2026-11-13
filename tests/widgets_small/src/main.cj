@@ -83,9 +83,13 @@ func progressFrames(): Unit {
 
 main(): Int64 {
     staticCaptions()
+    constructionCases()
     latestCaptions()
     invalidCaptions()
     progressFrames()
+    captionMatrix()
+    themeCases()
+    progressGeometry()
     eventCases()
     lifecycleCases()
     0
