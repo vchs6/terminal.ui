@@ -21,6 +21,17 @@ cjpm run
 
 低层帧支持 `Frame(width, height, transparent: true)` 创建透明底层，`composite` 按偏移叠加：透明单元跳过，带样式空格覆盖。`clear`、`copy` 和 `resized` 保持宽字符完整；截断的宽字符片段变为保留样式的空格。复制和缩放保留源单元的透明位，新增区域使用源帧的默认空白类型。`writePlainText(path)` 和 `writeAnsi(path)` 写入完整 UTF-8 快照，已有文件会被截断；文件错误向调用方传播。正面积默认最多 1048576 单元，可通过 `maxCells` 显式调整；零面积保留，零宽文本的换行数量也受预算限制。不同字符宽度策略的帧不能合成。
 
+ANSI 快照包含绝对光标定位（CUP）和样式（SGR），应在启用 UTF-8 且支持这些序列的终端中直接重放；终端列数、行数须至少容纳导出帧的宽、高。文本编辑器或普通纯文本查看不会重现定位后的画面，不能假定分页器的颜色选项也支持 CUP；只读文字可查看 `writePlainText` 导出的文件。例如，已有 `writeAnsi` 导出的 80 列、24 行 `snapshot.ansi` 时，在 Linux 交互终端先用 `stty size` 确认窗口至少为 25 行、80 列（额外一行留给 Shell 提示符），再执行下列命令；其他尺寸须相应调整窗口和末行定位。命令会清空当前终端画面并重放文件。离线 ANSI 默认使用 TrueColor 和逻辑 Unicode，不应用标准输出设备的自动颜色降级或字形投影；能力较低时可在导出时指定 `writeAnsi(path, colorMode: ColorMode.Basic16)` 等颜色等级。实际颜色、属性、字体字形和字符簇列宽仍受查看终端及字体限制，不保证跨宿主呈现相同。
+
+```sh
+stty size  # 输出“行 列”；确认至少 25 行、80 列后再继续
+(
+    printf '\033[0m\033[2J\033[H'
+    cat -- snapshot.ansi
+    printf '\033[0m\033[25;1H'
+)
+```
+
 布局可通过组件属性链设置 `width`、`height`、`minWidth`、`minHeight`、`layoutWeight`、`padding`；`widthAuto`、`heightAuto` 清除固定尺寸。`Row` 和 `Column` 还支持 `gap`、`alignItems` 和 `justifyContent`，`Text` 支持逐行 `textAlign`。尺寸与间距以字符列和行为单位，必须非负；实际视口及祖先内容区域限制绘制。正权重在容器主轴上分配剩余空间，余数按最大余数及声明顺序确定。`Alignment` 提供 `Start`、`Center`、`End`、`Stretch`，其中 `Stretch` 仅用于交叉轴对齐。显式背景填充组件外框；文本、裁剪及宽字符使用同一 Frame 规则。
 
 组件可通过 `border(BorderStyle.Rounded)`、`borderColor(Color.Cyan)` 和 `shadow()` 设置字符装饰；`border(BorderStyle.None)` 与 `shadow(enabled: false)` 分别移除效果。边框占外框每边一行或一列，阴影仅扩展绘制范围、不改变布局，并受祖先内容区裁剪。阴影可指定正负偏移及完整 `Style`。未设置边框颜色时使用节点有效前景色；显式背景包含边框与内边距。`BorderStyle` 还提供 `Single`、`Double` 和 `Ascii`；终端宽度策略无法以一列显示某个边框字符时整套回退 ASCII。阴影字符 `░` 非一列时回退 `.`，这不代表检测了字体覆盖。
