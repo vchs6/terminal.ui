@@ -19,6 +19,7 @@ class TextEditSession {
     var revision: UInt64 = 0
     var selectionRevision: UInt64 = 0
     var notifying = false
+    var signalPending = false
     var preferredColumn: ?Int64 = None
     let undoStack = ArrayList<TextEditRecord>()
     let redoStack = ArrayList<TextEditRecord>()
@@ -37,15 +38,7 @@ class TextEditSession {
         validate(initial)
     }
     func validate(value: String): Unit {
-        if (value.size > limits.maxTextBytes) {
-            throw IllegalArgumentException("text too large")
-        }
-        for (r in value.runes()) {
-            let c = UInt32(r)
-            if (c == 13 || (c == 10 && !multiline) || (c < 32 && c != 10) || (c >= 127 && c < 160)) {
-                throw IllegalArgumentException("invalid editing text")
-            }
-        }
+        validateEditingValue(value, limits, multiline)
     }
     func snapshot(): TextEditSnapshot {
         signal.get();
@@ -109,7 +102,13 @@ class TextEditSession {
             notifying = false
         }
     }
-    func sync(): Unit {
+    func flushSnapshotSignal(): Unit {
+        if (signalPending) {
+            signalPending = false
+            signal.notify()
+        }
+    }
+    func sync(deferSignal!: Bool = false): Unit {
         let (latest, version) = source.editingSnapshot()
         if (version == sourceVersion) {
             return
@@ -132,27 +131,37 @@ class TextEditSession {
         }
         undoStack.clear();
         redoStack.clear()
+        signalPending = true
+        if (!deferSignal) {
+            flushSnapshotSignal()
+        }
     }
     // Every ordinary concurrent-value issue originates from this failed
     // expected-version commit, following an atomic source snapshot.
-    func commit(next: String, reportConflict: Bool): ?Int64 {
-        let result = source.editingCommit(sourceVersion, next)
+    func commit(next: String, expectedVersion: Int64, reportConflict: Bool): ?Int64 {
+        let result = source.editingCommit(expectedVersion, next)
         if (result.isNone() && reportConflict) {
             sync()
             issue(TextEditIssue.ConcurrentValueChanged)
         }
         result
     }
-    func replace(input: String, guard: ?TextEditSnapshot, range!: ?TextSelection = None): Bool {
-        let (_, version) = source.editingSnapshot()
-        if (let Some(saved) <- guard) {
-            if (saved.identity != identity || saved.sourceVersion != version || saved.revision != revision ||
-                saved.selectionRevision != selectionRevision) {
-                return false
+    func replace(input: String, guard: ?TextEditSnapshot, range!: ?TextSelection = None, preparedVersion!: ?Int64 = None): Bool {
+        var expectedVersion = sourceVersion
+        if (let Some(prepared) <- preparedVersion) {
+            expectedVersion = prepared
+        } else {
+            let (_, version) = source.editingSnapshot()
+            if (let Some(saved) <- guard) {
+                if (saved.identity != identity || saved.sourceVersion != version || saved.revision != revision ||
+                    saved.selectionRevision != selectionRevision) {
+                    return false
+                }
             }
-        }
-        if (version != sourceVersion) {
-            sync()
+            if (version != sourceVersion) {
+                sync()
+            }
+            expectedVersion = sourceVersion
         }
         let normalized = input.replace("\r\n", "\n").replace("\r", "\n")
         validate(normalized)
@@ -195,6 +204,15 @@ class TextEditSession {
         }
         let nextSelection = TextSelection(caret, caret)
         if (next == text) {
+            if (guard.isSome() || preparedVersion.isSome()) {
+                let (_, currentVersion) = source.editingSnapshot()
+                if (currentVersion != expectedVersion) {
+                    if (preparedVersion.isSome()) {
+                        sync()
+                    }
+                    return false
+                }
+            }
             applySelection(nextSelection, nextCount);
             return false
         }
@@ -203,7 +221,7 @@ class TextEditSession {
         }
         let old = text;
         let oldSelection = selection
-        let committed = commit(next, guard.isNone())
+        let committed = commit(next, expectedVersion, guard.isNone())
         if (committed.isNone()) {
             return false
         }
@@ -254,7 +272,7 @@ class TextEditSession {
         }
         result
     }
-    func keyboardInput(input: String): Unit {
+    func keyboardInput(input: String, expectedVersion: Int64): Unit {
         var invalidControl = false
         for (r in input.runes()) {
             let c = UInt32(r)
@@ -276,13 +294,14 @@ class TextEditSession {
             issue(TextEditIssue.InputTooLarge);
             return
         }
-        replace(normalized, Option<TextEditSnapshot>.None)
+        replace(normalized, Option<TextEditSnapshot>.None, preparedVersion: Some(expectedVersion))
     }
     func handle(event: UIKeyEvent): Unit {
         sync()
+        let expectedVersion = sourceVersion
         let key = event.key
         if (key.code == "text" && !key.ctrl && !key.alt || key.code == "paste") {
-            keyboardInput(key.text)
+            keyboardInput(key.text, expectedVersion)
             event.preventDefault();
             return
         }
@@ -294,7 +313,7 @@ class TextEditSession {
         }
         if (key.code == "enter") {
             if (multiline) {
-                keyboardInput("\n")
+                keyboardInput("\n", expectedVersion)
             } else {
                 notifying = true
                 try {
@@ -383,7 +402,7 @@ class TextEditSession {
                 }
                 deletion = TextSelection(selection.caret, other)
             }
-            replace("", Option<TextEditSnapshot>.None, range: Some(deletion))
+            replace("", Option<TextEditSnapshot>.None, range: Some(deletion), preparedVersion: Some(expectedVersion))
             event.preventDefault();
             return
         }
@@ -503,12 +522,13 @@ class TextEditSession {
         if (revision == UInt64.Max || (nextSelection != selection && selectionRevision == UInt64.Max)) {
             throw UIException("CapacityExceeded", "editing revision exhausted")
         }
-        let committed = commit(next, true)
+        let committed = commit(next, sourceVersion, true)
         if (committed.isNone()) {
             return false
         }
         from.remove(at: from.size - 1);
         to.add(record)
+        preferredColumn = None
         sourceVersion = committed.getOrThrow()
         text = next
         revision++
