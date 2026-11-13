@@ -2,7 +2,7 @@
   "schema": 1,
   "unit": "S",
   "task": 153,
-  "status": "FORMAL153_DELIVERED_154_IN_PROGRESS",
+  "status": "154_155_COMPLETE_156_IN_PROGRESS",
   "product_implementation_ready": true,
   "product_source": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
   "code_equivalent_main": "294586e4f66f7fff7553a79bd80ae162dd9a9189",
@@ -21,7 +21,7 @@
     },
     {
       "path": "openspec/changes/implement-standard-widgets/tasks.md",
-      "sha256": "c1b369162d3c65c0ccd5e07b599106597bbe6973f457a95106f7408f8b426e7c"
+      "sha256": "f092d1e8921c3aa82bfcb2c85497dd1e6a06f067d5db33c8069d8b075e830015"
     },
     {
       "path": "openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md",
@@ -771,7 +771,7 @@
     "execution": "Sol/medium",
     "acceptance": "Astra/high"
   },
-  "scope": "154 independent implementation admitted, tests frozen; no product acceptance or M readiness.",
+  "scope": "Fixed S source reviewed; independent156 execution/157 finite acceptance not complete. M and fullLinux remain pending.",
   "previous_frozen_manifest": {
     "git_object": "8053274ad8bb7b40d35f36eac80f07745531c729:docs/reviews/widgets/S/input-manifest.json",
     "sha256": "f74d70980e0970ec8421cd8ac39c6c58b8c8d5f9a8e0f62eb3607bf6a3369f20"
@@ -792,7 +792,9 @@
       "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/index.json",
       "sha256": "e0db917d96e3e7cfd53b9efd463fe97363192f02ff0b308f91deb32cf4e57536"
     },
-    "results": "Actual prerequisite normal build/direct0; five isolated compiler1 each solely missing own factory; parser/tools0. Typing correction changes only two explicit Option<UIKeyEvent>.None; oracles unchanged. Target behavior/PTY/Bool rejection/clean bundle pending154–157."
+    "results": "Actual prerequisite normal build/direct0; five isolated compiler1 each solely missing own factory; parser/tools0. Typing correction changes only two explicit Option<UIKeyEvent>.None; oracles unchanged. Target behavior/PTY/Bool rejection/clean bundle pending154–157.",
+    "final_test_commit": "b3f20f3d1dca6e440bef654d80124df256586db9",
+    "test_tree": "714a7fdf97d368574815cbf16e7430ac744f647c"
   },
   "compatibility_ruling": {
     "id": "LEGACY-PROP-001",
@@ -800,5 +802,14 @@
     "evidence": "admission/gap-contract-decision/report.md",
     "hashrefs_sha256": "bf16eee051b764626c378581a6b911d16ec1cbf15f2731a6e5f1e0e10a50b7d4",
     "tradeoff": "Inherited legacy entry versus typed/getter error type remains different; limited existing contract, no new API exception."
+  },
+  "source_candidate": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "source_published_branch": "wip/linux-widgets-small",
+  "review155": {
+    "report_sha256": "81a492f18a16f6947b5dfd11248fe9fecc529e84eb675a4b082f6490ebd75455",
+    "inputs_sha256": "89fa58fb9edb69f11aaaf34cb3ff6c9a6ee8784f262afee2aa04b53e7917ee67",
+    "spec": "PASS_WITHIN_TASK155_REVIEW_SCOPE",
+    "quality": "PASS_WITHIN_TASK155_REVIEW_SCOPE",
+    "findings": 0
   }
 }

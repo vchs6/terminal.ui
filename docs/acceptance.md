@@ -240,9 +240,9 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
 | AC-153 | REQ-001/003/004/007 | TASK-153 | 独立受控状态/事件/样式/边界golden | passed（测试5413dc76/类型修正fe9f66fc；前置build/direct0、五个真实缺工厂API RED1；完整行为/PTY/包消费仍待154–157） |
-| AC-154 | REQ-001/003/004/007 | TASK-154 | 公共Label/Button/Checkbox/Radio/Progress实现 | in_progress（BASE5413dc76；固定独立测试fe9f66fc，产品行为未验收） |
-| AC-155 | REQ-001/003/004/007 | TASK-155 | 基础控件独立双审 | pending |
-| AC-156 | REQ-001/003/004/007 | TASK-156 | 基础控件独立真实终端及包消费 | pending |
+| AC-154 | REQ-001/003/004/007 | TASK-154 | 公共Label/Button/Checkbox/Radio/Progress实现 | passed（固定候选1df1325f；完整开发runner0、155源码双审通过；独立制品/宿主/有限验收仍待156–157） |
+| AC-155 | REQ-001/003/004/007 | TASK-155 | 基础控件独立双审 | passed（1df1325f；独立spec/quality PASS，0具体可达缺陷；不替代156/157） |
+| AC-156 | REQ-001/003/004/007 | TASK-156 | 基础控件独立真实终端及包消费 | in_progress（固定1df1325f，独立执行未交付） |
 | AC-157 | REQ-001/003/004/007 | TASK-157 | 原029完整证据和metadata | pending |
 | AC-158 | REQ-001/003/004/007 | TASK-158 | 独立菜单/状态/分区/层组合golden | pending |
 | AC-159 | REQ-001/003/004/007 | TASK-159 | 公共菜单/状态条/SplitPane实现 | pending |
