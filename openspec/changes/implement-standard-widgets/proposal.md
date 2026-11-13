@@ -1,6 +1,6 @@
 # 标准控件公开组合候选
 
-状态：required；2026-11-13 W001–W007/W006-S已冻结，历史SDK形状验证和独立增量preflight已核验，实际S公共前置已接受。153正式测试编写in_progress，154仍待冻结测试与真实目标RED；M158待S157。标准控件产品/行为/宿主验收仍pending；[最终S输入清单](../../../docs/reviews/widgets/S/input-manifest.json)记录当前准入，不把起草或签名编译当产品完成。
+状态：required；2026-11-13 W001–W007/W006-S已冻结，历史SDK形状验证和独立增量preflight已核验，实际S公共前置已接受。153测试已冻结5413dc76，基础消费者build/direct0及五个真实缺工厂API RED1；fe9f66fc仅两处Option类型限定修正。154独立实现in_progress，M158待S157。标准控件产品/行为/宿主验收仍pending；[最终S输入清单](../../../docs/reviews/widgets/S/input-manifest.json)记录当前准入，不把起草或签名编译当产品完成。
 
 ## Why
 

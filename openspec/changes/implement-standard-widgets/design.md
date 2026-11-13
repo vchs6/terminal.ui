@@ -2,7 +2,7 @@
 
 ## 准入状态 v2 — 2026-11-13
 
-W001–W007/W006-S由主代理按原文冻结，W007成功SDK1.2形状编译与现宏字节一致性已核验复用；独立增量preflight确认实际Runtime/RichText/Theme/Glyph/交互A与完整键盘输入已接受，S153可进入正式测试。154尚等153冻结测试/真实目标RED，M158仍等S157。正文旧“候选/未编译/前置尚未接受”是历史背景，不改冻结签名或预算；准入事实见[输入清单](../../../docs/reviews/widgets/S/input-manifest.json)，并非标准控件产品通过。
+W001–W007/W006-S由主代理按原文冻结，W007成功SDK1.2形状编译与现宏字节一致性已核验复用；独立增量preflight确认实际Runtime/RichText/Theme/Glyph/交互A与完整键盘输入已接受，S153可进入正式测试。153已冻结5413dc76并由独立作者以fe9f66fc限定两处Option.None；154独立实现中，运行和产品验收未完成，M158仍等S157。正文旧“候选/未编译/前置尚未接受”是历史背景，不改冻结签名或预算；准入事实见[输入清单](../../../docs/reviews/widgets/S/input-manifest.json)，并非标准控件产品通过。
 
 **新增签名已有独立SDK shape编译事实；产品 planned，产品验证 pending；执行依赖尚未接受。** 本件消费未来公共合同，不声称 Canvas/focus/viewport/overlay/Theme 已在产品可调用。原独立来源和字节hash归同目录provenance.json（仅历史输入，不是产品通过）。粗输入/workspace/work/widgets-contract/root-decisions.md 是主代理工程建议，不是用户选定签名，正文推荐仍待正式采纳。
 

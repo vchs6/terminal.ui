@@ -2,8 +2,8 @@
   "schema": 1,
   "unit": "S",
   "task": 153,
-  "status": "PRECONDITIONS_READY_FORMAL_TESTS_IN_PROGRESS",
-  "product_implementation_ready": false,
+  "status": "FORMAL153_DELIVERED_154_IN_PROGRESS",
+  "product_implementation_ready": true,
   "product_source": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
   "code_equivalent_main": "294586e4f66f7fff7553a79bd80ae162dd9a9189",
   "preflight_examined_revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
@@ -17,11 +17,11 @@
   "frozen_contracts": [
     {
       "path": "openspec/changes/implement-standard-widgets/design.md",
-      "sha256": "eca5665b9ca06d490ace6cb6950ed94ac3d3c6f6311a027a33d1c99492059bfb"
+      "sha256": "b9e7964a8f0ac14fd9aa7fe742000dec72c185ad7606e340c26216efd83b8123"
     },
     {
       "path": "openspec/changes/implement-standard-widgets/tasks.md",
-      "sha256": "a0c0a82dac4834013a5e3544ef25d107237950f9b383103e2a69f95b8cc607cd"
+      "sha256": "e02d2200d8ac5f0ad2047c2118db3c0bd4d4de4490189e02352c9848b4d54bf7"
     },
     {
       "path": "openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md",
@@ -771,5 +771,27 @@
     "execution": "Sol/medium",
     "acceptance": "Astra/high"
   },
-  "scope": "Formal S153 tests only; source lacks target widgets; missing-target RED and fixed test delivery still required before154. M/LINUX not ready."
+  "scope": "154 independent implementation admitted, tests frozen; no product acceptance or M readiness.",
+  "previous_frozen_manifest": {
+    "git_object": "8053274ad8bb7b40d35f36eac80f07745531c729:docs/reviews/widgets/S/input-manifest.json",
+    "sha256": "f74d70980e0970ec8421cd8ac39c6c58b8c8d5f9a8e0f62eb3607bf6a3369f20"
+  },
+  "implementation_base": "5413dc768a93b3e3f172227161bc9d8545993508",
+  "formal_test_delivery": {
+    "test_commit": "5413dc768a93b3e3f172227161bc9d8545993508",
+    "typing_correction": "fe9f66fc10a9f864c1db55dd1d507b78defacbfc",
+    "report": {
+      "path": "/workspace/work/widgets-small-tests/final/report.md",
+      "sha256": "20715ea3f22aba6d4fae48e370b52e421f791524add371eaccfefaeb88cd2e39"
+    },
+    "index": {
+      "path": "/workspace/work/widgets-small-tests/final/evidence/index.json",
+      "sha256": "24a862bf4a6976a559f882ad1cb138f6b792bd04573693035aa1bfc8248b659d"
+    },
+    "typing_index": {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/index.json",
+      "sha256": "e0db917d96e3e7cfd53b9efd463fe97363192f02ff0b308f91deb32cf4e57536"
+    },
+    "results": "Actual prerequisite normal build/direct0; five isolated compiler1 each solely missing own factory; parser/tools0. Typing correction changes only two explicit Option<UIKeyEvent>.None; oracles unchanged. Target behavior/PTY/Bool rejection/clean bundle pending154–157."
+  }
 }
