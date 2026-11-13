@@ -195,10 +195,10 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-115 | REQ-009/010/007/011 | TASK-115 | 固定键盘增量独立双审 | passed（[独立源码双审最终PASS](reviews/K/keyboard-review/round-03/report.md)；原两轮FAIL保留） |
 | AC-116 | REQ-009/010/007/011 | TASK-116 | 独立真实输入/模态目标/退出恢复与普通包消费 | passed（[独立实际执行](reviews/K/keyboard-execution/report.md)；16阶段exit0、229包成员、三真实实现及宿主限制） |
 | AC-117 | REQ-009/010/007/011 | TASK-117 | 有限键盘合同及metadata，完整编辑仍待验 | passed（[独立PASS_FINITE_K](reviews/K/keyboard-acceptance/acceptance.md)；不关闭完整父AC/Linux） |
-| AC-118 | REQ-009/010/007/011 | TASK-118 | 独立Unicode事务/历史/竞态/控件golden与RED | passed（测试e4596343/main f38c7278冻结；前置build/direct0、真实缺编辑API RED1；完整编辑行为/PTY/竞争仍待119–122） |
-| AC-119 | REQ-009/010/007/011 | TASK-119 | 公共Canvas单多行输入/控制器/标准快捷键实现 | pending |
-| AC-120 | REQ-009/010/007/011 | TASK-120 | 固定编辑增量独立双审 | pending |
-| AC-121 | REQ-009/010/007/011 | TASK-121 | 独立编辑/剪贴板结果/主题/viewport/真实终端消费 | pending |
+| AC-118 | REQ-009/010/007/011 | TASK-118 | 独立Unicode事务/历史/竞态/控件golden与RED | passed（测试e4596343/main f38c7278冻结；前置build/direct0、真实缺编辑API RED1；后续固定实现与源码审核见AC119–120，独立执行/有限验收仍待121–122） |
+| AC-119 | REQ-009/010/007/011 | TASK-119 | 公共Canvas单多行输入/控制器/标准快捷键实现 | passed（固定候选22ca8cf7已交付并获120源码双审；wip/linux-editing，未合入main；制品/宿主仍待121–122） |
+| AC-120 | REQ-009/010/007/011 | TASK-120 | 固定编辑增量独立双审 | passed（22ca8cf7，spec/quality PASS_FINITE_SOURCE；初审四项Important在修复轮1全部关闭；源码结论不替代121/122，证据待有限E单次归档） |
+| AC-121 | REQ-009/010/007/011 | TASK-121 | 独立编辑/剪贴板结果/主题/viewport/真实终端消费 | in_progress（固定候选22ca8cf7，独立执行尚未交付） |
 | AC-122 | REQ-009/010/007/011 | TASK-122 | 原028完整证据及metadata，030父项按真实paste/cut汇合 | pending |
 
 唯一任务状态见[输入编辑变更](../openspec/changes/implement-linux-input-editing/tasks.md)，候选与签名微验证不当产品通过。

@@ -2,7 +2,7 @@
 
 ## Implementation status v1 — 2026-11-13
 
-K001–K004已编译、独立审查/实际执行并获117 PASS_FINITE_K；接受源c3c4642对应main da9eaf40，原始设计字节保存在[有限K归档](../../../docs/reviews/K/controller/openspec/changes/implement-linux-input-editing/design.md)。本文冻结签名、语义及预算不变；正文过去的“未编译/候选”措辞按此状态说明理解：K已验证；E001–E005的正式测试118已冻结，119在独立工作区实现中，完整固定实现与行为尚未验收，120–122未完成。完整Linux/父AC与整个OpenSpec变更未关闭；具体证据及宿主限制见[K归档](../../../docs/reviews/K/README.md)。
+K001–K004已编译、独立审查/实际执行并获117 PASS_FINITE_K；接受源c3c4642对应main da9eaf40，原始设计字节保存在[有限K归档](../../../docs/reviews/K/controller/openspec/changes/implement-linux-input-editing/design.md)。本文冻结签名、语义及预算不变；正文过去的“未编译/候选”措辞按此状态说明理解：K已验证；E001–E005正式测试118已冻结，119固定候选22ca8cf7已编译并通过120独立规格/质量审核，四项初审缺陷经一轮修复全部关闭；候选已推送wip/linux-editing但未合入main。121独立制品/干净消费/真实宿主执行中，122有限验收待执行。完整Linux/父AC与整个OpenSpec变更未关闭；具体证据及宿主限制见[K归档](../../../docs/reviews/K/README.md)。
 
 ## Context
 
