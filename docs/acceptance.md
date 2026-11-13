@@ -244,8 +244,8 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 | AC-155 | REQ-001/003/004/007 | TASK-155 | 基础控件独立双审 | passed（独立spec/quality PASS，0具体缺陷；[原件](reviews/widgets/S/widgets-small-review/report.md)） |
 | AC-156 | REQ-001/003/004/007 | TASK-156 | 基础控件独立真实终端及包消费 | passed（普通build/bundle、干净消费、3PTY及6真实宿主运行；ASCII/default Classic native范围，见[S归档](reviews/widgets/S/README.md)） |
 | AC-157 | REQ-001/003/004/007 | TASK-157 | 原029完整证据和metadata | passed（[独立PASS_FINITE_S](reviews/widgets/S/widgets-small-acceptance/acceptance.md)，S01–S05通过；完整Linux/M及027/041展示另汇合） |
-| AC-158 | REQ-001/003/004/007 | TASK-158 | 独立菜单/状态/分区/层组合golden | in_progress（[READY_M_PRECONDITIONS](reviews/widgets/M/admission/report.md)仅准入；独立Sol/high正式测试/hash/真正目标RED未交付，159仍blocked） |
-| AC-159 | REQ-001/003/004/007 | TASK-159 | 公共菜单/状态条/SplitPane实现 | pending |
+| AC-158 | REQ-001/003/004/007 | TASK-158 | 独立菜单/状态/分区/层组合golden | passed（[正式测试交付](reviews/widgets/M/test158/report.md)，e59d5c9f/main9ec836ce；51手工case、前置build/direct0含42S修饰键排除、孤立6缺API编译RED1/classifier0；非M行为通过） |
+| AC-159 | REQ-001/003/004/007 | TASK-159 | 公共菜单/状态条/SplitPane实现 | in_progress（独立Terra/high实际实现；固定158已消费，完整typing/runtime/headless/native/clean-bundle仍待交付） |
 | AC-160 | REQ-001/003/004/007 | TASK-160 | 菜单组合独立双审 | pending |
 | AC-161 | REQ-001/003/004/007 | TASK-161 | 菜单导航/取消/窄屏及制品独立执行 | pending |
 | AC-162 | REQ-001/003/004/007 | TASK-162 | 原019完整证据与metadata | pending |

@@ -2,7 +2,7 @@
   "schema": 1,
   "unit": "M",
   "task": 158,
-  "status": "158_IN_PROGRESS_FORMAL_TEST_DELIVERY_PENDING_159_BLOCKED",
+  "status": "158_COMPLETE_FORMAL_TEST_FREEZE_159_IN_PROGRESS_160_162_PLANNED",
   "classification": "execution: accepted frozen contracts and M158 readiness metadata; no new API decision",
   "admission": {
     "verdict": "READY_M_PRECONDITIONS",
@@ -10,7 +10,8 @@
     "index": "admission/index.json",
     "sha256": "e3474e6b6925dfc2f72d72a0aa5a70cdb69f0c50248a937fc00da700b28b4771",
     "scope": "TASK158 formal independent tests only",
-    "M159_ready": false
+    "M159_ready": true,
+    "M159_gate_resolution": "Actual formal158 delivered fixed tests and genuine target-only missing-API RED; root independently validated fixed inputs before dispatching159."
   },
   "product_source": "1df1325f7b51777d8adab62f950c936051aa5876",
   "code_equivalent_main": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
@@ -727,7 +728,7 @@
     "assigned_role": "independent test author",
     "assigned_model": "Sol/high",
     "serving_model_attestation": "not available from tools",
-    "status": "in_progress; root dispatches actual independent158",
+    "status": "complete; independent formal158 fixed tests and genuine target RED delivered",
     "scope": [
       "M01 own entry refs/retained values and business order",
       "M02 navigation, complete modifiers and once activation",
@@ -737,13 +738,52 @@
       "affected S02 regression and exact frozen expected results",
       "actual prerequisite verification and genuine target-only missing-API RED"
     ],
-    "test_commit": null,
-    "test_tree": null,
-    "target_RED_receipt": null,
-    "note": "No formal tests or target RED delivered by this metadata task. Old b3988b02/b2dd4282 preparation, old77 and synthetic tool controls are not current formal158 delivery."
+    "test_commit": "e59d5c9fe8493c9ceadc9861fd865d933fe70450",
+    "test_tree": "9f55ae8abe56a366285ea6abd3069fdf504b7814",
+    "target_RED_receipt": {
+      "raw_root": "/workspace/work/widgets-composite-tests/final/evidence",
+      "isolated_compiler": "missing-targets-build.log",
+      "isolated_compiler_exit": 1,
+      "expected_missing_target_diagnostics": 6,
+      "classifier": "target-red-classification-final.log",
+      "classifier_exit": 0
+    },
+    "note": "Formal158 test delivery completed. Missing-API RED and test-tool controls are not M behavior PASS. Original intermediate fixture/setup failure records remain unchanged; final formal.log controls accepted prerequisite result.",
+    "main_alias": "9ec836cef9c137b87c928a049aa8452b3a83b301",
+    "report": {
+      "repository_path": "docs/reviews/widgets/M/test158/report.md",
+      "sha256": "fb82e860d7032886409a90ac8e30070fc30ddb6c2530a4f590d7edc4b46bc083",
+      "original": "/workspace/work/widgets-composite-tests/final/report.md"
+    },
+    "evidence_index": {
+      "repository_path": "docs/reviews/widgets/M/test158/evidence/index.json",
+      "sha256": "96ecf0e4892fdb593828a2c424ee1cfc3f501bddffea29d294e5b22f45f1ed12",
+      "original": "/workspace/work/widgets-composite-tests/final/evidence/index.json"
+    },
+    "catalogue_cases": 51,
+    "root_validation": {
+      "reported_by": "root controller",
+      "source_report_raw_hashes": 71,
+      "committed_test_inputs": 28,
+      "result": "PASS",
+      "note": "Reused root validation; no full copy/source/test re-audit by metadata role."
+    },
+    "results": {
+      "accepted_prerequisite_build": 0,
+      "accepted_prerequisite_direct": 0,
+      "accepted_S_modifier_exclusions": 42,
+      "isolated_missing_M_targets": 6,
+      "isolated_compiler_exit": 1,
+      "classifier_exit": 0,
+      "full_consumer_missing_M_diagnostics": 75,
+      "device_missing_factory_diagnostics": 2,
+      "M_typing_runtime_headless": "pending actual159 APIs",
+      "M_native_PTY": "not executed; no binary",
+      "M_clean_bundle_consumer": "pending159"
+    }
   },
   "producer_gates": {
-    "159": "planned; wait actual158 completed frozen cases/manual expectations/hash and genuine target-only missing-API RED",
+    "159": "in_progress; actual independent Terra/high implementation consumes completed fixed158 tests without edits",
     "160": "planned; wait fixed159 product and158 tests",
     "161": "planned; wait independent160 executable review",
     "162": "planned; wait independent161 original execution evidence"
@@ -757,5 +797,17 @@
     "M1/M2",
     "release"
   ],
-  "reuse": "Prior14DQ/10self/45pair and unchanged W007 SDK/macro facts reused; no repeated broad review or cold suites."
+  "reuse": "Prior14DQ/10self/45pair and unchanged W007 SDK/macro facts reused; no repeated broad review or cold suites.",
+  "implementation_role": {
+    "task": 159,
+    "status": "in_progress",
+    "assigned_model": "Terra/high",
+    "independence": "fresh product role; fixed independent tests unchanged",
+    "workspace": "/workspace/work/widgets-composite-implementation/source",
+    "base_main": "9ec836cef9c137b87c928a049aa8452b3a83b301",
+    "report_expected": "/workspace/work/widgets-composite-implementation/task-159-report.md",
+    "evidence_index_expected": "/workspace/work/widgets-composite-implementation/evidence/final-index.json",
+    "fixed_product_commit": null,
+    "note": "Actual dispatch authorized by root; product source/typing/runtime not yet delivered."
+  }
 }
