@@ -42,6 +42,7 @@ class RuntimeNode {
     var valid = true
     var committed = false
     var cleanup: ?() -> Unit = None
+    var intrinsicCleanup: ?() -> Unit = None
     init(component: Component, session: RuntimeSession, id: Int64, parent: ?RuntimeNode) {
         this.component = component
         this.session = session

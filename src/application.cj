@@ -573,8 +573,10 @@ public class Application {
                     if (let Some(target) <- pasteTarget[0]) {
                         if (target.isValid() && readSession().isSome()) {
                             let node = target.resolve(); let owner = current()
-                            if (owner.focusManager.effective(node,true) && owner.focusManager.effective(node,false)) {
-                                available = owner.inOverlayDomain(node)
+                            if (owner.focusManager.effective(node,true)) {
+                                if (owner.focusManager.effective(node,false)) {
+                                    available = owner.inOverlayDomain(node)
+                                }
                             }
                             if (available) { dispatch(target,key) }
                         }
