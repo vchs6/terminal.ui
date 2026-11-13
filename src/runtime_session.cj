@@ -686,7 +686,7 @@ class RuntimeSession {
         if (record.owner.isValid()) { markChanged(record.owner.resolve(),ChangeKind.Layout) }
         if (ownsFocus && restore) { restoreOverlayFocus(record) }
     }
-    func restoreOverlayFocus(record: OverlayRecord): Unit {
+    func restoreOverlayFocus(record: OverlayRecord, ancestors!: Array<NodeRef> = []): Unit {
         reservedLayer = None
         var next: ?RuntimeNode = None
         if (let Some(saved) <- record.savedFocus) {
@@ -695,12 +695,16 @@ class RuntimeSession {
                 if (focusManager.eligible(candidate)) { if (inOverlayDomain(candidate)) { next = Some(candidate) } }
             }
         }
-        var ancestor: ?RuntimeNode = if (record.owner.isValid()) { Some(record.owner.resolve()) } else { Option<RuntimeNode>.None }
-        while (next.isNone() && ancestor.isSome()) {
-            let current = ancestor.getOrThrow()
-            let choices = ArrayList<RuntimeNode>(); focusManager.collect(current,choices)
+        let ancestry = ArrayList<NodeRef>()
+        if (ancestors.isEmpty() && record.owner.isValid()) {
+            var current: ?RuntimeNode = Some(record.owner.resolve())
+            while (let Some(node) <- current) { ancestry.add(node.reference()); current = node.parent }
+        } else { ancestry.add(all: ancestors) }
+        for (ref in ancestry) {
+            if (next.isSome()) { break }
+            if (!ref.isValid()) { continue }
+            let choices = ArrayList<RuntimeNode>(); focusManager.collect(ref.resolve(),choices)
             for (candidate in choices) { if (inOverlayDomain(candidate)) { next = Some(candidate); break } }
-            ancestor = current.parent
         }
         if (next.isNone()) {
             var savedIndex: Int64 = -1
@@ -1054,6 +1058,7 @@ class RuntimeSession {
         // retired by a dynamic-group publication. Revoke the complete closure
         // before invoking any user cleanup.
         var restoreRecord: ?OverlayRecord = None
+        let restoreAncestors = ArrayList<NodeRef>()
         var scan: Int64 = 0
         while (scan < removed.size) {
             let owner = removed[scan]
@@ -1071,7 +1076,13 @@ class RuntimeSession {
                                     }
                                 }
                             }
-                            if (ownsFocus) { restoreRecord = Some(record) }
+                            if (ownsFocus) {
+                                restoreRecord = Some(record)
+                                var ancestor: ?RuntimeNode = Some(owner)
+                                while (let Some(node) <- ancestor) {
+                                    restoreAncestors.add(node.reference()); ancestor = node.parent
+                                }
+                            }
                         }
                         collectSubtree(layerRoot,removed)
                     }
@@ -1179,7 +1190,7 @@ class RuntimeSession {
         if (let Some(error) <- failure) {
             throw error
         }
-        if (let Some(record) <- restoreRecord) { restoreOverlayFocus(record) }
+        if (let Some(record) <- restoreRecord) { restoreOverlayFocus(record,ancestors:restoreAncestors.toArray()) }
     }
     func hasReady(cutoff: Int64): Bool {
         lock.lock()
