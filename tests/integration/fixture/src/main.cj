@@ -9,6 +9,8 @@ main(): Int64 {
         Row { Text("中文 "); Text("👩‍💻") }
         Text("0123456789ABCDEFGHIJKLMNOPQRSTUV")
     })
+    // The virtual terminal model supports logical Unicode clusters; this is not a host font claim.
+    app.glyphMode(GlyphMode.Unicode)
     app.onKey { event =>
         if (collectEvents) { println("CJTUI_TEST_EVENT:${event.code}:${event.text}") }
         if (event.text == "q") { app.stop() }
