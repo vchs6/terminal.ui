@@ -165,3 +165,23 @@ usable zero-area picture. Prohibiting user measure/draw during candidate
 preflight remains a source-review responsibility: normal snapshot itself may
 legitimately call those callbacks, so total calls across snapshots are not a
 valid zero-call oracle. Full Unit C/native/package acceptance is separate.
+
+## Round2 narrow fix-delta regressions
+
+`src/round2_review_regressions.cj` appends only R1-I01 and R1-I02. Build normally
+once (`cd tests/interaction_c && cjpm build`), then run each actual selector
+independently in that directory:
+
+```sh
+CJTUI_OVERLAY_REVIEW_R2=R1-I01 timeout 45s ./target/release/bin/main </dev/null
+CJTUI_OVERLAY_REVIEW_R2=R1-I02 timeout 45s ./target/release/bin/main </dev/null
+```
+
+Expected direct status is0 after the contracts are satisfied; nonzero is a real
+failure, never skipped. Default formal entry also appends both cases. R1-I01
+first proves ordinary deletion still follows A's NEXT successor, then checks
+owned-modal closure uses C.4's nearest surviving ancestor FIRST priority.
+R1-I02 independently checks both default and explicit root host against literal
+`B P  ` on the actual5×1 frame with a fixed1×1 ordinary root. Existing oracles
+and prior selector bodies are unchanged. Print-only review probes are concrete
+reproduction material, not asserting RED or acceptance evidence.

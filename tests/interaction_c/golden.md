@@ -203,3 +203,15 @@ Fresh pure3×2 is `A  ` / `P  `; fresh or resized5×3 is `A    ` / `     ` /
 `P    `;1×1 is `P`. Fresh exports preserve initial0×0 committed viewports;
 after real3×2 snapshot, resized pure exports preserve both committed viewport
 snapshots and original open handle/root/content generations.
+
+## Round2 R1-I01 / R1-I02 manual expectations
+
+R1-I01: ordinary root order FIRST/OWNER/NEXT, each focusable. Explicitly focus
+OWNER. Without an owned layer, removal follows A's physical successor NEXT.
+With OWNER owning modal focusable P, removal closes that modal OwnerGone and
+invalidates saved OWNER. C.4 next considers nearest surviving owner ancestor
+root, whose first eligible candidate is FIRST, before A's NEXT fallback.
+R1-I02: terminal5×1, ordinary Text B root explicitly1×1 and viewport Off.
+Built-in root host is the actual five columns; P is natural1×1 Center, so
+x=floor((5-1)/2)=2. Both default None host and explicit root host must give
+literal `B P  `; `P    ` incorrectly centers in the ordinary root's1×1 box.
