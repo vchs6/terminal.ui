@@ -2,7 +2,7 @@
   "schema": 1,
   "unit": "M",
   "task": 158,
-  "status": "158_COMPLETE_FORMAL_TEST_FREEZE_159_IN_PROGRESS_160_162_PLANNED",
+  "status": "158_COMPLETE_159_COMPLETE_DEVELOPER_VERIFICATION_160_IN_PROGRESS_161_162_PLANNED",
   "classification": "execution: accepted frozen contracts and M158 readiness metadata; no new API decision",
   "admission": {
     "verdict": "READY_M_PRECONDITIONS",
@@ -739,7 +739,7 @@
       "actual prerequisite verification and genuine target-only missing-API RED"
     ],
     "test_commit": "e59d5c9fe8493c9ceadc9861fd865d933fe70450",
-    "test_tree": "9f55ae8abe56a366285ea6abd3069fdf504b7814",
+    "test_tree": "ff16e53ffe8156950088fd3c7d4654f972c830cc",
     "target_RED_receipt": {
       "raw_root": "/workspace/work/widgets-composite-tests/final/evidence",
       "isolated_compiler": "missing-targets-build.log",
@@ -748,7 +748,7 @@
       "classifier": "target-red-classification-final.log",
       "classifier_exit": 0
     },
-    "note": "Formal158 test delivery completed. Missing-API RED and test-tool controls are not M behavior PASS. Original intermediate fixture/setup failure records remain unchanged; final formal.log controls accepted prerequisite result.",
+    "note": "Initial missing-API RED remains historical. Final exact test tree includes independent corrections; complete test-correction raw publication deferred to final M archive.",
     "main_alias": "9ec836cef9c137b87c928a049aa8452b3a83b301",
     "report": {
       "repository_path": "docs/reviews/widgets/M/test158/report.md",
@@ -780,12 +780,24 @@
       "M_typing_runtime_headless": "pending actual159 APIs",
       "M_native_PTY": "not executed; no binary",
       "M_clean_bundle_consumer": "pending159"
-    }
+    },
+    "initial_test_tree": "9f55ae8abe56a366285ea6abd3069fdf504b7814",
+    "final_independent_test_revision": "ad100b79956de30fe65c6d561f11be67186821d5",
+    "revision_history_note": "Initial e59d5c9f→main9ec836ce freeze retained as historical. Independently supplied later corrections end at mainad100; exact final test tree is authoritative for159/160. No frozen test file modified by metadata role.",
+    "current_correction_indices": {
+      "S156_index": "/workspace/work/widgets-small-execution/final-index.json",
+      "S156_sha256": "9d15fcee7473101f21edec529063d380d0d2dc0f5d75b006498e5927239b78a0",
+      "final_test_index": "/workspace/work/widgets-composite-tests/pty-fence-fix/evidence/index.json",
+      "final_test_sha256": "87de710cb40a2f618cba589e9c6f37a8f306cd9378bc720e82e172b2a60e35e3",
+      "device_typing_index": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/index-snapshotted.json",
+      "device_typing_sha256": "1bc1efb9f415a88c9a4f2f0d04ec27bc92535e535ac36fd794e0f26345072277"
+    },
+    "results_scope": "Initial158 pre-product missing-API RED receipts only; original values preserved. Current159 candidate developer typing/runtime results are separately bound under implementation_role and do not imply independent161/162 acceptance."
   },
   "producer_gates": {
-    "159": "in_progress; actual independent Terra/high implementation consumes completed fixed158 tests without edits",
-    "160": "planned; wait fixed159 product and158 tests",
-    "161": "planned; wait independent160 executable review",
+    "159": "complete developer implementation/verification; not independent execution or acceptance",
+    "160": "in_progress independentAstra/high fixed-source review; no verdict delivered",
+    "161": "planned; waits independent160 executable review then actual own ordinary package/clean consumers/hosts",
     "162": "planned; wait independent161 original execution evidence"
   },
   "deferred": [
@@ -800,14 +812,153 @@
   "reuse": "Prior14DQ/10self/45pair and unchanged W007 SDK/macro facts reused; no repeated broad review or cold suites.",
   "implementation_role": {
     "task": 159,
-    "status": "in_progress",
+    "status": "complete; DONE_WITH_CONCERNS developer verification",
     "assigned_model": "Terra/high",
     "independence": "fresh product role; fixed independent tests unchanged",
     "workspace": "/workspace/work/widgets-composite-implementation/source",
     "base_main": "9ec836cef9c137b87c928a049aa8452b3a83b301",
     "report_expected": "/workspace/work/widgets-composite-implementation/task-159-report.md",
     "evidence_index_expected": "/workspace/work/widgets-composite-implementation/evidence/final-index.json",
-    "fixed_product_commit": null,
-    "note": "Actual dispatch authorized by root; product source/typing/runtime not yet delivered."
+    "fixed_product_commit": "6f7d6feeb18b714d10300505d02e163d97b6c68a",
+    "note": "Developer proof only; independent160 reviewing fixed candidate and original tests/contracts,161/162 pending. Earlier failure logs and independent corrections preserved in sealed originals.",
+    "verification_head": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+    "source_tree": "2e14cff15828d522a84e4ececd63013b3b3226ac",
+    "test_revision": "ad100b79956de30fe65c6d561f11be67186821d5",
+    "test_tree": "ff16e53ffe8156950088fd3c7d4654f972c830cc",
+    "public_report": "author159/task-159-report.md",
+    "public_index": "author159/evidence/final-index.json",
+    "report_sha256": "ccb333b8395b1ed893332c4c8c8abf3047a21bbee30554f3b7405107b417a383",
+    "index_sha256": "5a94371752d33d985ff9ce7e4cf99ab9eacb5c504ed4bb850d0d80005a6c461e",
+    "integration": "Product candidate on wip/linux-widgets-composite; not integrated into main product before independent162.",
+    "scope": "Eight new M source files, example and widget guide; shared existing source unchanged.",
+    "commands": [
+      {
+        "cwd": "/workspace/work/widgets-composite-implementation/source",
+        "command": "CJTUI_COMPOSITE_PTY_OUTPUT=<evidence>/pty-fenced bash tests/widgets_composite/run.sh formal",
+        "exit": 0,
+        "log": "formal-fenced.log"
+      },
+      {
+        "cwd": "/workspace/work/widgets-composite-implementation/source/examples/widgets_composition",
+        "command": "cjpm build",
+        "exit": 0,
+        "log": "example-final-fixed.log"
+      },
+      {
+        "cwd": "/workspace/work/widgets-composite-implementation/source",
+        "command": "cjpm bundle",
+        "exit": 0,
+        "log": "bundle-current.log"
+      },
+      {
+        "cwd": "/workspace/work/widgets-composite-implementation/source",
+        "command": "cjlint -f src -o <evidence>/lint-fixed.json",
+        "exit": 0,
+        "mandatory": 0,
+        "suggestions": 788
+      },
+      {
+        "cwd": "/workspace/work/widgets-composite-implementation/source",
+        "command": "node scripts/check-bundle.mjs target/cjtui-0.0.0.cjp",
+        "exit": 1,
+        "note": "historical 6f bundle; baseline T087 themes allowlist mismatch; not retried on equivalent current bundle",
+        "log": "bundle-check-fixed.log"
+      }
+    ],
+    "environment": {
+      "sdk": "Cangjie 1.2.0 x86_64-unknown-linux-gnu",
+      "stdx": "/workspace/work/linux-build-recon/stdx-env",
+      "registry": "https://pkg.cangjie-lang.cn/registry",
+      "cache": "/workspace/work/viewport-tests/cache",
+      "sdk_inputs": [
+        {
+          "path": "/workspace/work/validation/sdk/cangjie/bin/cjc",
+          "bytes": 72906096,
+          "sha256": "023be1bb2ded1078906fc91919b3c1175ad14436ad88d23d505f7b8dcd0d7118"
+        },
+        {
+          "path": "/workspace/work/validation/sdk/cangjie/tools/bin/cjpm",
+          "bytes": 15266336,
+          "sha256": "a565d86540656c62340aacf6ac89c175b50c1f4d9ba4f69cee6a0fdacdee412d"
+        },
+        {
+          "path": "/workspace/work/validation/sdk/cangjie/tools/bin/cjlint",
+          "bytes": 293048,
+          "sha256": "b9bda358880500031e77a78b51338fe99fb4652dc6eaa82070f79d1a4fb097d0"
+        },
+        {
+          "path": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+          "bytes": 8027,
+          "sha256": "179d4e52c8a8d29a23d28691351f2b0897391243e5d5cb873f8a8e4502f2a288"
+        },
+        {
+          "path": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+          "bytes": 9101877,
+          "sha256": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e"
+        }
+      ],
+      "configs": [
+        {
+          "path": "/workspace/work/widgets-composite-implementation/source/cangjie-repo.toml",
+          "bytes": 133,
+          "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+        },
+        {
+          "path": "/workspace/work/widgets-composite-implementation/source/tests/widgets_composite/cangjie-repo.toml",
+          "bytes": 133,
+          "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+        },
+        {
+          "path": "/workspace/work/widgets-composite-implementation/source/tests/widgets_composite/prerequisite/cangjie-repo.toml",
+          "bytes": 133,
+          "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+        },
+        {
+          "path": "/workspace/work/widgets-composite-implementation/source/tests/widgets_composite/device/cangjie-repo.toml",
+          "bytes": 133,
+          "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+        }
+      ]
+    },
+    "package": {
+      "normal_cjp_sha256": "1bbd2e986ef993b05f3248d122c4a7991a72702d51472fdaf904a9f322eaf7e0",
+      "normal_bundle_exit": 0,
+      "normal_example_build_exit": 0,
+      "source_equal_package_files": 226,
+      "source_equality": "src/examples/docs/product equal between bundle source head and verification head; tests excluded"
+    },
+    "developer_results": {
+      "formal_runner_exit": 0,
+      "headless_cases": 53,
+      "real_PTY_product_exits": {
+        "normal": 0,
+        "callback_failure": 21,
+        "getter_failure": 22
+      },
+      "lint_exit": 0,
+      "lint_MANDATORY": 0,
+      "lint_SUGGESTIONS": 788,
+      "whole_bundle_checker_exit": 1,
+      "whole_checker_limit": "Existing T087 theme allowlist mismatch remains finalTASK023; not lint-clean or Linux/release PASS."
+    },
+    "root_validation": {
+      "reported_by": "root controller",
+      "raw_source_binary_SDK_bindings": 328,
+      "Git_inputs": 230,
+      "metadata_direct_exit_receipts": 3,
+      "result": "all verified; reused without repeat full audit"
+    }
+  },
+  "source_review_role": {
+    "task": 160,
+    "status": "in_progress",
+    "assigned_model": "Astra/high",
+    "independence": "fresh independent reviewer, no implementation-author self-assessment supplied as verdict",
+    "fixed_source": "6e3f26aaaeee9442fde91ce31d720a841eeda473",
+    "product_commit": "6f7d6feeb18b714d10300505d02e163d97b6c68a",
+    "test_revision": "ad100b79956de30fe65c6d561f11be67186821d5",
+    "test_tree": "ff16e53ffe8156950088fd3c7d4654f972c830cc",
+    "contract_snapshot": "Reviewer preserves received canonical contract bytes before metadata status changes; frozen semantics unchanged.",
+    "verdict": null
   }
 }
