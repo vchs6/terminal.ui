@@ -1,0 +1,10 @@
+[package]
+  cjc-version = "1.2.0"
+  name = "keyboard_argument_regression"
+  organization = ""
+  description = "Three public keyboard exception and reserved-input regressions"
+  version = "0.0.0"
+  output-type = "executable"
+  compile-option = "--error-count-limit all"
+[dependencies]
+cjtui = { path = "../../.." }
