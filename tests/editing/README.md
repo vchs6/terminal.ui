@@ -18,3 +18,16 @@ The ordinary runner builds and directly runs its binary, then builds the accepte
 `pty.mjs --selftest` and `fixtures/handshake.mjs` still test transport/tool mechanics only. Product vectors use real Application.run, actual PTY output/termios, and the accepted OSpipe input remap for read0 and consumed-prefix receipts. `cut-race` holds the actual PTY sink after the OSC52 prefix until a real background source write acknowledges through a FIFO. Only actual SessionResult outcomes are consumed; Direct Unknown may completely emit SentUnconfirmed and must preserve data. No system clipboard read/query or fake Applied backend exists. Applied policy is a manual golden table plus future fixed-source proof, not an executed integration assertion.
 
 The per-requirement source/golden and remaining proof boundaries are in `recipes.md`. Test-only helpers carry no product declarations; types each have one lowercase file.
+
+## Narrow callback/Enter supplement
+
+`callbackTransactions()` additionally dispatches literal key text x, requiring
+its onChange IllegalArgumentException sentinel to propagate unchanged after the
+source/local transaction commits, without an InputTooLarge issue, then cleanup.
+`validationBoundaries()` additionally dispatches ordinary TextArea Enter with
+source x/maxTextBytes1, requiring one InputTooLarge and no source/local/history
+mutation or onChange. The existing TextInput Enter-submit oracle is unchanged.
+These two new bodies are runtime UNEXECUTED and not fully typechecked against
+an accepted E implementation at supplement freeze; no historical RED is claimed.
+Parser and fixture selfchecks are tool/schema evidence only. The source author
+must adopt this fixed test commit and run it against a frozen candidate.
