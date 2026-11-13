@@ -1,0 +1,44 @@
+{
+  "baseline": "c6bf589e6df199a88851f0311a606d39f4963ad7",
+  "inventory_scope": [
+    "tests/widgets_small/device/src/main.cj",
+    "tests/widgets_small/negative_checkbox_bool/src/main.cj",
+    "tests/widgets_small/negative_radio_bool/src/main.cj",
+    "tests/widgets_small/prerequisite/src/main.cj",
+    "tests/widgets_small/red_button/src/main.cj",
+    "tests/widgets_small/red_checkbox/src/main.cj",
+    "tests/widgets_small/red_label/src/main.cj",
+    "tests/widgets_small/red_progress/src/main.cj",
+    "tests/widgets_small/red_radio/src/main.cj",
+    "tests/widgets_small/src/caption_matrix.cj",
+    "tests/widgets_small/src/construction_cases.cj",
+    "tests/widgets_small/src/event_boundaries.cj",
+    "tests/widgets_small/src/event_cases.cj",
+    "tests/widgets_small/src/lifecycle_cases.cj",
+    "tests/widgets_small/src/main.cj",
+    "tests/widgets_small/src/progress_geometry.cj",
+    "tests/widgets_small/src/remount_cases.cj",
+    "tests/widgets_small/src/theme_cases.cj"
+  ],
+  "before_runtime_load_sites": [
+    {
+      "file": "tests/widgets_small/src/progress_geometry.cj",
+      "line": 52,
+      "source": "    themedApp.loadTheme(ThemeSource.Prepared(theme))",
+      "classification": "pre-start initial theme"
+    }
+  ],
+  "after_runtime_load_sites": [],
+  "initial_setup_replacement": {
+    "old": "    let themedApp = Application(themed)\n    themedApp.loadTheme(ThemeSource.Prepared(theme))",
+    "new": "    let themedApp = Application(themed, theme: theme)"
+  },
+  "removed_newly_unused_import": {
+    "old": "Style, Theme, ThemeSource}",
+    "new": "Style, Theme}"
+  },
+  "inverse_bytes_equal": true,
+  "theme_cases_ThemeSource_already_absent": true,
+  "no_post_start_runtime_load_tests_present_in_S": true,
+  "outside_S_runtime_tests_untouched": true
+}

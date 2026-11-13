@@ -1,0 +1,11 @@
+PASS hand-authored fixture shape and anchors
+cjpm build success
+PREREQUISITE_PUBLIC_CONSUMER_PASS
+cjpm build success
+An exception has occurred:
+IllegalArgumentException: gap on text
+	 at cjtui::Component::gap(Int64)(/workspace/work/widgets-small-implementation/source/src/component.cj:153)
+	 at widgets_small_contract::constructionCases::lambda.1()(/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/construction_cases.cj:19)
+	 at widgets_small_contract::expectInvalidProperty(() -> Unit, std.core::String)(/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/main.cj:27)
+	 at widgets_small_contract::constructionCases()(/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/construction_cases.cj:19)
+	 at widgets_small_contract::main()(/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/main.cj:86)

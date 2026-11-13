@@ -1,0 +1,1910 @@
+{
+  "fixed_source": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "new_required_phases": [
+    {
+      "command": "cjpm build",
+      "cwd": "/workspace/work/widgets-small-execution/source",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:03:43.820474+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:05:01.480990+00:00"
+    },
+    {
+      "command": "cjpm bundle",
+      "cwd": "/workspace/work/widgets-small-execution/source",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:05:01.512184+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:05:59.484701+00:00"
+    },
+    {
+      "command": "python3 tools/audit.py",
+      "cwd": "/workspace/work/widgets-small-execution",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:06:05.747819+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:06:05.812010+00:00"
+    },
+    {
+      "command": "CJTUI_SMALL_PTY_OUTPUT=/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts python3 tests/widgets_small/bundle-run.py /workspace/work/widgets-small-execution/source/target/cjtui-0.0.0.cjp --output /workspace/work/widgets-small-execution/clean",
+      "cwd": "/workspace/work/widgets-small-execution/source",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:06:05.841008+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:11:22.387873+00:00"
+    },
+    {
+      "command": "cjpm build",
+      "cwd": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/examples/widgets_small",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:07:13.680492+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:08:20.934126+00:00"
+    },
+    {
+      "command": "python3 tools/gui.py xterm example",
+      "cwd": "/workspace/work/widgets-small-execution",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:09:05.645367+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:09:10.639455+00:00"
+    },
+    {
+      "command": "python3 tools/gui.py vte example",
+      "cwd": "/workspace/work/widgets-small-execution",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:09:10.671332+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:09:15.512166+00:00"
+    },
+    {
+      "command": "python3 tools/gui.py xterm normal",
+      "cwd": "/workspace/work/widgets-small-execution",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:09:51.899431+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:09:56.535882+00:00"
+    },
+    {
+      "command": "python3 tools/gui.py vte normal",
+      "cwd": "/workspace/work/widgets-small-execution",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:09:56.577197+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:10:01.437572+00:00"
+    },
+    {
+      "command": "python3 tools/pack-vt.py",
+      "cwd": "/workspace/work/widgets-small-execution",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:10:01.471167+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:10:10.748831+00:00"
+    },
+    {
+      "command": "python3 tools/vt.py normal",
+      "cwd": "/workspace/work/widgets-small-execution",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:10:10.781353+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:10:39.838390+00:00"
+    },
+    {
+      "command": "python3 tools/vt.py example",
+      "cwd": "/workspace/work/widgets-small-execution",
+      "source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+      "utc_start": "2026-11-13T13:10:39.875054+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T13:11:03.848219+00:00"
+    }
+  ],
+  "binaries": {
+    "prerequisite": {
+      "path": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/prerequisite/target/release/bin/main",
+      "bytes": 18974992,
+      "sha256": "6f35c17b4de042b0c7d1f68bf8feb27a194b8735248fd8f0e0fa4328388b7766"
+    },
+    "headless": {
+      "path": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/target/release/bin/main",
+      "bytes": 19463864,
+      "sha256": "bcd237e6c815960393767a0597e073bd70e84f84e676ba976a00fbd53125e7dd"
+    },
+    "device": {
+      "path": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/device/target/release/bin/main",
+      "bytes": 18986344,
+      "sha256": "d734acb373a0b70df8fca51c8afc66ada73fd1ada5aec1efa499cc9286affe6f"
+    },
+    "example": {
+      "path": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/examples/widgets_small/target/release/bin/main",
+      "bytes": 18955424,
+      "sha256": "0eaeb838ffa641d8fc92e40f66723924013bb5f018037c16348fc1ebb60c5052"
+    }
+  },
+  "negative_compilers": [
+    {
+      "name": "checkbox",
+      "compiler_exit": 1,
+      "classification": "Expected forbidden Bool overload rejection; exit validated by unchanged normal runner, not failure.",
+      "original": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/target/negative-checkbox.log",
+      "sha256": "53a064ffd05e8f58368757b0d276088dc769977628f2fdc6a33e69617f579495"
+    },
+    {
+      "name": "radio",
+      "compiler_exit": 1,
+      "classification": "Expected forbidden Bool overload rejection; exit validated by unchanged normal runner, not failure.",
+      "original": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/target/negative-radio.log",
+      "sha256": "892cb1dc2795f86bd089d4103671b89890efc83ad48fc2e64782278b4be9c77f"
+    }
+  ],
+  "PTY": [
+    {
+      "mode": "normal",
+      "binary": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/device/target/release/bin/main",
+      "binary_sha256": "d734acb373a0b70df8fca51c8afc66ada73fd1ada5aec1efa499cc9286affe6f",
+      "cwd": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small",
+      "before_stty": "500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0",
+      "route": "real PTY stdin/stdout; no shim",
+      "events": [
+        {
+          "observed": "actual native first frame",
+          "monotonic_ns": 41853310341309
+        },
+        {
+          "input_hex": "0d",
+          "monotonic_ns": 41853310350583
+        },
+        {
+          "observed": "actual Enter button callback",
+          "monotonic_ns": 41853330734588
+        },
+        {
+          "input_hex": "0920",
+          "monotonic_ns": 41853330739645
+        },
+        {
+          "observed": "actual HT Space checkbox callback",
+          "monotonic_ns": 41853338239481
+        },
+        {
+          "input_hex": "090d",
+          "monotonic_ns": 41853338242656
+        },
+        {
+          "observed": "actual HT Enter radio callback",
+          "monotonic_ns": 41853345718887
+        },
+        {
+          "input_hex": "2071",
+          "monotonic_ns": 41853345720810
+        },
+        {
+          "observed": "direct product exit",
+          "monotonic_ns": 41853366013308
+        }
+      ],
+      "exit": 0,
+      "after_stty": "500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0",
+      "summary": {
+        "clicks": "1",
+        "boxRequests": "1",
+        "checked": "true",
+        "radioRequests": "1",
+        "selected": "true",
+        "cleanups": "1",
+        "resources": "0/0/0/0"
+      },
+      "result": "PASS"
+    },
+    {
+      "mode": "callback-failure",
+      "binary": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/device/target/release/bin/main",
+      "binary_sha256": "d734acb373a0b70df8fca51c8afc66ada73fd1ada5aec1efa499cc9286affe6f",
+      "cwd": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small",
+      "before_stty": "500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0",
+      "route": "real PTY stdin/stdout; no shim",
+      "events": [
+        {
+          "observed": "actual native first frame",
+          "monotonic_ns": 41853471573665
+        },
+        {
+          "input_hex": "0d",
+          "monotonic_ns": 41853471583259
+        },
+        {
+          "observed": "direct product exit",
+          "monotonic_ns": 41853491903168
+        }
+      ],
+      "exit": 21,
+      "after_stty": "500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0",
+      "summary": {
+        "clicks": "0",
+        "boxRequests": "0",
+        "checked": "false",
+        "radioRequests": "0",
+        "selected": "false",
+        "cleanups": "1",
+        "resources": "0/0/0/0"
+      },
+      "result": "PASS"
+    },
+    {
+      "mode": "getter-failure",
+      "binary": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/device/target/release/bin/main",
+      "binary_sha256": "d734acb373a0b70df8fca51c8afc66ada73fd1ada5aec1efa499cc9286affe6f",
+      "cwd": "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small",
+      "before_stty": "500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0",
+      "route": "real PTY stdin/stdout; no shim",
+      "events": [
+        {
+          "observed": "actual native first frame",
+          "monotonic_ns": 41853596452168
+        },
+        {
+          "input_hex": "0d",
+          "monotonic_ns": 41853596459930
+        },
+        {
+          "observed": "direct product exit",
+          "monotonic_ns": 41853616991587
+        }
+      ],
+      "exit": 22,
+      "after_stty": "500:5:bf:8a3b:3:1c:7f:15:4:0:1:0:11:13:1a:0:12:f:17:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0",
+      "summary": {
+        "clicks": "1",
+        "boxRequests": "0",
+        "checked": "false",
+        "radioRequests": "0",
+        "selected": "false",
+        "cleanups": "1",
+        "resources": "0/0/0/0"
+      },
+      "result": "PASS"
+    }
+  ],
+  "actual_hosts": [
+    {
+      "host": "xterm",
+      "mode": "example",
+      "result": {
+        "host": "xterm",
+        "mode": "example",
+        "frontend_exit": 0,
+        "terminal": {
+          "utc": "2026-11-13T13:09:10.093973+00:00",
+          "termios": [
+            17664,
+            5,
+            191,
+            35387,
+            15,
+            15,
+            [
+              "03",
+              "1c",
+              "7f",
+              "15",
+              "04",
+              "00",
+              "01",
+              "00",
+              "11",
+              "13",
+              "1a",
+              "00",
+              "12",
+              "0f",
+              "17",
+              "16",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00"
+            ]
+          ],
+          "termios_equal": true,
+          "product_pid": "812541",
+          "product_exit": 0,
+          "tracer_exit": 0
+        },
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 41835614988277
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 41835732232189
+          },
+          {
+            "capture": "button-enter",
+            "monotonic_ns": 41836203156958
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 41836303444794
+          },
+          {
+            "capture": "checkbox-focused",
+            "monotonic_ns": 41836773792249
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 41836874466083
+          },
+          {
+            "capture": "checkbox-request",
+            "monotonic_ns": 41837312649189
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 41837412904225
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 41837513217720
+          },
+          {
+            "capture": "radio-selected",
+            "monotonic_ns": 41837984442675
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 41838084797777
+          },
+          {
+            "capture": "radio-already-selected",
+            "monotonic_ns": 41838556220735
+          },
+          {
+            "resize_cells": [
+              50,
+              10
+            ],
+            "pixels": [
+              654,
+              264
+            ]
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 41839016745255
+          },
+          {
+            "key": [
+              "q"
+            ],
+            "monotonic_ns": 41839117015780
+          },
+          {
+            "capture": "restored",
+            "monotonic_ns": 41839556356036
+          }
+        ],
+        "summary": {},
+        "wire_stats": [
+          {
+            "complete": 16,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          {
+            "complete": 12,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        ],
+        "oracle_source": "Unchanged tests/widgets_small/pty.py normal literal summary and native key sequence. Example is observational, no new Cj fixture.",
+        "unicode": "Existing native example/device captions ASCII only; new S Unicode host captions unexercised; headless S literal Unicode and unchanged accepted E projection are separate evidence.",
+        "theme": "Classic focused/selected appearance observed; disabled/explicit custom palette only frozen headless suite, not claimed new native evidence."
+      },
+      "host_identity": {
+        "identities": [
+          {
+            "pid": 812536,
+            "exe": "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+            "exe_sha256": "141372c1b48f0becdacc5649bbcbb0b26bb059c2e31f4a905c96ed0bdbad9b1d",
+            "vte": {}
+          }
+        ],
+        "version": "XTerm(398)\n",
+        "capability_source": "Actual TERM/TTY native detection with raw probes, classic default theme; no synthetic reply"
+      },
+      "launch": {
+        "argv": [
+          "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+          "-geometry",
+          "60x12+20+20",
+          "-T",
+          "TASK156 xterm example",
+          "-fa",
+          "DejaVu Sans Mono",
+          "-fs",
+          "16",
+          "-e",
+          "python3",
+          "/workspace/work/widgets-small-execution/tools/host-supervisor.py",
+          "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/examples/widgets_small/target/release/bin/main",
+          "/workspace/work/widgets-small-execution/raw/host-xterm-example",
+          "example"
+        ],
+        "fixed_source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+        "binary_sha256": "0eaeb838ffa641d8fc92e40f66723924013bb5f018037c16348fc1ebb60c5052",
+        "utc": "2026-11-13T13:09:05.771011+00:00",
+        "uid": 1000,
+        "connection": "local X11 :199; XTEST keys\u2192actual host PTY",
+        "config": {
+          "DISPLAY": ":199",
+          "HOME": "/workspace/work/widgets-small-execution/raw/host-xterm-example/home",
+          "XDG_CONFIG_HOME": "/workspace/work/widgets-small-execution/raw/host-xterm-example/home/config",
+          "XDG_CACHE_HOME": "/workspace/work/widgets-small-execution/raw/host-xterm-example/home/cache"
+        }
+      },
+      "actual_guest_or_TTY_input_hex": "1b5b3f32353b3124790d0920090d2071",
+      "native_cells": []
+    },
+    {
+      "host": "xterm",
+      "mode": "normal",
+      "result": {
+        "host": "xterm",
+        "mode": "normal",
+        "frontend_exit": 0,
+        "terminal": {
+          "utc": "2026-11-13T13:09:55.989665+00:00",
+          "termios": [
+            17664,
+            5,
+            191,
+            35387,
+            15,
+            15,
+            [
+              "03",
+              "1c",
+              "7f",
+              "15",
+              "04",
+              "00",
+              "01",
+              "00",
+              "11",
+              "13",
+              "1a",
+              "00",
+              "12",
+              "0f",
+              "17",
+              "16",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00"
+            ]
+          ],
+          "termios_equal": true,
+          "product_pid": "816373",
+          "product_exit": 0,
+          "tracer_exit": 0
+        },
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 41881572200872
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 41881688702823
+          },
+          {
+            "capture": "button-enter",
+            "monotonic_ns": 41882126889033
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 41882227164800
+          },
+          {
+            "capture": "checkbox-focused",
+            "monotonic_ns": 41882668168194
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 41882768467025
+          },
+          {
+            "capture": "checkbox-request",
+            "monotonic_ns": 41883207065754
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 41883307349082
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 41883407712946
+          },
+          {
+            "capture": "radio-selected",
+            "monotonic_ns": 41883846375149
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 41883946622965
+          },
+          {
+            "capture": "radio-already-selected",
+            "monotonic_ns": 41884388160204
+          },
+          {
+            "resize_cells": [
+              50,
+              10
+            ],
+            "pixels": [
+              654,
+              264
+            ]
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 41884908493264
+          },
+          {
+            "key": [
+              "q"
+            ],
+            "monotonic_ns": 41885008842706
+          },
+          {
+            "capture": "restored",
+            "monotonic_ns": 41885447885530
+          }
+        ],
+        "summary": {
+          "clicks": "1",
+          "boxRequests": "1",
+          "checked": "true",
+          "radioRequests": "1",
+          "selected": "true",
+          "cleanups": "1",
+          "resources": "0/0/0/0"
+        },
+        "wire_stats": [
+          {
+            "complete": 16,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          {
+            "complete": 11,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        ],
+        "oracle_source": "Unchanged tests/widgets_small/pty.py normal literal summary and native key sequence. Example is observational, no new Cj fixture.",
+        "unicode": "Existing native example/device captions ASCII only; new S Unicode host captions unexercised; headless S literal Unicode and unchanged accepted E projection are separate evidence.",
+        "theme": "Classic focused/selected appearance observed; disabled/explicit custom palette only frozen headless suite, not claimed new native evidence."
+      },
+      "host_identity": {
+        "identities": [
+          {
+            "pid": 816368,
+            "exe": "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+            "exe_sha256": "141372c1b48f0becdacc5649bbcbb0b26bb059c2e31f4a905c96ed0bdbad9b1d",
+            "vte": {}
+          }
+        ],
+        "version": "XTerm(398)\n",
+        "capability_source": "Actual TERM/TTY native detection with raw probes, classic default theme; no synthetic reply"
+      },
+      "launch": {
+        "argv": [
+          "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+          "-geometry",
+          "60x12+20+20",
+          "-T",
+          "TASK156 xterm normal",
+          "-fa",
+          "DejaVu Sans Mono",
+          "-fs",
+          "16",
+          "-e",
+          "python3",
+          "/workspace/work/widgets-small-execution/tools/host-supervisor.py",
+          "/workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/device/target/release/bin/main",
+          "/workspace/work/widgets-small-execution/raw/host-xterm-normal",
+          "normal"
+        ],
+        "fixed_source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+        "binary_sha256": "d734acb373a0b70df8fca51c8afc66ada73fd1ada5aec1efa499cc9286affe6f",
+        "utc": "2026-11-13T13:09:51.962791+00:00",
+        "uid": 1000,
+        "connection": "local X11 :199; XTEST keys\u2192actual host PTY",
+        "config": {
+          "DISPLAY": ":199",
+          "HOME": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/home",
+          "XDG_CONFIG_HOME": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/home/config",
+          "XDG_CACHE_HOME": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/home/cache"
+        }
+      },
+      "actual_guest_or_TTY_input_hex": "1b5b3f32353b3124790d0920090d2071",
+      "native_cells": []
+    },
+    {
+      "host": "vte",
+      "mode": "example",
+      "result": {
+        "host": "vte",
+        "mode": "example",
+        "frontend_exit": 0,
+        "terminal": {
+          "utc": "2026-11-13T13:09:14.943749+00:00",
+          "termios": [
+            17664,
+            5,
+            191,
+            35387,
+            15,
+            15,
+            [
+              "03",
+              "1c",
+              "7f",
+              "15",
+              "04",
+              "00",
+              "01",
+              "00",
+              "11",
+              "13",
+              "1a",
+              "00",
+              "12",
+              "0f",
+              "17",
+              "16",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00"
+            ]
+          ],
+          "termios_equal": true,
+          "product_pid": "812594",
+          "product_exit": 0,
+          "tracer_exit": 0
+        },
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 41840571624446
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 41840708533281
+          },
+          {
+            "capture": "button-enter",
+            "monotonic_ns": 41841147690410
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 41841247968128
+          },
+          {
+            "capture": "checkbox-focused",
+            "monotonic_ns": 41841686430862
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 41841786716756
+          },
+          {
+            "capture": "checkbox-request",
+            "monotonic_ns": 41842225298254
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 41842325579256
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 41842425903288
+          },
+          {
+            "capture": "radio-selected",
+            "monotonic_ns": 41842865761740
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 41842966081545
+          },
+          {
+            "capture": "radio-already-selected",
+            "monotonic_ns": 41843408207901
+          },
+          {
+            "resize_cells": [
+              50,
+              10
+            ],
+            "pixels": [
+              517,
+              192
+            ]
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 41843870102360
+          },
+          {
+            "key": [
+              "q"
+            ],
+            "monotonic_ns": 41843970366201
+          },
+          {
+            "capture": "restored",
+            "monotonic_ns": 41844410297378
+          }
+        ],
+        "summary": {},
+        "wire_stats": [
+          {
+            "complete": 16,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          {
+            "complete": 12,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        ],
+        "oracle_source": "Unchanged tests/widgets_small/pty.py normal literal summary and native key sequence. Example is observational, no new Cj fixture.",
+        "unicode": "Existing native example/device captions ASCII only; new S Unicode host captions unexercised; headless S literal Unicode and unchanged accepted E projection are separate evidence.",
+        "theme": "Classic focused/selected appearance observed; disabled/explicit custom palette only frozen headless suite, not claimed new native evidence."
+      },
+      "host_identity": {
+        "identities": [
+          {
+            "pid": 812578,
+            "exe": "/usr/bin/xfce4-terminal",
+            "exe_sha256": "752c95cbd8ac8f6d85ab96b102ba2c1212b626dfd3d3c70a89e901b0a5d03143",
+            "vte": {
+              "/usr/lib/x86_64-linux-gnu/libvte-2.91.so.0.8000.1": "e2e719555735ebeb0d72c3add313ff0a16f7ca4f8191d533a0252bddd076aba2"
+            }
+          }
+        ],
+        "version": "xfce4-terminal 1.1.4 (Xfce 4.20)\n\nCopyright (c) 2003-2024\n\tThe Xfce development team. All rights reserved.\n\nWritten by Benedikt Meurer <benny@xfce.org>,\nNick Schermer <nick@xfce.org>,\nIgor Zakharov <f2404@yandex.ru>,\nSergios - Anestis Kefalidis <sergioskefalidis@gmail.com>.\n\nPlease report bugs to <https://gitlab.xfce.org/apps/xfce4-terminal/>.\n",
+        "capability_source": "Actual TERM/TTY native detection with raw probes, classic default theme; no synthetic reply"
+      },
+      "launch": {
+        "argv": [
+          "dbus-run-session",
+          "--",
+          "xfce4-terminal",
+          "--disable-server",
+          "--hide-menubar",
+          "--geometry=60x12+20+20",
+          "--title=TASK156 vte example",
+          "--command=python3 /workspace/work/widgets-small-execution/tools/host-supervisor.py /workspace/work/widgets-small-execution/clean/cjtui-0.0.0/examples/widgets_small/target/release/bin/main /workspace/work/widgets-small-execution/raw/host-vte-example example"
+        ],
+        "fixed_source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+        "binary_sha256": "0eaeb838ffa641d8fc92e40f66723924013bb5f018037c16348fc1ebb60c5052",
+        "utc": "2026-11-13T13:09:10.738907+00:00",
+        "uid": 1000,
+        "connection": "local X11 :199; XTEST keys\u2192actual host PTY",
+        "config": {
+          "DISPLAY": ":199",
+          "HOME": "/workspace/work/widgets-small-execution/raw/host-vte-example/home",
+          "XDG_CONFIG_HOME": "/workspace/work/widgets-small-execution/raw/host-vte-example/home/config",
+          "XDG_CACHE_HOME": "/workspace/work/widgets-small-execution/raw/host-vte-example/home/cache"
+        }
+      },
+      "actual_guest_or_TTY_input_hex": "1b5b3f32353b3124790d0920090d2071",
+      "native_cells": []
+    },
+    {
+      "host": "vte",
+      "mode": "normal",
+      "result": {
+        "host": "vte",
+        "mode": "normal",
+        "frontend_exit": 0,
+        "terminal": {
+          "utc": "2026-11-13T13:10:00.870053+00:00",
+          "termios": [
+            17664,
+            5,
+            191,
+            35387,
+            15,
+            15,
+            [
+              "03",
+              "1c",
+              "7f",
+              "15",
+              "04",
+              "00",
+              "01",
+              "00",
+              "11",
+              "13",
+              "1a",
+              "00",
+              "12",
+              "0f",
+              "17",
+              "16",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00",
+              "00"
+            ]
+          ],
+          "termios_equal": true,
+          "product_pid": "816427",
+          "product_exit": 0,
+          "tracer_exit": 0
+        },
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 41886485159160
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 41886616313984
+          },
+          {
+            "capture": "button-enter",
+            "monotonic_ns": 41887054865536
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 41887155158235
+          },
+          {
+            "capture": "checkbox-focused",
+            "monotonic_ns": 41887593050384
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 41887693310905
+          },
+          {
+            "capture": "checkbox-request",
+            "monotonic_ns": 41888132333963
+          },
+          {
+            "key": [
+              "Tab"
+            ],
+            "monotonic_ns": 41888232942983
+          },
+          {
+            "key": [
+              "Return"
+            ],
+            "monotonic_ns": 41888333237704
+          },
+          {
+            "capture": "radio-selected",
+            "monotonic_ns": 41888772317706
+          },
+          {
+            "key": [
+              "space"
+            ],
+            "monotonic_ns": 41888876672194
+          },
+          {
+            "capture": "radio-already-selected",
+            "monotonic_ns": 41889335933437
+          },
+          {
+            "resize_cells": [
+              50,
+              10
+            ],
+            "pixels": [
+              517,
+              192
+            ]
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 41889797064745
+          },
+          {
+            "key": [
+              "q"
+            ],
+            "monotonic_ns": 41889897438824
+          },
+          {
+            "capture": "restored",
+            "monotonic_ns": 41890336976982
+          }
+        ],
+        "summary": {
+          "clicks": "1",
+          "boxRequests": "1",
+          "checked": "true",
+          "radioRequests": "1",
+          "selected": "true",
+          "cleanups": "1",
+          "resources": "0/0/0/0"
+        },
+        "wire_stats": [
+          {
+            "complete": 16,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          {
+            "complete": 11,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        ],
+        "oracle_source": "Unchanged tests/widgets_small/pty.py normal literal summary and native key sequence. Example is observational, no new Cj fixture.",
+        "unicode": "Existing native example/device captions ASCII only; new S Unicode host captions unexercised; headless S literal Unicode and unchanged accepted E projection are separate evidence.",
+        "theme": "Classic focused/selected appearance observed; disabled/explicit custom palette only frozen headless suite, not claimed new native evidence."
+      },
+      "host_identity": {
+        "identities": [
+          {
+            "pid": 816411,
+            "exe": "/usr/bin/xfce4-terminal",
+            "exe_sha256": "752c95cbd8ac8f6d85ab96b102ba2c1212b626dfd3d3c70a89e901b0a5d03143",
+            "vte": {
+              "/usr/lib/x86_64-linux-gnu/libvte-2.91.so.0.8000.1": "e2e719555735ebeb0d72c3add313ff0a16f7ca4f8191d533a0252bddd076aba2"
+            }
+          }
+        ],
+        "version": "xfce4-terminal 1.1.4 (Xfce 4.20)\n\nCopyright (c) 2003-2024\n\tThe Xfce development team. All rights reserved.\n\nWritten by Benedikt Meurer <benny@xfce.org>,\nNick Schermer <nick@xfce.org>,\nIgor Zakharov <f2404@yandex.ru>,\nSergios - Anestis Kefalidis <sergioskefalidis@gmail.com>.\n\nPlease report bugs to <https://gitlab.xfce.org/apps/xfce4-terminal/>.\n",
+        "capability_source": "Actual TERM/TTY native detection with raw probes, classic default theme; no synthetic reply"
+      },
+      "launch": {
+        "argv": [
+          "dbus-run-session",
+          "--",
+          "xfce4-terminal",
+          "--disable-server",
+          "--hide-menubar",
+          "--geometry=60x12+20+20",
+          "--title=TASK156 vte normal",
+          "--command=python3 /workspace/work/widgets-small-execution/tools/host-supervisor.py /workspace/work/widgets-small-execution/clean/cjtui-0.0.0/tests/widgets_small/device/target/release/bin/main /workspace/work/widgets-small-execution/raw/host-vte-normal normal"
+        ],
+        "fixed_source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+        "binary_sha256": "d734acb373a0b70df8fca51c8afc66ada73fd1ada5aec1efa499cc9286affe6f",
+        "utc": "2026-11-13T13:09:56.634357+00:00",
+        "uid": 1000,
+        "connection": "local X11 :199; XTEST keys\u2192actual host PTY",
+        "config": {
+          "DISPLAY": ":199",
+          "HOME": "/workspace/work/widgets-small-execution/raw/host-vte-normal/home",
+          "XDG_CONFIG_HOME": "/workspace/work/widgets-small-execution/raw/host-vte-normal/home/config",
+          "XDG_CACHE_HOME": "/workspace/work/widgets-small-execution/raw/host-vte-normal/home/cache"
+        }
+      },
+      "actual_guest_or_TTY_input_hex": "1b5b3f32353b3124790d0920090d2071",
+      "native_cells": []
+    },
+    {
+      "host": "vt",
+      "mode": "example",
+      "result": {
+        "qemu_exit": 0,
+        "product_exit": 0,
+        "product_pid": 138,
+        "termios_equal": true,
+        "virtual_hardware": true,
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 41938208220776
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 41938209383349
+          },
+          {
+            "capture": "button-enter",
+            "monotonic_ns": 41939527146297
+          },
+          {
+            "keys": [
+              "tab"
+            ],
+            "monotonic_ns": 41939528346607
+          },
+          {
+            "capture": "checkbox-focused",
+            "monotonic_ns": 41940831467957
+          },
+          {
+            "keys": [
+              "spc"
+            ],
+            "monotonic_ns": 41940835428556
+          },
+          {
+            "capture": "checkbox-request",
+            "monotonic_ns": 41942155952458
+          },
+          {
+            "keys": [
+              "tab"
+            ],
+            "monotonic_ns": 41942157323273
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 41942409156506
+          },
+          {
+            "capture": "radio-selected",
+            "monotonic_ns": 41943707301565
+          },
+          {
+            "keys": [
+              "spc"
+            ],
+            "monotonic_ns": 41943708480813
+          },
+          {
+            "capture": "radio-already-selected",
+            "monotonic_ns": 41945032860205
+          },
+          {
+            "capture": "resize-transition",
+            "monotonic_ns": 41946121430053
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 41947169178441
+          },
+          {
+            "keys": [
+              "q"
+            ],
+            "monotonic_ns": 41947170688365
+          }
+        ],
+        "wire_stats": {
+          "input": {
+            "complete": 7,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          "output": {
+            "complete": 10,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        },
+        "summary": {},
+        "oracle_source": "Unchanged tests/widgets_small/pty.py normal literal summary/key sequence; actual QMP generated kernel input, no new Cj oracle.",
+        "unicode": "ASCII native fixture only; new S Unicode host caption projection not exercised; independent headless S and unchanged accepted E backend evidence remain distinct.",
+        "theme": "Classic focus/selected native appearance only; disabled/explicit custom palette is headless S evidence, not new native proof.",
+        "resize": "actual kernel VT_RESIZE60x12 to50x10 with native vcsa/readback",
+        "utc": "2026-11-13T13:11:03.837903+00:00"
+      },
+      "host_identity": [
+        "KERNEL Linux 6.12.107+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.107-1 (2026-08-29)",
+        "TTY=/dev/tty1 TERM=linux GRID=80x25 winsize_rc=0 VT_GETSTATE_rc=0 active=1 KDGKBTYPE_rc=0 keyboard=2 SCENE=example",
+        "VT_RESIZE request=60x12 rc=0 errno=0 readback_rc=0 actual=60x12",
+        "PRODUCT_ID uid=1000 euid=1000 gid=1000 stdout=/dev/tty1 scene=example",
+        "VT_RESIZE request=50x10 rc=0 errno=2 readback_rc=0 actual=50x10",
+        "RESTORE iflag=4500/4500 oflag=5/5 cflag=4bf/4bf lflag=8a3b/8a3b cc_equal=1 termios_equal=1"
+      ],
+      "launch": {
+        "argv": [
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/bin/qemu-system-x86_64",
+          "-accel",
+          "tcg",
+          "-cpu",
+          "max",
+          "-machine",
+          "pc",
+          "-m",
+          "512",
+          "-smp",
+          "1",
+          "-no-reboot",
+          "-nic",
+          "none",
+          "-L",
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/share/qemu",
+          "-bios",
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/bios-256k.bin",
+          "-device",
+          "VGA,romfile=/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/vgabios-stdvga.bin",
+          "-vga",
+          "none",
+          "-display",
+          "none",
+          "-serial",
+          "file:/workspace/work/widgets-small-execution/raw/host-vt-example/serial.log",
+          "-chardev",
+          "socket,id=probe,path=/workspace/work/widgets-small-execution/raw/host-vt-example/control.sock,server=on,wait=off",
+          "-serial",
+          "chardev:probe",
+          "-qmp",
+          "unix:/workspace/work/widgets-small-execution/raw/host-vt-example/qmp.sock,server=on,wait=off",
+          "-kernel",
+          "/workspace/work/linux-console-hosts/packages/linux",
+          "-initrd",
+          "/workspace/work/widgets-small-execution/widgets-small-vt.cpio.gz",
+          "-append",
+          "console=tty0 console=ttyS0,115200 rdinit=/init nomodeset vga=normal loglevel=4 scene=example"
+        ],
+        "virtual_hardware": true,
+        "fixed_source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+        "binary_sha256": "0eaeb838ffa641d8fc92e40f66723924013bb5f018037c16348fc1ebb60c5052",
+        "initrd_sha256": "2b028979f75f4999b2ae529218be589ec1804372ca640310e12d70a189620c1e",
+        "kernel_sha256": "2b2358b37674d2505350528875bb17afae2a36522a9e8a9417eaca65a7da0e08",
+        "utc": "2026-11-13T13:10:39.984030+00:00",
+        "connection": "QEMU TCG emulated keyboard \u2192 actual Linux kernel VT tty1; serial observer channel does not inject PTY bytes"
+      },
+      "actual_guest_or_TTY_input_hex": "0d0920090d2071",
+      "native_cells": [
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/button-enter-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "Small widgets                                               ",
+            "Continue                                                    ",
+            "[x] Ready                                                   ",
+            "( ) Choice                                                  ",
+            "====================                                        ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/checkbox-focused-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "Small widgets                                               ",
+            "Continue                                                    ",
+            "[x] Ready                                                   ",
+            "( ) Choice                                                  ",
+            "====================                                        ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/checkbox-request-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "Small widgets                                               ",
+            "Continue                                                    ",
+            "[ ] Ready                                                   ",
+            "( ) Choice                                                  ",
+            "==========----------                                        ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/radio-already-selected-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "Small widgets                                               ",
+            "Continue                                                    ",
+            "[ ] Ready                                                   ",
+            "(*) Choice                                                  ",
+            "==========----------                                        ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/radio-selected-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "Small widgets                                               ",
+            "Continue                                                    ",
+            "[ ] Ready                                                   ",
+            "(*) Choice                                                  ",
+            "==========----------                                        ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/resize-transition-vcsa.bin",
+          "rows": 10,
+          "columns": 50,
+          "visible_rows": [
+            "Small widgets                                     ",
+            "Continue                                          ",
+            "[ ] Ready                                         ",
+            "(*) Choice                                        ",
+            "==========----------                              ",
+            "                                                  "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/resized-vcsa.bin",
+          "rows": 10,
+          "columns": 50,
+          "visible_rows": [
+            "Small widgets                                     ",
+            "Continue                                          ",
+            "[ ] Ready                                         ",
+            "(*) Choice                                        ",
+            "==========----------                              ",
+            "                                                  "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/running-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "Small widgets                                               ",
+            "Continue                                                    ",
+            "[ ] Ready                                                   ",
+            "( ) Choice                                                  ",
+            "==========----------                                        ",
+            "                                                            "
+          ]
+        }
+      ]
+    },
+    {
+      "host": "vt",
+      "mode": "normal",
+      "result": {
+        "qemu_exit": 0,
+        "product_exit": 0,
+        "product_pid": 136,
+        "termios_equal": true,
+        "virtual_hardware": true,
+        "events": [
+          {
+            "capture": "running",
+            "monotonic_ns": 41911226993297
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 41911228063292
+          },
+          {
+            "capture": "button-enter",
+            "monotonic_ns": 41912666082375
+          },
+          {
+            "keys": [
+              "tab"
+            ],
+            "monotonic_ns": 41912676706147
+          },
+          {
+            "capture": "checkbox-focused",
+            "monotonic_ns": 41914164342175
+          },
+          {
+            "keys": [
+              "spc"
+            ],
+            "monotonic_ns": 41914165669025
+          },
+          {
+            "capture": "checkbox-request",
+            "monotonic_ns": 41915916156618
+          },
+          {
+            "keys": [
+              "tab"
+            ],
+            "monotonic_ns": 41915940921856
+          },
+          {
+            "keys": [
+              "ret"
+            ],
+            "monotonic_ns": 41916238308415
+          },
+          {
+            "capture": "radio-selected",
+            "monotonic_ns": 41919084850463
+          },
+          {
+            "keys": [
+              "spc"
+            ],
+            "monotonic_ns": 41919085620859
+          },
+          {
+            "capture": "radio-already-selected",
+            "monotonic_ns": 41920394074401
+          },
+          {
+            "capture": "resize-transition",
+            "monotonic_ns": 41921487526487
+          },
+          {
+            "capture": "resized",
+            "monotonic_ns": 41922537035281
+          },
+          {
+            "keys": [
+              "q"
+            ],
+            "monotonic_ns": 41922538071955
+          }
+        ],
+        "wire_stats": {
+          "input": {
+            "complete": 7,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          },
+          "output": {
+            "complete": 9,
+            "resumed": 0,
+            "pending": 0,
+            "unparsedTarget": []
+          }
+        },
+        "summary": {
+          "clicks": "1",
+          "boxRequests": "1",
+          "checked": "true",
+          "radioRequests": "1",
+          "selected": "true",
+          "cleanups": "1",
+          "resources": "0/0/0/0"
+        },
+        "oracle_source": "Unchanged tests/widgets_small/pty.py normal literal summary/key sequence; actual QMP generated kernel input, no new Cj oracle.",
+        "unicode": "ASCII native fixture only; new S Unicode host caption projection not exercised; independent headless S and unchanged accepted E backend evidence remain distinct.",
+        "theme": "Classic focus/selected native appearance only; disabled/explicit custom palette is headless S evidence, not new native proof.",
+        "resize": "actual kernel VT_RESIZE60x12 to50x10 with native vcsa/readback",
+        "utc": "2026-11-13T13:10:39.828507+00:00"
+      },
+      "host_identity": [
+        "KERNEL Linux 6.12.107+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.107-1 (2026-08-29)",
+        "TTY=/dev/tty1 TERM=linux GRID=80x25 winsize_rc=0 VT_GETSTATE_rc=0 active=1 KDGKBTYPE_rc=0 keyboard=2 SCENE=normal",
+        "VT_RESIZE request=60x12 rc=0 errno=0 readback_rc=0 actual=60x12",
+        "PRODUCT_ID uid=1000 euid=1000 gid=1000 stdout=/dev/tty1 scene=normal",
+        "VT_RESIZE request=50x10 rc=0 errno=2 readback_rc=0 actual=50x10",
+        "RESTORE iflag=4500/4500 oflag=5/5 cflag=4bf/4bf lflag=8a3b/8a3b cc_equal=1 termios_equal=1"
+      ],
+      "launch": {
+        "argv": [
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/bin/qemu-system-x86_64",
+          "-accel",
+          "tcg",
+          "-cpu",
+          "max",
+          "-machine",
+          "pc",
+          "-m",
+          "512",
+          "-smp",
+          "1",
+          "-no-reboot",
+          "-nic",
+          "none",
+          "-L",
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/share/qemu",
+          "-bios",
+          "/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/bios-256k.bin",
+          "-device",
+          "VGA,romfile=/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/vgabios-stdvga.bin",
+          "-vga",
+          "none",
+          "-display",
+          "none",
+          "-serial",
+          "file:/workspace/work/widgets-small-execution/raw/host-vt-normal/serial.log",
+          "-chardev",
+          "socket,id=probe,path=/workspace/work/widgets-small-execution/raw/host-vt-normal/control.sock,server=on,wait=off",
+          "-serial",
+          "chardev:probe",
+          "-qmp",
+          "unix:/workspace/work/widgets-small-execution/raw/host-vt-normal/qmp.sock,server=on,wait=off",
+          "-kernel",
+          "/workspace/work/linux-console-hosts/packages/linux",
+          "-initrd",
+          "/workspace/work/widgets-small-execution/widgets-small-vt.cpio.gz",
+          "-append",
+          "console=tty0 console=ttyS0,115200 rdinit=/init nomodeset vga=normal loglevel=4 scene=normal"
+        ],
+        "virtual_hardware": true,
+        "fixed_source_sha": "1df1325f7b51777d8adab62f950c936051aa5876",
+        "binary_sha256": "d734acb373a0b70df8fca51c8afc66ada73fd1ada5aec1efa499cc9286affe6f",
+        "initrd_sha256": "2b028979f75f4999b2ae529218be589ec1804372ca640310e12d70a189620c1e",
+        "kernel_sha256": "2b2358b37674d2505350528875bb17afae2a36522a9e8a9417eaca65a7da0e08",
+        "utc": "2026-11-13T13:10:10.931061+00:00",
+        "connection": "QEMU TCG emulated keyboard \u2192 actual Linux kernel VT tty1; serial observer channel does not inject PTY bytes"
+      },
+      "actual_guest_or_TTY_input_hex": "0d0920090d2071",
+      "native_cells": [
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/button-enter-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "S_WIDGETS_READY                                             ",
+            "Go                                                          ",
+            "[ ] Box                                                     ",
+            "( ) Radio                                                   ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/checkbox-focused-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "S_WIDGETS_READY                                             ",
+            "Go                                                          ",
+            "[ ] Box                                                     ",
+            "( ) Radio                                                   ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/checkbox-request-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "S_WIDGETS_READY                                             ",
+            "Go                                                          ",
+            "[ ] Box                                                     ",
+            "( ) Radio                                                   ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/radio-already-selected-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "S_WIDGETS_READY                                             ",
+            "Go                                                          ",
+            "[x] Box                                                     ",
+            "(*) Radio                                                   ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/radio-selected-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "S_WIDGETS_READY                                             ",
+            "Go                                                          ",
+            "[x] Box                                                     ",
+            "( ) Radio                                                   ",
+            "                                                            ",
+            "                                                            "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/resize-transition-vcsa.bin",
+          "rows": 10,
+          "columns": 50,
+          "visible_rows": [
+            "S_WIDGETS_READY                                   ",
+            "Go                                                ",
+            "[x] Box                                           ",
+            "(*) Radio                                         ",
+            "                                                  ",
+            "                                                  "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/resized-vcsa.bin",
+          "rows": 10,
+          "columns": 50,
+          "visible_rows": [
+            "S_WIDGETS_READY                                   ",
+            "Go                                                ",
+            "[x] Box                                           ",
+            "(*) Radio                                         ",
+            "                                                  ",
+            "                                                  "
+          ]
+        },
+        {
+          "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/running-vcsa.bin",
+          "rows": 12,
+          "columns": 60,
+          "visible_rows": [
+            "S_WIDGETS_READY                                             ",
+            "Go                                                          ",
+            "[ ] Box                                                     ",
+            "( ) Radio                                                   ",
+            "                                                            ",
+            "                                                            "
+          ]
+        }
+      ]
+    }
+  ],
+  "original_PNGs": [
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/button-enter.png",
+      "sha256": "216d84621547ad77c7a1005af687d9887e51aa579b20076019466efcd2814c2e",
+      "bytes": 10370
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/checkbox-focused.png",
+      "sha256": "b3df5367d89acfc9c3db1763ad678696fcfed382ea5a60d66fe16f225faa8082",
+      "bytes": 10284
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/checkbox-request.png",
+      "sha256": "3a1792711008a184af1ed65544fd047a0f0158dc6e0b9a957900e4abfde7b1a1",
+      "bytes": 9989
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/radio-already-selected.png",
+      "sha256": "1037ce4c4f55457baeb389513415a49cd122878bec3cc38a39921a7927273dc1",
+      "bytes": 10236
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/radio-selected.png",
+      "sha256": "1037ce4c4f55457baeb389513415a49cd122878bec3cc38a39921a7927273dc1",
+      "bytes": 10236
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/resized.png",
+      "sha256": "986cdccb1bfbbd436e907f65aa1d52d15d51a314bd0c649068734f54c7cd20f4",
+      "bytes": 9792
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/restored.png",
+      "sha256": "170f19e127e181a02377c1d8500bcf375640be9ee86de61bfbda2181062ce624",
+      "bytes": 9806
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/running.png",
+      "sha256": "88f52476c3f88767eca49c7cdfa50e989e9b7086577f76a25f7068b41e919e00",
+      "bytes": 10053
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/button-enter.png",
+      "sha256": "944b4eca66cd4dcf486fa955819bf9ed28a83bdd9e9ec2511bef459c33df8cc1",
+      "bytes": 8222
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/checkbox-focused.png",
+      "sha256": "f44e33abb48ed7a62ec4fa342233edfb19c8eb93bb01b058a22d078eb21c3075",
+      "bytes": 8203
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/checkbox-request.png",
+      "sha256": "d404f45d87bbb842dc84ea4acd5c702fc19ddb8f652afa22b5b4cec0bf3cc674",
+      "bytes": 8265
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/radio-already-selected.png",
+      "sha256": "3d4e21ec8ea9de366562ece684b0b98cea6959fc4532f7e7381244116fb507ba",
+      "bytes": 8536
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/radio-selected.png",
+      "sha256": "3d4e21ec8ea9de366562ece684b0b98cea6959fc4532f7e7381244116fb507ba",
+      "bytes": 8536
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/resized.png",
+      "sha256": "2156886983830384f47f336b4752497d2df9d2d44583540ede6b3776a89e7a91",
+      "bytes": 8019
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/restored.png",
+      "sha256": "c3d271469aafc9ad26095ac716803ce082317d8441a99aa09013fc03028e25a6",
+      "bytes": 8032
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/running.png",
+      "sha256": "944b4eca66cd4dcf486fa955819bf9ed28a83bdd9e9ec2511bef459c33df8cc1",
+      "bytes": 8222
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/button-enter.png",
+      "sha256": "6d8189215c2effbd03a8ee4e75695ec5a2b9f5e649362e9cc4533eac78a05703",
+      "bytes": 6944
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/checkbox-focused.png",
+      "sha256": "52a504316b5d10de3d4431368551a0f1f5d5d98e5a1fe212fb5d3951b07c75f3",
+      "bytes": 6845
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/checkbox-request.png",
+      "sha256": "30088719f07f43fdd96532517626ef772473ae921dda1d0a48f511d787667b35",
+      "bytes": 6677
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/radio-already-selected.png",
+      "sha256": "2423628020da2a915ec345ea65f580901567463344882163e3aa6d0703b90d4e",
+      "bytes": 6724
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/radio-selected.png",
+      "sha256": "2423628020da2a915ec345ea65f580901567463344882163e3aa6d0703b90d4e",
+      "bytes": 6724
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/resized.png",
+      "sha256": "522afbeb4ce0e1bd7e9755007baf77434dc4898bbf5d2f0a2911b48f6a06e446",
+      "bytes": 5956
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/restored.png",
+      "sha256": "522afbeb4ce0e1bd7e9755007baf77434dc4898bbf5d2f0a2911b48f6a06e446",
+      "bytes": 5956
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/running.png",
+      "sha256": "e2a6ffdca0497736656cb5b67ec9e0221e30e5dae83d3e524cd9864d0ed93e45",
+      "bytes": 6723
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/button-enter.png",
+      "sha256": "98e8b93635967d88c29a468d6846a8804df279270b0f2eab07973c75731ee349",
+      "bytes": 5701
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/checkbox-focused.png",
+      "sha256": "85a3496a3d6f8c5364d2f9cd2774458526e8f33c750d41939a47a719b370176f",
+      "bytes": 5611
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/checkbox-request.png",
+      "sha256": "d5a15f0c7d87da3ccc427d895048b3f6ddd4df05d6b136248f4d97b4ec6274fe",
+      "bytes": 5651
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/radio-already-selected.png",
+      "sha256": "57817c44390b63b59ba3c6637e0dc5db09cd59bf4589e6dd1aae76f7eabb8318",
+      "bytes": 5690
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/radio-selected.png",
+      "sha256": "57817c44390b63b59ba3c6637e0dc5db09cd59bf4589e6dd1aae76f7eabb8318",
+      "bytes": 5690
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/resized.png",
+      "sha256": "2282b1387e5349bb4955ca92f799554e60066cf7a8d4bf2bcdf290b4b975a678",
+      "bytes": 5114
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/restored.png",
+      "sha256": "2282b1387e5349bb4955ca92f799554e60066cf7a8d4bf2bcdf290b4b975a678",
+      "bytes": 5114
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/running.png",
+      "sha256": "98e8b93635967d88c29a468d6846a8804df279270b0f2eab07973c75731ee349",
+      "bytes": 5701
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/button-enter.png",
+      "sha256": "1b2a2ac34bd24627c798057f0f515647d7dce271770efccaac01a5e05763dbd8",
+      "bytes": 1213
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/checkbox-focused.png",
+      "sha256": "ba919e2ce01af21d23ba5df7da3f0042e1a5d11d0e4ac7e7eadf9867db8b8e56",
+      "bytes": 1210
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/checkbox-request.png",
+      "sha256": "433fbcb4ce420f754c9b339ecf0412d545acb1663d9639125aaf41fce46a277e",
+      "bytes": 1156
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/radio-already-selected.png",
+      "sha256": "78163a7108f5e4bb885126a0bbd690082e871fcdc9eb3d46ad2fbb5131eba49a",
+      "bytes": 1204
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/radio-selected.png",
+      "sha256": "e4d189c241b88588bf5e0aad627216baa46884dd87a5369a88e2ef5537b4a07f",
+      "bytes": 1209
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/resize-transition.png",
+      "sha256": "2efcda3c6d08a1b0e648ac5be3aee4557d431540db90711d2ffa22ff76e5ee31",
+      "bytes": 1109
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/resized.png",
+      "sha256": "4244f140a47128d437bf038c6da19ecafb922e9fa748d025f9d5247a9b3a3e27",
+      "bytes": 1101
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/restored.png",
+      "sha256": "4244f140a47128d437bf038c6da19ecafb922e9fa748d025f9d5247a9b3a3e27",
+      "bytes": 1101
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/running.png",
+      "sha256": "0902681a7319e08b75191ebdcdfca23cd5ef8b1b73926e14a54924ea700a0a05",
+      "bytes": 1177
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/button-enter.png",
+      "sha256": "1a04424f7d61bdd50e2f725962f6a93bd609b9948f3d8a0e5e97ec306d59b4f5",
+      "bytes": 1044
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/checkbox-focused.png",
+      "sha256": "e99375ab0a8e1393a70462767c90772f74675a7526599fd003955adf0caf498e",
+      "bytes": 1058
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/checkbox-request.png",
+      "sha256": "3f36eca24fb9d81a75a2bfeadf9e4b0dd0e0729cafc8906497b95c81e2394e30",
+      "bytes": 1051
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/radio-already-selected.png",
+      "sha256": "fda94333af27b1cced3bb4190cf6209e50d44a3f6c6b376c609466082c338de1",
+      "bytes": 1151
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/radio-selected.png",
+      "sha256": "6631c0b0f7a1f2c02fb4d95f2d84cab9088157d40cbc77fa38646c7185697e91",
+      "bytes": 1107
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/resize-transition.png",
+      "sha256": "4d60840d286bf60f4c6d757febf35e3ccbd48bc8c46acf9b574ce2f63a477a5f",
+      "bytes": 1058
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/resized.png",
+      "sha256": "36849784ba3e0133911a3614fc14bc273ee93459f9f5a392de79c575bbdfe675",
+      "bytes": 1051
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/restored.png",
+      "sha256": "ea05681ece19b41bff837bd65cd5880da0c8a8361501e94833bac91d9ec79c69",
+      "bytes": 1063
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/running.png",
+      "sha256": "e99375ab0a8e1393a70462767c90772f74675a7526599fd003955adf0caf498e",
+      "bytes": 1058
+    }
+  ],
+  "source_and_frozen_test_files_unchanged": true,
+  "prior_E38_indices_and_bound_raw_unchanged": true,
+  "coverage_limits": [
+    "New actual S native data is ASCII only; Unicode/disabled/explicit/custom palette S evidence is frozen headless + source155, not inferred from E host results.",
+    "E backend mechanism reuse is scoped to byte-unchanged native/glyph/theme/runtime paths; actual S all-state/Unicode/four-theme integrated showcase remains027/041.",
+    "Progress measure closure proof remains source155; native callback/getter first-error tests are actual PTY, not three-host diversity proof.",
+    "B-M01\u2192024, T087\u2192023; fullLinux, M, parent019/020/027/030 and release remain open."
+  ],
+  "UTC": "2026-11-13T13:12:57.110845+00:00"
+}

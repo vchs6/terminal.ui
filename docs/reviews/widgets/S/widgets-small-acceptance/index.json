@@ -1,0 +1,758 @@
+{
+  "task": 157,
+  "verdict": "PASS_FINITE_S",
+  "spec": "PASS",
+  "quality": "PASS",
+  "evidence": "PASS_FINITE",
+  "fixed_source": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "frozen_test_tree": "714a7fdf97d368574815cbf16e7430ac744f647c",
+  "canonical": [
+    {
+      "git_commit": "b3f20f3d1dca6e440bef654d80124df256586db9",
+      "git_path": "openspec/changes/implement-standard-widgets/design.md",
+      "snapshot": "canonical/openspec/changes/implement-standard-widgets/design.md",
+      "bytes": 24989,
+      "sha256": "349e93f2ce9682c754d951edf26c09bb97fb4e0f80d954b81e5c1c4936570bbc"
+    },
+    {
+      "git_commit": "b3f20f3d1dca6e440bef654d80124df256586db9",
+      "git_path": "openspec/changes/implement-standard-widgets/tasks.md",
+      "snapshot": "canonical/openspec/changes/implement-standard-widgets/tasks.md",
+      "bytes": 26478,
+      "sha256": "c1b369162d3c65c0ccd5e07b599106597bbe6973f457a95106f7408f8b426e7c"
+    },
+    {
+      "git_commit": "b3f20f3d1dca6e440bef654d80124df256586db9",
+      "git_path": "openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md",
+      "snapshot": "canonical/openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md",
+      "bytes": 10888,
+      "sha256": "f427d1f89df03c7aef5dd5b474091181fcb04d9837bbaa1541a019b6bc76e23a"
+    },
+    {
+      "git_commit": "b3f20f3d1dca6e440bef654d80124df256586db9",
+      "git_path": "docs/acceptance.md",
+      "snapshot": "canonical/docs/acceptance.md",
+      "bytes": 36537,
+      "sha256": "83d9dad166b21be6137122d1eef392fccb6fa4b8576562f1107e744d95e15c7a"
+    },
+    {
+      "git_commit": "b3f20f3d1dca6e440bef654d80124df256586db9",
+      "git_path": "docs/reviews/widgets/S/input-manifest.json",
+      "snapshot": "canonical/docs/reviews/widgets/S/input-manifest.json",
+      "bytes": 42016,
+      "sha256": "a02370ae35035932757e4181b5577a70063abe0b7a05de5051f002feb0191533"
+    }
+  ],
+  "originals": [
+    {
+      "path": "/workspace/work/widgets-small-execution/final-index.json",
+      "bytes": 5799,
+      "sha256": "9d15fcee7473101f21edec529063d380d0d2dc0f5d75b006498e5927239b78a0",
+      "kind": "independent-role-anchor"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/report.md",
+      "bytes": 3186,
+      "sha256": "2d9fb8b5f2691f203b50da64c8ad7eceb172b1b4ba53a5b8098a4bf0d3e45c01",
+      "kind": "independent-role-anchor"
+    },
+    {
+      "path": "/workspace/work/widgets-small-review/report.md",
+      "bytes": 2575,
+      "sha256": "81a492f18a16f6947b5dfd11248fe9fecc529e84eb675a4b082f6490ebd75455",
+      "kind": "independent-role-anchor"
+    },
+    {
+      "path": "/workspace/work/widgets-small-review/findings.json",
+      "bytes": 8333,
+      "sha256": "7b5abf16ab75b7eb9006f6d5b3b874aee987afb5e7d7f05d3c8d7945f83a8d1f",
+      "kind": "independent-role-anchor"
+    },
+    {
+      "path": "/workspace/work/widgets-small-review/round-0/inputs.json",
+      "bytes": 1998,
+      "sha256": "89fa58fb9edb69f11aaaf34cb3ff6c9a6ee8784f262afee2aa04b53e7917ee67",
+      "kind": "independent-role-anchor"
+    },
+    {
+      "path": "/workspace/work/widgets-small-review/round-0/verification.json",
+      "bytes": 6557,
+      "sha256": "17d6679d8f1e34b4073f62586a9d62f0caf32008e6bb449659bbbeba43bd0579",
+      "kind": "independent-role-anchor"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/label.cj",
+      "bytes": 205,
+      "sha256": "7d614acfd131ffa524165b2ae8bb8f67eab0beb9fc63d1d7d3a4fc6754a44df9",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/button.cj",
+      "bytes": 415,
+      "sha256": "f012165d399b79cc33cab9b774ee4063f3c98dfc24fe26de052a4c4094eb02bd",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/checkbox.cj",
+      "bytes": 704,
+      "sha256": "0c150ea1079da165ef30594f2dcd60ed6f004cf47801d8d456e4c90b03728bb3",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/radio.cj",
+      "bytes": 736,
+      "sha256": "c6d8dac0b46d207b4787be11bcc16138d93c109065e2f70c6100f6d4fee8f4d2",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/progress.cj",
+      "bytes": 1043,
+      "sha256": "4894da25f4075a4cec87ba28d6af330b98dc32f272fde4c8f7e72bf6b87fd651",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/widget_activation.cj",
+      "bytes": 292,
+      "sha256": "69e2fb2458a7bc100dab146940d3723b874076ad0edd68a8b2fde3f8727039a2",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/widget_caption.cj",
+      "bytes": 538,
+      "sha256": "67823fb1dfa9c6c69737c7dd5be861beb8a8b40bc32990c01cf3ca212502186c",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/canvas.cj",
+      "bytes": 436,
+      "sha256": "0bd3d7c5674d6fc89e914c6c03657b4948370afb665bb1f42c129b3265e268c2",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/layout_node.cj",
+      "bytes": 12007,
+      "sha256": "45aac235e4993b74f12b32db213b5ee87cf168f700667ce07bf33eff81278c6a",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/layout.cj",
+      "bytes": 24987,
+      "sha256": "0fbeef2122d1c95125abe3dff3737eac4c39357d32c3f0c1eaecbcb63051fe43",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/application.cj",
+      "bytes": 36153,
+      "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/component.cj",
+      "bytes": 25566,
+      "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/node_ref.cj",
+      "bytes": 8452,
+      "sha256": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/src/paint_context.cj",
+      "bytes": 4083,
+      "sha256": "00b9e493d1b6a63f234a69eb2c1cee3ec85ebb221332dd8d4cdef745d3fd928d",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/docs/product/widgets.md",
+      "bytes": 2334,
+      "sha256": "00f5b62cd4144707d4709954e87650c033c89cd66d9777eb6c4497bed6d037e1",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/examples/widgets_small/src/main.cj",
+      "bytes": 726,
+      "sha256": "aa7d8b1d6dff428b55c1e53c35c91e9d435ec333720807e29e53c0195005fa23",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/examples/widgets_small/cjpm.toml",
+      "bytes": 164,
+      "sha256": "92b46e22f0275fab614acc35143737efb4d87ec806561e5fa806999d0bd88ceb",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/run.sh",
+      "bytes": 2082,
+      "sha256": "31a5fda3323fa0ce2ea16aa24ce703b8ca0d1c6e52df9f7a4fb219afcf606efe",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/bundle-run.py",
+      "bytes": 1595,
+      "sha256": "6ded0882d489fc96f71eb07a23658d3b1545bea7843e8ef44ab1bf33b5f7a098",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/src/main.cj",
+      "bytes": 4738,
+      "sha256": "28a458938c5b4d05cbe0139f0155133c7628f0b47f99855ec524203fb0e1eced",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/src/event_cases.cj",
+      "bytes": 5300,
+      "sha256": "80d9e410bb89aa146ddc891025e0a658dd1fd9e919aa819e016e9fcc4c17aa6e",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/src/event_boundaries.cj",
+      "bytes": 6811,
+      "sha256": "55a359431d80611359824a241100f9d600752bfc0f96792ef397354f6e0a1844",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/src/theme_cases.cj",
+      "bytes": 6210,
+      "sha256": "e5301f29b5a7028fe9a506992b1b4d87343591bab3549221806ed0dc7f4c93be",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/src/progress_geometry.cj",
+      "bytes": 3665,
+      "sha256": "7e871fc3b4e2242237e1e8977e4aa14b6c19db2f3eee70b20a37c455dc005976",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/src/caption_matrix.cj",
+      "bytes": 2594,
+      "sha256": "f1d90c5585a2ce5ebd3de7bef3564c9c3c1042234850c86f5412293a91d6984a",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/src/lifecycle_cases.cj",
+      "bytes": 2023,
+      "sha256": "02ab66c81382bbed83ffc23eaefa82280e459e4bcc81f24c8b6e1b5951c725f7",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/src/remount_cases.cj",
+      "bytes": 3593,
+      "sha256": "b7632572fdc32d79633cb5b570c044631d45d88d77031bbfc151ad290292d39f",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/device/src/main.cj",
+      "bytes": 2610,
+      "sha256": "05eb674c195b8759d991f35cdca3e255e21b3c4a135670fad448307b33c52586",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/source/tests/widgets_small/pty.py",
+      "bytes": 5193,
+      "sha256": "aa9da0da0ba0edaad3b9f17a0b938dba2bd58c1efd2cda2416a6ce38c670d6e2",
+      "kind": "fixed-source-or-frozen-test"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/source-bindings/source.json",
+      "bytes": 31535,
+      "sha256": "83ef76d3dd1a754e4dca8990c6ba49db153db4b1282637cd5a11998db17f8d02",
+      "kind": "identity-and-qualification"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/package-consumer-bindings/binding.json",
+      "bytes": 6632,
+      "sha256": "b7f67b186e0893833bd1462c3eb3a5ec599fee5c70a9a4d076afea500701f42e",
+      "kind": "identity-and-qualification"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/package-audit/manifest.json",
+      "bytes": 43517,
+      "sha256": "da4b4c3196f1c8a1b87d9c274ebe8aaa087af1efef1c6280e72aa9d890bf2e08",
+      "kind": "identity-and-qualification"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/reuse/equivalence.json",
+      "bytes": 8890,
+      "sha256": "edb35ca3e9d6033d571dd69ed1c9d26dd4e1373604c6dcb22b43cbf8f8e2e3fe",
+      "kind": "identity-and-qualification"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/final-verification/verification.json",
+      "bytes": 68407,
+      "sha256": "0dacc2ce16f042d9b61f066e5a1f8ee05a00abfd1f1bd36ccc1f26c46df907ff",
+      "kind": "identity-and-qualification"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/normal-build/command.json",
+      "bytes": 262,
+      "sha256": "9e9aa2a70e65f41f5e272b66c3d4a53ce76f3f7372b31feb9ad1a222f82b1b34",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/normal-build/stdout",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/normal-build/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/normal-bundle/command.json",
+      "bytes": 263,
+      "sha256": "aa17821db1ed4ce278061a56c8686e1e9f29cbd5a4bceb87ce9d2e814e4b93e8",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/normal-bundle/stdout",
+      "bytes": 141732,
+      "sha256": "bec8a4b9045bb094d663e70b996ea20bb55def011e39e9d2bad201693a8c18ad",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/normal-bundle/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/command.json",
+      "bytes": 513,
+      "sha256": "c3e96130cfc4e22fc50f7d38a16e1dec812e95f1606dc6b0a3cef7dcb8e02f01",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/stdout",
+      "bytes": 1465,
+      "sha256": "4ae515ee39552b7321085baf8d6c4ef19aef1fd8997a93a42d6d413c6ceba974",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/stderr",
+      "bytes": 289,
+      "sha256": "1a484882a091e5b2d338ddd0ff859bb949779a2f9d3278e0f74cd62b359b7c69",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-example-build/command.json",
+      "bytes": 296,
+      "sha256": "66c0104911d531cd4440ca44b879783503f03f6103bc60b42b3eb33033039626",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-example-build/stdout",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-example-build/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "independent-command"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/normal/metadata.json",
+      "bytes": 1618,
+      "sha256": "c02ee36b15978b4871dabf37523485e90a8d8423e52cef420c44450c30920f86",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/normal/summary",
+      "bytes": 95,
+      "sha256": "0e16ea09196741599abeb8b16f7289a43d05db5a10bf27ca2b0dfae5d35b3b42",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/normal/input.raw",
+      "bytes": 7,
+      "sha256": "964881384d43a5b13526287df8f659cd3845e618d53741752a2c068897659887",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/callback-failure/metadata.json",
+      "bytes": 1093,
+      "sha256": "c7f9496d58dda54724c5474d9877ccb3273d88901d9cf9f175b632138d9b219a",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/callback-failure/summary",
+      "bytes": 97,
+      "sha256": "580c7863da60741b1ec9f267645a6614f66fa2180412a8f287967e0a1f101f4c",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/callback-failure/input.raw",
+      "bytes": 1,
+      "sha256": "9d1e0e2d9459d06523ad13e28a4093c2316baafe7aec5b25f30eba2e113599c4",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/callback-failure/error",
+      "bytes": 26,
+      "sha256": "18d463b6ec29750ed83dc0961c6ad680e7cca2bf60f3c0625969dc1eda7bc458",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/getter-failure/metadata.json",
+      "bytes": 1091,
+      "sha256": "37322be13602e33fe82b071530294b8022222ff9dbad9ac3c32f669fd0b24647",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/getter-failure/summary",
+      "bytes": 97,
+      "sha256": "dc13349d6c0c8188a15a35f30bedd0c99fbdfdea90ee74b4853f62cdd351a726",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/getter-failure/input.raw",
+      "bytes": 1,
+      "sha256": "9d1e0e2d9459d06523ad13e28a4093c2316baafe7aec5b25f30eba2e113599c4",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/clean-full-runner/artifacts/getter-failure/error",
+      "bytes": 24,
+      "sha256": "cad220bad8ae7b7bc3f7f05a1480ad9fc10140e30e3832cb0f8b30354051c26e",
+      "kind": "actual-PTY"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/result.json",
+      "bytes": 2962,
+      "sha256": "c3ae4d7ec7c438dc01ec4689367c6806f59030b3e357a13c5379d9f9fc6d1c7f",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/launch.json",
+      "bytes": 1118,
+      "sha256": "e46afb4b7093ad839d9876a0db8c356ddcaac36eaa937b375b7b71eb109e3175",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/input.raw",
+      "bytes": 16,
+      "sha256": "9ea8ec9512380f802c47dbb28cdb0a4b8d1fc2bfdbbfd35293918daea54cdb09",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/host-identity.json",
+      "bytes": 389,
+      "sha256": "6a0dfb82867a5c2e4e3853a75d52f790ce594a807455e4a2d4ebbfe76e9bc69c",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/terminal-before.json",
+      "bytes": 744,
+      "sha256": "3fa5f810d05d2cd786b0aabcf9c8556936b408b8b67239999731018fde599bc0",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/terminal-after.json",
+      "bytes": 610,
+      "sha256": "fa10ebe27dc6fe3a64b7c94e30fad337841300c8df6a9446b9376b1b06c8560a",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/result.json",
+      "bytes": 3128,
+      "sha256": "2e1e8d0dce51e21b4469fdf0dfe23c353567fa0a5292218b3687dad1d3bd7741",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/launch.json",
+      "bytes": 1116,
+      "sha256": "1b73e46126e7fa722b1b2ac3b9de584f5ced30cbb8c71c452118d1c612bbaebd",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/input.raw",
+      "bytes": 16,
+      "sha256": "9ea8ec9512380f802c47dbb28cdb0a4b8d1fc2bfdbbfd35293918daea54cdb09",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/host-identity.json",
+      "bytes": 389,
+      "sha256": "2e7eff1415130cb46bc61136776f490721e9979f3a2ee5ebf4d550f193c437bb",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/terminal-before.json",
+      "bytes": 744,
+      "sha256": "3b7420aba316aa42f9ac9c732c84841a72d4e1b391bce1f15ba0a6cb804e8d20",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/terminal-after.json",
+      "bytes": 610,
+      "sha256": "01c10d694ce61d6fe0f597cea52171b62ee84a45bf3c1ba3d3bebf8c4b971dc6",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-normal/summary",
+      "bytes": 95,
+      "sha256": "0e16ea09196741599abeb8b16f7289a43d05db5a10bf27ca2b0dfae5d35b3b42",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/result.json",
+      "bytes": 2960,
+      "sha256": "aa414c1e0cc016ca2833654b42a7fcb794afbaebc3c51ab6a83e336fb606fd7f",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/launch.json",
+      "bytes": 1048,
+      "sha256": "394e11a4204c92ff01f9ad74c574a7e74cc53c729eeb1e224884b8edbc32bf38",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/input.raw",
+      "bytes": 16,
+      "sha256": "9ea8ec9512380f802c47dbb28cdb0a4b8d1fc2bfdbbfd35293918daea54cdb09",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/host-identity.json",
+      "bytes": 831,
+      "sha256": "4b47473e4ff9a8cda827f32ef4c8f08768f42ac9b70c2421f2dd82f5ae92a117",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/terminal-before.json",
+      "bytes": 753,
+      "sha256": "eb825b2f2ce82ff65aa86e720470d1df5bae4b72c7a2a1b0ff9d2d48495205eb",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-example/terminal-after.json",
+      "bytes": 610,
+      "sha256": "a0a4e1761ab10ecfd0784e872285a761081fc2ab3db92e3bd0b868697c0710ac",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/result.json",
+      "bytes": 3126,
+      "sha256": "62b59338d5a46f0d85f92a87749a3e95d1772b8b89b9f87ad5aef622c858a350",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/launch.json",
+      "bytes": 1046,
+      "sha256": "87cc839e14281d1c9b3ccaa23f9f780a9460986d201d7c8f2a4fa92bd18af553",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/input.raw",
+      "bytes": 16,
+      "sha256": "9ea8ec9512380f802c47dbb28cdb0a4b8d1fc2bfdbbfd35293918daea54cdb09",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/host-identity.json",
+      "bytes": 831,
+      "sha256": "8b9f40502df14496b31db35d97f4199cbec2f1b1548367f3787c1fcfd22f7cc0",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/terminal-before.json",
+      "bytes": 753,
+      "sha256": "85ea566bacb489904e6ef9b86f05da4340cbdec71ee555e73760c96f77031b9f",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/terminal-after.json",
+      "bytes": 610,
+      "sha256": "b91a1a6e7253140a169c99a8c0a14455a668719f8faa751f81d04b5000fd5a9f",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/summary",
+      "bytes": 95,
+      "sha256": "0e16ea09196741599abeb8b16f7289a43d05db5a10bf27ca2b0dfae5d35b3b42",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/result.json",
+      "bytes": 2286,
+      "sha256": "74593c035c1639dbd9be96627fd8b45ea7f6d6f6b2a7bef38963f97a2735920d",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/launch.json",
+      "bytes": 1803,
+      "sha256": "6edff904e879a3c7d043a92427e4fd2e69f1875a04d2c1ca037a598a1e06fdbf",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/input.raw",
+      "bytes": 7,
+      "sha256": "964881384d43a5b13526287df8f659cd3845e618d53741752a2c068897659887",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/serial.log",
+      "bytes": 2531839,
+      "sha256": "e6cfe309bd167377f0a2695ef0befd33e8ee373e7e13386bc3cc34411d9af50c",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/evidence/termios-before.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-example/evidence/termios-after.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/result.json",
+      "bytes": 2452,
+      "sha256": "f9950fa3a135056480a6d8ccb1878ca28fc7c2c0046a736398998482b51acb46",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/launch.json",
+      "bytes": 1799,
+      "sha256": "47a5b26d3cd4f5c5d94730070c191208481d2b088ad1a05d01def40e83b76720",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/input.raw",
+      "bytes": 7,
+      "sha256": "964881384d43a5b13526287df8f659cd3845e618d53741752a2c068897659887",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/serial.log",
+      "bytes": 2790931,
+      "sha256": "c089a80223b839674fc30c70fcb6d9c0e3e72dd0531fdc7cccad057e94b84906",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/evidence/termios-before.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/evidence/termios-after.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/evidence/summary",
+      "bytes": 95,
+      "sha256": "0e16ea09196741599abeb8b16f7289a43d05db5a10bf27ca2b0dfae5d35b3b42",
+      "kind": "actual-host"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/running.png",
+      "bytes": 10053,
+      "sha256": "88f52476c3f88767eca49c7cdfa50e989e9b7086577f76a25f7068b41e919e00",
+      "kind": "original-PNG-visually-inspected"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-xterm-example/button-enter.png",
+      "bytes": 10370,
+      "sha256": "216d84621547ad77c7a1005af687d9887e51aa579b20076019466efcd2814c2e",
+      "kind": "original-PNG-visually-inspected"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/checkbox-request.png",
+      "bytes": 5651,
+      "sha256": "d5a15f0c7d87da3ccc427d895048b3f6ddd4df05d6b136248f4d97b4ec6274fe",
+      "kind": "original-PNG-visually-inspected"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vte-normal/resized.png",
+      "bytes": 5114,
+      "sha256": "2282b1387e5349bb4955ca92f799554e60066cf7a8d4bf2bcdf290b4b975a678",
+      "kind": "original-PNG-visually-inspected"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/checkbox-focused.png",
+      "bytes": 1058,
+      "sha256": "e99375ab0a8e1393a70462767c90772f74675a7526599fd003955adf0caf498e",
+      "kind": "original-PNG-visually-inspected"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/radio-already-selected.png",
+      "bytes": 1151,
+      "sha256": "fda94333af27b1cced3bb4190cf6209e50d44a3f6c6b376c609466082c338de1",
+      "kind": "original-PNG-visually-inspected"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/resized.png",
+      "bytes": 1051,
+      "sha256": "36849784ba3e0133911a3614fc14bc273ee93459f9f5a392de79c575bbdfe675",
+      "kind": "original-PNG-visually-inspected"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/radio-already-selected-vcsa.bin",
+      "bytes": 1444,
+      "sha256": "122447fe63695c1a78dd1216e1e0d1f9bbb37c6eba25e65627bb9fce0d4dcea3",
+      "kind": "native-kernel-cells"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/resized-vcsa.bin",
+      "bytes": 1004,
+      "sha256": "d1bc3bef705743692ac36b114486bcf63839084f6182d05893a04cfe61228d66",
+      "kind": "native-kernel-cells"
+    },
+    {
+      "path": "/workspace/work/widgets-small-execution/raw/host-vt-normal/checkbox-focused-vcsa.bin",
+      "bytes": 1444,
+      "sha256": "71f18d5cc3c04ef2ee3701a54d8716ba75c3c165338db3769dc7eb79409771f1",
+      "kind": "native-kernel-cells"
+    }
+  ],
+  "visual_inspection": {
+    "host-xterm-example/running.png": "Initial Continue focus; unchecked Ready, unselected Choice, half Progress.",
+    "host-xterm-example/button-enter.png": "Button callback changed app-owned checked value; checked Ready and full Progress.",
+    "host-vte-normal/checkbox-request.png": "Checked Box with actual focused appearance; Radio remains unselected.",
+    "host-vte-normal/resized.png": "50x10 host capture retains checked Box and focused selected Radio.",
+    "host-vt-normal/checkbox-focused.png": "EARLY LAGGING CAPTURE: Go remains focused; not proof of settled Checkbox focus.",
+    "host-vt-normal/radio-already-selected.png": "Settled actual kernel VT: checked Box and focused selected Radio.",
+    "host-vt-normal/resized.png": "Settled 50x10 kernel VT retains checked/selected states; paired vcsa dimensions confirm."
+  },
+  "reuse": {
+    "root_full_audit": "23 phase indices,270 bound raw files,29457310 bytes,4 actual binaries; zero size/hash mismatches as ROOT ACTUALGO receipt. Not repeated.",
+    "normal_CJP_sha256": "bdddec69975aca4d87766fe1cc26d6f1e97450e3189c63013838506858e445f6",
+    "prior_E": "Mechanism-only unchanged backend/glyph/theme/runtime projection; no claim E images exercise new S captions or all states. E acceptance originals untouched."
+  },
+  "mandatory_finite_gaps": [],
+  "remaining_scope": [
+    "New S native Unicode/disabled/custom-palette scenes not exercised; broader027/041 integration open.",
+    "VM kernel VT is not physical hardware.",
+    "M and parent019/020/030, fullLinux/M1/M2, B-M01\u2192024,T087\u2192023 and release remain open."
+  ],
+  "own_artifacts": {
+    "acceptance.md": {
+      "bytes": 3733,
+      "sha256": "953675dfc90faf38858893cc42ee7c50f26ef51fc8b505e2cf2bd9e45e30d7d8"
+    },
+    "requirement-matrix.md": {
+      "bytes": 7164,
+      "sha256": "d7fb10333996542951c0343492a797646c47099314788e113e65a86425776f24"
+    },
+    "original-SHA256SUMS": {
+      "bytes": 15895,
+      "sha256": "b8fc453e29e8caee5a3cebd00f6bdd7ffe0e39648d3adfcada489d94330d7b28"
+    },
+    "selected-evidence-check.json": {
+      "bytes": 18417,
+      "sha256": "1dc37589426485aa34cdf8de88853e9178c032344f760044141764695e947c0c"
+    }
+  }
+}

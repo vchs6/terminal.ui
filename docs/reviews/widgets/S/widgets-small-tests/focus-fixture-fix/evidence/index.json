@@ -1,0 +1,272 @@
+{
+  "task": "TASK153 focus-precondition fixture correction",
+  "test_commit": "480b066fac8d4fbe437732f2fcae6712e3ae1da6",
+  "baseline": "fc7344eecdabcb318210ff9c0b6793e83b2c47f5",
+  "source": "/workspace/work/widgets-small-tests/focus-fixture-fix/source",
+  "changed_files": [
+    "tests/widgets_small/src/event_boundaries.cj",
+    "tests/widgets_small/src/remount_cases.cj"
+  ],
+  "inventory_and_inverse": {
+    "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/inventory-and-inverse.json",
+    "sha256": "2280f0192b38397049ac7ade1c5ed6826d6ddf3921c4dc01b6b1a7eacbf77096",
+    "bytes": 2016
+  },
+  "audit": {
+    "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/setup-boundary-audit.md",
+    "sha256": "9175e0cccad092a7e418cb8be9271223cab476d25b625c46076eb5fd9c9a477f",
+    "bytes": 2337
+  },
+  "authority": {
+    "openspec/changes/implement-public-interaction/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/design.md",
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4",
+      "bytes": 76152
+    },
+    "openspec/changes/implement-reactive-runtime/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-reactive-runtime/design.md",
+      "sha256": "dcfed7b4ca2e412bb075e923217bf2867556bfb1f8c7991a7384c519b830dbb7",
+      "bytes": 40090
+    },
+    "openspec/changes/implement-standard-widgets/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/design.md",
+      "sha256": "349e93f2ce9682c754d951edf26c09bb97fb4e0f80d954b81e5c1c4936570bbc",
+      "bytes": 24989
+    },
+    "tests/interaction_a/src/focus_repair.cj": {
+      "path": "/workspace/work/terminal.ui/tests/interaction_a/src/focus_repair.cj",
+      "sha256": "7e1df4056bc34a0a3f3ab973538cbad2e90dd2adbbd2538905485a2adf616c1c",
+      "bytes": 2629
+    },
+    "tests/runtime/src/scheduler.cj": {
+      "path": "/workspace/work/terminal.ui/tests/runtime/src/scheduler.cj",
+      "sha256": "0f6919bef0316a9e47ff5e2b8aaffa4ed6fd6d9c9c3c2e50ca8c5197ba9574fb",
+      "bytes": 2661
+    }
+  },
+  "preservation": {
+    "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/preservation.json",
+    "sha256": "3bb276cc7b0c4e7c9c9a9ed3d7c062e1d3e94c690c4a6070751b3c7a7ea356fb",
+    "bytes": 1927
+  },
+  "probe": {
+    "source": {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/src/main.cj",
+      "sha256": "d6f8e410c956673dbc027a0257944364cea9ede19dd9bae40692994ae2c63bc0",
+      "bytes": 850
+    },
+    "manifest": {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/cjpm.toml",
+      "sha256": "bc476557f5ead96cb868d79e4050f31c524cedf77d88f468073e4a4b7a48ea0c",
+      "bytes": 375
+    },
+    "configuration": {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    "dependencies": {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/cjpm.lock",
+      "sha256": "6b393a7e8bbb662342a8e934c95ce5710c74eb5613d413064daf857fdaed0219",
+      "bytes": 198
+    },
+    "binary": {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/target/release/bin/main",
+      "sha256": "57c4756b5756252242d5e53ea8ffd33d62b98cb9be9fddf317e13809af885a48",
+      "bytes": 18882776
+    },
+    "product_path": "/workspace/work/terminal.ui",
+    "product_fixed_sha": "fc7344eecdabcb318210ff9c0b6793e83b2c47f5",
+    "scope": "public focusable Text, batch, isFocused/focusedNode only"
+  },
+  "commands": [
+    {
+      "name": "public-focus-build",
+      "cwd": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip && cjpm build",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/public-focus-build.stdout",
+          "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/public-focus-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "public-focus-direct",
+      "cwd": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && TERM=dumb COLORTERM= timeout 30s target/release/bin/main </dev/null",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/public-focus-direct.stdout",
+          "sha256": "2692bdcd63c963b3b21d55b42d93a49bde431dbb7e248fd3937819cbbe1554ab"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/public-focus-direct.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "parser-and-exact-diff",
+      "cwd": "/workspace/work/widgets-small-tests/focus-fixture-fix/source",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && cjfmt -f tests/widgets_small/src/event_boundaries.cj -o /workspace/work/widgets-small-tests/focus-fixture-fix/evidence/formatted-event.cj && cjfmt -f tests/widgets_small/src/remount_cases.cj -o /workspace/work/widgets-small-tests/focus-fixture-fix/evidence/formatted-remount.cj && git diff --check && git diff -- tests/widgets_small/src/event_boundaries.cj tests/widgets_small/src/remount_cases.cj",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/parser-and-exact-diff.stdout",
+          "sha256": "1b79738f7f2acee683005b3e9c9d0232779e9a3577cbe8198f040d21fae27262",
+          "bytes": 2081
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/parser-and-exact-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ],
+  "commit_command": {
+    "cwd": "/workspace/work/widgets-small-tests/focus-fixture-fix/source",
+    "argv": [
+      "git",
+      "commit",
+      "-m",
+      "test(widgets): commit and assert focus before positive activation"
+    ],
+    "exit": 0
+  },
+  "artifacts": [
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/commands.json",
+      "sha256": "f1941cde6f7f3a1710cd5b61c41a3df2abb42d2c703a5f43839cfe51efcafb15",
+      "bytes": 2750
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/event_boundaries-after.cj",
+      "sha256": "55a359431d80611359824a241100f9d600752bfc0f96792ef397354f6e0a1844",
+      "bytes": 6811
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/event_boundaries-before.cj",
+      "sha256": "a8df306a9863decdc9c6aca828db2771a3160ee468d41529f9bd6df047f6244a",
+      "bytes": 6701
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/formatted-event.cj",
+      "sha256": "1f4b211493cc9ba3b9b4e00114bb878ea17a3b2f44d23b07677c4d0f41d228cd",
+      "bytes": 7339
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/formatted-remount.cj",
+      "sha256": "72c8b4e73299695659343fcefa106253f460723eab026ae4dbd4038a05c52aa1",
+      "bytes": 3739
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/inventory-and-inverse.json",
+      "sha256": "2280f0192b38397049ac7ade1c5ed6826d6ddf3921c4dc01b6b1a7eacbf77096",
+      "bytes": 2016
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/preservation.json",
+      "sha256": "3bb276cc7b0c4e7c9c9a9ed3d7c062e1d3e94c690c4a6070751b3c7a7ea356fb",
+      "bytes": 1927
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/cjpm.lock",
+      "sha256": "6b393a7e8bbb662342a8e934c95ce5710c74eb5613d413064daf857fdaed0219",
+      "bytes": 198
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/cjpm.toml",
+      "sha256": "bc476557f5ead96cb868d79e4050f31c524cedf77d88f468073e4a4b7a48ea0c",
+      "bytes": 375
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/src/main.cj",
+      "sha256": "d6f8e410c956673dbc027a0257944364cea9ede19dd9bae40692994ae2c63bc0",
+      "bytes": 850
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/actual154-runner-zero.log",
+      "sha256": "1b40e1e142d48507e3393ce0caff3bbe3cf2510e5126713ae4e389569b0552cf",
+      "bytes": 771
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/commit.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/commit.stdout",
+      "sha256": "a627ee4cf2f878bbdeb7dc1fe2d34b3ccb6a50134759ea6f5771b0f879ecb663",
+      "bytes": 159
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/parser-and-exact-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/parser-and-exact-diff.stdout",
+      "sha256": "1b79738f7f2acee683005b3e9c9d0232779e9a3577cbe8198f040d21fae27262",
+      "bytes": 2081
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/public-focus-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/public-focus-build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/public-focus-direct.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/raw/public-focus-direct.stdout",
+      "sha256": "2692bdcd63c963b3b21d55b42d93a49bde431dbb7e248fd3937819cbbe1554ab",
+      "bytes": 42
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/remount_cases-after.cj",
+      "sha256": "b7632572fdc32d79633cb5b570c044631d45d88d77031bbfc151ad290292d39f",
+      "bytes": 3593
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/remount_cases-before.cj",
+      "sha256": "0af8166a558280dbb8a79bc67ccbcf196694ff67f3e0851579bc39e4fbf9e666",
+      "bytes": 3479
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/setup-boundary-audit.md",
+      "sha256": "9175e0cccad092a7e418cb8be9271223cab476d25b625c46076eb5fd9c9a477f",
+      "bytes": 2337
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/report.md",
+    "sha256": "1e6e18436abde963351229735e5b31ce9113046646aeb2c58a74fee5ec371269",
+    "bytes": 1295
+  },
+  "not_claimed": [
+    "widget behavior pass",
+    "PTY",
+    "TASK154 acceptance",
+    "Linux completion"
+  ]
+}

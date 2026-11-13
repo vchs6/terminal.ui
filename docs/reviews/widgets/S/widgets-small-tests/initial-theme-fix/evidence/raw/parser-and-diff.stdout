@@ -1,0 +1,25 @@
+Formatting start...
+Reading default format configuration files...
+Formatting complete.
+diff --git a/tests/widgets_small/src/progress_geometry.cj b/tests/widgets_small/src/progress_geometry.cj
+index 2970519c..35fe88fa 100644
+--- a/tests/widgets_small/src/progress_geometry.cj
++++ b/tests/widgets_small/src/progress_geometry.cj
+@@ -1,6 +1,6 @@
+ package widgets_small_contract
+ 
+-import cjtui.{Application, Color, Column, Label, Observable, Progress, Row, ScrollAxes, Style, Theme, ThemeSource}
++import cjtui.{Application, Color, Column, Label, Observable, Progress, Row, ScrollAxes, Style, Theme}
+ 
+ func progressGeometry(): Unit {
+     equal(frame(Row { Progress(0.5); Label("|") }, 22, 1), "==========----------| ", "natural content width twenty")
+@@ -48,8 +48,7 @@ func progressGeometry(): Unit {
+         "[components.progress.spacing]\nwidth = 8\nheight = 2\npadding_left = 1\npadding_right = 1\n" +
+         "[components.progress.text]\nforeground = \"green\"\nbackground = \"black\"\n")
+     let themed = Progress(0.5)
+-    let themedApp = Application(themed)
+-    themedApp.loadTheme(ThemeSource.Prepared(theme))
++    let themedApp = Application(themed, theme: theme)
+     themedApp.startHeadless()
+     let before = themedApp.snapshot(8, 2)
+     equal(before.toPlainText(), " ===--- \n        ", "theme dimensions padding, first content row only")

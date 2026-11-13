@@ -1,0 +1,12 @@
+An exception has occurred:
+Exception: unknown or invalid named style
+	 at cjtui::styleUseRule(cjtui.style::StyleUse, cjtui.theme::Theme)(/workspace/work/terminal.ui/src/style_resolver.cj:41)
+	 at cjtui::resolveStyle(cjtui::Component, cjtui.theme::Theme, cjtui.style::Style, Bool, Bool)(/workspace/work/terminal.ui/src/style_resolver.cj:78)
+	 at cjtui::LayoutNode::init(cjtui::Component, cjtui::RuntimeSession, cjtui.style::Style, Bool, std.core::Option<...>, std.core::Option<...>, Bool)(/workspace/work/terminal.ui/src/layout_node.cj:52)
+	 at cjtui::renderLayout(cjtui::Component, Int64, Int64, cjtui::RuntimeSession, Bool)(/workspace/work/terminal.ui/src/layout.cj:414)
+	 at cjtui::RuntimeSession::produce(Int64, Int64, Bool, cjtui::GlyphRenderPolicy)(/workspace/work/terminal.ui/src/runtime_session.cj:1537)
+	 at cjtui::Application::snapshotWithPolicy::lambda.0()(/workspace/work/terminal.ui/src/application.cj:362)
+	 at cjtui::RuntimeSession::enter<...>(() -> T0)(/workspace/work/terminal.ui/src/runtime_session.cj:136)
+	 at cjtui::Application::snapshotWithPolicy(Int64, Int64, cjtui::GlyphRenderPolicy)(/workspace/work/terminal.ui/src/application.cj:357)
+	 at cjtui::Application::snapshot(Int64, Int64, cjtui.style::GlyphMode)(/workspace/work/terminal.ui/src/application.cj:347)
+	 at palette_public_probe::main()(/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/src/main.cj:37)

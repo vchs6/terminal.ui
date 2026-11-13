@@ -34,3 +34,5 @@ cjpm run
 - [工程任务与验收入口](https://github.com/vchs6/terminal.ui/blob/main/docs/README.md)：任务、证据、流程规格和开发环境。
 
 有限单/多行编辑：[产品用法](docs/product/text-editing.md)、[独立验收与真实终端原件](docs/reviews/E/README.md)。完整Linux/父AC仍待后续汇合。
+
+五个公开基础控件：[产品用法](docs/product/widgets.md)、[有限S独立验收与真实宿主原件](docs/reviews/widgets/S/README.md)。菜单/M与完整Linux仍待后续交付。

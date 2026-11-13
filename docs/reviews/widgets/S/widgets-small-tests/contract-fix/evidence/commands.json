@@ -1,0 +1,50 @@
+[
+  {
+    "name": "bounded-parser-check",
+    "cwd": "/workspace/work/widgets-small-tests/contract-fix/source",
+    "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && cjfmt -f tests/widgets_small/src/construction_cases.cj -o /workspace/work/widgets-small-tests/contract-fix/evidence/formatted.cj && git diff --check && git diff -- tests/widgets_small/src/construction_cases.cj tests/widgets_small/README.md",
+    "exit": 0,
+    "raw": {
+      "stdout": {
+        "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/bounded-parser-check.stdout",
+        "sha256": "9999e15452f3a50f70adfd2db2112fc87a8798a5579db4061dc85cc898b9092b"
+      },
+      "stderr": {
+        "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/bounded-parser-check.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "name": "public-probe-build",
+    "cwd": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe",
+    "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip && cjpm build",
+    "exit": 0,
+    "raw": {
+      "stdout": {
+        "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-build.stdout",
+        "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+      },
+      "stderr": {
+        "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-build.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  {
+    "name": "public-probe-direct",
+    "cwd": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe",
+    "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && TERM=dumb COLORTERM= timeout 30s target/release/bin/main </dev/null",
+    "exit": 0,
+    "raw": {
+      "stdout": {
+        "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-direct.stdout",
+        "sha256": "957798fa1860d1e2851e3185c702f1e65f951887e09610e7954258c096dfb0e8"
+      },
+      "stderr": {
+        "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-direct.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  }
+]

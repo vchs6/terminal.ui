@@ -1,0 +1,663 @@
+1df1325f feat: compose controlled small widgets from public primitives
+13ac9a4a test(widgets): allocate PTYs through os to avoid runner import shadowing
+eb93b024 test(widgets): commit and assert focus before positive activation
+875695c5 test(widgets): preserve empty-row separators in zero-width frame golden
+81b971e2 test(widgets): initialize Progress fixture theme through constructor
+00417f91 test(widgets): initialize explicit theme palettes in style fixtures
+0323f647 test(widgets): distinguish legacy and typed capability errors
+9ae7a35b test(widgets): qualify optional event sentinels in two fixtures
+ docs/product/widgets.md                       | 13 ++++++++++++
+ examples/widgets_small/cjpm.toml              |  8 +++++++
+ examples/widgets_small/src/main.cj            | 29 ++++++++++++++++++++++++++
+ src/button.cj                                 | 14 +++++++++++++
+ src/checkbox.cj                               | 24 +++++++++++++++++++++
+ src/label.cj                                  |  9 ++++++++
+ src/progress.cj                               | 30 +++++++++++++++++++++++++++
+ src/radio.cj                                  | 26 +++++++++++++++++++++++
+ src/widget_activation.cj                      | 12 +++++++++++
+ src/widget_caption.cj                         | 21 +++++++++++++++++++
+ tests/run-slice.sh                            |  3 ++-
+ tests/widgets_small/README.md                 |  2 +-
+ tests/widgets_small/pty.py                    |  4 ++--
+ tests/widgets_small/src/construction_cases.cj | 17 ++++++++++++---
+ tests/widgets_small/src/event_boundaries.cj   |  7 ++++---
+ tests/widgets_small/src/progress_geometry.cj  |  7 +++----
+ tests/widgets_small/src/remount_cases.cj      |  3 ++-
+ tests/widgets_small/src/theme_cases.cj        | 28 ++++++++++++-------------
+ 18 files changed, 228 insertions(+), 29 deletions(-)
+diff --git a/docs/product/widgets.md b/docs/product/widgets.md
+new file mode 100644
+index 00000000..8bdf9186
+--- /dev/null
++++ b/docs/product/widgets.md
+@@ -0,0 +1,13 @@
++# Small widgets
++
++`Label`, `Button`, `Checkbox`, `Radio`, and `Progress` compose with ordinary component blocks and attribute chains. See `examples/widgets_small` for a complete application; press Tab to move focus, Enter or Space to activate, and q to exit.
++
++Captions are single logical lines of plain Unicode text. Text wrapping and clipping follow the normal Text rules. Checkbox and Radio receive getters and issue change requests; the application owns the values and any radio-group exclusivity. A rejected request leaves the display unchanged. Progress accepts a finite fraction from 0 through 1 and has a natural content size of 20 by 1; dimensions can be set by theme or component attributes.
++
++Controls use the normal theme resolver and public `enabled` and `focusable` attributes. `visualStates` replaces the control's declared visual-state slot, so a later call can override Checkbox or Radio's selected appearance without changing its behavior. Similarly, a later Target `defaultAction` replaces the built-in activation action. Use `onKey` or `onKeyCapture` to observe or prevent an activation. Explicit style attributes override theme values. Simulated visual states do not change focus or enabled behavior.
++
++StatusBar is outside this small-widget delivery. Its specified composition is a natural-height Row, placed by the application's layout rather than automatically fixed to the bottom.
++
++Unsupported attributes keep the underlying primitive's error contract. On Text-root controls, the existing constant `gap`, `alignItems`, and `justifyContent` shortcuts throw `IllegalArgumentException` and leave the previous setting intact; the existing container `textAlign` and invalid Stretch boundaries also retain their original behavior. Unsupported typed `setStyle`, getter attributes, and resolved named or Inline styles throw `UIException` with code `InvalidProperty`; so does `wrap` on Progress. Unsupported fields in theme configuration report `UnsupportedProperty`, while invalid programmatic style values retain their `IllegalArgumentException` boundary. Invalid Progress fractions report `InvalidProperty`.
++
++To supply an initial custom theme, pass it to `Application(root, theme: theme)` before starting the application. Use `loadTheme` for changes after a session is active; a pre-start load returns `SessionClosed`.
+diff --git a/examples/widgets_small/cjpm.toml b/examples/widgets_small/cjpm.toml
+new file mode 100644
+index 00000000..3a94682c
+--- /dev/null
++++ b/examples/widgets_small/cjpm.toml
+@@ -0,0 +1,8 @@
++[package]
++cjc-version = "1.2.0"
++name = "cjtui_widgets_small"
++version = "0.0.0"
++src-dir = "src"
++output-type = "executable"
++[dependencies]
++cjtui = { path = "../.." }
+diff --git a/examples/widgets_small/src/main.cj b/examples/widgets_small/src/main.cj
+new file mode 100644
+index 00000000..fc6442d2
+--- /dev/null
++++ b/examples/widgets_small/src/main.cj
+@@ -0,0 +1,29 @@
++package cjtui_widgets_small
++
++import cjtui.*
++
++main(): Int64 {
++    let checked = Observable(false)
++    let selected = Observable(false)
++    let app = Application(
++        Column {
++            Label("Small widgets")
++            Button("Continue", {=> checked.set(!checked.get())})
++            Checkbox({=> checked.get()}, {value => checked.set(value)}, label: "Ready")
++            Radio({=> selected.get()}, {=> selected.set(true)}, label: "Choice")
++            Progress({
++                => if (checked.get()) {
++                1.0
++            } else {
++                0.5
++            }
++            })
++        }
++    )
++    app.onKey {
++        event => if (event.text == "q") {
++        app.stop()
++    }
++    }.run()
++    return 0
++}
+diff --git a/src/button.cj b/src/button.cj
+new file mode 100644
+index 00000000..39ad02fe
+--- /dev/null
++++ b/src/button.cj
+@@ -0,0 +1,14 @@
++package cjtui
++
++public func Button(label: String, onClick: () -> Unit): Component {
++    Button({=> label}, onClick)
++}
++
++public func Button(label: () -> String, onClick: () -> Unit): Component {
++    Text({=> widgetCaption(label())}).themeRole(ThemeRole.Button).focusable(true).defaultAction({
++        event => if (widgetActivation(event)) {
++            event.preventDefault();
++            onClick()
++        }
++    })
++}
+diff --git a/src/checkbox.cj b/src/checkbox.cj
+new file mode 100644
+index 00000000..7b5112e1
+--- /dev/null
++++ b/src/checkbox.cj
+@@ -0,0 +1,24 @@
++package cjtui
++
++public func Checkbox(checked: () -> Bool, onChange: (Bool) -> Unit, label!: String = ""): Component {
++    Checkbox(checked, onChange, label: {=> label})
++}
++
++public func Checkbox(checked: () -> Bool, onChange: (Bool) -> Unit, label!: () -> String): Component {
++    Text({
++        => widgetMarkedCaption(if (checked()) {
++        "[x]"
++    } else {
++        "[ ]"
++    }, label())
++    })
++        .themeRole(ThemeRole.Checkbox)
++        .focusable(true)
++        .visualStates({=> VisualStates(selected: checked())})
++        .defaultAction({
++            event => if (widgetActivation(event)) {
++                event.preventDefault();
++                onChange(!checked())
++            }
++        })
++}
+diff --git a/src/label.cj b/src/label.cj
+new file mode 100644
+index 00000000..f6a0f20c
+--- /dev/null
++++ b/src/label.cj
+@@ -0,0 +1,9 @@
++package cjtui
++
++public func Label(value: String): Component {
++    Label({=> value})
++}
++
++public func Label(value: () -> String): Component {
++    Text({=> widgetCaption(value())}).themeRole(ThemeRole.Label)
++}
+diff --git a/src/progress.cj b/src/progress.cj
+new file mode 100644
+index 00000000..7b0a1f1f
+--- /dev/null
++++ b/src/progress.cj
+@@ -0,0 +1,30 @@
++package cjtui
++
++public func Progress(fraction: Float64): Component {
++    Progress({=> fraction})
++}
++
++public func Progress(fraction: () -> Float64): Component {
++    Canvas(
++        {constraints => constraints.constrain(Size(20, 1))},
++        {
++            context =>
++                let value = fraction()
++                if (value.isNaN() || value.isInf() || value < 0.0 || value > 1.0) {
++                    throw UIException("InvalidProperty", "progress fraction must be finite and between zero and one")
++                }
++                let width = context.size.width
++                let height = context.size.height
++                if (width > 0 && height > 0) {
++                    let filled = Int64(value * Float64(width))
++                    for (x in 0..width) {
++                        context.put(x, 0, if (x < filled) {
++                            "="
++                        } else {
++                            "-"
++                        })
++                    }
++                }
++        }
++    ).themeRole(ThemeRole.Progress)
++}
+diff --git a/src/radio.cj b/src/radio.cj
+new file mode 100644
+index 00000000..bb32fcc3
+--- /dev/null
++++ b/src/radio.cj
+@@ -0,0 +1,26 @@
++package cjtui
++
++public func Radio(selected: () -> Bool, onSelect: () -> Unit, label!: String = ""): Component {
++    Radio(selected, onSelect, label: {=> label})
++}
++
++public func Radio(selected: () -> Bool, onSelect: () -> Unit, label!: () -> String): Component {
++    Text({
++        => widgetMarkedCaption(if (selected()) {
++        "(*)"
++    } else {
++        "( )"
++    }, label())
++    })
++        .themeRole(ThemeRole.Radio)
++        .focusable(true)
++        .visualStates({=> VisualStates(selected: selected())})
++        .defaultAction({
++            event => if (widgetActivation(event)) {
++                event.preventDefault();
++                if (!selected()) {
++                    onSelect()
++                }
++            }
++        })
++}
+diff --git a/src/widget_activation.cj b/src/widget_activation.cj
+new file mode 100644
+index 00000000..18102123
+--- /dev/null
++++ b/src/widget_activation.cj
+@@ -0,0 +1,12 @@
++package cjtui
++
++func widgetActivation(event: UIKeyEvent): Bool {
++    let key = event.key
++    if (key.ctrl || key.alt || key.shift) {
++        return false
++    }
++    if (key.code != "enter" && !(key.code == "text" && key.text == " ")) {
++        return false
++    }
++    event.target.isFocused()
++}
+diff --git a/src/widget_caption.cj b/src/widget_caption.cj
+new file mode 100644
+index 00000000..75c4765c
+--- /dev/null
++++ b/src/widget_caption.cj
+@@ -0,0 +1,21 @@
++package cjtui
++
++func widgetCaption(value: String): String {
++    validatePlainText(value)
++    for (r in value.runes()) {
++        let code = UInt32(r)
++        if (code == 10 || code == 13 || code == 0x2028 || code == 0x2029) {
++            throw IllegalArgumentException("caption must be a single logical line")
++        }
++    }
++    value
++}
++
++func widgetMarkedCaption(marker: String, label: String): String {
++    let caption = widgetCaption(label)
++    if (caption.isEmpty()) {
++        marker
++    } else {
++        "${marker} ${caption}"
++    }
++}
+diff --git a/tests/run-slice.sh b/tests/run-slice.sh
+index 711939bb..9f09d9c0 100755
+--- a/tests/run-slice.sh
++++ b/tests/run-slice.sh
+@@ -1,17 +1,18 @@
+ #!/usr/bin/env bash
+ set -euo pipefail
+ cd "$(dirname "$0")/.."
+ # The caller selects/sources SDK 1.2.0 and may configure an isolated CJPM cache.
+ cjc --version
+ cjpm --version
+ case "${1:-all}" in
++  widgets_small) bash tests/widgets_small/run.sh ;;
+   editing)
+     bash tests/editing/run.sh
+     for review_case in E120-I01 E120-I02 E120-I03 E120-I04; do
+       TERM=dumb COLORTERM= CJTUI_EDITING_REVIEW_CASE="$review_case" timeout 90s tests/editing/target/release/bin/main </dev/null
+     done
+     ;;
+   keyboard)
+     tests/keyboard/run.sh --pty
+     bash tests/keyboard/paste_argument/run.sh
+     bash tests/keyboard/i015_stage/run.sh
+@@ -75,12 +76,12 @@ case "${1:-all}" in
+     "$0" decoration
+     "$0" layout-integration
+     "$0" application-lifecycle
+     "$0" colors
+     "$0" colors-integration
+     "$0" capabilities
+     "$0" composition
+     "$0" runtime
+     "$0" resize-coherence
+     ;;
+-  *) echo "usage: $0 [editing|keyboard|native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
++  *) echo "usage: $0 [widgets_small|editing|keyboard|native-session|native-smoke|contract|coordinates|layout|decoration|layout-integration|application-lifecycle|integration|colors|colors-integration|capabilities|composition|runtime|resize-coherence|all]" >&2; exit 2 ;;
+ esac
+diff --git a/tests/widgets_small/README.md b/tests/widgets_small/README.md
+index 33934cb5..352b9668 100644
+--- a/tests/widgets_small/README.md
++++ b/tests/widgets_small/README.md
+@@ -24,21 +24,21 @@ CJTUI_SMALL_RED_OUTPUT=/tmp/small-red-NEW bash tests/widgets_small/target-red.sh
+ ```
+ 
+ The ordinary runner builds/runs `prerequisite`, builds/runs the full headless consumer **directly**, then builds the device consumer, drives its real PTY normal/callback-failure/getter-failure modes, and checks the two independent forbidden Bool constructors. It propagates the real CJPM/direct-binary exit. Current source lacks all five factories, so the full target build fails before headless or PTY execution. A failed import is not a behavioral test or Bool-signature rejection. `target-red.sh` is the intentional RED verifier: after prerequisite build/direct0, each tiny public `red_*` package must independently produce compiler exit1 naming its own missing factory; the wrapper's exit0 means only that RED classification was checked.
+ 
+ The obsolete synthetic gate tool is retired from this final suite. Its original source/logs/report remain untouched in `/workspace/work/widgets-small-tests/source` and `/workspace/work/widgets-small-tests/evidence`. The normal runner has no symbol gate, synthetic list, stub, or target-as-prerequisite check. Old77 and synthetic gate controls are not used as current RED evidence.
+ 
+ ## Coverage and literal observations
+ 
+ | AC | Normal test source | Independent observations |
+ |---|---|---|
+-| S01 | `main.cj`, `construction_cases.cj`, five `red_*` packages | All constant/getter/default-label/named-label overloads; raw component block and chains; exact `L/B/[ ] C/(*) R/===---` five-row frame; public stats6 and children5 detect duplicate collectors/wrappers; invalid Text-gap/Canvas-wrap must raise InvalidProperty. |
++| S01 | `main.cj`, `construction_cases.cj`, five `red_*` packages | All constant/getter/default-label/named-label overloads; raw component block and chains; exact `L/B/[ ] C/(*) R/===---` five-row frame; public stats6 and children5 detect duplicate collectors/wrappers; legacy constant Text-gap raises IllegalArgumentException; typed/getter/resolved Inline Text-gap and Canvas-wrap raise InvalidProperty (LEGACY-PROP-001). |
+ | S02 | `event_cases.cj`, `event_boundaries.cj`, `device/src/main.cj` | All seven ctrl/alt/shift combinations for Enter and Space on Button/Checkbox/Radio; paste/multi-space0; capture/bubble/app prevent0; consume0; stop-only1; legal unfocused0; disabled ancestor rejected; committed enabled timing versus explicit prevent; exact `root-capture;target-capture;target-bubble;root-bubble;app;legacy;callback;` trace; prevent before callback; ancestor default0; later same-phase defaultAction replaces builtin. Checkbox reads once/requests once without model write, latest checked read, selected Radio once-read/zero-request/consumed, duplicate labels with distinct application IDs. Native sequence: Enter, HT+Space, HT+Enter, selected Space, q. |
+ | S03 | `main.cj`, `caption_matrix.cj`, `theme_cases.cj` | Latest Unicode captions long→short→empty for all caption getters; combining/ZWJ/CJK exact whole-cluster frames; all C0, DEL, C1 and LF/CR/CRLF/U+2028/U+2029 rejected for every caption factory constant/getter. Literal structured Style palette: focused blue, selected yellow, disabled red, explicit foreground green, black background and all attributes false. Detached uses public inline StyleRule because render has no theme argument; mounted uses named Theme.parse rules. Ancestor/late-enabled/getter-disabled, false cannot suppress real disabled/focus, true appearance changes no behavior/focus, later visualStates replaces builtin selected slot. Theme width/wrap remains effective. |
+ | S04 | `main.cj`, `progress_geometry.cj` | Literal bars at 0/.5/1/-0, widths0/1/20, heights0/1/2; natural Row20 and Column1; padding, theme dimensions versus explicit dimensions; both segments exact defaultStyle; every invalid finite/range value in constant/getter and zero/nonzero extents. Viewport logical20, visible5=`=====`, offset8=`==---`. Fraction-only public stats: one subscription, unchanged builds, increased paints; no assertion that M1 measures stay unchanged. |
+ | S05 | `lifecycle_cases.cj`, `remount_cases.cj`, device+`pty.py` | Callback/getter sentinel preserved; cleanup once, stale refs invalid; unmount/new-instance remount preserves business data; queued old-generation owner post discarded; live worker post updates next UI boundary; spawn Future.get establishes handshake (no timing sleep); two applications share latest business model; dispose/failure public resources0/0/0/0. PTY records input/output/stderr, direct0/21/22, sentinel error, cleanup1, exact stty before/after and paired native paste modes. |
+ 
+ `expected.json` and `oracle.mjs` remain the original literal fixture sanity checks, not the complete coverage index or product execution. `cjfmt` parsing/format output, Python byte compilation, shell syntax and fixture sanity are tooling evidence only. With missing target imports, full-body target type checking, overload acceptance, headless behavior, PTY behavior and clean-bundle target execution remain pending; do not infer them from parser success.
+ 
+ For S04, public subscription cardinality catches a fraction observable added to both measure and paint readsets and combines with literal repaint/no-rebuild checks. The test never reads private binding records or assumes a measure-call count. Independent product review must additionally check that the measure closure reads no fraction and returns only constrained natural20×1; one public subscription alone cannot identify which binding owns it.
+ 
+ ## Clean bundle consumer and handoff
+diff --git a/tests/widgets_small/pty.py b/tests/widgets_small/pty.py
+index 404bb5fb..c2d0a2bc 100644
+--- a/tests/widgets_small/pty.py
++++ b/tests/widgets_small/pty.py
+@@ -1,22 +1,22 @@
+ #!/usr/bin/env python3
+ """Real Linux PTY only; future product consumer. No emulator/backend/interposer."""
+-import argparse, errno, fcntl, hashlib, json, os, pty, select, signal, struct, subprocess, termios, time
++import argparse, errno, fcntl, hashlib, json, os, select, signal, struct, subprocess, termios, time
+ from pathlib import Path
+ 
+ def sha(path):
+     return hashlib.sha256(path.read_bytes()).hexdigest()
+ 
+ def run(binary, output, mode):
+     directory = output / mode
+     directory.mkdir(parents=True, exist_ok=False)
+-    master, slave = pty.openpty()
++    master, slave = os.openpty()
+     fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack('HHHH', 6, 40, 0, 0))
+     before = subprocess.check_output(['stty', '-g'], stdin=slave).decode().strip()
+     raw, sent, events = bytearray(), bytearray(), []
+     env = dict(os.environ, TERM='xterm-256color', COLORTERM='', CJTUI_SMALL_OUTPUT=str(directory), CJTUI_SMALL_MODE=mode)
+     def terminal():
+         os.setsid()
+         fcntl.ioctl(slave, termios.TIOCSCTTY, 0)
+     binary_hash = sha(binary)
+     metadata = dict(mode=mode, binary=str(binary), binary_sha256=binary_hash, cwd=str(Path.cwd()),
+                     before_stty=before, route='real PTY stdin/stdout; no shim', events=events)
+diff --git a/tests/widgets_small/src/construction_cases.cj b/tests/widgets_small/src/construction_cases.cj
+index 8441a52e..ce3697f8 100644
+--- a/tests/widgets_small/src/construction_cases.cj
++++ b/tests/widgets_small/src/construction_cases.cj
+@@ -1,22 +1,33 @@
+ package widgets_small_contract
+ 
+-import cjtui.{Application, Button, Checkbox, Column, Label, Progress, Radio, TextWrap}
++import cjtui.{Application, Button, Checkbox, Column, Label, Progress, Radio, StyleKeys, StyleRule, StyleUse, StyleValue, TextWrap}
+ 
+ func constructionCases(): Unit {
+     let root = Column {
+         Label("L").width(6)
+         Button({ => "B" }, { => () }).focusable(false).width(6)
+         Checkbox({ => false }, { _: Bool => () }, label: "C").enabled(true).width(6)
+         Radio({ => true }, { => () }, label: { => "R" }).width(6)
+         Progress({ => 0.5 }).width(6)
+     }
+     let app = Application(root)
+     app.startHeadless()
+     equal(app.snapshot(6, 5).toPlainText(), "L     \nB     \n[ ] C \n(*) R \n===---", "all five raw block roots and chains")
+     assertEvent(root.reference().getOrThrow().children().size == 5 && app.stats().mountedNodes == 6,
+         "one collector root per factory; chain does not create wrappers")
+     app.dispose()
+-    expectInvalidProperty({ => Label("L").gap(1); () }, "Text-root Label has no gap capability")
+-    expectInvalidProperty({ => Button("B", { => () }).gap(1); () }, "Text-root Button has no gap capability")
++    expectLegacyPropertyError({ => Label("L").gap(1); () }, "Label legacy constant gap rejects with IllegalArgumentException")
++    expectLegacyPropertyError({ => Button("B", { => () }).gap(1); () }, "Button legacy constant gap rejects with IllegalArgumentException")
++    expectInvalidProperty({ => Label("L").setStyle(StyleKeys.gap, StyleValue<Int64>.Value(1)); () }, "Label typed gap rejects with InvalidProperty")
++    expectInvalidProperty({ => Button("B", { => () }).gap({ => 1 }); () }, "Button getter gap rejects with InvalidProperty")
++    let incompatible = StyleRule().withValue(StyleKeys.gap, StyleValue<Int64>.Value(1))
++    expectInvalidProperty({ => frame(Label("L").styles([StyleUse.Inline(incompatible)]), 2, 1); () }, "Label resolved Inline gap rejects with InvalidProperty")
+     expectInvalidProperty({ => Progress(0.5).wrap(TextWrap.Grapheme); () }, "Canvas-root Progress has no text-wrap capability")
+ }
++
++// LEGACY-PROP-001 preserves this old shortcut's concrete exception type.
++func expectLegacyPropertyError(action: () -> Unit, caseName: String): Unit {
++    var rejected = false
++    try { action() } catch (_: IllegalArgumentException) { rejected = true }
++    if (!rejected) { throw IllegalStateException("${caseName}: expected IllegalArgumentException") }
++}
+diff --git a/tests/widgets_small/src/event_boundaries.cj b/tests/widgets_small/src/event_boundaries.cj
+index 5e259a15..02cf5dd6 100644
+--- a/tests/widgets_small/src/event_boundaries.cj
++++ b/tests/widgets_small/src/event_boundaries.cj
+@@ -1,18 +1,18 @@
+ package widgets_small_contract
+ 
+ import cjtui.{Application, Button, Checkbox, Column, DefaultActionPhase, KeyEvent, Observable, Radio, UIKeyEvent}
+ 
+ func eventBoundaryCases(): Unit {
+     let trace = [""]
+     let clicks = [0]
+-    let eventBox = Array<?UIKeyEvent>(1, repeat: None)
++    let eventBox = Array<?UIKeyEvent>(1, repeat: Option<UIKeyEvent>.None)
+     let root = Column { Button("go", { =>
+         assertEvent(eventBox[0].getOrThrow().defaultPrevented, "Target prevents before business callback")
+         trace[0] += "callback;"; clicks[0]++
+     }).onKeyCapture({ event => trace[0] += "target-capture;"; eventBox[0] = Some(event) })
+         .onKey({ _ => trace[0] += "target-bubble;" })
+     }
+         .onKeyCapture({ _ => trace[0] += "root-capture;" })
+         .onKey({ _ => trace[0] += "root-bubble;" })
+         .defaultAction({ _ => trace[0] += "ancestor-default;" }, phase: DefaultActionPhase.Ancestor)
+     let app = Application(root).onKeyEvent({ _ => trace[0] += "app;" })
+@@ -80,29 +80,30 @@ func duplicateRadioLabels(): Unit {
+         Radio({ => selected.get() == "a" }, { => requests[0]++; selected.set("a") }, label: "same")
+         Radio({ => selected.get() == "b" }, { => requests[1]++; selected.set("b") }, label: "same")
+     }
+     let app = Application(root)
+     app.startHeadless()
+     let children = root.reference().getOrThrow().children()
+     app.dispatch(children[0], KeyEvent("enter"))
+     // Selection writes schedule visual evaluation at the boundary, so exact default
+     // getter-read count is measured with a separate non-writing callback below.
+     assertEvent(requests[0] == 1 && requests[1] == 0 && selected.get() == "a", "same captions preserve application IDs")
+-    children[1].requestFocus()
++    app.batch({ => children[1].requestFocus() })
++    assertEvent(children[1].isFocused(), "second Radio focused before positive activation")
+     app.dispatch(children[1], KeyEvent("text", text: " "))
+     assertEvent(requests[0] == 1 && requests[1] == 1 && selected.get() == "b", "application alone groups radios")
+     equal(app.snapshot(8, 2).toPlainText(), "( ) same\n(*) same", "duplicate label exact controlled frames")
+     app.dispose()
+ 
+     let reads = [0]
+     let requested = [0]
+-    let seen = Array<?UIKeyEvent>(1, repeat: None)
++    let seen = Array<?UIKeyEvent>(1, repeat: Option<UIKeyEvent>.None)
+     let selectedRadio = Radio({ => reads[0]++; true }, { => requested[0]++ })
+     let single = Application(selectedRadio).onKeyEvent({ event => seen[0] = Some(event) })
+     single.startHeadless()
+     reads[0] = 0
+     single.dispatch(selectedRadio.reference().getOrThrow(), KeyEvent("enter"))
+     assertEvent(reads[0] == 1 && requested[0] == 0, "selected Radio exactly one default read and zero request")
+     assertEvent(seen[0].getOrThrow().defaultPrevented, "selected Radio still consumes activation")
+     single.dispose()
+ }
+ 
+diff --git a/tests/widgets_small/src/progress_geometry.cj b/tests/widgets_small/src/progress_geometry.cj
+index 2970519c..8a0affaa 100644
+--- a/tests/widgets_small/src/progress_geometry.cj
++++ b/tests/widgets_small/src/progress_geometry.cj
+@@ -1,20 +1,20 @@
+ package widgets_small_contract
+ 
+-import cjtui.{Application, Color, Column, Label, Observable, Progress, Row, ScrollAxes, Style, Theme, ThemeSource}
++import cjtui.{Application, Color, Column, Label, Observable, Progress, Row, ScrollAxes, Style, Theme}
+ 
+ func progressGeometry(): Unit {
+     equal(frame(Row { Progress(0.5); Label("|") }, 22, 1), "==========----------| ", "natural content width twenty")
+     equal(frame(Column { Progress(0.5); Label("|") }, 20, 2), "==========----------\n|                   ", "natural content height one")
+     equal(frame(Progress(0.5).width(6).padding(left: 1, right: 1), 6, 1), " ==-- ", "padding outside content bar")
+     for (fraction in [0.0, 0.5, 1.0, -0.0]) {
+-        equal(frame(Progress(fraction).width(0).height(2), 0, 2), "", "valid zero width")
++        equal(frame(Progress(fraction).width(0).height(2), 0, 2), "\n", "valid zero width")
+         equal(frame(Progress(fraction).height(0), 20, 0), "", "valid zero height")
+     }
+     equal(frame(Progress(0.0).width(1), 1, 1), "-", "zero at width one")
+     equal(frame(Progress(1.0).width(1), 1, 1), "=", "full at width one")
+     for (invalid in [-0.1, 1.1, Float64.NaN, Float64.Inf, -Float64.Inf]) {
+         for (width in [0, 1, 20]) {
+             for (height in [0, 1, 2]) {
+                 expectInvalidProperty({ => frame(Progress(invalid).width(width).height(height), width, height); () }, "constant invalid extent matrix")
+                 expectInvalidProperty({ => frame(Progress({ => invalid }).width(width).height(height), width, height); () }, "getter invalid extent matrix")
+             }
+@@ -41,21 +41,20 @@ func progressGeometry(): Unit {
+     let ref = viewport.reference().getOrThrow()
+     assertEvent(ref.viewportSnapshot().contentWidth == 20, "viewport logical natural width twenty")
+     ref.scrollTo(8, 0)
+     equal(scrolling.snapshot(5, 1).toPlainText(), "==---", "scroll clips same logical bar without rescaling")
+     scrolling.dispose()
+ 
+     let theme = Theme.parse("schema_version = 1\nname = \"S Progress\"\n" +
+         "[components.progress.spacing]\nwidth = 8\nheight = 2\npadding_left = 1\npadding_right = 1\n" +
+         "[components.progress.text]\nforeground = \"green\"\nbackground = \"black\"\n")
+     let themed = Progress(0.5)
+-    let themedApp = Application(themed)
+-    themedApp.loadTheme(ThemeSource.Prepared(theme))
++    let themedApp = Application(themed, theme: theme)
+     themedApp.startHeadless()
+     let before = themedApp.snapshot(8, 2)
+     equal(before.toPlainText(), " ===--- \n        ", "theme dimensions padding, first content row only")
+     assertEvent(before.cellAt(1, 0).style == Style(foreground: Color.Green, background: Color.Black) &&
+         before.cellAt(6, 0).style == Style(foreground: Color.Green, background: Color.Black), "filled and empty segments share defaultStyle")
+     themed.width(6).height(1)
+     equal(themedApp.snapshot(8, 2).toPlainText(), " ==--   \n        ", "explicit dimensions beat theme")
+     themedApp.dispose()
+ }
+diff --git a/tests/widgets_small/src/remount_cases.cj b/tests/widgets_small/src/remount_cases.cj
+index 171f775e..fff1cf17 100644
+--- a/tests/widgets_small/src/remount_cases.cj
++++ b/tests/widgets_small/src/remount_cases.cj
+@@ -32,21 +32,22 @@ func remountAndWorkerPosts(): Unit {
+     let fresh = Button({ => "${model.get()}" }, { => model.set(model.get() + 1) })
+         .onMount({ _ => { => cleanup[0]++ } })
+     parent.append(fresh)
+     equal(app.snapshot(2, 1).toPlainText(), "7 ", "new instance remount retains model")
+     let current = fresh.reference().getOrThrow()
+     assertLifetime(!old.isValid() && !old.sameNode(current), "same model new generation never revives old ref")
+     let posted = spawn { => app.post(current, { => model.set(9) }) }
+     assertLifetime(posted.get(), "live owner worker post accepted")
+     equal(app.snapshot(2, 1).toPlainText(), "9 ", "worker post updates public model on UI turn")
+     assertLifetime(!app.post(old, { => staleRan[0] = true }), "stale owner post rejected")
+-    current.requestFocus()
++    app.batch({ => current.requestFocus() })
++    assertLifetime(current.isFocused(), "remounted control focused before positive activation")
+     app.dispatch(current, KeyEvent("enter"))
+     assertLifetime(model.get() == 10, "remounted callback updates model once")
+     app.dispose(); app.dispose()
+     assertLifetime(cleanup[0] == 2 && !current.isValid() && !old.isValid(), "each generation cleanup exactly once")
+     noResources(app.stats(), "remount session resources zero")
+ 
+     let failureModel = Observable<String>("ok")
+     let failuresCleaned = [0]
+     let text = Label({ =>
+         if (failureModel.get() == "bad") { throw Exception("S_GETTER_GENERATION_SENTINEL") }
+diff --git a/tests/widgets_small/src/theme_cases.cj b/tests/widgets_small/src/theme_cases.cj
+index 92a792e8..ced3c97e 100644
+--- a/tests/widgets_small/src/theme_cases.cj
++++ b/tests/widgets_small/src/theme_cases.cj
+@@ -1,102 +1,102 @@
+ package widgets_small_contract
+ 
+-import cjtui.{Application, Button, Checkbox, Color, Column, Label, Observable, Radio, Style, StyleUse, Theme, ThemeSource, VisualStates, StyleRule, StyleKeys, StyleValue, VisualState, KeyEvent, render}
++import cjtui.{Application, Button, Checkbox, Color, Column, Label, Observable, Radio, Style, StyleUse, Theme, VisualStates, StyleRule, StyleKeys, StyleValue, VisualState, KeyEvent, render}
+ 
+ func stateTheme(): Theme {
+     Theme.parse("schema_version = 1\nname = \"S states\"\n" +
+         "[text]\nforeground = \"white\"\nbackground = \"black\"\n" +
+-        "[styles.test.text]\nforeground = \"cyan\"\n" +
++        "[styles.test.text]\nforeground = \"cyan\"\nbackground = \"black\"\nbold = false\ndim = false\nitalic = false\nunderline = false\ninverse = false\nstrikethrough = false\n" +
+         "[styles.test.states.focused.text]\nforeground = \"blue\"\n" +
+         "[styles.test.states.selected.text]\nforeground = \"yellow\"\n" +
+         "[styles.test.states.disabled.text]\nforeground = \"red\"\n")
+ }
+ 
+ func styleIs(actual: Style, color: Color, name: String): Unit {
+     assertEvent(actual == Style(foreground: color, background: Color.Black), name)
+ }
+ 
+ func themeCases(): Unit {
+     let theme = stateTheme()
+     let rule = StyleRule()
+         .withValue(StyleKeys.foreground, StyleValue<Color>.Value(Color.Cyan))
+         .withValue(StyleKeys.background, StyleValue<Color>.Value(Color.Black))
++        .withValue(StyleKeys.bold, StyleValue<Bool>.Value(false))
++        .withValue(StyleKeys.dim, StyleValue<Bool>.Value(false))
++        .withValue(StyleKeys.italic, StyleValue<Bool>.Value(false))
++        .withValue(StyleKeys.underline, StyleValue<Bool>.Value(false))
++        .withValue(StyleKeys.inverse, StyleValue<Bool>.Value(false))
++        .withValue(StyleKeys.strikethrough, StyleValue<Bool>.Value(false))
+         .withValue(StyleKeys.foreground, StyleValue<Color>.Value(Color.Blue), state: VisualState.Focused)
+         .withValue(StyleKeys.foreground, StyleValue<Color>.Value(Color.Yellow), state: VisualState.Selected)
+         .withValue(StyleKeys.foreground, StyleValue<Color>.Value(Color.Red), state: VisualState.Disabled)
+     let detached = Checkbox({ => true }, { _: Bool => () }).styles([StyleUse.Inline(rule)])
+     assertEvent(detached.reference().isNone(), "detached render has no public ref")
+     // Detached render uses a public inline rule with the same literal palette.
+     styleIs(render(detached, 3, 1).cellAt(0, 0).style, Color.Yellow, "detached selected")
+     assertEvent(detached.reference().isNone(), "detached render does not publish fake ref")
+     let disabled = Checkbox({ => true }, { _: Bool => () }).styles([StyleUse.Inline(rule)]).enabled(false).visualStates(VisualStates(disabled: false))
+     styleIs(render(disabled, 3, 1).cellAt(0, 0).style, Color.Red, "detached disabled beats selected")
+     let ancestor = Column { Radio({ => true }, { => () }).styles([StyleUse.Inline(rule)]) }.enabled(false)
+     styleIs(render(ancestor, 3, 1).cellAt(0, 0).style, Color.Red, "detached ancestor disabled")
+ 
+     let button = Button("B", { => () }).styles([StyleUse.Named("test")])
+-    let app = Application(button)
+-    app.loadTheme(ThemeSource.Prepared(theme))
++    let app = Application(button, theme: theme)
+     app.startHeadless()
+     styleIs(app.snapshot(1, 1).cellAt(0, 0).style, Color.Blue, "mounted native focused")
+     // Public appearance false cannot suppress real focus.
+     button.visualStates(VisualStates(focused: false, disabled: false))
+     styleIs(app.snapshot(1, 1).cellAt(0, 0).style, Color.Blue, "explicit false preserves native focus")
+     app.dispose()
+ 
+     let selected = Radio({ => true }, { => () }).styles([StyleUse.Named("test")])
+-    let selectedApp = Application(selected)
+-    selectedApp.loadTheme(ThemeSource.Prepared(theme))
++    let selectedApp = Application(selected, theme: theme)
+     selectedApp.startHeadless()
+     styleIs(selectedApp.snapshot(3, 1).cellAt(0, 0).style, Color.Yellow, "selected beats native focused")
+     selectedApp.dispose()
+ 
+     let enabled = Observable<Bool>(false)
+     let root = Column {
+         Checkbox({ => true }, { _: Bool => () }).styles([StyleUse.Named("test")])
+             .enabled({ => enabled.get() }).visualStates(VisualStates(disabled: false))
+     }
+-    let inherited = Application(root)
+-    inherited.loadTheme(ThemeSource.Prepared(theme))
++    let inherited = Application(root, theme: theme)
+     inherited.startHeadless()
+     styleIs(inherited.snapshot(3, 1).cellAt(0, 0).style, Color.Red, "mounted getter-disabled and explicit false")
+     enabled.set(true)
+     styleIs(inherited.snapshot(3, 1).cellAt(0, 0).style, Color.Blue, "later visualStates replaces builtin selected getter")
+     root.enabled(false)
+     styleIs(inherited.snapshot(3, 1).cellAt(0, 0).style, Color.Red, "mounted ancestor disabled exact style")
+     inherited.dispose()
+ 
+     let calls = [0]
+     let visual = Button("B", { => calls[0]++ }).styles([StyleUse.Named("test")])
+         .visualStates(VisualStates(disabled: true, selected: true, focused: true))
+-    let simulated = Application(visual)
+-    simulated.loadTheme(ThemeSource.Prepared(theme))
++    let simulated = Application(visual, theme: theme)
+     simulated.startHeadless()
+     styleIs(simulated.snapshot(1, 1).cellAt(0, 0).style, Color.Red, "declared disabled wins all state layers")
+     simulated.dispatch(visual.reference().getOrThrow(), KeyEvent("enter"))
+     assertEvent(calls[0] == 1, "visual disabled true does not disable behavior")
+     visual.foreground(Color.Green)
+     styleIs(simulated.snapshot(1, 1).cellAt(0, 0).style, Color.Green, "explicit per-field foreground override")
+     simulated.dispose()
+ 
+     let fakeFocusCalls = [0]
+     let focusPair = Column {
+         Button("A", { => () }).styles([StyleUse.Named("test")])
+         Button("B", { => fakeFocusCalls[0]++ }).styles([StyleUse.Named("test")])
+             .visualStates(VisualStates(focused: true))
+     }
+-    let focusApp = Application(focusPair)
+-    focusApp.loadTheme(ThemeSource.Prepared(theme))
++    let focusApp = Application(focusPair, theme: theme)
+     focusApp.startHeadless()
+     let refs = focusPair.reference().getOrThrow().children()
+     assertEvent(focusApp.focusedNode().getOrThrow().sameNode(refs[0]), "declared focused does not move native focus")
+     styleIs(focusApp.snapshot(1, 2).cellAt(0, 1).style, Color.Blue, "declared focused paints unfocused second view")
+     focusApp.dispatch(refs[1], KeyEvent("enter"))
+     assertEvent(fakeFocusCalls[0] == 0, "declared focused true does not activate unfocused target")
+     focusApp.dispose()
+ 
+-    let wrapped = Application(Label("ABCD"))
+-    wrapped.loadTheme(ThemeSource.Prepared(Theme.parse("schema_version = 1\nname = \"S wrap\"\n[components.label.text]\nwrap = \"grapheme\"\n[components.label.spacing]\nwidth = 2\n")))
++    let wrapped = Application(Label("ABCD"), theme: Theme.parse("schema_version = 1\nname = \"S wrap\"\n[components.label.text]\nwrap = \"grapheme\"\n[components.label.spacing]\nwidth = 2\n"))
+     wrapped.startHeadless()
+     equal(wrapped.snapshot(2, 2).toPlainText(), "AB\nCD", "widget leaves theme wrap and width unshadowed")
+     wrapped.dispose()
+ }

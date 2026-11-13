@@ -1,6 +1,6 @@
 # 标准控件支持任务候选
 
-本文件现为原TASK-029/019及支持153–162唯一任务状态入口，docs/tasks.md保留编号映射和原AC引用；2026-11-13 S前置准入已独立核验，TASK153测试已冻结5413dc76（后续fe9f66fc仅两处Option类型限定），基础消费者build/direct0、五个真实缺工厂API RED1；154固定实现1df1325f已交付且155独立spec/quality审核通过；156独立制品/宿主执行in_progress，M158仍等S157；S157有限验收尚未完成，M及完整Linux仍pending。L1=G-001，L2=WP-004；SplitPane关联WP-003/TASK-011，只覆盖公开组合。两单元，每单元五个独立角色；没有把L1/L2当编码任务。
+本文件为TASK029/019及153–162唯一任务状态入口，docs/tasks.md只保留编号映射。S01–S05的TASK153–157已完成：独立157为PASS_FINITE_S（spec/quality/evidence PASS），接受源1df1325f7b51777d8adab62f950c936051aa5876对应main 85998ead2b53cb8e6a6ab8c69e5e3efb8739411f；源码/native/构建/包配置/examples/tests/控件产品文档逐字节一致。[有限S原件与真实宿主图](../../../docs/reviews/widgets/S/README.md)。五个公开控件Label/Button/Checkbox/Radio/Progress已交付；155独立双审0具体缺陷，156普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付。M158为下一项正式独立测试工作，尚未冻结测试或取得实际前置RED；158–162均未交付。新native S只覆盖ASCII/default Classic；Unicode/disabled/explicit palette是headless S/source155及限定E后端机制复用，完整all-state/Unicode/four-theme展示仍属027/041。完整Linux/M/M1M2/父019/020/030/发布未关闭，B-M01→024、T087→023保留。
 
 ## Current admission — 2026-11-13
 
@@ -18,7 +18,7 @@
 
 - level=L3；classification=execution（用户标准控件目标已定，本候选工程决策经主代理冻结后执行）；openspec_change_ref=implement-standard-widgets；workflow_ref=本tasks.md；decision_refs=design W001–W006/W006-S及G001/I012上游接受记录；goal=G-001。
 - scope.includes=各卡指定单元交付及必要公开消费者/回归/文档；scope.excludes=输入编辑算法、runtime/layout/decoder/第二renderer、鼠标/拖动/虚拟化、完整四主题展示、跨平台/发布。S/M只消费117已验KeyEvent字段，不实现decoder。
-- status=以各卡为准；153 complete（测试交付），154–155 complete（固定实现/源码双审），156 in_progress（独立执行），157待156实际证据，158–162仍等待S157与其前序。S公共前置已核验；planning_gaps=154实现与运行及后续155–157独立交付尚未完成，153只需消费明确契约修正补充精确断言；evidence_refs=最终S输入清单及独立preflight。
+- status=153–157 complete（有限S正式测试/产品/独立双审/独立执行/独立验收已交付）；158 next/planned（独立正式测试待冻结及实际前置RED），159–162 planned；planning_gaps=M正式测试和后续独立交付未完成，027/041整体展示与完整Linux保留；evidence_refs=最终S输入清单、独立157与有限S归档。
 - preconditions=Admission与本卡依赖全部满足；required_skills=测试角色TDD+verification、产品TDD+executing-plans+verification、审核requesting-code-review+verification、执行/验收verification；失败按需systematic-debugging，修复反馈按receiving-code-review。适用OpenSpec工作流及仓颉规范从实际环境读取，skill_evidence_refs在ready时记录来源/版本/可用性至该卡证据目录，当前未伪造已使用记录。
 - compatibility=所有已有公共primitive/组件块入口保留，同槽后写替换不改变；没有已发布本件widget API需兼容；公开callbacks异常/代际和主题优先级继承上游。quality_governance.compatibility_exceptions=[LEGACY-PROP-001：保持已接受layout旧常量快捷入口IllegalArgumentException；typed/getter/样式能力检查严格InvalidProperty，见design限定裁决]。
 - quality_governance.necessity=已要求控件缺公开可用组合与独立证据；canonical_owner=业务checked/radio/menu顺序归应用，公开控件工厂组合行为，Runtime/focus/overlay/layout/Theme/Unicode仍原唯一权威；old_path_disposition=无旧widget公开实现需退役，沿用primitive，不增兼容别名；complexity_delta=有限工厂/一份菜单own refs索引，禁止第二业务状态或内核。非产品角色只写证据不改运行路径。
@@ -64,9 +64,9 @@
 | deliverables | 测试源码、预期帧/trace、正常消费者、RED日志与测试hash |
 | acceptance / verification | S01–S05：采用验收目录的条件→结果→证据；S计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅S文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | complete / 测试交付无阻塞；完整运行由154及后续独立角色验证 / 5413dc76、fe9f66fc、最终S输入清单 |
+| status / blockers / evidence_refs | complete / 本单元已独立有限验收；完整Linux另汇合 / 1df1325f/main85998ead、157 PASS_FINITE_S、最终S输入清单及有限S归档 |
 
-L4（每步均未执行）：
+L4（本有限S角色步骤已交付，原件见归档）：
 
 - [x] TASK-153.S1：逐项映射S01–S05并编写常量/getter/回调/原始组件块公开消费者。检查结果：coverage表含正常、非法caption、0/1/20宽和异常恢复，未访问私有符号。
 - [x] TASK-153.S2：手写controlled-state、Radio已选、事件阻断/stop、theme-disabled及卸载的预期。检查结果：预期值独立列出；不得import产品helper生成oracle。
@@ -84,9 +84,9 @@ L4（每步均未执行）：
 | deliverables | 产品提交、公开例子/指南、必要开发验证日志与源码hash |
 | acceptance / verification | S01–S05：采用验收目录的条件→结果→证据；S计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅S文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | complete / 固定源已交付；后续独立执行/验收另计 / 1df1325f、155独立报告、最终S输入清单 |
+| status / blockers / evidence_refs | complete / 本单元已独立有限验收；完整Linux另汇合 / 1df1325f/main85998ead、157 PASS_FINITE_S、最终S输入清单及有限S归档 |
 
-L4（每步均未执行）：
+L4（本有限S角色步骤已交付，原件见归档）：
 
 - [x] TASK-154.S1：定位固定上游公开符号和collector根登记，完成实际输入/文件清单。检查结果：工厂恰一个root；没有运行时/主题私有访问和新kind。
 - [x] TASK-154.S2：实现caption/getter、once Target请求、ASCII标记与Canvas纯paint进度；按G001已接受方案接主题状态。检查结果：checked/radio不私写；Progress measure不读fraction；样式只有统一resolver。
@@ -104,9 +104,9 @@ L4（每步均未执行）：
 | deliverables | 审查report/findings、固定源hash、逐AC结论 |
 | acceptance / verification | S01–S05：采用验收目录的条件→结果→证据；S计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅S文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | complete / 无必需源码缺陷；不替代156/157 / 1df1325f、155独立报告、最终S输入清单 |
+| status / blockers / evidence_refs | complete / 本单元已独立有限验收；完整Linux另汇合 / 1df1325f/main85998ead、157 PASS_FINITE_S、最终S输入清单及有限S归档 |
 
-L4（每步均未执行）：
+L4（本有限S角色步骤已交付，原件见归档）：
 
 - [x] TASK-155.S1：只接固定契约/源/测试而非作者自评，审查公共依赖与变更必要性。检查结果：无私有内核读取、重复状态、重复默认动作或未退役分支。
 - [x] TASK-155.S2：审核事件/主题/G001、数值边界与非法输入测试可判定性。检查结果：每个缺陷有可达触发与合同引用，不以测试数量判通过。
@@ -124,13 +124,13 @@ L4（每步均未执行）：
 | deliverables | 命令/环境/退出码/原始日志及hash、执行结论 |
 | acceptance / verification | S01–S05：采用验收目录的条件→结果→证据；S计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅S文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | in_progress / 独立普通制品/干净消费/真实宿主执行中 / 1df1325f、155独立报告、最终S输入清单 |
+| status / blockers / evidence_refs | complete / 本单元已独立有限验收；完整Linux另汇合 / 1df1325f/main85998ead、157 PASS_FINITE_S、最终S输入清单及有限S归档 |
 
-L4（每步均未执行）：
+L4（本有限S角色步骤已交付，原件见归档）：
 
-- [ ] TASK-156.S1：隔离检出受检源码与测试hash，记录SDK和依赖固定清单。检查结果：环境和内容与审核对象一致，未使用产品作者输出代替。
-- [ ] TASK-156.S2：执行widgets_small/run.sh、干净bundle消费者及必需已有回归/PTY。检查结果：S01–S05逐项有原始结果；缺真实终端范围记insufficient_evidence。
-- [ ] TASK-156.S3：固定所有日志与失败复现并回传主代理。检查结果：不能修产品或改预期；失败不反复重跑同一未改原因。
+- [x] TASK-156.S1：隔离检出受检源码与测试hash，记录SDK和依赖固定清单。检查结果：环境和内容与审核对象一致，未使用产品作者输出代替。
+- [x] TASK-156.S2：执行widgets_small/run.sh、干净bundle消费者及必需已有回归/PTY。检查结果：S01–S05逐项有原始结果；缺真实终端范围记insufficient_evidence。
+- [x] TASK-156.S3：固定所有日志与失败复现并回传主代理。检查结果：不能修产品或改预期；失败不反复重跑同一未改原因。
 
 ### TASK-157：独立验收小控件单元
 
@@ -144,13 +144,13 @@ L4（每步均未执行）：
 | deliverables | 逐需求AC证据矩阵、接受或拒绝报告、固定可消费源清单 |
 | acceptance / verification | S01–S05：采用验收目录的条件→结果→证据；S计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅S文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | planned / 共同Admission与上述依赖未核验 / [] |
+| status / blockers / evidence_refs | complete / 本单元已独立有限验收；完整Linux另汇合 / 1df1325f/main85998ead、157 PASS_FINITE_S、最终S输入清单及有限S归档 |
 
-L4（每步均未执行）：
+L4（本有限S角色步骤已交付，原件见归档）：
 
-- [ ] TASK-157.S1：核对153测试、154源码、155审核、156执行的同内容链。检查结果：不存在相邻HEAD替代、作者自测代替独立执行。
-- [ ] TASK-157.S2：独立复核controlled callback、主题G001、数字边界和真实键输入/恢复证据。检查结果：S01–S05均可判定；missing evidence明确拒绝完整接受。
-- [ ] TASK-157.S3：输出可消费固定源和父029覆盖/剩余项给主代理。检查结果：不自动关闭其他父项或TASK027，不擅改主仓状态。
+- [x] TASK-157.S1：核对153测试、154源码、155审核、156执行的同内容链。检查结果：不存在相邻HEAD替代、作者自测代替独立执行。
+- [x] TASK-157.S2：独立复核controlled callback、主题G001、数字边界和真实键输入/恢复证据。检查结果：S01–S05均可判定；missing evidence明确拒绝完整接受。
+- [x] TASK-157.S3：输出可消费固定源和父029覆盖/剩余项给主代理。检查结果：不自动关闭其他父项或TASK027，不擅改主仓状态。
 
 ### TASK-158：编写菜单状态分区独立测试
 
@@ -164,7 +164,7 @@ L4（每步均未执行）：
 | deliverables | 测试源码、手工帧/焦点trace、RED和hash |
 | acceptance / verification | M01–M05及受影响S02回归：采用验收目录的条件→结果→证据；M计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅M文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | planned / 共同Admission与上述依赖未核验 / [] |
+| status / blockers / evidence_refs | planned（next） / S157已接受；M正式测试、实际前置验证与RED仍待交付 / 有限S157归档；M尚无测试冻结结论 |
 
 L4（每步均未执行）：
 

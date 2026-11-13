@@ -1,0 +1,50 @@
+{
+  "all_tracked_S_sources_inventoried": [
+    "tests/widgets_small/device/src/main.cj",
+    "tests/widgets_small/negative_checkbox_bool/src/main.cj",
+    "tests/widgets_small/negative_radio_bool/src/main.cj",
+    "tests/widgets_small/prerequisite/src/main.cj",
+    "tests/widgets_small/red_button/src/main.cj",
+    "tests/widgets_small/red_checkbox/src/main.cj",
+    "tests/widgets_small/red_label/src/main.cj",
+    "tests/widgets_small/red_progress/src/main.cj",
+    "tests/widgets_small/red_radio/src/main.cj",
+    "tests/widgets_small/src/caption_matrix.cj",
+    "tests/widgets_small/src/construction_cases.cj",
+    "tests/widgets_small/src/event_boundaries.cj",
+    "tests/widgets_small/src/event_cases.cj",
+    "tests/widgets_small/src/lifecycle_cases.cj",
+    "tests/widgets_small/src/main.cj",
+    "tests/widgets_small/src/progress_geometry.cj",
+    "tests/widgets_small/src/remount_cases.cj",
+    "tests/widgets_small/src/theme_cases.cj"
+  ],
+  "before_focus_calls": [
+    {
+      "file": "tests/widgets_small/src/event_boundaries.cj",
+      "line": 90,
+      "source": "    children[1].requestFocus()"
+    },
+    {
+      "file": "tests/widgets_small/src/remount_cases.cj",
+      "line": 42,
+      "source": "    current.requestFocus()"
+    }
+  ],
+  "edits": [
+    {
+      "file": "tests/widgets_small/src/event_boundaries.cj",
+      "old": "    children[1].requestFocus()",
+      "new": "    app.batch({ => children[1].requestFocus() })\n    assertEvent(children[1].isFocused(), \"second Radio focused before positive activation\")"
+    },
+    {
+      "file": "tests/widgets_small/src/remount_cases.cj",
+      "old": "    current.requestFocus()",
+      "new": "    app.batch({ => current.requestFocus() })\n    assertLifetime(current.isFocused(), \"remounted control focused before positive activation\")"
+    }
+  ],
+  "inverse_bytes_equal": true,
+  "all_remaining_focus_calls_in_explicit_batch": true,
+  "unfocused_negative_cases_unchanged": true,
+  "callback_model_event_style_goldens_unchanged": true
+}

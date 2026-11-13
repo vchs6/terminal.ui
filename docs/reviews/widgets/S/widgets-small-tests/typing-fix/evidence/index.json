@@ -1,0 +1,428 @@
+{
+  "task": "TASK153 fixture typing correction",
+  "test_commit": "fe9f66fc10a9f864c1db55dd1d507b78defacbfc",
+  "base": "5413dc768a93b3e3f172227161bc9d8545993508",
+  "source": "/workspace/work/widgets-small-tests/typing-fix/source",
+  "only_changed_file": "tests/widgets_small/src/event_boundaries.cj",
+  "before": {
+    "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/before.cj",
+    "sha256": "79feb90f82f2f77067995cab62d6d58d1f24df9e09325773fb6637b5f5d3bf0c",
+    "bytes": 6663
+  },
+  "after": {
+    "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/after.cj",
+    "sha256": "a8df306a9863decdc9c6aca828db2771a3160ee468d41529f9bd6df047f6244a",
+    "bytes": 6701
+  },
+  "inverse_bytes_equal": true,
+  "changed_lines": [
+    8,
+    98
+  ],
+  "old_frozen_index": {
+    "path": "/workspace/work/widgets-small-tests/final/evidence/index.json",
+    "sha256": "24a862bf4a6976a559f882ad1cb138f6b792bd04573693035aa1bfc8248b659d",
+    "bytes": 88973
+  },
+  "old_bindings_rechecked": 296,
+  "commands": [
+    {
+      "name": "baseline-source",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "show",
+        "5413dc768a93b3e3f172227161bc9d8545993508:tests/widgets_small/src/event_boundaries.cj"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/baseline-source.stdout",
+          "sha256": "79feb90f82f2f77067995cab62d6d58d1f24df9e09325773fb6637b5f5d3bf0c",
+          "bytes": 6663
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/baseline-source.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "parser",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "bash",
+        "-c",
+        "source /workspace/work/validation/sdk/cangjie/envsetup.sh && cjfmt -f tests/widgets_small/src/event_boundaries.cj -o /workspace/work/widgets-small-tests/typing-fix/evidence/formatted.cj"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/parser.stdout",
+          "sha256": "1ce7d66b93936cf5bc3f3a4d7cb1183d1a96aea593c41b230187eec9f2f0182f",
+          "bytes": 87
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/parser.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "diff-check",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/diff-check.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/diff-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "exact-diff",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "diff",
+        "--",
+        "tests/widgets_small/src/event_boundaries.cj"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/exact-diff.stdout",
+          "sha256": "f5f0dae9371db9c57526bf99886009438f7866496c314f887055527fdcc7901f",
+          "bytes": 1163
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/exact-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "changed-files",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/changed-files.stdout",
+          "sha256": "235609337e535dad1b2fb303365eaae4d5a6c81fb677d6f35d9df43034fef209",
+          "bytes": 44
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/changed-files.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "stage",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "add",
+        "--",
+        "tests/widgets_small/src/event_boundaries.cj"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/stage.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/stage.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "commit",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "commit",
+        "-m",
+        "test(widgets): qualify optional event sentinels in two fixtures"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit.stdout",
+          "sha256": "60b1a086a0974fb4424397f56be9986e69d0f20d604abd9e47fb473666668c0b",
+          "bytes": 149
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "commit-sha",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-sha.stdout",
+          "sha256": "fdf777cae8ebe139f19e55594d41c67a22727ec6c0725c02d7f0d0964d03cd72",
+          "bytes": 41
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-sha.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "commit-check",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "show",
+        "--check",
+        "HEAD"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-check.stdout",
+          "sha256": "7c4c0daf15c89ece984b469b62ee7d8424cb4441efbc12df6d6484c3ac13689f",
+          "bytes": 197
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "clean-worktree",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/clean-worktree.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/clean-worktree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "commit-scope",
+      "cwd": "/workspace/work/widgets-small-tests/typing-fix/source",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "5413dc768a93b3e3f172227161bc9d8545993508",
+        "fe9f66fc10a9f864c1db55dd1d507b78defacbfc"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-scope.stdout",
+          "sha256": "235609337e535dad1b2fb303365eaae4d5a6c81fb677d6f35d9df43034fef209",
+          "bytes": 44
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-scope.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/widgets-small-tests/typing-fix/report.md",
+    "sha256": "98b8aae50a4e9fdc159d99b0949533eb55256e28e0ea0a1444f049515741ed07",
+    "bytes": 941
+  },
+  "artifacts": [
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/after.cj",
+      "sha256": "a8df306a9863decdc9c6aca828db2771a3160ee468d41529f9bd6df047f6244a",
+      "bytes": 6701
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/before.cj",
+      "sha256": "79feb90f82f2f77067995cab62d6d58d1f24df9e09325773fb6637b5f5d3bf0c",
+      "bytes": 6663
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/formatted.cj",
+      "sha256": "1806ad1a7cc67b5e3366899f2c7b91dc99aa0209b0ba2ca13f551eb736ba28c5",
+      "bytes": 7231
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/old-bindings-check.json",
+      "sha256": "60ed480f3380b586c2443416d6514eccad3bf1e0c808560170ed650ccdc372bf",
+      "bytes": 255
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/baseline-source.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/baseline-source.stdout",
+      "sha256": "79feb90f82f2f77067995cab62d6d58d1f24df9e09325773fb6637b5f5d3bf0c",
+      "bytes": 6663
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/changed-files.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/changed-files.stdout",
+      "sha256": "235609337e535dad1b2fb303365eaae4d5a6c81fb677d6f35d9df43034fef209",
+      "bytes": 44
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/clean-worktree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/clean-worktree.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-check.stdout",
+      "sha256": "7c4c0daf15c89ece984b469b62ee7d8424cb4441efbc12df6d6484c3ac13689f",
+      "bytes": 197
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-scope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-scope.stdout",
+      "sha256": "235609337e535dad1b2fb303365eaae4d5a6c81fb677d6f35d9df43034fef209",
+      "bytes": 44
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-sha.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit-sha.stdout",
+      "sha256": "fdf777cae8ebe139f19e55594d41c67a22727ec6c0725c02d7f0d0964d03cd72",
+      "bytes": 41
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/commit.stdout",
+      "sha256": "60b1a086a0974fb4424397f56be9986e69d0f20d604abd9e47fb473666668c0b",
+      "bytes": 149
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/compiler-fixture-error.log",
+      "sha256": "f5410aadae4289a15a05f461fd31464c513eace432a0f7879762abbc338c6793",
+      "bytes": 1789
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/diff-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/diff-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/exact-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/exact-diff.stdout",
+      "sha256": "f5f0dae9371db9c57526bf99886009438f7866496c314f887055527fdcc7901f",
+      "bytes": 1163
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/parser.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/parser.stdout",
+      "sha256": "1ce7d66b93936cf5bc3f3a4d7cb1183d1a96aea593c41b230187eec9f2f0182f",
+      "bytes": 87
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/stage.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/raw/stage.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "actual_compiler_log_origin": "/workspace/work/widgets-small-implementation/evidence/runner.log",
+  "classification": "FIXTURE_TYPING_ERROR_NOT_PRODUCT_RED",
+  "not_claimed": [
+    "full-body typecheck",
+    "behavior",
+    "PTY",
+    "product completion"
+  ]
+}

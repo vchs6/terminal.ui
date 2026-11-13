@@ -1,0 +1,1349 @@
+{
+  "base": "5413dc768a93b3e3f172227161bc9d8545993508",
+  "source_commit": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "independent_test_commit": "b3f20f3d1dca6e440bef654d80124df256586db9",
+  "test_cherry": "13ac9a4a",
+  "source_tree": "768763057353619c9767c12a4ef5dff8186cb75d",
+  "test_tree": "714a7fdf97d368574815cbf16e7430ac744f647c",
+  "canonical_test_tree": "714a7fdf97d368574815cbf16e7430ac744f647c",
+  "runner": {
+    "cwd": "/workspace/work/widgets-small-implementation/source",
+    "command": "CJTUI_SMALL_PTY_OUTPUT=/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed bash tests/widgets_small/run.sh",
+    "exit": 0,
+    "sdk": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+    "stdx": "/workspace/work/linux-build-recon/stdx-env",
+    "ucd": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+    "cache": "/workspace/work/viewport-tests/cache"
+  },
+  "tracked_inputs": [
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/build.cj",
+      "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9",
+      "bytes": 191
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/cjpm.toml",
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828",
+      "bytes": 1541
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/docs/product/widgets.md",
+      "sha256": "00f5b62cd4144707d4709954e87650c033c89cd66d9777eb6c4497bed6d037e1",
+      "bytes": 2334
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/examples/widgets_small/cjpm.toml",
+      "sha256": "92b46e22f0275fab614acc35143737efb4d87ec806561e5fa806999d0bd88ceb",
+      "bytes": 164
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/examples/widgets_small/src/main.cj",
+      "sha256": "aa7d8b1d6dff428b55c1e53c35c91e9d435ec333720807e29e53c0195005fa23",
+      "bytes": 726
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/native/build.sh",
+      "sha256": "35f60ac54647452cd0a614d05cc6bab8c7adc72987b7bd1bcaed90d4bc33c3e9",
+      "bytes": 2312
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/native/cjtui_capabilities.c",
+      "sha256": "e1a3a8148562f0b31c5924e8526505a662873f13dc0779f0ced770957d19d7e2",
+      "bytes": 7293
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/native/cjtui_glyphs.c",
+      "sha256": "0b795a39e75f5efeac0a43cfde7c0f8e76c27e79c4ad50ef5a40cb0fe1b72405",
+      "bytes": 1664
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/native/cjtui_terminal.c",
+      "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4",
+      "bytes": 4769
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/ansi_encoding.cj",
+      "sha256": "b22feed06490dd619ab7efde176e8eef170d8e3b5555d52d32c37180733aed28",
+      "bytes": 2050
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/application.cj",
+      "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+      "bytes": 36153
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/binding.cj",
+      "sha256": "47adef7827c77797a9a3f0d8a2c7fdf74448a34e956843e53933f9e985a933b3",
+      "bytes": 4091
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/binding_dependency.cj",
+      "sha256": "ac8d656fc10c8963846342c6d8e53e2bfbb70a56515606ddc551c352b1e3532a",
+      "bytes": 199
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/border_glyphs.cj",
+      "sha256": "f8ef77090327941b35b4158be0645c4344aaf0cdd6d15ad1c9bf62965b6348d3",
+      "bytes": 952
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/button.cj",
+      "sha256": "f012165d399b79cc33cab9b774ee4063f3c98dfc24fe26de052a4c4094eb02bd",
+      "bytes": 415
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/canvas.cj",
+      "sha256": "0bd3d7c5674d6fc89e914c6c03657b4948370afb665bb1f42c129b3265e268c2",
+      "bytes": 436
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/canvas_state.cj",
+      "sha256": "ee9311e7754b024513b27c7c6c5780a400769a58e6c32b7594c021dc89d6dd99",
+      "bytes": 347
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/caret_probe.cj",
+      "sha256": "a12988c0ccabe646b9b4eb1160382f530dfdedddd4a67b90a9ac78fea5df45a5",
+      "bytes": 1318
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/caret_request.cj",
+      "sha256": "70267a7cf6d484f21ddc49f4778f3282b569acac202a55b5d69f3cc4ba1df585",
+      "bytes": 317
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/caret_snapshot.cj",
+      "sha256": "8316a10e63abf2a5f696e0d92d9c46ff52912fd77a365c2b0a4d294c6c813b91",
+      "bytes": 299
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/cell.cj",
+      "sha256": "8b67e195b40d700aeb5f394d6f41ba968c5f7488fd2f3cacd19a66e1f26c1dfe",
+      "bytes": 803
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/change_kind.cj",
+      "sha256": "78c92929387c6fad55a7a953c87766a37c9f999c7bb576eb6a63fb92d6795eac",
+      "bytes": 492
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/checkbox.cj",
+      "sha256": "0c150ea1079da165ef30594f2dcd60ed6f004cf47801d8d456e4c90b03728bb3",
+      "bytes": 704
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/child_declaration.cj",
+      "sha256": "f2088f99af760305306bf832d48b9aa3b86b0d92d78de16962073c67a662d526",
+      "bytes": 203
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/child_entry.cj",
+      "sha256": "83bb5bce3215ecb4cbfefb57eb736161a63c38e075dd1e237edd6856151ec1da",
+      "bytes": 99
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/color_mapping.cj",
+      "sha256": "58f2c372bb8705ac1cf4cea93a225e93aa6f60713d8072f43d32892825264219",
+      "bytes": 4877
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/component.cj",
+      "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+      "bytes": 25566
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/component_collector.cj",
+      "sha256": "91da3af3815921771ef53b948a645d902659bb0fe11b3321209682602f7bc062",
+      "bytes": 2024
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/conditional_declaration.cj",
+      "sha256": "128281f2235a076abab4eec447355d48560d2f6f5c48cd5d715af8a3327ec02d",
+      "bytes": 654
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/conditional_group.cj",
+      "sha256": "cf1074a63b90eac3d26b5c778132108b0fed7a6de4b0b6dcc8d69ebb4ea24755",
+      "bytes": 2312
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/constraints.cj",
+      "sha256": "ea50d54ea38696e8218b0de5e339777051cc438bb1a1c440ee5c8651e2902add",
+      "bytes": 1364
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/default_action_phase.cj",
+      "sha256": "f2e070fd63c190258428ccdabe3f51ce8858bc95e36afb1dcee8c0a023b9d297",
+      "bytes": 70
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/drawing_geometry.cj",
+      "sha256": "a8dbcb1098ac784d006ae0288f9173f296d4b3a9dddeca41594f17aa3fdf92c1",
+      "bytes": 616
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/dynamic_declaration.cj",
+      "sha256": "34288e4f7d5bfc6188dc9bdd52c7123b1dd8a5a22482fd48e32332b1bd8c7fd4",
+      "bytes": 111
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/dynamic_group.cj",
+      "sha256": "c4955b8c322c5d24b11eb212cfe7ddf5962a106a6bc82d93aadcae8a97634217",
+      "bytes": 3527
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/exports.cj",
+      "sha256": "f258a51ef0b7f7354206616a25519c6572e4c640a27ac4743e4a6391c7e87bf0",
+      "bytes": 729
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/focus_manager.cj",
+      "sha256": "ad230c73f7bcfe891c121f499780f1564448df1326d06ce9b47011919aa50601",
+      "bytes": 6483
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/foreach_declaration.cj",
+      "sha256": "99fe8a3070fdcccaf55aeb434bbfbec2fcd436848d4edb188a107ee997a8303f",
+      "bytes": 614
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/foreach_group.cj",
+      "sha256": "3cd6361f2ffed81ba1e5cf2383f898a2a243107c62cafeac19485d6866dc60b2",
+      "bytes": 3695
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/frame.cj",
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+      "bytes": 12900
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/geometry/rect.cj",
+      "sha256": "f12793359eae47d415f263b0e35cacea2019388fd06de08b48e60b9e9896c641",
+      "bytes": 438
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/glyph_render_policy.cj",
+      "sha256": "df352bc39e7b21eceb7b5e9e5deb0773233663a7abf7037ffa3087b138678cbd",
+      "bytes": 847
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/key_event.cj",
+      "sha256": "1a780514938b6f32f521605b961745d4ad47a448822613ae0d0a9cce78849e99",
+      "bytes": 393
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/keyboard_batch.cj",
+      "sha256": "a3089ead2fdd509093fa443136e85c77cd851253d8927c9b02c3aa44839ce810",
+      "bytes": 427
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/keyboard_decoder.cj",
+      "sha256": "4f3ebcffb0e809a8f3b08d98afff46554f56297ed64a2a9cb6d7517e183b4beb",
+      "bytes": 16119
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/keyboard_diagnostic.cj",
+      "sha256": "5c8400a627d38e5d89c18d94280e4226848b781df340707ecf614d166184cc82",
+      "bytes": 203
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/keyboard_exception.cj",
+      "sha256": "267b3081f93343afe276d7a8eca59036079a55108b891b1734343e585992449a",
+      "bytes": 175
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/keyboard_issue.cj",
+      "sha256": "65dbd647226c44d46b8bb84172ffde2d361a3b297eba77dac65b142c7bf1b913",
+      "bytes": 837
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/keyboard_limits.cj",
+      "sha256": "7cb418dd2307f8713d51de269105476d181577ca645dc77164de1c0ef436c505",
+      "bytes": 496
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/keyboard_validation.cj",
+      "sha256": "af34aeae48b56accc1d984dc02017140a4c73de045f8a40f2f57ae796ae51ebb",
+      "bytes": 1492
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/label.cj",
+      "sha256": "7d614acfd131ffa524165b2ae8bb8f67eab0beb9fc63d1d7d3a4fc6754a44df9",
+      "bytes": 205
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/layout.cj",
+      "sha256": "0fbeef2122d1c95125abe3dff3737eac4c39357d32c3f0c1eaecbcb63051fe43",
+      "bytes": 24987
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/layout_allocation.cj",
+      "sha256": "df2d783bb2f235aa1c269ea2dc49411b8d2dd8f61664e2c9b81665fa31d90278",
+      "bytes": 3380
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/layout_node.cj",
+      "sha256": "45aac235e4993b74f12b32db213b5ee87cf168f700667ce07bf33eff81278c6a",
+      "bytes": 12007
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/list_item.cj",
+      "sha256": "45289c3ddaed90c620fb4c9051d0698a33ad091b706702a614a1967b747086e4",
+      "bytes": 352
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/macros/bind_macro.cj",
+      "sha256": "b16928c7577816a1eeb12b8a31a73c5ddf02c3b0d9b60a5989c30f17c8f7c420",
+      "bytes": 114
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/macros/component_macro.cj",
+      "sha256": "9e6a116776accfbbd3d626ce14100b0873245c0bfc824a3bb06ad45fc9014f05",
+      "bytes": 2976
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/macros/constructor_return_visitor.cj",
+      "sha256": "36630999f75520d9234b3d4f909b7bbc010225a14d3cedb2215157051a767f52",
+      "bytes": 334
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/macros/state_macro.cj",
+      "sha256": "934f18649f5b8ef91b808db68fbefb7eb0251618abfa0592391e96e478f4b869",
+      "bytes": 1649
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/node_index.cj",
+      "sha256": "1767c9347368d39d205ec07373219b32a02b17ab16c08a9b14e3febc643c1e11",
+      "bytes": 669
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/node_ref.cj",
+      "sha256": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805",
+      "bytes": 8452
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/observable.cj",
+      "sha256": "744000914251fc0eb20e4f0d3335a9642de1bca78e5325ab540dfdfe486b9705",
+      "bytes": 2108
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/observable_source.cj",
+      "sha256": "898d36caed711fddb8eefd31a3ac8eee14ebec1aad628db55bd0165b4afb8d7a",
+      "bytes": 1228
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/overlay_close_reason.cj",
+      "sha256": "f921eab7ddc0030ca5683ab4963027af7176f9d77491b6d882c089ab71eb6535",
+      "bytes": 408
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/overlay_handle.cj",
+      "sha256": "04ecd265cb4979a2357b8d7fcdc470f0bf415d28006c54d63e2b300719f893bd",
+      "bytes": 738
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/overlay_layout.cj",
+      "sha256": "594087b9d161e298b203857db4ed897c4c01925f2cf5d81c25d0c4d251e26d7e",
+      "bytes": 625
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/overlay_mode.cj",
+      "sha256": "83bf0360fd5d3c4a6def6f95d396e2bcf559a954b98df0d6c709550b637b9324",
+      "bytes": 282
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/overlay_options.cj",
+      "sha256": "1baa88a8157123c2004550f0ca4b2d52147f4d5030c7caaa52f5847a0126dab7",
+      "bytes": 651
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/overlay_placement.cj",
+      "sha256": "8c18be2a0e07c18f0443104074e6ca5f9551a5ee550f1af9ac48361d4bedbee2",
+      "bytes": 402
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/overlay_record.cj",
+      "sha256": "c94b4de2691b7aff3f7aa17ab3fe42cde3298ab4bcaf94a9e75910301e8aaa95",
+      "bytes": 1487
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/paint_context.cj",
+      "sha256": "00b9e493d1b6a63f234a69eb2c1cee3ec85ebb221332dd8d4cdef745d3fd928d",
+      "bytes": 4083
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/pending_node_change.cj",
+      "sha256": "abe9418459b78eb199fb532e3e7bcb7c60639851a282082dca19ba42036e7a60",
+      "bytes": 677
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/progress.cj",
+      "sha256": "4894da25f4075a4cec87ba28d6af330b98dc32f272fde4c8f7e72bf6b87fd651",
+      "bytes": 1043
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/queued_action.cj",
+      "sha256": "2af732f1850230e8005766d6c4a895eaee7eb30d72dd3663f0cb2d53aa1753f5",
+      "bytes": 180
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/radio.cj",
+      "sha256": "c6d8dac0b46d207b4787be11bcc16138d93c109065e2f70c6100f6d4fee8f4d2",
+      "bytes": 736
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/resolved_style.cj",
+      "sha256": "77bb0d1cec53ccd2087198e754209e82834ff0ced7cb791276c27a52b793adf8",
+      "bytes": 1512
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/rich_text_clusters.cj",
+      "sha256": "b5070a44e25cbf6262fcbbfb942ec703a45e37ee587c128c3c4900520c1bc3b4",
+      "bytes": 862
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/runtime_limits.cj",
+      "sha256": "f44156ffc8803d8b16c8fd7ea455d15478b064e6beed9281597b13c6bae58b83",
+      "bytes": 1160
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/runtime_node.cj",
+      "sha256": "fb0c74ebe705dd2ab5efe44d51c91f405192a4291cfcc060838a4df819263017",
+      "bytes": 2007
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/runtime_session.cj",
+      "sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b",
+      "bytes": 66044
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/runtime_stats.cj",
+      "sha256": "84082f03df45963bb2c2eb8da154653e553fd7b7bc7df1b711522265bdbb3a9b",
+      "bytes": 728
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/scroll_align.cj",
+      "sha256": "434b445c8ddac81ebeb1480c2157156f90de6ffea613f848a9b13ac9f0c64a5d",
+      "bytes": 76
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/scroll_axes.cj",
+      "sha256": "df61a42e0203e53883e95d846b898be965981a5d84ab902d807056c7f2cf4861",
+      "bytes": 509
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/scroll_command.cj",
+      "sha256": "ab20eab24d78ed6740bb5bb69fc89e020a7d43b729a3ee685508081eac921d48",
+      "bytes": 736
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/scroll_view.cj",
+      "sha256": "6df10f193c10676850d7e4d1d6b43a5dc649353f9edf9167b594e568e1c4ef7d",
+      "bytes": 230
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_basis.cj",
+      "sha256": "159e57d96a9724f8bc3b6010aa41326ef4cdf29718f4b93221d1f7223a1b5bcf",
+      "bytes": 120
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_capabilities.cj",
+      "sha256": "f97d060e44baeaaef3492c12329dbe5aae4679217c04b80ab8a78e894cadb11b",
+      "bytes": 587
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_capability.cj",
+      "sha256": "e0114e3b5a1a9252e6a33bf19cb5d40ba4a949fd3a759f8fc8ac712733bbec34",
+      "bytes": 503
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_device_exception.cj",
+      "sha256": "1dc607b3afe6b063ffefcff4f2c6ababc08843bc866099de8c09538b91e25f8a",
+      "bytes": 281
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_encoding.cj",
+      "sha256": "5eb84e4de4b1f8ffba525df0469b32ba29167233be2e89bc45293d37cedef87b",
+      "bytes": 4677
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_extension_state.cj",
+      "sha256": "c0893f5b3fccec9b42d90cae1bd9ffd18bf5a712d2f35c7fb7f19de81abceef9",
+      "bytes": 9123
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_issue.cj",
+      "sha256": "2231e13a9e748a78b5ca093951998f42d972b22e62aabf19c7dd8ca24d535a3c",
+      "bytes": 1170
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_operation.cj",
+      "sha256": "5f5f6de17979493f0d3e13a36d3bb00a546e0ab7c676a1b834a912268458b7d2",
+      "bytes": 135
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_options.cj",
+      "sha256": "5f6191b55550967cccbbbc12988af7c1924ab2cb536a218bf76febe5d2d7b54b",
+      "bytes": 515
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_policy.cj",
+      "sha256": "718b32ddffca7f9c96155180e0f49044b8523825f6fd0565aa1951d5b9952ff5",
+      "bytes": 85
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_result.cj",
+      "sha256": "e9874706043e7f0e9552adc66555c716f9d5b5b5a2e511813b70ebe97a8f63f3",
+      "bytes": 1524
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_route.cj",
+      "sha256": "37945a185b12d4e919df8a538e2b952aef6911c37fd4c89278debfdefbc6427b",
+      "bytes": 93
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_status.cj",
+      "sha256": "70449f5da389c7d89da70390154cc5b9e0276faa299cd1722a6d470062b19661",
+      "bytes": 437
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_step_result.cj",
+      "sha256": "d254759fd15d8fa6eb0d6291450e3e2412fe943f9abf17061a67f6dfe8c9a172",
+      "bytes": 444
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_support.cj",
+      "sha256": "ac3e4023f9c1ef5d2ccbf52a4d0c913837d48c6e9629c7e47322e4fbf6ab3fe5",
+      "bytes": 347
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/session_write_result.cj",
+      "sha256": "8af491218a6a500f8cc74906e857ac2ef562e13261102cc787461f29c50f4a3c",
+      "bytes": 304
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/size.cj",
+      "sha256": "255bb7d411c8211365f83deb6462c946f1f7bf1a12ee0d313df14944e7b06c25",
+      "bytes": 293
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/structural_command.cj",
+      "sha256": "339539b81afaf31bfc53659e5be7fc03dfbddbcf58a2b4f0aac4a7e66045806e",
+      "bytes": 491
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/alignment.cj",
+      "sha256": "16655f0246239a02bab81953e293de1490508740355fdb45f8813b53effb8aa4",
+      "bytes": 332
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/border_style.cj",
+      "sha256": "6cda8b6e130d33ff2e98d161eca3f00ad6456fecfd0acf2f8a5c2927f6b7b250",
+      "bytes": 369
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/color.cj",
+      "sha256": "bfe06ae333ffe2545b96d5dd31af287ca9d2ff06b747f5681813a1d9642a673e",
+      "bytes": 1026
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/color_mode.cj",
+      "sha256": "23fbbfffb32f36db1e515f6e2bc59a64e41cc18c55255bc13543cddd42460b53",
+      "bytes": 712
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/dimension.cj",
+      "sha256": "cd30555b4518f3ea89d7c9b6e37ebaccc3ab00798aa927f5a73c67cf29d105ec",
+      "bytes": 312
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/glyph_mode.cj",
+      "sha256": "e9fadaadd3eb66723df9c14ff3318861efcb80adaa94c63b062d23e9afb6f0dd",
+      "bytes": 306
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/style.cj",
+      "sha256": "4625095afe74a62b42d37195a50b1ff3ddb0fe1d8dbf785fe01cf6223b27a847",
+      "bytes": 1237
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/style_key.cj",
+      "sha256": "d4c9abd450533c46f9896644f2263879ae2086093f8db67ed568a0f63b0e086c",
+      "bytes": 507
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/style_keys.cj",
+      "sha256": "595947c6ea98694061c4701c94125702633a226335cff9cec6e81efa418142e7",
+      "bytes": 7701
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/style_rule.cj",
+      "sha256": "7c669f6327f630fa4924500baf86fb37cf5723721d960ff9a26ce37c5b3425dd",
+      "bytes": 904
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/style_rule_data.cj",
+      "sha256": "5ac80805d7b8a157a58fc916a3de214cc582dce3e26e3917f8ccbebd2a3f1311",
+      "bytes": 3110
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/style_use.cj",
+      "sha256": "6dd84371f197b16f1e57fd5a23bdf1685209e50e654a766715881f1471fd309b",
+      "bytes": 335
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/style_value.cj",
+      "sha256": "595b9b195eafd81ac7bc500b4de30054e838f75be133ef0b2cc3414b8ae0466c",
+      "bytes": 396
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/text_overflow.cj",
+      "sha256": "8dda5ec1a70cc99d0eb759ba6940cf0d258a5cbe2158b68f7ec6a7bf582eaf4c",
+      "bytes": 293
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/text_style_patch.cj",
+      "sha256": "7e66a8a2d2887057a670e9b39444b010517e99f850d52dfd0d97945eb4f59a1f",
+      "bytes": 1546
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/text_wrap.cj",
+      "sha256": "b6ad7a64ba4b2f4ba771619603e1f6605d159169692bdd4c5396b5647e1c5db5",
+      "bytes": 281
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/visual_state.cj",
+      "sha256": "6b320356bd48a1cc7c278b2146823f7e29cb08de5f5f3ac93e2a89cc1c6184b2",
+      "bytes": 361
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style/visual_states.cj",
+      "sha256": "bed99051cedd691d707dd9c60e06b4bec5c2ec6fd03fed87a934d00d61472c15",
+      "bytes": 504
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/style_resolver.cj",
+      "sha256": "3064fbd717c63364375f53203c4068ac3a26096657948293b63e94b4bc0c8e46",
+      "bytes": 12002
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/surface_mode.cj",
+      "sha256": "1c884dfde7ce1aac280db2d056303ccc686ab9dc4807ad10ad270f22bfbd5cc9",
+      "bytes": 264
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/terminal_bridge.cj",
+      "sha256": "659798da1bf63458c3dff2b0a075ae899a9413589ee24ea00232b32df16cb523",
+      "bytes": 2436
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/terminal_capabilities.cj",
+      "sha256": "98cf87c19c91331b83bc5cfe62b539c7cf3431eece13aafe9c5874d93021f1b3",
+      "bytes": 5887
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/terminal_glyph_capabilities.cj",
+      "sha256": "77e400f0f4846d224cdfa5bdcbf9d8830ab8e87e80c43cad5a9409d8bb125a81",
+      "bytes": 566
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/terminal_glyph_detection.cj",
+      "sha256": "77328de70bb2968b063b20e28cc2d44cf8d672a302b5bb545b99e49f88c0c6a6",
+      "bytes": 1497
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/terminal_glyph_projection.cj",
+      "sha256": "4779f17a52662433694dcd59b3d913c1767a28794854089820f4e757ca848ac3",
+      "bytes": 1933
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/terminal_projected_row.cj",
+      "sha256": "8b0a60a64125834945d0e5294dd5e05605df67222df5f118006d6dab6a376974",
+      "bytes": 1869
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/terminal_render_profile.cj",
+      "sha256": "7bc43434dba17aa52915c783911d491e4a20f9faf9a649ff7fee34b00b8827a8",
+      "bytes": 1172
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text.cj",
+      "sha256": "986d73578f2fc0a2b1922abfdd2ae975ea13afb7655ad73e26cdff08c0bdee0d",
+      "bytes": 605
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text_batch.cj",
+      "sha256": "ce2d53ca218882fe03e301f619793c006814e0538c6ba8ed7b529fcbc625ca00",
+      "bytes": 509
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text_decoder.cj",
+      "sha256": "02d431d9fb1f6f56cf6f5449b6570d9beabeca9102d4c11f16ed57647f484307",
+      "bytes": 14224
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text_diagnostic.cj",
+      "sha256": "ed3ad2cb93022e011b79aca706f103296fed6f5d430552d16f53217d81787933",
+      "bytes": 227
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text_exception.cj",
+      "sha256": "339de4adb79806c8776d38b9e7fec76cc74e8f5b7529a4bd56234509cfaf7a0c",
+      "bytes": 200
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text_issue.cj",
+      "sha256": "3f0084c8e4564c56fb8c906ccdcd977056d90025db55d66586e4b6f815b26173",
+      "bytes": 503
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text_limits.cj",
+      "sha256": "e4f2abe90e9f28662c50d9d8c3a4f1954cd7a43bb72d0555b386123c394ef3ae",
+      "bytes": 498
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text_output.cj",
+      "sha256": "d74e3bcbc81b55ccf819ecb11439aed9fbbd0ed11b8d96efd546380a1ef95125",
+      "bytes": 856
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text_result.cj",
+      "sha256": "f9d0ed270bc609f80cde117cc852b41872edeb60cd31be359f039922c18a7df7",
+      "bytes": 383
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/ansi_text_state.cj",
+      "sha256": "c9f9993a6ff4c649dacf76519bcaf8259e2556732797bc7b576b60e92e1fdfd8",
+      "bytes": 433
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/rich_text.cj",
+      "sha256": "c7c2ea1a6f93916952598eaef8836b7c8e6f3e01eb772eddd2af383e2ba6e47f",
+      "bytes": 1425
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/text_span.cj",
+      "sha256": "040ac64a6d195ccc2a66f7175f7019955ea28a3e2f087a71086e69221dafe380",
+      "bytes": 413
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/unicode.cj",
+      "sha256": "09a190283fbbcd9c58886e7182de79f138469903fe643762e22fa178374d8cdc",
+      "bytes": 864
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text/validation.cj",
+      "sha256": "cf7bd3c7a141cb617804451a5e4ac538d26167ba2992b39eabfc46bb4910a980",
+      "bytes": 429
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_area.cj",
+      "sha256": "dff755d829a4ecbaa6ea30922da8860dbd544cb335e16630137f1a96bca546b1",
+      "bytes": 332
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_edit_controller.cj",
+      "sha256": "1ad63bfbb270f6e7814b704b8aae6b7471ce22666ade6c5e3b556d8dbd813fd2",
+      "bytes": 3019
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_edit_issue.cj",
+      "sha256": "396cf008116b5501e3d500310be2cb18063f21ffe6d803e72605642d598ccc49",
+      "bytes": 811
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_edit_limits.cj",
+      "sha256": "d4ca5db12bb9cb0e66fe9b2254da3902bbbb9fff6a49890d65b3cbd3a442e1b0",
+      "bytes": 647
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_edit_owner.cj",
+      "sha256": "5e48ad64962c974b55772761857e08321cbd7b9b7809a526350e910c4ae83a24",
+      "bytes": 80
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_edit_record.cj",
+      "sha256": "7219e1cd618787451657014440f68e1532146378edb8a5501945af76501fbb90",
+      "bytes": 486
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_edit_session.cj",
+      "sha256": "b132b5407da05f6978bccd2ea06222dfb6403974997e2e489251b60f5d4086f6",
+      "bytes": 20826
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_edit_snapshot.cj",
+      "sha256": "8e9db4decf6f3537474212410684003ee977717f0805a6bc0c162faea7921ccb",
+      "bytes": 762
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_editing.cj",
+      "sha256": "4df2e0244abbacaca8e4a09dd714826877da511ceadaaa8bd5e204c244d1d9e2",
+      "bytes": 6117
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_input.cj",
+      "sha256": "b57383e9f518d44365e4870283d4744bc810f060781bf11febb5017c9bfbfb66",
+      "bytes": 374
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_selection.cj",
+      "sha256": "f99a45a313953b139b35ab6966be11c068db9f6d4064e392829c9c39984b2210",
+      "bytes": 474
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/text_validation.cj",
+      "sha256": "b14b891ea790790c9177949cfe4fe8e24d04f1114da5fdec664eefddd0df0e41",
+      "bytes": 85
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme.cj",
+      "sha256": "bbd8cf1c66a6b4071b6c750cf8d58e1477aa1e862dfaf3a111204be4a908072f",
+      "bytes": 4694
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_budget.cj",
+      "sha256": "ca64480a32559c38b3e35990799b8f08720901d2db708191046cd9e8d36155e3",
+      "bytes": 3204
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_decoder.cj",
+      "sha256": "18150f8dc820068a79602a8d26ef257bcfad9bc573a96a2acef3fd5a6656e05e",
+      "bytes": 10207
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_diagnostic.cj",
+      "sha256": "c3b2aa801d98a930a5bfea64704803d6da0712a05e69b92b0ff8acefb48cb2dd",
+      "bytes": 552
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_exception.cj",
+      "sha256": "7ff897423c4e2453aa35f53fa46cf82514383314abbf82458034b55f0459ef5c",
+      "bytes": 232
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_info.cj",
+      "sha256": "15e6965ca9cafb3dff5f4444dd2af3868487d8710e4f23c6a6c4de882d7130f6",
+      "bytes": 432
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_literal.cj",
+      "sha256": "0b0c92a5a6aeb0fd1e1b1453de286e8c84a9761bbdca5f6819c6dc2dc96c25b0",
+      "bytes": 4826
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_location.cj",
+      "sha256": "c50d7e2a0f89745f25c6ad0425df5a042848689464bb1da1fc243e09186dcda2",
+      "bytes": 367
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_preset.cj",
+      "sha256": "1daace1377aaf84326c2cc09b4f94669d237f2e0d26ca314a1ca303522749467",
+      "bytes": 358
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_preset_text.cj",
+      "sha256": "fc2a86d096ce8b9d5386d7fcaa1f9c321fdc26a91de23e698067f7dc876937d4",
+      "bytes": 11216
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_result.cj",
+      "sha256": "4de41bb0471cd747187d1c518c13f9ba2866b6653f66a8f54f2669880b780356",
+      "bytes": 130
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_role.cj",
+      "sha256": "2378b38e5e02dbfc77c21051eae7954a4bb92860787fb7098495b635fdeea5dd",
+      "bytes": 1473
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_schema.cj",
+      "sha256": "afd428b0ce88d22d4b4903a859dd2a0288a438ea6434a9893364591fc187d05f",
+      "bytes": 13583
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme/theme_source.cj",
+      "sha256": "568b183251f39f98057bc7a5641f643cbd883e8e5bedd211537955678fcd1eeb",
+      "bytes": 104
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme_candidate.cj",
+      "sha256": "11abbaf82bff4f5be3ec8ba6029f11fbc70160e2aed25d56546d5fc60aa68b8c",
+      "bytes": 370
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme_candidate_validation.cj",
+      "sha256": "75458494d6cb69941ee2c5e95a6c0166b85fbd6439773460d320c2fefb896ed5",
+      "bytes": 2365
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme_load_job.cj",
+      "sha256": "05118683eace9859f88c81d37f25afe7cc0908a3190a2375d548f073bfb14a7f",
+      "bytes": 281
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme_loader.cj",
+      "sha256": "4ca1342bc0ca5c5c87df749727aa1f90216d919120581908774a87a3abb18902",
+      "bytes": 8102
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme_request.cj",
+      "sha256": "8cfc56721e26906e28d5c704a39df8253030b680f5425cf25b9c30db47e149b7",
+      "bytes": 415
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/theme_request_source.cj",
+      "sha256": "d71bb067521b53960bee1afa138e9cf9194cec1d31a245a4a8cff286ed171edd",
+      "bytes": 630
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/title_restore_state.cj",
+      "sha256": "ae177df93324da96785d26712473dffc9107e90b17a7ef15c394299cd7d8f948",
+      "bytes": 152
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/ui_cleanup_exception.cj",
+      "sha256": "e94605384f3495df6c7303fd866cddbfc20b987db398a7794d9d27f4372cfc09",
+      "bytes": 1905
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/ui_exception.cj",
+      "sha256": "8425f5b85afd477063a63ea00fd117a7a140c5c676d97f94fa1259e2eec31a91",
+      "bytes": 188
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/ui_key_event.cj",
+      "sha256": "d7c22acd58f73140cb631b283bad469d199b61e73c26c63d39f3a287f2c6990c",
+      "bytes": 835
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/ui_thread_identity.cj",
+      "sha256": "49a0562b1adae0110e35746d60465bce6a3266e04fa932c1678f7e912c1ad032",
+      "bytes": 349
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/vertical_overflow_summary.cj",
+      "sha256": "3cfda4934637a6cbdff04505bb8eabcf82812e291621ee498132dd1684680ae1",
+      "bytes": 339
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/viewport_geometry.cj",
+      "sha256": "d6a66f41a56ef13dc8b141285c28439f48d14423283bfd26609b650411f195d4",
+      "bytes": 5606
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/viewport_snapshot.cj",
+      "sha256": "b8679fd6813ff7d1239956e93ae114d9b2e3c1c7f596c49ec623b0606e22d5ea",
+      "bytes": 609
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/viewport_state.cj",
+      "sha256": "4e4d209392cc67900b6f492980b71761112d54195ce1b265e61dd2699c8c05cc",
+      "bytes": 2228
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/widget_activation.cj",
+      "sha256": "69e2fb2458a7bc100dab146940d3723b874076ad0edd68a8b2fde3f8727039a2",
+      "bytes": 292
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/src/widget_caption.cj",
+      "sha256": "67823fb1dfa9c6c69737c7dd5be861beb8a8b40bc32990c01cf3ca212502186c",
+      "bytes": 538
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/run-slice.sh",
+      "sha256": "8426a8806c563c5bf42343087a13b472648cbbad4c23b61e4bb14eb0cdde0227",
+      "bytes": 3187
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/.gitignore",
+      "sha256": "e9649e67aa569d9965fc7a7e832faea7c7a487bf059bb31f8c7f231531c09f53",
+      "bytes": 104
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/README.md",
+      "sha256": "ce5fa699e0f5f461aff8034bd3c02c9b2f6531de551bffff20eed2c4f9536084",
+      "bytes": 7741
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/bundle-run.py",
+      "sha256": "6ded0882d489fc96f71eb07a23658d3b1545bea7843e8ef44ab1bf33b5f7a098",
+      "bytes": 1595
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/cjpm.toml",
+      "sha256": "e14ad306f15639624230ba3012921bbb71a7a44a8b6523f75751eb3632aa289c",
+      "bytes": 160
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/device/cjpm.toml",
+      "sha256": "f29aeff53b8f8000046fbf60b3bdb39abb79da9fcaf549d60b53da6400b76077",
+      "bytes": 349
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/device/src/main.cj",
+      "sha256": "05eb674c195b8759d991f35cdca3e255e21b3c4a135670fad448307b33c52586",
+      "bytes": 2610
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/expected.json",
+      "sha256": "af8dfb9a4e6312e461e3e9c85db4421b30ff6572d7369b83de89562eae8fc80d",
+      "bytes": 2091
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/negative_checkbox_bool/cjpm.toml",
+      "sha256": "eeef4f41ed08646911ea963ecad345124c5d58b7e14aa580f66933dd1e8a1d23",
+      "bytes": 365
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/negative_checkbox_bool/src/main.cj",
+      "sha256": "4ec493d2f7e99feaedea8db77c94f31abbce0e01dcdd5b92d1944c8329712661",
+      "bytes": 283
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/negative_radio_bool/cjpm.toml",
+      "sha256": "61273b43a7983bebaec5c3ea34ce19b8f5a3994af772b13f2e463199b8560d5b",
+      "bytes": 362
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/negative_radio_bool/src/main.cj",
+      "sha256": "c8efb70d890f4950df39f1d1e690e3619e6c911d39b085d196a7b04d470cc6cb",
+      "bytes": 266
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/oracle.mjs",
+      "sha256": "06d43613f828af89c68f2aa3781f45de9f0ee032c78a2a4373e6e9154356be62",
+      "bytes": 1190
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/prerequisite/cjpm.toml",
+      "sha256": "4b01b80e9092eefa279ad8c82e0d0679cb723f857c94467d922cc9c04d4b9434",
+      "bytes": 355
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/prerequisite/src/main.cj",
+      "sha256": "c7be43d1ddd31a0fd551fac600bd0466909db3cb6f60c9f25c1230dfa7058a82",
+      "bytes": 2285
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/pty.py",
+      "sha256": "aa9da0da0ba0edaad3b9f17a0b938dba2bd58c1efd2cda2416a6ce38c670d6e2",
+      "bytes": 5193
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_button/cjpm.toml",
+      "sha256": "8db6137c3d53c46c080288e04f6b22420caa4144a83d44c80f12c5fe2e45fb90",
+      "bytes": 353
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_button/src/main.cj",
+      "sha256": "67bac0edbe6b27d19c462e5d6423b67417ef23fc0c374cc175e30e964121367e",
+      "bytes": 152
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_checkbox/cjpm.toml",
+      "sha256": "0ac4f84532a32f85a35091f06b1119009489cb3177800a0e455da1e099e2ec8b",
+      "bytes": 355
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_checkbox/src/main.cj",
+      "sha256": "67995a974500c742e05836eb9ed315be9cae4bdc7acd7e8162fe2148d72e3925",
+      "bytes": 174
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_label/cjpm.toml",
+      "sha256": "4e244eb7c3c2fa9843dc454bca41171173d7d8d83c3098adb324349727b17cc0",
+      "bytes": 352
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_label/src/main.cj",
+      "sha256": "5d511d4edc4f959520b36fda07107097663f389848c90a72bbf56670e0ce4ffa",
+      "bytes": 138
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_progress/cjpm.toml",
+      "sha256": "416f548ddfe4591e24e738a695bf117f7866b1deed7ccd441e1bb8017fc42a48",
+      "bytes": 355
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_progress/src/main.cj",
+      "sha256": "08676ac5a52e0d345cd4c35c01258f38ea63959bf57581be0cf850a9284edc85",
+      "bytes": 146
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_radio/cjpm.toml",
+      "sha256": "e988fff2fa2ea14f8927e4765c3b617c80f91b82202d3e75296a3aa4f30acd32",
+      "bytes": 352
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/red_radio/src/main.cj",
+      "sha256": "ecf555a9ea800f0d4fb9811f38e4607aa450fc8bcf4fc33287e58eb13d839705",
+      "bytes": 157
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/run.sh",
+      "sha256": "31a5fda3323fa0ce2ea16aa24ce703b8ca0d1c6e52df9f7a4fb219afcf606efe",
+      "bytes": 2082
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/caption_matrix.cj",
+      "sha256": "f1d90c5585a2ce5ebd3de7bef3564c9c3c1042234850c86f5412293a91d6984a",
+      "bytes": 2594
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/construction_cases.cj",
+      "sha256": "3ffbc27b0c237d6bf6163886fca1f0a802cd32059a112b358dc82bed5b15a1c9",
+      "bytes": 2158
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/event_boundaries.cj",
+      "sha256": "55a359431d80611359824a241100f9d600752bfc0f96792ef397354f6e0a1844",
+      "bytes": 6811
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/event_cases.cj",
+      "sha256": "80d9e410bb89aa146ddc891025e0a658dd1fd9e919aa819e016e9fcc4c17aa6e",
+      "bytes": 5300
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/lifecycle_cases.cj",
+      "sha256": "02ab66c81382bbed83ffc23eaefa82280e459e4bcc81f24c8b6e1b5951c725f7",
+      "bytes": 2023
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/main.cj",
+      "sha256": "28a458938c5b4d05cbe0139f0155133c7628f0b47f99855ec524203fb0e1eced",
+      "bytes": 4738
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/progress_geometry.cj",
+      "sha256": "7e871fc3b4e2242237e1e8977e4aa14b6c19db2f3eee70b20a37c455dc005976",
+      "bytes": 3665
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/remount_cases.cj",
+      "sha256": "b7632572fdc32d79633cb5b570c044631d45d88d77031bbfc151ad290292d39f",
+      "bytes": 3593
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/theme_cases.cj",
+      "sha256": "e5301f29b5a7028fe9a506992b1b4d87343591bab3549221806ed0dc7f4c93be",
+      "bytes": 6210
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/target-red.sh",
+      "sha256": "35262430e4e41efa32c7af889e5d8051a16ee7c538f1503f113c8c4a7122c210",
+      "bytes": 1158
+    }
+  ],
+  "binaries": [
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/prerequisite/target/release/bin/main",
+      "sha256": "21aadc90ab7181b3d759dc01d16ba50faa655ebc634489f78e9d8f3f6a353cfb",
+      "bytes": 18974640
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/target/release/bin/main",
+      "sha256": "0cc9e23219097939640bc2cdf8177588cb0f47ed9ce80c2910ce200280936860",
+      "bytes": 19463544
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/device/target/release/bin/main",
+      "sha256": "199eceeaccb43a8e9912daf422a73a0ed1a885efff00bc90ed85f2a688444357",
+      "bytes": 18985992
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/examples/widgets_small/target/release/bin/main",
+      "sha256": "d2c3bf1798e74fcbaf0a799d9075512752034d0099e3d5ff4ced0a505299b3ba",
+      "bytes": 18955088
+    }
+  ],
+  "raw_evidence": [
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/runner-pty-fixed.log",
+      "sha256": "c658657b2046640addf4bd0b8da7c9638b20edbca42e7936b8b8ef37dea58f36",
+      "bytes": 1278
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/runner-pty-fixed.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/lint-source-final.json",
+      "sha256": "2a8c1f7e65699c5d1efa0e48f8e7ffbb40f5cb9f2514d69281a1ee7e1ab25e80",
+      "bytes": 375017
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/lint-source-final.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/example-build-final.log",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/example-build-final.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/example-smoke-final.log",
+      "sha256": "5d6985858db88330c18f3f2fc57026eaf288e6327d4e6022d6a7a95c806de0d9",
+      "bytes": 16
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/example-smoke-final.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/dispatcher-syntax.log",
+      "sha256": "b0ed1edc5f51b942795e56b4b46793bd1d44e46008256d7be6465bb693914268",
+      "bytes": 25
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/sdk-version.log",
+      "sha256": "5d367b37ee619d7c940deb3aaaa76fb7b9d0ce6b4821e1721cb49bc82965e754",
+      "bytes": 99
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/test-byte-equality.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/test-byte-equality.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/sparse-omission.txt",
+      "sha256": "953988382839f79bf53895f07554217544228e83bab3c2f4f44208024d1c806c",
+      "bytes": 196
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/callback-failure/error",
+      "sha256": "18d463b6ec29750ed83dc0961c6ad680e7cca2bf60f3c0625969dc1eda7bc458",
+      "bytes": 26
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/callback-failure/input.raw",
+      "sha256": "9d1e0e2d9459d06523ad13e28a4093c2316baafe7aec5b25f30eba2e113599c4",
+      "bytes": 1
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/callback-failure/metadata.json",
+      "sha256": "848910718e7987ae1c59dd094e9fbcdea73e275bb766b4eef9949865f950bacf",
+      "bytes": 1081
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/callback-failure/output.raw",
+      "sha256": "35496d56bf8d6feebbd31afd8154e331c51ce2328a97a586712e8e7a43ef14b5",
+      "bytes": 324
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/callback-failure/stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/callback-failure/summary",
+      "sha256": "580c7863da60741b1ec9f267645a6614f66fa2180412a8f287967e0a1f101f4c",
+      "bytes": 97
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/getter-failure/button",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "bytes": 1
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/getter-failure/error",
+      "sha256": "cad220bad8ae7b7bc3f7f05a1480ad9fc10140e30e3832cb0f8b30354051c26e",
+      "bytes": 24
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/getter-failure/input.raw",
+      "sha256": "9d1e0e2d9459d06523ad13e28a4093c2316baafe7aec5b25f30eba2e113599c4",
+      "bytes": 1
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/getter-failure/metadata.json",
+      "sha256": "df129af3a5f55bd06c3cc94c9127ef797e09fec193e57ed74ee6a16614d02239",
+      "bytes": 1079
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/getter-failure/output.raw",
+      "sha256": "35496d56bf8d6feebbd31afd8154e331c51ce2328a97a586712e8e7a43ef14b5",
+      "bytes": 324
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/getter-failure/stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/getter-failure/summary",
+      "sha256": "dc13349d6c0c8188a15a35f30bedd0c99fbdfdea90ee74b4853f62cdd351a726",
+      "bytes": 97
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/normal/button",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "bytes": 1
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/normal/checkbox",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "bytes": 1
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/normal/input.raw",
+      "sha256": "964881384d43a5b13526287df8f659cd3845e618d53741752a2c068897659887",
+      "bytes": 7
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/normal/metadata.json",
+      "sha256": "e27264c154000ce0cd0c21bd36f4d1482d97ec815557c327a227398552a0ed5b",
+      "bytes": 1606
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/normal/output.raw",
+      "sha256": "d7fdd3d15de6c33d0f544e5eddfcd3c915f92a6313116404c4166ef49dd4be72",
+      "bytes": 736
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/normal/radio",
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "bytes": 1
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/normal/stderr.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/evidence/pty-tool-fixed/normal/summary",
+      "sha256": "0e16ea09196741599abeb8b16f7289a43d05db5a10bf27ca2b0dfae5d35b3b42",
+      "bytes": 95
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/target/negative-checkbox.log",
+      "sha256": "2b6f01859fd244f31fccbef14edf793e395f2cdfc5131109b814750c2c56a0d6",
+      "bytes": 479
+    },
+    {
+      "path": "/workspace/work/widgets-small-implementation/source/tests/widgets_small/target/negative-radio.log",
+      "sha256": "dc172c974d0f74a95a05f15dbc91af6968b95ea5871d2e6be459a7fe55a918d5",
+      "bytes": 459
+    }
+  ]
+}

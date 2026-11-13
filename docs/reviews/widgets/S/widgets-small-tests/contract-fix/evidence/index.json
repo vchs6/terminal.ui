@@ -1,0 +1,257 @@
+{
+  "task": "TASK153 LEGACY-PROP-001 fixture correction",
+  "test_commit": "09ce650a07715ad67a7f22b1930745b71b61bb10",
+  "baseline": "412bfcc5074c9acc5400f555a2e1aa442316ccc7",
+  "source": "/workspace/work/widgets-small-tests/contract-fix/source",
+  "changed_files": [
+    "tests/widgets_small/README.md",
+    "tests/widgets_small/src/construction_cases.cj"
+  ],
+  "ruling": "LEGACY-PROP-001 published by root before this correction",
+  "inputs": {
+    "openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/specs/standard-widgets/spec.md",
+      "sha256": "f427d1f89df03c7aef5dd5b474091181fcb04d9837bbaa1541a019b6bc76e23a",
+      "bytes": 10888
+    },
+    "openspec/changes/implement-standard-widgets/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/design.md",
+      "sha256": "349e93f2ce9682c754d951edf26c09bb97fb4e0f80d954b81e5c1c4936570bbc",
+      "bytes": 24989
+    },
+    "docs/reviews/widgets/S/admission/gap-contract-decision/report.md": {
+      "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/admission/gap-contract-decision/report.md",
+      "sha256": "ddb5cfe8eea9807d75bfbe00081998304f915ffe8bd9f18b99241f021882b3f4",
+      "bytes": 3343
+    },
+    "docs/reviews/widgets/S/input-manifest.json": {
+      "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/input-manifest.json",
+      "sha256": "a02370ae35035932757e4181b5577a70063abe0b7a05de5051f002feb0191533",
+      "bytes": 42016
+    },
+    "openspec/changes/implement-layout-decoration/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-layout-decoration/design.md",
+      "sha256": "1a28823e9cb7f1b02317ef709131b900b8a599289eeec6e71a0678dac70a6d85",
+      "bytes": 11093
+    },
+    "src/component.cj": {
+      "path": "/workspace/work/terminal.ui/src/component.cj",
+      "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+      "bytes": 25566
+    }
+  },
+  "preservation": {
+    "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/bounded-and-preservation-check.json",
+    "sha256": "078f3325cc06af5803cad6c6ed47a00a858ac7cf37a9aaf7eb0ddee5bc1bd2c9",
+    "bytes": 2425
+  },
+  "probe": {
+    "source": {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/src/main.cj",
+      "sha256": "a1fdc3efbede0fa3ac43c3f805afc6698c939edad782c4c21455b5ba4ea06f3f",
+      "bytes": 1215
+    },
+    "manifest": {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/cjpm.toml",
+      "sha256": "8bd30b8c6b722b1d4a14780c581e98607ef7d5410cd73da212d5cd431bc62c85",
+      "bytes": 369
+    },
+    "configuration": {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    "dependencies": {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/cjpm.lock",
+      "sha256": "c4420e929304e86f0b66ac16ad1c9ee0fdad5b31dee8fd69bd66ae7d191a9f89",
+      "bytes": 198
+    },
+    "binary": {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/target/release/bin/main",
+      "sha256": "8f541124d2c7a6717bbf7968b66eebfdeb98d210eab79d07bf64a1a1488b73c7",
+      "bytes": 18896968
+    },
+    "product_path": "/workspace/work/terminal.ui",
+    "product_fixed_sha": "412bfcc5074c9acc5400f555a2e1aa442316ccc7",
+    "scope": "accepted public Text constant/typed/getter/Inline gap and Canvas.wrap only; no target widget"
+  },
+  "commands": [
+    {
+      "name": "bounded-parser-check",
+      "cwd": "/workspace/work/widgets-small-tests/contract-fix/source",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && cjfmt -f tests/widgets_small/src/construction_cases.cj -o /workspace/work/widgets-small-tests/contract-fix/evidence/formatted.cj && git diff --check && git diff -- tests/widgets_small/src/construction_cases.cj tests/widgets_small/README.md",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/bounded-parser-check.stdout",
+          "sha256": "9999e15452f3a50f70adfd2db2112fc87a8798a5579db4061dc85cc898b9092b"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/bounded-parser-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "public-probe-build",
+      "cwd": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip && cjpm build",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-build.stdout",
+          "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "public-probe-direct",
+      "cwd": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && TERM=dumb COLORTERM= timeout 30s target/release/bin/main </dev/null",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-direct.stdout",
+          "sha256": "957798fa1860d1e2851e3185c702f1e65f951887e09610e7954258c096dfb0e8"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-direct.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "commit_command": {
+    "cwd": "/workspace/work/widgets-small-tests/contract-fix/source",
+    "argv": [
+      "git",
+      "commit",
+      "-m",
+      "test(widgets): distinguish legacy and typed capability errors"
+    ],
+    "exit": 0
+  },
+  "artifacts": [
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/bounded-and-preservation-check.json",
+      "sha256": "078f3325cc06af5803cad6c6ed47a00a858ac7cf37a9aaf7eb0ddee5bc1bd2c9",
+      "bytes": 2425
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/bounded-edit.json",
+      "sha256": "974a4cc21e04bb5ed5dee44ae1fd48604dd9b92cd6726e98d5bba58fe050f143",
+      "bytes": 1723
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/commands.json",
+      "sha256": "d50752d7bcfe85f3cc048d7ab8d9c625f313f25cfed0fb52bb87535fc5bbde0d",
+      "bytes": 2501
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/construction-after.cj",
+      "sha256": "3ffbc27b0c237d6bf6163886fca1f0a802cd32059a112b358dc82bed5b15a1c9",
+      "bytes": 2158
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/construction-before.cj",
+      "sha256": "4c30fef3ab0cd6277dfdba1720e72475987b69df363b5ba29090c78ef6623d21",
+      "bytes": 1175
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/formatted.cj",
+      "sha256": "3293fefa93f88fdbebc70e71cc823ef963faf54cbc3098489229e13f4a677229",
+      "bytes": 2581
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/cjpm.lock",
+      "sha256": "c4420e929304e86f0b66ac16ad1c9ee0fdad5b31dee8fd69bd66ae7d191a9f89",
+      "bytes": 198
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/cjpm.toml",
+      "sha256": "8bd30b8c6b722b1d4a14780c581e98607ef7d5410cd73da212d5cd431bc62c85",
+      "bytes": 369
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/src/main.cj",
+      "sha256": "a1fdc3efbede0fa3ac43c3f805afc6698c939edad782c4c21455b5ba4ea06f3f",
+      "bytes": 1215
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/actual154-runner-fixed.log",
+      "sha256": "b9ac5fc3f61f85bb5a8b5d59809d62029111bd48a74af485133448c011319a0d",
+      "bytes": 895
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/bounded-parser-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/bounded-parser-check.stdout",
+      "sha256": "9999e15452f3a50f70adfd2db2112fc87a8798a5579db4061dc85cc898b9092b",
+      "bytes": 5487
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/commit.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/commit.stdout",
+      "sha256": "63887bfa492ba68d0a58de8e9caf283e0d39ea4da17366b6634eca65d005ea1e",
+      "bytes": 151
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-direct.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/raw/public-probe-direct.stdout",
+      "sha256": "957798fa1860d1e2851e3185c702f1e65f951887e09610e7954258c096dfb0e8",
+      "bytes": 46
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/readme-after.md",
+      "sha256": "ce5fa699e0f5f461aff8034bd3c02c9b2f6531de551bffff20eed2c4f9536084",
+      "bytes": 7741
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/readme-before.md",
+      "sha256": "6fc940764387b8c797728aef1c6f7439ebd162b4cf0d2047da3b553ef7e5798e",
+      "bytes": 7645
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/widgets-small-tests/contract-fix/report.md",
+    "sha256": "b61fea1057430b81dd695a073d2551f7ee0a0813bf25a5d2c24a0b46652642fa",
+    "bytes": 1310
+  },
+  "not_claimed": [
+    "full widget typecheck",
+    "widget behavior",
+    "PTY",
+    "TASK154 acceptance",
+    "Linux completion"
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "task": "TASK153 explicit complete fixture palette",
+  "test_commit": "c6bf589e6df199a88851f0311a606d39f4963ad7",
+  "baseline": "09ce650a07715ad67a7f22b1930745b71b61bb10",
+  "source": "/workspace/work/widgets-small-tests/palette-fix/source",
+  "only_changed_file": "tests/widgets_small/src/theme_cases.cj",
+  "diagnosis": "Verified before fixture mutation: per-field unset flags inherit Classic; full explicit false overrides. Initial themes use Application(theme:) because inactive loadTheme returns SessionClosed.",
+  "before": {
+    "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/theme-before.cj",
+    "sha256": "31576e3af64114c6029dee6b6d6afda43bd86f594d9a07f418bc0d06973f339b",
+    "bytes": 5910
+  },
+  "after": {
+    "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/theme-after.cj",
+    "sha256": "e5301f29b5a7028fe9a506992b1b4d87343591bab3549221806ed0dc7f4c93be",
+    "bytes": 6210
+  },
+  "canonical_inputs": {
+    "themes/classic.toml": {
+      "path": "/workspace/work/terminal.ui/themes/classic.toml",
+      "sha256": "73491254d0fc5b7624677b9b40216d3c82664c7c4784964b384b6a9d55a4aac9",
+      "bytes": 2534
+    },
+    "openspec/changes/implement-theme-styles/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md",
+      "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+      "bytes": 52833
+    },
+    "src/style/style_keys.cj": {
+      "path": "/workspace/work/terminal.ui/src/style/style_keys.cj",
+      "sha256": "595947c6ea98694061c4701c94125702633a226335cff9cec6e81efa418142e7",
+      "bytes": 7701
+    },
+    "src/theme/theme_schema.cj": {
+      "path": "/workspace/work/terminal.ui/src/theme/theme_schema.cj",
+      "sha256": "afd428b0ce88d22d4b4903a859dd2a0288a438ea6434a9893364591fc187d05f",
+      "bytes": 13583
+    },
+    "src/application.cj": {
+      "path": "/workspace/work/terminal.ui/src/application.cj",
+      "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+      "bytes": 36153
+    },
+    "src/theme_loader.cj": {
+      "path": "/workspace/work/terminal.ui/src/theme_loader.cj",
+      "sha256": "4ca1342bc0ca5c5c87df749727aa1f90216d919120581908774a87a3abb18902",
+      "bytes": 8102
+    },
+    "tests/theme-loading/consumer/src/lifecycle.cj": {
+      "path": "/workspace/work/terminal.ui/tests/theme-loading/consumer/src/lifecycle.cj",
+      "sha256": "b846e2dfcdd13e42ea0a5374c63596e750402f3a20a731442d94a9585ed411de",
+      "bytes": 1771
+    }
+  },
+  "preservation": {
+    "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/preservation.json",
+    "sha256": "a8e03710442fb6c2fa7914fb8b9c2953256e4f974b448b76f541ab8bc48ee45c",
+    "bytes": 2526
+  },
+  "probe": {
+    "source": {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/src/main.cj",
+      "sha256": "f14646561e79b919752cf10ec9ed4cf641bb4b8900d221daf93764ff918f73a6",
+      "bytes": 2512
+    },
+    "manifest": {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/cjpm.toml",
+      "sha256": "12f2bbefa5022b85ed5c167d45f694a882d25135a9555ba57f2cd9c76c2d09c2",
+      "bytes": 368
+    },
+    "configuration": {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    "dependencies": {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/cjpm.lock",
+      "sha256": "8a39ce781f5d3364ff26c7994383bd8f3463da52b926d1d026fe0b4f881fff4c",
+      "bytes": 198
+    },
+    "binary": {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/target/release/bin/main",
+      "sha256": "c16b50f33159df3e98024d8db919507125366c7669444c44318a01cc6ff05f05",
+      "bytes": 18885792
+    },
+    "product_path": "/workspace/work/terminal.ui",
+    "product_fixed_sha": "09ce650a07715ad67a7f22b1930745b71b61bb10",
+    "scope": "public Text/ThemeRole.Checkbox/VisualStates only; no widgets"
+  },
+  "commands": [
+    {
+      "name": "public-probe-build",
+      "cwd": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip && cjpm build",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-build.stdout",
+          "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "public-probe-direct",
+      "cwd": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && TERM=dumb COLORTERM= timeout 30s target/release/bin/main </dev/null",
+      "exit": 1,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-direct.stdout",
+          "sha256": "b96ab9a79e8873982bdb6d0a3bcaf0478936103547848317d1a82fbeed0610d8"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-direct.stderr",
+          "sha256": "de075b05eb9a9290698b15ffb7a63c98a97bb2a6147952cf08003b3cfc5cf27a"
+        }
+      }
+    },
+    {
+      "name": "public-probe-build-constructor",
+      "cwd": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip && cjpm build",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-build-constructor.stdout",
+          "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-build-constructor.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "public-probe-direct-constructor",
+      "cwd": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && TERM=dumb COLORTERM= timeout 30s target/release/bin/main </dev/null",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-direct-constructor.stdout",
+          "sha256": "b1b16007b77962fe919a39c7631f0b21981694087dbcf570695689daead57f4b"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-direct-constructor.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "parser-and-bounded-diff",
+      "cwd": "/workspace/work/widgets-small-tests/palette-fix/source",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && cjfmt -f tests/widgets_small/src/theme_cases.cj -o /workspace/work/widgets-small-tests/palette-fix/evidence/formatted.cj && git diff --check && git diff -- tests/widgets_small/src/theme_cases.cj",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/parser-and-bounded-diff.stdout",
+          "sha256": "cadbee568fabeb8233ff6125d2d53f09c0df4618021c3bff276ecdb6f7bcd086",
+          "bytes": 5790
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/parser-and-bounded-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ],
+  "commit_command": {
+    "cwd": "/workspace/work/widgets-small-tests/palette-fix/source",
+    "argv": [
+      "git",
+      "commit",
+      "-m",
+      "test(widgets): initialize explicit theme palettes in style fixtures"
+    ],
+    "exit": 0
+  },
+  "artifacts": [
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/bounded-edit.json",
+      "sha256": "65604e9663373675701213f051b7c7db0fe0bd3809d4d9972977b2ea075f68f4",
+      "bytes": 2597
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/commands.json",
+      "sha256": "343d4b5e14c7f6db8f2d3060bc257835b04d663d4cc9514b7434c00f98ee0e87",
+      "bytes": 4154
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/formatted.cj",
+      "sha256": "abf7b2f1dc70645650964c52a5a01c9cad0e20b776b3989efbfd0f24bf47565e",
+      "bytes": 6304
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/preservation.json",
+      "sha256": "a8e03710442fb6c2fa7914fb8b9c2953256e4f974b448b76f541ab8bc48ee45c",
+      "bytes": 2526
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/cjpm.lock",
+      "sha256": "8a39ce781f5d3364ff26c7994383bd8f3463da52b926d1d026fe0b4f881fff4c",
+      "bytes": 198
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/cjpm.toml",
+      "sha256": "12f2bbefa5022b85ed5c167d45f694a882d25135a9555ba57f2cd9c76c2d09c2",
+      "bytes": 368
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/src/main.cj",
+      "sha256": "f14646561e79b919752cf10ec9ed4cf641bb4b8900d221daf93764ff918f73a6",
+      "bytes": 2512
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/actual154-runner-contract.log",
+      "sha256": "1ece3113aec9abbc84aedfea0d22ff39bede53c780d47feae2cc383d4863eaa4",
+      "bytes": 795
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/actual154-style-probe2.log",
+      "sha256": "0e5865b4934bde8d48d36126e10bd88929678be84f41c97989f634aaaa1a2412",
+      "bytes": 148
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/commit.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/commit.stdout",
+      "sha256": "c76ea940331883307efee34bbbe7423b744d49d09dcd86cff64de1b5e3d63459",
+      "bytes": 156
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/parser-and-bounded-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/parser-and-bounded-diff.stdout",
+      "sha256": "cadbee568fabeb8233ff6125d2d53f09c0df4618021c3bff276ecdb6f7bcd086",
+      "bytes": 5790
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-build-constructor.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-build-constructor.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-direct-constructor.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-direct-constructor.stdout",
+      "sha256": "b1b16007b77962fe919a39c7631f0b21981694087dbcf570695689daead57f4b",
+      "bytes": 129
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-direct.stderr",
+      "sha256": "de075b05eb9a9290698b15ffb7a63c98a97bb2a6147952cf08003b3cfc5cf27a",
+      "bytes": 1404
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/raw/public-probe-direct.stdout",
+      "sha256": "b96ab9a79e8873982bdb6d0a3bcaf0478936103547848317d1a82fbeed0610d8",
+      "bytes": 83
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/theme-after.cj",
+      "sha256": "e5301f29b5a7028fe9a506992b1b4d87343591bab3549221806ed0dc7f4c93be",
+      "bytes": 6210
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/theme-before.cj",
+      "sha256": "31576e3af64114c6029dee6b6d6afda43bd86f594d9a07f418bc0d06973f339b",
+      "bytes": 5910
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/widgets-small-tests/palette-fix/report.md",
+    "sha256": "d2db3bc16f96e33071eee3fd7c71ed45bab721d8b3568687cc1e742a81324a0e",
+    "bytes": 1376
+  },
+  "not_claimed": [
+    "full widget pass",
+    "PTY",
+    "TASK154 acceptance",
+    "Linux completion"
+  ]
+}

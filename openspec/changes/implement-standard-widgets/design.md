@@ -1,10 +1,10 @@
 # 标准控件公共组合设计
 
-## 准入状态 v2 — 2026-11-13
+## 准入状态 v3 — 2026-11-13
 
-W001–W007/W006-S由主代理按原文冻结，W007成功SDK1.2形状编译与现宏字节一致性已核验复用；独立增量preflight确认实际Runtime/RichText/Theme/Glyph/交互A与完整键盘输入已接受，S153可进入正式测试。153已冻结5413dc76并由独立作者以fe9f66fc限定两处Option.None；154独立实现中，运行和产品验收未完成，M158仍等S157。正文旧“候选/未编译/前置尚未接受”是历史背景，不改冻结签名或预算；准入事实见[输入清单](../../../docs/reviews/widgets/S/input-manifest.json)，并非标准控件产品通过。
+S01–S05的TASK153–157已完成：独立157为PASS_FINITE_S（spec/quality/evidence PASS），接受源1df1325f7b51777d8adab62f950c936051aa5876对应main 85998ead2b53cb8e6a6ab8c69e5e3efb8739411f；源码/native/构建/包配置/examples/tests/控件产品文档逐字节一致。[有限S原件与真实宿主图](../../../docs/reviews/widgets/S/README.md)。五个公开控件Label/Button/Checkbox/Radio/Progress已交付；155独立双审0具体缺陷，156普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付。M158为下一项正式独立测试工作，尚未冻结测试或取得实际前置RED；158–162均未交付。新native S只覆盖ASCII/default Classic；Unicode/disabled/explicit palette是headless S/source155及限定E后端机制复用，完整all-state/Unicode/four-theme展示仍属027/041。完整Linux/M/M1M2/父019/020/030/发布未关闭，B-M01→024、T087→023保留。
 
-**新增签名已有独立SDK shape编译事实；产品 planned，产品验证 pending；执行依赖尚未接受。** 本件消费未来公共合同，不声称 Canvas/focus/viewport/overlay/Theme 已在产品可调用。原独立来源和字节hash归同目录provenance.json（仅历史输入，不是产品通过）。粗输入/workspace/work/widgets-contract/root-decisions.md 是主代理工程建议，不是用户选定签名，正文推荐仍待正式采纳。
+冻结签名、数值及所有权不变；正文“候选/未编译/未来前置”措辞只保留历史设计背景，以本段、逐任务状态和独立原件为准。
 
 ## 1. 权威与边界
 

@@ -1,0 +1,18 @@
+# Bounded remaining S04/S05 fixture audit
+
+Authority is accepted Frame/Runtime/Interaction/Theme contracts at b26529e5, plus the already existing positive consumer cases listed in the index. No S154 implementation source was read and no oracle was derived from its output.
+
+| Fixture assumption | Authority / independent check | Disposition |
+|---|---|---|
+| Zero-width height2 plain export | Frame design §2 explicitly says height−1 LF; two empty rows are `"" + "\n" + ""`. Public Frame probe compares against manually written `"\n"`. | Correct only this literal. |
+| Zero-width height1 and zero-height exports | Same Frame rule: one empty row has no separator; height0 has no rows. Existing main.cj width0/h1 and all h0 literals are empty. | Preserve. |
+| Progress 20×1 natural content, padding, first-row-only paint, fractions and zero-area validation | Frozen standard-widgets W004; general layout puts padding outside content. Existing A full_canvas_cells asserts local content size/clip and ancestor padding without a second renderer. | Preserve nonzero bars, dimensions and every InvalidProperty assertion. |
+| Horizontal viewport logical extent versus clip | Interaction B.2 removes the scroll-axis measurement bound, keeps finite extent and applies screen=origin+local−offset. A/B public Canvas cases distinguish size and clip. Width20 half=10 filled; visible x0..4 is `=====`, x8..12 is `==---`. | Preserve literal goldens and contentWidth20. |
+| Fraction paint-only observation | Interaction A.2 independent measure/paint readsets; Runtime R008 public subscription/current counts and cumulative builds/paints. One observable readset, no rebuild and repaint are public evidence; M1 measure count remains unconstrained. | Preserve. Binding ownership still requires independent product review; no new claim. |
+| Progress initial theme / Boolean attributes | Prior initial-theme correction uses documented Application(theme:) constructor. Custom Theme.parse gives progress fg/bg; no selected/focused/disabled states are declared for the nonfocusable Progress. Per-field resolution and Style defaults retain false flags. | Preserve complete Style equality. |
+| Remove inside batch, accepted owner post, later cancellation | Runtime §3.2/R011 says structural commands commit at outer boundary, reads see committed sequence; owner work admitted while valid is cancelled if generation expires before execution. Existing runtime scheduler/cleanup cases cover owner posts and cancellation. Future.get joins the worker; no sleep establishes order. | Preserve exact callback/data/cancellation assertions. |
+| New instance generation / cleanup once / dispose twice / resource zeros | Runtime R005/R008/R012, existing runtime cleanup and interaction lifecycle cases. sameNode/isValid remain readable on stale refs; business Observable belongs to app. | Preserve. |
+| Two headless views and getter/callback failures | Runtime R005 allows same-thread idle sessions; R007/R012 preserves user primary errors and releases resources. Existing bindings/cleanup tests use separate components sharing Observable and cleanup idempotence. | Preserve existing sentinels, values and counts. |
+| Native S05 device/PTY setup | Existing device source uses public Application.run, real PTY input, file acknowledgements, exact stty and direct exits; no synthetic backend or timing sleep. | No proven setup/literal mistake found; product execution is still pending154. |
+
+This is a bounded contract/source audit, not behavioral execution or an assertion that every future widget test will pass. Only the zero-row serialization mismatch is established for correction; no exception helper or product expectation is weakened.

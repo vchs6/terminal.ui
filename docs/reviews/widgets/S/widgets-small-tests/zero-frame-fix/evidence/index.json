@@ -1,0 +1,291 @@
+{
+  "task": "TASK153 zero-frame fixture literal and remaining S04/S05 audit",
+  "test_commit": "fc7344eecdabcb318210ff9c0b6793e83b2c47f5",
+  "baseline": "b26529e5bd31839fdc19fb11e05cb5d814ef36f3",
+  "source": "/workspace/work/widgets-small-tests/zero-frame-fix/source",
+  "only_changed_file": "tests/widgets_small/src/progress_geometry.cj",
+  "only_changed_line": 10,
+  "before": {
+    "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/before.cj",
+    "sha256": "69e36494bfcad34555fea727599112efcdb97ec4ff24cf0eaa43facbe3bb3f44",
+    "bytes": 3663
+  },
+  "after": {
+    "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/after.cj",
+    "sha256": "7e871fc3b4e2242237e1e8977e4aa14b6c19db2f3eee70b20a37c455dc005976",
+    "bytes": 3665
+  },
+  "audit": {
+    "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/remaining-S04-S05-audit.md",
+    "sha256": "b5a04387ef20660acd8b903fde798c689e15af4b582f45dfcd58ff135aae82e5",
+    "bytes": 3708
+  },
+  "authority_and_existing_positive_cases": {
+    "openspec/changes/implement-frame-composition/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-frame-composition/design.md",
+      "sha256": "7aa92d812303ee1aadcffddd3a539216f9174b5aef34ffd18ec58783c8663331",
+      "bytes": 7351
+    },
+    "openspec/changes/implement-reactive-runtime/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-reactive-runtime/design.md",
+      "sha256": "dcfed7b4ca2e412bb075e923217bf2867556bfb1f8c7991a7384c519b830dbb7",
+      "bytes": 40090
+    },
+    "openspec/changes/implement-public-interaction/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/design.md",
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4",
+      "bytes": 76152
+    },
+    "openspec/changes/implement-theme-styles/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-theme-styles/design.md",
+      "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+      "bytes": 52833
+    },
+    "openspec/changes/implement-standard-widgets/design.md": {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-standard-widgets/design.md",
+      "sha256": "349e93f2ce9682c754d951edf26c09bb97fb4e0f80d954b81e5c1c4936570bbc",
+      "bytes": 24989
+    },
+    "tests/runtime/src/scheduler.cj": {
+      "path": "/workspace/work/terminal.ui/tests/runtime/src/scheduler.cj",
+      "sha256": "0f6919bef0316a9e47ff5e2b8aaffa4ed6fd6d9c9c3c2e50ca8c5197ba9574fb",
+      "bytes": 2661
+    },
+    "tests/runtime/src/cleanup.cj": {
+      "path": "/workspace/work/terminal.ui/tests/runtime/src/cleanup.cj",
+      "sha256": "05d9601d8f42d671e795c61e9d35f288b1412441babaea3a1f938861df7d6a31",
+      "bytes": 2303
+    },
+    "tests/runtime/src/bindings.cj": {
+      "path": "/workspace/work/terminal.ui/tests/runtime/src/bindings.cj",
+      "sha256": "b1895fec6a3ce06665e9882e88b03d4e39353556d2c13d7e81c15233ba9cdf37",
+      "bytes": 8108
+    },
+    "tests/interaction_a/src/full_canvas_cells.cj": {
+      "path": "/workspace/work/terminal.ui/tests/interaction_a/src/full_canvas_cells.cj",
+      "sha256": "6100cfd5af8e6b246d64fe19dbdaa5ed70784af21537f6c6178420da2cd678c5",
+      "bytes": 3601
+    },
+    "tests/interaction_a/src/lifecycle_and_limits.cj": {
+      "path": "/workspace/work/terminal.ui/tests/interaction_a/src/lifecycle_and_limits.cj",
+      "sha256": "be422ae50a6f7a5ff7dd79f1f5d5b36a9e530aa67652c36239c61a83577c7b8c",
+      "bytes": 3566
+    },
+    "tests/interaction_b/src/root_canvas.cj": {
+      "path": "/workspace/work/terminal.ui/tests/interaction_b/src/root_canvas.cj",
+      "sha256": "82c64ebc3ccbd644615bf0fc9b29da9729b1c2ac8c100831a5f468dfae7c0ba8",
+      "bytes": 1042
+    },
+    "src/frame.cj": {
+      "path": "/workspace/work/terminal.ui/src/frame.cj",
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+      "bytes": 12900
+    }
+  },
+  "preservation": {
+    "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/preservation.json",
+    "sha256": "7a8739d63e14ee6aeb54db46ebed96bf978f8d9ece01a3a1c0424bf46c566c03",
+    "bytes": 2150
+  },
+  "probe": {
+    "source": {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/src/main.cj",
+      "sha256": "792ad0c1c7b70f809059f28caa305c96ac9c404dcfa005a2da96d932876d51b9",
+      "bytes": 600
+    },
+    "manifest": {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/cjpm.toml",
+      "sha256": "74eb56848508eb17d0a8e61706859b27134c92c996708e810b98f7b5134d8858",
+      "bytes": 371
+    },
+    "configuration": {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    "dependencies": {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/cjpm.lock",
+      "sha256": "896cf0b1c60c32112c1b0de45408a53bb856eaa12360b1c87287e0993ce61907",
+      "bytes": 198
+    },
+    "binary": {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/target/release/bin/main",
+      "sha256": "7601ba6067cd671e3294513e0b0064e37978aeb83f9d96c072bbbc07764a7da8",
+      "bytes": 18873976
+    },
+    "product_path": "/workspace/work/terminal.ui",
+    "product_fixed_sha": "b26529e5bd31839fdc19fb11e05cb5d814ef36f3",
+    "scope": "public Frame serialization only; no widget"
+  },
+  "commands": [
+    {
+      "name": "public-frame-build",
+      "cwd": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip && cjpm build",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/public-frame-build.stdout",
+          "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/public-frame-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "public-frame-direct",
+      "cwd": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && TERM=dumb COLORTERM= timeout 30s target/release/bin/main </dev/null",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/public-frame-direct.stdout",
+          "sha256": "84fe5afb17ebfd799c34df87522e79889768e53be43dc366f176395c44e5fd90"
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/public-frame-direct.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "parser-and-exact-diff",
+      "cwd": "/workspace/work/widgets-small-tests/zero-frame-fix/source",
+      "command": "source /workspace/work/validation/sdk/cangjie/envsetup.sh && cjfmt -f tests/widgets_small/src/progress_geometry.cj -o /workspace/work/widgets-small-tests/zero-frame-fix/evidence/formatted.cj && git diff --check && git diff -- tests/widgets_small/src/progress_geometry.cj",
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/parser-and-exact-diff.stdout",
+          "sha256": "3f211b17ff240eed75183c15fcd8b470a8586f3c3c832dccbae59f4044a6ba40",
+          "bytes": 1025
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/parser-and-exact-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ],
+  "commit_command": {
+    "cwd": "/workspace/work/widgets-small-tests/zero-frame-fix/source",
+    "argv": [
+      "git",
+      "commit",
+      "-m",
+      "test(widgets): preserve empty-row separators in zero-width frame golden"
+    ],
+    "exit": 0
+  },
+  "artifacts": [
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/after.cj",
+      "sha256": "7e871fc3b4e2242237e1e8977e4aa14b6c19db2f3eee70b20a37c455dc005976",
+      "bytes": 3665
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/before.cj",
+      "sha256": "69e36494bfcad34555fea727599112efcdb97ec4ff24cf0eaa43facbe3bb3f44",
+      "bytes": 3663
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/commands.json",
+      "sha256": "f84f0226277ed61c10310afb8caba9aec0c029990ac6e82dc0646ec3ee0768d0",
+      "bytes": 2535
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/formatted.cj",
+      "sha256": "972c8feb8ea53142c9a7597f61e9721093caa0b2c791a20412cc518c50fbef2e",
+      "bytes": 4240
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/preservation.json",
+      "sha256": "7a8739d63e14ee6aeb54db46ebed96bf978f8d9ece01a3a1c0424bf46c566c03",
+      "bytes": 2150
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/cjpm.lock",
+      "sha256": "896cf0b1c60c32112c1b0de45408a53bb856eaa12360b1c87287e0993ce61907",
+      "bytes": 198
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/cjpm.toml",
+      "sha256": "74eb56848508eb17d0a8e61706859b27134c92c996708e810b98f7b5134d8858",
+      "bytes": 371
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/src/main.cj",
+      "sha256": "792ad0c1c7b70f809059f28caa305c96ac9c404dcfa005a2da96d932876d51b9",
+      "bytes": 600
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/actual154-runner-palette.log",
+      "sha256": "1ff6fdd8c217c857d470d54e120ef73f18684689e56ce73cb664cb507dfffd91",
+      "bytes": 656
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/commit.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/commit.stdout",
+      "sha256": "678a046b0ed0575bedfd9d8c767039e24462ab62b1e1a00494f4c0df8a448889",
+      "bytes": 159
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/parser-and-exact-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/parser-and-exact-diff.stdout",
+      "sha256": "3f211b17ff240eed75183c15fcd8b470a8586f3c3c832dccbae59f4044a6ba40",
+      "bytes": 1025
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/public-frame-build.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/public-frame-build.stdout",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/public-frame-direct.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/raw/public-frame-direct.stdout",
+      "sha256": "84fe5afb17ebfd799c34df87522e79889768e53be43dc366f176395c44e5fd90",
+      "bytes": 38
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/remaining-S04-S05-audit.md",
+      "sha256": "b5a04387ef20660acd8b903fde798c689e15af4b582f45dfcd58ff135aae82e5",
+      "bytes": 3708
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/widgets-small-tests/zero-frame-fix/report.md",
+    "sha256": "179206546bfccaa07badc23bf9245b0ecfb0885db5f4b0a3696c38c5d4c0e229",
+    "bytes": 1419
+  },
+  "not_claimed": [
+    "generic widget correctness",
+    "full widget pass",
+    "PTY",
+    "TASK154 acceptance",
+    "Linux completion"
+  ]
+}

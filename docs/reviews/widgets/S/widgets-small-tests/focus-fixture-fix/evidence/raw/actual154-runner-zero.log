@@ -1,0 +1,10 @@
+PASS hand-authored fixture shape and anchors
+cjpm build success
+PREREQUISITE_PUBLIC_CONSUMER_PASS
+cjpm build success
+An exception has occurred:
+IllegalStateException: application alone groups radios
+	 at widgets_small_contract::assertEvent(Bool, std.core::String)(/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/event_cases.cj:6)
+	 at widgets_small_contract::duplicateRadioLabels()(/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/event_boundaries.cj:92)
+	 at widgets_small_contract::eventCases()(/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/event_cases.cj:14)
+	 at widgets_small_contract::main()(/workspace/work/widgets-small-implementation/source/tests/widgets_small/src/main.cj:93)

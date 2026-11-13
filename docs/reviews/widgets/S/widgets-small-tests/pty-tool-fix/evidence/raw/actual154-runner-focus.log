@@ -1,0 +1,13 @@
+PASS hand-authored fixture shape and anchors
+cjpm build success
+PREREQUISITE_PUBLIC_CONSUMER_PASS
+cjpm build success
+cjpm build success
+PTY artifacts: /workspace/work/widgets-small-implementation/evidence/pty-focus
+Traceback (most recent call last):
+  File "/workspace/work/widgets-small-implementation/source/tests/widgets_small/pty.py", line 102, in <module>
+    run(args.binary.resolve(), args.output.resolve(), mode)
+  File "/workspace/work/widgets-small-implementation/source/tests/widgets_small/pty.py", line 12, in run
+    master, slave = pty.openpty()
+                    ^^^^^^^^^^^
+AttributeError: module 'pty' has no attribute 'openpty'

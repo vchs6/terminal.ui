@@ -1,0 +1,360 @@
+{
+  "task": "TASK153 remaining initial-theme fixture correction",
+  "test_commit": "b26529e5bd31839fdc19fb11e05cb5d814ef36f3",
+  "base": "c6bf589e6df199a88851f0311a606d39f4963ad7",
+  "source": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+  "only_changed_file": "tests/widgets_small/src/progress_geometry.cj",
+  "before": {
+    "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/before.cj",
+    "sha256": "1aabae24f3492e345471c6170f9d62fc5f19bd42c68ff49b30f4aabd4b28f333",
+    "bytes": 3715
+  },
+  "after": {
+    "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/after.cj",
+    "sha256": "69e36494bfcad34555fea727599112efcdb97ec4ff24cf0eaa43facbe3bb3f44",
+    "bytes": 3663
+  },
+  "inventory": {
+    "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/inventory-and-inverse.json",
+    "sha256": "cc6e60fa94ac3fb349ec81f5be0e9c47106b189add8dc3fe6653ea8d8affe213",
+    "bytes": 1783
+  },
+  "preservation_and_reused_proof": {
+    "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/preservation-and-reused-proof.json",
+    "sha256": "43cf5eef03339b8ca23f5abecc8b26b5ebb4f46d5afae120b4afc0ac81e4e444",
+    "bytes": 3741
+  },
+  "commands": [
+    {
+      "name": "tracked-sources",
+      "cwd": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+      "argv": [
+        "git",
+        "ls-files",
+        "tests/widgets_small"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/tracked-sources.stdout",
+          "sha256": "9f8cde1821e72dfb76e48064f39fb99db7907a2157122dc547117dfed9c97060",
+          "bytes": 1447
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/tracked-sources.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "parser-and-diff",
+      "cwd": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+      "argv": [
+        "bash",
+        "-c",
+        "source /workspace/work/validation/sdk/cangjie/envsetup.sh && cjfmt -f tests/widgets_small/src/progress_geometry.cj -o /workspace/work/widgets-small-tests/initial-theme-fix/evidence/formatted.cj && git diff --check && git diff -- tests/widgets_small/src/progress_geometry.cj"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/parser-and-diff.stdout",
+          "sha256": "4a57700064c101ea8fe32ad2d4493edd9f46b6a410e29cbe9b819a6ce81f8793",
+          "bytes": 1355
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/parser-and-diff.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "changed-files",
+      "cwd": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/changed-files.stdout",
+          "sha256": "2f2384c981fce3e8641dc02aeebd2dec6a21a9d83bb184655e94918b6d8ac6f9",
+          "bytes": 45
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/changed-files.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "stage",
+      "cwd": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+      "argv": [
+        "git",
+        "add",
+        "--",
+        "tests/widgets_small/src/progress_geometry.cj"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/stage.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/stage.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "commit",
+      "cwd": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+      "argv": [
+        "git",
+        "commit",
+        "-m",
+        "test(widgets): initialize Progress fixture theme through constructor"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit.stdout",
+          "sha256": "670cb5dfbf0e8207569aa1224ca51ed5765780059e05348a005ccc0a8a14b14e",
+          "bytes": 161
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "commit-sha",
+      "cwd": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-sha.stdout",
+          "sha256": "6fef265c2ea50af3901d4c70f80fac05e7d15166ddddf45c811be6fab8a472e8",
+          "bytes": 41
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-sha.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "commit-check",
+      "cwd": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+      "argv": [
+        "git",
+        "show",
+        "--check",
+        "HEAD"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-check.stdout",
+          "sha256": "8f2663bec9a14e53db8d9f5b5ec959ead6e70907b0e5734e6e535b9796b61191",
+          "bytes": 202
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-check.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "clean-worktree",
+      "cwd": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+      "argv": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/clean-worktree.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/clean-worktree.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "name": "commit-scope",
+      "cwd": "/workspace/work/widgets-small-tests/initial-theme-fix/source",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "c6bf589e6df199a88851f0311a606d39f4963ad7",
+        "b26529e5bd31839fdc19fb11e05cb5d814ef36f3"
+      ],
+      "exit": 0,
+      "raw": {
+        "stdout": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-scope.stdout",
+          "sha256": "2f2384c981fce3e8641dc02aeebd2dec6a21a9d83bb184655e94918b6d8ac6f9",
+          "bytes": 45
+        },
+        "stderr": {
+          "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-scope.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/after.cj",
+      "sha256": "69e36494bfcad34555fea727599112efcdb97ec4ff24cf0eaa43facbe3bb3f44",
+      "bytes": 3663
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/before.cj",
+      "sha256": "1aabae24f3492e345471c6170f9d62fc5f19bd42c68ff49b30f4aabd4b28f333",
+      "bytes": 3715
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/formatted.cj",
+      "sha256": "34ca5ff4411fe431744880ee413a151bb115f09956a8e1c5dd793200c5352c75",
+      "bytes": 4238
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/inventory-and-inverse.json",
+      "sha256": "cc6e60fa94ac3fb349ec81f5be0e9c47106b189add8dc3fe6653ea8d8affe213",
+      "bytes": 1783
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/preservation-and-reused-proof.json",
+      "sha256": "43cf5eef03339b8ca23f5abecc8b26b5ebb4f46d5afae120b4afc0ac81e4e444",
+      "bytes": 3741
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/changed-files.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/changed-files.stdout",
+      "sha256": "2f2384c981fce3e8641dc02aeebd2dec6a21a9d83bb184655e94918b6d8ac6f9",
+      "bytes": 45
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/clean-worktree.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/clean-worktree.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-check.stdout",
+      "sha256": "8f2663bec9a14e53db8d9f5b5ec959ead6e70907b0e5734e6e535b9796b61191",
+      "bytes": 202
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-scope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-scope.stdout",
+      "sha256": "2f2384c981fce3e8641dc02aeebd2dec6a21a9d83bb184655e94918b6d8ac6f9",
+      "bytes": 45
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-sha.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit-sha.stdout",
+      "sha256": "6fef265c2ea50af3901d4c70f80fac05e7d15166ddddf45c811be6fab8a472e8",
+      "bytes": 41
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/commit.stdout",
+      "sha256": "670cb5dfbf0e8207569aa1224ca51ed5765780059e05348a005ccc0a8a14b14e",
+      "bytes": 161
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/parser-and-diff.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/parser-and-diff.stdout",
+      "sha256": "4a57700064c101ea8fe32ad2d4493edd9f46b6a410e29cbe9b819a6ce81f8793",
+      "bytes": 1355
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/stage.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/stage.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/tracked-sources.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/widgets-small-tests/initial-theme-fix/evidence/raw/tracked-sources.stdout",
+      "sha256": "9f8cde1821e72dfb76e48064f39fb99db7907a2157122dc547117dfed9c97060",
+      "bytes": 1447
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/widgets-small-tests/initial-theme-fix/report.md",
+    "sha256": "c84866018599cff535bacc4d5bcd1b68cc2f0c31b2a67c598cb9dab83a93a43d",
+    "bytes": 968
+  },
+  "not_claimed": [
+    "full-widget pass",
+    "TASK154 acceptance",
+    "PTY",
+    "Linux completion"
+  ]
+}

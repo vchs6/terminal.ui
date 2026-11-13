@@ -1,0 +1,40 @@
+PASS hand-authored fixture shape and anchors
+cjpm build success
+PREREQUISITE_PUBLIC_CONSUMER_PASS
+[31merror[0m: find multiple constructor 'None' of enum declaration
+ [36m==>[0m /workspace/work/widgets-small-implementation/source/tests/widgets_small/src/event_boundaries.cj:8:50:
+  [36m| [0m
+[36m8[0m [36m| [0m    let eventBox = Array<?UIKeyEvent>(1, repeat: None)[0m
+  [36m| [0m                                                 [31m^ [0m
+  [36m| [0m
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)text_wrap.cj:4:7:
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)text_wrap.cj:4:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+
+[31merror[0m: find multiple constructor 'None' of enum declaration
+  [36m==>[0m /workspace/work/widgets-small-implementation/source/tests/widgets_small/src/event_boundaries.cj:98:46:
+   [36m| [0m
+[36m98[0m [36m| [0m    let seen = Array<?UIKeyEvent>(1, repeat: None)[0m
+   [36m| [0m                                             [31m^ [0m
+   [36m| [0m
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)text_wrap.cj:4:7:
+[34mnote[0m: found candidate
+ [36m==>[0m (package cjtui.style)text_wrap.cj:4:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+[34mnote[0m: found candidate
+  [36m==>[0m (package std.core)option.cj:13:7:
+
+2 errors generated, 2 errors printed.
+Error: failed to compile package `widgets_small_contract`, return code is 1
+Error: cjpm build failed

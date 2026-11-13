@@ -1,0 +1,116 @@
+{
+  "task": 156,
+  "status": "FINITE_EXECUTION_COMPLETE_WITH_RECORDED_NATIVE_COVERAGE_LIMITS",
+  "fixed_source": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "report": "report.md",
+  "UTC": "2026-11-13T13:12:57.182482+00:00",
+  "phase_manifests": {
+    "raw/clean-example-build/phase-index.json": "2eeee7784208c7515e010065daadabc251fdef673867b38688ae51af9e0e7616",
+    "raw/clean-full-runner/phase-index.json": "c4214edf8622940c21e658be62d3208edf21bd1808cbc008e8f19247c5625c8e",
+    "raw/final-verification/phase-index.json": "704fe3e1d6df543c2c8e07d6d471ebbe258d031a58ef85ec5d26c51659407759",
+    "raw/gui-vte-example/phase-index.json": "02f62f708026beb80f492fa00d02d7e695393c6ab7612ddae031813f68b4ddee",
+    "raw/gui-vte-normal/phase-index.json": "88bc6e497507b401611ea3cb2631ecd530fa4c39ee56e541f1cc96efd7ffd3e3",
+    "raw/gui-xterm-example/phase-index.json": "0a5aa4abfb8c13849ff6177d42b811913b96b452848b41d95f1fef45f05de6bd",
+    "raw/gui-xterm-normal/phase-index.json": "5d1e60f63a6b50d208a816e70f89d162cb43cf333538b456e9bdafaebebe30a5",
+    "raw/host-vt-example/phase-index.json": "441f140623cb91dcf061e6283489567fded38f7bdb24138a457baa0d619578d1",
+    "raw/host-vt-normal/phase-index.json": "fbbe0d7f933f8ec28da0cbbcb539154c1a988b8550edfc251febbe9b5596ad73",
+    "raw/host-vte-example/phase-index.json": "7dc83e884d5fd0bd6d7acef7351525a620ef829dd30e0fd2c08a524971c21959",
+    "raw/host-vte-normal/phase-index.json": "e96c021e76b7459fd64808f312877b785f5ed741a51a8aa2fbf4ea478aa2986d",
+    "raw/host-xterm-example/phase-index.json": "00c4416494e580400e2555a2682fad8689da0a0a7de7a8e7ea91b32390216b7b",
+    "raw/host-xterm-normal/phase-index.json": "9b7ab9a03fc797af34db1386bf5dd93ded01161aff41e914775f5451205fe58e",
+    "raw/normal-build/phase-index.json": "6bd01f60c4ecda4714de21ad5f9fc7024a480dca5749ae4157ccdcffef188fd3",
+    "raw/normal-bundle/phase-index.json": "6694f28892c998757a99e4587302257b3df1910ff0efaea241543dde6ad4a0de",
+    "raw/package-audit/phase-index.json": "94a89b4b07a48af6938a78b5a3d237f962375e43fa823912914df83032bc3eaf",
+    "raw/package-audit-command/phase-index.json": "aab0ec86064193dd650fc90cf84785c6fa424e0463ff9be94379558d4d13eb4c",
+    "raw/package-consumer-bindings/phase-index.json": "dee335d9afa3c62f75a7380b70e8267964182ddb5535d58611df867e92216f42",
+    "raw/reuse/phase-index.json": "20aa809bc5c03021a479e4cdfb65a857ddf51b34e135fe6350853a2398270bfb",
+    "raw/source-bindings/phase-index.json": "a8313682d041dc85c04562f8e0649ea0659870a681f89f7b18f63175b04de26b",
+    "raw/vt-example/phase-index.json": "0efb365f6cb8f1469a75edd94967397ef608d942952965044472a961ea5c4ac1",
+    "raw/vt-normal/phase-index.json": "fd5302c19fb08679c0446ffe3367d572812b5ccfbe2213e16a39d3e33a312f97",
+    "raw/vt-pack/phase-index.json": "3ca482429d8102b7633dc237d9841e9e2a6abf0561a786ce250654d081d61233"
+  },
+  "files": {
+    "tools/gui.py": {
+      "bytes": 6482,
+      "sha256": "074255b0e48298ce7f21998567c74ee79bd164ba3dd6c6e26003ee7cdf0ff11f"
+    },
+    "tools/finalize.py": {
+      "bytes": 10618,
+      "sha256": "e5a0ae376f56fbdad800a5a6e92252002d4ad660747203dbf34ae3c3e08ce345"
+    },
+    "tools/audit.py": {
+      "bytes": 1566,
+      "sha256": "a0eb1eb2f348f84cec9b1463b9bba9f363a9f8404fbffca503e1f9cecafb36bb"
+    },
+    "tools/pack-vt.py": {
+      "bytes": 2124,
+      "sha256": "e68aaaf7d31c4e14a7262cb3f5852186602b6a77ebf1030558c8d305fac82aee"
+    },
+    "tools/phase.py": {
+      "bytes": 935,
+      "sha256": "76a7a4df0e2634ab8254143b2db5282ab7653d5958c52e1760c18b1f69a64467"
+    },
+    "tools/vt-supervisor.c": {
+      "bytes": 6239,
+      "sha256": "3950a87b10ba4e70915dc167dda729faeaac9dbf25ba5f33e8b9809d3641e371"
+    },
+    "tools/vt-init.sh": {
+      "bytes": 919,
+      "sha256": "af6b8a244272d2062b1cb2552ef433756d61858138393a5bf7fe9f7f5c7c17ba"
+    },
+    "tools/host-supervisor.py": {
+      "bytes": 1827,
+      "sha256": "25d0844bfc533041f05cb9deecf0cead64ee61961669aeade7d8e0047c1be725"
+    },
+    "tools/vt.py": {
+      "bytes": 8211,
+      "sha256": "51b2ec751d796d941eb346010f4684f587a4b616b014867e48ca4c58b55a22bf"
+    },
+    "tools/vt-supervisor": {
+      "bytes": 22216,
+      "sha256": "7f7d75bae0b110cba50d4b0e09b826c243eb72b1873bf8cec0408ced0159663b"
+    },
+    "tools/__pycache__/vt.cpython-312.pyc": {
+      "bytes": 20534,
+      "sha256": "21249a70cd505050dec4c8e8670f5602831e7ee5fff17c9d225f69c14e749a51"
+    },
+    "tools/__pycache__/gui.cpython-312.pyc": {
+      "bytes": 15399,
+      "sha256": "2aae545e4797b7d6961893dfebc1654366139c02c3112fb6d74d537e1ccd1d14"
+    },
+    "report.md": {
+      "bytes": 3186,
+      "sha256": "2d9fb8b5f2691f203b50da64c8ad7eceb172b1b4ba53a5b8098a4bf0d3e45c01"
+    },
+    "READY.md": {
+      "bytes": 1547,
+      "sha256": "ea7381db3bbc98626e67cfa8142488e0a2357347a66767a48ac4371fa41b3d4e"
+    },
+    "prepare.json": {
+      "bytes": 1683,
+      "sha256": "06cb1af7171e608fc6fd8d315b13a52a6e6f6144a7b94f09294c586db46ac510"
+    },
+    "env.sh": {
+      "bytes": 213,
+      "sha256": "e795d96ad8eedde1375251f5bdb94feb72db66712b66de35647abd2464d9f143"
+    },
+    "cangjie-repo.toml": {
+      "bytes": 133,
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+    },
+    "widgets-small-vt.cpio.gz": {
+      "bytes": 15971172,
+      "sha256": "2b028979f75f4999b2ae529218be589ec1804372ca640310e12d70a189620c1e"
+    },
+    "widgets-small-vt.cpio.members.json": {
+      "bytes": 8336,
+      "sha256": "8f4f1d6cf93b95c48c764526dbf33ad4a0218632c3ccb74da8389582d88912ec"
+    },
+    "source/target/cjtui-0.0.0.cjp": {
+      "bytes": 168024,
+      "sha256": "bdddec69975aca4d87766fe1cc26d6f1e97450e3189c63013838506858e445f6"
+    }
+  },
+  "acceptance_owner": 157,
+  "scope": "Finite S only; native ASCII evidence + separate headless/style/Unicode proofs; full Linux/M/027/041 not closed."
+}

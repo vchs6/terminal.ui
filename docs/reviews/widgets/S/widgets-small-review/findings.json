@@ -1,0 +1,98 @@
+{
+  "task": "TASK-155",
+  "round": 0,
+  "review_kind": "initial complete finite S spec and quality review",
+  "base": "5413dc768a93b3e3f172227161bc9d8545993508",
+  "head": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "canonical_contract_commit": "b3f20f3d1dca6e440bef654d80124df256586db9",
+  "independent_test_tree": "714a7fdf97d368574815cbf16e7430ac744f647c",
+  "spec_verdict": "PASS_WITHIN_TASK155_REVIEW_SCOPE",
+  "quality_verdict": "PASS_WITHIN_TASK155_REVIEW_SCOPE",
+  "findings": [],
+  "acceptance_review": [
+    {
+      "id": "S01",
+      "verdict": "PASS source review; bundle execution remains TASK156",
+      "condition": "Exact five factory overloads, plain Component roots, raw blocks and chains, inherited capability errors",
+      "evidence": [
+        "src/{label,button,checkbox,radio,progress}.cj: full new files",
+        "src/component.cj:428-438 and src/canvas.cj:3-9 each attach one primitive root",
+        "tests/widgets_small/src/construction_cases.cj: constructionCases and strict expectLegacyPropertyError",
+        "negative-checkbox.log and negative-radio.log: Bool cannot convert to () -> Bool",
+        "normal runner exit0 and independent test-tree equality"
+      ],
+      "reason": "Constant overloads delegate to getter overloads; optional labels and callbacks match W001; no Bool-state overload, wrapper, kind or private-node dependency. Existing constant errors are preserved by unchanged primitive methods; typed/getter/Inline and Canvas wrap remain exact InvalidProperty."
+    },
+    {
+      "id": "S02",
+      "verdict": "PASS source and supplied normal evidence review",
+      "condition": "Qualified Target action, modifier exclusion, prevention order, controlled latest-value request once",
+      "evidence": [
+        "src/widget_activation.cj:3-12",
+        "src/button.cj:7-14",
+        "src/checkbox.cj:17-23",
+        "src/radio.cj:17-25",
+        "src/application.cj:374-482; src/node_ref.cj:34-37; src/component.cj:235-239",
+        "tests/widgets_small/src/{event_cases,event_boundaries}.cj",
+        "pty-tool-fixed/normal/{metadata.json,input.raw,summary}"
+      ],
+      "reason": "Public dispatch rejects hidden/disabled/out-of-domain targets and snapshots the route; defaultAction defaults to Target and runs after capture/bubble/app/legacy only if not prevented. isFocused is actual session focus. All modifier bits excluded; only enter or exact text space accepted. Prevention precedes callbacks and checked/selected reads. Checkbox reads once and requests once without write; Radio reads once and consumes already-selected activation. Same-slot override documented; tests commit focus before positive cases."
+    },
+    {
+      "id": "S03",
+      "verdict": "PASS source and supplied normal evidence review",
+      "condition": "Latest plain Unicode captions, logical newline rejection, theme and I012 visual-state projection",
+      "evidence": [
+        "src/widget_caption.cj:3-21",
+        "src/{label,button,checkbox,radio}.cj",
+        "tests/widgets_small/src/{caption_matrix,theme_cases}.cj",
+        "docs/product/widgets.md:5-13"
+      ],
+      "reason": "Shared public validatePlainText plus logical-line validation; all width, wrapping, and whole-cluster clipping delegated to Text. ASCII marker formatting is exact; no explicit false style fields or forced wrap. Checkbox/Radio declare selected only, leaving real disabled/focus to upstream resolver. Explicit full style palettes and constructor theme initialization preserve strict fixture oracles; simulation, overrides, and detached/mounted cases remain observable."
+    },
+    {
+      "id": "S04",
+      "verdict": "PASS source and supplied normal evidence review",
+      "condition": "Finite fraction validation, constrained natural content size, paint-only dependency, exact bar and viewport geometry",
+      "evidence": [
+        "src/progress.cj:8-28",
+        "src/canvas.cj:6-7; src/layout_node.cj:58-69,143-148; src/layout.cj:109-156; src/paint_context.cj:35-57",
+        "tests/widgets_small/src/{main,progress_geometry}.cj"
+      ],
+      "reason": "Measure closure only constrains Size(20,1), with no fraction call; fraction belongs only to draw binding. Draw validates NaN/infinity/range before any dimension early exit. Valid nonnegative value multiplication followed by integer conversion gives floor; -0 remains zero. Only first row is written using public put/defaultStyle. Context logical width determines fraction scale; existing Canvas origin/clip applies scroll offset once. Exact independent bars, zero extents, themed dimensions/padding and viewport offset8 assertions support the source proof; subscription count is not used alone to infer phase."
+    },
+    {
+      "id": "S05",
+      "verdict": "PASS source and supplied normal evidence review",
+      "condition": "Callback/getter errors preserve sentinel, teardown resources and generations, shared business state and native restoration",
+      "evidence": [
+        "tests/widgets_small/src/{lifecycle_cases,remount_cases}.cj",
+        "tests/widgets_small/device/src/main.cj",
+        "tests/widgets_small/pty.py",
+        "pty-tool-fixed/{normal,callback-failure,getter-failure}/{metadata.json,summary,output.raw}",
+        "src/{button,checkbox,radio,progress,widget_caption}.cj: no catch or alternate lifecycle"
+      ],
+      "reason": "Controls add no independent lifetime resources or business writes. Real public callbacks/getters fail through original runtime. Independent tests assert cleanup once, stale refs, owner-post generation discard, worker handshake and shared model. Actual PTY exits0/21/22 carry original sentinel, cleanup1 and resources0/0/0/0; stty is identical before/after and native paste setup/teardown each occur once."
+    }
+  ],
+  "quality_review": {
+    "necessity": "Five requested public factories and two cohesive internal pure-function files only; no redundant state, renderer, Unicode implementation, or new abstraction. No previous widget path to retire. No new class/struct/interface/enum violates one-entity-per-file.",
+    "fixture_corrections": "Typed None resolves language ambiguity; LEGACY-PROP-001 preserves exact separate exception oracles; complete false palettes make expected Style explicit; initial themes use constructor; zero-width two-row frame retains newline; positive focus is committed in batch; os.openpty avoids local pty.py shadow. No synthetic exception success or weakened catch-all property assertion introduced.",
+    "documentation": "Public guide specifies controlled values, single logical captions with ordinary wrapping, defaultAction/visualStates replacement, error boundaries, initial theme construction and out-of-S StatusBar composition. Public example uses ordinary raw blocks and application-owned Observables.",
+    "lint": "Actual source JSON contains 780 SUGGESTIONS, 0 ERROR, 0 MANDATORY; 13 suggestions in 7 new source files and 767 baseline suggestions. Suggestions are not a defect-free-lint claim."
+  },
+  "evidence_reuse": {
+    "policy": "AGENTS 11.1; same fixed source/test/config facts supplied by ROOT. No cold runtime, lint, or compiler reruns.",
+    "integrity": "round-0/verification.json: candidate HEAD, exact canonical test tree, all 36 supplied raw evidence hashes checked. Immutable input package and raw index preserved.",
+    "normal_runner": "Recorded normal run exit0 includes prerequisite, direct headless, three actual PTY modes and two independently rejected Bool constructors.",
+    "example": "Recorded public example build exit0 and SDK-configured PTY q smoke exit0; prior setup127 remains historical and is not product failure evidence.",
+    "scope": "No normal-bundle/clean consumer or three actual terminal hosts asserted here; TASK156 must supply those required execution facts."
+  },
+  "remaining_gates": [
+    "TASK156 independent normal/bundle/clean and actual-host execution evidence",
+    "TASK157 independent S acceptance",
+    "M158 waits S157/full027; Linux M2 and TASK023/TASK024 remain open",
+    "B-M01 final024 and T087-G01 final023 not closed by this review"
+  ],
+  "workflow": "Report through ROOT only. No product/test/spec/main mutations, author reports, author reasoning, role contact, or subagents. Subsequent rounds limited to previous reviewed HEAD..new HEAD and affected findings, at most five."
+}

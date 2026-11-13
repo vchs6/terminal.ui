@@ -32,7 +32,7 @@
 | AC-026 | REQ-008 | 应用主动主题重载与原子替换 | TASK-026 | 有效重载同批次生效；失败保留旧主题，旧请求不覆盖较新请求，状态/焦点保留；当前 Component/NodeRef/Observable 状态范围，完整焦点/编辑控件后续汇合 | passed（当前异步范围；[独立验收](reviews/R15/theme-loading/acceptance/report.md)） |
 | AC-027 | REQ-008、REQ-006 | 四套预置主题及统一组件展示 | TASK-027 | 深/浅/高对比/经典主题用同一展示应用，覆盖组件状态、受限色和窄屏；制品独立运行；产品证据待实现 | pending |
 | AC-028 | REQ-001.8、REQ-009 | 基础输入编辑与标准快捷操作 | TASK-028 | 单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交；E001–E005有限编辑已获122 PASS_FINITE_E，见[E原件](reviews/E/README.md)；父级完整汇合保留 | finite_passed（完整父AC pending） |
-| AC-029 | REQ-001.8、REQ-009 | 按钮标签与选择进度基础组件 | TASK-029 | 标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致；产品证据待实现 | pending |
+| AC-029 | REQ-001.8、REQ-009 | 按钮标签与选择进度基础组件 | TASK-029 | 标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致；[独立157接受五控件S01–S05](reviews/widgets/S/widgets-small-acceptance/acceptance.md)；027/041全状态/Unicode/四主题展示另汇合 | passed（有限S语义范围） |
 | AC-030 | REQ-010 | 可选会话能力与本地剪贴板通道 | TASK-030 | SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心；产品证据待实现 | pending |
 | AC-031 | REQ-004.8 | M2局部布局绘制及基线对照 | TASK-031 | 局部负载减少无关工作，移动/遮挡/宽字符/resize与M1帧结果一致，记录CPU/分配/输出及大范围退化；产品证据待实现 | pending |
 | AC-032 | REQ-001.9、REQ-002.7/.8 | 混合子元素操作与定向通知集成 | TASK-032 | 声明A/B/C中插X融合排序位置；显式移动/移除、无效锚点/卸载/重入操作有诊断；定向通知合批无手动flush；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
@@ -239,11 +239,11 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-153 | REQ-001/003/004/007 | TASK-153 | 独立受控状态/事件/样式/边界golden | passed（测试5413dc76/类型修正fe9f66fc；前置build/direct0、五个真实缺工厂API RED1；完整行为/PTY/包消费仍待154–157） |
-| AC-154 | REQ-001/003/004/007 | TASK-154 | 公共Label/Button/Checkbox/Radio/Progress实现 | passed（固定候选1df1325f；完整开发runner0、155源码双审通过；独立制品/宿主/有限验收仍待156–157） |
-| AC-155 | REQ-001/003/004/007 | TASK-155 | 基础控件独立双审 | passed（1df1325f；独立spec/quality PASS，0具体可达缺陷；不替代156/157） |
-| AC-156 | REQ-001/003/004/007 | TASK-156 | 基础控件独立真实终端及包消费 | in_progress（固定1df1325f，独立执行未交付） |
-| AC-157 | REQ-001/003/004/007 | TASK-157 | 原029完整证据和metadata | pending |
+| AC-153 | REQ-001/003/004/007 | TASK-153 | 独立受控状态/事件/样式/边界golden | passed（正式测试及7项修正冻结；前置build/direct0与五项真实缺API RED原件见[S归档](reviews/widgets/S/README.md)） |
+| AC-154 | REQ-001/003/004/007 | TASK-154 | 公共Label/Button/Checkbox/Radio/Progress实现 | passed（接受源1df1325f/main85998ead；五公共控件实现；[作者证明独立列示](reviews/widgets/S/README.md)） |
+| AC-155 | REQ-001/003/004/007 | TASK-155 | 基础控件独立双审 | passed（独立spec/quality PASS，0具体缺陷；[原件](reviews/widgets/S/widgets-small-review/report.md)） |
+| AC-156 | REQ-001/003/004/007 | TASK-156 | 基础控件独立真实终端及包消费 | passed（普通build/bundle、干净消费、3PTY及6真实宿主运行；ASCII/default Classic native范围，见[S归档](reviews/widgets/S/README.md)） |
+| AC-157 | REQ-001/003/004/007 | TASK-157 | 原029完整证据和metadata | passed（[独立PASS_FINITE_S](reviews/widgets/S/widgets-small-acceptance/acceptance.md)，S01–S05通过；完整Linux/M及027/041展示另汇合） |
 | AC-158 | REQ-001/003/004/007 | TASK-158 | 独立菜单/状态/分区/层组合golden | pending |
 | AC-159 | REQ-001/003/004/007 | TASK-159 | 公共菜单/状态条/SplitPane实现 | pending |
 | AC-160 | REQ-001/003/004/007 | TASK-160 | 菜单组合独立双审 | pending |

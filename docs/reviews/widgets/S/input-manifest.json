@@ -2,17 +2,17 @@
   "schema": 1,
   "unit": "S",
   "task": 153,
-  "status": "154_155_COMPLETE_156_IN_PROGRESS",
+  "status": "153_157_COMPLETE_PASS_FINITE_S_M158_NEXT_NOT_DELIVERED",
   "product_implementation_ready": true,
-  "product_source": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
-  "code_equivalent_main": "294586e4f66f7fff7553a79bd80ae162dd9a9189",
+  "product_source": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "code_equivalent_main": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
   "preflight_examined_revision": "b71cb2ebd740a22eba3759abd35b9b0fff068bdd",
   "preflight": {
     "index": "admission/index.json",
     "sha256": "94a8d30895c30eb2f8681c0455b54f523145ff7c99d7d86e81425a313152ab79",
     "dq": "admission/dq.md",
     "sdd_table": "admission/sdd-preflight.md",
-    "root_ruling": "Read all14DQ/10self/45pair rows; no unresolved conflicts. Root adopts unchangedW001–W007/W006-S; product154/159 shared helpers/exports/guide strictly serial afterS157. S154 waits actual153; M158 waitsS157."
+    "root_ruling": "Read all14DQ/10self/45pair rows; no unresolved conflicts. Root adopts unchangedW001\u2013W007/W006-S; product154/159 shared helpers/exports/guide strictly serial afterS157. S154 waits actual153; M158 waitsS157."
   },
   "frozen_contracts": [
     {
@@ -28,7 +28,7 @@
       "sha256": "f427d1f89df03c7aef5dd5b474091181fcb04d9837bbaa1541a019b6bc76e23a"
     }
   ],
-  "status_delta_only": "Current design/tasks/proposal admission notes supersede historical warnings; signatures, semantics, budgets and ownership unchanged from reviewed source.",
+  "status_delta_only": "Final finite S status supersedes historical admission warnings; original input provenance and frozen contract hashes retained; prior manifest preserved byte-for-byte.",
   "accepted_upstream": [
     {
       "id": "U080",
@@ -368,7 +368,7 @@
           "git_blob": "2d58ad7ba64230dfe87f0a11267b8a8f0ef77349"
         }
       ],
-      "scope": "PASS_FINITE_UNIT_A A01–A06; public Canvas/defaultAction/focus/application and unified real disabled/focused composition. Current layout.cj Canvas draw path includes zero/empty clip; future S04 must assert target behavior.",
+      "scope": "PASS_FINITE_UNIT_A A01\u2013A06; public Canvas/defaultAction/focus/application and unified real disabled/focused composition. Current layout.cj Canvas draw path includes zero/empty clip; future S04 must assert target behavior.",
       "current_source_basis": "Current main is byte-equal to later accepted E22ca product/tests/examples scopes; historical inputs are not falsely claimed individually byte-equal after accepted later changes."
     },
     {
@@ -792,7 +792,7 @@
       "path": "/workspace/work/widgets-small-tests/typing-fix/evidence/index.json",
       "sha256": "e0db917d96e3e7cfd53b9efd463fe97363192f02ff0b308f91deb32cf4e57536"
     },
-    "results": "Actual prerequisite normal build/direct0; five isolated compiler1 each solely missing own factory; parser/tools0. Typing correction changes only two explicit Option<UIKeyEvent>.None; oracles unchanged. Target behavior/PTY/Bool rejection/clean bundle pending154–157.",
+    "results": "Actual prerequisite normal build/direct0; five isolated compiler1 each solely missing own factory; parser/tools0. Typing correction changes only two explicit Option<UIKeyEvent>.None; oracles unchanged. Target behavior/PTY/Bool rejection/clean bundle pending154\u2013157.",
     "final_test_commit": "b3f20f3d1dca6e440bef654d80124df256586db9",
     "test_tree": "714a7fdf97d368574815cbf16e7430ac744f647c"
   },
@@ -811,5 +811,15 @@
     "spec": "PASS_WITHIN_TASK155_REVIEW_SCOPE",
     "quality": "PASS_WITHIN_TASK155_REVIEW_SCOPE",
     "findings": 0
-  }
+  },
+  "accepted_source": "1df1325f7b51777d8adab62f950c936051aa5876",
+  "main_product_head": "85998ead2b53cb8e6a6ab8c69e5e3efb8739411f",
+  "final_acceptance": {
+    "path": "widgets-small-acceptance/index.json",
+    "sha256": "6358811fc9e1eaa31c2258facc4a3e06f1b5bf6c47dc306f12b6fad90154662c",
+    "verdict": "PASS_FINITE_S"
+  },
+  "final_alias_map": "controller/main-map.json",
+  "prior_manifest": "controller/history/input-manifest-before-final.json",
+  "next_work": "M158 independent formal tests and actual prerequisite RED remain uncompleted; M159\u2013162 not delivered"
 }

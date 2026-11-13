@@ -1,6 +1,6 @@
 # 标准控件公开组合候选
 
-状态：required；2026-11-13 W001–W007/W006-S已冻结，历史SDK形状验证和独立增量preflight已核验，实际S公共前置已接受。153测试已冻结5413dc76，基础消费者build/direct0及五个真实缺工厂API RED1；fe9f66fc仅两处Option类型限定修正。154独立实现in_progress，M158待S157。标准控件产品/行为/宿主验收仍pending；[最终S输入清单](../../../docs/reviews/widgets/S/input-manifest.json)记录当前准入，不把起草或签名编译当产品完成。
+状态：有限S已交付；2026-11-13。S01–S05的TASK153–157已完成：独立157为PASS_FINITE_S（spec/quality/evidence PASS），接受源1df1325f7b51777d8adab62f950c936051aa5876对应main 85998ead2b53cb8e6a6ab8c69e5e3efb8739411f；源码/native/构建/包配置/examples/tests/控件产品文档逐字节一致。[有限S原件与真实宿主图](../../../docs/reviews/widgets/S/README.md)。五个公开控件Label/Button/Checkbox/Radio/Progress已交付；155独立双审0具体缺陷，156普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付。M158为下一项正式独立测试工作，尚未冻结测试或取得实际前置RED；158–162均未交付。新native S只覆盖ASCII/default Classic；Unicode/disabled/explicit palette是headless S/source155及限定E后端机制复用，完整all-state/Unicode/four-theme展示仍属027/041。完整Linux/M/M1M2/父019/020/030/发布未关闭，B-M01→024、T087→023保留。
 
 ## Why
 
@@ -10,7 +10,7 @@ REQ-001.8、REQ-003 与原 TASK-019/029 已要求标准控件。Runtime C、Rich
 
 - 单元 S（153–157，父 TASK-029）：Label、Button、Checkbox、Radio、Progress；受控 getter 和请求回调、精确非法输入、ASCII 默认标记、主题角色与公共事件阶段。
 - 单元 M（158–162，父 TASK-019）：MenuEntry、HorizontalMenu、PopupMenu、StatusBar；附同批公共 SplitPane 薄组合，关联 TASK-011/REQ-003.1，不篡改原 TASK-019 范围。
-- 每单元固定测试编写→产品→审核→测试执行→验收五个独立角色，输入按 hash 固定。新增签名全部未编译；前置未验收时不 ready。
+- 每单元固定测试编写→产品→审核→测试执行→验收五个独立角色，输入按 hash 固定。S签名已编译并有限验收；M正式测试/实现未交付，前置未核验时不 ready。
 
 ## Capabilities
 

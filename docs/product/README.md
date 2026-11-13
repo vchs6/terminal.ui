@@ -64,3 +64,5 @@ cjpm run
 `AnsiTextDecoder` 显式将有界 ANSI 输入转换为安全文本及诊断，普通 String 入口仍严格
 拒绝控制字符。整篇字符簇、布局、绑定与 Frame 路径共享，组件显式属性逐字段覆盖 span。
 API、样式优先级、限制及错误见[富文本说明](rich-text.md)，示例见 `examples/rich-text`。
+
+Label/Button/Checkbox/Radio/Progress用法见[基础控件](widgets.md)，证据见[有限S归档](../reviews/widgets/S/README.md)；新native覆盖ASCII/default Classic，完整展示027/041另汇合。
