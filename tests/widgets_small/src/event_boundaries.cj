@@ -87,7 +87,8 @@ func duplicateRadioLabels(): Unit {
     // Selection writes schedule visual evaluation at the boundary, so exact default
     // getter-read count is measured with a separate non-writing callback below.
     assertEvent(requests[0] == 1 && requests[1] == 0 && selected.get() == "a", "same captions preserve application IDs")
-    children[1].requestFocus()
+    app.batch({ => children[1].requestFocus() })
+    assertEvent(children[1].isFocused(), "second Radio focused before positive activation")
     app.dispatch(children[1], KeyEvent("text", text: " "))
     assertEvent(requests[0] == 1 && requests[1] == 1 && selected.get() == "b", "application alone groups radios")
     equal(app.snapshot(8, 2).toPlainText(), "( ) same\n(*) same", "duplicate label exact controlled frames")
