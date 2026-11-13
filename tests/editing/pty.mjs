@@ -1,11 +1,19 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 
 // Transport self-test only. The product PTY scenarios in recipes.md wait for
 // the real Application.run binary and fixed keyboard/session prerequisites.
 if (!process.argv.includes('--selftest')) {
-  throw new Error('TASK118 PTY product adapter pending upstream; use --selftest');
+  const [binary, output, shim] = process.argv.slice(2);
+  assert(binary && output && shim, 'usage: pty.mjs BINARY UNIQUE_OUTPUT INPUT_SHIM');
+  const driver = join(dirname(fileURLToPath(import.meta.url)), 'fixtures/product_pty.py');
+  const result = spawnSync('python3', [driver, '--binary', binary, '--output', output, '--shim', shim],
+    { stdio: 'inherit', env: process.env });
+  if (result.error) throw result.error;
+  process.exit(result.status ?? 1);
 }
 assert.equal(spawnSync('script', ['--version']).status, 0);
 assert.equal(spawnSync('stty', ['--version']).status, 0);

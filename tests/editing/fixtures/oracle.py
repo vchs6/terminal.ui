@@ -42,6 +42,10 @@ CUT_POLICY = {
     "Unsupported": ("retain", "ClipboardUnavailable"),
     "Unknown": ("retain", "ClipboardUnavailable"),
     "Failed": ("retain", "ClipboardUnavailable"),
+    "SentUnconfirmed and source changed": ("retain", "CutUnconfirmed"),
+    "Unsupported and source changed": ("retain", "ClipboardUnavailable"),
+    "Unknown and source changed": ("retain", "ClipboardUnavailable"),
+    "Failed and source changed": ("retain", "ClipboardUnavailable"),
 }
 
 def main() -> None:

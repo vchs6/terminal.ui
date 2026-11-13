@@ -8,16 +8,16 @@ func validationAndHistory(): Unit {
     let ctl = TextEditController()
     let changes = ArrayList<String>()
     let issues = ArrayList<TextEditIssue>()
-    var submits = 0
+    let submits = Box<Int64>(0)
     let root = TextInput(value, controller: Some(ctl),
         limits: TextEditLimits(maxTextBytes: 6, maxUndoEntries: 2, maxUndoBytes: 24),
         onChange: { text => changes.add(text) },
-        onSubmit: { _ => submits++ },
+        onSubmit: { _ => submits.value++ },
         onIssue: { issue => issues.add(issue) })
     let app = Application(root)
     app.startHeadless()
     try {
-        ctl.select(TextSelection(2, 2))
+        ui(app, { => ctl.select(TextSelection(2, 2)) })
         key(app, root, "paste", text: "x\ny")
         state(ctl, "ab", 2, 2, false, false, "single line LF paste rejected atomically")
         check(issues.size == 1 && issues[0] == TextEditIssue.MultilinePasteRejected,
@@ -34,30 +34,30 @@ func validationAndHistory(): Unit {
         state(ctl, "ab", 2, 2, false, false, "overlimit paste rejected atomically")
         check(issues.size == 4 && issues[3] == TextEditIssue.InputTooLarge,
             "one size issue")
-        illegal({ => ctl.replaceSelection("\u{1b}"); () })
+        ui(app, { => illegal({ => ctl.replaceSelection("\u{1b}"); () }) })
         state(ctl, "ab", 2, 2, false, false, "bad program edit no side effects")
-        check(changes.size == 0 && submits == 0, "all rejects have no onChange/onSubmit")
+        check(changes.size == 0 && submits.value == 0, "all rejects have no onChange/onSubmit")
 
-        check(ctl.replaceSelection("c"), "first transaction")
+        check(ui(app, { => ctl.replaceSelection("c") }), "first transaction")
         state(ctl, "abc", 3, 3, true, false, "first transaction result")
-        check(ctl.replaceSelection("d"), "second transaction")
-        check(ctl.replaceSelection("e"), "third transaction")
+        check(ui(app, { => ctl.replaceSelection("d") }), "second transaction")
+        check(ui(app, { => ctl.replaceSelection("e") }), "third transaction")
         state(ctl, "abcde", 5, 5, true, false, "three transactions")
-        check(ctl.undo(), "undo newest")
+        check(ui(app, { => ctl.undo() }), "undo newest")
         state(ctl, "abcd", 4, 4, true, true, "undo e")
-        check(ctl.undo(), "undo second")
+        check(ui(app, { => ctl.undo() }), "undo second")
         state(ctl, "abc", 3, 3, false, true, "oldest evicted by entry budget")
-        check(!ctl.undo(), "third undo unavailable")
-        check(ctl.redo(), "redo second")
+        check(!ui(app, { => ctl.undo() }), "third undo unavailable")
+        check(ui(app, { => ctl.redo() }), "redo second")
         state(ctl, "abcd", 4, 4, true, true, "redo d")
-        ctl.selectAll()
+        ui(app, { => ctl.selectAll() })
         let before = ctl.snapshot()
-        check(!ctl.replaceSelection("abcd"), "same-text selection collapse is a no-op textwise")
+        check(!ui(app, { => ctl.replaceSelection("abcd") }), "same-text selection collapse is a no-op textwise")
         state(ctl, "abcd", 4, 4, true, true, "redo retained on same-text collapse")
         check(ctl.snapshot().revision == before.revision &&
             ctl.snapshot().selectionRevision == before.selectionRevision + 1,
             "same-text collapse only selection revision")
-        check(ctl.redo(), "redo e after selection collapse")
+        check(ui(app, { => ctl.redo() }), "redo e after selection collapse")
         state(ctl, "abcde", 5, 5, true, false, "redo after collapse")
 
         let rev = ctl.snapshot().revision
@@ -74,12 +74,12 @@ func validationAndHistory(): Unit {
     let session = Application(area)
     session.startHeadless()
     try {
-        edit.select(TextSelection(1,1))
+        ui(session, { => edit.select(TextSelection(1,1)) })
         key(session, area, "paste", text: "\r\nB\rC")
         state(edit, "A\nB\nC", 5, 5, true, false, "CRLF and CR normalize to LF")
-        check(edit.undo(), "whole paste one undo")
+        check(ui(session, { => edit.undo() }), "whole paste one undo")
         state(edit, "A", 1, 1, false, true, "one undo restores text and selection")
-        check(edit.redo(), "whole paste one redo")
+        check(ui(session, { => edit.redo() }), "whole paste one redo")
         state(edit, "A\nB\nC", 5, 5, true, false, "redo restores normalized paste")
     } finally { session.dispose() }
 
@@ -91,9 +91,9 @@ func validationAndHistory(): Unit {
     try {
         for (i in 0..129) { key(countApp, countRoot, "text", text: "x") }
         check(bounded.snapshot().text.size == 129, "129 one-byte transactions")
-        for (i in 0..128) { check(bounded.undo(), "each of 128 entries retained") }
+        for (i in 0..128) { check(ui(countApp, { => bounded.undo() }), "each of 128 entries retained") }
         state(bounded, "x", 1, 1, false, true, "oldest of 129 entries evicted")
-        check(!bounded.undo(), "default 128-entry budget exact boundary")
+        check(!ui(countApp, { => bounded.undo() }), "default 128-entry budget exact boundary")
     } finally { countApp.dispose() }
 
     var million = "x"
@@ -106,8 +106,8 @@ func validationAndHistory(): Unit {
     let byteApp = Application(byteRoot)
     byteApp.startHeadless()
     try {
-        byteCtl.select(TextSelection(1048576, 1048576))
-        check(byteCtl.replaceSelection("y"), "over-budget history cannot truncate accepted text")
+        ui(byteApp, { => byteCtl.select(TextSelection(1048576, 1048576)) })
+        check(ui(byteApp, { => byteCtl.replaceSelection("y") }), "over-budget history cannot truncate accepted text")
         check(byteValue.get().size == 1048577 && !byteCtl.snapshot().canUndo,
             "2MiB before+after history budget rejects whole record only")
     } finally { byteApp.dispose() }

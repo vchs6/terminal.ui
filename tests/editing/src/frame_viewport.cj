@@ -15,7 +15,7 @@ func frameAndViewport(): Unit {
         check(full.toPlainText() == "A中B", "full CJK frame exact text")
         check(full.cellAt(1,0).grapheme == "中" && full.cellAt(1,0).width == 2 &&
             full.cellAt(2,0).continuation, "full wide cluster owns two cells")
-        ctl.select(TextSelection(1,2))
+        ui(app, { => ctl.select(TextSelection(1,2)) })
         let selected = app.snapshot(4,1)
         check(selected.cellAt(1,0).style == selected.cellAt(2,0).style,
             "selected wide cluster has one style")

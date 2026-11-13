@@ -11,7 +11,7 @@ func keyboardDefaults(): Unit {
     let app = Application(area)
     app.startHeadless()
     try {
-        ctl.select(TextSelection(1,1))
+        ui(app, { => ctl.select(TextSelection(1,1)) })
         key(app, area, "end")
         state(ctl, "ab\n中x\nyz", 2, 2, false, false, "line end")
         key(app, area, "down")
@@ -45,33 +45,36 @@ func keyboardDefaults(): Unit {
 
     let input = Observable<String>("hi")
     let editor = TextEditController()
-    var submits = 0
+    let submits = Box<Int64>(0)
     let single = TextInput(input, controller: Some(editor), onSubmit: { text =>
-        check(text == "hi", "submit sees stable text"); submits++
+        check(text == "hi", "submit sees stable text"); submits.value++
     })
     let singleApp = Application(single)
     singleApp.startHeadless()
     try {
         key(singleApp, single, "enter")
-        check(submits == 1 && input.get() == "hi" && !editor.snapshot().canUndo,
-            "single Enter submits once without edit")
+        check(submits.value == 1 && input.get() == "hi" && !editor.snapshot().canUndo,
+            "single Enter submits.value once without edit")
     } finally { singleApp.dispose() }
 }
 
 func eventPhaseDefaults(): Unit {
     let value = Observable<String>("")
     let ctl = TextEditController()
-    var mode = "prevent"
-    let root = TextInput(value, controller: Some(ctl)).onKey({ event =>
-        if (mode == "prevent") { event.preventDefault() }
-        if (mode == "stop") { event.stopPropagation() }
+    let mode = Box<String>("prevent")
+    let submits = Box<Int64>(0)
+    let root = TextInput(value, controller: Some(ctl), onSubmit: {_ => submits.value++}).onKey({ event =>
+        if (mode.value == "prevent") { event.preventDefault() }
+        if (mode.value == "stop") { event.stopPropagation() }
     })
     let app = Application(root)
     app.startHeadless()
     try {
         key(app, root, "text", text: "a")
+        key(app, root, "enter")
         state(ctl, "", 0, 0, false, false, "preventDefault suppresses target edit")
-        mode = "stop"
+        check(submits.value == 0, "preventDefault suppresses submit")
+        mode.value = "stop"
         key(app, root, "text", text: "b")
         state(ctl, "b", 1, 1, true, false, "stopPropagation still allows target default")
     } finally { app.dispose() }

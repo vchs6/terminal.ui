@@ -1,0 +1,45 @@
+package editing_contract
+import cjtui.*
+
+// Catches display-column ties, stale preferred columns and shortcuts leaking to ancestor defaults.
+func keyboardMatrix(): Unit {
+    let c = TextEditController(); let root = TextArea(Observable<String>("ab\n中x\ny\n1234"), controller: Some(c))
+    let app = Application(root, theme: plainTheme()); app.startHeadless()
+    try {
+        app.snapshot(5, 3)
+        ui(app, { => c.select(TextSelection(1, 1)) })
+        key(app, root, "down")
+        state(c, "ab\n中x\ny\n1234", 3, 3, false, false, "column1 ties 0 and2 chooses smaller0")
+        key(app, root, "down", shift: true)
+        state(c, "ab\n中x\ny\n1234", 3, 7, false, false, "preferred column1 survives wide tie")
+        key(app, root, "down", shift: true)
+        state(c, "ab\n中x\ny\n1234", 3, 9, false, false, "preferred column1 third line")
+        key(app, root, "home", shift: true)
+        state(c, "ab\n中x\ny\n1234", 3, 8, false, false, "ShiftHome line start")
+        key(app, root, "end", shift: true)
+        state(c, "ab\n中x\ny\n1234", 3, 12, false, false, "ShiftEnd line end")
+        key(app, root, "home", ctrl: true, shift: true)
+        state(c, "ab\n中x\ny\n1234", 3, 0, false, false, "CtrlShiftHome whole start")
+        key(app, root, "right")
+        state(c, "ab\n中x\ny\n1234", 3, 3, false, false, "right collapses high end")
+        key(app, root, "right")
+        key(app, root, "down")
+        state(c, "ab\n中x\ny\n1234", 7, 7, false, false, "horizontal reset preferred to2 then clamp short line")
+        key(app, root, "down")
+        state(c, "ab\n中x\ny\n1234", 10, 10, false, false, "preferred2 persists through short line")
+        key(app, root, "home", ctrl: true)
+        key(app, root, "pagedown", shift: true)
+        state(c, "ab\n中x\ny\n1234", 0, 6, false, false, "PageDown viewport3 moves2 logical lines")
+        key(app, root, "pageup")
+        state(c, "ab\n中x\ny\n1234", 0, 0, false, false, "PageUp returns two lines")
+        key(app, root, "backspace")
+        state(c, "ab\n中x\ny\n1234", 0, 0, false, false, "backspace at start no history")
+        key(app, root, "end", ctrl: true); key(app, root, "delete")
+        state(c, "ab\n中x\ny\n1234", 12, 12, false, false, "delete at end no history")
+        key(app, root, "enter")
+        state(c, "ab\n中x\ny\n1234\n", 13, 13, true, false, "area Enter one LF transaction")
+        check(ui(app, { => c.undo() }), "Enter one undo")
+        key(app, root, "text", text: "Z")
+        check(!c.snapshot().canRedo, "new edit clears redo")
+    } finally { app.dispose() }
+}

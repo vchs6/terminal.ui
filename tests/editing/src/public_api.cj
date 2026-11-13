@@ -35,32 +35,39 @@ func publicConstructors(): Unit {
             "first mount zero state")
         check(changes.size == 0 && submits.size == 0 && issues.size == 0,
             "mount has no notifications")
-        illegal({ => controller.select(TextSelection(0, 6)) })
+        ui(app, { => illegal({ => controller.select(TextSelection(0, 6)) }) })
         state(controller, "first", 0, 0, false, false, "invalid selection atomic")
-        controller.selectAll()
+        ui(app, { => controller.selectAll() })
         state(controller, "first", 0, 5, false, false, "select all")
         let r = controller.snapshot().selectionRevision
-        controller.selectAll()
+        ui(app, { => controller.selectAll() })
         check(controller.snapshot().selectionRevision == r, "idempotent selection revision")
-        check(controller.replaceSelection("first") == false, "same-text replacement false")
+        check(ui(app, { => controller.replaceSelection("first") }) == false, "same-text replacement false")
         state(controller, "first", 5, 5, false, false, "same-text replacement collapses")
         check(controller.snapshot().revision == 0 && controller.snapshot().selectionRevision == r + 1,
             "same-text collapse changes only selection revision")
         check(changes.size == 0, "no text notification for same text")
         let guard = controller.snapshot()
-        check(!controller.replaceSelection("X", ifUnchanged: Some(s)), "stale selection guard")
+        check(!ui(app, { => controller.replaceSelection("X", ifUnchanged: Some(s)) }), "stale selection guard")
         state(controller, "first", 5, 5, false, false, "guard false atomic")
-        check(controller.replaceSelection("!", ifUnchanged: Some(guard)), "current guard succeeds")
+        check(ui(app, { => controller.replaceSelection("!", ifUnchanged: Some(guard)) }), "current guard succeeds")
         state(controller, "first!", 6, 6, true, false, "guarded edit")
         check(changes.size == 1 && changes[0] == "first!", "one change after commit")
+        check(s.text == "first" && s.selection == TextSelection(0, 0) && s.revision == 0 && !s.canUndo,
+            "saved snapshot is immutable committed copy")
     } finally { app.dispose() }
     check(!controller.isValid(), "unmounted invalid")
     errorCode("StaleReference", { => controller.undo(); () })
 
     // Each factory is a normal public consumer even without a controller.
-    let passive = TextArea(Observable<String>("a\nb"))
+    let passiveValue = Observable<String>("a\nb")
+    let passive = TextArea(passiveValue)
     let second = Application(passive)
     second.startHeadless()
-    try { key(second, passive, "text", text: "Z") }
+    try { key(second, passive, "text", text: "Z"); check(passiveValue.get() == "Za\nb", "controller optional area edits normally") }
     finally { second.dispose() }
+    let optionalValue = Observable<String>("x"); let optionalRoot = TextInput(optionalValue)
+    let third = Application(optionalRoot); third.startHeadless()
+    try { key(third, optionalRoot, "text", text: "Z"); check(optionalValue.get() == "Zx", "controller optional single input") }
+    finally { third.dispose() }
 }
