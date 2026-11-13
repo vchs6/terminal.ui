@@ -1,6 +1,7 @@
 package cjtui
 
 import std.collection.ArrayList
+import std.collection.HashMap
 
 func sat(a: Int64, b: Int64): Int64 {
     if (a > Int64.Max - b) {
@@ -72,7 +73,7 @@ func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, 
 
 // Shared geometry and allocator for normal paint and side-effect-free preflight.
 func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
-    clipR: Int64, clipB: Int64): Unit {
+    clipR: Int64, clipB: Int64, geometry!: ?HashMap<Int64, LayoutNode> = None): Unit {
     if (output.isSome()) { n.session.recordPaint() }
     let c = n.component
     let r = n.resolved
@@ -125,6 +126,15 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
     let scrollX = if (axes.horizontal()) { state.offsetX } else { 0 }
     let scrollY = if (axes.vertical()) { state.offsetY } else { 0 }
     let ix = signedAdd(boxX,-scrollX); let iy = signedAdd(boxY,-scrollY)
+    if (let Some(map) <- geometry) {
+        n.screenX = x; n.screenY = y
+        n.clipLeft = greater(clipL,x); n.clipTop = greater(clipT,y)
+        n.clipRight = right; n.clipBottom = bottom
+        n.boxWidth = w; n.boxHeight = h; n.contentX = leftPad; n.contentY = topPad
+        n.contentWidth = if (viewport.isSome()) { innerW } else { contentW }
+        n.contentHeight = if (viewport.isSome()) { innerH } else { contentH }
+        map[runtimeNode.id] = n
+    }
     if (n.previewTheme.isNone() && n.commitGeometry) {
         runtimeNode.screenX = x; runtimeNode.screenY = y
         runtimeNode.clipLeft = greater(clipL,x); runtimeNode.clipTop = greater(clipT,y)
@@ -238,7 +248,7 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
             childNode.layoutX = if (c.kind == 2) { cursor } else { crossOffset }
             childNode.layoutY = if (c.kind == 2) { crossOffset } else { cursor }
         }
-        layoutPass(child, output, cx, cy, cw, ch, greater(clipL, boxX), greater(clipT, boxY), ir, ib)
+        layoutPass(child, output, cx, cy, cw, ch, greater(clipL, boxX), greater(clipT, boxY), ir, ib, geometry:geometry)
         cursor = sat(cursor, sizes[i])
         if (i + 1 < count) {
             cursor = sat(cursor, r.spacing)
@@ -301,38 +311,49 @@ func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
         summarizeVerticalOverflow(node,w,h,summary)
         node.rootFallback = summary.present
     }
-    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
+    let geometry = HashMap<Int64, LayoutNode>()
+    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height,geometry:Some(geometry))
+    for (record in session.overlayRecords) {
+        if (let Some(layer) <- overlayGeometry(session,record,width,height,false,geometry,preview:Some(theme))) {
+            layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
+                layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
+        }
+    }
 }
 
-func overlayInherited(session: RuntimeSession, owner: RuntimeNode): Style {
+func overlayInherited(owner: RuntimeNode, theme: Theme): Style {
     let chain = ArrayList<RuntimeNode>()
     var cursor: ?RuntimeNode = Some(owner)
     while (let Some(node) <- cursor) { chain.add(node); cursor = node.parent }
-    var style = themeSeed(session.theme); var i = chain.size
+    var style = themeSeed(theme); var i = chain.size
     while (i > 0) {
         i--; let node = chain[i]
-        style = resolveStyle(node.component,session.theme,style,node.parent.isNone()).style
+        style = resolveStyle(node.component,theme,style,node.parent.isNone()).style
     }
     style
 }
 
-func overlayGeometry(session: RuntimeSession, record: OverlayRecord, frame: Frame, commit: Bool): ?OverlayLayout {
+func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int64, height: Int64, commit: Bool,
+    geometry: HashMap<Int64, LayoutNode>, preview!: ?Theme = None, deferClose!: Bool = false): ?OverlayLayout {
     if (record.terminal.isSome() || !record.owner.isValid()) { return None }
     let rootRef = record.root
     if (rootRef.isNone() || !rootRef.getOrThrow().isValid()) { return None }
     let owner = record.owner.resolve()
-    var left: Int64 = 0; var top: Int64 = 0; var right = frame.width; var bottom = frame.height
+    if (!session.focusManager.effective(rootRef.getOrThrow().resolve(),false)) { return None }
+    var left: Int64 = 0; var top: Int64 = 0; var right = width; var bottom = height
     if (let Some(hostRef) <- record.options.host) {
         if (!hostRef.isValid()) { return None }
         let host = hostRef.resolve()
-        let hw = if (session.viewportAxes(host).isSome()) { host.viewportState.width } else { host.logicalWidth }
-        let hh = if (session.viewportAxes(host).isSome()) { host.viewportState.height } else { host.logicalHeight }
-        let hx = signedAdd(host.screenX,host.contentX); let hy = signedAdd(host.screenY,host.contentY)
-        left = greater(host.clipLeft,hx); top = greater(host.clipTop,hy)
-        right = lesser(host.clipRight,signedAdd(hx,hw)); bottom = lesser(host.clipBottom,signedAdd(hy,hh))
+        let hostGeometry = geometry.get(host.id)
+        if (hostGeometry.isNone()) { return None }
+        let g = hostGeometry.getOrThrow()
+        let hx = signedAdd(g.screenX,g.contentX); let hy = signedAdd(g.screenY,g.contentY)
+        left = greater(g.clipLeft,hx); top = greater(g.clipTop,hy)
+        right = lesser(g.clipRight,signedAdd(hx,g.contentWidth)); bottom = lesser(g.clipBottom,signedAdd(hy,g.contentHeight))
     }
     right = greater(left,right); bottom = greater(top,bottom)
-    let node = LayoutNode(rootRef.getOrThrow().resolve().component,session,overlayInherited(session,owner),commitGeometry:commit)
+    let node = LayoutNode(rootRef.getOrThrow().resolve().component,session,overlayInherited(owner,preview ?? session.theme),
+        previewTheme:preview,commitGeometry:commit)
     node.measure()
     let w = lesser(right-left,greater(node.resolved.fixedW ?? node.naturalW,node.resolved.minW))
     node.constrain(w)
@@ -340,16 +361,19 @@ func overlayGeometry(session: RuntimeSession, record: OverlayRecord, frame: Fram
     var x = signedAdd(left,(right-left-w)/2); var y = signedAdd(top,(bottom-top-h)/2)
     if (let Some(anchorRef) <- record.options.anchor) {
         if (!anchorRef.isValid()) {
-            if (commit) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+            if (commit && !deferClose) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
             return None
         }
         let anchor = anchorRef.resolve()
-        let ax = greater(left,greater(anchor.screenX,anchor.clipLeft))
-        let ay = greater(top,greater(anchor.screenY,anchor.clipTop))
-        let ar = lesser(right,lesser(signedAdd(anchor.screenX,anchor.layoutWidth),anchor.clipRight))
-        let ab = lesser(bottom,lesser(signedAdd(anchor.screenY,anchor.layoutHeight),anchor.clipBottom))
+        let anchorGeometry = geometry.get(anchor.id)
+        if (anchorGeometry.isNone()) { return None }
+        let g = anchorGeometry.getOrThrow()
+        let ax = greater(left,greater(g.screenX,g.clipLeft))
+        let ay = greater(top,greater(g.screenY,g.clipTop))
+        let ar = lesser(right,lesser(signedAdd(g.screenX,g.boxWidth),g.clipRight))
+        let ab = lesser(bottom,lesser(signedAdd(g.screenY,g.boxHeight),g.clipBottom))
         if (ar <= ax || ab <= ay || !session.focusManager.effective(anchor,false)) {
-            if (commit) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
+            if (commit && !deferClose) { session.closeOverlayTree(record,OverlayCloseReason.AnchorGone,true) }
             return None
         }
         match (record.options.placement) {
@@ -401,13 +425,14 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
     } else { node.rootFallback = false }
     // Resolve current finite geometry before consuming deferred ensure intents.
     if (reuse) { session.focusedViewportResized = false }
-    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height)
+    let geometry = HashMap<Int64, LayoutNode>()
+    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height,geometry:Some(geometry))
     let layers = ArrayList<OverlayLayout>()
     if (mountedRoot) {
         for (record in session.overlayRecords) {
-            if (let Some(layer) <- overlayGeometry(session,record,frame,reuse)) {
+            if (let Some(layer) <- overlayGeometry(session,record,width,height,reuse,geometry,deferClose:reuse)) {
                 layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
-                    layer.left,layer.top,layer.right,layer.bottom)
+                    layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
                 layers.add(layer)
             }
         }
@@ -427,6 +452,19 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
             }
         }
         applyPendingViewportEnsures(session)
+        // Ensures can scroll the anchor or host; derive the painted layers
+        // from the resulting geometry in the same frame.
+        geometry.clear(); layers.clear()
+        layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height,geometry:Some(geometry))
+        if (mountedRoot) {
+            for (record in session.overlayRecords) {
+                if (let Some(layer) <- overlayGeometry(session,record,width,height,true,geometry)) {
+                    layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
+                        layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
+                    layers.add(layer)
+                }
+            }
+        }
     }
     paint(node, frame, 0, 0, w, h, 0, 0, width, height)
     for (layer in layers) {

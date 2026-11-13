@@ -26,7 +26,7 @@ func validateThemeCandidate(session: RuntimeSession, theme: Theme): (?ThemeDiagn
             if (layoutStyleDiff(old,resolved)) { layoutChanged = true }
             styles[node.id] = resolved.style
             if (let Some(parent) <- node.parent) {
-                if (node.component.isVisible && resolved.weight > 0) {
+                if (!node.overlayRoot && node.component.isVisible && resolved.weight > 0) {
                     let previous = weights.get(parent.id) ?? 0
                     if (previous > Int64.Max - resolved.weight) {
                         return (Some(ThemeDiagnostic("InvalidCandidate",theme.sourceName,"","layout weight sum overflow",Option<ThemeLocation>.None,"unavailable")), false)
