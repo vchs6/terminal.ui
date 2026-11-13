@@ -1,8 +1,8 @@
 # Linux keyboard and text editing implementation plan
 
-当前控制器准入（2026-11-13）：PF001–004已独立限定闭合，F006/F007已独立复核，交互112与会话152等实际前置已接受。TASK113正式测试冻结c96cc601完成；TASK114候选源码已固定为5baa09f33251e9f572640a2f6d4ae46245f7eea8并保存于远端wip/linux-keyboard，完整键盘入口退出0，最终直接lint无错误诊断；TASK115独立源码审核正在进行，116/117尚未验收，键盘产品尚未合入main。下列旧candidate/planned描述保留起草背景，不能代替逐任务的固定证据及勾选，也不代表115–122提前ready。
+当前控制器准入（2026-11-13，有限K完成）：TASK113正式测试、114实现、115独立双审、116实际执行、117独立有限验收已完成。接受产品c3c4642d84df57bbd9550d222ed22f602acd13ef对应main代码da9eaf4044cba917d12f441e041e164deb5eff80，产品路径逐字节一致；[K证据与SHA别名](../../../docs/reviews/K/README.md)。TASK118实际独立测试进行中（in_progress），未完成；119–122仍pending。仅K001–K004有限范围通过，不归档整个变更或关闭完整Linux/父AC。下列保留的候选措辞仅记录起草背景；当前状态以本段和逐任务勾选为准。
 
-> **For agentic workers:** 本件仍为独立候选planned；主代理冻结并通过独立preflight后，按用户已选独立测试/产品/审查/执行/验收流程执行。REQUIRED SUB-SKILL: superpowers:subagent-driven-development；本起草角色不执行、不派代理。
+> **For agentic workers:** 本件已登记；K已有限验收，E待实现；后续由主代理按冻结合同与实际前置，按用户已选独立测试/产品/审查/执行/验收流程执行。REQUIRED SUB-SKILL: superpowers:subagent-driven-development；本起草角色不执行、不派代理。
 
 **Goal:** 两个分别可验交付：完整有界键盘/paste；基于公共Canvas的单多行编辑。
 **Architecture:** 一KeyboardDecoder→现KeyEvent/UIKeyEvent/Runtime；编辑组合Canvas/focus/defaultAction/viewport/统一主题与Unicode，copy消费148–152原TASK030会话扩展。
@@ -11,8 +11,8 @@
 
 ## Global Constraints
 
-* 全部113–122是L3候选，状态planned；具体变更正式路径经主代理登记后才转状态权威，当前不改主仓docs/tasks/acceptance。
-* 每类型一个小写下划线文件；公开旧KeyEvent/code/text/legacy行为和runtime生命周期保持。新签名未编译，不允许产品作者凭空修公共约。
+* 113–122为已登记L3，本tasks.md为唯一状态权威；113–117完成，118 in_progress，119–122 pending；docs/tasks仅编号映射，docs/acceptance记录有限事实。
+* 每类型一个小写下划线文件；公开旧KeyEvent/code/text/legacy行为和runtime生命周期保持。K新增签名已编译并有限验收；E新增签名仍未编译，不允许产品作者凭空修公共约。
 * 保留唯一Component/Runtime/LayoutNode/Frame/Style/Unicode/ansies；控制器不持有可变全屏Frame，不加编辑kind，不实现标准Button/Checkbox/Menu。
 * 113–117键盘；118–122编辑；TASK030会话扩展148–152已另案规划，152验收固定后119消费，不夹进本产品周期。
 * 正式测试、产品、审核、执行、验收上下文/目录独立；只交合同/固定源/hash/raw，不传作者自评。普通可复用验证不重复冷跑；受影响/新失败才补跑。
@@ -30,14 +30,14 @@
 ## 1. Unit A — complete keyboard normalization and paste
 
 - [x] 1.1 TASK-113：冻结公共KeyboardDecoder/KeyEvent与真实PTY输入测试，先取得正常构建基线和真实缺API RED；交test-only提交/raw/hash。
-- [ ] 1.2 TASK-114：实现唯一decoder、设备读取/目标锁/公平pump/EOF和模式恢复桥接，公共消费者与固定113及受影响回归通过，交product-only提交和产品文档。
-- [ ] 1.3 TASK-115：独立审固定合同/tests/product diff，交spec/quality双verdict，必需缺陷无未关闭项。
-- [ ] 1.4 TASK-116：独立普通build、直接binary、PTY/宿主、normal bundle和干净消费者执行；交真实exit/raw/版本/PNG/hash。
-- [ ] 1.5 TASK-117：逐K001–K004/原AC分段核对固定原件，给有限验收与缺环境清单，不关闭父完整AC。
+- [x] 1.2 TASK-114：实现唯一decoder、设备读取/目标锁/公平pump/EOF和模式恢复桥接，公共消费者与固定113及受影响回归通过，交product-only提交和产品文档。
+- [x] 1.3 TASK-115：独立审固定合同/tests/product diff，交spec/quality双verdict，必需缺陷无未关闭项。
+- [x] 1.4 TASK-116：独立普通build、直接binary、PTY/宿主、normal bundle和干净消费者执行；交真实exit/raw/版本/PNG/hash。
+- [x] 1.5 TASK-117：逐K001–K004/原AC分段核对固定原件，给有限验收与缺环境清单，不关闭父完整AC。
 
 ## 2. Unit B — single-line and multiline text editing
 
-- [ ] 2.1 TASK-118：冻结公共TextInput/TextArea/controller、Unicode事务/快捷键/主题视口/保守cut测试；所有前置实际API存在后取真正缺编辑API RED，交test-only版本。
+- [ ] 2.1 TASK-118（in_progress，实际独立测试进行中，未完成）：冻结公共TextInput/TextArea/controller、Unicode事务/快捷键/主题视口/保守cut测试；所有前置实际API存在后取真正缺编辑API RED，交test-only版本。
 - [ ] 2.2 TASK-119：通过公共Canvas/focus/viewport实现全部E001–E005和公开例子，消费已独立验收148–152会话扩展，固定118及受影响回归通过，交product-only提交。
 - [ ] 2.3 TASK-120：独立审编辑固定diff与公共复用/结果真实性，交spec/quality双verdict，必需缺陷闭合。
 - [ ] 2.4 TASK-121：独立执行公共CJPM消费者/Unicode/PTY/真实宿主/正常制品及干净消费，交真实exit/raw/PNG/hash，区分纯策略和宿主能力证据。
@@ -45,7 +45,7 @@
 
 ## L3 cards — shared fields and admission
 
-以下字段与下表逐行合并构成每个L3的完整卡：level=L3，L1=G001；113/115/116/117/118/120/121/122父WP005，114/119父WP004。classification=execution候选（既定Linux目标内实现），本设计尚待主代理冻结+preflight，未ready；public签名、事务、资源预算的工程决策引用本design及主代理freeze记录。workflow_ref/openspec_change_ref指本候选目录，正式登记前不冒充主仓状态。evidence_refs当前仅本草稿/provenance，未来raw放主代理分配reviews目录，不先造通过日志。
+以下字段与下表逐行合并构成每个L3的完整卡：level=L3，L1=G001；113/115/116/117/118/120/121/122父WP005，114/119父WP004。classification=execution候选（既定Linux目标内实现），K已冻结、preflight及113–117有限验收完成；E按实际前置准入、118进行中；public签名、事务、资源预算的工程决策引用本design及主代理freeze记录。workflow_ref/openspec_change_ref指本正式变更目录；K evidence_refs见docs/reviews/K，E未造通过日志。
 
 requirement_refs：A=REQ009.1/.5、REQ010.1/.4输入侧、REQ011.2/003004边界；B=REQ001.8、REQ009.1–.5、REQ010.1/.4与REQ003.11。AC113–122仅支持步骤的交付证据别名，不取代原AC：114映射003/004归一化输入合同、017选目标桥接、030paste接收、020清理、041设备输入；119映射028编辑完整范围、030copy结果消费、020恢复集成，viewport原AC037仍交其单元。019/029不在范围。
 
@@ -100,7 +100,7 @@ PTY证明原始byte到框架事件/默认/恢复的行为，不能代替实际�
 
 兼容例外只有有明确现调用的KeyEvent旧字段/构造/legacy interrupt，未新增任意反射/私有开放；新增modifier不会承诺终端未提供的物理信息。TextEditController/历史/已有post意图各有真实公开用例和固定预算，不引文档模型、插件系统或未用扩展。offset不能在业务Observable与NodeRef复制；同值外部notify必须有来源/版本处理。
 
-preflight需逐DQ01–14核：任务号/L2/原AC不改名；两结果可分别判；接口/误提交/异常/预算/来源合法；113/118预期独立与真正RED；148–152会话前置另验不成环；共享文件顺序写屏障；真实host与纯策略不同证据；旧路径退役和消费者兼容；skills来源/模型声明/命令/raw/hash；正文所有候选签名/预算由主代理确认。当前无这些通过结论，不能标ready。
+preflight需逐DQ01–14核：任务号/L2/原AC不改名；两结果可分别判；接口/误提交/异常/预算/来源合法；113/118预期独立与真正RED；148–152会话前置另验不成环；共享文件顺序写屏障；真实host与纯策略不同证据；旧路径退役和消费者兼容；skills来源/模型声明/命令/raw/hash；正文所有候选签名/预算由主代理确认。该句为起草门槛背景；K通过结论见版本化状态与归档，E仍须实际准入及独立执行，不提前宣称完成。
 
 ## Workflow follow-up
 

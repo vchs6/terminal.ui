@@ -1,0 +1,38 @@
+[
+  {
+    "name": "build",
+    "cwd": "/workspace/work/keyboard-tests/review-round2/replay/tests/keyboard/review_regressions",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/review-round2/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T06:28:24.652473+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T06:29:38.261903+00:00"
+  },
+  {
+    "name": "K115-R1-01",
+    "cwd": "/workspace/work/keyboard-tests/review-round2/replay/tests/keyboard/review_regressions",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/review-round2/raw/env.sh\nexport CJTUI_K115_CASE=K115-R1-01\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T06:30:01.735943+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T06:30:01.775802+00:00"
+  },
+  {
+    "name": "audit",
+    "cwd": "/workspace/work/keyboard-tests/review-round2",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/review-round2/raw/env.sh\nexec python3 raw/audit.py"
+    ],
+    "utc_start": "2026-11-13T06:30:01.872221+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T06:30:02.799911+00:00"
+  }
+]

@@ -1,0 +1,11 @@
+TASK115 round2 fixed candidate evidence index
+BASE 500d5ff35632ab7ed55e323458883bbd7e80d2b7
+Test-only cherry cb636485 (independent source a4a0219341783f30c151d53d574d6d7fb41ad985)
+Product/authorized dispatcher HEAD c3c4642d84df57bbd9550d222ed22f602acd13ef
+Final source: review-r2-fix-01 pre/post hashes and source.patch match HEAD. New oversized Alt invalid-continuation/timeout selector, existing K115-04 Alt budget, existing pure decoder and Alt timeout/invalid-offset/cancel control all exit 0. Final direct cjlint exit 0 with zero error diagnostics and 701 warning lines.
+Review-r2-fix-01/source-proof.txt states the shared drain transition and cancellation reasoning. The previous five closed review findings and prior source-specific runs remain attributed to review-r1-index; they were not retested as a broad historical suite for this narrow branch change.
+Content-index SHA256 values follow; each files.sha256 binds manifest, raw stdout/stderr/exits, source/test pre/post hashes and binaries. Independent RED manifest is listed separately.
+bb3c51b501139e6a9e6759a83b5f78ea5c12d102c4d06e98531c7222722dd200  /workspace/work/keyboard-implementation/review-r2-fix-01/files.sha256
+30ae38ca01fb776f7a1802e7ea207cbf2444554cfa0bd2298ee5562f5aeadfd0  /workspace/work/keyboard-implementation/review-r2-lint-01/files.sha256
+d1ed5c228adb616b9ac22048a7caac65bc861c6b9f4de0fd0fb83681a54f4a02  /workspace/work/keyboard-tests/review-round2/raw/manifest.json
+1f2b82caef5821002d0c8a9488cd06c6bb8d8909ff52017a46e5650302cc23b8  /workspace/work/keyboard-implementation/review-r1-index.txt

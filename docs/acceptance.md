@@ -190,11 +190,11 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-113 | REQ-009/010/007/011 | TASK-113 | 独立字节/分块/粘贴目标/EOF公平性golden与RED | passed（正式测试c96cc601冻结、当前上游baseline0/缺Keyboard API真实编译RED1；新K行为待114） |
-| AC-114 | REQ-009/010/007/011 | TASK-114 | 唯一KeyboardDecoder/设备/2004模式实现 | pending |
-| AC-115 | REQ-009/010/007/011 | TASK-115 | 固定键盘增量独立双审 | pending |
-| AC-116 | REQ-009/010/007/011 | TASK-116 | 独立真实输入/模态目标/退出恢复与普通包消费 | pending |
-| AC-117 | REQ-009/010/007/011 | TASK-117 | 有限键盘合同及metadata，完整编辑仍待验 | pending |
+| AC-113 | REQ-009/010/007/011 | TASK-113 | 独立字节/分块/粘贴目标/EOF公平性golden与RED | passed（正式测试c96cc601冻结、当前上游baseline0/缺Keyboard API真实编译RED1；后续固定K有限行为见AC114–117） |
+| AC-114 | REQ-009/010/007/011 | TASK-114 | 唯一KeyboardDecoder/设备/2004模式实现 | passed（有限K；[实现及证据](reviews/K/README.md)，固定产品c3c4642→main da9eaf40） |
+| AC-115 | REQ-009/010/007/011 | TASK-115 | 固定键盘增量独立双审 | passed（[独立源码双审最终PASS](reviews/K/keyboard-review/round-03/report.md)；原两轮FAIL保留） |
+| AC-116 | REQ-009/010/007/011 | TASK-116 | 独立真实输入/模态目标/退出恢复与普通包消费 | passed（[独立实际执行](reviews/K/keyboard-execution/report.md)；16阶段exit0、229包成员、三真实实现及宿主限制） |
+| AC-117 | REQ-009/010/007/011 | TASK-117 | 有限键盘合同及metadata，完整编辑仍待验 | passed（[独立PASS_FINITE_K](reviews/K/keyboard-acceptance/acceptance.md)；不关闭完整父AC/Linux） |
 | AC-118 | REQ-009/010/007/011 | TASK-118 | 独立Unicode事务/历史/竞态/控件golden与RED | pending |
 | AC-119 | REQ-009/010/007/011 | TASK-119 | 公共Canvas单多行输入/控制器/标准快捷键实现 | pending |
 | AC-120 | REQ-009/010/007/011 | TASK-120 | 固定编辑增量独立双审 | pending |
@@ -266,3 +266,5 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 
 Theme基础AC013/025/085–088仅当前范围接受：42项矩阵含限定复用/来源限制/后续排除，不能称42项全通过。T087-G01整包checker仍exit1，最终TASK023保持OPEN。AC089早期证据保留真实基础正向后异步API缺失；后续026/090–092已通过当前异步范围：原22实际行为、正常包184成员与clean代表2例、真实PTY写失败后的接受记录保持。完整焦点/编辑/滚动控件仍等对应交互阶段，023/027、全Linux与M2保持未完成。
+
+K版本化验收说明（2026-11-13）：[归档边界](reviews/K/README.md)将AC003/004归一化、017目标桥接、030paste接收、020新增模式清理、041输入作为父项分段证据；不提高其完整状态。实际OSpipe/TTY EOF与未练习自然宿主EOF区分；VM kernelVT非物理硬件。AC028编辑、019/029菜单、M2、全Linux/024仍pending。B-M01仍延后024；T087-G01完整checker在023保持必需pending，本次普通bundle/有限包审计不替代它。

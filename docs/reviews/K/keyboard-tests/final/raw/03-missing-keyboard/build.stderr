@@ -1,0 +1,60 @@
+[31merror[0m: undeclared type name 'KeyboardIssue'
+ [36m==>[0m /workspace/work/keyboard-tests/final/replay/tests/keyboard/src/expected_issue.cj:5:15:
+  [36m| [0m
+[36m5[0m [36m| [0m    let kind: KeyboardIssue[0m
+  [36m| [0m              [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'KeyboardIssue'
+ [36m==>[0m /workspace/work/keyboard-tests/final/replay/tests/keyboard/src/expected_issue.cj:7:16:
+  [36m| [0m
+[36m7[0m [36m| [0m    init(kind: KeyboardIssue, offset: Int64) { this.kind = kind; this.offset = offset }[0m
+  [36m| [0m               [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'KeyboardLimits'
+ [36m==>[0m /workspace/work/keyboard-tests/final/replay/tests/keyboard/src/golden_runner.cj:5:43:
+  [36m| [0m
+[36m5[0m [36m| [0mfunc allSplits(test: GoldenCase, limits!: KeyboardLimits = KeyboardLimits()): Unit {[0m
+  [36m| [0m                                          [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'KeyboardDiagnostic'
+ [36m==>[0m /workspace/work/keyboard-tests/final/replay/tests/keyboard/src/observed.cj:8:28:
+  [36m| [0m
+[36m8[0m [36m| [0m    let issues = ArrayList<KeyboardDiagnostic>()[0m
+  [36m| [0m                           [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'KeyboardBatch'
+ [36m==>[0m /workspace/work/keyboard-tests/final/replay/tests/keyboard/src/observed.cj:9:21:
+  [36m| [0m
+[36m9[0m [36m| [0m    func add(batch: KeyboardBatch): Unit {[0m
+  [36m| [0m                    [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared type name 'KeyboardException'
+  [36m==>[0m /workspace/work/keyboard-tests/final/replay/tests/keyboard/src/public_api_cases.cj:12:36:
+   [36m| [0m
+[36m12[0m [36m| [0m    try { action() } catch (error: KeyboardException) { code = error.code }[0m
+   [36m| [0m                                   [31m^ [0m
+   [36m| [0m
+
+[31merror[0m: undeclared type name 'KeyboardBatch'
+ [36m==>[0m /workspace/work/keyboard-tests/final/replay/tests/keyboard/src/temporal_cases.cj:4:19:
+  [36m| [0m
+[36m4[0m [36m| [0mfunc empty(batch: KeyboardBatch, name: String): Unit {[0m
+  [36m| [0m                  [31m^ [0m
+  [36m| [0m
+
+[31merror[0m: undeclared identifier 'KeyboardLimits'
+ [36m==>[0m /workspace/work/keyboard-tests/final/replay/tests/keyboard/src/golden_runner.cj:5:60:
+  [36m| [0m
+[36m5[0m [36m| [0mfunc allSplits(test: GoldenCase, limits!: KeyboardLimits = KeyboardLimits()): Unit {[0m
+  [36m| [0m                                                           [31m^ [0m
+  [36m| [0m
+
+51 errors generated, 8 errors printed.
+3 warnings generated, 0 warning printed.
+Error: failed to compile package `keyboard_contract`, return code is 1
+Error: cjpm build failed

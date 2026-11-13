@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/work/keyboard-tests/paste-argument-regression/replay/tests/keyboard/paste_argument/pty.py", line 51, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--binary',required=True,type=Path);p.add_argument('--output',required=True,type=Path);a=p.parse_args();raise SystemExit(run(a.binary.resolve(),a.output.resolve()))
+                                                                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/keyboard-tests/paste-argument-regression/replay/tests/keyboard/paste_argument/pty.py", line 13, in run
+    out.mkdir(parents=True,exist_ok=False);master,slave=pty.openpty();fcntl.ioctl(slave,termios.TIOCSWINSZ,struct.pack('HHHH',3,40,0,0));raw=bytearray();before=attrs(slave);sent=bytearray();child=None
+                                                        ^^^^^^^^^^^
+AttributeError: module 'pty' has no attribute 'openpty'

@@ -1,0 +1,238 @@
+{
+  "schema": "independent-keyboard-i015-stage-1",
+  "utc_frozen": "2026-11-13T05:30:26.181268+00:00",
+  "test_only_fixed_sha": "6b51a666e8fdefce73bd76da7b03c723cc86d249",
+  "test_base": "39f4260c774a6ee9aced897308b030ef9e980a9c",
+  "fixed_product": "c643d5e773ebf160ff29a0b1fafe57962f3cfdec",
+  "report_sha256": "667e6c1147dbae33bbd14e3014f80c53d35fd930c687dc5f2d792f4b84923030",
+  "contract_blobs_sha256": {
+    "openspec/changes/implement-linux-input-editing/design.md": {
+      "commit": "39f4260c774a6ee9aced897308b030ef9e980a9c",
+      "sha256": "a2cef43376b24e9613a4a08f45890fb0e24689c2f93f3a30041b87810766df23"
+    },
+    "openspec/changes/implement-linux-input-editing/specs/ui-runtime/spec.md": {
+      "commit": "39f4260c774a6ee9aced897308b030ef9e980a9c",
+      "sha256": "df5b5d0fd5f45b3bb10ff8e266ebca0739af13d55f5788ea304f4c90a6747207"
+    },
+    "openspec/changes/implement-public-interaction/design.md": {
+      "commit": "39f4260c774a6ee9aced897308b030ef9e980a9c",
+      "sha256": "3aa214946949afbaa79ab08a214bd2fb6bc6f9b3b2173f11d64225bc52b16ebd"
+    }
+  },
+  "test_files_sha256": {
+    "tests/keyboard/i015_stage/run.sh": "cf670433f444318846d601d2d675932fba67fea71c31e7d21022142fcb9fe8cf",
+    "tests/keyboard/i015_stage/cjpm.toml": "7cd33868bb32befea97db3424446d2361f933d17caf3f69cce74978bdbd24623",
+    "tests/keyboard/i015_stage/README.md": "1d01ba65f521df95b794865ec07fc30e464bd5e39611a321b0928b1cf122832d",
+    "tests/keyboard/i015_stage/runner.py": "2207211cd08e4e4c19bf590ee06e0bd47e094cf2377990c7608472db3a770155",
+    "tests/keyboard/i015_stage/src/box.cj": "d69029734fe45cac9aadc265a48f5348b6ff081ab7bf35787c25213dc045b1e9",
+    "tests/keyboard/i015_stage/src/main.cj": "1f3d8190a058eadd7f538193da918994dab6d01dc8f4703de29c879c3a5582a9",
+    "tests/keyboard/i015_stage/pure/cjpm.toml": "afbcfa5a3533fc4d896aac1bceadb01f87431e6374ac1a2d0466b7575b353c3d",
+    "tests/keyboard/i015_stage/pure/src/main.cj": "cb5822979997a8308f70a9c270d9865d717b5a259980f29899bf7d33c9e17dd2"
+  },
+  "commands_actual_cwd_utc_exit": [
+    {
+      "name": "native-tools",
+      "cwd": "/workspace/work/keyboard-tests/i015-stage",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nset -e\ncc -std=c11 -Wall -Wextra -Werror -O2 -c replay/tests/interaction_a/native/clock_wrap.c -o raw/tools/clock-wrap.o\nexec cc -std=c11 -Wall -Wextra -Werror -O2 -fPIC -shared replay/tests/interaction_a/native/input_hup.c -ldl -o raw/tools/poll-observer.so"
+      ],
+      "utc_start": "2026-11-13T05:10:43.912706+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T05:10:44.008620+00:00"
+    },
+    {
+      "name": "build",
+      "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/.wrapped",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec cjpm build"
+      ],
+      "utc_start": "2026-11-13T05:10:44.786071+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T05:12:00.919274+00:00"
+    },
+    {
+      "name": "controlled-vector",
+      "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec python3 runner.py --stage Keyboard --case csi-real-idle-Keyboard --binary .wrapped/target/release/bin/main --output /workspace/work/keyboard-tests/i015-stage/raw/capture --poll-library /workspace/work/keyboard-tests/i015-stage/raw/tools/poll-observer.so"
+      ],
+      "utc_start": "2026-11-13T05:13:08.818326+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T05:13:09.103250+00:00"
+    },
+    {
+      "name": "pure-build",
+      "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec cjpm build"
+      ],
+      "utc_start": "2026-11-13T05:16:43.901159+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T05:17:32.070323+00:00"
+    },
+    {
+      "name": "pure-drain",
+      "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec timeout 45s ./target/release/bin/main </dev/null"
+      ],
+      "utc_start": "2026-11-13T05:18:18.422216+00:00",
+      "exit": 1,
+      "utc_end": "2026-11-13T05:18:18.457144+00:00"
+    },
+    {
+      "name": "pure-build-final",
+      "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec cjpm build"
+      ],
+      "utc_start": "2026-11-13T05:23:38.243647+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T05:24:25.838225+00:00"
+    },
+    {
+      "name": "malformed-drain",
+      "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexport CJTUI_KEYBOARD_I015_PURE_CASE=malformed-drain\nexec timeout 45s ./target/release/bin/main </dev/null"
+      ],
+      "utc_start": "2026-11-13T05:28:33.753281+00:00",
+      "exit": 1,
+      "utc_end": "2026-11-13T05:28:33.798219+00:00"
+    },
+    {
+      "name": "alt-invalid-offset",
+      "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexport CJTUI_KEYBOARD_I015_PURE_CASE=alt-invalid-offset\nexec timeout 45s ./target/release/bin/main </dev/null"
+      ],
+      "utc_start": "2026-11-13T05:28:33.857042+00:00",
+      "exit": 1,
+      "utc_end": "2026-11-13T05:28:33.892586+00:00"
+    }
+  ],
+  "results": {
+    "native_keyboard_i015": {
+      "driver_exit": 0,
+      "true_child_exit": 0,
+      "result": "GREEN",
+      "metadata": "capture/metadata.json",
+      "native_prepost_sha256": "61f7bdde7d346f952d86c35582f1f89881323629622c20b13532d81b95232ba0",
+      "reuse": "original completed run; final native Cj/wrapper/bin unchanged"
+    },
+    "malformed-drain": {
+      "exit": 1,
+      "result": "RED",
+      "all_splits": 14,
+      "observed": "textA/B; MalformedSequence@1 plus SequenceTooLong@1",
+      "fixed_timeout_observed": "textA, five text2, textA, textB; MalformedSequence@1 plus Other@1; Other precise enum not classified",
+      "expected": "textA/B; only MalformedSequence@1 through drain, including timeout"
+    },
+    "alt-invalid-offset": {
+      "exit": 1,
+      "result": "RED",
+      "observed": "up event; InvalidUtf8@0",
+      "expected": "up; InvalidUtf8@1",
+      "positive": "existing Alt timeout: textA/B; IncompleteInput@ESC1"
+    },
+    "preliminary_combined_pure": {
+      "exit": 1,
+      "classification": "failed offset before drain assertion; observations retained, not independent drain assertion evidence"
+    }
+  },
+  "manual_input_oracles": {
+    "native": "existing future-Keyboard row ESC[?25; at1100; true >=100ms idle+clock1201; tail1$y normal; pending. Existing cross-deadline control1580/deadline1600/tail1610 <100ms; no second issue, unknown-timeout. t0=1000, deadline1600",
+    "malformed_bytes_hex": "411b5b31203232323232324142",
+    "malformed_limit": 8,
+    "timeout_stream_prefix_length": 6,
+    "alt_bytes_hex": "1be41b5b41",
+    "root_offset_ruling": "K001 InvalidUtf8 points to bad UTF8 prefix E4 byte1; F007 preserves UTF8 boundary; Alt timeout IncompleteInput points to ESC"
+  },
+  "input_posthash_receipt": "posthash.json",
+  "immutable_prior_phase_receipts": [
+    "prehash-native.json",
+    "prehash-before-timeout.json",
+    "pure-before-timeout.cj",
+    "pure-bin-pre.json",
+    "pure-bin-post.json"
+  ],
+  "limits": [
+    "single finite controlled PTY vector/two segments; not host qualification",
+    "Other diagnostic after malformed timeout intentionally reported without enum identification",
+    "no old A/full K rerun",
+    "no claims about unreachable post-failure assertions or unexecuted product repair"
+  ],
+  "raw_sha256": {
+    "alt-invalid-offset.bin-post.json": "1b2a9463647d01c419d1ce28923a6fcefca4f7469ffa5c40003663707b57c43d",
+    "alt-invalid-offset.bin-pre.json": "18a56e37d27b62c85bde2e31449c08523242619e24ac8e25cffef19bf094bbc0",
+    "alt-invalid-offset.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "alt-invalid-offset.stderr": "af64c2278cf7a6ff9da5547dbba982b62786ce0b8897cdfbc461d40daafbc874",
+    "alt-invalid-offset.stdout": "4e6ba7fb65883c4ca78e3a9f8ef053e6c79c8a673e48be2d5654713bb30765f3",
+    "binary-pre.json": "6be9682f40aeb1af3cbbe0cd18cabc9601cb44463f1b5dac281894fb75bd465e",
+    "build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "build.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "capture/cleanup": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "capture/clock": "ad6db00a902a0b1b3806813e0bb7d9a23a20baaffefdf1355d50066b82bfc526",
+    "capture/clock.calls": "e0f39ed122347c5ef3fd385a9c2ae28cea8cb70fa7b577eade7c5d15ec518668",
+    "capture/closed": "147bd6c0f5961582d48d7d0c716aa988dd382b0e9fcc575095584cccec3995ba",
+    "capture/input.raw": "aeef1933a3727ac5884fc7bf78a2c59bc2a22fef1fc71c792bd0c6172861c906",
+    "capture/issue-cap": "62a2fed3d6e08c44835fce71f02210b1ddabfb066e39edf1e6c261988f824dd3",
+    "capture/issues": "672fd2a8071ec1b3904f0fbbef48c313b4682996c909748d48efb6b272d66750",
+    "capture/metadata.json": "2111c427ce1ba77065b7db799630464a0c05f656720b37220af781f30c4084fc",
+    "capture/output.raw": "713bad731b4834523074fb3f59b0b8fca64fa6d8be5e67c5a658b046ce50fd99",
+    "capture/poll.calls": "95dd82c4688764652f720a8cfee047bf96c33465842e21278b73e9c8f023d8d9",
+    "capture/poll.enter": "ec7cdd5ea4d585f34ae113ef1ce66bd2b3cc3f66abad2fb16bffff7da7150cd8",
+    "capture/state-1": "803b8cd261d4c256f7c24c2aeaad5d179817cbe65ee2b5ba9bc8289d04faa923",
+    "capture/state-2": "49258cd19237d5113e6e66d1c0dde633b0f0734c0300c299699e4ad74679cbd1",
+    "capture/stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "commands.json": "2aa2bd052ea15070800126fe8d465e2da6984f85d9c544cba0187fc86c8ac2fc",
+    "controlled-vector.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "controlled-vector.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "controlled-vector.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "env.sh": "e795d96ad8eedde1375251f5bdb94feb72db66712b66de35647abd2464d9f143",
+    "malformed-drain.bin-post.json": "b1ae141c2c9d0148ff884df40db2cfc55a07947b18fb6d5683d4ec139b4dc1a4",
+    "malformed-drain.bin-pre.json": "8718eaed89ac3c9d342cc415bf22e4e5ec32492591cf9ab5d59fe20b0ee6714a",
+    "malformed-drain.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "malformed-drain.stderr": "346cb962df80e9979f02eafc2bfa9768c1509cb40080a6d2af250c5acf699fea",
+    "malformed-drain.stdout": "e4e4bb5abc6cc926fbcf9b090469ea0083de357d4ecf7b6cc3a2e4cab4259882",
+    "native-tools.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "native-tools.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-tools.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "posthash.json": "a620e1a45802b07a4d1b6ebc66ff6e08d078faaf363245bfc0a13efaa17aed6f",
+    "prehash-before-timeout.json": "24ee90f5a0efbbf55cb372c3ef6658ef97e6c4da529636413dad7aca32e046b8",
+    "prehash-native.json": "7afa52cacfacfff4c576225ba88b52b99d189d126ae8015a64d4e17753cbc3be",
+    "prehash.json": "c422b438b84f9988b120fac14cdec97427f97c03eebcb4330c87545d5ed23033",
+    "pure-before-timeout.cj": "88a797951a03be4194731f8beb7ea135070dcf64c68be7ad39fa5fbed97c2d30",
+    "pure-bin-post.json": "3222e14b35a020b9ae59ccf427efb6ec6e6f83a191eaecd2a5766bc5bffe9f2e",
+    "pure-bin-pre.json": "91f9e7cb8fef1119f927547fe5e59bec18c1dd655014dbeb396e47aca615f5d5",
+    "pure-build-final.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "pure-build-final.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pure-build-final.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "pure-build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "pure-build.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pure-build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "pure-drain.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "pure-drain.stderr": "ba3225ce60f37ecbc2deac65d428b927ee9e3ed03e0a712846f97aedccdff2a1",
+    "pure-drain.stdout": "bfe6b45e2f016fbe47458f46b4ed3eaf934f59f55a178ab9f8863263f3b2045b",
+    "record.py": "8a0bec4467757296853877d274fbec72635e08ef891a9b8949b1f08efe83058c",
+    "tools/clock-wrap.o": "158cc1609c7abaa557fda4aa3c4671d0c7d124615481ceb0b54f521756a9a31a",
+    "tools/poll-observer.so": "737c4a0c17e7c5ff5d1716bc8bf3d799a6f213edae9dc6d0f8231da8758dd16c"
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "utc_start": "2026-11-13T05:05:37.643564+00:00",
+  "cwd": "/workspace/work/keyboard-implementation/source",
+  "binary": "/workspace/work/keyboard-implementation/source/tests/interaction_c/target/release/bin/main",
+  "binary_pre_sha256": "6e29c20ddb332c47da089850385f97292a5dbb9e8582c0db7cb41a32cac3a076",
+  "reply": "1",
+  "size": [
+    8,
+    3
+  ],
+  "before_termios": [
+    1280,
+    5,
+    191,
+    35387,
+    15,
+    15,
+    [
+      [
+        3
+      ],
+      [
+        28
+      ],
+      [
+        127
+      ],
+      [
+        21
+      ],
+      [
+        4
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        17
+      ],
+      [
+        19
+      ],
+      [
+        26
+      ],
+      [
+        0
+      ],
+      [
+        18
+      ],
+      [
+        15
+      ],
+      [
+        23
+      ],
+      [
+        22
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ]
+  ],
+  "events": [
+    {
+      "input_hex": "1b5b3f32353b312479",
+      "wire_offset_before": 71,
+      "monotonic_ns": 12826625144051
+    },
+    {
+      "input_hex": "73",
+      "wire_offset_before": 83,
+      "monotonic_ns": 12826635371647
+    },
+    {
+      "query_fence": "base",
+      "wire_offset_after": 83,
+      "monotonic_ns": 12826655738722
+    },
+    {
+      "input_hex": "6f",
+      "wire_offset_before": 83,
+      "monotonic_ns": 12826655748798
+    },
+    {
+      "paint_fence": "covered",
+      "wire_start": 83,
+      "wire_observed_end": 111,
+      "expected_changed_row": "row1: ij   nop"
+    },
+    {
+      "input_hex": "73",
+      "wire_offset_before": 111,
+      "monotonic_ns": 12826676217090
+    },
+    {
+      "query_fence": "covered",
+      "wire_offset_after": 111,
+      "monotonic_ns": 12826696484740
+    },
+    {
+      "input_hex": "63",
+      "wire_offset_before": 111,
+      "monotonic_ns": 12826696613593
+    },
+    {
+      "paint_fence": "restored",
+      "wire_start": 111,
+      "wire_observed_end": 145,
+      "expected_changed_row": "row1: ijklmnop"
+    },
+    {
+      "input_hex": "73",
+      "wire_offset_before": 145,
+      "monotonic_ns": 12826716968145
+    },
+    {
+      "query_fence": "restored",
+      "wire_offset_after": 145,
+      "monotonic_ns": 12826737222371
+    },
+    {
+      "input_hex": "71",
+      "wire_offset_before": 145,
+      "monotonic_ns": 12826737229742
+    }
+  ],
+  "states": {
+    "base": {
+      "stage": "base",
+      "logicalVisible": "true",
+      "owner": "base",
+      "x": "3",
+      "y": "1",
+      "focusBase": "true",
+      "handleOpen": "false",
+      "cursorStatus": "original-visible",
+      "savedCursorStatus": "original-visible"
+    },
+    "covered": {
+      "stage": "covered",
+      "logicalVisible": "false",
+      "owner": "None",
+      "x": "0",
+      "y": "0",
+      "focusBase": "true",
+      "handleOpen": "true",
+      "cursorStatus": "original-visible",
+      "savedCursorStatus": "original-visible"
+    },
+    "restored": {
+      "stage": "restored",
+      "logicalVisible": "true",
+      "owner": "base",
+      "x": "3",
+      "y": "1",
+      "focusBase": "true",
+      "handleOpen": "false",
+      "cursorStatus": "original-visible",
+      "savedCursorStatus": "original-visible"
+    }
+  },
+  "argv": [
+    "/workspace/work/keyboard-implementation/source/tests/interaction_c/target/release/bin/main"
+  ],
+  "env": {
+    "CJTUI_OVERLAY_NATIVE_CARET": "opaque",
+    "CJTUI_OVERLAY_CARET_OUTPUT": "/workspace/work/keyboard-implementation/phase-overlay-01/raw-1",
+    "TERM": "dumb"
+  },
+  "readiness": {
+    "monotonic_ns": 12826625128868,
+    "local_flags": 2608,
+    "wire_bytes": 71,
+    "markers_hex": [
+      "4142434445464748",
+      "696a6b6c6d6e6f70",
+      "5152535455565758"
+    ],
+    "query_seen": true,
+    "raw_mode": true
+  },
+  "product_exit": 0,
+  "after_termios": [
+    1280,
+    5,
+    191,
+    35387,
+    15,
+    15,
+    [
+      [
+        3
+      ],
+      [
+        28
+      ],
+      [
+        127
+      ],
+      [
+        21
+      ],
+      [
+        4
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        17
+      ],
+      [
+        19
+      ],
+      [
+        26
+      ],
+      [
+        0
+      ],
+      [
+        18
+      ],
+      [
+        15
+      ],
+      [
+        23
+      ],
+      [
+        22
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ]
+  ],
+  "classification": "logical and known-mode hide/show/CUP wire PASS; controlled PTY is not a real-host pixel claim",
+  "result": "PASS",
+  "utc_end": "2026-11-13T05:05:37.838718+00:00",
+  "binary_post_sha256": "6e29c20ddb332c47da089850385f97292a5dbb9e8582c0db7cb41a32cac3a076"
+}

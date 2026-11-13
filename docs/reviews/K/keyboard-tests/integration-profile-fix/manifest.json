@@ -1,0 +1,55 @@
+{
+  "schema": "integration-virtual-unicode-profile-test-only-1",
+  "utc_verified": "2026-11-13T07:11:37.325987+00:00",
+  "test_base": "430eb63fef4ca1d2cf2370d8b5c4c8d9931d3de8",
+  "test_only_fixed_sha": "daf99aa1f323929d09907d558623b3bb6a74cbbb",
+  "only_changed_file": "tests/integration/fixture/src/main.cj",
+  "file_sha256_before": "c1836269cc223749c548a836e3601b8a5855407f02c2ba45ef2673b956be9743",
+  "file_sha256_after": "1f7f815c93a4a29d49901436259917fab01a62766cb62fa0c05aa35d5b1a3f12",
+  "diff_sha256": "49f639adb891db1b69c0535d83f63829ed242c1e3b6fb602539298d7910ca817",
+  "report_sha256": "857400a142686a7bd2eeaf7e2cb6983c6f1ae04aeaa08218b334f3d1adf4f0f9",
+  "unchanged_oracle_sha256": {
+    "tests/integration/pty.mjs": "6cfd503a45f7df45f5302e7d51691d2c478ac0761500ef29cc96978ebf98dc1c",
+    "tests/support/terminal_frames.mjs": "4a9ecfd661a7db4d1bee9b8098726ebc80f13bdae346e728bb4cf31cb3626ab1"
+  },
+  "diagnosis_manifest_path": "/workspace/work/keyboard-tests/integration-diagnosis/manifest.json",
+  "diagnosis_manifest_sha256": "a42506295318db020c64dcadfed19b7e990f90afd64465e4e65f32cecd14a998",
+  "original_red_raw_sha256": {
+    "/workspace/work/keyboard-execution/raw/integration/manifest.json": "f1c9e0e111c0a1bfe7d3deb1e99d65a2569165940a985251a4d4e59f69382074",
+    "/workspace/work/keyboard-execution/raw/integration/stdout": "2c57df4a21d84de81156afff027c596abc056f7b053ac54fb172a21223d62a6b",
+    "/workspace/work/keyboard-execution/raw/integration/stderr": "e825799887db4899b15e0bd94d6a13ec443d5501a2c013387802fc620afd405f",
+    "/workspace/work/keyboard-execution/raw/integration-originals/cjtui-pty-QxG931/frames.json": "144634ae78a8abfcfd30ca5f95c3f910eb3e9fe7fd72491c5581f9205d13b1cd",
+    "/workspace/work/keyboard-execution/raw/integration-originals/cjtui-pty-QxG931/atomic-resize.json": "550ba25fa4e9f86fc71a6a2b8baf8723dc24f61460e1555de52a9a1252fe0c4f",
+    "/workspace/work/keyboard-execution/raw/integration-originals/cjtui-pty-QxG931/session.raw": "fcac8df29ce21e8dcb0b0fd9f8df75cf8f84c1b87d4494b4174f5760b41d1eed"
+  },
+  "source_clean": true,
+  "actual_checks": {
+    "cwd": "/workspace/work/keyboard-tests/integration-profile-fix/source",
+    "commands": [
+      [
+        "git",
+        "diff",
+        "HEAD^",
+        "HEAD",
+        "--check"
+      ],
+      [
+        "git",
+        "diff-tree",
+        "--no-commit-id",
+        "--name-only",
+        "-r",
+        "HEAD"
+      ],
+      [
+        "git",
+        "status",
+        "--porcelain"
+      ]
+    ],
+    "exit": 0,
+    "result": "only expected2line insertion; exact original bytes after reversing insertion; only1file changed; oracle blobs identical"
+  },
+  "compile_or_runtime_execution": "NOT RUN per root GO: existing public API; original valid RED reused;116 owns targeted execution",
+  "product_fixed_for_execution": "c3c4642d84df57bbd9550d222ed22f602acd13ef"
+}

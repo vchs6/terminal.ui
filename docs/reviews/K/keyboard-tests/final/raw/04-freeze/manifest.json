@@ -1,0 +1,123 @@
+{
+  "phase": "04-freeze",
+  "immutable": true,
+  "generated_utc": "2026-11-13T04:18:04.749402+00:00",
+  "fixed_test_commit": "c96cc601c547f869e64632e955091cf44546d192",
+  "test_parent": "91f79bbad8d22d1902f03a267430bbb2bd2a1c14",
+  "source_cwd": "/workspace/work/keyboard-tests/final/source",
+  "replay_cwd": "/workspace/work/keyboard-tests/final/replay",
+  "result": "formal TASK113 test-only freeze after actual upstream baseline0, actual missing-K compileRED1 and real OSpipe/TTY feasibility/native defect evidence",
+  "qualification": "formal-admission.md and formal-integration-ledger.md supersede historical dependency blockers, preserve original PF closure and exact UNEXECUTED limits; not product114 or117 acceptance",
+  "commands": [
+    {
+      "name": "04-freeze/static",
+      "cwd": "/workspace/work/keyboard-tests/final/source",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/final/raw/env.sh\ngit diff --check\nbash -n tests/keyboard/run.sh tests/keyboard/native/run.sh tests/keyboard/check-api.sh\npython3 -c \"import ast,pathlib;ast.parse(pathlib.Path(\\\"tests/keyboard/formal_pty.py\\\").read_text())\"\ncc -std=c11 -Wall -Wextra -Werror -fsyntax-only tests/keyboard/native/pipe_probe.c\ncc -std=c11 -Wall -Wextra -Werror -fsyntax-only tests/keyboard/native/pipe_remap.c\nexec cc -std=c11 -Wall -Wextra -Werror -fsyntax-only tests/keyboard/native/write_fault.c"
+      ],
+      "utc_start": "2026-11-13T04:09:22.256777+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T04:09:22.377479+00:00"
+    },
+    {
+      "name": "04-freeze/audit",
+      "cwd": "/workspace/work/keyboard-tests/final",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/final/raw/env.sh\nexec python3 raw/04-freeze/audit.py"
+      ],
+      "utc_start": "2026-11-13T04:14:48.447135+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T04:14:50.546669+00:00"
+    }
+  ],
+  "test_files_sha256": {
+    "tests/keyboard/README.md": "5b58bd8c81039cf1a8221d426cfc794832b54a66b31f75f742766ca4c8b923af",
+    "tests/keyboard/api-negative/batch-constructor.cj.txt": "5b1bc2c8546c4af03e452013fa11055e55c23282d404f94a50a9f0345a1d5858",
+    "tests/keyboard/api-negative/diagnostic-constructor.cj.txt": "dc0e5e3914972aa421d07c3d5f4bbd057c8a740038ff87788bdd3e4923d5f08c",
+    "tests/keyboard/api-negative/diagnostics-setter.cj.txt": "bb10fd4d3d12e38666691fdc300438be68611cc242027cf1eb58d8f52fbd34fa",
+    "tests/keyboard/api-negative/events-setter.cj.txt": "dff449941b8d9f50e1759bc2e789b56d600863b4dd114df2decb3514292c6200",
+    "tests/keyboard/check-api.sh": "e5f073709dd55ebf97702ef87e22ca80cc2d89e4cbef3f19aadecb13a0fd5b18",
+    "tests/keyboard/cjpm.toml": "0b75096370fd8d7f3240961884fff210eeceeaa22e2bf4a6caa8701ab2df1050",
+    "tests/keyboard/device/cjpm.toml": "e235b7714bd035e967300f54f6049cad0be8441ac2bb8216353ac78cc57d0713",
+    "tests/keyboard/device/src/main.cj": "1046a6e623061f717a97abe95ff7d2302c2e394a897e8407c28a89e076eae988",
+    "tests/keyboard/formal-admission.md": "9da4a542c64ef9b4c3bd3a5b22cf787f264dba6ffdab063087ee2fe88ed0751b",
+    "tests/keyboard/formal-integration-ledger.md": "e30be8ee43d7c8e589b9d5be54f8fa61d1634e0bb83e8e87a22b684be0b98500",
+    "tests/keyboard/formal_device/cjpm.toml": "39776c2a49cc9b6e9f48577a672d415debd54e9ae3672a29411a7f65926ea2d1",
+    "tests/keyboard/formal_device/src/box.cj": "58ba975e90aff1bbb98430448bbd739faef521eccb792436aa08b15b06595092",
+    "tests/keyboard/formal_device/src/main.cj": "ab63b137af16727a36b2620aac09e234a3de54c226f8d853a3d4464aab077da8",
+    "tests/keyboard/formal_dispatch/cjpm.toml": "0e6441e3177d7aec1cadfe73929b286b3a16cd69a3586f9582a9c8d0e2149dbf",
+    "tests/keyboard/formal_dispatch/src/box.cj": "9e5658a8d1481189ca4723634da31d3dc6270e6e8520f05a26659c2e414efe9b",
+    "tests/keyboard/formal_dispatch/src/main.cj": "3423668e33ac4525fffc72bc6d2b97aa3c2c0644e9478aa49eefde3f92e078e2",
+    "tests/keyboard/formal_pty.py": "5ce8ec80f214413a12002bb246a639454245ca75876411f69ce5fa52d859932c",
+    "tests/keyboard/integration-ledger.md": "492f1b0fe7318c8d3a123e818c43cbdf84df4a431ad5d27308e7562e5f28e4ea",
+    "tests/keyboard/native/pipe_probe.c": "fb9a023db0bf97b0126b8c8199132feaa2152dfb6393c5ad41c79112cedc152d",
+    "tests/keyboard/native/pipe_remap.c": "191017b58e76b3db8f1c4d32e567d2c7d6abb283d2cf5f451ea7ae0bbec9b882",
+    "tests/keyboard/native/run.sh": "e07130b66ed33082a41345a46563d3b35b34bff2c3a6e9491699bfe12cf4b409",
+    "tests/keyboard/native/write_fault.c": "6eb12816320e88b3f682fa15b9760e79cc6c53d738b854868a28adc3fc24ea22",
+    "tests/keyboard/pty.mjs": "6a31e1cafa263733fb8e0f5a12a386193c2adbed88b3cd156773a9a1cec91e84",
+    "tests/keyboard/run.sh": "ee856547967dc2eea9d14a0d8f85370f6a918a57e3de81f7fb5dd110083fae38",
+    "tests/keyboard/src/byte_helpers.cj": "d8198716d4b5194fc4ddd5c96453b6ab5144877bcbaf7313755ea9de79c0051a",
+    "tests/keyboard/src/c1_cases.cj": "667e2f25a6b9253b531a8d7ebd2ce1c1418024bffd6e4edc22652b505a5bee51",
+    "tests/keyboard/src/expected_issue.cj": "8e1cfb089b419177e4479db1ec5b8c98617e928d73f26192f50fedd9100c5dd8",
+    "tests/keyboard/src/golden_case.cj": "638385543834c45aa0128d01b86ea06993737f9fc9ffa2ae94e2d64a07a54e3a",
+    "tests/keyboard/src/golden_runner.cj": "f03c5f05741a2046491692de6da8603ab3c254e8ed00c2ba9e410312af22cc81",
+    "tests/keyboard/src/main.cj": "5daf64ee50b0f76feee2000977de88b4602fcf1c9f44d16a9538521858acd180",
+    "tests/keyboard/src/observed.cj": "47f2c4c56979788edd9c4702ce263cff9ca216261210358eaa0671120acfe793",
+    "tests/keyboard/src/protocol_cases.cj": "ec0c83e7065a7ef86fd15adcb51a584214028ab0277ae6fb68bf5b3d46cfa2ec",
+    "tests/keyboard/src/protocol_report_cases.cj": "ccfaa3318d7ae0cbd20984de9baf40c93cc308eb7605eb85c461af279089de79",
+    "tests/keyboard/src/public_api_cases.cj": "67cd06c35b963f05f37e6a541180823ee5985afe2b67a8267cf8bbadd8c97637",
+    "tests/keyboard/src/resource_cases.cj": "87a764818b083a6007bc11232fd0c523a5b6ae394171c1cd92349f3e7074c3a2",
+    "tests/keyboard/src/temporal_cases.cj": "ac9bcc8c0a138b4c2bc3627ce3cca98a933c21ee3bd03b049632d714d7d49d0d",
+    "tests/keyboard/upstream/cjpm.toml": "52b881580ae3db07c89e51362e668fb1db6bc53fb95774394047d01a9b6df7e6",
+    "tests/keyboard/upstream/src/box.cj": "9dd7bc7a35b5be95106d4e3035c6948fa47c241560fa29041139a3bb0e7bb6c8",
+    "tests/keyboard/upstream/src/main.cj": "feeef23c7c8527cd89aab2f454bb05708759bcfaf561d6fe2e54302d9bf5b57e"
+  },
+  "product_dependency_sdk_pre_post_receipt": "posthash.json",
+  "admission_receipts_sha256": {
+    "/workspace/work/terminal.ui/docs/reviews/interaction/C/overlay-acceptance/acceptance.md": "702cd9f253fbc005821920875eccc865f7cf1dfad4847c87ed13a27ef0d8c123",
+    "/workspace/work/input-preflight-resume/findings.json": "bc0b6fe50f3d3a745e7cd27d78c2ac045e60960fb6faa8a3d137262e1db37b84",
+    "/workspace/work/input-preflight-resume/reviewed-hashes.json": "9759206404914e1658a1633c46fc633e2d45e6e384bfa113024233037d713822",
+    "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-linux-input-editing/task-113-final-brief.md": "3ea4560e6210acc36e2b13ccdbd311f5d72a140ce323f21a7b4e76b2c9fa2b36",
+    "/workspace/work/terminal.ui/docs/reviews/R17/i015-preflight/f007-findings.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "requested_model": "requested Sol/high; actual serving metadata unavailable",
+  "skills": {
+    "cangjie-coding": "/workspace/work/CangjieSkills/.agents/skills/cangjie-coding/SKILL.md @277f2e1234ca5217496966887243c679653887a8; batch search_docs actual signatures, SDK1.2 prevails",
+    "process": [
+      "using-superpowers(subagent stop)",
+      "cloud-environment-runtime",
+      "writing-plans(existing TASK113 card/brief; root ACTUALGO overrides extra confirmation)",
+      "test-driven-development(missing API RED; no product implementation)",
+      "systematic-debugging(native observed failure classification)",
+      "verification-before-completion"
+    ]
+  },
+  "unexecuted": [
+    "all new K normalized decoder/paste/diagnostic behavior",
+    "full new consumer body typecheck against actual K declarations",
+    "formal_dispatch",
+    "original seven Keyboard device modes",
+    "every formal_pty selector",
+    "new actual Application -4 EOF/finish callback path",
+    "new2004 init/cleanup zero/partial unsafe behavior",
+    "real-host keyboard production/PNG and116/117 acceptance",
+    "counter exhaustion/asymptotic source proof"
+  ],
+  "unchanged_history": "old keyboard9137972 source/evidence and all C workspaces untouched; original pure oracle semantics retained; no author reports/contacts or product/spec/main changes",
+  "files_sha256": {
+    "audit.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "audit.py": "dcbfd8259edf36d087ea1dd1281c4552cdc21aa7c752826037245e81f60505c3",
+    "audit.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "audit.stdout": "5bdf349404e409dd221454a9eea1a272f17533cfb813b38ab73ec75a06f40248",
+    "cangjie-docs.stdout": "43aa7ef982dd8f5c5583d4a1f8a183f6d89fbbda4c36e476c6ecfb21e3ec1cc7",
+    "posthash.json": "472139adc194dd641c486ef3e23a56c0aeecf8ab4983f595101627743abb61c9",
+    "static.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "static.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "static.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "report_sha256": "07093c85c588ff47b86b6234cb13dd5cad7dd9a78dd381351a6d7413d47c2293"
+}

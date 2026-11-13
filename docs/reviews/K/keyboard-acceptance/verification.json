@@ -1,0 +1,4113 @@
+{
+  "task": "TASK117",
+  "utc": "2026-11-13T07:23:29.684523+00:00",
+  "fixed_product": "c3c4642d84df57bbd9550d222ed22f602acd13ef",
+  "overlay": "daf99aa1f323929d09907d558623b3bb6a74cbbb",
+  "method": "Fresh selected-original hashes, manifest/exits/binary bindings and fixture semantic comparison; reused valid execution, no product/test execution or duplicate whole-asset audit.",
+  "fresh_hashes": 546,
+  "required_exit_zero_phases": [
+    {
+      "name": "main-build",
+      "exit": 0,
+      "argv": [
+        "cjpm",
+        "build"
+      ]
+    },
+    {
+      "name": "keyboard-suite",
+      "exit": 0,
+      "argv": [
+        "bash",
+        "tests/run-slice.sh",
+        "keyboard"
+      ]
+    },
+    {
+      "name": "native-session",
+      "exit": 0,
+      "argv": [
+        "bash",
+        "tests/run-slice.sh",
+        "native-session"
+      ]
+    },
+    {
+      "name": "application-lifecycle",
+      "exit": 0,
+      "argv": [
+        "bash",
+        "tests/run-slice.sh",
+        "application-lifecycle"
+      ]
+    },
+    {
+      "name": "runtime-session",
+      "exit": 0,
+      "argv": [
+        "bash",
+        "tests/runtime/run.sh",
+        "session"
+      ]
+    },
+    {
+      "name": "integration-profile-fixed",
+      "exit": 0,
+      "argv": [
+        "bash",
+        "tests/run-slice.sh",
+        "integration"
+      ]
+    },
+    {
+      "name": "mandatory-bundle",
+      "exit": 0,
+      "argv": [
+        "cjpm",
+        "bundle"
+      ]
+    },
+    {
+      "name": "package-audit-command-r2",
+      "exit": 0,
+      "argv": [
+        "python3",
+        "tools/package-audit.py"
+      ]
+    },
+    {
+      "name": "clean-keyboard-build",
+      "exit": 0,
+      "argv": [
+        "cjpm",
+        "build"
+      ]
+    },
+    {
+      "name": "clean-keyboard-run",
+      "exit": 0,
+      "argv": [
+        "./target/release/bin/main"
+      ]
+    },
+    {
+      "name": "clean-dispatch-build",
+      "exit": 0,
+      "argv": [
+        "cjpm",
+        "build"
+      ]
+    },
+    {
+      "name": "clean-dispatch-run",
+      "exit": 0,
+      "argv": [
+        "./target/release/bin/main"
+      ]
+    },
+    {
+      "name": "clean-example-build",
+      "exit": 0,
+      "argv": [
+        "cjpm",
+        "build"
+      ]
+    },
+    {
+      "name": "clean-example-run",
+      "exit": 0,
+      "argv": [
+        "python3",
+        "tools/example-pty.py",
+        "clean-unpacked/cjtui-0.0.0/examples/keyboard/target/release/bin/main",
+        "raw/clean-example-run/artifacts"
+      ]
+    },
+    {
+      "name": "real-gui-hosts",
+      "exit": 0,
+      "argv": [
+        "python3",
+        "tools/gui-hosts.py"
+      ]
+    },
+    {
+      "name": "real-vt-host-r3",
+      "exit": 0,
+      "argv": [
+        "python3",
+        "tools/vt-host.py"
+      ]
+    }
+  ],
+  "formal_native_modes": [
+    {
+      "mode": "cancel-drain",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "cancel-paste",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "diag-begin",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "diag-context",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "disable",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "eof-input",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "eof-paste",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "fair-drain",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "fair-normal",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "fair-paste",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "fault-cleanup-partial",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "fault-cleanup-zero",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "fault-init-partial",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "fault-init-zero",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "focus",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "hide",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "issue-stop",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "issue-throws",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "modal",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "no-target",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "protocol-reply",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "remount",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "scroll",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "signal-drain",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "signal-paste",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "stream-two",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    },
+    {
+      "mode": "unmount",
+      "exit": 0,
+      "binary": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+    }
+  ],
+  "lint_error_severity_count": 0,
+  "source_invariants": {
+    "offset": "offset==Int64.Max closes before offset++; not exercised by fake enormous input",
+    "resident_storage": "batch relinquishes keys/issues; paste replaced on overflow/end/finish; sequence maxSequenceBytes+constant marker allowance; scalar metadata/endPrefix constant; SDK clear retention disassembly used by review",
+    "device_budget": "one byte per existing outer UI turn is <=4096; post/resize/stop pump retained",
+    "idle": "current decoder waitingIdle/drain plus monotonic100ms read loop source review; actual protocol-reply on fixed K; historical A idle oracle is not a new full-K executed proof"
+  },
+  "fixture_semantics": "Only explicit Unicode profile plus comment; original eight-by-three oracle/parser unchanged; product Auto conservative fallback unchanged in 16 files and three Application snippets. Original failed execution retained.",
+  "visual_inspection": "Viewed original resized XTerm, VTE, settled kernelVT PNGs; these show formal ready/A/B surface and do not independently prove behavior or complete display restoration.",
+  "fresh_originals": [
+    {
+      "path": "/workspace/work/keyboard-execution/stablemanifest.json",
+      "size": 672640,
+      "sha256": "a035651ef9feb3373c1f419270005a96b18beb414f517048b0004a273c878af9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/report.md",
+      "size": 3136,
+      "sha256": "6d68a1aaf18ccfa9a428075325d74f5df95e9c25de03feb366165197a1de98c4",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/main-build/manifest.json",
+      "size": 762,
+      "sha256": "5fa449ca9b7055d7bbc8dcc87531c8e5a8ffa95105c6c05e979eddf41512251f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/main-build/stdout",
+      "size": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/main-build/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/manifest.json",
+      "size": 59636,
+      "sha256": "8305667d50b91426c3d0219c94d4d9c2986210a2f7235f510a5cbb355e299ffc",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/stdout",
+      "size": 15761,
+      "sha256": "577b7e3f075e205de53bdeb54d3b5574352e47b951f21225ade80f07509ec345",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/stderr",
+      "size": 186,
+      "sha256": "5b94e7edd623b8c7e73201bf85df82b52c04128a7c5ba593c8153d8c46251e8a",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/native-session/manifest.json",
+      "size": 802,
+      "sha256": "a7cb8e0b74598ab8997703784970311473798d4afe5a2fef10368c1031618fa9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/native-session/stdout",
+      "size": 287,
+      "sha256": "584d003451c015d94f77eb54e2c5d9833ce8769ccfd543470de30da062710f8a",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/native-session/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/application-lifecycle/manifest.json",
+      "size": 9204,
+      "sha256": "d39ded273cb1012f0f4e4932a44568f35398afe969d3fcd726ccb2b0a71b1a68",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/application-lifecycle/stdout",
+      "size": 755,
+      "sha256": "2dec39be1b1e069c9cddf8e578b199ada52e9c14d128f52e1f908c110360489f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/application-lifecycle/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/runtime-session/manifest.json",
+      "size": 22174,
+      "sha256": "86c9a8b67692bbcf81a4925eb92f99e17c2ce8462b7a5554edc729c5f7fd3ed3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/runtime-session/stdout",
+      "size": 863,
+      "sha256": "0e3fe1a6fdfca3e45bd368f32d2110cb3477f2e5f04b55f80559562841563cb4",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/runtime-session/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-profile-fixed/manifest.json",
+      "size": 811,
+      "sha256": "98c17c44246f833062e9f8292a1c346de4af3584dc348042ed4ee970ff481cc9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-profile-fixed/stdout",
+      "size": 1367,
+      "sha256": "462f5087b167000e50de125061d37b0e422e58b5165db0edf50fe52c76cc99d7",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-profile-fixed/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/mandatory-bundle/manifest.json",
+      "size": 773,
+      "sha256": "43119a7a9a6f984fb76abc26ede1bcd05a9de36968260228ac97de76bb63e4c8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/mandatory-bundle/stdout",
+      "size": 124290,
+      "sha256": "c3e1a7b1a85f569e4b37c6345e2b3b507f0f9aa33da271c84cbdbfc86ab223b5",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/mandatory-bundle/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/package-audit-command-r2/manifest.json",
+      "size": 790,
+      "sha256": "33964cfe3e3c1cb75fad90bf11b7bf9af9b31834944ea684e77e7a2b52335a3d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/package-audit-command-r2/stdout",
+      "size": 116,
+      "sha256": "74eb42fc9842ca73f4b47f0c10a66d866ad91e1152200c92839bb2640991053b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/package-audit-command-r2/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-keyboard-build/manifest.json",
+      "size": 790,
+      "sha256": "578c0136b68f3b8ad132359e62c3dada345cb84bed4e7ec56e914db31a469699",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-keyboard-build/stdout",
+      "size": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-keyboard-build/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-keyboard-run/manifest.json",
+      "size": 796,
+      "sha256": "ee429651a23618d6e07ba6ce3b305639b32b224d4fc42cafb9f453236191a5ce",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-keyboard-run/stdout",
+      "size": 74,
+      "sha256": "67957f0ec887ab039dfe2e37c7807b3fb910f02742b5f6c811f8a2619561ab95",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-keyboard-run/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-dispatch-build/manifest.json",
+      "size": 791,
+      "sha256": "574ce3df11133f64e5483177730f8bc2b029a2f824111d713589b70b7326d42b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-dispatch-build/stdout",
+      "size": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-dispatch-build/stderr",
+      "size": 93,
+      "sha256": "7e9c215f84d40ea5466488bef0a134b046fe498500c5c930df76ffae690fa96f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-dispatch-run/manifest.json",
+      "size": 795,
+      "sha256": "b575062d9b75769275ea03e582637857ff7bfc6031d552bd3e2d551599725437",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-dispatch-run/stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-dispatch-run/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-example-build/manifest.json",
+      "size": 809,
+      "sha256": "af6771c3b705d92096803658e46b60bac1d56f22b08cec0da46eaf481b7c3e73",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-example-build/stdout",
+      "size": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-example-build/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-example-run/manifest.json",
+      "size": 1444,
+      "sha256": "7bb0bf61c93d176f28e57feaa7462c6dec4bb721aab2b213268508a4b74fcb67",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-example-run/stdout",
+      "size": 62,
+      "sha256": "9fedd90904278325543debe8dae48f62c04edb4c2bfba1ed50adf4a4d11392ad",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-example-run/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/real-gui-hosts/manifest.json",
+      "size": 775,
+      "sha256": "a3785b22e495e6c4a294a426691aac288477fb9aa8aebdb31e00bc69ba069dac",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/real-gui-hosts/stdout",
+      "size": 76,
+      "sha256": "a65ec24c27e9dc479647febd23358a841241508cb177c1c3fd05c0960c6d69ab",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/real-gui-hosts/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/real-vt-host-r3/manifest.json",
+      "size": 775,
+      "sha256": "c7cac95e5a257d17329cb70b20cc51a53c994c0132724a857d089b2bbf05278b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/real-vt-host-r3/stdout",
+      "size": 113,
+      "sha256": "547a0bd1195c507b77c58217d2a74d7679adcc0c4e64b5ba43e831ffa44d945d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/real-vt-host-r3/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/final-verification.json",
+      "size": 1825,
+      "sha256": "6be8503e565e76c37a59a39b4bc1b117d9df1d4918f6432ae8d94c87661e424d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/source-manifest.json",
+      "size": 136188,
+      "sha256": "4164932d3f87a44cfc1c13dfa63f3ba0b318ee8b84036b050fadc0bb7c5633ce",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/reuse-scope.json",
+      "size": 21893,
+      "sha256": "fa3629aa7be7ccb118ea31a6d0d82018db978d75f8704982009071f52c85dd7e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-qualification.json",
+      "size": 5630,
+      "sha256": "8e3aaf83460bbefa959a4639c769cc9f2bd4afd98fb35f7c6623d59dc3f5aac5",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/png-catalog.json",
+      "size": 5766,
+      "sha256": "666ff49158a12480f47f46a6e0d5bca087949c13c9357d02adfaccd6f90d5ddd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/binary-bindings.json",
+      "size": 4600,
+      "sha256": "2225c285baae0316eac8d9cdfcbf44a3c9d8f18a3901aff0bb8b9aded7d2489f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-test-overlay/phase-index.json",
+      "size": 658,
+      "sha256": "2057d991408da52fa730ba5501c7f77c0e7c76369719262ee81589b1ee129f5d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-original-binary.json",
+      "size": 626,
+      "sha256": "29799b22279db035b88ddbbfd2a2ae583b76617cea985d399b06f654cdb991ce",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/clean-input-bindings.json",
+      "size": 4884,
+      "sha256": "430392cb330dbb702f58c60b94ee12d3a14ab6f749036ca4d836e0120edd6735",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/independent-test-references.json",
+      "size": 1650,
+      "sha256": "ffd23d31c004494bf4d3e093a0035ab0f44d5263ae9e9cdabe1332a2064b92c8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/package-audit-r2/manifest.json",
+      "size": 60751,
+      "sha256": "75d4613fcd1a3f6708032b4eb37975ea283459ad6d3136d8538e191bf950cfaa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/manifest.sha256",
+      "size": 910,
+      "sha256": "07f699bed0ec14d1ee0665ef171214415475254d41bc63500008fa7d64e0c4e6",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/arraylist-clear.disasm",
+      "size": 7963,
+      "sha256": "292366a46c3782832c4210bc2198387bf5ee22983a30298e37b05140c53aedd0",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/arraylist-capacity.disasm",
+      "size": 404,
+      "sha256": "b916feaff6f128494baaee6138f15784cae1c124f19ecbac7ebe5739ef61c275",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/diff-check.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/final-source-check.txt",
+      "size": 422,
+      "sha256": "fc71d98ab57e501c352ea14e208e81b096ee4d86211215f8ae4e5a9d2a696bca",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/findings.json",
+      "size": 9851,
+      "sha256": "5248b6c033b81c136d60124f40630b242741d5b483d431e41744556b53c3fd11",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/fixed-sha.txt",
+      "size": 41,
+      "sha256": "0ab1d9ae57cffa11f666e5eb91bad91697c65facf64b7f93b445a83c2131b2ab",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/index.md",
+      "size": 1605,
+      "sha256": "3c702826daf2024130a0471fc62036afb7bf3c10474de326ba84192ecacc7d6d",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/input-hashes.txt",
+      "size": 929,
+      "sha256": "80915c09c3931ed7c12edd921c2cdd42278efc69c63de9d5fee4a910d5136f0a",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/raw-reuse.txt",
+      "size": 833,
+      "sha256": "22da7ef14e2cc2857a7c463bae83d37e921abe38507a6edb6b4ee3cadfda46a8",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/report.md",
+      "size": 2132,
+      "sha256": "8b01f28e84db8067264c471c221f79bb62b8d663cd3cd8f2d73b849b55fbab06",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-01/tracked-status.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-02/manifest.sha256",
+      "size": 649,
+      "sha256": "4d685f8a7b23fc58d4b2f200f4992e1cfcf0dddef76362df9271f55fb1aa779e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-02/diff-check.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-02/final-source-check.txt",
+      "size": 294,
+      "sha256": "94fa2392bb5788563dd17def56686489a8eb2f499f48f0b78010715e6594ab44",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-02/findings.json",
+      "size": 4975,
+      "sha256": "126974bf193b44886bf379722d9188c0e6779c27ac1119ec16ac6deca2fecfad",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-02/fixed-sha.txt",
+      "size": 41,
+      "sha256": "85b213c92ba82b7e70d4f3d27409d804ef17048170808c4e72d7bb360a4f5e72",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-02/index.md",
+      "size": 1390,
+      "sha256": "478736505e6d3bc2d9bafaa1178e134b50a0703e586611c78eceb03df9bc46d4",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-02/input-hashes.txt",
+      "size": 596,
+      "sha256": "d083cbfb107be11c1529c368901f3a896235c1ddbc6ddf45ee8b7f03cbb7f262",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-02/report.md",
+      "size": 1758,
+      "sha256": "764c30d8248cfaca3c6e75569dd2ce6b85a5bfa7090db6b3120f8e30ba78737d",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-02/tracked-status.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/manifest.sha256",
+      "size": 739,
+      "sha256": "7c1b938a21c558fbea7f09b4ab9bda90b1ec87ea286ca49b88c53df62d537568",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/diff-check.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/final-source-check.txt",
+      "size": 294,
+      "sha256": "94fa2392bb5788563dd17def56686489a8eb2f499f48f0b78010715e6594ab44",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/findings.json",
+      "size": 2169,
+      "sha256": "195a2fed2229d605a278062bca89d31738fe4ca5daa41ab471fcabf98814eebd",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/fixed-sha.txt",
+      "size": 41,
+      "sha256": "427b5732fdfc729be8df460fa8d719be8c9900f8ac8a5819ba1ca564512ca87f",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/index.md",
+      "size": 1259,
+      "sha256": "eb8269cef82909896dbc87cc74196767d724cf580a6806e9bfb02e4aef314278",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/input-hashes.txt",
+      "size": 596,
+      "sha256": "05fc3502ffa250e0d779a511ff45314d2709d745cf1e59776476c5360e684bf2",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/lint-severity-check.txt",
+      "size": 23,
+      "sha256": "beb3791634b10ff006c9052a1b5edf6571b8f3580c5c1bdca851e3ff3729d795",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/report.md",
+      "size": 1271,
+      "sha256": "7ce9418eda4124b8d09ea4a97627ed915bea980deb93918c6b4a7f9088739113",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-review/round-03/tracked-status.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "independent source review"
+    },
+    {
+      "path": "/workspace/work/keyboard-tests/integration-diagnosis/report.md",
+      "size": 2014,
+      "sha256": "55ac03c44db9d858278948aaedd54eae26e45426e611fa56429dd0634dee6587",
+      "verification": "fresh hash",
+      "scope": "independent test diagnosis/overlay"
+    },
+    {
+      "path": "/workspace/work/keyboard-tests/integration-diagnosis/manifest.json",
+      "size": 583,
+      "sha256": "a42506295318db020c64dcadfed19b7e990f90afd64465e4e65f32cecd14a998",
+      "verification": "fresh hash",
+      "scope": "independent test diagnosis/overlay"
+    },
+    {
+      "path": "/workspace/work/keyboard-tests/integration-diagnosis/evidence.json",
+      "size": 8914,
+      "sha256": "197d93b0d0a4145d7709f8b22db50c2b967a40251a1b54737c700dcaca49b402",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-tests/integration-profile-fix/report.md",
+      "size": 887,
+      "sha256": "857400a142686a7bd2eeaf7e2cb6983c6f1ae04aeaa08218b334f3d1adf4f0f9",
+      "verification": "fresh hash",
+      "scope": "independent test diagnosis/overlay"
+    },
+    {
+      "path": "/workspace/work/keyboard-tests/integration-profile-fix/manifest.json",
+      "size": 2866,
+      "sha256": "158432924f5a5b9655c9c80afdc28d68b2396f0f86ac8c1d5850de3b2e7386a6",
+      "verification": "fresh hash",
+      "scope": "independent test diagnosis/overlay"
+    },
+    {
+      "path": "/workspace/work/keyboard-tests/integration-profile-fix/change.patch",
+      "size": 655,
+      "sha256": "49f639adb891db1b69c0535d83f63829ed242c1e3b6fb602539298d7910ca817",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-test-overlay/manifest.json",
+      "size": 790,
+      "sha256": "3844b477d6ba01cad02148361657f4b9b57637b3f6e8f0cec356125a2528e023",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-test-overlay/fixed-test.diff",
+      "size": 655,
+      "sha256": "49f639adb891db1b69c0535d83f63829ed242c1e3b6fb602539298d7910ca817",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-test-overlay/fixed-main.cj",
+      "size": 843,
+      "sha256": "1f7f815c93a4a29d49901436259917fab01a62766cb62fa0c05aa35d5b1a3f12",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-test-overlay/original-main.cj",
+      "size": 706,
+      "sha256": "c1836269cc223749c548a836e3601b8a5855407f02c2ba45ef2673b956be9743",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration/manifest.json",
+      "size": 798,
+      "sha256": "f1c9e0e111c0a1bfe7d3deb1e99d65a2569165940a985251a4d4e59f69382074",
+      "verification": "fresh hash",
+      "scope": "retained original integration failure"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration/stdout",
+      "size": 454,
+      "sha256": "2c57df4a21d84de81156afff027c596abc056f7b053ac54fb172a21223d62a6b",
+      "verification": "fresh hash",
+      "scope": "retained original integration failure"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration/stderr",
+      "size": 549,
+      "sha256": "e825799887db4899b15e0bd94d6a13ec443d5501a2c013387802fc620afd405f",
+      "verification": "fresh hash",
+      "scope": "retained original integration failure"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/real-vt-host/manifest.json",
+      "size": 772,
+      "sha256": "514e31d20f28feb69c245c3c1fdcb31e6f88ff4e59f0ffbe6976bd2ec017fd25",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/real-vt-host/stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/real-vt-host/stderr",
+      "size": 581,
+      "sha256": "d38f563824fca4ad3204df1f5db6dfbc2b66fbd1ed29d91699972a5cf1fd3bad",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/package-audit-command/manifest.json",
+      "size": 787,
+      "sha256": "91b744898a7475beb137d1dfbaacf4bbf840ad02c59ffa7c27b86d4f4acc31ef",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/package-audit-command/stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/package-audit-command/stderr",
+      "size": 662,
+      "sha256": "8f9937169dd16728b4b69d6eba0d9a22e8e132b8cf809c642558516f8a310524",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/AGENTS.md",
+      "size": 35500,
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "verification": "fresh hash",
+      "scope": "canonical requirement"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/acceptance.md",
+      "size": 34565,
+      "sha256": "5ec6a978a02c72d87bc93f0feeada6d918f074f7797b54691d7bbe3f552b31d0",
+      "verification": "fresh hash",
+      "scope": "canonical requirement"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/requirements.md",
+      "size": 27521,
+      "sha256": "6ca3b983f2d57d68523edb3cc732c4da04c5b5241959bc495da3a4fe9ac5656d",
+      "verification": "fresh hash",
+      "scope": "canonical requirement"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-linux-input-editing/design.md",
+      "size": 42738,
+      "sha256": "a2cef43376b24e9613a4a08f45890fb0e24689c2f93f3a30041b87810766df23",
+      "verification": "fresh hash",
+      "scope": "canonical requirement"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-linux-input-editing/tasks.md",
+      "size": 19936,
+      "sha256": "8a6c351a700110de053b05795fc233fc3df712fc261372254a58e9cbc8b56026",
+      "verification": "fresh hash",
+      "scope": "canonical requirement"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-linux-input-editing/specs/ui-runtime/spec.md",
+      "size": 11657,
+      "sha256": "df5b5d0fd5f45b3bb10ff8e266ebca0739af13d55f5788ea304f4c90a6747207",
+      "verification": "fresh hash",
+      "scope": "canonical requirement"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/fix-uncertain-glyph-advance/design.md",
+      "size": 10210,
+      "sha256": "adc4395b6f7645c71d1876f77a6003161451f723d7c67f6323d8f03623279d23",
+      "verification": "fresh hash",
+      "scope": "glyph fixture governing contract"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-linux-vt-glyph-fallback/design.md",
+      "size": 20752,
+      "sha256": "ff789df4251f4a953e5c8547b91e2a6231d9978bc060a78c824d5d54955a3947",
+      "verification": "fresh hash",
+      "scope": "glyph fixture governing contract"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-linux-input-editing/task-117-brief.md",
+      "size": 2337,
+      "sha256": "bc686f6b0e8660268aacce16bedca05529ed02a50f246ab634d469b4d41ece4c",
+      "verification": "fresh hash",
+      "scope": "canonical requirement"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/keyboard_decoder.cj",
+      "size": 16119,
+      "sha256": "4f3ebcffb0e809a8f3b08d98afff46554f56297ed64a2a9cb6d7517e183b4beb",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/keyboard_batch.cj",
+      "size": 427,
+      "sha256": "a3089ead2fdd509093fa443136e85c77cd851253d8927c9b02c3aa44839ce810",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/keyboard_limits.cj",
+      "size": 496,
+      "sha256": "7cb418dd2307f8713d51de269105476d181577ca645dc77164de1c0ef436c505",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/key_event.cj",
+      "size": 393,
+      "sha256": "1a780514938b6f32f521605b961745d4ad47a448822613ae0d0a9cce78849e99",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/keyboard_exception.cj",
+      "size": 175,
+      "sha256": "267b3081f93343afe276d7a8eca59036079a55108b891b1734343e585992449a",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/keyboard_diagnostic.cj",
+      "size": 203,
+      "sha256": "5c8400a627d38e5d89c18d94280e4226848b781df340707ecf614d166184cc82",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/keyboard_issue.cj",
+      "size": 837,
+      "sha256": "65dbd647226c44d46b8bb84172ffde2d361a3b297eba77dac65b142c7bf1b913",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/application.cj",
+      "size": 36079,
+      "sha256": "4eb858e46c5066c3194f5202ff72db5802e7b935481384d6832f6d05bb779bad",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/native/cjtui_terminal.c",
+      "size": 4769,
+      "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/terminal_bridge.cj",
+      "size": 2420,
+      "sha256": "21247741cd96e7d3f4233278816cdd2b9687d030e4199a712079616d3100a3ea",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/docs/product/keyboard-input.md",
+      "size": 2071,
+      "sha256": "ee49f1734b551400e4426cf723c529e57174e7719b81806ba4d11da5b947cacf",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/formal_pty.py",
+      "size": 9472,
+      "sha256": "5ce8ec80f214413a12002bb246a639454245ca75876411f69ce5fa52d859932c",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/formal_device/src/main.cj",
+      "size": 8055,
+      "sha256": "ab63b137af16727a36b2620aac09e234a3de54c226f8d853a3d4464aab077da8",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/run.sh",
+      "size": 481,
+      "sha256": "ee856547967dc2eea9d14a0d8f85370f6a918a57e3de81f7fb5dd110083fae38",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/run-slice.sh",
+      "size": 2864,
+      "sha256": "3b1348cc74a646e988ef6967112792d2fee08dae2909b47bb11aa7f984ebaf13",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/integration/pty.mjs",
+      "size": 8703,
+      "sha256": "6cfd503a45f7df45f5302e7d51691d2c478ac0761500ef29cc96978ebf98dc1c",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/support/terminal_frames.mjs",
+      "size": 2903,
+      "sha256": "4a9ecfd661a7db4d1bee9b8098726ebc80f13bdae346e728bb4cf31cb3626ab1",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/examples/keyboard/src/main.cj",
+      "size": 278,
+      "sha256": "b58a718224848f4b6ea2dd19192e6dfaf801927765d21df34f4a30019add544e",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/resource_cases.cj",
+      "size": 5407,
+      "sha256": "87a764818b083a6007bc11232fd0c523a5b6ae394171c1cd92349f3e7074c3a2",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/protocol_cases.cj",
+      "size": 4520,
+      "sha256": "ec0c83e7065a7ef86fd15adcb51a584214028ab0277ae6fb68bf5b3d46cfa2ec",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/temporal_cases.cj",
+      "size": 2419,
+      "sha256": "ac9bcc8c0a138b4c2bc3627ce3cca98a933c21ee3bd03b049632d714d7d49d0d",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/public_api_cases.cj",
+      "size": 2456,
+      "sha256": "67cd06c35b963f05f37e6a541180823ee5985afe2b67a8267cf8bbadd8c97637",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/golden_runner.cj",
+      "size": 965,
+      "sha256": "f03c5f05741a2046491692de6da8603ab3c254e8ed00c2ba9e410312af22cc81",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/golden_case.cj",
+      "size": 383,
+      "sha256": "638385543834c45aa0128d01b86ea06993737f9fc9ffa2ae94e2d64a07a54e3a",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/byte_helpers.cj",
+      "size": 216,
+      "sha256": "d8198716d4b5194fc4ddd5c96453b6ab5144877bcbaf7313755ea9de79c0051a",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/observed.cj",
+      "size": 1179,
+      "sha256": "47f2c4c56979788edd9c4702ce263cff9ca216261210358eaa0671120acfe793",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/main.cj",
+      "size": 362,
+      "sha256": "5daf64ee50b0f76feee2000977de88b4602fcf1c9f44d16a9538521858acd180",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/protocol_report_cases.cj",
+      "size": 1037,
+      "sha256": "ccfaa3318d7ae0cbd20984de9baf40c93cc308eb7605eb85c461af279089de79",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/c1_cases.cj",
+      "size": 3238,
+      "sha256": "667e2f25a6b9253b531a8d7ebd2ce1c1418024bffd6e4edc22652b505a5bee51",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/src/expected_issue.cj",
+      "size": 204,
+      "sha256": "8e1cfb089b419177e4479db1ec5b8c98617e928d73f26192f50fedd9100c5dd8",
+      "verification": "fresh hash",
+      "scope": "fixed source/test/public document"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/integration/fixture/src/main.cj",
+      "size": 843,
+      "sha256": "1f7f815c93a4a29d49901436259917fab01a62766cb62fa0c05aa35d5b1a3f12",
+      "verification": "fresh hash",
+      "scope": "authorized test-only overlay"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/glyph_render_policy.cj",
+      "size": 847,
+      "sha256": "df352bc39e7b21eceb7b5e9e5deb0773233663a7abf7037ffa3087b138678cbd",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/terminal_glyph_detection.cj",
+      "size": 1497,
+      "sha256": "77328de70bb2968b063b20e28cc2d44cf8d672a302b5bb545b99e49f88c0c6a6",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/terminal_glyph_projection.cj",
+      "size": 1933,
+      "sha256": "4779f17a52662433694dcd59b3d913c1767a28794854089820f4e757ca848ac3",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/terminal_projected_row.cj",
+      "size": 1869,
+      "sha256": "8b0a60a64125834945d0e5294dd5e05605df67222df5f118006d6dab6a376974",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/terminal_glyph_capabilities.cj",
+      "size": 566,
+      "sha256": "77e400f0f4846d224cdfa5bdcbf9d8830ab8e87e80c43cad5a9409d8bb125a81",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/terminal_render_profile.cj",
+      "size": 1172,
+      "sha256": "7bc43434dba17aa52915c783911d491e4a20f9faf9a649ff7fee34b00b8827a8",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/style/glyph_mode.cj",
+      "size": 306,
+      "sha256": "e9fadaadd3eb66723df9c14ff3318861efcb80adaa94c63b062d23e9afb6f0dd",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/text/unicode.cj",
+      "size": 701,
+      "sha256": "2bd5f0fbae84ddcb38d7dc4e639fd7b04e6b1c45465d17c9ef763ec56c70a15c",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/native/cjtui_glyphs.c",
+      "size": 1664,
+      "sha256": "0b795a39e75f5efeac0a43cfde7c0f8e76c27e79c4ad50ef5a40cb0fe1b72405",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/frame.cj",
+      "size": 12900,
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/runtime_session.cj",
+      "size": 65467,
+      "sha256": "25a63e4914f60b6eac8f056b82ec37ebdc7e768ecaf277c5fbaa5d99c39e3822",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/layout.cj",
+      "size": 24987,
+      "sha256": "0fbeef2122d1c95125abe3dff3737eac4c39357d32c3f0c1eaecbcb63051fe43",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/src/terminal_capabilities.cj",
+      "size": 5887,
+      "sha256": "98cf87c19c91331b83bc5cfe62b539c7cf3431eece13aafe9c5874d93021f1b3",
+      "verification": "fresh hash",
+      "scope": "unchanged glyph/fixture diagnosis"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-originals/cjtui-pty-QxG931/frames.json",
+      "size": 390,
+      "sha256": "144634ae78a8abfcfd30ca5f95c3f910eb3e9fe7fd72491c5581f9205d13b1cd",
+      "verification": "fresh hash",
+      "scope": "retained original integration failure"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-originals/cjtui-pty-QxG931/atomic-resize.json",
+      "size": 36,
+      "sha256": "550ba25fa4e9f86fc71a6a2b8baf8723dc24f61460e1555de52a9a1252fe0c4f",
+      "verification": "fresh hash",
+      "scope": "retained original integration failure"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/integration-originals/cjtui-pty-QxG931/session.raw",
+      "size": 253,
+      "sha256": "fcac8df29ce21e8dcb0b0fd9f8df75cf8f84c1b87d4494b4174f5760b41d1eed",
+      "verification": "fresh hash",
+      "scope": "retained original integration failure"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/metadata.json",
+      "size": 3141,
+      "sha256": "5ec62a9646da938928ae1ac7ad7a3669391f0cff979ee1768bf04015daf18eea",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/summary",
+      "size": 119,
+      "sha256": "ee601883610a25e877535e774b7b4d57c5b09fbd31797e42a52984e36d4dc22a",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/native.trace",
+      "size": 1402,
+      "sha256": "79b3f68b2e7f41d6bd5fb3ab44be2cb6ad50934b43e987a6c75ec4d5859c4ac4",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/issues",
+      "size": 16,
+      "sha256": "66696877d5114ddf03517c1c2c43cd0d5c1fa17b9334ee7ff52dc45471285666",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/mutated",
+      "size": 12,
+      "sha256": "0891458939e68714bb67263214073b887a7952e60af36d22e9679c9de97cdb3c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-drain/input.raw",
+      "size": 11,
+      "sha256": "f364955c5d6066ea34e287f65c30b86b74738a47df969d4e5b7a393650a6d1c0",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/metadata.json",
+      "size": 3116,
+      "sha256": "056f7a4782197c0080507de2f85418e3f8bbc4e436c35407bcac21f2979c6ab8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/summary",
+      "size": 103,
+      "sha256": "5021eb28a20fb09f71593e209b1fb95cbec6cbb03e90e27958b3ced888ed4fbf",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/native.trace",
+      "size": 949,
+      "sha256": "ba46528dae31ffbfdb261b18f9e7f5a5538c64454a20a9f14edb999fcc7abb97",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/mutated",
+      "size": 12,
+      "sha256": "4a04ed69d7d48fe4fbf30c37f3169bd2c57adb9fefdc4a9097a12a70e2ef3b8c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/cancel-paste/input.raw",
+      "size": 7,
+      "sha256": "f124a332a0cdf40ef710beed2310ee3bf0fcab67553c0dbe31f900df97f3e855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/metadata.json",
+      "size": 3059,
+      "sha256": "1a72bee71d94c130e8debeee3ec14ec096afd0b6f65c14638cd0d87c1d1af50f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/summary",
+      "size": 144,
+      "sha256": "501e437894b2003d72cf1148868bc2f7dff21c8bd3797ae59a90281403d96063",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/output.raw",
+      "size": 315,
+      "sha256": "0768968c95cd48de98735524e0c1d179c0986a9d8320a4abd1bba1a831bdb89d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/native.trace",
+      "size": 2202,
+      "sha256": "226d9376e21c5acb463697ff85f4b8e75d5cba3e8dccb19d24fb13110bd25e24",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/paste",
+      "size": 4,
+      "sha256": "b7a1a40a0f5aeb701523c22e2a21b442ea1b802134f0c05bfadab24c3b6d69d2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/issues",
+      "size": 22,
+      "sha256": "f6a4f402e6b61d446650d7351ed2ea7bb67c788783c589e0751670eebdc1da75",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-begin/input.raw",
+      "size": 19,
+      "sha256": "b75de9f8fa3e145b5c6ce5ae3fd5804e940dda6a04e7720ceabaf075f51c3bee",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/metadata.json",
+      "size": 3060,
+      "sha256": "a7a7dfec9816c85903d0a21b9a19e68b0b05763de07ec0a25ddcc6848d2334fe",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/summary",
+      "size": 143,
+      "sha256": "966db53b8055c0275c283c7151ff0c771cdea867a3d0275d76781e1490a11ddf",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/output.raw",
+      "size": 315,
+      "sha256": "0768968c95cd48de98735524e0c1d179c0986a9d8320a4abd1bba1a831bdb89d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/native.trace",
+      "size": 2202,
+      "sha256": "226d9376e21c5acb463697ff85f4b8e75d5cba3e8dccb19d24fb13110bd25e24",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/paste",
+      "size": 4,
+      "sha256": "b7a1a40a0f5aeb701523c22e2a21b442ea1b802134f0c05bfadab24c3b6d69d2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/issue-context",
+      "size": 2,
+      "sha256": "2689367b205c16ce32ed4200942b8b8b1e262dfc70d9bc9fbc77c49699a4f1df",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/issue-post",
+      "size": 3,
+      "sha256": "c8fc6bf296faa18d058b23f9a467243a6f0a176f8d2c407e9c9ea06165da95f6",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/issues",
+      "size": 22,
+      "sha256": "f6a4f402e6b61d446650d7351ed2ea7bb67c788783c589e0751670eebdc1da75",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/diag-context/input.raw",
+      "size": 19,
+      "sha256": "b75de9f8fa3e145b5c6ce5ae3fd5804e940dda6a04e7720ceabaf075f51c3bee",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/metadata.json",
+      "size": 3355,
+      "sha256": "a2e1547ddc82fc2128525a126a0424afc3b345531671150e85b8e8f55816f41d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/summary",
+      "size": 135,
+      "sha256": "564a9c0e1c21dc0a149faf0959cec484ac89bb28c5f534748854583822c12fcd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/native.trace",
+      "size": 1797,
+      "sha256": "61c12cc938d72e54f12fc5714dd3a59abe1b71e364ede80fb7a50cf62948d7a3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/issues",
+      "size": 25,
+      "sha256": "54b2f92906535e16f1544887c3d5f0ed5b6c6e4923850c76589a6f5deb6459fd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/mutated",
+      "size": 7,
+      "sha256": "e9d8992f348162fd95acf6d07922aff61ebd06a143eaf134f29d72e76cb420ce",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/disable/input.raw",
+      "size": 14,
+      "sha256": "509d7b462ffbfd444143761aa735bd2690e8bd7470e0c9bae21f19d5bf50d1a2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/metadata.json",
+      "size": 3094,
+      "sha256": "4789192f54c96a26aac666cd806b61135bc31c74bdeeceff796773191f3d703a",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/summary",
+      "size": 121,
+      "sha256": "1cf55728d9a4fb78e95f9537e143f38d2911202bcb74563b324cf36a902107ea",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/native.trace",
+      "size": 618,
+      "sha256": "022102bf951b6eeba1c1abbf57fb5339db8ce1c0b3ba7243a21ac20e3ba5e1de",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/eof-callback",
+      "size": 30,
+      "sha256": "2d59b30cd42c41ca546560859d19e02190041276da88a76055c2a888321792d8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/issues",
+      "size": 18,
+      "sha256": "672fd2a8071ec1b3904f0fbbef48c313b4682996c909748d48efb6b272d66750",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-input/input.raw",
+      "size": 4,
+      "sha256": "a54d876c34a432ab471ec85c02c7c944d93e65161ce61636a7c13d57fc6918a4",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/metadata.json",
+      "size": 3102,
+      "sha256": "a0b9c158849156d15a0ff0da82b0ac508f0dc1960c5d14b73f9ce33ccd0aaed3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/summary",
+      "size": 121,
+      "sha256": "9f1268a0333f2363f3c0ba1b89aa0e992647ac584a7cdc41e689e8c374d44e83",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/native.trace",
+      "size": 1070,
+      "sha256": "61581a3f7d322817c3d07a0f06b9ef4741cda46ba48092ebd01323582c486eff",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/eof-callback",
+      "size": 30,
+      "sha256": "2d59b30cd42c41ca546560859d19e02190041276da88a76055c2a888321792d8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/issues",
+      "size": 18,
+      "sha256": "2c9afde998c8f97f0e04aaa0c1cb0253af2c50a5b434bf8f8d704c75c1388527",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/eof-paste/input.raw",
+      "size": 8,
+      "sha256": "79f5324653565ed7322b16a48187d11dd598c16b0e9a90ec60a811db417610d3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/metadata.json",
+      "size": 13523,
+      "sha256": "0c1aab0b0ab9ea2023135985a28857b60f45adf4f3f5943a08a78de2d3880025",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/summary",
+      "size": 132,
+      "sha256": "28eab0c236a50571d0e9ccc8629940ad6ee3a62c5359483be146c48137a40ccc",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/native.trace",
+      "size": 589664,
+      "sha256": "4434f62ad2561f5bdb1ce21a14eb103c3484360098ee245d401d2e1588cdd15c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/gate",
+      "size": 7,
+      "sha256": "b47915386b2d1d525dbb219e32dd55ee4ed38649a2aaea0c28d50d44cfb1e6d2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/issues",
+      "size": 16,
+      "sha256": "3b56ba56f6c5b0b1fed59e2aa97d48c085fe2addc5bacc4a6de0d9e11c7b5dd7",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/mutated",
+      "size": 10,
+      "sha256": "94c527ef16bca32a2c311afe5ec90a37138ce026b6c42f211e37e13bf228ff4e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/pending-post",
+      "size": 3,
+      "sha256": "c8fc6bf296faa18d058b23f9a467243a6f0a176f8d2c407e9c9ea06165da95f6",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/post-at",
+      "size": 1,
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-drain/input.raw",
+      "size": 5014,
+      "sha256": "c71b328bc0a04fffc0620f91c3cf83575ae7daf9d23a2085f731ff5b6bfb6dc8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/metadata.json",
+      "size": 76885,
+      "sha256": "615c4941201184311e8db0fee6f2542f7a80ba18de2bfb0cca1ed7513c5fbfd4",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/summary",
+      "size": 57463,
+      "sha256": "5809d5e67f31e83f6ec90870605177f259528e06c1730357a03e52a5d3c5cdd2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/native.trace",
+      "size": 964730,
+      "sha256": "6b99321016e27aef9b062385c7bf513a735987d62e42f3c29d9ec8ab9446955c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/gate",
+      "size": 7,
+      "sha256": "b47915386b2d1d525dbb219e32dd55ee4ed38649a2aaea0c28d50d44cfb1e6d2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/post-at",
+      "size": 1,
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-normal/input.raw",
+      "size": 8194,
+      "sha256": "48e02707c0135a1e762e45b201636ca3d1ce6b36b093a2989b31183172e27623",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/metadata.json",
+      "size": 23517,
+      "sha256": "7129b37261e3174ef9b328b459b91eee54f8e287d36b1d75db529d718745f5fd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/summary",
+      "size": 10126,
+      "sha256": "4a14ecc1e99aa1a6fab2dd77eb236c6f1ef40f98525066d505e2e101ac078cca",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/native.trace",
+      "size": 589664,
+      "sha256": "4434f62ad2561f5bdb1ce21a14eb103c3484360098ee245d401d2e1588cdd15c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/paste",
+      "size": 5003,
+      "sha256": "553b1be24c5a80d1c5d39d493682138244961066909567598ffd7b87f0a8ed8a",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/gate",
+      "size": 7,
+      "sha256": "b47915386b2d1d525dbb219e32dd55ee4ed38649a2aaea0c28d50d44cfb1e6d2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/mutated",
+      "size": 10,
+      "sha256": "79ea05e42f0da896ddf97bbda83ff70e1086f3cf1ad7b4d22feb224df01de93c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/pending-post",
+      "size": 3,
+      "sha256": "c8fc6bf296faa18d058b23f9a467243a6f0a176f8d2c407e9c9ea06165da95f6",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/post-at",
+      "size": 1,
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fair-paste/input.raw",
+      "size": 5014,
+      "sha256": "c71b328bc0a04fffc0620f91c3cf83575ae7daf9d23a2085f731ff5b6bfb6dc8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/metadata.json",
+      "size": 3112,
+      "sha256": "ec7fd540ed63e2d9cb43437d70742e64a73d44ea2e6e67e90e21c00e3100e27d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/summary",
+      "size": 110,
+      "sha256": "283b09c3c8dc33c5ae5c77c9bdcc681b1baa7a809ad8bf5d3918d0526b52e2da",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/output.raw",
+      "size": 254,
+      "sha256": "6e1c53266c1887092885d3e3e945fae6356ff438b7a66b538d630e878b5af97d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/native.trace",
+      "size": 167,
+      "sha256": "ab02f84c774beae68d77bdde5844061f65467e19bd7a033914f712e9953ef6e2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/write.trace",
+      "size": 409,
+      "sha256": "6a46954cbc6ac62700d54a0cf7edade58b641abc618bc4f663e331e3e1d6ee50",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/error",
+      "size": 70,
+      "sha256": "acb1583829fed9ca3b085754a5b94d92a8eed272211c4ceda5d66d090769e83c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-partial/input.raw",
+      "size": 1,
+      "sha256": "8e35c2cd3bf6641bdb0e2050b76932cbb2e6034a0ddacc1d9bea82a6ba57f7cf",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/metadata.json",
+      "size": 3109,
+      "sha256": "b04a1d4ca07231433208271a036265b19cc6b4df2725d5498a7e2abc3e90b778",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/summary",
+      "size": 110,
+      "sha256": "283b09c3c8dc33c5ae5c77c9bdcc681b1baa7a809ad8bf5d3918d0526b52e2da",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/output.raw",
+      "size": 253,
+      "sha256": "2583a46fb983d67adc1c664c62363256f5ca709f4da547ece52736299b85a850",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/native.trace",
+      "size": 167,
+      "sha256": "ab02f84c774beae68d77bdde5844061f65467e19bd7a033914f712e9953ef6e2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/write.trace",
+      "size": 355,
+      "sha256": "f587e601aaf6f4e173e846cb651165dbd3688ad3addcecced6aa31cdbef5b50f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/error",
+      "size": 21,
+      "sha256": "1ca7fac2de195c03975c1e0571c3c684a48da17086588769222c32c414fa8d4e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-cleanup-zero/input.raw",
+      "size": 1,
+      "sha256": "8e35c2cd3bf6641bdb0e2050b76932cbb2e6034a0ddacc1d9bea82a6ba57f7cf",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-partial/metadata.json",
+      "size": 2901,
+      "sha256": "0f379b3db18cc1819027b6645c3c1b190bc0ce6c3a5c7f47fcd4fd9de899df9e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-partial/summary",
+      "size": 103,
+      "sha256": "5021eb28a20fb09f71593e209b1fb95cbec6cbb03e90e27958b3ced888ed4fbf",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-partial/output.raw",
+      "size": 1,
+      "sha256": "77adfc95029e73b173f60e556f915b0cd8850848111358b1c370fb7c154e61fd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-partial/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-partial/write.trace",
+      "size": 99,
+      "sha256": "8107fd7a81444c0b1f4ab971b4bb127fd051f1dc3a7ab8d1435b60341bdd399e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-partial/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-partial/error",
+      "size": 70,
+      "sha256": "acb1583829fed9ca3b085754a5b94d92a8eed272211c4ceda5d66d090769e83c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-partial/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-partial/input.raw",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-zero/metadata.json",
+      "size": 2898,
+      "sha256": "d28c4c55990bcfadde1668c509b65a9e671f8dc026502927f97c4e832734d2b8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-zero/summary",
+      "size": 103,
+      "sha256": "5021eb28a20fb09f71593e209b1fb95cbec6cbb03e90e27958b3ced888ed4fbf",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-zero/output.raw",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-zero/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-zero/write.trace",
+      "size": 45,
+      "sha256": "038e6c6c0de35954dcc258bd4fb8c8a0dbf507f41d7c7476beb5ab6bf600ac68",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-zero/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-zero/error",
+      "size": 21,
+      "sha256": "1ca7fac2de195c03975c1e0571c3c684a48da17086588769222c32c414fa8d4e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-zero/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/fault-init-zero/input.raw",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/metadata.json",
+      "size": 3340,
+      "sha256": "4216cf42c9f3fe78c4feae1fc3380074096f90e1fc3f7850eac104195847e13c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/summary",
+      "size": 122,
+      "sha256": "0e6fd4161f6f9d0b7083e31f2f2723894a1098efc00b98dc13a9d487976619a1",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/native.trace",
+      "size": 1797,
+      "sha256": "61c12cc938d72e54f12fc5714dd3a59abe1b71e364ede80fb7a50cf62948d7a3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/paste",
+      "size": 4,
+      "sha256": "c938f2667405857b7e738b4b877f7af48d17f31fb9a6bb1ee857ea2f4f879607",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/mutated",
+      "size": 5,
+      "sha256": "c51faa148557a08cbf790156578b7a82b41f22dd01227f7dde057e34c18a365f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/focus/input.raw",
+      "size": 14,
+      "sha256": "509d7b462ffbfd444143761aa735bd2690e8bd7470e0c9bae21f19d5bf50d1a2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/metadata.json",
+      "size": 3352,
+      "sha256": "d278adc8440bab357ef5da7e3b7a4b63f6876369494920a0a42bd8bbcf39b017",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/summary",
+      "size": 135,
+      "sha256": "564a9c0e1c21dc0a149faf0959cec484ac89bb28c5f534748854583822c12fcd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/output.raw",
+      "size": 369,
+      "sha256": "76a7712d5561251c6c4374cc5ee45b90a128a8c0a73107c9e71f67fa819e95f8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/native.trace",
+      "size": 1797,
+      "sha256": "61c12cc938d72e54f12fc5714dd3a59abe1b71e364ede80fb7a50cf62948d7a3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/issues",
+      "size": 25,
+      "sha256": "54b2f92906535e16f1544887c3d5f0ed5b6c6e4923850c76589a6f5deb6459fd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/mutated",
+      "size": 4,
+      "sha256": "1f5bb9791a310e136d1564ee23d2a3cc32ea7ce6fa26cb8734ec18b4607ad79e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/hide/input.raw",
+      "size": 14,
+      "sha256": "509d7b462ffbfd444143761aa735bd2690e8bd7470e0c9bae21f19d5bf50d1a2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-stop/metadata.json",
+      "size": 3046,
+      "sha256": "3c4d7a7ebdac137125116558a2b14ef19b2582606b32f1927946d726efff8439",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-stop/summary",
+      "size": 125,
+      "sha256": "d36a513498cf062de5af83c0e5213604b08a5a0b804a0e325506525d447045f3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-stop/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-stop/native.trace",
+      "size": 615,
+      "sha256": "ae741d8630c6e7c973850e1b0459f227f3a3450385ca8dc50e79241d8afe6b4b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-stop/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-stop/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-stop/issues",
+      "size": 22,
+      "sha256": "f6a4f402e6b61d446650d7351ed2ea7bb67c788783c589e0751670eebdc1da75",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-stop/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-stop/input.raw",
+      "size": 22,
+      "sha256": "a3c0f07d58945dc1b50cdfc77ff17fade020c0512c9a093f007652aeea6f31c2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/metadata.json",
+      "size": 3048,
+      "sha256": "67f941e1729dcd66d770bc73d3eda982336080eee2a30ee27b39b29cf638b8aa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/summary",
+      "size": 125,
+      "sha256": "d36a513498cf062de5af83c0e5213604b08a5a0b804a0e325506525d447045f3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/native.trace",
+      "size": 615,
+      "sha256": "ae741d8630c6e7c973850e1b0459f227f3a3450385ca8dc50e79241d8afe6b4b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/issues",
+      "size": 22,
+      "sha256": "f6a4f402e6b61d446650d7351ed2ea7bb67c788783c589e0751670eebdc1da75",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/error",
+      "size": 30,
+      "sha256": "716d94510aa4fb2b1c3c78868890f6e380f7064ec373d62a05210cda09745397",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/issue-throws/input.raw",
+      "size": 22,
+      "sha256": "a3c0f07d58945dc1b50cdfc77ff17fade020c0512c9a093f007652aeea6f31c2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/metadata.json",
+      "size": 3353,
+      "sha256": "95c122afe4955c8ee83fff119520a17b218b5ddc8b2fc31edc9a628c9806dfe7",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/summary",
+      "size": 135,
+      "sha256": "564a9c0e1c21dc0a149faf0959cec484ac89bb28c5f534748854583822c12fcd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/output.raw",
+      "size": 315,
+      "sha256": "ff33123d172c371101f03f31b2122f463cf82cd96d52d67003382e3a7f0197c1",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/native.trace",
+      "size": 1797,
+      "sha256": "61c12cc938d72e54f12fc5714dd3a59abe1b71e364ede80fb7a50cf62948d7a3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/issues",
+      "size": 25,
+      "sha256": "54b2f92906535e16f1544887c3d5f0ed5b6c6e4923850c76589a6f5deb6459fd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/mutated",
+      "size": 5,
+      "sha256": "c5803a6e4daa6af400e8af0ae417ff6d7c55a86d11ba4a0cf6d443c15ce6fac5",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/modal/input.raw",
+      "size": 14,
+      "sha256": "509d7b462ffbfd444143761aa735bd2690e8bd7470e0c9bae21f19d5bf50d1a2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/metadata.json",
+      "size": 3357,
+      "sha256": "e07763f84ab7dfa41e8af2b62a0ee2e320fc3a981920fe36ec460b8e73f28987",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/summary",
+      "size": 135,
+      "sha256": "564a9c0e1c21dc0a149faf0959cec484ac89bb28c5f534748854583822c12fcd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/native.trace",
+      "size": 1797,
+      "sha256": "61c12cc938d72e54f12fc5714dd3a59abe1b71e364ede80fb7a50cf62948d7a3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/issues",
+      "size": 25,
+      "sha256": "54b2f92906535e16f1544887c3d5f0ed5b6c6e4923850c76589a6f5deb6459fd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/mutated",
+      "size": 9,
+      "sha256": "68cecc5d080726709d956882193ff6d99a1353f4f6156a03de4f62e90223be27",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/no-target/input.raw",
+      "size": 14,
+      "sha256": "509d7b462ffbfd444143761aa735bd2690e8bd7470e0c9bae21f19d5bf50d1a2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/protocol-reply/metadata.json",
+      "size": 3011,
+      "sha256": "48469b8ba76e3afd695ff229c6c7b7bac6e9ab53f8a98337861dd92f7bc205d4",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/protocol-reply/summary",
+      "size": 110,
+      "sha256": "283b09c3c8dc33c5ae5c77c9bdcc681b1baa7a809ad8bf5d3918d0526b52e2da",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/protocol-reply/output.raw",
+      "size": 273,
+      "sha256": "002edfd3e38a000f3601a8a7fc809bff3a66035850d1d0c69f20c00c67088e0b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/protocol-reply/native.trace",
+      "size": 1176,
+      "sha256": "8929fb0bcd14a3eb04995d0c7587ba626ab6d8fd7cd40896de647d3c11d35ace",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/protocol-reply/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/protocol-reply/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/protocol-reply/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/protocol-reply/input.raw",
+      "size": 10,
+      "sha256": "92e2300eabe9835666a8d01429de543ee84500e754580c2ccfe7d12918dbe3b1",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/metadata.json",
+      "size": 3355,
+      "sha256": "3f6de5da851117c7a553525ddd45f2dad709c3fa4319bd4db993c8210a393c8b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/summary",
+      "size": 135,
+      "sha256": "564a9c0e1c21dc0a149faf0959cec484ac89bb28c5f534748854583822c12fcd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/output.raw",
+      "size": 477,
+      "sha256": "d40bff17d8ff6b3974c283bb9e3bba1f731313ce3297aad00399a652a1e49bdc",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/native.trace",
+      "size": 1852,
+      "sha256": "168f5cfa0790d6b0601f211bec3b160e5f3e838764b9fa514cf127d0343ddd18",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/issues",
+      "size": 25,
+      "sha256": "54b2f92906535e16f1544887c3d5f0ed5b6c6e4923850c76589a6f5deb6459fd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/mutated",
+      "size": 7,
+      "sha256": "df887ef909881c06e66f7edc77e8835ef0f00861264ef2b46c52d1c2e8773720",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/remount/input.raw",
+      "size": 14,
+      "sha256": "509d7b462ffbfd444143761aa735bd2690e8bd7470e0c9bae21f19d5bf50d1a2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/metadata.json",
+      "size": 3341,
+      "sha256": "bacf769d5c2c015746023cde5a4ad2138ec330c5ee8556a49f96d4deb2e34682",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/summary",
+      "size": 122,
+      "sha256": "0e6fd4161f6f9d0b7083e31f2f2723894a1098efc00b98dc13a9d487976619a1",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/output.raw",
+      "size": 315,
+      "sha256": "53f0f13feb5a49f754dc461aaa6d3f5ea2b546643c406bf15814706c4c14516b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/native.trace",
+      "size": 1797,
+      "sha256": "61c12cc938d72e54f12fc5714dd3a59abe1b71e364ede80fb7a50cf62948d7a3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/paste",
+      "size": 4,
+      "sha256": "c938f2667405857b7e738b4b877f7af48d17f31fb9a6bb1ee857ea2f4f879607",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/mutated",
+      "size": 6,
+      "sha256": "e16a9d4d1cf9ead81f53e096a680d278908d60574a8d036eda70baede61287b4",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/scroll/input.raw",
+      "size": 14,
+      "sha256": "509d7b462ffbfd444143761aa735bd2690e8bd7470e0c9bae21f19d5bf50d1a2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-drain/metadata.json",
+      "size": 3141,
+      "sha256": "3532bf9362af22164f8d2c780715c1be6fb300e0ec1628ed3c57398729de74a4",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-drain/summary",
+      "size": 119,
+      "sha256": "ee601883610a25e877535e774b7b4d57c5b09fbd31797e42a52984e36d4dc22a",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-drain/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-drain/native.trace",
+      "size": 1403,
+      "sha256": "bc1a97bca336a8ed3ffb50c1b577fb7161abfc3e663bbdb36a7ebe7a3d7d889e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-drain/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-drain/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-drain/issues",
+      "size": 16,
+      "sha256": "66696877d5114ddf03517c1c2c43cd0d5c1fa17b9334ee7ff52dc45471285666",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-drain/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-drain/input.raw",
+      "size": 11,
+      "sha256": "f364955c5d6066ea34e287f65c30b86b74738a47df969d4e5b7a393650a6d1c0",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-paste/metadata.json",
+      "size": 3116,
+      "sha256": "39874e2822b199b4cfd03a3f75b3c03dde87f08bde301b5110cd2b7e92943d40",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-paste/summary",
+      "size": 103,
+      "sha256": "5021eb28a20fb09f71593e209b1fb95cbec6cbb03e90e27958b3ced888ed4fbf",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-paste/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-paste/native.trace",
+      "size": 950,
+      "sha256": "a8905f63c8f33fb082f958af4798112562490f0ec31a1e3f1341402e3179aaaf",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-paste/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-paste/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-paste/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/signal-paste/input.raw",
+      "size": 7,
+      "sha256": "f124a332a0cdf40ef710beed2310ee3bf0fcab67553c0dbe31f900df97f3e855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/stream-two/metadata.json",
+      "size": 3083,
+      "sha256": "8b36565020db79a5f71dd95c6b2216c175fa4e1974d3cb8a40274a28e450d617",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/stream-two/summary",
+      "size": 148,
+      "sha256": "be3edd669863f379473bbfa5421f9900aba4c615604bd4400a388c99244e8e40",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/stream-two/output.raw",
+      "size": 261,
+      "sha256": "561658e0fc1101658166648a1f24f5ff35134f02146ebe5ed6e7fd1966215365",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/stream-two/native.trace",
+      "size": 3342,
+      "sha256": "99047a32bc832542e18f609ca273e02a8b2f7538496251bdd941633ecf88cea6",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/stream-two/paste",
+      "size": 8,
+      "sha256": "8ad671204773c262baeb6b8d5c1623e88ee9d6eb5b17d2f619186eea8247107a",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/stream-two/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/stream-two/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/stream-two/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/stream-two/input.raw",
+      "size": 29,
+      "sha256": "f1df4d4a8985f3220b7e7d3cfba2de7ea19bc36916a7ea6d1dd5ecf51d69cef1",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/metadata.json",
+      "size": 3355,
+      "sha256": "860194cce7fa17888992ad998b53757822ca4c16926d837049d0eeb4616f6725",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/summary",
+      "size": 135,
+      "sha256": "564a9c0e1c21dc0a149faf0959cec484ac89bb28c5f534748854583822c12fcd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/output.raw",
+      "size": 369,
+      "sha256": "76a7712d5561251c6c4374cc5ee45b90a128a8c0a73107c9e71f67fa819e95f8",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/native.trace",
+      "size": 1797,
+      "sha256": "61c12cc938d72e54f12fc5714dd3a59abe1b71e364ede80fb7a50cf62948d7a3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/issues",
+      "size": 25,
+      "sha256": "54b2f92906535e16f1544887c3d5f0ed5b6c6e4923850c76589a6f5deb6459fd",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/mutated",
+      "size": 7,
+      "sha256": "6a7e187791c5c85be082b06035dcb43bf0ab64f790ca133a4d79dfd3330d121d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/mutate",
+      "size": 50,
+      "sha256": "53e8c542e2f2b611c48115a1f31c8f95a0bee164e0c917c7de1a0e62e290e4c9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/native/formal/unmount/input.raw",
+      "size": 14,
+      "sha256": "509d7b462ffbfd444143761aa735bd2690e8bd7470e0c9bae21f19d5bf50d1a2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/k115-native/summary",
+      "size": 59,
+      "sha256": "b017e0a2036394bd3c73055ed5e931adcc2b46b589b5470cdf2dc85017c09fc1",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/k115-native/output.raw",
+      "size": 183,
+      "sha256": "b5feb3114e9a67ee55383be0f6256f2973c7bf7d20f6c01494b9be3b0461a80c",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/k115-native/metadata.json",
+      "size": 2925,
+      "sha256": "e589a2016e1b2d10cd6209d2a488a966b7111cf041412b5a088bc660dc9c9ef9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/k115-native/stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/k115-native/cleanup",
+      "size": 1,
+      "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/k115-native/input.raw",
+      "size": 2,
+      "sha256": "3d4973b660e13e12593bfaae052e261ac0aa38eb22eae8e9f139142ed289fa7b",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/keyboard-suite/k115-native/issue",
+      "size": 21,
+      "sha256": "f40116e7f32deac9c818afc754d6845ee3c5010f03fe26118e12524818293875",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/phase-index.json",
+      "size": 3611,
+      "sha256": "de82dadc2d412808a77886ac1aef75308096fa911a1ce0087242fba268037ccc",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/summary",
+      "size": 266,
+      "sha256": "48ac994968fce065ac14661919d25ed2ec154df3a378227daa5f7d9fe9697d69",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/host-identity.json",
+      "size": 293,
+      "sha256": "7cf657067402a950f2c02891e38a66747d2f95a1581da8c250383f1abd208d9a",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/keys-paste.png",
+      "size": 3031,
+      "sha256": "245cc9cca8a8a3d739a0c950bd4d44b84922947a64e0ef8add5b4ab988522aad",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/host.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/clipboard-ready",
+      "size": 53,
+      "sha256": "2a42728a3a635a277edb9e9b4bad8505aa029d0d8e6a6e6ea50bb255daa2c8d7",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/running.png",
+      "size": 3031,
+      "sha256": "245cc9cca8a8a3d739a0c950bd4d44b84922947a64e0ef8add5b4ab988522aad",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/output.raw",
+      "size": 1407,
+      "sha256": "5c7366a3eb0345dc2ec033d982e561b4fa6a486392d027dfc257f4caaac88d24",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/result.json",
+      "size": 3433,
+      "sha256": "6713e1a33c8bcdb3826ba24dc99eb77d8c4dcb70b40e0c601fe66a8ea53b0600",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/paste",
+      "size": 17,
+      "sha256": "024e80453b43e46c3259b5662717dc8f4a11e1067c3fe1cc75f64e254c301262",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/product.strace",
+      "size": 131409,
+      "sha256": "cdcf46cf12911f5c6c8d441e9929878508ad649dfa655ec279dadfa60510a5a9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/host.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/clipboard.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/resized.png",
+      "size": 2870,
+      "sha256": "f142708e559bfcd88e9d9a235b646c18ffc291b8daf9f5e28dce68927f4a40a8",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/terminal-after.json",
+      "size": 563,
+      "sha256": "df3fe4170a458796a046ba9cc7fbf69b3e125083924d8245db407b69ed6c4906",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/exit-release",
+      "size": 7,
+      "sha256": "a4d451ec23463726f72c43d64c710968f6b602cd653b4de8adee1b556240a829",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/window-tree.txt",
+      "size": 752,
+      "sha256": "61cf1910ed1215c451b92ee17bbae41fc81529173e1b4a81315cf94e2ba598f9",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/terminal-before.json",
+      "size": 633,
+      "sha256": "06af15e72ce44284e8c8224a578a61e248d2086e983052b42852a25ae74e2c4a",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/input.raw",
+      "size": 96,
+      "sha256": "5e19595dad5a3d10db108176d02cd43de473e214c472ba8948b37cc0c268c6a2",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/launch.json",
+      "size": 901,
+      "sha256": "272afbfa7b09e76e8455764155029800b93212eb2fc98c9633df1657f5183e14",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/product.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/clipboard.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-xterm/restored.png",
+      "size": 2885,
+      "sha256": "12c97af7bf7be833d68a21e106bf04d7fd807510732d9a8b8f271214e9bfde09",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/phase-index.json",
+      "size": 3613,
+      "sha256": "54e4dd925f3938ea50dbee8f0172bd1c6d5d70b5591101e7fb3cf47e9aa85b8f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/summary",
+      "size": 265,
+      "sha256": "23594be57b3fdaec642575cd63562c27b5c32b0df549b6ddbb536203c7effe13",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/host-identity.json",
+      "size": 733,
+      "sha256": "2d172eec6f4a7e135b7f6a31c7cba6513d543448e11cc589325488209b117965",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/keys-paste.png",
+      "size": 2631,
+      "sha256": "e6946e09e954004f0816af85c1b8010c23a4333703ae24b7da0f545b968ab7bf",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/host.stderr",
+      "size": 673,
+      "sha256": "98ee46aade809d70bc9a716033c3b1e7e9b11ba1fc984a27934f0efd1f6a0373",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/clipboard-ready",
+      "size": 53,
+      "sha256": "2a42728a3a635a277edb9e9b4bad8505aa029d0d8e6a6e6ea50bb255daa2c8d7",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/running.png",
+      "size": 2631,
+      "sha256": "e6946e09e954004f0816af85c1b8010c23a4333703ae24b7da0f545b968ab7bf",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/output.raw",
+      "size": 1407,
+      "sha256": "5c7366a3eb0345dc2ec033d982e561b4fa6a486392d027dfc257f4caaac88d24",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/result.json",
+      "size": 3426,
+      "sha256": "e8a27dd3fa1624790d336039ebb38d14334b3aeb6bb675b423cc4a4bf8983032",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/paste",
+      "size": 17,
+      "sha256": "024e80453b43e46c3259b5662717dc8f4a11e1067c3fe1cc75f64e254c301262",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/worker-stop",
+      "size": 4,
+      "sha256": "6c45cb72a36e63d522aa54ed8adbd7a29a989474f2f77e0458af8800564ef3cb",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/product.strace",
+      "size": 131717,
+      "sha256": "4fb472c15122d4ad8424f0ce831811ce971faf336abec182b2b1aafc5a27fb9f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/host.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/clipboard.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/resized.png",
+      "size": 2527,
+      "sha256": "7f2bc068a6fef0df8e91b642f9470b92e6ca1855dc080c95f9da27770dcc35cf",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/terminal-after.json",
+      "size": 563,
+      "sha256": "4d4489c2dffe582771938bee140346037f9c91234fcd3d77993fd382cb3b7453",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/exit-release",
+      "size": 7,
+      "sha256": "a4d451ec23463726f72c43d64c710968f6b602cd653b4de8adee1b556240a829",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/returned",
+      "size": 6,
+      "sha256": "317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/window-tree.txt",
+      "size": 854,
+      "sha256": "bc2835c1e83340f301d644d75e59d9d2aac642e737332bdbaa70569e6fec083d",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/terminal-before.json",
+      "size": 642,
+      "sha256": "762e1eb680f6e5bebbb675554bb3d38deb997909c16c229cec65b9e716eb6eb3",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/input.raw",
+      "size": 96,
+      "sha256": "cfe621197f1dc800dc79f9959576914a5c0f02a5eb82f54485b5fcee694ca4af",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/launch.json",
+      "size": 838,
+      "sha256": "83714f5b39f1659edcc46297c8c5a21bbe9afa6b0e4f266bed6c5744d18bbfad",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/product.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/clipboard.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vte/restored.png",
+      "size": 2527,
+      "sha256": "7f2bc068a6fef0df8e91b642f9470b92e6ca1855dc080c95f9da27770dcc35cf",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/phase-index.json",
+      "size": 3937,
+      "sha256": "76f70d1a1eeb2429b5aa8656699bdd78a50812808fdda146edb89496e04e3c95",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/keys-vcsa.bin",
+      "size": 1444,
+      "sha256": "af09e6b24e2c88236869c68bd666d7b4f5c9d86d915c542b713c350d9da98875",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/running.png",
+      "size": 953,
+      "sha256": "ede258a78e0e726c9078a3e031669396e4725966ea50b4361a292ffff40dcc16",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/output.raw",
+      "size": 1395,
+      "sha256": "4f49127a79eaa791668005a72ed3c0afbd67142e6430c1ca78b6519c059b3abc",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/result.json",
+      "size": 2711,
+      "sha256": "68fc3ca80b7f4eca1a0e9a9cbe1fa847c52517b6ff0ec5fc97316bec26c3da5f",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/qemu.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/guest-evidence.tar",
+      "size": 1689600,
+      "sha256": "450056afa66a234693c71d2e81fbd33dd0588e5ee4b3e09c841994b48b20acaa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/resize-transition.png",
+      "size": 369,
+      "sha256": "153d838bcf43fee366cccafc4211baf9ff1dc0835c1e1462a6cec0216e0a1f88",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/qmp.jsonl",
+      "size": 14182,
+      "sha256": "11001e47b2759f8bdbeb6c943f4fd8f2686b6f6e83cd3497fa57fc07eca0f344",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/resized-vcsa.bin",
+      "size": 1004,
+      "sha256": "044617e2ae4465d3e1154f12945cbe84233544ca9a2d4543cf4129e6eae22ed7",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/resized.png",
+      "size": 845,
+      "sha256": "ee4034c6689b0c3df85087784a4f3342996063123158f2f9097a9df75e4b14a2",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/resize-transition-vcsa.bin",
+      "size": 1004,
+      "sha256": "7a582da88a6d6108692ba94ca448b2790f55d8d960824cb4915b0b947b9437d4",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/keys.png",
+      "size": 940,
+      "sha256": "33d8416f3f6d2c3cd33ca4895d714eb6dd6a47d2f2cabe367a7f1237cd51a607",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/serial.log",
+      "size": 2715633,
+      "sha256": "acf0545507603ea4aeae7b8f0f718414ff6b22fb7962437f8fe67b9f39f2ebdc",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/input.raw",
+      "size": 61,
+      "sha256": "4492643c8fdb82a45bb6ee09d63a7f45e0ea870c7645aad6ae043db8b4fabbed",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/launch.json",
+      "size": 1512,
+      "sha256": "8da49b5df06b38488e2fab96d8c6440b1751cff8d4975ecb9ff537687ccee158",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/qemu.stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/running-vcsa.bin",
+      "size": 1444,
+      "sha256": "af09e6b24e2c88236869c68bd666d7b4f5c9d86d915c542b713c350d9da98875",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r3/restored.png",
+      "size": 860,
+      "sha256": "9bf76c3899a7e45ae793e47fb7ed9e3222c067c9fb2afe72e589a73baabba2dd",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r2/keys.png",
+      "size": 940,
+      "sha256": "33d8416f3f6d2c3cd33ca4895d714eb6dd6a47d2f2cabe367a7f1237cd51a607",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r2/resized.png",
+      "size": 354,
+      "sha256": "234eaa4c7af87e6101b6b1da512faec54a9b0aecefd43af28b9303db09d35713",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r2/restored.png",
+      "size": 860,
+      "sha256": "9bf76c3899a7e45ae793e47fb7ed9e3222c067c9fb2afe72e589a73baabba2dd",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/raw/host-vt-r2/running.png",
+      "size": 953,
+      "sha256": "ede258a78e0e726c9078a3e031669396e4725966ea50b4361a292ffff40dcc16",
+      "verification": "fresh hash",
+      "scope": "actual host PNG"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/application-lifecycle/target/release/bin/main",
+      "size": 18641112,
+      "sha256": "e348793822c5fc30e484b1398349cd4a09493f2d1fca7a313d6a13c59206af4c",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/integration/fixture/target/release/bin/main",
+      "size": 18647128,
+      "sha256": "b33c18a2df65d870e47a90566aad3b59af32a22ff263279979f0a75300eacbe4",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/device/target/release/bin/main",
+      "size": 18670472,
+      "sha256": "98cc71e9d0a3b3b2c6bdbaf6473a0395dc32fe8506c192c0ea278e732126902d",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/formal_device/target/release/bin/main",
+      "size": 18753464,
+      "sha256": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/formal_dispatch/target/release/bin/main",
+      "size": 18673848,
+      "sha256": "49629ac45a88f3767733dc3f8207e4eaed6aabe14f4b7a35a5a9fe6b94f888df",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/i015_stage/.wrapped/target/release/bin/main",
+      "size": 18671616,
+      "sha256": "ae9e83465a17007d957e8b14ac467aa02ddfd99cf96eb24059c53f80b3f5c6a7",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/i015_stage/pure/target/release/bin/main",
+      "size": 18675176,
+      "sha256": "d8758da6f98bf1147bee45acfacb7d61abfa076fe36e257b99e5a5ad7969d5a5",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/paste_argument/target/release/bin/main",
+      "size": 18695248,
+      "sha256": "218be8e83f9663e4c630be8f118f760c2220fda022144ce583dc73e1efdd7626",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/review_regressions/target/release/bin/main",
+      "size": 18702896,
+      "sha256": "1260986c32059f693784d7c975645605f9a4f6ce956558234572b167a5b6227a",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/target/release/bin/main",
+      "size": 18849320,
+      "sha256": "592019610bcb0e124dfb389b8c022942cef340e08e371a6eaf8020c23ca525e3",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/keyboard/upstream/target/release/bin/main",
+      "size": 18663896,
+      "sha256": "6456e685e3dd8791a41a598b3b38d1b4ae46ff1d651bf2d8ce6b119f922a8311",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/source/tests/runtime/session/target/release/bin/main",
+      "size": 18683240,
+      "sha256": "00c855c49a00b97122aae6290d051bbe71fae34b41b103fb5456a0b1eb90f558",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/clean-consumers/dispatch/target/release/bin/main",
+      "size": 18674344,
+      "sha256": "0142978560669909185c87614ee0c7e294b2efda6a3cfe9dca34734f068371f0",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/clean-consumers/keyboard/target/release/bin/main",
+      "size": 18849880,
+      "sha256": "fd535a42e56240b5912101658a7d9e717ed76d1280aadde85d9271d9fa78b888",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/clean-unpacked/cjtui-0.0.0/examples/keyboard/target/release/bin/main",
+      "size": 18640384,
+      "sha256": "d4ff6687b6dec4cf1876a9409a9623592e686e46dd5d949fedec02716221394f",
+      "verification": "fresh hash",
+      "scope": "actual executed binary"
+    },
+    {
+      "path": "/workspace/work/keyboard-execution/artifacts/cjtui-0.0.0.cjp",
+      "size": 156233,
+      "sha256": "e3196fccc18ff3fe3889245ad46d789abf52af5f2384fe7b36444f685f8e00f9",
+      "verification": "fresh hash",
+      "scope": "normal bundle artifact"
+    },
+    {
+      "path": "/workspace/work/keyboard-implementation/review-r2-lint-01/exit",
+      "size": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-implementation/review-r2-lint-01/stdout",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    },
+    {
+      "path": "/workspace/work/keyboard-implementation/review-r2-lint-01/stderr",
+      "size": 127398,
+      "sha256": "3add2553f20307becf1328ced3224bc78d25dfc2f592644456acd701aefb2a1e",
+      "verification": "fresh hash",
+      "scope": "selected original"
+    }
+  ]
+}

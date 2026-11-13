@@ -1,0 +1,14 @@
+[?2004h[?25$p[0m[1;1HCJTUI_KEYBOARD_READY                    [2;1H                                        [3;1H                                        [4;1H                                        [5;1H                                        [0m[?2004lAn exception has occurred:
+Exception: KEYBOARD_CALLBACK_SENTINEL
+	 at keyboard_device::main::lambda.2()(/workspace/work/keyboard-execution/source/tests/keyboard/device/src/main.cj:56)
+	 at cjtui::Application::dispatch::lambda.3()(/workspace/work/keyboard-execution/source/src/application.cj:438)
+	 at cjtui::RuntimeSession::enter<...>(() -> T0)(/workspace/work/keyboard-execution/source/src/runtime_session.cj:135)
+	 at cjtui::Application::dispatch(cjtui::NodeRef, cjtui::KeyEvent)(/workspace/work/keyboard-execution/source/src/application.cj:414)
+	 at cjtui::Application::dispatchDeviceKey(cjtui::KeyEvent)(/workspace/work/keyboard-execution/source/src/application.cj:521)
+	 at cjtui::Application::run::lambda.3()(/workspace/work/keyboard-execution/source/src/application.cj:570)
+	 at cjtui::KeyboardDecoder::event(cjtui::KeyEvent)(/workspace/work/keyboard-execution/source/src/keyboard_decoder.cj:47)
+	 at cjtui::KeyboardDecoder::scalar(UInt32, Int64, Bool)(/workspace/work/keyboard-execution/source/src/keyboard_decoder.cj:129)
+	 at cjtui::KeyboardDecoder::consume(Int32, Int64)(/workspace/work/keyboard-execution/source/src/keyboard_decoder.cj:218)
+	 at cjtui::KeyboardDecoder::feed(std.core::Array<...>)(/workspace/work/keyboard-execution/source/src/keyboard_decoder.cj:62)
+	 at cjtui::Application::run()(/workspace/work/keyboard-execution/source/src/application.cj:734)
+	 at keyboard_device::main()(/workspace/work/keyboard-execution/source/tests/keyboard/device/src/main.cj:58)

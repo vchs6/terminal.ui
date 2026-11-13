@@ -1,0 +1,77 @@
+{
+  "task": "TASK115",
+  "round": 2,
+  "fix_round": "1/5",
+  "scope": "Only 5baa09f33251e9f572640a2f6d4ae46245f7eea8..500d5ff35632ab7ed55e323458883bbd7e80d2b7 and original K115-01..06 findings",
+  "head": "500d5ff35632ab7ed55e323458883bbd7e80d2b7",
+  "spec_verdict": "FAIL",
+  "quality_verdict": "FAIL",
+  "original_findings": [
+    {
+      "id": "K115-01",
+      "status": "ADDRESSED",
+      "basis": "stringByte(state5) now reprocesses non-ST byte in string state, so the UTF8 lead and rawST retain their boundaries; fixed independent literal vectors final raw PASS."
+    },
+    {
+      "id": "K115-02",
+      "status": "ADDRESSED",
+      "basis": "utfSequence tracks all valid lead widths during sequence/drain, nonC1 scalar does not reset to normal; utfCode>=utfMin prevents overlong encoding from impersonating C1; original two literals final raw PASS."
+    },
+    {
+      "id": "K115-03",
+      "status": "ADDRESSED",
+      "basis": "rawC1 check now precedes bare-ESC dispatch; raw/UTF8 CSI/OSC literals final raw PASS."
+    },
+    {
+      "id": "K115-04",
+      "status": "NOT_ADDRESSED",
+      "basis": "Original exact/over ASCII and complete UTF8 literals now PASS and bytes are counted, but newly reachable oversized Alt invalid-prefix path prematurely resets to normal; see K115-R1-01."
+    },
+    {
+      "id": "K115-05",
+      "status": "ADDRESSED",
+      "basis": "inputActive checks gate consume recursion and each event/issue delivery against running/session/stop; final actual native E4+x raw has issues1,x0,caught=false,cleanup1,released=true."
+    },
+    {
+      "id": "K115-06",
+      "status": "ADDRESSED",
+      "basis": "batch replaces persistent keys/issues rather than clear; paste allocation is replaced on overflow, completion, new paste and finish. Remaining sequence backing capacity is bounded by maxSequenceBytes plus constant paste-prefix allowance, endPrefix at most6 and scalar metadata O(1). No history-sized field remains on normal return."
+    }
+  ],
+  "findings": [
+    {
+      "id": "K115-R1-01",
+      "parent_finding": "K115-04",
+      "severity": "Important",
+      "owner": "TASK114",
+      "title": "已超限 Alt UTF8 遇到非续字节时提前退出 drain",
+      "location": {
+        "path": "src/keyboard_decoder.cj",
+        "start_line": 160,
+        "end_line": 168
+      },
+      "contract": [
+        "K001 raw-byte sequence budget",
+        "K002 once SequenceTooLong then drain through final; no leaked digit/final",
+        "F002 ordinary nonstring error isolation"
+      ],
+      "configuration": "KeyboardLimits(maxSequenceBytes:1)",
+      "steps": [
+        "feed([0x1b,0xe4])",
+        "feed([0x31,0x41,0x42])",
+        "finish()"
+      ],
+      "expected": "一次 SequenceTooLong@0；E4 已令普通 ESC 序列超过1，后续数字1与final A均在drain中消耗，只有末尾text B。",
+      "actual_source_trace": "E4 在184–186调用appendSequence，设置drained=true并报SequenceTooLong。下一31不是UTF8续字节：160清utfRemaining，非utfSequence分支166无条件state=0，168重试31；普通文本分支发1，随后A也发text，得到1/A/B。",
+      "secondary_case": "feed([ESC,C2]); timeout() 在max1按已冻结裁决报SequenceTooLong并进入drain；之后feed([31,41,42])经过同一166/168路径，同样泄漏1/A/B。",
+      "interpretation": "K002普通坏UTF8的独立字节重试不允许解除已由更先SequenceTooLong建立的隔离；F002明确普通非string首次资源/畸形问题后仍drain。本例没有新ESC、标量边界C1或raw03取消，也未在数字1前到final。",
+      "requested_change": "分离未超限Alt坏UTF8的正常重试与已超限Alt的隔离路径：后者将当前非续字节交回同一drain规则，直到final/契约明确取消；不把drained候选直接state=0后按normal重试。",
+      "validation": "独立固定 literal 的所有两块切分/bytewise，以及ESC+C2/max1→timeout→31 41 42控制；仅SequenceTooLong@0和text B。保留未超限Alt InvalidUtf8 lead-offset与真实新ESC/C1/raw03取消。",
+      "evidence_mode": "Deterministic fixed-source trace only; no new runtime reproduction claimed."
+    }
+  ],
+  "controller_ruling_assessment": "ESC+C2/max1未完成时在timeout/finish确认SequenceTooLong而非IncompleteInput，与K001原始字节预算及K002已超限隔离优先一致；完整C1按F007/F002新引导自身规则处理。未发现需推翻该裁决的正文冲突；其保留drain要求同样受K115-R1-01影响。",
+  "evidence_reuse": "review-r1-final-02 original01–05 exits0, ordinary pure and both I015 pure results0; review-r1-lint-02 exit0 with zero error severity and701 warnings. Earlier affected native raws remain bound to their recorded earlier source.patch, not a claim of full final dispatcher execution.",
+  "limits": "No new build/probe/suite, author contact/self-assessment, full asset audit or product/test/spec/main changes. TASK116 bundle/host checks not covered."
+}
+

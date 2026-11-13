@@ -1,0 +1,15 @@
+[?2004h[?25$p[0m[1;1HCJTUI_KEYBOARD_READY                    [2;1H                                        [3;1H                                        [4;1H                                        [5;1H                                        [0m[?2004lAn exception has occurred:
+Exception: KEYBOARD_ISSUE_SENTINEL
+	 at keyboard_device::main::lambda.1()(/workspace/work/keyboard-implementation/source/tests/keyboard/device/src/main.cj:22)
+	 at cjtui::Application::reportKeyboardIssue::lambda.0()(/workspace/work/keyboard-implementation/source/src/application.cj:529)
+	 at cjtui::Application::batch::lambda.0()(/workspace/work/keyboard-implementation/source/src/application.cj:321)
+	 at cjtui::RuntimeSession::enter<...>(() -> T0)(/workspace/work/keyboard-implementation/source/src/runtime_session.cj:135)
+	 at cjtui::Application::batch(() -> Unit)(/workspace/work/keyboard-implementation/source/src/application.cj:316)
+	 at cjtui::Application::reportKeyboardIssue(cjtui::KeyboardDiagnostic)(/workspace/work/keyboard-implementation/source/src/application.cj:527)
+	 at cjtui::Application::run::lambda.1()(/workspace/work/keyboard-implementation/source/src/application.cj:563)
+	 at cjtui::KeyboardDecoder::issue(cjtui::KeyboardIssue, Int64)(/workspace/work/keyboard-implementation/source/src/keyboard_decoder.cj:43)
+	 at cjtui::KeyboardDecoder::completeSequence()(/workspace/work/keyboard-implementation/source/src/keyboard_decoder.cj:233)
+	 at cjtui::KeyboardDecoder::consume(Int32, Int64)(/workspace/work/keyboard-implementation/source/src/keyboard_decoder.cj:152)
+	 at cjtui::KeyboardDecoder::feed(std.core::Array<...>)(/workspace/work/keyboard-implementation/source/src/keyboard_decoder.cj:53)
+	 at cjtui::Application::run()(/workspace/work/keyboard-implementation/source/src/application.cj:729)
+	 at keyboard_device::main()(/workspace/work/keyboard-implementation/source/tests/keyboard/device/src/main.cj:58)

@@ -1,5 +1,9 @@
 # Design
 
+## Implementation status v1 — 2026-11-13
+
+K001–K004已编译、独立审查/实际执行并获117 PASS_FINITE_K；接受源c3c4642对应main da9eaf40，原始设计字节保存在[有限K归档](../../../docs/reviews/K/controller/openspec/changes/implement-linux-input-editing/design.md)。本文冻结签名、语义及预算不变；正文过去的“未编译/候选”措辞按此状态说明理解：K已验证，E001–E005仍未编译/实现，118实际测试进行中、119–122未完成。完整Linux/父AC与整个OpenSpec变更未关闭；具体证据及宿主限制见[K归档](../../../docs/reviews/K/README.md)。
+
 ## Context
 
 本件继承首次调查 原独立调查稿（`/workspace/work/input-contract-draft/design-draft.md`） 的源码事实，已按主代理最新裁决整理；首次调查的推荐顺序若与本件冲突，以本件为准。当前主仓KeyEvent已公开 `init(code:String,text!:String="")`，UIKeyEvent/NodeRef/dispatch在同Runtime；InputDecoder/native键盘覆盖尚如初稿，不因新runtime完成就已有paste或编辑。当前真实来源hash见独立工件，不依赖并发HEAD。
@@ -65,7 +69,7 @@ public class KeyboardDecoder {
 public func onKeyboardIssue(handler: (KeyboardDiagnostic) -> Unit): Application
 ```
 
-上列全部新增签名未编译；public constructor默认命名参数/根包跨包可见性必须独立正常CJPM消费者验证。内部位置式旧KeyEvent调用迁移到现公开命名形式或保留原内部适配，不把兼容调用删坏。KeyEvent(code/text)原有含义和interrupt拼写不变。KeyboardDiagnostic/Batch无公开构造，数组防别名修改；不回显无界原始控制payload。KeyboardLimits正数且maxPasteBytes≤16777216、maxSequenceBytes≤4096，违反IllegalArgumentException。InputLimits不塞入RuntimeLimits节点预算。
+起草时上列新增签名尚未编译；现K签名已在固定公共消费者验证，E签名仍未编译；public constructor默认命名参数/根包跨包可见性必须独立正常CJPM消费者验证。内部位置式旧KeyEvent调用迁移到现公开命名形式或保留原内部适配，不把兼容调用删坏。KeyEvent(code/text)原有含义和interrupt拼写不变。KeyboardDiagnostic/Batch无公开构造，数组防别名修改；不回显无界原始控制payload。KeyboardLimits正数且maxPasteBytes≤16777216、maxSequenceBytes≤4096，违反IllegalArgumentException。InputLimits不塞入RuntimeLimits节点预算。
 
 decoder单调用线程拥有，不线程安全；feed不持有传入chunk或历史输出。内部持有O(maxPasteBytes+maxSequenceBytes+常数)状态，batch输出/诊断O本次输入。普通sequence预算按原始byte包含introducer与final；paste固定六byte分隔符是独立常数识别，不受普通sequence预算截断。timeout由适配器在输入空闲100ms后调用，本身不休眠；feed与timeout的调用序列相同时输出一致。finish丢弃未完整序列并关闭；其后feed/timeout/finish抛KeyboardException("DecoderClosed")，累计byte offset无法表示则fail-close InputTooLarge。偏移是原始流0基字节，序列问题指引导首字节；普通UTF8问题指坏前缀首字节；未完整paste指起始标记首字节。同完整流且相同timeout位置，规范化事件/诊断不因chunk切分改变。
 
@@ -254,7 +258,7 @@ cut在同步copy前捕获节点代际、sessionId、全文源版本/编辑revisi
 3. TASK030会话扩展148–152先独立产品/审核/执行/验收；既有主题/富文本/交互A+B固定通过后118正式RED→119→120→121→122。
 4. 后续modal/动态重排、主题完整showcase、原020全部恢复、原030标题/图片图标、Linux041物理console与024最终汇合保持原AC。失败修复只重跑受影响证据，不以文档/新commit机械全冷重建。
 
-所有候选当前planned，未注册/实施/验收。没有发布/不可逆持久数据迁移。
+起草时所有候选planned；当前K已登记/实施/有限验收，E实际118测试进行中、119–122未实施/验收。没有发布/不可逆持久数据迁移。
 
 ## F001 主代理最终工程裁决（优先于候选措辞）
 

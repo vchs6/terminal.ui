@@ -1,0 +1,590 @@
+500d5ff3 Harden keyboard stream isolation and lifecycle
+bce5b9c9 test: add K115 keyboard review regressions
+ src/application.cj                              |  5 ++
+ src/keyboard_decoder.cj                         | 98 +++++++++++++++++++------
+ tests/keyboard/review_regressions/README.md     | 31 ++++++++
+ tests/keyboard/review_regressions/cjpm.toml     |  8 ++
+ tests/keyboard/review_regressions/native_pty.py | 51 +++++++++++++
+ tests/keyboard/review_regressions/run.sh        |  8 ++
+ tests/keyboard/review_regressions/src/box.cj    |  4 +
+ tests/keyboard/review_regressions/src/main.cj   | 88 ++++++++++++++++++++++
+ tests/run-slice.sh                              |  4 +
+ 9 files changed, 273 insertions(+), 24 deletions(-)
+diff --git a/src/application.cj b/src/application.cj
+index 23261e14..a96df65b 100644
+--- a/src/application.cj
++++ b/src/application.cj
+@@ -551,20 +551,25 @@ public class Application {
+             let capabilities = detectTerminalCapabilities()
+             lastCapabilities = Some(capabilities)
+             let (glyphCapabilities, detectedGlyphPolicy) = detectTerminalGlyphs()
+             lastGlyphCapabilities = Some(glyphCapabilities)
+             let initialMode = match (colorOverride) {
+                 case Some(value) => value
+                 case None => capabilities.colorMode
+             }
+             let decoder = KeyboardDecoder(limits: keyboardLimits)
+             decoder.caretProbe = Some(probe)
++            decoder.inputActive = Some({ =>
++                if (!running) { false }
++                else if (let Some(work) <- readSession()) { !work.isStopping() }
++                else { false }
++            })
+             let pasteTarget: Array<?NodeRef> = [None]
+             decoder.onPasteStart = Some({ => pasteTarget[0] = activeTarget() })
+             decoder.onIssue = Some({diagnostic => reportKeyboardIssue(diagnostic)})
+             decoder.onEvent = Some({key =>
+                 if (key.code != "paste") { dispatchDeviceKey(key) }
+                 else {
+                     var available = false
+                     if (let Some(target) <- pasteTarget[0]) {
+                         if (target.isValid() && readSession().isSome()) {
+                             let node = target.resolve(); let owner = current()
+diff --git a/src/keyboard_decoder.cj b/src/keyboard_decoder.cj
+index 4f523dd5..1501a878 100644
+--- a/src/keyboard_decoder.cj
++++ b/src/keyboard_decoder.cj
+@@ -16,69 +16,85 @@ public class KeyboardDecoder {
+     private var malformed = false
+     private var intermediate = false
+     private var osc = false
+     private var stringRemaining: Int32 = 0
+     private var stringC2 = false
+     private var utfRemaining: Int32 = 0
+     private var utfCode: UInt32 = 0
+     private var utfMin: UInt32 = 0
+     private var utfStart: Int64 = 0
+     private var utfAlt = false
++    private var utfSequence = false
++    private var utfC1Candidate = false
+     private var c1Csi = false
+     private var c1PrefixBytes: Int64 = 1
+     private var keys = ArrayList<KeyEvent>()
+     private var issues = ArrayList<KeyboardDiagnostic>()
+     var onEvent: ?(KeyEvent) -> Unit = None
+     var onIssue: ?(KeyboardDiagnostic) -> Unit = None
+     var onPasteStart: ?() -> Unit = None
++    var inputActive: ?() -> Bool = None
+     var caretProbe: ?CaretProbe = None
+ 
+     public init(limits!: KeyboardLimits = KeyboardLimits()) { this.limits = limits }
+     private func checkOpen(): Unit { if (closed) { throw KeyboardException("DecoderClosed", "decoder closed") } }
++    private func acceptingInput(): Bool {
++        if (let Some(check) <- inputActive) { return check() }
++        true
++    }
+     private func event(key: KeyEvent): Unit {
++        if (!acceptingInput()) { return }
+         keys.add(key)
+         if (let Some(callback) <- onEvent) { callback(key) }
+     }
+     private func issue(kind: KeyboardIssue, at: Int64): Unit {
++        if (!acceptingInput()) { return }
+         let diagnostic = KeyboardDiagnostic(kind, at); issues.add(diagnostic)
+         if (let Some(callback) <- onIssue) { callback(diagnostic) }
+     }
+     private func batch(): KeyboardBatch {
+         let result = KeyboardBatch(keys.toArray(), issues.toArray())
+-        keys.clear(); issues.clear(); result
++        keys = ArrayList<KeyEvent>(); issues = ArrayList<KeyboardDiagnostic>(); result
+     }
+     public func feed(chunk: Array<UInt8>): KeyboardBatch {
+         checkOpen()
+         for (byte in chunk) {
+             if (offset == Int64.Max) { closed = true; throw KeyboardException("InputTooLarge", "input offset overflow") }
+             let at = offset; offset++; consume(Int32(byte), at)
+         }
+         batch()
+     }
+     public func timeout(): KeyboardBatch {
+         checkOpen()
+-        if (state == 1 && utfRemaining == 0) { state = 0; event(KeyEvent("escape")) }
++        if (pendingC1OverBudget()) {
++            if (!drained) { drained = true; sequence.clear(); issue(KeyboardIssue.SequenceTooLong, start) }
++        } else if (state == 1 && utfRemaining == 0) { state = 0; event(KeyEvent("escape")) }
+         else if ((state == 1 || state == 2 || state == 3) && !drained) {
+             state = 0; utfRemaining = 0; issue(KeyboardIssue.IncompleteInput, start)
+         }
+         batch()
+     }
+     public func finish(): KeyboardBatch {
+         checkOpen(); closed = true
+-        if (state == 6) { issue(KeyboardIssue.IncompletePaste, start) }
++        if (pendingC1OverBudget()) {
++            if (!drained) { issue(KeyboardIssue.SequenceTooLong, start) }
++        } else if (state == 6) { issue(KeyboardIssue.IncompletePaste, start) }
+         else if (state != 0 || utfRemaining > 0) {
+             issue(KeyboardIssue.IncompleteInput, if (state != 0) { start } else { utfStart })
+         }
+-        state = 0; utfRemaining = 0; batch()
++        state = 0; utfRemaining = 0; paste = ArrayList<UInt8>(); batch()
+     }
+-    func waitingIdle(): Bool { state == 1 || ((state == 2 || state == 3) && !drained) }
++    func waitingIdle(): Bool { (state == 1 || state == 2 || state == 3) && !drained }
+     func pasteOffset(): Int64 { start }
++    private func pendingC1OverBudget(): Bool {
++        state == 1 && utfRemaining > 0 && utfC1Candidate && limits.maxSequenceBytes < 2
++    }
+     private func beginSequence(at: Int64): Unit {
+         state = 1; start = at; sequence.clear(); sequence.add(27)
+         drained = false; malformed = false; intermediate = false; c1Csi = false
+     }
+     private func appendSequence(byte: Int32): Unit {
+         if (!drained) {
+             sequence.add(UInt8(byte))
+             let pasteMarker: Array<UInt8> = [27, 91, 50, 48, 48, 126]
+             var pasteCandidate = sequence.size <= pasteMarker.size
+             if (pasteCandidate) {
+@@ -106,90 +122,121 @@ public class KeyboardDecoder {
+             }
+         } else if (code == 0x90 || code == 0x98 || code == 0x9d || code == 0x9e || code == 0x9f) {
+             beginString(at, code == 0x9d)
+         } else { state = 0; issue(KeyboardIssue.UnsupportedSequence, at) }
+     }
+     private func scalar(code: UInt32, at: Int64, alt: Bool): Unit {
+         if (code >= 128 && code < 160) { c1(code, at, encoded: true); return }
+         state = 0; event(KeyEvent("text", text: String(Rune(code)), alt: alt))
+     }
+     private func consume(byte: Int32, at: Int64): Unit {
++        if (!acceptingInput()) { return }
+         if (state == 6) { pasteByte(byte); return }
+         if (byte == 3) {
+             state = 0; utfRemaining = 0; event(KeyEvent("interrupt", ctrl: true)); return
+         }
+         if (state == 4 || state == 5) { stringByte(byte); return }
+         if (utfRemaining > 0) {
+             if (byte >= 128 && byte <= 191) {
++                if (utfAlt && !utfC1Candidate) { appendSequence(byte) }
+                 utfCode = (utfCode << 6) | UInt32(byte & 63); utfRemaining--
+                 if (utfRemaining == 0) {
+-                    if (utfCode < utfMin || utfCode > 0x10ffff || (utfCode >= 0xd800 && utfCode <= 0xdfff)) {
+-                        issue(KeyboardIssue.InvalidUtf8, utfStart); state = 0
+-                    } else { scalar(utfCode, utfStart, utfAlt) }
++                    if (utfSequence) {
++                        if (utfCode >= utfMin && utfCode >= 128 && utfCode < 160) { c1(utfCode, utfStart, encoded: true) }
++                        else if (!drained) { malformedSequence() }
++                    } else {
++                        if (utfC1Candidate && utfCode >= 128 && utfCode < 160) {
++                            c1(utfCode, utfStart, encoded: true)
++                        } else {
++                            if (utfC1Candidate) { appendSequence(194); appendSequence(byte) }
++                            if (drained && utfAlt) { state = 0 }
++                            else if (utfCode < utfMin || utfCode > 0x10ffff || (utfCode >= 0xd800 && utfCode <= 0xdfff)) {
++                                issue(KeyboardIssue.InvalidUtf8, utfStart); state = 0
++                            } else { scalar(utfCode, utfStart, utfAlt) }
++                        }
++                    }
+                 }
+                 return
+             }
+-            utfRemaining = 0; issue(KeyboardIssue.InvalidUtf8, utfStart); state = 0
++            utfRemaining = 0
++            if (utfSequence) {
++                if (!drained) { malformedSequence() }
++            } else {
++                if (utfC1Candidate) { appendSequence(194) }
++                if (!drained || !utfAlt) { issue(KeyboardIssue.InvalidUtf8, utfStart) }
++                state = 0
++            }
+             consume(byte, at); return
+         }
+         if (byte == 27) { beginSequence(at); return }
++        if (byte >= 128 && byte <= 159) { c1(UInt32(byte), at); return }
+         if (state == 1) {
+             if (byte == 91 || byte == 79) {
+                 state = if (byte == 91) { 2 } else { 3 }; appendSequence(byte); return
+             }
+             if (byte == 93 || byte == 80 || byte == 88 || byte == 94 || byte == 95) {
+                 beginString(start, byte == 93); return
+             }
+-            if (byte >= 32 && byte < 127) { scalar(UInt32(byte), at, true); return }
+-            if (byte >= 194 && byte <= 244) { beginUtf(byte, at, true); return }
++            if (byte >= 32 && byte < 127) {
++                appendSequence(byte)
++                if (!drained) { scalar(UInt32(byte), at, true) } else { state = 0 }
++                return
++            }
++            if (byte >= 194 && byte <= 244) {
++                if (byte != 194) { appendSequence(byte) }
++                beginUtf(byte, at, true); return
++            }
+             issue(KeyboardIssue.UnsupportedSequence, start); state = 0; return
+         }
+         if (state == 2 || state == 3) {
+-            if (byte >= 128 && byte <= 159) { c1(UInt32(byte), at); return }
+-            if (byte == 194) { beginUtf(byte, at, false); return }
++            if (byte >= 194 && byte <= 244) {
++                if (byte != 194 && !drained) { malformedSequence() }
++                beginUtf(byte, at, false); return
++            }
+             appendSequence(byte)
+             if (state == 2 && sequence.size == 3 && byte == 91 && !drained) { return }
+             if (byte >= 64 && byte <= 126) {
+                 if (!drained && !malformed) { completeSequence() }
+                 state = if (state == 6) { 6 } else { 0 }; return
+             }
+             if (byte >= 32 && byte <= 47) { intermediate = true }
+             else if (byte >= 48 && byte <= 63) {
+-                if (intermediate && !malformed && !drained) {
+-                    malformed = true; drained = true; sequence.clear(); issue(KeyboardIssue.MalformedSequence, start)
+-                }
++                if (intermediate && !malformed && !drained) { malformedSequence() }
+             } else if (!malformed && !drained) {
+-                malformed = true; drained = true; sequence.clear(); issue(KeyboardIssue.MalformedSequence, start)
++                malformedSequence()
+             }
+             return
+         }
+         if (byte == 9) { event(KeyEvent("tab")); return }
+         if (byte == 10 || byte == 13) { event(KeyEvent("enter")); return }
+         if (byte == 8 || byte == 127) { event(KeyEvent("backspace")); return }
+         if (byte >= 1 && byte <= 26) { event(KeyEvent(String(Rune(UInt32(96 + byte))), ctrl: true)); return }
+         if (byte < 32) { issue(KeyboardIssue.UnsupportedSequence, at); return }
+         if (byte < 128) { scalar(UInt32(byte), at, false); return }
+         if (byte >= 194 && byte <= 244) { beginUtf(byte, at, false); return }
+-        if (byte >= 128 && byte <= 159) { c1(UInt32(byte), at); return }
+         issue(KeyboardIssue.InvalidUtf8, at)
+     }
++    private func malformedSequence(): Unit {
++        malformed = true; drained = true; sequence.clear(); issue(KeyboardIssue.MalformedSequence, start)
++    }
+     private func beginUtf(byte: Int32, at: Int64, alt: Bool): Unit {
+-        utfStart = at; utfAlt = alt
++        utfStart = at; utfAlt = alt; utfSequence = state == 2 || state == 3
++        utfC1Candidate = alt && byte == 194
+         if (byte <= 223) { utfRemaining = 1; utfCode = UInt32(byte & 31); utfMin = 128 }
+         else if (byte <= 239) { utfRemaining = 2; utfCode = UInt32(byte & 15); utfMin = 2048 }
+         else { utfRemaining = 3; utfCode = UInt32(byte & 7); utfMin = 65536 }
+     }
+     private func completeSequence(): Unit {
+         let raw = sequence.toArray()
+         let text = try { String.fromUtf8(raw) } catch (_: IllegalArgumentException) { "" }
+         if (!c1Csi && text == "\u{1b}[200~") {
+-            state = 6; paste.clear(); endPrefix.clear(); drained = false
++            state = 6; paste = ArrayList<UInt8>(); endPrefix.clear(); drained = false
+             if (let Some(callback) <- onPasteStart) { callback() }
+             return
+         }
+         if (let Some(probe) <- caretProbe) {
+             for (digit in 0..5) {
+                 if (text == "\u{1b}[?25;${digit}$y") { probe.report(Int32(digit)); return }
+             }
+         }
+         var body = text
+         if (c1Csi) {
+@@ -227,53 +274,56 @@ public class KeyboardDecoder {
+         for ((letter, name) in [("P", "f1"), ("Q", "f2"), ("R", "f3"), ("S", "f4")]) {
+             if (ss3 && body == letter) { event(KeyEvent(name)); return }
+         }
+         for ((letter, name) in [("[A", "f1"), ("[B", "f2"), ("[C", "f3"), ("[D", "f4"), ("[E", "f5")]) {
+             if (!ss3 && body == letter) { event(KeyEvent(name)); return }
+         }
+         issue(KeyboardIssue.UnsupportedSequence, start)
+     }
+     private func stringByte(byte: Int32): Unit {
+         if (state == 5) {
+-            if (byte == 92 || (osc && byte == 7)) { state = 0; return }
+-            if (byte != 27) { state = 4 }
++            if (byte == 92) { state = 0; return }
++            if (byte == 27) { return }
++            state = 4
++            // The byte after a non-ST escape still belongs to the string.
++            stringByte(byte)
+             return
+         }
+         if (stringRemaining > 0 && byte >= 128 && byte <= 191) {
+             if (stringC2 && byte == 0x9c) { state = 0 }
+             stringRemaining--; stringC2 = false; return
+         }
+         stringRemaining = 0; stringC2 = false
+         if (byte == 27) { state = 5 }
+         else if (byte == 0x9c || (osc && byte == 7)) { state = 0 }
+         else if (byte >= 194 && byte <= 223) { stringRemaining = 1; stringC2 = byte == 194 }
+         else if (byte >= 224 && byte <= 239) { stringRemaining = 2 }
+         else if (byte >= 240 && byte <= 244) { stringRemaining = 3 }
+     }
+     private func appendPaste(byte: UInt8): Unit {
+         if (drained) { return }
+         if (paste.size >= limits.maxPasteBytes) {
+-            drained = true; paste.clear(); issue(KeyboardIssue.PasteTooLarge, start); return
++            drained = true; paste = ArrayList<UInt8>(); issue(KeyboardIssue.PasteTooLarge, start); return
+         }
+         paste.add(byte)
+     }
+     private func pasteByte(byte: Int32): Unit {
+         let marker: Array<UInt8> = [27, 91, 50, 48, 49, 126]
+         endPrefix.add(UInt8(byte))
+         while (!endPrefix.isEmpty()) {
+             var matches = true
+             for (i in 0..endPrefix.size) { if (endPrefix[i] != marker[i]) { matches = false; break } }
+             if (matches) { break }
+             appendPaste(endPrefix.remove(at: 0))
+         }
+         if (endPrefix.size == marker.size) {
+             endPrefix.clear(); state = 0
+             if (!drained) {
+                 let text: ?String = try { Some(String.fromUtf8(paste.toArray())) }
+                     catch (_: IllegalArgumentException) { Option<String>.None }
+                 if (let Some(value) <- text) { event(KeyEvent("paste", text: value)) }
+                 else { issue(KeyboardIssue.InvalidPasteEncoding, start) }
+             }
+-            paste.clear()
++            paste = ArrayList<UInt8>()
+         }
+     }
+ }
+diff --git a/tests/keyboard/review_regressions/README.md b/tests/keyboard/review_regressions/README.md
+new file mode 100644
+index 00000000..dd42e25e
+--- /dev/null
++++ b/tests/keyboard/review_regressions/README.md
+@@ -0,0 +1,31 @@
++# K115 round1 independent regression consumers
++
++Use normal SDK1.2/stdx/UCD and the configured package cache. Set `CJTUI_K115_CASE`
++to one finding ID and run `bash tests/keyboard/review_regressions/run.sh`.
++For K115-05 also set `CJTUI_K115_ARTIFACTS` to a new absolute artifact directory.
++Every selector has its own final assertion; all literal-vector observations are
++printed before that assertion. No old test or oracle is changed.
++
++Manual expected normalized traces, directly from K001–004/F002/F003/F007:
++
++| Selector | Literal input / budget | Expected |
++|---|---|---|
++| K115-01 | ESC ] ESC C3 9C q BEL Z; ESC ] ESC raw9C Z | text Z; only UnsupportedSequence@0 (Ü is one scalar, raw ST terminates) |
++| K115-02 | ESC [ SP 1 C2 A0 2 A B; ESC [ E4 B8 9B A B | text B; only MalformedSequence@0, drain through final A, no NBSP/up |
++| K115-03 | ESC raw9B A; ESC C2 9B A | up; no issue from cancelled ESC |
++| K115-03 | ESC raw9D q BEL Z; ESC C2 9D q BEL Z | text Z; only UnsupportedSequence@1 at new OSC introducer |
++| K115-04 | ESC x B exact2/over1; ESC C3 9C B exact3/over2 | exact: Alt x/Ü then plain B, no issue; over: only plain B and SequenceTooLong@0 |
++| K115-05 | actual native E4 x, InvalidUtf8 callback calls stop | one InvalidUtf8@0; no x callback; run normal; cleanup1/resources0/TTY restored |
++
++Pure vectors exercise all two-chunk splits and bytewise feeds, with finish.
++Flags are explicitly checked: only exact Alt text sets alt, every other flag is
++false. The K115-05 harness waits for real first frame/raw mode before real PTY
++input, records the true child exit and actual bin pre/post, and distinguishes
++watchdog/setup failures from the named product assertion. No explicit dispatch,
++synthetic read or decoder mock substitutes for the native retry path.
++
++K115-06 has no runtime selector: public decoder has no storage-capacity query;
++the independent review's fixed-source/SDK disassembly proof is its evidence.
++No memory-hook, synthetic measurement, RSS claim, or large input is added here.
++Old issue-throws regression and all prior suites remain unchanged; this scope
++does not claim those suites were rerun or validate real terminal hosts.
+diff --git a/tests/keyboard/review_regressions/cjpm.toml b/tests/keyboard/review_regressions/cjpm.toml
+new file mode 100644
+index 00000000..f5e1a36d
+--- /dev/null
++++ b/tests/keyboard/review_regressions/cjpm.toml
+@@ -0,0 +1,8 @@
++[package]
++  cjc-version = "1.2.0"
++  name = "keyboard_review_regressions"
++  version = "0.0.0"
++  output-type = "executable"
++  compile-option = "--error-count-limit all"
++[dependencies]
++cjtui = { path = "../../.." }
+diff --git a/tests/keyboard/review_regressions/native_pty.py b/tests/keyboard/review_regressions/native_pty.py
+new file mode 100644
+index 00000000..09a80009
+--- /dev/null
++++ b/tests/keyboard/review_regressions/native_pty.py
+@@ -0,0 +1,51 @@
++#!/usr/bin/env python3
++"""One native issue-handler stop vector; actual PTY, no mocked decoder."""
++import argparse,datetime,errno,fcntl,hashlib,json,os,pty,select,signal,struct,subprocess,termios,time
++from pathlib import Path
++PAYLOAD=b'\xe4x'
++FAIL=b'FAIL K115 K115-05 diagnostic stop cancels same-byte retry and run returns normally'
++def utc():return datetime.datetime.now(datetime.timezone.utc).isoformat()
++def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
++def attrs(fd):
++ result=termios.tcgetattr(fd);result[-1]=[list(x) if isinstance(x,bytes) else x for x in result[-1]];return result
++
++def run(binary,out):
++ out.mkdir(parents=True,exist_ok=False);master,slave=pty.openpty();fcntl.ioctl(slave,termios.TIOCSWINSZ,struct.pack('HHHH',3,40,0,0));raw=bytearray();before=attrs(slave);sent=bytearray();child=None
++ metadata={'utc_start':utc(),'cwd':str(Path.cwd()),'argv':[str(binary)],'binary_pre_sha256':sha(binary),'before_termios':before,'size':[40,3],'env':{'CJTUI_K115_CASE':'K115-05','CJTUI_K115_OUTPUT':str(out),'TERM':'xterm-256color'}}
++ def pump():
++  if select.select([master],[],[],.01)[0]:
++   try:raw.extend(os.read(master,65536))
++   except OSError as error:
++    if error.errno!=errno.EIO:raise
++ def terminal():os.setsid();fcntl.ioctl(slave,termios.TIOCSCTTY,0)
++ try:
++  with (out/'stderr').open('wb') as err:
++   child=subprocess.Popen([str(binary)],stdin=slave,stdout=slave,stderr=err,env=dict(os.environ,**metadata['env']),preexec_fn=terminal)
++   until=time.monotonic()+8
++   while time.monotonic()<until:
++    pump()
++    if b'K115-ISSUE-STOP-READY' in raw and b'\x1b[?2004h' in raw and not termios.tcgetattr(slave)[3]&(termios.ICANON|termios.ECHO):break
++    if child.poll() is not None:raise RuntimeError('native exited before actual raw-mode first frame')
++   else:raise RuntimeError('fixture startup timeout')
++   metadata['native_ready_wire_bytes']=len(raw);metadata['input_utc']=utc();sent.extend(PAYLOAD);os.write(master,PAYLOAD)
++   until=time.monotonic()+8
++   while child.poll() is None and time.monotonic()<until:pump()
++   if child.poll() is None:metadata['classification']='fixture-timeout';raise RuntimeError('native watchdog: no behavioral RED inferred')
++   pump();metadata.update(actual_binary_exit=child.returncode,after_termios=attrs(slave));assert before==metadata['after_termios'],'termios restoration control'
++   assert b'\x1b[?2004l' in raw,'native mode cleanup control'
++   summary=dict(line.split('=',1) for line in (out/'summary').read_text().splitlines());metadata['summary']=summary
++   assert (out/'issue').read_text()=='InvalidUtf8@0;count=1' and summary['issues']=='1' and summary['cleanup']=='1' and summary['released']=='true','native path/cleanup controls'
++   error=(out/'stderr').read_bytes()
++   if child.returncode==1 and FAIL in error:metadata['classification']='actual-native-assertion-RED';return 1
++   if child.returncode==0:
++    assert summary['caught']=='false' and summary['x']=='0'
++    metadata['classification']='actual-native-GREEN';return 0
++   metadata['classification']='unexpected-native-failure';return 2
++ except BaseException as error:metadata.setdefault('classification','fixture-or-postcondition-failure');metadata['error']=repr(error);return 2
++ finally:
++  if child and child.poll() is None:os.killpg(child.pid,signal.SIGKILL);child.wait();metadata['forced']=True
++  pump();metadata.setdefault('actual_binary_exit',child.returncode if child else None);metadata.setdefault('after_termios',attrs(slave));metadata.update(utc_end=utc(),binary_post_sha256=sha(binary));assert metadata['binary_pre_sha256']==metadata['binary_post_sha256']
++  (out/'input.raw').write_bytes(sent);(out/'output.raw').write_bytes(raw);(out/'metadata.json').write_text(json.dumps(metadata,indent=2)+'\n');os.close(master);os.close(slave)
++
++if __name__=='__main__':
++ p=argparse.ArgumentParser();p.add_argument('--binary',required=True,type=Path);p.add_argument('--output',required=True,type=Path);a=p.parse_args();raise SystemExit(run(a.binary.resolve(),a.output.resolve()))
+diff --git a/tests/keyboard/review_regressions/run.sh b/tests/keyboard/review_regressions/run.sh
+new file mode 100644
+index 00000000..1caaa5e0
+--- /dev/null
++++ b/tests/keyboard/review_regressions/run.sh
+@@ -0,0 +1,8 @@
++#!/usr/bin/env bash
++set -euo pipefail
++cd "$(dirname "$0")"
++cjpm build
++case "${CJTUI_K115_CASE:?select K115-01 through K115-05}" in
++ K115-05) exec python3 native_pty.py --binary target/release/bin/main --output "${CJTUI_K115_ARTIFACTS:?new absolute artifact directory}";;
++ *) exec ./target/release/bin/main;;
++esac
+diff --git a/tests/keyboard/review_regressions/src/box.cj b/tests/keyboard/review_regressions/src/box.cj
+new file mode 100644
+index 00000000..df4130ae
+--- /dev/null
++++ b/tests/keyboard/review_regressions/src/box.cj
+@@ -0,0 +1,4 @@
++package keyboard_review_regressions
++class Box<T> { var value:T
++    init(value:T){this.value=value}
++}
+diff --git a/tests/keyboard/review_regressions/src/main.cj b/tests/keyboard/review_regressions/src/main.cj
+new file mode 100644
+index 00000000..b8d53f29
+--- /dev/null
++++ b/tests/keyboard/review_regressions/src/main.cj
+@@ -0,0 +1,88 @@
++package keyboard_review_regressions
++import cjtui.*
++import std.env.*
++import std.fs.*
++import std.collection.*
++func check(ok:Bool,message:String):Unit{if(!ok){throw Exception("FAIL K115 ${message}")}}
++func issueName(kind:KeyboardIssue):String {
++    if(kind==KeyboardIssue.UnsupportedSequence){return "UnsupportedSequence"}
++    if(kind==KeyboardIssue.MalformedSequence){return "MalformedSequence"}
++    if(kind==KeyboardIssue.SequenceTooLong){return "SequenceTooLong"}
++    if(kind==KeyboardIssue.InvalidUtf8){return "InvalidUtf8"}
++    if(kind==KeyboardIssue.IncompleteInput){return "IncompleteInput"}
++    return "Other"
++}
++func observed(bytes:Array<UInt8>,split:Int64,bytewise:Bool,limit:Int64,wantEvents:String,wantIssues:String):Bool {
++    let decoder=KeyboardDecoder(limits:KeyboardLimits(maxSequenceBytes:limit))
++    let batches=ArrayList<KeyboardBatch>()
++    if(bytewise){for(byte in bytes){batches.add(decoder.feed([byte]))}}else{
++        batches.add(decoder.feed(bytes.slice(0,split)));batches.add(decoder.feed(bytes.slice(split,bytes.size-split)))
++    }
++    batches.add(decoder.finish())
++    var events="";var issues=""
++    for(batch in batches){
++        for(key in batch.events){events+="${key.code}:${key.text}:${key.ctrl}/${key.alt}/${key.shift}|"}
++        for(issue in batch.diagnostics){issues+="${issueName(issue.kind)}@${issue.offset};"}
++    }
++    println("bytes=${bytes} split=${split} bytewise=${bytewise} limit=${limit} events=${events} issues=${issues}")
++    return events==wantEvents && issues==wantIssues
++}
++func vector(bytes:Array<UInt8>,limit:Int64,events:String,issues:String):Bool {
++    var good=true
++    for(split in 0..(bytes.size+1)){let actual=observed(bytes,split,false,limit,events,issues);good=actual && good}
++    let single=observed(bytes,0,true,limit,events,issues)
++    return single && good
++}
++func pure(selected:String):Unit {
++    let z="text:Z:false/false/false|";let b="text:B:false/false/false|";let up="up::false/false/false|"
++    var good=true
++    match(selected){
++        case "K115-01"=>
++            let utf=vector([27,93,27,0xc3,0x9c,113,7,90],64,z,"UnsupportedSequence@0;")
++            let raw=vector([27,93,27,0x9c,90],64,z,"UnsupportedSequence@0;")
++            good=utf && raw
++        case "K115-02"=>
++            let scalar=vector([27,91,32,49,0xc2,0xa0,50,65,66],64,b,"MalformedSequence@0;")
++            let continuation=vector([27,91,0xe4,0xb8,0x9b,65,66],64,b,"MalformedSequence@0;")
++            good=scalar && continuation
++        case "K115-03"=>
++            let rawCsi=vector([27,0x9b,65],64,up,"")
++            let utfCsi=vector([27,0xc2,0x9b,65],64,up,"")
++            let rawOsc=vector([27,0x9d,113,7,90],64,z,"UnsupportedSequence@1;")
++            let utfOsc=vector([27,0xc2,0x9d,113,7,90],64,z,"UnsupportedSequence@1;")
++            good=rawCsi && utfCsi && rawOsc && utfOsc
++        case "K115-04"=>
++            let asciiExact=vector([27,120,66],2,"text:x:false/true/false|"+b,"")
++            let asciiOver=vector([27,120,66],1,b,"SequenceTooLong@0;")
++            let utfExact=vector([27,0xc3,0x9c,66],3,"text:Ü:false/true/false|"+b,"")
++            let utfOver=vector([27,0xc3,0x9c,66],2,b,"SequenceTooLong@0;")
++            good=asciiExact && asciiOver && utfExact && utfOver
++        case _=>throw Exception("unknown pure selector ${selected}")
++    }
++    check(good,selected+" literal vectors match manual oracle at every split and bytewise")
++}
++func nativeStop():Unit {
++    let directory=getVariable("CJTUI_K115_OUTPUT").getOrThrow()
++    let report={name:String,value:String=>File.writeTo(directory+"/"+name,value.toArray())}
++    let issues=Box<Int64>(0);let xs=Box<Int64>(0);let cleanup=Box<Int64>(0)
++    let root=Text("K115-ISSUE-STOP-READY").focusable(true).viewport(ScrollAxes.Off)
++        .onMount({_=>{=>cleanup.value++;report("cleanup","${cleanup.value}")}})
++    let app=Application(root)
++    root.onKey({event=>if(event.key.text=="x"){xs.value++;report("x","${xs.value}")}})
++    app.onKeyboardIssue({diagnostic=>
++        issues.value++;report("issue","${issueName(diagnostic.kind)}@${diagnostic.offset};count=${issues.value}")
++        check(app.focusedNode().getOrThrow().sameNode(root.reference().getOrThrow()),"native active base focus control")
++        app.stop()
++    })
++    var caught=false;var message=""
++    try{app.run()}catch(error:Exception){caught=true;message=error.message}
++    let stats=app.stats();let released=stats.mountedNodes==0 && stats.activeBindings==0 && stats.subscriptions==0 && stats.pendingPosts==0
++    report("summary","issues=${issues.value}\nx=${xs.value}\ncaught=${caught}\nmessage=${message}\ncleanup=${cleanup.value}\nreleased=${released}\n")
++    check(issues.value==1 && cleanup.value==1 && released,"native issue reached once and cleanup/resources control")
++    check(!caught && xs.value==0,"K115-05 diagnostic stop cancels same-byte retry and run returns normally")
++}
++main():Int64 {
++    let selected=getVariable("CJTUI_K115_CASE").getOrThrow()
++    if(selected=="K115-05"){nativeStop()}else{pure(selected)}
++    println("PASS ${selected}");0
++}
+diff --git a/tests/run-slice.sh b/tests/run-slice.sh
+index 42df6317..6de272a7 100755
+--- a/tests/run-slice.sh
++++ b/tests/run-slice.sh
+@@ -4,20 +4,24 @@ cd "$(dirname "$0")/.."
+ # The caller selects/sources SDK 1.2.0 and may configure an isolated CJPM cache.
+ cjc --version
+ cjpm --version
+ case "${1:-all}" in
+   keyboard)
+     tests/keyboard/run.sh --pty
+     bash tests/keyboard/paste_argument/run.sh
+     bash tests/keyboard/i015_stage/run.sh
+     CJTUI_KEYBOARD_I015_PURE_CASE=malformed-drain bash tests/keyboard/i015_stage/run.sh --pure
+     CJTUI_KEYBOARD_I015_PURE_CASE=alt-invalid-offset bash tests/keyboard/i015_stage/run.sh --pure
++    for case_name in K115-01 K115-02 K115-03 K115-04; do
++      CJTUI_K115_CASE="$case_name" bash tests/keyboard/review_regressions/run.sh
++    done
++    CJTUI_K115_CASE=K115-05 CJTUI_K115_ARTIFACTS="${CJTUI_K115_ARTIFACTS:-$(mktemp -d)/native}" bash tests/keyboard/review_regressions/run.sh
+     ;;
+   native-session) tests/native-session/run.sh ;;
+   native-smoke)
+     (cd tests/native-smoke && cjpm build)
+     tests/native-smoke/target/release/bin/main
+     ;;
+   contract)
+     (cd tests/contract && cjpm build)
+     tests/contract/target/release/bin/main
+     ;;

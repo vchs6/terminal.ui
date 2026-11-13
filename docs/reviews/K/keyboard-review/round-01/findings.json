@@ -1,0 +1,168 @@
+{
+  "task": "TASK115",
+  "round": 1,
+  "base": "c96cc601c547f869e64632e955091cf44546d192",
+  "head": "5baa09f33251e9f572640a2f6d4ae46245f7eea8",
+  "spec_verdict": "FAIL",
+  "quality_verdict": "FAIL",
+  "evidence_mode": "Independent complete fixed-source review. Counterexamples below are exact source-derived traces, not claims of executed probes. Reused original raw executions retain their original coverage.",
+  "findings": [
+    {
+      "id": "K115-01",
+      "severity": "Important",
+      "owner": "TASK114",
+      "title": "控制串 ESC 分支丢失下一标量边界，泄漏 payload 为按键",
+      "location": {
+        "path": "src/keyboard_decoder.cj",
+        "start_line": 235,
+        "end_line": 250
+      },
+      "contract": [
+        "K002",
+        "F002"
+      ],
+      "input_hex": "1b 5d 1b c3 9c 71 07 5a",
+      "expected": "OSC 只有 UnsupportedSequence@0；ESC 后的 C3 9C 是完整 Ü，不能终止字符串。BEL 才终止，业务只收到 text Z。",
+      "actual_source_trace": "stringByte(state=5) 在 C3 上仅切回 state4 并 return，不设置 stringRemaining；下一 9C 因而被当成 raw ST。随后 payload q 成为 text q，BEL 成为 ctrl+g，最后 text Z。",
+      "secondary_case": "1b 5d 1b 9c 5a 的真实 raw ST 反而被 state5 吞掉；Z 仍被隔离，finish 产生 IncompleteInput。",
+      "requested_change": "ESC 非 ST 后继续按同一控制串标量边界消费当前字节，不丢弃 UTF8 lead 或真实 C1 ST；保留原始终止/隔离语义。",
+      "validation": "独立追加上述两个字面向量的所有两块切分/bytewise，确认无 payload 键盘回调。无需重跑无关 suite。"
+    },
+    {
+      "id": "K115-02",
+      "severity": "Important",
+      "owner": "TASK114",
+      "title": "CSI/SS3 的 UTF8 处理可绕过错误 drain 并误把续字节当 C1",
+      "location": {
+        "path": "src/keyboard_decoder.cj",
+        "start_line": 121,
+        "end_line": 163
+      },
+      "contract": [
+        "K002",
+        "F002",
+        "F007"
+      ],
+      "input_hex": "1b 5b 20 31 c2 a0 32 41 42",
+      "expected": "SP 后参数 1 已形成 MalformedSequence@0，之后保持 drain 到 final A；只允许末尾 text B。",
+      "actual_source_trace": "state2 即使 drained 也在 C2 进入 beginUtf；A0 完成后 scalar 无条件 state=0 并发 text NBSP，随后 2、A 都泄漏为 text。",
+      "secondary_case": "1b 5b e4 b8 9b 41 42：E4 触发 MalformedSequence@0，却未跟踪该三字节标量；其续字节 9B 被 c1() 当新 CSI，产生额外 up。9B 不是标量边界。",
+      "requested_change": "在全部非 string 状态中维护真实 UTF8 标量边界，并使普通非 C1 标量/错误 UTF8 不释放已隔离的 sequence。只有契约规定的真实新引导/取消可退出 drain。",
+      "validation": "对两个字面向量做固定 split/bytewise；已 Malformed 的 drain 不重复诊断、不产生 NBSP/数字/final/up。"
+    },
+    {
+      "id": "K115-03",
+      "severity": "Important",
+      "owner": "TASK114",
+      "title": "裸 ESC 后的 raw C1 被当作不支持的 ESC 尾吞掉",
+      "location": {
+        "path": "src/keyboard_decoder.cj",
+        "start_line": 134,
+        "end_line": 148
+      },
+      "contract": [
+        "F002",
+        "F007"
+      ],
+      "input_hex": "1b 9b 41",
+      "expected": "raw CSI 在真实标量边界取消未完成 ESC，只有 up，无取消附加诊断。",
+      "actual_source_trace": "state1 分支在到达 state2/state3 的 C1 检查前执行 UnsupportedSequence@0 并 state=0，下一 A 变成 text A。UTF8 C1 分支则可进入 c1，导致 raw 与 encoded 语义不一致。",
+      "secondary_case": "同一位置的 raw OSC/DCS/SOS/PM/APC 也不进入隔离串，后续控制 payload 可成为普通文本/快捷键。",
+      "requested_change": "按 F002 表在 bare-ESC 状态处理所有 raw C1；保持 F007 取消无额外 Incomplete/Malformed，不能给取消本身附加 Unsupported。",
+      "validation": "ESC+raw9B+A 及 ESC+raw9D+payload+BEL 的 split/bytewise，和 UTF8 对应引导语义一致、offset 按真实引导。"
+    },
+    {
+      "id": "K115-04",
+      "severity": "Important",
+      "owner": "TASK114",
+      "title": "Alt 文本完全绕过 maxSequenceBytes",
+      "location": {
+        "path": "src/keyboard_decoder.cj",
+        "start_line": 135,
+        "end_line": 144
+      },
+      "contract": [
+        "K001",
+        "K002"
+      ],
+      "input_hex": "1b 78",
+      "configuration": "KeyboardLimits(maxSequenceBytes:1)",
+      "expected": "普通 ESC 序列原始字节数为 2，包含 ESC 与 final x；应一次 SequenceTooLong@0，无 Alt text。",
+      "actual_source_trace": "ASCII 直接调用 scalar，UTF8 直接 beginUtf；两条路径都不经过 appendSequence 或其他预算检查。maxSequenceBytes:1 仍发 Alt x；ESC+完整 UTF8 同样忽略字节预算。",
+      "requested_change": "给普通 Alt ASCII/UTF8 路径计入全部原始序列字节并执行一次超限隔离；只让精确 paste 分隔符和已规定的 string 隔离享有契约例外。",
+      "validation": "Alt ASCII 的 exact2/over1、Alt UTF8 的 exact/over 原始字节边界与 split，保持正常未完整 Alt timeout/finish 偏移为 ESC。"
+    },
+    {
+      "id": "K115-05",
+      "severity": "Important",
+      "owner": "TASK114",
+      "title": "诊断 handler stop 后，同一输入字节的 UTF8 重试仍派发并使 run 抛错",
+      "location": {
+        "path": "src/application.cj",
+        "start_line": 563,
+        "end_line": 565
+      },
+      "related_locations": [
+        {
+          "path": "src/keyboard_decoder.cj",
+          "start_line": 131,
+          "end_line": 132
+        },
+        {
+          "path": "src/application.cj",
+          "start_line": 325,
+          "end_line": 333
+        }
+      ],
+      "contract": [
+        "F003",
+        "K004"
+      ],
+      "input_hex": "e4 78",
+      "configuration": "实际 Application.run；onKeyboardIssue 在 InvalidUtf8 时调用 app.stop()。",
+      "expected": "一次 InvalidUtf8@0 后安全提交并正常终止；x 不投递，不产生额外 SessionInactive。",
+      "actual_source_trace": "issue() 同步进入 reportKeyboardIssue→batch；batch 在 stop 后 dispose 并清空 session。返回 consume 后仍递归 consume(x)，event() 无停止门继续调用 dispatchDeviceKey；activeTarget=None→dispatchHiddenKey→current() 抛 SessionInactive，外层 run 将正常 stop 变成异常。",
+      "requested_change": "设备有序通知在每个诊断/事件安全回调后立即检查停止/会话有效性，同一 byte 的后续通知也必须取消；不能仅依赖下次外层读取前检查。保持纯公开 decoder 的确定性输出。",
+      "validation": "真实设备输入 E4+x，诊断回调 stop：一次 issue、零 x callback、run 正常返回、资源/termios 清理；保留 issue-throws 原异常。"
+    },
+    {
+      "id": "K115-06",
+      "severity": "Important",
+      "owner": "TASK114",
+      "title": "持久 ArrayList 输出缓冲保留历史最大 feed 容量，违反常驻内存上界",
+      "location": {
+        "path": "src/keyboard_decoder.cj",
+        "start_line": 28,
+        "end_line": 47
+      },
+      "related_locations": [
+        {
+          "path": "src/keyboard_decoder.cj",
+          "start_line": 252,
+          "end_line": 256
+        }
+      ],
+      "contract": [
+        "K001",
+        "K003"
+      ],
+      "configuration": "固定小 limits，保持同一公开 KeyboardDecoder；feed N 个 ASCII（或 N 个 unsupported C0），丢弃返回 batch 后继续使用。",
+      "expected": "返回 batch 可占 O(N)，decoder 自身跨调用只持有 O(maxPasteBytes+maxSequenceBytes+常数)，不能按历史 input/output 大小保留存储。",
+      "actual_source_trace": "keys/issues 是 decoder 的长期 ArrayList 字段。batch() 仅 clear，不替换/缩容；SDK1.2.0 ArrayList.clear 清元素及 size，但保留 backing array 与 capacity。故 decoder 继续持有至少 N 容量；paste 超限处 clear 同样没有释放已分配 payload 缓冲。",
+      "sdk_evidence": "round-01/arraylist-clear.disasm：size 在对象+0x20 置0，未替换+0x08 backing array 或+0x18 capacity；capacity getter 直接读+0x18。SDK二进制hash在 input-hashes.txt。",
+      "requested_change": "批次完成后解除 decoder 对按本次输入增长的输出容器的持有，或使用严格限额的持久存储；paste 超限时真正释放 payload backing storage。不要修改公开数组防别名契约。",
+      "validation": "使用实际 SDK capacity/分配存活证据或清晰固定源码不变量证明跨调用容量与 N 无关；无需伪造巨大 byte 数或新增 public hook。"
+    }
+  ],
+  "reviewed_without_new_blocker": [
+    "唯一 KeyboardDecoder 替代旧 InputDecoder；没有并存私有 parser。",
+    "公开类型/constructors、limits 范围、defensive batch arrays、offset Int64.Max 前 fail-close。",
+    "逐 byte 有序安全回调、一般 paste target/generation/visibility/modal 检查、原始数据隔离与 finish 主路径。",
+    "每次外层 turn 至多一个原始 byte，满足4096上限且复用既有 post/resize/stop pump。",
+    "真实 read0 EOF ABI；POLLIN|HUP 先 drain；单调I015 probe与100ms输入idle分开。",
+    "2004 经过唯一 writer/outputUnsafe 门，清理资源先撤销；公开示例/docs与授权 dispatcher。",
+    "controller empty text、Malformed drain、InvalidUtf8 lead offset 解释未发现与冻结正文冲突。"
+  ],
+  "limitations": "No new builds, suites or runtime probes executed. Existing frozen raw execution and cjlint results reused only as attributed evidence; mandatory bundle/clean/real-host validation belongs to TASK116/117."
+}
+

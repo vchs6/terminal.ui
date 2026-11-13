@@ -1,0 +1,43 @@
+{
+  "task": "TASK115",
+  "round": 3,
+  "fix_round": "2/5",
+  "base": "500d5ff35632ab7ed55e323458883bbd7e80d2b7",
+  "head": "c3c4642d84df57bbd9550d222ed22f602acd13ef",
+  "spec_verdict": "PASS",
+  "quality_verdict": "PASS",
+  "scope": "Only the eight-line decoder change, authorized dispatcher wiring and fixed independent regression input; five already-closed original areas were not reopened.",
+  "dispositions": [
+    {
+      "id": "K115-R1-01",
+      "status": "ADDRESSED",
+      "location": {
+        "path": "src/keyboard_decoder.cj",
+        "start_line": 160,
+        "end_line": 172
+      },
+      "basis": "When an Alt candidate is already drained, invalid-continuation retry now sets state2 while preserving drained=true/start. Re-consumed digits stay isolated; final is discarded before state0. The branch does not call completeSequence because drained remains true. Non-overbudget invalid UTF8 retains its old diagnostic+normal retry. ESC/C1/raw03 cancellation remains before generic drain consumption."
+    },
+    {
+      "id": "K115-04",
+      "status": "ADDRESSED",
+      "basis": "Original complete-Alt budget boundary fix plus now-correct invalid-continuation/timeout drain closes the parent finding; original K115-04 raw exit0 and new eight observations show only SequenceTooLong@0/text B."
+    }
+  ],
+  "inherited_closed_findings": [
+    "K115-01",
+    "K115-02",
+    "K115-03",
+    "K115-05",
+    "K115-06"
+  ],
+  "new_findings": [],
+  "evidence": [
+    "Fresh fixed HEAD/tracked-clean/diff-check and final source receipt hash checks.",
+    "review-r2-fix-01/K115-R1-01.stdout: six two-block splits, bytewise, and fixed ESC C2 timeout control all show only text B and SequenceTooLong@0; actual selector exit0.",
+    "review-r2-fix-01 original K115-04, public decoder pure and Alt invalid-offset/timeout controls actual exits0.",
+    "review-r2-lint-01 actual exit0; raw severity check0 errors,701 warnings retained."
+  ],
+  "limitations": "Scoped source PASS closes the open TASK115 findings. No new build/probe/suite executed by reviewer; no claim that mandatory normal bundle, clean install or real hosts have passed. Those remain TASK116/117."
+}
+

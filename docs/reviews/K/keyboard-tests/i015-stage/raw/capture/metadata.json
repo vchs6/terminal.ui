@@ -1,0 +1,415 @@
+{
+  "case": "csi-real-idle-Keyboard",
+  "stage": "Keyboard",
+  "utc_start": "2026-11-13T05:13:08.865104+00:00",
+  "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage",
+  "argv": [
+    "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/.wrapped/target/release/bin/main"
+  ],
+  "binary_pre_sha256": "61f7bdde7d346f952d86c35582f1f89881323629622c20b13532d81b95232ba0",
+  "before_termios": [
+    1280,
+    5,
+    191,
+    35387,
+    15,
+    15,
+    [
+      [
+        3
+      ],
+      [
+        28
+      ],
+      [
+        127
+      ],
+      [
+        21
+      ],
+      [
+        4
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        17
+      ],
+      [
+        19
+      ],
+      [
+        26
+      ],
+      [
+        0
+      ],
+      [
+        18
+      ],
+      [
+        15
+      ],
+      [
+        23
+      ],
+      [
+        22
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ]
+  ],
+  "events": [
+    {
+      "clock": 1100,
+      "monotonic_ns": 13277878073530
+    },
+    {
+      "input_hex": "1b5b3f32353b",
+      "monotonic_ns": 13277878077716
+    },
+    {
+      "six_byte_ready_polls": [
+        [
+          13277877352900,
+          13277878150856,
+          100,
+          1,
+          1
+        ],
+        [
+          13277878300301,
+          13277878305478,
+          100,
+          1,
+          1
+        ],
+        [
+          13277878354502,
+          13277878358628,
+          100,
+          1,
+          1
+        ],
+        [
+          13277878404377,
+          13277878408192,
+          100,
+          1,
+          1
+        ],
+        [
+          13277878452899,
+          13277878456735,
+          100,
+          1,
+          1
+        ],
+        [
+          13277878501532,
+          13277878505338,
+          100,
+          1,
+          1
+        ]
+      ],
+      "idle_poll_entry": [
+        13277878603125,
+        100
+      ]
+    },
+    {
+      "clock": 1201,
+      "monotonic_ns": 13277878963530
+    },
+    {
+      "input_hex": "312479",
+      "monotonic_ns": 13277979766932
+    },
+    {
+      "input_hex": "73",
+      "monotonic_ns": 13277979780812
+    },
+    {
+      "public_state": 1,
+      "value": "pending\nIncompleteInput@0;\ntext:1|text:$|text:y|text:s|",
+      "monotonic_ns": 13277980448634
+    },
+    {
+      "clock": 1580,
+      "monotonic_ns": 13277980635515
+    },
+    {
+      "input_hex": "1b5b3f32353b",
+      "monotonic_ns": 13277980637297
+    },
+    {
+      "six_byte_ready_polls": [
+        [
+          13277980297228,
+          13277980704609,
+          100,
+          1,
+          1
+        ],
+        [
+          13277980972450,
+          13277980979822,
+          20,
+          1,
+          1
+        ],
+        [
+          13277981045700,
+          13277981049977,
+          20,
+          1,
+          1
+        ],
+        [
+          13277981095014,
+          13277981098880,
+          20,
+          1,
+          1
+        ],
+        [
+          13277981143126,
+          13277981147042,
+          20,
+          1,
+          1
+        ],
+        [
+          13277981277137,
+          13277981281684,
+          20,
+          1,
+          1
+        ]
+      ],
+      "idle_poll_entry": [
+        13277981329656,
+        20
+      ]
+    },
+    {
+      "clock": 1600,
+      "monotonic_ns": 13277982066000
+    },
+    {
+      "clock": 1610,
+      "monotonic_ns": 13278002299725
+    },
+    {
+      "input_hex": "312479",
+      "monotonic_ns": 13278002301758
+    },
+    {
+      "input_hex": "73",
+      "monotonic_ns": 13278002318033
+    },
+    {
+      "public_state": 2,
+      "value": "unknown-timeout\nIncompleteInput@0;\ntext:1|text:$|text:y|text:s|text:s|",
+      "monotonic_ns": 13278003670091
+    },
+    {
+      "input_hex": "71",
+      "monotonic_ns": 13278003674017
+    }
+  ],
+  "size": [
+    40,
+    3
+  ],
+  "env": {
+    "TERM": "xterm-256color",
+    "CJTUI_KEYBOARD_I015_OUTPUT": "/workspace/work/keyboard-tests/i015-stage/raw/capture",
+    "CJTUI_A_CLOCK_FILE": "/workspace/work/keyboard-tests/i015-stage/raw/capture/clock",
+    "CJTUI_A_CLOCK_TRACE": "/workspace/work/keyboard-tests/i015-stage/raw/capture/clock.calls",
+    "CJTUI_A_POLL_TRACE": "/workspace/work/keyboard-tests/i015-stage/raw/capture/poll.calls",
+    "CJTUI_A_POLL_ENTER": "/workspace/work/keyboard-tests/i015-stage/raw/capture/poll.enter",
+    "LD_PRELOAD": "/workspace/work/keyboard-tests/i015-stage/raw/tools/poll-observer.so"
+  },
+  "actual_100ms_idle": [
+    13277878603125,
+    13277978748876,
+    100,
+    0,
+    0
+  ],
+  "actual_deadline_poll": [
+    13277981329656,
+    13278001456120,
+    20,
+    0,
+    0
+  ],
+  "cross_deadline_prefix_to_tail_ns": 21664461,
+  "actual_binary_exit": 0,
+  "after_termios": [
+    1280,
+    5,
+    191,
+    35387,
+    15,
+    15,
+    [
+      [
+        3
+      ],
+      [
+        28
+      ],
+      [
+        127
+      ],
+      [
+        21
+      ],
+      [
+        4
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ],
+      [
+        17
+      ],
+      [
+        19
+      ],
+      [
+        26
+      ],
+      [
+        0
+      ],
+      [
+        18
+      ],
+      [
+        15
+      ],
+      [
+        23
+      ],
+      [
+        22
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ]
+  ],
+  "closed": "unknown-timeout\nIncompleteInput@0;\ntext:1|text:$|text:y|text:s|text:s|text:q|\ncleanup=1\nresources=0/0/0/0\n",
+  "result": "GREEN",
+  "utc_end": "2026-11-13T05:13:09.072123+00:00",
+  "binary_post_sha256": "61f7bdde7d346f952d86c35582f1f89881323629622c20b13532d81b95232ba0"
+}

@@ -1,0 +1,9 @@
+bytes=[27, 228, 49, 65, 66] split=0 bytewise=false limit=1 events=text:B:false/false/false| issues=SequenceTooLong@0;
+bytes=[27, 228, 49, 65, 66] split=1 bytewise=false limit=1 events=text:B:false/false/false| issues=SequenceTooLong@0;
+bytes=[27, 228, 49, 65, 66] split=2 bytewise=false limit=1 events=text:B:false/false/false| issues=SequenceTooLong@0;
+bytes=[27, 228, 49, 65, 66] split=3 bytewise=false limit=1 events=text:B:false/false/false| issues=SequenceTooLong@0;
+bytes=[27, 228, 49, 65, 66] split=4 bytewise=false limit=1 events=text:B:false/false/false| issues=SequenceTooLong@0;
+bytes=[27, 228, 49, 65, 66] split=5 bytewise=false limit=1 events=text:B:false/false/false| issues=SequenceTooLong@0;
+bytes=[27, 228, 49, 65, 66] split=0 bytewise=true limit=1 events=text:B:false/false/false| issues=SequenceTooLong@0;
+fixed timeout prefix=1b c2 limit=1 tail=31 41 42 events=text:B:false/false/false| issues=SequenceTooLong@0;
+PASS K115-R1-01

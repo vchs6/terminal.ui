@@ -1,0 +1,114 @@
+[
+  {
+    "id": "INPUT-PF-001",
+    "round_id": "input-preflight-6a063ed",
+    "revision": "6a063ed3a07288587288c2afcdabf96a1d4e63a3",
+    "category": "ansi",
+    "target": "K002 C1 matrix",
+    "contract_ref": "openspec/changes/implement-linux-input-editing/design.md:78; AGENTS.md §10.3; ENGINEERING_TASK_DECOMPOSITION.md DQ-05",
+    "acceptance_ref": "TASK-113/118 independent golden; DQ-05",
+    "claim": "K002的有效UTF8标量→text未排除C1，且仅ST明确保留原C1；没有列出raw/UTF8 C1 CSI与控制串引导的精确结果。现InputDecoder已支持raw 90/98/9B/9D/9E/9F及UTF8编码C1，故测试作者不能从文稿唯一确定兼容golden。",
+    "severity": "major",
+    "priority": "Important",
+    "status": "open",
+    "reproducer": {
+      "setup": "Read frozen contract plus existing source; design ambiguity, not a runtime product failure",
+      "actions": [
+        "输入9B 41、C2 9B 41、C2 9D 78 07、ESC ] x C2 9C以及普通含9C续字节的UTF8；按全split比较。"
+      ],
+      "expected": "给每类C1的raw/UTF8双表示、标量边界、normal/ESC/string/paste状态行为、unsupported diagnostics/offset明确表；有效UTF8 text限定非控制标量，只有精确7位paste标记触发paste。",
+      "observed": "At least two observable outcomes remain consistent with current prose; formal golden cannot choose without an engineering contract decision."
+    },
+    "evidence_refs": [
+      "openspec/changes/implement-linux-input-editing/design.md:78",
+      "src/input_decoder.cj (PF-001 only)",
+      "report.md"
+    ],
+    "fix_revision": null,
+    "verification": null
+  },
+  {
+    "id": "INPUT-PF-002",
+    "round_id": "input-preflight-6a063ed",
+    "revision": "6a063ed3a07288587288c2afcdabf96a1d4e63a3",
+    "category": "lifecycle",
+    "target": "K001 diagnostics and E001 callbacks",
+    "contract_ref": "openspec/changes/implement-linux-input-editing/design.md:65; AGENTS.md §10.3; ENGINEERING_TASK_DECOMPOSITION.md DQ-05",
+    "acceptance_ref": "TASK-113/118 independent golden; DQ-05",
+    "claim": "onKeyboardIssue只定义签名，没有UI阶段/事件与诊断顺序/提交时点/异常及EOF收尾时点；onChange虽规定次数但未定义source与local snapshot/history发布相对回调的时点。公开回调中能否focus/写Observable/调用controller影响真实行为及paste目标锁，不能由测试作者自行选。",
+    "severity": "major",
+    "priority": "Important",
+    "status": "open",
+    "reproducer": {
+      "setup": "Read frozen contract plus existing source; design ambiguity, not a runtime product failure",
+      "actions": [
+        "同一read先unknown序列，再paste start；issue handler请求焦点B。另在onChange内读取controller.snapshot并记录value/selection/revision，随后写value；EOF带IncompletePaste回调。"
+      ],
+      "expected": "冻结diagnostic的owner/UI callback域、流内发生与安全提交顺序、EOF结束前后是否允许命令、throw清理；明确onChange/onSubmit/onIssue看见哪份已提交编辑状态、允许的重入边界，以及无效dispatch抛错在业务副作用前且是否保留会话。",
+      "observed": "At least two observable outcomes remain consistent with current prose; formal golden cannot choose without an engineering contract decision."
+    },
+    "evidence_refs": [
+      "openspec/changes/implement-linux-input-editing/design.md:65",
+      "src/input_decoder.cj (PF-001 only)",
+      "report.md"
+    ],
+    "fix_revision": null,
+    "verification": null
+  },
+  {
+    "id": "INPUT-PF-003",
+    "round_id": "input-preflight-6a063ed",
+    "revision": "6a063ed3a07288587288c2afcdabf96a1d4e63a3",
+    "category": "state",
+    "target": "E003/E005 copy/cut result and issue table",
+    "contract_ref": "openspec/changes/implement-linux-input-editing/design.md:235; AGENTS.md §10.3; ENGINEERING_TASK_DECOMPOSITION.md DQ-05",
+    "acceptance_ref": "TASK-113/118 independent golden; DQ-05",
+    "claim": "copy()/cut()的Option None情形未定义；SentUnconfirmed/Unsupported/Unknown/Failed只笼统给onIssue，缺精确枚举映射与互斥优先级。CtrlV/ShiftInsert提示也未给issue值。writer期间后台换值同时发生Sent/Failed时，是CutUnconfirmed、CutStale还是ConcurrentValueChanged，以及snapshot guard false是否自行报issue，当前不能唯一判定。",
+    "severity": "major",
+    "priority": "Important",
+    "status": "open",
+    "reproducer": {
+      "setup": "Read frozen contract plus existing source; design ambiguity, not a runtime product failure",
+      "actions": [
+        "无选区调用controller.copy/cut；有选区headless Unsupported；实际OSC SentUnconfirmed；复制超过65536字节Failed/PayloadTooLarge；同步写期间外部set；延后replaceSelection(\"\",ifUnchanged:old)返回false。"
+      ],
+      "expected": "冻结无选区None且是否输出/issue、copy与cut各status/issue映射、source stale与设备失败优先级、最多/具体回调次数、CtrlV提示值、stale guard false的报告责任；保证设备fatal仍由S008抛首错且不伪造Applied。",
+      "observed": "At least two observable outcomes remain consistent with current prose; formal golden cannot choose without an engineering contract decision."
+    },
+    "evidence_refs": [
+      "openspec/changes/implement-linux-input-editing/design.md:235",
+      "src/input_decoder.cj (PF-001 only)",
+      "report.md"
+    ],
+    "fix_revision": null,
+    "verification": null
+  },
+  {
+    "id": "INPUT-PF-004",
+    "round_id": "input-preflight-6a063ed",
+    "revision": "6a063ed3a07288587288c2afcdabf96a1d4e63a3",
+    "category": "state",
+    "target": "E001 initial editor state and no-op selection",
+    "contract_ref": "openspec/changes/implement-linux-input-editing/design.md:173; AGENTS.md §10.3; ENGINEERING_TASK_DECOMPOSITION.md DQ-05",
+    "acceptance_ref": "TASK-113/118 independent golden; DQ-05",
+    "claim": "只写重新挂载重置局部状态，未给首次/重新挂载caret与anchor位置。no-op仅定义不入历史及Bool false，没有界定相同文本替换非空选区时是否折叠选区、推进selectionRevision及触发onChange；这些直接影响下一次输入和ABA token。",
+    "severity": "major",
+    "priority": "Important",
+    "status": "open",
+    "reproducer": {
+      "setup": "Read frozen contract plus existing source; design ambiguity, not a runtime product failure",
+      "actions": [
+        "mount value=\"ab\"后直接输入\"X\"（Xab或abX）；select(0,1)后replaceSelection(\"a\")；卸载重挂载并查询snapshot；选区实际变化计数耗尽。"
+      ],
+      "expected": "冻结initial selection、初始两revision及remount重置语义；同文本替换的selection/return/onChange/history/redo规则，selectionRevision耗尽同样不回卷；保留source Int64版本与编辑UInt64版本职责分离。",
+      "observed": "At least two observable outcomes remain consistent with current prose; formal golden cannot choose without an engineering contract decision."
+    },
+    "evidence_refs": [
+      "openspec/changes/implement-linux-input-editing/design.md:173",
+      "src/input_decoder.cj (PF-001 only)",
+      "report.md"
+    ],
+    "fix_revision": null,
+    "verification": null
+  }
+]

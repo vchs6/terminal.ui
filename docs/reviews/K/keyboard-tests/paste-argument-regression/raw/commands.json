@@ -1,0 +1,74 @@
+[
+  {
+    "name": "build",
+    "cwd": "/workspace/work/keyboard-tests/paste-argument-regression/replay/tests/keyboard/paste_argument",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/paste-argument-regression/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T04:50:10.385019+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T04:51:29.140902+00:00"
+  },
+  {
+    "name": "c1-byte-budget",
+    "cwd": "/workspace/work/keyboard-tests/paste-argument-regression/replay/tests/keyboard/paste_argument",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/paste-argument-regression/raw/env.sh\nexport CJTUI_KEYBOARD_ARGUMENT_CASE=c1-byte-budget\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T04:52:06.590688+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T04:52:06.637914+00:00"
+  },
+  {
+    "name": "ctrl-text",
+    "cwd": "/workspace/work/keyboard-tests/paste-argument-regression/replay/tests/keyboard/paste_argument",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/paste-argument-regression/raw/env.sh\nexport CJTUI_KEYBOARD_ARGUMENT_CASE=ctrl-text\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T04:52:06.698191+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T04:52:06.781688+00:00"
+  },
+  {
+    "name": "paste-native",
+    "cwd": "/workspace/work/keyboard-tests/paste-argument-regression/replay/tests/keyboard/paste_argument",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/paste-argument-regression/raw/env.sh\nexec python3 pty.py --binary target/release/bin/main --output /workspace/work/keyboard-tests/paste-argument-regression/raw/native-capture"
+    ],
+    "utc_start": "2026-11-13T04:52:06.835323+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T04:52:06.904653+00:00"
+  },
+  {
+    "name": "paste-native-final",
+    "cwd": "/workspace/work/keyboard-tests/paste-argument-regression/replay/tests/keyboard/paste_argument",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/paste-argument-regression/raw/env.sh\nexec python3 native_pty.py --binary target/release/bin/main --output /workspace/work/keyboard-tests/paste-argument-regression/raw/native-capture-final"
+    ],
+    "utc_start": "2026-11-13T04:52:59.637464+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T04:52:59.846524+00:00"
+  },
+  {
+    "name": "audit",
+    "cwd": "/workspace/work/keyboard-tests/paste-argument-regression",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/paste-argument-regression/raw/env.sh\nexec python3 raw/audit.py"
+    ],
+    "utc_start": "2026-11-13T04:55:04.109766+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T04:55:05.359722+00:00"
+  }
+]

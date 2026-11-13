@@ -1,5 +1,9 @@
 # Linux keyboard input and text editing
 
+## Implementation status v1 — 2026-11-13
+
+K001–K004已获独立117有限验收并集成main；[原件与限制](../../../docs/reviews/K/README.md)。下文Why保留立项时的问题背景，非当前K缺失声明。E001–E005未实现，118实际独立测试进行中；119–122和完整Linux/父AC仍pending，本变更尚不整体归档。
+
 ## Why
 
 Linux当前设备解码仍只有文本、enter、backspace、escape、方向和interrupt。括号paste未实现时换行/0x03会变提交或退出，标准编辑快捷键缺失。需要先交付完整有界键盘/paste，再用统一公共Canvas/focus/viewport构造单多行编辑，保持用户组件与内置控件同权。

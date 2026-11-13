@@ -1,0 +1,20 @@
+cjpm build success
+compat=false timeout=false split=0 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=1 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=2 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=3 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=4 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=5 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=6 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=7 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=8 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=9 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=10 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=11 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=12 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=false split=13 events=text:A|text:B| issues=MalformedSequence@1;
+compat=false timeout=true split=6 events=text:A|text:B| issues=MalformedSequence@1;
+PASS K-DRAIN malformed-drain
+alt-timeout events=2 issueCount=1 offset=1
+compat=true timeout=false split=5 events=up:| issues=InvalidUtf8@1;
+PASS K-DRAIN alt-invalid-offset

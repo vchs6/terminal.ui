@@ -1,0 +1,15 @@
+{
+  "task": "TASK117",
+  "verdict": "PASS_FINITE_K",
+  "fixed_product": "c3c4642d84df57bbd9550d222ed22f602acd13ef",
+  "required_finite_K_findings": [],
+  "closed_source_findings": ["K115-01", "K115-02", "K115-03", "K115-04", "K115-05", "K115-06", "K115-R1-01"],
+  "parent_scope_qualifications": [
+    {"id": "K117-Q01", "status": "insufficient_evidence_outside_finite_scope", "scope": "physical Linux console hardware / whole AC041", "basis": "KernelVT ran in QEMU; physical hardware was not tested."},
+    {"id": "K117-Q02", "status": "unexercised_host_variant", "scope": "natural EOF on each actual host", "basis": "Frozen real OSpipe+TTY EOF/read0 cases pass; natural terminal EOF was not exercised in actual-host runs."},
+    {"id": "K117-Q03", "status": "capability_limit", "scope": "host modifiers, paste, cursor/display state", "basis": "XTerm Meta produced UTF8 ú; recorded Linux VT map produced tab/insert for ShiftTab/ShiftInsert. No kernel clipboard/paste or complete unknown display-state restoration claimed."},
+    {"id": "K117-Q04", "status": "deferred_parent_work", "scope": "T087-G01 / TASK023 / complete Linux distribution", "basis": "Stale whole-product checker was not invoked or passed. Required normal bundle, finite member safety/source equality and clean keyboard consumers are separately proven."},
+    {"id": "K117-Q05", "status": "outside_scope", "scope": "whole AC003/004/017/020/030/041, AC024/028, menus, M2, other platforms", "basis": "Only normalization, target bridge, paste reception, added-mode cleanup and fixed device-input segments accepted; no ClipboardApplied or full IME inference."}
+  ],
+  "accepted_test_correction": {"commit": "daf99aa1f323929d09907d558623b3bb6a74cbbb", "scope": "tests/integration/fixture/src/main.cj", "basis": "Explicit Unicode profile matches the existing virtual Unicode parser. Exact original emoji clipping oracle and product Auto fallback remain unchanged; original RED retained."}
+}

@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+    "-geometry",
+    "60x12+20+20",
+    "-T",
+    "TASK116 keyboard xterm",
+    "-fa",
+    "DejaVu Sans Mono",
+    "-fs",
+    "16",
+    "-e",
+    "python3",
+    "/workspace/work/keyboard-execution/tools/host-supervisor.py",
+    "/workspace/work/keyboard-execution/source/tests/keyboard/formal_device/target/release/bin/main",
+    "/workspace/work/keyboard-execution/raw/host-xterm"
+  ],
+  "env": {
+    "DISPLAY": ":199",
+    "HOME": "/workspace/work/keyboard-execution/raw/host-xterm/home",
+    "XDG_CONFIG_HOME": "/workspace/work/keyboard-execution/raw/host-xterm/home/config",
+    "XDG_CACHE_HOME": "/workspace/work/keyboard-execution/raw/host-xterm/home/cache"
+  },
+  "source_sha": "c3c4642d84df57bbd9550d222ed22f602acd13ef",
+  "binary_sha256": "cb578fa38f6503688fdc292d9ef935afecbc8e56c8b01ae2e45a5bee2e7c7204"
+}

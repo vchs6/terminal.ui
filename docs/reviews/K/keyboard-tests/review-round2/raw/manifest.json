@@ -1,0 +1,99 @@
+{
+  "schema": "independent-k115-round2-1",
+  "utc_frozen": "2026-11-13T06:30:49.213227+00:00",
+  "test_only_fixed_sha": "a4a0219341783f30c151d53d574d6d7fb41ad985",
+  "test_base": "cb3fac0a94e4e86a0501fa0b52b0a7a4e8437df2",
+  "fixed_product": "500d5ff35632ab7ed55e323458883bbd7e80d2b7",
+  "report_sha256": "9ba54bfe7a4cb367b81d6803d753fddabe3f868bbe837d976ab6cbde7f26fffb",
+  "all_test_files_sha256": {
+    "tests/keyboard/review_regressions/run.sh": "3c770ba348c46f55a3fed55941241185630292bf5d4a6a089a79b44672083940",
+    "tests/keyboard/review_regressions/cjpm.toml": "2e5c125aa04b357120c215990dd5fb79084b134035da0ed66bfbf184ee5010c9",
+    "tests/keyboard/review_regressions/README.md": "2324ff0ea14c2419da803e00e316c21c3b26bf73e6cb2842639b0eac87df9efa",
+    "tests/keyboard/review_regressions/native_pty.py": "0b2e694cf96ae9da3e00635f20b0fe1e817eb155bcc43f099065c668217abcf2",
+    "tests/keyboard/review_regressions/src/box.cj": "d496bbaef053ec4462754f439651ea134f82252176b052c98a730f0537a09247",
+    "tests/keyboard/review_regressions/src/round_two.cj": "f5e2fb586f376938450f986b20d2b1cdc152697885a2439e5d4d3e8d41c12902",
+    "tests/keyboard/review_regressions/src/main.cj": "957ad899fc378946fea524793e17ade57aa7fec187401c76c31b4c734223d846"
+  },
+  "commands_actual_cwd_utc_exit": [
+    {
+      "name": "build",
+      "cwd": "/workspace/work/keyboard-tests/review-round2/replay/tests/keyboard/review_regressions",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/review-round2/raw/env.sh\nexec cjpm build"
+      ],
+      "utc_start": "2026-11-13T06:28:24.652473+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T06:29:38.261903+00:00"
+    },
+    {
+      "name": "K115-R1-01",
+      "cwd": "/workspace/work/keyboard-tests/review-round2/replay/tests/keyboard/review_regressions",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/review-round2/raw/env.sh\nexport CJTUI_K115_CASE=K115-R1-01\nexec timeout 45s ./target/release/bin/main </dev/null"
+      ],
+      "utc_start": "2026-11-13T06:30:01.735943+00:00",
+      "exit": 1,
+      "utc_end": "2026-11-13T06:30:01.775802+00:00"
+    },
+    {
+      "name": "audit",
+      "cwd": "/workspace/work/keyboard-tests/review-round2",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/review-round2/raw/env.sh\nexec python3 raw/audit.py"
+      ],
+      "utc_start": "2026-11-13T06:30:01.872221+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T06:30:02.799911+00:00"
+    }
+  ],
+  "contract_sha256": {
+    "AGENTS.md": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+    "openspec/changes/implement-linux-input-editing/design.md": "a2cef43376b24e9613a4a08f45890fb0e24689c2f93f3a30041b87810766df23",
+    "openspec/changes/implement-linux-input-editing/specs/ui-runtime/spec.md": "df5b5d0fd5f45b3bb10ff8e266ebca0739af13d55f5788ea304f4c90a6747207"
+  },
+  "formal_findings_sha256": "126974bf193b44886bf379722d9188c0e6779c27ac1119ec16ac6deca2fecfad",
+  "normal_sdk_build_actual_exit": 0,
+  "selector": "K115-R1-01",
+  "actual_selector_exit": 1,
+  "classification": "actual product assertion RED after all8 observations",
+  "literal_hex": "1be4314142",
+  "maxSequenceBytes": 1,
+  "literal_inputs": "six two-block splits0..5 and one bytewise, then finish",
+  "fixed_timeout_control": "feed(1b c2); timeout(); feed(31 41 42); finish()",
+  "manual_expected": "only SequenceTooLong@0 and textB, no InvalidUtf8 or leaked1/A",
+  "actual_every_observation": "only SequenceTooLong@0, events text1,textA,textB; flags allfalse",
+  "actual_binary_sha256": "c12e7ff5699d670c25797d353db74252e6aad268f03f80aa43daabef2c767fd3",
+  "old_functions_helpers_native_oracles_preserved": true,
+  "scope_limits": [
+    "no old selector/native/full suite execution",
+    "no06 reopening or memory runtime claim",
+    "no product/spec/main modifications",
+    "no source-derived trace presented as runtime; new actual raw retained"
+  ],
+  "raw_sha256": {
+    "K115-R1-01.bin-post.json": "924c95c0e185426d77f7d35e35e428a619dc3dd6ffbafbd76792538e6a83f599",
+    "K115-R1-01.bin-pre.json": "75ef20a18c54af965678f893a852b9abf3c172b5bc7e3739c6e2655559236cb4",
+    "K115-R1-01.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "K115-R1-01.stderr": "a60f355fe837197ad3350720e2409d92feb840edaf227f2df94bf0ac68c73fae",
+    "K115-R1-01.stdout": "f9676f9d7a67d4883c18a639a19a8a08c3d3055093b1feaf2ff37155695dcfbb",
+    "audit.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "audit.py": "a1e15770f4c0e478d4a213c9988c5b8a98a65307c63a1ea1fbe20f75854ff150",
+    "audit.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "audit.stdout": "88cfec17766d06774755e5b2addc8b722fd979d42482ec8dea43b588eb29ad4e",
+    "build.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "build.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "build.stdout": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+    "commands.json": "72bc29973296bca743202a88309889e2d071db512835fccab6894a79e3b04114",
+    "env.sh": "e795d96ad8eedde1375251f5bdb94feb72db66712b66de35647abd2464d9f143",
+    "findings.frozen.json": "126974bf193b44886bf379722d9188c0e6779c27ac1119ec16ac6deca2fecfad",
+    "posthash.json": "a0f17bb7569159a6f071aa5cb3683316d50d5f7899a0bca3e631595ffd46e224",
+    "prehash.json": "ac482d6e9b1aa78ff4cbab8c848a695b8cb5a8dcf9fd66507ccc5bfc24e04c00",
+    "record.py": "8a0bec4467757296853877d274fbec72635e08ef891a9b8949b1f08efe83058c"
+  }
+}

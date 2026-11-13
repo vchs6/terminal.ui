@@ -1,0 +1,258 @@
+diff --git a/src/application.cj b/src/application.cj
+index 23261e14..a96df65b 100644
+--- a/src/application.cj
++++ b/src/application.cj
+@@ -558,6 +558,11 @@ public class Application {
+             }
+             let decoder = KeyboardDecoder(limits: keyboardLimits)
+             decoder.caretProbe = Some(probe)
++            decoder.inputActive = Some({ =>
++                if (!running) { false }
++                else if (let Some(work) <- readSession()) { !work.isStopping() }
++                else { false }
++            })
+             let pasteTarget: Array<?NodeRef> = [None]
+             decoder.onPasteStart = Some({ => pasteTarget[0] = activeTarget() })
+             decoder.onIssue = Some({diagnostic => reportKeyboardIssue(diagnostic)})
+diff --git a/src/keyboard_decoder.cj b/src/keyboard_decoder.cj
+index 4f523dd5..ce8c4b20 100644
+--- a/src/keyboard_decoder.cj
++++ b/src/keyboard_decoder.cj
+@@ -23,6 +23,8 @@ public class KeyboardDecoder {
+     private var utfMin: UInt32 = 0
+     private var utfStart: Int64 = 0
+     private var utfAlt = false
++    private var utfSequence = false
++    private var utfC1Candidate = false
+     private var c1Csi = false
+     private var c1PrefixBytes: Int64 = 1
+     private var keys = ArrayList<KeyEvent>()
+@@ -30,21 +32,28 @@ public class KeyboardDecoder {
+     var onEvent: ?(KeyEvent) -> Unit = None
+     var onIssue: ?(KeyboardDiagnostic) -> Unit = None
+     var onPasteStart: ?() -> Unit = None
++    var inputActive: ?() -> Bool = None
+     var caretProbe: ?CaretProbe = None
+ 
+     public init(limits!: KeyboardLimits = KeyboardLimits()) { this.limits = limits }
+     private func checkOpen(): Unit { if (closed) { throw KeyboardException("DecoderClosed", "decoder closed") } }
++    private func acceptingInput(): Bool {
++        if (let Some(check) <- inputActive) { return check() }
++        true
++    }
+     private func event(key: KeyEvent): Unit {
++        if (!acceptingInput()) { return }
+         keys.add(key)
+         if (let Some(callback) <- onEvent) { callback(key) }
+     }
+     private func issue(kind: KeyboardIssue, at: Int64): Unit {
++        if (!acceptingInput()) { return }
+         let diagnostic = KeyboardDiagnostic(kind, at); issues.add(diagnostic)
+         if (let Some(callback) <- onIssue) { callback(diagnostic) }
+     }
+     private func batch(): KeyboardBatch {
+         let result = KeyboardBatch(keys.toArray(), issues.toArray())
+-        keys.clear(); issues.clear(); result
++        keys = ArrayList<KeyEvent>(); issues = ArrayList<KeyboardDiagnostic>(); result
+     }
+     public func feed(chunk: Array<UInt8>): KeyboardBatch {
+         checkOpen()
+@@ -56,7 +65,9 @@ public class KeyboardDecoder {
+     }
+     public func timeout(): KeyboardBatch {
+         checkOpen()
+-        if (state == 1 && utfRemaining == 0) { state = 0; event(KeyEvent("escape")) }
++        if (pendingC1OverBudget()) {
++            if (!drained) { drained = true; sequence.clear(); issue(KeyboardIssue.SequenceTooLong, start) }
++        } else if (state == 1 && utfRemaining == 0) { state = 0; event(KeyEvent("escape")) }
+         else if ((state == 1 || state == 2 || state == 3) && !drained) {
+             state = 0; utfRemaining = 0; issue(KeyboardIssue.IncompleteInput, start)
+         }
+@@ -64,14 +75,19 @@ public class KeyboardDecoder {
+     }
+     public func finish(): KeyboardBatch {
+         checkOpen(); closed = true
+-        if (state == 6) { issue(KeyboardIssue.IncompletePaste, start) }
++        if (pendingC1OverBudget()) {
++            if (!drained) { issue(KeyboardIssue.SequenceTooLong, start) }
++        } else if (state == 6) { issue(KeyboardIssue.IncompletePaste, start) }
+         else if (state != 0 || utfRemaining > 0) {
+             issue(KeyboardIssue.IncompleteInput, if (state != 0) { start } else { utfStart })
+         }
+-        state = 0; utfRemaining = 0; batch()
++        state = 0; utfRemaining = 0; paste = ArrayList<UInt8>(); batch()
+     }
+-    func waitingIdle(): Bool { state == 1 || ((state == 2 || state == 3) && !drained) }
++    func waitingIdle(): Bool { (state == 1 || state == 2 || state == 3) && !drained }
+     func pasteOffset(): Int64 { start }
++    private func pendingC1OverBudget(): Bool {
++        state == 1 && utfRemaining > 0 && utfC1Candidate && limits.maxSequenceBytes < 2
++    }
+     private func beginSequence(at: Int64): Unit {
+         state = 1; start = at; sequence.clear(); sequence.add(27)
+         drained = false; malformed = false; intermediate = false; c1Csi = false
+@@ -113,6 +129,7 @@ public class KeyboardDecoder {
+         state = 0; event(KeyEvent("text", text: String(Rune(code)), alt: alt))
+     }
+     private func consume(byte: Int32, at: Int64): Unit {
++        if (!acceptingInput()) { return }
+         if (state == 6) { pasteByte(byte); return }
+         if (byte == 3) {
+             state = 0; utfRemaining = 0; event(KeyEvent("interrupt", ctrl: true)); return
+@@ -120,18 +137,38 @@ public class KeyboardDecoder {
+         if (state == 4 || state == 5) { stringByte(byte); return }
+         if (utfRemaining > 0) {
+             if (byte >= 128 && byte <= 191) {
++                if (utfAlt && !utfC1Candidate) { appendSequence(byte) }
+                 utfCode = (utfCode << 6) | UInt32(byte & 63); utfRemaining--
+                 if (utfRemaining == 0) {
+-                    if (utfCode < utfMin || utfCode > 0x10ffff || (utfCode >= 0xd800 && utfCode <= 0xdfff)) {
+-                        issue(KeyboardIssue.InvalidUtf8, utfStart); state = 0
+-                    } else { scalar(utfCode, utfStart, utfAlt) }
++                    if (utfSequence) {
++                        if (utfCode >= 128 && utfCode < 160) { c1(utfCode, utfStart, encoded: true) }
++                        else if (!drained) { malformedSequence() }
++                    } else {
++                        if (utfC1Candidate && utfCode >= 128 && utfCode < 160) {
++                            c1(utfCode, utfStart, encoded: true)
++                        } else {
++                            if (utfC1Candidate) { appendSequence(194); appendSequence(byte) }
++                            if (drained && utfAlt) { state = 0 }
++                            else if (utfCode < utfMin || utfCode > 0x10ffff || (utfCode >= 0xd800 && utfCode <= 0xdfff)) {
++                                issue(KeyboardIssue.InvalidUtf8, utfStart); state = 0
++                            } else { scalar(utfCode, utfStart, utfAlt) }
++                        }
++                    }
+                 }
+                 return
+             }
+-            utfRemaining = 0; issue(KeyboardIssue.InvalidUtf8, utfStart); state = 0
++            utfRemaining = 0
++            if (utfSequence) {
++                if (!drained) { malformedSequence() }
++            } else {
++                if (utfC1Candidate) { appendSequence(194) }
++                if (!drained || !utfAlt) { issue(KeyboardIssue.InvalidUtf8, utfStart) }
++                state = 0
++            }
+             consume(byte, at); return
+         }
+         if (byte == 27) { beginSequence(at); return }
++        if (byte >= 128 && byte <= 159) { c1(UInt32(byte), at); return }
+         if (state == 1) {
+             if (byte == 91 || byte == 79) {
+                 state = if (byte == 91) { 2 } else { 3 }; appendSequence(byte); return
+@@ -139,13 +176,22 @@ public class KeyboardDecoder {
+             if (byte == 93 || byte == 80 || byte == 88 || byte == 94 || byte == 95) {
+                 beginString(start, byte == 93); return
+             }
+-            if (byte >= 32 && byte < 127) { scalar(UInt32(byte), at, true); return }
+-            if (byte >= 194 && byte <= 244) { beginUtf(byte, at, true); return }
++            if (byte >= 32 && byte < 127) {
++                appendSequence(byte)
++                if (!drained) { scalar(UInt32(byte), at, true) } else { state = 0 }
++                return
++            }
++            if (byte >= 194 && byte <= 244) {
++                if (byte != 194) { appendSequence(byte) }
++                beginUtf(byte, at, true); return
++            }
+             issue(KeyboardIssue.UnsupportedSequence, start); state = 0; return
+         }
+         if (state == 2 || state == 3) {
+-            if (byte >= 128 && byte <= 159) { c1(UInt32(byte), at); return }
+-            if (byte == 194) { beginUtf(byte, at, false); return }
++            if (byte >= 194 && byte <= 244) {
++                if (byte != 194 && !drained) { malformedSequence() }
++                beginUtf(byte, at, false); return
++            }
+             appendSequence(byte)
+             if (state == 2 && sequence.size == 3 && byte == 91 && !drained) { return }
+             if (byte >= 64 && byte <= 126) {
+@@ -154,11 +200,9 @@ public class KeyboardDecoder {
+             }
+             if (byte >= 32 && byte <= 47) { intermediate = true }
+             else if (byte >= 48 && byte <= 63) {
+-                if (intermediate && !malformed && !drained) {
+-                    malformed = true; drained = true; sequence.clear(); issue(KeyboardIssue.MalformedSequence, start)
+-                }
++                if (intermediate && !malformed && !drained) { malformedSequence() }
+             } else if (!malformed && !drained) {
+-                malformed = true; drained = true; sequence.clear(); issue(KeyboardIssue.MalformedSequence, start)
++                malformedSequence()
+             }
+             return
+         }
+@@ -169,11 +213,14 @@ public class KeyboardDecoder {
+         if (byte < 32) { issue(KeyboardIssue.UnsupportedSequence, at); return }
+         if (byte < 128) { scalar(UInt32(byte), at, false); return }
+         if (byte >= 194 && byte <= 244) { beginUtf(byte, at, false); return }
+-        if (byte >= 128 && byte <= 159) { c1(UInt32(byte), at); return }
+         issue(KeyboardIssue.InvalidUtf8, at)
+     }
++    private func malformedSequence(): Unit {
++        malformed = true; drained = true; sequence.clear(); issue(KeyboardIssue.MalformedSequence, start)
++    }
+     private func beginUtf(byte: Int32, at: Int64, alt: Bool): Unit {
+-        utfStart = at; utfAlt = alt
++        utfStart = at; utfAlt = alt; utfSequence = state == 2 || state == 3
++        utfC1Candidate = alt && byte == 194
+         if (byte <= 223) { utfRemaining = 1; utfCode = UInt32(byte & 31); utfMin = 128 }
+         else if (byte <= 239) { utfRemaining = 2; utfCode = UInt32(byte & 15); utfMin = 2048 }
+         else { utfRemaining = 3; utfCode = UInt32(byte & 7); utfMin = 65536 }
+@@ -182,7 +229,7 @@ public class KeyboardDecoder {
+         let raw = sequence.toArray()
+         let text = try { String.fromUtf8(raw) } catch (_: IllegalArgumentException) { "" }
+         if (!c1Csi && text == "\u{1b}[200~") {
+-            state = 6; paste.clear(); endPrefix.clear(); drained = false
++            state = 6; paste = ArrayList<UInt8>(); endPrefix.clear(); drained = false
+             if (let Some(callback) <- onPasteStart) { callback() }
+             return
+         }
+@@ -234,8 +281,11 @@ public class KeyboardDecoder {
+     }
+     private func stringByte(byte: Int32): Unit {
+         if (state == 5) {
+-            if (byte == 92 || (osc && byte == 7)) { state = 0; return }
+-            if (byte != 27) { state = 4 }
++            if (byte == 92) { state = 0; return }
++            if (byte == 27) { return }
++            state = 4
++            // The byte after a non-ST escape still belongs to the string.
++            stringByte(byte)
+             return
+         }
+         if (stringRemaining > 0 && byte >= 128 && byte <= 191) {
+@@ -252,7 +302,7 @@ public class KeyboardDecoder {
+     private func appendPaste(byte: UInt8): Unit {
+         if (drained) { return }
+         if (paste.size >= limits.maxPasteBytes) {
+-            drained = true; paste.clear(); issue(KeyboardIssue.PasteTooLarge, start); return
++            drained = true; paste = ArrayList<UInt8>(); issue(KeyboardIssue.PasteTooLarge, start); return
+         }
+         paste.add(byte)
+     }
+@@ -273,7 +323,7 @@ public class KeyboardDecoder {
+                 if (let Some(value) <- text) { event(KeyEvent("paste", text: value)) }
+                 else { issue(KeyboardIssue.InvalidPasteEncoding, start) }
+             }
+-            paste.clear()
++            paste = ArrayList<UInt8>()
+         }
+     }
+ }
+diff --git a/tests/run-slice.sh b/tests/run-slice.sh
+index 42df6317..6de272a7 100755
+--- a/tests/run-slice.sh
++++ b/tests/run-slice.sh
+@@ -11,6 +11,10 @@ case "${1:-all}" in
+     bash tests/keyboard/i015_stage/run.sh
+     CJTUI_KEYBOARD_I015_PURE_CASE=malformed-drain bash tests/keyboard/i015_stage/run.sh --pure
+     CJTUI_KEYBOARD_I015_PURE_CASE=alt-invalid-offset bash tests/keyboard/i015_stage/run.sh --pure
++    for case_name in K115-01 K115-02 K115-03 K115-04; do
++      CJTUI_K115_CASE="$case_name" bash tests/keyboard/review_regressions/run.sh
++    done
++    CJTUI_K115_CASE=K115-05 CJTUI_K115_ARTIFACTS="${CJTUI_K115_ARTIFACTS:-$(mktemp -d)/native}" bash tests/keyboard/review_regressions/run.sh
+     ;;
+   native-session) tests/native-session/run.sh ;;
+   native-smoke)

@@ -1,0 +1,77 @@
+{
+  "revision": "6a063ed3a07288587288c2afcdabf96a1d4e63a3",
+  "scope": "TASK-113–122 design/admission",
+  "ready": false,
+  "items": [
+    {
+      "id": "DQ-01",
+      "result": "pass",
+      "reason": "113–122均L3；A/B分别五角色，非L2直接执行。"
+    },
+    {
+      "id": "DQ-02",
+      "result": "pass",
+      "reason": "A唯一输入协议交付；B公共编辑交付，各有独立终态与后续父AC汇合。"
+    },
+    {
+      "id": "DQ-03",
+      "result": "pass",
+      "reason": "共享卡字段+逐行定义+L4等价完整；现planned，具体raw未来产生未伪造。"
+    },
+    {
+      "id": "DQ-04",
+      "result": "pass",
+      "reason": "单decoder/native输入、公共Canvas编辑、唯一Observable锁/版本和唯一session writer边界明确。"
+    },
+    {
+      "id": "DQ-05",
+      "result": "fail",
+      "reason": "PF-001–004导致正式golden对C1/回调/结果/初态不可唯一判定；113/118准入前补冻。"
+    },
+    {
+      "id": "DQ-06",
+      "result": "fail",
+      "reason": "依赖图无环，F001确定152→114且完整030后汇合；但当前没有提供080/084/088/092/102/107/112/152所需实际固定验收产物，执行ready前提未满足。"
+    },
+    {
+      "id": "DQ-07",
+      "result": "pass",
+      "reason": "017/020/028/030/041分段映射，父完整AC仍待后续，不因有限验收取消承诺。"
+    },
+    {
+      "id": "DQ-08",
+      "result": "pass",
+      "reason": "KeyboardDecoder替旧InputDecoder；RichText只展示；编辑不另造Frame/focus/viewport/ClipboardRequest/Observable版本权威。"
+    },
+    {
+      "id": "DQ-09",
+      "result": "pass",
+      "reason": "116新增2004恢复；117/122及Linux最终汇合承担paste/cut/030父AC，unsafe闩不被清理越过。"
+    },
+    {
+      "id": "DQ-10",
+      "result": "fail",
+      "reason": "签名可行性已有本轮shape证据；PF-001–004仍是可观察合同未知，不得默认为实现自由。"
+    },
+    {
+      "id": "DQ-11",
+      "result": "pass",
+      "reason": "113/118手写golden、PTY交错、真实线程竞争与产品/独立执行L4可检查。"
+    },
+    {
+      "id": "DQ-12",
+      "result": "pass",
+      "reason": "固定SHA、文档/源hash与原父AC映射可定位；shape compile不计正式RED/GREEN，执行证据未伪造。"
+    },
+    {
+      "id": "DQ-13",
+      "result": "fail",
+      "reason": "F001已工程裁决但尚有Important语义需root补冻；本轮使用verification skill；未来角色所需技能实际使用及ready安装复核未在本轮冒认满足。"
+    },
+    {
+      "id": "DQ-14",
+      "result": "pass",
+      "reason": "必要性/权威职责/旧路径迁移/兼容例外/复杂度与隔离写屏障均有记录。"
+    }
+  ]
+}

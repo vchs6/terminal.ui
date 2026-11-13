@@ -1,0 +1,35 @@
+{
+  "phase": "vt-pack",
+  "source_sha": "c3c4642d84df57bbd9550d222ed22f602acd13ef",
+  "cwd": "/workspace/work/keyboard-execution",
+  "argv": [
+    "python3",
+    "tools/pack-vt.py",
+    "--go",
+    "ACTUALGO",
+    "--binary",
+    "source/tests/keyboard/formal_device/target/release/bin/main",
+    "--supervisor",
+    "tools/vt-supervisor",
+    "--output",
+    "artifacts/keyboard-vt.cpio.gz"
+  ],
+  "start": "2026-11-13T06:50:10.297473+00:00",
+  "end": "2026-11-13T06:50:16.240884+00:00",
+  "exit": 0,
+  "env": {
+    "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+    "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+    "CJTUI_K115_ARTIFACTS": null
+  },
+  "files": {
+    "stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

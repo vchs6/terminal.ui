@@ -1,0 +1,556 @@
+{
+  "phase": "01-native-read",
+  "immutable": true,
+  "generated_utc": "2026-11-13T03:39:17.529519+00:00",
+  "input_pre_post_sha256": {
+    "/workspace/work/keyboard-tests/final/raw/01-native-read/pipe_probe.c": "4f9194fde13a6c24c6095736dd6eef4f5a37a35878c53cc282bc93c123d83d21",
+    "/workspace/work/keyboard-tests/final/raw/01-native-read/pipe_remap.c": "944d544359e5b49db0d375b1372fd1f49841fb3a85a5a49d68c917edada0fc50",
+    "/workspace/work/keyboard-tests/final/raw/01-native-read/execute.py": "0148c1243276c4578bd9ccd495097f943906211e1fb8189995e433913cfdc908",
+    "/workspace/work/keyboard-tests/final/replay/native/cjtui_terminal.c": "9b8c60a5dae0aa0d8d75fc7baf0586cac53c48d4842b3e2f7b730cd80130f7c2",
+    "/workspace/work/keyboard-tests/final/replay/src/terminal_bridge.cj": "21247741cd96e7d3f4233278816cdd2b9687d030e4199a712079616d3100a3ea"
+  },
+  "commands": [
+    {
+      "name": "01-native-read/compile",
+      "cwd": "/workspace/work/keyboard-tests/final",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/final/raw/env.sh\ncc -std=c11 -Wall -Wextra -Werror -O2 raw/01-native-read/pipe_probe.c replay/native/cjtui_terminal.c -o raw/01-native-read/pipe-probe\nexec cc -std=c11 -Wall -Wextra -Werror -O2 -fPIC -shared raw/01-native-read/pipe_remap.c -ldl -o raw/01-native-read/pipe-remap.so"
+      ],
+      "utc_start": "2026-11-13T03:38:24.773257+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T03:38:24.998762+00:00"
+    },
+    {
+      "name": "01-native-read/run",
+      "cwd": "/workspace/work/keyboard-tests/final",
+      "argv": [
+        "bash",
+        "-lc",
+        "source /workspace/work/keyboard-tests/final/raw/env.sh\nexec python3 raw/01-native-read/execute.py"
+      ],
+      "utc_start": "2026-11-13T03:38:25.023985+00:00",
+      "exit": 0,
+      "utc_end": "2026-11-13T03:38:25.096233+00:00"
+    }
+  ],
+  "executions": [
+    {
+      "mode": "positive",
+      "argv": [
+        "/workspace/work/keyboard-tests/final/raw/01-native-read/pipe-probe",
+        "positive"
+      ],
+      "cwd": "/workspace/work/keyboard-tests/final/raw/01-native-read",
+      "utc_start": "2026-11-13T03:38:25.063210+00:00",
+      "binary_pre_sha256": "a7fa8ae197eafe5741194dd04a1d641233451066efd8405d22b88a3c6ebb4beb",
+      "exit": 0,
+      "utc_end": "2026-11-13T03:38:25.064484+00:00",
+      "binary_post_sha256": "a7fa8ae197eafe5741194dd04a1d641233451066efd8405d22b88a3c6ebb4beb"
+    },
+    {
+      "mode": "contract",
+      "argv": [
+        "/workspace/work/keyboard-tests/final/raw/01-native-read/pipe-probe",
+        "contract"
+      ],
+      "cwd": "/workspace/work/keyboard-tests/final/raw/01-native-read",
+      "utc_start": "2026-11-13T03:38:25.064544+00:00",
+      "binary_pre_sha256": "a7fa8ae197eafe5741194dd04a1d641233451066efd8405d22b88a3c6ebb4beb",
+      "exit": 1,
+      "utc_end": "2026-11-13T03:38:25.065578+00:00",
+      "binary_post_sha256": "a7fa8ae197eafe5741194dd04a1d641233451066efd8405d22b88a3c6ebb4beb"
+    },
+    {
+      "mode": "tty-control",
+      "argv": [
+        "/workspace/work/keyboard-tests/final/raw/01-native-read/pipe-probe",
+        "tty-control"
+      ],
+      "cwd": "/workspace/work/keyboard-tests/final/raw/01-native-read",
+      "utc_start": "2026-11-13T03:38:25.065613+00:00",
+      "binary_pre_sha256": "a7fa8ae197eafe5741194dd04a1d641233451066efd8405d22b88a3c6ebb4beb",
+      "env": {
+        "LD_PRELOAD": "/workspace/work/keyboard-tests/final/raw/01-native-read/pipe-remap.so",
+        "CJTUI_KEYBOARD_PIPE_FD": "5",
+        "CJTUI_KEYBOARD_PIPE_TRACE": "/workspace/work/keyboard-tests/final/raw/01-native-read/tty-control.trace"
+      },
+      "exit": 0,
+      "before_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "after_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "utc_end": "2026-11-13T03:38:25.077918+00:00",
+      "binary_post_sha256": "a7fa8ae197eafe5741194dd04a1d641233451066efd8405d22b88a3c6ebb4beb"
+    },
+    {
+      "mode": "tty-product",
+      "argv": [
+        "/workspace/work/keyboard-tests/final/raw/01-native-read/pipe-probe",
+        "tty-product"
+      ],
+      "cwd": "/workspace/work/keyboard-tests/final/raw/01-native-read",
+      "utc_start": "2026-11-13T03:38:25.077974+00:00",
+      "binary_pre_sha256": "a7fa8ae197eafe5741194dd04a1d641233451066efd8405d22b88a3c6ebb4beb",
+      "env": {
+        "LD_PRELOAD": "/workspace/work/keyboard-tests/final/raw/01-native-read/pipe-remap.so",
+        "CJTUI_KEYBOARD_PIPE_FD": "5",
+        "CJTUI_KEYBOARD_PIPE_TRACE": "/workspace/work/keyboard-tests/final/raw/01-native-read/tty-product.trace"
+      },
+      "exit": 1,
+      "before_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "after_termios": [
+        1280,
+        5,
+        191,
+        35387,
+        15,
+        15,
+        [
+          [
+            3
+          ],
+          [
+            28
+          ],
+          [
+            127
+          ],
+          [
+            21
+          ],
+          [
+            4
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            26
+          ],
+          [
+            0
+          ],
+          [
+            18
+          ],
+          [
+            15
+          ],
+          [
+            23
+          ],
+          [
+            22
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ]
+      ],
+      "utc_end": "2026-11-13T03:38:25.090601+00:00",
+      "binary_post_sha256": "a7fa8ae197eafe5741194dd04a1d641233451066efd8405d22b88a3c6ebb4beb"
+    }
+  ],
+  "result": "real pipe/real TTY mechanism proven; existing product native tail/HUP and EOF contract RED; no Keyboard API or callback behavior claim",
+  "files_sha256": {
+    "prehash.json": "58d808bd5c9412af7c49b5753dc8e9a08a48948c267e8e32f629785d8f73053a",
+    "contract.stdout": "ffd3a7a1205e3375d934701c9cd1a678b1f08d422c9b493d2f16190e571ebd4b",
+    "run.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "positive.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "execute.py": "0148c1243276c4578bd9ccd495097f943906211e1fb8189995e433913cfdc908",
+    "executions.json": "7c3481f1ece282fd3409a59e3c2b3a6c090ef2cf79488870c4170c6268b627b1",
+    "positive.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tty-product.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tty-product.trace": "ec6dabf4f998b5abea1f7663a20550d1f2f4ec0988c4c2c8149df00af155c316",
+    "tty-control.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run.stdout": "af729214a2b9a19cb11bb4734c2ff60f27a7a6cfe5338c29b3c1a27eae8634df",
+    "tty-control.stdout": "cb4b489a78cd943138ce440e14f65f5d5b5cb20f9ed95a963df97ca3fa56e315",
+    "positive.stdout": "8c6f1328018a35de145eb60857cfe0404883f89a81936d68480a5f551cb39744",
+    "compile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipe_remap.c": "944d544359e5b49db0d375b1372fd1f49841fb3a85a5a49d68c917edada0fc50",
+    "contract.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "pipe-remap.so": "e8c664d2b4d7887dbb1be1be5e56ad6be8e5be04030bfec89f71b2cc4e9c3885",
+    "pipe-probe": "a7fa8ae197eafe5741194dd04a1d641233451066efd8405d22b88a3c6ebb4beb",
+    "pipe_probe.c": "4f9194fde13a6c24c6095736dd6eef4f5a37a35878c53cc282bc93c123d83d21",
+    "compile.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tty-product.stdout": "81a1ea0f77f3566d5f91173829ba88850c7d78cb5e1ddf56f6cc52b91ec51145",
+    "tty-control.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "tty-product.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "contract.exit": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "compile.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "tty-control.trace": "bf54f302f0f005daa54767c68697bdb18181928f822b490d435ebb836bca7ced"
+  }
+}

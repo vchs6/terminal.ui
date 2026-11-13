@@ -1,0 +1,26 @@
+Found 1 layered-document match(es) for 'Future get Duration':
+
+### 1. std.core.class.future.get [api-member L6] score=1860
+- `get(): T`
+- `get(timeout: Duration): T`
+- 阻塞当前线程，等待并获取当前 Future<T> 对象对应的线程的结果。
+- package: `std.core`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/core/classes/future/get.md
+Found 1 layered-document match(es) for 'String startsWith':
+
+### 1. std.core.struct.string.startswith [api-member L6] score=2310
+- `startsWith(prefix: String): Bool`
+- 判断原字符串是否以 prefix 字符串为前缀。
+- package: `std.core`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/core/structs/string/startswith.md
+Found 1 layered-document match(es) for 'File readFrom':
+
+### 1. std.fs.class.file.readfrom [api-member L6] score=2010
+- `static readFrom(path: Path): Array<Byte>`
+- `static readFrom(path: String): Array<Byte>`
+- 根据指定路径读取文件全部内容，以字节数组的形式返回其内容。
+- package: `std.fs`
+- decision: exact active signature and ordinary-call contract are already present; expand only for exceptions, limits, or a complete example.
+- path: references/api/std/fs/classes/file/readfrom.md

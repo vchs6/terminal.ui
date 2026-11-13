@@ -1,0 +1,32 @@
+{
+  "kind": "TASK113 immutable final handoff index",
+  "immutable": true,
+  "generated_utc": "2026-11-13T04:18:04.750551+00:00",
+  "fixed_test_commit": "c96cc601c547f869e64632e955091cf44546d192",
+  "source": "/workspace/work/keyboard-tests/final/source",
+  "replay": "/workspace/work/keyboard-tests/final/replay",
+  "phase_manifests_sha256": {
+    "01-native-read": "d32d4cbc07a16705ae9f1af0c63f967756e5f92d251233b2eeea791b42d6ed6f",
+    "02-upstream": "e0471493e429ee89c95ba22183d1827644ce69328dad69df20bf8f670a66e4ff",
+    "03-missing-keyboard": "c91cd4eae2d8b5a6c565df3ac79a3d7e8c3901af68303e06cbb2e68a62eecf12",
+    "04-freeze": "b6dcafa4ba6ebe4a98a6d561751901d5980ba691b1b1135b35db64ab1c5fa41b"
+  },
+  "report": {
+    "path": "report.md",
+    "sha256": "07093c85c588ff47b86b6234cb13dd5cad7dd9a78dd381351a6d7413d47c2293",
+    "lines": 22
+  },
+  "working_command_ledger_final_sha256": "4f2194ba049840a80c8c39cd5aa3aecc0ae316fe1f607fd3666b4e12caefdde8",
+  "top_level_files_sha256": {
+    "env.sh": "e795d96ad8eedde1375251f5bdb94feb72db66712b66de35647abd2464d9f143",
+    "record.py": "8a0bec4467757296853877d274fbec72635e08ef891a9b8949b1f08efe83058c",
+    "commands.json": "4f2194ba049840a80c8c39cd5aa3aecc0ae316fe1f607fd3666b4e12caefdde8"
+  },
+  "actual_results": {
+    "01-native-read": "positive0; old native tail/EOF contract1; realTTY FDremap control0 and product native gap1, exact termios restored",
+    "02-upstream": "normal build0/direct binary0 with executable before/after hash",
+    "03-missing-keyboard": "normal actual consumer compile1 for missing public Keyboard APIs; no binary; new behavior unexecuted",
+    "04-freeze": "static0/audit0; formal fixed tests only"
+  },
+  "limits": "All new Keyboard behavior/device selectors/full body typechecks are UNEXECUTED until114; see frozen formal ledger. No product implementation or false behavior pass."
+}

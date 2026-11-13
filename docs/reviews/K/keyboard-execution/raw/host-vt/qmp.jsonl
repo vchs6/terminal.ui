@@ -1,0 +1,7 @@
+{"receive": {"QMP": {"version": {"qemu": {"micro": 13, "minor": 0, "major": 10}, "package": "Debian 1:10.0.13+ds-0+deb13u1"}, "capabilities": ["oob"]}}, "monotonic_ns": 19105366739074}
+{"send": {"execute": "qmp_capabilities", "id": 1}, "monotonic_ns": 19105366797562}
+{"receive": {"return": {}, "id": 1}, "monotonic_ns": 19105429508235}
+{"send": {"execute": "query-version", "id": 2}, "monotonic_ns": 19105429573373}
+{"receive": {"return": {"qemu": {"micro": 13, "minor": 0, "major": 10}, "package": "Debian 1:10.0.13+ds-0+deb13u1"}, "id": 2}, "monotonic_ns": 19105429874405}
+{"send": {"execute": "query-kvm", "id": 3}, "monotonic_ns": 19105429899092}
+{"receive": {"return": {"enabled": false, "present": true}, "id": 3}, "monotonic_ns": 19105430098160}

@@ -1,0 +1,98 @@
+[
+  {
+    "name": "native-tools",
+    "cwd": "/workspace/work/keyboard-tests/i015-stage",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nset -e\ncc -std=c11 -Wall -Wextra -Werror -O2 -c replay/tests/interaction_a/native/clock_wrap.c -o raw/tools/clock-wrap.o\nexec cc -std=c11 -Wall -Wextra -Werror -O2 -fPIC -shared replay/tests/interaction_a/native/input_hup.c -ldl -o raw/tools/poll-observer.so"
+    ],
+    "utc_start": "2026-11-13T05:10:43.912706+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T05:10:44.008620+00:00"
+  },
+  {
+    "name": "build",
+    "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/.wrapped",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T05:10:44.786071+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T05:12:00.919274+00:00"
+  },
+  {
+    "name": "controlled-vector",
+    "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec python3 runner.py --stage Keyboard --case csi-real-idle-Keyboard --binary .wrapped/target/release/bin/main --output /workspace/work/keyboard-tests/i015-stage/raw/capture --poll-library /workspace/work/keyboard-tests/i015-stage/raw/tools/poll-observer.so"
+    ],
+    "utc_start": "2026-11-13T05:13:08.818326+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T05:13:09.103250+00:00"
+  },
+  {
+    "name": "pure-build",
+    "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T05:16:43.901159+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T05:17:32.070323+00:00"
+  },
+  {
+    "name": "pure-drain",
+    "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T05:18:18.422216+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T05:18:18.457144+00:00"
+  },
+  {
+    "name": "pure-build-final",
+    "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexec cjpm build"
+    ],
+    "utc_start": "2026-11-13T05:23:38.243647+00:00",
+    "exit": 0,
+    "utc_end": "2026-11-13T05:24:25.838225+00:00"
+  },
+  {
+    "name": "malformed-drain",
+    "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexport CJTUI_KEYBOARD_I015_PURE_CASE=malformed-drain\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T05:28:33.753281+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T05:28:33.798219+00:00"
+  },
+  {
+    "name": "alt-invalid-offset",
+    "cwd": "/workspace/work/keyboard-tests/i015-stage/replay/tests/keyboard/i015_stage/pure",
+    "argv": [
+      "bash",
+      "-lc",
+      "source /workspace/work/keyboard-tests/i015-stage/raw/env.sh\nexport CJTUI_KEYBOARD_I015_PURE_CASE=alt-invalid-offset\nexec timeout 45s ./target/release/bin/main </dev/null"
+    ],
+    "utc_start": "2026-11-13T05:28:33.857042+00:00",
+    "exit": 1,
+    "utc_end": "2026-11-13T05:28:33.892586+00:00"
+  }
+]

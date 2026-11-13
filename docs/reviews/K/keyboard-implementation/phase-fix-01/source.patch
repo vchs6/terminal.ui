@@ -1,0 +1,131 @@
+diff --git a/docs/product/README.md b/docs/product/README.md
+index 4ef869fb..764e5db7 100644
+--- a/docs/product/README.md
++++ b/docs/product/README.md
+@@ -1,6 +1,6 @@
+ # 产品说明
+ 
+-公共绘制、焦点和 caret 见 [交互原语](interaction.md)。主题配置、解析和显式加载见 [主题配置](theme.md)。可选会话复制、宿主标题与恢复结果见 [会话扩展](session.md)，正常公共调用示例位于 `examples/session`。完整发送为 SentUnconfirmed；能力声明不等于宿主效果确认。
++公共绘制、焦点和 caret 见 [交互原语](interaction.md)。键盘事件、粘贴与限制见 [键盘输入](keyboard-input.md)，示例位于 `examples/keyboard`。主题配置、解析和显式加载见 [主题配置](theme.md)。可选会话复制、宿主标题与恢复结果见 [会话扩展](session.md)，正常公共调用示例位于 `examples/session`。完整发送为 SentUnconfirmed；能力声明不等于宿主效果确认。
+ 
+ cjtui 0.0.0 的首个切片提供 Linux ANSI TTY 文本界面：`Text`、`Row`、`Column` 组件块及前景色、背景色和粗体属性，Unicode 字符网格、纯文本与 ANSI 快照、键盘回调和终端尺寸变化时重排。普通应用无需发送 ANSI 或手动刷新。
+ 
+diff --git a/src/application.cj b/src/application.cj
+index 627d85ec..23261e14 100644
+--- a/src/application.cj
++++ b/src/application.cj
+@@ -374,11 +374,11 @@ public class Application {
+     public func dispatch(target: NodeRef, key: KeyEvent): Unit {
+         let value = current()
+         value.requireBoundary()
+-        validateKeyboardEvent(key)
+         if (value.isStopping()) {
+             dispose();
+             throw UIException("SessionInactive", "session stopped")
+         }
++        validateKeyboardEvent(key)
+         let targetNode = target.resolve()
+         if (targetNode.session.id != value.id) {
+             throw UIException("WrongUIContext", "target belongs to another session")
+@@ -568,7 +568,9 @@ public class Application {
+                     if (let Some(target) <- pasteTarget[0]) {
+                         if (target.isValid() && readSession().isSome()) {
+                             let node = target.resolve(); let owner = current()
+-                            available = owner.focusManager.effective(node,true) && owner.focusManager.effective(node,false) && owner.inOverlayDomain(node)
++                            if (owner.focusManager.effective(node,true) && owner.focusManager.effective(node,false)) {
++                                available = owner.inOverlayDomain(node)
++                            }
+                             if (available) { dispatch(target,key) }
+                         }
+                     }
+@@ -752,7 +754,8 @@ public class Application {
+                 case Some(first) => failure = Some(aggregateCleanup(first, error))
+             }
+         }
+-        if (pasteEnabled && unsafe { cjt_output_unsafe() } == 0) {
++        let canRestorePaste = if (pasteEnabled) { unsafe { cjt_output_unsafe() } == 0 } else { false }
++        if (canRestorePaste) {
+             if (let Some(work) <- deviceSession) {
+                 let written = writeTerminal("\u{1b}[?2004l",work,false)
+                 if (written.issue != SessionIssue.NoIssue) {
+diff --git a/src/keyboard_decoder.cj b/src/keyboard_decoder.cj
+index 9d4fe17b..2cebcc72 100644
+--- a/src/keyboard_decoder.cj
++++ b/src/keyboard_decoder.cj
+@@ -24,6 +24,7 @@ public class KeyboardDecoder {
+     private var utfStart: Int64 = 0
+     private var utfAlt = false
+     private var c1Csi = false
++    private var c1PrefixBytes: Int64 = 1
+     private var keys = ArrayList<KeyEvent>()
+     private var issues = ArrayList<KeyboardDiagnostic>()
+     var onEvent: ?(KeyEvent) -> Unit = None
+@@ -94,16 +95,21 @@ public class KeyboardDecoder {
+         start = at; state = 4; osc = isOsc; stringRemaining = 0; stringC2 = false
+         issue(KeyboardIssue.UnsupportedSequence, at)
+     }
+-    private func c1(code: UInt32, at: Int64): Unit {
++    private func c1(code: UInt32, at: Int64, encoded!: Bool = false): Unit {
+         if (code == 0x9b) {
+-            state = 2; start = at; sequence.clear(); sequence.add(0x9b)
++            state = 2; start = at; sequence.clear()
++            if (encoded) { sequence.add(0xc2) }
++            sequence.add(0x9b); c1PrefixBytes = if (encoded) { 2 } else { 1 }
+             c1Csi = true; drained = false; malformed = false; intermediate = false
++            if (sequence.size > limits.maxSequenceBytes) {
++                drained = true; issue(KeyboardIssue.SequenceTooLong, start); sequence.clear()
++            }
+         } else if (code == 0x90 || code == 0x98 || code == 0x9d || code == 0x9e || code == 0x9f) {
+             beginString(at, code == 0x9d)
+         } else { state = 0; issue(KeyboardIssue.UnsupportedSequence, at) }
+     }
+     private func scalar(code: UInt32, at: Int64, alt: Bool): Unit {
+-        if (code >= 128 && code < 160) { c1(code, at); return }
++        if (code >= 128 && code < 160) { c1(code, at, encoded: true); return }
+         state = 0; event(KeyEvent("text", text: String(Rune(code)), alt: alt))
+     }
+     private func consume(byte: Int32, at: Int64): Unit {
+@@ -183,7 +189,7 @@ public class KeyboardDecoder {
+         }
+         var body = text
+         if (c1Csi) {
+-            if (raw.size > 1) { body = String.fromUtf8(raw.slice(1, raw.size - 1)) }
++            if (raw.size > c1PrefixBytes) { body = String.fromUtf8(raw.slice(c1PrefixBytes, raw.size - c1PrefixBytes)) }
+         } else if (text.startsWith("\u{1b}[")) {
+             body = String.fromUtf8(raw.slice(2, raw.size - 2))
+         } else if (text.startsWith("\u{1b}O")) {
+@@ -258,8 +264,10 @@ public class KeyboardDecoder {
+         if (endPrefix.size == marker.size) {
+             endPrefix.clear(); state = 0
+             if (!drained) {
+-                try { event(KeyEvent("paste", text: String.fromUtf8(paste.toArray()))) }
+-                catch (_: IllegalArgumentException) { issue(KeyboardIssue.InvalidPasteEncoding, start) }
++                let text: ?String = try { Some(String.fromUtf8(paste.toArray())) }
++                    catch (_: IllegalArgumentException) { Option<String>.None }
++                if (let Some(value) <- text) { event(KeyEvent("paste", text: value)) }
++                else { issue(KeyboardIssue.InvalidPasteEncoding, start) }
+             }
+             paste.clear()
+         }
+diff --git a/src/keyboard_validation.cj b/src/keyboard_validation.cj
+index e288e3ea..be8022d0 100644
+--- a/src/keyboard_validation.cj
++++ b/src/keyboard_validation.cj
+@@ -9,7 +9,6 @@ func validateKeyboardEvent(key: KeyEvent): Unit {
+         if (key.code == "paste") {
+             if (key.ctrl || key.alt || key.shift) { throw IllegalArgumentException("paste modifiers") }
+         } else {
+-            if (key.text.isEmpty()) { throw IllegalArgumentException("empty text event") }
+             for (scalar in key.text.runes()) {
+                 let value = UInt32(scalar)
+                 if (value < 32 || (value >= 127 && value <= 159)) { throw IllegalArgumentException("control in text event") }
+@@ -22,4 +21,9 @@ func validateKeyboardEvent(key: KeyEvent): Unit {
+     for (name in reserved) {
+         if (key.code == name && !key.text.isEmpty()) { throw IllegalArgumentException("text on reserved key") }
+     }
++    if (key.ctrl && !key.text.isEmpty()) {
++        for (name in ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]) {
++            if (key.code == name) { throw IllegalArgumentException("text on control key") }
++        }
++    }
+ }

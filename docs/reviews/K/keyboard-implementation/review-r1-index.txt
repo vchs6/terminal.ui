@@ -1,0 +1,14 @@
+TASK115 round1 fixed candidate evidence index
+BASE 5baa09f33251e9f572640a2f6d4ae46245f7eea8
+Test-only cherry bce5b9c9 (source 0df3c1bff0555573cebe90bd79906544a1172d85)
+Product/authorized dispatcher HEAD 500d5ff35632ab7ed55e323458883bbd7e80d2b7
+Final source: review-r1-final-02 pre/post hashes and source.patch match HEAD. Five review selectors, pure contract and both I015 pure controls actual exit 0. Direct lint exit 0 with zero error diagnostics and 701 warning lines.
+Earlier fixed-patch run covers existing native issue-stop/throws, EOF, paste stream, argument regressions and I015 native; the sole later source change requires valid UTF8 minimum before recognizing a C1 scalar, a branch not exercised by those listed cases. See their exact inputs/raw in affected index.
+K115-06 capacity and ESC+C2 budget/deadline reasoning are source-proof, not claimed executed tests. Prior full dispatcher and old-A qualification are recorded separately in phase-index-final.txt; no full suite rerun is claimed for this fix.
+Content-index SHA256 values follow; each referenced files.sha256 binds manifest, exact raw outputs, exit files, source/test pre/post hashes and binaries as present.
+8cc68bbf759700ddeccd4a5a06c2cd7e463328faa88b0ef4ba7596ff83798c5b  /workspace/work/keyboard-implementation/review-r1-final-02/files.sha256
+05ca807ee86d723a3dfad53ce1e252d061d2408b1cba8a804d26fc4691652dfc  /workspace/work/keyboard-implementation/review-r1-affected-01/files.sha256
+c98f43cc60a2dc4952b933f2c612ece05d92ddc29acc0b49a0a2331a26c35224  /workspace/work/keyboard-implementation/review-r1-selectors-01/files.sha256
+003c0eb10bb7821974e2c4dc597927c3b9b5f3e68d6b808a6a983c003aa275f4  /workspace/work/keyboard-implementation/review-r1-final-01/files.sha256
+1c2481539f2c4540f1685ae08659645c52a781a8775e1581adacd22c72b9754f  /workspace/work/keyboard-implementation/review-r1-lint-02/files.sha256
+ee69387f43b1d620e1ea3d2c245721dbd17b55ec568184b5d6bf991902ce1922  /workspace/work/keyboard-implementation/phase-index-final.txt
