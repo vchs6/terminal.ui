@@ -610,6 +610,7 @@ public class Application {
             // interpreting a probe wakeup as a full keyboard idle interval.
             var untimedIdleRemaining: Int64 = 0
             var baseline: ?Frame = None
+            var baselineCaret: ?CaretSnapshot = None
             var baselineProfile = terminalRenderProfile(capabilities, initialMode)
             var baselineGlyphMode = configuredGlyphMode
             var previousWidth: Int64 = -1
@@ -650,7 +651,11 @@ public class Application {
                         case Some(old) => output = frame.changesSinceForTerminal(old, baselineProfile, profile)
                     }
                     let logicalCaret = work.caret
-                    if (logicalCaret.visible) {
+                    let caretMoved = match (baselineCaret) {
+                        case None => true
+                        case Some(old) => !old.visible || old.x != logicalCaret.x || old.y != logicalCaret.y
+                    }
+                    if (logicalCaret.visible && (!output.isEmpty() || caretMoved)) {
                         output += "\u{1b}[${logicalCaret.y + 1};${logicalCaret.x + 1}H"
                     }
                     if (probe.known() && (probe.dirty || logicalCaret.visible != probe.currentVisible)) {
@@ -672,6 +677,7 @@ public class Application {
                     }
                     if (committed) {
                         baseline = Some(frame)
+                        baselineCaret = Some(logicalCaret)
                         probe.committed(logicalCaret.visible)
                         baselineProfile = profile
                         baselineGlyphMode = requestGlyphMode
