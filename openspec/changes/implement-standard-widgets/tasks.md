@@ -1,10 +1,10 @@
 # 标准控件支持任务候选
 
-本文件为TASK029/019及153–162唯一任务状态入口，docs/tasks.md只保留编号映射。S01–S05的TASK153–157已完成：独立157为PASS_FINITE_S（spec/quality/evidence PASS），接受源1df1325f7b51777d8adab62f950c936051aa5876对应main 85998ead2b53cb8e6a6ab8c69e5e3efb8739411f；源码/native/构建/包配置/examples/tests/控件产品文档逐字节一致。[有限S原件与真实宿主图](../../../docs/reviews/widgets/S/README.md)。五个公开控件Label/Button/Checkbox/Radio/Progress已交付；155独立双审0具体缺陷，156普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付。M158为下一项正式独立测试工作，尚未冻结测试或取得实际前置RED；158–162均未交付。新native S只覆盖ASCII/default Classic；Unicode/disabled/explicit palette是headless S/source155及限定E后端机制复用，完整all-state/Unicode/four-theme展示仍属027/041。完整Linux/M/M1M2/父019/020/030/发布未关闭，B-M01→024、T087→023保留。
+本文件为TASK029/019及153–162唯一任务状态入口，docs/tasks.md只保留编号映射。S01–S05的TASK153–157已完成：独立157为PASS_FINITE_S（spec/quality/evidence PASS），接受源1df1325f7b51777d8adab62f950c936051aa5876对应main 85998ead2b53cb8e6a6ab8c69e5e3efb8739411f；源码/native/构建/包配置/examples/tests/控件产品文档逐字节一致。[有限S原件与真实宿主图](../../../docs/reviews/widgets/S/README.md)。五个公开控件Label/Button/Checkbox/Radio/Progress已交付；155独立双审0具体缺陷，156普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付。M158已进入正式独立测试（in_progress，Sol/high），尚未冻结测试或取得实际前置RED；159–162 planned且尚未交付。新native S只覆盖ASCII/default Classic；Unicode/disabled/explicit palette是headless S/source155及限定E后端机制复用，完整all-state/Unicode/four-theme展示仍属027/041。完整Linux/M/M1M2/父019/020/030/发布未关闭，B-M01→024、T087→023保留。
 
 ## Current admission — 2026-11-13
 
-主代理冻结W001–W007及W006-S原文，包括最终axis在body前的SplitPane签名。独立增量preflight为READY_S_PRECONDITIONS：DQ01–14、十项任务自洽和45接口对已检查，无新必需冲突；既有WPF001/002均关闭。实际接受输入、来源及哈希见[最终S输入清单](../../../docs/reviews/widgets/S/input-manifest.json)；[独立准入表](../../../docs/reviews/widgets/S/admission/dq.md)与[接口检查](../../../docs/reviews/widgets/S/admission/sdd-preflight.md)。旧07/c732形状编译结果按宏/签名字节一致复用，不视为产品通过。以下历史候选措辞以当前准入说明为准。
+主代理采纳READY_M_PRECONDITIONS，仅TASK158可开始正式独立测试（Sol/high）；[M输入清单](../../../docs/reviews/widgets/M/input-manifest.json)、[独立准入delta](../../../docs/reviews/widgets/M/admission/readiness-delta.md)与[原件索引](../../../docs/reviews/widgets/M/admission/index.json)。S157及全部既有上游已接受；W001–W007/W006-S/LEGACY-PROP-001原文不变，复用原14DQ/10self/45pair及W007语言事实。TASK159必须等待正式158冻结测试及真正目标缺API RED；160–162保留逐角色前置。旧S准入为历史；完整M/027/041/Linux不因此完成。
 
 ## Admission
 
@@ -18,7 +18,7 @@
 
 - level=L3；classification=execution（用户标准控件目标已定，本候选工程决策经主代理冻结后执行）；openspec_change_ref=implement-standard-widgets；workflow_ref=本tasks.md；decision_refs=design W001–W006/W006-S及G001/I012上游接受记录；goal=G-001。
 - scope.includes=各卡指定单元交付及必要公开消费者/回归/文档；scope.excludes=输入编辑算法、runtime/layout/decoder/第二renderer、鼠标/拖动/虚拟化、完整四主题展示、跨平台/发布。S/M只消费117已验KeyEvent字段，不实现decoder。
-- status=153–157 complete（有限S正式测试/产品/独立双审/独立执行/独立验收已交付）；158 next/planned（独立正式测试待冻结及实际前置RED），159–162 planned；planning_gaps=M正式测试和后续独立交付未完成，027/041整体展示与完整Linux保留；evidence_refs=最终S输入清单、独立157与有限S归档。
+- status=153–157 complete（有限S正式测试/产品/独立双审/独立执行/独立验收已交付）；158 in_progress（独立Sol/high正式测试；冻结和真正目标RED尚待交付），159–162 planned；planning_gaps=M正式测试和后续独立交付未完成，027/041整体展示与完整Linux保留；evidence_refs=最终S输入清单、独立157与有限S归档。
 - preconditions=Admission与本卡依赖全部满足；required_skills=测试角色TDD+verification、产品TDD+executing-plans+verification、审核requesting-code-review+verification、执行/验收verification；失败按需systematic-debugging，修复反馈按receiving-code-review。适用OpenSpec工作流及仓颉规范从实际环境读取，skill_evidence_refs在ready时记录来源/版本/可用性至该卡证据目录，当前未伪造已使用记录。
 - compatibility=所有已有公共primitive/组件块入口保留，同槽后写替换不改变；没有已发布本件widget API需兼容；公开callbacks异常/代际和主题优先级继承上游。quality_governance.compatibility_exceptions=[LEGACY-PROP-001：保持已接受layout旧常量快捷入口IllegalArgumentException；typed/getter/样式能力检查严格InvalidProperty，见design限定裁决]。
 - quality_governance.necessity=已要求控件缺公开可用组合与独立证据；canonical_owner=业务checked/radio/menu顺序归应用，公开控件工厂组合行为，Runtime/focus/overlay/layout/Theme/Unicode仍原唯一权威；old_path_disposition=无旧widget公开实现需退役，沿用primitive，不增兼容别名；complexity_delta=有限工厂/一份菜单own refs索引，禁止第二业务状态或内核。非产品角色只写证据不改运行路径。
@@ -164,7 +164,7 @@ L4（本有限S角色步骤已交付，原件见归档）：
 | deliverables | 测试源码、手工帧/焦点trace、RED和hash |
 | acceptance / verification | M01–M05及受影响S02回归：采用验收目录的条件→结果→证据；M计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅M文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | planned（next） / S157已接受；M正式测试、实际前置验证与RED仍待交付 / 有限S157归档；M尚无测试冻结结论 |
+| status / blockers / evidence_refs | in_progress / READY_M_PRECONDITIONS已由主代理采纳；独立Sol/high正式测试待冻结及真正目标RED / M输入清单、独立M准入delta；旧准备不是正式交付 |
 
 L4（每步均未执行）：
 
@@ -184,7 +184,7 @@ L4（每步均未执行）：
 | deliverables | 产品固定提交、组合例子、指南、开发验证 |
 | acceptance / verification | M01–M05及受影响S02回归：采用验收目录的条件→结果→证据；M计划运行入口及本卡角色职责，不把未执行计划当通过 |
 | scope / impact | 仅M文件表及本角色产物；共同字段排除项有效 |
-| status / blockers / evidence_refs | planned / 共同Admission与上述依赖未核验 / [] |
+| status / blockers / evidence_refs | planned / 等待正式158冻结测试、手工预期/hash及真正目标缺API RED；M158准入不等于159可实现 / M输入清单及158后续实际交付 |
 
 L4（每步均未执行）：
 

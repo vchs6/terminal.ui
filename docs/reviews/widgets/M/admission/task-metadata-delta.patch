@@ -1,0 +1,66 @@
+diff --git a/openspec/changes/implement-standard-widgets/tasks.md b/openspec/changes/implement-standard-widgets/tasks.md
+index da7d9e9a..9c708b8c 100644
+--- a/openspec/changes/implement-standard-widgets/tasks.md
++++ b/openspec/changes/implement-standard-widgets/tasks.md
+@@ -1,6 +1,6 @@
+ # 标准控件支持任务候选
+ 
+-本文件现为原TASK-029/019及支持153–162唯一任务状态入口，docs/tasks.md保留编号映射和原AC引用；2026-11-13 S前置准入已独立核验，TASK153测试已冻结5413dc76（后续fe9f66fc仅两处Option类型限定），基础消费者build/direct0、五个真实缺工厂API RED1；154独立实现in_progress，M158仍等S157；标准控件产品行为/宿主验收尚未完成。L1=G-001，L2=WP-004；SplitPane关联WP-003/TASK-011，只覆盖公开组合。两单元，每单元五个独立角色；没有把L1/L2当编码任务。
++本文件现为原TASK-029/019及支持153–162唯一任务状态入口，docs/tasks.md保留编号映射和原AC引用；2026-11-13 S前置准入已独立核验，TASK153测试已冻结5413dc76（后续fe9f66fc仅两处Option类型限定），基础消费者build/direct0、五个真实缺工厂API RED1；154固定实现1df1325f已交付且155独立spec/quality审核通过；156独立制品/宿主执行in_progress，M158仍等S157；S157有限验收尚未完成，M及完整Linux仍pending。L1=G-001，L2=WP-004；SplitPane关联WP-003/TASK-011，只覆盖公开组合。两单元，每单元五个独立角色；没有把L1/L2当编码任务。
+ 
+ ## Current admission — 2026-11-13
+ 
+@@ -18,7 +18,7 @@
+ 
+ - level=L3；classification=execution（用户标准控件目标已定，本候选工程决策经主代理冻结后执行）；openspec_change_ref=implement-standard-widgets；workflow_ref=本tasks.md；decision_refs=design W001–W006/W006-S及G001/I012上游接受记录；goal=G-001。
+ - scope.includes=各卡指定单元交付及必要公开消费者/回归/文档；scope.excludes=输入编辑算法、runtime/layout/decoder/第二renderer、鼠标/拖动/虚拟化、完整四主题展示、跨平台/发布。S/M只消费117已验KeyEvent字段，不实现decoder。
+-- status=以各卡为准；153 complete（测试交付），154 in_progress（独立实现），155–157等待前序角色实际交付，158–162仍等待S157与其前序。S公共前置已核验；planning_gaps=154实现与运行及后续155–157独立交付尚未完成，153只需消费明确契约修正补充精确断言；evidence_refs=最终S输入清单及独立preflight。
++- status=以各卡为准；153 complete（测试交付），154–155 complete（固定实现/源码双审），156 in_progress（独立执行），157待156实际证据，158–162仍等待S157与其前序。S公共前置已核验；planning_gaps=154实现与运行及后续155–157独立交付尚未完成，153只需消费明确契约修正补充精确断言；evidence_refs=最终S输入清单及独立preflight。
+ - preconditions=Admission与本卡依赖全部满足；required_skills=测试角色TDD+verification、产品TDD+executing-plans+verification、审核requesting-code-review+verification、执行/验收verification；失败按需systematic-debugging，修复反馈按receiving-code-review。适用OpenSpec工作流及仓颉规范从实际环境读取，skill_evidence_refs在ready时记录来源/版本/可用性至该卡证据目录，当前未伪造已使用记录。
+ - compatibility=所有已有公共primitive/组件块入口保留，同槽后写替换不改变；没有已发布本件widget API需兼容；公开callbacks异常/代际和主题优先级继承上游。quality_governance.compatibility_exceptions=[LEGACY-PROP-001：保持已接受layout旧常量快捷入口IllegalArgumentException；typed/getter/样式能力检查严格InvalidProperty，见design限定裁决]。
+ - quality_governance.necessity=已要求控件缺公开可用组合与独立证据；canonical_owner=业务checked/radio/menu顺序归应用，公开控件工厂组合行为，Runtime/focus/overlay/layout/Theme/Unicode仍原唯一权威；old_path_disposition=无旧widget公开实现需退役，沿用primitive，不增兼容别名；complexity_delta=有限工厂/一份菜单own refs索引，禁止第二业务状态或内核。非产品角色只写证据不改运行路径。
+@@ -84,13 +84,13 @@ L4（每步均未执行）：
+ | deliverables | 产品提交、公开例子/指南、必要开发验证日志与源码hash |
+ | acceptance / verification | S01–S05：采用验收目录的条件→结果→证据；S计划运行入口及本卡角色职责，不把未执行计划当通过 |
+ | scope / impact | 仅S文件表及本角色产物；共同字段排除项有效 |
+-| status / blockers / evidence_refs | in_progress / 固定测试消费与产品验证进行中 / BASE5413dc76、测试fe9f66fc、最终S输入清单 |
++| status / blockers / evidence_refs | complete / 固定源已交付；后续独立执行/验收另计 / 1df1325f、155独立报告、最终S输入清单 |
+ 
+ L4（每步均未执行）：
+ 
+-- [ ] TASK-154.S1：定位固定上游公开符号和collector根登记，完成实际输入/文件清单。检查结果：工厂恰一个root；没有运行时/主题私有访问和新kind。
+-- [ ] TASK-154.S2：实现caption/getter、once Target请求、ASCII标记与Canvas纯paint进度；按G001已接受方案接主题状态。检查结果：checked/radio不私写；Progress measure不读fraction；样式只有统一resolver。
+-- [ ] TASK-154.S3：同步用户组件块例子、覆写槽/Status范围指南并运行必要开发验证。检查结果：固定153测试不被修改；列出受影响回归及未通过项。
++- [x] TASK-154.S1：定位固定上游公开符号和collector根登记，完成实际输入/文件清单。检查结果：工厂恰一个root；没有运行时/主题私有访问和新kind。
++- [x] TASK-154.S2：实现caption/getter、once Target请求、ASCII标记与Canvas纯paint进度；按G001已接受方案接主题状态。检查结果：checked/radio不私写；Progress measure不读fraction；样式只有统一resolver。
++- [x] TASK-154.S3：同步用户组件块例子、覆写槽/Status范围指南并运行必要开发验证。检查结果：固定153测试不被修改；列出受影响回归及未通过项。
+ 
+ ### TASK-155：独立审核小控件固定提交
+ 
+@@ -104,13 +104,13 @@ L4（每步均未执行）：
+ | deliverables | 审查report/findings、固定源hash、逐AC结论 |
+ | acceptance / verification | S01–S05：采用验收目录的条件→结果→证据；S计划运行入口及本卡角色职责，不把未执行计划当通过 |
+ | scope / impact | 仅S文件表及本角色产物；共同字段排除项有效 |
+-| status / blockers / evidence_refs | planned / 共同Admission与上述依赖未核验 / [] |
++| status / blockers / evidence_refs | complete / 无必需源码缺陷；不替代156/157 / 1df1325f、155独立报告、最终S输入清单 |
+ 
+ L4（每步均未执行）：
+ 
+-- [ ] TASK-155.S1：只接固定契约/源/测试而非作者自评，审查公共依赖与变更必要性。检查结果：无私有内核读取、重复状态、重复默认动作或未退役分支。
+-- [ ] TASK-155.S2：审核事件/主题/G001、数值边界与非法输入测试可判定性。检查结果：每个缺陷有可达触发与合同引用，不以测试数量判通过。
+-- [ ] TASK-155.S3：报告阻塞项并交主代理分派修复；对修订hash复核受影响部分。检查结果：未解决缺陷不写通过；记录证据复用条件。
++- [x] TASK-155.S1：只接固定契约/源/测试而非作者自评，审查公共依赖与变更必要性。检查结果：无私有内核读取、重复状态、重复默认动作或未退役分支。
++- [x] TASK-155.S2：审核事件/主题/G001、数值边界与非法输入测试可判定性。检查结果：每个缺陷有可达触发与合同引用，不以测试数量判通过。
++- [x] TASK-155.S3：报告阻塞项并交主代理分派修复；对修订hash复核受影响部分。检查结果：未解决缺陷不写通过；记录证据复用条件。
+ 
+ ### TASK-156：独立构建执行小控件测试
+ 
+@@ -124,7 +124,7 @@ L4（每步均未执行）：
+ | deliverables | 命令/环境/退出码/原始日志及hash、执行结论 |
+ | acceptance / verification | S01–S05：采用验收目录的条件→结果→证据；S计划运行入口及本卡角色职责，不把未执行计划当通过 |
+ | scope / impact | 仅S文件表及本角色产物；共同字段排除项有效 |
+-| status / blockers / evidence_refs | planned / 共同Admission与上述依赖未核验 / [] |
++| status / blockers / evidence_refs | in_progress / 独立普通制品/干净消费/真实宿主执行中 / 1df1325f、155独立报告、最终S输入清单 |
+ 
+ L4（每步均未执行）：
+ 

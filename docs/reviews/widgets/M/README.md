@@ -1,0 +1,9 @@
+# M formal-test admission — 2026-11-13
+
+Root adopts **READY_M_PRECONDITIONS** for TASK158 only: [original report](admission/report.md), [readiness delta](admission/readiness-delta.md), [immutable index](admission/index.json), [accepted input map](admission/accepted-input-map.json), [original verification](admission/verification.json). [Final M input manifest](input-manifest.json) fixes accepted S source/main aliases, public independent157/155/156 evidence and all existing upstream provenance reused from S.
+
+TASK158 is in progress under an independent Sol/high test role. Formal M01–M05 tests, frozen manual expectations/hash and a genuine target-only missing-API RED are still required. TASK159 remains planned and blocked on that delivery;160–162 retain their sequential producer gates. Old preparation `b3988b02`/`b2dd4282`, old exit77 and synthetic tool controls do not constitute formal158 completion or current target RED. No M implementation or acceptance is claimed.
+
+W001–W007/W006-S/LEGACY-PROP-001 remain frozen without signature/value/ownership changes. Prior14DQ/10self/45pair and unchanged W007 SDK/macro facts are reused. The original relative links in the delta route to the once-retained [S admission tables](../S/admission/dq.md) through explicitly labelled navigation pages; [copy provenance](admission/source-copy-index.json) maps original absolute paths, archive paths, bytes, hashes and routing. Historical reports remain unedited, including their then-current archive/status wording.
+
+No source/test changes, builds/probes or functional reruns were performed. Parent019/020/030,027/041 showcase, B-M01→024, T087→023, whole Linux/M1/M2 and release remain open. [Metadata verification](admission/metadata-checks.json) records checks; root runs the complete repository Node check before push.
