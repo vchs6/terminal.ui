@@ -154,8 +154,12 @@ public class KeyboardDecoder {
             }
             if (byte >= 32 && byte <= 47) { intermediate = true }
             else if (byte >= 48 && byte <= 63) {
-                if (intermediate && !malformed && !drained) { malformed = true; issue(KeyboardIssue.MalformedSequence, start) }
-            } else if (!malformed && !drained) { malformed = true; issue(KeyboardIssue.MalformedSequence, start) }
+                if (intermediate && !malformed && !drained) {
+                    malformed = true; drained = true; sequence.clear(); issue(KeyboardIssue.MalformedSequence, start)
+                }
+            } else if (!malformed && !drained) {
+                malformed = true; drained = true; sequence.clear(); issue(KeyboardIssue.MalformedSequence, start)
+            }
             return
         }
         if (byte == 9) { event(KeyEvent("tab")); return }
@@ -169,7 +173,7 @@ public class KeyboardDecoder {
         issue(KeyboardIssue.InvalidUtf8, at)
     }
     private func beginUtf(byte: Int32, at: Int64, alt: Bool): Unit {
-        utfStart = if (alt) { start } else { at }; utfAlt = alt
+        utfStart = at; utfAlt = alt
         if (byte <= 223) { utfRemaining = 1; utfCode = UInt32(byte & 31); utfMin = 128 }
         else if (byte <= 239) { utfRemaining = 2; utfCode = UInt32(byte & 15); utfMin = 2048 }
         else { utfRemaining = 3; utfCode = UInt32(byte & 7); utfMin = 65536 }
