@@ -14,7 +14,7 @@ func localTheme(): Unit {
         let frame = app.snapshot(4, 1)
         check(frame.cellAt(3, 0).style == Style(foreground: Color.Red, background: Color.Black), "M05 HorizontalMenu root role fills exact Style")
         check(frame.cellAt(0, 0).style == Style(foreground: Color.Blue, background: Color.Black), "M05 focused MenuItem exact Style includes inherited fields")
-        check(frame.cellAt(1, 0).style == Style(foreground: Color.Red, background: Color.Black), "M05 disabled MenuItem exact Style overrides Classic dim")
+        check(frame.cellAt(1, 0).style == Style(foreground: Color.Red, background: Color.Black), "M05 disabled MenuItem exact Style retains declared false dim")
     } finally { app.dispose() }
     // T015: global seed background fills use only the seed background;
     // a foreground-only menu role must not turn its blank cells opaque red.
@@ -62,12 +62,19 @@ func localTheme(): Unit {
         check(frame.cellAt(3, 1).style == Style(foreground: Color.Green, background: Color.Blue), "M05 popup blank uses role fields and preserves theme background")
         check(handle.isOpen(), "M05 observing role does not alter overlay")
     } finally { base.dispose() }
-    // Color-only overrides deliberately leave Classic focused underline intact.
-    let inheritance = Theme.parse("schema_version = 1\nname = \"color-only\"\n[components.menu_item.states.focused.text]\nforeground = \"red\"\n")
+    // A parsed custom theme replaces the preset. Focused fields inherit
+    // only the normal fields explicitly declared in this same custom theme.
+    let inheritance = Theme.parse("schema_version = 1\nname = \"normal-focused\"\n[components.menu_item.text]\nunderline = true\n[components.menu_item.states.focused.text]\nforeground = \"red\"\n")
     let inherited = Application(HorizontalMenu([MenuEntry("a", "A")], {_ => ()}), theme: inheritance)
     inherited.startHeadless()
-    try { check(inherited.snapshot(1, 1).cellAt(0, 0).style == Style(foreground: Color.Red, underline: true), "M05 Classic focused underline inheritance remains exact") }
+    try { check(inherited.snapshot(1, 1).cellAt(0, 0).style == Style(foreground: Color.Red, underline: true), "M05 focused color inherits declared normal underline exactly") }
     finally { inherited.dispose() }
+    let focusedOnly = Theme.parse("schema_version = 1\nname = \"focused-only\"\n[components.menu_item.states.focused.text]\nforeground = \"red\"\n")
+    let unmerged = Application(HorizontalMenu([MenuEntry("a", "A")], {_ => ()}), theme: focusedOnly)
+    unmerged.startHeadless()
+    try { check(unmerged.snapshot(1, 1).cellAt(0, 0).style == Style(foreground: Color.Red),
+        "M05 focused-only custom theme has no implicit preset underline") }
+    finally { unmerged.dispose() }
 }
 
 func sharedPanels(): Unit {
