@@ -6,6 +6,7 @@ import fcntl
 import hashlib
 import json
 import os
+import re
 import select
 import signal
 import struct
@@ -13,6 +14,31 @@ import subprocess
 import termios
 import time
 from pathlib import Path
+
+
+def assert_unanswered_probe_modes(raw, sent):
+    """Wire oracle for this no-reply fixture only; not a Known-mode matrix."""
+    query = b"\x1b[?25$p"
+    assert raw.count(query) == 1, "one exact mode25 DECRQM request"
+    requests = re.findall(rb"\x1b\[\?([0-9;]+)\$p", raw)
+    assert sum(25 in [int(p or b"0") for p in params.split(b";")] for params in requests) == 1, "no repeated mode25 query"
+    assert not re.search(rb"\x1b\[\?25;[0-4]\$y", sent), "fixture must not send a valid mode25 protocol report"
+    controls = re.findall(rb"\x1b\[\?([0-9;]*)([hlsr])", raw)
+
+    def count(mode, action):
+        return sum(mode in [int(p or b"0") for p in params.split(b";")] and final == action
+                   for params, final in controls)
+
+    for action in [b"h", b"l", b"s", b"r"]:
+        assert count(25, action) == 0, "unanswered probe: no mode25 change/save/restore"
+    for action in [b"h", b"l"]:
+        assert count(1049, action) == 0, "fixture never enters or exits alternate screen"
+    enable, disable = b"\x1b[?2004h", b"\x1b[?2004l"
+    assert raw.count(enable) == 1 and raw.count(disable) == 1, "paste mode paired cleanup"
+    assert count(2004, b"h") == 1 and count(2004, b"l") == 1, "no extra combined paste mode transitions"
+    assert raw.index(enable) < raw.index(disable), "paste mode enable precedes cleanup"
+    return dict(query_count=1, valid_input_reports=0, mode25_hlsr=[0, 0, 0, 0],
+                alternate1049_hl=[0, 0], paste2004_hl=[1, 1], reply_fixture="unanswered; Pending/Unknown wire policy")
 
 
 def run(binary, output, mode):
@@ -145,8 +171,7 @@ def run(binary, output, mode):
             assert not text("error")
         else:
             assert {"callback-failure": "M_NATIVE_CALLBACK_SENTINEL", "getter-failure": "M_NATIVE_GETTER_SENTINEL"}[mode] in text("error")
-        assert raw.count(b"\x1b[?2004h") == 1 and raw.count(b"\x1b[?2004l") == 1, "paste mode paired cleanup"
-        assert b"\x1b[?25h" in raw and b"\x1b[?1049l" in raw, "cursor/alternate screen restored"
+        metadata["mode_oracle"] = assert_unanswered_probe_modes(bytes(raw), bytes(sent))
         metadata["result"] = "PASS"
     except BaseException as error:
         metadata.update(result="FAIL", error=repr(error))
