@@ -1,0 +1,235 @@
+{
+  "task": "TASK138",
+  "role": "independent public test author",
+  "requested_model": "Sol/high",
+  "serving_configuration_independently_verified": false,
+  "status": "frozen_correctness_green_work_red_baseline",
+  "fixed_test_commit": "0ab2536475c142a0731a34d4112d719c75b2a3ad",
+  "accepted_c_product_source": "ee84e7ac7a35bb6481a17ecb91f1ec07804b672a",
+  "product_src_tree": "f2bb7914b653778ecd576731bc54359025b71313",
+  "accepted_c_src_tree": "f2bb7914b653778ecd576731bc54359025b71313",
+  "all_existing_product_and_tests_equivalent": true,
+  "source_equivalence_exit": 0,
+  "c137_acceptance_index": {
+    "path": "/workspace/work/incremental-cache-acceptance/index.json",
+    "sha256": "fa9af11a8406da756139346488bb08859d5972806980f8dc97a7f89975d6878c"
+  },
+  "capacity_go_receipt": {
+    "path": "validation/accepted-c-history-runtime-witnesses-20261114/index.json",
+    "sha256_supplied_by_root": "238a306d546207885d2b106243fdc913cd886ead6ea17eb0b901c7c964c4a4b0"
+  },
+  "sdk": "Cangjie Compiler/CJPM 1.2.0, cjnative x86_64-unknown-linux-gnu",
+  "cwd": "/workspace/work/incremental-composition-tests/source",
+  "environment": {
+    "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+    "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+  },
+  "normal_consumer": "tests/incremental_composition/cjpm.toml",
+  "commands": "evidence/commands.md",
+  "builds": [
+    {
+      "raw": "evidence/build-01.raw",
+      "exit": 0
+    },
+    {
+      "raw": "evidence/build-02.raw",
+      "exit": 0
+    }
+  ],
+  "initial_run": {
+    "raw": "evidence/baseline-01.raw",
+    "exit": 1,
+    "source_commit": "0f4db75e3b61b99acbe13f0fa2a27a1832c8478f",
+    "domains_completed": 15,
+    "correctness_failures": 3,
+    "work_red_assertions": 14,
+    "correction": "ScrollView is focusable by default; explicitly make the viewport wrapper nonfocusable so its already intended Canvas owns focus. All expectations unchanged."
+  },
+  "final_run": {
+    "raw": "evidence/baseline-02.raw",
+    "exit": 1,
+    "domains_completed": 15,
+    "paired_frames": 68,
+    "correctness_failures": 0,
+    "work_red_assertions": 14,
+    "work_red_by_domain": {
+      "row_replay": 2,
+      "hide_show_removal": 6,
+      "cached_caret": 6
+    },
+    "at_most_once_and_original_context_checks": "passed",
+    "complete_cell_style_transparency_and_caret_checks": "passed"
+  },
+  "binary": {
+    "path": "source/tests/incremental_composition/target/release/bin/main",
+    "sha256": "c00cfc55ac4ed4fc8e369c095fb1e7e1185f2f6a432a91de319e692b3e9b2d41",
+    "in_place_only": true
+  },
+  "dependency_lock": {
+    "path": "source/tests/incremental_composition/cjpm.lock",
+    "sha256": "f76c49240b87bff03c0160ec3172e11148f64deed74da816bb5d71c9c5c6ca01"
+  },
+  "coverage_and_private_boundaries": "source/tests/incremental_composition/README.md",
+  "remaining": [
+    "D product implementation must satisfy the retained 14 work RED assertions.",
+    "Existing recovery/glyph fixture execution, private baseline/profile/lineage source proof and applicable actual TTY belong to subsequent independent roles; not executed here."
+  ],
+  "old_suites_executed": false,
+  "product_edits": false,
+  "public_hooks_added": false,
+  "performance_claims": false,
+  "source_files": [
+    {
+      "path": "tests/incremental_composition/.gitignore",
+      "sha256": "1c5565683020cb9b014a14259189f0d04c9689f1054b76a6be6a390527a3ba34"
+    },
+    {
+      "path": "tests/incremental_composition/README.md",
+      "sha256": "0aec47dd9c41f57e978675f5b8a523a47a16963c1b1f43825527c9e00363dd64"
+    },
+    {
+      "path": "tests/incremental_composition/cjpm.toml",
+      "sha256": "f5b08ca090c61dec4fcb6948cd183c31839f61da9f087b325eb2afb1f0b46c74"
+    },
+    {
+      "path": "tests/incremental_composition/plan.md",
+      "sha256": "0d4dca7437c9902d93bad800b48765a4efbe81d71e60581cd08c363ca6909e73"
+    },
+    {
+      "path": "tests/incremental_composition/run.sh",
+      "sha256": "240521d50471dcbc95db628317f80bbf3fd0eb45e951c7dc82ad1ed6cdf7651b"
+    },
+    {
+      "path": "tests/incremental_composition/src/caret_cases.cj",
+      "sha256": "f1018fe4f29a2cba4ebf4be8820e7c49e284a81b7ea0fee14c21738f89794641"
+    },
+    {
+      "path": "tests/incremental_composition/src/checks.cj",
+      "sha256": "334b141f1469d9ecdc566d01803df0409f1fdc445387b57d2b2a2382dc29b160"
+    },
+    {
+      "path": "tests/incremental_composition/src/draw_observation.cj",
+      "sha256": "1223976c6740bee9cd1f6f0d8d8e63c6baf1c3a824e88543071779b9c3e41947"
+    },
+    {
+      "path": "tests/incremental_composition/src/draw_probe.cj",
+      "sha256": "146d45de5827f82f4d548d7c41b77a7130b1a7f37d87f4c05d21c37578fb2262"
+    },
+    {
+      "path": "tests/incremental_composition/src/expected_cell.cj",
+      "sha256": "d2a43d7ae150859d6dac5edfce22694f96cb38748b12f21d730c3bcdb36f014b"
+    },
+    {
+      "path": "tests/incremental_composition/src/frame_assertions.cj",
+      "sha256": "b4246ce6d667ca93aed1a48bc976f6f66f313b8c8f32c3a0480de897904bb120"
+    },
+    {
+      "path": "tests/incremental_composition/src/main.cj",
+      "sha256": "87cd7332a347cf2f93abfb5a971459e1aa1c86c666536a2751873956112625d1"
+    },
+    {
+      "path": "tests/incremental_composition/src/modal_cases.cj",
+      "sha256": "65c51b967e58e178c5867890f9378a80435f69978e72a0be96483d44138ef9d2"
+    },
+    {
+      "path": "tests/incremental_composition/src/pairing.cj",
+      "sha256": "65daea1d2f8fcc8e156b0facbc9bcdcf60e3ccd92be7d57c024847f73c6d4933"
+    },
+    {
+      "path": "tests/incremental_composition/src/policy_cases.cj",
+      "sha256": "f8cb015d982648cca1d534a4235db1acdafbfda5ed677d4f45cf94e0e2e9dcd9"
+    },
+    {
+      "path": "tests/incremental_composition/src/row_replay_cases.cj",
+      "sha256": "7112d564ef9def44ee7b06e55003fc313af2ccf9b4968d9f4b023ca066db9704"
+    },
+    {
+      "path": "tests/incremental_composition/src/shadow_cases.cj",
+      "sha256": "0a270de39dc8beb4feabcfa349512b828d7d02106f039beb99991b0cb36f6b9f"
+    },
+    {
+      "path": "tests/incremental_composition/src/surface_cases.cj",
+      "sha256": "6615930d4f57ed8157971056259c84dfe56aabdfb90e77957c4888648637ed75"
+    },
+    {
+      "path": "tests/incremental_composition/src/viewport_cases.cj",
+      "sha256": "3efd6fa537200196d5d70318b17095599711bfac421a43e3c108c64613bf36bd"
+    },
+    {
+      "path": "tests/incremental_composition/src/wide_cases.cj",
+      "sha256": "0b527074af20197ca86dac91a189cbb6124fb7be6dfb6d20b8998863706317ea"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/baseline-01.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    {
+      "path": "evidence/baseline-01.raw",
+      "sha256": "b27edc8e2926beba3cf942c3d9da62cc84aadd6c811f23e3d2233100538e1ce5",
+      "bytes": 16577
+    },
+    {
+      "path": "evidence/baseline-02.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    {
+      "path": "evidence/baseline-02.raw",
+      "sha256": "2505bc97a49f78d483c80edf910944f76a57584d0dc8c33ee751ba4bba5281e1",
+      "bytes": 16324
+    },
+    {
+      "path": "evidence/build-01.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "evidence/build-01.raw",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "evidence/build-02.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "evidence/build-02.raw",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "evidence/commands.md",
+      "sha256": "9e6d8c239e5fb36893bdbfe40a0aece3ae5f746d78c7c9c4f224ac147e93d84b",
+      "bytes": 1975
+    },
+    {
+      "path": "evidence/sdk.txt",
+      "sha256": "5d367b37ee619d7c940deb3aaaa76fb7b9d0ce6b4821e1721cb49bc82965e754",
+      "bytes": 99
+    },
+    {
+      "path": "evidence/source-equivalence.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "evidence/source-equivalence.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/space-after.txt",
+      "sha256": "8c44db158da987fa8c6f8156c46ecb67e54704f2465c3a0a5f2c270dec2a3506",
+      "bytes": 114
+    },
+    {
+      "path": "evidence/space-before.txt",
+      "sha256": "af8693999095826a64939e4f1159a817188c97c860d2eebac50945794931209e",
+      "bytes": 114
+    }
+  ]
+}

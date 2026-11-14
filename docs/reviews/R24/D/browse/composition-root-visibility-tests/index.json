@@ -1,0 +1,147 @@
+{
+  "task": "TASK138 original-D-scope root visibility regression",
+  "role": "independent public test author",
+  "requested_model": "Sol/high",
+  "serving_configuration_independently_verified": false,
+  "status": "frozen_correctness_green_work_red",
+  "cwd": "/workspace/work/composition-root-visibility-tests/source",
+  "fixed_test_commit": "16b9f25dcef0f7d163a7651bf2617d6d3a14b13a",
+  "frozen_input": "0ab2536475c142a0731a34d4112d719c75b2a3ad",
+  "accepted_c_product_source": "ee84e7ac7a35bb6481a17ecb91f1ec07804b672a",
+  "product_src_tree": "f2bb7914b653778ecd576731bc54359025b71313",
+  "original_fifteen_functions_assertions_and_product_unchanged": true,
+  "registry_change": "append one rootVisibility case and label",
+  "frozen_input_equivalence_exit": 0,
+  "capacity_receipt": {
+    "path": "/workspace/work/validation/d-validation-durable-headroom-20261114/index.json",
+    "sha256": "a4414df2734c4d75a18c29820b72f08971f29939263425cf70428d231cfed362"
+  },
+  "commands": {
+    "environment": "source /workspace/work/validation/sdk/cangjie/envsetup.sh\nexport CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env\nexport CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+    "build": "bash tests/incremental_composition/run.sh build",
+    "direct": "./tests/incremental_composition/target/release/bin/main",
+    "workdir": "/workspace/work/composition-root-visibility-tests/source"
+  },
+  "sdk": "Cangjie Compiler/CJPM 1.2.0; cjnative x86_64-unknown-linux-gnu",
+  "build": {
+    "raw": "evidence/build-01.raw",
+    "exit": 0
+  },
+  "direct": {
+    "raw": "evidence/baseline-01.raw",
+    "exit": 1,
+    "cases_completed": 16,
+    "paired_frames": 71,
+    "correctness_failures": 0,
+    "work_red_assertions": 18,
+    "original_15": {
+      "correctness_failures": 0,
+      "work_red_assertions": 14
+    },
+    "root_case": {
+      "correctness_failures": 0,
+      "work_red_assertions": 4,
+      "initial": {
+        "slots": 40,
+        "writes": 42,
+        "target_draws": 1,
+        "reference_draws": 1
+      },
+      "hidden": {
+        "slots": 40,
+        "writes": 40,
+        "target_draws": 0,
+        "reference_draws": 0
+      },
+      "shown": {
+        "slots": 40,
+        "writes": 42,
+        "target_draws": 1,
+        "reference_draws": 1
+      },
+      "geometry": "3x1 root Canvas box, X at (0,0), complete frame 8x5; one affected row",
+      "work_bound": "hide/show target slots <40 and writes <40; broad full-frame boundary, no exact row identity or heap count",
+      "complete_cell_m1_literal_context_and_saved_snapshot_checks": "passed",
+      "diagnostic_gap_observed": false
+    }
+  },
+  "corrections": "none needed",
+  "consumer": "tests/incremental_composition/cjpm.toml",
+  "binary": {
+    "path": "source/tests/incremental_composition/target/release/bin/main",
+    "sha256": "4a208bbc096d969410e4125cf157d802482f8392ec6f1e5bff609c9425c532f8",
+    "one_target_in_place_only": true
+  },
+  "configs": [
+    {
+      "path": "source/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+    },
+    {
+      "path": "source/tests/incremental_composition/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+    },
+    {
+      "path": "source/tests/incremental_composition/cjpm.lock",
+      "sha256": "7b3e6899cf75ba37b4a5daa011700b7140476fcb3e4df2b309cb57b25a00d6dd"
+    }
+  ],
+  "test_changes": [
+    {
+      "path": "tests/incremental_composition/src/root_visibility_cases.cj",
+      "sha256": "f7e0ef9a2e177d713c7919ef87b9d9afcce05c738349dcf1b387837c210d05c3"
+    },
+    {
+      "path": "tests/incremental_composition/src/main.cj",
+      "sha256": "baf6f736d9bf2ab7da2f6fe32f1aa13c5f217e39a2a20c429ad1d8ce9f1935c7"
+    },
+    {
+      "path": "tests/incremental_composition/root_visibility_plan.md",
+      "sha256": "06df7b8dbdcf48cccc97efa50aeabaceb5342d3a187dda80fa16b6f941c2c988"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/baseline-01.exit",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "evidence/baseline-01.raw",
+      "sha256": "14534a6195e3808284401bd5ba634ffd8f7c3c98afdc9f8477a5bd3a6c9e9191"
+    },
+    {
+      "path": "evidence/build-01.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/build-01.raw",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "path": "evidence/frozen-input-equivalence.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/frozen-input-equivalence.raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/sdk.txt",
+      "sha256": "5d367b37ee619d7c940deb3aaaa76fb7b9d0ce6b4821e1721cb49bc82965e754"
+    },
+    {
+      "path": "evidence/space-after.txt",
+      "sha256": "2095203ded282977cceb3430af84ab38e41d203d9756343e75ae07a60e92ad65"
+    },
+    {
+      "path": "evidence/space-before.txt",
+      "sha256": "a3f4a47cb3ce3346f9af58b1561cf32cb873ca0a59fa556896f723c7130fb6a2"
+    }
+  ],
+  "limits": [
+    "No D draft/product input or edits.",
+    "No old suites, unpacked/extra runtime, TTY or subagents.",
+    "No private row identity proof; later source review owns that obligation.",
+    "Old sealed TASK138 source/index/runtime/raw were not mutated."
+  ]
+}

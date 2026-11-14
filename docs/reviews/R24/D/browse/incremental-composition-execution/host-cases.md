@@ -1,0 +1,22 @@
+# TASK141 existing showcase host cases (independent expectations; not executed here)
+Source: published `e1244b2144e8df0695aab08db3339acc435d9f9f`, `examples/theme_showcase/{README.md,src/main.cj,src/gallery_view.cj,src/commands.cj,src/preview.cj}`; public text-editing/interaction/keyboard docs.
+Run separately on actual XTerm 398 and VTE 0.80.1 using the already normally built `examples/theme_showcase/target/release/bin/main`, no arguments; begin at verified 80 columns ×24 rows, Classic, fresh process.
+Capture each numbered checkpoint as actual host PNG plus corresponding raw-output byte interval/input log; wait for the stated visible state, without arbitrary settling sleeps.
+1. Startup: labels `Gallery`, `Find:`, `Notes`, `Edit:` and footer `Gallery | Classic | 0/2`; initial values `Query` and `Check input`. The example posts focus to the Find TextInput.
+2. Press `End`, then literal `Z`: Find becomes `QueryZ`; editable caret is the gap after Z (when the host's original caret visibility is known/manageable).
+3. Press `F5`: centered 32×9 preview appears with `Preview`, `Theme sample`, `Select action`, `Actions`; underlying QueryZ remains. Modal input domain moves to its Actions button, so no logical editing caret remains in Find.
+4. Press `F9`, then literal `Q`: preview and its old decoration disappear; Find becomes `QueryZQ`, proving saved editor focus/position restored; caret is after Q. Footer/data otherwise unchanged.
+5. Press `Tab` exactly six times: Find→Pin→ID→Name→Run→records ScrollView→Notes TextArea; no activation keys, so Pin/radio/Pending state must not change.
+6. Press `End`, literal `N`, `Enter`, literal `M`: Notes contains first line `Check inputN`, second line `M`; editable caret is the gap after M on its second logical line; Find remains QueryZQ.
+7. Press `F5`: same preview labels/opaque modal surface; no logical editing caret remains in Notes while focus is in the preview's Actions button.
+8. With preview open, use the existing host resize operator to obtain/read back exactly 100×30; capture after the coherent size change. Preview remains 32×9, recentered from zero-based box origin (24,7) at 80×24 to (34,10) at 100×30, clipped only to actual host bounds.
+9. Press `F9`, then literal `P`: all old/new preview/shadow cells disappear; Notes is `Check inputN` / `MP`, caret after P on second line; QueryZQ unchanged. This proves focus and edit position survived modal close and resize.
+10. Resize/read back 80×24: both editor values and second-line caret gap after P persist, Gallery/Notes columns and footer fit the actual size, and no stale preview border/shadow remains at either previous centered position.
+11. Press `F10`: ordinary successful exit and terminal restoration; retain actual process status and available existing session-restoration metadata.
+Raw assertions: complete scene/SGR output stays valid, resize uses actual coherent width/height, necessary caret positioning follows editable gaps after changed frames, and modal/close visibility controls agree with the automatic cursor-status reply if it was known.
+Do not inject a new cursor/query protocol: retain the application's existing automatic DECRQM request/reply bytes and any actual reported visibility state. If state is unknown, screenshots alone cannot require hardware caret hide/show; mark that part insufficient evidence and retain the text-edit/focus checks.
+PNG can show glyphs, modal placement, stale decorations and a sampled hardware caret; it cannot prove private caret owner, source opacity, row sharing, successful baseline commit, or transient blink absence.
+Record host executable/version, TERM, locale, font/cell metrics, color/caret configuration, actual dimensions at every resize, timestamped exact key/resize actions, fixed library/example/ELF hashes, raw input/output/exit, and original PNG paths/SHA-256; keep raw bytes and PNGs from the same run.
+The six-Tab path follows this fixed example's focusable declaration order; capture the resulting Notes edit to verify it rather than silently retargeting when a host intercepts a key.
+The frozen 17-case headless consumer separately proves D-140-001 logical caret failure; this existing host flow supplies normal editor/modal/resize integration evidence, not an assertion of exact private owner from PNG.
+These two actual hosts do not replace the later full six-host matrix or complete TASK141/142 acceptance.
