@@ -31,7 +31,7 @@ large_mounted_viewport,2,stateful,local,small visible viewport over large mounte
 broad_text,2,stateful,broad,all leaves text changes -> restore,large-area degradation and full actual costs
 initial,1,stateful,initial,construct start and first target,initial generation separate from steady-state samples
 idle,1,idle,idle,no business change or forced export after warmup in normal Application.run,zero additional target build measure arrange paint frame and cell work with actual poll CPU
-posted_epoch,2,stateful,correctness,gated public post with epoch -> commit -> close gate,correctness only producer barrier prevents API cutoff mismatch
+posted_epoch,2,stateful,local,gated public post with epoch -> normal snapshot commit -> close gate,producer barrier prevents API cutoff mismatch and primary snapshots include enqueue pump synchronization cost
 readonly_focus_caret,3,stateful,local,focus first Canvas -> second -> first,readonly focused dependency and independent caret ownership
 viewport_caret,3,stateful,local,local caret clipped -> scroll into view -> resize,transformed caret clip and continuation ownership independent of Frame
 glyph_projection,3,stateful,output,Ascii 中 -> 文 -> ??,same projected two columns can have zero grid updates

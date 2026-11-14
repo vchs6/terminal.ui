@@ -29,6 +29,7 @@ build_public() {
 smoke() {
     local product=$1 version=$2 artifacts=$3 metadata=$4
     local executable diagnostic compat_hash diagnostic_hash scenario period geometry phase actions obligation width height run_id directory
+    local policy_row policy_scenario compat_correctness snapshot_policy tty_policy diagnostic_correctness m1_policy m2_policy paired_policy
     local status=0
     test -x "$validator" && test -x "$observer"
     test -f "$metadata"
@@ -45,8 +46,13 @@ smoke() {
         height=$((width * 3 / 10))
         while IFS=, read -r scenario period geometry phase actions obligation; do
             [[ $scenario == scenario ]] && continue
+            policy_row=$(rg "^$scenario," "$suite/mode_matrix.csv")
+            IFS=, read -r policy_scenario compat_correctness snapshot_policy tty_policy diagnostic_correctness m1_policy m2_policy paired_policy <<<"$policy_row"
+            [[ $policy_scenario == "$scenario" && $compat_correctness == required && $diagnostic_correctness == required && $tty_policy == required ]]
             directory="$artifacts/$scenario-${width}x${height}"
             mkdir -- "$directory"
+            echo "REQUIRED_COMPAT_NORMAL_TTY_NOT_EXECUTED_BY_HEADLESS_SMOKE" >"$directory/tty-coverage.txt"
+            printf 'diagnostic_paired_comparison=%s\n' "$paired_policy" >"$directory/comparison-scope.txt"
             run_id="$compat_hash-compat-$scenario-${width}x${height}-s143-w0-u$period-r0"
             local common=(--scenario "$scenario" --width "$width" --height "$height" --seed 143 --warmup 0 --updates "$period" --repetition 0)
             local command=("$executable" --mode correctness "${common[@]}" --run-id "$run_id" --csv "$directory/compat-samples.csv" --cells-csv "$directory/compat-cells.csv" --caret-csv "$directory/compat-caret.csv")
@@ -58,7 +64,7 @@ smoke() {
                 "$validator" carets "$directory/compat-caret.csv" "$scenario" "$width" "$height" "$period" compat >"$directory/compat-caret-validation.log" 2>&1 || status=1
                 "$validator" samples "$directory/compat-samples.csv" "$suite/sample_columns.csv" "$metadata" "$run_id" "$scenario" compat-correctness "$width" "$height" 0 >"$directory/compat-sample-validation.log" 2>&1 || status=1
             else status=1; fi
-            if [[ $phase != correctness && $scenario != idle ]]; then
+            if [[ $snapshot_policy == required ]]; then
                 run_id="$compat_hash-snapshot-$scenario-${width}x${height}-s143-w0-u$period-r0"
                 command=("$executable" --mode snapshot-headless "${common[@]}" --run-id "$run_id" --csv "$directory/snapshot-samples.csv")
                 printf '%q ' "${command[@]}" >"$directory/snapshot-command.txt"
@@ -67,7 +73,8 @@ smoke() {
                     "$validator" process "$directory/snapshot-process.csv" "$run_id" >"$directory/snapshot-process-validation.log" 2>&1 || status=1
                     "$validator" samples "$directory/snapshot-samples.csv" "$suite/sample_columns.csv" "$metadata" "$run_id" "$scenario" snapshot-headless "$width" "$height" 0 >"$directory/snapshot-sample-validation.log" 2>&1 || status=1
                 else status=1; fi
-            elif [[ $scenario == idle ]]; then
+            else
+                [[ $snapshot_policy == reject ]]
                 if "$executable" --mode snapshot-headless "${common[@]}" --run-id "reject-$run_id" --csv "$directory/rejected-idle.csv" >"$directory/rejected-idle.log" 2>&1; then
                     echo "INVALID forced snapshot mislabeled normal idle" >>"$directory/rejected-idle.log"; status=1
                 fi
@@ -84,9 +91,11 @@ smoke() {
                     "$validator" carets "$directory/diagnostic-caret.csv" "$scenario" "$width" "$height" "$period" diagnostic >"$directory/diagnostic-caret-validation.log" 2>&1 || status=1
                     "$validator" samples "$directory/diagnostic-samples.csv" "$suite/sample_columns.csv" "$metadata" "$run_id" "$scenario" correctness "$width" "$height" 0 >"$directory/diagnostic-sample-validation.log" 2>&1 || status=1
                 else status=1; fi
-                if [[ $geometry == stable && $phase != correctness ]]; then
-                    local mode
-                    for mode in m1-headless m2-headless; do
+                local mode timing_policy
+                for mode in m1-headless m2-headless; do
+                    timing_policy=$m1_policy
+                    [[ $mode == m2-headless ]] && timing_policy=$m2_policy
+                    if [[ $timing_policy == required ]]; then
                         run_id="$diagnostic_hash-$mode-$scenario-${width}x${height}-s143-w0-u$period-r0"
                         command=("$diagnostic" --mode "$mode" "${common[@]}" --run-id "$run_id" --csv "$directory/$mode-samples.csv")
                         printf '%q ' "${command[@]}" >"$directory/$mode-command.txt"
@@ -95,14 +104,15 @@ smoke() {
                             "$validator" process "$directory/$mode-process.csv" "$run_id" >"$directory/$mode-process-validation.log" 2>&1 || status=1
                             "$validator" samples "$directory/$mode-samples.csv" "$suite/sample_columns.csv" "$metadata" "$run_id" "$scenario" "$mode" "$width" "$height" 0 >"$directory/$mode-sample-validation.log" 2>&1 || status=1
                         else status=1; fi
-                    done
-                else
-                    # A misleading successful timing must not silently replace a
-                    # stateful workload by some easier geometry-independent one.
-                    if "$diagnostic" --mode m1-headless "${common[@]}" --run-id "reject-$run_id" --csv "$directory/rejected.csv" >"$directory/rejected.log" 2>&1; then
-                        echo "INVALID stateful m1-headless accepted: $scenario" >>"$directory/rejected.log"; status=1
+                    else
+                        [[ $timing_policy == reject ]]
+                        # A misleading successful timing must not silently replace
+                        # a stateful workload by easier geometry-independent input.
+                        if "$diagnostic" --mode "$mode" "${common[@]}" --run-id "reject-$mode-$run_id" --csv "$directory/rejected-$mode.csv" >"$directory/rejected-$mode.log" 2>&1; then
+                            echo "INVALID unsupported $mode accepted: $scenario" >>"$directory/rejected-$mode.log"; status=1
+                        fi
                     fi
-                fi
+                done
             fi
         done <"$suite/scenarios.csv"
     done

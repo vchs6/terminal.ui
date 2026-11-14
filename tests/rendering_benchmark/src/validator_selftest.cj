@@ -13,6 +13,12 @@ func validatorSelftest(fixtures: String): Unit {
         try { natural(invalid,"literal invalid integer") } catch (_: Exception) { rejected = true }
         demand(rejected,"invalid metric integer accepted")
     }
+    for (valid in ["","41","65cc81","f09f91a9e2808df09f92bb"]) { validateUtf8Hex(valid) }
+    for (invalid in ["ff","c080","eda080"]) {
+        var rejected = false
+        try { validateUtf8Hex(invalid) } catch (_: Exception) { rejected = true }
+        demand(rejected,"invalid Cell UTF8 hex accepted")
+    }
     let (requested,bytes,calls,failed,shorts) = nativeReturns("${fixtures}/native-returns.trace","1</dev/pts/7>")
     demand(requested == 17 && bytes == 11 && calls == 3 && failed == 1 && shorts == 1,
         "native returns must distinguish success/short/EINTR/writev/other fd/PTY read chunks")

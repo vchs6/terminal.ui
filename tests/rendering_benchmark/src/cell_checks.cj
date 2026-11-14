@@ -33,6 +33,7 @@ func readCells(table: CsvTable, scenario: String, width: Int64, height: Int64, p
         demand(!indexed.contains(key), "duplicate Cell ${key}")
         let glyph = table.at(row,"grapheme_utf8_hex")
         demand(glyph.size % 2 == 0, "odd UTF8 hex length ${key}"); hex(glyph,glyph.size,key)
+        validateUtf8Hex(glyph)
         let columns = natural(table.at(row,"cell_width"),"cell_width")
         demand(columns <= 2, "invalid Cell width ${key}")
         for (name in ["continuation","transparent","bold","dim","italic","underline","inverse","strikethrough"]) {
@@ -40,6 +41,7 @@ func readCells(table: CsvTable, scenario: String, width: Int64, height: Int64, p
         }
         demand((table.at(row,"continuation") == "true") == (columns == 0), "continuation width mismatch ${key}")
         if (columns == 0) { demand(glyph.isEmpty(), "continuation has grapheme ${key}") }
+        else { demand(!glyph.isEmpty(), "leader has empty grapheme ${key}") }
         validateRawColor(table.at(row,"foreground")); validateRawColor(table.at(row,"background"))
         indexed.add(key,row)
     }

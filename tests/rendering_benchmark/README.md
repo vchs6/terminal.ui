@@ -6,11 +6,14 @@ input. D142 and coordinator GO are mandatory before formal baseline execution.
 No claim of a passing library, benchmark, artifact or performance result is made.
 
 Binding requirements: approved `implement-incremental-rendering/design.md` §11,
-M003/M005/M006/M011/M012 and its rendering-benchmark spec. This suite adds only
+M003/M005/M006/M011/M012/M013 and its rendering-benchmark spec, fixed at canonical
+`6bbf179e` (M013 includes its standalone-M2 clarification). This suite adds only
 independent test/report code. It neither edits the product nor imports internals.
-The exact CLI/CSV names below are **derived spellings proposed for root review**;
-the requirements do not already specify them. Root has adopted the method and
-CLI decisions below as M013; canonical design patch is pending at preparation.
+The public CLI/method is adopted by canonical M013. Exact CSV report spellings
+below derive from its required units and scopes. The full per-scenario mode table,
+fresh-generation/idle/retention/windows and independent stateful expectations are
+fixed in [measurement_protocol.md](measurement_protocol.md) and
+[mode_matrix.csv](mode_matrix.csv); those details govern the summary below.
 No FPS or elapsed-time cutoff is added.
 
 ## Three ordinary projects and version boundary
@@ -138,10 +141,11 @@ covered lower layers, and close nested ownership. Focus/viewport/caret cases ass
 owner identity, transformed coordinates, clipping, hiding/unmount and stale request
 suppression independently of grid equality. Output projection uses logical
 中→文→?? with Ascii projection, retaining actual zero-update evidence where valid.
-`posted_epoch` is correctness only: producer waits until prior epoch is consumed,
+`posted_epoch` includes primary normal snapshot timing: producer waits until prior epoch is consumed,
 one accepted public post sets text+epoch, snapshot pumps it, producer gates close
 before pairing, and both observations assert the same epoch. Theme completion is
-similarly accepted/gated before a pair; polling is not included in CPU timing.
+similarly accepted/gated before a correctness pair; required preparation,
+enqueue/pump and synchronization remain included in primary timing costs.
 
 The literal cases are deliberately simple and fill all unspecified Cells with
 opaque default `Style()` spaces. No text layout/width oracle computes expectations:
@@ -228,7 +232,7 @@ this simple parser, not zero output. Keep the original complete trace plus exact
 phase cuts so a filtered file alone cannot pretend to prove phase attribution.
 Literal `.trace` files under `fixtures` are parser tests only, never measurements.
 
-## Root-adopted method M013; canonical patch pending
+## Canonical method M013
 
 1. **Mounted render state, factual source constraint:** startHeadless mounts but
    does not render. scrollTo/scrollBy clamp to last published viewportSnapshot;
@@ -239,7 +243,10 @@ Literal `.trace` files under `fixtures` are parser tests only, never measurement
    uses the identical compat normal snapshot program against frozen old/new
    packages for all applicable workloads. Supplemental diagnostic render timing
    initializes once with a disclosed snapshot and supports only geometry- and
-   caret-independent `geometry=stable` scenarios. Reject unsupported requests
+   caret-independent scenarios explicitly listed in `mode_matrix.csv`. Standalone
+   m2-headless remains required for all non-idle stateful/caret scenarios, with
+   actual snapshot costs and new counters but no fabricated global-render pair.
+   Reject unsupported requests
    explicitly; no silent replacement or skipped workload. Keep stateful cases
    in full diagnostic correctness (snapshot then same-epoch render). Add common
    old/new **snapshot-headless** timings for the entire applicable matrix, with every
@@ -259,11 +266,11 @@ Literal `.trace` files under `fixtures` are parser tests only, never measurement
    mutation, forced render, snapshot, export or stats polling inside the interval.
    Sample counters at its boundaries and real process CPU over a sufficient
    interval. Record actual poll CPU; do not claim zero CPU or unique M2 benefit.
-   `snapshot-headless --scenario idle` and diagnostic `m1-headless idle` reject;
+   `snapshot-headless --scenario idle` and both diagnostic headless idle modes reject;
    smoke writes an explicit required-TTY-coverage marker. Repeated unchanged
    snapshot call cost, if separately reported later, cannot be labeled normal idle.
-4. CLI spellings including the one opaque `--run-id` are root approved; report
-   spellings remain derived from approved units. Canonical M013 patch is pending.
+4. CLI spellings including the one opaque `--run-id` are canonical; report
+   spellings remain derived from approved units. Binding M013 is `6bbf179e`.
    No implementation source-text assertion constrains internal layout. Source
    review by145 must establish actual counter instrumentation, no timed oracle/
    equality/hash/GC, and run-loop success/ack/phase ordering; CSV alone cannot.

@@ -31,6 +31,22 @@ func readCarets(table: CsvTable, scenario: String, width: Int64, height: Int64,
                 demand(x == wantX && y == 0 && owner == "caret", "manual caret position/owner ${key}")
             }
         }
+        if (scenario == "unicode_cells" || scenario == "ellipsis_policy" || scenario == "root_fallback") {
+            demand(!visible, "manual scene has no caret request ${scenario}/${key}")
+        }
+        if (scenario == "viewport_caret") {
+            let wantVisible = epoch == 1 || epoch == 2
+            demand(visible == wantVisible, "manual scrolled/clipped caret ${key}")
+            if (wantVisible) {
+                demand(x == 1 && y == 2 && owner == "viewport_caret", "manual viewport transform/owner ${key}")
+            }
+        }
+        if (scenario == "readonly_focus_caret") {
+            let wantOwner = if (epoch == 1) { "focus_second" } else { "focus_first" }
+            let wantX: Int64 = if (epoch == 1) { 2 } else { 1 }
+            let wantY: Int64 = if (epoch == 1) { 1 } else { 0 }
+            demand(visible && x == wantX && y == wantY && owner == wantOwner, "manual readonly focus/owner ${key}")
+        }
         indexed.add(key,row)
     }
     for (epoch in 0..(period + 1)) { for (stage in stages) {

@@ -34,9 +34,17 @@ func validateSamples(path: String, columnsPath: String, metadataPath: String, ex
         demand(metric(table,row,"updates") > 0, "empty measured updates")
         let preparation = metric(table,row,"preparation_snapshots")
         let references = metric(table,row,"reference_renders")
+        let lifecycles = metric(table,row,"lifecycles")
+        demand(lifecycles > 0, "missing actual lifecycle count")
+        metric(table,row,"loop_wall_us",unavailable:correctness)
+        metric(table,row,"sampling_wall_us",unavailable:correctness)
         if (!correctness) {
             demand(references == 0, "performance window contains oracle/reference render")
             demand(preparation <= 1, "per-update hidden snapshot preparation")
+            if (scenario == "initial") {
+                demand(preparation == 0 && lifecycles == metric(table,row,"updates"), "first generation must use fresh unprepared lifecycles")
+                demand(metric(table,row,"frames") == metric(table,row,"updates"), "fresh lifecycle must generate its first target; warmed cached returns are not first generation")
+            } else { demand(lifecycles == 1, "steady workload must retain one Application lifecycle") }
         } else if (!compat) {
             demand(preparation > 0 && references > 0, "correctness must disclose commit preparation and reference calls")
         }
@@ -92,7 +100,6 @@ func validateSamples(path: String, columnsPath: String, metadataPath: String, ex
 
 func scenarioPhase(scenario: String): String {
     if (scenario == "initial" || scenario == "idle") { return scenario }
-    if (scenario == "posted_epoch") { return "correctness" }
     if (scenario == "glyph_projection") { return "output" }
     if (scenario == "large_fill_shadows" || scenario == "broad_text") { return "broad" }
     for (name in ["resize_pair","theme_color","theme_spacing","theme_four_sides","theme_wrap"]) {

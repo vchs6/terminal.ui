@@ -5,7 +5,8 @@ import std.collection.ArrayList
 func externalColumns(): Array<String> {
     ["source_sha","artifact_sha256","elf_sha256","workload_sha256","dependency_sha256","sdk_version","sdk_sha256",
         "native_sha256","environment_id","os","cpu","cpu_policy","locale","terminal","terminal_version",
-        "capability_source","gc_config","optimization"]
+        "capability_source","gc_config","optimization","mode","scenario","width","height","seed",
+        "warmup","updates","repetition"]
 }
 
 // Artifact/Git/SDK/environment identities are external facts. A normal benchmark
