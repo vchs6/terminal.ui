@@ -2,10 +2,9 @@
 
 ## 1. 文档目的与状态
 
-本文说明应用作者如何组织界面、业务状态和事件，作为 [需求说明](requirements.md) REQ-001–003 的使用侧设计。它不是已发布 API 手册，也不提供伪可运行仓颉代码。精确语法、类型签名、源码形式和构建命令须经 TASK-002/004 验证冻结。R5 隔离探针只验证语言组合性质，不是 cjtui 已实现 API。
+本文说明应用作者如何组织界面、业务状态和事件，并投影已实现的公共构造契约。需求见 [需求说明](requirements.md) REQ-001–003；可运行入口和使用说明见 [产品文档](product/README.md)、[组合应用](product/composition.md)。本文仍是开发契约，不表示发布。
 
-当前 U1–U5 全量范围仍为 required，完整场景验收尚待完成；Linux 首片已实现 Text/Row/Column、Frame 与 Application 的有限公开接口，实际切片证据与剩余范围见 docs/product/README.md 及 implement-linux-first-slice 变更。具体结果记录在 [验收矩阵](acceptance.md)。
-
+本次固定源码为 `c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960`；`src/`、`native/`、`examples/`、`build.cj`、根 `cjpm.toml` 与已接受的 `f48ca45608247f52a6876ad5c27b4ca36867f406` 分别具有相同 Git 对象。下文第 9–12 节和 [construction-map.json](reviews/Linux-final/construction-map.json) 记录实际签名、来源、消费者、错误和证据范围；第 2–8 节保留总体使用目标。U1–U5 已有 [AC-021 冻结 M1 验收](reviews/R22/021/README.md)，四主题展示已有 [AC-027 冻结 M1 验收](reviews/R22/027/completed/README.md)。两者不能自行关闭原 AC-004、全部 Linux 或发行验收。最终消费者绑定及原 AC-004 独立审核/验收仍为 pending，任务状态仍由 OpenSpec `complete-linux-integration/tasks.md` 2.1.4 管理。
 ## 2. 统一构造模型
 
 | 用户操作 | 设计契约 | 框架承担的工作 |
@@ -75,9 +74,9 @@
 
 ## 7. 冻结交付与验收引用
 
-TASK-002 交付真实语法实验与限制；TASK-003 交付依赖适配边界；TASK-004 合并结果并给出可定位的语法规则、精确公开签名、状态/事件语义、诊断、平台输入边界及构建入口。后续示例由 TASK-021 落地，U3/U4 分别关联状态、多层与焦点任务证据。
+TASK-002 负责真实语法和限制，TASK-003 负责依赖适配，TASK-004 汇合公共构造签名、模块、状态/事件、诊断与普通入口。TASK-021 的公开示例已落地；本次依据固定源及独立既有证据整理接口，不新建 API，不把已接受的分段契约退回未设计状态。
 
-本文件与总体架构共同构成任务输入。精确接口尚未冻结不等于可以省略架构，也不等于允许直接实施。产品使用手册在实际验证后放入 docs/product/；本文仍为开发设计资料，不进入产品制品。
+本文件与总体架构共同构成任务输入。已实现签名以下述源码投影为准；证据不足的最终范围保持 pending。产品手册位于 docs/product/；本文和评审映射按根清单排除于产品包，不成为运行依赖。
 
 ## 8. 动态视图、通知与基础组件
 
@@ -85,7 +84,7 @@ TASK-002 交付真实语法实验与限制；TASK-003 交付依赖适配边界�
 
 视图可在已有容器的同一子序列中按指定位置增删移动元素，声明式子组件与 API 元素共同参与布局/交互，不要求独立容器或独立区域。数据排序和保留由应用处理；节点操作只改变视图。响应式绑定与显式通知共用自动调度，通知可定向内容、样式、布局和结构。内置基础组件范围见 REQ-001.8，统一服从公开状态/事件/样式契约。
 
-新增验收场景（产品均 planned/pending）：
+新增验收责任如下；这是场景定义，具体实现和验证状态以 [验收矩阵](acceptance.md) 对应 AC 为准，不将这些已分段实施的能力笼统标为 planned：
 
 | 场景 | 用户动作 | 必需结果 |
 |---|---|---|
@@ -96,3 +95,72 @@ TASK-002 交付真实语法实验与限制；TASK-003 交付依赖适配边界�
 | U10 可选会话 | SSH下请求本地剪贴板、标题、图片图标 | 按终端能力报告；未知不伪称成功，无图形扩展仍可运行核心界面 |
 
 U1–U5 继续保留并由 TASK-021 承担整体公开构造验收；U6–U10 仅细化新增责任，映射 TASK-025–032 / AC-025–032，不意味着增加五套演示专用内核。
+
+## 9. 实际源码、包与普通构建入口
+
+示例采用 SDK 1.2.0 的普通 CJPM 项目，依赖 `cjtui = { path = "../.." }`。在 `examples/minimal`、`examples/composition` 或 `examples/theme_showcase` 内执行 `cjpm build`，随后在终端执行 `target/release/bin/main`。`--smoke` 是有限 headless 检查；它不验证交互输入、终端能力或模式恢复。SDK、stdx、UCD/native 和依赖缓存前置见 [产品说明](product/README.md) 与 [native 构建](product/native-build.md)。这里记录可复现入口，本次没有执行构建或运行。
+
+| 场景 | 实际调用来源 | 公共构造与责任 | 既有执行及边界 |
+|---|---|---|---|
+| U1 最小应用 | `examples/minimal/src/main.cj` | `Application(Column { Text(...).foreground(...); Row { ... } })`；`onKey` 中 q→`stop`，`run` 管理会话 | AC-021 已独立构建、smoke/PTY/实际宿主；原始业务源码及 manifest 与当前一致，core 后有 M2 变化，不冒称最终重新执行 |
+| U2 常规应用 | `examples/composition/src/{main,application_view,tasks_scene,commands}.cj` | `HorizontalMenu`、弹性主体、`StatusBar`；禁用项、`SplitPane`、`loadTheme` | AC-021 菜单/布局/主题；AC-027 补全部控件及四主题展示；当前 D141 提供受限最终源展示运行 |
+| U3 动态应用 | `examples/composition/src/{job_data,commands,tasks_scene}.cj` | `spawn` 计算后 `post(owner, action)`；`Observable` getter 绑定 Text/Progress/颜色 | AC-021 验证 50005000/333383335000、长短文本与仅颜色变化；showcase 的 Run 只置 Pending，不替代真实 worker 证明 |
+| U4 组合、多层 | `examples/composition/src/{job_panel,tasks_scene,commands}.cj` | 同一 `JobPanel` 类型的新实例用于普通区与圆角阴影模态层，`PopupMenu` 再开确认层 | AC-021 验证共享业务状态、独立 controller、关闭层/焦点/编辑状态；当前 D141/142 补最终 core 的层、caret、尺寸和恢复范围 |
+| U5 泛化应用 | `examples/composition/src/{logs_scene,job_data,application_view}.cj` | Logs 场景使用相同 TextInput/Checkbox/Radio/ScrollView/ForEach；业务自行筛选/排序 | AC-021 验证不同于 Tasks 的日志业务；不是新增演示专用内核或强制文档模型 |
+
+普通路径只描述逻辑顺序、尺寸约束与回调，无需屏幕坐标、私有 `RuntimeNode`、ANSI、擦屏或 `flush`。当前公开示例源和核心中没有按 JobPanel/TasksScene/LogsScene/GalleryView 名称分支的业务特判。高级 `Canvas` 的局部坐标、`Frame`/snapshot、受控滚动内容坐标和能力 override 是可选入口，不是 U1–U5 的前置步骤。
+
+## 10. 固定公共签名与语法边界
+
+下表为固定源码的实际签名；全部关联声明（含重载、命名参数/默认值、文件/行号和 hash）见 [机器映射](reviews/Linux-final/construction-map.json) `api_groups` 与 `source_bindings`。`cjtui.*` 导出常用构造；源码按 `cjtui`、`cjtui.geometry`、`cjtui.style`、`cjtui.text`、`cjtui.theme` 分责，宏位于编译期 `cjtui.macros`。
+
+| 能力 | 实际签名/形式 | 源文件 |
+|---|---|---|
+| 块与链 | `Column(body: () -> Unit): Component`、`Row(body: () -> Unit): Component`、`Text(value: String): Component` / `Text(value: () -> String): Component`；另有 RichText 重载 | `src/component.cj` |
+| 属性与绑定 | `foreground(value: Color): Component` / `foreground(value: () -> Color): Component`；尺寸/显隐/样式也有 typed 常量与 getter 重载 | `src/component.cj` |
+| 自定义组件 | `Component` 子类 `public override func build(): Unit`；字段初始化后调用一次 `protected func finishConstruction(): Unit` | `src/component.cj`；实际 `JobPanel`/`LogsScene` |
+| 可选宏 | `public macro Component(input: Tokens): Tokens`、`State`、`Bind`；`@State var x: T = value` 生成 Observable 存储和仓颉属性，`@Bind(expr)` 生成 getter | `src/macros/{component_macro,state_macro,bind_macro}.cj` |
+| 状态 | `Observable<T>(initial: T)`；`get(): T`、`set(value: T): Unit`、`notify(): Unit` | `src/observable.cj` |
+| 条件 | `If(condition: () -> Bool, thenBody: () -> Unit, elseBody!: () -> Unit = {=>}): Unit` | `src/conditional_declaration.cj` |
+| 列表 | `ForEach<T>(items: () -> Array<T>, key: (T) -> String, body: (ListItem<T>) -> Unit): Unit`；body 读取 `row.value` | `src/foreach_declaration.cj`、`src/list_item.cj` |
+| 菜单和主体 | `HorizontalMenu(items: Array<MenuEntry>, onChoose: (String) -> Unit): Component`，另有 getter items；`StatusBar(body: () -> Unit): Component`；`SplitPane(axis!: SplitAxis = SplitAxis.Horizontal, body!: () -> Unit): Component` | 各实体文件 `horizontal_menu.cj`、`status_bar.cj`、`split_pane.cj` |
+| 控件与编辑 | `Progress(fraction: () -> Float64): Component`，另有常量重载；`TextInput(value: Observable<String>, controller!: ?TextEditController = None, limits!: TextEditLimits = TextEditLimits(), onChange!: (String) -> Unit = {_ =>}, onSubmit!: (String) -> Unit = {_ =>}, onIssue!: (TextEditIssue) -> Unit = {_ =>}): Component`；TextArea 无 onSubmit | `src/{progress,text_input,text_area,text_edit_controller}.cj`；[控件](product/widgets.md)、[编辑](product/text-editing.md) |
+| 挂载与事件 | `onMount(effect: (NodeRef) -> (() -> Unit)): Component`、`onKey(handler: (UIKeyEvent) -> Unit): Component`、`Application.onKeyEvent(handler: (UIKeyEvent) -> Unit): Application` | `src/component.cj`、`src/application.cj` |
+| 调度 | `Application.post(action: () -> Unit): Bool` / `post(owner: NodeRef, action: () -> Unit): Bool`；`batch(action: () -> Unit): Unit` | `src/application.cj` |
+| 层 | `NodeRef.openOverlay(content: Component, options!: OverlayOptions = OverlayOptions()): OverlayHandle`；`OverlayHandle.close(): Unit` | `src/{node_ref,overlay_options,overlay_handle}.cj` |
+| 主题 | `Application.loadTheme(source: ThemeSource): ThemeRequest`、`reloadTheme(): ThemeRequest`、`themeInfo(): ThemeInfo`；`ThemeRequest.result(): ?ThemeResult` | `src/application.cj`、`src/theme_request.cj`、`src/theme/` |
+| 会话 | `Application(root: Component, limits!: RuntimeLimits = RuntimeLimits(), glyphMode!: GlyphMode = GlyphMode.Auto, theme!: Theme = Theme.preset(ThemePreset.Classic), keyboardLimits!: KeyboardLimits = KeyboardLimits())`；`run(): Unit`、`stop(): Unit` | `src/application.cj`；显式 colorMode 重载仅高级可选 |
+
+块是仓颉尾随 Lambda，属性链配置同一 Component；普通 `if`/`for` 在构造时运行一次，动态分支/列表使用 `If`/`ForEach`。getter 的 Observable 读取保留依赖，普通不可观察变量变更不会自动更新。列表 key 必须非空、同组唯一且稳定；同 key 更新 `ListItem.value`，不以数组下标或业务对象地址替代身份。动态组无额外布局盒，与手动插入节点共用父子序列。
+
+自定义组件可用显式子类，亦可用 `@Component` 自动生成等价构造；显式例子中的 protected `finishConstruction` 是支持的子类入口。宏不支持 open/abstract component、委托构造及直接构造器 return；State 必须是有类型和初值的实例 var。未知组件/方法/属性走真实编译或类型诊断，已知方法用于不合适的 primitive 走运行期校验。采用 ArkUI 约定的构造形式不等于兼容 ArkTS、ArkUI SDK、平台服务或完整 LSP；本次不增加编辑器验证承诺。
+
+## 11. 状态、错误与生命周期契约
+
+业务数据、组件描述和挂载节点分别拥有生命周期。同一组件类型的多个新实例可共享 Observable；编辑 controller 等局部资源由实例持有。同一个 Component 实例不得同时挂载两处。`onMount` 获取有效 `NodeRef` 并返回清理；卸载先撤引用/订阅/owner post，再尝试清理，不能因保留旧引用而复活已卸载节点。getter 替换或依赖改变会解除旧订阅。
+
+UI 事件、batch 与已投递 post 在统一执行域内运行。后台计算使用 `post(owner, ...)` 进入 UI；返回 true 只表示入队，owner 随后失效则回调取消，队列满/会话停止或失效返回 false。批处理合并失效，不回滚应用业务值。挂载/清理中直接改树、请求焦点或重入 dispose 有限制；需要后续 UI 动作时投递下一 turn。普通运行由 `run()` 负责输入、布局、合成、差分刷新和 finally 清理；headless 的 `startHeadless/snapshot/dispose` 是独立的验证/导出入口。
+
+层的 owner 决定生命周期，host 决定位置与裁剪；`OverlayOptions` 默认 NonModal、Center、closeOnEscape=true、takeFocus=true。Modal 不允许 takeFocus=false，Passive 不允许 takeFocus=true，非居中定位需合法 anchor。关闭父层关闭其附属层；模态域内未处理事件不穿透下层应用动作；恢复有效焦点并呈现底层最新状态。详见 [公共交互](product/interaction.md)。
+
+| 失败类别 | 固定接口与处置 |
+|---|---|
+| 构造/参数/身份 | `UIException.code: String`：如 `InvalidProperty`、`InvalidKey`、`DuplicateKey`、`ConstructionRootCount`、`AlreadyMounted`、`StaleReference`；负尺寸等也可能是 `IllegalArgumentException`，不承诺所有失败都是 UIException |
+| 结构/执行域 | `StaleAnchor`、`CrossParentMove`、`InvalidParent`、`SessionInactive`、`WrongUIContext`、`LifecycleReentry`、`ReentrantEvaluation`、`ReentrantStructure`、`CapacityExceeded`、`UnstableUpdate`；明确失败，不静默追加或无限重试 |
+| 层/焦点 | `InvalidOverlayHost`、`InvalidOverlayAnchor`、`FocusOutsideDomain` 及非法选项异常；失效引用不得继续操作 |
+| 用户回调/清理 | 用户异常保持对象/类型；额外清理失败使用 `UICleanupException.primary` 与有序 `cleanupFailures`，不伪造业务回滚 |
+| 主题 | 同步 parse/read 抛 `ThemeException`；异步请求为 `Applied`、`Failed`、`Superseded`、`SessionClosed`，失败不改活动主题/编辑状态 |
+| 终端与可选宿主 | 输出失败不提交成功基线，按已支持重同步契约重绘或停止输出；可选剪贴板/标题/图片图标返回结构化 SessionResult，Unknown/SentUnconfirmed 不冒充已应用；内部设备异常类型不是必需公共依赖 |
+
+布局/富文本/样式/控制字符规则分别见 [交互](product/interaction.md)、[富文本](product/rich-text.md)、[主题](product/theme.md)、[会话](product/session.md)。能力退化遵循字符终端边界；受限字体、像素图形、外部 CSS 和平台服务不因签名存在而获支持。
+
+## 12. 证据复用与最终待验范围
+
+[construction-map.json](reviews/Linux-final/construction-map.json) 固定每个 U 场景的消费者/source blob/SHA-256、签名、模块、错误、生命周期和证据；这是源码/证据投影，不是新执行。依据 AGENTS §11.1：
+
+- AC-021 原接受源 `e3016afe`/main `c190e6f9` 的 minimal/composition 业务源码与 manifest 均与当前相同；原运行仍标历史 M1，不能因接口不变把已改变的 core 当作旧执行。
+- AC-027 原接受源 `b5de3dd6` 的 showcase 源码/manifest 与当前相同；保留四主题、文件失败、编辑/焦点/滚动和 VTE 的原范围。Run=Pending 与真实 worker 分开。
+- 当前固定 core `f48ca456` 的 [D141 执行](reviews/R24/D/browse/incremental-composition-execution/report.md) / [D142 独立接受](reviews/R24/D/browse/incremental-composition-acceptance/report.md) 提供普通 showcase 构建、XTerm/VTE 实际运行及组合/输出恢复证明。D 的 composition consumer 位于 tests/incremental_composition，不能误写为最终 examples/composition 构建。原 VTE F10 截获失败保留；成功配置为 `ShortcutsNoMenukey=TRUE`。
+- 历史 R12 宏正/负编译证据和 R13 条件/列表机制，仅按相同源码对象复用相应范围；不把已变化的运行时套件整体标为当前新执行。TASK145 固定 `c862` 普通包和解包 benchmark 消费证据补包入口，不能替代全部 U1–U5 或 AC-004 验收。
+
+原 AC-004 保持 pending：需要独立逐条审核/验收，以及最终 minimal/composition 的固定消费者、构建环境/命令/ELF 与运行绑定，或既有同源接受证据的明确复用裁定。具体入口为上述目录的 `cjpm build`、`target/release/bin/main --smoke` 和既定实际交互序列；应先查已有有效证据，避免重复检查。本角色受 CPU 测量约束没有执行这些命令。最终语法/依赖/平台/发行证据仍由相应原任务汇合；本投影不宣称 Linux、M2 性能、跨平台、发布或完整 SDK/LSP 通过。

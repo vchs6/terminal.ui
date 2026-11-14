@@ -4,15 +4,14 @@
 
 本文回答“系统由什么组成、各自负责什么、数据如何流动、怎样保持一致并从失败中恢复”。它是产品总体参考架构，不是目录说明或已经完成的实现报告。产品动机见 [整体提案](development/proposal.md)，外部行为见 [需求说明](requirements.md)，使用方式见 [用户构造设计](ui-construction.md)。
 
-已确定：仓颉实现、包名 cjtui、约定 ArkUI 语法、指定中心仓依赖、字符终端语义和治理边界。Linux首片已有src/native正式实现及minimal示例；以下总体模块仍是完整产品的职责设计，不代表所有模块已经落码。首片有限签名与行为见implement-linux-first-slice/design.md及docs/product/README.md；TASK-001–004尚未覆盖的完整契约仍需后续细化，不能将R5/R7的历史隔离验证边界用于阻止已授权实施。
+已确定：仓颉实现、包名 cjtui、约定 ArkUI 构造形式、字符终端语义和依赖薄适配。本文的总体职责与不变量继续有效；第 21 节将它们映射到固定实际源码，而非将全部模块继续视为尚未实现。当前源码 `c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960` 的 src/native/examples/build.cj/根清单分别与已接受 `f48ca45608247f52a6876ad5c27b4ca36867f406` 相同，精确对象/小范围文件 hash 见 [construction-map.json](reviews/Linux-final/construction-map.json)。
 
-| 设计层次 | 当前可确定内容 | 尚不能宣称 |
+| 层次 | 当前事实 | 证据边界 |
 |---|---|---|
-| 系统边界与不变量 | 前后端职责、状态归属、区域与帧不变量 | 实际运行已满足 |
-| 模块与数据契约 | 输入/输出语义、所有权、依赖方向 | 精确包布局和函数签名已冻结 |
-| 实现机制 | 完整帧再差分、统一调度、依赖薄适配 | 宏路线/库 API/平台接口已实测可用 |
-| 证据状态 | 环境配置和 SDK 可用性已有记录 | 产品、示例、基准或 bundle 已通过 |
-
+| 公共构造 | 组件块/链、Observable、宏、动态条件列表、用户组件、回调、层和编辑均有正式源码 | 历史 AC021/027 与分段接受按原固定范围保留；不自动关闭 AC004 |
+| 运行机制 | 单一节点/状态/布局/Unicode/Frame 路径，M1 参考与 M2 局部计算/差分共享公共 API | D141/142 接受固定 core 的组合与设备范围；性能/完整 Linux 仍独立待验 |
+| 包与消费者 | 普通 CJPM 示例及 benchmark、正常 CJP 和解包消费已有独立证据 | 不将 bundle 零注册测试数当作功能覆盖，不宣称空缓存/hermetic 或发行通过 |
+| 最终冻结 | 源码签名、模块、状态/错误/生命周期可投影 | 最终 U1–U5 消费者绑定和 AC004 独立逐条接受 pending；设计或本表不代替编译/运行 |
 ## 2. 设计目标与边界
 
 首要目标是应用构造方便，其次以统一模型实现布局、状态和多层交互，再保证字符与输出正确。常规应用仅提供声明与回调，不协调缓冲、ANSI 或刷新。用户自定义组件和内置组件共享公开构造契约，不能因某个示例需要而绕开内核边界。
@@ -234,11 +233,11 @@ ansies 负责其已有的序列生成及适用解析。框架提供结构化样�
 | 文件输出失败 | 目标、阶段和错误 | 不宣称文件完整，不修改设备基线 |
 | 能力未知/受限 | 检测/配置来源及降级结果 | 只按公开策略降级，未知并非完整支持 |
 
-具体错误类型与返回/异常签名在 TASK-004 冻结。诊断默认通过受控渠道返回应用或日志，不任意向全屏应用 stdout 插入文本破坏画面。订阅、输入解析缓存、层记录和缓冲均须有生命周期或尺寸上限，不能以无限保留资源避免处理失效。
+当前实际类型、String code 和返回签名见第 21 节及 [公共构造契约](ui-construction.md#11-状态错误与生命周期契约)；本表保留错误职责，不另外创造统一错误枚举。诊断默认通过受控渠道返回应用或日志，不任意向全屏应用 stdout 插入文本破坏画面。订阅、输入解析缓存、层记录和缓冲均须有生命周期或尺寸上限，不能以无限保留资源避免处理失效。
 
 ## 14. 平台适配与并发边界
 
-平台适配契约至少包括会话开启/关闭、尺寸读取与变更通知、输入获取/归一化、输出完整性和模式保存/恢复。Linux x64 / SDK1.2.0仅为已有探针环境；Linux、Windows、macOS、HarmonyOS均为必需目标，具体配置与实现验收仍待冻结。
+平台适配契约至少包括会话开启/关闭、尺寸读取与变更通知、输入获取/归一化、输出完整性和模式保存/恢复。Linux x86_64 / SDK1.2.0 已有正式构建和受限宿主执行证据；支持范围必须绑定各原记录，不能继续仅称语言探针，亦不能外推全部 Linux 配置。Windows、macOS、HarmonyOS 保留为后续必需目标。
 
 TASK-001 输出 OS × 终端 × TTY/非 TTY × 输入/缩放/恢复的矩阵；TASK-004 将可承诺项转成公开契约。非 TTY 的交互入口行为须明确拒绝或采用已定义模式，不能自动宣称完整交互可用；独立文件快照不以存在交互终端为前提。安全或兼容要求不能靠平台名称推测。
 
@@ -246,9 +245,9 @@ TASK-001 输出 OS × 终端 × TTY/非 TTY × 输入/缩放/恢复的矩阵；T
 
 | 路径 | 责任 | 交付属性 |
 |---|---|---|
-| src/ | cjtui 唯一活动主库，内部按职责组织 | 产品源码；尚未实现 |
-| examples/minimal/、examples/composition/ | 公开入口示例与 smoke 模式 | 产品；尚未实现 |
-| benchmarks/rendering/ | 可复核性能工作负载 | 产品；尚未实现 |
+| src/、native/、build.cj | cjtui 唯一活动主库及 Linux 原生薄适配 | 已实现产品源码；逐能力验证见验收矩阵 |
+| examples/minimal/、examples/composition/、examples/theme_showcase/ 等 | 普通公开入口、复用组件与有限 smoke | 已实现产品；AC021/027 原冻结范围已接受 |
+| benchmarks/rendering/ | 公开 API 的工作负载与消费入口 | 已实现产品；TASK145 接受代码/包事实，最终性能验收另行完成 |
 | docs/product/ | 使用与能力限制说明 | 产品文档 |
 | docs/、openspec/specs/ | 整体提案、需求、架构、任务、规格和证据 | 开发资料，排除发布 |
 | .agents/、scripts/、.github/ | 开发技能发现、检查及 CI | 开发基础设施，排除发布 |
@@ -291,9 +290,9 @@ TASK-001 输出 OS × 终端 × TTY/非 TTY × 输入/缩放/恢复的矩阵；T
 
 ## 18. 设计冻结与后续执行边界
 
-当前已完整描述系统职责、概念数据、输入/输出、生命周期和核心失败路径；精确源码语法、API 签名、平台矩阵、解析上限、焦点回退与布局取整等必须在 P1/P2 形成可复现结论。它们的结果允许细化实现，不允许未经裁决改变必需外部行为。
+总体职责、概念数据、输入/输出、生命周期和核心失败路径服务于已确认需求。已落地的精确语法/API、焦点/层/状态等分段契约不因最终冻结整理而重开设计；实际源码映射见第 21 节。平台矩阵、完整消费者及未具充分证据的原验收继续按各任务补齐，不允许通过文档改变必需行为。
 
-TASK-004 的冻结交付必须给出上述接口及边界，按要求更新需求、构造契约、OpenSpec 场景、任务输入和验收映射。未完成前，下游候选不能被称为 ready。本轮修订规格并运行有界隔离验证，不将产品调查/实现任务标为completed，不实现产品原型；具体变更记录于refine-terminal-ui-contracts。
+TASK-004 的当前交付为固定源码和既有独立证据到公共构造/架构的投影；任务权威是 OpenSpec complete-linux-integration 2.1.4，原 AC004 独立接受仍 pending。早期 refine-terminal-ui-contracts 的规格/隔离探针限制属于其历史阶段，不将后来已实现的产品重新标为原型。
 
 ## 19. 本轮确定的运行模型与演进边界
 
@@ -327,7 +326,7 @@ M2 必须对照 M1 帧结果，并记录布局节点数、绘制单元数、CPU�
 
 ### 19.5 事实、证据与冻结
 
-框架研究见 [调研](development/framework-research.md)，仅作机制比较，不构成横向性能排名。语言/依赖实测见 [R5 证据](reviews/R5/evidence/)，只更新对应事实，不将 TASK-001–004 或产品 AC 整体标完成。首版完整语法、绑定依赖机制、原子批次与错误类型仍由 TASK-004 在证据基础上冻结；本次规格给出外部验收，不伪造冻结签名。
+框架研究见 [调研](development/framework-research.md)，仅作机制比较，不构成横向性能排名。语言/依赖实测见 [R5 证据](reviews/R5/evidence/)，只更新对应事实，不将 TASK-001–004 或产品 AC 整体标完成。首版实际语法、绑定、批次与错误类型现按固定源码投影到 [构造契约](ui-construction.md) 和 construction-map；历史 R5 只是语言事实来源。最终独立接受继续由原任务承担，源码存在与设计说明均不代替运行证明。
 
 ## 20. 跨平台与HarmonyOS适配
 
@@ -342,3 +341,41 @@ HarmonyOS必须识别真实运行形态：系统控制台、受支持终端应�
 同输入、同字符宽度与能力策略下比较结构化核心帧；真实终端的字形、色彩、键盘协议、可选宿主能力按矩阵区分。M1/M2的公共API和本地剪贴板等边界不因平台而变化。官方证据和未知见[R6平台调查](reviews/R6/platform-evidence.md)，仅说明来源事实，不是平台运行通过。
 
 用户后续明确实施顺序：当前先完成支持 ANSI 转义序列的 Linux 终端全部约定能力和验收，再考虑 Windows、macOS、HarmonyOS；后者保留为后续必需目标，不作为 Linux 阶段前置条件。Linux 阶段通过不等于完整跨平台支持。 初始可用验证主机为Debian 13.6/x86_64/glibc/SDK1.2.0，不据此承诺其他Linux配置或固定控制台/模拟终端已通过。风险验证及原生依赖构建边界见[本轮记录](reviews/R7/input.md)。
+
+## 21. 固定实现到公共构造的责任映射
+
+本节是 TASK-004 执行型文档整理，不增加包、方法或组件。原 AC004 要求逐 U1–U5 对应语法、签名、模块与验收；完整调用/声明位置和内容 hash 在 [construction-map.json](reviews/Linux-final/construction-map.json)。U1–U5 的实际入口、签名表、错误与待验项见 [公共构造契约](ui-construction.md#9-实际源码包与普通构建入口)。
+
+| 实际源码/包 | 责任与边界 | 公开消费 |
+|---|---|---|
+| `src/component.cj`，`cjtui` | Text/Row/Column、typed 属性链、build/finishConstruction、挂载与事件声明；同一组件路径 | 全部 U；组件子类的 protected 构造入口受支持，无需接触 RuntimeNode |
+| `src/macros/`，`cjtui.macros` | 编译期 @Component/@State/@Bind；真实 Cangjie 宏诊断，不引入其他语言运行时 | 可选语法入口；R12 原宏正/负编译证据按相同宏源复用 |
+| `src/observable.cj`、`binding.cj`、`observable_source.cj` | getter 记录可观察读取、版本/订阅、失效与替换；无普通变量自动更新承诺 | U3 状态、U2/U4/U5 共享数据 |
+| `src/{conditional_declaration,foreach_declaration,list_item,conditional_group,foreach_group}.cj` | If/ForEach 保留动态规则、稳定 key 和同父统一子序列；普通 if/for 只是构造期代码 | U5 日志和 U3 任务列表；R13 相同源码机制与原接受范围保留 |
+| `src/{runtime_session,runtime_node,node_ref,application}.cj` | 持久身份、UI 执行域、post/batch、定向通知、结构命令、有效引用与卸载；私有节点不是业务 API | U1–U5 均通过 Application/NodeRef；owner post 返回入队结果而非完成结果 |
+| 控件各自小写文件、`text_edit_controller.cj` | 菜单、状态条、Label/Button/Checkbox/Radio/Progress、单/多行编辑；controller 状态随实例 | U2–U5 与 AC027 同一 gallery；模型不依附单个窗口 |
+| `src/{overlay_options,overlay_handle,overlay_record,focus_manager,ui_key_event}.cj` | owner/host/anchor、层关闭、模态输入域、焦点与受控事件 | U4 普通/模态复用 JobPanel、popup/确认；host 不改变逻辑所有权 |
+| `src/style/`，`cjtui.style`；`src/theme/`，`cjtui.theme`；theme loader | 结构化样式、逐属性优先级/继承/Reset、命名样式、显式主题加载原子接受 | U2 theme、U3 颜色、U4 圆角/阴影、AC027 四主题；失败不重建业务树 |
+| `src/geometry/`、`src/layout*.cj`、视口实现 | 行/显示列约束、横纵/弹性分配、祖先裁剪、实际视口与有限滚动内容；阴影默认仅扩展 paint | 所有正常组件，不要求应用指定屏幕位置 |
+| `src/text/`，`cjtui.text`；Unicode/width 薄适配 | String/RichText/安全 ANSI 文本、字符簇与显示宽度；统一受控绘制路径 | Text/编辑/快照；文本控制不能绕过设备边界 |
+| `src/{frame,frame_row,paint_context,paint_state,paint_damage,paint_owners}.cj` | 结构化 Cell/宽字符/透明与空格、M1 参考和 M2 布局绘制复用；高级 Canvas 局部上下文 | Application 消费；Frame/Canvas 是高级 opt-in，无第二业务渲染内核 |
+| `src/application.cj`、terminal/native 适配 | 合成→差分→有界设备输出→成功基线；尺寸/能力变化、部分写失败和统一清理 | 普通 `run` 自动输入/刷新/退出；snapshot/export 不拿终端差分当完整文件 |
+| `src/session_*.cj`、native 宿主能力薄适配 | 可选本地剪贴板、标题、实际图片图标的显式请求与结构化 status | 无能力不阻止基础 UI；Unknown/SentUnconfirmed 不视为 Applied |
+
+### 21.1 所有权和失败的实际实现
+
+业务对象归应用。Component 保存可重算描述/属性规则；RuntimeNode 保存节点身份、焦点、订阅和局部资源。公开 NodeRef 保存 session/node 身份，通过有效性检查操作节点；卸载使旧引用失效。同一类型的不同实例可用于普通区与弹窗并共享业务 Observable，同一个 Component 实例二次挂载报错。`onMount` 返回清理，卸载先撤有效句柄/订阅/owner post，再逐项尝试清理，不能保留旧节点假装生命周期连续。
+
+Observable 的读版本/订阅和失效通知受同步保护；getter 在 UI 求值域重新计算，替换 getter 释放旧依赖。后台计算不直接操作节点或 Frame；`Application.post` 接受公开动作，owner 无效/会话停止/队列满时拒绝或取消。批处理合并工作，不回滚业务数据。普通同步/生命周期重入和错误执行域有明确错误；这不增加任意线程访问 UI 的承诺。
+
+公开错误类型包括 `UIException(code: String, message: String)`、`UICleanupException(primary: Exception, cleanupFailures: Array<Exception>)`、主题/文本/键盘的各自类型，以及 optional session 的 `SessionResult`。非法参数也可能抛 `IllegalArgumentException`。String code 不是新 enum；用户异常保留对象/类型，附加清理失败聚合。内部 `SessionDeviceException` 不要求应用导入，也不应文档化为公共类型。精确调用和实际 code 见机器映射 `errors`。
+
+成功计算缓存与设备最后成功基线分离；部分输出失败不能提前提交基线。后端先确认支持契约内的解析/模式重同步，再完整重绘，否则停止输出并清理。恢复失败必须保留。D141/142 是固定 core 对相应事务、恢复和 caret/层行为的接受证据；不以 PNG 或 Frame 等价单独证明设备/焦点所有权。
+
+### 21.2 已有接受范围与最终 AC004 边界
+
+AC021 已接受 M1 U1–U5；其 minimal/composition 源码和 manifest 与当前逐对象一致，但原 core 后已改变。AC027 已接受 M1 四主题/全控件展示；其 showcase 源码/manifest 与当前一致。原执行时间、宿主配置、失败历史、原包/ELF hash 仍属于各自原记录，不能标成 c862 新运行。
+
+D141/142 的 `f48ca456` core 与本次 src/native/examples/build/manifest 对象全部相同。可复用其普通 showcase 编译和 XTerm398 / VTE0.80.1 配置内的实际编辑、模态、resize、退出/termios，以及独立 composition consumer 和 native recovery 的接受范围。D composition consumer 是 `tests/incremental_composition`，不是 `examples/composition`；原 VTE 默认 F10 失败与成功所需 `ShortcutsNoMenukey=TRUE` 都保留。TASK145 补 `c862` 正常 CJP 和解包 workloads/compat/diagnostic 普通构建事实，不构成原 U1–U5 完整接受。
+
+本次只读检查与文档验证按 AGENTS §11.1/11.2 复用有效结果，没有运行编译、测试、Node/npm、GUI/TTY 或基准。机器映射记录源码/证据的版本、hash、scope 与未决动作。原 AC004 的逐条独立审核/接受，以及最终 minimal/composition 消费者命令/环境/ELF/运行绑定仍 pending；先寻找已有同源有效证明，再由相应独立执行角色处理实际缺口。这里不关闭最终语法/依赖/平台/发行、AC022/031 或全部 Linux，也不承诺其他平台、ArkUI SDK 或编辑器支持。
