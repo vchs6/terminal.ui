@@ -24,3 +24,4 @@ if [[ -c /dev/full ]]; then export CJTUI_COMPOSITION_DEV_FULL=1; else export CJT
 printf 'Composition artifacts: %s\n' "$artifacts"
 TERM=dumb COLORTERM='' timeout 30s tests/composition/target/release/bin/main
 node tests/composition/verify-files.mjs "$artifacts"
+bash tests/composition/application/run.sh
