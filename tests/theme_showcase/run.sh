@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd "$(dirname "$0")/../../.."
+cd "$(dirname "$0")/../.."
 node tests/theme_showcase/selftest.mjs
 node tests/theme_showcase/delivery.mjs
 source /workspace/work/validation/sdk/cangjie/envsetup.sh
