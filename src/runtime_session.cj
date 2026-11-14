@@ -75,6 +75,7 @@ class RuntimeSession {
     var cached: ?Frame = None
     var paintStates = ArrayList<PaintState>()
     var paintStatesValid = false
+    var paintOwners: ?PaintOwners = None
     var layoutGlyphPolicy = GlyphRenderPolicy.unicode()
     var cachedGlyphMarker = ""
     var measuredGlyphMarker = ""

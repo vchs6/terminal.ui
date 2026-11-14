@@ -60,3 +60,25 @@ func compositionDamage(old: ArrayList<PaintState>, current: ArrayList<PaintState
     }
     damage
 }
+
+// Resolve visibility from the source that actually owns the final cell, not
+// from its glyph or the writes that happened in this particular target pass.
+func resolvePaintedCaret(session: RuntimeSession, frame: Frame, states: ArrayList<PaintState>): Unit {
+    if (let Some(request) <- session.pendingCaret) {
+        if (!request.owner.isValid()) { session.pendingCaret = None; return }
+        if (request.x < 0 || request.y < 0 || request.x >= frame.width || request.y >= frame.height) { return }
+        let writer = frame.getPaintOwners().at(request.x, request.y)
+        if (writer < 0) { return }
+        let owner = request.owner.resolve().id
+        var ownerOrder: Int64 = -1
+        var writerOrder: Int64 = -1
+        for (i in 0..states.size) {
+            if (states[i].id == owner) { ownerOrder = i }
+            if (states[i].id == writer) { writerOrder = i }
+        }
+        if (ownerOrder < 0 || writerOrder < 0) {
+            throw UIException("InvalidPaintOwner", "caret source is outside the composed scene")
+        }
+        if (writerOrder > ownerOrder) { session.pendingCaret = None }
+    }
+}

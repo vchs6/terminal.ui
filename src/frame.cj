@@ -13,8 +13,8 @@ public class Frame {
     private var owner: ?RuntimeSession
     private var damage: ?DamageRows = None
     private var painting: ?RuntimeNode = None
-    private var observedCaret: ?CaretRequest = None
-    private var caretCovered = false
+    private var paintOwners: ?PaintOwners = None
+    private var ownerOverride: ?Int64 = None
     public init(width: Int64, height: Int64, ambiguousWide!: Bool = false, transparent!: Bool = false,
         maxCells!: Int64 = 1048576) {
         this(Option<RuntimeSession>.None, width, height, ambiguousWide, transparent, maxCells)
@@ -72,33 +72,16 @@ public class Frame {
     func finishReplay(): Unit { damage = None }
     func filterRows(value: DamageRows): Unit { damage = Some(value) }
     func paintingNode(node: ?RuntimeNode): Unit { painting = node }
-    func finishCaret(session: RuntimeSession): Unit {
-        if (let Some(request) <- session.pendingCaret) {
-            if (let Some(observed) <- observedCaret) {
-                if (refEq(request, observed) && caretCovered) { session.pendingCaret = None }
-            }
-        }
-    }
+    func setPaintOwners(value: PaintOwners): Unit { paintOwners = Some(value) }
+    func getPaintOwners(): PaintOwners { paintOwners.getOrThrow() }
     func releaseOwner(): Unit {
-        owner = None; damage = None; painting = None; observedCaret = None; caretCovered = false
+        owner = None; damage = None; painting = None; paintOwners = None; ownerOverride = None
     }
     private func writeCell(index: Int64, cell: Cell): Unit {
         let y = index / width
-        if (let Some(session) <- owner) {
-            if (session.trackCaret) {
-                if (let Some(node) <- painting) {
-                    if (let Some(request) <- session.pendingCaret) {
-                        var same = false
-                        if (let Some(observed) <- observedCaret) { same = refEq(request, observed) }
-                        if (!same) { observedCaret = Some(request); caretCovered = false }
-                        if (request.x == index % width && request.y == y) {
-                            let nodeRef = node.reference()
-                            let sameOwner = request.owner.sameNode(nodeRef)
-                            caretCovered = !cell.isTransparent && !sameOwner
-                        }
-                    }
-                }
-            }
+        if (let Some(owners) <- paintOwners) {
+            if (let Some(value) <- ownerOverride) { owners.set(index % width, y, value) }
+            else if (let Some(node) <- painting) { owners.set(index % width, y, node.id) }
         }
         var row = rows[y]
         if (row.frozen) {
@@ -331,12 +314,19 @@ public class Frame {
         let source = Array<Cell>(columns * selected.size, {i =>
             layer.rows[sy + selected[i / columns]].cells[sx + i % columns]
         })
+        let sourceOwners = if (paintOwners.isSome() && layer.paintOwners.isSome()) {
+            let ownership = layer.paintOwners.getOrThrow()
+            Array<Int64>(columns * selected.size, {i => ownership.at(sx + i % columns, sy + selected[i / columns])})
+        } else { Array<Int64>() }
         if (let Some(session) <- owner) { session.recordCells(source.size, source.size) }
+        let previousOverride = ownerOverride
+        try {
         for (entry in 0..selected.size) {
             let row = selected[entry]
             var col = 0
             while (col < columns) {
                 let cell = source[entry * columns + col]
+                if (!sourceOwners.isEmpty()) { ownerOverride = Some(sourceOwners[entry * columns + col]) }
                 if (cell.isTransparent) {
                     if (!skipTransparent) {
                         clearAt(dx + col, dy + row, transparent)
@@ -358,6 +348,7 @@ public class Frame {
                 }
             }
         }
+        } finally { ownerOverride = previousOverride }
     }
     public func writePlainText(path: String): Unit {
         File.writeTo(path, toPlainText().toArray())

@@ -468,15 +468,21 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         if (!root.isVisible) {
             let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
             let nextStates = ArrayList<PaintState>()
-            let canReplay = sessionRoot && session.paintStatesValid && session.cached.isSome() &&
+            let canReplay = sessionRoot && session.paintStatesValid && session.cached.isSome() && session.paintOwners.isSome() &&
                 session.cachedWidth == width && session.cachedHeight == height &&
                 session.cachedGlyphMarker == session.measuredGlyphMarker
             let empty = if (canReplay) {
                 let rows = compositionDamage(session.paintStates, nextStates, if (width == 0) { 0 } else { height })
-                session.cached.getOrThrow().replayForSession(session, rows)
+                let result = session.cached.getOrThrow().replayForSession(session, rows)
+                result.setPaintOwners(session.paintOwners.getOrThrow().replay(rows))
+                result
             } else { Frame.forSession(width, height, session) }
             try {
-                if (sessionRoot) { session.paintStates = nextStates; session.paintStatesValid = true }
+                if (sessionRoot) {
+                    if (!canReplay) { empty.setPaintOwners(PaintOwners(width, height)) }
+                    session.paintStates = nextStates; session.paintOwners = Some(empty.getPaintOwners())
+                    session.paintStatesValid = true
+                }
                 return empty
             } finally { empty.finishReplay(); empty.releaseOwner() }
         }
@@ -580,7 +586,7 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
             collectPaintStates(node, nextStates)
             for (layer in layers) { collectPaintStates(layer.node, nextStates) }
         }
-        let canReplay = sessionRoot && session.paintStatesValid && session.cached.isSome() &&
+        let canReplay = sessionRoot && session.paintStatesValid && session.cached.isSome() && session.paintOwners.isSome() &&
             session.cachedWidth == width && session.cachedHeight == height &&
             session.cachedGlyphMarker == session.measuredGlyphMarker
         let damage: ?DamageRows = if (canReplay) {
@@ -590,6 +596,12 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
             session.cached.getOrThrow().replayForSession(session, rows)
         } else { Frame.forSession(width, height, session) }
         try {
+        if (sessionRoot) {
+            let owners = if (let Some(rows) <- damage) {
+                session.paintOwners.getOrThrow().replay(rows)
+            } else { PaintOwners(width, height) }
+            frame.setPaintOwners(owners)
+        }
         if (let Some(rows) <- damage) {
             if (let Some(previous) <- session.lastCaret) {
                 if (!rows.contains(previous.y) && previous.owner.isValid()) {
@@ -602,30 +614,21 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
             }
         }
         paint(node, frame, damage:damage)
-        if (reuse) { frame.finishCaret(session) }
         for (layer in layers) {
             let overlay = if (let Some(rows) <- damage) {
                 Frame.replayLayer(width,height,session,rows)
             } else { Frame.forSession(width,height,session,transparent:true) }
             try {
+                if (sessionRoot) { overlay.setPaintOwners(PaintOwners(width, height, damage:damage)) }
                 paint(layer.node,overlay,damage:damage)
-                if (reuse) { overlay.finishCaret(session) }
-                // Compositing can also clear a target wide-cell partner beyond
-                // an opaque source cell. Attribute those writes to the layer
-                // when the caret belongs to a lower layer.
-                let layerRoot = layer.node.component.readMount().getOrThrow()
-                var lowerCaret = false
-                if (reuse) {
-                    if (let Some(request) <- session.pendingCaret) {
-                        if (request.owner.isValid()) { lowerCaret = !session.overlayAncestor(layerRoot, request.owner.resolve()) }
-                    }
-                }
-                if (lowerCaret) { frame.paintingNode(Some(layerRoot)) }
-                try { frame.composite(overlay) } finally { frame.paintingNode(Option<RuntimeNode>.None) }
-                if (lowerCaret) { frame.finishCaret(session) }
+                frame.composite(overlay)
             } finally { overlay.releaseOwner() }
         }
-        if (sessionRoot) { session.paintStates = nextStates; session.paintStatesValid = true }
+        if (sessionRoot) {
+            resolvePaintedCaret(session, frame, nextStates)
+            session.paintStates = nextStates; session.paintOwners = Some(frame.getPaintOwners())
+            session.paintStatesValid = true
+        }
         return frame
     } finally { frame.finishReplay(); frame.releaseOwner() }
 }
