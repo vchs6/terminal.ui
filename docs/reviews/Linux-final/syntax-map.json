@@ -1,0 +1,2334 @@
+{
+  "schema": "cjtui-task002-final-syntax-projection-v1",
+  "task": "TASK-002 / AC-002",
+  "classification": "independent language evidence projection; documentation only; no new design/API",
+  "candidate": "c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960",
+  "product_version": "0.0.0",
+  "sdk": {
+    "compiler": "1.2.0 (cjnative)",
+    "cjpm": "1.2.0",
+    "target": "x86_64-unknown-linux-gnu",
+    "original_version_record": {
+      "path": "/workspace/work/dynamic-execution/evidence/versions/stdout",
+      "bytes": 441,
+      "sha256": "48b40dd8c07372c8025f0f4a45d8cb4079b0d0afbad0ab875f1711a5fc1b2a44"
+    }
+  },
+  "execution": {
+    "new_builds": 0,
+    "new_tests": 0,
+    "new_runtime_or_editor_probes": 0,
+    "archive_decompression": 0,
+    "meaning": "Existing actual proof reused under AGENTS11.1; hashes checked against original independent executor files; no fresh c862 compiler run."
+  },
+  "original_acceptance_text": "分别证明组件块、链、状态、条件/列表、自定义组件与回调；记录失败定位与限制；证据待实施时链接",
+  "status": {
+    "002.a": "mapped to fixed original source members and ordinary CJPM commands",
+    "002.b": "reused actual accepted positive/negative compiler proof for unchanged syntax scope; no changed original syntax fixture",
+    "002.c": "documented verified restrictions, diagnostic quality and unknown editor support",
+    "002.d": "pending independent final clause-by-clause review/acceptance; this projection is not an acceptance verdict",
+    "AC-002": "pending final independent acceptance/integration",
+    "Linux": "not concluded"
+  },
+  "requirements": [
+    {
+      "id": "component-blocks",
+      "original_requirement": "组件块",
+      "source_members": [
+        "examples/reactive/src/main.cj",
+        "examples/theme_showcase/src/gallery_view.cj",
+        "src/component_collector.cj"
+      ],
+      "proof_ids": [
+        "macro-positive-build",
+        "macro-positive-direct",
+        "D141-showcase"
+      ],
+      "syntax_and_limit": "Column { Text(...) }; nested blocks are original CJ source",
+      "source_commands": "See public_examples or macro-positive/dynamic ordinary commands; no source rewriting",
+      "final_independent_review": "pending"
+    },
+    {
+      "id": "attribute-chains",
+      "original_requirement": "属性链",
+      "source_members": [
+        "examples/dynamic/src/main.cj",
+        "examples/theme_showcase/src/gallery_view.cj",
+        "src/component.cj"
+      ],
+      "proof_ids": [
+        "dynamic-example-build",
+        "dynamic-example-smoke",
+        "D141-showcase"
+      ],
+      "syntax_and_limit": "Text(...).foreground(...); nested container .height/.layoutWeight/.onMount chains",
+      "source_commands": "See public_examples or macro-positive/dynamic ordinary commands; no source rewriting",
+      "final_independent_review": "pending"
+    },
+    {
+      "id": "state-and-binding",
+      "original_requirement": "状态与绑定",
+      "source_members": [
+        "examples/reactive/src/main.cj",
+        "tests/runtime/macros/positive/src/generic_panel.cj",
+        "tests/runtime/macros/positive/src/parameter_panel.cj",
+        "src/macros/state_macro.cj",
+        "src/macros/bind_macro.cj",
+        "src/observable.cj"
+      ],
+      "proof_ids": [
+        "macro-positive-build",
+        "macro-positive-direct",
+        "negative-fixtures"
+      ],
+      "syntax_and_limit": "@State typed initialized mutable instance field; @Bind typed closure; ordinary initial value is not reactive",
+      "source_commands": "See public_examples or macro-positive/dynamic ordinary commands; no source rewriting",
+      "final_independent_review": "pending"
+    },
+    {
+      "id": "condition-and-list",
+      "original_requirement": "条件/列表",
+      "source_members": [
+        "examples/dynamic/src/main.cj",
+        "tests/dynamic/src/conditional_cases.cj",
+        "tests/dynamic/src/identity_cases.cj",
+        "tests/dynamic/src/validation_cases.cj",
+        "src/conditional_declaration.cj",
+        "src/foreach_declaration.cj",
+        "src/list_item.cj"
+      ],
+      "proof_ids": [
+        "dynamic-build",
+        "dynamic-direct",
+        "dynamic-example-build",
+        "dynamic-example-smoke"
+      ],
+      "syntax_and_limit": "ordinary if/for build once; If at most one active root, ForEach exactly one root per nonempty unique key",
+      "source_commands": "See public_examples or macro-positive/dynamic ordinary commands; no source rewriting",
+      "final_independent_review": "pending"
+    },
+    {
+      "id": "custom-components",
+      "original_requirement": "自定义组件",
+      "source_members": [
+        "tests/runtime/macros/positive/src/generic_panel.cj",
+        "tests/runtime/macros/positive/src/parameter_panel.cj",
+        "tests/runtime/macros/positive/src/default_panel.cj",
+        "tests/runtime/macros/positive/src/nested_return_panel.cj",
+        "examples/composition/src/job_panel.cj",
+        "examples/theme_showcase/src/gallery_view.cj",
+        "src/macros/component_macro.cj"
+      ],
+      "proof_ids": [
+        "macro-positive-build",
+        "macro-positive-direct",
+        "negative-fixtures",
+        "AC021",
+        "D141-showcase"
+      ],
+      "syntax_and_limit": "generic/two interfaces/explicit and generated init/private State/throw/nested return; manual subclass preserved",
+      "source_commands": "See public_examples or macro-positive/dynamic ordinary commands; no source rewriting",
+      "final_independent_review": "pending"
+    },
+    {
+      "id": "callbacks",
+      "original_requirement": "回调",
+      "source_members": [
+        "examples/reactive/src/main.cj",
+        "examples/dynamic/src/main.cj",
+        "examples/theme_showcase/src/gallery_view.cj",
+        "tests/runtime/src/events.cj",
+        "src/application.cj"
+      ],
+      "proof_ids": [
+        "macro-positive-build",
+        "dynamic-example-build",
+        "dynamic-example-smoke",
+        "D141-showcase"
+      ],
+      "syntax_and_limit": "ordinary typed Cangjie closures; onKey/onMount/button/menu callbacks",
+      "source_commands": "See public_examples or macro-positive/dynamic ordinary commands; no source rewriting",
+      "final_independent_review": "pending"
+    }
+  ],
+  "ordinary_commands": {
+    "macro-positive": "cd tests/runtime/macros/positive && cjpm build",
+    "macro-positive-direct": "TERM=dumb COLORTERM= timeout 45s tests/runtime/macros/positive/target/release/bin/main </dev/null",
+    "macro-negative-suite": "./tests/runtime/macros/run.sh",
+    "dynamic": "cd tests/dynamic && cjpm build",
+    "dynamic-direct": "TERM=dumb COLORTERM= timeout 45s tests/dynamic/target/release/bin/main </dev/null",
+    "sdk_prerequisites": "Existing SDK1.2/stdx/UCD/project dependencies per environment.md/dependencies.md; no shared configuration edits"
+  },
+  "proofs": {
+    "macro-positive-build": {
+      "historical_candidate": "216b2ab5f2315f4be19467b7e49f4047aec78ab9",
+      "actual_command": "bash -c cd\\ tests/runtime/macros/positive\\ \\&\\&\\ cjpm\\ build",
+      "actual_exit": 0,
+      "records": [
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-build/command",
+          "bytes": 62,
+          "sha256": "6eec4a4921e47df5c13ffc04bd7f3116506693b164a43be825a70c9e7d718c90",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-build/command"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-build/cwd",
+          "bytes": 41,
+          "sha256": "3944a9c5d11200b61a34abdb2bee424341448001ac25ce1abc374a6fb0d36100",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-build/cwd"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-build/start",
+          "bytes": 21,
+          "sha256": "3ac63fcd95b939461518d1fd1e1ba30411d3ab921ab68ab2a10af337846b107d",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-build/start"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-build/end",
+          "bytes": 21,
+          "sha256": "32b65bbb902ee3c0d6de3fefcf633f093bc4d1d135b4055c25e37d2bb34b3bea",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-build/end"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-build/exit",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-build/exit"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-build/stdout",
+          "bytes": 19,
+          "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-build/stdout"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-build/stderr",
+          "bytes": 861,
+          "sha256": "5175bc74b049cd50f4fae74ea1d13dee14df8acf7484185eb7649c35b6c54d87",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-build/stderr"
+        }
+      ]
+    },
+    "macro-positive-direct": {
+      "historical_candidate": "216b2ab5f2315f4be19467b7e49f4047aec78ab9",
+      "actual_command": "env TERM=dumb COLORTERM= timeout 45s tests/runtime/macros/positive/target/release/bin/main",
+      "actual_exit": 0,
+      "records": [
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-direct/command",
+          "bytes": 92,
+          "sha256": "cfcba6c6567c40a663cbcd6b6c7e014db470ba189eeb3776632ca89f6f452d87",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-direct/command"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-direct/cwd",
+          "bytes": 41,
+          "sha256": "3944a9c5d11200b61a34abdb2bee424341448001ac25ce1abc374a6fb0d36100",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-direct/cwd"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-direct/start",
+          "bytes": 21,
+          "sha256": "32b65bbb902ee3c0d6de3fefcf633f093bc4d1d135b4055c25e37d2bb34b3bea",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-direct/start"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-direct/end",
+          "bytes": 21,
+          "sha256": "32b65bbb902ee3c0d6de3fefcf633f093bc4d1d135b4055c25e37d2bb34b3bea",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-direct/end"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-direct/exit",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-direct/exit"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-direct/stdout",
+          "bytes": 1135,
+          "sha256": "b0a8c1fc36aca5f27254e48756cce1b6b5f8d533babfdea5a1f8b0df1b38ac80",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-direct/stdout"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/macro-positive-direct/stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R13/execution/evidence/macro-positive-direct/stderr"
+        }
+      ]
+    },
+    "dynamic-build": {
+      "historical_candidate": "216b2ab5f2315f4be19467b7e49f4047aec78ab9",
+      "actual_command": "bash -c cd\\ tests/dynamic\\ \\&\\&\\ cjpm\\ build",
+      "actual_exit": 0,
+      "records": [
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-build/command",
+          "bytes": 46,
+          "sha256": "b4936054da859a8f8f4d9f8e46b9503d82e9ff91b43ce8d3bb0022a62bbd95f5",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-build/command"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-build/cwd",
+          "bytes": 41,
+          "sha256": "3944a9c5d11200b61a34abdb2bee424341448001ac25ce1abc374a6fb0d36100",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-build/cwd"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-build/start",
+          "bytes": 21,
+          "sha256": "135b86fa8dd232d1e563d26d0d28097aaab52f94813b718125437ecfcaceeea4",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-build/start"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-build/end",
+          "bytes": 21,
+          "sha256": "2be250c467b173dff37349d6d27b6ce9d9032c096175e7888c6f8d6803ae47ca",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-build/end"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-build/exit",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-build/exit"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-build/stdout",
+          "bytes": 19,
+          "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-build/stdout"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-build/stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-build/stderr"
+        }
+      ]
+    },
+    "dynamic-direct": {
+      "historical_candidate": "216b2ab5f2315f4be19467b7e49f4047aec78ab9",
+      "actual_command": "env TERM=dumb COLORTERM= timeout 45s tests/dynamic/target/release/bin/main",
+      "actual_exit": 0,
+      "records": [
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-direct/command",
+          "bytes": 76,
+          "sha256": "ae7c3141c8dbab0741fef3710ffc9096f2f562dc53c8201bac381cb63ef575ab",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-direct/command"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-direct/cwd",
+          "bytes": 41,
+          "sha256": "3944a9c5d11200b61a34abdb2bee424341448001ac25ce1abc374a6fb0d36100",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-direct/cwd"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-direct/start",
+          "bytes": 21,
+          "sha256": "2be250c467b173dff37349d6d27b6ce9d9032c096175e7888c6f8d6803ae47ca",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-direct/start"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-direct/end",
+          "bytes": 21,
+          "sha256": "2be250c467b173dff37349d6d27b6ce9d9032c096175e7888c6f8d6803ae47ca",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-direct/end"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-direct/exit",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-direct/exit"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-direct/stdout",
+          "bytes": 1130,
+          "sha256": "9a7f38dbf5a60d5322eb44496c8163fe3696a849122fb2e015b78950837a9545",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-direct/stdout"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-direct/stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-direct/stderr"
+        }
+      ]
+    },
+    "dynamic-example-build": {
+      "historical_candidate": "216b2ab5f2315f4be19467b7e49f4047aec78ab9",
+      "actual_command": "bash -c cd\\ examples/dynamic\\ \\&\\&\\ cjpm\\ build",
+      "actual_exit": 0,
+      "records": [
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-build/command",
+          "bytes": 49,
+          "sha256": "1191dbe5a5b648380977452f883f8a00876c7a7986cbf41d44bb1b7ead92823d",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-build/command"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-build/cwd",
+          "bytes": 41,
+          "sha256": "3944a9c5d11200b61a34abdb2bee424341448001ac25ce1abc374a6fb0d36100",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-build/cwd"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-build/start",
+          "bytes": 21,
+          "sha256": "363f45a9f6a827487a955ca88291baccbe6b6e842a71cd74f257709c4679c864",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-build/start"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-build/end",
+          "bytes": 21,
+          "sha256": "44f8429c98ee565b0870ba3a2fb663e71a9052e1869125e56ffa393eeb200fc6",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-build/end"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-build/exit",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-build/exit"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-build/stdout",
+          "bytes": 19,
+          "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-build/stdout"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-build/stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-build/stderr"
+        }
+      ]
+    },
+    "dynamic-example-smoke": {
+      "historical_candidate": "216b2ab5f2315f4be19467b7e49f4047aec78ab9",
+      "actual_command": "env TERM=dumb COLORTERM= timeout 45s examples/dynamic/target/release/bin/main --smoke",
+      "actual_exit": 0,
+      "records": [
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-smoke/command",
+          "bytes": 87,
+          "sha256": "e081b1b8c9d145f8a7c2b616530039f58c70952cb2148d67b2d99d37e4844c7f",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-smoke/command"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-smoke/cwd",
+          "bytes": 41,
+          "sha256": "3944a9c5d11200b61a34abdb2bee424341448001ac25ce1abc374a6fb0d36100",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-smoke/cwd"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-smoke/start",
+          "bytes": 21,
+          "sha256": "44f8429c98ee565b0870ba3a2fb663e71a9052e1869125e56ffa393eeb200fc6",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-smoke/start"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-smoke/end",
+          "bytes": 21,
+          "sha256": "44f8429c98ee565b0870ba3a2fb663e71a9052e1869125e56ffa393eeb200fc6",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-smoke/end"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-smoke/exit",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-smoke/exit"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-smoke/stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-smoke/stdout"
+        },
+        {
+          "path": "/workspace/work/dynamic-execution/evidence/dynamic-example-smoke/stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R13/execution/evidence/dynamic-example-smoke/stderr"
+        }
+      ]
+    }
+  },
+  "negative_fixtures": [
+    {
+      "fixture": "init-return",
+      "source_members": [
+        "tests/runtime/macros/negative/init-return/cjpm.toml",
+        "tests/runtime/macros/negative/init-return/src/fixture.cj",
+        "tests/runtime/macros/negative/init-return/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/init-return && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "return|constructor|init",
+      "observed_source_locations": [
+        "fixture.cj:9:23"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/init-return.diagnostics",
+          "bytes": 454,
+          "sha256": "8e5ba87e0d1ad8088ceb63b44c851ff1cf24fea6abb45631f1e8f99e8450ab27",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/init-return.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/init-return.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/init-return.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/init-return.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/init-return.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/init-return.stderr",
+          "bytes": 530,
+          "sha256": "51d97e8187da617928fc68ee36927fd7dfc6278e7dca82fad0b5c7867cc16557",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/init-return.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "open-component",
+      "source_members": [
+        "tests/runtime/macros/negative/open-component/cjpm.toml",
+        "tests/runtime/macros/negative/open-component/src/fixture.cj",
+        "tests/runtime/macros/negative/open-component/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/open-component && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "open|component|Component",
+      "observed_source_locations": [
+        "fixture.cj:8:1"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/open-component.diagnostics",
+          "bytes": 430,
+          "sha256": "cbe6e0dd944177d962e6994a8b119eb495cf438c07928c93eee35e7af66c31b2",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/open-component.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/open-component.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/open-component.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/open-component.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/open-component.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/open-component.stderr",
+          "bytes": 506,
+          "sha256": "55e99dcf920959ed142e774f02f2c4c83263078be8f885b76202ac285f733ad5",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/open-component.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "abstract-component",
+      "source_members": [
+        "tests/runtime/macros/negative/abstract-component/cjpm.toml",
+        "tests/runtime/macros/negative/abstract-component/src/fixture.cj",
+        "tests/runtime/macros/negative/abstract-component/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/abstract-component && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "abstract|component|Component",
+      "observed_source_locations": [
+        "fixture.cj:8:1"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/abstract-component.diagnostics",
+          "bytes": 446,
+          "sha256": "34f29b173e2700b9af0513b0756d947805408962260cf3cbd1b0ff03d5c2eb05",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/abstract-component.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/abstract-component.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/abstract-component.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/abstract-component.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/abstract-component.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/abstract-component.stderr",
+          "bytes": 522,
+          "sha256": "6ab7cc3db3b6b6266f0fdcce35f24b79cf9a2a2d6834562afd15e93b57af170d",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/abstract-component.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "superclass",
+      "source_members": [
+        "tests/runtime/macros/negative/superclass/cjpm.toml",
+        "tests/runtime/macros/negative/superclass/src/base.cj",
+        "tests/runtime/macros/negative/superclass/src/fixture.cj",
+        "tests/runtime/macros/negative/superclass/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/superclass && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "super|inherit|Base|component|Component",
+      "observed_source_locations": [
+        "fixture.cj:7:1",
+        "fixture.cj:8:14"
+      ],
+      "diagnostic_limit": "SDK multiple superclass diagnostic plus Component macro origin",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/superclass.diagnostics",
+          "bytes": 809,
+          "sha256": "463db766fe25b1e9b55e398868558e1bdb1a0ae8bd140db724819e3fada58c7b",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/superclass.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/superclass.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/superclass.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/superclass.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/superclass.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/superclass.stderr",
+          "bytes": 1037,
+          "sha256": "beb2a7cb02cd2be9eea2ce33ba26d389d8e7a293ddf83889d87a60bf35e2b136",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/superclass.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "delegating-init",
+      "source_members": [
+        "tests/runtime/macros/negative/delegating-init/cjpm.toml",
+        "tests/runtime/macros/negative/delegating-init/src/fixture.cj",
+        "tests/runtime/macros/negative/delegating-init/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/delegating-init && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "delegat|this|constructor|init",
+      "observed_source_locations": [
+        "fixture.cj:10:18"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/delegating-init.diagnostics",
+          "bytes": 432,
+          "sha256": "085de6aea1802806c44ea7933bdeed621943976b4565ebd34421217e51f5e894",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/delegating-init.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/delegating-init.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/delegating-init.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/delegating-init.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/delegating-init.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/delegating-init.stderr",
+          "bytes": 508,
+          "sha256": "195f968716a32310ea48959ec1dd494f3f8129956e4cf144412dbe98fcf39236",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/delegating-init.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "state-let",
+      "source_members": [
+        "tests/runtime/macros/negative/state-let/cjpm.toml",
+        "tests/runtime/macros/negative/state-let/src/fixture.cj",
+        "tests/runtime/macros/negative/state-let/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/state-let && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "State|state|let|var|mutable",
+      "observed_source_locations": [
+        "fixture.cj:9:12"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-let.diagnostics",
+          "bytes": 403,
+          "sha256": "a0b28d38812e67c3e13ec9f5137ea53b80dd6934cac18f2232baa461fc108f86",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-let.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-let.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-let.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-let.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-let.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-let.stderr",
+          "bytes": 479,
+          "sha256": "f963b9bfe4e59c395b2168169f34f5b97a84de2c4739a5c8e0d27d737cb75859",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-let.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "state-static",
+      "source_members": [
+        "tests/runtime/macros/negative/state-static/cjpm.toml",
+        "tests/runtime/macros/negative/state-static/src/fixture.cj",
+        "tests/runtime/macros/negative/state-static/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/state-static && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "State|state|static|instance",
+      "observed_source_locations": [
+        "fixture.cj:9:12"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-static.diagnostics",
+          "bytes": 423,
+          "sha256": "43b6258e0afac2fd46c252be5dd4509e6c9cfbd272b75155b88ccb7fc6a2112b",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-static.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-static.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-static.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-static.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-static.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-static.stderr",
+          "bytes": 499,
+          "sha256": "85f13d98a4aa2f24f1d51a686e6557f8b00d3cd5cca5835155aa0f5295e06fe5",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-static.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "state-no-type",
+      "source_members": [
+        "tests/runtime/macros/negative/state-no-type/cjpm.toml",
+        "tests/runtime/macros/negative/state-no-type/src/fixture.cj",
+        "tests/runtime/macros/negative/state-no-type/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/state-no-type && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "State|state|type|explicit",
+      "observed_source_locations": [
+        "fixture.cj:9:5"
+      ],
+      "diagnostic_limit": "SDK ASTException followed by source-located macro evaluation failure",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-no-type.diagnostics",
+          "bytes": 736,
+          "sha256": "8ada5caced2dc571ca317e1e72f2e6d5319cad371661d913f642de193ef62708",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-no-type.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-no-type.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-no-type.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-no-type.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-no-type.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-no-type.stderr",
+          "bytes": 812,
+          "sha256": "94a681ca0b5a632665f7deafa6e776b767b2c19e8b5b803ba7f27777c646d017",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-no-type.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "state-no-initial",
+      "source_members": [
+        "tests/runtime/macros/negative/state-no-initial/cjpm.toml",
+        "tests/runtime/macros/negative/state-no-initial/src/fixture.cj",
+        "tests/runtime/macros/negative/state-no-initial/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/state-no-initial && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "State|state|initial|value",
+      "observed_source_locations": [
+        "fixture.cj:9:5"
+      ],
+      "diagnostic_limit": "SDK ASTException followed by source-located macro evaluation failure",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-no-initial.diagnostics",
+          "bytes": 743,
+          "sha256": "8032e01fc507ed7c168dbaa434f5facbedf99b26a7b8b3065f345fc1f874a9f1",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-no-initial.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-no-initial.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-no-initial.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-no-initial.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-no-initial.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-no-initial.stderr",
+          "bytes": 819,
+          "sha256": "ee2b0875134b8cba75e1a0c95cb5b6bc965a09e2b57e1d6dd167b69fe15e73db",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-no-initial.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "state-duplicate",
+      "source_members": [
+        "tests/runtime/macros/negative/state-duplicate/cjpm.toml",
+        "tests/runtime/macros/negative/state-duplicate/src/fixture.cj",
+        "tests/runtime/macros/negative/state-duplicate/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/state-duplicate && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "State|state|repeat|duplicate",
+      "observed_source_locations": [
+        "fixture.cj:9:12"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-duplicate.diagnostics",
+          "bytes": 403,
+          "sha256": "ffb8381300fb3e73d124f217357b24f87fc2baf0160f734321eee896d6ec1328",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-duplicate.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-duplicate.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-duplicate.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-duplicate.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-duplicate.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-duplicate.stderr",
+          "bytes": 479,
+          "sha256": "188fb6f9f18fdd71d7845277b3d2078208b404751ff51b9aa3889377f4f6effc",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-duplicate.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "state-nonmember",
+      "source_members": [
+        "tests/runtime/macros/negative/state-nonmember/cjpm.toml",
+        "tests/runtime/macros/negative/state-nonmember/src/fixture.cj",
+        "tests/runtime/macros/negative/state-nonmember/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/state-nonmember && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "State|state|member|instance",
+      "observed_source_locations": [
+        "fixture.cj:7:1"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-nonmember.diagnostics",
+          "bytes": 400,
+          "sha256": "d4a82f89b78beb8f6c46ef05f9020f2f2bf7936744b08db284e508eda0f8065a",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-nonmember.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-nonmember.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-nonmember.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-nonmember.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-nonmember.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-nonmember.stderr",
+          "bytes": 476,
+          "sha256": "058089fe0ebf30e20a5da25adc8e3558cdee13bcdc7e4d74c617c293a14e17b7",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-nonmember.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "finish-call",
+      "source_members": [
+        "tests/runtime/macros/negative/finish-call/cjpm.toml",
+        "tests/runtime/macros/negative/finish-call/src/fixture.cj",
+        "tests/runtime/macros/negative/finish-call/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/finish-call && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "finishConstruction|reserved|explicit|conflict",
+      "observed_source_locations": [
+        "fixture.cj:9:14"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/finish-call.diagnostics",
+          "bytes": 434,
+          "sha256": "82f36fa0e1aae173574ec8a56bd4d86332d5e4a1e34621700c6454098034c149",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/finish-call.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/finish-call.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/finish-call.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/finish-call.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/finish-call.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/finish-call.stderr",
+          "bytes": 510,
+          "sha256": "e549da7400305e4b6604b0995317304d0f8b11367c5976b74a7f530d32b0c649",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/finish-call.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "finish-name",
+      "source_members": [
+        "tests/runtime/macros/negative/finish-name/cjpm.toml",
+        "tests/runtime/macros/negative/finish-name/src/fixture.cj",
+        "tests/runtime/macros/negative/finish-name/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/finish-name && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "finishConstruction|reserved|conflict|override",
+      "observed_source_locations": [
+        "fixture.cj:9:10"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/finish-name.diagnostics",
+          "bytes": 433,
+          "sha256": "fea7f18e88190b19e153e746320f9c44a8c76d4f88596374d7eec7ba5e199067",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/finish-name.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/finish-name.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/finish-name.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/finish-name.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/finish-name.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/finish-name.stderr",
+          "bytes": 509,
+          "sha256": "3bf10a19c9194dac4842548dc1a9322bbe151ed6c53c71770f92acd0cdfd1fb8",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/finish-name.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "state-private",
+      "source_members": [
+        "tests/runtime/macros/negative/state-private/cjpm.toml",
+        "tests/runtime/macros/negative/state-private/src/fixture.cj",
+        "tests/runtime/macros/negative/state-private/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/state-private && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "main.cj",
+      "required_concept_pattern": "hidden|private|accessible",
+      "observed_source_locations": [
+        "main.cj:3:29"
+      ],
+      "diagnostic_limit": "exact diagnostic retained; no finer location guarantee than recorded line/column",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-private.diagnostics",
+          "bytes": 411,
+          "sha256": "1efe59cc9339a44fdb7ea0d6c9e741412d75565ba70136a126837edaae38aaa5",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-private.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-private.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-private.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-private.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-private.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/state-private.stderr",
+          "bytes": 487,
+          "sha256": "c446f9e4081040f976c5f08770cbe258a04c4809a139f2826c944f96244517b8",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/state-private.stderr"
+        }
+      ]
+    },
+    {
+      "fixture": "bind-type",
+      "source_members": [
+        "tests/runtime/macros/negative/bind-type/cjpm.toml",
+        "tests/runtime/macros/negative/bind-type/src/fixture.cj",
+        "tests/runtime/macros/negative/bind-type/src/main.cj"
+      ],
+      "ordinary_command": "cd tests/runtime/macros/negative/bind-type && cjpm build --target-dir ../../target",
+      "actual_exit": 1,
+      "required_location_file": "fixture.cj",
+      "required_concept_pattern": "String|Int|match|type",
+      "observed_source_locations": [
+        "fixture.cj:7:1"
+      ],
+      "diagnostic_limit": "outer Component macro call and expanded type mismatch",
+      "records": [
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/bind-type.diagnostics",
+          "bytes": 705,
+          "sha256": "2000954ba2c335e9b7fdb7cf919e95522193e8b451e25a8d7bea1b9a35054046",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/bind-type.diagnostics"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/bind-type.exit",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/bind-type.exit"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/bind-type.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/bind-type.stdout"
+        },
+        {
+          "path": "/workspace/work/runtime-execution/r12-execution-draft/evidence/c3/reused-macro-negatives/artifacts/bind-type.stderr",
+          "bytes": 1004,
+          "sha256": "62cc31d6b22339b822df783acd95e44944786ca4787ea734a04690a1fb1dfa11",
+          "logical_path": "docs/reviews/R12/execution/evidence/c3/reused-macro-negatives/artifacts/bind-type.stderr"
+        }
+      ]
+    }
+  ],
+  "public_examples": [
+    {
+      "directory": "examples/colors",
+      "manifest": {
+        "path": "examples/colors/cjpm.toml",
+        "bytes": 157,
+        "sha256": "3c661104075cb4a93878a25d08625379e8d225b58573ebf63abdec5b5c7da956",
+        "git_blob": "e9178f63c83a667d9b2fea3f6e1e759b4637ed73"
+      },
+      "source_members": [
+        {
+          "path": "examples/colors/src/color_demo.cj",
+          "bytes": 533,
+          "sha256": "b4ce66dd486cd8c541d41aee2516d7b28f1397ce5ea0a6cb90c380e5fdcd0500",
+          "git_blob": "ec9fd81d36308b6ecef423f1ab74ca8ef709ca3e"
+        },
+        {
+          "path": "examples/colors/src/main.cj",
+          "bytes": 1797,
+          "sha256": "e96e2f5703c9c8f1efc7d556284879d033a5bbd3e46de44242f6a6abc0629973",
+          "git_blob": "7a089f0108b1a5fc57d2321bbc71891797b55f9c"
+        }
+      ],
+      "ordinary_build_command": "cd examples/colors && cjpm build",
+      "ordinary_run_command": "cd examples/colors && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/composition",
+      "manifest": {
+        "path": "examples/composition/cjpm.toml",
+        "bytes": 162,
+        "sha256": "54106622fa89e23ee1cab8c28692f69d256335f8b7fbb2a31290a6520e50434f",
+        "git_blob": "614297357bf881adbec77820c712f8de2f83fecc"
+      },
+      "source_members": [
+        {
+          "path": "examples/composition/src/application_view.cj",
+          "bytes": 1434,
+          "sha256": "f57177b1f7c662c46b40ad0dba7d5073a1981e8e5e0b3429403f91ff0cbbb280",
+          "git_blob": "023d5ba9dbb5b8be4b54ffa5ed9bee13cbf74e26"
+        },
+        {
+          "path": "examples/composition/src/commands.cj",
+          "bytes": 3177,
+          "sha256": "e9fb3297c5c721a27cbc9d97a6bfc6c7627c5a6178bf7f779c363505fd45d1c2",
+          "git_blob": "e63e172a7b66be95cfac4f68ec0b741f1118aae0"
+        },
+        {
+          "path": "examples/composition/src/job_data.cj",
+          "bytes": 2648,
+          "sha256": "57c8c141de9ce6e4096af5674cf35d5b4093d23ba0c2a88cbb52abdf3ee92d7d",
+          "git_blob": "1373c156391561681c37f5800ff65b2375f0b1e9"
+        },
+        {
+          "path": "examples/composition/src/job_panel.cj",
+          "bytes": 2339,
+          "sha256": "85ffe69f24048f0074d4797682afe5e797567ac19e0f3059db26fffa79c6f03a",
+          "git_blob": "9ba48dbc3a367c1743f6f8cbd1deb58ed271ff6a"
+        },
+        {
+          "path": "examples/composition/src/logs_scene.cj",
+          "bytes": 1072,
+          "sha256": "9fd5a5e6ed1dabd66321dc7f171d9d75f7be833ac4fd5eee33e96c8d85e3fff1",
+          "git_blob": "ab6cfd06e0e857558ab949043d381dff880b12c6"
+        },
+        {
+          "path": "examples/composition/src/main.cj",
+          "bytes": 1887,
+          "sha256": "546ab16e176aa69777dbb2fb19a68ceebcfb8882ef888ca37dd70c02a2ba164e",
+          "git_blob": "80893fc2195a4f16d2acbdaa57edb0b640e938d6"
+        },
+        {
+          "path": "examples/composition/src/tasks_scene.cj",
+          "bytes": 1727,
+          "sha256": "5a17560296e0efe7f9bbadc922423f0d80d4d8818855e734d842260e82275cbd",
+          "git_blob": "9d85cfaa142f6b455db8e7f94c3b265d3e480ac2"
+        }
+      ],
+      "ordinary_build_command": "cd examples/composition && cjpm build",
+      "ordinary_run_command": "cd examples/composition && cjpm run",
+      "proof_scope": "AC021 independent acceptance of ordinary composition build/run and hand-written JobPanel; retained original scope",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/dynamic",
+      "manifest": {
+        "path": "examples/dynamic/cjpm.toml",
+        "bytes": 153,
+        "sha256": "39bf8f0e9be1530ca04f502461e4efaa84368b3636cbc324a298befe861c350e",
+        "git_blob": "06be3f0bd73265bb3890dafac525eb82b5dd9173"
+      },
+      "source_members": [
+        {
+          "path": "examples/dynamic/src/main.cj",
+          "bytes": 1823,
+          "sha256": "4ba21303d282c20752003e271e3ed741c4025fd73f045648d649fa759832d7d5",
+          "git_blob": "e33fc78f587d49e9632419e19a158b4c9996a61f"
+        }
+      ],
+      "ordinary_build_command": "cd examples/dynamic && cjpm build",
+      "ordinary_run_command": "cd examples/dynamic && cjpm run",
+      "proof_scope": "R13 dynamic-example-build/dynamic-example-smoke, original actual exit 0; unchanged source/configuration",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/editing",
+      "manifest": {
+        "path": "examples/editing/cjpm.toml",
+        "bytes": 160,
+        "sha256": "18f52465d02d11b55e254df4352518df448cf436170c8d8f30ee36a41adca748",
+        "git_blob": "b1c70604035b9600cc53db5fa770378d6ee878c8"
+      },
+      "source_members": [
+        {
+          "path": "examples/editing/src/main.cj",
+          "bytes": 950,
+          "sha256": "8354055a90e78815f0fb20e0411011163043bfdd86ef9af4574a0e9f44a40c2c",
+          "git_blob": "ddeb65b557a61321531327100e2d4ddfeb3c8241"
+        }
+      ],
+      "ordinary_build_command": "cd examples/editing && cjpm build",
+      "ordinary_run_command": "cd examples/editing && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/interaction_primitives",
+      "manifest": {
+        "path": "examples/interaction_primitives/cjpm.toml",
+        "bytes": 167,
+        "sha256": "ca2a6adb15e379efe1ba036efdba878f549f5db1f164a31d7a29381e413c7214",
+        "git_blob": "54aa9097a2bbf7f3ccc337135a7f318ea6a475ee"
+      },
+      "source_members": [
+        {
+          "path": "examples/interaction_primitives/src/main.cj",
+          "bytes": 1256,
+          "sha256": "b64f2f6d3589f7d299aebdb78c9abaa9eb3f5e9173b477e359794b53d064d861",
+          "git_blob": "f8e14a00b140973f7c0ba77d7cfc07a7b08a12f5"
+        }
+      ],
+      "ordinary_build_command": "cd examples/interaction_primitives && cjpm build",
+      "ordinary_run_command": "cd examples/interaction_primitives && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/keyboard",
+      "manifest": {
+        "path": "examples/keyboard/cjpm.toml",
+        "bytes": 167,
+        "sha256": "e2e93d506dbeadf77036da2294995a5daff9ee8079dde86302e841ffdc7ba3e2",
+        "git_blob": "305deff2282114f74cf49764649115a39c8522a4"
+      },
+      "source_members": [
+        {
+          "path": "examples/keyboard/src/main.cj",
+          "bytes": 278,
+          "sha256": "b58a718224848f4b6ea2dd19192e6dfaf801927765d21df34f4a30019add544e",
+          "git_blob": "a7c2aaa023a422cc6708483fd84da041dfd6df13"
+        }
+      ],
+      "ordinary_build_command": "cd examples/keyboard && cjpm build",
+      "ordinary_run_command": "cd examples/keyboard && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/layout",
+      "manifest": {
+        "path": "examples/layout/cjpm.toml",
+        "bytes": 157,
+        "sha256": "77169d29ae13be7467e9aec17b251abc5ce5b5fe6ff97afec0e9655952d19e2f",
+        "git_blob": "39a50aafca6c0bda3aae1e6b844bfe5c3c6dbdef"
+      },
+      "source_members": [
+        {
+          "path": "examples/layout/src/main.cj",
+          "bytes": 1130,
+          "sha256": "87999d29296a3c8d2cfe6c76ac7e62a98c69b90e7c2c1318922d8f38b342f51c",
+          "git_blob": "b20087552aad2e6d383fa49e07ea50ced91969c5"
+        }
+      ],
+      "ordinary_build_command": "cd examples/layout && cjpm build",
+      "ordinary_run_command": "cd examples/layout && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/minimal",
+      "manifest": {
+        "path": "examples/minimal/cjpm.toml",
+        "bytes": 158,
+        "sha256": "d301a62d68caaa94a7bccf19ea1fb9072309f8bfacfde7b1c0779055acd43f03",
+        "git_blob": "d2bef11dc488cea2a3b1095f6b2002f1790c5474"
+      },
+      "source_members": [
+        {
+          "path": "examples/minimal/src/main.cj",
+          "bytes": 917,
+          "sha256": "384bb2bc59b766f4d631abdc2b7e13a16eaf7518076136e1d4485c7234eab97a",
+          "git_blob": "f8499eaed66c02f28aa3f3654e5b68eb96fe4f71"
+        }
+      ],
+      "ordinary_build_command": "cd examples/minimal && cjpm build",
+      "ordinary_run_command": "cd examples/minimal && cjpm run",
+      "proof_scope": "AC021 independent acceptance of ordinary minimal build/run; retained original scope",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/overlay",
+      "manifest": {
+        "path": "examples/overlay/cjpm.toml",
+        "bytes": 160,
+        "sha256": "2d14c23472c5be030833a1ce1803984366e50602d5c93979743a1538f9969a9d",
+        "git_blob": "044087e27d61996b138b1da1a0a0a4428fe9d3d5"
+      },
+      "source_members": [
+        {
+          "path": "examples/overlay/src/box_overlay.cj",
+          "bytes": 134,
+          "sha256": "ad14d8a8a25ce1d40e071a771df358c8d6f983b8f84d2afbdbcdf33cfa9b740c",
+          "git_blob": "50534ee9766fa110bfd18bb7af245b2a404dcd8f"
+        },
+        {
+          "path": "examples/overlay/src/main.cj",
+          "bytes": 1337,
+          "sha256": "8cc9c50f8c021c7dc34f2fbc52477f0e822bf89a10dac8da659d957d64a7e93b",
+          "git_blob": "be768c3dd48b68eb024d203d865e438fd72d03a7"
+        },
+        {
+          "path": "examples/overlay/src/settings_panel.cj",
+          "bytes": 258,
+          "sha256": "7cdad678fee5bf4790b6a830ac5ca0a24128bfb7948f1dcda175aca36e5293bc",
+          "git_blob": "cc2dfb2162a82bd21df1ee9a7d66f0e98ae41703"
+        }
+      ],
+      "ordinary_build_command": "cd examples/overlay && cjpm build",
+      "ordinary_run_command": "cd examples/overlay && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/reactive",
+      "manifest": {
+        "path": "examples/reactive/cjpm.toml",
+        "bytes": 154,
+        "sha256": "04603fdc2371a427d09e2327a1fe8df8c3807d7f7b56bfddffc8d891ee369c20",
+        "git_blob": "b6c58ffd6d968c0b77bfd2364f7b8d570e0d5a9a"
+      },
+      "source_members": [
+        {
+          "path": "examples/reactive/src/main.cj",
+          "bytes": 424,
+          "sha256": "7c164a63ee6e6d437fdbbf4c20d886b7f8238ae0129e6196e3502ebbc1511373",
+          "git_blob": "5491d2e5a3e492827b74ff32a9911bb12868bfef"
+        }
+      ],
+      "ordinary_build_command": "cd examples/reactive && cjpm build",
+      "ordinary_run_command": "cd examples/reactive && cjpm run",
+      "proof_scope": "R12 accepted reactive build/real-host consumer; exact unchanged example since R13; six-area proof also uses macro-positive",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/rich-text",
+      "manifest": {
+        "path": "examples/rich-text/cjpm.toml",
+        "bytes": 344,
+        "sha256": "c06fe56096441776b0baa5484496705ec7dddc6c0c6f75783d49ec535c9ed6ad",
+        "git_blob": "23a999689c2585d51f8574ce82671ddac9757cc6"
+      },
+      "source_members": [
+        {
+          "path": "examples/rich-text/src/main.cj",
+          "bytes": 1652,
+          "sha256": "dff0d2bca92115d1d2c2f1d9c8412e2cb94d95844ec33c5af6037144437fb8b3",
+          "git_blob": "d594d2d4bdb1db540419c7ae5b88a8309acf1f8a"
+        }
+      ],
+      "ordinary_build_command": "cd examples/rich-text && cjpm build",
+      "ordinary_run_command": "cd examples/rich-text && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/session",
+      "manifest": {
+        "path": "examples/session/cjpm.toml",
+        "bytes": 371,
+        "sha256": "6dd3b60b6e8e8fcbe142d0d75717b5993fa846db83a44cc854859f21b7896e46",
+        "git_blob": "ee5b2ef76c59db392e558d5fbd64be92c8b1e93c"
+      },
+      "source_members": [
+        {
+          "path": "examples/session/src/main.cj",
+          "bytes": 1066,
+          "sha256": "59ba8a271a29e060151fe2849945a340e7ba3962ded42b30ca4d5902c4babb93",
+          "git_blob": "7c5ac33991f0c98232f03438adafa3dbf29ec238"
+        }
+      ],
+      "ordinary_build_command": "cd examples/session && cjpm build",
+      "ordinary_run_command": "cd examples/session && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/theme_showcase",
+      "manifest": {
+        "path": "examples/theme_showcase/cjpm.toml",
+        "bytes": 165,
+        "sha256": "d2e851b7686273d7eda98d51305e7691e0ef9051c3491a50b8d436852cf8cc18",
+        "git_blob": "62d15a4e7ca283afd3960ff297d7d8109d98d387"
+      },
+      "source_members": [
+        {
+          "path": "examples/theme_showcase/src/commands.cj",
+          "bytes": 3056,
+          "sha256": "34f2a30661645efe3bb9fe174d07af813fbcb3ff1aae74807e950c47e22e6800",
+          "git_blob": "3a73b49890e2482e63f1512e9296a1d297ad9388"
+        },
+        {
+          "path": "examples/theme_showcase/src/gallery_data.cj",
+          "bytes": 427,
+          "sha256": "1526ad1f3d4dbc92436bfc5250c0f0bec6202a2c3d0c0c03de9d52566e9035b6",
+          "git_blob": "391a0885c5fafad43ef6f3653061b197ee2030be"
+        },
+        {
+          "path": "examples/theme_showcase/src/gallery_view.cj",
+          "bytes": 3040,
+          "sha256": "e8ccdc105be8bcfc8be8bd7307a82f59522943aadec139f175ccb124b579d5cd",
+          "git_blob": "8e6a3f2e1a0f118c93238e946cf98cbb6afa6610"
+        },
+        {
+          "path": "examples/theme_showcase/src/main.cj",
+          "bytes": 809,
+          "sha256": "309a0b30b8b1a77ddd4ae35378b89dc4085b7a514e964a8f4d7d6abb4d8e6502",
+          "git_blob": "ce65b611e6750fb48173c97964e14a30ab48f5c6"
+        },
+        {
+          "path": "examples/theme_showcase/src/preview.cj",
+          "bytes": 691,
+          "sha256": "d638fadd4d5200ca143facadca8fd72ce4fa6d31b74d5a32e6bf5bf44f42f963",
+          "git_blob": "5cf024161089566f8e95144ee6ac0d7e2cd83f6f"
+        },
+        {
+          "path": "examples/theme_showcase/src/smoke.cj",
+          "bytes": 951,
+          "sha256": "85ec707502f719eed23d5362de6417aff8d55310504630a51e3cec50ac235592",
+          "git_blob": "e9bf3cb17da9167f50d45a37197a45d474b93a28"
+        }
+      ],
+      "ordinary_build_command": "cd examples/theme_showcase && cjpm build",
+      "ordinary_run_command": "cd examples/theme_showcase && cjpm run",
+      "proof_scope": "D141 final common-core ordinary showcase build + actual host consumption; independently accepted D142",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/viewport",
+      "manifest": {
+        "path": "examples/viewport/cjpm.toml",
+        "bytes": 161,
+        "sha256": "54394700008938f71a4d5a411df528ea8acd464870fdd82480f7b571263002bb",
+        "git_blob": "adaed4a4f8c7abaaa7b7291dd053cb6f3c0a2e9f"
+      },
+      "source_members": [
+        {
+          "path": "examples/viewport/src/main.cj",
+          "bytes": 953,
+          "sha256": "e13a338c1c51ea7ebc78e424304827f234afbd618e8b35d4e67a1974542ef83d",
+          "git_blob": "15f8e01d905ce36ac07266d21008d527cef1f114"
+        }
+      ],
+      "ordinary_build_command": "cd examples/viewport && cjpm build",
+      "ordinary_run_command": "cd examples/viewport && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/widgets_composition",
+      "manifest": {
+        "path": "examples/widgets_composition/cjpm.toml",
+        "bytes": 170,
+        "sha256": "6bd326dbdb90d0cebeaad23ff18d8c73a81bf6cdb747fab4ef3cc32165e6ec18",
+        "git_blob": "b89339f117b2a6a7e8681acd5a3aca0410a007ec"
+      },
+      "source_members": [
+        {
+          "path": "examples/widgets_composition/src/main.cj",
+          "bytes": 1580,
+          "sha256": "ed45457e7f6b6a1fbeb6cdcd1cde294b6f9a1b67afb8e83a2d64a3e5cca6c052",
+          "git_blob": "9dbd2f4b21d5c924ccc8f34895eadb1883e2d46b"
+        }
+      ],
+      "ordinary_build_command": "cd examples/widgets_composition && cjpm build",
+      "ordinary_run_command": "cd examples/widgets_composition && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    },
+    {
+      "directory": "examples/widgets_small",
+      "manifest": {
+        "path": "examples/widgets_small/cjpm.toml",
+        "bytes": 164,
+        "sha256": "92b46e22f0275fab614acc35143737efb4d87ec806561e5fa806999d0bd88ceb",
+        "git_blob": "3a94682c3c601f4899a92c382a0f31b180c37f6c"
+      },
+      "source_members": [
+        {
+          "path": "examples/widgets_small/src/main.cj",
+          "bytes": 726,
+          "sha256": "aa7d8b1d6dff428b55c1e53c35c91e9d435ec333720807e29e53c0195005fa23",
+          "git_blob": "fc6442d2d6225b7ab885f2dac303e0761b06ca98"
+        }
+      ],
+      "ordinary_build_command": "cd examples/widgets_small && cjpm build",
+      "ordinary_run_command": "cd examples/widgets_small && cjpm run",
+      "proof_scope": "Original public source inventory; no individual final build or host claim is added by this AC002 representative syntax projection",
+      "new_execution": false
+    }
+  ],
+  "source_members": [
+    {
+      "path": "build.cj",
+      "bytes": 191,
+      "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9",
+      "git_blob": "ba203970b1597b0ffe1b7c91ce2be06eea644331"
+    },
+    {
+      "path": "cjpm.toml",
+      "bytes": 1541,
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828",
+      "git_blob": "2d80ae78d3e7d88808565a3c7e41be657138190e"
+    },
+    {
+      "path": "src/application.cj",
+      "bytes": 36536,
+      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56",
+      "git_blob": "2afcaa0e05a86e42c8f1b28e573c70868f9aefe0"
+    },
+    {
+      "path": "src/binding.cj",
+      "bytes": 4445,
+      "sha256": "3270146cb13c18986bed6f190adc6c1935ec4aaf0153e9137c148f019e5e4e10",
+      "git_blob": "689586b23acd1bb555d917c4e61c8b60b7a7790b"
+    },
+    {
+      "path": "src/component.cj",
+      "bytes": 25726,
+      "sha256": "a7c5c3dbd7495410bdf0ac1dad902cd5e973b5a8c8fb6868ca0f78c162d60cc4",
+      "git_blob": "3c796ed5a16e0424e48f243deeaec219c37791c1"
+    },
+    {
+      "path": "src/component_collector.cj",
+      "bytes": 2024,
+      "sha256": "91da3af3815921771ef53b948a645d902659bb0fe11b3321209682602f7bc062",
+      "git_blob": "57df7e4616c4c227365772c9e1e617f6e7e5b9de"
+    },
+    {
+      "path": "src/conditional_declaration.cj",
+      "bytes": 654,
+      "sha256": "128281f2235a076abab4eec447355d48560d2f6f5c48cd5d715af8a3327ec02d",
+      "git_blob": "3f908045b7ad994df07b6147ce15d74562479dc4"
+    },
+    {
+      "path": "src/conditional_group.cj",
+      "bytes": 2312,
+      "sha256": "cf1074a63b90eac3d26b5c778132108b0fed7a6de4b0b6dcc8d69ebb4ea24755",
+      "git_blob": "a5d7fc6d417957acd226b2eebb688b5ad466d766"
+    },
+    {
+      "path": "src/dynamic_group.cj",
+      "bytes": 3527,
+      "sha256": "c4955b8c322c5d24b11eb212cfe7ddf5962a106a6bc82d93aadcae8a97634217",
+      "git_blob": "e0844237218d6212e82c2025529c4cf38b7be1c5"
+    },
+    {
+      "path": "src/exports.cj",
+      "bytes": 729,
+      "sha256": "f258a51ef0b7f7354206616a25519c6572e4c640a27ac4743e4a6391c7e87bf0",
+      "git_blob": "e0f6702a83276eb01d8f6744a7a0e7dfba097f08"
+    },
+    {
+      "path": "src/foreach_declaration.cj",
+      "bytes": 614,
+      "sha256": "99fe8a3070fdcccaf55aeb434bbfbec2fcd436848d4edb188a107ee997a8303f",
+      "git_blob": "8cf32ab779bea228d4e2b6b0d6b8df5d9bfb4ae9"
+    },
+    {
+      "path": "src/foreach_group.cj",
+      "bytes": 3695,
+      "sha256": "3cd6361f2ffed81ba1e5cf2383f898a2a243107c62cafeac19485d6866dc60b2",
+      "git_blob": "b76407abb551acde7aa4aa016f5ae041ddb4c2e6"
+    },
+    {
+      "path": "src/list_item.cj",
+      "bytes": 352,
+      "sha256": "45289c3ddaed90c620fb4c9051d0698a33ad091b706702a614a1967b747086e4",
+      "git_blob": "1f800450fa8dbb5fda619c67fe9f273f9d0a923d"
+    },
+    {
+      "path": "src/macros/bind_macro.cj",
+      "bytes": 114,
+      "sha256": "b16928c7577816a1eeb12b8a31a73c5ddf02c3b0d9b60a5989c30f17c8f7c420",
+      "git_blob": "575ea576139e49db5ef6d2499b76448ad9538bfc"
+    },
+    {
+      "path": "src/macros/component_macro.cj",
+      "bytes": 2976,
+      "sha256": "9e6a116776accfbbd3d626ce14100b0873245c0bfc824a3bb06ad45fc9014f05",
+      "git_blob": "19184d80c8e77a6834b2d19d8b5bddadeb03e62c"
+    },
+    {
+      "path": "src/macros/constructor_return_visitor.cj",
+      "bytes": 334,
+      "sha256": "36630999f75520d9234b3d4f909b7bbc010225a14d3cedb2215157051a767f52",
+      "git_blob": "d0a72eaaab78b638b8a635b77e98d525a79aba4a"
+    },
+    {
+      "path": "src/macros/state_macro.cj",
+      "bytes": 1649,
+      "sha256": "934f18649f5b8ef91b808db68fbefb7eb0251618abfa0592391e96e478f4b869",
+      "git_blob": "8709ca5821c5a565792f4c42727d5f2f93d3c919"
+    },
+    {
+      "path": "src/observable.cj",
+      "bytes": 2108,
+      "sha256": "744000914251fc0eb20e4f0d3335a9642de1bca78e5325ab540dfdfe486b9705",
+      "git_blob": "b530faf11d14ac7036e67758ae50878dd382350d"
+    },
+    {
+      "path": "src/observable_source.cj",
+      "bytes": 1228,
+      "sha256": "898d36caed711fddb8eefd31a3ac8eee14ebec1aad628db55bd0165b4afb8d7a",
+      "git_blob": "5de6ad21b936202c9f97a65dc9ae9bf07c6148ce"
+    },
+    {
+      "path": "tests/dynamic/README.md",
+      "bytes": 7949,
+      "sha256": "0541894cb46f0f679349a872c64c2511998192fa146d8afac5cd453fae88e146",
+      "git_blob": "01adafd793cb6f7593732e80bf9eb6a14fcef407"
+    },
+    {
+      "path": "tests/dynamic/cjpm.toml",
+      "bytes": 449,
+      "sha256": "3acb9284878d46edf600c01ce815e639e76468dd49a02766c2c19004f3187a39",
+      "git_blob": "d517fd8c94241f9aa019b7c49c06a38f4cd911ce"
+    },
+    {
+      "path": "tests/dynamic/run.sh",
+      "bytes": 188,
+      "sha256": "ac8aa6da62d86eca835df6e6a59a625abe63d765d19796758818011b2af3d040",
+      "git_blob": "243974ec6b00c38d4278f510398ae25aa184ef20"
+    },
+    {
+      "path": "tests/dynamic/src/assertions.cj",
+      "bytes": 1656,
+      "sha256": "18785010aa892add54da97ab734fca2b3b65f60fb76c443dd15b0e0004eecd68",
+      "git_blob": "f53abe7b75110e0dc4aefe13db29c6fbe40aa240"
+    },
+    {
+      "path": "tests/dynamic/src/conditional_cases.cj",
+      "bytes": 4622,
+      "sha256": "1e6e106e2fc7167ba6ab70221d30b6ca597a84db886f10f54b70ee53094bfad4",
+      "git_blob": "16df601d0104b630cca9e640bcf91ae613eb010e"
+    },
+    {
+      "path": "tests/dynamic/src/fixture_failure.cj",
+      "bytes": 109,
+      "sha256": "e95c793103ce235ead728fcfe3e9344ed75b9e25944a9203827bc2a085fadf7b",
+      "git_blob": "b86b1f2f7f2e225b2d42e2d6df38cec4a30beef4"
+    },
+    {
+      "path": "tests/dynamic/src/fixture_log.cj",
+      "bytes": 342,
+      "sha256": "99c12c7769245d64104c554071aee0e20927f2fffd97a293f7d5b978ba0d5d5b",
+      "git_blob": "09acdb2be3a484d4fc9b649ecb6e7fb09ff67ddc"
+    },
+    {
+      "path": "tests/dynamic/src/identity_cases.cj",
+      "bytes": 3401,
+      "sha256": "5b5911438b3924503ba4bc87830367f0ddb3050cc6c599be8decad1e64243d6e",
+      "git_blob": "202976e580ab2f5bd27d81155fa3c438731785fb"
+    },
+    {
+      "path": "tests/dynamic/src/lifecycle_cases.cj",
+      "bytes": 12082,
+      "sha256": "aa2f1b74098da8a5e20525dcd981001dd9a91c0e77f4310110b8bc75859520e8",
+      "git_blob": "209e9b0e6ab047bd7a2fbd4709b798ec5b0eedca"
+    },
+    {
+      "path": "tests/dynamic/src/main.cj",
+      "bytes": 2459,
+      "sha256": "74970abb27c36682de9a2db294f246a7f71869ff97d4a3f149ac1a96fbf0b657",
+      "git_blob": "ac1574084d46bbe09acc9d9efd21c5543f72eeed"
+    },
+    {
+      "path": "tests/dynamic/src/mutable_box.cj",
+      "bytes": 189,
+      "sha256": "60031f7945aead5cb1679b9c65252ed276986aa6f5f27855ceb40cf440b12077",
+      "git_blob": "22310084abd0de06a2d21e4c62fa90e77cc3bd0f"
+    },
+    {
+      "path": "tests/dynamic/src/nested_validation_cases.cj",
+      "bytes": 6483,
+      "sha256": "e48ff422485d2dfe3120dad3de49d5c82d109800cf3adbd9c40e746bd35ed2ca",
+      "git_blob": "2dc2b63385bf4539aba3d57f64eea917e0325fd5"
+    },
+    {
+      "path": "tests/dynamic/src/row_data.cj",
+      "bytes": 177,
+      "sha256": "2b6cf75c14b48827665fdc6bd0b6ea460321422f05419e6829893b73466d691c",
+      "git_blob": "d116a3591c79d9c1e1e7e06e55dfa9b0dcac9a2a"
+    },
+    {
+      "path": "tests/dynamic/src/slot_cases.cj",
+      "bytes": 5129,
+      "sha256": "521f4eac8b3de4faa13d4d0a2019445a08411c4beab7a9e399d3b2ed50db4707",
+      "git_blob": "1b507c5f3da58760c2b8908f443ca33680fc003e"
+    },
+    {
+      "path": "tests/dynamic/src/slot_fixture.cj",
+      "bytes": 792,
+      "sha256": "136beddbf5c5d03463e3fc79ec54307beee691f951931a104e384fd0b558589d",
+      "git_blob": "396142aeab711147999c2fb6e88fed0c743003d3"
+    },
+    {
+      "path": "tests/dynamic/src/stateful_row.cj",
+      "bytes": 450,
+      "sha256": "6e0c9f64d37469a645feb8f09a7e8f8e45fe69c6442f9465f142cf8eea04af97",
+      "git_blob": "0f8c4bf350bf483e31d1a8bb3a4b9fcecbd103ee"
+    },
+    {
+      "path": "tests/dynamic/src/validation_cases.cj",
+      "bytes": 6444,
+      "sha256": "5548704311f92b6df8ea6c23212d2e215d1beaf7932944c4f4bcd38b00a0221e",
+      "git_blob": "3bd07dcc69b1a1b0caf95b7ff204a00144031c2e"
+    },
+    {
+      "path": "tests/runtime/cjpm.toml",
+      "bytes": 342,
+      "sha256": "77282db976a8e16479ab9fecfb8b113a18b291efe7b6b171c1f93c8e151b26f1",
+      "git_blob": "7c5eb2c0aaf0105c8ecdbba64c7b21ace7c77578"
+    },
+    {
+      "path": "tests/runtime/macros/negative/abstract-component/cjpm.toml",
+      "bytes": 367,
+      "sha256": "636610a04cac045c663645977b1b6d4dea8fd84552f4914c785bbee3e601142f",
+      "git_blob": "4b5bf4368592cf4de8674cdcbaaa083f41a229db"
+    },
+    {
+      "path": "tests/runtime/macros/negative/abstract-component/src/fixture.cj",
+      "bytes": 169,
+      "sha256": "5bb2b249a774caa7c5d29258d81cb8b7f3f2c6200dd6a77c701be02532d71264",
+      "git_blob": "734bb734827dab3d0ebde136f396e52fae6ffb59"
+    },
+    {
+      "path": "tests/runtime/macros/negative/abstract-component/src/main.cj",
+      "bytes": 69,
+      "sha256": "87d17d746ca54d35adb78a99e14cf923fcbb483c2034f0894cc9a084a824e775",
+      "git_blob": "f627ae3fc07f929184ae7f13c689a44b0ad03e92"
+    },
+    {
+      "path": "tests/runtime/macros/negative/bind-type/cjpm.toml",
+      "bytes": 358,
+      "sha256": "0ba5cf8dcbafbef55b90fb7b00d9ab656fbc3a6536f09894868ff66fcfa0cc7d",
+      "git_blob": "d552894f51416d36402339a8ecb2c5ff320c3c05"
+    },
+    {
+      "path": "tests/runtime/macros/negative/bind-type/src/fixture.cj",
+      "bytes": 154,
+      "sha256": "312b1de908b74c379b83a4326a58e5832f123906051ef6736bd78a0ab5f03220",
+      "git_blob": "d7d7a5277dd9e58296808eda982dc90c834120af"
+    },
+    {
+      "path": "tests/runtime/macros/negative/bind-type/src/main.cj",
+      "bytes": 60,
+      "sha256": "f2bfd804c657c62617cf3478306d566f5602ba7e911c7cb14a33d3b292bee7d8",
+      "git_blob": "8724dffe34d73b1878ffe3d574426d76da1c4073"
+    },
+    {
+      "path": "tests/runtime/macros/negative/cases.tsv",
+      "bytes": 821,
+      "sha256": "fa85616908e894bfa27512b3f1208fb45dd740ee259bf8a0906029cdaef3c597",
+      "git_blob": "6693ec383a7423fb6876e44a4032997123073fcd"
+    },
+    {
+      "path": "tests/runtime/macros/negative/delegating-init/cjpm.toml",
+      "bytes": 364,
+      "sha256": "c1719c4a3dcb5208b5d007b835b79569eb71753fb9c83761daf64859a75afd9b",
+      "git_blob": "0741e394baff96014fea104b2bc2d0128becc700"
+    },
+    {
+      "path": "tests/runtime/macros/negative/delegating-init/src/fixture.cj",
+      "bytes": 251,
+      "sha256": "7e6c67ebba6f38d241c00c1510860d65465c529d0ac564e9a6276d4351edf040",
+      "git_blob": "cb62668cb3b71f4b214df7cb74fda573785b8392"
+    },
+    {
+      "path": "tests/runtime/macros/negative/delegating-init/src/main.cj",
+      "bytes": 66,
+      "sha256": "d271ca71148036e4992128d260408de6ea86f509e47089c226d8c798a56e4cf3",
+      "git_blob": "4056cdf484ad1b2452724cd94e6a9ba25bb4da6d"
+    },
+    {
+      "path": "tests/runtime/macros/negative/finish-call/cjpm.toml",
+      "bytes": 360,
+      "sha256": "438afc0a75fda09d48801a8f512694b4db9f7faabde36bc09c362f2e11c286a2",
+      "git_blob": "d18a0203aded10492b5d020a7c37d17496acfe1d"
+    },
+    {
+      "path": "tests/runtime/macros/negative/finish-call/src/fixture.cj",
+      "bytes": 193,
+      "sha256": "60222a1dc40b7280f3052a0de9bee8c73e1c3af82154217f0b5988d7ba90f491",
+      "git_blob": "dc5dd529ceb23b26f841b9bc87e31186b4d50289"
+    },
+    {
+      "path": "tests/runtime/macros/negative/finish-call/src/main.cj",
+      "bytes": 62,
+      "sha256": "75b74eab78726945a7a25b8c9ddfdda08f54894c8fd9b8faae9ffec78c233d5e",
+      "git_blob": "a6064eb3b7b7d55fb495025e67fa4d8846697b4d"
+    },
+    {
+      "path": "tests/runtime/macros/negative/finish-name/cjpm.toml",
+      "bytes": 360,
+      "sha256": "0052def28dc79ef1eb66a39d673336b183a1d89825ef44d40a1f40d5d15eadc5",
+      "git_blob": "b638ef73cf4690200d2bc983bfb942f7845833b3"
+    },
+    {
+      "path": "tests/runtime/macros/negative/finish-name/src/fixture.cj",
+      "bytes": 196,
+      "sha256": "beaa84c48f75dbdfe71e02b7b679dd0101b5e12cdb5c19b2855ea9084a6510c6",
+      "git_blob": "c0f0b09f5f56d32e8dbf5776b97b76fe58478af3"
+    },
+    {
+      "path": "tests/runtime/macros/negative/finish-name/src/main.cj",
+      "bytes": 62,
+      "sha256": "1e70d10fc4610f439d2ab4b6046400d625de1511d1f64972720665316b14acc6",
+      "git_blob": "edbe21affaf67416e18cc0dd4b62173fd65d951a"
+    },
+    {
+      "path": "tests/runtime/macros/negative/init-return/cjpm.toml",
+      "bytes": 360,
+      "sha256": "26d838c0e004ec21836833867dc2d4c2651f0d05a189d3606632a706b85ece5f",
+      "git_blob": "b9546ebe540dce90cd8aec0017727e446fd27f1f"
+    },
+    {
+      "path": "tests/runtime/macros/negative/init-return/src/fixture.cj",
+      "bytes": 205,
+      "sha256": "29e5617af5f14b693d3e7c9f8cbebb39c774d45944fe166e028b18828140e09f",
+      "git_blob": "6f1f1d7bfccb430cf1a0d436f73a8ad73bd0c904"
+    },
+    {
+      "path": "tests/runtime/macros/negative/init-return/src/main.cj",
+      "bytes": 62,
+      "sha256": "0a3a429291c225c7e4d1558a5054be7484b506032bc69201734d0afb9411862d",
+      "git_blob": "114e1331e25652b13077707c3aa1e9f0b78e2a17"
+    },
+    {
+      "path": "tests/runtime/macros/negative/open-component/cjpm.toml",
+      "bytes": 363,
+      "sha256": "0cc193d7605beaf617ca7116b9e22cd625da59d5e656a4910758928f8dad36d4",
+      "git_blob": "9dc4b6cd0e07f6447d68da3cf3c612c9e00b8518"
+    },
+    {
+      "path": "tests/runtime/macros/negative/open-component/src/fixture.cj",
+      "bytes": 161,
+      "sha256": "f237b03551a6f5ab042001bcb7795ccc14d28cab415938192bf7267e14c44c37",
+      "git_blob": "aba96a86f2da521723cb015757895412ec521384"
+    },
+    {
+      "path": "tests/runtime/macros/negative/open-component/src/main.cj",
+      "bytes": 65,
+      "sha256": "9fb28a90b57c24076abd41dbac70d53915aaad97741617d92656cf00af288318",
+      "git_blob": "0cf1865b1bef08d571dab82e6817350b0e5cf9a6"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-duplicate/cjpm.toml",
+      "bytes": 364,
+      "sha256": "d8816456b34a2a049b500c04e2c465a474fcf956aa9113e7170056a5286c0e21",
+      "git_blob": "dd746b617a63b693af2446f393d743529ebd2fcd"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-duplicate/src/fixture.cj",
+      "bytes": 200,
+      "sha256": "622fbb75daf81791260b09aa7d486222e5f0aaa310cbce0eaf5759ecb2f47d84",
+      "git_blob": "b00205708e9098a6efb1538ea7c1921bb7503334"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-duplicate/src/main.cj",
+      "bytes": 66,
+      "sha256": "5ceaf07c3c022262c605fd659d067bd7421f5ae688fcee6e3b34704c512add81",
+      "git_blob": "e6c7a9ea7ebb12f4a52a79eb39df747051ab2077"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-let/cjpm.toml",
+      "bytes": 358,
+      "sha256": "a2d9dd395cde9af3932a1e89cc33493291d8048afd0933c0348468178eb04df5",
+      "git_blob": "70df5ddd20a23981e77c11e5a8d51431e81230d6"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-let/src/fixture.cj",
+      "bytes": 187,
+      "sha256": "066c538e3599e106ce5770b7fc52f5c27ad2d18323aee548494901cb5a63c4f3",
+      "git_blob": "aea5e969b61aa05d51de607bfc5a77fe03a80802"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-let/src/main.cj",
+      "bytes": 60,
+      "sha256": "36979d8f8c3a8c09e3dd89ac1b2f6de1c5dace6a9150171f8a7977f5fa9d3b35",
+      "git_blob": "f37e6db9c4cb11ed681914d184b6cae3d8e6effd"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-no-initial/cjpm.toml",
+      "bytes": 365,
+      "sha256": "48c58b5ef39b633037010d0167ab240814b0d9cf474901071a10241e05a2e229",
+      "git_blob": "a2c1fe562de7380961598010780eeca1ea67d328"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-no-initial/src/fixture.cj",
+      "bytes": 215,
+      "sha256": "91d8b60599b8cde4adca55a98ef8c7686979ce38055e65e7bcb682052ae36047",
+      "git_blob": "fb84a511d5c5b2654220301d01e80ef2bd24bd33"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-no-initial/src/main.cj",
+      "bytes": 67,
+      "sha256": "13cf2f29e47d3458418b39ea39562f0d1673cea7a0cf24577d53839d8e88ed11",
+      "git_blob": "8102374d64ee47018281908f3973f1bb8e3d1537"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-no-type/cjpm.toml",
+      "bytes": 362,
+      "sha256": "079afc56a6ba256a3f92e97c104814de719e292860c5a123aa5ab071027ae5c6",
+      "git_blob": "bb34b65c8bd22ba16b469513eb6ebbef91334df3"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-no-type/src/fixture.cj",
+      "bytes": 184,
+      "sha256": "e3ea7209113ee627ed9f563e6df53c2f510950c9d5dd4379250bbcabbf768d9e",
+      "git_blob": "6ea4dda30b7fd028d9fd1b31cbf2ac923b060f48"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-no-type/src/main.cj",
+      "bytes": 64,
+      "sha256": "1b231a6ff6ef85f13f0cba34eb98c5976ad5e8dd5f04332ccb50d601f1a15b56",
+      "git_blob": "4dceaaebde89ffc2407385bb77de775c1cbbf3c9"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-nonmember/cjpm.toml",
+      "bytes": 364,
+      "sha256": "8b59a692ad74bb37e9849c4e85660d099fb95b1501e7a9157bf39efe2b549770",
+      "git_blob": "4225e0ad5161bab2e009cafe6a8be6f7d2bf654e"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-nonmember/src/fixture.cj",
+      "bytes": 118,
+      "sha256": "b7bc1e29951b13806dd2ec5726570d44cfce570f61b0c11505526ae771c3d92f",
+      "git_blob": "000b6e96f04dc5c07c6bfd8a6cb5b88306359361"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-nonmember/src/main.cj",
+      "bytes": 66,
+      "sha256": "5a9d4820a7e1576dfe5d761307c94f5827d855f0e51071488c088da73c4ed0b9",
+      "git_blob": "5afc932d9d5ddf75ddc75d26d9446c8276b0b8f7"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-private/cjpm.toml",
+      "bytes": 362,
+      "sha256": "ce1599784012b66fa77eb94e7d50132bda49ab033f09479f22501902288b2596",
+      "git_blob": "381eea1611bd1d86b9303f2e1eb2d3447b69ad5c"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-private/src/fixture.cj",
+      "bytes": 213,
+      "sha256": "9f83748eada2a5392887ed56dc4d1512dfc37bde8701436eb4d1e522383c8223",
+      "git_blob": "ca00be817673d67a3a3f5f4ac98e2eda81fe0bec"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-private/src/main.cj",
+      "bytes": 106,
+      "sha256": "9993f6c4dda4560bc9bf71f3fc405aa54b690028f40cbe1f4518695c1bf10639",
+      "git_blob": "9b0c630e9c32aaedd6b0c75dfd30f113eb04cb66"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-static/cjpm.toml",
+      "bytes": 361,
+      "sha256": "3ae6e8bd5ff303e1e3ef2199e215e6cb8275df2b89d7d1b4387adc12d6e11e78",
+      "git_blob": "9c2f8c1db330f115a45270223df8407a33b49b5d"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-static/src/fixture.cj",
+      "bytes": 197,
+      "sha256": "f94c4098ceead3a62b9f60a984e83e68fba3b5fdec76ed554ddcee2f1dda7600",
+      "git_blob": "5da81fc37ea4067146988c098da3c094dacb866b"
+    },
+    {
+      "path": "tests/runtime/macros/negative/state-static/src/main.cj",
+      "bytes": 63,
+      "sha256": "35063bfff171fb4dc09ecebcb85276f4ec7b48f2f8da6c0f4c4279b6e566e390",
+      "git_blob": "d3d03fce7350490f37c50ba6fa08cc9620e9ae6d"
+    },
+    {
+      "path": "tests/runtime/macros/negative/superclass/cjpm.toml",
+      "bytes": 359,
+      "sha256": "492c902e60890780f7bfad2618c40f68340eec17eaec48bb16850751f8b39a79",
+      "git_blob": "90179cd491be9134cc0910282b41730b2fa9d22e"
+    },
+    {
+      "path": "tests/runtime/macros/negative/superclass/src/base.cj",
+      "bytes": 64,
+      "sha256": "eaff99761fbf23ba877e4ca1719d667024224da2e747374ace74cd48861b8272",
+      "git_blob": "901b01338e814fad14278d43c46290918dd0e8d9"
+    },
+    {
+      "path": "tests/runtime/macros/negative/superclass/src/fixture.cj",
+      "bytes": 160,
+      "sha256": "5d20fc63512a0f2a6ca52e0e3467f6c31f6549ade4a969e1f79967a9c8f5f9f1",
+      "git_blob": "e0c4dd46729c29e18a63bf0046a4072107248501"
+    },
+    {
+      "path": "tests/runtime/macros/negative/superclass/src/main.cj",
+      "bytes": 61,
+      "sha256": "88b16ba9730133ff32ea36aa676c47aa65b037e11a5035ee53775ee1272afbce",
+      "git_blob": "215427d8640fbe3f9ed2a9d4b832b23a62cca199"
+    },
+    {
+      "path": "tests/runtime/macros/positive/cjpm.toml",
+      "bytes": 354,
+      "sha256": "db59455350116b87d5f034ee36e584eea050b2766e82bc1f6defb209ca04ed0a",
+      "git_blob": "ff34c33ae25d013f28c26fec57fbe4261bfef690"
+    },
+    {
+      "path": "tests/runtime/macros/positive/src/component.cj",
+      "bytes": 147,
+      "sha256": "c95fc935b06bee1de239185237bc20f2bb7af2a38d703e7e09f2c77636786362",
+      "git_blob": "1bccd8f9978ec7a5d46a3bbd20dececa954c725a"
+    },
+    {
+      "path": "tests/runtime/macros/positive/src/default_panel.cj",
+      "bytes": 252,
+      "sha256": "4745fee6208d3a1d1051da5d27c254998205bbd982f5129fed37b1a33545efab",
+      "git_blob": "40d2040b6fb6526260597fe2258b71d563f29bbb"
+    },
+    {
+      "path": "tests/runtime/macros/positive/src/generic_panel.cj",
+      "bytes": 640,
+      "sha256": "c15409da368dcca3d5423e5ae36a1ff975a077c07945ad169b3a31fd0214ce09",
+      "git_blob": "69172b5185b313682856c6284f074d7d9ad059b5"
+    },
+    {
+      "path": "tests/runtime/macros/positive/src/main.cj",
+      "bytes": 2742,
+      "sha256": "e6426080beb8129d905356931202e2d622dbdd8d6542df7c8043fb703747b683",
+      "git_blob": "142f01177dcf49572fb42bd995fc1e39ce75b94b"
+    },
+    {
+      "path": "tests/runtime/macros/positive/src/named.cj",
+      "bytes": 72,
+      "sha256": "d9ba3ff12da9a08b1cd252ddb1a4f6ed2100188269d125c19561fc0fdf34160f",
+      "git_blob": "2ef66634a03f436c3a8b7d7c44603814a3b51c74"
+    },
+    {
+      "path": "tests/runtime/macros/positive/src/nested_return_panel.cj",
+      "bytes": 344,
+      "sha256": "84269f758d276996922fd25c609c0966544e66668a9936084b51020de7d7a9fb",
+      "git_blob": "833d1fddbf61fad4d48149809298bfa086ece678"
+    },
+    {
+      "path": "tests/runtime/macros/positive/src/observable.cj",
+      "bytes": 160,
+      "sha256": "de9dad9f77f1b6ccf7079255e49c72f1316d3a2fd8294ed155545049d8c67f10",
+      "git_blob": "58c98b493a32538f673680674e0ffe8cd7299447"
+    },
+    {
+      "path": "tests/runtime/macros/positive/src/parameter_panel.cj",
+      "bytes": 572,
+      "sha256": "559f2bb65d2b94e4fa4836cba2cd1419aaa54d97fb817feec7d3f3e2704c5e5a",
+      "git_blob": "840593461c0cb1a059fb2ad91ec62ecb6f869bf4"
+    },
+    {
+      "path": "tests/runtime/macros/positive/src/provider.cj",
+      "bytes": 77,
+      "sha256": "7408c675c86dba8eb05b554ff5df191bc2712780c6280cc74ca4411391c8a83b",
+      "git_blob": "08436f5fca036ca43efd4c1fd93b7ab3bd120479"
+    },
+    {
+      "path": "tests/runtime/macros/run.sh",
+      "bytes": 1754,
+      "sha256": "82bbba8bcaeed11d200485de59fb14a644c523f871254b2131ada3a894fee8a5",
+      "git_blob": "9387e3cae1b29edd1d312e2b0a746ca8d69a0712"
+    },
+    {
+      "path": "tests/runtime/src/bindings.cj",
+      "bytes": 8108,
+      "sha256": "b1895fec6a3ce06665e9882e88b03d4e39353556d2c13d7e81c15233ba9cdf37",
+      "git_blob": "3ecb836319fc99cecce08bd97cf92adf455b780b"
+    },
+    {
+      "path": "tests/runtime/src/counting_panel.cj",
+      "bytes": 357,
+      "sha256": "850b891ade91ed5ec273f59ebdff0c40b29513f9a432bf5b0709bfb479586256",
+      "git_blob": "4de33a113801fda05874ae798c0eb35a016bc721"
+    },
+    {
+      "path": "tests/runtime/src/events.cj",
+      "bytes": 3774,
+      "sha256": "c536c25b88bff37523af60b1a9a44ee0e766185059784d15e402274f054f10a1",
+      "git_blob": "6a040db3729166b73f092589054235ed3f7b8562"
+    }
+  ],
+  "reuse_content_checks": [
+    {
+      "prior": "f07ff63303071764ea4acef5ba547d617e9d9a7c",
+      "candidate": "c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960",
+      "paths": [
+        "src/macros",
+        "tests/runtime/macros"
+      ],
+      "command": "git diff --name-only f07ff63303071764ea4acef5ba547d617e9d9a7c c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960 -- src/macros tests/runtime/macros",
+      "changed_paths": [],
+      "scope": "macro expansion and original positive/negative consumer syntax only"
+    },
+    {
+      "prior": "216b2ab5f2315f4be19467b7e49f4047aec78ab9",
+      "candidate": "c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960",
+      "paths": [
+        "tests/dynamic",
+        "examples/dynamic",
+        "examples/reactive",
+        "src/conditional_declaration.cj",
+        "src/foreach_declaration.cj",
+        "src/list_item.cj",
+        "src/component_collector.cj"
+      ],
+      "command": "git diff --name-only 216b2ab5f2315f4be19467b7e49f4047aec78ab9 c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960 -- tests/dynamic examples/dynamic examples/reactive src/conditional_declaration.cj src/foreach_declaration.cj src/list_item.cj src/component_collector.cj",
+      "changed_paths": [],
+      "scope": "original consumers and public syntax declarations, not all runtime implementation"
+    },
+    {
+      "prior": "f48ca45608247f52a6876ad5c27b4ca36867f406",
+      "candidate": "c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960",
+      "paths": [
+        "src",
+        "native",
+        "examples",
+        "cjpm.toml",
+        "build.cj"
+      ],
+      "command": "git diff --name-only f48ca45608247f52a6876ad5c27b4ca36867f406 c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960 -- src native examples cjpm.toml build.cj",
+      "changed_paths": [],
+      "scope": "complete product/common public example source and root build configuration for D141 ordinary compilation"
+    }
+  ],
+  "reuse_limits": [
+    "R12/R13 historical tests retain their original product/test pins; they are not newly run at c862.",
+    "Later runtime implementation changes are not declared byte-identical to R13. Observable only adds internal editingSnapshot/editingCommit relative216; public get/set and macro syntax remain. D141 final common-core compile supplies later product integration evidence.",
+    "Examples without a selected individual proof are source inventory, not new per-example compile/host claims. Representative actual public macro/dynamic/showcase consumers cover the six original AC002 syntax clauses.",
+    "No complete ArkUI/ArkTS/runtime/editor/platform compatibility claim.",
+    "Current performance/real-host/041 work and final Linux acceptance are separate."
+  ],
+  "additional_public_proofs": {
+    "AC021": {
+      "acceptance": "docs/reviews/R22/021/browse/composition-application-acceptance/report.md",
+      "scope": "ordinary minimal/composition builds; public U1-U5 composition and hand-written component callbacks, original M1 scope"
+    },
+    "D141-showcase": {
+      "fixed_source": "f48ca45608247f52a6876ad5c27b4ca36867f406",
+      "raw_build": {
+        "path": "/workspace/work/incremental-composition-execution/raw/showcase-build.log",
+        "bytes": 19,
+        "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+      },
+      "actual_build_log": "cjpm build success",
+      "ordinary_command": "cd examples/theme_showcase && cjpm build",
+      "acceptance": "docs/reviews/R24/D/browse/incremental-composition-acceptance/report.md",
+      "scope": "actual ordinary build and host consumption of unchanged final common product/showcase; no full final syntax negative rerun"
+    },
+    "final145-package-review": {
+      "ordinary_cjp_sha256": "8572434f9b83603e96b2bf9ea50965a8b3b6a888ff69680a7e8df24d9c805ff6",
+      "independent_review": "/workspace/work/rendering-benchmark-review/final/report.md",
+      "scope": "ordinary final benchmark archive consumption and plain bundle; not substitute macro negatives or full release/AC002 acceptance"
+    }
+  },
+  "editor_facts": {
+    "source_form": ".cj / ordinary CJPM / native compile-time macros",
+    "validated_editor_or_lsp_versions": [],
+    "status": "pending / insufficient_evidence",
+    "unverified": [
+      "completion",
+      "rename/refactoring",
+      "macro expansion navigation",
+      "formatting",
+      "live diagnostics"
+    ],
+    "meaning": "CLI diagnostic source locations do not establish IDE behavior; no editor feature claim is accepted here"
+  },
+  "missing_changed_syntax_compile_proofs": [],
+  "future_trigger": {
+    "when": "Relevant syntax source, fixture, SDK, dependency or build-option changes",
+    "action": "Run the affected concrete ordinary CJPM command above; retain original source hashes, raw stdout/stderr/exit and location diagnostics; do not execute during current CPU measurement"
+  },
+  "evidence_authorities": [
+    {
+      "path": "docs/acceptance.md",
+      "bytes": 39219,
+      "sha256": "0506e91c54f0b29f91104b8b40512f2b04015bd48bacd0bb8fd8aae70ffb1df4"
+    },
+    {
+      "path": "docs/requirements.md",
+      "bytes": 27521,
+      "sha256": "6ca3b983f2d57d68523edb3cc732c4da04c5b5241959bc495da3a4fe9ac5656d"
+    },
+    {
+      "path": "docs/reviews/R12/acceptance/report.md",
+      "bytes": 11509,
+      "sha256": "bc2d927c530d4352ed9789d532a3441dabaf00f57f63333ba7a0d0068280179d"
+    },
+    {
+      "path": "docs/reviews/R12/acceptance/integration-index.json",
+      "bytes": 534,
+      "sha256": "cc55ab81f4f46e2bfadfa812d43bee3b6974888f479f17d4baca628b46fc5fc6"
+    },
+    {
+      "path": "docs/reviews/R12/acceptance/raw/macro-negative-content-audit.json",
+      "bytes": 2667,
+      "sha256": "aa293ce6a0815536347f9bfd5bdd6bf998553a63ae02f8d130a99e29f78cb979"
+    },
+    {
+      "path": "docs/reviews/R12/execution/scope-manifest.json",
+      "bytes": 1972,
+      "sha256": "39057b67566e0e2c479aabe420c5c0f931989963f4a0506d52d3b4522f6f4689"
+    },
+    {
+      "path": "docs/reviews/R13/acceptance/report.md",
+      "bytes": 13520,
+      "sha256": "a7b48c75b98c5dc9f4496deb99abaceab1c79966aef9adc007c48cbbd03f2dd7"
+    },
+    {
+      "path": "docs/reviews/R13/execution/archive-index.json",
+      "bytes": 528067,
+      "sha256": "1190f61ae2e47bbee12f50998468a5febe8057c3ea1aebb48ca0d81c0239cf41"
+    },
+    {
+      "path": "docs/reviews/R13/execution/evidence/reuse/macro-negative-independent-audit.json",
+      "bytes": 2715,
+      "sha256": "743e3a6f171e563e88174f92337a4267414d3e90ae0a8bbd58c8961af160ffb9"
+    },
+    {
+      "path": "docs/reviews/R22/021/browse/composition-application-acceptance/report.md",
+      "bytes": 3948,
+      "sha256": "44eb0230c16158dccdddaf52ac80edbaea51d5df026db1b34170dca8d5e5739d"
+    },
+    {
+      "path": "docs/reviews/R22/021/browse/composition-application-acceptance/index.json",
+      "bytes": 5519,
+      "sha256": "53c8ecc8b57756d857e08fb3209ebf975e2bd6e389696cc33d7d555669b45ddc"
+    },
+    {
+      "path": "docs/reviews/R24/D/browse/incremental-composition-execution/index.json",
+      "bytes": 1817709,
+      "sha256": "159189b07c8348e1289f7ed23e284e95d375f0ba7bf069bc041055d09ae842eb"
+    },
+    {
+      "path": "docs/reviews/R24/D/browse/incremental-composition-acceptance/index.json",
+      "bytes": 146930,
+      "sha256": "19b9fc0ef2bd4fe4dc1f6280b9b26687bd4e22a2ead724f396a17a6cd06fecfa"
+    },
+    {
+      "path": "docs/reviews/R24/D/browse/incremental-composition-acceptance/report.md",
+      "bytes": 10134,
+      "sha256": "d0751f011a93e9c620ac96e945668389b1123ef078ad8edd0bba69cbb4c8b70f"
+    },
+    {
+      "path": "docs/reviews/archive-v1/README.md",
+      "bytes": 3023,
+      "sha256": "e387ab15f70dc99da45de92c0755019689ceb8eed28515b665a1a246c51ae047"
+    },
+    {
+      "path": "docs/reviews/archive-v1/catalog.json",
+      "bytes": 37484,
+      "sha256": "99d0fbbfb8ecc2710ff0e5eff2ec61b040209982251cbca82759839dc00f5de9"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-review/final/index.json",
+      "bytes": 202059,
+      "sha256": "8962ae80eefa580ddeac013e5ae37c26a660fd099f6fdbd84ca6cdb3904efaa3"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-review/final/report.md",
+      "bytes": 7245,
+      "sha256": "74a94ad2c2b5b0eab3e7f179f91fd7ebc44ee37133b7254230f6d1b87d0c7869"
+    }
+  ],
+  "archive_resolution": {
+    "catalog": "docs/reviews/archive-v1/catalog.json",
+    "groups": {
+      "R12": {
+        "baselineHead": "36b19d776b45c2aeafd2ad77bb4352103e87f44f",
+        "manifest": {
+          "path": "docs/reviews/R12/.archive-v1/manifest.jsonl.gz",
+          "sha256": "62df4ecb303c46125421d1b9fc61c08caccc2bfffc09ab50478c1f3c17cf6c6f"
+        },
+        "shards": [
+          {
+            "path": "docs/reviews/R12/.archive-v1/part-000001.tar.gz",
+            "sha256": "d5a06c26a396bd401245f3028e857cbaad18608d1d8eb338fe32c71e407a83bb"
+          },
+          {
+            "path": "docs/reviews/R12/.archive-v1/part-000002.tar.gz",
+            "sha256": "c2a26d6975d04d1261e266b6e4c3cef1dcbb270de21ffcb75f73dd44e85b56ab"
+          },
+          {
+            "path": "docs/reviews/R12/.archive-v1/part-000003.tar.gz",
+            "sha256": "49942c7ff32c330954ebeea5e2db7f75a0097abcc90bb76f19433f070d70e6ae"
+          }
+        ]
+      },
+      "R13": {
+        "baselineHead": "36b19d776b45c2aeafd2ad77bb4352103e87f44f",
+        "manifest": {
+          "path": "docs/reviews/R13/.archive-v1/manifest.jsonl.gz",
+          "sha256": "2e7d83b51f7957bd05eb97414424496d70297a0cdc99967861fe1c1df44aca88"
+        },
+        "shards": [
+          {
+            "path": "docs/reviews/R13/.archive-v1/part-000001.tar.gz",
+            "sha256": "0151cea02dcf540e29cf5a917eb8ef13eaf06c4fb0c8410643e21dfb06655554"
+          },
+          {
+            "path": "docs/reviews/R13/.archive-v1/part-000002.tar.gz",
+            "sha256": "64199468b4f56da6d98c0bd3b2d4c7577e4a01030999d9c38dada35b5c91a5f9"
+          }
+        ]
+      }
+    },
+    "original_member_locations": "records[*].logical_path; originals were read in place at records[*].path",
+    "restore_command_template": "node scripts/review-archive.mjs --root . restore <logical_path> <new-destination>",
+    "executed": false,
+    "meaning": "No archive scan/decompression here; preserved archive-index/manifests and acceptance supply historical relocation binding."
+  }
+}
