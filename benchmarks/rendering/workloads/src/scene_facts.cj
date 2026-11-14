@@ -43,8 +43,7 @@ public func simpleSceneFacts(options: Options, workload: Workload, observed: Obs
     }
     if ((name == "same_row_columns" || name == "row_flex_width") && width >= 8 && height >= 2) {
         if (total != height + 9) { throw Exception("unexpected mounted column scene size") }
-        let dirty: Int64 = if (name == "row_flex_width") { 8 } else { 1 }
-        return Some(SceneFacts(total, total, dirty, (height + 7) * mixedBytes, 0))
+        return Some(SceneFacts(total, total, 1, (height + 7) * mixedBytes, 0))
     }
     if (name == "column_wrap_height" && width >= 10 && height >= 3) {
         if (total != 3) { throw Exception("unexpected mounted wrap scene size") }

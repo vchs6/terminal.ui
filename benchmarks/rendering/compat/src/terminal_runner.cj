@@ -14,6 +14,7 @@ func runTerminal(options: Options): Unit {
     let workload = Workload(options)
     workload.enableTerminal()
     let app = workload.app
+    app.glyphMode(workload.glyph(0))
     let fenceSetup = {=> app.batch({=>
         let layer = Canvas({constraints => constraints.constrain(Size(options.width, options.height))}, {context =>
             context.put(fenceX.get(), fenceY.get(), fence.get())

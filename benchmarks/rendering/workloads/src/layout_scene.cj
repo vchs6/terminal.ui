@@ -26,11 +26,13 @@ public class LayoutScene {
                 Row {
                     Text({=> text.get()}).width({=> firstWidth.get()}).height(1).foreground({=> color.get()})
                     for (i in 0..7) {
-                        let index = i
-                        Text("A中é👩‍💻🇨🇳").width({=>
-                            let remainder = width - firstWidth.get()
-                            remainder / 7 + if (index < remainder % 7) { 1 } else { 0 }
-                        }).height(1)
+                        if (name == "row_flex_width") {
+                            Text("A中é👩‍💻🇨🇳").layoutWeight(1).height(1)
+                        } else {
+                            let remaining = width - baseWidth
+                            let columnWidth = remaining / 7 + if (i < remaining % 7) { 1 } else { 0 }
+                            Text("A中é👩‍💻🇨🇳").width(columnWidth).height(1)
+                        }
                     }
                 }.width(width).height(1)
                 for (_ in 1..height) { Text("A中é👩‍💻🇨🇳").width(width).height(1) }
