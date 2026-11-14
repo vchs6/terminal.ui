@@ -247,7 +247,8 @@ class LayoutNode {
     }
     // Reuse the same negotiated child sizes for paint after the finite pass.
     func mainAllocation(mainSize: Int64, naturalBasis: Bool): (Array<Int64>, Int64) {
-        if (plannedMain == mainSize && plannedNatural == naturalBasis && plannedSizes.size == children().size) {
+        let childCount = children().size
+        if (plannedMain == mainSize && plannedNatural == naturalBasis && plannedSizes.size == childCount) {
             return (plannedSizes,plannedFree)
         }
         let (sizes,free) = allocateMain(this,mainSize,naturalBasis:naturalBasis)

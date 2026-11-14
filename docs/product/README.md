@@ -2,7 +2,7 @@
 
 当前已接受公共 Canvas/焦点/caret、视口滚动与覆盖层，使用方法见[交互原语](interaction.md)，独立证据分别见[A绘制与焦点](../reviews/interaction/A/README.md)、[B视口与滚动](../reviews/interaction/B/README.md)、[C覆盖层](../reviews/interaction/C/README.md)。归一化键盘/paste已获[有限K验收](../reviews/K/README.md)；单/多行[TextInput/TextArea](text-editing.md)已获[有限E验收](../reviews/E/README.md)。这些已接受范围不等于完整Linux验收。
 
-完整应用构造示例见[组合应用](composition.md)。
+完整应用构造示例见[组合应用](composition.md)。运行阶段与 Cell 槽计数范围见[运行统计](runtime-stats.md)。
 
 键盘事件、粘贴与限制见[键盘输入](keyboard-input.md)，示例位于 `examples/keyboard`。主题配置、解析和显式加载见[主题配置](theme.md)。可选剪贴板复制、宿主标题与恢复结果见[会话扩展](session.md)，正常公共调用示例位于 `examples/session`；这些可选操作完整发送后仍仅返回 `SentUnconfirmed`，不确认宿主效果，不返回 `Applied` 或 `RestoreConfirmed`。图片图标返回 `Unsupported/NoImageAdapter`。
 

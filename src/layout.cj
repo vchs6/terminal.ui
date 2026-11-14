@@ -144,6 +144,7 @@ func paint(n: LayoutNode, frame: Frame): Unit {
 // Arrange geometry once for paint and side-effect-free preflight.
 func arrange(n: LayoutNode, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
     clipR: Int64, clipB: Int64, geometry!: ?HashMap<Int64, LayoutNode> = None): Unit {
+    if (n.previewTheme.isNone()) { n.session.recordArrange() }
     let c = n.component
     let r = n.resolved
     let right = lesser(clipR, sat(x, w));
@@ -265,6 +266,7 @@ func arrange(n: LayoutNode, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64
 
 // First finite pass summary, following the existing allocator and same node tree.
 func summarizeVerticalOverflow(n: LayoutNode, width: Int64, height: Int64, result: VerticalOverflowSummary): Unit {
+    if (n.previewTheme.isNone()) { n.session.recordArrange() }
     n.assignedWidth = width; n.assignedHeight = height
     if (n.component.kind == 0 || n.component.kind == 3) {
         if (n.naturalH > height) {
@@ -297,6 +299,7 @@ func summarizeVerticalOverflow(n: LayoutNode, width: Int64, height: Int64, resul
         }
         let barrier = cr.fixedH.isSome() || (child.component.viewportDeclared && child.component.viewportAxes.vertical())
         if (!barrier) { summarizeVerticalOverflow(child,cw,ch,result) }
+        else if (n.previewTheme.isNone()) { n.session.recordArrange() }
         cursor = sat(cursor,sizes[i])
         if (i + 1 < children.size) { cursor = sat(cursor,n.resolved.spacing) }
     }
@@ -413,8 +416,8 @@ func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int6
 
 func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession, reuse!: Bool = true,
     glyphPolicy!: ?GlyphRenderPolicy = None): Frame {
-    let frame = Frame(width, height)
-    if (!root.isVisible) { return frame }
+    let frame = Frame.forSession(width, height, session)
+    if (!root.isVisible) { frame.releaseOwner(); return frame }
     // Public render may target a mounted subtree in the same session.
     // Only the application root owns this reusable measurement.
     let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
@@ -484,7 +487,7 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
     }
     paint(node, frame)
     for (layer in layers) {
-        let overlay = Frame(width,height,transparent:true)
+        let overlay = Frame.forSession(width,height,session,transparent:true)
         let previousCaret = session.pendingCaret
         paint(layer.node,overlay)
         if (reuse) {
@@ -498,6 +501,7 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         }
         frame.composite(overlay)
     }
+    frame.releaseOwner()
     frame
 }
 

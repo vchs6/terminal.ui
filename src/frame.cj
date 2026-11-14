@@ -9,19 +9,34 @@ public class Frame {
     private let cells: Array<Cell>
     private let transparent: Bool
     private let maxCells: Int64
+    private var owner: ?RuntimeSession
     public init(width: Int64, height: Int64, ambiguousWide!: Bool = false, transparent!: Bool = false,
         maxCells!: Int64 = 1048576) {
+        this(Option<RuntimeSession>.None, width, height, ambiguousWide, transparent, maxCells)
+    }
+    private init(owner: ?RuntimeSession, width: Int64, height: Int64, ambiguousWide: Bool, transparent: Bool,
+        maxCells: Int64) {
         if (width < 0 || height < 0 || maxCells <= 0 ||
             (height != 0 && width > Int64.Max / height) ||
             (width > 0 && height > 0 && width > maxCells / height)) {
             throw IllegalArgumentException("invalid frame size")
         }
+        this.owner = owner
         this.width = width
         this.height = height
         this.ambiguousWide = ambiguousWide
         this.transparent = transparent
         this.maxCells = maxCells
         cells = Array<Cell>(width * height, {_ => blankCell(transparent)})
+        if (let Some(session) <- owner) { session.recordCells(cells.size, cells.size) }
+    }
+    static func forSession(width: Int64, height: Int64, session: RuntimeSession, transparent!: Bool = false): Frame {
+        Frame(Some(session), width, height, false, transparent, 1048576)
+    }
+    func releaseOwner(): Unit { owner = None }
+    private func writeCell(index: Int64, cell: Cell): Unit {
+        cells[index] = cell
+        if (let Some(session) <- owner) { session.recordCells(1, 0) }
     }
     private func index(x: Int64, y: Int64): Int64 {
         y * width + x
@@ -40,7 +55,7 @@ public class Frame {
         let span = cells[index(start, y)].width
         for (i in 0..span) {
             if (start + i < width) {
-                cells[index(start + i, y)] = blankCell(transparent)
+                writeCell(index(start + i, y), blankCell(transparent))
             }
         }
     }
@@ -69,9 +84,9 @@ public class Frame {
                 for (i in 0..w) {
                     clearAt(cx + i, cy, transparent)
                 }
-                cells[index(cx, cy)] = Cell(cluster, w, false, resolved)
+                writeCell(index(cx, cy), Cell(cluster, w, false, resolved))
                 for (i in 1..w) {
-                    cells[index(cx + i, cy)] = Cell("", 0, true, resolved)
+                    writeCell(index(cx + i, cy), Cell("", 0, true, resolved))
                 }
             }
             if (cx > Int64.Max - w) {
@@ -197,12 +212,14 @@ public class Frame {
             }
         }
     }
-    public func copy(rect: Rect): Frame {
-        let result = Frame(rect.width, rect.height, ambiguousWide: ambiguousWide, transparent: transparent,
-            maxCells: maxCells)
+    public func copy(rect: Rect): Frame { copyTo(rect, Option<RuntimeSession>.None) }
+    func copyForSession(rect: Rect, session: RuntimeSession): Frame { copyTo(rect, Some(session)) }
+    private func copyTo(rect: Rect, owner: ?RuntimeSession): Frame {
+        let result = Frame(owner, rect.width, rect.height, ambiguousWide, transparent, maxCells)
         if (rect.x != Int64.Min && rect.y != Int64.Min) {
             result.transfer(this, -rect.x, -rect.y, false)
         }
+        result.releaseOwner()
         result
     }
     public func resized(width: Int64, height: Int64): Frame {
@@ -229,6 +246,7 @@ public class Frame {
         let source = Array<Cell>(columns * rows, {i =>
             layer.cells[layer.index(sx + i % columns, sy + i / columns)]
         })
+        if (let Some(session) <- owner) { session.recordCells(0, source.size) }
         for (row in 0..rows) {
             var col = 0
             while (col < columns) {
@@ -236,7 +254,7 @@ public class Frame {
                 if (cell.isTransparent) {
                     if (!skipTransparent) {
                         clearAt(dx + col, dy + row, transparent)
-                        cells[index(dx + col, dy + row)] = cell
+                        writeCell(index(dx + col, dy + row), cell)
                     }
                     col++
                     continue
@@ -244,12 +262,12 @@ public class Frame {
                 if (!cell.continuation && cell.width <= columns - col) {
                     for (i in 0..cell.width) { clearAt(dx + col + i, dy + row, transparent) }
                     for (i in 0..cell.width) {
-                        cells[index(dx + col + i, dy + row)] = source[row * columns + col + i]
+                        writeCell(index(dx + col + i, dy + row), source[row * columns + col + i])
                     }
                     col += cell.width
                 } else {
                     clearAt(dx + col, dy + row, transparent)
-                    cells[index(dx + col, dy + row)] = Cell(" ", 1, false, cell.style)
+                    writeCell(index(dx + col, dy + row), Cell(" ", 1, false, cell.style))
                     col++
                 }
             }
