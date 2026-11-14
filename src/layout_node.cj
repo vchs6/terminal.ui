@@ -43,6 +43,8 @@ class LayoutNode {
     let widths = ArrayList<Int64>()
     var naturalW: Int64 = 0
     var naturalH: Int64 = 0
+    var intrinsicH: Int64 = 0
+    var constrainedH: Int64 = 0
     var canvasNatural = Size(0,0)
     var canvasConstrained = Size(0,0)
     var constrainedWidth: ?Int64 = None
@@ -51,6 +53,7 @@ class LayoutNode {
     var finalCanvasWidth: Int64 = -1
     var finalCanvasHeight: Int64 = -1
     var rootFallback = false
+    var arrangedViewportVersion: Int64 = -1
     var plannedMain: Int64 = -1
     var plannedNatural = false
     var plannedSizes = Array<Int64>()
@@ -79,6 +82,21 @@ class LayoutNode {
             }
         }
         result
+    }
+    func reusableGeometry(): Bool {
+        let node = component.readMount().getOrThrow()
+        if (node.layoutDirty) { return false }
+        let state = node.viewportState
+        state.lock.lock()
+        let version = state.version
+        state.lock.unlock()
+        if (arrangedViewportVersion != version) { return false }
+        for (child in children()) { if (!child.reusableGeometry()) { return false } }
+        true
+    }
+    func collectGeometry(map: HashMap<Int64, LayoutNode>): Unit {
+        map[component.readMount().getOrThrow().id] = this
+        for (child in children()) { child.collectGeometry(map) }
     }
     // Publish individual results without retaining the temporary evaluation table.
     func publish(): Unit {
@@ -123,10 +141,21 @@ class LayoutNode {
                             if (entry.component.descriptionId == child.descriptionId) { previousChild = Some(entry); break }
                         }
                     }
-                    let n = LayoutNode(child, session, resolved.style, previewTheme: previewTheme,
-                        previousMeasurement: previousChild, commitGeometry: commitGeometry, results: results, glyphPolicy: Some(glyphPolicy))
+                    // A mounted child owns its last committed result. Reuse only clean
+                    // subtrees; reference and theme preflight always compute independently.
+                    let cached = if (commitGeometry && previewTheme.isNone() && !runtimeChild.layoutDirty) {
+                        runtimeChild.layout
+                    } else { Option<LayoutNode>.None }
+                    let n = if (let Some(existing) <- cached) {
+                        existing.naturalH = existing.intrinsicH
+                        existing
+                    } else {
+                        let measured = LayoutNode(child, session, resolved.style, previewTheme: previewTheme,
+                            previousMeasurement: previousChild, commitGeometry: commitGeometry, results: results, glyphPolicy: Some(glyphPolicy))
+                        measured.measure()
+                        measured
+                    }
                     results.getOrThrow()[runtimeChild.id] = n
-                    n.measure()
                     let cw = greater(n.resolved.fixedW ?? n.naturalW, n.resolved.minW)
                     let ch = greater(n.resolved.fixedH ?? n.naturalH, n.resolved.minH)
                     if (c.kind == 1) { naturalW = greater(naturalW,cw); naturalH = sat(naturalH,ch) }
@@ -137,6 +166,7 @@ class LayoutNode {
         }
         naturalW = sat(naturalW,horizontalInsets())
         naturalH = sat(naturalH,verticalInsets())
+        intrinsicH = naturalH
     }
     func horizontalInsets(): Int64 {
         let b: Int64 = if (resolved.borderStyle == BorderStyle.None) { 0 } else { 1 }
@@ -177,8 +207,9 @@ class LayoutNode {
     }
     // Recalculate only the natural heights affected by the allocated width.
     func constrain(width: Int64): Unit {
-        if (constrainedWidth == Some(width)) { return }
+        if (constrainedWidth == Some(width)) { naturalH = constrainedH; return }
         constrainedWidth = Some(width); plannedMain = -1
+        if (component.kind == 3) { finalCanvasWidth = -1; finalCanvasHeight = -1 }
         if (previewTheme.isNone()) { session.recordMeasure() }
         let available = innerWidth(width)
         if (component.kind == 3) {
@@ -226,11 +257,15 @@ class LayoutNode {
             }
             naturalH = sat(height,verticalInsets())
         }
+        constrainedH = naturalH
     }
     // Final finite allocation controls both axes of a Canvas measurement.
     func constrainCanvasFinal(width: Int64, height: Int64, axes: ScrollAxes): Unit {
         if (component.kind != 3 || previewTheme.isSome()) { return }
-        if (finalCanvasWidth == width && finalCanvasHeight == height) { return }
+        if (finalCanvasWidth == width && finalCanvasHeight == height) {
+            naturalH = sat(canvasConstrained.height,verticalInsets())
+            return
+        }
         finalCanvasWidth = width; finalCanvasHeight = height
         let canvas = component.canvas.getOrThrow()
         let limits = Constraints(maxWidth:if (axes.horizontal()) { Option<Int64>.None } else { Some(width) },

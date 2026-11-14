@@ -39,6 +39,8 @@ class RuntimeNode {
     var contentDirty = true
     var styleDirty = true
     var layoutDirty = true
+    var structureDirty = true
+    var dirtyQueued = false
     var pendingChange: ?PendingNodeChange = None
     var valid = true
     var committed = false

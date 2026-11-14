@@ -144,6 +144,16 @@ func paint(n: LayoutNode, frame: Frame): Unit {
 // Arrange geometry once for paint and side-effect-free preflight.
 func arrange(n: LayoutNode, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
     clipR: Int64, clipB: Int64, geometry!: ?HashMap<Int64, LayoutNode> = None): Unit {
+    var geometryReusable = false
+    if (n.commitGeometry && n.previewTheme.isNone() && n.screenX == x && n.screenY == y &&
+        n.boxWidth == w && n.boxHeight == h && n.paintLeft == clipL && n.paintTop == clipT &&
+        n.paintRight == clipR && n.paintBottom == clipB) {
+        geometryReusable = n.reusableGeometry()
+    }
+    if (geometryReusable) {
+        if (let Some(map) <- geometry) { n.collectGeometry(map) }
+        return
+    }
     if (n.previewTheme.isNone()) { n.session.recordArrange() }
     let c = n.component
     let r = n.resolved
@@ -178,6 +188,11 @@ func arrange(n: LayoutNode, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64
             }
         }
         state.update(innerW,innerH,contentW,contentH,axes)
+    }
+    if (n.commitGeometry && n.previewTheme.isNone()) {
+        state.lock.lock()
+        n.arrangedViewportVersion = state.version
+        state.lock.unlock()
     }
     let scrollX = if (axes.horizontal()) { state.offsetX } else { 0 }
     let scrollY = if (axes.vertical()) { state.offsetY } else { 0 }
@@ -434,6 +449,19 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         node.refresh(themeSeed(session.theme), true, glyphPolicy ?? session.layoutGlyphPolicy)
         let w = lesser(width, greater(node.resolved.fixedW ?? width, node.resolved.minW))
         let h = lesser(height, greater(node.resolved.fixedH ?? height, node.resolved.minH))
+        var stableGeometry = false
+        if (sessionRoot && session.cachedWidth == width && session.cachedHeight == height && session.overlayRecords.isEmpty()) {
+            stableGeometry = node.reusableGeometry()
+        }
+        // Existing geometry is sufficient to resolve ensure requests. A changed
+        // viewport version below forces the ordinary geometry pass.
+        var geometryReusable = false
+        if (stableGeometry) {
+            applyPendingViewportEnsures(session)
+            geometryReusable = node.reusableGeometry()
+        }
+        let layers = ArrayList<OverlayLayout>()
+        if (!geometryReusable) {
         node.constrain(w)
         let implicitRoot = sessionRoot && !session.temporary && !root.viewportDeclared
         // Mounted M1 render is also a root consumer even when caching is disabled.
@@ -447,7 +475,6 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         if (reuse) { session.focusedViewportResized = false }
         let geometry = HashMap<Int64, LayoutNode>()
         arrange(node,0,0,w,h,0,0,width,height,geometry:Some(geometry))
-        let layers = ArrayList<OverlayLayout>()
         if (mountedRoot) {
             for (record in session.overlayRecords) {
                 if (let Some(layer) <- overlayGeometry(session,record,width,height,reuse,geometry,deferClose:reuse,glyphPolicy:glyphPolicy)) {
@@ -485,6 +512,7 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
                     }
                 }
             }
+        }
         }
         paint(node, frame)
         for (layer in layers) {

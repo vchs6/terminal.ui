@@ -34,6 +34,7 @@ class RuntimeSession {
     let lock = Mutex()
     let outputGate = Mutex()
     let nodes = ArrayList<RuntimeNode>()
+    let dirtyNodes = ArrayList<RuntimeNode>()
     let bindings = ArrayList<Binding>()
     let pendingBindings = ArrayList<Binding>()
     let pendingNodes = ArrayList<PendingNodeChange>()
@@ -52,6 +53,7 @@ class RuntimeSession {
     var active = true
     var acceptingPosts = false
     var changed = true
+    var effectiveVersion: Int64 = 0
     var stopping = false
     var invalidationSequence: Int64 = 0
     var batchDepth: Int64 = 0
@@ -155,13 +157,19 @@ class RuntimeSession {
     func invalidateRootLayout(): Unit {
         if (let Some(node) <- root.readMount()) { node.layout = None }
     }
+    func queueDirtyLocked(node: RuntimeNode): Unit {
+        if (!node.dirtyQueued) { node.dirtyQueued = true; dirtyNodes.add(node) }
+    }
     func markNodeDirtyLocked(node: RuntimeNode, change: ChangeKind): Unit {
+        effectiveVersion++
+        queueDirtyLocked(node)
         if (change == ChangeKind.Content || change == ChangeKind.All) {
             node.contentDirty = true
         }
         if (change == ChangeKind.Style || change == ChangeKind.All) {
             node.styleDirty = true
         }
+        if (change == ChangeKind.Structure || change == ChangeKind.All) { node.structureDirty = true }
         if (change == ChangeKind.Content || change == ChangeKind.Layout || change == ChangeKind.Structure || change == ChangeKind
             .All) {
             invalidateRootLayout()
@@ -169,6 +177,7 @@ class RuntimeSession {
             var parent = node.parent
             while (let Some(ancestor) <- parent) {
                 ancestor.layoutDirty = true
+                queueDirtyLocked(ancestor)
                 parent = ancestor.parent
             }
         }
@@ -237,6 +246,7 @@ class RuntimeSession {
         lock.lock();
         try {
             nodes.add(node)
+            queueDirtyLocked(node)
         } finally {
             lock.unlock()
         }
@@ -382,10 +392,14 @@ class RuntimeSession {
                 }
                 match (node.pendingChange) {
                     case Some(pending) =>
-                        if (sequence < pending.sequence) {
-                            pending.sequence = sequence
+                        if (sequence == pending.sequence) {
+                            pending.include(change)
+                        } else {
+                            let next = PendingNodeChange(node, sequence)
+                            next.include(change)
+                            node.pendingChange = Some(next)
+                            pendingNodes.add(next)
                         }
-                        pending.include(change)
                     case None =>
                         let pending = PendingNodeChange(node, sequence)
                         pending.include(change);
@@ -1170,6 +1184,13 @@ class RuntimeSession {
                 }
             }
             i = 0
+            while (i < dirtyNodes.size) {
+                if (!dirtyNodes[i].valid) {
+                    dirtyNodes[i].dirtyQueued = false
+                    dirtyNodes.remove(at:i)
+                } else { i++ }
+            }
+            i = 0
             while (i < posts.size) {
                 var cancelled = false
                 if (let Some(owner) <- posts[i].owner) {
@@ -1333,7 +1354,9 @@ class RuntimeSession {
         try {
             for (pending in pendingNodes) {
                 if (pending.sequence <= cutoff) {
-                    pending.node.pendingChange = None
+                    if (let Some(current) <- pending.node.pendingChange) {
+                        if (refEq(current,pending)) { pending.node.pendingChange = None }
+                    }
                     if (pending.node.valid) {
                         if (pending.content) {
                             markNodeDirtyLocked(pending.node, ChangeKind.Content)
@@ -1343,6 +1366,9 @@ class RuntimeSession {
                         }
                         if (pending.layout) {
                             markNodeDirtyLocked(pending.node, ChangeKind.Layout)
+                        }
+                        if (pending.structure) {
+                            markNodeDirtyLocked(pending.node, ChangeKind.Structure)
                         }
                         changed = true
                     }
@@ -1508,20 +1534,21 @@ class RuntimeSession {
     func acceptTheme(value: Theme, layoutChanged: Bool): Unit {
         lock.lock()
         try {
-            theme = value; changed = true
+            theme = value; changed = true; effectiveVersion++
             if (layoutChanged) { invalidateRootLayout() }
             for (node in nodes) {
                 if (layoutChanged) { node.layoutDirty = true }
                 node.styleDirty = true
+                queueDirtyLocked(node)
             }
         } finally { lock.unlock() }
     }
     func glyphPolicyChanged(): Unit {
         lock.lock()
         try {
-            changed = true
+            changed = true; effectiveVersion++
             invalidateRootLayout()
-            for (node in nodes) { node.layoutDirty = true }
+            for (node in nodes) { node.layoutDirty = true; queueDirtyLocked(node) }
         } finally { lock.unlock() }
     }
     func selectLayoutGlyphPolicy(policy: GlyphRenderPolicy): String {
@@ -1535,22 +1562,14 @@ class RuntimeSession {
         let marker = selectLayoutGlyphPolicy(glyphPolicy)
         lock.lock()
         var dirtyFrame = false
+        var targetVersion: Int64 = 0
         try {
             dirtyFrame = changed
+            targetVersion = effectiveVersion
         } finally {
             lock.unlock()
         }
         if (force || dirtyFrame || width != cachedWidth || height != cachedHeight || marker != cachedGlyphMarker || cached.isNone()) {
-            lock.lock()
-            try {
-                for (node in nodes) {
-                    node.contentDirty = false
-                    node.styleDirty = false
-                    node.layoutDirty = false
-                }
-            } finally {
-                lock.unlock()
-            }
             pendingCaret = None; trackCaret = true
             let frame: Frame
             try { frame = renderLayout(root, width, height, this) } finally { trackCaret = false }
@@ -1572,7 +1591,30 @@ class RuntimeSession {
             cachedHeight = height
             lock.lock()
             try {
-                changed = false
+                if (targetVersion == effectiveVersion) {
+                    var index = dirtyNodes.size
+                    while (index > 0) {
+                        index--
+                        let node = dirtyNodes[index]
+                        var visible = node.valid && node.component.isVisible
+                        var parent = node.parent
+                        while (visible) {
+                            if (let Some(ancestor) <- parent) {
+                                visible = ancestor.component.isVisible
+                                parent = ancestor.parent
+                            } else { break }
+                        }
+                        if (visible || !node.valid) {
+                            node.contentDirty = false
+                            node.styleDirty = false
+                            node.layoutDirty = false
+                            node.structureDirty = false
+                            node.dirtyQueued = false
+                            dirtyNodes.remove(at:index)
+                        }
+                    }
+                    changed = false
+                }
             } finally {
                 lock.unlock()
             }
