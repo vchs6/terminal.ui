@@ -10,7 +10,7 @@
 ## Global Constraints
 
 - 原TASK-031/022为完整验收责任归属；123–142实现031各单元，143–147实现022并供031成本验收。实际工程层级依原WP002/WP005，角色工作为独立L3，不把原L3强行嵌另一套L3树。主仓接入时031/022转为本tasks唯一状态引用，不能保留两份勾选权威。
-- 单元A/B/C/D123–142已独立接受；143正式测试已固定，144实施中，145–147仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
+- 单元A/B/C/D123–142已独立接受；143正式测试已固定，144已交付、145独立审核通过，146正在独立实测、147待验收；144源码位于已推送候选分支implement/task144-public-benchmark，尚未集成main；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
 - A→B→C→D→E顺序集成。测试可按冻结合同准备，但产品只消费前单元验收固定提交；共享Component/Layout/Frame禁止多个产品作者同时编辑。
 - 每实体一个小写下划线.cj文件，最小可见性，原public调用兼容，新增RuntimeStats三项仅只读；无私有测试hook、无强制M1/M2模式开关。
 - 测试作者Sol/high、产品Terra/high或适合仓颉任务的Sol/high、审核/验收Astra/high、执行Sol/medium；记录指定配置，无法核验serving时不冒充实测。
@@ -66,8 +66,8 @@
 - [x] TASK-141（testing/D）：独立执行逐帧Cell等价、设备故障/恢复与真实适用TTY输入输出。
 - [x] TASK-142（acceptance/D）：验收局部渲染功能完整；成本证据等E，不提前关031。
 - [x] TASK-143（testing/E）：冻结公开benchmark场景/动作/同epoch配对/CSV指标/干净消费与计量方法。
-- [ ] TASK-144（implementation/E）：交付benchmarks/rendering正常独立CJPM与产品方法说明。
-- [ ] TASK-145（verification/E）：固定144与143独立审核公平性、纯公共API、数据口径及制品边界。
+- [x] TASK-144（implementation/E）：交付benchmarks/rendering正常独立CJPM与产品方法说明。
+- [x] TASK-145（verification/E）：固定144与143独立审核公平性、纯公共API、数据口径及制品边界。
 - [ ] TASK-146（testing/E）：独立运行重复headless、真实TTY/输出、M1/M2普通包双版本、CPU/分配/退化与干净bundle消费。
 - [ ] TASK-147（acceptance/E）：逐AC-022/031核原始结果与限制，完整通过后回写父任务并继续023/024。
 
