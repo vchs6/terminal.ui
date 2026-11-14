@@ -6,16 +6,16 @@
   "acceptedIndexSha256": "53c8ecc8b57756d857e08fb3209ebf975e2bd6e389696cc33d7d555669b45ddc",
   "archive": {
     "path": "raw-evidence.tar.gz",
-    "bytes": 3072699,
-    "sha256": "5d66c62196ea238ac25cdfbec3f0b0ad75a51623e27de1cab4469688c90ad734"
+    "bytes": 3174296,
+    "sha256": "f5b6778f12e7d32c5880c337fa0cc3960a023af3ca44ace6ccfb95ccfd214874"
   },
   "manifest": {
     "path": "raw-evidence.manifest.jsonl",
-    "bytes": 493246,
-    "sha256": "912955106ae960d86b8ed054fe4e19e97e7b2f649de2214d2bc87e30ff1affc0"
+    "bytes": 495106,
+    "sha256": "e58fd80ee733e0a09bae12679394e1223f683a831309604960ca5b62c1c4972f"
   },
-  "archiveMembers": 1625,
-  "originalBytes": 37797352,
+  "archiveMembers": 1631,
+  "originalBytes": 37925189,
   "browse": [
     {
       "path": "browse/composition-application-acceptance/ac-results.json",
@@ -1129,47 +1129,355 @@
       "reason": "runtime payload external reference"
     },
     {
-      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v10/guest-export.tar.gz",
-      "bytes": 20735,
-      "sha256": "3fcf6faeab373659be1712c0df2a3dba941034756df0bb95b9be9b2067b45804",
-      "reason": "guest export runtime payload external reference"
-    },
-    {
-      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v2/guest-export.tar.gz",
-      "bytes": 21310,
-      "sha256": "e033833cc61b27c9ab65527da9df61a76d9763121004200ac6aeb2ba480bbe0d",
-      "reason": "guest export runtime payload external reference"
-    },
-    {
-      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v3/guest-export.tar.gz",
-      "bytes": 22228,
-      "sha256": "77871d37caada77e9b88f080b099af9c7349b7e15029506d74658e091b1bda51",
-      "reason": "guest export runtime payload external reference"
-    },
-    {
-      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v7/guest-export.tar.gz",
-      "bytes": 22468,
-      "sha256": "c91449fd059c7594b41f997339d4119b05bd88bcee078ba3edc6e4e5ac25a041",
-      "reason": "guest export runtime payload external reference"
-    },
-    {
-      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v9/guest-export.tar.gz",
-      "bytes": 22488,
-      "sha256": "2d75344505cde883461d36797e6015d88d33fffb0f50d9dbcedc840d96654f6c",
-      "reason": "guest export runtime payload external reference"
-    },
-    {
-      "original": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/guest-export.tar.gz",
-      "bytes": 18608,
-      "sha256": "a06c572d476bbd54ceda03c86a016ab1aab47c1c4e15bc2a7079b3e5d0d380f6",
-      "reason": "guest export runtime payload external reference"
-    },
-    {
       "original": "/workspace/work/composition-application-vt-execution/tools/vt-supervisor",
       "bytes": 17936,
       "sha256": "b1f7a670399e5b2484f93111ac1654336f00d0eb70dcc899c64643cd830b3dbd",
       "reason": "compiled binary/build output external reference"
     }
   ],
-  "verification": "Safe relative USTAR regular members, original byte sizes and SHA256 checked; deterministic gzip mtime 0. External exclusions are hash-bound, not a portable execution closure."
+  "verification": "Safe relative USTAR regular members, original byte sizes and SHA256 checked; deterministic gzip mtime 0. Six original guest-export.tar.gz containers have safe nested paths, expected native evidence files, and no ELF/SDK/cache content. External exclusions are hash-bound; no portable execution closure.",
+  "guestExportInspection": [
+    {
+      "member": "composition-application-vt-execution/raw/minimal-v2/guest-export.tar.gz",
+      "original": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/guest-export.tar.gz",
+      "bytes": 18608,
+      "sha256": "a06c572d476bbd54ceda03c86a016ab1aab47c1c4e15bc2a7079b3e5d0d380f6",
+      "nestedMembers": [
+        {
+          "name": "./outer-termios-after.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./direct.exit",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "name": "./product.strace",
+          "type": "regular",
+          "bytes": 1670903,
+          "sha256": "62333efd1c99d6ca1f8adcb1c6888bd9b54ff9166571fc517e90cfb10e7a74e4"
+        },
+        {
+          "name": "./product.stderr",
+          "type": "regular",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "./outer-termios-before.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./console-font.bin",
+          "type": "regular",
+          "bytes": 32768,
+          "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+        },
+        {
+          "name": "./vt-default-utf8.txt",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        {
+          "name": "./boot-cmdline.txt",
+          "type": "regular",
+          "bytes": 93,
+          "sha256": "cd54c9a67f7e280df17582cd02a55063dba1c7ef110ad7bf299080f6ce10dbd6"
+        }
+      ],
+      "inspection": "safe ./ names; regular data; no ELF/SDK/cache signatures or paths"
+    },
+    {
+      "member": "composition-application-vt-execution/raw/composition-v2/guest-export.tar.gz",
+      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v2/guest-export.tar.gz",
+      "bytes": 21310,
+      "sha256": "e033833cc61b27c9ab65527da9df61a76d9763121004200ac6aeb2ba480bbe0d",
+      "nestedMembers": [
+        {
+          "name": "./outer-termios-after.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./direct.exit",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "name": "./product.strace",
+          "type": "regular",
+          "bytes": 1748323,
+          "sha256": "d37c0d64af404f76f88bf8542078023d62256f70c147fedcb0e96efaf1582a12"
+        },
+        {
+          "name": "./product.stderr",
+          "type": "regular",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "./outer-termios-before.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./console-font.bin",
+          "type": "regular",
+          "bytes": 32768,
+          "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+        },
+        {
+          "name": "./vt-default-utf8.txt",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        {
+          "name": "./boot-cmdline.txt",
+          "type": "regular",
+          "bytes": 97,
+          "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+        }
+      ],
+      "inspection": "safe ./ names; regular data; no ELF/SDK/cache signatures or paths"
+    },
+    {
+      "member": "composition-application-vt-execution/raw/composition-v3/guest-export.tar.gz",
+      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v3/guest-export.tar.gz",
+      "bytes": 22228,
+      "sha256": "77871d37caada77e9b88f080b099af9c7349b7e15029506d74658e091b1bda51",
+      "nestedMembers": [
+        {
+          "name": "./outer-termios-after.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./direct.exit",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "name": "./product.strace",
+          "type": "regular",
+          "bytes": 1782086,
+          "sha256": "c6d33f71ed84b6392d0aaa5e8eb96fdf09a740da503a749c7ca0fce78890afe9"
+        },
+        {
+          "name": "./product.stderr",
+          "type": "regular",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "./outer-termios-before.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./console-font.bin",
+          "type": "regular",
+          "bytes": 32768,
+          "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+        },
+        {
+          "name": "./vt-default-utf8.txt",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        {
+          "name": "./boot-cmdline.txt",
+          "type": "regular",
+          "bytes": 97,
+          "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+        }
+      ],
+      "inspection": "safe ./ names; regular data; no ELF/SDK/cache signatures or paths"
+    },
+    {
+      "member": "composition-application-vt-execution/raw/composition-v7/guest-export.tar.gz",
+      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v7/guest-export.tar.gz",
+      "bytes": 22468,
+      "sha256": "c91449fd059c7594b41f997339d4119b05bd88bcee078ba3edc6e4e5ac25a041",
+      "nestedMembers": [
+        {
+          "name": "./outer-termios-after.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./direct.exit",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "name": "./product.strace",
+          "type": "regular",
+          "bytes": 1802353,
+          "sha256": "6085988955581c234c7aa5dc07a52c9a5ac21c62313a240054f0cdcb0d1bfda6"
+        },
+        {
+          "name": "./product.stderr",
+          "type": "regular",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "./outer-termios-before.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./console-font.bin",
+          "type": "regular",
+          "bytes": 32768,
+          "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+        },
+        {
+          "name": "./vt-default-utf8.txt",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        {
+          "name": "./boot-cmdline.txt",
+          "type": "regular",
+          "bytes": 97,
+          "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+        }
+      ],
+      "inspection": "safe ./ names; regular data; no ELF/SDK/cache signatures or paths"
+    },
+    {
+      "member": "composition-application-vt-execution/raw/composition-v9/guest-export.tar.gz",
+      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v9/guest-export.tar.gz",
+      "bytes": 22488,
+      "sha256": "2d75344505cde883461d36797e6015d88d33fffb0f50d9dbcedc840d96654f6c",
+      "nestedMembers": [
+        {
+          "name": "./outer-termios-after.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./direct.exit",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "name": "./product.strace",
+          "type": "regular",
+          "bytes": 1793163,
+          "sha256": "d9515df9f7366d5d455d2318fc1962cc60ec5d5fb43c1b8e4f38f7898bc3eadd"
+        },
+        {
+          "name": "./product.stderr",
+          "type": "regular",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "./outer-termios-before.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./console-font.bin",
+          "type": "regular",
+          "bytes": 32768,
+          "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+        },
+        {
+          "name": "./vt-default-utf8.txt",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        {
+          "name": "./boot-cmdline.txt",
+          "type": "regular",
+          "bytes": 97,
+          "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+        }
+      ],
+      "inspection": "safe ./ names; regular data; no ELF/SDK/cache signatures or paths"
+    },
+    {
+      "member": "composition-application-vt-execution/raw/composition-v10/guest-export.tar.gz",
+      "original": "/workspace/work/composition-application-vt-execution/raw/composition-v10/guest-export.tar.gz",
+      "bytes": 20735,
+      "sha256": "3fcf6faeab373659be1712c0df2a3dba941034756df0bb95b9be9b2067b45804",
+      "nestedMembers": [
+        {
+          "name": "./outer-termios-after.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./direct.exit",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "name": "./product.strace",
+          "type": "regular",
+          "bytes": 1727454,
+          "sha256": "b59c8f94f29b6de976a6c5ed743b11125fde6717f80530b61fb2f2a9decf2421"
+        },
+        {
+          "name": "./product.stderr",
+          "type": "regular",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "./outer-termios-before.bin",
+          "type": "regular",
+          "bytes": 60,
+          "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+        },
+        {
+          "name": "./console-font.bin",
+          "type": "regular",
+          "bytes": 32768,
+          "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+        },
+        {
+          "name": "./vt-default-utf8.txt",
+          "type": "regular",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        {
+          "name": "./boot-cmdline.txt",
+          "type": "regular",
+          "bytes": 97,
+          "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+        }
+      ],
+      "inspection": "safe ./ names; regular data; no ELF/SDK/cache signatures or paths"
+    }
+  ]
 }
