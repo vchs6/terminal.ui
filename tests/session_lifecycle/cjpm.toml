@@ -5,7 +5,7 @@
   src-dir = "src"
   output-type = "executable"
   compile-option = "--error-count-limit all"
-  link-option = "--wrap=write --wrap=cjt_buffer_write --wrap=cjt_buffer_add --wrap=cjt_open --wrap=cjt_close --wrap=poll"
+  link-option = "--wrap=write --wrap=cjt_buffer_write --wrap=cjt_buffer_add --wrap=cjt_open --wrap=cjt_close --wrap=poll --wrap=read --wrap=realloc --wrap=free --wrap=cjt_read --wrap=cjt_size_snapshot"
 [dependencies]
 cjtui = { path = "../.." }
 [ffi.c]

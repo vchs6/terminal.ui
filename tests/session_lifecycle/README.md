@@ -1,63 +1,57 @@
-# TASK020.a preparation only
+# TASK020.a formal author tests
 
-Fixed exploratory base: `5a6819ffd2226ad31e725669209b94607f2b1e63`.
-No Cangjie/native build, product binary, PTY, host, process matrix, RED or GREEN
-has been run for these tests. These files do not admit TASK020 or close any AC.
-The formal baseline will be the accepted008 product source and root admission
-manifest, including actual008/152/117/122/112/162/I015 inputs. That rebind and
-independent review precede runtime use. 008 retains sole build priority now.
+Fixed base `13e7880ce96d1331fc9e12a2b62275a307183e9a`; original prepared commit
+`4c6bf48dc849b92cb72ae842b2eec9c933854838` preserved in its original worktree.
+Classification: execution within C004 and frozen public contracts, no new API.
+Only this test directory changed. Author proof is separate from independent
+review, execution, acceptance, final020/M1/M2/Linux/release completion.
 
-`cases.json` prepares 13 exit scenarios × visible/hidden/Unknown I015 replies,
-each through two runs of the same public Application in one process. It adds no
-API, writer, terminal parser, runtime, renderer, mock TTY or product hook. The
-small `Box` type stores UI callback state. `RuntimeStats.frames` is never used as
-a device commit counter. This suite does not repeat 008's338 bytecut cases.
+The public Application consumer covers21 scenarios ×3 caret states ×2 runs
+in each of normal Auto/no-title and explicit declared-title stress configurations,
+using one process per row, plus actual endpoint destruction without fake restart.
+`cases.json` and `manual-coverage.md` fix literal outcomes. No second writer,
+parser, renderer, Unicode data or runtime; no product test hooks. The Box type
+holds UI-thread fixture state, and business-owned Future.get joins workers.
+Normal consumer code never emits ANSI or manually flushes. PTY DECRQM reply
+injection is explicitly protocol-wire emulation, never actual host acknowledgement.
 
-The consumer opens a real nonmodal layer using public APIs, moves focus into it,
-changes logical caret visibility relative to the known initial native mode, and
-exits. Runtime assertions check both sessions have zero mounts/bindings/
-subscriptions/posts; root/layer cleanup is once-only; saved node references are
-invalid; prior handles are guarded from the new session; stopped owner posts do
-not run; inactive posts are refused; focus/caret are empty after close; Observable
-mutation while closed evaluates no getter; and the next run starts with base
-focus. Reentrant run on the same Application must report LifecycleReentry.
+`native/lifecycle_native.c` composes the unchanged accepted Session152 helper.
+It observes real native raw flags, custom original signal handler/mask/flags,
+realloc/free lifetime, competing native ownership and actual read0. Fault-close
+injection occurs after real close/restoration. OSpipe transport changes only
+read/poll endpoints after actual TTY startup; termios/output remain the original
+PTY. `tty-eof` sets ICANON/VEOF externally to obtain a real kernel TTY read0,
+then product cleanup restores exact original termios; it is not spontaneous
+EOF of an untouched raw TTY. `endpoint_hup.py` closes the last real master,
+records read0/EIO/cleanup failures and forbids same-endpoint restart. It never
+repairs a descriptor or claims termios restored on the destroyed endpoint.
 
-The prepared driver imports the existing A `Capture` PTY and exact termios
-comparison. The runner links the unchanged Session152 `session_fault.c` wrapper,
-which delegates to real native open/close. This proves only its captured handler
-addresses/masks; flags/free-allocation proof and simultaneous competing native
-owner remain explicit gaps. Close-error cases inject failure **after actual
-restoration** and repeat that injection in run2; run2's reported cleanup failure
-is expected. Assertion exit0 means the consumer checked the expected error;
-`error-*`, `primary-*`, `extras-*`, native logs and direct process exit separately
-retain the application outcome. It is not an assertion that the app had no error.
-
-Preparation check (only tool syntax/manual literal fixtures):
-
-```sh
-bash tests/session_lifecycle/run.sh prepare-check
-```
-
-Only after actual root GO, a readable fixed admission manifest, baseline rebind,
-and tool/source hash review, the independent executor can use:
+Build once with pinned SDK1.2.0, official registry and readonly warm cache.
+The ignored root/consumer cangjie-repo.toml references the supplied cache.
+Native Unicode archive/library may reference the exact pinned existing content;
+no SDK/cache/CJP copies or18973 relay. Preserve direct exits and failed first logs.
 
 ```sh
 source /workspace/work/validation/sdk/cangjie/envsetup.sh
-export CJTUI_020_ROOT_GO=1 CJTUI_020_ADMISSION=/absolute/root-fixed-manifest.json
+export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env
+export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
+export CJTUI_020_ROOT_GO=1
+export CJTUI_020_ADMISSION=/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-020-input-manifest.json
+bash tests/session_lifecycle/run.sh prepare-check
 bash tests/session_lifecycle/run.sh build
 bash tests/session_lifecycle/run.sh run --output /absolute/new-evidence-directory
 ```
 
-The environment/file guard prevents accidental preparation execution; it does
-not authenticate or manufacture admission. Root supplies the actual manifest;
-the executor records its SHA, source/test commits and tool/dependency identities.
-SDK1.2.0/stdx/UCD/cache stay at the readonly paths from the pinned008 input
-manifest. No18973 relay, cache/SDK copying, cold build repetition or push.
+`run --case ID` runs three caret rows for one scenario; default also runs the
+separate endpoint HUP case. `host_run.sh`, `host_probe.py`, `host_verify.py` and
+`host-plan.md` fix actual XTerm/VTE/VM-VT protocol/keys/baseline/PNG expectations
+for independent host execution. Probe helpers read actual /dev/tty replies,
+never supply them. These host fixtures are syntax-checked, not host-executed.
+Normal host runs keep Auto and make no optional title request; explicit
+CJTUI_020_HOST_TITLE_STRESS=1 is a separate opt-in. Real host identity/config/
+PNG/title property observations remain required.
 
-`manual-coverage.md` lists full C004 expectations, including unprepared runtime
-gaps. `reuse-map.json` binds unchanged helper/content hashes and precise historic
-scope. Reuse is conditional on unchanged source/deps/env/config/scope under
-AGENTS11.1; old host/raw results never certify these new consumers. Host evidence
-must retain actual version/config/geometry, raw termios/mode/native results,
-source/binary SHA/UTC, original PNG/hash and process exit. An alternate TERM on
-the same PTY is not another host. A screenshot alone proves no terminal mode.
+`reuse-map.json` pins accepted008/010 and finite152/117/122/112/162/I015 evidence.
+Unchanged production code/deps/env/config/scope reuses prior valid proof under
+AGENTS11.1. No008338 bytecut rerun; old captures never become this binary's
+host proof. RuntimeStats.frames is never a device commit/success counter.

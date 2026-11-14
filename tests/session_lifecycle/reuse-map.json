@@ -1,7 +1,7 @@
 {
-  "status": "preparation-only-no-runtime",
-  "base": "5a6819ffd2226ad31e725669209b94607f2b1e63",
-  "policy": "AGENTS11.1: reuse only unchanged source/deps/env/config/scope; no new commit/role cold rerun. Newly prepared consumers have no runtime evidence. No SDK/cache/Git-history/raw copies.",
+  "status": "formal-author-executed-limited-green",
+  "base": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+  "policy": "AGENTS11.1: unchanged code/deps/env/config/scope reused; new 020 runtime scope executed, no008338 rerun, no old raw/host promoted to current consumer.",
   "helpers": [
     {
       "path": "tests/interaction_a/fixtures/pty_capture.py",
@@ -9,7 +9,9 @@
       "sha256": "48fa73609e9bbc81eb2b884b147ca8fcebf9eecfafae71d59a54fff14c43120a",
       "bytes": 3598,
       "use": "direct",
-      "scope": "Directly import Capture/restored. Real PTY, exact before/after termios, literal raw and process exit; no A build recipe import."
+      "scope": "Directly import Capture/restored. Real PTY, exact before/after termios, literal raw and process exit; no A build recipe import.",
+      "prepared_sha256": "48fa73609e9bbc81eb2b884b147ca8fcebf9eecfafae71d59a54fff14c43120a",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/session_extensions/native/session_fault.c",
@@ -17,7 +19,9 @@
       "sha256": "6c06839496fcdecba757d7e42f4786cb1e37d62dcfcad5d929cfbe6a92963b22",
       "bytes": 4880,
       "use": "direct",
-      "scope": "Link unchanged existing native wrapper. Real product open/close, handler address/mask observations, close-failure injected after real close. No reset of process unsafe. No bytecut scenarios added."
+      "scope": "Link unchanged existing native wrapper. Real product open/close, handler address/mask observations, close-failure injected after real close. No reset of process unsafe. No bytecut scenarios added.",
+      "prepared_sha256": "6c06839496fcdecba757d7e42f4786cb1e37d62dcfcad5d929cfbe6a92963b22",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/application-lifecycle/pty.mjs",
@@ -25,7 +29,9 @@
       "sha256": "ac69244e07e8dc7f64545d7e01aa562ef0bdcdadc87cb2dde3251edf77ac28d5",
       "bytes": 6146,
       "use": "reference",
-      "scope": "q/callback/CtrlC/real close-error and resize historical scope only; current oracle uses atomic resize. Do not claim all historical bytes unchanged."
+      "scope": "q/callback/CtrlC/real close-error and resize historical scope only; current oracle uses atomic resize. Do not claim all historical bytes unchanged.",
+      "prepared_sha256": "ac69244e07e8dc7f64545d7e01aa562ef0bdcdadc87cb2dde3251edf77ac28d5",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/application-lifecycle/native/close_wrap.c",
@@ -33,7 +39,9 @@
       "sha256": "7087e2f673689253115e7f9ece56ed8b97ecb3fc4f738680278f8e79d1000d05",
       "bytes": 723,
       "use": "reference",
-      "scope": "Original actual-close-before-error injection method, not a second implementation in020."
+      "scope": "Original actual-close-before-error injection method, not a second implementation in020.",
+      "prepared_sha256": "7087e2f673689253115e7f9ece56ed8b97ecb3fc4f738680278f8e79d1000d05",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/support/terminal_frames.mjs",
@@ -41,7 +49,9 @@
       "sha256": "4a9ecfd661a7db4d1bee9b8098726ebc80f13bdae346e728bb4cf31cb3626ab1",
       "bytes": 2903,
       "use": "reference",
-      "scope": "Existing grid/resize helper of historical lifecycle harness; not imported by new literal-mode driver."
+      "scope": "Existing grid/resize helper of historical lifecycle harness; not imported by new literal-mode driver.",
+      "prepared_sha256": "4a9ecfd661a7db4d1bee9b8098726ebc80f13bdae346e728bb4cf31cb3626ab1",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/session_extensions/cases.mjs",
@@ -49,7 +59,9 @@
       "sha256": "e1a895972aa7d3cb47d662c1b25c01226b310b621780a4c48c78b0e6d4351324",
       "bytes": 1705,
       "use": "reference",
-      "scope": "Reuse ledger-close/error/cancel, unknown-title/no-request, invalid/disabled and already accepted fault cases only within exact unchanged scope; full matrix not rerun by020."
+      "scope": "Reuse ledger-close/error/cancel, unknown-title/no-request, invalid/disabled and already accepted fault cases only within exact unchanged scope; full matrix not rerun by020.",
+      "prepared_sha256": "e1a895972aa7d3cb47d662c1b25c01226b310b621780a4c48c78b0e6d4351324",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/session_extensions/oracle.mjs",
@@ -57,7 +69,9 @@
       "sha256": "d4fc8fe0d81ff3012820a2ba32c8fdfbb8b05d190333d45d6098c861f477e91a",
       "bytes": 19249,
       "use": "reference",
-      "scope": "Existing title scope/result/native/unsafe rules; retain historical raw bindings, no new OSC parser."
+      "scope": "Existing title scope/result/native/unsafe rules; retain historical raw bindings, no new OSC parser.",
+      "prepared_sha256": "d4fc8fe0d81ff3012820a2ba32c8fdfbb8b05d190333d45d6098c861f477e91a",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/session_extensions/host-oracle.mjs",
@@ -65,7 +79,9 @@
       "sha256": "d2cc2521674e830b5cd3bead6830c3e2434e137ed8b2610c286e9a3aea6b7214",
       "bytes": 4957,
       "use": "reference",
-      "scope": "Actual host title/clipboard/icon and PNG/raw provenance; unknown title never claimed restored."
+      "scope": "Actual host title/clipboard/icon and PNG/raw provenance; unknown title never claimed restored.",
+      "prepared_sha256": "d2cc2521674e830b5cd3bead6830c3e2434e137ed8b2610c286e9a3aea6b7214",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/interaction_a/fixtures/native_cases.py",
@@ -73,7 +89,9 @@
       "sha256": "68639d9c06f5cc67ec32634494fde8107c4b8de27d6d9894f2a431ccbe2b6fee",
       "bytes": 10456,
       "use": "reference",
-      "scope": "I015 stop/signal/draw/cleanup/unsafe cases reused within accepted scope; historical A -3 EOF oracle is not current K EOF proof. Do not invoke its native-building functions in preparation."
+      "scope": "I015 stop/signal/draw/cleanup/unsafe cases reused within accepted scope; historical A -3 EOF oracle is not current K EOF proof. Do not invoke its native-building functions in preparation.",
+      "prepared_sha256": "68639d9c06f5cc67ec32634494fde8107c4b8de27d6d9894f2a431ccbe2b6fee",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/interaction_c/src/close_lifecycle.cj",
@@ -81,7 +99,9 @@
       "sha256": "2ffc357c3956fc42bee2c677282c7d93452f9f7740de243af102b7d4b01b9b33",
       "bytes": 6387,
       "use": "reference",
-      "scope": "Dependent layer token revocation, deepest-first cleanup and exception aggregation; only accepted112 original scope reused."
+      "scope": "Dependent layer token revocation, deepest-first cleanup and exception aggregation; only accepted112 original scope reused.",
+      "prepared_sha256": "2ffc357c3956fc42bee2c677282c7d93452f9f7740de243af102b7d4b01b9b33",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/interaction_c/src/context_and_limits.cj",
@@ -89,7 +109,9 @@
       "sha256": "76aaa6e882e80ab1e20d0938d433da34a2fe8568db986061bef073b02d92c10d",
       "bytes": 6688,
       "use": "reference",
-      "scope": "Old handle thread/session guard and joined worker controls in finite C; does not prove new live worker shutdown/restart."
+      "scope": "Old handle thread/session guard and joined worker controls in finite C; does not prove new live worker shutdown/restart.",
+      "prepared_sha256": "76aaa6e882e80ab1e20d0938d433da34a2fe8568db986061bef073b02d92c10d",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "tests/interaction_c/src/native_caret_fixture.cj",
@@ -97,15 +119,19 @@
       "sha256": "ee38f4d4ab6fdca3b340efaf29fecb8c040db8b5257f49079c9e604b0f746da0",
       "bytes": 4338,
       "use": "reference",
-      "scope": "Logical caret/focus/layer observation uses prior completed frame through public API. Actual known/unknown host scope retained."
+      "scope": "Logical caret/focus/layer observation uses prior completed frame through public API. Actual known/unknown host scope retained.",
+      "prepared_sha256": "ee38f4d4ab6fdca3b340efaf29fecb8c040db8b5257f49079c9e604b0f746da0",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "src/application.cj",
-      "git_blob": "193dc961c268e2ec730563c0071e64e0001979df",
-      "sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
-      "bytes": 36153,
+      "git_blob": "2afcaa0e05a86e42c8f1b28e573c70868f9aefe0",
+      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56",
+      "bytes": 36536,
       "use": "contract",
-      "scope": "Public Application signatures, run exit/restoration order, resources and single native owner; readonly authoritative source, not author reasoning."
+      "scope": "Public Application signatures, run exit/restoration order, resources and single native owner; readonly authoritative source, not author reasoning.",
+      "prepared_sha256": "91aa5c1e05ad757113fe3d25dd86b039bd744eb9821783b8b74ebc40769e46da",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "src/runtime_stats.cj",
@@ -113,7 +139,9 @@
       "sha256": "84082f03df45963bb2c2eb8da154653e553fd7b7bc7df1b711522265bdbb3a9b",
       "bytes": 728,
       "use": "contract",
-      "scope": "Resources observable; frames is frame generation, not successful output count."
+      "scope": "Resources observable; frames is frame generation, not successful output count.",
+      "prepared_sha256": "84082f03df45963bb2c2eb8da154653e553fd7b7bc7df1b711522265bdbb3a9b",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "native/cjtui_terminal.c",
@@ -121,7 +149,9 @@
       "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4",
       "bytes": 4769,
       "use": "contract",
-      "scope": "Readonly actual raw/handler/owner/free and read EOF/HUP implementation; source observation is not fresh runtime proof."
+      "scope": "Readonly actual raw/handler/owner/free and read EOF/HUP implementation; source observation is not fresh runtime proof.",
+      "prepared_sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     }
   ],
   "evidence_indices": [
@@ -131,7 +161,9 @@
       "sha256": "9ca942ad8bfd20c2c82cda72c85821638c18cdc14e404ab93dfd3221f29699ff",
       "bytes": 5841,
       "use": "existing-scoped-evidence-index",
-      "scope": "Finite historical color/normal/error/CtrlC host evidence; no new caret/2004/runtime scope inferred."
+      "scope": "Finite historical color/normal/error/CtrlC host evidence; no new caret/2004/runtime scope inferred.",
+      "prepared_sha256": "9ca942ad8bfd20c2c82cda72c85821638c18cdc14e404ab93dfd3221f29699ff",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "docs/reviews/interaction/A/README.md",
@@ -139,7 +171,9 @@
       "sha256": "ec8411e6de9e18d45d2da1d0a8443366a424e6bcb1aac8b4a75311e9db977b81",
       "bytes": 3787,
       "use": "existing-scoped-evidence-index",
-      "scope": "Accepted102 finite I015 known-original/Unknown caret scopes and final accepted host records, excluding failed collectors."
+      "scope": "Accepted102 finite I015 known-original/Unknown caret scopes and final accepted host records, excluding failed collectors.",
+      "prepared_sha256": "ec8411e6de9e18d45d2da1d0a8443366a424e6bcb1aac8b4a75311e9db977b81",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "docs/reviews/interaction/C/README.md",
@@ -147,7 +181,9 @@
       "sha256": "ee007a8eb85d8e6915804b885eeeb258088516824de3c4bf62b870627d7044cf",
       "bytes": 6792,
       "use": "existing-scoped-evidence-index",
-      "scope": "Accepted112 finite layers/cleanup/native caret; PNG alone does not prove native visibility."
+      "scope": "Accepted112 finite layers/cleanup/native caret; PNG alone does not prove native visibility.",
+      "prepared_sha256": "ee007a8eb85d8e6915804b885eeeb258088516824de3c4bf62b870627d7044cf",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "docs/reviews/K/README.md",
@@ -155,7 +191,9 @@
       "sha256": "9b971a56df346002ecedd1c5509d80504cec8a21942429a10ef58c6a53404048",
       "bytes": 12711,
       "use": "existing-scoped-evidence-index",
-      "scope": "Accepted117 finite K. Real OSpipe/TTY read0/POLLIN|HUP EOF differs from natural-host EOF; requested2004/termios cleanup only."
+      "scope": "Accepted117 finite K. Real OSpipe/TTY read0/POLLIN|HUP EOF differs from natural-host EOF; requested2004/termios cleanup only.",
+      "prepared_sha256": "9b971a56df346002ecedd1c5509d80504cec8a21942429a10ef58c6a53404048",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "docs/reviews/E/README.md",
@@ -163,7 +201,9 @@
       "sha256": "818316414fbe130aebc56cf0e5dca8106ee0560f2dd503cb3d8f9e24d875ed77",
       "bytes": 8034,
       "use": "existing-scoped-evidence-index",
-      "scope": "Accepted122 finite editing evidence, only unchanged input/component scope; not complete020."
+      "scope": "Accepted122 finite editing evidence, only unchanged input/component scope; not complete020.",
+      "prepared_sha256": "818316414fbe130aebc56cf0e5dca8106ee0560f2dd503cb3d8f9e24d875ed77",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "docs/reviews/widgets/M/README.md",
@@ -171,7 +211,9 @@
       "sha256": "bb9185fa809da8c684a49b4fb32d0c3150695cd7792700098ade34c2463adc84",
       "bytes": 4598,
       "use": "existing-scoped-evidence-index",
-      "scope": "Accepted162 finite M component evidence; final020 component delta still required."
+      "scope": "Accepted162 finite M component evidence; final020 component delta still required.",
+      "prepared_sha256": "bb9185fa809da8c684a49b4fb32d0c3150695cd7792700098ade34c2463adc84",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     },
     {
       "path": "docs/reviews/R22/008/input-manifest.json",
@@ -179,7 +221,9 @@
       "sha256": "6f10c6eb41e83164bae545cb3b7fd93fa56fffd4f6613ca9b85755fa9c81a3fb",
       "bytes": 83652,
       "use": "existing-scoped-evidence-index",
-      "scope": "Pinned SDK1.2.0/native toolchain/read-only SDK/stdx/UCD/cache references and Session152 inputs; formal accepted008 manifest will supersede admission context only."
+      "scope": "Pinned SDK1.2.0/native toolchain/read-only SDK/stdx/UCD/cache references and Session152 inputs; formal accepted008 manifest will supersede admission context only.",
+      "prepared_sha256": "6f10c6eb41e83164bae545cb3b7fd93fa56fffd4f6613ca9b85755fa9c81a3fb",
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a"
     }
   ],
   "finite152_input_reference": {
@@ -253,13 +297,23 @@
     ],
     "copy_policy": "SDK/stdx/UCD/cache remain original references, never copied"
   },
-  "actual008": "pending accepted source/root admission; no338 matrix duplicated; existing primary/additional/unsafe/native scopes only after exact accepted binding",
+  "actual008": {
+    "path": "/workspace/work/output-recovery-acceptance/index.json",
+    "sha256": "ae1eaf30663ac05beb90a99e4a99d5591c000a1e30f1fb8de96935e009414e2d",
+    "verdict": "PASS_CURRENT_M1_AC008",
+    "source": "80d21e071537898cde27f1c7de4328ab6f27d991",
+    "scope": "all existing008 cuts/baseline/unsafe; same production src/native/cjpm/build as13e7880c, verified by Git tree diff; no008 runtime rerun"
+  },
   "checks_not_executed": [
-    "Cangjie/native compilation",
-    "product/runtime consumer",
-    "PTY/process matrix",
-    "actual terminal/window/PNG collection",
-    "independent review/acceptance",
+    "actual terminal host/window/PNG collection for new020 consumer",
+    "independent review/execution/acceptance",
     "whole020/M1/M2/Linux/release"
-  ]
+  ],
+  "actual010": {
+    "path": "/workspace/work/visible-snapshot-acceptance/index.json",
+    "sha256": "65ad82843d95148aa65b44c609f72d0b6872e70d1b25c8ac83c3d0f1baf5924d",
+    "verdict": "PASS_CURRENT_AC010",
+    "scope": "18 current original AC010 conditions; no010 rerun"
+  },
+  "worker_ownership": "R003/R011: app owns session queue tokens; business owns spawn/Future and joins it. Worker-stop joins actual worker in consumer and asserts stale/closed posts refused; no new app worker join API or promise."
 }

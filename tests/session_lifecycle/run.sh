@@ -13,7 +13,7 @@ case "${1:-prepare-check}" in
         fi
         if [[ $1 == build ]]; then
             mkdir -p "$here/native"
-            gcc -std=c11 -Wall -Wextra -Werror -O2 -fPIC -c "$here/../session_extensions/native/session_fault.c" -o "$here/native/session_fault.o"
+            gcc -std=c11 -Wall -Wextra -Werror -O2 -fPIC -c "$here/native/lifecycle_native.c" -o "$here/native/session_fault.o"
             ar rcs "$here/native/libsession_fault.a" "$here/native/session_fault.o"
             cd "$here"
             cjpm build

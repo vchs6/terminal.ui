@@ -15,8 +15,8 @@ manifest = tomllib.loads((HERE / 'cjpm.toml').read_text())
 assert manifest['package']['cjc-version'] == '1.2.0'
 assert manifest['dependencies']['cjtui']['path'] == '../..'
 matrix = json.loads((HERE / 'cases.json').read_text())
-assert matrix['status'] == 'prepared-uncompiled-unexecuted'
-assert len(matrix['cases']) == 13 and len({c['id'] for c in matrix['cases']}) == 13
+assert matrix['status'] == 'formal-author-tests'
+assert len(matrix['cases']) == 21 and len({c['id'] for c in matrix['cases']}) == 21
 assert matrix['cursor_states'] == ['visible', 'hidden', 'unknown']
 
 
@@ -57,8 +57,8 @@ for case in matrix['cases']:
         broken = copy.copy(records); broken['extras-1'] = ''
         rejects(lambda: verify_records(broken, case))
 for failure in (False, True):
-    one = 'open\t0\t0\n' + ''.join(f'signal-restored\t{n}\t1\n' for n in [28, 2, 15]) + f'close\t0\t{int(failure)}\n'
+    one = 'open\t0\t0\nraw-active\t1\t0\ncompeting-open\t-1\t0\nbuffer-free\t1\t0\nbuffer-released\t1\t1\n' + ''.join(f'signal-flags\t{n}\t1\n' for n in [28,2,15]) + ''.join(f'signal-restored\t{n}\t1\n' for n in [28, 2, 15]) + f'close\t0\t{int(failure)}\n'
     verify_native(one * 2, failure)
     rejects(lambda: verify_native(one, failure))
     rejects(lambda: verify_native((one * 2).replace('signal-restored\t2\t1', 'signal-restored\t2\t0', 1), failure))
-print('PREPARATION ONLY: shell/Python/TOML/JSON and literal oracle negative fixtures checked; 39 planned PTY cases, zero product executions')
+print('PASS tool checks + literal positive/negative oracle fixtures; runtime evidence is separate')

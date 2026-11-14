@@ -33,6 +33,8 @@ def verify_records(records, case):
         assert 'error-1' not in records, 'ordinary/cancellation run reports no synthetic error'
     else:
         assert primary in records.get('error-1', ''), 'first error remains observable'
+        if not case['first_extras']:
+            assert records.get('error-1') == primary, 'single failure exact literal primary'
         if case['first_extras']:
             assert records.get('primary-1') == primary, 'business error remains primary'
             for extra in case['first_extras']:
@@ -55,3 +57,9 @@ def verify_native(text, close_failure):
     restored = [entry for entry in entries if entry[0] == 'signal-restored']
     assert Counter(e[1] for e in restored) == Counter({'28': 2, '2': 2, '15': 2}), 'Linux WINCH/INT/TERM observations per run'
     assert all(e[2] == '1' for e in restored), 'original handler address and mask restored'
+
+    assert Counter(e[1] for e in entries if e[0] == 'signal-flags' and e[2] == '1') == Counter({'28': 2, '2': 2, '15': 2}), 'all original custom handler flags restored'
+    assert [e[1] for e in entries if e[0] == 'raw-active'] == ['1', '1'], 'actual native raw mode both runs'
+    assert [e[1] for e in entries if e[0] == 'buffer-released'] == ['1', '1'], 'native tracked buffer freed both runs'
+    assert len([e for e in entries if e[0] == 'buffer-free']) == 2, 'real native allocation freed exactly once per run'
+    assert [e[1] for e in entries if e[0] == 'competing-open'] == ['-1', '-1'], 'single native owner rejects actual competing open'
