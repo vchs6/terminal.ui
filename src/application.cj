@@ -728,17 +728,9 @@ public class Application {
                         continue
                     }
                 }
-                if (value >= 0 && decoder.waitingIdle() && lastInput >= 0) {
-                    let now = unsafe { cjt_monotonic_ms() }
-                    if (now < 0) {
-                        lastInput = -1; untimedIdleRemaining = 100
-                    } else if (now >= lastInput && now - lastInput >= 100) {
-                        lastInput = -1
-                        decoder.timeout()
-                        if (readSession().isNone() || work.isStopping()) { break }
-                    }
-                }
                 if (value >= 0) {
+                    // A ready byte takes precedence over elapsed render time; only
+                    // an idle read can establish that the input sequence expired.
                     decoder.feed([UInt8(value)])
                     if (decoder.waitingIdle()) {
                         lastInput = unsafe { cjt_monotonic_ms() }
