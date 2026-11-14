@@ -3,10 +3,10 @@ package incremental_composition
 main(): Int64 {
     let names = ["row replay", "move hide unmount", "surfaces latest background", "descendant shadows", "resize shadow bounds",
         "wide partners", "negative Frame transfer", "scroll anchors", "viewport caret", "cached caret ownership",
-        "invalid caret requests", "nested modal close", "layered glyph policy", "implicit root layers", "shadow caret"]
+        "invalid caret requests", "nested modal close", "layered glyph policy", "implicit root layers", "shadow caret", "root visibility"]
     let cases: Array<() -> Unit> = [rowReplay,movesAndRemoval,surfacesAndLatest,descendantShadows,movedShadowLayer,
         widePartners,negativeFrameTransfer,scrollAndAnchor,viewportCaret,cachedCaretAndOwnership,
-        invalidCaretRequests,nestedModalClose,layeredGlyphPolicy,rootFallbackLayers,shadowCaretOcclusion]
+        invalidCaretRequests,nestedModalClose,layeredGlyphPolicy,rootFallbackLayers,shadowCaretOcclusion,rootVisibility]
     for (i in 0..cases.size) {
         let priorCorrectness = Checks.correctness; let priorWork = Checks.work
         try { let action = cases[i]; action() } catch (error: Exception) {
