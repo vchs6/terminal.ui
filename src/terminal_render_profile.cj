@@ -28,3 +28,13 @@ struct TerminalRenderProfile {
 func snapshotProfile(colorMode: ColorMode): TerminalRenderProfile {
     TerminalRenderProfile(colorMode: colorMode)
 }
+
+// A mapped policy is equivalent only when it is the same immutable policy.
+func sameTerminalProfile(a: TerminalRenderProfile, b: TerminalRenderProfile): Bool {
+    let sameGlyph = a.glyphPolicy.kind == b.glyphPolicy.kind &&
+        (a.glyphPolicy.kind != 3 || refEq(a.glyphPolicy, b.glyphPolicy))
+    a.colorMode == b.colorMode && a.supportsBold == b.supportsBold && a.supportsDim == b.supportsDim &&
+        a.supportsItalic == b.supportsItalic && a.supportsUnderline == b.supportsUnderline &&
+        a.supportsInverse == b.supportsInverse && a.supportsStrikethrough == b.supportsStrikethrough &&
+        a.noColorVideo == b.noColorVideo && sameGlyph
+}
