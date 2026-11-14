@@ -30,3 +30,18 @@ public func eligible(mode: String, scenario: String, diagnostic: Bool): Bool {
     }
     false
 }
+
+public func scenarioPeriod(name: String): Int64 {
+    if (["unicode_cells", "caret_only", "text_length", "scroll_step"].contains(name)) { return 4 }
+    if (["keyed_manual", "scroll_multistep", "root_fallback", "overlay_nested_close", "readonly_focus_caret", "viewport_caret", "glyph_projection"].contains(name)) { return 3 }
+    if (name == "initial" || name == "idle") { return 1 }
+    2
+}
+
+public func scenarioPhase(name: String): String {
+    if (name == "initial" || name == "idle") { return name }
+    if (name == "glyph_projection") { return "output" }
+    if (name == "broad_text" || name == "large_fill_shadows") { return "broad" }
+    if (["resize_pair", "theme_color", "theme_spacing", "theme_four_sides", "theme_wrap"].contains(name)) { return "global" }
+    "local"
+}

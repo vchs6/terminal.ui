@@ -31,7 +31,7 @@ public class LayoutScene {
             }.width(width).height(height)
         } else if (name == "column_wrap_height") {
             Column {
-                Text({=> text.get()}).width(width / 2).wrap(TextWrap.Grapheme)
+                Text({=> text.get()}).width(if (width < 10) { width } else { 10 }).wrap(TextWrap.Grapheme)
                 Text("lower panel").width(width).height(1)
             }.width(width).height(height)
         } else {

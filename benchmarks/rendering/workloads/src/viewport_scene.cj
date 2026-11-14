@@ -21,7 +21,7 @@ public class ViewportScene {
                 ForEach<String>({=> rows.get()}, {value => value}, {item =>
                     Text({=> if (item.value.startsWith("C")) { "C中é👩‍💻🇨🇳" } else { item.value + "中é👩‍💻🇨🇳" }}).width(width).height(1)
                 })
-            }.width(width).height(height)
+            }.width(width)
         } else {
             Column {
                 let viewport = ScrollView {
@@ -35,6 +35,23 @@ public class ViewportScene {
         this.root = root
         this.app = Application(root, glyphMode: GlyphMode.Unicode,
             theme: Theme.parse("schema_version = 1\nname = \"benchmark\"\n"))
+    }
+
+    public func assertCommitted(epoch: Int64): Unit {
+        let state = viewport.reference().getOrThrow().viewportSnapshot()
+        if (name == "root_fallback") {
+            let step = epoch % 3
+            let expectedContent = if (step == 0) { height } else { height + 2 }
+            let expectedOffset = if (step == 2) { 2 } else { 0 }
+            if (state.height != height || state.contentHeight != expectedContent || state.offsetY != expectedOffset) {
+                throw Exception("root fallback geometry mismatch at epoch ${epoch}")
+            }
+        } else {
+            if (state.height != 4 || state.contentHeight < state.height || state.offsetY < 0 ||
+                state.offsetY > state.contentHeight - state.height) {
+                throw Exception("viewport geometry mismatch at epoch ${epoch}")
+            }
+        }
     }
 
     public func action(epoch: Int64): Unit {

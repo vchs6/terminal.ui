@@ -19,8 +19,14 @@ public class ThemeScene {
             } else { "[text]\nwrap = \"grapheme\"\n" }
         let changed = Theme.parse("schema_version = 1\nname = \"changed\"\n" + detail)
         this.base = base; this.changed = changed
+        var line = "A中é👩‍💻🇨🇳 A中é👩‍💻🇨🇳"
+        if (name == "theme_wrap") {
+            line = ""
+            for (_ in 0..(width / 8 + 1)) { line += "A中é👩‍💻🇨🇳" }
+        }
+        let content = line
         let root = Column {
-            for (_ in 0..height) { Text("A中é👩‍💻🇨🇳 A中é👩‍💻🇨🇳").width(width) }
+            for (_ in 0..height) { Text(content).width(width) }
         }.width(width).height(height)
         this.root = root
         this.app = Application(root, glyphMode: GlyphMode.Unicode, theme: base)

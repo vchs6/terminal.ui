@@ -9,6 +9,10 @@ main(args: Array<String>): Int64 {
     }
     try {
         let options = Options(args, true)
+        if (options.mode == "m2-headless" && options.scenario == "initial") { runDiagnosticInitial(options); return 0 }
+        if (!supportsTextScene(options.scenario) && options.mode == "correctness") {
+            captureDraftCorrectness(options, true)
+        }
         runDiagnosticText(options)
         0
     } catch (error: Exception) {

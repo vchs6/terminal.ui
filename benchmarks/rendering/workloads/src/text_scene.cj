@@ -20,7 +20,11 @@ public class TextScene {
         let color = Observable<Color>(Color.Default)
         let entries = Array<Observable<String>>(height, {_ => Observable<String>("A中é👩‍💻🇨🇳")})
         this.text = text; this.color = color; this.entries = entries
-        let root = if (name == "unicode_cells" || name == "same_width_text" || name == "text_length") {
+        let root = if (name == "text_length") {
+            Column {
+                Text({=> text.get()}).foreground({=> color.get()}).height(1)
+            }.width(width).height(height)
+        } else if (name == "unicode_cells" || name == "same_width_text") {
             Column {
                 Text({=> text.get()}).foreground({=> color.get()}).width(width).height(1)
             }.width(width).height(height)
@@ -37,8 +41,14 @@ public class TextScene {
                 for (i in 0..height) {
                     let entry = entries[i]
                     if (i == height - 1) {
-                        Text({=> entry.get()}).foreground({=> color.get()}).width(width).height(1)
-                    } else { Text({=> entry.get()}).width(width).height(1) }
+                        Text({=> entry.get()}).foreground({=> color.get()}).background(Color.Blue)
+                            .bold(true).dim(true).italic(true).underline(true).inverse(true).strikethrough(true)
+                            .width(width).height(1)
+                    } else {
+                        Text({=> entry.get()}).foreground(Color.Cyan).background(Color.Blue)
+                            .bold(true).dim(true).italic(true).underline(true).inverse(true).strikethrough(true)
+                            .width(width).height(1)
+                    }
                 }
             }.width(width).height(height)
         }

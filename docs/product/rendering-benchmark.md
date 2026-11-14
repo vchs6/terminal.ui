@@ -1,7 +1,7 @@
 # Rendering benchmark
 
-The public rendering benchmark is under development and does not yet produce
-measurements. Its draft source is in `benchmarks/rendering`; do not interpret
+The public rendering benchmark is under development and does not yet provide a complete validated
+measurement suite. Its draft source is in `benchmarks/rendering`; do not interpret
 an unavailable workload as a zero cost or a successful sample.
 
 The intended comparison uses the same business workload and ordinary public

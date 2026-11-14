@@ -11,6 +11,7 @@ public class Workload {
     public let setup: () -> Unit
     public let afterSnapshot: (Int64) -> Unit
     public let glyph: (Int64) -> GlyphMode
+    public let caretRecord: (CaretSnapshot, Int64, Int64, String) -> String
 
     public init(options: Options) {
         let name = options.scenario; let w = options.width; let h = options.height
@@ -20,6 +21,12 @@ public class Workload {
         var setup: () -> Unit = {=> ()}
         var barrier: (Int64) -> Unit = {_ => ()}
         var glyph: (Int64) -> GlyphMode = {_ => GlyphMode.Unicode}
+        var caretRecord: (CaretSnapshot, Int64, Int64, String) -> String = {caret, epoch, seed, stage =>
+            if (caret.visible || caret.owner.isSome() || caret.x != 0 || caret.y != 0) {
+                throw Exception("unexpected caret in ${name} epoch ${epoch}")
+            }
+            "${name},${seed},${epoch},${stage},none,false,0,0,false\n"
+        }
         if (name == "initial" || name == "idle" || name == "resize_pair") {
             let scene = TextScene("vertical_panels", w, h)
             app = Some(scene.app); root = Some(scene.root)
@@ -31,22 +38,40 @@ public class Workload {
             app = Some(scene.app); root = Some(scene.root); action = {epoch => scene.app.batch({=> scene.action(epoch)})}
         } else if (["typed_equal", "explicit_notify"].contains(name)) {
             let scene = ReactiveScene(name, w, h)
-            app = Some(scene.app); root = Some(scene.root); action = {epoch => scene.app.batch({=> scene.action(epoch)})}
+            app = Some(scene.app); root = Some(scene.root)
+            action = {epoch =>
+                if (name == "typed_equal") {
+                    if (epoch % 2 == 1) {
+                        scene.app.batch({=> scene.replaceWithEqual()})
+                        scene.app.batch({=> scene.changeOldSource()})
+                    } else { scene.app.batch({=> scene.restoreSource()}) }
+                } else { scene.app.batch({=> scene.action(epoch)}) }
+            }
         } else if (["scroll_step", "scroll_multistep", "root_fallback", "large_mounted_viewport"].contains(name)) {
             let scene = ViewportScene(name, w, h)
             app = Some(scene.app); root = Some(scene.root); action = {epoch => scene.app.batch({=> scene.action(epoch)})}
+            barrier = {epoch => scene.assertCommitted(epoch)}
         } else if (["caret_only", "readonly_focus_caret", "viewport_caret"].contains(name)) {
             let scene = CaretScene(name, w, h)
             app = Some(scene.app); root = Some(scene.root); setup = {=> scene.app.batch({=> scene.focusInitial()})}
             action = {epoch => scene.app.batch({=> scene.action(epoch)})}
+            caretRecord = {caret, epoch, seed, stage => scene.describeCaret(caret, epoch, seed, stage)}
         } else if (["ellipsis_policy", "glyph_projection"].contains(name)) {
             let scene = GlyphScene(name, w, h)
             app = Some(scene.app); root = Some(scene.root); action = {epoch => scene.app.batch({=> scene.action(epoch)})}
             glyph = {epoch => scene.glyphMode(epoch)}
         } else if (["overlay_holes", "overlay_move", "overlay_shrink", "overlay_nested_close", "large_fill_shadows"].contains(name)) {
             let scene = OverlayScene(name, w, h)
-            app = Some(scene.app); root = Some(scene.root); setup = {=> scene.app.batch({=> scene.open()})}
-            action = {epoch => scene.app.batch({=> scene.action(epoch)})}
+            app = Some(scene.app); root = Some(scene.root)
+            setup = {=>
+                scene.app.batch({=> scene.open()})
+                if (name == "overlay_nested_close") { scene.app.batch({=> scene.openChild()}) }
+            }
+            action = {epoch =>
+                scene.app.batch({=> scene.action(epoch)})
+                if (name == "overlay_nested_close" && epoch % 3 == 2) { scene.assertChildClosed() }
+                if (name == "overlay_nested_close" && epoch % 3 == 0) { scene.app.batch({=> scene.openChild()}) }
+            }
         } else if (["theme_color", "theme_spacing", "theme_four_sides", "theme_wrap"].contains(name)) {
             let scene = ThemeScene(name, w, h)
             let request: Array<?ThemeRequest> = [None]
@@ -64,5 +89,6 @@ public class Workload {
         } else { throw Exception("workload ${name} is not implemented") }
         this.app = app.getOrThrow(); this.root = root.getOrThrow()
         this.action = action; this.setup = setup; this.afterSnapshot = barrier; this.glyph = glyph
+        this.caretRecord = caretRecord
     }
 }

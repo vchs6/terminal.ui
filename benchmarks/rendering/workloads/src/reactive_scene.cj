@@ -33,6 +33,10 @@ public class ReactiveScene {
             theme: Theme.parse("schema_version = 1\nname = \"benchmark\"\n"))
     }
 
+    public func replaceWithEqual(): Unit { selectRight.set(true) }
+    public func changeOldSource(): Unit { left.set("old source changed") }
+    public func restoreSource(): Unit { left.set("A中é👩‍💻🇨🇳"); selectRight.set(false) }
+
     public func action(epoch: Int64): Unit {
         if (name == "typed_equal") {
             if (epoch % 2 == 1) { selectRight.set(true); left.set("old source changed") }

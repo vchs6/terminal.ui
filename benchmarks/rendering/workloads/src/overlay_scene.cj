@@ -47,11 +47,25 @@ public class OverlayScene {
         let options = OverlayOptions(anchor: Some(anchor.reference().getOrThrow()), placement: OverlayPlacement.BelowStart,
             mode: OverlayMode.NonModal, takeFocus: false)
         parent = Some(root.reference().getOrThrow().openOverlay(layer, options: options))
-        if (name == "overlay_nested_close") {
-            let host = parent.getOrThrow().content().getOrThrow()
-            child = Some(host.openOverlay(Text("child").width(width / 3).height(2),
+        if (name == "large_fill_shadows") {
+            let second = Canvas({constraints => constraints.constrain(Size(width / 2, layerHeight))}, {context =>
+                context.fill(Rect(0, 0, width / 2, layerHeight))
+                context.put(0, 0, "overlap")
+            }).width(width / 2).height(layerHeight).shadow(offsetX: -1, offsetY: 1)
+            child = Some(root.reference().getOrThrow().openOverlay(second,
                 options: OverlayOptions(mode: OverlayMode.NonModal, takeFocus: false)))
         }
+    }
+
+    public func openChild(): Unit {
+        let host = parent.getOrThrow().content().getOrThrow()
+        child = Some(host.openOverlay(Text("child").width(width / 3).height(2),
+            options: OverlayOptions(mode: OverlayMode.NonModal, takeFocus: false)))
+    }
+
+    public func assertChildClosed(): Unit {
+        if (child.getOrThrow().isOpen()) { throw Exception("child overlay stayed open after parent close") }
+        child = None
     }
 
     public func action(epoch: Int64): Unit {
@@ -63,10 +77,8 @@ public class OverlayScene {
         else if (name == "overlay_nested_close") {
             if (epoch % 3 == 1) { base.set("B中é👩‍💻🇨🇳") }
             else if (epoch % 3 == 2) {
-                let attached = child.getOrThrow()
                 parent.getOrThrow().close()
-                if (attached.isOpen()) { throw Exception("child overlay stayed open after parent close") }
-                parent = None; child = None
+                parent = None
             }
             else { open() }
         } else if (name == "large_fill_shadows") { anchorWidth.set(if (changed) { width / 4 } else { 1 }) }

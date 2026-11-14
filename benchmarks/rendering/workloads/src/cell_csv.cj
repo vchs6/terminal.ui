@@ -6,15 +6,15 @@ import std.collection.ArrayList
 // These records describe logical Cells, before any terminal projection. This
 // function belongs only to correctness runs, outside performance windows.
 public func cellCsv(frame: Frame, scenario: String, seed: Int64, epoch: Int64, path: String): String {
-    var output = ""
+    let output = StringBuilder()
     for (y in 0..frame.height) {
         for (x in 0..frame.width) {
             let cell = frame.cellAt(x, y)
             let style = cell.style
-            output += "${scenario},${frame.width},${frame.height},${seed},${epoch},${path},${x},${y},${utf8Hex(cell.grapheme)},${cell.width},${cell.continuation},${cell.isTransparent},\"${colorName(style.foreground)}\",\"${colorName(style.background)}\",${style.bold},${style.dim},${style.italic},${style.underline},${style.inverse},${style.strikethrough}\n"
+            output.append("${scenario},${frame.width},${frame.height},${seed},${epoch},${path},${x},${y},${utf8Hex(cell.grapheme)},${cell.width},${cell.continuation},${cell.isTransparent},\"${colorName(style.foreground)}\",\"${colorName(style.background)}\",${style.bold},${style.dim},${style.italic},${style.underline},${style.inverse},${style.strikethrough}\n")
         }
     }
-    output
+    output.toString()
 }
 
 public func cellCsvHeader(): String {
