@@ -928,7 +928,7 @@ class RuntimeSession {
             let rootNode = root.readMount()
             var dirty = rootNode.isNone()
             if (let Some(value) <- rootNode) { dirty = value.layoutDirty || value.layout.isNone() }
-            dirty || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty()
+            dirty || pendingBehaviorStyle || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty()
         }
         finally { lock.unlock() }
     }

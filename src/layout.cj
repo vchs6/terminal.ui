@@ -458,6 +458,19 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
             session.rootLayout().getOrThrow()
         } else {
             let measured = LayoutNode(root, session, themeSeed(session.theme), isRoot: true, commitGeometry: reuse, glyphPolicy: glyphPolicy)
+            // A missing root result does not imply its descendants are clean:
+            // policy or theme changes can discard the root while content work
+            // remains queued in the committed runtime subtree.
+            if (sessionRoot) {
+                let runtimeRoot = root.readMount().getOrThrow()
+                for (entry in runtimeRoot.sequence) {
+                    if (let ChildEntry.MountedChild(child) <- entry) {
+                        if (child.component.isVisible) {
+                            session.revalidateMeasurement(child,measured.resolved.style,false)
+                        }
+                    }
+                }
+            }
             measured.measure()
             if (sessionRoot) { measured.publish() }
             measured
