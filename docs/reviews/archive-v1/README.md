@@ -28,3 +28,5 @@ node scripts/review-archive.mjs --root . restore docs/reviews/R11/acceptance/SOU
 [最终工具复审](audit/source-review.md)与[70 项独立工具测试](audit/tool-tests.md)分别给出源码和实际执行结论。[审计原件包](audit/evidence.tar.gz)及[逐成员哈希清单](audit/manifest.json.gz)保留初始失败、修复、独立测试、迁移和恢复记录；所有 1,696 个审计成员已逐项核验。生产轮次分片仍位于各轮次目录，没有重复打入审计包。
 
 [独立最终验收](audit/acceptance/report.md)：`PASS_CURRENT_REVIEW_ARCHIVE`，包含标准 umask022 的完整新检出验证。其[原始证据包](audit/acceptance/raw-evidence.tar.gz)和[归档索引](audit/acceptance/archive-index.json)保留实际命令、原件校验与检出结果。
+
+验证后，临时新检出副本已按[存储记录](audit/acceptance/checkout-storage.json)移除；Git `29b92833`、规范归档与全部验收原件保留。旧报告中的该工作目录路径为历史验证位置，可按记录从固定 Git 版本和标准权限设置重新检出。

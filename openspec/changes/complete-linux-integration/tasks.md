@@ -83,7 +83,7 @@ L4 021.a：独立测试按C005明确U1–U5入口、字面画面/业务事件/�
 
 - [ ] 2.1.5 原TASK-041：M1设备输入与最终全Linux适配证据（WP004/REQ011/003/004/009；平台verification/必要原owner修复）。
 
-输入=已验native/TTY/尺寸/输入/输出/恢复子接口，M1完整020与C008设备事实；最终完整源还消费147。独立交付 `docs/development/linux-session.md`、`docs/reviews/Linux-final/linux-session-m1.json` 与 `docs/reviews/Linux-final/linux-session-final.json`。L4 041.a在124前固定M1 SDK/native/deps/ABI/输入输出/尺寸/恢复子接口manifest（不关闭完整AC041、不等待147）；041.b在M2后同源C008实际固定console/模拟器/mux/SSH场景补受影响输入/Unicode/布局/固定变化尺寸/全部恢复；041.c有真实缺陷回原独立测试/作者小修且双审核、相关执行，禁第二平台/渲染内核；041.d独立最终验收原AC041全部范围与exacttermios/bytes/PNG，不以M1 manifest勾选本卡完成。最终host/命令/hash缺失是planning_gaps，M1与最终状态由同一原卡分阶段交付，不创重复041状态。
+输入=已验native/TTY/尺寸/输入/输出/恢复子接口，M1完整020与C008设备事实；最终完整源还消费147。独立交付 `docs/development/linux-session.md`、`docs/reviews/Linux-final/linux-session-m1.json` 与 `docs/reviews/Linux-final/linux-session-final.json`。L4 041.a已固定[M1设备输入](../../../docs/reviews/Linux-final/linux-session-m1.json)与[完整库/依赖/SDK/native冻结](../../../docs/reviews/Linux-final/m1/README.md)，独立准入reviewc1f7320接受，未关闭完整AC041；041.b在M2后同源C008实际固定console/模拟器/mux/SSH场景补受影响输入/Unicode/布局/固定变化尺寸/全部恢复；041.c有真实缺陷回原独立测试/作者小修且双审核、相关执行，禁第二平台/渲染内核；041.d独立最终验收原AC041全部范围与exacttermios/bytes/PNG，不以M1 manifest勾选本卡完成。最终host/命令/hash缺失是planning_gaps，M1与最终状态由同一原卡分阶段交付，不创重复041状态。
 
 017/026/030等跨任务父AC汇合由024同一验收职责引用各现有正式链与组合结果；不新增实现任务，不因支持编号相加关闭父。
 
