@@ -69,7 +69,7 @@ is by ID. Footer: `Logs | 24/24 | Classic`. Query `record 03` yields exactly
 `003 ERROR record 03`; clear query and errors-only yields 8 records. Newest
 then starts 024,021,018. Returning to Tasks preserves task business/editor data.
 
-Additional goldens/modal.json fixes the same panel centered at wide/narrow sizes, including clipped underlying text; shadow-only cells are spaces with black background. Goldens record startup at 80x24, 40x12, 16x6. Full rows include trailing spaces;
+Additional goldens/modal.json fixes the same panel centered at wide/narrow sizes, including clipped underlying text; shadow-only cells use the existing public `░` glyph with black background under the single-column width policy, with existing `.` fallback when `░` is not one column (no public shadow-glyph override). Goldens record startup at 80x24, 40x12, 16x6. Full rows include trailing spaces;
 all frame text is hand-authored from the above layout, not recorded output.
 Styles: Classic root default fg/bg; titles bold; explicit Idle yellow,
 Ready cyan, Done yellow pending acknowledgement then green; progress cyan;
