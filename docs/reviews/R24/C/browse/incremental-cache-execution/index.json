@@ -1,0 +1,358 @@
+{
+  "task": "TASK136",
+  "classification": "execution",
+  "result": "PASS scoped independent consumer execution",
+  "source_commit": "ee84e7ac7a35bb6481a17ecb91f1ec07804b672a",
+  "fixed_tests_commit": "4845df24b33f75432d26a68fb0b844abbb4e8528",
+  "requested_configuration": "Sol/medium",
+  "serving_identity_verified": false,
+  "environment": [
+    "source /workspace/work/validation/sdk/cangjie/envsetup.sh",
+    "export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env",
+    "export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+  ],
+  "checks": [
+    {
+      "cwd": "/workspace/work/incremental-cache-execution/source/tests/incremental_layout/invalidation_cache",
+      "environment": [
+        "source /workspace/work/validation/sdk/cangjie/envsetup.sh",
+        "export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env",
+        "export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+      ],
+      "command": "cjpm build --target-dir /workspace/work/incremental-cache-execution/source/target -o execution-26",
+      "exit": 0,
+      "raw": "/workspace/work/incremental-cache-execution/build.log"
+    },
+    {
+      "cwd": "/workspace/work/incremental-cache-execution/source/tests/incremental_layout/invalidation_cache",
+      "environment": [
+        "source /workspace/work/validation/sdk/cangjie/envsetup.sh",
+        "export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env",
+        "export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+      ],
+      "command": "/workspace/work/incremental-cache-execution/source/target/release/bin/execution-26",
+      "exit": 0,
+      "raw": "/workspace/work/incremental-cache-execution/run.log"
+    },
+    {
+      "cwd": "/workspace/work/incremental-cache-execution/source",
+      "command": "git diff --exit-code 4845df24b33f75432d26a68fb0b844abbb4e8528 -- tests/incremental_layout/invalidation_cache",
+      "exit": 0,
+      "raw": "/workspace/work/incremental-cache-execution/fixed-tests.log"
+    },
+    {
+      "cwd": "/workspace/work/incremental-cache-execution/source",
+      "command": "git diff --exit-code 4e30434ac29b49a5aa1e6acdad4a2f5f8373dc4b -- 'src/frame*.cj' tests/incremental_layout/frame_cow",
+      "exit": 0,
+      "raw": "/workspace/work/incremental-cache-execution/frame-unchanged.log"
+    }
+  ],
+  "results": {
+    "cases": 26,
+    "correctness_failed": 0,
+    "work_failed_cases": 0,
+    "work_failed_assertions": 0,
+    "printed_pair_count": 101,
+    "pair_lines": [
+      "PAIR getter initial epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR typed equal String and Int64 epoch=1 measure=0/6 arrange=0/6 paint=0/3",
+      "PAIR Observable notify equal output epoch=2 measure=0/6 arrange=0/6 paint=0/3",
+      "PAIR constants replace getters epoch=3 measure=2/6 arrange=6/6 paint=3/3",
+      "PAIR old sources detached epoch=4 measure=0/6 arrange=0/6 paint=0/3",
+      "PAIR getter restored epoch=5 measure=4/6 arrange=6/6 paint=3/3",
+      "PAIR typed style initial epoch=0 measure=2/2 arrange=3/2 paint=1/1",
+      "PAIR typed RichText StyleUse Bool enum equal epoch=1 measure=0/2 arrange=0/2 paint=0/1",
+      "PAIR notify initial epoch=0 measure=10/10 arrange=15/10 paint=5/5",
+      "PAIR Bindings constant epoch=1 measure=0/10 arrange=0/10 paint=0/5",
+      "PAIR Style constant epoch=2 measure=0/10 arrange=0/10 paint=5/5",
+      "PAIR explicit content/layout/all epoch=3 measure=2/10 arrange=6/10 paint=5/5",
+      "PAIR explicit content/layout/all epoch=4 measure=2/10 arrange=6/10 paint=5/5",
+      "PAIR explicit content/layout/all epoch=5 measure=4/10 arrange=6/10 paint=5/5",
+      "PAIR separated panels initial epoch=0 measure=28/28 arrange=32/18 paint=14/14",
+      "PAIR same width local leaf epoch=1 measure=2/28 arrange=10/18 paint=14/14",
+      "PAIR shorter local leaf epoch=2 measure=8/28 arrange=11/18 paint=14/14",
+      "PAIR row remainder initial 1/4/3 epoch=0 measure=12/12 arrange=18/12 paint=6/6",
+      "PAIR row sibling redistribution 2/3/3 epoch=1 measure=8/12 arrange=11/12 paint=6/6",
+      "PAIR row remainder changes 3/3/2 epoch=2 measure=8/12 arrange=12/12 paint=6/6",
+      "PAIR row width changes flex input epoch=2 measure=3/12 arrange=9/12 paint=6/6",
+      "PAIR row width restored epoch=2 measure=3/12 arrange=9/12 paint=6/6",
+      "PAIR column centered three epoch=0 measure=8/8 arrange=12/8 paint=4/4",
+      "PAIR column centered height moves before and after epoch=1 measure=4/8 arrange=8/8 paint=4/4",
+      "PAIR column end position only epoch=2 measure=2/8 arrange=6/8 paint=4/4",
+      "PAIR column end shrink epoch=3 measure=4/8 arrange=7/8 paint=4/4",
+      "PAIR wrap four insets epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR wrap actual narrower constraint epoch=0 measure=2/6 arrange=5/6 paint=3/3",
+      "PAIR same inset sum different left right epoch=1 measure=2/6 arrange=6/6 paint=3/3",
+      "PAIR same inset sum different top bottom epoch=2 measure=2/6 arrange=6/6 paint=3/3",
+      "PAIR wrapped shrink moves following sibling epoch=3 measure=5/6 arrange=7/6 paint=3/3",
+      "PAIR wrap original constraints restored epoch=4 measure=7/6 arrange=7/6 paint=3/3",
+      "PAIR keyed initial epoch=0 measure=8/8 arrange=12/8 paint=4/4",
+      "PAIR manual inserted physical slot epoch=1 measure=4/10 arrange=8/10 paint=5/5",
+      "PAIR keys reverse around manual slot epoch=2 measure=2/10 arrange=5/10 paint=5/5",
+      "PAIR manual position changes only epoch=3 measure=2/10 arrange=6/10 paint=5/5",
+      "PAIR manual removal of declarative B epoch=4 measure=2/8 arrange=5/8 paint=4/4",
+      "PAIR Structure restores latest declarative data epoch=5 measure=4/10 arrange=8/10 paint=5/5",
+      "PAIR manual survives empty declaration epoch=6 measure=2/4 arrange=4/4 paint=2/2",
+      "PAIR visible initial epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR hidden removed from layout epoch=1 measure=2/4 arrange=4/4 paint=2/2",
+      "PAIR hidden pending content and If insertion epoch=2 measure=4/6 arrange=7/6 paint=3/3",
+      "PAIR latest hidden content restored epoch=3 measure=4/8 arrange=8/8 paint=4/4",
+      "PAIR If removal and latest text epoch=4 measure=4/6 arrange=7/6 paint=3/3",
+      "PAIR span initial epoch=0 measure=10/10 arrange=15/10 paint=5/5",
+      "PAIR span style only epoch=1 measure=0/10 arrange=0/10 paint=5/5",
+      "PAIR span same width text changes epoch=2 measure=2/10 arrange=6/10 paint=5/5",
+      "PAIR span width shrinks clears continuation epoch=3 measure=5/10 arrange=6/10 paint=5/5",
+      "PAIR theme initial inherited and masked epoch=0 measure=8/8 arrange=12/8 paint=4/4",
+      "PAIR theme pure color epoch=1 measure=0/8 arrange=0/8 paint=4/4",
+      "PAIR inherited seed permits Canvas patch epoch=0 measure=5/5 arrange=6/4 paint=2/2",
+      "PAIR equal effective color new explicit mask epoch=1 measure=0/5 arrange=0/4 paint=2/2",
+      "PAIR same background value new fill source epoch=2 measure=0/5 arrange=0/4 paint=2/2",
+      "PAIR source masks and fill removed epoch=3 measure=0/5 arrange=0/4 paint=2/2",
+      "PAIR theme geometry initial clip epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR theme wrap and horizontal insets epoch=1 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR theme geometry restored epoch=2 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR Canvas separate inputs initial epoch=0 measure=11/11 arrange=15/10 paint=5/5",
+      "PAIR transient narrow dependency detached epoch=1 measure=0/11 arrange=0/10 paint=0/5",
+      "PAIR Canvas draw-only dependency epoch=2 measure=0/11 arrange=0/10 paint=5/5",
+      "PAIR Canvas measure-only height moves siblings epoch=3 measure=5/11 arrange=9/10 paint=5/5",
+      "PAIR draw subscription retained after measure epoch=4 measure=0/11 arrange=0/10 paint=5/5",
+      "PAIR measure subscription retained after draw epoch=5 measure=5/11 arrange=9/10 paint=5/5",
+      "PAIR Canvas readonly initial focus epoch=0 measure=7/7 arrange=9/6 paint=3/3",
+      "PAIR Canvas readonly focus leaves epoch=1 measure=0/7 arrange=0/6 paint=3/3",
+      "PAIR Canvas readonly focus changes epoch=2 measure=0/7 arrange=0/6 paint=3/3",
+      "PAIR Canvas readonly enabled changes epoch=3 measure=0/7 arrange=0/6 paint=3/3",
+      "PAIR Canvas readonly enabled restored epoch=4 measure=0/7 arrange=0/6 paint=3/3",
+      "PAIR reference cache initial epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR reference width does not replace target cache epoch=0 measure=0/6 arrange=0/6 paint=0/3",
+      "PAIR reference preserves target dirty epoch=1 measure=5/6 arrange=6/6 paint=3/3",
+      "PAIR stable after successful target epoch=1 measure=0/6 arrange=0/6 paint=0/3",
+      "PAIR root finite 5/5 epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR root finite overflow switches to natural 8/3 epoch=1 measure=4/6 arrange=7/6 paint=3/3",
+      "PAIR root scroll translation epoch=2 measure=0/6 arrange=3/6 paint=3/3",
+      "PAIR root shrink returns finite input epoch=3 measure=4/6 arrange=7/6 paint=3/3",
+      "PAIR root repeated overflow cannot reuse finite result epoch=4 measure=4/6 arrange=7/6 paint=3/3",
+      "PAIR viewport wrap initial epoch=0 measure=6/6 arrange=6/3 paint=3/3",
+      "PAIR viewport scroll reuses text measurement epoch=1 measure=0/6 arrange=3/3 paint=3/3",
+      "PAIR viewport wider wraps to two then clamps epoch=1 measure=2/6 arrange=3/3 paint=3/3",
+      "PAIR viewport content shrink clamp epoch=2 measure=5/6 arrange=4/3 paint=3/3",
+      "PAIR viewport height changes clip epoch=2 measure=0/6 arrange=3/3 paint=3/3",
+      "PAIR viewport narrow constraint epoch=2 measure=1/6 arrange=3/3 paint=3/3",
+      "PAIR Unicode generated marker epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR ASCII generated marker epoch=0 measure=2/6 arrange=2/6 paint=3/3",
+      "PAIR ASCII two-column marker epoch=0 measure=3/6 arrange=6/6 paint=3/3",
+      "PAIR ASCII one-column marker epoch=0 measure=3/6 arrange=6/6 paint=3/3",
+      "PAIR ASCII original width restored epoch=0 measure=3/6 arrange=6/6 paint=3/3",
+      "PAIR Unicode policy restored epoch=0 measure=2/6 arrange=2/6 paint=3/3",
+      "PAIR offline Auto same effective Unicode epoch=0 measure=0/6 arrange=0/6 paint=0/3",
+      "PAIR F1 initially focused wrap epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR F2 reusable red epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR F2 unequal reusable color-only style epoch=1 measure=0/6 arrange=0/6 paint=3/3",
+      "PAIR F2 visual normal red epoch=0 measure=6/6 arrange=9/6 paint=3/3",
+      "PAIR F2 visual selected color-only output epoch=1 measure=0/6 arrange=0/6 paint=3/3",
+      "PAIR F4 auto panels initial epoch=0 measure=62/62 arrange=93/62 paint=31/31",
+      "PAIR F4 same-size leaf auto panels epoch=1 measure=2/62 arrange=12/62 paint=31/31",
+      "PAIR F5 explicit Off initial finite height epoch=0 measure=3/3 arrange=2/1 paint=1/1",
+      "PAIR R1-N1 warm inline width one epoch=0 measure=4/4 arrange=6/4 paint=2/2",
+      "PAIR R1-N1 valid pending-width ensure completes epoch=1 measure=5/4 arrange=6/4 paint=2/2",
+      "PAIR R1-N2 warm nested Unicode text epoch=0 measure=6/6 arrange=9/6 paint=3/3"
+    ],
+    "additional_lines": [
+      "F1 literal full=[abc",
+      "F4 tree_nodes=31 affected_path=4 conservative_arrange_bound=16 actual_arranges=12",
+      "F5 target_callbacks=1 target_recorded_measures=1 epoch=0",
+      "R1-N1 next_batch=inline_width3_then_ensure_Rect(2,0,1,1)",
+      "R1-N2 next_target=Ascii3x1 expected=[q  ] epoch=1",
+      "R1-N2 target completed literal=[q  ]"
+    ]
+  },
+  "candidate_cjp": {
+    "path": "/workspace/work/incremental-cache-implementation/artifacts/cjtui-round2.cjp",
+    "sha256": "59c22c52d3489e28aa41f61326ce4f594bf3447e264df061ccc5753ec4596369",
+    "bytes": 144320
+  },
+  "own_ELF": {
+    "path": "/workspace/work/incremental-cache-execution/source/target/release/bin/execution-26",
+    "sha256": "c1c22609e7150c334e69d1b58c79ca41c88fc3eaa6e6bb3fb521112273769421",
+    "bytes": 19646488
+  },
+  "factual_inputs": [
+    {
+      "path": "/workspace/work/incremental-cache-implementation/index-round2.json",
+      "sha256": "1de4e2c1ff2a2c5c7d6e70055bad19e7c64fcbf7d8badea6174a0a57e1d1475e",
+      "bytes": 11162
+    },
+    {
+      "path": "/workspace/work/incremental-cache-review/round2/index.json",
+      "sha256": "1ffbfd531fed168292c4cf876e88aa26afc5101d7540936594f03add00c52008",
+      "bytes": 3010
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/index-round1.json",
+      "sha256": "09119b6a306fb444b6edbac514305d0d2275f9554fff5bc81b55308fffb22c5d",
+      "bytes": 12208
+    }
+  ],
+  "reuse": {
+    "R2_baseline": {
+      "cases": 7,
+      "build_exit": 0,
+      "direct_exit": 0,
+      "raw": {
+        "path": "/workspace/work/incremental-cache-implementation/round2-baseline-run.log",
+        "sha256": "857cd60b86b5e5a90e8da3ba2f69dde66c9fe8b31fbbc6cea5e0edb2cfcfbcc9",
+        "bytes": 388
+      },
+      "ELF": {
+        "path": "/workspace/work/incremental-cache-implementation/source/target/release/bin/round2-baseline",
+        "sha256": "d4e2c632fb3bafc3395e35573dc62a0c2d973b57db26ee0668099fcb5c665bd6",
+        "bytes": 19193808
+      }
+    },
+    "R2_statistics": {
+      "cases": 2,
+      "build_exit": 0,
+      "direct_exit": 0,
+      "raw": {
+        "path": "/workspace/work/incremental-cache-implementation/round2-statistics-run.log",
+        "sha256": "29011cdfd43c00f67ce84c1b18251fd2164bbd348d7d0a12ece29b80ae459c50",
+        "bytes": 142
+      },
+      "ELF": {
+        "path": "/workspace/work/incremental-cache-implementation/source/target/release/bin/round2-statistics",
+        "sha256": "d618ee61645c6b3b29e0f4bbcf7fb32c6c3d735509a9a193c42cd7e1b3714131",
+        "bytes": 19101488
+      }
+    },
+    "R1_FrameCow": {
+      "cases": 7,
+      "cow": true,
+      "build_exit": 0,
+      "direct_exit": 0,
+      "raw": {
+        "path": "/workspace/work/incremental-cache-implementation/round1-frame-run.log",
+        "sha256": "d885afc294db2bc646da935b6eec6210a2266ce05be1b23746b6fe7cdaa6c5b8",
+        "bytes": 397
+      },
+      "witness": {
+        "path": "/workspace/work/incremental-cache-execution/frame-witness-audit.json",
+        "sha256": "6d3d0573e9a99f2cba05d6796568c65fd8d3209263051ba635cfbce74e7e9500",
+        "bytes": 1292
+      },
+      "basis": "Frame/test/config unchanged; sole Application leaf Text root has no children for R2 root loop; no ensureVisible/style geometry path"
+    },
+    "R2_bundle": {
+      "cwd": "/workspace/work/incremental-cache-implementation/source",
+      "command": "cjpm bundle",
+      "exit": 0,
+      "raw": {
+        "path": "/workspace/work/incremental-cache-implementation/round2-bundle01.log",
+        "sha256": "e2ff79433b5b62d0e8fd210518b7f40b84c72d5b28c8df7ba77ce6f07b177abc",
+        "bytes": 155053
+      },
+      "lint": "ran normally; existing warnings retained",
+      "basis": "193 relevant source/native/build/config CJP entries match candidate"
+    }
+  },
+  "audit_commands": [
+    {
+      "cwd": "/workspace/work/incremental-cache-execution/source",
+      "command": "Python SHA256/byte comparison of all producer35 bindings and own relevant source/config; tarfile entry comparison of src/native/build.cj/cjpm.toml; streaming gzip hash and TOML-parsed lock comparison",
+      "exit": 0
+    }
+  ],
+  "tooling_inspection_failure": {
+    "command": "raw-byte equality assertion for newly generated consumer cjpm.lock vs producer lock",
+    "exit": 1,
+    "cause": "serialization order differs only",
+    "followup": "parsed TOML equality exit0; five exact package versions equal",
+    "raw": {
+      "path": "/workspace/work/incremental-cache-execution/dependency-audit.log",
+      "sha256": "7e935bb04b47898b8721a4db941a05ba43134fd600d5229cf67bc2dbc7f3bf86",
+      "bytes": 508
+    }
+  },
+  "raw_and_pins": [
+    {
+      "path": "/workspace/work/incremental-cache-execution/audit-bindings.log",
+      "sha256": "56962df81b552e950168665571102e632fceaf93c0eb18b5d9bea9dc93856365",
+      "bytes": 6763
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/build.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/build.log",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/cjp-source-audit.json",
+      "sha256": "1a149f925cdf984e51548d1a05a6d6617c70f77116cda7cd7c97629ba7d62913",
+      "bytes": 30810
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/dependency-audit.log",
+      "sha256": "7e935bb04b47898b8721a4db941a05ba43134fd600d5229cf67bc2dbc7f3bf86",
+      "bytes": 508
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/fixed-tests.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/fixed-tests.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/frame-unchanged.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/frame-unchanged.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/frame-witness-audit.json",
+      "sha256": "6d3d0573e9a99f2cba05d6796568c65fd8d3209263051ba635cfbce74e7e9500",
+      "bytes": 1292
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/report.md",
+      "sha256": "0a351da5beed5b50a792633ceb85b2be118102b6f35791c7d94c37557ad6802f",
+      "bytes": 2253
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/run.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/run.log",
+      "sha256": "427288307423fb4d31e2f0daebf4f8f11c02bfd567f954f378b15291e3b78ee7",
+      "bytes": 9092
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/source-config-dependency-pins.json",
+      "sha256": "d4bb4cdef0d1c2e5eddd533dd519930a41c7e97878f7803aef2fc956cc8224cd",
+      "bytes": 94459
+    },
+    {
+      "path": "/workspace/work/incremental-cache-execution/tool-versions.log",
+      "sha256": "5d367b37ee619d7c940deb3aaaa76fb7b9d0ce6b4821e1721cb49bc82965e754",
+      "bytes": 99
+    }
+  ],
+  "tracked_diff": "",
+  "skill_used": "c6/verification-before-completion",
+  "limitations": [
+    "No new unpacked CJP run; final E/023 remains",
+    "Not TASK137 acceptance or full M2/Linux/performance"
+  ],
+  "disk_final_free_bytes": "63205376"
+}

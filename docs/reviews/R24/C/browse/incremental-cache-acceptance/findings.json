@@ -1,0 +1,140 @@
+{
+  "task": "TASK137",
+  "verdict": "PASS_UNIT_C",
+  "source_commit": "ee84e7ac7a35bb6481a17ecb91f1ec07804b672a",
+  "tests_commit": "4845df24b33f75432d26a68fb0b844abbb4e8528",
+  "requirements": [
+    {
+      "id": "C01",
+      "requirement": "RuntimeNode identity, committed sequence, same layout algorithm",
+      "verdict": "PASS",
+      "source_evidence": "runtime_node.cj:17; layout_node.cj:77\u201390; layout.cj:445\u2013480",
+      "runtime_or_reuse_evidence": "cases8/9 keyed/manual/hidden; A127/B132 fixed status"
+    },
+    {
+      "id": "C02",
+      "requirement": "Pending/effective dirty, equality, explicit notification categories",
+      "verdict": "PASS",
+      "source_evidence": "component.cj:113\u2013130; runtime_session.cj:164\u2013190,1420\u20131460",
+      "runtime_or_reuse_evidence": "cases1\u20133/10/21/22; zero layout for typed-equal/color/span-only outputs"
+    },
+    {
+      "id": "C03",
+      "requirement": "Bounded intrinsic and actual constraint/policy caches",
+      "verdict": "PASS",
+      "source_evidence": "layout_node.cj:43\u201364,149\u2013161,212\u2013285; runtime_session.cj:1610\u20131615",
+      "runtime_or_reuse_evidence": "cases5\u20137/17\u201319; current width, finite/fallback, Unicode/ASCII alternation"
+    },
+    {
+      "id": "C04",
+      "requirement": "True output/input cutoff with necessary internal allocations",
+      "verdict": "PASS",
+      "source_evidence": "runtime_session.cj:193\u2013225; layout.cj:283\u2013335",
+      "runtime_or_reuse_evidence": "Row/Column/wrap/viewport literals; auto panels measure2/62 arrange12/62, bound16"
+    },
+    {
+      "id": "C05",
+      "requirement": "Position-only reuse and same-batch pending geometry",
+      "verdict": "PASS",
+      "source_evidence": "layout.cj:141\u2013163; runtime_session.cj:925\u2013933; node_ref.cj:95\u2013109",
+      "runtime_or_reuse_evidence": "viewport scroll measure0/6; R1-N1 valid new-width ensure completes"
+    },
+    {
+      "id": "C06",
+      "requirement": "Hidden dirty retention, stable identity and subscription/resource cleanup",
+      "verdict": "PASS",
+      "source_evidence": "runtime_session.cj:1132\u20131138,1210\u20131217,1254\u20131280,1652\u20131678; binding.cj:109\u2013132",
+      "runtime_or_reuse_evidence": "cases1/8/9/14; baseline detached/mounted lifetime; no measured GC claim"
+    },
+    {
+      "id": "C07",
+      "requirement": "Effective theme/visual state, explicit/source mask and fill",
+      "verdict": "PASS",
+      "source_evidence": "runtime_session.cj:229\u2013264; style_resolver.cj; resolved_style.cj",
+      "runtime_or_reuse_evidence": "cases11\u201313/20\u201322 full Cell/literal assertions; source mask and fill changes at equal colors"
+    },
+    {
+      "id": "C08",
+      "requirement": "Canvas independent measure/draw/readonly dependency and actual misses",
+      "verdict": "PASS",
+      "source_evidence": "binding.cj:60\u201383; layout_node.cj:112\u2013124,224\u2013239,266\u2013285; layout.cj:99\u2013105",
+      "runtime_or_reuse_evidence": "cases14/15 and F5 direct callback1/measure1 before reference"
+    },
+    {
+      "id": "C09",
+      "requirement": "Complete temporary M1 isolation and same-epoch full Cells",
+      "verdict": "PASS",
+      "source_evidence": "layout.cj:445\u2013475; layout_node.cj:149\u2013161; binding.cj:60\u201366",
+      "runtime_or_reuse_evidence": "101 printed pairs plus F1/F5/R1-N2 direct checks; case16 reference width/dirty preservation; raw Style/transparency included"
+    },
+    {
+      "id": "C10",
+      "requirement": "Successful target version consumption and bounded notifications",
+      "verdict": "PASS",
+      "source_evidence": "pending_node_change.cj:5\u201369; runtime_session.cj:451\u2013477,1424\u20131438,1617\u20131683",
+      "runtime_or_reuse_evidence": "F3 source proof: one node-owned record and fixed four category earliest/latest fields; lock/cutoff retains later invalidation; current target does not clear pending notifications"
+    },
+    {
+      "id": "C11",
+      "requirement": "Original public Frame and diagnostic semantics",
+      "verdict": "PASS",
+      "source_evidence": "src/frame*.cj/runtime_stats.cj exact to accepted B; R1-to-R2 Frame/test/build/native inputs exact",
+      "runtime_or_reuse_evidence": "R2 baseline7/statistics2 raw; R1 FrameCow7 raw/build/config and streamed ELF payload; source scope excludes two R2 changed routes"
+    },
+    {
+      "id": "C12",
+      "requirement": "Normal CJPM consumption and source/artifact provenance",
+      "verdict": "PASS",
+      "source_evidence": "verification.json; producer index-round2.json factual fields only",
+      "runtime_or_reuse_evidence": "TASK136 independent build/direct0; 26 cases0 correctness/work failures; normal bundle tests0/lint warnings; 193 candidate package entries"
+    }
+  ],
+  "blocking_findings": [],
+  "new_nonblocking_defects": [],
+  "review_history": [
+    {
+      "source": "f89d3726b76441e144ac501a5cba5a84549db6c8",
+      "verdict": "FAIL",
+      "findings": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5"
+      ]
+    },
+    {
+      "source": "4e30434ac29b49a5aa1e6acdad4a2f5f8373dc4b",
+      "verdict": "FAIL",
+      "original_five": "ADDRESSED",
+      "new_findings": [
+        "R1-N1",
+        "R1-N2"
+      ]
+    },
+    {
+      "source": "ee84e7ac7a35bb6481a17ecb91f1ec07804b672a",
+      "scoped_source_verdict": "PASS",
+      "R1-N1": "ADDRESSED",
+      "R1-N2": "ADDRESSED",
+      "new_findings": []
+    }
+  ],
+  "f3_evidence_kind": "source proof only, O(pending mounted nodes); not runtime queue observation, allocation benchmark or GC measurement",
+  "reused_scope": {
+    "A127": "fixed accepted 4f7e853f821c334318e2038d4e20ab26e72c16c8",
+    "B132": "fixed accepted 275149c274df41d38ffc950f104b31185dea19a7; product exact to base107ef32",
+    "R2_baseline_and_statistics": "producer current actual raw/build/ELFs7+2; normal public consumers, same source/config/native/deps; not own TASK137 execution",
+    "R1_FrameCow": "7 cases requireCow=true; source/test/build/native and parsed lock equality; only Application root is leaf Text, no pending-style ensure; 19183192-byte ELF gzip payload verified",
+    "normal_package": "current cjpm bundle normal tests/lint, 193 product members byte-exact; no new unpacked consumer claim"
+  },
+  "limits": [
+    "Unit D local paint and damage/composition",
+    "Unit E CPU/heap/GC/RSS/output and end-to-end costs",
+    "TASK031/022 complete M2 and benchmark acceptance",
+    "whole Linux/final actual-host matrix and TASK023/024",
+    "Frozen old M1 final Canvas-stage measure count omission remains historical; E must not backfill or infer fair old/new counts",
+    "No headless PNG, no universal work or performance reduction claim"
+  ],
+  "authority": "Original C133\u2013137 brief; design4/5/9/10/14 M001/M003/M004/M009/M011; three associated specs; REQ004.8/002.6; AGENTS11.1/13.2/14"
+}

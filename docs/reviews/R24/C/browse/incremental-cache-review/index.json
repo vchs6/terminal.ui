@@ -1,0 +1,91 @@
+{
+  "task": "TASK135",
+  "role": "independent Unit C SPEC and QUALITY source reviewer",
+  "requested_configuration": "Astra/high",
+  "serving_identity_verified": false,
+  "base_sha": "107ef32cde77fdd343fd8f6762132aa01df0143a",
+  "source_sha": "f89d3726b76441e144ac501a5cba5a84549db6c8",
+  "test_sha": "d901cf39292230c11abbe1c1958126b123fb1794",
+  "source_directory": "/workspace/work/incremental-cache-implementation/source",
+  "input_brief": "/workspace/work/incremental-cache-review/brief.md",
+  "input_diff": "/workspace/work/incremental-cache-review/review-package.txt",
+  "outputs": [
+    "report.md",
+    "findings.json",
+    "index.json"
+  ],
+  "spec_verdict": "FAIL",
+  "quality_verdict": "FAIL",
+  "product_files_reviewed": [
+    "src/layout.cj",
+    "src/layout_node.cj",
+    "src/pending_node_change.cj",
+    "src/runtime_node.cj",
+    "src/runtime_session.cj"
+  ],
+  "integration_sources_checked": [
+    "src/component.cj",
+    "src/binding.cj",
+    "src/canvas.cj",
+    "src/style_resolver.cj",
+    "src/resolved_style.cj",
+    "src/theme_candidate_validation.cj",
+    "src/focus_manager.cj",
+    "src/viewport_state.cj",
+    "src/layout_allocation.cj",
+    "src/dynamic_group.cj",
+    "src/node_ref.cj",
+    "src/application.cj",
+    "src/runtime_limits.cj"
+  ],
+  "contracts_checked": [
+    "brief.md original C scope",
+    "AGENTS.md 11.1/13.2/14",
+    "docs/requirements.md REQ-002.6/004.8/008.5",
+    "docs/architecture.md batching",
+    "docs/product/runtime-stats.md",
+    "docs/product/interaction.md",
+    "docs/product/theme.md",
+    "/workspace/work/terminal.ui/openspec/changes/implement-incremental-rendering/design.md sections 4/5/9/10/14 and M001/M003/M004/M009/M011",
+    "/workspace/work/terminal.ui/openspec/changes/implement-incremental-rendering/specs/ui-runtime/spec.md",
+    "/workspace/work/terminal.ui/openspec/changes/implement-incremental-rendering/specs/terminal-output/spec.md",
+    "/workspace/work/terminal.ui/openspec/changes/implement-incremental-rendering/specs/rendering-benchmark/spec.md"
+  ],
+  "static_checks": [
+    "HEAD equals fixed final SHA",
+    "git diff base..final names exactly the five product files",
+    "git diff base..final -- tests/incremental_layout is empty",
+    "git log tests identifies d901cf39292230c11abbe1c1958126b123fb1794",
+    "fixed 19 consumer scenario sources and work assertions read",
+    "report line limit and JSON syntax verified"
+  ],
+  "source_status_observed": "No tracked edits; existing untracked CJPM lock files left untouched.",
+  "checks_of_implementation": {
+    "identity_and_sequence": "RuntimeNode owns the sole committed sequence; LayoutNode.children creates a transient visible result view; DynamicGroup/manual mutations preserve surviving nodes.",
+    "bounded_caches": "Per-node intrinsic/current-width/final-Canvas slots are bounded; eligibility depends on invalidation completeness, with F1 finding.",
+    "invalidation": "Scalar typed equality, source resubscription, constant replacement disposal, span-only Style and explicit notifications traced; F2 and F4 remain.",
+    "theme_masks_fill": "Single resolver preserves explicit text patch mask, local/background/root-fill distinctions and independent fillStyle; color-only theme commit avoids layout invalidation; layout theme commit conservatively invalidates all nodes.",
+    "m1_canvas_isolation": "reuse=false creates independent result table; no clean-child cache reuse; Canvas observeTransient avoids replacing committed subscriptions; geometry and viewport writes guarded.",
+    "layout_dependencies": "Shared Row allocation/remainders, Column justify, wrap/insets, sequence moves, viewport clamp/version and root overflow routes read; F1/F4 prevent general approval.",
+    "glyph": "Frame cache marker, selected policy refresh and generatedEllipsis paint path traced against M011 and alternating snapshot tests.",
+    "consumption_and_cleanup": "produce consumes visible work only after successful target and equal effectiveVersion; pending later records survive; hidden ancestors retain work; unmount removes invalid dirty/pending records and disposes bindings; exceptions close session.",
+    "accounting": "Arrange counters occur in actual arrange/summary paths and hits return early; final finite Canvas measure is uncounted (F5); no fabricated counter writes found."
+  },
+  "boundaries": [
+    "No source/test edits, builds, tests or subagents",
+    "No author plan/report/self-assessment used as review evidence",
+    "No assumed candidate test PASS",
+    "Findings are source derivations, not executed reproductions",
+    "TASK136 independent execution and TASK137 acceptance remain separate",
+    "Full paint is permitted for C; D/local paint and overall M2/performance verdict excluded",
+    "No CPU, heap, GC, or terminal-output measurements performed"
+  ],
+  "skills": [
+    "using-superpowers read; subagent exclusion applied",
+    "verification-before-completion read and used for artifact/pin verification only"
+  ],
+  "output_sha256": {
+    "report.md": "43407f67016f5710afc1fbb64eeaeaff175516f3b56426bc658dc7681baf1b3e",
+    "findings.json": "f1451a8e067c4dfa0f9d4e67e818171f6dc426110ef3feb91363c8cfea9f8533"
+  }
+}

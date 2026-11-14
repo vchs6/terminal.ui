@@ -1,0 +1,238 @@
+{
+  "source_commit": "ee84e7ac7a35bb6481a17ecb91f1ec07804b672a",
+  "fixed_test_parent": "4845df24b33f75432d26a68fb0b844abbb4e8528",
+  "round1_product_commit": "4e30434ac29b49a5aa1e6acdad4a2f5f8373dc4b",
+  "fixed_test_index": {
+    "path": "/workspace/work/incremental-cache-round1-counterexamples/index.json",
+    "sha256": "5ee186e7adad8abb113ff831f29737ec893ae6a9bfb963a2034eda922b17f375"
+  },
+  "round1_index": {
+    "path": "/workspace/work/incremental-cache-implementation/index-round1.json",
+    "sha256": "09119b6a306fb444b6edbac514305d0d2275f9554fff5bc81b55308fffb22c5d"
+  },
+  "round1_elf_witness": {
+    "path": "/workspace/work/validation/round1-cache-fix-headroom-20261114/index.json",
+    "sha256": "aa25c43f3aa46140c35fc142de8f2ee190c5d10c1ef720956cdd6b6885656bf8"
+  },
+  "capacity_receipt": {
+    "path": "/workspace/work/validation/round2-cache-fix-headroom-20261114/index.json",
+    "sha256": "fc580b71f86c374f4be701f89d4832d0d48249a333d85e76452bece2e0bba344"
+  },
+  "environment": [
+    "source /workspace/work/validation/sdk/cangjie/envsetup.sh",
+    "export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env",
+    "export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip"
+  ],
+  "checks": [
+    {
+      "cwd": "/workspace/work/incremental-cache-implementation/source",
+      "command": "cjpm bundle",
+      "exit": 0,
+      "log": "/workspace/work/incremental-cache-implementation/round2-bundle01.log",
+      "note": "default tests discovered zero; lint ran without suppression"
+    },
+    {
+      "cwd": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/invalidation_cache",
+      "build": "cjpm build --target-dir /workspace/work/incremental-cache-implementation/source/target -o round2-26",
+      "build_exit": 0,
+      "build_log": "/workspace/work/incremental-cache-implementation/round2-26-build.log",
+      "run": "/workspace/work/incremental-cache-implementation/source/target/release/bin/round2-26",
+      "run_exit": 0,
+      "run_log": "/workspace/work/incremental-cache-implementation/round2-26-run.log"
+    },
+    {
+      "cwd": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/baseline",
+      "build": "cjpm build --target-dir /workspace/work/incremental-cache-implementation/source/target -o round2-baseline",
+      "build_exit": 0,
+      "build_log": "/workspace/work/incremental-cache-implementation/round2-baseline-build.log",
+      "run": "/workspace/work/incremental-cache-implementation/source/target/release/bin/round2-baseline",
+      "run_exit": 0,
+      "run_log": "/workspace/work/incremental-cache-implementation/round2-baseline-run.log"
+    },
+    {
+      "cwd": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/statistics",
+      "build": "cjpm build --target-dir /workspace/work/incremental-cache-implementation/source/target -o round2-statistics",
+      "build_exit": 0,
+      "build_log": "/workspace/work/incremental-cache-implementation/round2-statistics-build.log",
+      "run": "/workspace/work/incremental-cache-implementation/source/target/release/bin/round2-statistics",
+      "run_exit": 0,
+      "run_log": "/workspace/work/incremental-cache-implementation/round2-statistics-run.log"
+    }
+  ],
+  "reused_frame_proof": {
+    "round1_raw": "/workspace/work/incremental-cache-implementation/round1-frame-run.log",
+    "result": "cow mode 7 cases, 0 failures, direct exit 0",
+    "basis": "Frame implementation and frame consumer source are unchanged. The consumer has one Application root, a leaf Text; the new root-miss loop has no child to process and the pending-style geometry guard is not called. The remaining cases exercise Frame directly.",
+    "source_comparison_command": "git diff --exit-code 4e30434ac29b49a5aa1e6acdad4a2f5f8373dc4b -- 'src/frame*.cj' tests/incremental_layout/frame_cow",
+    "source_comparison_exit": 0,
+    "comparison_log": "/workspace/work/incremental-cache-implementation/round2-frame-unchanged.log",
+    "product_diff_log": "/workspace/work/incremental-cache-implementation/round2-product-diff.log",
+    "scope_logs": [
+      "/workspace/work/incremental-cache-implementation/round2-frame-scope.log",
+      "/workspace/work/incremental-cache-implementation/round2-frame-application-scope.log"
+    ]
+  },
+  "source": [
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/src/layout.cj",
+      "sha256": "a0f0a0b17e1ac300d68366a9c9faa88f98f71c1023923ab92e1e4c1644e1815a",
+      "bytes": 28741
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/src/runtime_session.cj",
+      "sha256": "fe0415205fc82d2fdc0e90a241083f60dc160d4a9fb37012ea6f64b8b6479da6",
+      "bytes": 72117
+    }
+  ],
+  "config": [
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/cjpm.toml",
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828",
+      "bytes": 1541
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/cjpm.lock",
+      "sha256": "35b809d97c8f3ccd500031587a17976214b180432dcba6b6a736fcc3937d9fa7",
+      "bytes": 198
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/invalidation_cache/cjpm.toml",
+      "sha256": "aa06494e096808d052a1b747f1181d455afdf733f6d19e74012958ca4df8eb8d",
+      "bytes": 359
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/invalidation_cache/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/invalidation_cache/cjpm.lock",
+      "sha256": "c4420e929304e86f0b66ac16ad1c9ee0fdad5b31dee8fd69bd66ae7d191a9f89",
+      "bytes": 198
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/baseline/cjpm.toml",
+      "sha256": "e2dd2f6e1f0e9b539ca081c9a9a19a5e4581e1909cb58011cfee869d287e88c5",
+      "bytes": 356
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/baseline/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/baseline/cjpm.lock",
+      "sha256": "622a15e53c3b8de94033182c587f8a402447cf112787a70755c5b0855bd18d7d",
+      "bytes": 198
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/statistics/cjpm.toml",
+      "sha256": "81799c318fb66c9d6402af877e342f14486801218791736cb3eb983edf24ddbb",
+      "bytes": 381
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/statistics/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/tests/incremental_layout/statistics/cjpm.lock",
+      "sha256": "204ceaeb017aec9568c1d29e03cf5cf4b6eda4eec5ab244c5c992eeb2a3c3ed3",
+      "bytes": 198
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/workspace/work/incremental-cache-implementation/artifacts/cjtui-round2.cjp",
+      "sha256": "59c22c52d3489e28aa41f61326ce4f594bf3447e264df061ccc5753ec4596369",
+      "bytes": 144320
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/target/release/bin/round2-26",
+      "sha256": "620afaaac8bf918c0253bdf74877a5d24e94f55c0dda5d3a4b1b12095dd5754e",
+      "bytes": 19646632
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/target/release/bin/round2-baseline",
+      "sha256": "d4e2c632fb3bafc3395e35573dc62a0c2d973b57db26ee0668099fcb5c665bd6",
+      "bytes": 19193808
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/source/target/release/bin/round2-statistics",
+      "sha256": "d618ee61645c6b3b29e0f4bbcf7fb32c6c3d735509a9a193c42cd7e1b3714131",
+      "bytes": 19101488
+    }
+  ],
+  "raw": [
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-26-build.log",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-26-run.log",
+      "sha256": "427288307423fb4d31e2f0daebf4f8f11c02bfd567f954f378b15291e3b78ee7",
+      "bytes": 9092
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-baseline-build.log",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-baseline-run.log",
+      "sha256": "857cd60b86b5e5a90e8da3ba2f69dde66c9fe8b31fbbc6cea5e0edb2cfcfbcc9",
+      "bytes": 388
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-build01.log",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-bundle01.log",
+      "sha256": "e2ff79433b5b62d0e8fd210518b7f40b84c72d5b28c8df7ba77ce6f07b177abc",
+      "bytes": 155053
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-frame-application-scope.log",
+      "sha256": "0c09716e29ca33b0381ae3ac978dcef7f318b845253f345c25a429edb16b0d5c",
+      "bytes": 890
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-frame-scope.log",
+      "sha256": "3ef99c928151b7ef0480d0ef5f787212b68471260f69cbf5432db70d414dd217",
+      "bytes": 101
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-frame-unchanged.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-product-diff.log",
+      "sha256": "2695e4c85291f54a842c3a9d3bbc34c938535701f4b6cfd0d2817b1fd3f4e35b",
+      "bytes": 1877
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-run01.log",
+      "sha256": "427288307423fb4d31e2f0daebf4f8f11c02bfd567f954f378b15291e3b78ee7",
+      "bytes": 9092
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-statistics-build.log",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-cache-implementation/round2-statistics-run.log",
+      "sha256": "29011cdfd43c00f67ce84c1b18251fd2164bbd348d7d0a12ece29b80ae459c50",
+      "bytes": 142
+    }
+  ]
+}

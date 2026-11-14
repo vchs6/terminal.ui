@@ -1,0 +1,66 @@
+{
+  "task": "TASK135",
+  "round": 2,
+  "role": "same independent scoped SPEC and QUALITY reviewer",
+  "requested_configuration": "Astra/high",
+  "serving_identity_verified": false,
+  "base_sha": "4e30434ac29b49a5aa1e6acdad4a2f5f8373dc4b",
+  "source_sha": "ee84e7ac7a35bb6481a17ecb91f1ec07804b672a",
+  "regression_sha": "4845df24b33f75432d26a68fb0b844abbb4e8528",
+  "spec_verdict": "PASS",
+  "quality_verdict": "PASS",
+  "scope": "R1-N1/R1-N2 and new breakage from complete round2 product diff; no whole-unit restart",
+  "dispositions": {
+    "R1-N1": "ADDRESSED",
+    "R1-N2": "ADDRESSED"
+  },
+  "new_findings": [],
+  "product_files_reviewed": [
+    "src/layout.cj",
+    "src/runtime_session.cj"
+  ],
+  "integration_checks": [
+    "pendingBehaviorStyle now participates in geometryMayChange without dirtying layout",
+    "NodeRef.ensureVisible still rejects negative coordinates and defers only geometry-dependent bounds",
+    "final explicit ensure validation uses current logical geometry",
+    "root-cache-miss revalidation walks the sole runtime sequence with current inherited style",
+    "clean/initial/dirty nested child paths retain shared evaluator and output cutoff",
+    "hidden invalidations remain pending",
+    "reuse=false M1 excludes added persistent revalidation loop",
+    "no changed counters, public API, resolver, or alternate renderer"
+  ],
+  "test_sources_reviewed": [
+    "tests/incremental_layout/invalidation_cache/src/pending_style_ensure.cj",
+    "tests/incremental_layout/invalidation_cache/src/root_cache_miss_text.cj",
+    "tests/incremental_layout/invalidation_cache/src/main.cj registration diff"
+  ],
+  "contracts": [
+    "original round1 R1-N1/R1-N2 findings",
+    "design section 4 public batch and viewport behavior",
+    "design section 5 cache dependency validity and cutoff",
+    "design section 9 M1 isolation",
+    "M011 effective glyph-policy cache coherence"
+  ],
+  "raw_manifest": "raw/source-manifest.json",
+  "validation": [
+    "HEAD fixed at ee84e7ac7a35bb6481a17ecb91f1ec07804b672a",
+    "tracked source/tests match HEAD",
+    "two product files in full 4e..ee diff",
+    "tests unchanged after independent4845 commit",
+    "initial and round1 indexes retain original SHA256",
+    "raw fixed Git blob hashes verified",
+    "output JSON and <=30 report line limit verified"
+  ],
+  "boundaries": [
+    "No builds/tests/source edits/subagents",
+    "No implementation-author plans/reports/self-assessment used",
+    "Candidate result counts not used as proof of source correctness",
+    "Original F1-F5 dispositions preserved without wholesale re-review",
+    "Only scoped source review passes; TASK136/TASK137 and full M2/Linux/performance remain separate"
+  ],
+  "output_sha256": {
+    "report.md": "22008cad7421cd572fb3947c3375433639ffc9f2b609cf8c169da6bce6682081",
+    "findings.json": "f4056af4fa9224d511dac57f5843ccdb01343463778aea2a1e0cd197f61740d7",
+    "raw/source-manifest.json": "6bb65c5905cabcac783981215602ea7d5904c8376f611c109ec62ae4214aad5c"
+  }
+}
