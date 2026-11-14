@@ -1786,7 +1786,7 @@
     ],
     "ownership": [
       "Business data belongs to the application; component descriptor, mounted runtime identity and controller local state are distinct.",
-      "Same component type may have fresh instances in normal/modal hosts sharing Observable business state. One Component instance cannot mount twice.",
+      "Same component type may have fresh instances in normal/modal hosts sharing Observable business state. An already mounted or reserved Component instance is rejected with AlreadyMounted. Valid remount after completed unmount creates a fresh runtime identity and does not revive old references.",
       "onMount: (NodeRef)->(() -> Unit), cleanup clears public handles; references carry session/node identity and cannot revive after unmount.",
       "Observable reads while evaluating getter record dependencies; replacing getter/unmount drops old subscriptions. Plain variable mutation alone has no reactive guarantee.",
       "post returns enqueue acceptance, not execution or business success; owner post is discarded when owner invalid, queue full/inactive returns false; background work does not directly mutate nodes/Frame.",
