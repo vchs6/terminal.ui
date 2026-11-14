@@ -10,7 +10,7 @@
 ## Global Constraints
 
 - 原TASK-031/022为完整验收责任归属；123–142实现031各单元，143–147实现022并供031成本验收。实际工程层级依原WP002/WP005，角色工作为独立L3，不把原L3强行嵌另一套L3树。主仓接入时031/022转为本tasks唯一状态引用，不能保留两份勾选权威。
-- 单元A123–127已独立接受；128测试已固定、129实施中，其余仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
+- 单元A/B123–132已独立接受；133测试实施中，134–147仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
 - A→B→C→D→E顺序集成。测试可按冻结合同准备，但产品只消费前单元验收固定提交；共享Component/Layout/Frame禁止多个产品作者同时编辑。
 - 每实体一个小写下划线.cj文件，最小可见性，原public调用兼容，新增RuntimeStats三项仅只读；无私有测试hook、无强制M1/M2模式开关。
 - 测试作者Sol/high、产品Terra/high或适合仓颉任务的Sol/high、审核/验收Astra/high、执行Sol/medium；记录指定配置，无法核验serving时不冒充实测。
@@ -51,10 +51,10 @@
 - [x] TASK-126（testing/A）：自有工作目录独立执行A公开消费者及受影响旧布局/主题/Canvas证据。
 - [x] TASK-127（acceptance/A）：验收算法单核/参考隔离/统计真实，不提前声明M2。
 - [x] TASK-128（testing/B）：冻结Frame COW别名/宽簇/透明/任意baseline与真实分配槽观察用例。
-- [ ] TASK-129（implementation/B）：Frame私有行共享/脱离及精确行身份比较；保留通用慢路径。
-- [ ] TASK-130（verification/B）：固定129与128独立审核含所有写入口/零面积/来源证明。
-- [ ] TASK-131（testing/B）：独立执行受影响R11/F003、旧快照/输出及公开计槽消费者。
-- [ ] TASK-132（acceptance/B）：验收共享正确与Cell分配变化，不把存储优化当局部布局完成。
+- [x] TASK-129（implementation/B）：Frame私有行共享/脱离及精确行身份比较；保留通用慢路径。
+- [x] TASK-130（verification/B）：固定129与128独立审核含所有写入口/零面积/来源证明。
+- [x] TASK-131（testing/B）：独立执行受影响R11/F003、旧快照/输出及公开计槽消费者。
+- [x] TASK-132（acceptance/B）：验收共享正确与Cell分配变化，不把存储优化当局部布局完成。
 - [ ] TASK-133（testing/C）：冻结dirty/约束缓存、布局连带、相等结果/notify/ForEach/manual/主题/Canvas依赖公开证据。
 - [ ] TASK-134（implementation/C）：节点级Content/Style/Layout/Structure、bounded约束缓存及依赖传播。
 - [ ] TASK-135（verification/C）：固定134与133独立审核所有失效入口/缓存key/版本消费。
@@ -83,11 +83,11 @@
 
 - [x] 123列出手算布局/来源/Canvas场景固定期望，已记录原行为6项GREEN、真实Canvas reference隔离RED与新统计缺API RED；不伪造内部实现测试或掩盖既有缺陷。
 - [x] 123冻结test-only SHA及普通CJPM构建/运行命令；统计断言按真实调用/实际Cell分配点含初建，不按实现源码生成预期。
-- [ ] 124把paint内分配移到唯一arrange，Runtime节点承载唯一顺序引用；完整render用临时表而不建第二组件树，snapshot仍正常目标链。
-- [ ] 124实现三只读诊断及生成/副本作用域，外部snapshot后续修改不回记；保留原八字段定义与生命周期。
-- [ ] 125审核fixed base..product，覆盖M1稳定绑定与缓存隔离、root有限布局fallback、Canvas独立依赖不被参考替换、单核/退役与每实体文件。
-- [ ] 126在独立checkout用普通cjpm build/直接binary真实退出执行123；按变化复用/补跑旧布局/主题/Canvas/生命周期证据，无关旧套件不重跑。
-- [ ] 127按原输出、源码单核与计数原件验收；记录本阶段尚无局部性能承诺。
+- [x] 124把paint内分配移到唯一arrange，Runtime节点承载唯一顺序引用；完整render用临时表而不建第二组件树，snapshot仍正常目标链。
+- [x] 124实现三只读诊断及生成/副本作用域，外部snapshot后续修改不回记；保留原八字段定义与生命周期。
+- [x] 125审核fixed base..product，覆盖M1稳定绑定与缓存隔离、root有限布局fallback、Canvas独立依赖不被参考替换、单核/退役与每实体文件。
+- [x] 126在独立checkout用普通cjpm build/直接binary真实退出执行123；按变化复用/补跑旧布局/主题/Canvas/生命周期证据，无关旧套件不重跑。
+- [x] 127按原输出、源码单核与计数原件验收；记录本阶段尚无局部性能承诺。
 
 ### B / 128–132（父031，REQ004.1/.3/.8，R11/F003）
 
@@ -95,12 +95,12 @@
 
 输入127固定产物和旧Frame完整语义。输出同Frame不可变行共享、实际分配槽计数、任意比较正确fallback。
 
-- [ ] 128固定源/副本双向改、自composite、半簇、透明hole、StyledSpace、负偏移、改宽/高、预算与零面积极值场景；计量观察完整snapshot共享及第一次/重复写不同作用域。
-- [ ] 128记录基线功能GREEN与真实“copy逐Cell分配仍存在”工作证据，冻结测试；不为内部存储类型造反射hook。
-- [ ] 129将所有实际Cell存储分配统一计槽；所有写入口含clearAt/伙伴写按行脱离；full copy共享、subrect等允许正确慢路径。
-- [ ] 129终端比较仅在冻结行身份/profile及精确版本关系适用时排除行；任意old Frame/外部修改/截断lineage回退完整正确比较。
-- [ ] 130审每写入口/源别名/共享不可变/零面积不建巨量目录，以及damage不能覆盖后端失同步。
-- [ ] 131独立执行128与受影响R11/F003/文件/后端消费者；132按原件确认正确性及计槽口径、性能热路径分配下降，仍不关031。
+- [x] 128固定源/副本双向改、自composite、半簇、透明hole、StyledSpace、负偏移、改宽/高、预算与零面积极值场景；计量观察完整snapshot共享及第一次/重复写不同作用域。
+- [x] 128记录基线功能GREEN与真实“copy逐Cell分配仍存在”工作证据，冻结测试；不为内部存储类型造反射hook。
+- [x] 129将所有实际Cell存储分配统一计槽；所有写入口含clearAt/伙伴写按行脱离；full copy共享、subrect等允许正确慢路径。
+- [x] 129终端比较仅在冻结行身份/profile及精确版本关系适用时排除行；任意old Frame/外部修改/截断lineage回退完整正确比较。
+- [x] 130审每写入口/源别名/共享不可变/零面积不建巨量目录，以及damage不能覆盖后端失同步。
+- [x] 131独立执行128与受影响R11/F003/文件/后端消费者；132按原件确认正确性及计槽口径、性能热路径分配下降，仍不关031。
 
 ### C / 133–137（父031，REQ004.8/002，C/主题/Canvas合同）
 
@@ -158,4 +158,10 @@ Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/A
 
 单元A123–127完成并独立接受：源码 `4f7e853f821c334318e2038d4e20ab26e72c16c8` → main `0f83f73d`，正式9例独立构建运行通过；127 `PASS_UNIT_A`，12条件通过，索引 `a47adf3f2aa3311fd7fdb810869428c6f4094d14c1f888c4bf70f3e7936d6272`。[原始证据与范围](../../../docs/reviews/R24/A/README.md)保留125/126及CJP `56a7318d7931490545ee5fd255628170ed0bdc32aca71a11bc549955cfa53b49`。Q1内部临时Frame owner清理为非阻塞观察，交129涉及相同Frame生命周期时处理。
 
-128正式测试 `9908551d206922d0083711abbc70738c60da9215`/index `c9538b0eea0d6cae5e1c9ee5e4c491ae1254481cd5c35f255abf6f41c37b145f`：7个公共正确性GREEN，未变snapshot分配48/48槽而COW要求0/0为真实RED；原9例字节不变并复用A126有效证据。129正在自有工作树实施，首轮新测试全部GREEN，最终字节/旧例/后端/正常包及130–132质量门尚待完成。公开实际API为Frame.copy/resized；私有backend任意old/profile比较明确由现有output_recovery夹具与130/131覆盖，不增加public测试hook。B–E/完整AC031/M2/Linux保持开放。
+128正式测试 `9908551d206922d0083711abbc70738c60da9215`/index `c9538b0eea0d6cae5e1c9ee5e4c491ae1254481cd5c35f255abf6f41c37b145f`：7个公共正确性GREEN，未变snapshot分配48/48槽而COW要求0/0为真实RED；原9例字节不变并复用A126有效证据。随后129完成，最终证据及130–132质量门结果见下节。公开实际API为Frame.copy/resized；私有backend任意old/profile比较明确由现有output_recovery夹具与130/131覆盖，不增加public测试hook。C–E/完整AC031/M2/Linux保持开放。
+
+## 单元B完成与C测试准入
+
+单元B128–132已独立接受：固定源码 `275149c274df41d38ffc950f104b31185dea19a7` 由 main merge `bacfa0ba7b25e357636bc21942e2b6e415d2ee07` 保留原提交；合成树与受审源码、native、构建配置、产品文档及全部既有增量测试逐字节一致。130源码规格/质量通过；131自有正常构建与公开7例、计槽检查、后端正常5/补充45例通过，覆盖4→2→4尺寸及RGB→Monochrome。旧A9/布局/合成/文件/full338故障/正常bundle仅在源码、依赖、配置与原件比对后复用。132 `PASS_UNIT_B`，12项要求满足，索引 `2bb0a7a5b7946027feca8b4bba2a83c82341d84e71b17bca0cc70d1a91528a5c`；缓存snapshot的Cell槽从48/48降为0/0，变化目标从72降为24。任意old/profile回退和owned-detach有源码证明，不冒称单独运行测量；不把槽计数当CPU/heap字节或完整M2收益。
+
+133已准备19个公共场景，原测试提交 `c23adbd63afea032c184bd876e57b3eeeb15ba27`，现在消费已接受B源码进行正常构建、正确性基线与实际工作量RED验证；尚未固定最终测试原件，不准入134产品实施。C/D/E、AC031/022、最终宿主矩阵及023/024保持开放。
