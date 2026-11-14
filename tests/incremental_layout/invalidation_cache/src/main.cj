@@ -5,12 +5,13 @@ main(): Int64 {
         "Column justification", "wrap insets", "keyed/manual", "hidden/If", "span changes", "theme colors",
         "style sources", "theme geometry", "Canvas dependencies", "Canvas readonly", "reference cache",
         "root fallback", "viewport wrap", "glyph policy", "F1 focus wrap regression", "F2 reusable style color",
-        "F2 visual state color", "F4 auto panel cutoff", "F5 finite Canvas measure stats"]
+        "F2 visual state color", "F4 auto panel cutoff", "F5 finite Canvas measure stats",
+        "R1-N1 pending style ensure", "R1-N2 root cache miss text"]
     let cases: Array<() -> Unit> = [getterReplacement, typedStyleEquality, explicitNotify, localContent,
         rowRedistribution, columnJustification, wrapInsets, keyedManual, hiddenUpdates, spanChanges,
         themeColors, styleSources, themeGeometry, canvasDependencies, canvasReadonly, referenceCache,
         rootFallback, viewportWrap, glyphPolicy, focusWrapRegression, reusableStyleColor, visualStateColor,
-        autoPanelCutoff, canvasFiniteMeasureStats]
+        autoPanelCutoff, canvasFiniteMeasureStats, pendingStyleEnsure, rootCacheMissText]
     var failures: Int64 = 0
     var workCases: Int64 = 0
     for (i in 0..cases.size) {
