@@ -10,7 +10,7 @@
 ## Global Constraints
 
 - 原TASK-031/022为完整验收责任归属；123–142实现031各单元，143–147实现022并供031成本验收。实际工程层级依原WP002/WP005，角色工作为独立L3，不把原L3强行嵌另一套L3树。主仓接入时031/022转为本tasks唯一状态引用，不能保留两份勾选权威。
-- 单元A/B/C123–137已独立接受；138测试准备中，139–147仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
+- 单元A/B/C123–137已独立接受；138测试已固定，139实施中，140–147仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
 - A→B→C→D→E顺序集成。测试可按冻结合同准备，但产品只消费前单元验收固定提交；共享Component/Layout/Frame禁止多个产品作者同时编辑。
 - 每实体一个小写下划线.cj文件，最小可见性，原public调用兼容，新增RuntimeStats三项仅只读；无私有测试hook、无强制M1/M2模式开关。
 - 测试作者Sol/high、产品Terra/high或适合仓颉任务的Sol/high、审核/验收Astra/high、执行Sol/medium；记录指定配置，无法核验serving时不冒充实测。
@@ -60,7 +60,7 @@
 - [x] TASK-135（verification/C）：固定134与133独立审核所有失效入口/缓存key/版本消费。
 - [x] TASK-136（testing/C）：独立执行局部measure/arrange与M1逐帧对照、生命周期/顺序/主题回归。
 - [x] TASK-137（acceptance/C）：验收无关计算减少及连带完整，局部合成仍待D。
-- [ ] TASK-138（testing/D）：冻结整行damage相交重绘、滚动/层/宽簇/caret/失败baseline组合证据。
+- [x] TASK-138（testing/D）：冻结整行damage相交重绘、滚动/层/宽簇/caret/失败baseline组合证据。
 - [ ] TASK-139（implementation/D）：局部合成目标、旧新bounds、缓存caret/层来源及后端安全消费。
 - [ ] TASK-140（verification/D）：固定139与138独立审核draw上下文、重放顺序、目标/显示提交分离。
 - [ ] TASK-141（testing/D）：独立执行逐帧Cell等价、设备故障/恢复与真实适用TTY输入输出。
@@ -120,8 +120,8 @@
 
 输入137、完整008恢复及交互产品；输出完整M2目标、整行局部绘制、正确caret与baseline。
 
-- [ ] 138冻结长→短/移动/隐藏/卸载/阴影、背景移除、透明hole与StyledSpace、目标宽簇伙伴、滚动/anchor、nested modal close/下层后台最新值、caret-only及opaque同字符遮挡。
-- [ ] 138用受控Canvas记录draw次数和可观察clip，证明相交节点每目标至多一次、上下文不随damage改变；全量M1另运行不混计。
+- [x] 138冻结长→短/移动/隐藏/卸载/阴影、背景移除、透明hole与StyledSpace、目标宽簇伙伴、滚动/anchor、nested modal close/下层后台最新值、caret-only及opaque同字符遮挡。
+- [x] 138用受控Canvas记录draw次数和可观察clip，证明相交节点每目标至多一次、上下文不随damage改变；全量M1另运行不混计。
 - [ ] 139以旧新paint bounds并集形成整行带，清初值后全场景顺序重绘相交前后节点/层；subtree bounds含后代阴影，不只dirty节点。
 - [ ] 139缓存未draw节点caret请求、按焦点/geometry/层opaque覆盖重算；设备grid零差分也输出caret变化，输出成功才提交组合baseline。
 - [ ] 140审未知lineage/profile、partial write/resize、缓存clean但设备失同步、异常清理围栏；141独立执行138与008受影响恢复矩阵/真实适用TTY；142核M1逐Cell等价与交互caret结果，保留E成本前置。
@@ -183,3 +183,9 @@ Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/A
 138已在独立工作树准备测试源码 `fa4354173a78aa1751acc5c2c840619f297d4fa6`，尚未正常编译/运行；下一步消费已接受C源码完成公开局部合成反例基线，再准入139。D局部绘制/光标/覆盖层与E真实基准、原031/022、最终Linux宿主矩阵及023/024保持开放。
 
 [C完整证据归档](../../../docs/reviews/R24/C/README.md)保留339个原件成员、三份不同候选源码制品、首次审核失败与两轮修复及最终独立执行/验收；仅32个检出文件。raw SHA `3c71f72ea247fc2129e35cd1b20bc91a48572afbcd2ef56b7013aad4e7187e4e`，索引 `e77b1ba2a5261315b20b59c1da537b7120a58d30edbe9f1d88cce89ef15a5cd3`，主代理逐成员核验安全路径、字节、权限与SHA一致；无新终端PNG，因本轮为无终端的布局单元，最终宿主效果图仍由Linux矩阵交付。
+
+## 138最终测试准入与139实施
+
+固定D公开测试 `0ab2536475c142a0731a34d4112d719c75b2a3ad`，索引 `042e3789e165c2e0e542b49227cc90fad539f110c4fc3790d1080c61601d8222`；正常CJPM构建退出0，直接基线退出1：15个领域、68组同epoch完整Cell/手算配对正确性零失败，14项工作量真实RED（行重放2、显隐/移除6、缓存caret6）。首次fixture默认ScrollView抢占Canvas焦点的设置已显式修正为不可聚焦wrapper，断言不变，两次构建/运行原件均保留。主代理核验34项源码/证据、ELF及锁文件字节，并确认合入只新增20个D测试文件、C产品与原A/B/C测试无变化。
+
+139由独立Terra/high在独立工作树实施D1损伤边界与版本、D2局部重放与caret/遮挡、D3后端失败围栏与正常包。140审核、141独立执行与适用真实TTY、142验收后才关闭D。138的设备故障/投影私有覆盖显式映射既有output_recovery/glyph fixtures及后续源码证明，不冒称本轮运行过；没有新增产品测试hook。E真实基准、完整031/022、Linux最终宿主矩阵、023/024继续开放。
