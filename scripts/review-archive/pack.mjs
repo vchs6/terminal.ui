@@ -86,10 +86,20 @@ export async function pack(root,group,keepFile) {
     console.log(JSON.stringify({group,files:records.length,retained:keep.size,shards:shards.length}));
   } finally {if(fs.existsSync(tmp))fs.rmSync(tmp,{recursive:true,force:true});}
 }
+async function checkOriginal(root,r) {
+  let file;
+  try { file=safe(root,r.path); } catch(e) { if(e.code==='ENOENT'&&!r.inline) return null; throw e; }
+  const stat=fs.lstatSync(file);
+  if(!stat.isFile()||(stat.mode&0o7777)!==r.mode) fail(`changed before removal: ${r.path}`);
+  const d=await digest(file);
+  if(d.size!==r.size||d.sha256!==r.sha256) fail(`changed before removal: ${r.path}`);
+  return file;
+}
 export async function remove(root,group,keepFile) {
   const {files,keep}=inventory(root,group,keepFile,true), catalog=await load(root), data=await groupData(root,catalog,group);
   if(files.length!==data.records.length || files.some((p,i)=>p!==data.records[i].path)) fail('tracked inventory changed');
   for(const r of data.records) if(keep.has(r.path)&&!r.inline) fail(`retention inventory changed: ${r.path}`);
   for(const s of data.shards.values())await verifyShard(root,s,data.records.filter(r=>r.shard===s.path));
-  for(const r of data.records) {if(r.inline||keep.has(r.path))continue; let f; try {f=safe(root,r.path);}catch(e){if(e.code==='ENOENT')continue;throw e;} const s=fs.lstatSync(f),d=await digest(f); if(!s.isFile()||(s.mode&0o7777)!==r.mode||d.size!==r.size||d.sha256!==r.sha256)fail(`changed before removal: ${r.path}`); fs.unlinkSync(f);}
+  for(const r of data.records) await checkOriginal(root,r);
+  for(const r of data.records) {if(r.inline||keep.has(r.path))continue; const f=await checkOriginal(root,r); if(f) fs.unlinkSync(f);}
 }
