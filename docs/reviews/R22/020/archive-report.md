@@ -21,3 +21,4 @@ No generated/repainted/recoded/composited images; VT is VM, not physical hardwar
 Original020 admission SHA396db59d unchanged; exact actual021 admission SHA88313675;021 formal design only.
 Known T087 themes/light.toml checker FAIL remains final023; exact80d/ecbf older bundle only.
 Full parent020/finalM2/041/023release/024wholeLinux remain OPEN even if current M1 later passes.
+Authored browse/report.md navigation alias resolves unchanged fix-r1 historical link; all public Markdown links checked.
