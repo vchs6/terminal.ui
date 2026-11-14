@@ -140,10 +140,18 @@ all/paste `Parse` (only Parse remains); undo restores former query; clear;
 checkbox/radio filter and sort; type notes including multiline/Unicode paste;
 selection+F3+replace+undo proves state preservation; scroll log list; filter and
 reverse logs; F4 nested popup disabled skip/cancel/confirm and focus return;
-F5 observable review half-progress; F6 followed immediately F4, observe Done
-in shared modal then close to newest underlying data; acknowledge color-only;
+F5 observable review half-progress; F6 followed immediately F4, observe latest Done
+with the shared modal open, accepting completion before or after opening, then
+close to newest underlying data; acknowledge color-only;
 resize80x24→40x12→16x6→80x24, check literal startup frames in a fresh session
 and preserve edited/business state in the live session; F10 exits0, modes restore.
+
+The immediate F6/F4 sequence does not prove completion occurred after modal
+opening. The modal note edit demonstrates a shared business update while the
+layer is open and close reveals latest underlying data. Existing accepted C112
+`tests/interaction_c/src/surface_grids.cj` G04 and
+`tests/interaction_c/src/pending_and_identity.cj` N02 finite covered-update
+proofs are unchanged at the fixed base and reused, not cold-rerun here.
 
 Manual actual-host run also tests minimum dimensions, menu navigation on the
 horizontal menu, every disabled item, ancestor closure, editor selection/undo,

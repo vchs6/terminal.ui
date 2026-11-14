@@ -210,8 +210,8 @@ async function interactions(directory){
     await s.key(keys.esc,rows=>!text(rows).includes('╭'),'return to review');
     await s.key(keys.f3,contains('Classic'),'Classic before second worker');
     s.send(keys.f6+keys.f4,'resume real worker then open modal');
-    await s.has('Tasks | Done 2/2','background completion remains visible under overlay');
-    assert(text(s.view.rows()).includes('╭'),'completion observed while modal remains open');
+    await s.wait(rows=>text(rows).includes('Tasks | Done 2/2')&&text(rows).includes('╭'),
+      'latest completed state shared by opened modal; either legal completion order');
     await s.key(keys.esc,contains('Tasks | Done 2/2'),'close reveals latest underlying completion');
     const done=await s.has('Tasks | Done 2/2');
     assert(done[8].text.startsWith('===================='),'completed progress');
