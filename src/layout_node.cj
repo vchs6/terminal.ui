@@ -1,6 +1,7 @@
 package cjtui
 
 import std.collection.ArrayList
+import std.collection.HashMap
 
 class LayoutNode {
     let session: RuntimeSession
@@ -23,7 +24,19 @@ class LayoutNode {
     var inheritedStyle: Style
     let rootNode: Bool
     var resolved: ResolvedStyle
-    let children = ArrayList<LayoutNode>()
+    let results: HashMap<Int64, LayoutNode>
+    var paintLeft: Int64 = 0
+    var paintTop: Int64 = 0
+    var paintRight: Int64 = 0
+    var paintBottom: Int64 = 0
+    var paintContentX: Int64 = 0
+    var paintContentY: Int64 = 0
+    var paintContentWidth: Int64 = 0
+    var paintContentHeight: Int64 = 0
+    var paintBoxX: Int64 = 0
+    var paintBoxY: Int64 = 0
+    var paintInnerRight: Int64 = 0
+    var paintInnerBottom: Int64 = 0
     // Indices retain the original grapheme identity across soft and hard lines.
     let lines = ArrayList<ArrayList<Int64>>()
     let widths = ArrayList<Int64>()
@@ -42,14 +55,27 @@ class LayoutNode {
     var plannedSizes = Array<Int64>()
     var plannedFree: Int64 = 0
     init(c: Component, session: RuntimeSession, inherited: Style, isRoot!: Bool = false, previewTheme!: ?Theme = None,
-        previousMeasurement!: ?LayoutNode = None, commitGeometry!: Bool = true) {
+        previousMeasurement!: ?LayoutNode = None, commitGeometry!: Bool = true,
+        results!: ?HashMap<Int64, LayoutNode> = None) {
         this.session = session
         component = c
         this.previewTheme = previewTheme
         this.previousMeasurement = previousMeasurement
         this.commitGeometry = commitGeometry
+        this.results = results ?? HashMap<Int64, LayoutNode>()
         inheritedStyle = inherited; rootNode = isRoot
         resolved = resolveStyle(c,previewTheme ?? session.theme,inherited,isRoot)
+    }
+    func children(): ArrayList<LayoutNode> {
+        let result = ArrayList<LayoutNode>()
+        for (entry in component.readMount().getOrThrow().sequence) {
+            if (let ChildEntry.MountedChild(child) <- entry) {
+                if (child.component.isVisible) {
+                    if (let Some(layout) <- results.get(child.id)) { result.add(layout) }
+                }
+            }
+        }
+        result
     }
     func measure(): Unit {
         if (previewTheme.isNone()) { session.recordMeasure() }
@@ -78,13 +104,14 @@ class LayoutNode {
                     if (!child.isVisible) { continue }
                     var previousChild: ?LayoutNode = None
                     if (let Some(previous) <- previousMeasurement) {
-                        for (entry in previous.children) {
+                        for (entry in previous.children()) {
                             if (entry.component.descriptionId == child.descriptionId) { previousChild = Some(entry); break }
                         }
                     }
                     let n = LayoutNode(child, session, resolved.style, previewTheme: previewTheme,
-                        previousMeasurement: previousChild, commitGeometry: commitGeometry)
-                    n.measure(); children.add(n)
+                        previousMeasurement: previousChild, commitGeometry: commitGeometry, results: Some(results))
+                    results[runtimeChild.id] = n
+                    n.measure()
                     let cw = greater(n.resolved.fixedW ?? n.naturalW, n.resolved.minW)
                     let ch = greater(n.resolved.fixedH ?? n.naturalH, n.resolved.minH)
                     if (c.kind == 1) { naturalW = greater(naturalW,cw); naturalH = sat(naturalH,ch) }
@@ -111,7 +138,7 @@ class LayoutNode {
     }
     func addGaps(base: Int64): Int64 {
         var result = base
-        for (_ in 1..children.size) { result = sat(result,resolved.spacing) }
+        for (_ in 1..children().size) { result = sat(result,resolved.spacing) }
         result
     }
     func buildLines(width: Int64, wrap: Bool): Unit {
@@ -158,7 +185,7 @@ class LayoutNode {
             naturalH = sat(lines.size,verticalInsets())
         } else if (component.kind == 1) {
             var height: Int64 = 0
-            for (child in children) {
+            for (child in children()) {
                 let cr = child.resolved
                 var cw = lesser(available,greater(cr.fixedW ?? child.naturalW,cr.minW))
                 if (resolved.align == Alignment.Stretch && cr.fixedW.isNone()) { cw = available }
@@ -171,8 +198,9 @@ class LayoutNode {
             let mainWidth = if (axes.horizontal()) { greater(available,naturalW-horizontalInsets()) } else { available }
             let (widths,_) = allocateMain(this,mainWidth,naturalBasis:axes.horizontal())
             var height: Int64 = 0
-            for (i in 0..children.size) {
-                let child = children[i]
+            let ordered = children()
+            for (i in 0..ordered.size) {
+                let child = ordered[i]
                 child.constrain(widths[i])
                 height = greater(height,greater(child.resolved.fixedH ?? child.naturalH,child.resolved.minH))
             }
@@ -194,7 +222,7 @@ class LayoutNode {
     }
     // Reuse the same negotiated child sizes for paint after the finite pass.
     func mainAllocation(mainSize: Int64, naturalBasis: Bool): (Array<Int64>, Int64) {
-        if (plannedMain == mainSize && plannedNatural == naturalBasis && plannedSizes.size == children.size) {
+        if (plannedMain == mainSize && plannedNatural == naturalBasis && plannedSizes.size == children().size) {
             return (plannedSizes,plannedFree)
         }
         let (sizes,free) = allocateMain(this,mainSize,naturalBasis:naturalBasis)
@@ -210,7 +238,7 @@ class LayoutNode {
     func scrollingHeight(): Int64 {
         if (component.kind == 0 || component.kind == 3) { return naturalH }
         var content: Int64 = 0
-        for (child in children) {
+        for (child in children()) {
             let measured = if (let Some(fixed) <- child.resolved.fixedH) { fixed }
                 else if (child.component.viewportDeclared && child.component.viewportAxes.vertical()) { child.assignedHeight }
                 else { child.scrollingHeight() }
@@ -224,12 +252,12 @@ class LayoutNode {
     func behaviorChangesLayout(inherited: Style, isRoot: Bool): Bool {
         let next = resolveStyle(component,session.theme,inherited,isRoot)
         if (layoutStyleDiff(resolved,next)) { return true }
-        for (child in children) { if (child.behaviorChangesLayout(next.style,false)) { return true } }
+        for (child in children()) { if (child.behaviorChangesLayout(next.style,false)) { return true } }
         false
     }
     func refresh(inherited: Style, isRoot: Bool): Unit {
         inheritedStyle = inherited
         resolved = resolveStyle(component,session.theme,inherited,isRoot)
-        for (child in children) { child.refresh(resolved.style,false) }
+        for (child in children()) { child.refresh(resolved.style,false) }
     }
 }
