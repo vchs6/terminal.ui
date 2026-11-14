@@ -61,6 +61,9 @@ class RuntimeSession {
     var measures: Int64 = 0
     var paints: Int64 = 0
     var frames: Int64 = 0
+    var arranges: Int64 = 0
+    var cellWrites: Int64 = 0
+    var frameAllocatedCells: Int64 = 0
     var trackCaret = false
     var pendingCaret: ?CaretRequest = None
     var lastCaret: ?CaretRequest = None
@@ -205,6 +208,14 @@ class RuntimeSession {
         } finally {
             lock.unlock()
         }
+    }
+    func recordArrange(): Unit {
+        lock.lock()
+        try { arranges++ } finally { lock.unlock() }
+    }
+    func recordCells(writes: Int64, allocated: Int64): Unit {
+        lock.lock()
+        try { cellWrites += writes; frameAllocatedCells += allocated } finally { lock.unlock() }
     }
     func recordPaint(): Unit {
         lock.lock();
@@ -1566,7 +1577,7 @@ class RuntimeSession {
                 lock.unlock()
             }
         }
-        cached.getOrThrow().copy(Rect(0, 0, width, height))
+        cached.getOrThrow().copyForSession(Rect(0, 0, width, height), this)
     }
     func stats(): RuntimeStats {
         lock.lock()
@@ -1593,7 +1604,8 @@ class RuntimeSession {
                 mountedCount
             } else {
                 0
-            }, activeBindings, subscriptions, posts.size, builds, measures, paints, frames)
+            }, activeBindings, subscriptions, posts.size, builds, measures, paints, frames,
+                arranges: arranges, cellWrites: cellWrites, frameAllocatedCells: frameAllocatedCells)
         } finally {
             lock.unlock()
         }
