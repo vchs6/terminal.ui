@@ -7,7 +7,7 @@ import {resolve,join} from 'node:path';
 import {Session} from '../composition/application/pty.mjs';
 import {keys} from '../composition/application/fixtures.mjs';
 import {ptyGoldens,modalGoldens} from './fixtures.mjs';
-import {acceptedPalette,sameGrid} from './checks.mjs';
+import {acceptedPalette,matchesGrid,sameGrid} from './checks.mjs';
 
 const binary=resolve(process.env.CJTUI_SHOWCASE_BINARY??'examples/theme_showcase/target/release/bin/main');
 const artifacts=resolve(process.env.CJTUI_SHOWCASE_ARTIFACTS??'tests/theme_showcase/target/evidence');
@@ -27,10 +27,10 @@ async function previewSwitch(directory){
   const s=new Session(directory,80,24,binary);
   try{
     await controlledClassic(s);
-    const changed=await s.key(keys.f2,r=>acceptedPalette(r,'Dark')&&text(r).includes('Preview'),
+    const changed=await s.key(keys.f2,r=>acceptedPalette(r,'Dark')&&matchesGrid(r,modalGoldens,'Dark',80,24,'modal'),
       'F2 accepts Dark while Preview stays open');
     sameGrid(changed,modalGoldens,'Dark',80,24,'modal');
-    sameGrid(await s.key(keys.f9,r=>!text(r).includes('Preview'),'F9 closes Preview'),ptyGoldens,'Dark',80,24);
+    sameGrid(await s.key(keys.f9,r=>matchesGrid(r,ptyGoldens,'Dark',80,24),'F9 closes Preview'),ptyGoldens,'Dark',80,24);
     await s.stop();
   }finally{await s.save()}
 }
@@ -40,7 +40,8 @@ async function popupSwitch(directory){
   try{
     await controlledClassic(s);
     await s.key(keys.enter,popupVisible,'owned PopupMenu opens');
-    const changed=await s.key(keys.f2,r=>acceptedPalette(r,'Dark')&&popupVisible(r)&&text(r).includes('Preview'),
+    const changed=await s.key(keys.f2,r=>acceptedPalette(r,'Dark')&&popupVisible(r)&&
+      text(r).includes('Theme sample')&&text(r).includes('╭──────────────────────────────╮'),
       'F2 accepts Dark while owned PopupMenu stays open');
     assert(popupVisible(changed),'popup remains mounted with all entries');
     assert(text(changed).includes('╭──────────────────────────────╮'),'Preview receives Dark rounded border');
@@ -48,9 +49,9 @@ async function popupSwitch(directory){
       'owned popup disabled Delete remains dim');
     await s.key(keys.down,r=>popupVisible(r)&&r.some(row=>row.cells.some(c=>c.text==='C'&&c.attributes.includes(4))),
       'popup navigation skips disabled Delete after theme');
-    sameGrid(await s.key(keys.enter,r=>!popupVisible(r)&&text(r).includes('Preview'),'Confirm closes popup'),
+    sameGrid(await s.key(keys.enter,r=>matchesGrid(r,modalGoldens,'Dark',80,24,'modal'),'Confirm closes popup'),
       modalGoldens,'Dark',80,24,'modal');
-    sameGrid(await s.key(keys.f9,r=>!text(r).includes('Preview'),'F9 closes owning Preview'),ptyGoldens,'Dark',80,24);
+    sameGrid(await s.key(keys.f9,r=>matchesGrid(r,ptyGoldens,'Dark',80,24),'F9 closes owning Preview'),ptyGoldens,'Dark',80,24);
     await s.stop();
   }finally{await s.save()}
 }

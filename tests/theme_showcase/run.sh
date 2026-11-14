@@ -3,6 +3,7 @@ set -euo pipefail
 cd "$(dirname "$0")/../.."
 node tests/theme_showcase/selftest.mjs
 node tests/theme_showcase/preset-contract.mjs
+node tests/theme_showcase/modal-close-oracle.mjs
 node tests/theme_showcase/delivery.mjs
 source /workspace/work/validation/sdk/cangjie/envsetup.sh
 export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env

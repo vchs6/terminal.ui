@@ -8,7 +8,7 @@ import {Session} from '../composition/application/pty.mjs';
 import {keys,paste} from '../composition/application/fixtures.mjs';
 import {prepareTerminalSizeTool} from '../support/terminal_frames.mjs';
 import {ptyGoldens,modalGoldens,retainedGoldens,palette,f7} from './fixtures.mjs';
-import {cellAt,sameGrid,acceptedPalette,checkStyles} from './checks.mjs';
+import {cellAt,sameGrid,matchesGrid,acceptedPalette,checkStyles} from './checks.mjs';
 const binary=resolve('examples/theme_showcase/target/release/bin/main');
 const artifacts=resolve(process.env.CJTUI_SHOWCASE_ARTIFACTS??'tests/theme_showcase/target/evidence');
 const text=rows=>rows.map(row=>row.text).join('\n');
@@ -44,8 +44,8 @@ async function fullCycle(dir){
       const popup=s.view.rows();
       assert(popup.some(row=>row.cells.some(c=>c.text==='D'&&c.attributes.includes(2))),`${name} disabled Delete dim`);
       assert(popup.some(row=>row.cells.some(c=>c.text==='I'&&c.attributes.includes(4))),`${name} focused Inspect underline`);
-      await s.key(keys.esc,r=>!text(r).includes('Inspect')&&text(r).includes('Preview'),`${name} popup close`);
-      await s.key(keys.f9,r=>!text(r).includes('Preview'),`${name} modal close`);
+      await s.key(keys.esc,r=>matchesGrid(r,modalGoldens,name,80,24,'modal'),`${name} popup close`);
+      await s.key(keys.f9,r=>matchesGrid(r,ptyGoldens,name,80,24),`${name} modal close`);
       sameGrid(s.view.rows(),ptyGoldens,name,80,24);
     }
     await s.stop();

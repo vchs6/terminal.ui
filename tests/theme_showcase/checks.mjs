@@ -11,6 +11,10 @@ export function cellAt(rows,x,y){
 export function sameGrid(rows,goldens,name,w,h,state='startup'){
   assert.deepEqual(rows.map(row=>row.text),frame(goldens,name,w,h,state),`${name} ${state} complete ${w}x${h} grid`);
 }
+export function matchesGrid(rows,goldens,name,w,h,state='startup'){
+  const expected=frame(goldens,name,w,h,state);
+  return rows.length===expected.length&&rows.every((row,i)=>row.text===expected[i]);
+}
 export function acceptedPalette(rows,name){
   const want=palette[name];if(!want)return false;
   if(!rows.at(-1)?.text.includes(`Gallery | ${name} |`))return false;
