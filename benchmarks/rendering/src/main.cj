@@ -9,7 +9,8 @@ main(args: Array<String>): Int64 {
     }
     try {
         let options = Options(args, true)
-        throw Exception("workload ${options.scenario} is not implemented")
+        runDiagnosticText(options)
+        0
     } catch (error: Exception) {
         println("benchmark: ${error.message}")
         1

@@ -1,8 +1,8 @@
 # Rendering benchmark (implementation in progress)
 
-This directory is not yet an executable benchmark: both entry points reject
-workload requests and emit no samples. The common project defines the frozen
-mode eligibility and CLI boundary; it has not been compiled or validated.
+This directory is not yet an executable benchmark: the compatibility entry point contains draft text workloads and the diagnostic entry point
+rejects workload requests. The common project defines the frozen
+mode eligibility and CLI boundary; these sources have not been compiled or validated.
 Do not use this draft for performance claims.
 
 The intended projects are `workloads` (the same public API source for both

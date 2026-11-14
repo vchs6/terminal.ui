@@ -9,7 +9,8 @@ main(args: Array<String>): Int64 {
     }
     try {
         let options = Options(args, false)
-        throw Exception("workload ${options.scenario} is not implemented")
+        runCompatText(options)
+        0
     } catch (error: Exception) {
         println("benchmark: ${error.message}")
         1
