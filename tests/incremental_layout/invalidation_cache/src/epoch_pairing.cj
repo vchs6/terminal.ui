@@ -2,6 +2,10 @@ package incremental_invalidation_cache
 
 import cjtui.*
 
+func advance(app: Application, epoch: Array<Int64>, action: () -> Unit): Unit {
+    app.batch({ => action(); epoch[0]++ })
+}
+
 func paired(app: Application, root: Component, epoch: Array<Int64>, width: Int64, height: Int64,
     expected: String, label: String, glyphMode!: GlyphMode = GlyphMode.Unicode): WorkSample {
     let stable = epoch[0]
