@@ -39,6 +39,9 @@ class RuntimeNode {
     var contentDirty = true
     var styleDirty = true
     var layoutDirty = true
+    var measurementDirty = true
+    var overflowDirty = true
+    var layoutVisible: Bool
     var structureDirty = true
     var dirtyQueued = false
     var pendingChange: ?PendingNodeChange = None
@@ -51,6 +54,7 @@ class RuntimeNode {
         this.session = session
         this.id = id
         this.parent = parent
+        layoutVisible = component.isVisible
         viewportState.axes = if (component.viewportDeclared) { component.viewportAxes }
             else if (parent.isNone() && !session.temporary) { ScrollAxes.Vertical } else { ScrollAxes.Off }
         depth = match (parent) {

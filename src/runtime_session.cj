@@ -54,6 +54,7 @@ class RuntimeSession {
     var acceptingPosts = false
     var changed = true
     var effectiveVersion: Int64 = 0
+    var pendingBehaviorStyle = false
     var stopping = false
     var invalidationSequence: Int64 = 0
     var batchDepth: Int64 = 0
@@ -172,24 +173,95 @@ class RuntimeSession {
         if (change == ChangeKind.Structure || change == ChangeKind.All) { node.structureDirty = true }
         if (change == ChangeKind.Content || change == ChangeKind.Layout || change == ChangeKind.Structure || change == ChangeKind
             .All) {
-            invalidateRootLayout()
             node.layoutDirty = true
+            node.measurementDirty = true
+            node.overflowDirty = true
+            if (node.component.isVisible != node.layoutVisible) {
+                if (let Some(owner) <- node.parent) { owner.measurementDirty = true; owner.structureDirty = true }
+            }
             var parent = node.parent
             while (let Some(ancestor) <- parent) {
                 ancestor.layoutDirty = true
+                ancestor.overflowDirty = true
                 queueDirtyLocked(ancestor)
                 parent = ancestor.parent
             }
         }
     }
+    // Revalidate children first. A parent is remeasured only when its own
+    // inputs or a child's effective output to that parent actually changed.
+    func revalidateMeasurement(node: RuntimeNode, inherited: Style, isRoot: Bool): Bool {
+        if (!node.layoutDirty && node.layout.isSome()) { return false }
+        let previous = node.layout
+        let oldScroll = if (let Some(old) <- previous) { old.scrollingHeight() } else { Int64(-1) }
+        let nextStyle = resolveStyle(node.component,theme,inherited,isRoot)
+        var changedChild = false
+        for (entry in node.sequence) {
+            if (let ChildEntry.MountedChild(child) <- entry) {
+                if (child.component.isVisible) {
+                    if (revalidateMeasurement(child,nextStyle.style,false)) { changedChild = true }
+                }
+            }
+        }
+        if (!node.measurementDirty && !changedChild && previous.isSome()) {
+            node.layoutDirty = false
+            return false
+        }
+        let measured = LayoutNode(node.component,this,inherited,isRoot:isRoot)
+        measured.measure()
+        if (let Some(old) <- previous) {
+            if (let Some(width) <- old.constrainedWidth) { measured.constrain(width) }
+        }
+        measured.publish()
+        node.measurementDirty = false
+        if (let Some(old) <- previous) {
+            let before = old.resolved; let after = measured.resolved
+            let newScroll = measured.scrollingHeight()
+            return before.fixedW != after.fixedW || before.fixedH != after.fixedH ||
+                before.minW != after.minW || before.minH != after.minH || before.weight != after.weight ||
+                old.naturalW != measured.naturalW || old.intrinsicH != measured.intrinsicH ||
+                old.constrainedH != measured.constrainedH || oldScroll != newScroll || node.structureDirty
+        }
+        true
+    }
+    // Compare each node against the resolved inputs that produced its cache.
+    // The committed runtime sequence remains the sole child authority.
+    func collectBehaviorLayoutChanges(node: RuntimeNode, inherited: Style, isRoot: Bool,
+        changedNodes: ArrayList<RuntimeNode>): Unit {
+        let next = resolveStyle(node.component,theme,inherited,isRoot)
+        if (let Some(layout) <- node.layout) {
+            if (layoutStyleDiff(layout.resolved,next)) { changedNodes.add(node) }
+        }
+        for (entry in node.sequence) {
+            if (let ChildEntry.MountedChild(child) <- entry) {
+                collectBehaviorLayoutChanges(child,next.style,false,changedNodes)
+            }
+        }
+    }
+    func scheduleBehaviorStyle(node: RuntimeNode): Unit {
+        lock.lock()
+        try {
+            if (active && node.valid) {
+                pendingBehaviorStyle = true
+                markNodeDirtyLocked(node,ChangeKind.Style)
+                changed = true
+            }
+        } finally { lock.unlock() }
+    }
+    func resolvePendingBehaviorStyle(): Unit {
+        lock.lock()
+        var pending = false
+        try { pending = pendingBehaviorStyle; pendingBehaviorStyle = false }
+        finally { lock.unlock() }
+        if (pending) { invalidateBehaviorStyle() }
+    }
     func invalidateBehaviorStyle(): Unit {
         let rootNode = root.readMount()
         if (rootNode.isNone()) { return }
-        var change = ChangeKind.Style
-        if (let Some(layout) <- rootLayout()) {
-            if (layout.behaviorChangesLayout(themeSeed(theme),true)) { change = ChangeKind.Layout }
-        }
-        markChanged(rootNode.getOrThrow(),change)
+        let affected = ArrayList<RuntimeNode>()
+        collectBehaviorLayoutChanges(rootNode.getOrThrow(),themeSeed(theme),true,affected)
+        for (node in affected) { markChanged(node,ChangeKind.Layout) }
+        markChanged(rootNode.getOrThrow(),ChangeKind.Style)
     }
     func markChanged(node: RuntimeNode, change: ChangeKind): Unit {
         lock.lock()
@@ -391,18 +463,10 @@ class RuntimeSession {
                     sequence = invalidationSequence
                 }
                 match (node.pendingChange) {
-                    case Some(pending) =>
-                        if (sequence == pending.sequence) {
-                            pending.include(change)
-                        } else {
-                            let next = PendingNodeChange(node, sequence)
-                            next.include(change)
-                            node.pendingChange = Some(next)
-                            pendingNodes.add(next)
-                        }
+                    case Some(pending) => pending.include(change,sequence)
                     case None =>
-                        let pending = PendingNodeChange(node, sequence)
-                        pending.include(change);
+                        let pending = PendingNodeChange(node)
+                        pending.include(change,sequence)
                         node.pendingChange = Some(pending)
                         pendingNodes.add(pending)
                 }
@@ -860,7 +924,12 @@ class RuntimeSession {
     }
     func geometryMayChange(): Bool {
         lock.lock()
-        try { rootLayout().isNone() || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty() }
+        try {
+            let rootNode = root.readMount()
+            var dirty = rootNode.isNone()
+            if (let Some(value) <- rootNode) { dirty = value.layoutDirty || value.layout.isNone() }
+            dirty || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty()
+        }
         finally { lock.unlock() }
     }
     func enqueueViewport(command: ScrollCommand): Unit {
@@ -1353,27 +1422,14 @@ class RuntimeSession {
         lock.lock()
         try {
             for (pending in pendingNodes) {
-                if (pending.sequence <= cutoff) {
-                    if (let Some(current) <- pending.node.pendingChange) {
-                        if (refEq(current,pending)) { pending.node.pendingChange = None }
-                    }
-                    if (pending.node.valid) {
-                        if (pending.content) {
-                            markNodeDirtyLocked(pending.node, ChangeKind.Content)
-                        }
-                        if (pending.style) {
-                            markNodeDirtyLocked(pending.node, ChangeKind.Style)
-                        }
-                        if (pending.layout) {
-                            markNodeDirtyLocked(pending.node, ChangeKind.Layout)
-                        }
-                        if (pending.structure) {
-                            markNodeDirtyLocked(pending.node, ChangeKind.Structure)
-                        }
-                        changed = true
-                    }
-                } else {
+                if (pending.node.valid && pending.sequence <= cutoff) {
+                    pending.consume(cutoff)
+                    changed = true
+                }
+                if (pending.node.valid && pending.sequence >= 0) {
                     laterNodes.add(pending)
+                } else {
+                    pending.node.pendingChange = None
                 }
             }
             pendingNodes.clear()
@@ -1537,7 +1593,7 @@ class RuntimeSession {
             theme = value; changed = true; effectiveVersion++
             if (layoutChanged) { invalidateRootLayout() }
             for (node in nodes) {
-                if (layoutChanged) { node.layoutDirty = true }
+                if (layoutChanged) { node.layoutDirty = true; node.measurementDirty = true; node.overflowDirty = true }
                 node.styleDirty = true
                 queueDirtyLocked(node)
             }
@@ -1548,7 +1604,7 @@ class RuntimeSession {
         try {
             changed = true; effectiveVersion++
             invalidateRootLayout()
-            for (node in nodes) { node.layoutDirty = true; queueDirtyLocked(node) }
+            for (node in nodes) { node.layoutDirty = true; node.measurementDirty = true; node.overflowDirty = true; queueDirtyLocked(node) }
         } finally { lock.unlock() }
     }
     func selectLayoutGlyphPolicy(policy: GlyphRenderPolicy): String {
@@ -1559,6 +1615,7 @@ class RuntimeSession {
         marker
     }
     func produce(width: Int64, height: Int64, force: Bool, glyphPolicy!: GlyphRenderPolicy = GlyphRenderPolicy.unicode()): Frame {
+        resolvePendingBehaviorStyle()
         let marker = selectLayoutGlyphPolicy(glyphPolicy)
         lock.lock()
         var dirtyFrame = false
@@ -1604,10 +1661,13 @@ class RuntimeSession {
                                 parent = ancestor.parent
                             } else { break }
                         }
+                        node.layoutVisible = node.component.isVisible
                         if (visible || !node.valid) {
                             node.contentDirty = false
                             node.styleDirty = false
                             node.layoutDirty = false
+                            node.measurementDirty = false
+                            node.overflowDirty = false
                             node.structureDirty = false
                             node.dirtyQueued = false
                             dirtyNodes.remove(at:index)

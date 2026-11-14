@@ -113,14 +113,20 @@ public open class Component {
     func applyStyles(value: Array<StyleUse>): Unit {
         var same = value.size == styleUses.size
         if (same) { for (i in 0..value.size) { if (value[i] != styleUses[i]) { same = false; break } } }
-        if (!same) { styleUses = value.clone(); markChanged(ChangeKind.Layout) }
+        if (!same) {
+            styleUses = value.clone()
+            if (let Some(node) <- readMount()) { node.session.scheduleBehaviorStyle(node) }
+        }
     }
     public func styles(value: () -> Array<StyleUse>): Component { bind("styles",ChangeKind.Layout,{=>applyStyles(value())}) }
     public func visualStates(value: VisualStates): Component {
         removeBinding("visualStates"); applyStates(value); this
     }
     func applyStates(value: VisualStates): Unit {
-        if (styleStates != value) { styleStates = value; markChanged(ChangeKind.Layout) }
+        if (styleStates != value) {
+            styleStates = value
+            if (let Some(node) <- readMount()) { node.session.scheduleBehaviorStyle(node) }
+        }
     }
     public func visualStates(value: () -> VisualStates): Component { bind("visualStates",ChangeKind.Layout,{=>applyStates(value())}) }
     public func themeRole(value: ThemeRole): Component {

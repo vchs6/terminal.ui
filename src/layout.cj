@@ -281,6 +281,21 @@ func arrange(n: LayoutNode, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64
 
 // First finite pass summary, following the existing allocator and same node tree.
 func summarizeVerticalOverflow(n: LayoutNode, width: Int64, height: Int64, result: VerticalOverflowSummary): Unit {
+    let runtime = n.component.readMount().getOrThrow()
+    if (n.commitGeometry && n.previewTheme.isNone() && !runtime.overflowDirty &&
+        n.overflowWidth == width && n.overflowHeight == height) {
+        if (n.overflowPresent) { result.record(runtime,"cached") }
+        return
+    }
+    let local = VerticalOverflowSummary()
+    summarizeVerticalOverflowUncached(n,width,height,local)
+    if (n.commitGeometry && n.previewTheme.isNone()) {
+        n.overflowWidth = width; n.overflowHeight = height; n.overflowPresent = local.present
+    }
+    if (local.present) { result.record(runtime,"descendant") }
+}
+
+func summarizeVerticalOverflowUncached(n: LayoutNode, width: Int64, height: Int64, result: VerticalOverflowSummary): Unit {
     if (n.previewTheme.isNone()) { n.session.recordArrange() }
     n.assignedWidth = width; n.assignedHeight = height
     if (n.component.kind == 0 || n.component.kind == 3) {
@@ -438,6 +453,8 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         // Only the application root owns this reusable measurement.
         let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
         let node = if (sessionRoot && session.rootLayout().isSome()) {
+            let runtimeRoot = root.readMount().getOrThrow()
+            if (runtimeRoot.layoutDirty) { session.revalidateMeasurement(runtimeRoot,themeSeed(session.theme),true) }
             session.rootLayout().getOrThrow()
         } else {
             let measured = LayoutNode(root, session, themeSeed(session.theme), isRoot: true, commitGeometry: reuse, glyphPolicy: glyphPolicy)
@@ -549,6 +566,7 @@ public func render(root: Component, width: Int64, height: Int64, glyphMode!: Gly
             let frame = session.enter({ =>
                 session.stabilize(turnCutoff)
                 session.applyPendingTheme()
+                session.resolvePendingBehaviorStyle()
                 let result = renderLayout(root, width, height, session, reuse:false,
                     glyphPolicy:Some(offlineGlyphPolicy(glyphMode)))
                 session.recordFrame()

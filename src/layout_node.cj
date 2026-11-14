@@ -54,6 +54,9 @@ class LayoutNode {
     var finalCanvasHeight: Int64 = -1
     var rootFallback = false
     var arrangedViewportVersion: Int64 = -1
+    var overflowWidth: Int64 = -1
+    var overflowHeight: Int64 = -1
+    var overflowPresent = false
     var plannedMain: Int64 = -1
     var plannedNatural = false
     var plannedSizes = Array<Int64>()
@@ -143,7 +146,7 @@ class LayoutNode {
                     }
                     // A mounted child owns its last committed result. Reuse only clean
                     // subtrees; reference and theme preflight always compute independently.
-                    let cached = if (commitGeometry && previewTheme.isNone() && !runtimeChild.layoutDirty) {
+                    let cached = if (commitGeometry && previewTheme.isNone() && !runtimeChild.measurementDirty) {
                         runtimeChild.layout
                     } else { Option<LayoutNode>.None }
                     let n = if (let Some(existing) <- cached) {
@@ -267,6 +270,7 @@ class LayoutNode {
             return
         }
         finalCanvasWidth = width; finalCanvasHeight = height
+        session.recordMeasure()
         let canvas = component.canvas.getOrThrow()
         let limits = Constraints(maxWidth:if (axes.horizontal()) { Option<Int64>.None } else { Some(width) },
             maxHeight:if (axes.vertical()) { Option<Int64>.None } else { Some(height) })
