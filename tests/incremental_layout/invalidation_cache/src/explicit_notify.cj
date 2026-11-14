@@ -5,9 +5,9 @@ import cjtui.*
 // Breaks: explicit invalidation is discarded merely because a constant leaf has no getter.
 func explicitNotify(): Unit {
     let epoch = [Int64(0)]
-    var captured: ?Component = None
-    let root = Column { captured = Some(Text("A")); Column { Text("B"); Text("C") } }
-    let leaf = captured.getOrThrow()
+    let captured = Array<Option<Component>>(1, repeat: Option<Component>.None)
+    let root = Column { captured[0] = Some(Text("A")); Column { Text("B"); Text("C") } }
+    let leaf = captured[0].getOrThrow()
     let app = Application(root)
     app.startHeadless()
     try {

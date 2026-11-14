@@ -7,12 +7,12 @@ func getterReplacement(): Unit {
     let epoch = [Int64(0)]
     let source = Observable<Int64>(1)
     let width = Observable<Int64>(3)
-    var captured: ?Component = None
+    let captured = Array<Option<Component>>(1, repeat: Option<Component>.None)
     let root = Column {
-        captured = Some(Text({ => if (source.get() > 0) { "yes" } else { "no" } }).width({ => width.get() }))
+        captured[0] = Some(Text({ => if (source.get() > 0) { "yes" } else { "no" } }).width({ => width.get() }))
         Text("Z")
     }
-    let leaf = captured.getOrThrow()
+    let leaf = captured[0].getOrThrow()
     let app = Application(root)
     app.startHeadless()
     try {

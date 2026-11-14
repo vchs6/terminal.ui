@@ -17,11 +17,11 @@ func themeColors(): Unit {
     try {
         let first = paired(app, root, epoch, 3, 3, "A  \nB  \nC  ", "theme initial inherited and masked")
         check(first.frame.cellAt(0, 0).style.foreground == Color.Red, "initial inherited red")
-        var request: ?ThemeRequest = None
-        advance(app, epoch, { => request = Some(app.loadTheme(ThemeSource.Prepared(next))) })
+        let request = Array<Option<ThemeRequest>>(1, repeat: Option<ThemeRequest>.None)
+        advance(app, epoch, { => request[0] = Some(app.loadTheme(ThemeSource.Prepared(next))) })
         let second = paired(app, root, epoch, 3, 3, "A  \nB  \nC  ", "theme pure color")
         second.noLayout()
-        check(request.getOrThrow().result().isSome(), "prepared theme committed synchronously at boundary")
+        check(request[0].getOrThrow().result().isSome(), "prepared theme committed synchronously at boundary")
         check(second.frame.cellAt(0, 0).style.foreground == Color.Blue &&
             second.frame.cellAt(0, 1).style.foreground == Color.Green &&
             second.frame.cellAt(0, 2).style.foreground == Color.Default, "inheritance explicit and reset masks")

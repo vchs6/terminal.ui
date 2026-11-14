@@ -10,16 +10,19 @@ main(): Int64 {
         themeColors, styleSources, themeGeometry, canvasDependencies, canvasReadonly, referenceCache,
         rootFallback, viewportWrap, glyphPolicy]
     var failures: Int64 = 0
+    var workCases: Int64 = 0
     for (i in 0..cases.size) {
+        let priorWork = WorkChecks.failures
         try {
             let action = cases[i]
             action()
-            println("PASS CASE ${i+1} ${names[i]}")
+            println("CORRECT CASE ${i+1} ${names[i]}")
         } catch (error: Exception) {
             failures++
             println("FAIL CASE ${i+1} ${names[i]}: ${error.message}")
         }
+        if (WorkChecks.failures > priorWork) { workCases++ }
     }
-    println("RESULT cases=${cases.size} failed=${failures}")
-    if (failures == 0) { 0 } else { 1 }
+    println("RESULT cases=${cases.size} correctness_failed=${failures} work_failed_cases=${workCases} work_failed_assertions=${WorkChecks.failures}")
+    if (failures == 0 && WorkChecks.failures == 0) { 0 } else { 1 }
 }
