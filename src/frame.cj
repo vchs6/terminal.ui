@@ -6,7 +6,7 @@ public class Frame {
     public let width: Int64
     public let height: Int64
     private let ambiguousWide: Bool
-    private let cells: Array<Cell>
+    private let rows: Array<FrameRow>
     private let transparent: Bool
     private let maxCells: Int64
     private var owner: ?RuntimeSession
@@ -27,15 +27,35 @@ public class Frame {
         this.ambiguousWide = ambiguousWide
         this.transparent = transparent
         this.maxCells = maxCells
-        cells = Array<Cell>(width * height, {_ => blankCell(transparent)})
-        if (let Some(session) <- owner) { session.recordCells(cells.size, cells.size) }
+        let rowCount = if (width == 0) { 0 } else { height }
+        rows = Array<FrameRow>(rowCount, {_ => FrameRow(width, transparent, owner)})
+    }
+    private init(source: Frame, owner: ?RuntimeSession) {
+        this.owner = owner
+        width = source.width
+        height = source.height
+        ambiguousWide = source.ambiguousWide
+        transparent = source.transparent
+        maxCells = source.maxCells
+        rows = Array<FrameRow>(source.rows.size, {i =>
+            let row = source.rows[i]
+            row.frozen = true
+            row
+        })
     }
     static func forSession(width: Int64, height: Int64, session: RuntimeSession, transparent!: Bool = false): Frame {
         Frame(Some(session), width, height, false, transparent, 1048576)
     }
     func releaseOwner(): Unit { owner = None }
     private func writeCell(index: Int64, cell: Cell): Unit {
-        cells[index] = cell
+        let y = index / width
+        var row = rows[y]
+        if (row.frozen) {
+            row = FrameRow(row)
+            rows[y] = row
+            if (let Some(session) <- owner) { session.recordCells(width, width) }
+        }
+        row.cells[index % width] = cell
         if (let Some(session) <- owner) { session.recordCells(1, 0) }
     }
     private func index(x: Int64, y: Int64): Int64 {
@@ -45,14 +65,14 @@ public class Frame {
         if (x < 0 || x >= width || y < 0 || y >= height) {
             throw IllegalArgumentException("cell outside frame")
         }
-        cells[index(x, y)]
+        rows[y].cells[x]
     }
     private func clearAt(x: Int64, y: Int64, transparent: Bool): Unit {
         var start = x
-        while (start > 0 && cells[index(start, y)].continuation) {
+        while (start > 0 && rows[y].cells[start].continuation) {
             start--
         }
-        let span = cells[index(start, y)].width
+        let span = rows[y].cells[start].width
         for (i in 0..span) {
             if (start + i < width) {
                 writeCell(index(start + i, y), blankCell(transparent))
@@ -215,6 +235,11 @@ public class Frame {
     public func copy(rect: Rect): Frame { copyTo(rect, Option<RuntimeSession>.None) }
     func copyForSession(rect: Rect, session: RuntimeSession): Frame { copyTo(rect, Some(session)) }
     private func copyTo(rect: Rect, owner: ?RuntimeSession): Frame {
+        if (rect.x == 0 && rect.y == 0 && rect.width == width && rect.height == height) {
+            let shared = Frame(this, owner)
+            shared.releaseOwner()
+            return shared
+        }
         let result = Frame(owner, rect.width, rect.height, ambiguousWide, transparent, maxCells)
         if (rect.x != Int64.Min && rect.y != Int64.Min) {
             result.transfer(this, -rect.x, -rect.y, false)
@@ -223,6 +248,7 @@ public class Frame {
         result
     }
     public func resized(width: Int64, height: Int64): Frame {
+        if (width == this.width && height == this.height) { return Frame(this, Option<RuntimeSession>.None) }
         let result = Frame(width, height, ambiguousWide: ambiguousWide, transparent: transparent, maxCells: maxCells)
         result.transfer(this, 0, 0, false)
         result
@@ -244,9 +270,9 @@ public class Frame {
         let rows = lesser(height - dy, layer.height - sy)
         // Snapshot only the intersecting cells, so overlapping self-composition reads the original.
         let source = Array<Cell>(columns * rows, {i =>
-            layer.cells[layer.index(sx + i % columns, sy + i / columns)]
+            layer.rows[sy + i / columns].cells[sx + i % columns]
         })
-        if (let Some(session) <- owner) { session.recordCells(0, source.size) }
+        if (let Some(session) <- owner) { session.recordCells(source.size, source.size) }
         for (row in 0..rows) {
             var col = 0
             while (col < columns) {
@@ -289,7 +315,7 @@ public class Frame {
                 out += "\n"
             }
             for (x in 0..width) {
-                let c = cells[index(x, y)];
+                let c = rows[y].cells[x];
                 if (!c.continuation) {
                     out += c.grapheme
                 }
@@ -305,7 +331,10 @@ public class Frame {
             return toAnsiForTerminal(profile)
         }
         var out = ""
+        let sameProfile = sameTerminalProfile(oldProfile, profile)
         for (y in 0..height) {
+            if (sameProfile && rows[y].frozen && old.rows[y].frozen &&
+                refEq(rows[y], old.rows[y])) { continue }
             let row = projectTerminalRow(this, y, profile)
             let oldRow = projectTerminalRow(old, y, oldProfile)
             if (!terminalRowsEqual(row, oldRow)) {
