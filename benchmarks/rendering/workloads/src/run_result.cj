@@ -7,6 +7,8 @@ public class RunResult {
     public let after: Observation
     public let phase: String
     public let total: Int64
+    public var visible: Int64
+    public var layers: Int64
     public let dirty: Int64
     public let textBytes: Int64
     public let firstEpoch: Int64
@@ -21,7 +23,7 @@ public class RunResult {
     public init(before: Observation, after: Observation, phase: String, total: Int64, dirty: Int64,
         textBytes: Int64, firstEpoch: Int64, lastEpoch: Int64, preparations: Int64, references: Int64,
         loopTime: String, samplingTime: String, cells: String, carets: String) {
-        this.before = before; this.after = after; this.phase = phase; this.total = total; this.dirty = dirty
+        this.before = before; this.after = after; this.phase = phase; this.total = total; this.visible = total; this.layers = 0; this.dirty = dirty
         this.textBytes = textBytes; this.firstEpoch = firstEpoch; this.lastEpoch = lastEpoch
         this.preparations = preparations; this.references = references; this.loopTime = loopTime
         this.samplingTime = samplingTime; this.cells = cells; this.carets = carets

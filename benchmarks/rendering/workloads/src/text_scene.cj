@@ -20,13 +20,18 @@ public class TextScene {
         let color = Observable<Color>(Color.Default)
         let entries = Array<Observable<String>>(height, {_ => Observable<String>("A中é👩‍💻🇨🇳")})
         this.text = text; this.color = color; this.entries = entries
-        let root = if (name == "text_length") {
-            Column {
-                Text({=> text.get()}).foreground({=> color.get()}).height(1)
-            }.width(width).height(height)
-        } else if (name == "unicode_cells" || name == "same_width_text") {
+        let root = if (name == "unicode_cells") {
             Column {
                 Text({=> text.get()}).foreground({=> color.get()}).width(width).height(1)
+            }.width(width).height(height)
+        } else if (name == "same_width_text" || name == "text_length") {
+            Column {
+                for (i in 0..height) {
+                    if (i == height - 1) {
+                        if (name == "text_length") { Text({=> text.get()}).height(1) }
+                        else { Text({=> text.get()}).width(width).height(1) }
+                    } else { Text("A中é👩‍💻🇨🇳").width(width).height(1) }
+                }
             }.width(width).height(height)
         } else if (name == "shared_observable") {
             Column {
@@ -64,10 +69,11 @@ public class TextScene {
     }
 
     public func textBytes(): Int64 {
-        if (name == "unicode_cells" || name == "same_width_text" || name == "text_length") {
-            return text.get().toArray().size
-        }
+        if (name == "unicode_cells") { return text.get().toArray().size }
         let common = Int64("A中é👩‍💻🇨🇳".toArray().size)
+        if (name == "same_width_text" || name == "text_length") {
+            return (height - 1) * common + text.get().toArray().size
+        }
         if (name == "shared_observable") {
             let sharedCount: Int64 = if (height > 1) { 2 } else { 1 }
             return sharedCount * text.get().toArray().size + (height - sharedCount) * common

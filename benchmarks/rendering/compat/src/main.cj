@@ -9,11 +9,10 @@ main(args: Array<String>): Int64 {
     }
     try {
         let options = Options(args, false)
+        if (options.mode == "correctness" && options.scenario == "initial") { runCompatInitialCorrectness(options); return 0 }
         if (options.mode == "snapshot-headless" && options.scenario == "initial") { runCompatInitial(options); return 0 }
         if (options.mode == "tty") { runTerminal(options); return 0 }
-        if (!supportsTextScene(options.scenario) && options.mode == "correctness") {
-            captureDraftCorrectness(options, false)
-        }
+        if (isSimpleScene(options.scenario)) { runCompatSimple(options); return 0 }
         runCompatText(options)
         0
     } catch (error: Exception) {

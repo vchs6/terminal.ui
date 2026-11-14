@@ -22,11 +22,14 @@ public class ReactiveScene {
         this.left = left; this.right = right; this.selectRight = selectRight
         let targetRef: Array<?Component> = [None]
         let root = Column {
-            let target = if (name == "explicit_notify") {
-                Text({=> payload.value}).width(width).height(1)
-            } else { Text({=> if (selectRight.get()) { right.get() } else { left.get() }}).width(width).height(1) }
-            targetRef[0] = Some(target)
-            for (_ in 1..height) { Text("A中é👩‍💻🇨🇳").width(width).height(1) }
+            for (i in 0..height) {
+                if (i == height - 1) {
+                    let target = if (name == "explicit_notify") {
+                        Text({=> payload.value}).width(width).height(1)
+                    } else { Text({=> if (selectRight.get()) { right.get() } else { left.get() }}).width(width).height(1) }
+                    targetRef[0] = Some(target)
+                } else { Text("A中é👩‍💻🇨🇳").width(width).height(1) }
+            }
         }.width(width).height(height)
         this.target = targetRef[0].getOrThrow(); this.root = root
         this.app = Application(root, glyphMode: GlyphMode.Unicode,

@@ -9,7 +9,7 @@ public func supportsTextScene(name: String): Bool {
 
 public func runCompatText(options: Options): Unit {
     if (!supportsTextScene(options.scenario) || (options.mode != "correctness" && options.mode != "snapshot-headless")) {
-        throw Exception("workload ${options.scenario}/${options.mode} is not implemented")
+        throw Exception("workload ${options.scenario}/${options.mode} is unsupported")
     }
     let scene = TextScene(options.scenario, options.width, options.height)
     let app = scene.app
@@ -31,6 +31,7 @@ private func correctnessText(options: Options, scene: TextScene): RunResult {
         if (epoch > 0) { app.batch({=> scene.action(epoch)}) }
         let frame = app.snapshot(options.width, options.height)
         cells += cellCsv(frame, options.scenario, options.seed, epoch, "snapshot")
+        assertLiteralFrame(frame, options.scenario, epoch)
         let caret = app.caretSnapshot()
         if (caret.visible || caret.owner.isSome() || caret.x != 0 || caret.y != 0) {
             throw Exception("unexpected caret in text scene at epoch ${epoch}")

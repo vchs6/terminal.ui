@@ -13,8 +13,10 @@ public class PostedScene {
         let committedEpoch = Observable<Int64>(0)
         this.text = text; this.committedEpoch = committedEpoch
         let root = Column {
-            Text({=> text.get()}).width(width).height(1)
-            for (_ in 1..height) { Text("A中é👩‍💻🇨🇳").width(width).height(1) }
+            for (i in 0..height) {
+                if (i == height - 1) { Text({=> text.get()}).width(width).height(1) }
+                else { Text("A中é👩‍💻🇨🇳").width(width).height(1) }
+            }
         }.width(width).height(height)
         this.root = root
         this.app = Application(root, glyphMode: GlyphMode.Unicode,

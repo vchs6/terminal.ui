@@ -1,7 +1,6 @@
 package rendering_workloads
 
 import cjtui.*
-import std.fs.File
 
 // Builds the complete Cell and independent caret observations. It does not
 // create a sample CSV: scene facts and counter availability must be supplied by
@@ -21,6 +20,8 @@ public func observeCorrectness(options: Options, workload: Workload, diagnostic:
         let glyph = workload.glyph(epoch)
         let snapshot = app.snapshot(width, height, glyphMode: glyph)
         workload.afterSnapshot(epoch)
+        workload.assertCorrectness(epoch)
+        assertLiteralFrame(snapshot, options.scenario, epoch)
         let caret = app.caretSnapshot()
         if (diagnostic) {
             carets += workload.caretRecord(caret, epoch, options.seed, "before_render")
@@ -44,25 +45,10 @@ public func observeCorrectness(options: Options, workload: Workload, diagnostic:
         }
     }
     let after = Observation(app)
-    // Callers must replace scene facts with observations from their fixture;
-    // this result is deliberately not sent to sampleCsv directly.
-    RunResult(before, after, "correctness", after.stats.mountedNodes, 0, 0,
+    let facts = simpleSceneFacts(options, workload, after, period).getOrThrow()
+    let result = RunResult(before, after, "correctness", facts.total, facts.dirtyLeaves, facts.textBytes,
         0, period, period + 1, if (diagnostic) { period + 1 } else { 0 },
         "not_available", "not_available", cells, carets)
-}
-
-// During implementation, preserve raw correctness observations even when the
-// full scene-fact sample is unavailable. A caller must still fail the request.
-public func captureDraftCorrectness(options: Options, diagnostic: Bool): Unit {
-    let workload = Workload(options)
-    let app = workload.app
-    app.startHeadless()
-    let result = try {
-        let _ = app.snapshot(options.width, options.height)
-        workload.setup()
-        observeCorrectness(options, workload, diagnostic)
-    } finally { app.dispose() }
-    File.writeTo(options.cellsCsv, result.cells.toArray())
-    File.writeTo(options.caretCsv, result.carets.toArray())
-    throw Exception("scene fact reporting is not yet implemented")
+    result.visible = facts.visible; result.layers = facts.layers
+    result
 }

@@ -65,6 +65,22 @@ public class CaretScene {
 
     public func focusInitial(): Unit { first.reference().getOrThrow().requestFocus() }
 
+    public func assertCommitted(epoch: Int64): Unit {
+        if (name == "viewport_caret") {
+            let state = viewport.reference().getOrThrow().viewportSnapshot()
+            let expectedWidth = if (epoch % 3 == 2) { width / 2 } else { width }
+            let expectedOffset = if (epoch % 3 == 0) { 0 } else { 1 }
+            if (state.width != expectedWidth || state.height != 2 || state.contentHeight != 4 || state.offsetY != expectedOffset ||
+                !first.reference().getOrThrow().isFocused()) { throw Exception("viewport caret geometry mismatch at epoch ${epoch}") }
+        } else if (name == "readonly_focus_caret") {
+            let firstFocused = first.reference().getOrThrow().isFocused()
+            let secondFocused = second.reference().getOrThrow().isFocused()
+            if (firstFocused != (epoch % 3 != 1) || secondFocused != (epoch % 3 == 1)) {
+                throw Exception("focused owner mismatch at epoch ${epoch}")
+            }
+        }
+    }
+
     public func describeCaret(caret: CaretSnapshot, epoch: Int64, seed: Int64, stage: String): String {
         var key = "none"
         var valid = false

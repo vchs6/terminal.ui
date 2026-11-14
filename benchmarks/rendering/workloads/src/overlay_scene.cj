@@ -7,6 +7,7 @@ public class OverlayScene {
     public let root: Component
     public let app: Application
     private let base: Observable<String>
+    private let layerText: Observable<String>
     private let anchor: Component
     private let layerWidth: Observable<Int64>
     private let anchorWidth: Observable<Int64>
@@ -18,9 +19,10 @@ public class OverlayScene {
     public init(name: String, width: Int64, height: Int64) {
         this.name = name; this.width = width; this.height = height
         let base = Observable<String>("A中é👩‍💻🇨🇳")
+        let layerText = Observable<String>("overlay")
         let layerWidth = Observable<Int64>(width / 2)
         let anchorWidth = Observable<Int64>(1)
-        this.base = base; this.layerWidth = layerWidth; this.anchorWidth = anchorWidth
+        this.base = base; this.layerText = layerText; this.layerWidth = layerWidth; this.anchorWidth = anchorWidth
         let anchorRef: Array<?Component> = [None]
         let root = Column {
             Row {
@@ -37,12 +39,13 @@ public class OverlayScene {
 
     public func open(): Unit {
         let layerWidth = this.layerWidth
+        let layerText = this.layerText
         let layerHeight = if (name == "large_fill_shadows") { height / 2 + 1 } else { 4 }
         let layer = Canvas({constraints => constraints.constrain(Size(layerWidth.get(), layerHeight))}, {context =>
             if (name == "overlay_holes") {
                 context.put(0, 0, "opaque ")
                 context.put(2, 1, " ")
-            } else { context.fill(Rect(0, 0, layerWidth.get(), layerHeight)); context.put(0, 0, "overlay") }
+            } else { context.fill(Rect(0, 0, layerWidth.get(), layerHeight)); context.put(0, 0, layerText.get()) }
         }).width({=> layerWidth.get()}).height(layerHeight).shadow()
         let options = OverlayOptions(anchor: Some(anchor.reference().getOrThrow()), placement: OverlayPlacement.BelowStart,
             mode: OverlayMode.NonModal, takeFocus: false)
@@ -68,6 +71,13 @@ public class OverlayScene {
         child = None
     }
 
+    public func liveLayers(): Int64 {
+        var count: Int64 = 0
+        if (let Some(value) <- parent) { if (value.isOpen()) { count++ } }
+        if (let Some(value) <- child) { if (value.isOpen()) { count++ } }
+        count
+    }
+
     public func action(epoch: Int64): Unit {
         let changed = epoch % 2 == 1
         if (name == "overlay_holes") {
@@ -75,12 +85,12 @@ public class OverlayScene {
         } else if (name == "overlay_move") { anchorWidth.set(if (changed) { width / 4 } else { 1 }) }
         else if (name == "overlay_shrink") { layerWidth.set(if (changed) { width / 4 } else { width / 2 }) }
         else if (name == "overlay_nested_close") {
-            if (epoch % 3 == 1) { base.set("B中é👩‍💻🇨🇳") }
+            if (epoch % 3 == 1) { base.set("B中é👩‍💻🇨🇳"); layerText.set("updated") }
             else if (epoch % 3 == 2) {
                 parent.getOrThrow().close()
                 parent = None
             }
-            else { open() }
+            else { base.set("A中é👩‍💻🇨🇳"); layerText.set("overlay"); open() }
         } else if (name == "large_fill_shadows") { anchorWidth.set(if (changed) { width / 4 } else { 1 }) }
         else { throw Exception("unknown overlay scene ${name}") }
     }

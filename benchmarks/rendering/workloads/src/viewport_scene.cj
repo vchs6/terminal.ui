@@ -7,11 +7,12 @@ public class ViewportScene {
     public let app: Application
     public let viewport: Component
     public let name: String
+    private let width: Int64
     private let height: Int64
     private let rows: Observable<Array<String>>
 
     public init(name: String, width: Int64, height: Int64) {
-        this.name = name; this.height = height
+        this.name = name; this.width = width; this.height = height
         let rows = Observable<Array<String>>(["A", "B"])
         this.rows = rows
         let count = if (name == "large_mounted_viewport") { height * 8 } else { height * 2 }
@@ -43,12 +44,15 @@ public class ViewportScene {
             let step = epoch % 3
             let expectedContent = if (step == 0) { height } else { height + 2 }
             let expectedOffset = if (step == 2) { 2 } else { 0 }
-            if (state.height != height || state.contentHeight != expectedContent || state.offsetY != expectedOffset) {
+            if (state.width != width || state.height != height || state.contentHeight != expectedContent || state.offsetY != expectedOffset) {
                 throw Exception("root fallback geometry mismatch at epoch ${epoch}")
             }
         } else {
-            if (state.height != 4 || state.contentHeight < state.height || state.offsetY < 0 ||
-                state.offsetY > state.contentHeight - state.height) {
+            let expectedContent = if (name == "large_mounted_viewport") { height * 8 } else { height * 2 }
+            let step = epoch % (if (name == "scroll_step") { 4 } else if (name == "scroll_multistep") { 3 } else { 2 })
+            let expectedOffset = if (name == "scroll_step") { if (step == 1) { 1 } else if (step == 2) { 2 } else { 0 } }
+                else { if (step == 1) { 4 } else { 0 } }
+            if (state.width != width || state.height != 4 || state.contentHeight != expectedContent || state.offsetY != expectedOffset) {
                 throw Exception("viewport geometry mismatch at epoch ${epoch}")
             }
         }

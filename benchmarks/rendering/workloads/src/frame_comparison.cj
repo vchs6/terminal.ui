@@ -20,7 +20,7 @@ public func assertFramesEqual(actual: Frame, reference: Frame): Unit {
     }
 }
 
-private func describeCell(cell: Cell): String {
+public func describeCell(cell: Cell): String {
     let style = cell.style
     "grapheme=${cell.grapheme},width=${cell.width},continuation=${cell.continuation},transparent=${cell.isTransparent},foreground=${colorName(style.foreground)},background=${colorName(style.background)},bold=${style.bold},dim=${style.dim},italic=${style.italic},underline=${style.underline},inverse=${style.inverse},strikethrough=${style.strikethrough}"
 }

@@ -6,7 +6,7 @@ import std.fs.File
 import std.time.MonoTime
 
 func runDiagnosticText(options: Options): Unit {
-    if (!supportsTextScene(options.scenario)) { throw Exception("workload ${options.scenario} is not implemented") }
+    if (!supportsTextScene(options.scenario)) { throw Exception("workload ${options.scenario} is unsupported") }
     let scene = TextScene(options.scenario, options.width, options.height)
     let app = scene.app
     app.startHeadless()
@@ -35,6 +35,7 @@ private func diagnosticCorrectness(options: Options, scene: TextScene): RunResul
     for (epoch in 0..(period + 1)) {
         if (epoch > 0) { app.batch({=> scene.action(epoch)}) }
         let snapshot = app.snapshot(options.width, options.height)
+        assertLiteralFrame(snapshot, options.scenario, epoch)
         let caret = app.caretSnapshot()
         if (caret.visible || caret.owner.isSome() || caret.x != 0 || caret.y != 0) {
             throw Exception("unexpected caret before reference render at epoch ${epoch}")

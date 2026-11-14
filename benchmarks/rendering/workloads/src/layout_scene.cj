@@ -25,7 +25,13 @@ public class LayoutScene {
             Column {
                 Row {
                     Text({=> text.get()}).width({=> firstWidth.get()}).height(1).foreground({=> color.get()})
-                    for (_ in 1..8) { Text("A中é👩‍💻🇨🇳").width(baseWidth).height(1) }
+                    for (i in 0..7) {
+                        let index = i
+                        Text("A中é👩‍💻🇨🇳").width({=>
+                            let remainder = width - firstWidth.get()
+                            remainder / 7 + if (index < remainder % 7) { 1 } else { 0 }
+                        }).height(1)
+                    }
                 }.width(width).height(1)
                 for (_ in 1..height) { Text("A中é👩‍💻🇨🇳").width(width).height(1) }
             }.width(width).height(height)
@@ -36,8 +42,11 @@ public class LayoutScene {
             }.width(width).height(height)
         } else {
             Column {
-                Text({=> text.get()}).foreground({=> color.get()}).visible({=> shown.get()}).width(width).height(1)
-                for (_ in 1..height) { Text("A中é👩‍💻🇨🇳").width(width).height(1) }
+                for (i in 0..height) {
+                    if (i == height - 1) {
+                        Text({=> text.get()}).foreground({=> color.get()}).visible({=> shown.get()}).width(width).height(1)
+                    } else { Text("A中é👩‍💻🇨🇳").width(width).height(1) }
+                }
             }.width(width).height(height)
         }
         this.root = root
