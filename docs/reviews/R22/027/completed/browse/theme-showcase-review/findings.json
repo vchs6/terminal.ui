@@ -1,0 +1,56 @@
+{
+  "product_base": "e0711b288f932fa84eb3aed169aec5d01b8f4588",
+  "product_head": "954d7492b91c2f490dcb15d2d42190af5dbe52ae",
+  "corrected_test_head": "1a5812dc68001ebbcd68f87a37815110ec9e71d9",
+  "source_spec_verdict": "CHANGES_REQUIRED",
+  "source_quality_verdict": "CHANGES_REQUIRED",
+  "findings": [
+    {
+      "id": "TASK027-R1",
+      "severity": "Important",
+      "category": "source SPEC and QUALITY",
+      "path": "examples/theme_showcase/src/commands.cj",
+      "line": 61,
+      "title": "Documented global F1–F8 shortcuts are dropped in the modal domain",
+      "requirement": {
+        "path": "tests/theme_showcase/public-api-basis.md",
+        "revision": "1a5812dc68001ebbcd68f87a37815110ec9e71d9",
+        "line": 50,
+        "quote": "F-keys are global; printable keys remain editor data."
+      },
+      "evidence": [
+        "commands.cj:60-61 forwards only f9/f10 to action and consumes them.",
+        "preview.cj:16 and commands.cj:41 install modalKey for Preview and its PopupMenu.",
+        "src/application.cj:400-402 stops the bubble path at the modal root; :436-443 only invokes application key handlers when modal.isNone().",
+        "main.cj:18 registers all remaining F-key actions exclusively with app.onKeyEvent."
+      ],
+      "consequence": "With Classic accepted, F5 then F2 cannot request Dark; the same occurs after Enter opens the owned popup. F6/F7 load/reload and F8 scrolling also do nothing until the modal closes. This contradicts the frozen global-key contract and prevents live theme operations while inspecting the modal.",
+      "bounded_fix": "Dispatch the documented F1–F10 actions from the modal-domain handler using the existing action method, consume handled F-keys once, retain the already-open Preview guard and popup ownership, and leave ordinary editor/menu keys to their existing handlers. Add independent real-key regressions for Preview and its owned popup before fixing.",
+      "proof_scope": "Confirmed by fixed-source dispatch/control-flow inspection; reviewer ran no build, test or runtime command. Existing frozen PTY suite switches before opening Preview and has no F1–F8-in-modal assertion."
+    }
+  ],
+  "other_source_assessment": "Public declarative gallery, relative dependency, all four presets and widget/state slots, actual-size weighted layout, pure tracked loader reads, current accepted-file reload, retained controllers/nodes, popup owner ancestry, disabled controls, and one entity per file show no additional blocking source finding.",
+  "runtime_bounds": [
+    "Candidate normal example build-v3 log success; candidate ELF SHA256 92dd71989fe12658477dc9aceef8a62c633318f74d99bcc336aed62ce0398bb5 per factual index.",
+    "Original smoke and PTY failed subsequently corrected fixture expectations; these are not proof that the corrected suites pass.",
+    "Fixed-test reruns and successful normal bundle were not supplied at sealing; bundle-v1 failed ENOSPC after test/lint.",
+    "Independent execution, actual four-theme GUI images and AC027 acceptance remain pending; M1 freeze/M2/final Linux/release remain outside this gate."
+  ],
+  "declined_to_judge": [
+    {
+      "scope": "Independent runtime/GUI/AC027 acceptance",
+      "reason": "Separate assigned roles; missing fixed-candidate execution evidence is a proof bound, not an inferred product failure."
+    },
+    {
+      "scope": "Full M1 freeze, M2, final Linux and release",
+      "reason": "Explicitly excluded by the fixed review brief."
+    }
+  ],
+  "method": {
+    "read_only": true,
+    "tests_run": false,
+    "subagents": false,
+    "author_reasoning_or_reports_read": false,
+    "review_skill": "superpowers:requesting-code-review/code-reviewer.md"
+  }
+}

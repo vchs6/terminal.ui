@@ -1,0 +1,284 @@
+{
+  "task": "TASK027.c.round1.scoped_review",
+  "fix_base": "954d7492b91c2f490dcb15d2d42190af5dbe52ae",
+  "fix_commit": "46dc8e2badcb352f0619f6566231285009378a28",
+  "review_head": "b5de3dd6610e90fcdcd951c5703a1429ec13b417",
+  "original_review_index_sha256": "b5242dd2d594485b8150b66ec4459efacf5f92be75ffa7816cf771fcafbd2fd5",
+  "inputs": [
+    {
+      "archive": "inputs/fixed/examples/theme_showcase/src/commands.cj",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:examples/theme_showcase/src/commands.cj",
+      "bytes": 3056,
+      "sha256": "34f2a30661645efe3bb9fe174d07af813fbcb3ff1aae74807e950c47e22e6800"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/checks.mjs",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/checks.mjs",
+      "bytes": 2167,
+      "sha256": "7056a02b44434903631c0cc6511d700cb3e333d47f6c1256300055ec7b4a29f9"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/goldens.json",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/goldens.json",
+      "bytes": 22251,
+      "sha256": "68b670b24c849b84af5e796bbc23705431f7c31013dffa9d1c3195e03f00b2a2"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/modal-close-oracle.mjs",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/modal-close-oracle.mjs",
+      "bytes": 1233,
+      "sha256": "7a84fd6e62ad5dec4b4fbe8c729eed2154771d30c175f9c12c46674181b3f2cc"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/modal-goldens.json",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/modal-goldens.json",
+      "bytes": 9652,
+      "sha256": "d7ad89fc8e5ba86d63417dbb1513952850849ab73c783fab897e5bbddf348800"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/modal-keys.mjs",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/modal-keys.mjs",
+      "bytes": 4092,
+      "sha256": "5a7c3c6d699968db96f92b4d5d1345f712faaad7eac431f9125c85f515eefe88"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/preset-contract.mjs",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/preset-contract.mjs",
+      "bytes": 4057,
+      "sha256": "f4c204149c13b0a8cbe3c38ad7873e3870795955eb39c9014ba6f163674cb50f"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/pty-goldens.json",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/pty-goldens.json",
+      "bytes": 22143,
+      "sha256": "137d6553129c1d744e7f771ea0e3d2b29cfa18603c883f1501acd83b2b8c9013"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/pty-modal-goldens.json",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/pty-modal-goldens.json",
+      "bytes": 9580,
+      "sha256": "5db066ebc376fad59e30bcc5e241967dbd429adf52d2632462e8d0f6d12cb67d"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/pty.mjs",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/pty.mjs",
+      "bytes": 9000,
+      "sha256": "c2979b1ed20f01b129c74f055278fe8c783543c64adcaae9f679a65989d4c46c"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/public-api-basis.md",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/public-api-basis.md",
+      "bytes": 5540,
+      "sha256": "2d43d5e1934b6dd986d16d96cbcef03f7c17518349c0951e57ecdd097b13f317"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/run.sh",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/run.sh",
+      "bytes": 605,
+      "sha256": "4dd4f2d80dae987bb7f6253400351e7e7c14a58eeeb977c0ed0e6e24813f7a81"
+    },
+    {
+      "archive": "inputs/fixed/tests/theme_showcase/selftest.mjs",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:tests/theme_showcase/selftest.mjs",
+      "bytes": 4880,
+      "sha256": "71471de40d0fd36fdf0711a6c5385eb5889ac337c5faca8a4c66d89e2be49a2c"
+    },
+    {
+      "archive": "inputs/fixed/examples/theme_showcase/src/preview.cj",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:examples/theme_showcase/src/preview.cj",
+      "bytes": 691,
+      "sha256": "d638fadd4d5200ca143facadca8fd72ce4fa6d31b74d5a32e6bf5bf44f42f963"
+    },
+    {
+      "archive": "inputs/fixed/examples/theme_showcase/src/main.cj",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:examples/theme_showcase/src/main.cj",
+      "bytes": 809,
+      "sha256": "309a0b30b8b1a77ddd4ae35378b89dc4085b7a514e964a8f4d7d6abb4d8e6502"
+    },
+    {
+      "archive": "inputs/fixed/src/node_ref.cj",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:src/node_ref.cj",
+      "bytes": 8452,
+      "sha256": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805"
+    },
+    {
+      "archive": "inputs/fixed/src/ui_key_event.cj",
+      "origin": "git:b5de3dd6610e90fcdcd951c5703a1429ec13b417:src/ui_key_event.cj",
+      "bytes": 835,
+      "sha256": "d7c22acd58f73140cb631b283bad469d199b61e73c26c63d39f3a287f2c6990c"
+    },
+    {
+      "archive": "inputs/handoff/original-review-index.json",
+      "origin": "/workspace/work/theme-showcase-review/index.json",
+      "bytes": 15946,
+      "sha256": "b5242dd2d594485b8150b66ec4459efacf5f92be75ffa7816cf771fcafbd2fd5"
+    },
+    {
+      "archive": "inputs/handoff/original-findings.json",
+      "origin": "/workspace/work/theme-showcase-review/findings.json",
+      "bytes": 3715,
+      "sha256": "74a84f80c68a7e5a9bdcd327f9342380a7c25900510ecd60ad4261ab179488d8"
+    },
+    {
+      "archive": "inputs/handoff/review-brief.md",
+      "origin": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-theme-styles/task-027-review-brief.md",
+      "bytes": 4840,
+      "sha256": "3250ae964cd073280eb75515672493fc1f572b21f6eb91c38fddfdb67e47e5ea"
+    },
+    {
+      "archive": "inputs/handoff/review-package.txt",
+      "origin": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-implement-theme-styles/task-027-r1-review-package.txt",
+      "bytes": 51786,
+      "sha256": "8e1a3e36bf59cda040ae92e39983f44e4a0b819231322048ca7e5d3a8662bba8"
+    },
+    {
+      "archive": "inputs/handoff/fix-facts.md",
+      "origin": "/workspace/work/theme-showcase-implementation/fix-report.md",
+      "bytes": 1479,
+      "sha256": "d3bf2579a7517787d169692f6c4b9ed54039a7109ee24d45e4aa6a9c367da8a9"
+    },
+    {
+      "archive": "inputs/handoff/fix-index-v2.json",
+      "origin": "/workspace/work/theme-showcase-implementation/fix-index-v2.json",
+      "bytes": 41060,
+      "sha256": "9e284bb68f1bf6300dedf619d43fb38d071b75879e7dadb13a568ee216b8a475"
+    },
+    {
+      "archive": "inputs/handoff/independent-red-index.json",
+      "origin": "/workspace/work/theme-showcase-modal-key-tests/index.json",
+      "bytes": 7664,
+      "sha256": "0648df2986c37b03e3688bfec79176cf9c8bdd92f42032de2a387ec1830d4fa0"
+    },
+    {
+      "archive": "inputs/handoff/independent-close-index.json",
+      "origin": "/workspace/work/fix-modal-close-test/index.json",
+      "bytes": 4486,
+      "sha256": "5447998658e3431cac16cb07fcb52bf0a6a080584805b16aa5f3a98fa588e400"
+    },
+    {
+      "archive": "inputs/raw/build-r1.log",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/build-r1.log",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "archive": "inputs/raw/r1-selftest.log",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-selftest.log",
+      "bytes": 151,
+      "sha256": "43e67cf82ffb233021ba97cb6978b658af29e024b2f1417b603233148edb58dd"
+    },
+    {
+      "archive": "inputs/raw/r1-preset.log",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-preset.log",
+      "bytes": 235,
+      "sha256": "fdde4dbc5bac2fe5fc9dbfb66707c349ea5558dcf575d562514dda0bc50b71ce"
+    },
+    {
+      "archive": "inputs/raw/r1-smoke.log",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-smoke.log",
+      "bytes": 117,
+      "sha256": "ffd4f6d94799730cb6dd3f8919ad1135b927198e38d6905cedfa31f1fa314479"
+    },
+    {
+      "archive": "inputs/raw/r1-retry2-modal.log",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-retry2-modal.log",
+      "bytes": 177,
+      "sha256": "e68ebcab3d48b5eefcf25846f12711fb39279aadf7087870ad2d0dab107ed716"
+    },
+    {
+      "archive": "inputs/raw/r1-retry2-pty.log",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-retry2-pty.log",
+      "bytes": 359,
+      "sha256": "fd06a863ce1a7d4ddd86013fff1ffc49ec45807faa144640deb0df20a33e2b54"
+    },
+    {
+      "archive": "inputs/raw/candidate-main-92dd-map.json",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/candidate-main-92dd-map.json",
+      "bytes": 383,
+      "sha256": "08dd80d5dd6275c6ffefa0c3a00e1058c98962b761d94c61719ab13511277c33"
+    },
+    {
+      "archive": "inputs/raw/r1-retry2-gzip-map.json",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-retry2-gzip-map.json",
+      "bytes": 3647,
+      "sha256": "7ada79c34c721b6be89f8c5292d97f2ef0ef76c514d80f5bd6799bebc6c920fb"
+    },
+    {
+      "archive": "inputs/raw/modal/owned-popup/direct.exit",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-retry2-modal/modal-key-C2yM0W/owned-popup/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "archive": "inputs/raw/modal/owned-popup/events.json",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-retry2-modal/modal-key-C2yM0W/owned-popup/events.json",
+      "bytes": 1149,
+      "sha256": "1afd402af0e8a2a2933a644e231b3888fd4b670c6de6ace324b356ff0b9ba84f"
+    },
+    {
+      "archive": "inputs/raw/modal/owned-popup/result.json",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-retry2-modal/modal-key-C2yM0W/owned-popup/result.json",
+      "bytes": 296,
+      "sha256": "0a47fef57817b1ca92349e91c00bffe2c2623970c11c724e6fc4949965e4c13a"
+    },
+    {
+      "archive": "inputs/raw/modal/preview/direct.exit",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-retry2-modal/modal-key-C2yM0W/preview/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "archive": "inputs/raw/modal/preview/events.json",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-retry2-modal/modal-key-C2yM0W/preview/events.json",
+      "bytes": 796,
+      "sha256": "22cd3a0114e9dc43e3e3a57866df620f48732fafaa42c40e3484a191349f0049"
+    },
+    {
+      "archive": "inputs/raw/modal/preview/result.json",
+      "origin": "/workspace/work/theme-showcase-implementation/evidence/r1-retry2-modal/modal-key-C2yM0W/preview/result.json",
+      "bytes": 296,
+      "sha256": "f5b2806e3bddbbaea9ac1df8c1aadd2dc2362d4b4d728447fb41a075635b911a"
+    },
+    {
+      "archive": "inputs/raw/independent-red/command.stdout",
+      "origin": "/workspace/work/theme-showcase-modal-key-tests/evidence/red/command.stdout",
+      "bytes": 114,
+      "sha256": "94b2881ccb405112be6b7d3511c5ce15edbdde2ce5f9c64b59e8b69ec5ecafc8"
+    },
+    {
+      "archive": "inputs/raw/independent-red/command.stderr",
+      "origin": "/workspace/work/theme-showcase-modal-key-tests/evidence/red/command.stderr",
+      "bytes": 1222,
+      "sha256": "d4cd27bdb865120296c5d9846af50a92ef3f5d752fd38fc4306fc46f6e422386"
+    },
+    {
+      "archive": "inputs/raw/independent-red/command.exit",
+      "origin": "/workspace/work/theme-showcase-modal-key-tests/evidence/red/command.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "archive": "inputs/raw/independent-close/v1/old-oracle.stdout",
+      "origin": "/workspace/work/fix-modal-close-test/evidence/v1/old-oracle.stdout",
+      "bytes": 341,
+      "sha256": "93a3ea43e5c612ab325ed94451e04fdbc7aea59bce3ae86619271a6ab114669b"
+    },
+    {
+      "archive": "inputs/raw/independent-close/v2/oracle.stdout",
+      "origin": "/workspace/work/fix-modal-close-test/evidence/v2/oracle.stdout",
+      "bytes": 109,
+      "sha256": "51a3977c541d30f1f500b3c4be9a7574dcfbbc65e62fa020646a48bfc376564f"
+    }
+  ],
+  "outputs": {
+    "report.md": {
+      "bytes": 2539,
+      "sha256": "36fdb668c37817ce13c222582f05ea876930d6ee5f21e8438df86e0a8905f663"
+    },
+    "findings.json": {
+      "bytes": 2921,
+      "sha256": "a48c67106c8f7b19509d78809449438c1f47eba9c4c3428c832b01aba22c1b30"
+    }
+  },
+  "verification": "All 230 factual fix-index-v2 bindings matched physical bytes at review; no build/runtime/test rerun. Later evidence must use new immutable artifacts."
+}

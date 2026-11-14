@@ -1,0 +1,44 @@
+{
+  "scope": "Only TASK027-R1 and new breakage introduced by the fixed round1 diff",
+  "fix_base": "954d7492b91c2f490dcb15d2d42190af5dbe52ae",
+  "fix_commit": "46dc8e2badcb352f0619f6566231285009378a28",
+  "review_head": "b5de3dd6610e90fcdcd951c5703a1429ec13b417",
+  "source_spec_verdict": "PASS_SCOPED",
+  "source_quality_verdict": "PASS_SCOPED",
+  "resolution": [
+    {
+      "id": "TASK027-R1",
+      "status": "ADDRESSED",
+      "path": "examples/theme_showcase/src/commands.cj",
+      "line": 61,
+      "basis": "Explicit f1–f10 membership calls the existing action once and consumes the event. Both Preview and owned popup retain the handler; consume stops further bubbling. Non-F keys pass unchanged. The existing open-Preview guard prevents F5 from replacing the modal. F8 uses the existing active-session scroll API without requiring focus transfer.",
+      "regression_evidence": "Independent old ELF 92dd... shows both real F2-in-modal cases failing after successful pre-modal F2/F1 controls; fixed ELF dc10... logs both cases passing, with accepted palette, persistent modal/popup, disabled-skip navigation, and complete close-grid checks."
+    }
+  ],
+  "new_findings": [],
+  "test_correction_assessment": "Full-grid matchesGrid close predicates correct the impossible !Preview condition because the persistent horizontal menu contains Preview. Literal open/closed and partial-row negative controls preserve genuine assertions. Final tests/theme_showcase bytes equal independent dd483163bfe31ed4251ff533a005a5e2582289f6. Previously reviewed preset corrections remain unchanged.",
+  "verified_evidence": {
+    "fix_index_sha256": "9e284bb68f1bf6300dedf619d43fb38d071b75879e7dadb13a568ee216b8a475",
+    "fix_index_bindings": 230,
+    "all_fix_index_bindings_match": true,
+    "executed_elf_sha256": "dc10aee0d5ebea4aa3a49a1fcefd97d742dcad0ae305e629a8bb177e6a5f108a",
+    "reported_raw_exits": {
+      "normal_example_build": 0,
+      "selftest": 0,
+      "preset_contract": 0,
+      "direct_smoke_and_invalid_cli": 0,
+      "modal_keys_two_cases": 0,
+      "pty_seven_cases": 0
+    }
+  },
+  "bounds": [
+    "No reviewer builds/tests/runtime reruns; existing raw evidence and fixed-source control flow inspected.",
+    "Modal regression runtime coverage specifically proves F2 in two domains; source review establishes the shared F1–F10 dispatch without claiming ten individually executed shortcuts.",
+    "Normal bundle-v1 ENOSPC preserved; retry/CJP success not supplied. Independent execution, four real GUI images and AC027 remain separate pending gates.",
+    "Original review report/findings/index remain immutable; this scoped result closes R1 without rewriting history."
+  ],
+  "declined_to_judge": [
+    "Unchanged source outside R1 is covered by the preserved original review.",
+    "Independent full runtime/GUI/AC027 acceptance, final M1/M2/Linux/release remain outside this scoped review."
+  ]
+}

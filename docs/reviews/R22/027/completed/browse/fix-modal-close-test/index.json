@@ -1,0 +1,129 @@
+{
+  "task": "TASK027.modal_close_test_oracle_correction",
+  "status": "TEST_ONLY_CORRECTED_RUNTIME_UNRUN",
+  "parent": "71afd32e43e279a9693c6d5c22a6dce4102960a2",
+  "test_commit": "dd483163bfe31ed4251ff533a005a5e2582289f6",
+  "source_files": {
+    "tests/theme_showcase/checks.mjs": {
+      "bytes": 2167,
+      "sha256": "7056a02b44434903631c0cc6511d700cb3e333d47f6c1256300055ec7b4a29f9"
+    },
+    "tests/theme_showcase/commands.json": {
+      "bytes": 1130,
+      "sha256": "7f7dad0facc04421f29246174e6963c46bea22ce3d6ec9d23e36f62f26cf15e6"
+    },
+    "tests/theme_showcase/delivery.mjs": {
+      "bytes": 1581,
+      "sha256": "efee3c7f1fbe23e9e6f0d8d36d2ead5884f1d7bbb600c9497ea4dd74e0a46844"
+    },
+    "tests/theme_showcase/fixtures.mjs": {
+      "bytes": 1208,
+      "sha256": "20a112cd2ce67148418bb5583c943010ab26054b2524cd04dc1c283f1e63e721"
+    },
+    "tests/theme_showcase/goldens.json": {
+      "bytes": 22251,
+      "sha256": "68b670b24c849b84af5e796bbc23705431f7c31013dffa9d1c3195e03f00b2a2"
+    },
+    "tests/theme_showcase/modal-close-oracle.mjs": {
+      "bytes": 1233,
+      "sha256": "7a84fd6e62ad5dec4b4fbe8c729eed2154771d30c175f9c12c46674181b3f2cc"
+    },
+    "tests/theme_showcase/modal-goldens.json": {
+      "bytes": 9652,
+      "sha256": "d7ad89fc8e5ba86d63417dbb1513952850849ab73c783fab897e5bbddf348800"
+    },
+    "tests/theme_showcase/modal-keys.mjs": {
+      "bytes": 4092,
+      "sha256": "5a7c3c6d699968db96f92b4d5d1345f712faaad7eac431f9125c85f515eefe88"
+    },
+    "tests/theme_showcase/preset-contract.mjs": {
+      "bytes": 4057,
+      "sha256": "f4c204149c13b0a8cbe3c38ad7873e3870795955eb39c9014ba6f163674cb50f"
+    },
+    "tests/theme_showcase/pty-goldens.json": {
+      "bytes": 22143,
+      "sha256": "137d6553129c1d744e7f771ea0e3d2b29cfa18603c883f1501acd83b2b8c9013"
+    },
+    "tests/theme_showcase/pty-modal-goldens.json": {
+      "bytes": 9580,
+      "sha256": "5db066ebc376fad59e30bcc5e241967dbd429adf52d2632462e8d0f6d12cb67d"
+    },
+    "tests/theme_showcase/pty.mjs": {
+      "bytes": 9000,
+      "sha256": "c2979b1ed20f01b129c74f055278fe8c783543c64adcaae9f679a65989d4c46c"
+    },
+    "tests/theme_showcase/public-api-basis.md": {
+      "bytes": 5540,
+      "sha256": "2d43d5e1934b6dd986d16d96cbcef03f7c17518349c0951e57ecdd097b13f317"
+    },
+    "tests/theme_showcase/retained-goldens.json": {
+      "bytes": 18281,
+      "sha256": "bbff1990675057fe38089c2810169049294666721d325bfaf2bfea8a71079dbb"
+    },
+    "tests/theme_showcase/run.sh": {
+      "bytes": 605,
+      "sha256": "4dd4f2d80dae987bb7f6253400351e7e7c14a58eeeb977c0ed0e6e24813f7a81"
+    },
+    "tests/theme_showcase/selftest.mjs": {
+      "bytes": 4880,
+      "sha256": "71471de40d0fd36fdf0711a6c5385eb5889ac337c5faca8a4c66d89e2be49a2c"
+    },
+    "tests/theme_showcase/smoke.mjs": {
+      "bytes": 2600,
+      "sha256": "9e5713ad0a02072b47edf873244512e42594287ab877ccc46b0c99a94943fefa"
+    }
+  },
+  "report": {
+    "bytes": 1138,
+    "sha256": "ba8de3b7312cfdd0f74e99199a3e41a8df85ddadd5169f20e41bb0bf0dffb313"
+  },
+  "raw": {
+    "evidence/v1/old-oracle.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "evidence/v1/old-oracle.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/v1/old-oracle.stdout": {
+      "bytes": 341,
+      "sha256": "93a3ea43e5c612ab325ed94451e04fdbc7aea59bce3ae86619271a6ab114669b"
+    },
+    "evidence/v2/oracle.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "evidence/v2/oracle.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/v2/oracle.stdout": {
+      "bytes": 109,
+      "sha256": "51a3977c541d30f1f500b3c4be9a7574dcfbbc65e62fa020646a48bfc376564f"
+    }
+  },
+  "checks": [
+    {
+      "command": "old !Preview predicate on frozen literal startup/modal frames",
+      "exit": 1,
+      "raw": "evidence/v1/old-oracle.stdout",
+      "reason": "4 closed false, 4 open false"
+    },
+    {
+      "command": "node tests/theme_showcase/modal-close-oracle.mjs",
+      "exit": 0,
+      "raw": "evidence/v2/oracle.stdout"
+    },
+    {
+      "command": "node --check modified JS; bash -n run.sh; git diff --check",
+      "exit": 0
+    }
+  ],
+  "not_run": [
+    "app build",
+    "corrected ELF modal-key runtime",
+    "full PTY",
+    "GUI"
+  ]
+}

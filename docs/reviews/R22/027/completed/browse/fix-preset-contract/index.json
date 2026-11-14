@@ -1,0 +1,170 @@
+{
+  "task": "TASK027.a.bounded_preset_contract_correction",
+  "status": "TEST_ONLY_CORRECTED",
+  "parent": "f74351cbce2bbd71237b1d2f26c53209b481dc90",
+  "test_commit": "1a5812dc68001ebbcd68f87a37815110ec9e71d9",
+  "read_only_product_source": "954d7492b91c2f490dcb15d2d42190af5dbe52ae",
+  "input_manifest_sha256": "80862cf7d9f7bd9d80351dcb40fab96fd96f5216888e71163dc1997cf3a77e28",
+  "source_files": {
+    "tests/theme_showcase/checks.mjs": {
+      "bytes": 1964,
+      "sha256": "e0ad8e44e5036460ac6df952842b922bbae204ed7351f432382d6cf5c389cefb"
+    },
+    "tests/theme_showcase/commands.json": {
+      "bytes": 1130,
+      "sha256": "7f7dad0facc04421f29246174e6963c46bea22ce3d6ec9d23e36f62f26cf15e6"
+    },
+    "tests/theme_showcase/delivery.mjs": {
+      "bytes": 1581,
+      "sha256": "efee3c7f1fbe23e9e6f0d8d36d2ead5884f1d7bbb600c9497ea4dd74e0a46844"
+    },
+    "tests/theme_showcase/fixtures.mjs": {
+      "bytes": 1208,
+      "sha256": "20a112cd2ce67148418bb5583c943010ab26054b2524cd04dc1c283f1e63e721"
+    },
+    "tests/theme_showcase/goldens.json": {
+      "bytes": 22251,
+      "sha256": "68b670b24c849b84af5e796bbc23705431f7c31013dffa9d1c3195e03f00b2a2"
+    },
+    "tests/theme_showcase/modal-goldens.json": {
+      "bytes": 9652,
+      "sha256": "d7ad89fc8e5ba86d63417dbb1513952850849ab73c783fab897e5bbddf348800"
+    },
+    "tests/theme_showcase/preset-contract.mjs": {
+      "bytes": 4057,
+      "sha256": "f4c204149c13b0a8cbe3c38ad7873e3870795955eb39c9014ba6f163674cb50f"
+    },
+    "tests/theme_showcase/pty-goldens.json": {
+      "bytes": 22143,
+      "sha256": "137d6553129c1d744e7f771ea0e3d2b29cfa18603c883f1501acd83b2b8c9013"
+    },
+    "tests/theme_showcase/pty-modal-goldens.json": {
+      "bytes": 9580,
+      "sha256": "5db066ebc376fad59e30bcc5e241967dbd429adf52d2632462e8d0f6d12cb67d"
+    },
+    "tests/theme_showcase/pty.mjs": {
+      "bytes": 8991,
+      "sha256": "612dfa0d71e2b9652e98bb2d85d1099950a707bfa3ae1ad048a1f75d0ef422e3"
+    },
+    "tests/theme_showcase/public-api-basis.md": {
+      "bytes": 5387,
+      "sha256": "aa4613ab4c07dc989f54d7b77048e9e86908f576d8bc9e2bf82c855d2f765bee"
+    },
+    "tests/theme_showcase/retained-goldens.json": {
+      "bytes": 18281,
+      "sha256": "bbff1990675057fe38089c2810169049294666721d325bfaf2bfea8a71079dbb"
+    },
+    "tests/theme_showcase/run.sh": {
+      "bytes": 515,
+      "sha256": "36324b331ef688eaf2278fb4b09f976b3eb05f2ef9224dfc7da5dcf616e148a9"
+    },
+    "tests/theme_showcase/selftest.mjs": {
+      "bytes": 4880,
+      "sha256": "71471de40d0fd36fdf0711a6c5385eb5889ac337c5faca8a4c66d89e2be49a2c"
+    },
+    "tests/theme_showcase/smoke.mjs": {
+      "bytes": 2600,
+      "sha256": "9e5713ad0a02072b47edf873244512e42594287ab877ccc46b0c99a94943fefa"
+    }
+  },
+  "report": {
+    "bytes": 1565,
+    "sha256": "4a37c53a9cceeda89123324e0db06754e8d39bbdfa3124fef0ec8fdcc653f517"
+  },
+  "raw": {
+    "evidence/v1/preset-before.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "evidence/v1/preset-before.stderr": {
+      "bytes": 369,
+      "sha256": "2913d068e0f70362401b9df9955839edadcb30079017c4ef3e34d33901ea9821"
+    },
+    "evidence/v1/preset-before.stdout": {
+      "bytes": 74,
+      "sha256": "eafbe8ffc1cbc54294ebcc25cc486f9ba4808f2ef6a4f7cabb1913a4c1c91200"
+    },
+    "evidence/v2/preset-before.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "evidence/v2/preset-before.stderr": {
+      "bytes": 380,
+      "sha256": "e17eb7b0430ff0f35961e079200ec98c502f7212dadea880a010afc58530d87b"
+    },
+    "evidence/v2/preset-before.stdout": {
+      "bytes": 74,
+      "sha256": "eafbe8ffc1cbc54294ebcc25cc486f9ba4808f2ef6a4f7cabb1913a4c1c91200"
+    },
+    "evidence/v3/preset-after.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "evidence/v3/preset-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/v3/preset-after.stdout": {
+      "bytes": 235,
+      "sha256": "fdde4dbc5bac2fe5fc9dbfb66707c349ea5558dcf575d562514dda0bc50b71ce"
+    },
+    "evidence/v3/runner.exit": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "evidence/v3/runner.stderr": {
+      "bytes": 144,
+      "sha256": "5a722c1edeb22ba695e1ca84ccfca06d320954b643a956546b4b9fca9b1cadd9"
+    },
+    "evidence/v3/runner.stdout": {
+      "bytes": 386,
+      "sha256": "60aebf134a29f5dc764da1667631f24d2753df2183445c6156db3864f8e202cf"
+    },
+    "evidence/v3/selftest.exit": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "evidence/v3/selftest.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/v3/selftest.stdout": {
+      "bytes": 151,
+      "sha256": "43e67cf82ffb233021ba97cb6978b658af29e024b2f1417b603233148edb58dd"
+    }
+  },
+  "checks": [
+    {
+      "command": "node tests/theme_showcase/preset-contract.mjs before data correction",
+      "exit": 1,
+      "raw": "evidence/v2/preset-before.stderr",
+      "failure_count": 3
+    },
+    {
+      "command": "node tests/theme_showcase/preset-contract.mjs",
+      "exit": 0,
+      "raw": "evidence/v3/preset-after.stdout"
+    },
+    {
+      "command": "node tests/theme_showcase/selftest.mjs",
+      "exit": 0,
+      "raw": "evidence/v3/selftest.stdout"
+    },
+    {
+      "command": "bash tests/theme_showcase/run.sh",
+      "exit": 1,
+      "raw": "evidence/v3/runner.stdout",
+      "reason": "sparse tree product delivery RED"
+    },
+    {
+      "command": "node --check each tests/theme_showcase/*.mjs; bash -n run.sh; git diff --check",
+      "exit": 0
+    }
+  ],
+  "unrun": [
+    "product build",
+    "direct --smoke and invalid CLI",
+    "PTY",
+    "GUI"
+  ]
+}

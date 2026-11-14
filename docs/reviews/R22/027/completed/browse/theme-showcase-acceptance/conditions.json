@@ -1,0 +1,1043 @@
+{
+  "task": "TASK027.e",
+  "acceptance": "AC-027",
+  "verdict": "PASS_AC027_M1_THEME_SHOWCASE",
+  "source_commit": "b5de3dd6610e90fcdcd951c5703a1429ec13b417",
+  "conditions": [
+    {
+      "id": "01_canonical_presets",
+      "obligation": "Four canonical Classic/Dark/Light/HighContrast themes; shared parser/resolver and editable distributed files",
+      "status": "passed",
+      "finding": "All four source TOMLs equal frozen fixtures; embedded preset/parsing path unchanged. Four real GUI settled frames use complete expected palettes and accepted names.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/theme/theme_preset_text.cj",
+          "bytes": 11216,
+          "sha256": "fc2a86d096ce8b9d5386d7fcaa1f9c321fdc26a91de23e698067f7dc876937d4"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/theme/theme.cj",
+          "bytes": 4694,
+          "sha256": "bbd8cf1c66a6b4071b6c750cf8d58e1477aa1e862dfaf3a111204be4a908072f"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/themes/classic.toml",
+          "bytes": 2534,
+          "sha256": "73491254d0fc5b7624677b9b40216d3c82664c7c4784964b384b6a9d55a4aac9"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/themes/dark.toml",
+          "bytes": 2535,
+          "sha256": "1a6feada861eefb42e9d6598138c2010d7f1e34b65ecece893b66e680d5cb8d0"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/themes/light.toml",
+          "bytes": 2536,
+          "sha256": "677951bafdc3d9d0dce62031ebe63f44254e0a5c13bfc05d079b5ef087176bcd"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/themes/high-contrast.toml",
+          "bytes": 2552,
+          "sha256": "e933cb0c54ef211c41c2b6cc83c16dc5eb091151e706dfbf439eddec8d48166c"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/preset-contract.stdout",
+          "bytes": 235,
+          "sha256": "fdde4dbc5bac2fe5fc9dbfb66707c349ea5558dcf575d562514dda0bc50b71ce"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/delivery.stdout",
+          "bytes": 50,
+          "sha256": "0c0af6087bdaa8f2fad02e8fc110604515006fc3be73a4dd1c8ab9cf159a7278"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/classic-prepared.json.gz",
+          "bytes": 1488,
+          "sha256": "dde6b2d0d02fed66a1c0e81191c4b6b682d40d40b774d1119d740fdb3da175db"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/dark-prepared.json.gz",
+          "bytes": 1627,
+          "sha256": "c594bcf1967abba17414d262a6cfb7b9d16addc1d184f7055ec0922ad1cc9b34"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/light-prepared.json.gz",
+          "bytes": 1647,
+          "sha256": "19314f7931456bc68e015f49f98e4270da223cafb66aebe8e88173e9807e4f4b"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/high-contrast-prepared.json.gz",
+          "bytes": 1546,
+          "sha256": "8d93a1dba51c5438d30422fc9a92aced890845aec76000e463da286755e643a3"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/classic-prepared.png",
+          "bytes": 48488,
+          "sha256": "bd30263400acca0d9fedbce5cf02ad90bd112c92f1202f604361a2a7cb0c5df6"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/dark-prepared.png",
+          "bytes": 50768,
+          "sha256": "cbeb82ad5b747eb4cf755879820bee378991596ce32987ccac9d21e61aa50874"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/light-prepared.png",
+          "bytes": 50544,
+          "sha256": "412b366fd26acb1a6e18a914a79bb8c541e1ae82b96a1ad5757fd5911f168bb1"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/high-contrast-prepared.png",
+          "bytes": 48964,
+          "sha256": "cb2d0f9d95b4e9325007ff8346c7c32df9a7df97134ba683fc3f45b94a78410e"
+        }
+      ],
+      "limits": []
+    },
+    {
+      "id": "02_same_public_gallery",
+      "obligation": "Same mounted scene and business data using convenient public composition without theme-specific kernel behavior",
+      "status": "passed",
+      "finding": "One Application/GalleryView, retained GalleryData/Commands, standard component blocks/chains, Observable models, public theme requests and NodeRefs. No coordinate rendering, ANSI or flush in normal scene. Theme commands do not construct a new root.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/main.cj",
+          "bytes": 809,
+          "sha256": "309a0b30b8b1a77ddd4ae35378b89dc4085b7a514e964a8f4d7d6abb4d8e6502"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/gallery_view.cj",
+          "bytes": 3040,
+          "sha256": "e8ccdc105be8bcfc8be8bd7307a82f59522943aadec139f175ccb124b579d5cd"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/gallery_data.cj",
+          "bytes": 427,
+          "sha256": "1526ad1f3d4dbc92436bfc5250c0f0bec6202a2c3d0c0c03de9d52566e9035b6"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/commands.cj",
+          "bytes": 3056,
+          "sha256": "34f2a30661645efe3bb9fe174d07af813fbcb3ff1aae74807e950c47e22e6800"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/source-git-audit.json",
+          "bytes": 30830,
+          "sha256": "5b4ef7b8cce49f3b9aa5eb734deeae9b38b5fa5f96353c26445b57a34e76aa5d"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-review/findings.json",
+          "bytes": 3715,
+          "sha256": "74a84f80c68a7e5a9bdcd327f9342380a7c25900510ecd60ad4261ab179488d8"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-review/round1/findings.json",
+          "bytes": 2921,
+          "sha256": "a48c67106c8f7b19509d78809449438c1f47eba9c4c3428c832b01aba22c1b30"
+        }
+      ],
+      "images": [],
+      "limits": []
+    },
+    {
+      "id": "03_complete_controls",
+      "obligation": "Text/rich text, Label, TextInput/TextArea, horizontal/popup menus, Button, Radio/Checkbox, Progress, StatusBar, SplitPane and Modal in all themes",
+      "status": "passed",
+      "finding": "All named primitives appear in public source and same complete 80x24 grids; four corresponding modal/popup frames cover visible layers. Literal same-content comparison independently checked with initial Query substituted only for fixture test edit qrcvzy.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/gallery_view.cj",
+          "bytes": 3040,
+          "sha256": "e8ccdc105be8bcfc8be8bd7307a82f59522943aadec139f175ccb124b579d5cd"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/preview.cj",
+          "bytes": 691,
+          "sha256": "d638fadd4d5200ca143facadca8fd72ce4fa6d31b74d5a32e6bf5bf44f42f963"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/gui-frame-observations.json",
+          "bytes": 1038,
+          "sha256": "7d0e982226dcb37a2c8c4f6f0a9977dc43b4e638ee54a0a9a865e8fb3a254cf9"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/four-theme-modal-popup/frames.json.gz",
+          "bytes": 49173,
+          "sha256": "af89a44afffc730ccd6b348026d7d547ca64dfd383ba434aebf07e53c77015a2"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/classic-prepared.png",
+          "bytes": 48488,
+          "sha256": "bd30263400acca0d9fedbce5cf02ad90bd112c92f1202f604361a2a7cb0c5df6"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/dark-modal.png",
+          "bytes": 52763,
+          "sha256": "9db590c950721f4ece034dc7c4e8248b08041636e574f374ae807e8c714b0e7c"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/light-prepared.png",
+          "bytes": 50544,
+          "sha256": "412b366fd26acb1a6e18a914a79bb8c541e1ae82b96a1ad5757fd5911f168bb1"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/high-contrast-popup.png",
+          "bytes": 52134,
+          "sha256": "63549ea1e78779dccbd82ec6f164876237832f1ca681351474f4c5a2146cc50c"
+        }
+      ],
+      "limits": []
+    },
+    {
+      "id": "04_visual_states",
+      "obligation": "Normal/focused/selected/disabled and combinations across four themes",
+      "status": "passed",
+      "finding": "Finite frames establish focused input accent/underline and selected ID inverse. Actual prepared frames establish focused Run underline, selected Name inverse, disabled button and horizontal menu dim; popup disabled Delete and Inspect/Confirm focus remain visible.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/button.cj",
+          "bytes": 415,
+          "sha256": "f012165d399b79cc33cab9b774ee4063f3c98dfc24fe26de052a4c4094eb02bd"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/radio.cj",
+          "bytes": 736,
+          "sha256": "c6d8dac0b46d207b4787be11bcc16138d93c109065e2f70c6100f6d4fee8f4d2"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/checkbox.cj",
+          "bytes": 704,
+          "sha256": "0c150ea1079da165ef30594f2dcd60ed6f004cf47801d8d456e4c90b03728bb3"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/text_input.cj",
+          "bytes": 374,
+          "sha256": "b57383e9f518d44365e4870283d4744bc810f060781bf11febb5017c9bfbfb66"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/gallery_view.cj",
+          "bytes": 3040,
+          "sha256": "e8ccdc105be8bcfc8be8bd7307a82f59522943aadec139f175ccb124b579d5cd"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/four-theme-modal-popup/frames.json.gz",
+          "bytes": 49173,
+          "sha256": "af89a44afffc730ccd6b348026d7d547ca64dfd383ba434aebf07e53c77015a2"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/dark-popup.json.gz",
+          "bytes": 1908,
+          "sha256": "b695afaf4c414c75f439c4e4a3c1c2b4d29150cb9e6f987ed625ad60ae240ace"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/dark-popup-next.json.gz",
+          "bytes": 1904,
+          "sha256": "570fb15f0e65dba4d9fa8aacbf66b1b33108306d204ffc97e2accf6529472112"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/gui-frame-observations.json",
+          "bytes": 1038,
+          "sha256": "7d0e982226dcb37a2c8c4f6f0a9977dc43b4e638ee54a0a9a865e8fb3a254cf9"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/high-contrast-popup.png",
+          "bytes": 52134,
+          "sha256": "63549ea1e78779dccbd82ec6f164876237832f1ca681351474f4c5a2146cc50c"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/classic-prepared.png",
+          "bytes": 48488,
+          "sha256": "bd30263400acca0d9fedbce5cf02ad90bd112c92f1202f604361a2a7cb0c5df6"
+        }
+      ],
+      "limits": []
+    },
+    {
+      "id": "05_auto_degradation",
+      "obligation": "Unicode and actual ASCII/font fallback plus restricted-color behavior through default Auto policy",
+      "status": "passed",
+      "finding": "Current VTE renders combining text/CJK, projects complex emoji to ??, and distinguishes Unicode-rounded/shadow from canonical ASCII borders. Unchanged accepted core reuses actual XTerm basic-color output (only default/basic SGR) and VM tty1 font mapping of rounded border to ASCII. Exact src/native/build/manifests unchanged from AC021 accepted functional source e3016afe.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/main.cj",
+          "bytes": 809,
+          "sha256": "309a0b30b8b1a77ddd4ae35378b89dc4085b7a514e964a8f4d7d6abb4d8e6502"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/terminal_capabilities.cj",
+          "bytes": 5887,
+          "sha256": "98cf87c19c91331b83bc5cfe62b539c7cf3431eece13aafe9c5874d93021f1b3"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/terminal_glyph_detection.cj",
+          "bytes": 1497,
+          "sha256": "77328de70bb2968b063b20e28cc2d44cf8d672a302b5bb545b99e49f88c0c6a6"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/terminal_glyph_projection.cj",
+          "bytes": 1933,
+          "sha256": "4779f17a52662433694dcd59b3d913c1767a28794854089820f4e757ca848ac3"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/application.cj",
+          "bytes": 36536,
+          "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/reused-base-audit.json",
+          "bytes": 3916,
+          "sha256": "73c2ba86e0948bafdda1828b83a05164428bf4f2cdcf655a14874388e05d7cfb"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R22/021/browse/composition-application-acceptance/index.json",
+          "bytes": 5519,
+          "sha256": "53c8ecc8b57756d857e08fb3209ebf975e2bd6e389696cc33d7d555669b45ddc"
+        },
+        {
+          "path": "/workspace/work/terminal.ui/docs/reviews/R22/021/browse/composition-application-acceptance/ac-results.json",
+          "bytes": 13667,
+          "sha256": "883d33101ad0776fb88ebf2e0e4c09b3ab16dedb253c63df5b663aec19d5733c"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/dark-modal.json.gz",
+          "bytes": 1840,
+          "sha256": "4d56956bc0a8c442662b92284cccc1f31c4198888971d3d9b2e14945c745a07a"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/dark-modal.png",
+          "bytes": 52763,
+          "sha256": "9db590c950721f4ece034dc7c4e8248b08041636e574f374ae807e8c714b0e7c"
+        }
+      ],
+      "limits": [
+        "Prior XTerm/VM VT proof covers unchanged core mapping/ABI, not four-theme showcase execution there. Full final XTerm/VTE/tmux/screen/VT/SSH application matrix remains C008/041. No TERM substitution is counted as a different real host."
+      ]
+    },
+    {
+      "id": "06_actual_narrow_layout",
+      "obligation": "Actual narrow/small viewport without virtual minimum or hidden controls",
+      "status": "passed",
+      "finding": "Independent startup PTYs at80x24/40x12/16x6 and literal smoke for every theme/size match expected layout. GUI 16x6 image and ioctl show actual clipping and last-row footer.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/gallery_view.cj",
+          "bytes": 3040,
+          "sha256": "e8ccdc105be8bcfc8be8bd7307a82f59522943aadec139f175ccb124b579d5cd"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/main.cj",
+          "bytes": 809,
+          "sha256": "309a0b30b8b1a77ddd4ae35378b89dc4085b7a514e964a8f4d7d6abb4d8e6502"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/startup-small/frames.json.gz",
+          "bytes": 1173,
+          "sha256": "5854e8a96d362e0e30ef520c2a768506e61bf4289bf116ca715f355d3b3ebc54"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/startup-actual16/frames.json.gz",
+          "bytes": 533,
+          "sha256": "add0870e8d64d45cf346b81c9c54e69f93c6c0e221d82dc6f0e52cc740d5da97"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/smoke/direct-smoke.stdout",
+          "bytes": 10823,
+          "sha256": "5c8ac8b8daef447cbf3691ed1a9b348b51147f9224b5c8a4a8cabf79525cad05"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/resize-16x6-replay.json.gz",
+          "bytes": 230,
+          "sha256": "9ef09cd98dc651c8da6e85e78fb57cb5e145edd5db3323ed8191a80cf35e679a"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/resize-16x6.png",
+          "bytes": 8726,
+          "sha256": "ede814e819c149128e1436a105a0b3ded593a49a2066747ccb47f9824caab9f7"
+        }
+      ],
+      "limits": []
+    },
+    {
+      "id": "07_physical_resize",
+      "obligation": "Physical resize preserves current state and uses actual terminal dimensions",
+      "status": "passed",
+      "finding": "XTEST resize817x458→417x230→177x116→817x458; product ioctl readbacks80x24→40x12→16x6→80x24. Restored frame keeps Query, Pin, Name, pending1/2 and records012–024.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/application.cj",
+          "bytes": 36536,
+          "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/gallery_view.cj",
+          "bytes": 3040,
+          "sha256": "e8ccdc105be8bcfc8be8bd7307a82f59522943aadec139f175ccb124b579d5cd"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/gui-events.jsonl",
+          "bytes": 19464,
+          "sha256": "ccf3180ca8fd49be6f9fd948c0249832d58b19196e5ad9a7a65ddb636cd7ab04"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/product.strace.gz",
+          "bytes": 21387,
+          "sha256": "f6122563e8a97190cdf7c55ba762604e257d3276df4d49d7360345782762eeac"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/resize-restored-replay.json.gz",
+          "bytes": 484,
+          "sha256": "8aa038830a869d7e4a87bc69fdb817472dd3bd9bf7e68cc029222615c4198c9e"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/gui-raw-audit.json",
+          "bytes": 155516,
+          "sha256": "87e1aed822942849af6f7db3dc2cf2f5ad9c37e8b8cb4d3ce708c3f5b35f38a7"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/resize-40x12.png",
+          "bytes": 21104,
+          "sha256": "8d559cc4301982cd3cda64a4636401927330db27e12849a98d45be5b9e6ced10"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/resize-16x6.png",
+          "bytes": 8726,
+          "sha256": "ede814e819c149128e1436a105a0b3ded593a49a2066747ccb47f9824caab9f7"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/resize-restored.png",
+          "bytes": 50774,
+          "sha256": "4039c25424e0d2d030b7d1b7bfb20b67f00c1f629ba9e0ebb7d22ca74ed0ea22"
+        }
+      ],
+      "limits": []
+    },
+    {
+      "id": "08_retained_nodes_models",
+      "obligation": "Four-theme switches do not rebuild mounted nodes or reset business models",
+      "status": "passed",
+      "finding": "Commands retain controller and mounted owner/log handles; RuntimeSession.acceptTheme changes theme and dirty flags on existing nodes. Candidate validation invokes no build/mount/getter; business source versions are untouched. Live edited text/choices/pending/scroll persist through all four switches.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/commands.cj",
+          "bytes": 3056,
+          "sha256": "34f2a30661645efe3bb9fe174d07af813fbcb3ff1aae74807e950c47e22e6800"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/runtime_session.cj",
+          "bytes": 66044,
+          "sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/theme_candidate_validation.cj",
+          "bytes": 2365,
+          "sha256": "75458494d6cb69941ee2c5e95a6c0166b85fbd6439773460d320c2fefb896ed5"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/theme_loader.cj",
+          "bytes": 8102,
+          "sha256": "4ca1342bc0ca5c5c87df749727aa1f90216d919120581908774a87a3abb18902"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/retained-state/frames.json.gz",
+          "bytes": 40001,
+          "sha256": "b29493b78d7e50c2470d2805c65c76fc4cdf3ea56ee7d0890d917d5c22d9aeaa"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/retained-state/events.json",
+          "bytes": 2540,
+          "sha256": "45e9e9582520c301bafc76665d7b367e6f379fffef78bd823b5ceb358fb980d2"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/finite-frame-observations.json",
+          "bytes": 25678,
+          "sha256": "19f7449edcb89bd5abe335de2b814ba7e9bde524d71d9088be2c36a7db1d5b14"
+        }
+      ],
+      "images": [],
+      "limits": []
+    },
+    {
+      "id": "09_edit_selection_undo",
+      "obligation": "Editing selection and undo state survive theme changes",
+      "status": "passed",
+      "finding": "Finite qrcvzy selection survives all four transitions; replacing first grapheme yields Xrcvzy, undo restores qrcvzy; later Yrcvzy/undo also works. GUI preselected Q survives themes/layers/file operations, X yields Xuery then CtrlZ restores Query. Source proves existing editor session/history arrays retained: acceptTheme does not touch editor models; sync clears history only on source-version change.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/runtime_session.cj",
+          "bytes": 66044,
+          "sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/text_edit_session.cj",
+          "bytes": 20826,
+          "sha256": "b132b5407da05f6978bccd2ea06222dfb6403974997e2e489251b60f5d4086f6"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/text_edit_controller.cj",
+          "bytes": 3019,
+          "sha256": "1ad63bfbb270f6e7814b704b8aae6b7471ce22666ade6c5e3b556d8dbd813fd2"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/commands.cj",
+          "bytes": 3056,
+          "sha256": "34f2a30661645efe3bb9fe174d07af813fbcb3ff1aae74807e950c47e22e6800"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/retained-state/frames.json.gz",
+          "bytes": 40001,
+          "sha256": "b29493b78d7e50c2470d2805c65c76fc4cdf3ea56ee7d0890d917d5c22d9aeaa"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/selection-replace.json.gz",
+          "bytes": 1652,
+          "sha256": "7d17fee9e7792fb29b313581e955c20cb2d9d40618208935da6cac774190b81e"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/selection-undo.json.gz",
+          "bytes": 1657,
+          "sha256": "c2bd9f4112394d2e078287a90e49ab77083d565af537049c16d10490359dad52"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/gui-events.jsonl",
+          "bytes": 19464,
+          "sha256": "ccf3180ca8fd49be6f9fd948c0249832d58b19196e5ad9a7a65ddb636cd7ab04"
+        }
+      ],
+      "images": [],
+      "limits": [
+        "Observed undo operations undo post-switch edits. Preservation of an older undo-stack entry is supported by retained-session source and unchanged accepted editing path, not claimed as a separately exercised old-entry undo in this GUI run."
+      ]
+    },
+    {
+      "id": "10_focus_scroll_pending",
+      "obligation": "Focus, exact scroll offset and pending business state retained",
+      "status": "passed",
+      "finding": "Run remains focused with underline across four themes, checkbox/radio values persist, log boundaries stay012/024, pending1/2 remains. Return-to-editor replacement demonstrates valid focus after transitions. Pending is deliberate sample state, not a real worker.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/gallery_data.cj",
+          "bytes": 427,
+          "sha256": "1526ad1f3d4dbc92436bfc5250c0f0bec6202a2c3d0c0c03de9d52566e9035b6"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/commands.cj",
+          "bytes": 3056,
+          "sha256": "34f2a30661645efe3bb9fe174d07af813fbcb3ff1aae74807e950c47e22e6800"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/README.md",
+          "bytes": 903,
+          "sha256": "7f7cdb5be4d39cd667674e208ad4236ba4beb0211b1df4355bc265a6a740fdff"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/retained-state/frames.json.gz",
+          "bytes": 40001,
+          "sha256": "b29493b78d7e50c2470d2805c65c76fc4cdf3ea56ee7d0890d917d5c22d9aeaa"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/classic-prepared.json.gz",
+          "bytes": 1488,
+          "sha256": "dde6b2d0d02fed66a1c0e81191c4b6b682d40d40b774d1119d740fdb3da175db"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/dark-prepared.json.gz",
+          "bytes": 1627,
+          "sha256": "c594bcf1967abba17414d262a6cfb7b9d16addc1d184f7055ec0922ad1cc9b34"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/light-prepared.json.gz",
+          "bytes": 1647,
+          "sha256": "19314f7931456bc68e015f49f98e4270da223cafb66aebe8e88173e9807e4f4b"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/high-contrast-prepared.json.gz",
+          "bytes": 1546,
+          "sha256": "8d93a1dba51c5438d30422fc9a92aced890845aec76000e463da286755e643a3"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/dark-prepared.png",
+          "bytes": 50768,
+          "sha256": "cbeb82ad5b747eb4cf755879820bee378991596ce32987ccac9d21e61aa50874"
+        }
+      ],
+      "limits": [
+        "Real background computation is accepted AC021 U3 and is not asserted for showcase Run."
+      ]
+    },
+    {
+      "id": "11_modal_popup_hierarchy",
+      "obligation": "Visible modal/menu composition, border/padding/shadow, disabled navigation, owner close and focus return",
+      "status": "passed",
+      "finding": "Four themes show same modal content; Dark/Light rounded border and one-cell shadow, Classic/HighContrast ASCII no shadow, same padding. Owned popup persists during theme switch; Down skips disabled Delete to Confirm; owner F9 removes both layers and latest underlying scene remains.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/preview.cj",
+          "bytes": 691,
+          "sha256": "d638fadd4d5200ca143facadca8fd72ce4fa6d31b74d5a32e6bf5bf44f42f963"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/commands.cj",
+          "bytes": 3056,
+          "sha256": "34f2a30661645efe3bb9fe174d07af813fbcb3ff1aae74807e950c47e22e6800"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/modal-keys/modal-key-EUXncH/owned-popup/frames.json.gz",
+          "bytes": 21298,
+          "sha256": "ca52531e4f70aa0d55cf11c3b8cec0487f53640cb10b89e33af4a68cbff32309"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/dark-popup.json.gz",
+          "bytes": 1908,
+          "sha256": "b695afaf4c414c75f439c4e4a3c1c2b4d29150cb9e6f987ed625ad60ae240ace"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/dark-popup-next.json.gz",
+          "bytes": 1904,
+          "sha256": "570fb15f0e65dba4d9fa8aacbf66b1b33108306d204ffc97e2accf6529472112"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/popup-owner-close.json.gz",
+          "bytes": 1489,
+          "sha256": "530f560b2f7f909d47f053006b3bc629088da5f61c1cbeb325c6fb20409170f9"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/classic-modal.png",
+          "bytes": 50090,
+          "sha256": "d48b7e619bf71f87261b3f883d0336c8b7b337c56370258ac2dded065d894323"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/dark-modal.png",
+          "bytes": 52763,
+          "sha256": "9db590c950721f4ece034dc7c4e8248b08041636e574f374ae807e8c714b0e7c"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/light-modal.png",
+          "bytes": 52357,
+          "sha256": "ff9895117a620d782a81848fe9d9c845111be449c1dc0738d20586f371a8bdee"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/high-contrast-modal.png",
+          "bytes": 50652,
+          "sha256": "552a909870b86a792e31231065763e00527145f0a5d144582705fd7c19569e41"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/popup-owner-close.png",
+          "bytes": 48488,
+          "sha256": "bd30263400acca0d9fedbce5cf02ad90bd112c92f1202f604361a2a7cb0c5df6"
+        }
+      ],
+      "limits": []
+    },
+    {
+      "id": "12_global_modal_keys",
+      "obligation": "Fixed public F1–F10 modal-domain contract and independent review finding closure",
+      "status": "passed",
+      "finding": "Original Important TASK027-R1 retained. Shared modalKey now handles explicit F1–F10 once and consumes; installed on Preview and popup. Independent two-domain real F2 regressions and GUI theme cycles establish repaired behavior; ordinary keys pass through.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/commands.cj",
+          "bytes": 3056,
+          "sha256": "34f2a30661645efe3bb9fe174d07af813fbcb3ff1aae74807e950c47e22e6800"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/preview.cj",
+          "bytes": 691,
+          "sha256": "d638fadd4d5200ca143facadca8fd72ce4fa6d31b74d5a32e6bf5bf44f42f963"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-review/index.json",
+          "bytes": 15946,
+          "sha256": "b5242dd2d594485b8150b66ec4459efacf5f92be75ffa7816cf771fcafbd2fd5"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-review/findings.json",
+          "bytes": 3715,
+          "sha256": "74a84f80c68a7e5a9bdcd327f9342380a7c25900510ecd60ad4261ab179488d8"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-review/round1/index.json",
+          "bytes": 12928,
+          "sha256": "8d5da0f5f659d66a7860c7ca92164e6e6be92a487efe3d3b4c8d59002e87e401"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-review/round1/findings.json",
+          "bytes": 2921,
+          "sha256": "a48c67106c8f7b19509d78809449438c1f47eba9c4c3428c832b01aba22c1b30"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/modal-keys.stdout",
+          "bytes": 162,
+          "sha256": "6231f7db36715196d4c6ef61c0f8a5cd8042de28647f869cdf458649568ec9f8"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/modal-keys/modal-key-EUXncH/preview/frames.json.gz",
+          "bytes": 13788,
+          "sha256": "4583ebc5cf8aee22da9afa099945198986c51dffc04baa661f7ea54baef0ccbd"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/modal-keys/modal-key-EUXncH/owned-popup/frames.json.gz",
+          "bytes": 21298,
+          "sha256": "ca52531e4f70aa0d55cf11c3b8cec0487f53640cb10b89e33af4a68cbff32309"
+        }
+      ],
+      "images": [],
+      "limits": [
+        "F2 is individually exercised in both modal domains; shared source dispatch covers other documented function keys without claiming ten separate runtime cases."
+      ]
+    },
+    {
+      "id": "13_explicit_file_atomicity",
+      "obligation": "Explicit file load/reload: failure retains accepted theme/state, later success atomically presents complete new theme",
+      "status": "passed",
+      "finding": "F6 accepts canonical Dark file; bad foreground F7 emits Load failed with accepted Dark palette/name and pending/choices/scroll intact; repaired canonical Light F7 yields full Light frame and Pending. Footer uses tracked themeInfo; failure uses ThemeRequest.result. No watcher or requested-name substitution. Theme candidate validation/finish and one-frame snapshot path establish atomic accepted update.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/commands.cj",
+          "bytes": 3056,
+          "sha256": "34f2a30661645efe3bb9fe174d07af813fbcb3ff1aae74807e950c47e22e6800"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/theme_loader.cj",
+          "bytes": 8102,
+          "sha256": "4ca1342bc0ca5c5c87df749727aa1f90216d919120581908774a87a3abb18902"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/theme_candidate_validation.cj",
+          "bytes": 2365,
+          "sha256": "75458494d6cb69941ee2c5e95a6c0166b85fbd6439773460d320c2fefb896ed5"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/src/application.cj",
+          "bytes": 36536,
+          "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/file-reload/session/frames.json.gz",
+          "bytes": 11393,
+          "sha256": "2f3424d2a3dff9635cf7a37ff543c901225f9840e4ee59834bd9da51d2c51ed4"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/pty/pty-vzoUO1/unconfigured-file/frames.json.gz",
+          "bytes": 4462,
+          "sha256": "2227013ef0849ceb6feaf7b17cd4a12983baaadbcb6eca62a7d9a6f921b6b516"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/selected-invalid.toml",
+          "bytes": 69,
+          "sha256": "5a627fdb1408ad1dec32b566fc03dcd790657195988ecae94b3acd2c634ae976"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/selected.toml",
+          "bytes": 2536,
+          "sha256": "677951bafdc3d9d0dce62031ebe63f44254e0a5c13bfc05d079b5ef087176bcd"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/file-dark.json.gz",
+          "bytes": 1627,
+          "sha256": "1f9de0ddfbc4d5c0a5b1c716d99d203697cc4c2b4427f5cde652b4ca381a0ab8"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/file-invalid.json.gz",
+          "bytes": 1632,
+          "sha256": "405373f05f2d89762acf41f13b8784eed98fdc28820b53565c927e7ef903af92"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/frames/file-light.json.gz",
+          "bytes": 1647,
+          "sha256": "169b9cfca4a16b98ef43df34c2ff41661fd5aa920e31ed45062b863e40df4828"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/file-invalid.png",
+          "bytes": 50939,
+          "sha256": "845c8280009fb7f4f734ecb16ce915d257dead2f0e91ab97d0c337bf8de39fb2"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/file-light.png",
+          "bytes": 50544,
+          "sha256": "412b366fd26acb1a6e18a914a79bb8c541e1ae82b96a1ad5757fd5911f168bb1"
+        }
+      ],
+      "limits": []
+    },
+    {
+      "id": "14_independent_build_run",
+      "obligation": "Ordinary independently built runnable showcase and documented direct commands",
+      "status": "passed",
+      "finding": "Isolated SDK/cjpm1.2.0 normal example build succeeds; physical independent ELF3887... used for direct smoke and actual GUI. Smoke0, unknown/missing-path/mixed1; nine finite PTY processes0. README documents normal build/direct executable, F keys and file/smoke options; relative dependency ../...",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/cjpm.toml",
+          "bytes": 165,
+          "sha256": "d2e851b7686273d7eda98d51305e7691e0ef9051c3491a50b8d436852cf8cc18"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/README.md",
+          "bytes": 903,
+          "sha256": "7f7cdb5be4d39cd667674e208ad4236ba4beb0211b1df4355bc265a6a740fdff"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/main.cj",
+          "bytes": 809,
+          "sha256": "309a0b30b8b1a77ddd4ae35378b89dc4085b7a514e964a8f4d7d6abb4d8e6502"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/tool-versions.txt",
+          "bytes": 120,
+          "sha256": "296821d092006ecc9821bbe216ef4e5b83692635bf57367b916fe21068b82899"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/build.stdout",
+          "bytes": 19,
+          "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/build.exit",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/elf.sha256",
+          "bytes": 114,
+          "sha256": "d974d43a09393f0a9ee19caa279ec2b8db098b95f55caed4af2d87af91e87b03"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/smoke/direct-smoke.json",
+          "bytes": 313,
+          "sha256": "c160426499b3966088bdcf21ad08f680cd6fd4c55c1bd1a2d7645b201fec0af3"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/smoke/direct-unknown.json",
+          "bytes": 315,
+          "sha256": "ec1f726f986935ef3df0bd854671445c6ee62c392c2514365ff5cbab0b8b3782"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/smoke/direct-missing-path.json",
+          "bytes": 318,
+          "sha256": "0f5ef4438e9cf003db44feee4a9e6915366726884702c22ac9c8f00f3b25c583"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/raw/smoke/direct-mixed.json",
+          "bytes": 349,
+          "sha256": "b78e88f3643ce396f15b25db8e63a813524bf0bd87680953d1be8e5b50be00ed"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/finite-artifact-audit.json",
+          "bytes": 41291,
+          "sha256": "4aad60a340348364ce55e15a1d33cb183fe52eb6287daeb5eeaa2638f66103c1"
+        }
+      ],
+      "images": [],
+      "limits": []
+    },
+    {
+      "id": "15_source_cjp_delivery",
+      "obligation": "Source/CJP distribution includes runnable showcase and canonical themes",
+      "status": "passed",
+      "finding": "Normal cjpm bundle raw ends success, fixed CJP29cab...; 205 relevant CJP product/native/showcase/theme/build/manifest files byte-equal independently built source. 223 fixed exported files match Gitb5de3dd. Producer historical ELF path is absent; lossless witness verifies original dc10... bytes. Independent physical ELF remains3887....",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/themes/README.md",
+          "bytes": 412,
+          "sha256": "10fd16da69af6ca42812580978fdb32d6a9763dd8adc068174ea9706205816b1"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/cjpm.toml",
+          "bytes": 165,
+          "sha256": "d2e851b7686273d7eda98d51305e7691e0ef9051c3491a50b8d436852cf8cc18"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-implementation/source/target/cjtui-0.0.0.cjp",
+          "bytes": 179148,
+          "sha256": "29cab0f8de79a3b42ebc6a8bf7e2c2648217b565ccbc0e03f77f4cb915852c7a"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-implementation/evidence/bundle-v2.log",
+          "bytes": 148156,
+          "sha256": "685fe55df8c5169989d65e92c22c00516b5e0d0b67badee23a4f31bc79629cd9"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-implementation/storage-addendum-index.json",
+          "bytes": 1293,
+          "sha256": "fbe4379dc6d0c7b0309c3d00defa1c874478c2e41a8aef286bf054f053b3000d"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-implementation/evidence/final-witness/witness-map.json",
+          "bytes": 709,
+          "sha256": "a25d0d2b07d154ce76c7fd6dea8f3835e76c2a17aa1ac93a7693cd943108fd51"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/finite-artifact-audit.json",
+          "bytes": 41291,
+          "sha256": "4aad60a340348364ce55e15a1d33cb183fe52eb6287daeb5eeaa2638f66103c1"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/source-git-audit.json",
+          "bytes": 30830,
+          "sha256": "5b4ef7b8cce49f3b9aa5eb734deeae9b38b5fa5f96353c26445b57a34e76aa5d"
+        }
+      ],
+      "images": [],
+      "limits": [
+        "This is showcase distribution and independent source execution evidence. Final clean-cache full package consumption, complete release contents and TASK023/024 acceptance remain later; bundle success is not full release success."
+      ]
+    },
+    {
+      "id": "16_original_gui_provenance_restoration",
+      "obligation": "Original real GUI pixels, full grids/styles/source/time/config/hash plus actual direct exits and native restoration",
+      "status": "passed",
+      "finding": "138 sealed GUI bindings match; 23 original PNGs, six representative originals visually inspected;28 compressed originals verified. Main actual XFCE1.1.4/VTE0.80.1 X.Org session records full sequence. Main PID1253321 and short provenance PID1258098 strace direct exits0, exact termios and actual mode25 reply1→1. Second live process maps/exe bind same ELF and actual loaded VTE library.",
+      "source": [
+        {
+          "path": "/workspace/work/theme-showcase-execution/source/examples/theme_showcase/src/main.cj",
+          "bytes": 809,
+          "sha256": "309a0b30b8b1a77ddd4ae35378b89dc4085b7a514e964a8f4d7d6abb4d8e6502"
+        }
+      ],
+      "raw_and_frozen": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/index.json",
+          "bytes": 28765,
+          "sha256": "1df1af72ccbf6c2f58f304e92d9ed287c30c4e00479844ffd45d8d036c1de24f"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/gui-binding-audit.json",
+          "bytes": 86,
+          "sha256": "e544f43fb08dc6840d169a91fb4c55cb20daea7212a401db700b165f4c8a8c3e"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-acceptance/gui-raw-audit.json",
+          "bytes": 155516,
+          "sha256": "87e1aed822942849af6f7db3dc2cf2f5ad9c37e8b8cb4d3ce708c3f5b35f38a7"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/provenance/live-maps.json",
+          "bytes": 73415,
+          "sha256": "9144d595a16ed2adf06c28741f07d6f69cbdaff794909bb35bae258619d50e15"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/product-command.json",
+          "bytes": 839,
+          "sha256": "3d9cae198bb38a0c6834666465c0664640c0285926097ae6d5b77712034b1fa6"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/terminal-before.json",
+          "bytes": 861,
+          "sha256": "2b5c641e261e51b489bfde1a4122719199d3e68272ed00d112f05e670c4640dc"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/terminal-after.json",
+          "bytes": 892,
+          "sha256": "38477a11691f2ab65dd2b5e1da71cb4af3b7cf2dbc9bcf1303869281fb34f418"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/mode25-before.json",
+          "bytes": 164,
+          "sha256": "4d5fac6008794c5343bbe52769248c1660ff2c3e83443942355e9cea5937aadf"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/mode25-after.json",
+          "bytes": 164,
+          "sha256": "0d44295cf2725e10b0c808f6e1142ebbc8dfc897f2b062fc782620cf572da586"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/product.strace.gz",
+          "bytes": 21387,
+          "sha256": "f6122563e8a97190cdf7c55ba762604e257d3276df4d49d7360345782762eeac"
+        }
+      ],
+      "images": [
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/classic-prepared.png",
+          "bytes": 48488,
+          "sha256": "bd30263400acca0d9fedbce5cf02ad90bd112c92f1202f604361a2a7cb0c5df6"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/dark-modal.png",
+          "bytes": 52763,
+          "sha256": "9db590c950721f4ece034dc7c4e8248b08041636e574f374ae807e8c714b0e7c"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/light-prepared.png",
+          "bytes": 50544,
+          "sha256": "412b366fd26acb1a6e18a914a79bb8c541e1ae82b96a1ad5757fd5911f168bb1"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/high-contrast-popup.png",
+          "bytes": 52134,
+          "sha256": "63549ea1e78779dccbd82ec6f164876237832f1ca681351474f4c5a2146cc50c"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/resize-16x6.png",
+          "bytes": 8726,
+          "sha256": "ede814e819c149128e1436a105a0b3ded593a49a2066747ccb47f9824caab9f7"
+        },
+        {
+          "path": "/workspace/work/theme-showcase-gui/raw/session/file-invalid.png",
+          "bytes": 50939,
+          "sha256": "845c8280009fb7f4f734ecb16ce915d257dead2f0e91ab97d0c337bf8de39fb2"
+        }
+      ],
+      "limits": [
+        "First main-run /proc maps/exe access was denied. Second short same-ELF/profile session provides exact live host/product maps; it is not retroactive exact main-run inode attestation or a second full gallery run. One accepted-name predicate initially used HighContrast spelling; corrected High contrast check retains original frame/PNG."
+      ]
+    }
+  ],
+  "required_gaps": [],
+  "limits": [
+    "Complete original AC027 is accepted within frozen current M1 C006 showcase scope. This does not accept all M1, M2, final Linux/041/C008 matrix, final artifact023, overall024 or release.",
+    "Current full four-theme actual GUI evidence is one isolated XFCE/VTE host profile. XTerm and VM VT only contribute accepted unchanged-core basic-color/glyph/ABI evidence; no new four-theme run there is implied.",
+    "Finite synthetic PTY is xterm-256color/truecolor with synthetic cursor reply; not real-host certification.",
+    "GUI selection and post-switch undo are observed. Older undo-stack survival is source-supported through unchanged retained sessions; no old-entry runtime test is invented.",
+    "Run sets sample pending state; real worker proof stays accepted AC021. Focus is deliberately moved by controls during GUI sequence.",
+    "Producer historical ELF is gzip-recoverable only. Physical original path absence is recorded; independent execution ELF exists.",
+    "No build, functional test-suite rerun, product/test/main edit, subagent, archive integration or push occurred in this acceptance role."
+  ],
+  "method": "Independent fixed-source, original PNG, raw terminal record, hash and Git/CJP content verification; valid unchanged execution reused under AGENTS11.1; verification-before-completion skill."
+}
