@@ -1,0 +1,297 @@
+{
+  "task": "TASK020.e",
+  "role": "independent current-M1 recovery input acceptance",
+  "utc": "2026-11-14T01:43:21.525816+00:00",
+  "source": "e35d407a87ab197537ccc931c143c9927458a75f",
+  "frozenTests": "8929bd09ca0e77093ac8d070e513b388e02487a7",
+  "verdict": "PASS_CURRENT_M1_RECOVERY_INPUT",
+  "status": "COMPLETE_CURRENT_M1_HANDOFF_ONLY",
+  "findings": [],
+  "blockingGapsCurrentM1": [],
+  "completeCurrentM1RecoveryInput": true,
+  "completeParent020": false,
+  "completeOriginalAC020": false,
+  "fullLinux": false,
+  "fullRelease": false,
+  "publication": false,
+  "verifiedBindings": {
+    "finiteGUI": 5770,
+    "VT": 798,
+    "frozen020InputManifest": 29,
+    "historicalInputErrorSelected": 4,
+    "losslessGzipOriginals": 39,
+    "VTpixelPairs": 53,
+    "actualGUIHostIdentities": 52
+  },
+  "sourceReuseProof": {
+    "coreBase": "80d21e071537898cde27f1c7de4328ab6f27d991",
+    "head": "e35d407a87ab197537ccc931c143c9927458a75f",
+    "paths": [
+      "src",
+      "native",
+      "cjpm.toml",
+      "cjpm.lock",
+      "build.cj"
+    ],
+    "gitDiffNameOnly": "",
+    "tests8929ToMainDiff": "",
+    "independentExecutionSourceWorktreesClean": true,
+    "payloadDifferences": [
+      "init export gzip only"
+    ],
+    "binarySha256": "6448608e02572b788a162ddf1dcb25d4401d378ad6e2e1aa0c90d97d33529c12"
+  },
+  "inputs": [
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-020-acceptance-brief.md",
+      "bytes": 12280,
+      "sha256": "cb16a1815cf27b19bc543c77a18b04a2157af5072b8f06ea3f647d3d7c6b05a8"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/AGENTS.md",
+      "bytes": 35500,
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/acceptance.md",
+      "bytes": 38640,
+      "sha256": "8bbe478c02aeebf28c95590f73c921d34c43838fba0bfa748450999a1e7945d2"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R22/020/input-manifest.json",
+      "bytes": 7773,
+      "sha256": "396db59df5b22764c2be5ffd664eed7734b6c9957f27c82ceabe297d529c4cf4"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R22/008/input-manifest.json",
+      "bytes": 83652,
+      "sha256": "6f10c6eb41e83164bae545cb3b7fd93fa56fffd4f6613ca9b85755fa9c81a3fb"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/index.json",
+      "bytes": 981295,
+      "sha256": "cfd39e55e3f1fd2e53c74bc878e69f33bf25cfa596a53fc8a6714589eba17157"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-vt-execution/index.json",
+      "bytes": 164929,
+      "sha256": "ee5868e792b4f4726c92735b0087b6edaf5b05d2d2eabf2325016ebad101125b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/raw/build-provenance.json",
+      "bytes": 5959,
+      "sha256": "87fca851dfc7e35d69b76272215d0c005fbd20eb1ea3dcbe04beaf09cb3be7e2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/raw/runtime-provenance.json",
+      "bytes": 2319,
+      "sha256": "2ac0103f470be061c914f92ae24c651ba8db4ec38cbdc06f6e1c84d669fc2bce"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-review/index.json",
+      "bytes": 73252,
+      "sha256": "4e58f3779e8946f565e74da7a711561e14c937cd78f656b7cac1da8381ff7b26"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-review/findings.json",
+      "bytes": 5395,
+      "sha256": "8f69288f5fb976ded32a4fa8e477decee030ad69d583988ddaf9c7838240aaa2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-review/fix-r1/index.json",
+      "bytes": 190096,
+      "sha256": "53f8ba1c52b761e46a4c1ac9ec15b38a54a4394366bbb23a77afa511e54eb524"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-review/fix-r1/findings.json",
+      "bytes": 5977,
+      "sha256": "2e2f45948038f46093b40a9ded0437cd0a171df3e8d5090bbca525c62cda47fd"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/evidence/index.json",
+      "bytes": 4350229,
+      "sha256": "06b9228d5f74f7f21187204cac7d5cf6db28413661c93b0392691118520e126c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/index.json",
+      "bytes": 1824953,
+      "sha256": "a0d0d4280f263af90fc7ed75ac37fb70e4ac4e716d1e27d3147b923184a3be26"
+    },
+    {
+      "path": "/workspace/work/output-recovery-acceptance/index.json",
+      "bytes": 9850,
+      "sha256": "ae1eaf30663ac05beb90a99e4a99d5591c000a1e30f1fb8de96935e009414e2d"
+    },
+    {
+      "path": "/workspace/work/output-recovery-acceptance/ac-results.json",
+      "bytes": 80094,
+      "sha256": "6e7c85882343baaa49fa700c631436eec8954703ac32baee0bf395d785e3a29b"
+    },
+    {
+      "path": "/workspace/work/visible-snapshot-acceptance/index.json",
+      "bytes": 5751,
+      "sha256": "65ad82843d95148aa65b44c609f72d0b6872e70d1b25c8ac83c3d0f1baf5924d"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/acceptance-matrix.json",
+      "bytes": 24200,
+      "sha256": "37657ef383e0001b19c9781f4f1c7475aa900ba11af973ae9bab26d9d2f5fbfc"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/complete-linux-integration/design.md",
+      "bytes": 12137,
+      "sha256": "6f40454ebfa2160da6a9e43f4c8501e022013a9919b252d43ac7d63a6e641001"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-session-extensions/design.md",
+      "bytes": 27248,
+      "sha256": "13d28b28aea0c023ad8865d1b62fb83b594847cefd5e26eecaee195a9d5a10a5"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/design.md",
+      "bytes": 76152,
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-linux-input-editing/design.md",
+      "bytes": 43550,
+      "sha256": "359b1efaaac18e21066d59aad0d61ef83eeda967c656bc25d7aa68f580ab5eb5"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-reactive-runtime/design.md",
+      "bytes": 40090,
+      "sha256": "dcfed7b4ca2e412bb075e923217bf2867556bfb1f8c7991a7384c519b830dbb7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/src/application.cj",
+      "bytes": 36536,
+      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/src/runtime_session.cj",
+      "bytes": 66044,
+      "sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/src/session_extension_state.cj",
+      "bytes": 9123,
+      "sha256": "c0893f5b3fccec9b42d90cae1bd9ffd18bf5a712d2f35c7fb7f19de81abceef9"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/src/terminal_bridge.cj",
+      "bytes": 2436,
+      "sha256": "659798da1bf63458c3dff2b0a075ae899a9413589ee24ea00232b32df16cb523"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/src/ui_cleanup_exception.cj",
+      "bytes": 1905,
+      "sha256": "e94605384f3495df6c7303fd866cddbfc20b987db398a7794d9d27f4372cfc09"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/native/cjtui_terminal.c",
+      "bytes": 4769,
+      "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/src/lifecycle.cj",
+      "bytes": 10211,
+      "sha256": "72804105bab4dea310f7b796d21477d97f533220e4e241898858571f98fe3f2c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/src/checks.cj",
+      "bytes": 1056,
+      "sha256": "a1571da953475d4b4f9c8c8a15dee3c02ab35aa54b61fde9fd81cf271ca0473a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/src/initial_lifecycle.cj",
+      "bytes": 2097,
+      "sha256": "c0c2eb2876bed9ac16749e36d137f0caa50585445591b119eca4962f2d693081"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/native/lifecycle_native.c",
+      "bytes": 6981,
+      "sha256": "2bf11bb2a950227443533fdf5ea0e56ce8c7af8cb1a7298f12ba51e68ea36517"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/oracle.py",
+      "bytes": 6213,
+      "sha256": "5f04c0ea24ce9356632f0aa7167b694cf740baa0c477fa727887fae2ccaeb01f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/host_verify.py",
+      "bytes": 4267,
+      "sha256": "1b72a9dfc99113a3d16c1b58b1260c26b353e719d98129810e4700995997270a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/endpoint_hup.py",
+      "bytes": 6596,
+      "sha256": "4d5932f55ef3cc06626fd2c72ef8536703659fcf9395bf49529bffad7794e918"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/prepare_check.py",
+      "bytes": 5428,
+      "sha256": "754f3ea36a9111ea70f9c0a4af191ab0dc8b218b723f5f98dd66b5acc1dad6ef"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/cases.json",
+      "bytes": 2972,
+      "sha256": "5f97306cf2a78acdfc1b05cfd069212afb6db463906351d2fa484c3f879bd9cc"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/evidence/run-05/endpoint-hup/native.tsv",
+      "bytes": 206,
+      "sha256": "e4dd3989902a2c233a0d6988b025c3f127c7b33ba471f927b0b6c846d89b9a1a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/evidence/run-05/endpoint-hup/primary-1",
+      "bytes": 21,
+      "sha256": "a7dbede270e5d3e08447f4b0385cc3b0e167c8b1046e81d6bd65112e6aaa1ad4"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/evidence/run-05/endpoint-hup/extras-1",
+      "bytes": 106,
+      "sha256": "46960148de59eaa590ef0c8333581e88b3cf08f143acafceaaad702df5199bfe"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/evidence/run-05/endpoint-hup/capture.json",
+      "bytes": 4612,
+      "sha256": "dade898a6d864ac4f54d6d8dc32d10c953e470715c83525a80059477d0ba01ee"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/workspace/work/session-lifecycle-acceptance/report.md",
+      "bytes": 3050,
+      "sha256": "7abdf49c2f099314ff7f5e82fdc7addbcde67ca43505fe7c50cbe2915465aa20"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-acceptance/ac-results.json",
+      "bytes": 84088,
+      "sha256": "a6a15345eeced5cb732ff06f6e8f85aa5d5d3be4e41e570735995117bb1fd863"
+    }
+  ],
+  "limits": [
+    "This accepts only complete current-M1 C004 recovery input, not completion of parent TASK020/full original AC020, M2,041,024, full Linux or release.",
+    "Destroyed PTY restoration is unavailable/EIO with explicit failure and no restart; no physical-host HUP recovery claim.",
+    "Fresh endpoint rows exercise read0/native-4. Historical input-error primary retained by source classification; size-error branch remains prepared and unexercised, not an all-kernel-path guarantee.",
+    "Pipe read/poll substitution, external canonical VEOF and real last-master close are distinct mechanisms.",
+    "VT is a real kernel VT on a virtual machine with recorded minimal initramfs/runtime closure, not physical hardware or full distribution certification.",
+    "VT mode25/prior2004 are Unknown. GUI prior2004-on is not preserved: the frozen contract disables the session-owned request.",
+    "Current actual-host Auto has no optional title request. Declared bytes and screenshots do not establish Applied or RestoreConfirmed; accepted152 title effects retain original finite scope.",
+    "Unsafe338-cut and prior152/117/122/112/162/008/010 evidence reused only unchanged scope; no unnecessary builds or product-test reruns.",
+    "Business worker lifetime belongs to the consumer; Application owns post/session tokens. SIGKILL remains outside cleanup guarantee."
+  ],
+  "method": "Independent read-only source/contract/hash/raw/image inspection and literal assertions. Existing valid runtime execution reused under AGENTS11.1; no build/product test rerun or author verdict inheritance.",
+  "roleIsolation": "No author standalone report, reasoning or self-assessment used as proof; source/test/spec/main unchanged; no subagents or pushes.",
+  "skills": [
+    {
+      "package": "c6/using-superpowers",
+      "use": "read; dispatched-subagent exemption applies"
+    },
+    {
+      "package": "c6/verification-before-completion",
+      "use": "Fresh read-only hash/source/raw condition checks before scoped verdict; AGENTS11.1 valid runtime evidence reused"
+    }
+  ],
+  "selfHash": "excluded; supplied separately"
+}

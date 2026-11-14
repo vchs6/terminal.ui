@@ -1,0 +1,30 @@
+{
+  "utc": "2026-11-14T01:31:24.168280+00:00",
+  "commands": [
+    {
+      "argv": [
+        "python",
+        "/workspace/work/session-lifecycle-vt-execution/tools/run.py",
+        "stop"
+      ],
+      "actual_exit": 0,
+      "runner_at_execution": "tools/run-v1.py"
+    },
+    {
+      "argv": [
+        "python",
+        "/workspace/work/session-lifecycle-vt-execution/tools/matrix.py"
+      ],
+      "actual_exit": 0,
+      "cases": "remaining12 ordinary cases",
+      "runner_versions": "tools/run-v1b.py for ctrl-c/prevented/signal-int; tools/run-v2.py for signal-term through callback-close"
+    }
+  ],
+  "source_mapping": {
+    "payload_v1_init": "tools/vt-init-v1.sh",
+    "payload_v2_init": "tools/vt-init.sh"
+  },
+  "guest_payload_member_differences": [
+    "/init only: post-test tar compression; unchanged consumer/runtime/fixture/supervisor"
+  ]
+}

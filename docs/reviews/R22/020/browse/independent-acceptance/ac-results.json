@@ -1,0 +1,1859 @@
+{
+  "task": "TASK020.e",
+  "ac": "AC-020",
+  "source": "e35d407a87ab197537ccc931c143c9927458a75f",
+  "frozenTests": "8929bd09ca0e77093ac8d070e513b388e02487a7",
+  "verdict": "PASS_CURRENT_M1_RECOVERY_INPUT",
+  "status": "COMPLETE_CURRENT_M1_HANDOFF_ONLY",
+  "utc": "2026-11-14T01:43:21.525816+00:00",
+  "originalAC": "当前在冻结Linux配置正常退出、异常及取消均按平台契约清理模式/光标；其他OS后续扩展",
+  "conditions": [
+    {
+      "id": "C004-01",
+      "condition": "Fixed source, independent build and evidence provenance",
+      "result": "PASS",
+      "judgment": "Current main and both independent execution source trees are e35 with no tracked or untracked diff. Frozen tests equal 8929. All 5770 finite/GUI and 798 VT index bindings match; producer binary and both VM payload copies equal SHA6448608e. Payload v1/v2 differ only in init export compression.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/raw/build-provenance.json",
+        "/workspace/work/session-lifecycle-execution/raw/runtime-provenance.json",
+        "/workspace/work/session-lifecycle-vt-execution/raw/payload-manifest.json",
+        "/workspace/work/session-lifecycle-vt-execution/raw/payload-v2-manifest.json"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-02",
+      "condition": "Normal q/stop and keyboard CtrlC/preventDefault",
+      "result": "PASS",
+      "judgment": "Literal no-error outcomes for stop/ctrl-c/prevented; prevented marker requires actual raw03 consumed before q; both safe runs complete. GUI and direct VT input/event originals corroborate the fixed public consumer.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/ctrl-c-visible",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/prevented-hidden",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-prevented/evidence/input.bin"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-03",
+      "condition": "Catchable cancellation and signals",
+      "result": "PASS",
+      "judgment": "SIGINT/SIGTERM rows have native-read -2, no synthetic business error, complete native/UI cleanup and same-App restart. VT serial names actual product PID, kill signal and rc0; App/QEMU exit0. Uncatchable SIGKILL excluded by contract.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/signal-int-hidden",
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-signal-term/result.json",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-signal-int/serial.log.gz",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-signal-term/serial.log.gz"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-04",
+      "condition": "Business callback/getter/draw/post failures",
+      "result": "PASS",
+      "judgment": "Each first error equals its frozen L020 literal; callbacks with cleanup retain exact primary/additional lists. Reset fixture and same Application complete a clean second run; no unexpected second failure.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/src/lifecycle.cj",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-hidden",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/getter-hidden",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/draw-hidden",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/post-hidden"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-05",
+      "condition": "Partial initialization failure and cleanup",
+      "result": "PASS",
+      "judgment": "initial-getter/mount/measure/draw emit exact error, revoke all registered resources once, restore both native acquisitions and restart. Query/paste/native-buffer counts distinguish failures before first device transaction from later initialization failures.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/src/initial_lifecycle.cj",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-getter-visible",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-draw-unknown"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-06",
+      "condition": "EOF and HUP semantics",
+      "result": "PASS",
+      "judgment": "OSpipe EOF and buffered POLLHUP retain z + IncompleteInput + real read0; canonical-VEOF produces actual TTY read0 and exact restoration. Separate last-master-close rows prove read0/native -4 Auto and Declared policies with exact errors. Old input-error raw is retained only as historical source-classified terminal-input failure; size-error branch is not claimed exercised.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/endpoint_hup.py",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/pipe-hup-hidden",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/tty-eof-visible",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/endpoint-hup",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/endpoint-hup",
+        "/workspace/work/session-lifecycle-formal-tests/evidence/run-05/endpoint-hup"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-07",
+      "condition": "Destroyed endpoint limitations remain observable",
+      "result": "PASS",
+      "judgment": "Both endpoints retain same device identity; after tcgetattr returns -1/EIO/null rather than restored. Native close fails once, handlers/flags restore and buffer frees; UI closes once, no closed-2, no descriptor replacement or fabricated reopen.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/endpoint-hup/native-termios-after-1.json",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/endpoint-hup/native.tsv"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-08",
+      "condition": "Exact raw/termios restoration and actual application endpoint",
+      "result": "PASS",
+      "judgment": "All 382 safe runs have matching same-child endpoint identity and all defined termios fields (including 32 cc and raw speeds), with raw-active observed. Four nested positives match; explicit ECHO negative changes lflag by8, App0/outer equal but wrapper1 rejects it.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/native/lifecycle_native.c",
+        "/workspace/work/session-lifecycle-execution/raw/nested-r2/negative-child-drift",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-stop/evidence/native-termios-before-1.json",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-stop/evidence/native-termios-after-1.json"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-09",
+      "condition": "Signal handlers/masks/flags, native buffer and exclusivity",
+      "result": "PASS",
+      "judgment": "Per safe run one open/close, exact custom WINCH/INT/TERM address+mask restoration and flags, tracked buffer release; competing real native open rejected during ordinary runs. Initial failures allocate only when device transactions start; later reacquisition demonstrates owner release.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/source/tests/session_extensions/native/session_fault.c",
+        "/workspace/work/session-lifecycle-execution/source/native/cjtui_terminal.c",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/stop-hidden/native.tsv",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-getter-visible/native.tsv"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-10",
+      "condition": "UI resources, once cleanup and business/UI data isolation",
+      "result": "PASS",
+      "judgment": "Public consumer checks zero mountedNodes/bindings/subscriptions/pendingPosts, canonical empty focus/caret, invalid old refs and layer handles, once root/layer cleanup and no closed-session getter evaluation. Complete markers are emitted only after all assertions; source has one RuntimeSession and revokes tokens/queues before cleanup.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/src/checks.cj",
+        "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/src/lifecycle.cj",
+        "/workspace/work/session-lifecycle-execution/source/src/runtime_session.cj",
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-stop/child/complete"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-11",
+      "condition": "Worker posts and same-Application restart",
+      "result": "PASS",
+      "judgment": "worker-stop spawns a real producer, queues owned post, stops and joins it; stopped/closed posts are refused and never execute. All safe scenarios reuse one App for run2 with base focus and no stale layer/post/subscription/error state. Business owns Future/join; no arbitrary worker-cancellation promise.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/worker-stop-hidden/worker",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/worker-stop-visible",
+        "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/src/lifecycle.cj"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-12",
+      "condition": "Primary error and complete ordered cleanup failures",
+      "result": "PASS",
+      "judgment": "callback-cleanup retains L020_CALLBACK + [L020_CLEANUP]; callback-close retains L020_CALLBACK + [terminal restore failed]. HUP Auto is terminal write failed + [terminal restore failed]; Declared is exact title failure + [terminal write failed, terminal restore failed]. No extra, missing, duplicate or reordered entries accepted; real native restoration precedes explicit close-error injection.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-cleanup-hidden",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-close-visible",
+        "/workspace/work/session-lifecycle-execution/source/tests/session_lifecycle/prepare_check.py",
+        "/workspace/work/session-lifecycle-execution/raw/prepare.log"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-13",
+      "condition": "I015 known managed cursor restoration and Unknown preservation",
+      "result": "PASS",
+      "judgment": "Both run segments obey restore-after-owned-paste order. Known-hidden run2 shows then hides; unchanged visible run2 need not redundantly restore. All52 GUI rows forward actual replies and before/after mode25 match. All13 directVT rows observe Unknown/no reply, issue zero25h/l/s/r and keep logical UI functioning.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-stop/child/host-before.json",
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-stop/child/host-after.json",
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-stop/child/input.bin",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-stop/evidence/host-before.json",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-stop/evidence/wire.bin"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-14",
+      "condition": "Owned bracketed paste mode2004",
+      "result": "PASS",
+      "judgment": "Exactly one owned enable/disable per device session, ordered around query and before known-cursor restoration. GUI prior2004 on and off are actual observations, post state is reset; VT prior state remains Unknown. Frozen K004 owns requested h/l, not preservation of an inherited on state.",
+      "evidence": [
+        "/workspace/work/terminal.ui/openspec/changes/implement-linux-input-editing/design.md",
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-stop/child/host-before.json",
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-stop/child/host-before.json",
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-stop/child/host-after.json"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-15",
+      "condition": "Optional title scope and NoImageAdapter result honesty",
+      "result": "PASS",
+      "judgment": "Current actual-host Auto consumers make no title request/scope and emit no title bytes. Declared protocol stress has one push/set/pop per ordinary run and only SaveSentUnconfirmed/RestoreSentUnconfirmed, before paste cleanup. NoImageAdapter Unsupported does not fail UI. Actual title effects and Unknown/Unavailable remain only accepted152 original finite scope; no new Applied/RestoreConfirmed inference.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/stop-hidden",
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-stop/child/session-policy",
+        "/workspace/work/terminal.ui/docs/reviews/R18/acceptance/acceptance-matrix.json"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-16",
+      "condition": "Unsafe partial output stops later bytes and refuses reopen; success-only baselines",
+      "result": "PASS",
+      "judgment": "Accepted008 ae1eaf30/880f71ed reused at its original finite338-cut scope after independent empty Git diff of src/native/cjpm/build from80d to e35. Inspected partial raw39-byte failure -> unsafe1 -> silent native close -> reopen-2; original primary+UI/native extras retained. Current source preserves this sole writer latch, baseline commit-after-success and no later title/paste/cursor/frame output.",
+      "evidence": [
+        "/workspace/work/output-recovery-acceptance/index.json",
+        "/workspace/work/output-recovery-execution/raw/run/cut-style-action-1-1-39/native.tsv",
+        "/workspace/work/output-recovery-execution/raw/run/cut-style-action-1-1-39/reopen",
+        "/workspace/work/output-recovery-execution/raw/run/primary-plus-ui-native-cleanup/result",
+        "/workspace/work/session-lifecycle-execution/source/src/application.cj",
+        "/workspace/work/session-lifecycle-execution/source/native/cjtui_terminal.c"
+      ],
+      "scope": "Accepted008 original finite output scope reused unchanged; not a new338 runtime rerun"
+    },
+    {
+      "id": "C004-17",
+      "condition": "Actual host identity, direct VT path and unmodified images",
+      "result": "PASS",
+      "judgment": "GUI actual XTerm398 and XFCE1.1.4/libVTE0.80.1 executable/maps identities checked for all52 rows. VT actual consumer uid/euid1000 fd0/fd1 tty1 rdev4:1, KD_TEXT and GIO_UNIMAP303 prove Auto VT path on Linux6.12.107+deb13-amd64/QEMU10.0.13TCG. Original GUI160 PNG catalogue retained; all53 VT PPM/PNG pairs pixel-identical and39 gzip originals roundtrip hash/length verified; selected original layer frames visually inspected.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-execution/raw/gui-summary.json",
+        "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-stop/host-identity.json",
+        "/workspace/work/session-lifecycle-vt-execution/raw/host-tool-context.json",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-stop/evidence/product.strace.gz",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-stop/serial.log.gz",
+        "/workspace/work/session-lifecycle-vt-execution/raw/vt-stop/layer.ppm"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "C004-18",
+      "condition": "Review findings and historical integrity",
+      "result": "PASS",
+      "judgment": "Original review4e58 remains CHANGES_REQUIRED history. Fixed scoped review53f8 addresses020R1-R4; acceptance independently inspected changed policy/native observer/extras/two-run cursor checks and actual positive/negative raw evidence. No current unresolved recovery finding established. Initial runtime-loader127 infrastructure failure retained; sourced-runtime r2 uses unchanged source/binary.",
+      "evidence": [
+        "/workspace/work/session-lifecycle-review/index.json",
+        "/workspace/work/session-lifecycle-review/findings.json",
+        "/workspace/work/session-lifecycle-review/fix-r1/index.json",
+        "/workspace/work/session-lifecycle-review/fix-r1/findings.json",
+        "/workspace/work/session-lifecycle-execution/raw/matrix-auto/stop-visible/capture.json",
+        "/workspace/work/session-lifecycle-execution/raw/runtime-provenance.json"
+      ],
+      "scope": "current M1 C004 recovery input"
+    },
+    {
+      "id": "AC020-final",
+      "condition": "Original final AC020, M2/release-affected recovery and final Linux acceptance",
+      "result": "OPEN_OUTSIDE_CURRENT_SCOPE",
+      "judgment": "Not closed by this handoff. Reverify changes affected by future M2/release and let024 assess complete original AC020;041/024 and full Linux/release remain open. KnownT087 themes/light.toml package-check failure belongs final023 and is not normalized as release success.",
+      "evidence": [
+        "/workspace/work/terminal.ui/docs/acceptance.md",
+        "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-020-acceptance-brief.md"
+      ],
+      "scope": "Future/final gate outside present handoff"
+    }
+  ],
+  "findings": [],
+  "blockingGapsCurrentM1": [],
+  "futureGates": [
+    "M2/release affected recovery verification",
+    "TASK024 complete original AC020",
+    "TASK041",
+    "Full Linux/release including023 knownT087"
+  ],
+  "limits": [
+    "This accepts only complete current-M1 C004 recovery input, not completion of parent TASK020/full original AC020, M2,041,024, full Linux or release.",
+    "Destroyed PTY restoration is unavailable/EIO with explicit failure and no restart; no physical-host HUP recovery claim.",
+    "Fresh endpoint rows exercise read0/native-4. Historical input-error primary retained by source classification; size-error branch remains prepared and unexercised, not an all-kernel-path guarantee.",
+    "Pipe read/poll substitution, external canonical VEOF and real last-master close are distinct mechanisms.",
+    "VT is a real kernel VT on a virtual machine with recorded minimal initramfs/runtime closure, not physical hardware or full distribution certification.",
+    "VT mode25/prior2004 are Unknown. GUI prior2004-on is not preserved: the frozen contract disables the session-owned request.",
+    "Current actual-host Auto has no optional title request. Declared bytes and screenshots do not establish Applied or RestoreConfirmed; accepted152 title effects retain original finite scope.",
+    "Unsafe338-cut and prior152/117/122/112/162/008/010 evidence reused only unchanged scope; no unnecessary builds or product-test reruns.",
+    "Business worker lifetime belongs to the consumer; Application owns post/session tokens. SIGKILL remains outside cleanup guarantee."
+  ],
+  "audit": {
+    "method": "Independent read-only assertion scan against literal contracts and reviewed consumer/native source; no build or test process rerun, no author verdict inheritance",
+    "raw_rows": [
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/stop-visible",
+        "case": "stop",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/stop-hidden",
+        "case": "stop",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/stop-unknown",
+        "case": "stop",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/ctrl-c-visible",
+        "case": "ctrl-c",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/ctrl-c-hidden",
+        "case": "ctrl-c",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/ctrl-c-unknown",
+        "case": "ctrl-c",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/prevented-visible",
+        "case": "prevented",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/prevented-hidden",
+        "case": "prevented",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/prevented-unknown",
+        "case": "prevented",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/signal-int-visible",
+        "case": "signal-int",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/signal-int-hidden",
+        "case": "signal-int",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/signal-int-unknown",
+        "case": "signal-int",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/signal-term-visible",
+        "case": "signal-term",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/signal-term-hidden",
+        "case": "signal-term",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/signal-term-unknown",
+        "case": "signal-term",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-visible",
+        "case": "callback",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-hidden",
+        "case": "callback",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-unknown",
+        "case": "callback",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/getter-visible",
+        "case": "getter",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/getter-hidden",
+        "case": "getter",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/getter-unknown",
+        "case": "getter",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/draw-visible",
+        "case": "draw",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/draw-hidden",
+        "case": "draw",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/draw-unknown",
+        "case": "draw",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/post-visible",
+        "case": "post",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/post-hidden",
+        "case": "post",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/post-unknown",
+        "case": "post",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/cleanup-visible",
+        "case": "cleanup",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/cleanup-hidden",
+        "case": "cleanup",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/cleanup-unknown",
+        "case": "cleanup",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-cleanup-visible",
+        "case": "callback-cleanup",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-cleanup-hidden",
+        "case": "callback-cleanup",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-cleanup-unknown",
+        "case": "callback-cleanup",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/close-visible",
+        "case": "close",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/close-hidden",
+        "case": "close",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/close-unknown",
+        "case": "close",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-close-visible",
+        "case": "callback-close",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-close-hidden",
+        "case": "callback-close",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/callback-close-unknown",
+        "case": "callback-close",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/worker-stop-visible",
+        "case": "worker-stop",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/worker-stop-hidden",
+        "case": "worker-stop",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/worker-stop-unknown",
+        "case": "worker-stop",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/pipe-eof-visible",
+        "case": "pipe-eof",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/pipe-eof-hidden",
+        "case": "pipe-eof",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/pipe-eof-unknown",
+        "case": "pipe-eof",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/pipe-hup-visible",
+        "case": "pipe-hup",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/pipe-hup-hidden",
+        "case": "pipe-hup",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/pipe-hup-unknown",
+        "case": "pipe-hup",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-getter-visible",
+        "case": "initial-getter",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-getter-hidden",
+        "case": "initial-getter",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-getter-unknown",
+        "case": "initial-getter",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-mount-visible",
+        "case": "initial-mount",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-mount-hidden",
+        "case": "initial-mount",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-mount-unknown",
+        "case": "initial-mount",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-measure-visible",
+        "case": "initial-measure",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-measure-hidden",
+        "case": "initial-measure",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-measure-unknown",
+        "case": "initial-measure",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-draw-visible",
+        "case": "initial-draw",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-draw-hidden",
+        "case": "initial-draw",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/initial-draw-unknown",
+        "case": "initial-draw",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/tty-eof-visible",
+        "case": "tty-eof",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/tty-eof-hidden",
+        "case": "tty-eof",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/tty-eof-unknown",
+        "case": "tty-eof",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-auto-r2/endpoint-hup",
+        "case": "endpoint-hup",
+        "status": "expected_failure_cleanup_satisfied",
+        "policy": "Auto",
+        "termios": "unavailable EIO",
+        "restart": "ineligible destroyed endpoint",
+        "branch": "actual tty read0 / native -4"
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/stop-visible",
+        "case": "stop",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/stop-hidden",
+        "case": "stop",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/stop-unknown",
+        "case": "stop",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/ctrl-c-visible",
+        "case": "ctrl-c",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/ctrl-c-hidden",
+        "case": "ctrl-c",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/ctrl-c-unknown",
+        "case": "ctrl-c",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/prevented-visible",
+        "case": "prevented",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/prevented-hidden",
+        "case": "prevented",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/prevented-unknown",
+        "case": "prevented",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/signal-int-visible",
+        "case": "signal-int",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/signal-int-hidden",
+        "case": "signal-int",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/signal-int-unknown",
+        "case": "signal-int",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/signal-term-visible",
+        "case": "signal-term",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/signal-term-hidden",
+        "case": "signal-term",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/signal-term-unknown",
+        "case": "signal-term",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-visible",
+        "case": "callback",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-hidden",
+        "case": "callback",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-unknown",
+        "case": "callback",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/getter-visible",
+        "case": "getter",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/getter-hidden",
+        "case": "getter",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/getter-unknown",
+        "case": "getter",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/draw-visible",
+        "case": "draw",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/draw-hidden",
+        "case": "draw",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/draw-unknown",
+        "case": "draw",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/post-visible",
+        "case": "post",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/post-hidden",
+        "case": "post",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/post-unknown",
+        "case": "post",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/cleanup-visible",
+        "case": "cleanup",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/cleanup-hidden",
+        "case": "cleanup",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/cleanup-unknown",
+        "case": "cleanup",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-cleanup-visible",
+        "case": "callback-cleanup",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-cleanup-hidden",
+        "case": "callback-cleanup",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-cleanup-unknown",
+        "case": "callback-cleanup",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/close-visible",
+        "case": "close",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/close-hidden",
+        "case": "close",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/close-unknown",
+        "case": "close",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-close-visible",
+        "case": "callback-close",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-close-hidden",
+        "case": "callback-close",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/callback-close-unknown",
+        "case": "callback-close",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/worker-stop-visible",
+        "case": "worker-stop",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/worker-stop-hidden",
+        "case": "worker-stop",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/worker-stop-unknown",
+        "case": "worker-stop",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/pipe-eof-visible",
+        "case": "pipe-eof",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/pipe-eof-hidden",
+        "case": "pipe-eof",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/pipe-eof-unknown",
+        "case": "pipe-eof",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/pipe-hup-visible",
+        "case": "pipe-hup",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/pipe-hup-hidden",
+        "case": "pipe-hup",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/pipe-hup-unknown",
+        "case": "pipe-hup",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-getter-visible",
+        "case": "initial-getter",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-getter-hidden",
+        "case": "initial-getter",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-getter-unknown",
+        "case": "initial-getter",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-mount-visible",
+        "case": "initial-mount",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-mount-hidden",
+        "case": "initial-mount",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-mount-unknown",
+        "case": "initial-mount",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-measure-visible",
+        "case": "initial-measure",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-measure-hidden",
+        "case": "initial-measure",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-measure-unknown",
+        "case": "initial-measure",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-draw-visible",
+        "case": "initial-draw",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-draw-hidden",
+        "case": "initial-draw",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/initial-draw-unknown",
+        "case": "initial-draw",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/tty-eof-visible",
+        "case": "tty-eof",
+        "cursor": "visible",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/tty-eof-hidden",
+        "case": "tty-eof",
+        "cursor": "hidden",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/tty-eof-unknown",
+        "case": "tty-eof",
+        "cursor": "unknown",
+        "policy": "Declared",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/matrix-declared-r2/endpoint-hup",
+        "case": "endpoint-hup",
+        "status": "expected_failure_cleanup_satisfied",
+        "policy": "Declared",
+        "termios": "unavailable EIO",
+        "restart": "ineligible destroyed endpoint",
+        "branch": "actual tty read0 / native -4"
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-stop/child",
+        "case": "stop",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-ctrl-c/child",
+        "case": "ctrl-c",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-prevented/child",
+        "case": "prevented",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-signal-int/child",
+        "case": "signal-int",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-signal-term/child",
+        "case": "signal-term",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-callback/child",
+        "case": "callback",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-getter/child",
+        "case": "getter",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-draw/child",
+        "case": "draw",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-post/child",
+        "case": "post",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-cleanup/child",
+        "case": "cleanup",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-callback-cleanup/child",
+        "case": "callback-cleanup",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-close/child",
+        "case": "close",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-visible-callback-close/child",
+        "case": "callback-close",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-stop/child",
+        "case": "stop",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-ctrl-c/child",
+        "case": "ctrl-c",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-prevented/child",
+        "case": "prevented",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-signal-int/child",
+        "case": "signal-int",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-signal-term/child",
+        "case": "signal-term",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-callback/child",
+        "case": "callback",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-getter/child",
+        "case": "getter",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-draw/child",
+        "case": "draw",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-post/child",
+        "case": "post",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-cleanup/child",
+        "case": "cleanup",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-callback-cleanup/child",
+        "case": "callback-cleanup",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-close/child",
+        "case": "close",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-xterm-hidden-callback-close/child",
+        "case": "callback-close",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-stop/child",
+        "case": "stop",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-ctrl-c/child",
+        "case": "ctrl-c",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-prevented/child",
+        "case": "prevented",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-signal-int/child",
+        "case": "signal-int",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-signal-term/child",
+        "case": "signal-term",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-callback/child",
+        "case": "callback",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-getter/child",
+        "case": "getter",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-draw/child",
+        "case": "draw",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-post/child",
+        "case": "post",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-cleanup/child",
+        "case": "cleanup",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-callback-cleanup/child",
+        "case": "callback-cleanup",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-close/child",
+        "case": "close",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-visible-callback-close/child",
+        "case": "callback-close",
+        "cursor": "visible",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-stop/child",
+        "case": "stop",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-ctrl-c/child",
+        "case": "ctrl-c",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-prevented/child",
+        "case": "prevented",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-signal-int/child",
+        "case": "signal-int",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-signal-term/child",
+        "case": "signal-term",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-callback/child",
+        "case": "callback",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-getter/child",
+        "case": "getter",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-draw/child",
+        "case": "draw",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-post/child",
+        "case": "post",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-cleanup/child",
+        "case": "cleanup",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-callback-cleanup/child",
+        "case": "callback-cleanup",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-close/child",
+        "case": "close",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-execution/raw/gui-r2-vte-hidden-callback-close/child",
+        "case": "callback-close",
+        "cursor": "hidden",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-stop/evidence",
+        "case": "stop",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-ctrl-c/evidence",
+        "case": "ctrl-c",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-prevented/evidence",
+        "case": "prevented",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-signal-int/evidence",
+        "case": "signal-int",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-signal-term/evidence",
+        "case": "signal-term",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-callback/evidence",
+        "case": "callback",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-getter/evidence",
+        "case": "getter",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-draw/evidence",
+        "case": "draw",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-post/evidence",
+        "case": "post",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-cleanup/evidence",
+        "case": "cleanup",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-callback-cleanup/evidence",
+        "case": "callback-cleanup",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-close/evidence",
+        "case": "close",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      },
+      {
+        "path": "/workspace/work/session-lifecycle-vt-execution/raw/vt-callback-close/evidence",
+        "case": "callback-close",
+        "cursor": "unknown",
+        "policy": "Auto",
+        "status": "raw_conditions_satisfied",
+        "both_runs": true
+      }
+    ],
+    "counts": {
+      "finite": 128,
+      "gui": 52,
+      "vt": 13,
+      "termios_safe_runs": 382,
+      "endpoint_unavailable": 2,
+      "lossless_gzip_originals": 39,
+      "pixel_pairs": 53
+    },
+    "negative_child_drift": {
+      "app_exit": 0,
+      "outer_equal": true,
+      "actual_child_lflag_xor": 8,
+      "wrapper_exit": 1,
+      "restoration_success_rejected": true
+    },
+    "failures": []
+  },
+  "readOnlyAuditProgram": "from pathlib import Path\nimport json,hashlib,gzip,re,collections,subprocess\nfrom PIL import Image\nE=Path('/workspace/work/session-lifecycle-execution');V=Path('/workspace/work/session-lifecycle-vt-execution');O=Path('/workspace/work/session-lifecycle-acceptance')\nJ=lambda p:json.loads(Path(p).read_text())\nT=lambda p:Path(p).read_text() if Path(p).exists() else None\ncases=J(E/'source/tests/session_lifecycle/cases.json')['cases'];checked=[]\nBINARY='6448608e02572b788a162ddf1dcb25d4401d378ad6e2e1aa0c90d97d33529c12'\ndef verify(d,c,cursor,auto,host=False):\n cid=c['id']; initial=cid.startswith('initial-'); raw=(d/'wire.bin').read_bytes();native=T(d/'native.tsv');rows=[s.split('\\t') for s in native.splitlines()]\n assert T(d/'complete')=='yes' and not (d/'assertion').exists(),d\n assert T(d/'closed-1')==T(d/'closed-2')=='0/0/0/0',d\n if c['first_extras']:\n  assert T(d/'primary-1')==c['first_primary'] and T(d/'extras-1').splitlines()==c['first_extras'],d\n elif c['first_primary'] is not None:assert T(d/'error-1')==c['first_primary'],d\n else:assert not (d/'error-1').exists(),d\n assert T(d/'error-2')==('terminal restore failed' if c['close_failure'] else None),d\n assert [r[0] for r in rows if r[0] in ['open','close']]==['open','close','open','close'],d\n assert [r[1:] for r in rows if r[0]=='open']==[['0','0']]*2,d\n assert [r[1:] for r in rows if r[0]=='close']==[['0',str(int(c['close_failure']))]]*2,d\n for kind in ['signal-restored','signal-flags']:\n  assert collections.Counter((r[1],r[2]) for r in rows if r[0]==kind)==collections.Counter({('28','1'):2,('2','1'):2,('15','1'):2}),d\n assert [r[1] for r in rows if r[0]=='raw-active']==['1','1'],d\n assert [r[1] for r in rows if r[0]=='buffer-released']==['1','1'],d\n n=1 if cid in ['initial-getter','initial-mount'] else 2\n assert sum(r[0]=='buffer-free' for r in rows)==n,d\n for run in [1,2]:\n  b=J(d/f'native-termios-before-{run}.json');a=J(d/f'native-termios-after-{run}.json')\n  assert b['endpoint']==a['endpoint'] and a['rc']==b['rc']==0 and a['errno']==b['errno']==None,d\n  assert a['fields']==b['fields'] and set(a['fields'])=={'iflag','oflag','cflag','lflag','line','cc','ispeed','ospeed'} and len(a['fields']['cc'])==32,d\n for seq in [b'\\x1b[?2004h',b'\\x1b[?2004l',b'\\x1b[?25$p']:assert raw.count(seq)==n,(d,seq)\n if cursor=='unknown':assert not any(x in raw for x in [b'\\x1b[?25h',b'\\x1b[?25l',b'\\x1b[?25s',b'\\x1b[?25r']),d\n if not initial:\n  assert [r[1] for r in rows if r[0]=='competing-open']==['-1','-1'],d\n  assert T(d/'session-policy')==('Auto/NoTitleRequest' if auto else 'DeclaredSupported-title-stress'),d\n  starts=[m.start() for m in re.finditer(re.escape(b'\\x1b[?2004h'),raw)]\n  for i,start in enumerate(starts):\n   segment=raw[start:starts[i+1] if i+1<len(starts) else len(raw)]\n   assert segment.index(b'\\x1b[?25$p')<segment.index(b'\\x1b[?2004l'),d\n   if cursor!='unknown':\n    original=b'\\x1b[?25h' if cursor=='visible' else b'\\x1b[?25l';opposite=b'\\x1b[?25l' if cursor=='visible' else b'\\x1b[?25h'\n    cmds=re.findall(rb'\\x1b\\[\\?25[hl]',segment)\n    if cmds:assert cmds[-1]==original,d\n    if i==0 or cursor=='hidden':assert opposite in segment and segment.rfind(original)>max(segment.rfind(opposite),segment.rfind(b'\\x1b[?2004l')),d\n   if not auto:assert segment.count(b'\\x1b[22;2t')==segment.count(b'\\x1b[23;2t')==1 and segment.index(b'\\x1b[23;2t')<segment.index(b'\\x1b[?2004l'),d\n  for run in [1,2]:\n   status={'visible':'original-visible','hidden':'original-hidden','unknown':'unknown-timeout'}[cursor]\n   assert T(d/f'probe-{run}')==T(d/f'state-{run}')==status,d\n   assert T(d/f'title-{run}')==('Auto/NoTitleRequest/NoImageAdapter' if auto else 'SaveSentUnconfirmed/NoImageAdapter'),d\n   assert T(d/f'title-closed-{run}')==('Auto/NoTitleScope' if auto else 'RestoreSentUnconfirmed'),d\n if auto:assert not any(x in raw for x in [b'\\x1b[22;2t',b'\\x1b[23;2t',b'\\x1b]2;']),d\n if cid=='prevented':assert T(d/'prevented')=='yes',d\n if cid=='worker-stop':assert T(d/'worker')=='joined',d\n if cid=='pipe-hup':assert T(d/'pipe-key')=='z' and T(d/'pipe-issue')=='IncompleteInput' and 'pipe-read\\t0\\t0' in native,d\n if cid=='pipe-eof':assert 'pipe-read\\t0\\t0' in native,d\n if cid=='tty-eof':assert 'tty-read\\t0\\t0' in native,d\n if cid in ['signal-int','signal-term']:assert 'native-read\\t-2\\t0' in native,d\n if host:\n  assert T(d/'direct.exit').strip()=='0',d\n  before=J(d/'host-before.json')['observations'];after=J(d/'host-after.json')['observations']\n  if cursor!='unknown':\n   assert before['25']['responseHex']==after['25']['responseHex'],d\n   reply=b'\\x1b[?25;1$y' if cursor=='visible' else b'\\x1b[?25;2$y'\n   assert (d/'input.bin').read_bytes().count(reply)>=2,d\n   assert after['2004']['state']=='reset',d\n  else:assert before['25']['state']==after['25']['state']==before['2004']['state']==after['2004']['state']=='unknown',d\n checked.append({'path':str(d),'case':cid,'cursor':cursor,'policy':'Auto' if auto else 'Declared','status':'raw_conditions_satisfied','both_runs':True})\nfor policy in ['auto','declared']:\n root=E/'raw'/f'matrix-{policy}-r2'\n for c in cases:\n  for cursor in ['visible','hidden','unknown']:\n   d=root/(c['id']+'-'+cursor);cap=J(d/'capture.json');assert cap['exit']==0 and not cap['timed_out'] and cap['before']==cap['after'],d\n   assert J(d/'launch.json')['binarySha256']==BINARY,d\n   verify(d,c,cursor,policy=='auto')\n d=root/'endpoint-hup';cap=J(d/'capture.json');n=T(d/'native.tsv');auto=policy=='auto'\n assert cap['exit']==0 and not cap['timed_out'] and cap['after']==None and cap['afterError']['errno']==5,d\n assert cap['requestedPolicy']==cap['actualPolicy']==T(d/'session-policy'),d\n assert cap['actualPolicy']==('Auto/NoTitleRequest' if auto else 'DeclaredSupported-title-stress'),d\n assert T(d/'complete')=='yes' and T(d/'closed-1')=='0/0/0/0' and not (d/'closed-2').exists(),d\n assert 'tty-read\\t0\\t0' in n and 'native-read\\t-4\\t0' in n,d\n assert T(d/'primary-1')==('terminal write failed' if auto else 'host title restore failed; visual title state not confirmed'),d\n assert T(d/'extras-1').splitlines()==(['terminal restore failed'] if auto else ['terminal write failed','terminal restore failed']),d\n b=J(d/'native-termios-before-1.json');a=J(d/'native-termios-after-1.json');assert b['endpoint']==a['endpoint'] and b['rc']==0 and a['rc']==-1 and a['errno']==5 and a['fields']==None,d\n assert n.count('close\\t-1\\t0')==1 and n.count('buffer-free\\t')==1 and 'buffer-released\\t1' in n,d\n for sig in [28,2,15]:assert f'signal-restored\\t{sig}\\t1' in n and f'signal-flags\\t{sig}\\t1' in n,d\n checked.append({'path':str(d),'case':'endpoint-hup','status':'expected_failure_cleanup_satisfied','policy':'Auto' if auto else 'Declared','termios':'unavailable EIO','restart':'ineligible destroyed endpoint','branch':'actual tty read0 / native -4'})\nfor host in ['xterm','vte']:\n for cursor in ['visible','hidden']:\n  for c in cases[:13]:\n   d=E/'raw'/f'gui-r2-{host}-{cursor}-{c[\"id\"]}';result=J(d/'result.json');assert result['runner_exit']==result['direct_exit']==0,d\n   assert J(d/'launch.json')['binary_sha256']==BINARY,d\n   identities=J(d/'host-identity.json');assert identities['identities'],d\n   verify(d/'child',c,cursor,True,True)\nfor c in cases[:13]:\n d=V/'raw'/('vt-'+c['id']);result=J(d/'result.json');assert result['product_exit']==result['qemu_exit']==result['verifier_exit']==0,d\n assert J(d/'launch.json')['binary_sha256']==BINARY,d\n verify(d/'evidence',c,'unknown',True,True)\n serial=gzip.decompress((d/'serial.log.gz').read_bytes()).decode(errors='replace');trace=gzip.decompress((d/'evidence/product.strace.gz').read_bytes()).decode()\n assert 'tty=/dev/tty1 rdev=4:1' in serial and 'grid=80x25' in serial and 'uid=1000 euid=1000 stdin=/dev/tty1 stdout=/dev/tty1' in serial,d\n assert 'kernel=Linux 6.12.107+deb13-amd64' in serial and 'charcount=256' in serial,d\n pid=result['product_pid'];device=[x for x in trace.splitlines() if re.match(r'^'+str(pid)+r'\\s+ioctl\\(1, (KDGETMODE|GIO_UNIMAP)',x)]\n assert len(device)==4 and sum('KD_TEXT' in x for x in device)==2 and sum('303' in x for x in device)==2,(d,device)\n assert J(d/'evidence/native-termios-before-1.json')['endpoint']['rdev']==1025,d\n if c['id'] in ['signal-int','signal-term']:\n  sig=2 if c['id']=='signal-int' else 15;assert f'ACTUAL_SIGNAL pid={pid} sig={sig} rc=0' in serial,d\n if c['id'] in ['ctrl-c','prevented']:assert b'\\x03' in (d/'evidence/input.bin').read_bytes(),d\n for f in d.glob('*.ppm'):\n  a=Image.open(f).convert('RGB');b=Image.open(f.with_suffix('.png')).convert('RGB');assert a.size==b.size and a.tobytes()==b.tobytes(),f\n for item in J(d/'raw-compression.json'):\n  z=(d/item['lossless_gzip']).read_bytes();raw=gzip.decompress(z)\n  assert len(raw)==item['original_bytes'] and hashlib.sha256(raw).hexdigest()==item['original_sha256'],d\n  assert len(z)==item['compressed_bytes'] and hashlib.sha256(z).hexdigest()==item['compressed_sha256'],d\nnegative=E/'raw/nested-r2/negative-child-drift';child=negative/'child';a=J(child/'native-termios-after-1.json');b=J(child/'native-termios-before-1.json')\nassert a['endpoint']==b['endpoint'] and a['fields']['lflag']^b['fields']['lflag']==8\nassert T(child/'direct.exit').strip()=='0' and (child/'outer-termios-before').read_bytes()==(child/'outer-termios-after').read_bytes()\nassert J(negative/'outer/capture.json')['exit']==1 and not (child/'host-check.json').exists()\nresult={'method':'Independent read-only assertion scan against literal contracts and reviewed consumer/native source; no build or test process rerun, no author verdict inheritance','raw_rows':checked,'counts':dict(finite=128,gui=52,vt=13,termios_safe_runs=382,endpoint_unavailable=2,lossless_gzip_originals=39,pixel_pairs=53),'negative_child_drift':dict(app_exit=0,outer_equal=True,actual_child_lflag_xor=8,wrapper_exit=1,restoration_success_rejected=True),'failures':[]}\n(O/'ac-results.json').write_text(json.dumps(result,indent=2)+'\\n')\nprint(json.dumps({'raw_rows':len(checked),'finite':128,'gui':52,'vt':13,'failures':[],'negative_child_drift':'rejected as required','gzip_originals':39,'pixel_pairs':53}))\n",
+  "skills": [
+    {
+      "package": "c6/using-superpowers",
+      "use": "read; dispatched-subagent exemption applies"
+    },
+    {
+      "package": "c6/verification-before-completion",
+      "use": "Fresh read-only hash/source/raw condition checks before scoped verdict; AGENTS11.1 valid runtime evidence reused"
+    }
+  ]
+}

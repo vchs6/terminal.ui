@@ -1,0 +1,430 @@
+{
+  "finite": {
+    "auto": {
+      "processes": 64,
+      "passing": 64,
+      "directExits": {
+        "pipe-eof-hidden": 0,
+        "getter-visible": 0,
+        "pipe-eof-visible": 0,
+        "callback-unknown": 0,
+        "signal-term-hidden": 0,
+        "initial-measure-hidden": 0,
+        "stop-visible": 0,
+        "callback-hidden": 0,
+        "prevented-unknown": 0,
+        "getter-hidden": 0,
+        "callback-cleanup-hidden": 0,
+        "signal-int-hidden": 0,
+        "close-hidden": 0,
+        "signal-term-visible": 0,
+        "stop-hidden": 0,
+        "ctrl-c-unknown": 0,
+        "signal-term-unknown": 0,
+        "callback-cleanup-visible": 0,
+        "prevented-visible": 0,
+        "initial-mount-hidden": 0,
+        "pipe-hup-visible": 0,
+        "close-unknown": 0,
+        "pipe-hup-unknown": 0,
+        "post-visible": 0,
+        "initial-draw-unknown": 0,
+        "initial-draw-visible": 0,
+        "worker-stop-visible": 0,
+        "callback-close-hidden": 0,
+        "initial-mount-unknown": 0,
+        "tty-eof-visible": 0,
+        "initial-measure-unknown": 0,
+        "draw-unknown": 0,
+        "getter-unknown": 0,
+        "cleanup-hidden": 0,
+        "worker-stop-hidden": 0,
+        "draw-hidden": 0,
+        "callback-close-visible": 0,
+        "endpoint-hup": 0,
+        "ctrl-c-visible": 0,
+        "signal-int-unknown": 0,
+        "initial-getter-unknown": 0,
+        "ctrl-c-hidden": 0,
+        "tty-eof-unknown": 0,
+        "post-hidden": 0,
+        "initial-mount-visible": 0,
+        "prevented-hidden": 0,
+        "callback-cleanup-unknown": 0,
+        "callback-close-unknown": 0,
+        "signal-int-visible": 0,
+        "pipe-eof-unknown": 0,
+        "cleanup-unknown": 0,
+        "close-visible": 0,
+        "cleanup-visible": 0,
+        "worker-stop-unknown": 0,
+        "callback-visible": 0,
+        "initial-getter-hidden": 0,
+        "draw-visible": 0,
+        "pipe-hup-hidden": 0,
+        "initial-getter-visible": 0,
+        "post-unknown": 0,
+        "initial-draw-hidden": 0,
+        "stop-unknown": 0,
+        "initial-measure-visible": 0,
+        "tty-eof-hidden": 0
+      },
+      "endpoint": {
+        "passed": true,
+        "directExit": 0,
+        "requestedPolicy": "Auto/NoTitleRequest",
+        "actualPolicy": "Auto/NoTitleRequest",
+        "termiosRestoration": "unavailable with explicit native failure; no success claim",
+        "kernelBranch": "read0/EOF (-4)"
+      },
+      "safeSessions": 126
+    },
+    "declared": {
+      "processes": 64,
+      "passing": 64,
+      "directExits": {
+        "pipe-eof-hidden": 0,
+        "getter-visible": 0,
+        "pipe-eof-visible": 0,
+        "callback-unknown": 0,
+        "signal-term-hidden": 0,
+        "initial-measure-hidden": 0,
+        "stop-visible": 0,
+        "callback-hidden": 0,
+        "prevented-unknown": 0,
+        "getter-hidden": 0,
+        "callback-cleanup-hidden": 0,
+        "signal-int-hidden": 0,
+        "close-hidden": 0,
+        "signal-term-visible": 0,
+        "stop-hidden": 0,
+        "ctrl-c-unknown": 0,
+        "signal-term-unknown": 0,
+        "callback-cleanup-visible": 0,
+        "prevented-visible": 0,
+        "initial-mount-hidden": 0,
+        "pipe-hup-visible": 0,
+        "close-unknown": 0,
+        "pipe-hup-unknown": 0,
+        "post-visible": 0,
+        "initial-draw-unknown": 0,
+        "initial-draw-visible": 0,
+        "worker-stop-visible": 0,
+        "callback-close-hidden": 0,
+        "initial-mount-unknown": 0,
+        "tty-eof-visible": 0,
+        "initial-measure-unknown": 0,
+        "draw-unknown": 0,
+        "getter-unknown": 0,
+        "cleanup-hidden": 0,
+        "worker-stop-hidden": 0,
+        "draw-hidden": 0,
+        "callback-close-visible": 0,
+        "endpoint-hup": 0,
+        "ctrl-c-visible": 0,
+        "signal-int-unknown": 0,
+        "initial-getter-unknown": 0,
+        "ctrl-c-hidden": 0,
+        "tty-eof-unknown": 0,
+        "post-hidden": 0,
+        "initial-mount-visible": 0,
+        "prevented-hidden": 0,
+        "callback-cleanup-unknown": 0,
+        "callback-close-unknown": 0,
+        "signal-int-visible": 0,
+        "pipe-eof-unknown": 0,
+        "cleanup-unknown": 0,
+        "close-visible": 0,
+        "cleanup-visible": 0,
+        "worker-stop-unknown": 0,
+        "callback-visible": 0,
+        "initial-getter-hidden": 0,
+        "draw-visible": 0,
+        "pipe-hup-hidden": 0,
+        "initial-getter-visible": 0,
+        "post-unknown": 0,
+        "initial-draw-hidden": 0,
+        "stop-unknown": 0,
+        "initial-measure-visible": 0,
+        "tty-eof-hidden": 0
+      },
+      "endpoint": {
+        "passed": true,
+        "directExit": 0,
+        "requestedPolicy": "DeclaredSupported-title-stress",
+        "actualPolicy": "DeclaredSupported-title-stress",
+        "termiosRestoration": "unavailable with explicit native failure; no success claim",
+        "kernelBranch": "read0/EOF (-4)"
+      },
+      "safeSessions": 126
+    }
+  },
+  "negativeFixtures": {
+    "auto": {
+      "passed": true,
+      "fixtures": [
+        "stop-visible",
+        "callback-close-hidden",
+        "stop-unknown",
+        "initial-getter-visible",
+        "initial-draw-unknown"
+      ],
+      "scope": "SYNTHETIC host protocol metadata + symlinked author PTY outputs; zero actual host runs",
+      "negative": "Auto unexpected title pop / declared missing owned pop rejected"
+    },
+    "declared": {
+      "passed": true,
+      "fixtures": [
+        "stop-visible",
+        "callback-close-hidden",
+        "stop-unknown",
+        "initial-getter-visible",
+        "initial-draw-unknown"
+      ],
+      "scope": "SYNTHETIC host protocol metadata + symlinked author PTY outputs; zero actual host runs",
+      "negative": "Auto unexpected title pop / declared missing owned pop rejected"
+    }
+  },
+  "nested": {
+    "auto-unknown": {
+      "passed": true,
+      "expectedNegative": false,
+      "runnerExit": 0,
+      "directApplicationExit": 0,
+      "cursor": "unknown",
+      "declaredTitleStress": false,
+      "binarySha256": "6448608e02572b788a162ddf1dcb25d4401d378ad6e2e1aa0c90d97d33529c12",
+      "transport": "actual kernel outer+application PTYs; emulated mode replies, zero actual host runs",
+      "responses": [
+        {
+          "mode": 25,
+          "request": 1,
+          "responseHex": "",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 1,
+          "responseHex": "1b5b3f323030343b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 2,
+          "responseHex": "",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 3,
+          "responseHex": "",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 4,
+          "responseHex": "",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 2,
+          "responseHex": "1b5b3f323030343b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        }
+      ]
+    },
+    "declared-hidden": {
+      "passed": true,
+      "expectedNegative": false,
+      "runnerExit": 0,
+      "directApplicationExit": 0,
+      "cursor": "hidden",
+      "declaredTitleStress": true,
+      "binarySha256": "6448608e02572b788a162ddf1dcb25d4401d378ad6e2e1aa0c90d97d33529c12",
+      "transport": "actual kernel outer+application PTYs; emulated mode replies, zero actual host runs",
+      "responses": [
+        {
+          "mode": 25,
+          "request": 1,
+          "responseHex": "1b5b3f32353b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 1,
+          "responseHex": "1b5b3f323030343b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 2,
+          "responseHex": "1b5b3f32353b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 3,
+          "responseHex": "1b5b3f32353b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 4,
+          "responseHex": "1b5b3f32353b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 2,
+          "responseHex": "1b5b3f323030343b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        }
+      ]
+    },
+    "auto-visible": {
+      "passed": true,
+      "expectedNegative": false,
+      "runnerExit": 0,
+      "directApplicationExit": 0,
+      "cursor": "visible",
+      "declaredTitleStress": false,
+      "binarySha256": "6448608e02572b788a162ddf1dcb25d4401d378ad6e2e1aa0c90d97d33529c12",
+      "transport": "actual kernel outer+application PTYs; emulated mode replies, zero actual host runs",
+      "responses": [
+        {
+          "mode": 25,
+          "request": 1,
+          "responseHex": "1b5b3f32353b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 1,
+          "responseHex": "1b5b3f323030343b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 2,
+          "responseHex": "1b5b3f32353b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 3,
+          "responseHex": "1b5b3f32353b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 4,
+          "responseHex": "1b5b3f32353b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 2,
+          "responseHex": "1b5b3f323030343b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        }
+      ]
+    },
+    "negative-child-drift": {
+      "passed": true,
+      "expectedNegative": true,
+      "runnerExit": 1,
+      "directApplicationExit": 0,
+      "cursor": "visible",
+      "declaredTitleStress": false,
+      "binarySha256": "6448608e02572b788a162ddf1dcb25d4401d378ad6e2e1aa0c90d97d33529c12",
+      "transport": "actual kernel outer+application PTYs; emulated mode replies, zero actual host runs",
+      "responses": [
+        {
+          "mode": 25,
+          "request": 1,
+          "responseHex": "1b5b3f32353b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 1,
+          "responseHex": "1b5b3f323030343b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 2,
+          "responseHex": "1b5b3f32353b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 3,
+          "responseHex": "1b5b3f32353b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 4,
+          "responseHex": "1b5b3f32353b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 2,
+          "responseHex": "1b5b3f323030343b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        }
+      ]
+    },
+    "auto-hidden": {
+      "passed": true,
+      "expectedNegative": false,
+      "runnerExit": 0,
+      "directApplicationExit": 0,
+      "cursor": "hidden",
+      "declaredTitleStress": false,
+      "binarySha256": "6448608e02572b788a162ddf1dcb25d4401d378ad6e2e1aa0c90d97d33529c12",
+      "transport": "actual kernel outer+application PTYs; emulated mode replies, zero actual host runs",
+      "responses": [
+        {
+          "mode": 25,
+          "request": 1,
+          "responseHex": "1b5b3f32353b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 1,
+          "responseHex": "1b5b3f323030343b312479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 2,
+          "responseHex": "1b5b3f32353b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 3,
+          "responseHex": "1b5b3f32353b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 25,
+          "request": 4,
+          "responseHex": "1b5b3f32353b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        },
+        {
+          "mode": 2004,
+          "request": 2,
+          "responseHex": "1b5b3f323030343b322479",
+          "classification": "emulated PTYwire; not actual host acknowledgement"
+        }
+      ]
+    }
+  }
+}

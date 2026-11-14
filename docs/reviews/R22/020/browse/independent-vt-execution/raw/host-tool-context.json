@@ -1,0 +1,44 @@
+{
+  "utc": "2026-11-14T01:29:19.599358+00:00",
+  "commands": [
+    {
+      "argv": [
+        "uname",
+        "-a"
+      ],
+      "exit": 0,
+      "stdout": "Linux 6832e21a9462 6.18.57 #1 SMP Tue Oct 20 21:56:04 UTC 2026 x86_64 GNU/Linux\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "gcc",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "Python 3.13.5\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/workspace/work/linux-console-hosts/hosts/debian/usr/bin/qemu-system-x86_64",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "QEMU emulator version 10.0.13 (Debian 1:10.0.13+ds-0+deb13u1)\nCopyright (c) 2003-2025 Fabrice Bellard and the QEMU Project developers\n",
+      "stderr": ""
+    }
+  ],
+  "guest_os": "initramfs assembled from recorded prior accepted VM base; Linux Debian kernel; not a full installed OS distribution",
+  "guest_python": "Python3.13 existing system module/runtime closure; frozen probes exited0 before and after each run",
+  "guest_util_linux": "script not packaged or used; all tested consumer stdin/stdout are direct VT, no inner PTY"
+}

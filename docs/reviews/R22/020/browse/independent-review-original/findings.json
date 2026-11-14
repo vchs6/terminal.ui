@@ -1,0 +1,83 @@
+{
+  "task": "TASK020.d",
+  "base": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+  "head": "97f43b733545e4a39f7670571ea3464b49ce1019",
+  "findings": [
+    {
+      "id": "020R1",
+      "severity": "Important",
+      "title": "Auto matrix silently runs declared-title endpoint HUP",
+      "source": {
+        "path": "tests/session_lifecycle/endpoint_hup.py",
+        "line": 24
+      },
+      "contract": "C004 normal Auto/no-title integration and exact first-primary/cleanup outcomes; review brief realhost defaults and kernel HUP branches.",
+      "evidence": [
+        "evidence/run-08-auto/endpoint-hup/session-policy",
+        "evidence/run-08-auto/endpoint-hup/primary-1",
+        "evidence/run-08-auto/endpoint-hup/extras-1"
+      ],
+      "finding": "The helper sets CJTUI_020_HOST_AUTO=0 unconditionally. The Auto directory actually records DeclaredSupported-title-stress and the same title-failure primary as the declared directory. Both final endpoint runs cover the declared-title path; 64 passing directories in the Auto command do not prove 64 Auto processes.",
+      "coverageGap": "Auto/no-title endpoint destruction, whose EOF branch must have terminal write failed primary and terminal restore failed additional, is absent. The 63 safe Auto processes remain valid.",
+      "requiredChange": "Honor or explicitly parameterize the requested session policy and freeze separate exact title/no-title HUP outcomes from native return classification. Verify and label the actual policy in each endpoint capture/check; run only the affected new coverage after fixing the test."
+    },
+    {
+      "id": "020R2",
+      "severity": "Important",
+      "title": "Host runner does not observe application-PTY termios restoration",
+      "source": {
+        "path": "tests/session_lifecycle/host_run.sh",
+        "line": 24
+      },
+      "relatedSources": [
+        {
+          "path": "tests/session_lifecycle/host_run.sh",
+          "line": 18
+        },
+        {
+          "path": "tests/session_lifecycle/native/lifecycle_native.c",
+          "line": 42
+        },
+        {
+          "path": "tests/session_lifecycle/native/lifecycle_native.c",
+          "line": 85
+        },
+        {
+          "path": "tests/session_lifecycle/host_verify.py",
+          "line": 35
+        }
+      ],
+      "contract": "C004 exact termios/raw restoration with actual-host evidence; host-plan.md lines 7-12 and 78-81.",
+      "finding": "script creates a child PTY for Application. The before/after stty comparison measures the outer terminal, restored by script itself. The native observer records child raw-active and close return/handlers/buffer, but neither original child termios nor post-close child termios. host_verify therefore cannot certify exact restoration of the terminal Application changed.",
+      "coverageGap": "Real-host runner can pass if child termios is wrong after a nominally successful close; outer equality and raw-active are not child restoration evidence. Existing standalone PTY comparisons remain valid for their own configurations.",
+      "requiredChange": "Observe and compare all termios fields on the same actual application endpoint before open and after each safe close, retaining originals and asserting them in the host oracle. Keep destroyed-HUP restoration explicitly unavailable. Do not repair or reset termios to make the observation pass."
+    },
+    {
+      "id": "020R3",
+      "severity": "Minor",
+      "title": "Combined-error oracle accepts additional unexpected cleanup failures",
+      "source": {
+        "path": "tests/session_lifecycle/oracle.py",
+        "line": 38
+      },
+      "contract": "C004 exact outcomes and reactive-runtime R017 ordered primary/additional errors.",
+      "finding": "For callback-cleanup and callback-close, verify_records tests only substring membership of each expected extra. A list containing the expected failure plus unrelated or duplicated failures passes. HUP uses exact equality and is not affected.",
+      "coverageGap": "Ordinary combined-error rows do not enforce the complete literal cleanup list/cardinality/order.",
+      "requiredChange": "Compare parsed cleanup lines to first_extras exactly and add a negative fixture for an extra/duplicate cleanup error."
+    },
+    {
+      "id": "020R4",
+      "severity": "Minor",
+      "title": "PTY known-cursor oracle checks restoration only for first run",
+      "source": {
+        "path": "tests/session_lifecycle/oracle.py",
+        "line": 20
+      },
+      "contract": "C004 same-Application restart and I015 original visibility restoration for each managed run.",
+      "finding": "verify_wire splits both sessions for paste ordering but checks mode25 change/restoration only on first. In a known-hidden restart the base caret is visible, so second-run show must be followed by hidden restoration; a missing second-run hide passes this PTY oracle. Actual-host final mode25 probing supplies a separate check when executed.",
+      "coverageGap": "Current PTY second-run native visibility restoration is not asserted; logical empty caret and focus do not prove terminal mode25.",
+      "requiredChange": "Check each session against its frozen original/managed caret behavior, including second hidden restoration after paste cleanup, without requiring redundant restoration when visibility never changed."
+    }
+  ],
+  "productDefectEstablished": false
+}

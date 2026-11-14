@@ -1,0 +1,131 @@
+{
+  "task": "TASK020.d",
+  "round": "fix-r1",
+  "scope": "Only prior 020R1-020R4 and new breakage introduced by the 11-file fixed diff. Unchanged broader plan not reopened.",
+  "parent": "97f43b733545e4a39f7670571ea3464b49ce1019",
+  "head": "8929bd09ca0e77093ac8d070e513b388e02487a7",
+  "specVerdict": "PASS_SCOPED_FIX_REVIEW",
+  "qualityVerdict": "PASS_SCOPED_FIX_REVIEW",
+  "resolutions": [
+    {
+      "id": "020R1",
+      "priorSeverity": "Important",
+      "status": "ADDRESSED",
+      "sources": [
+        {
+          "path": "tests/session_lifecycle/endpoint_hup.py",
+          "line": 23
+        },
+        {
+          "path": "tests/session_lifecycle/endpoint_hup.py",
+          "line": 79
+        }
+      ],
+      "assessment": "The endpoint helper honors the requested Auto/declared setting, records requested/actual policy, asserts equality, and chooses separate exact primary/additional lists from native read/size outcomes. The Auto read0 branch has terminal write failed primary plus terminal restore failed; declared read0 retains title failure primary plus paste/native errors. No exception-text-driven branch selection or endpoint repair was introduced.",
+      "rawEvidence": [
+        "auto-02/endpoint-hup/check.json",
+        "auto-02/endpoint-hup/native.tsv",
+        "auto-02/endpoint-hup/primary-1",
+        "auto-02/endpoint-hup/extras-1",
+        "declared-02/endpoint-hup/check.json",
+        "declared-02/endpoint-hup/primary-1",
+        "declared-02/endpoint-hup/extras-1"
+      ],
+      "limits": "Final raw observations cover read0; prepared -3/size branches are not newly claimed executed. Old Auto-labelled declared endpoint remains historical declared proof."
+    },
+    {
+      "id": "020R2",
+      "priorSeverity": "Important",
+      "status": "ADDRESSED",
+      "sources": [
+        {
+          "path": "tests/session_lifecycle/native/lifecycle_native.c",
+          "line": 23
+        },
+        {
+          "path": "tests/session_lifecycle/native/lifecycle_native.c",
+          "line": 66
+        },
+        {
+          "path": "tests/session_lifecycle/native/lifecycle_native.c",
+          "line": 118
+        },
+        {
+          "path": "tests/session_lifecycle/oracle.py",
+          "line": 82
+        },
+        {
+          "path": "tests/session_lifecycle/host_verify.py",
+          "line": 20
+        }
+      ],
+      "assessment": "Native observations snapshot the actual fd0 endpoint and all defined Linux termios fields before open and after every close. The snapshot routine preserves caller errno and does not reset state. Safe paths require same-endpoint exact field equality; destroyed HUP requires rc=-1/EIO/null fields. PTY ordinary/initial and host oracles require these snapshots. The explicitly enabled negative mutates real child ECHO after close without repairing it.",
+      "rawEvidence": [
+        "host-transport-02/auto-visible/transport-check.json",
+        "host-transport-02/auto-hidden/transport-check.json",
+        "host-transport-02/auto-unknown/transport-check.json",
+        "host-transport-02/declared-hidden/transport-check.json",
+        "host-transport-02/negative-child-drift/transport-check.json",
+        "host-transport-02/negative-child-drift/child/native-termios-before-1.json",
+        "host-transport-02/negative-child-drift/child/native-termios-after-1.json",
+        "host-transport-02/negative-child-drift/child/direct.exit",
+        "host-transport-02/negative-child-drift/child/outer-termios-before",
+        "host-transport-02/negative-child-drift/child/outer-termios-after",
+        "host-transport-02/negative-child-drift/outer/capture.json"
+      ],
+      "negativeObservation": "Same endpoint; only lflag changes 35387 to 35379 (ECHO); application exit 0; outer termios equal; wrapper exit 1; host-check absent. Four positive transports have exact child fields both runs and wrapper exit 0.",
+      "limits": "These are real nested kernel PTYs with emulated protocol replies, not actual terminal-host acknowledgment or XTerm/VTE/VM-VT evidence."
+    },
+    {
+      "id": "020R3",
+      "priorSeverity": "Minor",
+      "status": "ADDRESSED",
+      "sources": [
+        {
+          "path": "tests/session_lifecycle/oracle.py",
+          "line": 53
+        },
+        {
+          "path": "tests/session_lifecycle/prepare_check.py",
+          "line": 63
+        }
+      ],
+      "assessment": "cleanupFailures are compared as the complete ordered splitlines list to first_extras. Negative fixtures cover missing, unexpected, duplicate and reversed two-error lists. The literal list/cardinality gap is closed.",
+      "rawEvidence": [
+        "tool-final.log",
+        "tool-final.exit",
+        "auto-02/callback-cleanup-hidden/extras-1",
+        "auto-02/callback-close-hidden/extras-1",
+        "declared-02/callback-cleanup/callback-cleanup-hidden/extras-1",
+        "declared-02/callback-close/callback-close-hidden/extras-1"
+      ]
+    },
+    {
+      "id": "020R4",
+      "priorSeverity": "Minor",
+      "status": "ADDRESSED",
+      "sources": [
+        {
+          "path": "tests/session_lifecycle/oracle.py",
+          "line": 23
+        },
+        {
+          "path": "tests/session_lifecycle/prepare_check.py",
+          "line": 45
+        }
+      ],
+      "assessment": "Both session segments are checked. Last observed visibility must equal the original; second known-hidden run requires SHOW then HIDE after paste cleanup. Second known-visible does not require redundant cleanup when unchanged. Missing second hide and hide-before-paste negatives are included. Unknown restrictions remain unchanged.",
+      "rawEvidence": [
+        "tool-final.log",
+        "tool-final.exit",
+        "auto-02/stop-hidden/wire.bin",
+        "declared-02/stop/stop-hidden/wire.bin",
+        "host-transport-02/auto-hidden/child/wire.bin"
+      ]
+    }
+  ],
+  "newFindings": [],
+  "unresolvedPriorFindings": [],
+  "productDefectEstablished": false,
+  "actualHostAcceptance": "PENDING"
+}

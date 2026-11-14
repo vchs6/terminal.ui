@@ -1,0 +1,22 @@
+{
+  "runtimeEnvironment": {
+    "CANGJIE_HOME": "/workspace/work/validation/sdk/cangjie",
+    "LD_LIBRARY_PATH": "/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative:/workspace/work/validation/sdk/cangjie/tools/lib",
+    "PATH": "/workspace/work/validation/sdk/cangjie/bin:/workspace/work/validation/sdk/cangjie/tools/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback:/home/agent/.cjpm/bin"
+  },
+  "directBinaryDependencies": "\tlinux-vdso.so.1 (0x00007f0cb65f3000)\n\tlibcangjie-runtime.so => /workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative/libcangjie-runtime.so (0x0000000000400000)\n\tlibboundscheck.so => /workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative/libboundscheck.so (0x00007f0cb5200000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f0cb50ed000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f0cb4ef9000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f0cb4c93000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f0cb65f5000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f0cb4c66000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f0cb4c61000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f0cb4c5c000)\n",
+  "frozenTestDiff8929": "",
+  "workingDiff": "",
+  "skills": [
+    {
+      "package": "c6/using-superpowers",
+      "result": "read; dispatched-subagent stop applies"
+    },
+    {
+      "package": "c6/verification-before-completion",
+      "use": "direct command exits, fixed oracle results, file hashes, host originals before claims"
+    }
+  ],
+  "classification": "TASK020.d deterministic execution within root fixed C004 admission; no source/test/spec mutations",
+  "knownFirstAttemptError": "SDK runtime environment omitted from initial runtime launches; preserved loader exit127; corrected by envsetup.sh in fresh r2 output dirs, no rebuild"
+}

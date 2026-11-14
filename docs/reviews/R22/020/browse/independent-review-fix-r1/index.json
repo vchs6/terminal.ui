@@ -1,0 +1,3910 @@
+{
+  "task": "TASK020.d",
+  "round": "fix-r1",
+  "role": "independent specification and quality reviewer",
+  "utc": "2026-11-14T01:13:18.399380+00:00",
+  "parent": "97f43b733545e4a39f7670571ea3464b49ce1019",
+  "head": "8929bd09ca0e77093ac8d070e513b388e02487a7",
+  "tree": "62bfe4de3c5dc9d03f0cce5b8fcd4aab11c02cf3",
+  "scope": "Only prior 020R1-020R4 and new breakage introduced by the 11-file fixed diff. Unchanged broader plan not reopened.",
+  "specVerdict": "PASS_SCOPED_FIX_REVIEW",
+  "qualityVerdict": "PASS_SCOPED_FIX_REVIEW",
+  "resolutionStatuses": {
+    "020R1": "ADDRESSED",
+    "020R2": "ADDRESSED",
+    "020R3": "ADDRESSED",
+    "020R4": "ADDRESSED"
+  },
+  "newFindings": 0,
+  "unresolvedPriorFindings": 0,
+  "productDefectEstablished": false,
+  "productionDiffEmpty": true,
+  "sourceWorktreeClean": true,
+  "originalReviewIndexSha256": "4e58f3779e8946f565e74da7a711561e14c937cd78f656b7cac1da8381ff7b26",
+  "originalEvidenceSeal": {
+    "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/index.json",
+    "sha256": "a0d0d4280f263af90fc7ed75ac37fb70e4ac4e716d1e27d3147b923184a3be26"
+  },
+  "evidencePolicy": "Used filtered factual bindings/commands and raw outputs. Original author index used for hash provenance only; no standalone author report, reasoning or self-assessment consumed. Parent supplied all4180 new/all10050 old checks; reviewer independently checked 764 selected source/raw bindings.",
+  "verification": "Read-only fixed Git HEAD/status/diff inspection, original-review and sealed-index SHA256 checks, selected input SHA256/size checks, raw endpoint and positive/negative child-termios/exit inspection. No product/test execution or builds.",
+  "skills": [
+    {
+      "package": "c6/requesting-code-review",
+      "use": "Continuation of independent reviewer role; no further delegation."
+    },
+    {
+      "package": "c6/verification-before-completion",
+      "use": "Verified scoped source/raw findings and bindings before final review completion; explicit no-rerun scope respected."
+    }
+  ],
+  "limits": [
+    "Scoped test-fix review only",
+    "Actual XTerm/VTE/VM-VT host originals still pending",
+    "Independent execution/acceptance still pending",
+    "No whole C004/M1/Linux/release completion claim"
+  ],
+  "inputs": [
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/README.md",
+      "bytes": 4638,
+      "sha256": "8f1b55e9817b6311b7207b6807b66b53d1b819410accac00700c12ac2892494a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/driver.py",
+      "bytes": 11241,
+      "sha256": "9343ad12992ea5732ee876d5243425b9d0266297cd6353ff3ae6f15b8af34417"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/endpoint_hup.py",
+      "bytes": 6596,
+      "sha256": "4d5932f55ef3cc06626fd2c72ef8536703659fcf9395bf49529bffad7794e918"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/host-plan.md",
+      "bytes": 6986,
+      "sha256": "b86849dad155dd1418801269428ac37d3be6e6edab1970058f75bfa9e990dc34"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/host_run.sh",
+      "bytes": 1975,
+      "sha256": "dbcf264497f6edea831659874eaecd994a71a9d4f743d7b11931a20fa082beff"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/host_transport_check.py",
+      "bytes": 5587,
+      "sha256": "d966695b5f8e2ef99441023a9bca37a8031b963a3e7ebd747aee3f5fc28f91ea"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/host_verify.py",
+      "bytes": 4267,
+      "sha256": "1b72a9dfc99113a3d16c1b58b1260c26b353e719d98129810e4700995997270a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/manual-coverage.md",
+      "bytes": 9313,
+      "sha256": "7a26995fc29a0454cddc7d7bff05f79422b6b39b8750f8aa0066891253530d96"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/native/lifecycle_native.c",
+      "bytes": 6981,
+      "sha256": "2bf11bb2a950227443533fdf5ea0e56ce8c7af8cb1a7298f12ba51e68ea36517"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/oracle.py",
+      "bytes": 6213,
+      "sha256": "5f04c0ea24ce9356632f0aa7167b694cf740baa0c477fa727887fae2ccaeb01f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/source/tests/session_lifecycle/prepare_check.py",
+      "bytes": 5428,
+      "sha256": "754f3ea36a9111ea70f9c0a4af191ab0dc8b218b723f5f98dd66b5acc1dad6ef"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/commands.json",
+      "bytes": 4587,
+      "sha256": "30bb645961441b59b30c5f3b28729cd6d95716dc4028192a9791cb14df8bc6dc"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/build-02.log",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/build-02.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/tool-final.log",
+      "bytes": 91,
+      "sha256": "cdf9cad83da34eefbfcb5d157d79d89cfdf2c02e9f85f11a799de0295af995ff"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/tool-final.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "f2e4289b4f0e9fd7fd60a5555e40f6eaeecce0c0126b4bf6a6e5c9d94ee46900"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-hidden/native.tsv",
+      "bytes": 471,
+      "sha256": "4f883b572baccfdbd8032c0acb54213421c24c8f75ed21c82aa91e1e0e09328e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "0e30a7aeae11b60c53f09dbec3fff9452aa8d6e7ed4d577841e8646c46e1a185"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "65506e3d3ecebce1516e3f34626a2a389fb36e7d9d690c19ad4d560dbec58cec"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-visible/native.tsv",
+      "bytes": 471,
+      "sha256": "4f883b572baccfdbd8032c0acb54213421c24c8f75ed21c82aa91e1e0e09328e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "ff1737f5ebb44e4e930ef92942901e886642707cfdd9d88e4e0c63bb32cd11d1"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-hidden/capture.json",
+      "bytes": 3322,
+      "sha256": "997a2eaf4230ee8ac8f8102041d5491c0937070da66586e82ddacde57d4459f1"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-hidden/native.tsv",
+      "bytes": 427,
+      "sha256": "9a56797380f2176fcba0ffad939676d720fb5a7705559276ee44f146d5fb8b95"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-hidden/wire.bin",
+      "bytes": 132,
+      "sha256": "d577bf519e70d2692328274227dd9ff26d27c48adbb7c5d1592de04901a76ab2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-hidden/capture.json",
+      "bytes": 2971,
+      "sha256": "60d514d21b9fb0db4787d1393a642dd0116166358d0adba99ceba01ef2dd0d48"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-hidden/native.tsv",
+      "bytes": 370,
+      "sha256": "b03553e0966b0254b93d6ddb6b6e7766638b01eedb22d7538419e5f54d08f375"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "33ea3e0e41269085d7dfd4f177159d4dc35f279d9eb10cb1f9e0029a050a9980"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "2597bc5832d6a8c29f75e7761125bb562b6638aa277312f8011d5490f1316d65"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-unknown/capture.json",
+      "bytes": 5970,
+      "sha256": "b3d9bd9585ff286ef1b01b91f8d3beb3163ed7dbc2f902b6c71fb45e3d5fd6b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "0ed0118818e6723ab7a3c485718d6aa75ff9e1746b819c4cdcc20577d9c4dd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "ef362c62ba8b35a6bc60940c0f552bde89e387bd1503ca39b1e92fa12817e702"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/extras-1",
+      "bytes": 13,
+      "sha256": "55e171efe9fde9671f1f37c9ca4433575130bebb557f63cd96f3e37588938656"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-hidden/capture.json",
+      "bytes": 3322,
+      "sha256": "36f6cc36d0b176b3985be894959d7830226c05ce23699005ec9347a063160b15"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-hidden/native.tsv",
+      "bytes": 427,
+      "sha256": "9a56797380f2176fcba0ffad939676d720fb5a7705559276ee44f146d5fb8b95"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "eb9ba4af4d8b8a19d6d79f4a6ab54f19cc89834156a97d3f29928543abacc4ec"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "714efe82e62781c834c4063f3d125d95d5af5764bb7c06638247da77b94415f3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-visible/capture.json",
+      "bytes": 3322,
+      "sha256": "72849c49838cc7304c9b960e06a3a5c6632899bd10f68718d14f986d32c21039"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-visible/native.tsv",
+      "bytes": 427,
+      "sha256": "9a56797380f2176fcba0ffad939676d720fb5a7705559276ee44f146d5fb8b95"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "7b6f025bb99c709831840dd66d4c735df5a21ef8d05a0ca29190f4ba1e78e5e8"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "ad2de61e86c7c087343dccb905108457fcba1856e810b7ffe3243d3156a2ed61"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-unknown/capture.json",
+      "bytes": 5769,
+      "sha256": "fa80e39aa3a6d014087f82fb39d5516b3ee9178eb24f30fc7363822e34740397"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-term-unknown/native.tsv",
+      "bytes": 427,
+      "sha256": "9a56797380f2176fcba0ffad939676d720fb5a7705559276ee44f146d5fb8b95"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "23014ebd5bb91b2401105f3448451cb20c11654557b7718d0dfa1f95c4f1bb46"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/extras-1",
+      "bytes": 13,
+      "sha256": "55e171efe9fde9671f1f37c9ca4433575130bebb557f63cd96f3e37588938656"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-visible/capture.json",
+      "bytes": 3456,
+      "sha256": "0fb48caaa749d092fa385deff6dc5830ee95d353b2528ace2ebf55955eb62699"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-hidden/wire.bin",
+      "bytes": 109,
+      "sha256": "81ed63ee0f9b0172ecfb7a0c551c867d47e1a01257155ccaedb360d8dfef010a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-hidden/capture.json",
+      "bytes": 2971,
+      "sha256": "cd697e956ca1f3c90704c0846be0703036b958d43a20ffc3ce17b21df919890f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-hidden/native.tsv",
+      "bytes": 354,
+      "sha256": "87c5a477fb9c69e56cf823941e1b89d37d6e94049b70a028eb77ec481482a691"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "175383374b9434ecdaecf85de9be052f91b8f8ca4e115bed6f6e9dc274982d69"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-visible/native.tsv",
+      "bytes": 562,
+      "sha256": "05ce0d65e42bac837ff79d97ae735ab10d5303c8805e6dd87c4f9e4ca1508075"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-unknown/capture.json",
+      "bytes": 5836,
+      "sha256": "bf4ace20476da99ad9431258cff76d2844551c4cfbed38086f47ce36419c9fd0"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "714efe82e62781c834c4063f3d125d95d5af5764bb7c06638247da77b94415f3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "fefd1a5079146c533e6b9f06e80c29470b3c74c5887028dcf8a67966a53aa297"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-unknown/native.tsv",
+      "bytes": 562,
+      "sha256": "05ce0d65e42bac837ff79d97ae735ab10d5303c8805e6dd87c4f9e4ca1508075"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "5705a1ba9a53b7e3e78a31103e54da3882dac8a1589684ab034851890092e8f5"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-unknown/wire.bin",
+      "bytes": 126,
+      "sha256": "330bf7c357623bd46f1a52f611936a97dbfee4e11cb6e24bf04f7795bc5343ba"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-unknown/capture.json",
+      "bytes": 4228,
+      "sha256": "47feddb47a3a9e86fdd5f0ae643d9ff35919091460496968ff01b94341a844b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-unknown/native.tsv",
+      "bytes": 370,
+      "sha256": "b03553e0966b0254b93d6ddb6b6e7766638b01eedb22d7538419e5f54d08f375"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-visible/wire.bin",
+      "bytes": 138,
+      "sha256": "d243ae8596718707e680f3819cdcb8a20c9567cc9945a4bb588c99e45048c238"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-visible/capture.json",
+      "bytes": 2971,
+      "sha256": "8b7f7d2a60d7e982afec470dd39ff8c65986ecb0b037fa9998bbdb3a3e9fce61"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-visible/native.tsv",
+      "bytes": 370,
+      "sha256": "b03553e0966b0254b93d6ddb6b6e7766638b01eedb22d7538419e5f54d08f375"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "78ea2ffdca85ad8502b81874c296ab09cade983ff852c7bfabbcd981a3bb1669"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "ef929732ec9aa86f593c6d33d097d888f6a456f6832d2faca3e49b5b6465773d"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/extras-1",
+      "bytes": 24,
+      "sha256": "6f7fd85153a4f79ed3beefcd39cbc5b5f2532767f9cd090987f62d5aaf753dfe"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "714efe82e62781c834c4063f3d125d95d5af5764bb7c06638247da77b94415f3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-unknown/wire.bin",
+      "bytes": 103,
+      "sha256": "f3b1bfedb55e4e79c6f0391cf5b9de70148f190c6f37ac3f07d9fa7591237ed7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-unknown/capture.json",
+      "bytes": 4228,
+      "sha256": "fbef7676fb5bac1a0a746f665fadf85035c6ee140f5bf05dcdb64275f087edeb"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-unknown/native.tsv",
+      "bytes": 354,
+      "sha256": "87c5a477fb9c69e56cf823941e1b89d37d6e94049b70a028eb77ec481482a691"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "094718fb86efe54e23fcf11778ed62d47d7b2ce317020e63867c5df806dfc3f0"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-visible/native.tsv",
+      "bytes": 440,
+      "sha256": "ea73256afa9d110516c8e5d1ea0333201e519c45fefd4a46f9a86831e790a73c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-unknown/wire.bin",
+      "bytes": 126,
+      "sha256": "330bf7c357623bd46f1a52f611936a97dbfee4e11cb6e24bf04f7795bc5343ba"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-unknown/capture.json",
+      "bytes": 4228,
+      "sha256": "25fd5efd36a36ceb8a2be1b20c3c1fbd0290bfa514c44014f330e73d01700716"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-unknown/native.tsv",
+      "bytes": 370,
+      "sha256": "b03553e0966b0254b93d6ddb6b6e7766638b01eedb22d7538419e5f54d08f375"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "ed013a721de43c421cb8f21d0dbe3aa5a71890fe510e27090b4334c3983e4dc4"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "a7f47c7437866e7c25e4515a148d7ff01b4b195f66592671f00a94ec865087a8"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/getter-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "e817d879061eadb39b7078b4b12b38a1949f1bdb85223ee491cd531b855ad4da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "52506cf0f9e91b7480085afdc3b839cc35928590e2f8397a43ea72cb4f107d42"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "6fb32577561333eeb05dc8dc95d578a75a83a268dc33dfefaca0e416d1ca4389"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "b9c8ba32edbb1e22f8df09c6a0a5ec20a313d1601b26a1d34e607eb1f7a4176a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/extras-1",
+      "bytes": 24,
+      "sha256": "6f7fd85153a4f79ed3beefcd39cbc5b5f2532767f9cd090987f62d5aaf753dfe"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "714efe82e62781c834c4063f3d125d95d5af5764bb7c06638247da77b94415f3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/endpoint-hup/capture.json",
+      "bytes": 4704,
+      "sha256": "03a711b09e5ac505a47589247753304fc0a458d1ed30a2e3dc6e4e59dcd72d3c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/endpoint-hup/native-termios-after-1.json",
+      "bytes": 108,
+      "sha256": "dabbadcbddc46b5298bb317836897112b56f26e2411601300d9106f03ab71109"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/endpoint-hup/extras-1",
+      "bytes": 24,
+      "sha256": "6f7fd85153a4f79ed3beefcd39cbc5b5f2532767f9cd090987f62d5aaf753dfe"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/endpoint-hup/primary-1",
+      "bytes": 21,
+      "sha256": "1ca7fac2de195c03975c1e0571c3c684a48da17086588769222c32c414fa8d4e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/endpoint-hup/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/endpoint-hup/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/endpoint-hup/check.json",
+      "bytes": 233,
+      "sha256": "99cd3e15139471f4685b88134cd1f9729c64a36abe92b6e3e944d2179343a55c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/endpoint-hup/native.tsv",
+      "bytes": 236,
+      "sha256": "8951545ff000ee9da65a80946ae0a9b78d5b25eb2a273b01a5c5c3a933ec20a5"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "9863d1c54c6c61bcda7b01a320535a1b3c6cbf3b485b5855bb8267e2ec84c5db"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-unknown/capture.json",
+      "bytes": 5836,
+      "sha256": "e76de872f5b30467ccf84b8ac6a8ea7ec6509f5c14ba1e01d1c0c426380b37da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-unknown/native.tsv",
+      "bytes": 427,
+      "sha256": "9a56797380f2176fcba0ffad939676d720fb5a7705559276ee44f146d5fb8b95"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-unknown/wire.bin",
+      "bytes": 103,
+      "sha256": "f3b1bfedb55e4e79c6f0391cf5b9de70148f190c6f37ac3f07d9fa7591237ed7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-unknown/capture.json",
+      "bytes": 4228,
+      "sha256": "d9be49446af1f3c7ffe6e3e073b710f8b76069cc8c6c5e3a645ce2bd8f364fd8"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-unknown/native.tsv",
+      "bytes": 354,
+      "sha256": "87c5a477fb9c69e56cf823941e1b89d37d6e94049b70a028eb77ec481482a691"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "fc3a7cce2ce6f680258e4d9d2afc096d14288842a5b95e2ef9bbbfdb88f97535"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/ctrl-c-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "4a9392e1b7c7ca2fdae309442cd26f5a182d281fafcd9e58a06cec88109a93a8"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-unknown/native.tsv",
+      "bytes": 440,
+      "sha256": "ea73256afa9d110516c8e5d1ea0333201e519c45fefd4a46f9a86831e790a73c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "009b31911dba36e039519bd79d2d7c3e738c7c6b669996bb3ed2291efcb691a3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-visible/wire.bin",
+      "bytes": 115,
+      "sha256": "f454379420a6226ccafb75f81bcba967a24682877f89981568ba5dee840af6ca"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-visible/capture.json",
+      "bytes": 2971,
+      "sha256": "50f84abd87d16049e5d8636ff4c4a429363120c538fdfa0075e101c05d2c698f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-mount-visible/native.tsv",
+      "bytes": 354,
+      "sha256": "87c5a477fb9c69e56cf823941e1b89d37d6e94049b70a028eb77ec481482a691"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-hidden/capture.json",
+      "bytes": 3456,
+      "sha256": "d60d1cdf98ce3bcbec6d5aed91684d0a02086166a5277d2e580ad8fb7ee68b0e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/prevented-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/capture.json",
+      "bytes": 5836,
+      "sha256": "7046f0695dbb821beb82216d02111f1f603b629c7f65eb9c2817a871a429b372"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/extras-1",
+      "bytes": 13,
+      "sha256": "55e171efe9fde9671f1f37c9ca4433575130bebb557f63cd96f3e37588938656"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-cleanup-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/capture.json",
+      "bytes": 5836,
+      "sha256": "942e427d34e2ea89ffdc87b51229d615f4d70fb99d2cfd4eb2a1e63ffa384958"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/extras-1",
+      "bytes": 24,
+      "sha256": "6f7fd85153a4f79ed3beefcd39cbc5b5f2532767f9cd090987f62d5aaf753dfe"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-close-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "714efe82e62781c834c4063f3d125d95d5af5764bb7c06638247da77b94415f3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-visible/capture.json",
+      "bytes": 3322,
+      "sha256": "cdc23079d90556237c14b0772fdfb21cd63446a8d9cb1c0fb87615e73e1dc267"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/signal-int-visible/native.tsv",
+      "bytes": 427,
+      "sha256": "9a56797380f2176fcba0ffad939676d720fb5a7705559276ee44f146d5fb8b95"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "6411b39d780b4772ca239b78b5a9dff1631fa0fdb804f4328e1b555e21abb2a1"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-eof-unknown/native.tsv",
+      "bytes": 471,
+      "sha256": "4f883b572baccfdbd8032c0acb54213421c24c8f75ed21c82aa91e1e0e09328e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-unknown/capture.json",
+      "bytes": 5769,
+      "sha256": "154345c435f7e8b8a55383bf7cf040b2ea773b3204db0c03438d85dc6d464450"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "c0264d7e54ff9a80906a22b6c7e932aef4688ddaa47f42b24025e9c983cf45f4"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/close-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "714efe82e62781c834c4063f3d125d95d5af5764bb7c06638247da77b94415f3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "f11dede6e0a847645a9369ed5ab670ae485c8e9880bbe2ceeb966d8e938dbf3a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/cleanup-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "7dd65331f440852311a01ede0babbe88628591ed2e4f955cfb4cf4cf3cf4622a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/worker-stop-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "d1fe96c79fb790fe0633d8ac0cf0f47dd525db76fb7c4f21f8e2f550a27de1cc"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/callback-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-hidden/wire.bin",
+      "bytes": 109,
+      "sha256": "81ed63ee0f9b0172ecfb7a0c551c867d47e1a01257155ccaedb360d8dfef010a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-hidden/capture.json",
+      "bytes": 2971,
+      "sha256": "3f60d94df30ebed386d0d0764a02d2d84057b9f268833cfb58874d643fcf49b1"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-hidden/native.tsv",
+      "bytes": 354,
+      "sha256": "87c5a477fb9c69e56cf823941e1b89d37d6e94049b70a028eb77ec481482a691"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-visible/wire.bin",
+      "bytes": 268,
+      "sha256": "1f02d9bcf52ffacf7d091a04be822052c6422578d694a625f6838e20d7914e54"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "8425ef03ebc2f34cbf6f018fa0122696a6a80553cf40b87653da8af290a1b057"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-visible/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/draw-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "b8ae511ccc12b1954e31d6ebf0ee8b99090bc8d56a895afe868e703f011570b7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/pipe-hup-hidden/native.tsv",
+      "bytes": 562,
+      "sha256": "05ce0d65e42bac837ff79d97ae735ab10d5303c8805e6dd87c4f9e4ca1508075"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-visible/wire.bin",
+      "bytes": 115,
+      "sha256": "f454379420a6226ccafb75f81bcba967a24682877f89981568ba5dee840af6ca"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-visible/capture.json",
+      "bytes": 2971,
+      "sha256": "58bb6655cf46b98a673a66bf5a69b3c50ca237940a133ab6eb1b1caa44cdabfd"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-getter-visible/native.tsv",
+      "bytes": 354,
+      "sha256": "87c5a477fb9c69e56cf823941e1b89d37d6e94049b70a028eb77ec481482a691"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "20e6af7ab90fcd862f7425520d7ebfcac26dfee30702305e579d09dd13260243"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/post-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-hidden/wire.bin",
+      "bytes": 132,
+      "sha256": "d577bf519e70d2692328274227dd9ff26d27c48adbb7c5d1592de04901a76ab2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-hidden/capture.json",
+      "bytes": 2971,
+      "sha256": "0003b8d67f0a3508d2432c12b5d4dbcf7b230b35099ab71bc19c9a527ddf8b32"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-draw-hidden/native.tsv",
+      "bytes": 370,
+      "sha256": "b03553e0966b0254b93d6ddb6b6e7766638b01eedb22d7538419e5f54d08f375"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-unknown/wire.bin",
+      "bytes": 244,
+      "sha256": "8e6d5073e66c6e7198b5223d17b179890af7307d5bbd1ca35137a73f55d2238e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "6b12757190f6d856df20121596881ececdc6eee822b32b863ce9517e26e56a79"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-unknown/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/stop-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-visible/wire.bin",
+      "bytes": 138,
+      "sha256": "d243ae8596718707e680f3819cdcb8a20c9567cc9945a4bb588c99e45048c238"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-visible/capture.json",
+      "bytes": 2971,
+      "sha256": "e82cbfcc878da846a1fe7263ef316a541519d67cecf029de41097226ba224a8d"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/initial-measure-visible/native.tsv",
+      "bytes": 370,
+      "sha256": "b03553e0966b0254b93d6ddb6b6e7766638b01eedb22d7538419e5f54d08f375"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-hidden/wire.bin",
+      "bytes": 274,
+      "sha256": "6d14b8ab4d22836abdfc1f3e92f8c9a35e9c19bb60de2a9c114dad607a4d09da"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "6db75473c65585f6da2624409115fa3d2c1cd8aea212a0a378f7eb96b0249f6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "513b1973f16956b65a4179c98a8eb4a2237ab0fc9ade50dfde484fa5753cbb84"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "6d75a7a392c74f932c85fd04df076b34940c4fcbc8ecf4bb621e5211368c45b3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-hidden/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "b6c194a36db2335a92df2c142de2177f7f5d6f7045f2652b6ce248002607bbe7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "391adcbe943a60cb6c65fff67c1b050efe9eb9cff31c6155bc2b10d65aacdd00"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/auto-02/tty-eof-hidden/native.tsv",
+      "bytes": 440,
+      "sha256": "ea73256afa9d110516c8e5d1ea0333201e519c45fefd4a46f9a86831e790a73c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/endpoint-hup/capture.json",
+      "bytes": 4726,
+      "sha256": "1c734a6eb6edd89ad6f3a6c3f7695da0745fefb246e138f0e2fb2ff39c44bbe6"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/endpoint-hup/native-termios-after-1.json",
+      "bytes": 108,
+      "sha256": "ded4dab39442fbd85b323d71e36937c693422350fb779b6867edee7e8c9476f6"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/endpoint-hup/extras-1",
+      "bytes": 46,
+      "sha256": "591ca9a19b5bc145e1dec88692dc4887490a9fa81d1a29489e024f1dd18c734b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/endpoint-hup/primary-1",
+      "bytes": 59,
+      "sha256": "fa83fb7f70c9355b18de4f4238ee192677334e4c605d58fb41dd9b2e40a88e1f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/endpoint-hup/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/endpoint-hup/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/endpoint-hup/check.json",
+      "bytes": 255,
+      "sha256": "7226eedc98106d8dd0814c9ff45d1e279f80ff9e60957222200e4a6c37577212"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/endpoint-hup/native.tsv",
+      "bytes": 236,
+      "sha256": "8951545ff000ee9da65a80946ae0a9b78d5b25eb2a273b01a5c5c3a933ec20a5"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/wire.bin",
+      "bytes": 324,
+      "sha256": "e91d04fc248bc52ae339c1baa49066c9aaef375feabe02e4fcb073a632f28d9e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "a965275e71ac99f28ba931393b6be9f314e90a51afcaebcf2b28de3ef34e5ef3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "8e703e84210481916c4027ae555f49039dffcbf99a84d9dc92bddff48b76b93f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/extras-1",
+      "bytes": 24,
+      "sha256": "6f7fd85153a4f79ed3beefcd39cbc5b5f2532767f9cd090987f62d5aaf753dfe"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "9e6474d70ab15b7655e7c843354d6a78e02b97a8d8f7317acadb1e5f99ca412c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "a0396a0e045c8478862cab18a57edc5d69543604a03da2c08f479402c7e50a7b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "714efe82e62781c834c4063f3d125d95d5af5764bb7c06638247da77b94415f3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/wire.bin",
+      "bytes": 318,
+      "sha256": "9129472c7180e91f7edf65dec9a9c581dba5eb7e5acf6f7e6c814b179ece8632"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "c03b2adfbbe0b9b1b5da55e0060e32befe48c1be0fdfd536e92d223ca2622181"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "8e703e84210481916c4027ae555f49039dffcbf99a84d9dc92bddff48b76b93f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/extras-1",
+      "bytes": 24,
+      "sha256": "6f7fd85153a4f79ed3beefcd39cbc5b5f2532767f9cd090987f62d5aaf753dfe"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "9e6474d70ab15b7655e7c843354d6a78e02b97a8d8f7317acadb1e5f99ca412c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "a0396a0e045c8478862cab18a57edc5d69543604a03da2c08f479402c7e50a7b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "714efe82e62781c834c4063f3d125d95d5af5764bb7c06638247da77b94415f3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/wire.bin",
+      "bytes": 294,
+      "sha256": "5bff06c6b83ff98144a0be26cc17f035be0ad901ba29a78cae50177aa5f5df0c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "d9242b7e6793ff61f1f923f26c9812af5981888d953400ae024eeede2eddcc1b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "8e703e84210481916c4027ae555f49039dffcbf99a84d9dc92bddff48b76b93f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/extras-1",
+      "bytes": 24,
+      "sha256": "6f7fd85153a4f79ed3beefcd39cbc5b5f2532767f9cd090987f62d5aaf753dfe"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "9e6474d70ab15b7655e7c843354d6a78e02b97a8d8f7317acadb1e5f99ca412c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "a0396a0e045c8478862cab18a57edc5d69543604a03da2c08f479402c7e50a7b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-close/callback-close-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "714efe82e62781c834c4063f3d125d95d5af5764bb7c06638247da77b94415f3"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/wire.bin",
+      "bytes": 324,
+      "sha256": "e91d04fc248bc52ae339c1baa49066c9aaef375feabe02e4fcb073a632f28d9e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "ad44a2ab0488330ee6b03f5aeb1c3fcaedce46536d96e3681a8cdf5aeb26bfe4"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "8e703e84210481916c4027ae555f49039dffcbf99a84d9dc92bddff48b76b93f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/extras-1",
+      "bytes": 13,
+      "sha256": "55e171efe9fde9671f1f37c9ca4433575130bebb557f63cd96f3e37588938656"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "9e6474d70ab15b7655e7c843354d6a78e02b97a8d8f7317acadb1e5f99ca412c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "a0396a0e045c8478862cab18a57edc5d69543604a03da2c08f479402c7e50a7b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/wire.bin",
+      "bytes": 318,
+      "sha256": "9129472c7180e91f7edf65dec9a9c581dba5eb7e5acf6f7e6c814b179ece8632"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "5a3e150b972bfa7bea6a2ebe5416c27056e85e7d212d73af78d8a1dbffd3c0f8"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "8e703e84210481916c4027ae555f49039dffcbf99a84d9dc92bddff48b76b93f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/extras-1",
+      "bytes": 13,
+      "sha256": "55e171efe9fde9671f1f37c9ca4433575130bebb557f63cd96f3e37588938656"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "9e6474d70ab15b7655e7c843354d6a78e02b97a8d8f7317acadb1e5f99ca412c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "a0396a0e045c8478862cab18a57edc5d69543604a03da2c08f479402c7e50a7b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/wire.bin",
+      "bytes": 294,
+      "sha256": "5bff06c6b83ff98144a0be26cc17f035be0ad901ba29a78cae50177aa5f5df0c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "8d893b52f7eec6d6d0189ca8eab2a9b07a6a11397e1cc3bd3266cf537fc17503"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "8e703e84210481916c4027ae555f49039dffcbf99a84d9dc92bddff48b76b93f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/extras-1",
+      "bytes": 13,
+      "sha256": "55e171efe9fde9671f1f37c9ca4433575130bebb557f63cd96f3e37588938656"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/primary-1",
+      "bytes": 13,
+      "sha256": "5cb7e8f742af43148a29a7db93a3029fc307ae21ecdf8d11756fc660c7dd6c22"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "9e6474d70ab15b7655e7c843354d6a78e02b97a8d8f7317acadb1e5f99ca412c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "a0396a0e045c8478862cab18a57edc5d69543604a03da2c08f479402c7e50a7b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/callback-cleanup/callback-cleanup-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-visible/wire.bin",
+      "bytes": 318,
+      "sha256": "9129472c7180e91f7edf65dec9a9c581dba5eb7e5acf6f7e6c814b179ece8632"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-visible/capture.json",
+      "bytes": 3389,
+      "sha256": "3c17a8e2cc2ad82d672534a0d581c2eb21c3971b5f4659036df0f42fff1ccf9e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-visible/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "8e703e84210481916c4027ae555f49039dffcbf99a84d9dc92bddff48b76b93f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-visible/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-visible/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-visible/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "9e6474d70ab15b7655e7c843354d6a78e02b97a8d8f7317acadb1e5f99ca412c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-visible/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "a0396a0e045c8478862cab18a57edc5d69543604a03da2c08f479402c7e50a7b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-visible/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-visible/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-hidden/wire.bin",
+      "bytes": 324,
+      "sha256": "e91d04fc248bc52ae339c1baa49066c9aaef375feabe02e4fcb073a632f28d9e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-hidden/capture.json",
+      "bytes": 3389,
+      "sha256": "c3d3307d3dab379a2363e47f6b61a8271da9859aedacffa0c492613f5dea484b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-hidden/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "8e703e84210481916c4027ae555f49039dffcbf99a84d9dc92bddff48b76b93f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-hidden/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-hidden/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-hidden/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "9e6474d70ab15b7655e7c843354d6a78e02b97a8d8f7317acadb1e5f99ca412c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-hidden/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "a0396a0e045c8478862cab18a57edc5d69543604a03da2c08f479402c7e50a7b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-hidden/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-hidden/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-unknown/wire.bin",
+      "bytes": 294,
+      "sha256": "5bff06c6b83ff98144a0be26cc17f035be0ad901ba29a78cae50177aa5f5df0c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-unknown/capture.json",
+      "bytes": 5903,
+      "sha256": "468e67ebc99c685b4616f1a4762f9c90c91a8dcc5721d8e234ade2cdec686488"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-unknown/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "8e703e84210481916c4027ae555f49039dffcbf99a84d9dc92bddff48b76b93f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-unknown/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "9400cc1e73e04bfbc3de502496dc76626fcc19e55fb9a50ed9877e3460687bee"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-unknown/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-unknown/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "9e6474d70ab15b7655e7c843354d6a78e02b97a8d8f7317acadb1e5f99ca412c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-unknown/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "a0396a0e045c8478862cab18a57edc5d69543604a03da2c08f479402c7e50a7b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-unknown/check.json",
+      "bytes": 34,
+      "sha256": "1acefc1d1555414e4419c313f67a93cbb8188b36baac25f2d7a2684927c0de6f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/declared-02/stop/stop-unknown/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/transport-check.json",
+      "bytes": 1322,
+      "sha256": "4cf52a0efb1c5efb9d4a86df25e98cea46c6cb15ea838be640cee47d966bd3fd"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/transport-check.json",
+      "bytes": 1392,
+      "sha256": "b5e4756f50c357a8052b21cece39c8d956ccbf3a9aa3eef018c2ac6a9364c06e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/transport-check.json",
+      "bytes": 1394,
+      "sha256": "96f6802931ee28a51687a473ea0135aecec3fee35e5b73dc9833273272c6ae3a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/transport-check.json",
+      "bytes": 1393,
+      "sha256": "67e503692ec8170b58a7c27631b78bd9b3c15dfb9e68d0454c25ee0cc1908f0b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/transport-check.json",
+      "bytes": 1393,
+      "sha256": "e2aa24d08ac3db6788a684ce294f19b3f6090eec1910ac768189af9bb19df352"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/wire.bin",
+      "bytes": 499,
+      "sha256": "49fc5e4a638e53e7710dc298884d333ec5aae56d2d8bff69d3dca695b49b12d0"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "986ac03d38175cec3beaac8dd8ef35b5d618b5d3b161d734ae88a7fb2dead6aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "3f98f3764bfdb1eda68265e95a0b2b145bd4ff972532685832fda44cbdc5e80c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/outer-termios-after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/host-check.json",
+      "bytes": 852,
+      "sha256": "3e26a922196f144d969795fcdd08fa74ffdc0cc7b21b0807f1a563b284ca4d75"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "3819d69641b580f6d1a737d35cd1fcf466a83dfc9339403ba308a57957fe05c0"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "ce1a11e6a91934f1a73a16ed61b82c9da94080833a48e7e841d0576f3672789c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/outer-termios-before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/child/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/outer/wire.bin",
+      "bytes": 276,
+      "sha256": "228f6a27f4f266df0659ff629114fcf20992c00b9890b81a84f9fc3784772419"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-unknown/outer/capture.json",
+      "bytes": 6510,
+      "sha256": "deda0dc9b88b693a58a713ae04580ae427ade6d3e8c7297cabbd585944c3b897"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/wire.bin",
+      "bytes": 579,
+      "sha256": "d5c805e53bc3a49cd9b17656315dccfcc4e34f059520b9baff91be592fb6747f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "986ac03d38175cec3beaac8dd8ef35b5d618b5d3b161d734ae88a7fb2dead6aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "3f98f3764bfdb1eda68265e95a0b2b145bd4ff972532685832fda44cbdc5e80c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/session-policy",
+      "bytes": 30,
+      "sha256": "d099dfaa27175cb6ccfe980b30080800dd2fc82b073062144ea16e57a618c176"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/outer-termios-after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/host-check.json",
+      "bytes": 851,
+      "sha256": "83bb6e1973e9b30c735dc7232e81a6d6e35441804981d45093f7e1efb9a1eef6"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "3819d69641b580f6d1a737d35cd1fcf466a83dfc9339403ba308a57957fe05c0"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "ce1a11e6a91934f1a73a16ed61b82c9da94080833a48e7e841d0576f3672789c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/outer-termios-before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/child/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/outer/wire.bin",
+      "bytes": 356,
+      "sha256": "b54c5d41a49ee06fe5ed68aaef3a8617f3ecec010e0663d0a23c2ffd11c24283"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/declared-hidden/outer/capture.json",
+      "bytes": 4165,
+      "sha256": "6b391e4775e47dc4dae9c7db5c2db77df5034d69a46b108473035e113c188c5d"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/wire.bin",
+      "bytes": 523,
+      "sha256": "360e2cebfd298361a1bee9627f9d05ba30cfa23fc8c645a4ba02b4ea56177e72"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "986ac03d38175cec3beaac8dd8ef35b5d618b5d3b161d734ae88a7fb2dead6aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "3f98f3764bfdb1eda68265e95a0b2b145bd4ff972532685832fda44cbdc5e80c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/outer-termios-after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/host-check.json",
+      "bytes": 852,
+      "sha256": "30ab574e9978325aff9d03f3602211570c58c71925e89257ceb807bc41dff301"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "3819d69641b580f6d1a737d35cd1fcf466a83dfc9339403ba308a57957fe05c0"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "ce1a11e6a91934f1a73a16ed61b82c9da94080833a48e7e841d0576f3672789c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/outer-termios-before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/child/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/outer/wire.bin",
+      "bytes": 300,
+      "sha256": "2e8fe5ddca66d230c49e7aa96537c3f9e11c0597a9eabfe00a0b01723afcbb5e"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-visible/outer/capture.json",
+      "bytes": 4162,
+      "sha256": "c3b6ca595f9049a1550c9af8721a28d265abb0422ceddce20d2823e15c41ce39"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/wire.bin",
+      "bytes": 523,
+      "sha256": "24b01a19f2be5c5d634a704fb58c85d8b57a0db6360026a3b51699f0d78add97"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "6eeda4823e6a22f1fb8e59973cc697d92697e078feec50121575d8066c2c9a09"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "3f98f3764bfdb1eda68265e95a0b2b145bd4ff972532685832fda44cbdc5e80c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/outer-termios-after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "4fe413a0bbe5b01aa1a33c3ee227942c85ed922948493ff4cb5266123ecaabbf"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "caa69259930b8714a53b089c0012e37ff2f9c2a902473edd6e1328953255e2ce"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/outer-termios-before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/child/native.tsv",
+      "bytes": 435,
+      "sha256": "0202e865cc5ece41559a5591c469872abc3fa1ff8028baba7f4828e4c024fab8"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/outer/wire.bin",
+      "bytes": 1214,
+      "sha256": "f08ab53f544e119881c7e596ce518d2a028f41e625d1f58bdc95eebfb881fc6b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/negative-child-drift/outer/capture.json",
+      "bytes": 4170,
+      "sha256": "fa32323531e8842ef8563282546d6cf5e2762ae2037159e984201e79b6c28bd2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/wire.bin",
+      "bytes": 529,
+      "sha256": "301f14ee6dd698713a078408428485b7500dd4435bcd0059ced3f8662b7839e8"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/native-termios-after-1.json",
+      "bytes": 271,
+      "sha256": "986ac03d38175cec3beaac8dd8ef35b5d618b5d3b161d734ae88a7fb2dead6aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/native-termios-before-1.json",
+      "bytes": 272,
+      "sha256": "3f98f3764bfdb1eda68265e95a0b2b145bd4ff972532685832fda44cbdc5e80c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/session-policy",
+      "bytes": 19,
+      "sha256": "eb49c100a050cce128eea77ed0c88dd85f868c5b1c311e0f121fc0d76490509a"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/outer-termios-after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/host-check.json",
+      "bytes": 851,
+      "sha256": "83bb6e1973e9b30c735dc7232e81a6d6e35441804981d45093f7e1efb9a1eef6"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/native-termios-before-2.json",
+      "bytes": 272,
+      "sha256": "3819d69641b580f6d1a737d35cd1fcf466a83dfc9339403ba308a57957fe05c0"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/native-termios-after-2.json",
+      "bytes": 271,
+      "sha256": "ce1a11e6a91934f1a73a16ed61b82c9da94080833a48e7e841d0576f3672789c"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/outer-termios-before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/child/native.tsv",
+      "bytes": 410,
+      "sha256": "71e327a2f52a0a5efeb5a7b13600f2fa21f99da532d4aa7f071e7eb9196f4ce7"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/outer/wire.bin",
+      "bytes": 306,
+      "sha256": "995f175aaecb00937b29af5babfbe87aa4ed2beedc587817d779c8510354451b"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-formal-tests/fix-r1/evidence/host-transport-02/auto-hidden/outer/capture.json",
+      "bytes": 4161,
+      "sha256": "0b4921f47bd52a3b628edeac73252163c69502b117fcc01e136bea09c2c694d3"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-020-r1-command-facts.json",
+      "bytes": 1822876,
+      "sha256": "4cd8f17cf5929fcf8b426fbbcb72b1bd298ace04425126cde484a520f39d3f64"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-020-r1-review-package.txt",
+      "bytes": 45993,
+      "sha256": "ca2a239a5d33d8b6ea3a6e6efd41be1db316b22b84b50112d9cc53aa949a12a8"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-020-review-brief.md",
+      "bytes": 10808,
+      "sha256": "6c1c25d19c164ae144e33bea8f454e9b6b8966d31706bb272ec4eb55f67857f0"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-review/index.json",
+      "bytes": 73252,
+      "sha256": "4e58f3779e8946f565e74da7a711561e14c937cd78f656b7cac1da8381ff7b26"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-review/report.md",
+      "bytes": 3129,
+      "sha256": "470f0572047a1e9016345c56bac1548e6c6b50292a05df97ae9b2dc7fe1cc905"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-review/findings.json",
+      "bytes": 5395,
+      "sha256": "8f69288f5fb976ded32a4fa8e477decee030ad69d583988ddaf9c7838240aaa2"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/workspace/work/session-lifecycle-review/fix-r1/report.md",
+      "bytes": 2307,
+      "sha256": "6c6aabcd3155843e36f49a95cc41f2eec4d468b287064c7f347449829171da1f"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-review/fix-r1/findings.json",
+      "bytes": 5977,
+      "sha256": "2e2f45948038f46093b40a9ded0437cd0a171df3e8d5090bbca525c62cda47fd"
+    }
+  ]
+}
