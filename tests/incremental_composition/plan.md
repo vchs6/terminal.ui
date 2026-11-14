@@ -24,3 +24,19 @@ is not independently observable and is not presented as a measurement.
 
 No production edits, old-test changes, shared SDK/cache/config changes, subagents,
 timing thresholds or performance claims. Existing tests retain their own authority.
+
+## Accepted C source update, build held
+
+Root supplied accepted C137 source
+`ee84e7ac7a35bb6481a17ecb91f1ec07804b672a`; merged into the prepared D branch at
+`3f850f6bf7fbc23f3bc61fe9111ba68dfabaf55f`. The merge changes no D tests and the
+resulting product `src/`, `native/`, `build.cj`, `cjpm.toml` and existing A/B/C,
+composition and recovery tests are identical to accepted C source. The only
+tree difference against accepted C is this new `tests/incremental_composition/`.
+
+C137 acceptance index: `/workspace/work/incremental-cache-acceptance/index.json`,
+SHA-256 `fa9af11a8406da756139346488bb08859d5972806980f8dc97a7f89975d6878c`.
+This records the fixed input, not a new independent C acceptance.
+Root explicitly retained BUILD HOLD pending capacity GO. No build/run/dependency
+copy occurs during this source-only update. Expected D baseline outcome remains
+M1-equivalent correctness with work RED because accepted C still paints fully.
