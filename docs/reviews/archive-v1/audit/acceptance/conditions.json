@@ -1,0 +1,66 @@
+{
+  "verdict": "PASS_CURRENT_REVIEW_ARCHIVE",
+  "scope": "Current 26 frozen review groups only",
+  "targetHead": "29b9283316ed853a96d98a94cfbbf934bb4b05d8",
+  "targetTree": "9e753ea57a56c4feda7b7e162c81ce7b441f8664",
+  "requirements": [
+    {
+      "condition": "Fresh checkout under umask022, clean and unchanged",
+      "result": "PASS",
+      "evidence": "raw/checkout-proof.json; raw/final-environment.json"
+    },
+    {
+      "condition": "All original Git bytes/type/user-exec and frozen full modes preserved",
+      "result": "PASS",
+      "evidence": "raw/original-comparison.json; raw/original-byte-proof.jsonl.gz"
+    },
+    {
+      "condition": "Unique archived originals, exact intended removals, required retention and active input intact",
+      "result": "PASS",
+      "evidence": "raw/original-comparison.json"
+    },
+    {
+      "condition": "All26 CLI verify",
+      "result": "PASS",
+      "evidence": "raw/verify-all.json; raw/verify-all.stdout"
+    },
+    {
+      "condition": "Repository metadata and local links",
+      "result": "PASS",
+      "evidence": "raw/repository-check-with-dependency.json; raw/repository-check-with-dependency.stdout"
+    },
+    {
+      "condition": "Strict OpenSpec validation23/23",
+      "result": "PASS",
+      "evidence": "raw/openspec-check.json; raw/openspec-check.stdout"
+    },
+    {
+      "condition": "Representative600/700 restore and nooverwrite",
+      "result": "PASS",
+      "evidence": "raw/restore-controls.json"
+    },
+    {
+      "condition": "All32956 sealed restoration reused, canonical audit1696 and independenttests exact",
+      "result": "PASS",
+      "evidence": "raw/audit-comparison.json"
+    },
+    {
+      "condition": "Historical source and catalog evidence resolves immutably",
+      "result": "PASS",
+      "evidence": "raw/stage-bindings.json; raw/historical-source-resolution.json"
+    },
+    {
+      "condition": "Reviewtree counts and savings measured separately from Git history/objects",
+      "result": "PASS",
+      "evidence": "raw/original-comparison.json; raw/final-environment.json"
+    }
+  ],
+  "requiredGaps": [],
+  "limits": [
+    "No full Linux product acceptance",
+    "No new pack/removal or old SDK/build suites",
+    "No generic future zero-inline committed-replay support claim"
+  ],
+  "dependencyResolution": "First plain repository check failed solely because fresh clone has no node_modules; unchanged checker then passed via explicit absolute import hook to existing smol-toml; no reinstall or clone edits.",
+  "harnessCorrections": "Initial independent auditor assumed every source-review binding had bytes and that R11 used later-group evidence layout; corrected schema handling, preserved initial raw failures, and full final auditor exited0."
+}
