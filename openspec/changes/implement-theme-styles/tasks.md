@@ -60,7 +60,7 @@ preflight逐项：085/013/025接口同design/fixtures；013和025同代码周期
 
 ### TASK027完整M1 showcase L4（独立质量角色，唯一状态仍本文件）
 
-正式范围消费[Linux收尾C006](../complete-linux-integration/design.md)并沿本theme T001–T016，新增字段不重复定义API。实际输入=092/084/097/112/117/122/157/162及完整021；021不反等027，027完成后才冻结124的完整功能M1库。全部实际输入/测试/命令/hash未齐前planned，不因preflight推定ready。
+正式范围消费[Linux收尾C006](../complete-linux-integration/design.md)并沿本theme T001–T016，新增字段不重复定义API。实际输入=092/084/097/112/117/122/157/162及完整021；021不反等027，027完成后才冻结124的完整功能M1库。完整产品准入仍需实际输入、固定正式测试及命令/hash；独立测试设计准入不代表产品ready，具体当前阶段见下述准入记录。
 
 027.a独立Sol/high测试作者在tests/theme_showcase/普通consumer手写同业务/尺寸四主题全部基本组件和focused/selected/disabled预期、切换后节点/编辑选择/undo/焦点/滚动不丢、非法文件旧主题保持、主动reload原子成功；实际缺showcase/行为RED与工具自检后冻结test-only。027.b独立Sol/high或Terra/high作者在已定examples/theme_showcase/和产品themes/README用公开API实施，无theme特判内核；四preset canonical bytes沿已冻fixture。027.c独立Astra/high固定完整diff双verdict，不读作者自评。027.d独立Sol/medium正常CJPM build→直接smoke与真实键操作，至少一真实GUI同一场景四套原PNG/完整grid/style/version/config/source/time/hash；跨host自动降级沿C008完整矩阵，不用TERM假实现。027.e独立Astra/high逐原AC027完整组件/状态/窄屏/切换保持/可见层快照/主题分发核原件与source/cjp，root仅机械集成，不把基础四文本图当全showcase。CLI tests/theme_showcase/run.sh为开发测试入口，实际product project启动文档在examples/theme_showcase/README.md；入ready前固定具体命令与正式源。
 
@@ -79,3 +79,7 @@ preflight逐项：085/013/025接口同design/fixtures；013和025同代码周期
 ## 2026-11-11 基础验收与异步准入
 
 013/025与085–088当前基础范围由独立088接受，固定8d，产品已集成main73abef3；026/027/090–092与完整Linux/M2未完成。089原179c851冻结资产的真实foundation正向0后async-only probe1已交付，22行为场景未执行；026原实现角色已ACTUAL GO，BASE73abef3，唯一loader/Runtime/cache路径。证据见[R15基础验收](../../../docs/reviews/R15/acceptance/report.md)、[独立执行](../../../docs/reviews/R15/execution/report.md)、[异步RED](../../../docs/reviews/R15/async-red/report.md)。T087-G01 wholechecker实际1（themes允许表/缺composition/benchmark）保持最终023.a–d OPEN，不改为release通过。
+
+## 2026-11-14 TASK027 正式测试准入
+
+当前 status=in_progress，仅027.a独立正式测试设计；父复选框保持未完成。输入源固定 main `39d56c0f7ca2d751a9ce5fb4e18913636fdff43a`，完整AC021已由独立验收 `53c8ecc8b57756d857e08fb3209ebf975e2bd6e389696cc33d7d555669b45ddc` 接受为 `PASS_AC021_M1_U1_U5`；主题092与四preset固定字节及其余功能前置沿[实际输入manifest](../../../docs/reviews/R22/027/input-manifest.json)，SHA256 `80862cf7d9f7bd9d80351dcb40fab96fd96f5216888e71163dc1997cf3a77e28`。027.a由独立Sol/high角色冻结同场景完整组件/四主题/状态保持/文件重载用例；尚无正式测试提交或产品作者准入，不把预置文件及已有文字图视为完整showcase。C006已定目标、单挂载场景及公开API不变，具体可复现样例布局/文案/按键由builder在授权范围内确定。027完成后再冻结完整M1并进入M2，最终Linux/023/024保持开放。
