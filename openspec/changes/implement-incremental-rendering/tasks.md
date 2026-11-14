@@ -134,7 +134,7 @@
 
 - [ ] 143冻结80×24/160×48混合Unicode、各类变化/横向同行代价/全局退化动作与业务barrier；正确性按完整Cell+独立caret断言，性能不运行oracle/equality/hash。
 - [ ] 143冻结CSV列的单位/范围：measure/arrange/paint/frame/cellWrites、frame_allocated_cell_slots、CPU user/system、wall、heap/GC/RSS、成功输出bytes/calls、环境/源码/seed/尺寸/重复编号；缺某采样工具记录实际限制，不自动取消其他必要证据。
-- [ ] 144用同公开业务程序分correctness/m1-headless/m2-headless/tty；库无测试模式；M1普通render、M2普通snapshot；输出bytes采集/CPU外部工具不进入运行依赖。
+- [ ] 144按M013交付同源compat correctness/snapshot-headless/tty双版本入口，以及最终库专用correctness/m1-headless/m2-headless诊断入口；冻结资格表并拒绝不支持组合，库无测试模式；外部计量不进入运行依赖。
 - [ ] 144说明旧M1制品与最终M2制品正常CJPM构建并核相同业务/完整帧，记录普通bundle/依赖/SDK前置；原八统计之外新增三计量口径与未覆盖成本公开。
 - [ ] 145审公平性、M1 oracle GC污染、错误状态配对、伪TTY/伪allocated bytes、工具退出0但无有效数据、选择性汇报与产品制品边界。
 - [ ] 146独立执行足够时长/重复的分进程CPU与Cell存储分配，SDK heap/GC/RSS补充，单独真实TTY输出采样；报告所有重复、分布及噪声，不只best；干净目录从普通cjp构建并运行。
@@ -189,3 +189,7 @@ Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/A
 固定D公开测试 `0ab2536475c142a0731a34d4112d719c75b2a3ad`，索引 `042e3789e165c2e0e542b49227cc90fad539f110c4fc3790d1080c61601d8222`；正常CJPM构建退出0，直接基线退出1：15个领域、68组同epoch完整Cell/手算配对正确性零失败，14项工作量真实RED（行重放2、显隐/移除6、缓存caret6）。首次fixture默认ScrollView抢占Canvas焦点的设置已显式修正为不可聚焦wrapper，断言不变，两次构建/运行原件均保留。主代理核验34项源码/证据、ELF及锁文件字节，并确认合入只新增20个D测试文件、C产品与原A/B/C测试无变化。
 
 139由独立Terra/high在独立工作树实施D1损伤边界与版本、D2局部重放与caret/遮挡、D3后端失败围栏与正常包。140审核、141独立执行与适用真实TTY、142验收后才关闭D。138的设备故障/投影私有覆盖显式映射既有output_recovery/glyph fixtures及后续源码证明，不冒称本轮运行过；没有新增产品测试hook。E真实基准、完整031/022、Linux最终宿主矩阵、023/024继续开放。
+
+## M013 计量方法独立预审与E准入补充
+
+独立Astra/high源码与方法预审为PASS，未运行构建或性能测量；此结论不等于143–147通过。§11及rendering-benchmark spec已同步：主要旧/新普通包同源snapshot对照保留全部非idle矩阵，同库参考计时仅限输入等价资格表；idle走正常run。143须冻结全场景/模式覆盖、动作/epoch、schema、窗口/生命周期/Frame保留策略、独立geometry/caret预期和不支持组合的非零失败。145核这些边界与正常包隔离；146执行完整表及所有重复/负面/全局数据、独立真实TTY输出；147按原AC022/031核实际成本。D142固定输入和根代理容量准入不变，源码准备不冒称正式测试。

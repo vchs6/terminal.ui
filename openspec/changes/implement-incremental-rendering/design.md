@@ -170,11 +170,11 @@ damage 提示仅在以下证据全满足时用于排除行：提示绑定到目�
 
 交付正常独立 CJPM 项目，仅依赖制品中的 cjtui 公共 API 与已声明依赖，产品基准源码不引用 src、私有方法、开发目录、作者缓存或测试宏。配置命令的确切仓颉参数解析/计时签名待 SDK 正常消费者实证，本文不伪造可运行代码。
 
-建议同一业务 workload 支持 correctness、m1-headless、m2-headless、tty 四种**基准自身执行路径**，不向生产库加入模式开关。m1 使用公开 render(root,w,h)，m2 使用 startHeadless/batch/snapshot/stats/dispose。两者使用同一 workload 源码、动作种子、总更新数、尺寸和完整组件功能；M1 也持久挂载一次以消除生命周期构造差异，但每次采样走全局 render。含后台 post 的正确性负载另测，主 CPU 对照用确定性 batch，不以 M1 render 不 pump posts 制造不公平差异。
+同一公共workloads源码用于两份普通包的compat入口：correctness、snapshot-headless、tty。主要headless对照在固定完整M1与最终M2上均调用正常Application.snapshot，包含公开返回副本、状态稳定及geometry/caret准备成本。最终库专用诊断入口提供correctness、m1-headless、m2-headless；同库render/snapshot计时只用于已冻结资格表中geometry与caret独立、已提交输入等价的场景，不支持的请求明确失败。全部状态性场景仍须进入主要双版本计量与正确性矩阵，不能被资格限制删去。
 
 公共接口当前没有独立 diff 编码入口，changesSinceForTerminal 为内部方法，不能让基准 import 私有符号。处理方式：
 
-1. headless 直接比较当前同一库的 M1/M2；快照独立副本成本算 M2 的真实公开调用成本，单独记录 M1 帧导出/消费策略。
+1. headless主要对照为相同compat源码在旧M1/新M2普通包上的snapshot；固定相同Frame保留/释放策略，完整公开调用与准备成本纳入。补充同库render/snapshot仅限上述资格表，不在计时前偷偷调用snapshot。
 2. diff 阶段由开发侧 profiler 对正常 Application.run 分段归因；不把 Frame.toAnsi 全量编码叫作差分基准。
 3. 若需真实 TTY 下 M1/M2 输出与 CPU 对照，保存**功能全部一致、M2 开始前的 M1 产品固定提交**，用同一公开基准分别依赖该 M1 制品与最终 M2 制品正常构建。无需生产强制全量开关。先证两版本相同动作产生同完整帧；缺同功能基线时只报告最终 TTY 绝对成本与 headless 对照，不虚构 TTY 加速倍数。
 
@@ -236,7 +236,7 @@ Canvas跳过draw时保留其最近有效的逻辑caret请求作为节点绘制�
 
 M005：分配证据以真实范围的Cell存储槽累计为精确指标，并公开SDK当前heap占用、累计GC回收、次数/耗时以及进程peak RSS；这些不相互冒充。不将精确全进程对象allocated bytes/count或perf权限新增为原AC-031前置。外部微验证已证明NewArray8导出hook漏内联快路径，禁止用其不完整计数当总分配。cjprof当前权限失败仅限制热点采样，不限制wait4真实CPU测量。报告工具覆盖边界，不以“多项测试通过”替代总体证据。
 
-M006：全部功能完成且M2产品实施前冻结完整M1基线，记录功能库源码/依赖/SDK/native/普通制品hash；公开benchmark源码由143/144后置交付并在146计量前冻结，不要求124前已有基准项目。TTY的M1/M2对照用同业务基准分别依赖两份固定普通包正常构建，无生产库模式开关。headless当前全局render与snapshot同库对照；timing不夹M1 oracle/equality/hash，避免其GC污染。correctness用业务barrier和同稳定批次，防两次API消费不同后台状态。大小至少80×24/160×48，所有第11节变化与全局退化均纳入。
+M006：全部功能完成且M2产品实施前冻结完整M1基线，记录功能库源码/依赖/SDK/native/普通制品hash；公开benchmark源码由143/144后置交付并在146计量前冻结，不要求124前已有基准项目。TTY的M1/M2对照用同业务基准分别依赖两份固定普通包正常构建，无生产库模式开关。headless主要使用旧/新普通包的同源snapshot对照，同库render/snapshot仅为M013限定的补充诊断；timing不夹M1 oracle/equality/hash，避免其GC污染。correctness用业务barrier和同稳定批次，防两次API消费不同后台状态。大小至少80×24/160×48，所有第11节变化与全局退化均纳入。
 
 M007：本候选已同步三诊断与限定分配口径，不把全进程精确累计分配追加为前置；无需再次等待该路线确认。Canvas/viewport/overlay路线已采用，但其正式合同版本和全部上游产品固定SHA仍在实施前补齐。没有独立preflight、冻结测试和上游最终通过产物时本任务不ready，不能越过共享Component/Layout写屏障。
 
@@ -268,6 +268,16 @@ init(mountedNodes: Int64, activeBindings: Int64, subscriptions: Int64,
 
 公共benchmark构建边界精确为：`benchmarks/rendering/compat`正常独立CJPM入口及`benchmarks/rendering/workloads`共享库只使用完整功能M1已有公共API/原八Stats字段，同一份源码在旧/新两个普通库制品上构建（仅依赖manifest路径改动）。新三诊断在此共同入口的CSV均为not_available，不填0、不运行时探测不存在的成员；该入口不得import仅新版本诊断代码。
 
-`benchmarks/rendering`主项目是最终库专用诊断/同库headless M1-reference-vs-M2入口，复用同一个workloads库，允许读取arranges/cellWrites/frameAllocatedCells并报告其精确范围。它只对最终新库编译，不能用运行时分支声称会避开旧库缺字段的编译错误。旧/新TTY真实CPU/heap/GC/RSS/output由共同compat入口及外部计量比较；新库的精确阶段/Cell槽收益另由同库两个路径证明，不混称旧库也测过新字段。
+`benchmarks/rendering`主项目是最终库专用诊断/同库headless M1-reference-vs-M2入口，复用同一个workloads库，允许读取arranges/cellWrites/frameAllocatedCells并报告其精确范围。它只对最终新库编译，不能用运行时分支声称会避开旧库缺字段的编译错误。旧/新headless及TTY真实CPU/heap/GC/RSS/output由共同compat入口及外部计量比较；新库的精确阶段/Cell槽收益另由同库两个路径证明，不混称旧库也测过新字段。
 
 143正式测试分别正常构建compat+workloads对冻结旧M1/新M2，及诊断入口对新M2；144交全部独立manifest/公开源码/说明，145审核隔离与公平性，146保留每次实际版本/源码/原值，147按原022/031验收。功能M1普通制品此时可能尚无benchmark文件，不能称已经通过最终Linux release；完整023/024仍在最后。
+
+## M013 公共API状态语义与计量窗口修正
+
+独立源码/方法预审通过后修正§11/M006/M012的无条件同库headless配对：mounted全局render不发布viewport/geometry/caret，也无公开headless pump。主要双版本snapshot-headless保留所有非idle场景和实际准备成本；同库诊断须冻结逐场景资格表并明确拒绝不支持请求。correctness可先显式snapshot提交再同epoch/同glyphMode完整render对照，分别记录准备与reference计数；此配对只证明已提交输入的绘制，geometry和caret仍须独立手算预期及双版本正常snapshot验证，caret不能把同一会话读数冒称第二oracle。
+
+全部§11矩阵、M011 Unicode/Ascii交替及device profile/projection仍必需；首次生成用新生命周期，不被warmup消去。稳定idle只用正常Application.run，在初始化及探测稳定后不强制snapshot/render/export或业务变更；实际poll CPU计入，前后工作计数查询在窗口外。重复不变snapshot如测量，独立标为API成本而非idle。冻结窗口、采样开销、Frame保留/释放和生命周期，区分全进程CPU与内部wall窗口。
+
+诊断入口--mode correctness|m1-headless|m2-headless，compat为correctness|snapshot-headless|tty；共用--scenario/--width/--height/--seed/--warmup/--updates/--repetition/--csv/--run-id。correctness另可--cells-csv/--caret-csv：UTF8/RFC4180完整Cell含结构化style、簇宽/continuation/透明位；caret包含可见性、坐标及稳定业务owner，不比较跨session内部ID。性能窗口无逐Cell导出/equality/hash/oracle。外部验证manifest以唯一opaque run-id绑定实际源码/CJP/ELF/native/deps/SDK/host/设置/重复编号；CSV回显标签本身不是hash证明，不要求干净包运行时发现Git。
+
+原八Stats在compat真实报告，新增三字段在旧/新compat均not_available；最终库专用诊断真实采集三字段。成功输出bytes/calls来自实际系统调用返回，不取PTY read块；请求/成功/short/EINTR重试及baseline/update/exit分开，trace与未扰动CPU测量分进程。SDK heap/GC、CPU/wall/RSS及Cell槽口径保留，不声称总allocated bytes或零CPU。143冻结完整场景到模式表/窗口/schema与负向拒绝，145核公平性与普通包隔离，146执行全表重复原始数据，147仍按完整AC022/031验收。

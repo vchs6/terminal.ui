@@ -6,7 +6,8 @@ benchmarks/rendering SHALL be an ordinary CJPM project using only public product
 
 #### Scenario: Headless and actual-terminal comparisons
 - **WHEN** the benchmark measures headless M1 and M2
-- **THEN** it uses public global render and Application.snapshot with equivalent business inputs
+- **THEN** its primary comparison builds identical compat/workload source against fixed complete M1 and final M2 ordinary packages and calls normal Application.snapshot for every required non-idle workload, including all public preparation and return costs
+- **AND** supplemental same-library global-render/snapshot timing is restricted to a frozen eligibility table with equivalent committed geometry- and caret-independent inputs; unsupported requests fail explicitly
 - **AND WHEN** terminal comparisons are reported
 - **THEN** the same benchmark source is normally built against fixed complete M1 and M2 packages, with real host/configuration evidence and no production mode toggle.
 
@@ -46,3 +47,19 @@ Reports SHALL include work deltas, real process CPU, scoped Cell-storage allocat
 - **WHEN** a performance conclusion is published
 - **THEN** it includes exact source/artifact/dependency/SDK hashes, OS/CPU/terminal/size/capability configuration, workload seed/actions, all repeated raw results and distributions
 - **AND** output trace instrumentation is separated from undisturbed CPU timing, negative/global results are retained, and counts alone do not imply overall performance improvement.
+
+#### Scenario: Stateful correctness retains independent expectations
+- **WHEN** correctness commits a snapshot before a mounted full reference render
+- **THEN** both frames use the same business epoch and glyph policy, preparation and reference work are disclosed separately, and geometry/caret have independent expected results and normal old/new snapshot comparisons
+- **AND** no hidden per-update snapshot preparation, invented pump API or oracle runs in comparative timing; all stateful and M011 glyph/profile scenarios remain required.
+
+#### Scenario: Stable idle uses the normal run loop
+- **WHEN** already-O(1) idle is measured after initialization and probe work settles
+- **THEN** normal Application.run polls without forced snapshot/render/export or business mutations; actual polling CPU and unchanged render-work counters are reported
+- **AND** repeated unchanged-snapshot cost is labeled separately, and first generation uses a fresh lifecycle rather than being discarded as warmup.
+
+#### Scenario: Raw results bind actual artifacts and measurement windows
+- **WHEN** CSV measurements are recorded
+- **THEN** an externally verified manifest binds a unique opaque run ID to actual source/package/binary/native/dependency/SDK/host hashes, settings and repetition; an echoed label is not self-verifying provenance
+- **AND** snapshot retention/disposal and sampling overhead are fixed, process CPU is distinguished from inner wall timing, and complete Cell/caret UTF-8 RFC4180 exports occur only in correctness runs with stable business owner identity
+- **AND** compat reports all three new diagnostic fields as not_available on both package versions, while final-library diagnostics report actual scoped values; successful output counts come from syscall returns with requests, retries and baseline/update/exit separated.
