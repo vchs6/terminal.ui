@@ -13,3 +13,5 @@
 `visualStates(VisualStates(disabled: true))` 只选择外观状态，不禁用事件或改变业务状态；控件的交互状态由控件自身管理。
 
 根级 `[text]` 的八个文本绘制属性是逻辑根的默认种子，并随父节点解析结果继承。例如，主题根前景为白色时，`Column { Text("x") }.foreground(Color.Red)` 中的文字继承红色；如果 `components.text.text.foreground` 指定蓝色，该文字自己的角色主题会覆盖继承值。
+
+The [theme showcase](../../examples/theme_showcase/README.md) demonstrates the four presets on one mounted widget gallery, plus explicit file load and reload. Its footer reads the accepted theme information, and a failed request leaves the current theme in place.
