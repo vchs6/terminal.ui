@@ -11,7 +11,7 @@ event. No watcher, renderer coordinate access, or manual flush is involved.
 | theme | `loadTheme(ThemeSource.Preset(ThemePreset.Dark))`, `loadTheme(ThemeSource.File(path))`, `reloadTheme()`, `themeInfo(): ThemeInfo` in `src/application.cj`; `ThemeRequest.result(): ?ThemeResult` in `src/theme_request.cj` |
 | retained state | `NodeRef.sameNode`, `isValid`, `isFocused`, `viewportSnapshot`, `scrollBy`, `requestFocus` in `src/node_ref.cj`; `TextEditController.snapshot`, `select`, `undo` in `src/text_edit_controller.cj` |
 | mounted scene | `Column`, `Row`, `Text(String/RichText)`, `Label`, `TextInput`, `TextArea`, `HorizontalMenu`, `PopupMenu`, `Button`, `Checkbox`, `Radio`, `Progress`, `StatusBar`, `SplitPane`, `ScrollView` in `src/` |
-| content and style | `RichText([TextSpan(..., style: TextStylePatch(...))])`, `styles([StyleUse.Named(...)])`, `visualStates(VisualStates(...))`, `enabled(false)`, `border(BorderStyle.Rounded)`, `shadow(...)`, `onMount`, `onKey` |
+| content and style | `RichText([TextSpan(..., style: TextStylePatch(...))])`, `styles([StyleUse.Named(...)])`, `visualStates(VisualStates(...))`, `enabled(false)`, `themeRole(ThemeRole.Modal)`, `onMount`, `onKey` |
 | popup/modal | `NodeRef.openOverlay(content, options: OverlayOptions(mode: OverlayMode.Modal))`, `OverlayHandle.close()` |
 
 `main [--theme-file PATH]` starts at Classic; F6 loads the configured file and
@@ -48,7 +48,10 @@ controls and menu entry cannot receive focus. F1/F2/F3/F4 request Classic,
 Dark, Light, HighContrast; F5 opens the modal, F6 loads the selected file, F7
 reloads, F8 scrolls the mounted log `NodeRef` by 12 rows (clamped to offset 11),
 F9 closes the modal, F10 exits. F-keys are global; printable keys remain editor
-data. Modal is 32×9 centered at x24,y7, the preset controls border and shadow;
+data. Modal is 32×9 centered at x24,y7. Classic and High contrast use an
+ASCII border without shadow; Dark and Light use a rounded border and a one-cell
+shadow. Every preset adds one cell of left and right padding inside the border,
+leaving 28 content columns. The preset controls border, padding and shadow;
 its lines are `Preview`, `Theme sample`, `é 中 👩‍💻`, `Select action`, two blanks,
 `Actions`. It offers a PopupMenu with Inspect, disabled Delete, Confirm.
 Failed file load/reload shows `Load failed` at right y9 without altering

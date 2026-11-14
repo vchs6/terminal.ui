@@ -19,7 +19,7 @@ for(const name of presets){
   assert(frame(smokeGoldens,name,80,24)[10].startsWith('001 INFO record 01'),'first scroll row');
   assert(frame(smokeGoldens,name,80,24)[22].startsWith('013 INFO record 13'),'thirteenth scroll row');
   assert(frame(smokeGoldens,name,80,24,'pending')[9].startsWith('==========----------'),'pending progress');
-  assert(frame(modalGoldens,name,80,24,'modal')[7].includes(name==='Classic'?'+':'╭'),'preset modal border');
+  assert(frame(modalGoldens,name,80,24,'modal')[7].includes(name==='Dark'||name==='Light'?'╭':'+'),'preset modal border');
   assert(frame(retainedGoldens,name,80,24,'retained-scrolled')[10].startsWith('012 INFO record 12'),'clamped offset11');
   assert(frame(retainedGoldens,name,80,24,'retained-scrolled')[22].startsWith('024 INFO record 24'),'last scroll row');
 }

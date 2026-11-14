@@ -33,9 +33,10 @@ async function fullCycle(dir){
     for(let i=0;i<4;i++){
       const name=fullName[i];const rows=await s.key(fullKey[i],r=>acceptedPalette(r,name),`F${i+1} accepted ${name}`);
       sameGrid(rows,ptyGoldens,name,80,24);checkStyles(rows,name);
-      const modal=await s.key(keys.f5,r=>text(r).includes(name==='Classic'?'+------------------------------+':'╭──────────────────────────────╮'),`${name} modal`);
+      const rounded=name==='Dark'||name==='Light';
+      const modal=await s.key(keys.f5,r=>text(r).includes(rounded?'╭──────────────────────────────╮':'+------------------------------+'),`${name} modal`);
       sameGrid(modal,modalGoldens,name,80,24,'modal');
-      if(name!=='Classic'){
+      if(rounded){
         for(let x=25;x<57;x++)assert.equal(cellAt(modal,x,16).text,'░',`${name} full lower shadow`);
         for(let y=8;y<16;y++)assert.equal(cellAt(modal,56,y).text,'░',`${name} full right shadow`);
       }
