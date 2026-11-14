@@ -232,7 +232,7 @@ async function interactions(directory){
     const done=await s.has('Tasks | Done 2/2');
     assert(done[8].text.startsWith('===================='),'completed progress');
     assert(text(done).includes('02 Done Render 333383335000'),'visible second computed result');
-    assert.equal(done[9].text,'Done'+' '.repeat(77),'long-to-short clears full phase tail');
+    assert.equal(done[9].text,'Done'+' '.repeat(76),'long-to-short clears full phase tail');
     assert.equal(at(done,0,9).fg,'named:33','Done awaits acknowledgement in yellow');
     s.send(keys.f4+keys.tab+keys.enter,'open completed task actions');await s.has('Inspect');
     s.send(keys.down+keys.enter,'nested acknowledgement');await s.has('Confirm?');

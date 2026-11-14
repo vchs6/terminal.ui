@@ -77,6 +77,11 @@ assert.equal(replacedNote,'Shared !ote','literal exact-selection replacement');
 assert.notEqual(replacedNote,'Shared note!','caret moved to end would fail exact replacement');
 assert.notEqual(replacedNote,'Shared !note','collapsed gap7 would fail exact replacement');
 assert.notEqual(replacedNote,'!Shared note','focus/caret reset to start would fail exact replacement');
+// Hand arithmetic for the full-width short phase:4 text columns+76 blanks=80.
+const donePhaseRow='Done'+' '.repeat(76);
+assert.equal(donePhaseRow.length,80,'Done phase expectation fits the fixed80-column viewport');
+assert.throws(()=>assert.equal('Done'+' '.repeat(75)+'x',donePhaseRow),'stale nonspace at column79 fails exact-row oracle despite correct width');
+assert.throws(()=>assert.equal('Done'+' '.repeat(77),donePhaseRow),'81-column padding mistake cannot satisfy exact-row oracle');
 const fake={status:0,signal:null,error:undefined,stdout:'PASS composition\n',stderr:''};
 assert.throws(()=>verify(fake,true,'composition'),/literal startup/,'marker without actual grids is rejected');
 assert.throws(()=>verify({...fake,stdout:'diagnostic'},false,'composition'),/invalid CLI/,'false successful invalid argument rejected');
