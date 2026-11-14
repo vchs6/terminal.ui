@@ -66,86 +66,29 @@ func mulDiv(a: Int64, b: Int64, d: Int64): (Int64, Int64) {
     (q, r)
 }
 
-func paint(n: LayoutNode, frame: Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
-    clipR: Int64, clipB: Int64): Unit {
-    layoutPass(n,Some(frame),x,y,w,h,clipL,clipT,clipR,clipB)
-}
-
-// Shared geometry and allocator for normal paint and side-effect-free preflight.
-func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
-    clipR: Int64, clipB: Int64, geometry!: ?HashMap<Int64, LayoutNode> = None): Unit {
-    if (output.isSome()) { n.session.recordPaint() }
+func paint(n: LayoutNode, frame: Frame): Unit {
+    n.session.recordPaint()
     let c = n.component
     let r = n.resolved
     let style = r.style
-    let right = lesser(clipR, sat(x, w));
-    let bottom = lesser(clipB, sat(y, h))
-    if (let Some(frame) <- output) {
-        let rect = Rect(x, y, w, h)
-        if (r.shadowEnabled) {
-            frame.shadowClipped(rect, r.shadowX, r.shadowY, r.shadowStyle, clipL, clipT, clipR, clipB)
-        }
-        if (r.fill != 0) {
-            frame.fillClipped(rect, r.fillStyle, clipL, clipT, clipR, clipB)
-        }
-        let borderStyle = Style(foreground: r.borderFg, background: style.background, bold: style.bold,
-            dim: style.dim, italic: style.italic, underline: style.underline, inverse: style.inverse,
-            strikethrough: style.strikethrough)
-        frame.borderClipped(rect, r.borderStyle, borderStyle, clipL, clipT, clipR, clipB)
+    let x = n.screenX; let y = n.screenY; let w = n.boxWidth; let h = n.boxHeight
+    let clipL = n.paintLeft; let clipT = n.paintTop; let clipR = n.paintRight; let clipB = n.paintBottom
+    let ix = n.paintContentX; let iy = n.paintContentY
+    let contentW = n.paintContentWidth; let contentH = n.paintContentHeight
+    let boxX = n.paintBoxX; let boxY = n.paintBoxY
+    let ir = n.paintInnerRight; let ib = n.paintInnerBottom
+    let rect = Rect(x, y, w, h)
+    if (r.shadowEnabled) {
+        frame.shadowClipped(rect, r.shadowX, r.shadowY, r.shadowStyle, clipL, clipT, clipR, clipB)
     }
-    let borderInset: Int64 = if (r.borderStyle == BorderStyle.None) { 0 } else { 1 }
-    let leftPad = lesser(sat(r.padLeft,borderInset), w)
-    let topPad = lesser(sat(r.padTop,borderInset), h)
-    let innerW = w - leftPad - lesser(sat(r.padRight,borderInset), w - leftPad)
-    let innerH = h - topPad - lesser(sat(r.padBottom,borderInset), h - topPad)
-    let boxX = sat(x, leftPad); let boxY = sat(y, topPad)
-    let ir = lesser(right, sat(boxX, innerW)); let ib = lesser(bottom, sat(boxY, innerH))
-    let runtimeNode = c.readMount().getOrThrow()
-    let viewport = n.session.viewportAxes(runtimeNode)
-    let axes = viewport ?? ScrollAxes.Off
-    let implicitRoot = runtimeNode.parent.isNone() && !n.session.temporary && !c.viewportDeclared
-    let virtualY = axes.vertical() && (!implicitRoot || n.rootFallback)
-    n.constrainCanvasFinal(innerW,innerH,axes)
-    let naturalContentW = greater(0,n.naturalW - lesser(n.naturalW,n.horizontalInsets()))
-    let neededH = n.scrollingHeight()
-    let naturalContentH = greater(0,neededH - lesser(neededH,n.verticalInsets()))
-    // A zero-width viewport cannot constrain away the logical content used by
-    // pending visibility requests; it still clips all painting at the box.
-    let zeroViewportWidth = if (innerW == 0) { viewport.isSome() } else { false }
-    let contentW = if (axes.horizontal() || zeroViewportWidth) { greater(innerW,naturalContentW) } else { innerW }
-    let contentH = if (virtualY) { greater(innerH,naturalContentH) } else { innerH }
-    let state = runtimeNode.viewportState
-    if (n.previewTheme.isNone() && n.commitGeometry && viewport.isSome()) {
-        if (state.width != innerW || state.height != innerH) {
-            if (let Some(caret) <- n.session.lastCaret) {
-                if (n.session.viewportContains(runtimeNode,caret.owner)) { n.session.focusedViewportResized = true }
-            }
-        }
-        state.update(innerW,innerH,contentW,contentH,axes)
+    if (r.fill != 0) {
+        frame.fillClipped(rect, r.fillStyle, clipL, clipT, clipR, clipB)
     }
-    let scrollX = if (axes.horizontal()) { state.offsetX } else { 0 }
-    let scrollY = if (axes.vertical()) { state.offsetY } else { 0 }
-    let ix = signedAdd(boxX,-scrollX); let iy = signedAdd(boxY,-scrollY)
-    if (let Some(map) <- geometry) {
-        n.screenX = x; n.screenY = y
-        n.clipLeft = greater(clipL,x); n.clipTop = greater(clipT,y)
-        n.clipRight = right; n.clipBottom = bottom
-        n.boxWidth = w; n.boxHeight = h; n.contentX = leftPad; n.contentY = topPad
-        n.contentWidth = if (viewport.isSome()) { innerW } else { contentW }
-        n.contentHeight = if (viewport.isSome()) { innerH } else { contentH }
-        map[runtimeNode.id] = n
-    }
-    if (n.previewTheme.isNone() && n.commitGeometry) {
-        runtimeNode.screenX = x; runtimeNode.screenY = y
-        runtimeNode.clipLeft = greater(clipL,x); runtimeNode.clipTop = greater(clipT,y)
-        runtimeNode.clipRight = right; runtimeNode.clipBottom = bottom
-        runtimeNode.layoutWidth = w; runtimeNode.layoutHeight = h
-        runtimeNode.contentX = leftPad; runtimeNode.contentY = topPad
-        runtimeNode.logicalWidth = contentW; runtimeNode.logicalHeight = contentH
-    }
+    let borderStyle = Style(foreground: r.borderFg, background: style.background, bold: style.bold,
+        dim: style.dim, italic: style.italic, underline: style.underline, inverse: style.inverse,
+        strikethrough: style.strikethrough)
+    frame.borderClipped(rect, r.borderStyle, borderStyle, clipL, clipT, clipR, clipB)
     if (c.kind == 3) {
-        if (output.isNone()) { return }
-        let frame = output.getOrThrow()
         let left = greater(0,signedSubtract(greater(clipL,boxX),ix))
         let top = greater(0,signedSubtract(greater(clipT,boxY),iy))
         let endX = greater(left,lesser(contentW,signedSubtract(ir,ix))); let endY = greater(top,lesser(contentH,signedSubtract(ib,iy)))
@@ -157,8 +100,6 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
         return
     }
     if (c.kind == 0) {
-        if (output.isNone()) { return }
-        let frame = output.getOrThrow()
         let clusters = richTextClusters(c.value)
         for (i in 0..n.lines.size) {
             let cy = sat(iy,i)
@@ -194,14 +135,77 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
         }
         return
     }
+    for (child in n.children()) { paint(child, frame) }
+}
+
+// Arrange geometry once for paint and side-effect-free preflight.
+func arrange(n: LayoutNode, x: Int64, y: Int64, w: Int64, h: Int64, clipL: Int64, clipT: Int64,
+    clipR: Int64, clipB: Int64, geometry!: ?HashMap<Int64, LayoutNode> = None): Unit {
+    let c = n.component
+    let r = n.resolved
+    let right = lesser(clipR, sat(x, w));
+    let bottom = lesser(clipB, sat(y, h))
+    let borderInset: Int64 = if (r.borderStyle == BorderStyle.None) { 0 } else { 1 }
+    let leftPad = lesser(sat(r.padLeft,borderInset), w)
+    let topPad = lesser(sat(r.padTop,borderInset), h)
+    let innerW = w - leftPad - lesser(sat(r.padRight,borderInset), w - leftPad)
+    let innerH = h - topPad - lesser(sat(r.padBottom,borderInset), h - topPad)
+    let boxX = sat(x, leftPad); let boxY = sat(y, topPad)
+    let ir = lesser(right, sat(boxX, innerW)); let ib = lesser(bottom, sat(boxY, innerH))
+    let runtimeNode = c.readMount().getOrThrow()
+    let viewport = n.session.viewportAxes(runtimeNode)
+    let axes = viewport ?? ScrollAxes.Off
+    let implicitRoot = runtimeNode.parent.isNone() && !n.session.temporary && !c.viewportDeclared
+    let virtualY = axes.vertical() && (!implicitRoot || n.rootFallback)
+    n.constrainCanvasFinal(innerW,innerH,axes)
+    let naturalContentW = greater(0,n.naturalW - lesser(n.naturalW,n.horizontalInsets()))
+    let neededH = n.scrollingHeight()
+    let naturalContentH = greater(0,neededH - lesser(neededH,n.verticalInsets()))
+    // A zero-width viewport cannot constrain away the logical content used by
+    // pending visibility requests; it still clips all painting at the box.
+    let zeroViewportWidth = if (innerW == 0) { viewport.isSome() } else { false }
+    let contentW = if (axes.horizontal() || zeroViewportWidth) { greater(innerW,naturalContentW) } else { innerW }
+    let contentH = if (virtualY) { greater(innerH,naturalContentH) } else { innerH }
+    let state = runtimeNode.viewportState
+    if (n.previewTheme.isNone() && n.commitGeometry && viewport.isSome()) {
+        if (state.width != innerW || state.height != innerH) {
+            if (let Some(caret) <- n.session.lastCaret) {
+                if (n.session.viewportContains(runtimeNode,caret.owner)) { n.session.focusedViewportResized = true }
+            }
+        }
+        state.update(innerW,innerH,contentW,contentH,axes)
+    }
+    let scrollX = if (axes.horizontal()) { state.offsetX } else { 0 }
+    let scrollY = if (axes.vertical()) { state.offsetY } else { 0 }
+    let ix = signedAdd(boxX,-scrollX); let iy = signedAdd(boxY,-scrollY)
+    n.screenX = x; n.screenY = y
+    n.clipLeft = greater(clipL,x); n.clipTop = greater(clipT,y)
+    n.clipRight = right; n.clipBottom = bottom
+    n.boxWidth = w; n.boxHeight = h; n.contentX = leftPad; n.contentY = topPad
+    n.contentWidth = if (viewport.isSome()) { innerW } else { contentW }
+    n.contentHeight = if (viewport.isSome()) { innerH } else { contentH }
+    if (let Some(map) <- geometry) { map[runtimeNode.id] = n }
+    if (n.previewTheme.isNone() && n.commitGeometry) {
+        runtimeNode.screenX = x; runtimeNode.screenY = y
+        runtimeNode.clipLeft = greater(clipL,x); runtimeNode.clipTop = greater(clipT,y)
+        runtimeNode.clipRight = right; runtimeNode.clipBottom = bottom
+        runtimeNode.layoutWidth = w; runtimeNode.layoutHeight = h
+        runtimeNode.contentX = leftPad; runtimeNode.contentY = topPad
+        runtimeNode.logicalWidth = contentW; runtimeNode.logicalHeight = contentH
+    }
+    n.paintLeft = clipL; n.paintTop = clipT; n.paintRight = clipR; n.paintBottom = clipB
+    n.paintContentX = ix; n.paintContentY = iy; n.paintContentWidth = contentW; n.paintContentHeight = contentH
+    n.paintBoxX = boxX; n.paintBoxY = boxY; n.paintInnerRight = ir; n.paintInnerBottom = ib
+    if (c.kind == 0 || c.kind == 3) { return }
     let mainSize = if (c.kind == 2) { contentW } else { contentH }
     let cross = if (c.kind == 2) { contentH } else { contentW }
-    let count = n.children.size
+    let children = n.children()
+    let count = children.size
     let naturalBasis = if (c.kind == 2) { axes.horizontal() } else { virtualY }
     let (sizes,free) = n.mainAllocation(mainSize,naturalBasis)
     var cursor = offset(r.justify, free)
     for (i in 0..count) {
-        let child = n.children[i];
+        let child = children[i];
         let cc = child.resolved
         let fixed = if (c.kind == 2) {
             cc.fixedH
@@ -248,7 +252,7 @@ func layoutPass(n: LayoutNode, output: ?Frame, x: Int64, y: Int64, w: Int64, h: 
             childNode.layoutX = if (c.kind == 2) { cursor } else { crossOffset }
             childNode.layoutY = if (c.kind == 2) { crossOffset } else { cursor }
         }
-        layoutPass(child, output, cx, cy, cw, ch, greater(clipL, boxX), greater(clipT, boxY), ir, ib, geometry:geometry)
+        arrange(child, cx, cy, cw, ch, greater(clipL, boxX), greater(clipT, boxY), ir, ib, geometry:geometry)
         cursor = sat(cursor, sizes[i])
         if (i + 1 < count) {
             cursor = sat(cursor, r.spacing)
@@ -273,8 +277,9 @@ func summarizeVerticalOverflow(n: LayoutNode, width: Int64, height: Int64, resul
     let cross = if (n.component.kind == 2) { ih } else { iw }
     let (sizes,_) = n.mainAllocation(mainSize,false)
     var cursor: Int64 = 0
-    for (i in 0..n.children.size) {
-        let child = n.children[i]; let cr = child.resolved
+    let children = n.children()
+    for (i in 0..children.size) {
+        let child = children[i]; let cr = child.resolved
         let fixed = if (n.component.kind == 2) { cr.fixedH } else { cr.fixedW }
         let minimum = if (n.component.kind == 2) { cr.minH } else { cr.minW }
         let natural = if (n.component.kind == 2) { child.naturalH } else { child.naturalW }
@@ -290,7 +295,7 @@ func summarizeVerticalOverflow(n: LayoutNode, width: Int64, height: Int64, resul
         let barrier = cr.fixedH.isSome() || (child.component.viewportDeclared && child.component.viewportAxes.vertical())
         if (!barrier) { summarizeVerticalOverflow(child,cw,ch,result) }
         cursor = sat(cursor,sizes[i])
-        if (i + 1 < n.children.size) { cursor = sat(cursor,n.resolved.spacing) }
+        if (i + 1 < children.size) { cursor = sat(cursor,n.resolved.spacing) }
     }
 }
 
@@ -312,10 +317,10 @@ func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
         node.rootFallback = summary.present
     }
     let geometry = HashMap<Int64, LayoutNode>()
-    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height,geometry:Some(geometry))
+    arrange(node,0,0,w,h,0,0,width,height,geometry:Some(geometry))
     for (record in session.overlayRecords) {
         if (let Some(layer) <- overlayGeometry(session,record,width,height,false,geometry,preview:Some(theme))) {
-            layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
+            arrange(layer.node,layer.x,layer.y,layer.width,layer.height,
                 layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
         }
     }
@@ -432,12 +437,12 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
     // Resolve current finite geometry before consuming deferred ensure intents.
     if (reuse) { session.focusedViewportResized = false }
     let geometry = HashMap<Int64, LayoutNode>()
-    layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height,geometry:Some(geometry))
+    arrange(node,0,0,w,h,0,0,width,height,geometry:Some(geometry))
     let layers = ArrayList<OverlayLayout>()
     if (mountedRoot) {
         for (record in session.overlayRecords) {
             if (let Some(layer) <- overlayGeometry(session,record,width,height,reuse,geometry,deferClose:reuse)) {
-                layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
+                arrange(layer.node,layer.x,layer.y,layer.width,layer.height,
                     layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
                 layers.add(layer)
             }
@@ -461,22 +466,22 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         // Ensures can scroll the anchor or host; derive the painted layers
         // from the resulting geometry in the same frame.
         geometry.clear(); layers.clear()
-        layoutPass(node,Option<Frame>.None,0,0,w,h,0,0,width,height,geometry:Some(geometry))
+        arrange(node,0,0,w,h,0,0,width,height,geometry:Some(geometry))
         if (mountedRoot) {
             for (record in session.overlayRecords) {
                 if (let Some(layer) <- overlayGeometry(session,record,width,height,true,geometry)) {
-                    layoutPass(layer.node,Option<Frame>.None,layer.x,layer.y,layer.width,layer.height,
+                    arrange(layer.node,layer.x,layer.y,layer.width,layer.height,
                         layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
                     layers.add(layer)
                 }
             }
         }
     }
-    paint(node, frame, 0, 0, w, h, 0, 0, width, height)
+    paint(node, frame)
     for (layer in layers) {
         let overlay = Frame(width,height,transparent:true)
         let previousCaret = session.pendingCaret
-        paint(layer.node,overlay,layer.x,layer.y,layer.width,layer.height,layer.left,layer.top,layer.right,layer.bottom)
+        paint(layer.node,overlay)
         if (let Some(previous) <- previousCaret) {
             if (let Some(current) <- session.pendingCaret) {
                 if (refEq(previous,current) && previous.x >= 0 && previous.y >= 0 && previous.x < width && previous.y < height) {

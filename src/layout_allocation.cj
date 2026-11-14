@@ -1,10 +1,11 @@
 package cjtui
 
-// Shared allocation for measurement and painting.
+// Shared allocation for measurement and arrangement.
 func allocateMain(n: LayoutNode, mainSize: Int64, naturalBasis!: Bool = false): (Array<Int64>, Int64) {
     let c = n.component
     let r = n.resolved
-    let count = n.children.size
+    let children = n.children()
+    let count = children.size
     let sizes = Array<Int64>(count, repeat: 0)
     let bases = Array<Int64>(count, repeat: 0)
     let remainders = Array<Int64>(count, repeat: 0)
@@ -13,7 +14,7 @@ func allocateMain(n: LayoutNode, mainSize: Int64, naturalBasis!: Bool = false): 
     var totalBase: Int64 = 0
     var flexCount: Int64 = 0
     for (i in 0..count) {
-        let child = n.children[i];
+        let child = children[i];
         let cc = child.resolved
         if (i > 0) {
             occupied = sat(occupied, r.spacing)
@@ -66,7 +67,7 @@ func allocateMain(n: LayoutNode, mainSize: Int64, naturalBasis!: Bool = false): 
         }
         var used: Int64 = 0
         for (i in 0..count) {
-            let cc = n.children[i].resolved
+            let cc = children[i].resolved
             if (cc.weight > 0) {
                 let basis = if (useMin) {
                     bases[i]
@@ -87,7 +88,7 @@ func allocateMain(n: LayoutNode, mainSize: Int64, naturalBasis!: Bool = false): 
         while (remaining > 0) {
             var best: Int64 = -1
             for (i in 0..count) {
-                if (n.children[i].resolved.weight > 0 && remainders[i] >= 0 && (best < 0 || remainders[i] > remainders[best])) {
+                if (children[i].resolved.weight > 0 && remainders[i] >= 0 && (best < 0 || remainders[i] > remainders[best])) {
                     best = i
                 }
             }
