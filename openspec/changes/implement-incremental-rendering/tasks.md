@@ -10,7 +10,7 @@
 ## Global Constraints
 
 - 原TASK-031/022为完整验收责任归属；123–142实现031各单元，143–147实现022并供031成本验收。实际工程层级依原WP002/WP005，角色工作为独立L3，不把原L3强行嵌另一套L3树。主仓接入时031/022转为本tasks唯一状态引用，不能保留两份勾选权威。
-- 当前全部planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
+- TASK123正式测试已固定，TASK124开始实施，其余仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
 - A→B→C→D→E顺序集成。测试可按冻结合同准备，但产品只消费前单元验收固定提交；共享Component/Layout/Frame禁止多个产品作者同时编辑。
 - 每实体一个小写下划线.cj文件，最小可见性，原public调用兼容，新增RuntimeStats三项仅只读；无私有测试hook、无强制M1/M2模式开关。
 - 测试作者Sol/high、产品Terra/high或适合仓颉任务的Sol/high、审核/验收Astra/high、执行Sol/medium；记录指定配置，无法核验serving时不冒充实测。
@@ -23,14 +23,17 @@
 
 | 输入 | 合同来源 | 正式产品固定SHA/证据 |
 | --- | --- | --- |
-| Runtime A+B/C | reactive-runtime R001–019、单序列C | PENDING最终075/080 |
-| RichText | implement-rich-text冻结design | PENDING最终084 |
-| 主题基础/加载/展示 | T001–015及后续正式修订 | PENDING088/092/027 |
-| Canvas/焦点/viewport/overlay | 主代理采用interaction合同，含root Vertical有限布局fallback | PENDING正式合同SHA及全部独立验收 |
-| 输入编辑/标准控件/应用示例 | 原017–021/028–030/037等完整Linux公共功能 | PENDING最终固定集成 |
-| Frame/Unicode/装饰/输出恢复 | 原005/007/008/011/012/020功能M1证据，以及041已冻结M1 Linux设备/ABI/输入输出/尺寸/恢复子接口证据；完整041最终全组件/M2/全部宿主验收后置 | PENDING最终固定SHA/有效复用证据 |
-| 完整M1性能基线 | 全部功能齐全、M2实施前 | PENDING源码/依赖/native/制品/hash；正常公共benchmark双版本构建 |
-| 本候选 | design14与三个spec、独立preflight/DQ | PENDING主仓冻结SHA |
+| Runtime A+B/C | reactive-runtime R001–019、单序列C | Runtime075 `0912436b647f701e1de607fe03ce1bfba6a9bbf4`；Runtime080 `216b2ab5f2315f4be19467b7e49f4047aec78ab9`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row1。 |
+| RichText | implement-rich-text冻结design | RichText084 `199f00076c1a79cfa6d0be92e7be09366e1a06af`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row2。 |
+| 主题基础/加载/展示 | T001–015及后续正式修订 | Theme088 `8d75233c664fd61be08d441f74d464cbcdff2d9c`；Theme092 `fa6a46ec339ea0f098dea521c814226a7a373c7e`；AC027 `b5de3dd6610e90fcdcd951c5703a1429ec13b417`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row3。 |
+| Canvas/焦点/viewport/overlay | 主代理采用interaction合同，含root Vertical有限布局fallback | InteractionA102/I011/I012 `f8a028b39daf8a341576f304335d262544b9cca5`；ViewportB107 `62039552a26da295dcd710d7cfc40cb9e43ca5fd`；OverlayC112 `7f43176505aa3c392afc5fc897181a9eeba89e6e`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row4。 |
+| 输入编辑/标准控件/应用示例 | 原017–021/028–030/037等完整Linux公共功能 | Keyboard117 `c3c4642d84df57bbd9550d222ed22f602acd13ef`；Finite editing E122/current combined input `22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167`；S157 `1df1325f7b51777d8adab62f950c936051aa5876`；M162 `6e3f26aaaeee9442fde91ce31d720a841eeda473`；Session152 `83094ca92acab37ed0a38042e2e40ead55049f41`；AC021 `c190e6f957a18f47be2f329a40cf444d9985cb6c`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row5。 |
+| Frame/Unicode/装饰/输出恢复 | 原005/007/008/011/012/020功能M1证据，以及041已冻结M1 Linux设备/ABI/输入输出/尺寸/恢复子接口证据；完整041最终全组件/M2/全部宿主验收后置 | R10 `8af39f6c8882772b946ae1d9507361f8a6082388`；070 `5c2a7e7d956b5d8c0284e96514276608616bf8a6`；Glyph097 `1f67e27358254e9daef637b5c2f5a93707ee7cef`；AC008 `80d21e071537898cde27f1c7de4328ab6f27d991`；AC010 `13e7880ce96d1331fc9e12a2b62275a307183e9a`；AC020_M1 `e35d407a87ab197537ccc931c143c9927458a75f`；LayoutDecoration057_054_060 `40aa4db6c2b7673bb3e8c9a80fdb5b4e385cb940`；LinuxNativeFirstSlice053 `2ad6c5ceeb0068d3b2b2d5efe010059965b9415a`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row6。 |
+| 完整M1性能基线 | 全部功能齐全、M2实施前 | AC021 `c190e6f957a18f47be2f329a40cf444d9985cb6c`；AC027 `b5de3dd6610e90fcdcd951c5703a1429ec13b417`；AC008 `80d21e071537898cde27f1c7de4328ab6f27d991`；AC010 `13e7880ce96d1331fc9e12a2b62275a307183e9a`；AC020_M1 `e35d407a87ab197537ccc931c143c9927458a75f`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row7。 |
+| 本候选 | design14与三个spec、独立preflight/DQ | M2_preflight（固定证据映射）；L005_planning_preflight（固定证据映射）；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row8。 |
+
+
+当前正式冻结：普通CJP `29cab0f8de79a3b42ebc6a8bf7e2c2648217b565ccbc0e03f77f4cb915852c7a`，独立准入索引 `c1f7320ae7e5a1659ba83fee2f9083566cdf688d5f5585941ad2a8b8f05972b5`，041.a仅M1设备输入已固化，完整041保持开放。[原件及旧包](../../../docs/reviews/Linux-final/m1/README.md)保存原始准备、身份补充与固定SDK/deps/native/ABI。123正式tests `34240845e4bf393cc5d83475a2c9860a8de10f0e`/index `345ff318bc070a8535858e087fe44d605c1cec11c62354c58389698d5a828f64`：原行为6项GREEN，Canvas窄reference替换持久draw订阅为真实RED；新三统计缺API为真实编译RED（29条均属缺字段）。该Canvas失败属于124/M004明确修复义务，保留冻结M1原件，不伪称所有baseline用例GREEN。124按A固定合同实施，125–127独立质量门后才关闭本单元。
 
 ## Review Focus
 
@@ -42,7 +45,7 @@
 
 ## Tasks
 
-- [ ] TASK-123（testing/A）：冻结共享算法重构的公开行为/统计消费者及可复现正常基线。
+- [x] TASK-123（testing/A）：冻结共享算法重构的公开行为/统计消费者及可复现正常基线。
 - [ ] TASK-124（implementation/A）：同核measure/arrange/paint分离、M1独立临时结果、三统计真实作用域。
 - [ ] TASK-125（verification/A）：固定124与123独立spec/quality审核。
 - [ ] TASK-126（testing/A）：自有工作目录独立执行A公开消费者及受影响旧布局/主题/Canvas证据。
@@ -78,8 +81,8 @@
 
 输入：完整M1冻结包、现公开render/snapshot/stats及全部布局/主题/viewport合同。输出：M1完整结果不变、同核拆分与真实统计，供B/C复用。
 
-- [ ] 123列出手算布局/来源/Canvas场景的固定期望；对纯重构已有行为先记录GREEN，对缺新增统计的公开消费者记录真实缺API RED，不能伪造内部实现测试。
-- [ ] 123冻结test-only SHA及普通CJPM构建/运行命令；统计断言按真实调用/实际Cell分配点含初建，不按实现源码生成预期。
+- [x] 123列出手算布局/来源/Canvas场景固定期望，已记录原行为6项GREEN、真实Canvas reference隔离RED与新统计缺API RED；不伪造内部实现测试或掩盖既有缺陷。
+- [x] 123冻结test-only SHA及普通CJPM构建/运行命令；统计断言按真实调用/实际Cell分配点含初建，不按实现源码生成预期。
 - [ ] 124把paint内分配移到唯一arrange，Runtime节点承载唯一顺序引用；完整render用临时表而不建第二组件树，snapshot仍正常目标链。
 - [ ] 124实现三只读诊断及生成/副本作用域，外部snapshot后续修改不回记；保留原八字段定义与生命周期。
 - [ ] 125审核fixed base..product，覆盖M1稳定绑定与缓存隔离、root有限布局fallback、Canvas独立依赖不被参考替换、单核/退役与每实体文件。

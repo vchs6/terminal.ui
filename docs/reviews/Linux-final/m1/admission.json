@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "status": "ADOPTED_FULL_FUNCTIONAL_M1_INPUT_AND_FIXED_TASK123",
+  "source_commit": "d654ae59da4749a43c946e1541c21b08e9b3ffba",
+  "source_tree": "161246c68ae6cecf8267c560551b03513081adcf",
+  "version": "0.0.0",
+  "CJP": {
+    "path": "cjtui-0.0.0.cjp",
+    "bytes": 179148,
+    "sha256": "29cab0f8de79a3b42ebc6a8bf7e2c2648217b565ccbc0e03f77f4cb915852c7a"
+  },
+  "complete_manifest": {
+    "archive": "evidence.tar.gz",
+    "member": "m1-freeze-manifest/manifest-complete-v1.json",
+    "sha256": "82dea6559e53e1f1e3aef787332c05cc1bc4818544e6289b9ebd28a1e04fb020"
+  },
+  "complete_evidence_map": {
+    "archive": "evidence.tar.gz",
+    "member": "m1-freeze-manifest/evidence-map-complete-v1.json",
+    "sha256": "8c9d438b8e71bfd375129df23f2e2fcb44ff610f392643f3a4441a6a5ed0fab3"
+  },
+  "independent_admission_index_sha256": "c1f7320ae7e5a1659ba83fee2f9083566cdf688d5f5585941ad2a8b8f05972b5",
+  "formal_test_commit": "34240845e4bf393cc5d83475a2c9860a8de10f0e",
+  "formal_test_index_sha256": "345ff318bc070a8535858e087fe44d605c1cec11c62354c58389698d5a828f64",
+  "formal_test_results": {
+    "existing_green_cases": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7
+    ],
+    "existing_red_case6": "Mounted Canvas reference at width1 replaces persistent draw subscription from previous width3; later wide-state change leaves stale visible value. Mandatory A124 M004 fix; frozen M1 CJP stays unchanged.",
+    "new_statistics_compile_red": "29 diagnostics concern only missing arranges/cellWrites/frameAllocatedCells; no unrelated diagnostics"
+  },
+  "product_124": "admissible under existing A contract with fixed tests; implementation/review/independent execution/acceptance still required",
+  "full_041": "pending",
+  "M2": "not_implemented",
+  "full_Linux": "pending",
+  "release": "pending"
+}

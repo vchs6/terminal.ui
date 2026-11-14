@@ -30,7 +30,7 @@
 | AC-024 | REQ-001–011 | 整体验收与发行准备 | TASK-024 | 当前Linux范围的需求全部有证据（含M2），产品文档与制品一致；后续OS独立扩展验收，不宣称跨平台完成；Battle 无未关闭必需失败；证据待实施时链接 | pending |
 | AC-025 | REQ-008 | 分类主题配置解析与诊断 | TASK-025 | 合法单文件主题形成结构化配置；未知字段/非法值/坏引用带位置错误，不执行代码 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
 | AC-026 | REQ-008 | 应用主动主题重载与原子替换 | TASK-026 | 有效重载同批次生效；失败保留旧主题，旧请求不覆盖较新请求，状态/焦点保留；当前 Component/NodeRef/Observable 状态范围，完整焦点/编辑控件后续汇合 | passed（当前异步范围；[独立验收](reviews/R15/theme-loading/acceptance/report.md)） |
-| AC-027 | REQ-008、REQ-006 | 四套预置主题及统一组件展示 | TASK-027 | 深/浅/高对比/经典主题用同一展示应用，覆盖组件状态、受限色和窄屏；制品独立运行；产品证据待实现 | pending |
+| AC-027 | REQ-008、REQ-006 | 四套预置主题及统一组件展示 | TASK-027 | [冻结M1 C006完整统一展示](reviews/R22/027/completed/README.md)：PASS_AC027_M1_THEME_SHOWCASE，16条件通过；全部控件/状态/窄屏/切换保持/显式文件重载、公开消费者、23张真实原PNG及受限色/ASCII同核复用；最终C008/M2/041/023另汇合 | passed（当前冻结C006/AC027 M1范围） |
 | AC-028 | REQ-001.8、REQ-009 | 基础输入编辑与标准快捷操作 | TASK-028 | 单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交；E001–E005有限编辑已获122 PASS_FINITE_E，见[E原件](reviews/E/README.md)；父级完整汇合保留 | finite_passed（完整父AC pending） |
 | AC-029 | REQ-001.8、REQ-009 | 按钮标签与选择进度基础组件 | TASK-029 | 标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致；[独立157接受五控件S01–S05](reviews/widgets/S/widgets-small-acceptance/acceptance.md)；027/041全状态/Unicode/四主题展示另汇合 | passed（有限S语义范围） |
 | AC-030 | REQ-010 | 可选会话能力与本地剪贴板通道 | TASK-030 | SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心；产品证据待实现 | pending |

@@ -32,7 +32,7 @@
 - [x] TASK-090（WP005/verification）：固定异步加载增量与基础跨界独立spec/quality审核。
 - [x] TASK-091（WP005/testing）：独立乱序/失败/关闭/同源重载、受影响回归及正常制品公开消费。
 - [x] TASK-092（WP005/acceptance）：原AC026、元数据与集成独立核对，继续控件/027整展示。
-- [ ] TASK-027（WP006/implementation）：全部基本组件可用后交付四主题统一showcase、窄屏/状态组合/Unicode与ASCII真实跨宿主截图，复用前述主题代码；状态不靠提前几段文字就关闭。
+- [x] TASK-027（WP006/implementation）：全部基本组件可用后交付四主题统一showcase、窄屏/状态组合/Unicode与ASCII真实跨宿主截图，复用前述主题代码；状态不靠提前几段文字就关闭。
 
 ## L3 admission / inputs / roles
 
@@ -82,4 +82,4 @@ preflight逐项：085/013/025接口同design/fixtures；013和025同代码周期
 
 ## 2026-11-14 TASK027 正式测试准入
 
-当前 status=in_progress：027.a正式测试、027.b实现、027.c独立源码审核及027.d独立构建/合成PTY已完成；真实GUI验证进行中，027.e独立验收待证据冻结；父复选框保持未完成。输入源固定 main `39d56c0f7ca2d751a9ce5fb4e18913636fdff43a`，完整AC021已由独立验收 `53c8ecc8b57756d857e08fb3209ebf975e2bd6e389696cc33d7d555669b45ddc` 接受为 `PASS_AC021_M1_U1_U5`；主题092与四preset固定字节及其余功能前置沿[实际输入manifest](../../../docs/reviews/R22/027/input-manifest.json)，SHA256 `80862cf7d9f7bd9d80351dcb40fab96fd96f5216888e71163dc1997cf3a77e28`。027.a已由独立Sol/high角色冻结同场景完整组件/四主题/状态保持/文件重载用例；固定测试与产品组合源为 `b5de3dd6610e90fcdcd951c5703a1429ec13b417`。独立Astra/high审核发现模态内功能键转发缺口，修复一轮后spec/quality均PASS_SCOPED（索引 `8d5da0f5f659d66a7860c7ca92164e6e6be92a487efe3d3b4c8d59002e87e401`）；独立Sol/medium正常构建一次、smoke、7个PTY及2个模态键用例均通过，9个进程termios精确恢复（索引 `768d1ad0ad00f02c2e9d36a0b8732418173155d1f2782acdc1171cc8c7d0bd05`）。这些不替代真实GUI与027.e验收，不把预置文件或文字图视为完整showcase。C006已定目标、单挂载场景及公开API不变，具体可复现样例布局/文案/按键由builder在授权范围内确定。027完成后再冻结完整M1并进入M2，最终Linux/023/024保持开放。
+当前 status=completed（冻结C006/AC027 M1展示范围）：027.a–e已交付，独立验收 `PASS_AC027_M1_THEME_SHOWCASE`，16条件通过、无阻塞缺口；[完整原件、23张原始PNG及源码/运行证据](../../../docs/reviews/R22/027/completed/README.md)已无损归档。完整M1最终汇合/M2/041/023/024及Linux仍未关闭。输入源固定 main `39d56c0f7ca2d751a9ce5fb4e18913636fdff43a`，完整AC021已由独立验收 `53c8ecc8b57756d857e08fb3209ebf975e2bd6e389696cc33d7d555669b45ddc` 接受为 `PASS_AC021_M1_U1_U5`；主题092与四preset固定字节及其余功能前置沿[实际输入manifest](../../../docs/reviews/R22/027/input-manifest.json)，SHA256 `80862cf7d9f7bd9d80351dcb40fab96fd96f5216888e71163dc1997cf3a77e28`。027.a已由独立Sol/high角色冻结同场景完整组件/四主题/状态保持/文件重载用例；固定测试与产品组合源为 `b5de3dd6610e90fcdcd951c5703a1429ec13b417`。独立Astra/high审核发现模态内功能键转发缺口，修复一轮后spec/quality均PASS_SCOPED（索引 `8d5da0f5f659d66a7860c7ca92164e6e6be92a487efe3d3b4c8d59002e87e401`）；独立Sol/medium正常构建一次、smoke、7个PTY及2个模态键用例均通过，9个进程termios精确恢复（索引 `768d1ad0ad00f02c2e9d36a0b8732418173155d1f2782acdc1171cc8c7d0bd05`）。这些不替代真实GUI与027.e验收，不把预置文件或文字图视为完整showcase。C006已定目标、单挂载场景及公开API不变，具体可复现样例布局/文案/按键由builder在授权范围内确定。027完成后再冻结完整M1并进入M2，最终Linux/023/024保持开放。
