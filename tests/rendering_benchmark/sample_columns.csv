@@ -1,0 +1,65 @@
+column,unit,availability
+schema_version,integer,required
+run_id,text,required
+mode,enum,required
+scenario,text,required
+source_sha,text,required
+artifact_sha256,text,required
+elf_sha256,text,required
+workload_sha256,text,required
+dependency_sha256,text,required
+sdk_version,text,required
+sdk_sha256,text,required
+native_sha256,text,required
+environment_id,text,required
+os,text,required
+cpu,text,required
+cpu_policy,text,record limitation if unavailable
+locale,text,required
+terminal,text,not_available headless
+terminal_version,text,not_available headless
+capability_source,text,required
+glyph_mode,enum,required
+gc_config,text,required
+optimization,text,required
+width,columns,positive
+height,rows,positive
+seed,integer,nonnegative
+repetition,index,nonnegative
+phase,enum,required
+epoch_first,index,nonnegative
+epoch_last,index,nonnegative
+updates,count,positive
+warmup,count,nonnegative
+total_nodes,count,nonnegative
+visible_nodes,count,nonnegative
+dirty_leaves,count,nonnegative
+text_utf8_bytes,bytes,nonnegative
+layers,count,nonnegative
+mounted_nodes_before,count,nonnegative
+mounted_nodes_after,count,nonnegative
+active_bindings_before,count,nonnegative
+active_bindings_after,count,nonnegative
+subscriptions_before,count,nonnegative
+subscriptions_after,count,nonnegative
+pending_posts_before,count,nonnegative
+pending_posts_after,count,nonnegative
+builds,count delta,nonnegative
+measures,count delta,nonnegative
+arranges,count delta,not_available compat
+paints,count delta,nonnegative
+frames,count delta,nonnegative
+cell_writes,Cell writes delta,not_available compat
+frame_allocated_cell_slots,Cell storage slots delta,not_available compat
+cj_heap_used_bytes_before,heap occupancy bytes,SDK or explained not_available
+cj_heap_used_bytes_after,heap occupancy bytes,SDK or explained not_available
+cj_gc_freed_bytes_total_before,cumulative reclaimed bytes,SDK or explained not_available
+cj_gc_freed_bytes_total_after,cumulative reclaimed bytes,SDK or explained not_available
+gc_count_before,cumulative collections,SDK or explained not_available
+gc_count_after,cumulative collections,SDK or explained not_available
+gc_time_us_before,cumulative microseconds,SDK or explained not_available
+gc_time_us_after,cumulative microseconds,SDK or explained not_available
+limitations,text,required
+counter_scope,text,required
+preparation_snapshots,count,nonnegative
+reference_renders,count,nonnegative

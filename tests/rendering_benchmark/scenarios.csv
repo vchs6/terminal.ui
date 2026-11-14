@@ -1,0 +1,37 @@
+scenario,period,geometry,phase,actions,obligation
+unicode_cells,4,stable,local,mixed -> same width CJK -> short -> style -> mixed,manual complete Cell literals including wide continuation combining ZWJ flag
+ellipsis_policy,2,stable,local,Unicode -> Ascii -> Unicode,abcd… -> ab... -> abcd… at width5 with same-policy render pairing
+caret_only,4,stateful,local,caret 1:0 -> 2:0 -> right edge -> invisible -> 1:0,independent visible x y owner and unchanged complete blank grid
+leaf_color,2,stable,local,last leaf Default -> Red -> Default,unrelated vertical panels work and CPU cost
+same_width_text,2,stable,local,中 -> 文 -> 中,raw structured Cell change with same measured width
+text_length,4,stateful,local,long -> short -> empty -> long,old tail cleared and changed natural allocation
+row_flex_width,2,stateful,local,first column fixed width -> wider -> restore,dependent sibling allocation and same-row damage cost
+column_wrap_height,2,stateful,local,wrapped content short -> long -> restore,dependent lower allocation and old bounds cleared
+resize_pair,2,stateful,global,base -> half width half height -> base,both dimensions published and full target/caret clipped
+batch_properties,2,stateful,local,text color visibility in one batch -> restore,one stable business epoch with multiple attributes
+shared_observable,2,stable,local,shared text changes in separated views -> restore,all subscribed views current without unrelated work
+typed_equal,2,stable,local,replace getter source with equal typed value -> equal value,zero effective target change with valid dependency rebinding
+explicit_notify,2,stable,local,mutate nonobservable payload and notify Content -> restore,public notify drives current target
+keyed_manual,3,stateful,local,A B C -> C A B -> B C A -> A B C with manual separators,stable keys and exact committed child order
+theme_color,2,stable,global,prepared theme foreground -> restore,global color without inventing geometry work
+theme_spacing,2,stateful,global,prepared theme gap -> restore,global allocation and blanks correct
+theme_four_sides,2,stateful,global,prepared theme four distinct paddings -> restore,all four edges and clipping correct
+theme_wrap,2,stateful,global,prepared theme wrap policy -> restore,global text geometry and content current
+scroll_step,4,stateful,local,offset0 -> 1 -> 2 -> 0,real visible viewport rows and retained mounted content
+scroll_multistep,3,stateful,local,offset0 -> page -> 0,actual public scroll with published bounds and clamp
+root_fallback,3,stateful,local,finite root -> overflowing root -> scroll -> restore,implicit root fallback and committed root offset
+overlay_holes,2,stateful,local,base changes under transparent hole and opaque StyledSpace -> close,opacity separate from final character/style equality
+overlay_move,2,stateful,local,move anchor -> restore,old and new layer and shadow bounds
+overlay_shrink,2,stateful,local,large layer -> small layer -> restore,old layer tail restored from latest lower content
+overlay_nested_close,3,stateful,local,parent+child -> update covered lower layers -> close parent,attached child invalidation and latest lower pixels/caret
+vertical_panels,2,stable,local,one separated bottom panel color -> restore,representative unrelated rows and nodes skipped
+same_row_columns,2,stable,local,one independent column color -> restore,retained same-row replay cost alongside vertical benefit
+large_fill_shadows,2,stateful,broad,overlapping large fill and shadow -> shifted shadow -> restore,large intersecting area and peak memory overhead retained
+large_mounted_viewport,2,stateful,local,small visible viewport over large mounted tree -> scroll -> restore,total and visible counts distinct with no virtualization claim
+broad_text,2,stateful,broad,all leaves text changes -> restore,large-area degradation and full actual costs
+initial,1,stateful,initial,construct start and first target,initial generation separate from steady-state samples
+idle,1,idle,idle,no business change or forced export after warmup in normal Application.run,zero additional target build measure arrange paint frame and cell work with actual poll CPU
+posted_epoch,2,stateful,correctness,gated public post with epoch -> commit -> close gate,correctness only producer barrier prevents API cutoff mismatch
+readonly_focus_caret,3,stateful,local,focus first Canvas -> second -> first,readonly focused dependency and independent caret ownership
+viewport_caret,3,stateful,local,local caret clipped -> scroll into view -> resize,transformed caret clip and continuation ownership independent of Frame
+glyph_projection,3,stateful,output,Ascii 中 -> 文 -> ??,same projected two columns can have zero grid updates
