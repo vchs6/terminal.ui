@@ -15,7 +15,7 @@ cjpm run
 
 按 `q` 退出，Ctrl-C 取消；程序需要实际 TTY。构建依赖及可选离线 Unicode 数据输入见 [原生构建](native-build.md)。
 
-当前依赖采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。基础五控件已获[有限S验收](../reviews/widgets/S/README.md)，新native S证据仅覆盖ASCII/default Classic；Unicode/disabled/explicit palette另有headless与源码证据。菜单/状态栏/分区已获[有限M验收](../reviews/widgets/M/README.md)。[TASK008当前M1输出契约已独立验收](../reviews/R22/008/README.md)，TASK010仅正式测试验证中，尚非AC010通过。M2局部布局与局部绘制尚未实现或验收，不能把现有失效通知和完整帧差分输出当作M2；完整M1集成、027/041展示及最终Linux验收仍待汇合。Windows、macOS、HarmonyOS尚未实现，当前未发布发行版。
+当前依赖采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。基础五控件已获[有限S验收](../reviews/widgets/S/README.md)，新native S证据仅覆盖ASCII/default Classic；Unicode/disabled/explicit palette另有headless与源码证据。菜单/状态栏/分区已获[有限M验收](../reviews/widgets/M/README.md)。[TASK008当前M1输出契约已独立验收](../reviews/R22/008/README.md)，[TASK010当前C003/原AC010快照与文件契约已独立验收](../reviews/R22/010/README.md)；TASK020仅独立正式测试设计中，尚非AC020通过。M2局部布局与局部绘制尚未实现或验收，不能把现有失效通知和完整帧差分输出当作M2；完整M1集成、027/041展示及最终Linux验收仍待汇合。Windows、macOS、HarmonyOS尚未实现，当前未发布发行版。
 
 低层可用 `Frame(width, height)` 和 `put(x, y, text, style: Style(...))` 写入网格，`cellAt` 查询，`toPlainText` 和 `toAnsi` 导出完整快照。负尺寸与越界查询报错；写入按边界裁剪，拒绝除换行外的控制字符。`render(root, width, height)` 使用同一网格渲染组件树。`Application(root).onKey { event => ... }.run()` 负责终端会话；文本按 Unicode 字符提供，`stop()` 可从回调退出。
 

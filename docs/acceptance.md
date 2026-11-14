@@ -13,7 +13,7 @@
 | AC-007 | REQ-004 | 完整目标帧与覆盖合成 | TASK-007 | 透明单元和带样式空格有区别，前后层按确定规则合成；[R11证据](reviews/R11/result.md) | passed（[R11有限验收](reviews/R11/acceptance/report.md)） |
 | AC-008 | REQ-004 | 差分提交与写失败恢复 | TASK-008 | 无变化不输出；写失败不提交基线，无法确认安全同步时明确停止并报错；[独立原AC008验收](reviews/R22/008/browse/independent-acceptance/acceptance/report.md)接受当前M1 C002/S008完整范围，独立338真实PTY矩阵及源顺序证明；[原始证据/限制](reviews/R22/008/README.md)，完整M1/020/041/023/024及M2仍待验 | passed（完整当前M1 AC008范围；PASS_CURRENT_M1_AC008） |
 | AC-009 | REQ-005 | 有界增量 ANSI 输入适配 | TASK-009 | 跨块、畸形、超长、未知序列按支持矩阵处理，设备控制不越界透传；[R14独立验收](reviews/R14/acceptance/report.md) | passed（[R14有限验收](reviews/R14/acceptance/report.md)） |
-| AC-010 | REQ-005 | 完整彩色与纯文本快照 | TASK-010 | 含覆盖层独立快照无需差分历史，纯文本无 ESC，写失败明确报告；证据待实施时链接 | pending |
+| AC-010 | REQ-005 | 完整彩色与纯文本快照 | TASK-010 | 当前C003独立完整快照/ANSI与无ESC纯文本/真实写失败契约；18条件独立原件验收；[R22/010证据与边界](reviews/R22/010/README.md)，VS-REVIEW-001已解决 | passed（当前原AC010/C003范围；非完整Linux/release） |
 | AC-011 | REQ-003 | 横纵与弹性尺寸协商 | TASK-011 | 窄屏、零尺寸和非整除弹性分配有确定结果；[M04 Split薄组合追加证据](reviews/widgets/M/acceptance162/ac-results.json)不替代原范围；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
 | AC-012 | REQ-003 | 圆角边框与阴影绘制区域 | TASK-012 | 阴影只扩展绘制；移动/缩小清旧区，服从祖先裁剪；见[R9独立验收](reviews/R9/verification/verification.md)；[R9证据](reviews/R9/result.md) | passed |
 | AC-013 | REQ-001 | 主题、样式复用及显式复位 | TASK-013 | 四级优先顺序和继承/复位行为明确，运行时仅样式变化也更新 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |

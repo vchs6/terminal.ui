@@ -1,0 +1,441 @@
+{
+  "schema": 1,
+  "task": "Linux TASK010 original evidence publication",
+  "status": "PASS_CURRENT_AC010",
+  "base": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+  "classification": "execution-only mechanical evidence publication; no result regeneration or product/test changes",
+  "archive": {
+    "path": "raw-evidence.tar.gz",
+    "bytes": 122863,
+    "sha256": "cff94ff4e06a4e8cd96ebfef692f3a674730f697600d128cab2e41336996bafa"
+  },
+  "manifest": {
+    "path": "raw-evidence.manifest.jsonl",
+    "bytes": 129957,
+    "sha256": "2f201de423b9a9fb1eda1c8a316251e970aacc75190da2fa9adf3c4dc6c05343"
+  },
+  "archiveMembers": 374,
+  "originalBytes": 813661,
+  "roleCounts": {
+    "independent-acceptance": 5,
+    "independent-execution": 141,
+    "independent-review": 6,
+    "product-documentation": 7,
+    "test-author-developer-proof": 215
+  },
+  "verification": "Every tar member safe relative name, regular type, exact byte count and SHA256 checked against manifest and unchanged original. USTAR uid/gid/mtime0, mode0644, empty names; gzip mtime0 and no filename. All candidates inspected with libmagic, magic bytes, path and extension exclusions.",
+  "exclusions": [
+    {
+      "original": "/workspace/work/visible-snapshot-formal-tests/evidence/files-01/short-write-launcher",
+      "bytes": 16224,
+      "sha256": "82ea5f760f4b8ab3bccf662b7c7130bbca07c32798f9fbc40543914b7af62a2d",
+      "fileDescription": "ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=8fdf356206df5348ecff4d4f22fd5664f147a6f9, for GNU/Linux 3.2.0, not stripped",
+      "reason": "binary/build-input exclusion"
+    },
+    {
+      "original": "/workspace/work/visible-snapshot-formal-tests/evidence/files-02/short-write-launcher",
+      "bytes": 16224,
+      "sha256": "82ea5f760f4b8ab3bccf662b7c7130bbca07c32798f9fbc40543914b7af62a2d",
+      "fileDescription": "ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=8fdf356206df5348ecff4d4f22fd5664f147a6f9, for GNU/Linux 3.2.0, not stripped",
+      "reason": "binary/build-input exclusion"
+    },
+    {
+      "original": "/workspace/work/visible-snapshot-execution/raw/files/short-write-launcher",
+      "bytes": 16224,
+      "sha256": "82ea5f760f4b8ab3bccf662b7c7130bbca07c32798f9fbc40543914b7af62a2d",
+      "fileDescription": "ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=8fdf356206df5348ecff4d4f22fd5664f147a6f9, for GNU/Linux 3.2.0, not stripped",
+      "reason": "binary/build-input exclusion"
+    },
+    {
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/home/cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9",
+      "bytes": 352,
+      "sha256": "91725f3333827478c88df0bb4ad2afb75b402e43e43e49a8d8c8256101985bb5",
+      "fileDescription": "fontconfig cache file: le64-9",
+      "reason": "binary/build-input exclusion"
+    },
+    {
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/home/cache/fontconfig/CACHEDIR.TAG",
+      "bytes": 200,
+      "sha256": "05e7633fb31bf1f6f8d89020c16b9f24587fdf7638e951c9745b192f5fc3b682",
+      "fileDescription": "ASCII text",
+      "reason": "binary/build-input exclusion"
+    },
+    {
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/snapshot.ansi",
+      "reason": "symlink; no dereference"
+    },
+    {
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/home/cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9",
+      "bytes": 352,
+      "sha256": "91725f3333827478c88df0bb4ad2afb75b402e43e43e49a8d8c8256101985bb5",
+      "fileDescription": "fontconfig cache file: le64-9",
+      "reason": "binary/build-input exclusion"
+    },
+    {
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/home/cache/fontconfig/CACHEDIR.TAG",
+      "bytes": 200,
+      "sha256": "05e7633fb31bf1f6f8d89020c16b9f24587fdf7638e951c9745b192f5fc3b682",
+      "fileDescription": "ASCII text",
+      "reason": "binary/build-input exclusion"
+    },
+    {
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/snapshot.ansi",
+      "reason": "symlink; no dereference"
+    }
+  ],
+  "browse": [
+    {
+      "path": "browse/independent-acceptance/ac-results.json",
+      "original": "/workspace/work/visible-snapshot-acceptance/ac-results.json",
+      "bytes": 13595,
+      "sha256": "ce69f99777609b2c8b6427cd3504efb1d74632ce82724ef122aaab36ee6b1dab"
+    },
+    {
+      "path": "browse/independent-acceptance/binding-verification.json",
+      "original": "/workspace/work/visible-snapshot-acceptance/binding-verification.json",
+      "bytes": 228399,
+      "sha256": "ad320e2330ad13fd8cfc362708dd3ba77df50cb96337f5278578c50cca863458"
+    },
+    {
+      "path": "browse/independent-acceptance/index.json",
+      "original": "/workspace/work/visible-snapshot-acceptance/index.json",
+      "bytes": 5751,
+      "sha256": "65ad82843d95148aa65b44c609f72d0b6872e70d1b25c8ac83c3d0f1baf5924d"
+    },
+    {
+      "path": "browse/independent-acceptance/report.md",
+      "original": "/workspace/work/visible-snapshot-acceptance/report.md",
+      "bytes": 3236,
+      "sha256": "38e1a1159c7900760bf6c8237364998cca9332edd96ab1c5ee45d4328440c92f"
+    },
+    {
+      "path": "browse/independent-acceptance/source-and-replay-verification.json",
+      "original": "/workspace/work/visible-snapshot-acceptance/source-and-replay-verification.json",
+      "bytes": 35208,
+      "sha256": "9a53eea893e502e1136467cb38306ea3d762ec5a1a35ce22133cd616d38eaafd"
+    },
+    {
+      "path": "browse/independent-execution/index.json",
+      "original": "/workspace/work/visible-snapshot-execution/index.json",
+      "bytes": 29343,
+      "sha256": "3a50ec2bc58b16bc08655e887c3c39f332de3614279c3480511b7cb6016b6783"
+    },
+    {
+      "path": "browse/independent-execution/raw/cli.exit",
+      "original": "/workspace/work/visible-snapshot-execution/raw/cli.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "browse/independent-execution/raw/files/short.ansi",
+      "original": "/workspace/work/visible-snapshot-execution/raw/files/short.ansi",
+      "bytes": 32,
+      "sha256": "bf31ff2fa801d7c0a27ea95259414552c9d9fbe15c0a4ce286c53ff16dcbe2cf"
+    },
+    {
+      "path": "browse/independent-execution/raw/files/short.txt",
+      "original": "/workspace/work/visible-snapshot-execution/raw/files/short.txt",
+      "bytes": 32,
+      "sha256": "daff859876ec66181b2cceb691ca5c8a5273e198df8ad9eabd5760a02a848ba3"
+    },
+    {
+      "path": "browse/independent-execution/raw/files/theme-local.ansi",
+      "original": "/workspace/work/visible-snapshot-execution/raw/files/theme-local.ansi",
+      "bytes": 49,
+      "sha256": "33b64075ac3c7bea884b2f239302b49f6efa2b332ed0be61fa53948bb744e608"
+    },
+    {
+      "path": "browse/independent-execution/raw/input-bindings.json",
+      "original": "/workspace/work/visible-snapshot-execution/raw/input-bindings.json",
+      "bytes": 43060,
+      "sha256": "d7c1b17eaec137352412eced4932c7b5f16f7f4035008e40a69ad8c2ef55bf7f"
+    },
+    {
+      "path": "browse/independent-execution/raw/resource-summary.json",
+      "original": "/workspace/work/visible-snapshot-execution/raw/resource-summary.json",
+      "bytes": 264,
+      "sha256": "2eede807a8c0913470c5bc719a8c29c0fa6100a4413fc0acce7441a2500189e6"
+    },
+    {
+      "path": "browse/independent-execution/raw/subcommands.json",
+      "original": "/workspace/work/visible-snapshot-execution/raw/subcommands.json",
+      "bytes": 474,
+      "sha256": "da23ab14b013f168ff81e72b3c4ad7297af9ca2fe10ffd56f32f3210629e3607"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/host.exit",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/host.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/host.stderr",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/host.stderr",
+      "bytes": 636,
+      "sha256": "3d99ad7d6e2e2973c1e27f66ec4a770286082d36c02cfe021888879543b23cdd"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/host.stdout",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/identity.json",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/identity.json",
+      "bytes": 984,
+      "sha256": "ad0348eb5f3f38afc0a16602ac9247b6ebad87417856f4337e6eb97c9b784552"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/launch.json",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/launch.json",
+      "bytes": 1074,
+      "sha256": "2248e916c001e21626fad260b0131d4361ccf79f140aceda612518c4e556ba66"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/original.png",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/original.png",
+      "bytes": 1477,
+      "sha256": "1876300e6053f7a976835181e1487aca66e6dc99c4bc82bb384b56229500ee34"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/ready",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/ready",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/release",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/replay-extracted.raw",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/replay-extracted.raw",
+      "bytes": 71,
+      "sha256": "5b61f84a024dc03a45da15b2893aa9e905b101511e82954e1b78b5e82f66ebdb"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/replay-validation.json",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/replay-validation.json",
+      "bytes": 712,
+      "sha256": "102c631d0c7e010bfa6db4aaa2cccefbe30fdf2a01f9c72dd5c84fe30f8cd63f"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/size.txt",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/size.txt",
+      "bytes": 6,
+      "sha256": "bbdec8669f765a02b6f2405cb1da4faf50e672fbb57748666bd05ee0e57e19f1"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/terminal.strace",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/terminal.strace",
+      "bytes": 5423,
+      "sha256": "4cacddf6513a5ace13cc75cb3c38c36a561487b0f497319397d2823384f886a6"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/view.exit",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/view.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/view.sh",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/view.sh",
+      "bytes": 249,
+      "sha256": "c14bac8f74a9ebca7196201cea249b8f605614ae490d167ecb7c22eed3541a15"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-vte/window-tree.txt",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-vte/window-tree.txt",
+      "bytes": 862,
+      "sha256": "5e94deb6d828a67904d359c2a77a1afa8b0a62d90c14a4d37fd2440be81e64e1"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/host.exit",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/host.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/host.stderr",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/host.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/host.stdout",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/identity.json",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/identity.json",
+      "bytes": 546,
+      "sha256": "f363096e5968bb09e6d46fe6434944aa9c3577e5b7e68692e87fff335b3ac62e"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/launch.json",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/launch.json",
+      "bytes": 1188,
+      "sha256": "6ae1c19715a0ffc0b04018e5e2df640dfdf0af378e7f0cffb8997ec3a6c08781"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/original.png",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/original.png",
+      "bytes": 1178,
+      "sha256": "18ee5b6e30e04b468562d8ced0339ada6f67454ea83c97ead27f852194d3147d"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/ready",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/ready",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/release",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/replay-extracted.raw",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/replay-extracted.raw",
+      "bytes": 71,
+      "sha256": "5b61f84a024dc03a45da15b2893aa9e905b101511e82954e1b78b5e82f66ebdb"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/replay-validation.json",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/replay-validation.json",
+      "bytes": 712,
+      "sha256": "102c631d0c7e010bfa6db4aaa2cccefbe30fdf2a01f9c72dd5c84fe30f8cd63f"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/size.txt",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/size.txt",
+      "bytes": 6,
+      "sha256": "bbdec8669f765a02b6f2405cb1da4faf50e672fbb57748666bd05ee0e57e19f1"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/terminal.strace",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/terminal.strace",
+      "bytes": 5881,
+      "sha256": "fb7dada96b441fc20bb76d3d58cb679df6aa13d6d364c91eac6b120897c53800"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/view.exit",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/view.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/view.sh",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/view.sh",
+      "bytes": 249,
+      "sha256": "c14bac8f74a9ebca7196201cea249b8f605614ae490d167ecb7c22eed3541a15"
+    },
+    {
+      "path": "browse/independent-execution/raw/view-xterm/window-tree.txt",
+      "original": "/workspace/work/visible-snapshot-execution/raw/view-xterm/window-tree.txt",
+      "bytes": 762,
+      "sha256": "b9ca77a661238f1fa0683e1d652ff3acd240cbfc7a7490666c0f4db0f2a28712"
+    },
+    {
+      "path": "browse/independent-execution/report.md",
+      "original": "/workspace/work/visible-snapshot-execution/report.md",
+      "bytes": 2911,
+      "sha256": "071ea1226e5b81cf088a1fd13833ee2659ae9a5fada3a9e6c7763cf801ef599a"
+    },
+    {
+      "path": "browse/independent-review/findings.json",
+      "original": "/workspace/work/visible-snapshot-review/findings.json",
+      "bytes": 2144,
+      "sha256": "bcf951a9924cdc6f112d98fb7f72a164cefd1cf56a8a9cb0c18052e7fed03b1f"
+    },
+    {
+      "path": "browse/independent-review/index.json",
+      "original": "/workspace/work/visible-snapshot-review/index.json",
+      "bytes": 9393,
+      "sha256": "7d19cbe60e995bdd84d4612b2614959716b39960b6d0ccdf6cd6b6ab2f7edea9"
+    },
+    {
+      "path": "browse/independent-review/report.md",
+      "original": "/workspace/work/visible-snapshot-review/report.md",
+      "bytes": 3191,
+      "sha256": "18ceb32bad42aa2ba359079c3fb24aac1bc88731cd7cc0bd1cd3d06ca856f5e5"
+    },
+    {
+      "path": "browse/independent-review/scoped-doc-findings.json",
+      "original": "/workspace/work/visible-snapshot-review/scoped-doc-findings.json",
+      "bytes": 1059,
+      "sha256": "0d0900e4cc277a070f448da78287ccbc56b0e322e69957e8558f5706e445edde"
+    },
+    {
+      "path": "browse/independent-review/scoped-doc-index.json",
+      "original": "/workspace/work/visible-snapshot-review/scoped-doc-index.json",
+      "bytes": 4348,
+      "sha256": "8d52a15c1eca1037588485cd2d43d4c303667fa4fd24579283f0a2ac497601fa"
+    },
+    {
+      "path": "browse/independent-review/scoped-doc-review.md",
+      "original": "/workspace/work/visible-snapshot-review/scoped-doc-review.md",
+      "bytes": 1715,
+      "sha256": "70d73946748cad953999120f45b38213bbd5039e66b246b447ac1e4a1c957fbb"
+    },
+    {
+      "path": "browse/product-documentation/index.json",
+      "original": "/workspace/work/visible-snapshot-doc/index.json",
+      "bytes": 7520,
+      "sha256": "2acf29fd336dbd3cb6a2f22bb72e890cf7a79a5da6025c50c4856d938af6d51f"
+    },
+    {
+      "path": "browse/product-documentation/report.md",
+      "original": "/workspace/work/visible-snapshot-doc/report.md",
+      "bytes": 1197,
+      "sha256": "00c6be9ebbc7b202e45c1ac46b0c7eb2f5b77ff1dde60e99d68dde4fffa5d614"
+    },
+    {
+      "path": "browse/test-author-developer-proof/evidence/coverage.json",
+      "original": "/workspace/work/visible-snapshot-formal-tests/evidence/coverage.json",
+      "bytes": 4220,
+      "sha256": "4d3d58f05bb9057e59f282c0a5dde8bfc136a616008c1b519dd676aaa0c4759b"
+    },
+    {
+      "path": "browse/test-author-developer-proof/evidence/fixture-corrections.md",
+      "original": "/workspace/work/visible-snapshot-formal-tests/evidence/fixture-corrections.md",
+      "bytes": 694,
+      "sha256": "a1cef67cd545c382930906811cb6426e355e63636a90e358b5e68d26759212ae"
+    },
+    {
+      "path": "browse/test-author-developer-proof/evidence/index.json",
+      "original": "/workspace/work/visible-snapshot-formal-tests/evidence/index.json",
+      "bytes": 54844,
+      "sha256": "cc495d55f1a566f36344e49d73739403b1ee655ebad27b545e94ac62a3d853d4"
+    },
+    {
+      "path": "browse/test-author-developer-proof/evidence/input-validation.json",
+      "original": "/workspace/work/visible-snapshot-formal-tests/evidence/input-validation.json",
+      "bytes": 7933,
+      "sha256": "aa8c53d4f155563c05b1dd30f9b1e4ec37aa4c418f081889326cc027ea79337e"
+    },
+    {
+      "path": "browse/test-author-developer-proof/report.md",
+      "original": "/workspace/work/visible-snapshot-formal-tests/report.md",
+      "bytes": 2446,
+      "sha256": "581eea5e423720ec815c0f2747d196cb9041a49796b78cf41897544b7c412513"
+    }
+  ],
+  "limits": [
+    "Only current original AC010/C003 Linux M1 snapshot/file scope accepted; parent/full Linux/M2/release remain open.",
+    "PNG: only original 3x1 theme-local.ansi file viewed at 80x25 in XTerm398 and XFCE4 Terminal1.1.4/VTE0.80.1; no whole-framework GUI/VT/adaptation coverage.",
+    "Known themes/light.toml T087 checker failure and full Linux/release gates remain open."
+  ],
+  "acceptance": {
+    "status": "COMPLETE_CURRENT_ORIGINAL_AC010_SCOPE",
+    "conditions": 18,
+    "indexOriginal": "/workspace/work/visible-snapshot-acceptance/index.json",
+    "indexSha256": "65ad82843d95148aa65b44c609f72d0b6872e70d1b25c8ac83c3d0f1baf5924d"
+  }
+}

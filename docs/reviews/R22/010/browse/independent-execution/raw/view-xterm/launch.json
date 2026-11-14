@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+    "-geometry",
+    "80x25+20+20",
+    "-T",
+    "TASK010 offline snapshot xterm",
+    "-fa",
+    "DejaVu Sans Mono",
+    "-fs",
+    "16",
+    "-e",
+    "strace",
+    "-f",
+    "-s",
+    "4096",
+    "-xx",
+    "-e",
+    "trace=write,ioctl,execve",
+    "-o",
+    "/workspace/work/visible-snapshot-execution/raw/view-xterm/terminal.strace",
+    "bash",
+    "/workspace/work/visible-snapshot-execution/raw/view-xterm/view.sh"
+  ],
+  "utc": "2026-11-14T00:01:56.038277+00:00",
+  "uid": 1000,
+  "config": {
+    "DISPLAY": ":199",
+    "HOME": "/workspace/work/visible-snapshot-execution/raw/view-xterm/home",
+    "XDG_CONFIG_HOME": "/workspace/work/visible-snapshot-execution/raw/view-xterm/home/config",
+    "XDG_CACHE_HOME": "/workspace/work/visible-snapshot-execution/raw/view-xterm/home/cache",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8"
+  },
+  "source": "/workspace/work/visible-snapshot-execution/raw/files/theme-local.ansi",
+  "source_sha256": "33b64075ac3c7bea884b2f239302b49f6efa2b332ed0be61fa53948bb744e608",
+  "scope": "Offline same 3x1 file replay only; no full framework device acceptance"
+}

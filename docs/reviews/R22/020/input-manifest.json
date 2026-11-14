@@ -1,0 +1,189 @@
+{
+  "task": "TASK020.a",
+  "status": "READY_FOR_FORMAL_TEST_DESIGN_ONLY",
+  "classification": "execution within frozen C004; no new APIs",
+  "base": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+  "accepted010": {
+    "path": "/workspace/work/visible-snapshot-acceptance/index.json",
+    "bytes": 5751,
+    "sha256": "65ad82843d95148aa65b44c609f72d0b6872e70d1b25c8ac83c3d0f1baf5924d"
+  },
+  "accepted008": {
+    "path": "/workspace/work/output-recovery-acceptance/index.json",
+    "bytes": 9850,
+    "sha256": "ae1eaf30663ac05beb90a99e4a99d5591c000a1e30f1fb8de96935e009414e2d"
+  },
+  "acceptedUpstreamMap": {
+    "path": "/workspace/work/terminal.ui/docs/reviews/R22/008/input-manifest.json",
+    "bytes": 83652,
+    "sha256": "6f10c6eb41e83164bae545cb3b7fd93fa56fffd4f6613ca9b85755fa9c81a3fb"
+  },
+  "preparedTestCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+  "preparedTests": [
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/.gitignore",
+      "bytes": 53,
+      "sha256": "2d2ba2bee1a4068e160b5582356070caf69c2616ef0435d27fb0232acba0df00"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/README.md",
+      "bytes": 3726,
+      "sha256": "65ef143cea384e1ec282a9046a0b37b87598e3d275dde6298f51c7f997fbae57"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/cases.json",
+      "bytes": 1925,
+      "sha256": "f74dfb791c30ce1033be8370d4d0ec39fa668fe349ee3ff4349c6224bc5f3c33"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/cjpm.toml",
+      "bytes": 385,
+      "sha256": "479350df4efd226b815aecf874595fc8ce8a944af5ef72224aced28bb88ac6e0"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/driver.py",
+      "bytes": 5826,
+      "sha256": "9e3fdf44eb4e7810020590d8341b372f8e793b0f0a94251f1ce0ce1aa8b2b2af"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/manual-coverage.md",
+      "bytes": 9672,
+      "sha256": "4871a3c2118518d9ca67125ee05efd8c77484f7cccfa6545d083b1af0e31da1a"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/oracle.py",
+      "bytes": 3440,
+      "sha256": "2509fe6069f854b701c4e54d606af107d8adde7355e10ecb7670c423f4660088"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/prepare_check.py",
+      "bytes": 2889,
+      "sha256": "3d8f931f65b7b52fd6e65362eec1bc1b94dac4051f995939c998a1271a9c84fa"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/reuse-map.json",
+      "bytes": 12566,
+      "sha256": "c139eb51c648bf0200267e0fa7716131bb470ebbe7896babc7f02130987f2a58"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/run.sh",
+      "bytes": 1039,
+      "sha256": "e35f1ee775bf1ddd64151b16db7031bccde98a5da09c0e67a7a93c5b5245b6e0"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/src/box.cj",
+      "bytes": 180,
+      "sha256": "a1d29ea47ae6754e70787842e631d901ce3893ca96f0a09d800464d546cb2abe"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/src/checks.cj",
+      "bytes": 1056,
+      "sha256": "a1571da953475d4b4f9c8c8a15dee3c02ab35aa54b61fde9fd81cf271ca0473a"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/src/lifecycle.cj",
+      "bytes": 6588,
+      "sha256": "7fd7971fc17ede68b69bc996f1b138cceafe3e68b006b3496a708d8b35c79166"
+    },
+    {
+      "gitCommit": "4c6bf48dc849b92cb72ae842b2eec9c933854838",
+      "path": "tests/session_lifecycle/src/main.cj",
+      "bytes": 285,
+      "sha256": "0688620c5fae9f51c082410792b57e11bb315ebcdd80b825d3076897416bb86c"
+    }
+  ],
+  "contractsAndSource": [
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "AGENTS.md",
+      "bytes": 35500,
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "openspec/changes/complete-linux-integration/design.md",
+      "bytes": 12137,
+      "sha256": "6f40454ebfa2160da6a9e43f4c8501e022013a9919b252d43ac7d63a6e641001"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "openspec/changes/implement-session-extensions/design.md",
+      "bytes": 27248,
+      "sha256": "13d28b28aea0c023ad8865d1b62fb83b594847cefd5e26eecaee195a9d5a10a5"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "openspec/changes/implement-linux-input-editing/design.md",
+      "bytes": 43550,
+      "sha256": "359b1efaaac18e21066d59aad0d61ef83eeda967c656bc25d7aa68f580ab5eb5"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "openspec/changes/implement-public-interaction/design.md",
+      "bytes": 76152,
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "openspec/changes/implement-reactive-runtime/design.md",
+      "bytes": 40090,
+      "sha256": "dcfed7b4ca2e412bb075e923217bf2867556bfb1f8c7991a7384c519b830dbb7"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "src/application.cj",
+      "bytes": 36536,
+      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "src/runtime_session.cj",
+      "bytes": 66044,
+      "sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "src/terminal_bridge.cj",
+      "bytes": 2436,
+      "sha256": "659798da1bf63458c3dff2b0a075ae899a9413589ee24ea00232b32df16cb523"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "native/cjtui_terminal.c",
+      "bytes": 4769,
+      "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "cjpm.toml",
+      "bytes": 1541,
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828"
+    },
+    {
+      "gitCommit": "13e7880ce96d1331fc9e12a2b62275a307183e9a",
+      "path": "build.cj",
+      "bytes": 191,
+      "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9"
+    }
+  ],
+  "ownershipRuling": "Frozen input-editing design118–120 own requested2004 enable/disable; C004 does not introduce query/preservepre-enabled2004API. I015caret actualoriginalknown/unknown policy unchanged.",
+  "readinessBasis": "Reuse accepted59bea planning/DQ plus actual accepted008/010 and152/117/122/112/162 facts; current library code80d/ecbf unchanged by010 except required viewing instructions. Prepared020 compile/runtime/coverage gaps are formal test-design work, not invented product RED.",
+  "limits": [
+    "Test preparation4c6 remains uncompiled/unexecuted, thirteen exits×threecaretstates×twoallowedruns not runtimeaccepted.",
+    "Complete actual coverage/manualexpected/errors beforeproductauthor; sourcewriterbarrier maintained.",
+    "020M1handoff separate from futureM2/041/023/024 finalLinux."
+  ]
+}

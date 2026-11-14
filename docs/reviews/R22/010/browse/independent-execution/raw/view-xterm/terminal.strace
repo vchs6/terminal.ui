@@ -1,0 +1,54 @@
+1071981 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x62\x61\x73\x68", ["\x62\x61\x73\x68", "\x2f\x77\x6f\x72\x6b\x73\x70\x61\x63\x65\x2f\x77\x6f\x72\x6b\x2f\x76\x69\x73\x69\x62\x6c\x65\x2d\x73\x6e\x61\x70\x73\x68\x6f\x74\x2d\x65\x78\x65\x63\x75\x74\x69\x6f\x6e\x2f\x72\x61\x77\x2f\x76\x69\x65\x77\x2d\x78\x74\x65\x72\x6d\x2f\x76\x69\x65\x77\x2e\x73\x68"], 0x7ffe8b070608 /* 73 vars */) = 0
+1071981 ioctl(2, TIOCGPGRP, [1071978])  = 0
+1071981 ioctl(3, TCGETS, 0x7fffca15f670) = -1 ENOTTY (Inappropriate ioctl for device)
+1071982 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x64\x69\x72\x6e\x61\x6d\x65", ["\x64\x69\x72\x6e\x61\x6d\x65", "\x2f\x77\x6f\x72\x6b\x73\x70\x61\x63\x65\x2f\x77\x6f\x72\x6b\x2f\x76\x69\x73\x69\x62\x6c\x65\x2d\x73\x6e\x61\x70\x73\x68\x6f\x74\x2d\x65\x78\x65\x63\x75\x74\x69\x6f\x6e\x2f\x72\x61\x77\x2f\x76\x69\x65\x77\x2d\x78\x74\x65\x72\x6d\x2f\x76\x69\x65\x77\x2e\x73\x68"], 0x55df9de7a980 /* 74 vars */) = 0
+1071982 write(1, "\x2f\x77\x6f\x72\x6b\x73\x70\x61\x63\x65\x2f\x77\x6f\x72\x6b\x2f\x76\x69\x73\x69\x62\x6c\x65\x2d\x73\x6e\x61\x70\x73\x68\x6f\x74\x2d\x65\x78\x65\x63\x75\x74\x69\x6f\x6e\x2f\x72\x61\x77\x2f\x76\x69\x65\x77\x2d\x78\x74\x65\x72\x6d\x0a", 58) = 58
+1071982 +++ exited with 0 +++
+1071981 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071982, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071983 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x73\x74\x74\x79", ["\x73\x74\x74\x79", "\x73\x69\x7a\x65"], 0x55df9de7a980 /* 75 vars */) = 0
+1071984 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x74\x65\x65", ["\x74\x65\x65", "\x73\x69\x7a\x65\x2e\x74\x78\x74"], 0x55df9de7a980 /* 75 vars */) = 0
+1071983 ioctl(0, TCGETS, {c_iflag=ICRNL|IXON|IUTF8, c_oflag=NL0|CR0|TAB0|BS0|VT0|FF0|OPOST|ONLCR, c_cflag=B38400|CS8|CREAD, c_lflag=ISIG|ICANON|ECHO|ECHOE|ECHOK|IEXTEN|ECHOCTL|ECHOKE, ...}) = 0
+1071983 ioctl(1, TIOCGWINSZ, 0x7ffc8e037820) = -1 ENOTTY (Inappropriate ioctl for device)
+1071983 ioctl(0, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=1044, ws_ypixel=654}) = 0
+1071983 write(1, "\x32\x35\x20\x38\x30\x0a", 6) = 6
+1071983 +++ exited with 0 +++
+1071984 write(1, "\x32\x35\x20\x38\x30\x0a", 6) = 6
+1071984 write(3, "\x32\x35\x20\x38\x30\x0a", 6) = 6
+1071984 +++ exited with 0 +++
+1071981 ioctl(2, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=1044, ws_ypixel=654}) = 0
+1071981 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071983, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071985 write(1, "\x1b\x5b\x30\x6d\x1b\x5b\x32\x4a\x1b\x5b\x48", 11) = 11
+1071986 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x63\x61\x74", ["\x63\x61\x74", "\x2d\x2d", "\x73\x6e\x61\x70\x73\x68\x6f\x74\x2e\x61\x6e\x73\x69"], 0x55df9de7a980 /* 75 vars */) = 0
+1071986 write(1, "\x1b\x5b\x30\x6d\x1b\x5b\x31\x3b\x31\x48\x1b\x5b\x30\x6d\x1b\x5b\x34\x38\x3b\x32\x3b\x31\x37\x3b\x33\x34\x3b\x35\x31\x6d\x1b\x5b\x34\x6d\x1b\x5b\x37\x6d\x78\x20\x20\x1b\x5b\x30\x6d\x1b\x5b\x30\x6d", 49) = 49
+1071986 +++ exited with 0 +++
+1071985 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071986, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071985 write(1, "\x1b\x5b\x30\x6d\x1b\x5b\x32\x35\x3b\x31\x48", 11) = 11
+1071985 +++ exited with 0 +++
+1071981 ioctl(2, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=1044, ws_ypixel=654}) = 0
+1071981 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071985, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071981 write(1, "\x30\x0a", 2)         = 2
+1071987 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x74\x6f\x75\x63\x68", ["\x74\x6f\x75\x63\x68", "\x72\x65\x61\x64\x79"], 0x55df9de7a980 /* 75 vars */) = 0
+1071987 +++ exited with 0 +++
+1071981 ioctl(2, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=1044, ws_ypixel=654}) = 0
+1071981 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071987, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071988 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x73\x6c\x65\x65\x70", ["\x73\x6c\x65\x65\x70", "\x2e\x31"], 0x55df9de7a980 /* 75 vars */) = 0
+1071988 +++ exited with 0 +++
+1071981 ioctl(2, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=1044, ws_ypixel=654}) = 0
+1071981 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071988, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071989 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x73\x6c\x65\x65\x70", ["\x73\x6c\x65\x65\x70", "\x2e\x31"], 0x55df9de7a980 /* 75 vars */) = 0
+1071989 +++ exited with 0 +++
+1071981 ioctl(2, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=1044, ws_ypixel=654}) = 0
+1071981 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071989, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071990 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x73\x6c\x65\x65\x70", ["\x73\x6c\x65\x65\x70", "\x2e\x31"], 0x55df9de7a980 /* 75 vars */) = 0
+1071990 +++ exited with 0 +++
+1071981 ioctl(2, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=1044, ws_ypixel=654}) = 0
+1071981 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071990, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071993 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x73\x6c\x65\x65\x70", ["\x73\x6c\x65\x65\x70", "\x2e\x31"], 0x55df9de7a980 /* 75 vars */) = 0
+1071993 +++ exited with 0 +++
+1071981 ioctl(2, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=1044, ws_ypixel=654}) = 0
+1071981 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071993, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071997 execve("\x2f\x75\x73\x72\x2f\x62\x69\x6e\x2f\x73\x6c\x65\x65\x70", ["\x73\x6c\x65\x65\x70", "\x2e\x31"], 0x55df9de7a980 /* 75 vars */) = 0
+1071997 +++ exited with 0 +++
+1071981 ioctl(2, TIOCGWINSZ, {ws_row=25, ws_col=80, ws_xpixel=1044, ws_ypixel=654}) = 0
+1071981 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=1071997, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+1071981 +++ exited with 0 +++

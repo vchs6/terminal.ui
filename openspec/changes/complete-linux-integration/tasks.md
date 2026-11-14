@@ -23,7 +23,7 @@
 
 ## Shared L3 card fields
 
-以下与各卡合成完整定义：`level=L3; goal=G001; classification=execution; workflow_ref=本tasks; openspec_change_ref=complete-linux-integration; status=planned（008例外：completed，008.a–e已交付并独立验收完整当前M1 AC008范围；010例外：in_progress，仅010.a正式测试验证）；evidence_refs=[]（008见docs/reviews/R22/008/README.md及archive-index.json；010见docs/reviews/R22/010/input-manifest.json）`。属于原任务的具体WP/REQ/原AC沿docs/tasks，不重编号，不制造父L3嵌套L3。`preconditions`=独立preflight无未决Important+该卡全部实际输入固定+共享作者写屏障；没有则仅准备、不准入产品。`required_skills`=TDD/仓颉coding（代码角色）、verification、按需systematic-debugging、SDD/review（各实际职责）；来源复用docs/reviews/R11/skills.json及AGENTS14固定参考，实际使用由对应角色落盘。`decision_refs=C001–C009/L001–L006`；兼容为保留现已冻结API/原断言，不造新公共签名。`quality_governance`：必要性为原完整AC缺口，canonical owner是功能design现路径，旧路径只补真实缺口不保留并行机制，复杂度限测试/集成/必要小修。影响/风险在各卡和Review Focus。工具/SDK/终端须实际可用并有raw；不认证无法观测的实际serving model。
+以下与各卡合成完整定义：`level=L3; goal=G001; classification=execution; workflow_ref=本tasks; openspec_change_ref=complete-linux-integration; status=planned（008例外：completed，008.a–e已交付并独立验收完整当前M1 AC008范围；010例外：completed，010.a–e当前C003/AC010已独立验收；020例外：in_progress，仅020.a正式测试设计）；evidence_refs=[]（008见docs/reviews/R22/008/README.md及archive-index.json；010见docs/reviews/R22/010/README.md及archive-index.json；020见docs/reviews/R22/020/input-manifest.json）`。属于原任务的具体WP/REQ/原AC沿docs/tasks，不重编号，不制造父L3嵌套L3。`preconditions`=独立preflight无未决Important+该卡全部实际输入固定+共享作者写屏障；没有则仅准备、不准入产品。`required_skills`=TDD/仓颉coding（代码角色）、verification、按需systematic-debugging、SDD/review（各实际职责）；来源复用docs/reviews/R11/skills.json及AGENTS14固定参考，实际使用由对应角色落盘。`decision_refs=C001–C009/L001–L006`；兼容为保留现已冻结API/原断言，不造新公共签名。`quality_governance`：必要性为原完整AC缺口，canonical owner是功能design现路径，旧路径只补真实缺口不保留并行机制，复杂度限测试/集成/必要小修。影响/风险在各卡和Review Focus。工具/SDK/终端须实际可用并有raw；不认证无法观测的实际serving model。
 
 每个有产品行为的原任务L4按五活动顺序：独立测试作者冻结正常/边界/失败字面golden与实际RED/缺证据；独立产品作者取得固定测试后写最小产品/example/checker并固定提交；独立审核者只收合同/test/source/diff/raw双verdict；执行者按确定入口构建并直接binary记录真exit/raw/SHA/UTC，实际宿主原PNG；验收者按原AC和源/原件/hash判断，root只集成状态。各角色不同agent/工作目录，不把一个作者自测当最终GREEN。仅文档冻结/证据投影任务由独立审查/验收原职责完成，无假RED要求。
 
@@ -36,14 +36,16 @@
 输入=070/R10、已接受152/117/112/122/162及最终M1全部模式/帧/caret、固定测试。输出=tests/output_recovery/正式消费者及原生fault夹具、现src/application.cj/frame.cj与native/cjtui_terminal.c必要真实缺口、产品恢复说明与R22/008证据。排除M2算法。
 L4 008.a：手写相同帧/缩短/仅样式/resize/能力切换与C002所有截断位置预期；正常build/direct命令及期望停止/unsafe。008.b：固定来源回放原R10并仅补新writer/caret/input边界，真实RED只因产品违反正式策略。008.c：产品作者修对应唯一owner，固定提交。008.d：独立双审核→测试执行；native资源/错误/输出raw不可用时不足。008.e：按AC008原文接受安全恢复或明确停止分支，记录可证明边界，不用只零输出断言替代成功baseline确认。CLI入口 `tests/output_recovery/run.sh`（普通development test wrapper，不是产品依赖）。
 
-- [ ] 1.2 原TASK-010：按C003交付实际可见层彩色/纯文本文件（WP002/REQ005；implementation及独立质量活动）。
+- [x] 1.2 原TASK-010：按C003交付实际可见层彩色/纯文本文件（WP002/REQ005；implementation及独立质量活动）。
 
-当前status=in_progress；仅010.a独立正式测试验证（root安排Sol/high，visible_snapshot_formal_tests），BASE=`ecbf0999a392e5298e6e5bd15bd796dd9d40e582`。[固定实际输入](../../../docs/reviews/R22/010/input-manifest.json)保留17个prepared绑定及14个Git绑定和当前008验收；原prepared54f测试尚未编译/执行，实际结果待验证。复用59bea规划DQ；不据此标产品ready或AC010通过。
+当前status=completed（完整当前C003/原AC010范围）；010.a–e已交付。独立原件验收为PASS_CURRENT_AC010 / COMPLETE_CURRENT_ORIGINAL_AC010_SCOPE，18条件均通过且无未决发现；[原报告/逐条件矩阵/不可变索引及证据](../../../docs/reviews/R22/010/README.md)统一记录。prepared bf1f1cc4→main3067f5f6，修正正式测试234a6369→maine002cc44；初始CLI03 Modal焦点夹具失败与修正CLI04原件保留。VS-REVIEW-001由ebf0ef56→main13e7880c产品查看说明解决，原Minor发现不改写。生产src/native/build输入与accepted80d/ecbf无差异；无需新增产品行为。原010 input-manifest保留历史原字节。两张原PNG仅证明同一3×1 ANSI文件在80×25 XTerm398/XFCE4-VTE查看，不代表完整GUI/VT矩阵。完整M1、020/021/027/041、023/T087、024、M2/wholeLinux仍开放；既有CJP不代表新README字节已打包。
 
 输入=084/112/107/088/097实际接受源、Frame既有文件原语；不依赖M2。输出=tests/visible_snapshot/、普通CJPM消费者、必要现Application.snapshot/Frame文件写错误修复、R22/010。公开签名严格C003，禁止新screen-export kernel。
 L4 010.a：手写Unicode/Auto=Unicode/Ascii框架生成标记且业务Unicode不转码，以及嵌套层/滚动/透明/样式空格/宽簇完整Cell和文件golden，snapshot保存后继续变更检查旧副本。010.b：独立ANSI消费从空屏解释目标，纯文本无ESC，真实目录/NUL/不可写路径throw，测试先固定。010.c：现产品真实失败才补唯一API，未缺行为则无无谓实现。010.d：独立diff审核和正常bundle/clean consumer（仅相应变化）+实际文件检查，记录直接binary。010.e：原AC010完整范围验收，CLI `tests/visible_snapshot/run.sh`。
 
 - [ ] 1.3 原TASK-020：按C004形成全部功能M1模式/资源恢复输入（WP004/REQ004/011；implementation及独立质量活动）。
+
+当前status=in_progress；仅020.a独立正式测试设计（root安排Sol/high），固定BASE=`13e7880ce96d1331fc9e12a2b62275a307183e9a`。[实际输入manifest](../../../docs/reviews/R22/020/input-manifest.json)固定原008/010验收及上游来源；prepared `4c6bf48dc849b92cb72ae842b2eec9c933854838`尚未编译/执行，实际结果待验证。不据此宣称产品ready、AC020通过或后续父任务完成。
 
 输入=008/152/117/122/112/162及I015实际输入；不会反向等待最终041/M2。输出=tests/session_lifecycle/、同一Application/native必要恢复小修、完整C004模式表及M1证据manifest。排除额外会话writer/模式所有者。
 L4 020.a：独立测试列每种退出/原可见隐藏/knownunknown/原2004/title/termios/handler/owner以及业务+清理双错误，手工判定表固定。020.b：复用有效原件，补最终所有新增模式真实PTY和实际host可确认结果，unsafe零后续output。020.c：有真实缺陷才独立作者修最小路径。020.d：双审核→独立执行→有限M1恢复验收；CLI `tests/session_lifecycle/run.sh`。020.e：M2/release影响部分再补后由024核完整原AC020，候选卡不提前宣称最终所有源码恢复PASS。

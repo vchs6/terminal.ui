@@ -1,0 +1,116 @@
+{
+  "task": "TASK010.d scoped documentation re-review",
+  "generatedUtc": "2026-11-14T00:01:04.720704+00:00",
+  "base": "e002cc44d7b2fc5ec78d47bf85959e5d56b0f9b6",
+  "head": "ebf0ef5663c3ac69d84ec7888424de6e24138ab2",
+  "resolution": "ADDRESSED",
+  "specVerdict": "PASS",
+  "qualityVerdict": "PASS",
+  "inputs": [
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-010-doc-review-package.txt",
+      "bytes": 5705,
+      "sha256": "75f4006592271479c0b0abe26747f24df6929970d6d7e2dd9bb5fb4b70a3063e"
+    },
+    {
+      "path": "/workspace/work/visible-snapshot-doc/index.json",
+      "bytes": 7520,
+      "sha256": "2acf29fd336dbd3cb6a2f22bb72e890cf7a79a5da6025c50c4856d938af6d51f"
+    },
+    {
+      "path": "/workspace/work/visible-snapshot-doc/view-snapshot.sh",
+      "bytes": 170,
+      "sha256": "a9aab07f084d6acb815ac5a98afa76413c06150775bbab8109d99e4cef1eb013"
+    },
+    {
+      "path": "/workspace/work/visible-snapshot-doc/changed-files.txt",
+      "bytes": 23,
+      "sha256": "7165a2acdcaf62c90ee8c159acd6062001c3e9f6c856ff90a3707cfabe5e07e9"
+    },
+    {
+      "path": "/workspace/work/visible-snapshot-doc/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/visible-snapshot-doc/shell-syntax.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "fixedGitBlobs": [
+    {
+      "commit": "ebf0ef5663c3ac69d84ec7888424de6e24138ab2",
+      "path": "docs/product/README.md",
+      "bytes": 14718,
+      "sha256": "7c063d504a17e91ca604ba55ffc93fefb34dd2f52546c2415ec0a2a0c0e7fa87"
+    },
+    {
+      "commit": "ebf0ef5663c3ac69d84ec7888424de6e24138ab2",
+      "path": "docs/requirements.md",
+      "bytes": 27521,
+      "sha256": "6ca3b983f2d57d68523edb3cc732c4da04c5b5241959bc495da3a4fe9ac5656d"
+    },
+    {
+      "commit": "ebf0ef5663c3ac69d84ec7888424de6e24138ab2",
+      "path": "src/frame.cj",
+      "bytes": 12900,
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604"
+    },
+    {
+      "commit": "ebf0ef5663c3ac69d84ec7888424de6e24138ab2",
+      "path": "src/application.cj",
+      "bytes": 36536,
+      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56"
+    },
+    {
+      "commit": "ebf0ef5663c3ac69d84ec7888424de6e24138ab2",
+      "path": "src/terminal_render_profile.cj",
+      "bytes": 1172,
+      "sha256": "7bc43434dba17aa52915c783911d491e4a20f9faf9a649ff7fee34b00b8827a8"
+    },
+    {
+      "commit": "ebf0ef5663c3ac69d84ec7888424de6e24138ab2",
+      "path": "src/terminal_glyph_detection.cj",
+      "bytes": 1497,
+      "sha256": "77328de70bb2968b063b20e28cc2d44cf8d672a302b5bb545b99e49f88c0c6a6"
+    },
+    {
+      "commit": "ebf0ef5663c3ac69d84ec7888424de6e24138ab2",
+      "path": "openspec/changes/complete-linux-integration/design.md",
+      "bytes": 12137,
+      "sha256": "6f40454ebfa2160da6a9e43f4c8501e022013a9919b252d43ac7d63a6e641001"
+    }
+  ],
+  "immutableOriginalReview": [
+    {
+      "path": "/workspace/work/visible-snapshot-review/report.md",
+      "bytes": 3191,
+      "sha256": "18ceb32bad42aa2ba359079c3fb24aac1bc88731cd7cc0bd1cd3d06ca856f5e5"
+    },
+    {
+      "path": "/workspace/work/visible-snapshot-review/findings.json",
+      "bytes": 2144,
+      "sha256": "bcf951a9924cdc6f112d98fb7f72a164cefd1cf56a8a9cb0c18052e7fed03b1f"
+    },
+    {
+      "path": "/workspace/work/visible-snapshot-review/index.json",
+      "bytes": 9393,
+      "sha256": "7d19cbe60e995bdd84d4612b2614959716b39960b6d0ccdf6cd6b6ab2f7edea9"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/workspace/work/visible-snapshot-review/scoped-doc-review.md",
+      "bytes": 1715,
+      "sha256": "70d73946748cad953999120f45b38213bbd5039e66b246b447ac1e4a1c957fbb"
+    },
+    {
+      "path": "/workspace/work/visible-snapshot-review/scoped-doc-findings.json",
+      "bytes": 1059,
+      "sha256": "0d0900e4cc277a070f448da78287ccbc56b0e322e69957e8558f5706e445edde"
+    }
+  ],
+  "selfHash": "Returned with delivery; excluded to avoid recursive hashing.",
+  "verification": "Read fixed Git diff/source, compared unchanged source/contracts to original reviewed test commit, inspected recorded doc-only checks; no builds/test reruns/terminal execution."
+}

@@ -1,0 +1,22 @@
+{
+  "task": "TASK010.d scoped documentation re-review",
+  "resolution": "ADDRESSED",
+  "specVerdict": "PASS",
+  "qualityVerdict": "PASS",
+  "resolvedFinding": {
+    "id": "VS-REVIEW-001",
+    "originalSeverity": "Minor",
+    "status": "addressed",
+    "commit": "ebf0ef5663c3ac69d84ec7888424de6e24138ab2",
+    "path": "docs/product/README.md",
+    "line": 24,
+    "contract": "REQ-005.6 product viewing conditions; C003 offline snapshot semantics",
+    "basis": "The product guide now states UTF-8/CUP/SGR requirements, minimum dimensions, a concrete Linux terminal replay command, plain-text alternative, explicit color preview selection, device-independent export semantics and host/font limitations."
+  },
+  "newFindings": [],
+  "limits": [
+    "Scoped to the eleven-line documentation addition and VS-REVIEW-001; original review artifacts remain unchanged.",
+    "Static command/source review and recorded syntax/diff evidence only; no terminal replay, build or product-test rerun.",
+    "No final AC010, host, full Linux or release certification."
+  ]
+}
