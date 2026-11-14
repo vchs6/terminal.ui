@@ -75,7 +75,12 @@ Styles: Classic root default fg/bg; titles bold; explicit Idle yellow,
 Ready cyan, Done yellow pending acknowledgement then green; progress cyan;
 menu Disabled named bright-black+dim; current editor/menu/control uses Classic
 focused cyan+underline, selected Radio inverse. TextArea selected text inverse.
-Theme action toggles Classic/Light; Light fg #182028/bg #FFFFFF, focused accent
+Theme loading is asynchronous: a business label may name the requested preset
+before ThemeRequest reaches Applied. Existing F3 waits require the matching
+footer label together with expected root/footer background and default text
+foreground, within the existing 12-second visible-predicate deadline. Label-only
+frames and partially applied colors do not release the wait; no fixed sleep or
+application override is used. Theme action toggles Classic/Light; Light fg #182028/bg #FFFFFF, focused accent
 #005A9C+underline. Explicit status colors retain their names. No forced host
 profile. Synthetic PTY below explicitly uses xterm-256color/truecolor; actual
 host matrix projects formal Glyph/Color contracts and records profile provenance.

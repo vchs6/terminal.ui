@@ -115,6 +115,13 @@ export class Session {
   }
 }
 const contains=value=>rows=>text(rows).includes(value);
+// Theme labels are business state; Preset requests apply asynchronously.
+export const themeVisible=name=>rows=>{
+  const footer=rows.at(-1),root=rows.at(-2).cells.at(-1),end=footer.cells.at(-1);
+  const bg=name==='Light'?'rgb:255,255,255':'default';
+  const fg=name==='Light'?'rgb:24,32,40':'default';
+  return footer.text.includes('| '+name)&&root?.bg===bg&&end?.bg===bg&&footer.cells[0]?.fg===fg;
+};
 function sameGrid(actual,w,h,scene){assert.deepEqual(actual.map(row=>row.text),goldens.find(f=>f.scene===scene&&f.width===w&&f.height===h).rows,`${scene} ${w}x${h} hand-authored grid`)}
 async function startup(directory,w,h){
   const s=new Session(directory,w,h);
@@ -170,11 +177,11 @@ async function interactions(directory){
     // ID -> Name -> Run -> scroll -> notes. Edit in the real TextArea.
     await s.key(keys.tab.repeat(4)+keys.ctrlA+paste('qrcvzy\r\nreview 中文 👩‍💻'),contains('review 中文 ??'),'multiline paste is editor data');
     s.send(keys.home+'\x1b[1;2C','select first character');
-    const light=await s.key(keys.f3,contains('Light'),'theme changes without losing editor');
+    const light=await s.key(keys.f3,themeVisible('Light'),'theme changes without losing editor');
     assert.equal(at(light,79,22).bg,'rgb:255,255,255','Light applies root background');
     await s.key('X',contains('Xeview'),'replace preserved selection after theme');
     await s.key(keys.undo,contains('review'),'undo survives theme transition');
-    await s.key(keys.f3,contains('Classic'),'return Classic');
+    await s.key(keys.f3,themeVisible('Classic'),'return Classic');
     const modal=await s.key(keys.f4,contains('╭'),'open reused JobPanel modal');
     assert(text(modal).includes('qrcvzy'),'shared model remains visible in both hosts');
     await s.key(keys.esc,rows=>!text(rows).includes('╭'),'close modal preserves editor selection');
@@ -199,9 +206,9 @@ async function interactions(directory){
     await s.key(keys.f4,contains('╭'),'JobPanel modal over log business');
     await s.key(keys.esc,rows=>!text(rows).includes('╭'),'close preserves log ScrollView focus');
     assert.equal(s.view.rows()[7].text,scrolled[7].text,'scroll offset preserved by modal close');
-    await s.key(keys.f3,contains('Light'),'theme preserves log scroll');
+    await s.key(keys.f3,themeVisible('Light'),'theme preserves log scroll');
     assert.equal(s.view.rows()[7].text,scrolled[7].text,'scroll offset preserved by theme');
-    await s.key(keys.f3,contains('Classic'),'Classic after log work');
+    await s.key(keys.f3,themeVisible('Classic'),'Classic after log work');
     s.send(keys.f2,'return to log filter');
     await s.key(paste('record 03'),rows=>text(rows).includes('003 ERROR record 03')&&text(rows).includes('Logs | 1/24'),'log query business predicate');
     await s.key(keys.ctrlA+'\x7f'+keys.tab+' ',contains('Logs | 8/24'),'errors-only AND filter');
@@ -214,10 +221,10 @@ async function interactions(directory){
     await s.key(keys.f4,contains('╭'),'modal during review');
     s.send(keys.f6,'modal blocks Continue');
     // F3 forces an observed boundary; do not infer delivery from an idle sleep.
-    await s.key(keys.f3,contains('Light'),'modal remains responsive while review paused');
+    await s.key(keys.f3,themeVisible('Light'),'modal remains responsive while review paused');
     assert(text(s.view.rows()).includes('Tasks | Review 1/2'),'blocked Continue has no business side effect');
     await s.key(keys.esc,rows=>!text(rows).includes('╭'),'return to review');
-    await s.key(keys.f3,contains('Classic'),'Classic before second worker');
+    await s.key(keys.f3,themeVisible('Classic'),'Classic before second worker');
     s.send(keys.f6+keys.f4,'resume real worker then open modal');
     await s.wait(rows=>text(rows).includes('Tasks | Done 2/2')&&text(rows).includes('╭'),
       'latest completed state shared by opened modal; either legal completion order');

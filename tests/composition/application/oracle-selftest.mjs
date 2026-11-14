@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {goldens,modalGoldens,minimalPtyGolden} from './fixtures.mjs';
-import {WireScreen} from './pty.mjs';
+import {WireScreen,themeVisible} from './pty.mjs';
 import {verify} from './smoke.mjs';
 const segmenter=new Intl.Segmenter('und',{granularity:'grapheme'});
 const widths=new Map([['中',2],['文',2],['👩‍💻',2]]);
@@ -51,6 +51,19 @@ resized.finish();
 const logicalMinimal=goldens.find(frame=>frame.scene==='minimal');
 assert.equal(logicalMinimal.rows[1],'中文 👩‍💻         ','headless Unicode source is retained');
 assert.equal(minimalPtyGolden.rows[1],'中文 ??         ','manual G012 Auto result preserves exactly two projected columns');
+// A visible requested label is allowed before asynchronous theme acceptance.
+const themeRows=(name,bg,fg)=>[
+ {text:'    ',cells:Array.from({length:4},()=>({text:' ',bg,fg}))},
+ {text:'Tasks | '+name,cells:Array.from({length:4},()=>({text:' ',bg,fg}))}
+];
+assert.equal(themeVisible('Light')(themeRows('Light','default','default')),false,'pending Light label must not release theme wait');
+assert.equal(themeVisible('Light')(themeRows('Light','rgb:255,255,255','rgb:24,32,40')),true,'expected label and applied Light colors release wait');
+assert.equal(themeVisible('Light')(themeRows('Light','rgb:255,255,255','default')),false,'incomplete Light text style remains pending');
+assert.equal(themeVisible('Light')(themeRows('Classic','rgb:255,255,255','rgb:24,32,40')),false,'old label cannot satisfy requested theme');
+assert.equal(themeVisible('Classic')(themeRows('Classic','rgb:255,255,255','rgb:24,32,40')),false,'pending Classic label cannot bypass old Light colors');
+assert.equal(themeVisible('Classic')(themeRows('Classic','default','default')),true,'Classic label and default colors release wait');
+const partialTheme=themeRows('Light','rgb:255,255,255','rgb:24,32,40');partialTheme[0].cells[3].bg='default';
+assert.equal(themeVisible('Light')(partialTheme),false,'partially painted background cannot release wait');
 const fake={status:0,signal:null,error:undefined,stdout:'PASS composition\n',stderr:''};
 assert.throws(()=>verify(fake,true,'composition'),/literal startup/,'marker without actual grids is rejected');
 assert.throws(()=>verify({...fake,stdout:'diagnostic'},false,'composition'),/invalid CLI/,'false successful invalid argument rejected');
