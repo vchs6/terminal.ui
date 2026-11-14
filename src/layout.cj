@@ -417,92 +417,95 @@ func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int6
 func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession, reuse!: Bool = true,
     glyphPolicy!: ?GlyphRenderPolicy = None): Frame {
     let frame = Frame.forSession(width, height, session)
-    if (!root.isVisible) { frame.releaseOwner(); return frame }
-    // Public render may target a mounted subtree in the same session.
-    // Only the application root owns this reusable measurement.
-    let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
-    let node = if (sessionRoot && session.rootLayout().isSome()) {
-        session.rootLayout().getOrThrow()
-    } else {
-        let measured = LayoutNode(root, session, themeSeed(session.theme), isRoot: true, commitGeometry: reuse, glyphPolicy: glyphPolicy)
-        measured.measure()
-        if (sessionRoot) { measured.publish() }
-        measured
-    }
+    try {
+        if (!root.isVisible) { return frame }
+        // Public render may target a mounted subtree in the same session.
+        // Only the application root owns this reusable measurement.
+        let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
+        let node = if (sessionRoot && session.rootLayout().isSome()) {
+            session.rootLayout().getOrThrow()
+        } else {
+            let measured = LayoutNode(root, session, themeSeed(session.theme), isRoot: true, commitGeometry: reuse, glyphPolicy: glyphPolicy)
+            measured.measure()
+            if (sessionRoot) { measured.publish() }
+            measured
+        }
 
-    node.refresh(themeSeed(session.theme), true, glyphPolicy ?? session.layoutGlyphPolicy)
-    let w = lesser(width, greater(node.resolved.fixedW ?? width, node.resolved.minW))
-    let h = lesser(height, greater(node.resolved.fixedH ?? height, node.resolved.minH))
-    node.constrain(w)
-    let implicitRoot = sessionRoot && !session.temporary && !root.viewportDeclared
-    // Mounted M1 render is also a root consumer even when caching is disabled.
-    let mountedRoot = !session.temporary && root.descriptionId == session.root.descriptionId
-    if ((implicitRoot || mountedRoot) && !root.viewportDeclared && node.resolved.fixedH.isNone()) {
-        let summary = VerticalOverflowSummary()
-        summarizeVerticalOverflow(node,w,h,summary)
-        node.rootFallback = summary.present
-    } else { node.rootFallback = false }
-    // Resolve current finite geometry before consuming deferred ensure intents.
-    if (reuse) { session.focusedViewportResized = false }
-    let geometry = HashMap<Int64, LayoutNode>()
-    arrange(node,0,0,w,h,0,0,width,height,geometry:Some(geometry))
-    let layers = ArrayList<OverlayLayout>()
-    if (mountedRoot) {
-        for (record in session.overlayRecords) {
-            if (let Some(layer) <- overlayGeometry(session,record,width,height,reuse,geometry,deferClose:reuse,glyphPolicy:glyphPolicy)) {
-                arrange(layer.node,layer.x,layer.y,layer.width,layer.height,
-                    layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
-                layers.add(layer)
-            }
-        }
-    }
-    if (reuse) {
-        if (session.focusedViewportResized) {
-            if (let Some(previousCaret) <- session.lastCaret) {
-                var hasExplicit = false
-                for (command in session.pendingEnsures) {
-                    if (command.target.sameNode(previousCaret.owner)) { hasExplicit = true }
-                }
-                if (!hasExplicit && previousCaret.owner.isValid()) {
-                    let ensure = ScrollCommand(previousCaret.owner,1,0,0,
-                        Some(Rect(previousCaret.localX,previousCaret.localY,1,1)),ScrollAlign.Nearest,ScrollAlign.Nearest)
-                    ensure.order = session.nextViewportIntent(); session.pendingEnsures.add(ensure)
-                }
-            }
-        }
-        applyPendingViewportEnsures(session)
-        // Ensures can scroll the anchor or host; derive the painted layers
-        // from the resulting geometry in the same frame.
-        geometry.clear(); layers.clear()
+        node.refresh(themeSeed(session.theme), true, glyphPolicy ?? session.layoutGlyphPolicy)
+        let w = lesser(width, greater(node.resolved.fixedW ?? width, node.resolved.minW))
+        let h = lesser(height, greater(node.resolved.fixedH ?? height, node.resolved.minH))
+        node.constrain(w)
+        let implicitRoot = sessionRoot && !session.temporary && !root.viewportDeclared
+        // Mounted M1 render is also a root consumer even when caching is disabled.
+        let mountedRoot = !session.temporary && root.descriptionId == session.root.descriptionId
+        if ((implicitRoot || mountedRoot) && !root.viewportDeclared && node.resolved.fixedH.isNone()) {
+            let summary = VerticalOverflowSummary()
+            summarizeVerticalOverflow(node,w,h,summary)
+            node.rootFallback = summary.present
+        } else { node.rootFallback = false }
+        // Resolve current finite geometry before consuming deferred ensure intents.
+        if (reuse) { session.focusedViewportResized = false }
+        let geometry = HashMap<Int64, LayoutNode>()
         arrange(node,0,0,w,h,0,0,width,height,geometry:Some(geometry))
+        let layers = ArrayList<OverlayLayout>()
         if (mountedRoot) {
             for (record in session.overlayRecords) {
-                if (let Some(layer) <- overlayGeometry(session,record,width,height,true,geometry,glyphPolicy:glyphPolicy)) {
+                if (let Some(layer) <- overlayGeometry(session,record,width,height,reuse,geometry,deferClose:reuse,glyphPolicy:glyphPolicy)) {
                     arrange(layer.node,layer.x,layer.y,layer.width,layer.height,
                         layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
                     layers.add(layer)
                 }
             }
         }
-    }
-    paint(node, frame)
-    for (layer in layers) {
-        let overlay = Frame.forSession(width,height,session,transparent:true)
-        let previousCaret = session.pendingCaret
-        paint(layer.node,overlay)
         if (reuse) {
-            if (let Some(previous) <- previousCaret) {
-                if (let Some(current) <- session.pendingCaret) {
-                    if (refEq(previous,current) && previous.x >= 0 && previous.y >= 0 && previous.x < width && previous.y < height) {
-                        if (!overlay.cellAt(previous.x,previous.y).isTransparent) { session.pendingCaret = None }
+            if (session.focusedViewportResized) {
+                if (let Some(previousCaret) <- session.lastCaret) {
+                    var hasExplicit = false
+                    for (command in session.pendingEnsures) {
+                        if (command.target.sameNode(previousCaret.owner)) { hasExplicit = true }
+                    }
+                    if (!hasExplicit && previousCaret.owner.isValid()) {
+                        let ensure = ScrollCommand(previousCaret.owner,1,0,0,
+                            Some(Rect(previousCaret.localX,previousCaret.localY,1,1)),ScrollAlign.Nearest,ScrollAlign.Nearest)
+                        ensure.order = session.nextViewportIntent(); session.pendingEnsures.add(ensure)
+                    }
+                }
+            }
+            applyPendingViewportEnsures(session)
+            // Ensures can scroll the anchor or host; derive the painted layers
+            // from the resulting geometry in the same frame.
+            geometry.clear(); layers.clear()
+            arrange(node,0,0,w,h,0,0,width,height,geometry:Some(geometry))
+            if (mountedRoot) {
+                for (record in session.overlayRecords) {
+                    if (let Some(layer) <- overlayGeometry(session,record,width,height,true,geometry,glyphPolicy:glyphPolicy)) {
+                        arrange(layer.node,layer.x,layer.y,layer.width,layer.height,
+                            layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
+                        layers.add(layer)
                     }
                 }
             }
         }
-        frame.composite(overlay)
-    }
-    frame.releaseOwner()
-    frame
+        paint(node, frame)
+        for (layer in layers) {
+            let overlay = Frame.forSession(width,height,session,transparent:true)
+            try {
+                let previousCaret = session.pendingCaret
+                paint(layer.node,overlay)
+                if (reuse) {
+                    if (let Some(previous) <- previousCaret) {
+                        if (let Some(current) <- session.pendingCaret) {
+                            if (refEq(previous,current) && previous.x >= 0 && previous.y >= 0 && previous.x < width && previous.y < height) {
+                                if (!overlay.cellAt(previous.x,previous.y).isTransparent) { session.pendingCaret = None }
+                            }
+                        }
+                    }
+                }
+                frame.composite(overlay)
+            } finally { overlay.releaseOwner() }
+        }
+        return frame
+    } finally { frame.releaseOwner() }
 }
 
 public func render(root: Component, width: Int64, height: Int64, glyphMode!: GlyphMode = GlyphMode.Unicode): Frame {
