@@ -24,7 +24,8 @@ class LayoutNode {
     var inheritedStyle: Style
     let rootNode: Bool
     var resolved: ResolvedStyle
-    let results: HashMap<Int64, LayoutNode>
+    var results: ?HashMap<Int64, LayoutNode>
+    var glyphPolicy: GlyphRenderPolicy
     var paintLeft: Int64 = 0
     var paintTop: Int64 = 0
     var paintRight: Int64 = 0
@@ -56,13 +57,14 @@ class LayoutNode {
     var plannedFree: Int64 = 0
     init(c: Component, session: RuntimeSession, inherited: Style, isRoot!: Bool = false, previewTheme!: ?Theme = None,
         previousMeasurement!: ?LayoutNode = None, commitGeometry!: Bool = true,
-        results!: ?HashMap<Int64, LayoutNode> = None) {
+        results!: ?HashMap<Int64, LayoutNode> = None, glyphPolicy!: ?GlyphRenderPolicy = None) {
         this.session = session
         component = c
         this.previewTheme = previewTheme
         this.previousMeasurement = previousMeasurement
         this.commitGeometry = commitGeometry
-        this.results = results ?? HashMap<Int64, LayoutNode>()
+        this.results = Some(results ?? HashMap<Int64, LayoutNode>())
+        this.glyphPolicy = glyphPolicy ?? session.layoutGlyphPolicy
         inheritedStyle = inherited; rootNode = isRoot
         resolved = resolveStyle(c,previewTheme ?? session.theme,inherited,isRoot)
     }
@@ -71,11 +73,19 @@ class LayoutNode {
         for (entry in component.readMount().getOrThrow().sequence) {
             if (let ChildEntry.MountedChild(child) <- entry) {
                 if (child.component.isVisible) {
-                    if (let Some(layout) <- results.get(child.id)) { result.add(layout) }
+                    let layout = if (let Some(table) <- results) { table.get(child.id) } else { child.layout }
+                    if (let Some(value) <- layout) { result.add(value) }
                 }
             }
         }
         result
+    }
+    // Publish individual results without retaining the temporary evaluation table.
+    func publish(): Unit {
+        let ordered = children()
+        component.readMount().getOrThrow().layout = Some(this)
+        results = None
+        for (child in ordered) { child.publish() }
     }
     func measure(): Unit {
         if (previewTheme.isNone()) { session.recordMeasure() }
@@ -84,9 +94,14 @@ class LayoutNode {
             let canvas = c.canvas.getOrThrow()
             if (previewTheme.isNone()) {
                 let limits = Constraints()
-                c.canvasBinding("canvas-measure").trackNatural({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
-                canvasNatural = canvas.measured
-                if (commitGeometry) { c.readMount().getOrThrow().canvasNatural = Some(canvasNatural) }
+                let binding = c.canvasBinding("canvas-measure")
+                if (commitGeometry) {
+                    binding.trackNatural({=> canvasNatural = limits.constrain(canvas.measure(limits)) })
+                    canvas.measured = canvasNatural
+                    c.readMount().getOrThrow().canvasNatural = Some(canvasNatural)
+                } else {
+                    binding.observeTransient({=> canvasNatural = limits.constrain(canvas.measure(limits)) })
+                }
             } else if (let Some(previous) <- previousMeasurement) {
                 canvasNatural = previous.canvasNatural
             } else {
@@ -109,8 +124,8 @@ class LayoutNode {
                         }
                     }
                     let n = LayoutNode(child, session, resolved.style, previewTheme: previewTheme,
-                        previousMeasurement: previousChild, commitGeometry: commitGeometry, results: Some(results))
-                    results[runtimeChild.id] = n
+                        previousMeasurement: previousChild, commitGeometry: commitGeometry, results: results, glyphPolicy: Some(glyphPolicy))
+                    results.getOrThrow()[runtimeChild.id] = n
                     n.measure()
                     let cw = greater(n.resolved.fixedW ?? n.naturalW, n.resolved.minW)
                     let ch = greater(n.resolved.fixedH ?? n.naturalH, n.resolved.minH)
@@ -171,9 +186,14 @@ class LayoutNode {
             if (previewTheme.isNone()) {
                 let axes = session.viewportAxes(component.readMount().getOrThrow()) ?? ScrollAxes.Off
                 let limits = Constraints(maxWidth:if (axes.horizontal()) { Option<Int64>.None } else { Some(available) })
-                component.canvasBinding("canvas-measure").trackConstrained({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
-                canvasConstrained = canvas.measured
-                if (commitGeometry) { component.readMount().getOrThrow().canvasConstrained = Some(canvasConstrained) }
+                let binding = component.canvasBinding("canvas-measure")
+                if (commitGeometry) {
+                    binding.trackConstrained({=> canvasConstrained = limits.constrain(canvas.measure(limits)) })
+                    canvas.measured = canvasConstrained
+                    component.readMount().getOrThrow().canvasConstrained = Some(canvasConstrained)
+                } else {
+                    binding.observeTransient({=> canvasConstrained = limits.constrain(canvas.measure(limits)) })
+                }
             } else if (let Some(previous) <- previousMeasurement) {
                 canvasConstrained = previous.canvasConstrained
             } else {
@@ -215,10 +235,15 @@ class LayoutNode {
         let canvas = component.canvas.getOrThrow()
         let limits = Constraints(maxWidth:if (axes.horizontal()) { Option<Int64>.None } else { Some(width) },
             maxHeight:if (axes.vertical()) { Option<Int64>.None } else { Some(height) })
-        component.canvasBinding("canvas-measure").trackFinalConstrained({=> canvas.measured = limits.constrain(canvas.measure(limits)) })
-        canvasConstrained = canvas.measured
+        let binding = component.canvasBinding("canvas-measure")
+        if (commitGeometry) {
+            binding.trackFinalConstrained({=> canvasConstrained = limits.constrain(canvas.measure(limits)) })
+            canvas.measured = canvasConstrained
+            component.readMount().getOrThrow().canvasConstrained = Some(canvasConstrained)
+        } else {
+            binding.observeTransient({=> canvasConstrained = limits.constrain(canvas.measure(limits)) })
+        }
         naturalH = sat(canvasConstrained.height,verticalInsets())
-        if (commitGeometry) { component.readMount().getOrThrow().canvasConstrained = Some(canvasConstrained) }
     }
     // Reuse the same negotiated child sizes for paint after the finite pass.
     func mainAllocation(mainSize: Int64, naturalBasis: Bool): (Array<Int64>, Int64) {
@@ -255,9 +280,10 @@ class LayoutNode {
         for (child in children()) { if (child.behaviorChangesLayout(next.style,false)) { return true } }
         false
     }
-    func refresh(inherited: Style, isRoot: Bool): Unit {
+    func refresh(inherited: Style, isRoot: Bool, policy: GlyphRenderPolicy): Unit {
+        glyphPolicy = policy
         inheritedStyle = inherited
         resolved = resolveStyle(component,session.theme,inherited,isRoot)
-        for (child in children()) { child.refresh(resolved.style,false) }
+        for (child in children()) { child.refresh(resolved.style,false,policy) }
     }
 }

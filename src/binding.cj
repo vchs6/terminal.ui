@@ -57,6 +57,13 @@ class Binding {
         if (let Some(action) <- afterEvaluate) { action() }
     }
     func track(action: () -> Unit): Unit { trackSeeded(action,Array<BindingDependency>()) }
+    // Reference evaluation observes reads without replacing the committed subscriptions.
+    func observeTransient(action: () -> Unit): Unit {
+        let observer = Binding(component,name,category,getter)
+        let previous = evaluating.get()
+        evaluating.set(Some(observer))
+        try { action() } finally { evaluating.set(previous) }
+    }
     // Natural width and constrained height can both contribute to one layout.
     func trackNatural(action: () -> Unit): Unit {
         track(action)

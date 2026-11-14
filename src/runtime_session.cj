@@ -67,7 +67,6 @@ class RuntimeSession {
     var focusedViewportResized = false
     var caret = CaretSnapshot(Option<NodeRef>.None,0,0,false)
     var cached: ?Frame = None
-    var measuredLayout: ?LayoutNode = None
     var layoutGlyphPolicy = GlyphRenderPolicy.unicode()
     var cachedGlyphMarker = ""
     var measuredGlyphMarker = ""
@@ -146,6 +145,13 @@ class RuntimeSession {
             lock.unlock()
         }
     }
+    func rootLayout(): ?LayoutNode {
+        if (let Some(node) <- root.readMount()) { return node.layout }
+        None
+    }
+    func invalidateRootLayout(): Unit {
+        if (let Some(node) <- root.readMount()) { node.layout = None }
+    }
     func markNodeDirtyLocked(node: RuntimeNode, change: ChangeKind): Unit {
         if (change == ChangeKind.Content || change == ChangeKind.All) {
             node.contentDirty = true
@@ -155,7 +161,7 @@ class RuntimeSession {
         }
         if (change == ChangeKind.Content || change == ChangeKind.Layout || change == ChangeKind.Structure || change == ChangeKind
             .All) {
-            measuredLayout = None
+            invalidateRootLayout()
             node.layoutDirty = true
             var parent = node.parent
             while (let Some(ancestor) <- parent) {
@@ -168,7 +174,7 @@ class RuntimeSession {
         let rootNode = root.readMount()
         if (rootNode.isNone()) { return }
         var change = ChangeKind.Style
-        if (let Some(layout) <- measuredLayout) {
+        if (let Some(layout) <- rootLayout()) {
             if (layout.behaviorChangesLayout(themeSeed(theme),true)) { change = ChangeKind.Layout }
         }
         markChanged(rootNode.getOrThrow(),change)
@@ -829,7 +835,7 @@ class RuntimeSession {
     }
     func geometryMayChange(): Bool {
         lock.lock()
-        try { measuredLayout.isNone() || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty() }
+        try { rootLayout().isNone() || !pendingBindings.isEmpty() || !pendingNodes.isEmpty() || !commands.isEmpty() }
         finally { lock.unlock() }
     }
     func enqueueViewport(command: ScrollCommand): Unit {
@@ -1032,6 +1038,7 @@ class RuntimeSession {
         try {
             for (node in oldNodes) {
                 node.valid = false
+                node.layout = None
                 node.pendingChange = None
                 activeNodeIndex.remove(node)
             }
@@ -1109,6 +1116,7 @@ class RuntimeSession {
         try {
             for (node in removed) {
                 node.valid = false
+                node.layout = None
                 node.pendingChange = None
                 activeNodeIndex.remove(node)
             }
@@ -1490,7 +1498,7 @@ class RuntimeSession {
         lock.lock()
         try {
             theme = value; changed = true
-            if (layoutChanged) { measuredLayout = None }
+            if (layoutChanged) { invalidateRootLayout() }
             for (node in nodes) {
                 if (layoutChanged) { node.layoutDirty = true }
                 node.styleDirty = true
@@ -1501,13 +1509,13 @@ class RuntimeSession {
         lock.lock()
         try {
             changed = true
-            measuredLayout = None
+            invalidateRootLayout()
             for (node in nodes) { node.layoutDirty = true }
         } finally { lock.unlock() }
     }
     func selectLayoutGlyphPolicy(policy: GlyphRenderPolicy): String {
         let marker = generatedEllipsis(policy, 3, ambiguousWide: false)
-        if (marker != measuredGlyphMarker) { measuredLayout = None }
+        if (marker != measuredGlyphMarker) { invalidateRootLayout() }
         measuredGlyphMarker = marker
         layoutGlyphPolicy = policy
         marker
@@ -1632,6 +1640,7 @@ class RuntimeSession {
             commands.clear()
             for (node in nodes) {
                 node.valid = false
+                node.layout = None
                 node.pendingChange = None
                 activeNodeIndex.remove(node)
             }

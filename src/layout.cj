@@ -95,8 +95,11 @@ func paint(n: LayoutNode, frame: Frame): Unit {
         let selected = resolveStyle(c,n.session.theme,n.inheritedStyle,n.rootNode,selected:true)
         let context = PaintContext(n.session,c.readMount().getOrThrow(),frame,ix,iy,Size(contentW,contentH),
             Rect(left,top,endX-left,endY-top),r,selected)
-        try { c.canvasBinding("canvas-draw").track({=> c.canvas.getOrThrow().draw(context) }) }
-        finally { context.expire() }
+        try {
+            let binding = c.canvasBinding("canvas-draw")
+            if (n.commitGeometry) { binding.track({=> c.canvas.getOrThrow().draw(context) }) }
+            else { binding.observeTransient({=> c.canvas.getOrThrow().draw(context) }) }
+        } finally { context.expire() }
         return
     }
     if (c.kind == 0) {
@@ -104,7 +107,7 @@ func paint(n: LayoutNode, frame: Frame): Unit {
         for (i in 0..n.lines.size) {
             let cy = sat(iy,i)
             let clipped = r.overflow == TextOverflow.Ellipsis && n.widths[i] > contentW && contentW > 0
-            let marker = if (clipped) { generatedEllipsis(n.session.layoutGlyphPolicy,contentW,ambiguousWide:false) } else { "" }
+            let marker = if (clipped) { generatedEllipsis(n.glyphPolicy,contentW,ambiguousWide:false) } else { "" }
             let markerWidth = displayWidth(marker)
             let budget = contentW - markerWidth
             let free = if (n.widths[i] < contentW) { contentW - n.widths[i] } else { 0 }
@@ -306,7 +309,7 @@ func validateCandidateLayout(session: RuntimeSession, theme: Theme): Unit {
     let height = session.validationHeight
     if (width < 0 || height < 0 || !session.root.isVisible) { return }
     let node = LayoutNode(session.root,session,themeSeed(theme),isRoot:true,previewTheme:Some(theme),
-        previousMeasurement: session.measuredLayout)
+        previousMeasurement: session.rootLayout())
     node.measure()
     let w = lesser(width,greater(node.resolved.fixedW ?? width,node.resolved.minW))
     let h = lesser(height,greater(node.resolved.fixedH ?? height,node.resolved.minH))
@@ -339,7 +342,8 @@ func overlayInherited(owner: RuntimeNode, theme: Theme): Style {
 }
 
 func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int64, height: Int64, commit: Bool,
-    geometry: HashMap<Int64, LayoutNode>, preview!: ?Theme = None, deferClose!: Bool = false): ?OverlayLayout {
+    geometry: HashMap<Int64, LayoutNode>, preview!: ?Theme = None, deferClose!: Bool = false,
+    glyphPolicy!: ?GlyphRenderPolicy = None): ?OverlayLayout {
     if (record.terminal.isSome() || !record.owner.isValid()) { return None }
     let rootRef = record.root
     if (rootRef.isNone() || !rootRef.getOrThrow().isValid()) { return None }
@@ -362,7 +366,7 @@ func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int6
     }
     right = greater(left,right); bottom = greater(top,bottom)
     let node = LayoutNode(rootRef.getOrThrow().resolve().component,session,overlayInherited(owner,preview ?? session.theme),
-        previewTheme:preview,commitGeometry:commit)
+        previewTheme:preview,commitGeometry:commit,glyphPolicy:glyphPolicy)
     node.measure()
     let w = lesser(right-left,greater(node.resolved.fixedW ?? node.naturalW,node.resolved.minW))
     node.constrain(w)
@@ -407,22 +411,23 @@ func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int6
     Some(OverlayLayout(node,x,y,w,h,left,top,right,bottom))
 }
 
-func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession, reuse!: Bool = true): Frame {
+func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession, reuse!: Bool = true,
+    glyphPolicy!: ?GlyphRenderPolicy = None): Frame {
     let frame = Frame(width, height)
     if (!root.isVisible) { return frame }
     // Public render may target a mounted subtree in the same session.
     // Only the application root owns this reusable measurement.
     let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
-    let node = if (sessionRoot && session.measuredLayout.isSome()) {
-        session.measuredLayout.getOrThrow()
+    let node = if (sessionRoot && session.rootLayout().isSome()) {
+        session.rootLayout().getOrThrow()
     } else {
-        let measured = LayoutNode(root, session, themeSeed(session.theme), isRoot: true, commitGeometry: reuse)
+        let measured = LayoutNode(root, session, themeSeed(session.theme), isRoot: true, commitGeometry: reuse, glyphPolicy: glyphPolicy)
         measured.measure()
-        if (sessionRoot) { session.measuredLayout = Some(measured) }
+        if (sessionRoot) { measured.publish() }
         measured
     }
 
-    node.refresh(themeSeed(session.theme), true)
+    node.refresh(themeSeed(session.theme), true, glyphPolicy ?? session.layoutGlyphPolicy)
     let w = lesser(width, greater(node.resolved.fixedW ?? width, node.resolved.minW))
     let h = lesser(height, greater(node.resolved.fixedH ?? height, node.resolved.minH))
     node.constrain(w)
@@ -441,7 +446,7 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
     let layers = ArrayList<OverlayLayout>()
     if (mountedRoot) {
         for (record in session.overlayRecords) {
-            if (let Some(layer) <- overlayGeometry(session,record,width,height,reuse,geometry,deferClose:reuse)) {
+            if (let Some(layer) <- overlayGeometry(session,record,width,height,reuse,geometry,deferClose:reuse,glyphPolicy:glyphPolicy)) {
                 arrange(layer.node,layer.x,layer.y,layer.width,layer.height,
                     layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
                 layers.add(layer)
@@ -469,7 +474,7 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         arrange(node,0,0,w,h,0,0,width,height,geometry:Some(geometry))
         if (mountedRoot) {
             for (record in session.overlayRecords) {
-                if (let Some(layer) <- overlayGeometry(session,record,width,height,true,geometry)) {
+                if (let Some(layer) <- overlayGeometry(session,record,width,height,true,geometry,glyphPolicy:glyphPolicy)) {
                     arrange(layer.node,layer.x,layer.y,layer.width,layer.height,
                         layer.left,layer.top,layer.right,layer.bottom,geometry:Some(geometry))
                     layers.add(layer)
@@ -482,10 +487,12 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
         let overlay = Frame(width,height,transparent:true)
         let previousCaret = session.pendingCaret
         paint(layer.node,overlay)
-        if (let Some(previous) <- previousCaret) {
-            if (let Some(current) <- session.pendingCaret) {
-                if (refEq(previous,current) && previous.x >= 0 && previous.y >= 0 && previous.x < width && previous.y < height) {
-                    if (!overlay.cellAt(previous.x,previous.y).isTransparent) { session.pendingCaret = None }
+        if (reuse) {
+            if (let Some(previous) <- previousCaret) {
+                if (let Some(current) <- session.pendingCaret) {
+                    if (refEq(previous,current) && previous.x >= 0 && previous.y >= 0 && previous.x < width && previous.y < height) {
+                        if (!overlay.cellAt(previous.x,previous.y).isTransparent) { session.pendingCaret = None }
+                    }
                 }
             }
         }
@@ -506,15 +513,9 @@ public func render(root: Component, width: Int64, height: Int64, glyphMode!: Gly
         try {
             let frame = session.enter({ =>
                 session.stabilize(turnCutoff)
-                // Only an application-root render updates the viewport used
-                // to validate a global theme candidate. Subtree export sizes
-                // belong to that export, not to the application root.
-                if (root.descriptionId == session.root.descriptionId) {
-                    session.validationWidth = width; session.validationHeight = height
-                }
                 session.applyPendingTheme()
-                session.selectLayoutGlyphPolicy(offlineGlyphPolicy(glyphMode))
-                let result = renderLayout(root, width, height, session, reuse:false)
+                let result = renderLayout(root, width, height, session, reuse:false,
+                    glyphPolicy:Some(offlineGlyphPolicy(glyphMode)))
                 session.recordFrame()
                 result
             })

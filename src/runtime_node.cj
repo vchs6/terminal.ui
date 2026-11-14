@@ -16,6 +16,7 @@ class RuntimeNode {
     var clipRight: Int64 = 0
     var clipBottom: Int64 = 0
     let sequence = ArrayList<ChildEntry>()
+    var layout: ?LayoutNode = None
     let viewportState = ViewportState()
     // Geometry is in the parent's logical content coordinates.
     var layoutX: Int64 = 0
