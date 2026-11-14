@@ -58,6 +58,9 @@ class Commands {
         }
     }
     func modalKey(event: UIKeyEvent): Unit {
-        if (event.key.code == "f9" || event.key.code == "f10") { action(event.key.code); event.consume() }
+        if (["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10"].contains(event.key.code)) {
+            action(event.key.code)
+            event.consume()
+        }
     }
 }
