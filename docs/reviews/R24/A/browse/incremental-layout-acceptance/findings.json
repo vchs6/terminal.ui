@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "verdict": "PASS_UNIT_A",
+  "blocking_findings": [],
+  "observations": [
+    {
+      "id": "A127-N1",
+      "severity": "nonblocking",
+      "inherited_source_finding": "TASK125 Q1",
+      "source": [
+        "src/layout.cj:490",
+        "src/layout.cj:504",
+        "src/paint_context.cj:5",
+        "src/paint_context.cj:26"
+      ],
+      "facts": "Overlay-local Frame owner is not explicitly released; target releaseOwner is not finally protected. Escaped expired PaintContext holds both Frame and RuntimeSession directly, and all public context operations check expiration before writes.",
+      "independent_judgment": "No public post-return mutation, counter contamination, cross-session charge or additional session retention established. Does not defeat original Unit A ownership contract; preserve cleanup note without assuming a fix.",
+      "followup": "Consider finally-based temporary Frame owner release when this area next changes."
+    }
+  ],
+  "tooling_notes": [
+    "TASK126 quoted Git pathname and expected-lock postflight corrections preceded final evidence; no product failure or suite rerun.",
+    "TASK127 initial broad checker treated sparse paths as physical files; corrected to inspect fixed Git blobs; all hashes match."
+  ],
+  "limitations": [
+    "No compilation or runtime rerun by acceptance; exact fixed independent126 and scoped audited reuse used under AGENTS11.1.",
+    "No source-author report or self-assessment used.",
+    "No product/tests/main edits or subagents."
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "role": "TASK127 independent acceptance",
+  "verdict": "PASS_UNIT_A",
+  "source_commit": "4f7e853f821c334318e2038d4e20ab26e72c16c8",
+  "contract_root": "/workspace/work/terminal.ui",
+  "source_root": "/workspace/work/incremental-layout-execution/source",
+  "condition_count": 12,
+  "conditions": [
+    {
+      "id": "A01",
+      "obligation": "Complete functional M1 admitted before Unit A; old inputs preserved",
+      "contract": "tasks admission/A123; M006/M012",
+      "source": [
+        "docs/reviews/Linux-final/m1/admission.json"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-tests/index.json",
+        "/workspace/work/m1-admission-review/index.json"
+      ],
+      "judgment": "Accepted d654 source/CJP29 admission plus canonical adoption present in base b4; 041.a input scope only, no full 041 acceptance.",
+      "status": "PASS"
+    },
+    {
+      "id": "A02",
+      "obligation": "Independent fixed public behavior and diagnostic consumers",
+      "contract": "A123 L4",
+      "source": [
+        "tests/incremental_layout/README.md",
+        "tests/incremental_layout/baseline/src/layout_cases.cj",
+        "tests/incremental_layout/baseline/src/reference_cases.cj",
+        "tests/incremental_layout/statistics/src/main.cj"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-tests/index.json",
+        "/workspace/work/incremental-layout-tests/diagnostics.json",
+        "/workspace/work/incremental-layout-execution/postflight.json",
+        "/workspace/work/incremental-layout-execution/raw/baseline-direct.log.gz",
+        "/workspace/work/incremental-layout-execution/raw/statistics-direct.log.gz"
+      ],
+      "judgment": "Fixed342 test tree936d3ace unchanged; original six GREEN/Canvas case6 RED/29 missing-field diagnostics retained; candidate ordinary builds/direct runs are 7+2 PASS.",
+      "status": "PASS"
+    },
+    {
+      "id": "A03",
+      "obligation": "Shared measure/arrange/paint kernel and retirement of allocation during paint",
+      "contract": "A124 L4; design3/12; M001",
+      "source": [
+        "src/layout.cj:69",
+        "src/layout.cj:145",
+        "src/layout_node.cj:90",
+        "src/layout_allocation.cj"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-review/index.json",
+        "/workspace/work/incremental-layout-execution/raw/baseline-direct.log.gz"
+      ],
+      "judgment": "Paint consumes stored allocation and recursively paints; shared arrange owns geometry and uses the same allocator as finite fallback negotiation. Old layoutPass removed. Repeated legitimate arrangement passes are counted, not claimed optimized.",
+      "status": "PASS"
+    },
+    {
+      "id": "A04",
+      "obligation": "RuntimeNode is identity/sequence/cache authority; no independently coordinated layout tree",
+      "contract": "design3; A124 L4",
+      "source": [
+        "src/runtime_node.cj:19",
+        "src/layout_node.cj:71",
+        "src/layout_node.cj:84",
+        "src/runtime_session.cj:151"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-review/index.json",
+        "/workspace/work/incremental-layout-execution/raw/baseline-direct.log.gz"
+      ],
+      "judgment": "children() derives a transient ordered view from RuntimeNode.sequence; published per-node layout belongs to RuntimeNode. Temporary ID/result table contains existing component references, no clone/mount or alternate sequence. Invalidation/unmount clears relevant layout roots/nodes.",
+      "status": "PASS"
+    },
+    {
+      "id": "A05",
+      "obligation": "Full render reference is isolated while ordinary binding stabilization remains real",
+      "contract": "design9; M001/M009",
+      "source": [
+        "src/layout.cj:417",
+        "src/layout.cj:508",
+        "src/layout_node.cj:71",
+        "src/runtime_session.cj:1534"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-execution/raw/baseline-direct.log.gz",
+        "/workspace/work/incremental-layout-execution/raw/statistics-direct.log.gz"
+      ],
+      "judgment": "Mounted render uses same session with reuse:false, new result table, complete measure/arrange/paint, no cache publication/produce/baseline/dirty clearing. Its entry still stabilizes actual business bindings. Detached render uses existing temporary runtime and preserves lifecycle semantics. Cases5/9 preserve future target work and account real reference work.",
+      "status": "PASS"
+    },
+    {
+      "id": "A06",
+      "obligation": "Canvas independent dependencies and caret remain isolated from reference calculation",
+      "contract": "M004; design9",
+      "source": [
+        "src/binding.cj:61",
+        "src/layout_node.cj:90",
+        "src/layout_node.cj:179",
+        "src/layout_node.cj:231",
+        "src/layout.cj:95",
+        "src/paint_context.cj:68"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-execution/raw/baseline-direct.log.gz",
+        "/workspace/work/incremental-layout-implementation/raw/a3-theme-canvas-final.log.gz"
+      ],
+      "judgment": "Transient binding observer captures guarded reads without publishing subscriptions; persistent Canvas natural/constrained results only written on committed path. Case6 exercises distinct reference-width dependency, subsequent observable changes, wide Cell/style and caret preservation. Theme finite/control/subtree regression raw reused under audited equivalence.",
+      "status": "PASS"
+    },
+    {
+      "id": "A07",
+      "obligation": "Preserve complete geometry/output contracts including finite root fallback and glyph policy",
+      "contract": "A output; M009; design3/9",
+      "source": [
+        "src/layout.cj:268",
+        "src/layout.cj:355",
+        "src/layout.cj:417",
+        "src/layout_node.cj:284"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-execution/raw/baseline-direct.log.gz",
+        "/workspace/work/incremental-layout-implementation/raw/a3-old-layout-run.log.gz",
+        "/workspace/work/incremental-layout-execution/reuse-audit.json"
+      ],
+      "judgment": "Cases1-7 hand-derived layouts and complete Cell equality include wrap/padding/weights, actual scroll/root fallback, explicit viewport clamp, narrow reference geometry and Unicode/ASCII marker transitions. Reference policy stays local; committed geometry/viewport and same logical layer ownership are guarded by commit/reuse. No later D combined-damage acceptance inferred.",
+      "status": "PASS"
+    },
+    {
+      "id": "A08",
+      "obligation": "Exactly three readonly production diagnostics; original eight fields and internal constructor retained",
+      "contract": "M003/M010; A124",
+      "source": [
+        "src/runtime_stats.cj",
+        "src/application.cj:14"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-execution/raw/statistics-build.log.gz",
+        "/workspace/work/incremental-layout-execution/raw/statistics-direct.log.gz",
+        "/workspace/work/incremental-layout-review/index.json"
+      ],
+      "judgment": "Three public let Int64 fields added, constructor remains package-only with compatible eight positional parameters and optional internal tails. No public reset, test hook or render mode added; normal SDK1.2 consumers compile.",
+      "status": "PASS"
+    },
+    {
+      "id": "A09",
+      "obligation": "Counters measure actual node arrangements, target writes and successful Cell slots",
+      "contract": "design10; M003",
+      "source": [
+        "src/layout.cj:147",
+        "src/layout.cj:269",
+        "src/frame.cj:30",
+        "src/frame.cj:37",
+        "src/frame.cj:246",
+        "src/runtime_session.cj:212"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-execution/raw/statistics-direct.log.gz",
+        "docs/product/runtime-stats.md"
+      ],
+      "judgment": "Counts are at actual operations: finite allocation/arrange, successful target initialization and every cell mutation, successful Cell arrays for frame/copy/transfer. Repeated writes count; candidate-theme preflight excluded. Full reference incurs real counts. Cell slots are not heap bytes; output encoder projected rows after generation are outside declared ownership scope.",
+      "status": "PASS"
+    },
+    {
+      "id": "A10",
+      "obligation": "Application ownership ends before returned Frame edits; cumulative/start/dispose semantics",
+      "contract": "M003/M010",
+      "source": [
+        "src/frame.cj:33",
+        "src/frame.cj:214",
+        "src/layout.cj:504",
+        "src/runtime_session.cj:1580",
+        "src/application.cj:217",
+        "src/application.cj:256"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-execution/raw/statistics-direct.log.gz",
+        "/workspace/work/incremental-layout-review/findings.json"
+      ],
+      "judgment": "Private owner charges target generation/returned copies; returned frames release owner, independent public Frame/copy has none. Case8 checks saved-frame edits/copies/unrelated Frame, dispose retained totals and restart reset. Existing expired PaintContext guards prevent post-scope mutation; private owner cleanup observation remains nonblocking, no established contamination/extra retention.",
+      "status": "PASS"
+    },
+    {
+      "id": "A11",
+      "obligation": "Independent source review and actual fixed consumer execution; affected old evidence reused only with equivalence",
+      "contract": "A125/126; AGENTS11.1/13.2",
+      "source": [
+        "/workspace/work/incremental-layout-execution/source"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-review/index.json",
+        "/workspace/work/incremental-layout-execution/index.json",
+        "/workspace/work/incremental-layout-execution/commands.json",
+        "/workspace/work/incremental-layout-execution/reuse-audit.json",
+        "/workspace/work/incremental-layout-implementation/raw/a3-bundle-final.log.gz"
+      ],
+      "judgment": "Independent SPEC/QUALITY PASS and fresh two ordinary builds/two direct processes exit0, nine cases. Audited same source/dependencies/environment/config permits scoped old layout, theme Canvas three modes and final normal bundle reuse. Bundle discovers zero tests and has lint warnings; no mandatory violation, not counted as nine-case execution.",
+      "status": "PASS"
+    },
+    {
+      "id": "A12",
+      "obligation": "Evidence integrity and bounded Unit A verdict",
+      "contract": "A127; design12; M008",
+      "source": [
+        "openspec/changes/implement-incremental-rendering/tasks.md:78"
+      ],
+      "evidence": [
+        "/workspace/work/incremental-layout-acceptance/verification.json",
+        "/workspace/work/incremental-layout-acceptance/cleanup-verification.json"
+      ],
+      "judgment": "Fresh verification: 972 file bindings, 5393 sparse Git objects, 50 gzip payload checks (including duplicate references), 10 changed package members all match. Compiler intermediates explicitly reproducible/nonpins; actual ELF/CJP/raw intact. B/C/D/E, performance, full AC031/M2/Linux remain open.",
+      "status": "PASS"
+    }
+  ],
+  "excluded_claims": [
+    "Unit B row COW",
+    "Unit C dirty caches/local layout savings",
+    "Unit D damage/local composition",
+    "Unit E benchmark/performance",
+    "full AC031/M2",
+    "full 041/Linux/release"
+  ]
+}

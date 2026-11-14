@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "role": "TASK124 product implementation evidence",
+  "created_utc": "2026-11-14T09:19:50.722930+00:00",
+  "base": "b4ccd47c9cf883288e9613d9c06f73f087788717",
+  "commit": "4f7e853f821c334318e2038d4e20ab26e72c16c8",
+  "tree": "0b72a9e87a2abc1fc7e19ba031bba9554000537b",
+  "tests_commit": "34240845e4bf393cc5d83475a2c9860a8de10f0e",
+  "tests_index_sha256": "345ff318bc070a8535858e087fe44d605c1cec11c62354c58389698d5a828f64",
+  "fixed_test_tree_diff_exit": 0,
+  "sdk": "Cangjie/CJPM 1.2.0",
+  "commands": [
+    {
+      "command": "cjpm build (fixed baseline consumer)",
+      "exit": 0
+    },
+    {
+      "command": "baseline/target/release/bin/main",
+      "exit": 0,
+      "cases": "7/7"
+    },
+    {
+      "command": "cjpm build (fixed statistics consumer)",
+      "exit": 0
+    },
+    {
+      "command": "statistics/target/release/bin/main",
+      "exit": 0,
+      "cases": "2/2"
+    },
+    {
+      "command": "bash tests/theme_canvas_integration/run.sh",
+      "exit": 0,
+      "modes": "finite, control, subtree"
+    },
+    {
+      "command": "cjpm build (tests/layout)",
+      "exit": 0,
+      "warnings": 2
+    },
+    {
+      "command": "tests/layout/target/release/bin/main",
+      "exit": 0
+    },
+    {
+      "command": "cjpm bundle",
+      "exit": 0,
+      "test_summary": "0 discovered, 0 failed",
+      "lint": "enabled; warnings; no mandatory errors"
+    },
+    {
+      "command": "initial cjpm bundle",
+      "exit": 1,
+      "reason": "G.EXP.03 in src/layout_node.cj, corrected before final run"
+    }
+  ],
+  "scope": "source candidate and development evidence; independent 125-127 pending; no performance claim",
+  "artifacts": [
+    {
+      "path": "/workspace/work/incremental-layout-implementation/source/target/cjtui-0.0.0.cjp",
+      "sha256": "56a7318d7931490545ee5fd255628170ed0bdc32aca71a11bc549955cfa53b49",
+      "bytes": 181025
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/source/tests/incremental_layout/baseline/target/release/bin/main",
+      "sha256": "662ddbdb486d108822afa5ff57d9af16a1a4c1dbc977f16620f91bd6aeb5f04c",
+      "bytes": 19138384
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/source/tests/incremental_layout/statistics/target/release/bin/main",
+      "sha256": "e42a403712fa8c11de1a866158643f288fdcbb83e90b2da5b590a6ac3f8bf501",
+      "bytes": 19041912
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/source/tests/theme_canvas_integration/target/release/bin/main",
+      "sha256": "1b90979cdeb8e1f11c3e7386c6685da6ed32603c31c22efc6c4a025f27426e8f",
+      "bytes": 19096896
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/source/tests/layout/target/release/bin/main",
+      "sha256": "99052065ec015467dc2dabb4310e663c70c7c00603ebe34478b75fb98b77977f",
+      "bytes": 19125280
+    }
+  ],
+  "raw_gzip": [
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a1-baseline-final.log.gz",
+      "sha256": "1fbf57f51f22e286e6f26a33044cd140f13d92e94a88367f79b6baa7aab8a7eb",
+      "original_name": "a1-baseline-final.log",
+      "original_sha256": "87a8f6bc9318f6abb966f71a676e8c2eea59cd10169a0cf59bae2d51e5462208",
+      "original_bytes": 451
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a2-build-final.log.gz",
+      "sha256": "1846f9b356cf15cd229fddca0407102da45513f6ebbdc47a18a794823c74eaa5",
+      "original_name": "a2-build-final.log",
+      "original_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "original_bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a2-baseline-build-final.log.gz",
+      "sha256": "1846f9b356cf15cd229fddca0407102da45513f6ebbdc47a18a794823c74eaa5",
+      "original_name": "a2-baseline-build-final.log",
+      "original_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "original_bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a2-baseline-run-final.log.gz",
+      "sha256": "ccc0cd49380c1fe80c7592c625568093c28f2495d46cb9d15a35622adeb6fb99",
+      "original_name": "a2-baseline-run-final.log",
+      "original_sha256": "857cd60b86b5e5a90e8da3ba2f69dde66c9fe8b31fbbc6cea5e0edb2cfcfbcc9",
+      "original_bytes": 388
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-statistics-build-final2.log.gz",
+      "sha256": "1846f9b356cf15cd229fddca0407102da45513f6ebbdc47a18a794823c74eaa5",
+      "original_name": "a3-statistics-build-final2.log",
+      "original_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "original_bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-statistics-run-final.log.gz",
+      "sha256": "e7b8734026923ee4fc046195b0fae5c638ed943f30ce264fb7059ec5a24e4ead",
+      "original_name": "a3-statistics-run-final.log",
+      "original_sha256": "29011cdfd43c00f67ce84c1b18251fd2164bbd348d7d0a12ece29b80ae459c50",
+      "original_bytes": 142
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-baseline-lintfix-build.log.gz",
+      "sha256": "1846f9b356cf15cd229fddca0407102da45513f6ebbdc47a18a794823c74eaa5",
+      "original_name": "a3-baseline-lintfix-build.log",
+      "original_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "original_bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-baseline-lintfix-run.log.gz",
+      "sha256": "ccc0cd49380c1fe80c7592c625568093c28f2495d46cb9d15a35622adeb6fb99",
+      "original_name": "a3-baseline-lintfix-run.log",
+      "original_sha256": "857cd60b86b5e5a90e8da3ba2f69dde66c9fe8b31fbbc6cea5e0edb2cfcfbcc9",
+      "original_bytes": 388
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-statistics-lintfix-build.log.gz",
+      "sha256": "1846f9b356cf15cd229fddca0407102da45513f6ebbdc47a18a794823c74eaa5",
+      "original_name": "a3-statistics-lintfix-build.log",
+      "original_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "original_bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-statistics-lintfix-run.log.gz",
+      "sha256": "e7b8734026923ee4fc046195b0fae5c638ed943f30ce264fb7059ec5a24e4ead",
+      "original_name": "a3-statistics-lintfix-run.log",
+      "original_sha256": "29011cdfd43c00f67ce84c1b18251fd2164bbd348d7d0a12ece29b80ae459c50",
+      "original_bytes": 142
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-theme-canvas-final.log.gz",
+      "sha256": "ec8eb46320604773a68a5e5c96854a6fba8fa9aa26a8dc661b1e64ce3361ff24",
+      "original_name": "a3-theme-canvas-final.log",
+      "original_sha256": "5272b02eef62539b97ec771fc745aeb25aad687572a8b4f0b69c5dcdc066d7fa",
+      "original_bytes": 949
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-old-layout-build.log.gz",
+      "sha256": "330e1c5ff4d0b89fbc37cf405b43d7949dfd783b534266bc47cb42bd7fedd718",
+      "original_name": "a3-old-layout-build.log",
+      "original_sha256": "bd47a4d85c971b8d074be620e4f1c6896e924449b1e9a88ceb637f92ef6b2460",
+      "original_bytes": 968
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-old-layout-run.log.gz",
+      "sha256": "1943482fab5946835ef96dcd1e1f19d7f4ac7481baa6d217f0b3fd8d5b10e129",
+      "original_name": "a3-old-layout-run.log",
+      "original_sha256": "c6dd8fb73fa8a0973a8607608753eebbc28e1186d6a89963fe597dce474f5941",
+      "original_bytes": 7227
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-bundle.log.gz",
+      "sha256": "ca11a90742e633c07a3aae2a44f2a82cdcd857de85c8be5d356e7d3bec1c6f81",
+      "original_name": "a3-bundle.log",
+      "original_sha256": "8d7037961070e534edb0fd7480375bd78f17477013ec2c7f702267898f78ea64",
+      "original_bytes": 153262
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-bundle-final.log.gz",
+      "sha256": "fd2f2557f494f6052cd9bd9c4430becd44c37593a8a5e398657e2336ca9d0ebc",
+      "original_name": "a3-bundle-final.log",
+      "original_sha256": "9ac2b306c455b94efb0611b7d662afc6b6cc4d7238bc54c49112b4199e4e35db",
+      "original_bytes": 153010
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-cjp-contents.log.gz",
+      "sha256": "6d622b61a4f04a453f81e6b56da354a846b25ced82b0ed57fffd0ac21ce2f17a",
+      "original_name": "a3-cjp-contents.log",
+      "original_sha256": "6030feb7b3ab5a65fa633036f32edb99b50c048b5f5181eeac599749465fee8c",
+      "original_bytes": 939
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/raw/a3-test-tree.log.gz",
+      "sha256": "ad92b85e2357b2f5011400229e058e82b674d82f88a3b552e738ecb467109b33",
+      "original_name": "a3-test-tree.log",
+      "original_sha256": "7c88cee1fd9dff9ca175dffb200bc6313f74c8bcaf41bffce8076125a68ed751",
+      "original_bytes": 29
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/incremental-layout-implementation/report.md",
+    "sha256": "870170ddba42cdd61a56d4e8e21189e9229086d309fd129b6895ac34623b7bf7"
+  },
+  "environment": {
+    "envsetup": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+    "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+    "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+    "cache": "/workspace/work/viewport-tests/cache",
+    "registry": "https://pkg.cangjie-lang.cn/registry"
+  }
+}

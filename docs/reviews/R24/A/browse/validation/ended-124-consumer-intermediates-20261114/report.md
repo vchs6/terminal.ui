@@ -1,0 +1,5 @@
+Removed only 122 generated Cangjie compiler .a/.cjo files from the two explicitly authorized ended consumer release trees. Actual recovery: 65,286,144 bytes (62.26 MiB). Immediate free space: 252,923,904 bytes.
+
+All 1661 noncandidate producer files remained exact, including source dirty state/HEAD f7ba1799237bde52af97b2f7ecb31359d635ed34, both executables, logs, locks, configuration, CJP, root target and native archives. Archive member/CJO/build-log provenance and complete inventories are retained. No external evidence-index namespace references found. The six explicitly excluded unrelated container services are recorded; all task processes had no matching open compiler intermediates and no unexpected access denials.
+
+Rebuild recipe: run the ordinary CJPM consumer build from preserved tests/incremental_layout/baseline and statistics using the original source, lockfiles, local config, SDK and native dependency inputs. These reproducible intermediates were explicitly excluded from final proof pins.

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "role": "TASK125 independent source review",
+  "spec_verdict": "PASS",
+  "quality_verdict": "PASS",
+  "blocking_findings": [],
+  "findings": [],
+  "observations": [
+    {
+      "id": "Q1",
+      "severity": "nonblocking cleanup observation",
+      "file": "src/layout.cj",
+      "line": 490,
+      "related_lines": [
+        504
+      ],
+      "contract": "M003 owned generation lifetime",
+      "evidence": "Frame.forSession creates overlay owner; no releaseOwner for overlay, and target releaseOwner is not in finally. Saved expired PaintContext can retain Frame, but also already retains RuntimeSession directly. All methods check expiration before writes.",
+      "reproduction": "Source control-flow inspection only: overlay paint or Canvas exception; no public post-scope mutation or extra session-lifetime extension established.",
+      "recommendation": "Consider finally-based owner release for temporary overlay and target Frames when this area next changes.",
+      "reason_not_blocking": "No observable counter contamination, cross-session charge, or new retention effect established."
+    }
+  ],
+  "limitations": [
+    "Source review and reused verified development raw outputs only; independent TASK126 execution and TASK127 acceptance remain separate.",
+    "No performance or Units B/C/D claim."
+  ]
+}

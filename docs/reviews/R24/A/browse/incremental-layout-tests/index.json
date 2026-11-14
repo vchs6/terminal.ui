@@ -1,0 +1,206 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T07:58:04.196Z",
+  "role": "TASK123 independent Unit A public test author",
+  "source_commit": "d654ae59da4749a43c946e1541c21b08e9b3ffba",
+  "test_commit": "34240845e4bf393cc5d83475a2c9860a8de10f0e",
+  "scope": "fixed tests only; no implementation/independent execution/acceptance claim",
+  "input_admission": {
+    "path": "/workspace/work/m1-admission-review/index.json",
+    "sha256": "c1f7320ae7e5a1659ba83fee2f9083566cdf688d5f5585941ad2a8b8f05972b5",
+    "verdict": "READY_FOR_TEST123"
+  },
+  "frozen_inputs": [
+    {
+      "path": "/workspace/work/m1-freeze-manifest/manifest-complete-v1.json",
+      "sha256": "82dea6559e53e1f1e3aef787332c05cc1bc4818544e6289b9ebd28a1e04fb020"
+    },
+    {
+      "path": "/workspace/work/m1-freeze-manifest/evidence-map-complete-v1.json",
+      "sha256": "8c9d438b8e71bfd375129df23f2e2fcb44ff610f392643f3a4441a6a5ed0fab3"
+    }
+  ],
+  "case_count": 9,
+  "baseline": {
+    "build_exit": 0,
+    "direct_run_exit": 1,
+    "executed": 7,
+    "green_cases": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7
+    ],
+    "red_cases": [
+      6
+    ],
+    "red_reason": "M1 narrow mounted reference replaces persistent Canvas draw subscription; stale target after original Observable changes"
+  },
+  "statistics": {
+    "build_exit": 1,
+    "runtime_executed": false,
+    "cases": [
+      8,
+      9
+    ],
+    "expected_red": "three absent readonly Int64 RuntimeStats members",
+    "diagnostic_count": 29,
+    "unrelated_diagnostics": 0
+  },
+  "blocks_for_all_green": [
+    "Case6 Canvas reference subscription isolation under R004/M004",
+    "RuntimeStats.arranges/cellWrites/frameAllocatedCells absent on frozen M1; two runtime cases remain unexecuted"
+  ],
+  "oracle_basis": "hand-derived literals and node/grid count bounds in committed tests/incremental_layout/README.md; no captured golden",
+  "report_lines": 21,
+  "compression": "not required; all raw lossless and under100KB",
+  "artifacts": [
+    {
+      "path": "raw/baseline-build.status",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "raw/baseline-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/baseline-build.stdout",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "path": "raw/baseline-final-build.status",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "raw/baseline-final-build.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/baseline-final-build.stdout",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b"
+    },
+    {
+      "path": "raw/baseline-final-run.status",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "raw/baseline-final-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/baseline-final-run.stdout",
+      "bytes": 432,
+      "sha256": "e2543f5b7bbd1d8cc1688ae2d200764b76a7aaca2095f53d28efaf4f362e1f3c"
+    },
+    {
+      "path": "raw/baseline-run.status",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "raw/baseline-run.stderr",
+      "bytes": 1025,
+      "sha256": "8b0a05de6428089a27fd74d15421296da3f3ed0a26f79c100ef3f3acd550a4dd"
+    },
+    {
+      "path": "raw/baseline-run.stdout",
+      "bytes": 255,
+      "sha256": "4d468eeb4a339a96d5782503f802eb8dd0dc3ecea58011b260dfd0d17fc30055"
+    },
+    {
+      "path": "raw/cjc-version.txt",
+      "bytes": 68,
+      "sha256": "4eaba42334a04cb16bb8d4cf8b68d2bd7810723bc23d40338b8507a5ddda892c"
+    },
+    {
+      "path": "raw/cjpm-version.txt",
+      "bytes": 31,
+      "sha256": "ada9097c78c13232bea46dfc84558073aba921f010cc023addc0deec8791fe98"
+    },
+    {
+      "path": "raw/init-baseline.txt",
+      "bytes": 18,
+      "sha256": "422e26ec67117003d00de67df0ae85e036cc6a785a18804a6019ef0862390a82"
+    },
+    {
+      "path": "raw/init-statistics.txt",
+      "bytes": 18,
+      "sha256": "422e26ec67117003d00de67df0ae85e036cc6a785a18804a6019ef0862390a82"
+    },
+    {
+      "path": "raw/statistics-build.status",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "raw/statistics-build.stderr",
+      "bytes": 3420,
+      "sha256": "b284d0246efcc327bb94f6cfb73c907d9a559a4cef8a0bffc5b527890c420aa5"
+    },
+    {
+      "path": "raw/statistics-build.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/statistics-final-build.status",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "raw/statistics-final-build.stderr",
+      "bytes": 12272,
+      "sha256": "e15dfa2d52b7541f11f9cdf906b03aeb85b855c064b4a170744d82d7bbcfc30b"
+    },
+    {
+      "path": "raw/statistics-final-build.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "report.md",
+      "bytes": 1901,
+      "sha256": "af81ab80569700c1bb67ea590651e6ee0b05a758c681f46bf83a57fa91408195"
+    },
+    {
+      "path": "commands.txt",
+      "bytes": 1958,
+      "sha256": "b8c7fdb99db5f4f19eda103c3d4861969428d1a0731c8bb1b2592758938e13d7"
+    },
+    {
+      "path": "diagnostics.json",
+      "bytes": 2256,
+      "sha256": "8a3e9ec994fd0aa728c5f959f3ff5b0b07f90127bcb80e25aea0a91847bfbfd0"
+    },
+    {
+      "path": "source-and-artifact-hashes.json",
+      "bytes": 48088,
+      "sha256": "8ba4603ad7d0921241f7618998f40202d7714017734f5c54f0343a69aaeb7268"
+    },
+    {
+      "path": "dependencies-and-config.json",
+      "bytes": 48766,
+      "sha256": "e847bde976ee802d1df762a8ea6108bd0e16bf8fa083354501e0900ef186a67a"
+    },
+    {
+      "path": "scope-and-provenance.json",
+      "bytes": 3985,
+      "sha256": "6fe5e1676fc5744db5d451174506eda51500a030c6dd63a253cb605a15d1294d"
+    },
+    {
+      "path": "openspec-apply.json",
+      "bytes": 22702,
+      "sha256": "a6746d0c6622ae87326c17c014fabb276907f28357364eabfc721ffc0faa71c9"
+    }
+  ]
+}

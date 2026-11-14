@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "role": "TASK127 independent original Unit A acceptance",
+  "sealed_utc": "2026-11-14T10:06:25.742597+00:00",
+  "verdict": "PASS_UNIT_A",
+  "source_commit": "4f7e853f821c334318e2038d4e20ab26e72c16c8",
+  "source_tree": "0b72a9e87a2abc1fc7e19ba031bba9554000537b",
+  "tests_commit": "34240845e4bf393cc5d83475a2c9860a8de10f0e",
+  "condition_count": 12,
+  "passed_conditions": 12,
+  "blocking_findings": 0,
+  "nonblocking_observations": 1,
+  "independent_cases": 9,
+  "independent_case_failures": 0,
+  "inputs": [
+    {
+      "path": "/workspace/work/incremental-layout-acceptance/brief.md",
+      "sha256": "9e6446aaa3c3dcb4c114d88c5235e08a4adc2614cda7e8fe343a97c570bcd3bc",
+      "bytes": 4499
+    },
+    {
+      "path": "/workspace/work/terminal.ui/AGENTS.md",
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "bytes": 35500
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-incremental-rendering/tasks.md",
+      "sha256": "c6f7dfcbbc83b2042778b13791a1ee1dcf746aa8b43779fca0785da0a367fc25",
+      "bytes": 21358
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-incremental-rendering/design.md",
+      "sha256": "d66139138d9ee5e5051b037c0ca356470bda1cd0b6ec48c8b53e8ae3374d3dde",
+      "bytes": 42691
+    },
+    {
+      "path": "/workspace/work/terminal.ui/docs/reviews/Linux-final/m1/admission.json",
+      "sha256": "0f8eee073eacf45a24c02d83b9b1ec180d7ecc2cfcbaf2f714a90833bb3a7943",
+      "bytes": 1815
+    },
+    {
+      "path": "/workspace/work/incremental-layout-tests/index.json",
+      "sha256": "345ff318bc070a8535858e087fe44d605c1cec11c62354c58389698d5a828f64",
+      "bytes": 6590
+    },
+    {
+      "path": "/workspace/work/incremental-layout-review/index.json",
+      "sha256": "c4777fad35cc4b3d43b6b9eae779fb3623e34dde7a1ddeb8845100fba494f00e",
+      "bytes": 2939
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/index.json",
+      "sha256": "c9eaf0d77b4c0e3613caaf7581f603394b786c023c2ee3ce3ff7cb36f8dd0a66",
+      "bytes": 11055
+    },
+    {
+      "path": "/workspace/work/incremental-layout-implementation/index.json",
+      "sha256": "38f73e64cd3672c7cc9da9a3c16fee3c92d73ff4244ac4fbcf850da214ebbe81",
+      "bytes": 9673
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/layout.cj",
+      "sha256": "657957e39ce060af8c859a2626f9a16d86179014084dda0b0c46de6f355df662",
+      "bytes": 25426
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/layout_node.cj",
+      "sha256": "cb6ffb2d9fd5fade430dea88f58d8c6733d764ee0a5c69135ff2713b5f314c07",
+      "bytes": 14364
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/layout_allocation.cj",
+      "sha256": "3fd2ee800241bf166267d13a64fd25f07248498ea7c213d892c833913f7d557c",
+      "bytes": 3407
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/runtime_node.cj",
+      "sha256": "b1a811e589b9309fe6982a004da8a8eaa15d1d56fdc98aa96a1d4865412c50aa",
+      "bytes": 2042
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/runtime_session.cj",
+      "sha256": "21170a613cee1052901c8d0d20261569a6c58c28001cb70a699c35c3233e3c6b",
+      "bytes": 66862
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/frame.cj",
+      "sha256": "099988a414d4bd7d41c2563d1c34e8648895047409eb715e3e5e6925c4794686",
+      "bytes": 13999
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/runtime_stats.cj",
+      "sha256": "99ab220443dfd968d82c47af352f9ac0795e2465560afcdd54ca9b1650332e21",
+      "bytes": 1032
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/binding.cj",
+      "sha256": "3270146cb13c18986bed6f190adc6c1935ec4aaf0153e9137c148f019e5e4e10",
+      "bytes": 4445
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/paint_context.cj",
+      "sha256": "00b9e493d1b6a63f234a69eb2c1cee3ec85ebb221332dd8d4cdef745d3fd928d",
+      "bytes": 4083
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/src/application.cj",
+      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56",
+      "bytes": 36536
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/docs/product/runtime-stats.md",
+      "sha256": "ec98c5167c3147e50233f244b07e86638d70d7fdd9e2acbf974e293b0729d212",
+      "bytes": 1136
+    },
+    {
+      "path": "/workspace/work/validation/ended-124-consumer-intermediates-20261114/index.json",
+      "sha256": "47c835fb137f7e46f3529b30c6529c644ed02efb2614bc54d0e7a9698ddd8b6e",
+      "bytes": 2202
+    },
+    {
+      "path": "/workspace/work/validation/ended-124-final-intermediates-20261114/index.json",
+      "sha256": "5fab2689e39094a0994fccb12b12391c80e4bce1aacc5899b00361b809a5bfdd",
+      "bytes": 2384
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/workspace/work/incremental-layout-acceptance/conditions.json",
+      "sha256": "7041250e019f7f2b43b968398ab47b2005cb9d39ec48ed86f17efff1dab256b6",
+      "bytes": 11391
+    },
+    {
+      "path": "/workspace/work/incremental-layout-acceptance/findings.json",
+      "sha256": "f61934d00c98efc28aa465835f64b93512e47ee9a5721d700862d4b5e1f57d94",
+      "bytes": 1531
+    },
+    {
+      "path": "/workspace/work/incremental-layout-acceptance/verification.json",
+      "sha256": "bc45bd4167ccfa89cf02e0868c7e210de7e4f82a7412ee5816c151d428dae5fd",
+      "bytes": 1544882
+    },
+    {
+      "path": "/workspace/work/incremental-layout-acceptance/cleanup-verification.json",
+      "sha256": "edc9492bf1d98fa151b9a38d0042200f3e74a703b9349b1cf43eba0f30629816",
+      "bytes": 3208
+    },
+    {
+      "path": "/workspace/work/incremental-layout-acceptance/report.md",
+      "sha256": "e72a1381183268a612220cb250dff1d35aa6ef68c0f2c829979a41e2269e8f7e",
+      "bytes": 2612
+    },
+    {
+      "path": "/workspace/work/incremental-layout-acceptance/verify.py",
+      "sha256": "9721dd6c813c27e82ea20d365070841757f8e5214f62585ceb216aee13acf916",
+      "bytes": 5340
+    },
+    {
+      "path": "/workspace/work/incremental-layout-acceptance/seal.py",
+      "sha256": "39bbe44b2c698cfdaa41cf749b03c2a8799d8c4927f8b002d90836d7d96ca334",
+      "bytes": 15263
+    }
+  ],
+  "skills": [
+    "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/verification-before-completion/SKILL.md"
+  ],
+  "reuse_authority": "AGENTS11.1; tasks A126/127",
+  "immutability": "Sealed artifacts chmod0444; amendments require separately indexed addendum. Index self-hash delivered separately.",
+  "limits": "Unit A only; B/C/D/E/fullAC031/M2/Linux remain open. No product/test/main edits, builds, suite reruns or source-author report."
+}

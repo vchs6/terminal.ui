@@ -1,0 +1,245 @@
+{
+  "schema": 1,
+  "role": "TASK126 independent execution",
+  "created_utc": "2026-11-14T09:53:08.587549+00:00",
+  "commit": "4f7e853f821c334318e2038d4e20ab26e72c16c8",
+  "tree": "0b72a9e87a2abc1fc7e19ba031bba9554000537b",
+  "tests_commit": "34240845e4bf393cc5d83475a2c9860a8de10f0e",
+  "tests_subtree": "936d3ace17f40fc80e1fb452871809e66fb8cb08",
+  "fixed_test_manifest_sha256": "0701335eb8134dccefdcb5f4a33b168851f4e1fece76ab4a95c494e119d0ca58",
+  "source_native_manifest_sha256": "dfa6260c7a9d6064953d1151a67901e08132d49b1f7db9bc182d74c93e485054",
+  "all_versioned_manifest_sha256": "0d18e450874dc623809045b76fc32a20cd9d2c628e97bd16be0a5583c8e8341d",
+  "commands": [
+    {
+      "name": "environment",
+      "command": "command -v cjpm cjc\ncjpm --version\ncjc --version\nprintf \"CANGJIE_STDX_PATH=%s\\nCJTUI_UCD_ARCHIVE=%s\\n\" \"$CANGJIE_STDX_PATH\" \"$CJTUI_UCD_ARCHIVE\"\nuname -a\ndf -Pk .",
+      "cwd": "/workspace/work/incremental-layout-execution/source",
+      "exit": 0,
+      "started_utc": "2026-11-14T09:49:58.645524+00:00",
+      "path": "/workspace/work/incremental-layout-execution/raw/environment.log.gz",
+      "sha256": "c68440bd2c035919fb964e71df35735eadf78ae67627a4e92f89a2676d051cf4",
+      "original_sha256": "3234d52dddc32bc0ff043184432508062c949bbca042818b0349e4ff670336d5",
+      "original_bytes": 553
+    },
+    {
+      "name": "baseline-build",
+      "command": "cjpm build",
+      "cwd": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/baseline",
+      "exit": 0,
+      "started_utc": "2026-11-14T09:49:59.040899+00:00",
+      "path": "/workspace/work/incremental-layout-execution/raw/baseline-build.log.gz",
+      "sha256": "66f229e1a64837cf329f9495fa47b07f4689b95096277e44d2f701c0007fee8e",
+      "original_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "original_bytes": 19
+    },
+    {
+      "name": "baseline-direct",
+      "command": "target/release/bin/main",
+      "cwd": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/baseline",
+      "exit": 0,
+      "started_utc": "2026-11-14T09:51:13.262275+00:00",
+      "path": "/workspace/work/incremental-layout-execution/raw/baseline-direct.log.gz",
+      "sha256": "dda70b7471fd3f1e247a86413cb9f05d47e581474ccc706e8c2c625de8b82512",
+      "original_sha256": "857cd60b86b5e5a90e8da3ba2f69dde66c9fe8b31fbbc6cea5e0edb2cfcfbcc9",
+      "original_bytes": 388
+    },
+    {
+      "name": "statistics-build",
+      "command": "cjpm build",
+      "cwd": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/statistics",
+      "exit": 0,
+      "started_utc": "2026-11-14T09:51:13.365569+00:00",
+      "path": "/workspace/work/incremental-layout-execution/raw/statistics-build.log.gz",
+      "sha256": "66f229e1a64837cf329f9495fa47b07f4689b95096277e44d2f701c0007fee8e",
+      "original_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "original_bytes": 19
+    },
+    {
+      "name": "statistics-direct",
+      "command": "target/release/bin/main",
+      "cwd": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/statistics",
+      "exit": 0,
+      "started_utc": "2026-11-14T09:52:04.340026+00:00",
+      "path": "/workspace/work/incremental-layout-execution/raw/statistics-direct.log.gz",
+      "sha256": "b794a3e9efdd2b95e0f46d26250cafd5216b2df9a2ba7c9126f9c2bfee311bdb",
+      "original_sha256": "29011cdfd43c00f67ce84c1b18251fd2164bbd348d7d0a12ece29b80ae459c50",
+      "original_bytes": 142
+    }
+  ],
+  "actual_cases": {
+    "baseline": 7,
+    "statistics": 2,
+    "failures": 0
+  },
+  "artifacts": [
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/baseline/target/release/bin/main",
+      "sha256": "4ca33e403542881e9250822c77253a11324ae4776e40ca53540054eb0ae4a51b",
+      "bytes": 19138256
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/statistics/target/release/bin/main",
+      "sha256": "420873a8ba1129d2c4d1992d4526d01346e7d84ddd7df05e2cda4b24d64b73fd",
+      "bytes": 19041800
+    }
+  ],
+  "config_lock_inputs": [
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/cjpm.toml",
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828",
+      "bytes": 1541
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/baseline/cjpm.toml",
+      "sha256": "e2dd2f6e1f0e9b539ca081c9a9a19a5e4581e1909cb58011cfee869d287e88c5",
+      "bytes": 356
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/baseline/cjpm.lock",
+      "sha256": "8a39ce781f5d3364ff26c7994383bd8f3463da52b926d1d026fe0b4f881fff4c",
+      "bytes": 198
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/baseline/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/statistics/cjpm.toml",
+      "sha256": "81799c318fb66c9d6402af877e342f14486801218791736cb3eb983edf24ddbb",
+      "bytes": 381
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/statistics/cjpm.lock",
+      "sha256": "0250857a01deff732b81888c9448fe229dab5367a6fecfb9bbea200e7daaea79",
+      "bytes": 198
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/source/tests/incremental_layout/statistics/cangjie-repo.toml",
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93",
+      "bytes": 133
+    }
+  ],
+  "reused_lock_equivalence": {
+    "/workspace/work/incremental-layout-implementation/source/tests/layout/cjpm.lock": {
+      "path": "/workspace/work/incremental-layout-implementation/source/tests/layout/cjpm.lock",
+      "sha256": "d0abc27378219fd9fc0b1443033580b31ca76cb2a6aa6e0ef50ff4d870b1552c",
+      "bytes": 198
+    },
+    "/workspace/work/incremental-layout-implementation/source/tests/theme_canvas_integration/cjpm.lock": {
+      "path": "/workspace/work/incremental-layout-implementation/source/tests/theme_canvas_integration/cjpm.lock",
+      "sha256": "79475483ac08b3392fc2bddcc0e6a3e3a5f83522fea2b3478668259c18f34fab",
+      "bytes": 198
+    }
+  },
+  "raw_gzip": [
+    {
+      "path": "/workspace/work/incremental-layout-execution/raw/baseline-build.log.gz",
+      "sha256": "66f229e1a64837cf329f9495fa47b07f4689b95096277e44d2f701c0007fee8e",
+      "bytes": 39,
+      "original_name": "baseline-build.log",
+      "original_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "original_bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/raw/baseline-direct.log.gz",
+      "sha256": "dda70b7471fd3f1e247a86413cb9f05d47e581474ccc706e8c2c625de8b82512",
+      "bytes": 261,
+      "original_name": "baseline-direct.log",
+      "original_sha256": "857cd60b86b5e5a90e8da3ba2f69dde66c9fe8b31fbbc6cea5e0edb2cfcfbcc9",
+      "original_bytes": 388
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/raw/environment.log.gz",
+      "sha256": "c68440bd2c035919fb964e71df35735eadf78ae67627a4e92f89a2676d051cf4",
+      "bytes": 374,
+      "original_name": "environment.log",
+      "original_sha256": "3234d52dddc32bc0ff043184432508062c949bbca042818b0349e4ff670336d5",
+      "original_bytes": 553
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/raw/statistics-build.log.gz",
+      "sha256": "66f229e1a64837cf329f9495fa47b07f4689b95096277e44d2f701c0007fee8e",
+      "bytes": 39,
+      "original_name": "statistics-build.log",
+      "original_sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "original_bytes": 19
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/raw/statistics-direct.log.gz",
+      "sha256": "b794a3e9efdd2b95e0f46d26250cafd5216b2df9a2ba7c9126f9c2bfee311bdb",
+      "bytes": 134,
+      "original_name": "statistics-direct.log",
+      "original_sha256": "29011cdfd43c00f67ce84c1b18251fd2164bbd348d7d0a12ece29b80ae459c50",
+      "original_bytes": 142
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/raw/tooling-note.log.gz",
+      "sha256": "82b83b70073eadade74573ba95a1bb9fe9950da255055f2d0675efdef87472ba",
+      "bytes": 373,
+      "original_name": "tooling-note.log",
+      "original_sha256": "be0f6f2123f55ec41cc811c3cd7eaf9dc3e6d94a9b6c1aed520362b8ff4d453a",
+      "original_bytes": 590
+    }
+  ],
+  "recursive_manifests": [
+    {
+      "path": "/workspace/work/incremental-layout-execution/preflight.json",
+      "sha256": "7b3e67aaaf3346fd640e7dd65deacbb9d001329c1fcde48de101e513f0fa4902",
+      "bytes": 789637
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/postflight.json",
+      "sha256": "5c30b30c4b66c0ca34fb320de20b68a355ae5c1e850cf93c7c351e62b749255e",
+      "bytes": 1338
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/inputs.json",
+      "sha256": "a519448c992271d35a755240a353c61b222dfebf524bb826cfcf5b0a0b7239f3",
+      "bytes": 91395
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/reuse-audit.json",
+      "sha256": "cab6e0ee9e3b5889d24fb54bab3ee0e9d0e5bd8c760a7cb9a5d0385e42ae57d1",
+      "bytes": 33675
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/commands.json",
+      "sha256": "768d88099963c28175222c479615990b8bb7869eca5d310a5bd0d9192a7b7cad",
+      "bytes": 2783
+    }
+  ],
+  "evidence_tools": [
+    {
+      "path": "/workspace/work/incremental-layout-execution/execute.py",
+      "sha256": "50454577ec996c88abb02e3dd211c892286c17f47f722b9157ba7e31b7faec1b",
+      "bytes": 2806
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/audit.py",
+      "sha256": "1d62c3ac9c3ea8d755f6854ce28982b375fc2a11c63cdebb6e788ccbf809aea7",
+      "bytes": 2635
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/index_inputs.py",
+      "sha256": "51187dba7be44c72e485ba60f962e61ef9e7b76c5c2b412165878042d18ef022",
+      "bytes": 2116
+    },
+    {
+      "path": "/workspace/work/incremental-layout-execution/finalize.py",
+      "sha256": "5d904e2553125fe9fd015cfead9c20ca7cdf929f7405c5993fb99b04fcbeba34",
+      "bytes": 6441
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/incremental-layout-execution/report.md",
+    "sha256": "6279efaefcc23116e64e7facbf361132de389f3b3cf709be3c20011095ad2219",
+    "bytes": 2617
+  },
+  "scope": "Fresh independent fixed9; audited reuse only for oldlayout/theme_canvas3/final normal bundle under AGENTS11.1. No acceptance/fullM2/performance/backend claim."
+}

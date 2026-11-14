@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "role": "TASK125 independent source SPEC/QUALITY review",
+  "sealed_utc": "2026-11-14T09:31:42.846277+00:00",
+  "base": "b4ccd47c9cf883288e9613d9c06f73f087788717",
+  "head": "4f7e853f821c334318e2038d4e20ab26e72c16c8",
+  "tree": "0b72a9e87a2abc1fc7e19ba031bba9554000537b",
+  "test_commit": "34240845e4bf393cc5d83475a2c9860a8de10f0e",
+  "test_index_sha256": "345ff318bc070a8535858e087fe44d605c1cec11c62354c58389698d5a828f64",
+  "spec_verdict": "PASS",
+  "quality_verdict": "PASS",
+  "blocking_findings": 0,
+  "nonblocking_observations": 1,
+  "inputs": [
+    {
+      "path": "/workspace/work/incremental-layout-review/brief.md",
+      "sha256": "d5a746a97af9725deca89cb34f15bd10d0f084f1806f70fff2c1aeea90072789",
+      "bytes": 4389
+    },
+    {
+      "path": "/workspace/work/incremental-layout-review/review-package.txt",
+      "sha256": "ce65a83dd5ec7e8b9ebfe64c2be758e3b341955e6c72912ac850291accfedb77",
+      "bytes": 75262
+    },
+    {
+      "path": "/workspace/work/terminal.ui/AGENTS.md",
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "bytes": 35500
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-incremental-rendering/tasks.md",
+      "sha256": "c6f7dfcbbc83b2042778b13791a1ee1dcf746aa8b43779fca0785da0a367fc25",
+      "bytes": 21358
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-incremental-rendering/design.md",
+      "sha256": "d66139138d9ee5e5051b037c0ca356470bda1cd0b6ec48c8b53e8ae3374d3dde",
+      "bytes": 42691
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-reactive-runtime/design.md",
+      "sha256": "dcfed7b4ca2e412bb075e923217bf2867556bfb1f8c7991a7384c519b830dbb7",
+      "bytes": 40090
+    },
+    {
+      "path": "/workspace/work/terminal.ui/openspec/changes/implement-public-interaction/design.md",
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4",
+      "bytes": 76152
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/workspace/work/incremental-layout-review/report.md",
+      "sha256": "f76493fbdc5b74dae3e69fffd4977508c49b446ba4f03114a7d37c3a930637c6",
+      "bytes": 4171
+    },
+    {
+      "path": "/workspace/work/incremental-layout-review/findings.json",
+      "sha256": "e26fe71f435b4fa518bb6f5bb6f7515c1b9bc3ef611eb002946718bfe2ae5552",
+      "bytes": 1337
+    },
+    {
+      "path": "/workspace/work/incremental-layout-review/verification.json",
+      "sha256": "3414b41063333c2cc8205755cc050b9ac1fdd98a6c13976557a3726882dfda7c",
+      "bytes": 7642
+    }
+  ],
+  "skills": [
+    "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/requesting-code-review/SKILL.md",
+    "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/verification-before-completion/SKILL.md"
+  ],
+  "limits": "No independent execution/acceptance, source edits, tests edits, compile, suite reruns or performance claim."
+}
