@@ -1,0 +1,396 @@
+{
+  "scope": "TASK021 same ELF, TESTONLY selected-gap expectation patch, corrected PTY retry3; later checks and GUI not run after failure",
+  "createdUtc": "2026-11-14T03:17:42.804Z",
+  "source": {
+    "head": "03c719e99ae9854423f0339a70d668eccbc2f7d4",
+    "product": "e3016afe7e61133ef549302cf01383848507d5c3",
+    "testPatches": [
+      "6dbece66e2989849d87729a5da10d95b4fbb0a24",
+      "d07a6933be8ff2429ee9799ee32043642e0dfeb4",
+      "95b6d780a92b65bf4c83540d3e7c8a47c131df64"
+    ],
+    "trackedChanges": ""
+  },
+  "dependencies": {
+    "sdk": "Cangjie Compiler 1.2.0 (cjnative); CJPM 1.2.0",
+    "node": "v24.22.1",
+    "stdxPath": "/workspace/work/linux-build-recon/stdx-env",
+    "ucdArchive": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+    "registry": "https://pkg.cangjie-lang.cn/registry",
+    "cache": "/workspace/work/viewport-tests/cache"
+  },
+  "results": {
+    "reusedELFs": true,
+    "ptyRetry3Exit": 1,
+    "ptyStartupCasesPassed": 4,
+    "ptyInteraction": "pty.mjs:235 expected Done plus 77 spaces=81 columns; actual full row 80 columns Done plus 76 spaces and no stale phase tail",
+    "actualGui": "not run"
+  },
+  "files": [
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/interactions/before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/interactions/events.json",
+      "bytes": 6082,
+      "sha256": "418f4d9dcae2871606190b6739c79f35e2f179a272580d58036d6485daccaba8"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/interactions/frames.json",
+      "bytes": 13023720,
+      "sha256": "a361e7409823714b4d286996e44262aefc1593e00a3d0391f89d766b88d88f07"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/interactions/pid",
+      "bytes": 8,
+      "sha256": "5088f10c57d1b7d0a020c85d12a4aa9d41222c6a7054a1593142c5a2235ec7e3"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/interactions/result.json",
+      "bytes": 300,
+      "sha256": "93227596c08c0892a8d890d59548c5a496f28fe9e9390e0643bbf240b415d0eb"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/interactions/session.sh",
+      "bytes": 215,
+      "sha256": "c32ddf1e9c6736a1070e84697f38582cfb34cb2f104a4f429d96ae582f6a4999"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/interactions/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/interactions/stdout.raw",
+      "bytes": 66944,
+      "sha256": "7556c524eb79c6b07f76cfe1a635c54145e0558a74e36b3181e622d79edc9f65"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/interactions/tty",
+      "bytes": 11,
+      "sha256": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/events.json",
+      "bytes": 227,
+      "sha256": "f692a192e1be335110ea673fd70791064ed73958a5d8bbaf597ce80928252686"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/frames.json",
+      "bytes": 6652,
+      "sha256": "f6434d68c5039cc35b5dc67395ec91bfd50cc0b7ea3df8491822036d30cd908a"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/pid",
+      "bytes": 8,
+      "sha256": "cf297ce0f915fa2f8874b4cc6de547007c6b0f5072b8bd6641ab06a767cb8e48"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/result.json",
+      "bytes": 293,
+      "sha256": "0496b4edeb8780e2c50d4aa1167a6e2155f6324466a188888bc10a6294078955"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/session.sh",
+      "bytes": 215,
+      "sha256": "c32ddf1e9c6736a1070e84697f38582cfb34cb2f104a4f429d96ae582f6a4999"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/stdout.raw",
+      "bytes": 124,
+      "sha256": "be9040444d928c148c3e611079961f4bb247f8e5f7c18ae004aff443accb6359"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/minimal/tty",
+      "bytes": 11,
+      "sha256": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/events.json",
+      "bytes": 420,
+      "sha256": "376dd46ea6acd1b92acd588c0a9de627ccba5d65dff9e66b3e31b9e7eb9d6080"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/frames.json",
+      "bytes": 42620,
+      "sha256": "7a6cf52dde996ea3abd460eabe5cef8cd3917c3f493e3cd7007d4ddc285f4349"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/pid",
+      "bytes": 8,
+      "sha256": "fdec25665c6aba58780769a1c71c855470214cf4d95ce9fd9668c493c9de13e2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/result.json",
+      "bytes": 297,
+      "sha256": "d8657c60fa4b7b01bf57360b4ec58fc09b033d882a52e10ddf609507e27a0f5e"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/session.sh",
+      "bytes": 215,
+      "sha256": "c32ddf1e9c6736a1070e84697f38582cfb34cb2f104a4f429d96ae582f6a4999"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/stdout.raw",
+      "bytes": 616,
+      "sha256": "b0cc9562cac47f8983e38514086309c78ddb6a3fd4737ff73441c8bb278877cc"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-minimum/tty",
+      "bytes": 11,
+      "sha256": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/events.json",
+      "bytes": 634,
+      "sha256": "a19d07a118f80efd126706d250873233ad802aee4990da8009b8f6784b8d0870"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/frames.json",
+      "bytes": 344541,
+      "sha256": "1c8a1cf5de42624537b82615be3c085365881056c49ac36531c5a5bb9efaa77c"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/pid",
+      "bytes": 8,
+      "sha256": "5c483efeca6ffa59ba02f2a1148953d6af56c2a134a47ed576cda5f32331bd23"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/result.json",
+      "bytes": 297,
+      "sha256": "d1027133d14dd57e7e45dcab09d02f9058fd7e3e2a12ffbf08af7f64adee2350"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/session.sh",
+      "bytes": 215,
+      "sha256": "c32ddf1e9c6736a1070e84697f38582cfb34cb2f104a4f429d96ae582f6a4999"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/stdout.raw",
+      "bytes": 3709,
+      "sha256": "b3e73aed513b6228ad0de6f04c393695455bead4fba8501da299b0a3a6f1758b"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-narrow/tty",
+      "bytes": 11,
+      "sha256": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/after",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/before",
+      "bytes": 87,
+      "sha256": "ec5a7d345ad94a8ac449e78470efa90d5e716027f6a4102cb1b1d35ad19139b2"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/events.json",
+      "bytes": 974,
+      "sha256": "48ae4db8d41029bb2e27f0af11618c67c07a8e07a399b2584e9ef27dd919cb1d"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/frames.json",
+      "bytes": 1693449,
+      "sha256": "c92b367ca152a941f68c60035a5114defcb4a66eab61255aec9f70dfef3a2ba4"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/pid",
+      "bytes": 8,
+      "sha256": "09473729b5a73c215b3c209251b38129dbdcc7921bc435edf94ef443992372de"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/result.json",
+      "bytes": 297,
+      "sha256": "dea23db369d2e33259d2cd8c8445e42afc9e33d1be73a29149b430721b5fe1c6"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/session.sh",
+      "bytes": 215,
+      "sha256": "c32ddf1e9c6736a1070e84697f38582cfb34cb2f104a4f429d96ae582f6a4999"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/stdout.raw",
+      "bytes": 12402,
+      "sha256": "425262a91809a156ef2b371715ece1027be6529629152c4d90121cc8e8f1436c"
+    },
+    {
+      "path": "raw/pty-retry3/pty-BQP53p/startup-wide/tty",
+      "bytes": 11,
+      "sha256": "b57f1ded7532788c0af0ac70c3d406fad5b334b55b73b42eec7371f1580668ad"
+    },
+    {
+      "path": "raw/pty-retry3/runner.command",
+      "bytes": 43,
+      "sha256": "a330659ad24a958be87aa560880caad697a549f0bc0ee6bde8a7803077a589d8"
+    },
+    {
+      "path": "raw/pty-retry3/runner.end-utc",
+      "bytes": 21,
+      "sha256": "cec6802ca62e53a785757c5015aa65bbdd6688cf25a08860bfa5a0c0cefe87d2"
+    },
+    {
+      "path": "raw/pty-retry3/runner.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "raw/pty-retry3/runner.start-utc",
+      "bytes": 21,
+      "sha256": "aac1bc1237996427134bd5dd8b5e2f8d5e4783c8a3c18b2081f79f30cdc81134"
+    },
+    {
+      "path": "raw/pty-retry3/runner.stderr",
+      "bytes": 554,
+      "sha256": "44ec4b4634bf331dde5b3241aef83d7884cbb0fada8f0dff1dac83d34e1ac80f"
+    },
+    {
+      "path": "raw/pty-retry3/runner.stdout",
+      "bytes": 266,
+      "sha256": "0fe3df5f6d491d45f75229bbb42f6da2d4bef5386f2a23c65a6a2baec40011de"
+    },
+    {
+      "path": "index-retry2.json",
+      "bytes": 14063,
+      "sha256": "cfd7d3576c6ee7ee197d3ddcec976c08cc8f62d74ac7290554cf7971cf71959b"
+    },
+    {
+      "path": "report-retry2.md",
+      "bytes": 1290,
+      "sha256": "a82e7a5f08d742f562eb04249408e912d72d9866eca148108acd61114d4d337a"
+    },
+    {
+      "path": "source/examples/minimal/target/release/bin/main",
+      "bytes": 18985696,
+      "sha256": "bf7da646f091436f0ef7bf3663b3a18d18436f73b0f8aec93be634c8a70f3a0e"
+    },
+    {
+      "path": "source/examples/composition/target/release/bin/main",
+      "bytes": 19229256,
+      "sha256": "69e94b7afac0670c1fac08183d6e75e76b4f140e89a97c2b3192cc572e2de0c1"
+    },
+    {
+      "path": "source/tests/composition/application/pty.mjs",
+      "bytes": 18959,
+      "sha256": "324193d4a74524891d0fc47841e2429962a118ecba684c3c4e3fe0e4187e6113"
+    },
+    {
+      "path": "source/tests/composition/application/interaction-contract.md",
+      "bytes": 15417,
+      "sha256": "ffe0a667608b6431c6ba3299e0b64b815388b1385e77f93ce5bc52ca85d7cd1a"
+    },
+    {
+      "path": "source/tests/composition/application/oracle-selftest.mjs",
+      "bytes": 7908,
+      "sha256": "c85ace88221251dc9e0b63c6a3b1c4d0849b1b3cbda1fccba6d4b303b741e010"
+    },
+    {
+      "path": "source/tests/colors/pty.mjs",
+      "bytes": 19635,
+      "sha256": "96ace9fa46e97b14bf8653a06a2a8e730a8ce6dd306697794ed3c9ff23e90ae5"
+    },
+    {
+      "path": "source/tests/support/terminal_frames.mjs",
+      "bytes": 2903,
+      "sha256": "4a9ecfd661a7db4d1bee9b8098726ebc80f13bdae346e728bb4cf31cb3626ab1"
+    },
+    {
+      "path": "source/cjpm.toml",
+      "bytes": 1541,
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828"
+    },
+    {
+      "path": "source/cangjie-repo.toml",
+      "bytes": 133,
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+    },
+    {
+      "path": "source/examples/composition/cjpm.toml",
+      "bytes": 162,
+      "sha256": "54106622fa89e23ee1cab8c28692f69d256335f8b7fbb2a31290a6520e50434f"
+    },
+    {
+      "path": "source/examples/composition/cangjie-repo.toml",
+      "bytes": 133,
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+    },
+    {
+      "path": "source/examples/composition/cjpm.lock",
+      "bytes": 198,
+      "sha256": "d21c8bc075714d350ac93ae31b54f33a734b8cfd25d9eb870c12d6b714172900"
+    }
+  ]
+}

@@ -1,0 +1,395 @@
+{
+  "task": "TASK021.a bounded asynchronous-theme wait correction",
+  "classification": "execution; source-confirmed invalid fixture wait precondition",
+  "utc": "2026-11-14T03:12:23.332Z",
+  "parent": "6dbece66e2989849d87729a5da10d95b4fbb0a24",
+  "commit": "d07a6933be8ff2429ee9799ee32043642e0dfeb4",
+  "source": "/workspace/work/composition-application-tests/fix-theme-wait/source",
+  "originalSeals": [
+    {
+      "index": {
+        "path": "/workspace/work/composition-application-tests/index.json",
+        "bytes": 34083,
+        "sha256": "84da95998e32c641a893a9d95583eae5b0b31a9be2059a9786a61273ec4bea08"
+      },
+      "report": {
+        "path": "/workspace/work/composition-application-tests/report.md",
+        "bytes": 1779,
+        "sha256": "693c71b92994a508eddb70af7f914e22d1861deaa03b7647a8a8ae0d77be2915"
+      },
+      "sourceCommit": "c51f9bfc02e2844391282ea80b761362aba400d2",
+      "evidenceEntriesVerified": 52
+    },
+    {
+      "index": {
+        "path": "/workspace/work/composition-application-tests/fix-shadow/index.json",
+        "bytes": 12301,
+        "sha256": "47984eeaba69f3ac4e204d2d7cf7887b784dacb0f0625bf80f915be7fdea6f62"
+      },
+      "report": {
+        "path": "/workspace/work/composition-application-tests/fix-shadow/report.md",
+        "bytes": 1612,
+        "sha256": "1dc5d66fd11bea4a9c8ef31ae949fc0458126ed1fc9505228ffe22021df7c5a2"
+      },
+      "sourceCommit": "2e5e998d00f2f60e45376bca4ada8376273d339a",
+      "evidenceEntriesVerified": 18
+    },
+    {
+      "index": {
+        "path": "/workspace/work/composition-application-tests/fix-pty/index.json",
+        "bytes": 20324,
+        "sha256": "805afd1936fe84bc413b4e094b5e94a13faf7fc66751c34888f73ef5ee0877ee"
+      },
+      "report": {
+        "path": "/workspace/work/composition-application-tests/fix-pty/report.md",
+        "bytes": 1842,
+        "sha256": "fc7b037ff1d573b4d8a80acb7dbc81d6e1ae1ca0033a90002fdec77e7a2088a5"
+      },
+      "sourceCommit": "6dbece66e2989849d87729a5da10d95b4fbb0a24",
+      "evidenceEntriesVerified": 33
+    }
+  ],
+  "diagnosis": {
+    "sourceContract": "ThemeSource.Preset is submitted asynchronously; result pending until accepted/Applied",
+    "programSource": "e301 sets observable requested label before loadTheme returns pending request",
+    "capturedObservation": {
+      "label": "Light",
+      "background": "default",
+      "whiteBackgroundSequenceObserved": false,
+      "oldPredicate": "contains Light",
+      "immediateFailure": "expected rgb:255,255,255 actual default"
+    },
+    "conclusion": "Allowed pending frame invalidates label-only wait; no eventual success or product defect inferred from truncated observation"
+  },
+  "sourceProofs": [
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "docs/product/theme.md",
+      "gitBlob": "568602851e5dcd17e9bea59b55e385b8518a8020",
+      "bytes": 2683,
+      "sha256": "3cfd19ba3c34aac4ca90ac30c96aff22f7d4d55e9ef01b46727da7338d7da329"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/theme_loader.cj",
+      "gitBlob": "e81a6b04a77f5297ed3e2d6670e311964aa61339",
+      "bytes": 8102,
+      "sha256": "4ca1342bc0ca5c5c87df749727aa1f90216d919120581908774a87a3abb18902"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/theme_request.cj",
+      "gitBlob": "a97232c9f982c676c57364e5a7807f43e63a3764",
+      "bytes": 415,
+      "sha256": "8cfc56721e26906e28d5c704a39df8253030b680f5425cf25b9c30db47e149b7"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/application.cj",
+      "gitBlob": "2afcaa0e05a86e42c8f1b28e573c70868f9aefe0",
+      "bytes": 36536,
+      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/theme/theme_preset_text.cj",
+      "gitBlob": "61ae5bcd3abf3f59124802678685235aa08d1e4a",
+      "bytes": 11216,
+      "sha256": "fc2a86d096ce8b9d5386d7fcaa1f9c321fdc26a91de23e698067f7dc876937d4"
+    },
+    {
+      "gitCommit": "e3016afe7e61133ef549302cf01383848507d5c3",
+      "relativePath": "examples/composition/src/commands.cj",
+      "gitBlob": "e63e172a7b66be95cfac4f68ec0b741f1118aae0",
+      "bytes": 3177,
+      "sha256": "e9fb3297c5c721a27cbc9d97a6bfc6c7627c5a6178bf7f779c363505fd45d1c2"
+    }
+  ],
+  "capture": {
+    "directory": "/workspace/work/composition-application-execution/raw/pty-retry1/pty-HiG4xF/interactions",
+    "originals": [
+      {
+        "path": "/workspace/work/composition-application-execution/raw/pty-retry1/pty-HiG4xF/interactions/events.json",
+        "bytes": 1746,
+        "sha256": "f2d9ba70f6890d8200a9ee4806ad3d914d1d55a630e73feda7f8987b1dc93cfc"
+      },
+      {
+        "path": "/workspace/work/composition-application-execution/raw/pty-retry1/pty-HiG4xF/interactions/frames.json",
+        "bytes": 3219934,
+        "sha256": "6cb068a0b200cb4f7f6a85fb2e829c32973bdffeb57be52836dcc8515b1f80b9"
+      },
+      {
+        "path": "/workspace/work/composition-application-execution/raw/pty-retry1/pty-HiG4xF/interactions/stdout.raw",
+        "bytes": 9145,
+        "sha256": "fc2886d573ebb5368380dc94aac58f9b67368217455f8ab5ed573505d08ddd6c"
+      }
+    ],
+    "preservedRaw": {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/original-stdout.raw",
+      "bytes": 9145,
+      "sha256": "fc2886d573ebb5368380dc94aac58f9b67368217455f8ab5ed573505d08ddd6c"
+    },
+    "preservedEvents": {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/original-events.json",
+      "bytes": 1746,
+      "sha256": "f2d9ba70f6890d8200a9ee4806ad3d914d1d55a630e73feda7f8987b1dc93cfc"
+    },
+    "exactPendingFrame": {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-frame.json",
+      "bytes": 247023,
+      "sha256": "23005ceebf52d2791fe4202164aacbb0ee10fd7ea2ab939e86a0c62d8ff06466"
+    },
+    "role": "Failure reproduction and predicate rejection only, never expected-grid generation"
+  },
+  "changes": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/source/tests/composition/application/interaction-contract.md",
+      "bytes": 14757,
+      "sha256": "760facb9c10350524e8cbdbd9772407c888c48626c36d5ec1c53e2fd665f4ded",
+      "relativePath": "tests/composition/application/interaction-contract.md",
+      "gitBlob": "184148a37d4b1b009e38753961fa3690d359ff01"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/source/tests/composition/application/oracle-selftest.mjs",
+      "bytes": 6789,
+      "sha256": "e98ab16fb8d66d4eed42907e093f4c58a02d17124cfb8b9e6959b20833a024b4",
+      "relativePath": "tests/composition/application/oracle-selftest.mjs",
+      "gitBlob": "e281f058d0793e17b8b5aab11baf42a91e0f3d37"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/source/tests/composition/application/pty.mjs",
+      "bytes": 18961,
+      "sha256": "6f207e8842e0519195d99966931d70820ee8e7df7380c69ea278c6b3075ad987",
+      "relativePath": "tests/composition/application/pty.mjs",
+      "gitBlob": "7fd2a18ccc39e0411f7cd594cb80c8a177f63c20"
+    }
+  ],
+  "diff": {
+    "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/bounded.diff",
+    "bytes": 8424,
+    "sha256": "573f7932ce8ef43ab1d4f9c30ab12aaa6955acac7413220eff9529b7f58ad23d"
+  },
+  "waitContract": {
+    "requests": [
+      "Light",
+      "Classic"
+    ],
+    "label": "footer matching requested theme",
+    "rootBackground": {
+      "Light": "rgb:255,255,255",
+      "Classic": "default"
+    },
+    "footerBackground": {
+      "Light": "rgb:255,255,255",
+      "Classic": "default"
+    },
+    "footerForeground": {
+      "Light": "rgb:24,32,40",
+      "Classic": "default"
+    },
+    "deadlineMilliseconds": 12000,
+    "changedExistingF3Waits": 6,
+    "sleepAdded": false,
+    "appOverride": false,
+    "assertionsRemoved": false
+  },
+  "commands": {
+    "before": [
+      "node",
+      "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-frame-red.mjs"
+    ],
+    "beforeSourceCommit": "6dbece66e2989849d87729a5da10d95b4fbb0a24",
+    "after": {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/verify.sh",
+      "bytes": 737,
+      "sha256": "6d7a6fa89fa49078bd926f21536db9a284670416c1a0032fb35a1e104b5d073a"
+    }
+  },
+  "outcomes": [
+    {
+      "name": "oracle-selftest",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/oracle-selftest.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/oracle-selftest.stderr"
+    },
+    {
+      "name": "pending-before",
+      "trueExit": 1,
+      "stdout": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-before.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-before.stderr"
+    },
+    {
+      "name": "pending-replay",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-replay.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-replay.stderr"
+    },
+    {
+      "name": "syntax-oracle",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-oracle.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-oracle.stderr"
+    },
+    {
+      "name": "syntax-pty",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-pty.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-pty.stderr"
+    },
+    {
+      "name": "whitespace",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/whitespace.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/whitespace.stderr"
+    }
+  ],
+  "tools": {
+    "node": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "bytes": 126939688,
+      "sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d"
+    },
+    "sdkEnvironmentSourced": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+    "compilerBuilds": 0,
+    "applicationLaunches": 0
+  },
+  "evidence": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/bounded.diff",
+      "bytes": 8424,
+      "sha256": "573f7932ce8ef43ab1d4f9c30ab12aaa6955acac7413220eff9529b7f58ad23d"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/oracle-selftest.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/oracle-selftest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/oracle-selftest.stdout",
+      "bytes": 133,
+      "sha256": "bfa300b2032dfe4e04bc26da0c2ed5b2568a018f70491ff98ee6953ea528ef62"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/original-events.json",
+      "bytes": 1746,
+      "sha256": "f2d9ba70f6890d8200a9ee4806ad3d914d1d55a630e73feda7f8987b1dc93cfc"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/original-stdout.raw",
+      "bytes": 9145,
+      "sha256": "fc2886d573ebb5368380dc94aac58f9b67368217455f8ab5ed573505d08ddd6c"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-before.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-before.stderr",
+      "bytes": 702,
+      "sha256": "c86c0ffae8ce11bbcff6f6ba1fabaab4a5cded7dc300ad7653b34e0662ae80e5"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-before.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-frame-red.mjs",
+      "bytes": 529,
+      "sha256": "d418146a4942cc3dd637a544a6cd176b7239cd097ebb73dfeb39a4873bb8d401"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-frame-replay.mjs",
+      "bytes": 986,
+      "sha256": "9126568043450411aecc962171102a282e96c1eaf7eba4ce972ba7a54ff4860f"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-frame.json",
+      "bytes": 247023,
+      "sha256": "23005ceebf52d2791fe4202164aacbb0ee10fd7ea2ab939e86a0c62d8ff06466"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-replay.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-replay.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/pending-replay.stdout",
+      "bytes": 110,
+      "sha256": "702014d02bb71e8afde0b024edd1dd30ff933ecf56f8dc261e511cb7e9c0cc8e"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-oracle.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-oracle.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-oracle.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-pty.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-pty.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/syntax-pty.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/verify.sh",
+      "bytes": 737,
+      "sha256": "6d7a6fa89fa49078bd926f21536db9a284670416c1a0032fb35a1e104b5d073a"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/whitespace.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/whitespace.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-theme-wait/evidence/whitespace.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/composition-application-tests/fix-theme-wait/report.md",
+    "bytes": 1888,
+    "sha256": "2903a19af1bdafc5e7b9c3097fb5d3fee2c8d9b20e326c3f354b14bacecbc1c7"
+  },
+  "limits": [
+    "No product color defect or eventual Applied result established; corrected deadline will expose genuine non-application.",
+    "Tools-only predicate tests/replay are not application/runtime acceptance.",
+    "Original color/focus/selection/undo/scroll/business assertions and meaningful timeout retained.",
+    "No new API/CLI/hooks/override/product/core code or app build/run; independent executor must run fixed product plus corrected tests.",
+    "All older seals and raw remain unchanged."
+  ]
+}

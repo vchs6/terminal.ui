@@ -1,0 +1,731 @@
+{
+  "scope": "TASK021 bounded actual-host provenance addendum; present host probe is not historical launch attestation",
+  "createdUtc": "2026-11-14T04:37:14.613991+00:00",
+  "sealedPredecessor": {
+    "path": "../index-gui.json",
+    "sha256": "10e7c8b2a1a756c92daa0c50f7259a0bd6ff3db67c699968558c2669e67a2130"
+  },
+  "historicalHostLaunch": {
+    "completeArgvCaptured": false,
+    "binaryHashAtLaunchCaptured": false,
+    "loadedLibraryMapAtLaunchCaptured": false,
+    "partialVteProcessIdentification": "host.stderr dbus/Xfconf process IDs and truncated command prefix",
+    "hostPidRecord": "host.pid per GUI run"
+  },
+  "currentHostProbe": {
+    "raw": "raw/current-host-probe.json",
+    "vtePackage": "libvte-2.91-0 0.80.1-1 amd64",
+    "xfceTerminalPackage": "xfce4-terminal 1.1.4-1 amd64",
+    "vteResolvedPath": "/usr/lib/x86_64-linux-gnu/libvte-2.91.so.0.8000.1",
+    "externalFilesObservedNow": [
+      {
+        "path": "/usr/bin/xfce4-terminal",
+        "bytes": 301432,
+        "sha256": "752c95cbd8ac8f6d85ab96b102ba2c1212b626dfd3d3c70a89e901b0a5d03143",
+        "observedUtc": "2026-11-14T04:36:20.564085+00:00"
+      },
+      {
+        "path": "/usr/lib/x86_64-linux-gnu/libvte-2.91.so.0.8000.1",
+        "bytes": 825672,
+        "sha256": "e2e719555735ebeb0d72c3add313ff0a16f7ca4f8191d533a0252bddd076aba2",
+        "observedUtc": "2026-11-14T04:36:20.564085+00:00"
+      },
+      {
+        "path": "/workspace/work/cross-terminal-recon/hosts/xterm/usr/bin/xterm",
+        "bytes": 911192,
+        "sha256": "141372c1b48f0becdacc5649bbcbb0b26bb059c2e31f4a905c96ed0bdbad9b1d",
+        "observedUtc": "2026-11-14T04:36:20.564085+00:00"
+      }
+    ]
+  },
+  "runs": {
+    "gui-minimal-vte": {
+      "hostPidRecorded": 1211948,
+      "terminalBeforeUtc": "2026-11-14T03:40:22.394539+00:00",
+      "terminalAfterUtc": "2026-11-14T03:40:32.877826+00:00",
+      "tty": "/dev/pts/0",
+      "term": "xterm-256color",
+      "colorTerm": "truecolor",
+      "locale": "C.UTF-8",
+      "sizeBefore": [
+        16,
+        3
+      ],
+      "sizeAfter": [
+        16,
+        3
+      ],
+      "directProductExit": 0,
+      "termiosEqual": true,
+      "mode25ReplyBefore": "1b5b3f32353b312479",
+      "mode25ReplyAfter": "1b5b3f32353b312479",
+      "profile": "isolated XDG config with two disabled terminal window accelerators"
+    },
+    "gui-minimal-xterm": {
+      "hostPidRecorded": 1211862,
+      "terminalBeforeUtc": "2026-11-14T03:39:53.534342+00:00",
+      "terminalAfterUtc": "2026-11-14T03:40:09.462027+00:00",
+      "tty": "/dev/pts/0",
+      "term": "xterm",
+      "colorTerm": null,
+      "locale": "C.UTF-8",
+      "sizeBefore": [
+        16,
+        3
+      ],
+      "sizeAfter": [
+        16,
+        3
+      ],
+      "directProductExit": 0,
+      "termiosEqual": true,
+      "mode25ReplyBefore": "1b5b3f32353b312479",
+      "mode25ReplyAfter": "1b5b3f32353b312479",
+      "profile": "XTerm host"
+    },
+    "gui-paste-vte": {
+      "hostPidRecorded": 1213027,
+      "terminalBeforeUtc": "2026-11-14T03:42:27.327724+00:00",
+      "terminalAfterUtc": "2026-11-14T03:42:59.074050+00:00",
+      "tty": "/dev/pts/0",
+      "term": "xterm-256color",
+      "colorTerm": "truecolor",
+      "locale": "C.UTF-8",
+      "sizeBefore": [
+        80,
+        24
+      ],
+      "sizeAfter": [
+        80,
+        24
+      ],
+      "directProductExit": 0,
+      "termiosEqual": true,
+      "mode25ReplyBefore": "1b5b3f32353b312479",
+      "mode25ReplyAfter": "1b5b3f32353b312479",
+      "profile": "isolated XDG config with two disabled terminal window accelerators"
+    },
+    "gui-paste-xterm": {
+      "hostPidRecorded": 1212648,
+      "terminalBeforeUtc": "2026-11-14T03:41:50.733158+00:00",
+      "terminalAfterUtc": "2026-11-14T03:42:11.182999+00:00",
+      "tty": "/dev/pts/0",
+      "term": "xterm",
+      "colorTerm": null,
+      "locale": "C.UTF-8",
+      "sizeBefore": [
+        80,
+        24
+      ],
+      "sizeAfter": [
+        80,
+        24
+      ],
+      "directProductExit": 0,
+      "termiosEqual": true,
+      "mode25ReplyBefore": "1b5b3f32353b312479",
+      "mode25ReplyAfter": "1b5b3f32353b312479",
+      "profile": "XTerm host"
+    },
+    "gui-vte-capture-retry3": {
+      "hostPidRecorded": 1213643,
+      "terminalBeforeUtc": "2026-11-14T03:45:00.741329+00:00",
+      "terminalAfterUtc": "2026-11-14T03:45:38.096353+00:00",
+      "tty": "/dev/pts/0",
+      "term": "xterm-256color",
+      "colorTerm": "truecolor",
+      "locale": "C.UTF-8",
+      "sizeBefore": [
+        80,
+        24
+      ],
+      "sizeAfter": [
+        80,
+        24
+      ],
+      "directProductExit": 0,
+      "termiosEqual": true,
+      "mode25ReplyBefore": "1b5b3f32353b312479",
+      "mode25ReplyAfter": "1b5b3f32353b312479",
+      "profile": "isolated XDG config with two disabled terminal window accelerators"
+    },
+    "gui-vte-retry1": {
+      "hostPidRecorded": 1208595,
+      "terminalBeforeUtc": "2026-11-14T03:34:18.261681+00:00",
+      "terminalAfterUtc": "2026-11-14T03:36:34.373224+00:00",
+      "tty": "/dev/pts/0",
+      "term": "xterm-256color",
+      "colorTerm": "truecolor",
+      "locale": "C.UTF-8",
+      "sizeBefore": [
+        80,
+        24
+      ],
+      "sizeAfter": [
+        80,
+        24
+      ],
+      "directProductExit": 0,
+      "termiosEqual": true,
+      "mode25ReplyBefore": "1b5b3f32353b312479",
+      "mode25ReplyAfter": "1b5b3f32353b312479",
+      "profile": "default-host F1 interception"
+    },
+    "gui-vte-retry2": {
+      "hostPidRecorded": 1210207,
+      "terminalBeforeUtc": "2026-11-14T03:36:52.896424+00:00",
+      "terminalAfterUtc": "2026-11-14T03:39:33.821025+00:00",
+      "tty": "/dev/pts/0",
+      "term": "xterm-256color",
+      "colorTerm": "truecolor",
+      "locale": "C.UTF-8",
+      "sizeBefore": [
+        80,
+        24
+      ],
+      "sizeAfter": [
+        80,
+        24
+      ],
+      "directProductExit": 0,
+      "termiosEqual": true,
+      "mode25ReplyBefore": "1b5b3f32353b312479",
+      "mode25ReplyAfter": "1b5b3f32353b312479",
+      "profile": "isolated XDG config with two disabled terminal window accelerators"
+    },
+    "gui-xterm-retry1": {
+      "hostPidRecorded": 1205998,
+      "terminalBeforeUtc": "2026-11-14T03:27:21.052439+00:00",
+      "terminalAfterUtc": "2026-11-14T03:33:38.027480+00:00",
+      "tty": "/dev/pts/0",
+      "term": "xterm",
+      "colorTerm": null,
+      "locale": "C.UTF-8",
+      "sizeBefore": [
+        80,
+        24
+      ],
+      "sizeAfter": [
+        80,
+        24
+      ],
+      "directProductExit": 0,
+      "termiosEqual": true,
+      "mode25ReplyBefore": "1b5b3f32353b312479",
+      "mode25ReplyAfter": "1b5b3f32353b312479",
+      "profile": "XTerm host"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/current-host-probe.json",
+      "bytes": 10618,
+      "sha256": "056c7aac1206a92d4ad6b05dd9c40845a1dfbb9d9f1844fa4cffcffb3e9538ef"
+    },
+    {
+      "path": "report.md",
+      "bytes": 2494,
+      "sha256": "79cc95416f13d90f83ce8486441ac0f973a158b78e01f41afd3ce457c41499a3"
+    },
+    {
+      "path": "../index-gui.json",
+      "bytes": 44084,
+      "sha256": "10e7c8b2a1a756c92daa0c50f7259a0bd6ff3db67c699968558c2669e67a2130"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/gui-events.jsonl",
+      "bytes": 590,
+      "sha256": "7b29fc9c46c4a962eddb1782eb38bfcd09980b81a639448ed90a85cdcc4249fb"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/host.pid",
+      "bytes": 8,
+      "sha256": "b4ba07ca6e0056a5227481957b776c49c2cffeed2540f6dc8d58f23955e2ed71"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/host.stderr",
+      "bytes": 917,
+      "sha256": "335ddfcc3524ee3e14eb976e562272a2a33ad3bad72bfc0dcac916f230c3ca9c"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/mode25-after.json",
+      "bytes": 246,
+      "sha256": "a90a297dfff6b28a5c77fe1a3e05d164cc46b5ef20510e10cb793e7c68c870cc"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/mode25-before.json",
+      "bytes": 246,
+      "sha256": "fe1e76beda2a4b6c20d15facf0c8f56970e92d0b67f2a5cadffd9828e956ecf8"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/product-command.json",
+      "bytes": 376,
+      "sha256": "78a971efc83ef1fd6445029bec893b96ff67017bbd0c82570295a0121d9188de"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/terminal-after.json",
+      "bytes": 975,
+      "sha256": "9a2346ea309dd23096ebb6273ce2b2ce7f96ce8c82508bcfa65a7b2b696c6df0"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/terminal-before.json",
+      "bytes": 1030,
+      "sha256": "b697c52d961bd3007af72acf448a187edb3955511770775825f5847a26aff32b"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/xdg-config/xfce4/terminal/accels.scm",
+      "bytes": 119,
+      "sha256": "e543efbf8d7e62bf47b4077febd670c345b3743b8e222804b7494fcdc666ef0e"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/xdg-config/xfce4/terminal/terminalrc",
+      "bytes": 144,
+      "sha256": "202427bda87b37ea2ff1ac4d1a85374313248a0ae2d7b35b0be1c6e4846e2510"
+    },
+    {
+      "path": "../raw/gui-minimal-vte/xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml",
+      "bytes": 442,
+      "sha256": "1d37e0a494b8b8b37f99e4b72e37d0d1890bcf9d4d5dbb2adb78c8586ba5200c"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/gui-events.jsonl",
+      "bytes": 594,
+      "sha256": "976560ca0a71e757401687963251bd810b72422af5958c24e34fe30a2a53be60"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/host.pid",
+      "bytes": 8,
+      "sha256": "57b4eefbc802b79467d05484b34925cb45f3d64a145ca4da7e64041353605432"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/host.stderr",
+      "bytes": 48,
+      "sha256": "e0a46db3e7d086b6ed55477f9c8cc5ec4dbe4b6ef804e1372e9a4a6dc5a6b01a"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/mode25-after.json",
+      "bytes": 246,
+      "sha256": "16fd38eccc2df65fef5871ae03e7fc542c79aab2c313d1bfe98ebfe6fc64f8b5"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/mode25-before.json",
+      "bytes": 246,
+      "sha256": "5e12fd1c3ee84e5ae0d3551ec82d80cf4ac85f232d9768666351434d89b28cf3"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/product-command.json",
+      "bytes": 378,
+      "sha256": "878dfc63aa429fbbabb9a35e08232f48f7e57c4de8eeba0b65faa61c0d0f997c"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/terminal-after.json",
+      "bytes": 975,
+      "sha256": "4098aa1c706a31967e58fb06a491fdebbc28bcdb506754acfa2d950e93775519"
+    },
+    {
+      "path": "../raw/gui-minimal-xterm/terminal-before.json",
+      "bytes": 1014,
+      "sha256": "4ea5808306994fa028813384d9853b96d1678af2d862db1f4fc93ecd26379826"
+    },
+    {
+      "path": "../raw/gui-paste-vte/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-paste-vte/gui-events.jsonl",
+      "bytes": 6113,
+      "sha256": "3283666d1ea18985327738639dee4e8e865b36f41bed4f9932603ae3f98c0acb"
+    },
+    {
+      "path": "../raw/gui-paste-vte/host.pid",
+      "bytes": 8,
+      "sha256": "ea9800df06b8b75616f4803c3ad5ce6f549bac2b9ec659d3f6e315513adf3452"
+    },
+    {
+      "path": "../raw/gui-paste-vte/host.stderr",
+      "bytes": 915,
+      "sha256": "da5fe3849d72cab9f5654ab6c12753edb19868d1b2b3c49743826b18efd0a6e3"
+    },
+    {
+      "path": "../raw/gui-paste-vte/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-paste-vte/mode25-after.json",
+      "bytes": 246,
+      "sha256": "d3f32ba4a3dcc6468f749767fe989321d80cb1dfa0b6733c2c70a4593edb65fc"
+    },
+    {
+      "path": "../raw/gui-paste-vte/mode25-before.json",
+      "bytes": 246,
+      "sha256": "307a96b45807e09711fe0d10d5b92fb555404f7eecea2ea302ac9962a1953163"
+    },
+    {
+      "path": "../raw/gui-paste-vte/product-command.json",
+      "bytes": 378,
+      "sha256": "b4f0dbe4ee974551aba73d73c3098079d01aa5101fd14004ac6ef7153a303281"
+    },
+    {
+      "path": "../raw/gui-paste-vte/terminal-after.json",
+      "bytes": 976,
+      "sha256": "933e39b22fcfc7b6f8fbe78a19299323789985ab0c4b98e49dff6abb06a9ae49"
+    },
+    {
+      "path": "../raw/gui-paste-vte/terminal-before.json",
+      "bytes": 1031,
+      "sha256": "d532c16a18907cf5656ee754498a8588e1230e1262c22d3bd170eb5f5029170c"
+    },
+    {
+      "path": "../raw/gui-paste-vte/xdg-config/xfce4/terminal/accels.scm",
+      "bytes": 119,
+      "sha256": "e543efbf8d7e62bf47b4077febd670c345b3743b8e222804b7494fcdc666ef0e"
+    },
+    {
+      "path": "../raw/gui-paste-vte/xdg-config/xfce4/terminal/terminalrc",
+      "bytes": 144,
+      "sha256": "202427bda87b37ea2ff1ac4d1a85374313248a0ae2d7b35b0be1c6e4846e2510"
+    },
+    {
+      "path": "../raw/gui-paste-vte/xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml",
+      "bytes": 442,
+      "sha256": "1d37e0a494b8b8b37f99e4b72e37d0d1890bcf9d4d5dbb2adb78c8586ba5200c"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/gui-events.jsonl",
+      "bytes": 2036,
+      "sha256": "259b9c0f43fa3e38ab31a8138f8495b2e99dad09f202e6fff90244a8249df2bf"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/host.pid",
+      "bytes": 8,
+      "sha256": "9cd551bfc45886b7895f1f5b47890b453301d444deed418187ee120f253eaa59"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/host.stderr",
+      "bytes": 48,
+      "sha256": "e0a46db3e7d086b6ed55477f9c8cc5ec4dbe4b6ef804e1372e9a4a6dc5a6b01a"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/mode25-after.json",
+      "bytes": 246,
+      "sha256": "b588d3e04c026b416af6f36239475ec5a45cb0540eb54da949db854258426e87"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/mode25-before.json",
+      "bytes": 246,
+      "sha256": "ce3282f51c4543adb46091d74ea880181c13eac949d01536c54b8143c6c53a05"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/product-command.json",
+      "bytes": 380,
+      "sha256": "063fb8d9f6584987544033a4b00ccf348d47d51eb8936f2014192b66ed5365b7"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/terminal-after.json",
+      "bytes": 976,
+      "sha256": "a28ccfb45f16196ca4cfb68a1ae3bb044746c92c9223900365217faf7445ca8f"
+    },
+    {
+      "path": "../raw/gui-paste-xterm/terminal-before.json",
+      "bytes": 1015,
+      "sha256": "4e5ea871161d16ddce73e90b29d12031531e0a32e5cf2ce7761d98a811f86199"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/gui-events.jsonl",
+      "bytes": 7488,
+      "sha256": "e83a2bbe3eb11bbf84b416049b5b3672ff048acb7688e12e630d0194dcb64114"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/host.pid",
+      "bytes": 8,
+      "sha256": "c4763b7fb5a86675bbcbbe96f105dbdb07f73e6099a3e43ab6dd9968becca578"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/host.stderr",
+      "bytes": 924,
+      "sha256": "1b773e9212230bad9ff65d03eb63def3a008922ac2bb75e7b96293ebb5abb150"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/mode25-after.json",
+      "bytes": 246,
+      "sha256": "b265e5c345bf8165424bbecdeacf9689d881c9c8a48368bb6125e3d796c3a368"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/mode25-before.json",
+      "bytes": 246,
+      "sha256": "be92a3d7c62f8afb74cf7613708277f055141d25a889bb047998f409e50a95b3"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/product-command.json",
+      "bytes": 387,
+      "sha256": "0b8454013460814d7db4723c52a9b312bd21906bdc3f3d58a5bd8928a8a1b7e5"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/terminal-after.json",
+      "bytes": 976,
+      "sha256": "6150ccd0922564dabfe0eaec60b3b0afd17ea120ee64cd5d885a657f424ad42e"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/terminal-before.json",
+      "bytes": 1031,
+      "sha256": "6fc7a42d1ec86d40ff857f58a38cecb55663dbad5ee5d018f23563a1b19eca63"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/xdg-config/xfce4/terminal/accels.scm",
+      "bytes": 119,
+      "sha256": "e543efbf8d7e62bf47b4077febd670c345b3743b8e222804b7494fcdc666ef0e"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/xdg-config/xfce4/terminal/terminalrc",
+      "bytes": 144,
+      "sha256": "202427bda87b37ea2ff1ac4d1a85374313248a0ae2d7b35b0be1c6e4846e2510"
+    },
+    {
+      "path": "../raw/gui-vte-capture-retry3/xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml",
+      "bytes": 442,
+      "sha256": "1d37e0a494b8b8b37f99e4b72e37d0d1890bcf9d4d5dbb2adb78c8586ba5200c"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/gui-events.jsonl",
+      "bytes": 6614,
+      "sha256": "df9bbcb5832eb1dccb45de964aace4fcdcf02b5ae78bbf4a7285919ca6281682"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/host.pid",
+      "bytes": 8,
+      "sha256": "2835c923289e4acdd3ebf78543ba5f548dfe5d4fc121df36a5da4aaafc624a0d"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/host.stderr",
+      "bytes": 680,
+      "sha256": "9bfe5681cbec914535a78e2e4d2636cd3a25e8c990f165a98e57cf7c78378905"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/mode25-after.json",
+      "bytes": 246,
+      "sha256": "6283347bf49639a0cce1be2d6fd8e876864174aab7279fd34f2500af6f1ffafe"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/mode25-before.json",
+      "bytes": 246,
+      "sha256": "80b66a09bcb188f8081f5fd5fe581bcaa85b0a222677dd3e096a7406bc622fd8"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/product-command.json",
+      "bytes": 379,
+      "sha256": "ff0bab6651176529902dbc9d0c809906ca8951da57a3f4f1da7ae19674998cfd"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/terminal-after.json",
+      "bytes": 976,
+      "sha256": "002c0c80af500c439e0ad9862da13154978d78f7d119520773a926d2d002c84f"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/terminal-before.json",
+      "bytes": 1031,
+      "sha256": "480144d224eef6688dc538a23419cc7f4e8a2f3b0abe57f2ef079295af02154e"
+    },
+    {
+      "path": "../raw/gui-vte-retry1/xdg-config/xfce4/help.rc",
+      "bytes": 19,
+      "sha256": "6351c33bc57fbb47d1b8e773d97a7e4ecf84c91fdbac1a1bb61ddd05a785622d"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/gui-events.jsonl",
+      "bytes": 39933,
+      "sha256": "98a6fe43e1db052b36dbb727a6a7f647bfeb7e0cc467d0cab1717bbac8f2ab17"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/host-version.txt",
+      "bytes": 346,
+      "sha256": "746470b1946a9e1623617dc345f3cb9a94e6ec76b6e73906de6f58f123edad2b"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/host.pid",
+      "bytes": 8,
+      "sha256": "e7785af1def7a421ff194da85cd2a24eb8a5c9b2f9dd51ad4d0dc4ceb691e269"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/host.stderr",
+      "bytes": 916,
+      "sha256": "73ad0a9e12c30ec150955476a25a4aa91d39282da00c07fb4c53927e155f09d1"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/mode25-after.json",
+      "bytes": 246,
+      "sha256": "f3845fc16dd05672747e8fda3b903887092d1b170a87bf4855ff9aa560509df9"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/mode25-before.json",
+      "bytes": 246,
+      "sha256": "6b338c61155cac5097f0ab68a6f2cf040428290f22924c23ee7ffb01009a7513"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/product-command.json",
+      "bytes": 379,
+      "sha256": "6beb2909f279165571ded674ab8858e059aa51175feedcbcae8e038fc10e005c"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/terminal-after.json",
+      "bytes": 976,
+      "sha256": "fe9b7da4022b3b2f5792a04f9e9e6b7e7735b5569f3e2f654df78be32b3d3838"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/terminal-before.json",
+      "bytes": 1031,
+      "sha256": "40e210f3abe2f4df26138095b01d9e47498f9d5a2a12308a32736e9c757419f3"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/xdg-config/xfce4/terminal/accels.scm",
+      "bytes": 119,
+      "sha256": "e543efbf8d7e62bf47b4077febd670c345b3743b8e222804b7494fcdc666ef0e"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/xdg-config/xfce4/terminal/terminalrc",
+      "bytes": 144,
+      "sha256": "202427bda87b37ea2ff1ac4d1a85374313248a0ae2d7b35b0be1c6e4846e2510"
+    },
+    {
+      "path": "../raw/gui-vte-retry2/xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml",
+      "bytes": 442,
+      "sha256": "1d37e0a494b8b8b37f99e4b72e37d0d1890bcf9d4d5dbb2adb78c8586ba5200c"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/gui-events.jsonl",
+      "bytes": 37194,
+      "sha256": "d300746177360a2f916141c8a5e113cb200200a7b36753680ef57497df08e4fb"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/host-version.txt",
+      "bytes": 11,
+      "sha256": "d5485e896fd4e76ae93345edfc689b770c2f66f2884c4342e3886135ff829382"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/host.pid",
+      "bytes": 8,
+      "sha256": "55c9c8ac49e71e5db297bd200b0c7527a2a76db88be79d84ac3b239c7dc08258"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/host.stderr",
+      "bytes": 48,
+      "sha256": "e0a46db3e7d086b6ed55477f9c8cc5ec4dbe4b6ef804e1372e9a4a6dc5a6b01a"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/mode25-after.json",
+      "bytes": 246,
+      "sha256": "83ff2090d8bfd9d175d942d1f0582871c0bb87b88d543acf76df483f066ecb35"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/mode25-before.json",
+      "bytes": 246,
+      "sha256": "9a2ae0f2be1d6dae5cedc51b883a44996555aa0736da7e67892cb10c6cc2dd60"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/product-command.json",
+      "bytes": 381,
+      "sha256": "829b99d61d801e340d38cc12e56eb5a7d93f43898d20680f6ad410c299f431a6"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/terminal-after.json",
+      "bytes": 976,
+      "sha256": "5fb041e58dc4d6c13a027115a71e87bc01795dd443bc19112fbef71d96d398a3"
+    },
+    {
+      "path": "../raw/gui-xterm-retry1/terminal-before.json",
+      "bytes": 1015,
+      "sha256": "a416e4b4f52fea0114a8d0be3d874a71779d001e9e1c5dbe4ad2fa594a7567b6"
+    },
+    {
+      "path": "../report-gui.md",
+      "bytes": 2711,
+      "sha256": "8d77cfdfaf53dd7d0b29e14962bcd241a32e111be122f99463c252411cad1e08"
+    },
+    {
+      "path": "../tools/gui-step.py",
+      "bytes": 1633,
+      "sha256": "60f3e00b0b1b6e4059ccba2a16e6f38fa5d29a7bbe8944ca81845898fef83b72"
+    },
+    {
+      "path": "../tools/host-supervisor.py",
+      "bytes": 3292,
+      "sha256": "ed8388536c5e9a29a07f0dcc065612ce768c1d259a719cf90fd1231d2151cccf"
+    },
+    {
+      "path": "../tools/xtest.py",
+      "bytes": 2053,
+      "sha256": "e02c01b752acc6e63c8f3062f7ecd667f6127d9a9b8ac80a5be96386bfa41698"
+    }
+  ]
+}

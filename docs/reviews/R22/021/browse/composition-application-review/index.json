@@ -1,0 +1,513 @@
+{
+  "task": "TASK021",
+  "review_kind": "independent SPEC + QUALITY fixed-source review",
+  "created_utc": "2026-11-14T03:00:16.234325+00:00",
+  "base": "d80c62be5f902d0dbce64002b5060a1b49677aa5",
+  "head": "e3016afe7e61133ef549302cf01383848507d5c3",
+  "source_repository": "/workspace/work/composition-application-implementation/source",
+  "working_tree_observation": "?? cjpm.lock\n?? examples/composition/cjpm.lock\n?? examples/minimal/cjpm.lock\n",
+  "verdicts": {
+    "SPEC": {
+      "verdict": "insufficient_evidence",
+      "scope": "Full C005/AC021; source requirements reviewed without confirmed violation; mandatory ordinary interaction and actual-host execution missing"
+    },
+    "QUALITY": {
+      "verdict": "passed",
+      "scope": "Public construction, ownership, maintainability and source-only review; no runtime/AC acceptance"
+    }
+  },
+  "methods": [
+    "Read full changed product/test files and fixed contracts/goldens",
+    "Compare exact Git diff and test correction provenance",
+    "Trace public lifecycle, overlay event routing and owner/session-bound post semantics",
+    "Read factual development logs/metadata and verify retained binary/bundle hashes; no execution",
+    "Reuse unchanged core/dependency/environment evidence under AGENTS11.1; no cold suite runs"
+  ],
+  "skills": [
+    {
+      "package": "c6/using-superpowers",
+      "application": "Subagent exemption read"
+    },
+    {
+      "package": "c6/requesting-code-review",
+      "application": "Independent code-review role; parent dispatch already supplies required separation; no additional delegation"
+    },
+    {
+      "package": "c6/verification-before-completion",
+      "application": "Fresh fixed-Git and artifact verification; existing build/test records reused per AGENTS11.1 and dispatch prohibition on reruns"
+    }
+  ],
+  "unchanged_verified": [
+    "src/",
+    "native/",
+    "tests/composition/src/",
+    "tests/composition/verify-files.mjs"
+  ],
+  "test_correction": {
+    "source": "2e5e998d00f2f60e45376bca4ada8376273d339a",
+    "adopted": "fd7a6b73096f66499343b937cfefff8d24e6dfd8",
+    "diff_bytes_equal": true,
+    "basis": "Unchanged src/frame.cj:175-178 emits ░ when single-column and . otherwise"
+  },
+  "source_inputs": [
+    {
+      "path": "AGENTS.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:AGENTS.md",
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "bytes": 35500,
+      "changed": false
+    },
+    {
+      "path": "BATTLE_PROTOCOL.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:BATTLE_PROTOCOL.md",
+      "sha256": "fc954ffa193e78aaa76c641e85729ab488eb6951ef32fa5c94a378812fcba959",
+      "bytes": 14053,
+      "changed": false
+    },
+    {
+      "path": "docs/architecture.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:docs/architecture.md",
+      "sha256": "b7bfecde6e42e37eb8b075eab7f5e3e5d53e9a062d57ba803bb99c5dc9b11bb9",
+      "bytes": 33008,
+      "changed": false
+    },
+    {
+      "path": "docs/development/cangjie-conventions.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:docs/development/cangjie-conventions.md",
+      "sha256": "9dce8d4a6f68701a9a862fe057bf26be40f27a0a8d0296f73131ffe6ef2da99a",
+      "bytes": 2357,
+      "changed": false
+    },
+    {
+      "path": "docs/development/proposal.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:docs/development/proposal.md",
+      "sha256": "08fa7999d3d5be4f6b4e04dc80bdb5c54eb667455ade634a48572faaa1108260",
+      "bytes": 12619,
+      "changed": false
+    },
+    {
+      "path": "docs/product/README.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:docs/product/README.md",
+      "sha256": "26fba90b3c2b45a26041f076ba6f0e2ecd3b75311f6288f926f64c8e67636481",
+      "bytes": 15046,
+      "changed": true
+    },
+    {
+      "path": "docs/product/composition.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:docs/product/composition.md",
+      "sha256": "a169f0486859784981e10bf7ef98d05c84bcd9c76bee012b32f8b4ef1715664a",
+      "bytes": 1584,
+      "changed": true
+    },
+    {
+      "path": "docs/requirements.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:docs/requirements.md",
+      "sha256": "6ca3b983f2d57d68523edb3cc732c4da04c5b5241959bc495da3a4fe9ac5656d",
+      "bytes": 27521,
+      "changed": false
+    },
+    {
+      "path": "docs/ui-construction.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:docs/ui-construction.md",
+      "sha256": "9bae1b0d47bb060d401c54372aef9c961b521e7b68e766914808758c21f87be6",
+      "bytes": 8493,
+      "changed": false
+    },
+    {
+      "path": "examples/composition/README.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/composition/README.md",
+      "sha256": "e0edff68237ddeb315d0548395734a02b5f5c892731c929f208dc313d5520c2b",
+      "bytes": 956,
+      "changed": true
+    },
+    {
+      "path": "examples/composition/cjpm.toml",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/composition/cjpm.toml",
+      "sha256": "54106622fa89e23ee1cab8c28692f69d256335f8b7fbb2a31290a6520e50434f",
+      "bytes": 162,
+      "changed": true
+    },
+    {
+      "path": "examples/composition/src/application_view.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/composition/src/application_view.cj",
+      "sha256": "f57177b1f7c662c46b40ad0dba7d5073a1981e8e5e0b3429403f91ff0cbbb280",
+      "bytes": 1434,
+      "changed": true
+    },
+    {
+      "path": "examples/composition/src/commands.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/composition/src/commands.cj",
+      "sha256": "e9fb3297c5c721a27cbc9d97a6bfc6c7627c5a6178bf7f779c363505fd45d1c2",
+      "bytes": 3177,
+      "changed": true
+    },
+    {
+      "path": "examples/composition/src/job_data.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/composition/src/job_data.cj",
+      "sha256": "57c8c141de9ce6e4096af5674cf35d5b4093d23ba0c2a88cbb52abdf3ee92d7d",
+      "bytes": 2648,
+      "changed": true
+    },
+    {
+      "path": "examples/composition/src/job_panel.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/composition/src/job_panel.cj",
+      "sha256": "85ffe69f24048f0074d4797682afe5e797567ac19e0f3059db26fffa79c6f03a",
+      "bytes": 2339,
+      "changed": true
+    },
+    {
+      "path": "examples/composition/src/logs_scene.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/composition/src/logs_scene.cj",
+      "sha256": "9fd5a5e6ed1dabd66321dc7f171d9d75f7be833ac4fd5eee33e96c8d85e3fff1",
+      "bytes": 1072,
+      "changed": true
+    },
+    {
+      "path": "examples/composition/src/main.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/composition/src/main.cj",
+      "sha256": "546ab16e176aa69777dbb2fb19a68ceebcfb8882ef888ca37dd70c02a2ba164e",
+      "bytes": 1887,
+      "changed": true
+    },
+    {
+      "path": "examples/composition/src/tasks_scene.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/composition/src/tasks_scene.cj",
+      "sha256": "5a17560296e0efe7f9bbadc922423f0d80d4d8818855e734d842260e82275cbd",
+      "bytes": 1727,
+      "changed": true
+    },
+    {
+      "path": "examples/minimal/README.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/minimal/README.md",
+      "sha256": "23e3454b5695c823e82d5f517c71b134d1d95a661b783e550131a6fa3a833d6a",
+      "bytes": 464,
+      "changed": true
+    },
+    {
+      "path": "examples/minimal/cjpm.toml",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/minimal/cjpm.toml",
+      "sha256": "d301a62d68caaa94a7bccf19ea1fb9072309f8bfacfde7b1c0779055acd43f03",
+      "bytes": 158,
+      "changed": false
+    },
+    {
+      "path": "examples/minimal/src/main.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:examples/minimal/src/main.cj",
+      "sha256": "384bb2bc59b766f4d631abdc2b7e13a16eaf7518076136e1d4485c7234eab97a",
+      "bytes": 917,
+      "changed": true
+    },
+    {
+      "path": "src/application.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/application.cj",
+      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56",
+      "bytes": 36536,
+      "changed": false
+    },
+    {
+      "path": "src/component.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/component.cj",
+      "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c",
+      "bytes": 25566,
+      "changed": false
+    },
+    {
+      "path": "src/frame.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/frame.cj",
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+      "bytes": 12900,
+      "changed": false
+    },
+    {
+      "path": "src/node_ref.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/node_ref.cj",
+      "sha256": "2a876a80d1b59c131b15833b67ae310220d4088e2006197bea470094aebbd805",
+      "bytes": 8452,
+      "changed": false
+    },
+    {
+      "path": "src/overlay_handle.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/overlay_handle.cj",
+      "sha256": "04ecd265cb4979a2357b8d7fcdc470f0bf415d28006c54d63e2b300719f893bd",
+      "bytes": 738,
+      "changed": false
+    },
+    {
+      "path": "src/overlay_options.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/overlay_options.cj",
+      "sha256": "1baa88a8157123c2004550f0ca4b2d52147f4d5030c7caaa52f5847a0126dab7",
+      "bytes": 651,
+      "changed": false
+    },
+    {
+      "path": "src/runtime_session.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/runtime_session.cj",
+      "sha256": "9e8b230a98dcb1323b951eedd08abc1ec8d85a6dd6ca3404c610a8131ee9da8b",
+      "bytes": 66044,
+      "changed": false
+    },
+    {
+      "path": "src/scroll_view.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/scroll_view.cj",
+      "sha256": "6df10f193c10676850d7e4d1d6b43a5dc649353f9edf9167b594e568e1c4ef7d",
+      "bytes": 230,
+      "changed": false
+    },
+    {
+      "path": "src/split_pane.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/split_pane.cj",
+      "sha256": "5be7960d78f9071b9a56cde9299239a78f64e6a963eab870e239579f31b51e47",
+      "bytes": 283,
+      "changed": false
+    },
+    {
+      "path": "src/status_bar.cj",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:src/status_bar.cj",
+      "sha256": "106dfcfc7a65d09ee7c25b2d135d09b21bc262c589cd880ad5662dad36fea7d5",
+      "bytes": 115,
+      "changed": false
+    },
+    {
+      "path": "tests/composition/application/goldens/modal.json",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:tests/composition/application/goldens/modal.json",
+      "sha256": "efbae496d4ce3aff277bc7f9e60ebf90474ac42b0cfae366345ae293066a909f",
+      "bytes": 3646,
+      "changed": true
+    },
+    {
+      "path": "tests/composition/application/goldens/startup.json",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:tests/composition/application/goldens/startup.json",
+      "sha256": "57e3df15cb68cdddf54708122db8a821910441a5025550bcf2e0de7c504c961e",
+      "bytes": 6515,
+      "changed": false
+    },
+    {
+      "path": "tests/composition/application/interaction-contract.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:tests/composition/application/interaction-contract.md",
+      "sha256": "8a8fe1c45c93cd95cae53bcc7edb0bb58d46b50ea89d556dce4039cdc8565f61",
+      "bytes": 13338,
+      "changed": true
+    },
+    {
+      "path": "tests/composition/application/public-api-basis.md",
+      "git_ref": "e3016afe7e61133ef549302cf01383848507d5c3:tests/composition/application/public-api-basis.md",
+      "sha256": "66e98efe14e468e707911e66c713e69c78d4432fc594515b1188fb3829973ec4",
+      "bytes": 3455,
+      "changed": false
+    }
+  ],
+  "external_artifacts": [
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-021-review-brief.md",
+      "sha256": "deb46cc9be3907456bf8561557f1d7dc7beff8e316d07bff38b8d5c8bbc60c0f",
+      "bytes": 4511,
+      "role": "controller_input"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-021-product-brief.md",
+      "sha256": "4fe2aa6c0f31f02492e057766c5e817215bbe51d2785e9c1d40df5e2a5d2d86a",
+      "bytes": 14273,
+      "role": "controller_input"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-021-candidate-review-package.txt",
+      "sha256": "3cff69d1735add8e4285832957ce55214793884325a6b2cb034b43ad742ed974",
+      "bytes": 31911,
+      "role": "controller_input"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/index.json",
+      "sha256": "215c3fd7e43a4d95f832a63c51b6078163a881b5010328fdacdadf9fd34ca52f",
+      "bytes": 1883,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/minimal-build.txt",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/composition-build-eleventh.txt",
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "bytes": 19,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated.txt",
+      "sha256": "b0e63f65124e31118238e185b0f8c387770b076e48ed434e9d098c9e6ff32726",
+      "bytes": 188,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/pty-first.txt",
+      "sha256": "2f1b45e7641cdfef4b0cf0eb9145404cc34524a80ca8e6670fdfde54ebbfed28",
+      "bytes": 3589,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/bundle-candidate.txt",
+      "sha256": "d70f75c66c94e28fb97928bfb4a27e9e49e047e3fe184f7c2b383b37372e13fc",
+      "bytes": 155257,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/candidate.cjp",
+      "sha256": "40c0d2e3050a92a5d394fc1e2bc2d6b5560876285f31a8d2d937c8dacd76649a",
+      "bytes": 176717,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/binaries/minimal",
+      "sha256": "79c06ed511c9bb0ba50b9b14352cbf24575a110f5b8df7939bab14f8119f0e29",
+      "bytes": 18985840,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/binaries/composition",
+      "sha256": "3725e846cf379fb27b5026b39812248fdeabe6c326bc55557f24f182d8d4490e",
+      "bytes": 19229416,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/composition-invalid.json",
+      "sha256": "4f47f3b82cf5e0accbd2eeb94c2629a9fdecace86f2663eb35191f114c5875b5",
+      "bytes": 326,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/composition-invalid.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/composition-invalid.stdout",
+      "sha256": "88ea059ed42c4c7898e7b46ea09f649451a61db02db0bf518eee0461bf330e31",
+      "bytes": 22,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/composition-smoke-invalid.json",
+      "sha256": "ec70851d8ec16efe4a2155f9199df7f52540d638a1fe09389055d53216776b70",
+      "bytes": 341,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/composition-smoke-invalid.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/composition-smoke-invalid.stdout",
+      "sha256": "88ea059ed42c4c7898e7b46ea09f649451a61db02db0bf518eee0461bf330e31",
+      "bytes": 22,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/composition-smoke.json",
+      "sha256": "1a260384f3901b3fefdb07060e89276e9de5c1a48b0e695539271cde146874a2",
+      "bytes": 324,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/composition-smoke.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/composition-smoke.stdout",
+      "sha256": "aebc169f60756905766ce98ce892c42a560624e7aeee3e41228b9fd6d293ca6b",
+      "bytes": 5376,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/minimal-invalid.json",
+      "sha256": "740fc8206c5c2057ecb2cac3a06d09bae47fd18c6a920372c3cc22bd536cdc6e",
+      "bytes": 322,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/minimal-invalid.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/minimal-invalid.stdout",
+      "sha256": "88ea059ed42c4c7898e7b46ea09f649451a61db02db0bf518eee0461bf330e31",
+      "bytes": 22,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/minimal-smoke-invalid.json",
+      "sha256": "b2e6a641cb7506aa4a889c50baf49f475539b86585b04f039c014b1faa12d1d3",
+      "bytes": 337,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/minimal-smoke-invalid.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/minimal-smoke-invalid.stdout",
+      "sha256": "88ea059ed42c4c7898e7b46ea09f649451a61db02db0bf518eee0461bf330e31",
+      "bytes": 22,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/minimal-smoke.json",
+      "sha256": "2885756be06ad974eeb317313c1fc17a8e341adc8584fc440a34f32553624d3f",
+      "bytes": 320,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/minimal-smoke.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/direct-separated/minimal-smoke.stdout",
+      "sha256": "bec14f2f59bdf17860f41ec4dd6e6cd2fa69ee5be612750eac6b051f858e3cab",
+      "bytes": 106,
+      "role": "development_evidence"
+    },
+    {
+      "path": "/workspace/work/composition-application-implementation/evidence/checksums.json",
+      "sha256": "ad1a7b1fa0c5921aa43e569e653c5a1df601fe44a5c1f5b62a8682e31ddf9c1a",
+      "bytes": 81404,
+      "role": "development_evidence_checksum_manifest",
+      "verification": "Manifest SHA verified here; selected necessary raw/binary/bundle files independently hashed in this index; root reports checking full 379-file/10-Git-object manifest"
+    }
+  ],
+  "cannot_verify": [
+    {
+      "item": "Ordinary binary interaction contract",
+      "missing": "Successful fixed PTY run with actual keys, background work, focus/editor preservation, resize and mode restoration; initial run stopped in parser before interactions"
+    },
+    {
+      "item": "Actual-host AC021",
+      "missing": "Independent real XTerm/VTE/VT run, original PNG/raw/profile provenance and acceptance judgment"
+    },
+    {
+      "item": "Final release readiness",
+      "missing": "Outside this gate; T087 boundary and M2/full020/041/024 remain open"
+    }
+  ],
+  "provenance_limitation": "Initial nonadopted 5ca index4a/report overwritten before adoption; original Git source and first raw RED/tool artifacts remain. Adopted c51/index84da and subsequent versioned fixes retained independently. No claim every candidate metadata survived.",
+  "outputs": [
+    {
+      "path": "/workspace/work/composition-application-review/report.md",
+      "sha256": "63c851f7b7bb0944d4457b52f9d6a87d47640fe9271c1cc64bfd1984b64f3d93"
+    },
+    {
+      "path": "/workspace/work/composition-application-review/findings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  ]
+}

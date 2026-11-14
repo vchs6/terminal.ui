@@ -1,0 +1,299 @@
+{
+  "task": "TASK021 bounded Done-row width review",
+  "created_utc": "2026-11-14T03:20:44.654751+00:00",
+  "base": "95b6d780a92b65bf4c83540d3e7c8a47c131df64",
+  "head": "384a90053a3e9467799ef8600e8ecc9253647f92",
+  "repository": "/workspace/work/composition-application-tests/fix-width/source",
+  "verdicts": {
+    "SPEC": "passed for bounded fixture arithmetic",
+    "QUALITY": "passed for two-file test correction",
+    "full_application_acceptance": "outside this gate"
+  },
+  "findings": 0,
+  "final_seal_confirmation": "Root explicitly supplied test-author FINAL4413 before binding",
+  "prior_reviews_immutable": [
+    {
+      "path": "/workspace/work/composition-application-review/index.json",
+      "sha256": "0aa511da9cf52025f0467aac29f2fea5e3171156ea82f1ba7c0e8fa2a0fd388c"
+    },
+    {
+      "path": "/workspace/work/composition-application-review/pty-fix/index.json",
+      "sha256": "586fb6e599678e2061b50bddd9b35c9d2175c2ca14ee5ac343ff72749fdbe1e9"
+    },
+    {
+      "path": "/workspace/work/composition-application-review/theme-wait/index.json",
+      "sha256": "020e94cd0e420dde83ae0f23053a51226af15631555b00e6826a5c7292a8d4eb"
+    },
+    {
+      "path": "/workspace/work/composition-application-review/selection/index.json",
+      "sha256": "d745f32d2c9af230df2c9b22d99bb8a68f0637ff4ce737269f550e4d608d9f51"
+    }
+  ],
+  "fixed_inputs": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/index.json",
+      "bytes": 15764,
+      "sha256": "4413bb5e4e28f45abb9ce5a3cfde199b5eba4d41f73dcf13773625e7ee01cf26"
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-021-width-review-package.txt",
+      "bytes": 5025,
+      "sha256": "c397af7012b47e58bd05c56cf987db74a78cd135a602548727fe60023bd32a0e"
+    }
+  ],
+  "source_inputs": [
+    {
+      "git_ref": "384a90053a3e9467799ef8600e8ecc9253647f92:tests/composition/application/oracle-selftest.mjs",
+      "bytes": 8401,
+      "sha256": "0a0708433cc2bbf69e9ca599d49d82db60b41d029165bae4c0f55d34acad04ec"
+    },
+    {
+      "git_ref": "384a90053a3e9467799ef8600e8ecc9253647f92:tests/composition/application/pty.mjs",
+      "bytes": 18959,
+      "sha256": "53f4febfa79be6767f74fa03885ad3600c6612e28c2e910733440e6f45d81792"
+    }
+  ],
+  "verified_git_source_proofs": [
+    {
+      "gitCommit": "95b6d780a92b65bf4c83540d3e7c8a47c131df64",
+      "relativePath": "tests/composition/application/interaction-contract.md",
+      "gitBlob": "e8d863cc98599efd3454d92f52b4398c5465e5f7",
+      "bytes": 15417,
+      "sha256": "ffe0a667608b6431c6ba3299e0b64b815388b1385e77f93ce5bc52ca85d7cd1a"
+    },
+    {
+      "gitCommit": "95b6d780a92b65bf4c83540d3e7c8a47c131df64",
+      "relativePath": "tests/composition/application/goldens/startup.json",
+      "gitBlob": "93ac2d0dc796c28abb161b541af35413094991e4",
+      "bytes": 6515,
+      "sha256": "57e3df15cb68cdddf54708122db8a821910441a5025550bcf2e0de7c504c961e"
+    },
+    {
+      "gitCommit": "95b6d780a92b65bf4c83540d3e7c8a47c131df64",
+      "relativePath": "tests/composition/application/pty.mjs",
+      "gitBlob": "20f06a4529409ebd2c6d8f9da5e851907e7489db",
+      "bytes": 18959,
+      "sha256": "324193d4a74524891d0fc47841e2429962a118ecba684c3c4e3fe0e4187e6113"
+    }
+  ],
+  "verified_evidence_and_changed_files": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/bounded.diff",
+      "bytes": 2447,
+      "sha256": "15fdea3e4ba488cf8e22bc8bdb0bc931261f6f082983d7b818ca9f2e0de1b0e9"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/done-frame.json",
+      "bytes": 244407,
+      "sha256": "f1ca18df5f657e81c678b42ee4ba834753bc045a047ac9d4703f3e81c005e8d8"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/oracle-selftest.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/oracle-selftest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/oracle-selftest.stdout",
+      "bytes": 133,
+      "sha256": "bfa300b2032dfe4e04bc26da0c2ed5b2568a018f70491ff98ee6953ea528ef62"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/original-events.json",
+      "bytes": 6082,
+      "sha256": "418f4d9dcae2871606190b6739c79f35e2f179a272580d58036d6485daccaba8"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/original-stdout.raw",
+      "bytes": 66944,
+      "sha256": "7556c524eb79c6b07f76cfe1a635c54145e0558a74e36b3181e622d79edc9f65"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-oracle.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-oracle.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-oracle.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-pty.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-pty.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-pty.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/verify.sh",
+      "bytes": 717,
+      "sha256": "e23d1954557e0323fdb6c5dcd16ae60e87191b1579c15de7d40a2929bf16a87e"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/whitespace.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/whitespace.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/whitespace.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/width-before.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/width-before.mjs",
+      "bytes": 361,
+      "sha256": "3fc8791dc4f0583ac757b2b6e8f356992e0b17e7e023aa100c16532527050abf"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/width-before.stderr",
+      "bytes": 981,
+      "sha256": "ead2a66e5e8b3ff51b6393a6903f3e155e3f7251834af8a5bb7cdde1c7dfc497"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/width-before.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/width-replay.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/width-replay.mjs",
+      "bytes": 611,
+      "sha256": "366dabe8b7e42c9851ada36fc20eed3c1b4a4b1ab0275c1e4c18ed0a36dc2158"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/width-replay.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/evidence/width-replay.stdout",
+      "bytes": 75,
+      "sha256": "c9a221adf7732351a32dd2411ae31b7f1c00818482d9b1e6bfaa74afc56a571e"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/source/tests/composition/application/oracle-selftest.mjs",
+      "bytes": 8401,
+      "sha256": "0a0708433cc2bbf69e9ca599d49d82db60b41d029165bae4c0f55d34acad04ec"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-width/source/tests/composition/application/pty.mjs",
+      "bytes": 18959,
+      "sha256": "53f4febfa79be6767f74fa03885ad3600c6612e28c2e910733440e6f45d81792"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/raw/pty-retry3/pty-BQP53p/interactions/events.json",
+      "bytes": 6082,
+      "sha256": "418f4d9dcae2871606190b6739c79f35e2f179a272580d58036d6485daccaba8"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/raw/pty-retry3/pty-BQP53p/interactions/frames.json",
+      "bytes": 13023720,
+      "sha256": "a361e7409823714b4d286996e44262aefc1593e00a3d0391f89d766b88d88f07"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/raw/pty-retry3/pty-BQP53p/interactions/stdout.raw",
+      "bytes": 66944,
+      "sha256": "7556c524eb79c6b07f76cfe1a635c54145e0558a74e36b3181e622d79edc9f65"
+    }
+  ],
+  "recorded_outcomes_reused": [
+    {
+      "name": "oracle-selftest",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-width/evidence/oracle-selftest.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-width/evidence/oracle-selftest.stderr"
+    },
+    {
+      "name": "syntax-oracle",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-oracle.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-oracle.stderr"
+    },
+    {
+      "name": "syntax-pty",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-pty.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-width/evidence/syntax-pty.stderr"
+    },
+    {
+      "name": "whitespace",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-width/evidence/whitespace.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-width/evidence/whitespace.stderr"
+    },
+    {
+      "name": "width-before",
+      "trueExit": 1,
+      "stdout": "/workspace/work/composition-application-tests/fix-width/evidence/width-before.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-width/evidence/width-before.stderr"
+    },
+    {
+      "name": "width-replay",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-width/evidence/width-replay.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-width/evidence/width-replay.stderr"
+    }
+  ],
+  "scope_checks": {
+    "clean_fixed_head": true,
+    "two_test_files_only": true,
+    "sole_pty_change_77_to_76": true,
+    "strict_entire_row_assertion_preserved": true,
+    "same_width_stale_suffix_negative_present": true,
+    "overwidth_negative_present": true,
+    "no_keys_parser_product_or_deadline_changes": true,
+    "no_reruns": true,
+    "prior_review_seals_unchanged": true
+  },
+  "limits": [
+    "Arithmetic and recorded replay evidence do not certify full application runtime",
+    "Actual-host acceptance remains outside scope",
+    "Historical provenance limitation remains in original immutable review"
+  ],
+  "skills_reused": [
+    "superpowers:requesting-code-review independent review role",
+    "superpowers:verification-before-completion with AGENTS11.1 evidence reuse"
+  ],
+  "outputs": [
+    {
+      "path": "/workspace/work/composition-application-review/width/report.md",
+      "sha256": "edba6a389b1d9afe7a0da52bea1d927656b721012b13e4e8a5ed5cbe2caaaafa"
+    },
+    {
+      "path": "/workspace/work/composition-application-review/width/findings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  ]
+}

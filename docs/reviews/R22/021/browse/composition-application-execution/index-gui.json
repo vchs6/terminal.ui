@@ -1,0 +1,1287 @@
+{
+  "scope": "TASK021 independent actual XTerm and isolated-profile xfce4-terminal/VTE GUI runtime evidence; no acceptance verdict",
+  "createdUtc": "2026-11-14T04:32:56.410993+00:00",
+  "source": {
+    "head": "b77307b3b70423739f56855952c56acedbdc17b6",
+    "productBase": "e3016afe7e61133ef549302cf01383848507d5c3",
+    "testOnlyPatches": [
+      "6dbece66e2989849d87729a5da10d95b4fbb0a24",
+      "d07a6933be8ff2429ee9799ee32043642e0dfeb4",
+      "95b6d780a92b65bf4c83540d3e7c8a47c131df64",
+      "384a90053a3e9467799ef8600e8ecc9253647f92"
+    ],
+    "trackedDiff": "",
+    "priorSyntheticIndex": "index-retry4.json"
+  },
+  "dependencies": {
+    "sdk": "Cangjie Compiler 1.2.0 (cjnative); CJPM 1.2.0",
+    "node": "v24.22.1",
+    "stdxPath": "/workspace/work/linux-build-recon/stdx-env",
+    "ucdArchive": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+    "registry": "https://pkg.cangjie-lang.cn/registry",
+    "cache": "/workspace/work/viewport-tests/cache"
+  },
+  "hosts": {
+    "xterm": {
+      "version": "XTerm(398)",
+      "fullRun": "raw/gui-xterm-retry1",
+      "minimal": "raw/gui-minimal-xterm",
+      "paste": "raw/gui-paste-xterm"
+    },
+    "vte": {
+      "version": "xfce4-terminal 1.1.4 (Xfce 4.20)",
+      "defaultF1Intercept": "raw/gui-vte-retry1",
+      "isolatedProfileFullRun": "raw/gui-vte-retry2",
+      "wideCapture": "raw/gui-vte-capture-retry3",
+      "minimal": "raw/gui-minimal-vte",
+      "paste": "raw/gui-paste-vte",
+      "profileAccels": "raw/gui-vte-retry2/xdg-config/xfce4/terminal/accels.scm",
+      "profileXfconf": "raw/gui-vte-retry2/xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml"
+    },
+    "shared": {
+      "TERM": "xterm-256color",
+      "COLORTERM": "truecolor",
+      "LC_ALL": "C.UTF-8",
+      "keyboard": "real XTEST window key events",
+      "cursorQueryHex": "1b5b3f32352470",
+      "cursorReplyHex": "1b5b3f32353b312479"
+    }
+  },
+  "results": {
+    "guiDirectProductExits": 8,
+    "guiDirectExitEach": 0,
+    "guiTermiosEqualEach": true,
+    "guiMode25ReplyEqualEach": true,
+    "compositionResizeReadbacks": [
+      [
+        40,
+        12
+      ],
+      [
+        16,
+        6
+      ],
+      [
+        80,
+        24
+      ]
+    ],
+    "minimalDimensions": [
+      16,
+      3
+    ],
+    "defaultVteF1": "host intercept; isolated profile required",
+    "vteWideCapturePixels": [
+      817,
+      458
+    ],
+    "otherHosts": "outside scope"
+  },
+  "files": [
+    {
+      "path": "index-retry4.json",
+      "bytes": 14723,
+      "sha256": "fd9f77b43f40fbd696e55eaff014c8c756244b417e76aff655e0f8f3d3cc40bb"
+    },
+    {
+      "path": "raw/gui-minimal-vte/compression-map.json",
+      "bytes": 875,
+      "sha256": "f20afbae38976c2dfd7d9d0edf2c2feb1c58cf82e3e54e8449a5f7044f28124d"
+    },
+    {
+      "path": "raw/gui-minimal-vte/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-minimal-vte/final-replay.json",
+      "bytes": 126,
+      "sha256": "4e1449914e3e542e0a6c4ecadc82486100a75e065de74cf99aa55d68bd416b06"
+    },
+    {
+      "path": "raw/gui-minimal-vte/gui-events.jsonl",
+      "bytes": 590,
+      "sha256": "7b29fc9c46c4a962eddb1782eb38bfcd09980b81a639448ed90a85cdcc4249fb"
+    },
+    {
+      "path": "raw/gui-minimal-vte/host.pid",
+      "bytes": 8,
+      "sha256": "b4ba07ca6e0056a5227481957b776c49c2cffeed2540f6dc8d58f23955e2ed71"
+    },
+    {
+      "path": "raw/gui-minimal-vte/host.stderr",
+      "bytes": 917,
+      "sha256": "335ddfcc3524ee3e14eb976e562272a2a33ad3bad72bfc0dcac916f230c3ca9c"
+    },
+    {
+      "path": "raw/gui-minimal-vte/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-minimal-vte/mode25-after.json",
+      "bytes": 246,
+      "sha256": "a90a297dfff6b28a5c77fe1a3e05d164cc46b5ef20510e10cb793e7c68c870cc"
+    },
+    {
+      "path": "raw/gui-minimal-vte/mode25-before.json",
+      "bytes": 246,
+      "sha256": "fe1e76beda2a4b6c20d15facf0c8f56970e92d0b67f2a5cadffd9828e956ecf8"
+    },
+    {
+      "path": "raw/gui-minimal-vte/product-command.json",
+      "bytes": 376,
+      "sha256": "78a971efc83ef1fd6445029bec893b96ff67017bbd0c82570295a0121d9188de"
+    },
+    {
+      "path": "raw/gui-minimal-vte/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-minimal-vte/product.strace.gz",
+      "bytes": 9128,
+      "sha256": "4d7c8d68e76f78ab995af7a4ae72c4c2e1ddedd7835227212fc08b267596209e"
+    },
+    {
+      "path": "raw/gui-minimal-vte/startup.png",
+      "bytes": 1313,
+      "sha256": "5fb1855977e3972e24014b1096f21f98b6ae08dea6df32ceeef382c51dec803f"
+    },
+    {
+      "path": "raw/gui-minimal-vte/stdout.raw.gz",
+      "bytes": 85,
+      "sha256": "eecf8cc20e11f217957da2c515f5e77d07b9c63e20eef716bea2c92b921b2425"
+    },
+    {
+      "path": "raw/gui-minimal-vte/terminal-after.json",
+      "bytes": 975,
+      "sha256": "9a2346ea309dd23096ebb6273ce2b2ce7f96ce8c82508bcfa65a7b2b696c6df0"
+    },
+    {
+      "path": "raw/gui-minimal-vte/terminal-before.json",
+      "bytes": 1030,
+      "sha256": "b697c52d961bd3007af72acf448a187edb3955511770775825f5847a26aff32b"
+    },
+    {
+      "path": "raw/gui-minimal-vte/xdg-cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9",
+      "bytes": 352,
+      "sha256": "91725f3333827478c88df0bb4ad2afb75b402e43e43e49a8d8c8256101985bb5"
+    },
+    {
+      "path": "raw/gui-minimal-vte/xdg-cache/fontconfig/CACHEDIR.TAG",
+      "bytes": 200,
+      "sha256": "05e7633fb31bf1f6f8d89020c16b9f24587fdf7638e951c9745b192f5fc3b682"
+    },
+    {
+      "path": "raw/gui-minimal-vte/xdg-config/xfce4/terminal/accels.scm",
+      "bytes": 119,
+      "sha256": "e543efbf8d7e62bf47b4077febd670c345b3743b8e222804b7494fcdc666ef0e"
+    },
+    {
+      "path": "raw/gui-minimal-vte/xdg-config/xfce4/terminal/terminalrc",
+      "bytes": 144,
+      "sha256": "202427bda87b37ea2ff1ac4d1a85374313248a0ae2d7b35b0be1c6e4846e2510"
+    },
+    {
+      "path": "raw/gui-minimal-vte/xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml",
+      "bytes": 442,
+      "sha256": "1d37e0a494b8b8b37f99e4b72e37d0d1890bcf9d4d5dbb2adb78c8586ba5200c"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/compression-map.json",
+      "bytes": 884,
+      "sha256": "edf53a3aca7fdf00cc2571efe52bc9b39abb015d7da021f7c0bc4d3ca5b6bf09"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/final-replay.json",
+      "bytes": 126,
+      "sha256": "4e1449914e3e542e0a6c4ecadc82486100a75e065de74cf99aa55d68bd416b06"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/gui-events.jsonl",
+      "bytes": 594,
+      "sha256": "976560ca0a71e757401687963251bd810b72422af5958c24e34fe30a2a53be60"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/host.pid",
+      "bytes": 8,
+      "sha256": "57b4eefbc802b79467d05484b34925cb45f3d64a145ca4da7e64041353605432"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/host.stderr",
+      "bytes": 48,
+      "sha256": "e0a46db3e7d086b6ed55477f9c8cc5ec4dbe4b6ef804e1372e9a4a6dc5a6b01a"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/mode25-after.json",
+      "bytes": 246,
+      "sha256": "16fd38eccc2df65fef5871ae03e7fc542c79aab2c313d1bfe98ebfe6fc64f8b5"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/mode25-before.json",
+      "bytes": 246,
+      "sha256": "5e12fd1c3ee84e5ae0d3551ec82d80cf4ac85f232d9768666351434d89b28cf3"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/product-command.json",
+      "bytes": 378,
+      "sha256": "878dfc63aa429fbbabb9a35e08232f48f7e57c4de8eeba0b65faa61c0d0f997c"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/product.strace.gz",
+      "bytes": 9134,
+      "sha256": "72088440832a5f3f108caa4d5eaca914e8f80b54f04f23eb66538954350273f2"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/startup.png",
+      "bytes": 1317,
+      "sha256": "dc6ca2cc71959d21e43cc9df18af5dcf8754d22a6b7596cc6ef8af5df267ec45"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/stdout.raw.gz",
+      "bytes": 85,
+      "sha256": "eecf8cc20e11f217957da2c515f5e77d07b9c63e20eef716bea2c92b921b2425"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/terminal-after.json",
+      "bytes": 975,
+      "sha256": "4098aa1c706a31967e58fb06a491fdebbc28bcdb506754acfa2d950e93775519"
+    },
+    {
+      "path": "raw/gui-minimal-xterm/terminal-before.json",
+      "bytes": 1014,
+      "sha256": "4ea5808306994fa028813384d9853b96d1678af2d862db1f4fc93ecd26379826"
+    },
+    {
+      "path": "raw/gui-paste-vte/clipboard-ready.txt",
+      "bytes": 110,
+      "sha256": "d60c605985b043171b579c688ea7c5e871ea827e026fb2cb78d5f71f2c878a7c"
+    },
+    {
+      "path": "raw/gui-paste-vte/clipboard-unicode.pid",
+      "bytes": 8,
+      "sha256": "55d90d441be7ba480a3e6612655abe2d46cb1fada0605c89e86a9962bea5e101"
+    },
+    {
+      "path": "raw/gui-paste-vte/clipboard-unicode.stderr",
+      "bytes": 278,
+      "sha256": "7cc519c44362600d3897304305f73a7cccfe0d7d0f9e70615954f0b811626637"
+    },
+    {
+      "path": "raw/gui-paste-vte/clipboard-unicode.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-paste-vte/clipboard.pid",
+      "bytes": 8,
+      "sha256": "5d6efa096a08a8db9c7c1be0b8fb0158e882c7ad0e5063b3007cad3f4d09177d"
+    },
+    {
+      "path": "raw/gui-paste-vte/clipboard.stderr",
+      "bytes": 278,
+      "sha256": "7cc519c44362600d3897304305f73a7cccfe0d7d0f9e70615954f0b811626637"
+    },
+    {
+      "path": "raw/gui-paste-vte/clipboard.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-paste-vte/compression-map.json",
+      "bytes": 1312,
+      "sha256": "ffd179fed7e0c10b442acd1f57590f98d64d1046f8fb73a4016ffd2547bd86cd"
+    },
+    {
+      "path": "raw/gui-paste-vte/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-paste-vte/final-replay.json",
+      "bytes": 2093,
+      "sha256": "08dd374658891b173b23a4efea4523ed0204f479c6279bf254464a04d8b126b0"
+    },
+    {
+      "path": "raw/gui-paste-vte/gui-events.jsonl",
+      "bytes": 6113,
+      "sha256": "3283666d1ea18985327738639dee4e8e865b36f41bed4f9932603ae3f98c0acb"
+    },
+    {
+      "path": "raw/gui-paste-vte/gui-frames.jsonl.gz",
+      "bytes": 617,
+      "sha256": "c44d64537301566563333761829a75366e37e758fb1ff3a694e5f26863418084"
+    },
+    {
+      "path": "raw/gui-paste-vte/host.pid",
+      "bytes": 8,
+      "sha256": "ea9800df06b8b75616f4803c3ad5ce6f549bac2b9ec659d3f6e315513adf3452"
+    },
+    {
+      "path": "raw/gui-paste-vte/host.stderr",
+      "bytes": 915,
+      "sha256": "da5fe3849d72cab9f5654ab6c12753edb19868d1b2b3c49743826b18efd0a6e3"
+    },
+    {
+      "path": "raw/gui-paste-vte/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-paste-vte/mode25-after.json",
+      "bytes": 246,
+      "sha256": "d3f32ba4a3dcc6468f749767fe989321d80cb1dfa0b6733c2c70a4593edb65fc"
+    },
+    {
+      "path": "raw/gui-paste-vte/mode25-before.json",
+      "bytes": 246,
+      "sha256": "307a96b45807e09711fe0d10d5b92fb555404f7eecea2ea302ac9962a1953163"
+    },
+    {
+      "path": "raw/gui-paste-vte/pasted.png",
+      "bytes": 19036,
+      "sha256": "a49bd6d7bb8a8ad818b6f3c5cf15c9afc537aad99a3924186fc269d8becec781"
+    },
+    {
+      "path": "raw/gui-paste-vte/product-command.json",
+      "bytes": 378,
+      "sha256": "b4f0dbe4ee974551aba73d73c3098079d01aa5101fd14004ac6ef7153a303281"
+    },
+    {
+      "path": "raw/gui-paste-vte/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-paste-vte/product.strace.gz",
+      "bytes": 10976,
+      "sha256": "c4ed8b78a0d42508c52750952b6173c1f17961779589f04ac7a18f3775c724fd"
+    },
+    {
+      "path": "raw/gui-paste-vte/stdout.raw.gz",
+      "bytes": 655,
+      "sha256": "5826db48249c0ed78f70ebab7f228cb6183bca3693662ad186cc152e45baca03"
+    },
+    {
+      "path": "raw/gui-paste-vte/terminal-after.json",
+      "bytes": 976,
+      "sha256": "933e39b22fcfc7b6f8fbe78a19299323789985ab0c4b98e49dff6abb06a9ae49"
+    },
+    {
+      "path": "raw/gui-paste-vte/terminal-before.json",
+      "bytes": 1031,
+      "sha256": "d532c16a18907cf5656ee754498a8588e1230e1262c22d3bd170eb5f5029170c"
+    },
+    {
+      "path": "raw/gui-paste-vte/unicode-pasted.png",
+      "bytes": 22047,
+      "sha256": "9056c74fea1c8cdf7548947f3aeb0778324e4fe27cf64dc2ad257860837be524"
+    },
+    {
+      "path": "raw/gui-paste-vte/xdg-cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9",
+      "bytes": 352,
+      "sha256": "91725f3333827478c88df0bb4ad2afb75b402e43e43e49a8d8c8256101985bb5"
+    },
+    {
+      "path": "raw/gui-paste-vte/xdg-cache/fontconfig/CACHEDIR.TAG",
+      "bytes": 200,
+      "sha256": "05e7633fb31bf1f6f8d89020c16b9f24587fdf7638e951c9745b192f5fc3b682"
+    },
+    {
+      "path": "raw/gui-paste-vte/xdg-config/xfce4/terminal/accels.scm",
+      "bytes": 119,
+      "sha256": "e543efbf8d7e62bf47b4077febd670c345b3743b8e222804b7494fcdc666ef0e"
+    },
+    {
+      "path": "raw/gui-paste-vte/xdg-config/xfce4/terminal/terminalrc",
+      "bytes": 144,
+      "sha256": "202427bda87b37ea2ff1ac4d1a85374313248a0ae2d7b35b0be1c6e4846e2510"
+    },
+    {
+      "path": "raw/gui-paste-vte/xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml",
+      "bytes": 442,
+      "sha256": "1d37e0a494b8b8b37f99e4b72e37d0d1890bcf9d4d5dbb2adb78c8586ba5200c"
+    },
+    {
+      "path": "raw/gui-paste-xterm/clipboard-ready.txt",
+      "bytes": 70,
+      "sha256": "4e9820486d7deb8a569eee99cfdd619a3898a5df2732bcdfde9a9b0956288f55"
+    },
+    {
+      "path": "raw/gui-paste-xterm/clipboard.pid",
+      "bytes": 8,
+      "sha256": "a456934f60dd723f6fed884508d93e51ef1f4f3c4f6f9d34aa32790f70dff1e4"
+    },
+    {
+      "path": "raw/gui-paste-xterm/clipboard.stderr",
+      "bytes": 278,
+      "sha256": "7cc519c44362600d3897304305f73a7cccfe0d7d0f9e70615954f0b811626637"
+    },
+    {
+      "path": "raw/gui-paste-xterm/clipboard.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-paste-xterm/compression-map.json",
+      "bytes": 1322,
+      "sha256": "3e5c41e7a85aef17d8c4f2ebf6fd7763a895450a641b2861c26b20968a4cdcb4"
+    },
+    {
+      "path": "raw/gui-paste-xterm/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-paste-xterm/final-replay.json",
+      "bytes": 2091,
+      "sha256": "4edf9af8fca5de3c901de6d2e2dda2a3118b94b533a17ac220a2a5e0654a3334"
+    },
+    {
+      "path": "raw/gui-paste-xterm/gui-events.jsonl",
+      "bytes": 2036,
+      "sha256": "259b9c0f43fa3e38ab31a8138f8495b2e99dad09f202e6fff90244a8249df2bf"
+    },
+    {
+      "path": "raw/gui-paste-xterm/gui-frames.jsonl.gz",
+      "bytes": 423,
+      "sha256": "06169067fcf80f55bb6ec8f638f4d22048aafa1abec011c333a839f0685e48ca"
+    },
+    {
+      "path": "raw/gui-paste-xterm/host.pid",
+      "bytes": 8,
+      "sha256": "9cd551bfc45886b7895f1f5b47890b453301d444deed418187ee120f253eaa59"
+    },
+    {
+      "path": "raw/gui-paste-xterm/host.stderr",
+      "bytes": 48,
+      "sha256": "e0a46db3e7d086b6ed55477f9c8cc5ec4dbe4b6ef804e1372e9a4a6dc5a6b01a"
+    },
+    {
+      "path": "raw/gui-paste-xterm/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-paste-xterm/mode25-after.json",
+      "bytes": 246,
+      "sha256": "b588d3e04c026b416af6f36239475ec5a45cb0540eb54da949db854258426e87"
+    },
+    {
+      "path": "raw/gui-paste-xterm/mode25-before.json",
+      "bytes": 246,
+      "sha256": "ce3282f51c4543adb46091d74ea880181c13eac949d01536c54b8143c6c53a05"
+    },
+    {
+      "path": "raw/gui-paste-xterm/pasted.png",
+      "bytes": 23330,
+      "sha256": "ffbc0572107a4ebb19e2fedcd0253e1989e8eb935ae6b84b9cf566aaf0065f92"
+    },
+    {
+      "path": "raw/gui-paste-xterm/product-command.json",
+      "bytes": 380,
+      "sha256": "063fb8d9f6584987544033a4b00ccf348d47d51eb8936f2014192b66ed5365b7"
+    },
+    {
+      "path": "raw/gui-paste-xterm/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-paste-xterm/product.strace.gz",
+      "bytes": 9934,
+      "sha256": "ba9ce3914a64a45c37a96be51534028b67e32bb624a360f1d30d6d2c3438ab72"
+    },
+    {
+      "path": "raw/gui-paste-xterm/stdout.raw.gz",
+      "bytes": 475,
+      "sha256": "69a5a488cc5e497ec0409affcec63c7e0fad68abeb146d7f51340eac53f155f5"
+    },
+    {
+      "path": "raw/gui-paste-xterm/terminal-after.json",
+      "bytes": 976,
+      "sha256": "a28ccfb45f16196ca4cfb68a1ae3bb044746c92c9223900365217faf7445ca8f"
+    },
+    {
+      "path": "raw/gui-paste-xterm/terminal-before.json",
+      "bytes": 1015,
+      "sha256": "4e5ea871161d16ddce73e90b29d12031531e0a32e5cf2ce7761d98a811f86199"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/compression-map.json",
+      "bytes": 1368,
+      "sha256": "5fba99fcc1bf2cfd3e084796314cfed95e3b979473b2e3e363cfda8a146ffdd6"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/done.png",
+      "bytes": 25739,
+      "sha256": "813799dd4bfbe6bc3f4c79142ee4595ad518189dceac980d520eb42ba75a81a5"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/final-replay.json",
+      "bytes": 2288,
+      "sha256": "78f8f3ba7028a31278e85290120f3ae6a70b96ec49541584cb3008cedc624d25"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/gui-events.jsonl",
+      "bytes": 7488,
+      "sha256": "e83a2bbe3eb11bbf84b416049b5b3672ff048acb7688e12e630d0194dcb64114"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/gui-frames.jsonl.gz",
+      "bytes": 885,
+      "sha256": "64ff75c6e2d23755da27a6a1684d45068f90c0ece43a4f3dd048ed5c6d3a7998"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/host.pid",
+      "bytes": 8,
+      "sha256": "c4763b7fb5a86675bbcbbe96f105dbdb07f73e6099a3e43ab6dd9968becca578"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/host.stderr",
+      "bytes": 924,
+      "sha256": "1b773e9212230bad9ff65d03eb63def3a008922ac2bb75e7b96293ebb5abb150"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/light.png",
+      "bytes": 25800,
+      "sha256": "0b72b9a707dc81112ccd4692771d36140920a74f58b06ad50911615a6bb9dcf1"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/modal.png",
+      "bytes": 31450,
+      "sha256": "8e39d62975694afa5ad19a91205ec01ac7ba384c756e64d3362cd71535420a62"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/mode25-after.json",
+      "bytes": 246,
+      "sha256": "b265e5c345bf8165424bbecdeacf9689d881c9c8a48368bb6125e3d796c3a368"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/mode25-before.json",
+      "bytes": 246,
+      "sha256": "be92a3d7c62f8afb74cf7613708277f055141d25a889bb047998f409e50a95b3"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/nested.png",
+      "bytes": 33016,
+      "sha256": "7c45e03b885f93a38a2a07d8f8d260914c137a87a2a6dd814a2c7a2b8b73db22"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/post-close.png",
+      "bytes": 25800,
+      "sha256": "0b72b9a707dc81112ccd4692771d36140920a74f58b06ad50911615a6bb9dcf1"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/product-command.json",
+      "bytes": 387,
+      "sha256": "0b8454013460814d7db4723c52a9b312bd21906bdc3f3d58a5bd8928a8a1b7e5"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/product.strace.gz",
+      "bytes": 11787,
+      "sha256": "a624c728ef841684fdf446bcf910bae7342171936ec99a0feb9e6bdcd80f94ec"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/resize-replay.json",
+      "bytes": 2288,
+      "sha256": "908a61c44a1f1fad2b33f58f004ce1a5886e9ba69f12d23fac1d152df5f9b218"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/resized-16x6.png",
+      "bytes": 7072,
+      "sha256": "e85030034ac67d2049c1c7234aebca9cc012872fff16dfc29cb10e0e7771bbbd"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/resized-40x12.png",
+      "bytes": 17336,
+      "sha256": "a243c7053d8ecd4762324f5b73a02c26cfee1d3d85005bb16ad8e0058477ad09"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/resized-restored.png",
+      "bytes": 25739,
+      "sha256": "813799dd4bfbe6bc3f4c79142ee4595ad518189dceac980d520eb42ba75a81a5"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/review.png",
+      "bytes": 27410,
+      "sha256": "6b1bbe7e2f4068cc1b497a11c302bbaf0ef3eb0e1c30ced384660ee6d38d1a06"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/startup.png",
+      "bytes": 24712,
+      "sha256": "6d2310bf6e61b84edf623d7b65514005afbb8009751c747527a2e6c7790b2ba0"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/stdout.raw.gz",
+      "bytes": 1208,
+      "sha256": "422b812edd2f3b82131c34fa5ae3ebf47095aa16125a0ac663435d43e99943bd"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/terminal-after.json",
+      "bytes": 976,
+      "sha256": "6150ccd0922564dabfe0eaec60b3b0afd17ea120ee64cd5d885a657f424ad42e"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/terminal-before.json",
+      "bytes": 1031,
+      "sha256": "6fc7a42d1ec86d40ff857f58a38cecb55663dbad5ee5d018f23563a1b19eca63"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/xdg-cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9",
+      "bytes": 352,
+      "sha256": "91725f3333827478c88df0bb4ad2afb75b402e43e43e49a8d8c8256101985bb5"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/xdg-cache/fontconfig/CACHEDIR.TAG",
+      "bytes": 200,
+      "sha256": "05e7633fb31bf1f6f8d89020c16b9f24587fdf7638e951c9745b192f5fc3b682"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/xdg-config/xfce4/terminal/accels.scm",
+      "bytes": 119,
+      "sha256": "e543efbf8d7e62bf47b4077febd670c345b3743b8e222804b7494fcdc666ef0e"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/xdg-config/xfce4/terminal/terminalrc",
+      "bytes": 144,
+      "sha256": "202427bda87b37ea2ff1ac4d1a85374313248a0ae2d7b35b0be1c6e4846e2510"
+    },
+    {
+      "path": "raw/gui-vte-capture-retry3/xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml",
+      "bytes": 442,
+      "sha256": "1d37e0a494b8b8b37f99e4b72e37d0d1890bcf9d4d5dbb2adb78c8586ba5200c"
+    },
+    {
+      "path": "raw/gui-vte-retry1/compression-map.json",
+      "bytes": 1317,
+      "sha256": "8a9295ff757d5529b7a116907eab4830c1de472373e846b7f9186aea58fb11cf"
+    },
+    {
+      "path": "raw/gui-vte-retry1/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-vte-retry1/final-replay.json",
+      "bytes": 2090,
+      "sha256": "574fd7c3b0b6d00741d2a42ebd52c2729dd292cc99d73d3e3904562e03a51b69"
+    },
+    {
+      "path": "raw/gui-vte-retry1/gui-events.jsonl",
+      "bytes": 6614,
+      "sha256": "df9bbcb5832eb1dccb45de964aace4fcdcf02b5ae78bbf4a7285919ca6281682"
+    },
+    {
+      "path": "raw/gui-vte-retry1/gui-frames.jsonl.gz",
+      "bytes": 350,
+      "sha256": "91c6b60d4f7c93ea272f8824620a81149581909ad0a2713cf3b2d1eef00f2e6d"
+    },
+    {
+      "path": "raw/gui-vte-retry1/host.pid",
+      "bytes": 8,
+      "sha256": "2835c923289e4acdd3ebf78543ba5f548dfe5d4fc121df36a5da4aaafc624a0d"
+    },
+    {
+      "path": "raw/gui-vte-retry1/host.stderr",
+      "bytes": 680,
+      "sha256": "9bfe5681cbec914535a78e2e4d2636cd3a25e8c990f165a98e57cf7c78378905"
+    },
+    {
+      "path": "raw/gui-vte-retry1/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-vte-retry1/menu-quit.png",
+      "bytes": 10021,
+      "sha256": "1de79727f5a43ee7ae1d47368e580da0c0db5fcda79cdf21fc7e7d2d21b05344"
+    },
+    {
+      "path": "raw/gui-vte-retry1/mode25-after.json",
+      "bytes": 246,
+      "sha256": "6283347bf49639a0cce1be2d6fd8e876864174aab7279fd34f2500af6f1ffafe"
+    },
+    {
+      "path": "raw/gui-vte-retry1/mode25-before.json",
+      "bytes": 246,
+      "sha256": "80b66a09bcb188f8081f5fd5fe581bcaa85b0a222677dd3e096a7406bc622fd8"
+    },
+    {
+      "path": "raw/gui-vte-retry1/product-command.json",
+      "bytes": 379,
+      "sha256": "ff0bab6651176529902dbc9d0c809906ca8951da57a3f4f1da7ae19674998cfd"
+    },
+    {
+      "path": "raw/gui-vte-retry1/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-vte-retry1/product.strace.gz",
+      "bytes": 10929,
+      "sha256": "a873d122a9f4e5c10cc6af75ff3a0ed85ee0a5c254d0b17c20393a2298ba974e"
+    },
+    {
+      "path": "raw/gui-vte-retry1/startup.png",
+      "bytes": 21572,
+      "sha256": "881502786ddcb7242efdfabc7d970aef8b74e972824050e767b548db2c006f6c"
+    },
+    {
+      "path": "raw/gui-vte-retry1/stdout.raw.gz",
+      "bytes": 667,
+      "sha256": "0acab2c39c503f6cc14fe19ea2b4a0a632613a4ffe2635b316a51ad2162c2c2f"
+    },
+    {
+      "path": "raw/gui-vte-retry1/terminal-after.json",
+      "bytes": 976,
+      "sha256": "002c0c80af500c439e0ad9862da13154978d78f7d119520773a926d2d002c84f"
+    },
+    {
+      "path": "raw/gui-vte-retry1/terminal-before.json",
+      "bytes": 1031,
+      "sha256": "480144d224eef6688dc538a23419cc7f4e8a2f3b0abe57f2ef079295af02154e"
+    },
+    {
+      "path": "raw/gui-vte-retry1/xdg-cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9",
+      "bytes": 352,
+      "sha256": "91725f3333827478c88df0bb4ad2afb75b402e43e43e49a8d8c8256101985bb5"
+    },
+    {
+      "path": "raw/gui-vte-retry1/xdg-cache/fontconfig/CACHEDIR.TAG",
+      "bytes": 200,
+      "sha256": "05e7633fb31bf1f6f8d89020c16b9f24587fdf7638e951c9745b192f5fc3b682"
+    },
+    {
+      "path": "raw/gui-vte-retry1/xdg-config/xfce4/help.rc",
+      "bytes": 19,
+      "sha256": "6351c33bc57fbb47d1b8e773d97a7e4ecf84c91fdbac1a1bb61ddd05a785622d"
+    },
+    {
+      "path": "raw/gui-vte-retry2/acknowledged.png",
+      "bytes": 22437,
+      "sha256": "438b2682f293985ae556dcd7510aeb01d1144ef31f2af994c88da95cc70c62cf"
+    },
+    {
+      "path": "raw/gui-vte-retry2/compression-map.json",
+      "bytes": 1772,
+      "sha256": "1bede7a0d8b4d9ebb388fce5a6fa7f57c3106cfd1ee3f3aebd6c092c49b6b072"
+    },
+    {
+      "path": "raw/gui-vte-retry2/done-before-ack.raw.gz",
+      "bytes": 2793,
+      "sha256": "3ede5f7ae62b6c1833e07e6f339977874fba1019c81a59d9a0dcc985af99db80"
+    },
+    {
+      "path": "raw/gui-vte-retry2/done-modal.png",
+      "bytes": 27074,
+      "sha256": "9de25f9211335c07c6c3dcff43bebc17ec7719466d3cc566eb4f36ba449dd371"
+    },
+    {
+      "path": "raw/gui-vte-retry2/done.png",
+      "bytes": 22560,
+      "sha256": "7a7428723274260e6e1c34ee7eb33942a30a44c5ecc45c632a2408674bd3bede"
+    },
+    {
+      "path": "raw/gui-vte-retry2/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-vte-retry2/final-replay.json",
+      "bytes": 2289,
+      "sha256": "54dddc2b63f7d82bd56a1d7f6bb492217ffe87e26d7f1d236b96fdddd8479e6b"
+    },
+    {
+      "path": "raw/gui-vte-retry2/gui-events.jsonl",
+      "bytes": 39933,
+      "sha256": "98a6fe43e1db052b36dbb727a6a7f647bfeb7e0cc467d0cab1717bbac8f2ab17"
+    },
+    {
+      "path": "raw/gui-vte-retry2/gui-frames.jsonl.gz",
+      "bytes": 3246,
+      "sha256": "c36fdd1ba13aa456ecebf78a594c509bcb6e1329f1063aa0b2bef6458bcc5032"
+    },
+    {
+      "path": "raw/gui-vte-retry2/host-version.txt",
+      "bytes": 346,
+      "sha256": "746470b1946a9e1623617dc345f3cb9a94e6ec76b6e73906de6f58f123edad2b"
+    },
+    {
+      "path": "raw/gui-vte-retry2/host.pid",
+      "bytes": 8,
+      "sha256": "e7785af1def7a421ff194da85cd2a24eb8a5c9b2f9dd51ad4d0dc4ceb691e269"
+    },
+    {
+      "path": "raw/gui-vte-retry2/host.stderr",
+      "bytes": 916,
+      "sha256": "73ad0a9e12c30ec150955476a25a4aa91d39282da00c07fb4c53927e155f09d1"
+    },
+    {
+      "path": "raw/gui-vte-retry2/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-vte-retry2/light.png",
+      "bytes": 26391,
+      "sha256": "560cb9fe42409e3bd00dba03d420e96252ddf0094de3e5d3d74205565d89f0e3"
+    },
+    {
+      "path": "raw/gui-vte-retry2/logs-light.png",
+      "bytes": 43297,
+      "sha256": "280c87c040297196ba222d83249b2c81851a4d1ff1237b47895b6ec9553abae2"
+    },
+    {
+      "path": "raw/gui-vte-retry2/logs-scrolled.png",
+      "bytes": 10114,
+      "sha256": "a03a4fdde50b6c06b2d9b31dc499d6104dc162d77be42b946619f768bf8ed08b"
+    },
+    {
+      "path": "raw/gui-vte-retry2/modal.png",
+      "bytes": 29911,
+      "sha256": "b6b71522caa7865f8d7c35ec92728ed845f868892720baeddf939098dd818bd3"
+    },
+    {
+      "path": "raw/gui-vte-retry2/mode25-after.json",
+      "bytes": 246,
+      "sha256": "f3845fc16dd05672747e8fda3b903887092d1b170a87bf4855ff9aa560509df9"
+    },
+    {
+      "path": "raw/gui-vte-retry2/mode25-before.json",
+      "bytes": 246,
+      "sha256": "6b338c61155cac5097f0ab68a6f2cf040428290f22924c23ee7ffb01009a7513"
+    },
+    {
+      "path": "raw/gui-vte-retry2/nested.png",
+      "bytes": 28550,
+      "sha256": "e31150c2419c84d3d07ba4735b7c45f2c26434b4e92b4498e966572a0a150caf"
+    },
+    {
+      "path": "raw/gui-vte-retry2/popup.png",
+      "bytes": 28203,
+      "sha256": "6ba9551afa2a56f08592f15884b6c472e04e1ff40fcfaa50d9360697b530563f"
+    },
+    {
+      "path": "raw/gui-vte-retry2/post-close.png",
+      "bytes": 21930,
+      "sha256": "2265ca6290d66d3e28c66bd357aa9736126ad44789e7a51dad2a264586018a1c"
+    },
+    {
+      "path": "raw/gui-vte-retry2/product-command.json",
+      "bytes": 379,
+      "sha256": "6beb2909f279165571ded674ab8858e059aa51175feedcbcae8e038fc10e005c"
+    },
+    {
+      "path": "raw/gui-vte-retry2/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-vte-retry2/product.strace.gz",
+      "bytes": 19750,
+      "sha256": "32ac395c3a8d6fb564c205d38cb74ad79cf9362ec75e6e8ae73bdde83c208ce3"
+    },
+    {
+      "path": "raw/gui-vte-retry2/resized-16x6.png",
+      "bytes": 7067,
+      "sha256": "314e857fd98215c9e4e79e3daa1e603003e02c6a4e156597807cd030836ea65d"
+    },
+    {
+      "path": "raw/gui-vte-retry2/resized-40x12.png",
+      "bytes": 8654,
+      "sha256": "3904bd455bc3d0344fb8b498f991bc2460f3dc444e8dd6a7a38b4fcb0ed4ea35"
+    },
+    {
+      "path": "raw/gui-vte-retry2/resized-restored.png",
+      "bytes": 16530,
+      "sha256": "260f23f6b21c275bc1a676f1fbf601b78f5b0e47f30dc74d87c872b3d8b0a880"
+    },
+    {
+      "path": "raw/gui-vte-retry2/review.png",
+      "bytes": 24199,
+      "sha256": "a4722c2f8792cdcd1181bf2b47cd71af5b33ee976cc2e602c84fdc4e5f52a12d"
+    },
+    {
+      "path": "raw/gui-vte-retry2/selection-before-modal.png",
+      "bytes": 21499,
+      "sha256": "228204abaae80c12077c931dc0069798a82b7a1451d7218ac8d1ce8763e62bd5"
+    },
+    {
+      "path": "raw/gui-vte-retry2/selection-restored.png",
+      "bytes": 21466,
+      "sha256": "200d7e56f470ade655b01b462045c471cfe4727dde5395348196b9dce1fecf36"
+    },
+    {
+      "path": "raw/gui-vte-retry2/startup.png",
+      "bytes": 21572,
+      "sha256": "881502786ddcb7242efdfabc7d970aef8b74e972824050e767b548db2c006f6c"
+    },
+    {
+      "path": "raw/gui-vte-retry2/stdout.raw.gz",
+      "bytes": 3888,
+      "sha256": "19991d44e7213c26f909bacb9fdd52f594b97e9b0fe8e9ce4939b1845289671a"
+    },
+    {
+      "path": "raw/gui-vte-retry2/terminal-after.json",
+      "bytes": 976,
+      "sha256": "fe9b7da4022b3b2f5792a04f9e9e6b7e7735b5569f3e2f654df78be32b3d3838"
+    },
+    {
+      "path": "raw/gui-vte-retry2/terminal-before.json",
+      "bytes": 1031,
+      "sha256": "40e210f3abe2f4df26138095b01d9e47498f9d5a2a12308a32736e9c757419f3"
+    },
+    {
+      "path": "raw/gui-vte-retry2/xdg-cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9",
+      "bytes": 352,
+      "sha256": "91725f3333827478c88df0bb4ad2afb75b402e43e43e49a8d8c8256101985bb5"
+    },
+    {
+      "path": "raw/gui-vte-retry2/xdg-cache/fontconfig/CACHEDIR.TAG",
+      "bytes": 200,
+      "sha256": "05e7633fb31bf1f6f8d89020c16b9f24587fdf7638e951c9745b192f5fc3b682"
+    },
+    {
+      "path": "raw/gui-vte-retry2/xdg-config/xfce4/terminal/accels.scm",
+      "bytes": 119,
+      "sha256": "e543efbf8d7e62bf47b4077febd670c345b3743b8e222804b7494fcdc666ef0e"
+    },
+    {
+      "path": "raw/gui-vte-retry2/xdg-config/xfce4/terminal/terminalrc",
+      "bytes": 144,
+      "sha256": "202427bda87b37ea2ff1ac4d1a85374313248a0ae2d7b35b0be1c6e4846e2510"
+    },
+    {
+      "path": "raw/gui-vte-retry2/xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml",
+      "bytes": 442,
+      "sha256": "1d37e0a494b8b8b37f99e4b72e37d0d1890bcf9d4d5dbb2adb78c8586ba5200c"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/acknowledged.png",
+      "bytes": 27807,
+      "sha256": "8d9b07367ce7b55e338ebbb0e08e32b78c80f3b444da953f30b862897a97ef2a"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/compression-map.json",
+      "bytes": 1791,
+      "sha256": "25a648eb23df2e610ed69814d516cd5eb79d6f526e29c8138e07af3c90153eac"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/done-after-ack.raw.gz",
+      "bytes": 2534,
+      "sha256": "75ba4fb5e521cea0a84f44e152c79da6f2157bbe50cc3887bd98566ac9550911"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/done-before-ack.raw.gz",
+      "bytes": 2440,
+      "sha256": "72a950e83f416f09c5245c8271e50e3ca370a4a99b2b62a2c12ab587c7af2d64"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/done-modal.png",
+      "bytes": 32616,
+      "sha256": "27238c19f4086a9fd2147f1c0956093f3918721c4308a37a31299f1cc8073aa7"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/done.png",
+      "bytes": 27789,
+      "sha256": "fefd11c938e67b7690c21189b272e93feada8ad71701b5a4b95c40944546efd8"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/exit-release",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/final-replay.json",
+      "bytes": 2289,
+      "sha256": "8f9f5e4c3ad917f55db44850430b3293319c8e86aa3532bdae5b1f0f6d974c36"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/gui-events.jsonl",
+      "bytes": 37194,
+      "sha256": "d300746177360a2f916141c8a5e113cb200200a7b36753680ef57497df08e4fb"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/gui-frames.jsonl",
+      "bytes": 96949,
+      "sha256": "e9563de4daeb960fafb0d05709ab54bd9d0d4d9ec783cd22f93ef0cf5f1dd4be"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/host-version.txt",
+      "bytes": 11,
+      "sha256": "d5485e896fd4e76ae93345edfc689b770c2f66f2884c4342e3886135ff829382"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/host.pid",
+      "bytes": 8,
+      "sha256": "55c9c8ac49e71e5db297bd200b0c7527a2a76db88be79d84ac3b239c7dc08258"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/host.stderr",
+      "bytes": 48,
+      "sha256": "e0a46db3e7d086b6ed55477f9c8cc5ec4dbe4b6ef804e1372e9a4a6dc5a6b01a"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/host.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/light.png",
+      "bytes": 28136,
+      "sha256": "36288a37d6aaf14b091cc80de2a50a3845b6bc0616fe6b9b53d33405ef601d9e"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/logs-light.png",
+      "bytes": 11391,
+      "sha256": "48577ace4d88f9317cd753e63c1296f8e867f90ede6f1bce52b3666b5dac0b20"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/logs-scrolled.png",
+      "bytes": 12296,
+      "sha256": "3f38645b5917b4df6db81036dd75fbf446df01e64fcc42a098e3b0e87bb4b4cc"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/modal.png",
+      "bytes": 35221,
+      "sha256": "8e23cfda16bf902f0f992bf50737f2ac74082071d49925adba1de9f3b62bf6d8"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/mode25-after.json",
+      "bytes": 246,
+      "sha256": "83ff2090d8bfd9d175d942d1f0582871c0bb87b88d543acf76df483f066ecb35"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/mode25-before.json",
+      "bytes": 246,
+      "sha256": "9a2ae0f2be1d6dae5cedc51b883a44996555aa0736da7e67892cb10c6cc2dd60"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/nested.png",
+      "bytes": 33581,
+      "sha256": "74e64617434ae351f3811c2936d414ae9b2a200018b3820e65b1cf0affe37160"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/popup.png",
+      "bytes": 33239,
+      "sha256": "6f68ba739c696e84408969598cdf7ca7e4eaf8e368cd6a1e035a31f140e031a2"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/post-close.png",
+      "bytes": 26565,
+      "sha256": "e76ca2e153147564fed6d0f0b514d274a62e01678e04f1069b2df29a193531b8"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/product-command.json",
+      "bytes": 381,
+      "sha256": "829b99d61d801e340d38cc12e56eb5a7d93f43898d20680f6ad410c299f431a6"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/product.strace.gz",
+      "bytes": 21119,
+      "sha256": "8b44160b6ebd8c3c6e5d7837f8e751dd14472e5b8ea4e052ab2564f202a686f4"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/query.png",
+      "bytes": 21554,
+      "sha256": "4eed4e2b695f866d52b2080328546bd805894786b18081c1209fe0321ed6f9a0"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/resized-16x6.png",
+      "bytes": 7625,
+      "sha256": "879ae3e5e11801d06e8db36b392e4a2302d7b5f828e311eeedd86fb731eb0b1c"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/resized-40x12.png",
+      "bytes": 18791,
+      "sha256": "9f17f731f95fff3b72bc8926a18aa0feb3781f2c2b2bd09afbd0a2026391f9e8"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/resized-restored.png",
+      "bytes": 26922,
+      "sha256": "ad29d9467465adafbc2c0daed0bbf4f51935878611c4b176b37c2d7c411c8991"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/review.png",
+      "bytes": 29993,
+      "sha256": "7495114a241b564a1a89fdeceb82dcb1057b7346b32db44fa6af8df7d1b685af"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/selection-before-modal.png",
+      "bytes": 27188,
+      "sha256": "04f1128d7e71ab3175de4575e77ea297d6007619b27f3abb7a6c92d3aa3c5e24"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/selection-restored.png",
+      "bytes": 27167,
+      "sha256": "c157b3b1feb7dc35e69d08a2a9c13189f12643858fa32e00ba69c494d0a4965d"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/startup.png",
+      "bytes": 26144,
+      "sha256": "fcf1c190ca1140971d8cf50a37554d418ee287db574c1dcb5147af2b01bc51e0"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/stdout.raw.gz",
+      "bytes": 3919,
+      "sha256": "ede01635b83b50b4014fbe6af52ba9007a523196acf3b26654ab2aeb4913601a"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/terminal-after.json",
+      "bytes": 976,
+      "sha256": "5fb041e58dc4d6c13a027115a71e87bc01795dd443bc19112fbef71d96d398a3"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/terminal-before.json",
+      "bytes": 1015,
+      "sha256": "a416e4b4f52fea0114a8d0be3d874a71779d001e9e1c5dbe4ad2fa594a7567b6"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/undo.png",
+      "bytes": 23330,
+      "sha256": "ffbc0572107a4ebb19e2fedcd0253e1989e8eb935ae6b84b9cf566aaf0065f92"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/window-properties.txt",
+      "bytes": 1285,
+      "sha256": "194f017b077e94376a9be9992b3b9f8a4e0755b4e2fbf7b85da2cf6c12bee815"
+    },
+    {
+      "path": "raw/gui-xterm-retry1/xresources.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "report-gui.md",
+      "bytes": 2711,
+      "sha256": "8d77cfdfaf53dd7d0b29e14962bcd241a32e111be122f99463c252411cad1e08"
+    },
+    {
+      "path": "report-retry4.md",
+      "bytes": 1255,
+      "sha256": "511c603c020e094e258a7bb74130642b2155ef275fe6126faa4b84bf8db83a72"
+    },
+    {
+      "path": "source/cangjie-repo.toml",
+      "bytes": 133,
+      "sha256": "849e912bb6e83f42fb5ee45b3d09acc5111afdfc1895f482f78f6be9ad82bd93"
+    },
+    {
+      "path": "source/cjpm.toml",
+      "bytes": 1541,
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828"
+    },
+    {
+      "path": "source/examples/composition/cjpm.toml",
+      "bytes": 162,
+      "sha256": "54106622fa89e23ee1cab8c28692f69d256335f8b7fbb2a31290a6520e50434f"
+    },
+    {
+      "path": "source/examples/composition/target/release/bin/main",
+      "bytes": 19229256,
+      "sha256": "69e94b7afac0670c1fac08183d6e75e76b4f140e89a97c2b3192cc572e2de0c1"
+    },
+    {
+      "path": "source/examples/minimal/cjpm.toml",
+      "bytes": 158,
+      "sha256": "d301a62d68caaa94a7bccf19ea1fb9072309f8bfacfde7b1c0779055acd43f03"
+    },
+    {
+      "path": "source/examples/minimal/target/release/bin/main",
+      "bytes": 18985696,
+      "sha256": "bf7da646f091436f0ef7bf3663b3a18d18436f73b0f8aec93be634c8a70f3a0e"
+    },
+    {
+      "path": "source/tests/composition/application/interaction-contract.md",
+      "bytes": 15417,
+      "sha256": "ffe0a667608b6431c6ba3299e0b64b815388b1385e77f93ce5bc52ca85d7cd1a"
+    },
+    {
+      "path": "source/tests/composition/application/pty.mjs",
+      "bytes": 18959,
+      "sha256": "53f4febfa79be6767f74fa03885ad3600c6612e28c2e910733440e6f45d81792"
+    },
+    {
+      "path": "source/tests/composition/application/smoke.mjs",
+      "bytes": 2885,
+      "sha256": "0c167e76b9ab48e9d160d77a0c6520517fe6efc51edec4dbf01e673e3145dfaa"
+    },
+    {
+      "path": "tools/clipboard-owner.py",
+      "bytes": 510,
+      "sha256": "a5827c5c09aaf41bb302f0f83135556127b45a365c539e9127d7fc10ee4d8a27"
+    },
+    {
+      "path": "tools/extract-strace.py",
+      "bytes": 774,
+      "sha256": "8f94d0723953e0a09d6c6e58883ababf1ba213193dcd2d42b69e5c471d92b9e2"
+    },
+    {
+      "path": "tools/gui-check.py",
+      "bytes": 1707,
+      "sha256": "4e569e5dde08ba2391f1aae4c3a79dd5c519529f483cc18f5e0975b0db1afb0b"
+    },
+    {
+      "path": "tools/gui-replay.mjs",
+      "bytes": 1677,
+      "sha256": "264a673c9367359c6ab493589bc1bab69989296e22dbf6940046512d13458ed2"
+    },
+    {
+      "path": "tools/gui-step.py",
+      "bytes": 1633,
+      "sha256": "60f3e00b0b1b6e4059ccba2a16e6f38fa5d29a7bbe8944ca81845898fef83b72"
+    },
+    {
+      "path": "tools/host-supervisor.py",
+      "bytes": 3292,
+      "sha256": "ed8388536c5e9a29a07f0dcc065612ce768c1d259a719cf90fd1231d2151cccf"
+    },
+    {
+      "path": "tools/screen.mjs",
+      "bytes": 558,
+      "sha256": "09866328800b033f7a2bd385f94211c368282a7e81b995881996fabe5c6d15d1"
+    },
+    {
+      "path": "tools/xtest.py",
+      "bytes": 2053,
+      "sha256": "e02c01b752acc6e63c8f3062f7ecd667f6127d9a9b8ac80a5be96386bfa41698"
+    }
+  ]
+}

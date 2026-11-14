@@ -24,7 +24,7 @@
 | AC-018 | REQ-003 | 覆盖层嵌套与关闭恢复 | TASK-018 | 父层关闭清子层、模态隔离，原焦点失效时回退且下层显示最新状态；见C固定原件与独立有限验收 | passed（[C独立有限验收](reviews/interaction/C/overlay-acceptance/acceptance.md)；原AC完整范围） |
 | AC-019 | REQ-003 | 菜单与状态条组合行为 | TASK-019 | 水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合；[M01–M05有限162证据](reviews/widgets/M/acceptance162/acceptance.md)已交付，原父AC完整汇合仍待主代理判定 | pending |
 | AC-020 | REQ-004、REQ-011 | 应用退出与终端模式恢复 | TASK-020 | [当前M1恢复输入独立验收](reviews/R22/020/README.md)为PASS_CURRENT_M1_RECOVERY_INPUT / COMPLETE_CURRENT_M1_HANDOFF_ONLY，无阻塞发现；原正式测试/独立执行/真实GUI及VM VT证据保留。完整父项仍待M2/release受影响最终部分及024汇合，其他OS后续扩展 | pending（当前M1恢复输入已接受；完整原AC020待验） |
-| AC-021 | REQ-001 | 交付 U1–U5 公开接口示例 | TASK-021 | M1 minimal/composition独立项目构建；不同业务U5无内核特判；四主题完整展示归AC-027，M2归AC-031；证据待实施时链接 | pending |
+| AC-021 | REQ-001 | 交付 U1–U5 公开接口示例 | TASK-021 | [冻结M1 U1–U5独立验收](reviews/R22/021/README.md)：PASS_AC021_M1_U1_U5，14条件通过、无必需缺口；minimal/composition独立构建、公开组合与不同业务U5、合成PTY及真实XTerm/VTE/VM VT原件。完整四主题展示归AC-027，M2归AC-031；不代表完整M1/Linux或发行 | passed（当前冻结C005/AC021范围） |
 | AC-022 | REQ-004 | 交付可重复渲染基准项目 | TASK-022 | 固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果；证据待实施时链接 | pending |
 | AC-023 | REQ-006、REQ-011 | 验证最终源码制品可独立使用 | TASK-023 | 实际cjp无开发资料，含四主题及统一展示；TASK-027/031/032等交付纳入制品，当前Linux冻结配置干净消费构建运行，其他OS在Linux全量验收后扩展；目标依赖/版本/许可证完整；证据待实施时链接 | pending |
 | AC-024 | REQ-001–011 | 整体验收与发行准备 | TASK-024 | 当前Linux范围的需求全部有证据（含M2），产品文档与制品一致；后续OS独立扩展验收，不宣称跨平台完成；Battle 无未关闭必需失败；证据待实施时链接 | pending |

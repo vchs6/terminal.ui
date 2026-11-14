@@ -1,0 +1,809 @@
+{
+  "task": "TASK021.a",
+  "status": "TEST_ONLY_FROZEN_WITH_REAL_DELIVERY_RED",
+  "utc": "2026-11-14T02:21:14.972Z",
+  "base": "e35d407a87ab197537ccc931c143c9927458a75f",
+  "commit": "c51f9bfc02e2844391282ea80b761362aba400d2",
+  "source": "/workspace/work/composition-application-tests/source",
+  "inputManifest": {
+    "path": "/workspace/work/composition-application-tests/evidence/input-manifest.json",
+    "bytes": 6503,
+    "sha256": "883136757e06ec26152ba9652cfe1f4f6efe7424d0a55e334bad645f3903b02e"
+  },
+  "manifestSource": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-021-input-manifest.json",
+  "gitBindings": [
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "AGENTS.md",
+      "bytes": 35500,
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "gitBlob": "faacd7230b0215d5344d753ebb55d3b821034fb6",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "docs/requirements.md",
+      "bytes": 27521,
+      "sha256": "6ca3b983f2d57d68523edb3cc732c4da04c5b5241959bc495da3a4fe9ac5656d",
+      "gitBlob": "689ba8b43e4c56b8b9943d709a25c4b3bb0bc573",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "docs/ui-construction.md",
+      "bytes": 8493,
+      "sha256": "9bae1b0d47bb060d401c54372aef9c961b521e7b68e766914808758c21f87be6",
+      "gitBlob": "ba3d4bb1111e1dcf8b6d1110c6682ea5cb7dc7f4",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "openspec/changes/complete-linux-integration/design.md",
+      "bytes": 12137,
+      "sha256": "6f40454ebfa2160da6a9e43f4c8501e022013a9919b252d43ac7d63a6e641001",
+      "gitBlob": "67dced0df3382703e7d7c0e5343000e7f130233c",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "openspec/changes/implement-reactive-runtime/design.md",
+      "bytes": 40090,
+      "sha256": "dcfed7b4ca2e412bb075e923217bf2867556bfb1f8c7991a7384c519b830dbb7",
+      "gitBlob": "29994c4a238900fddadea98694980be74527f0e3",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "openspec/changes/implement-public-interaction/design.md",
+      "bytes": 76152,
+      "sha256": "92f85435ffd90a39ae1082d5a0bf7632a704b074cb6bb481a48352f221d900f4",
+      "gitBlob": "00fc90147ff3a9c630cb7444502fb0765c41eeee",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "openspec/changes/implement-standard-widgets/design.md",
+      "bytes": 25698,
+      "sha256": "70070f180f1006f1b09ecb32f5c1c16082d7a9057203b4437af995ee4071889c",
+      "gitBlob": "f486759ec4c05f826dbc219b3e834efe2504d49e",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "openspec/changes/implement-theme-styles/design.md",
+      "bytes": 52833,
+      "sha256": "084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4",
+      "gitBlob": "bf233b067ba2d8628f7446733cd9c6898c1140e5",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "docs/product/widgets.md",
+      "bytes": 3292,
+      "sha256": "216f118505deecd2f42ab252c5726c86c72ce3090612ed254075f31d6b7be574",
+      "gitBlob": "3239e718fc9acee84f2ed9fe85d6ad5d76f3de12",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "docs/product/text-editing.md",
+      "bytes": 2261,
+      "sha256": "cc94829878b7ac62d7cff5ad1693a06f60398f390c51e1678c72b393bfc1666d",
+      "gitBlob": "018af8f9a8989453023027076f41da88c3ece59c",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "docs/product/keyboard-input.md",
+      "bytes": 2071,
+      "sha256": "ee49f1734b551400e4426cf723c529e57174e7719b81806ba4d11da5b947cacf",
+      "gitBlob": "e8b093a26fe55b91b2cf1b5638018d3cc4e5f962",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "src/overlay_options.cj",
+      "bytes": 651,
+      "sha256": "1baa88a8157123c2004550f0ca4b2d52147f4d5030c7caaa52f5847a0126dab7",
+      "gitBlob": "a1052aae0d1a35ca2bddb747bf9f13f43b2825a4",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "examples/minimal/src/main.cj",
+      "bytes": 279,
+      "sha256": "6887f6e6a8c8412017e8cd4b6c715cf10c2f11ce40c893d3de59fff44476a296",
+      "gitBlob": "de94f52027d1f7c169770dd64504ffe40c61f71b",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "examples/widgets_composition/src/main.cj",
+      "bytes": 1580,
+      "sha256": "ed45457e7f6b6a1fbeb6cdcd1cde294b6f9a1b67afb8e83a2d64a3e5cca6c052",
+      "gitBlob": "9dbd2f4b21d5c924ccc8f34895eadb1883e2d46b",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "tests/composition/run.sh",
+      "bytes": 1302,
+      "sha256": "e2d663439ba225c4fa627ac0a4c9a72bdb7196af26f36859aa7b4af9c4cfc9d3",
+      "gitBlob": "b3df691236201a671f14eabfa6852ae69c97872b",
+      "verified": true
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "path": "cjpm.toml",
+      "bytes": 1541,
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828",
+      "gitBlob": "2d80ae78d3e7d88808565a3c7e41be657138190e",
+      "verified": true
+    }
+  ],
+  "acceptedInputs": [
+    {
+      "key": "accepted020M1",
+      "path": "/workspace/work/session-lifecycle-acceptance/index.json",
+      "bytes": 12894,
+      "sha256": "ea91a947668b3d7678dec39ae9ed2620c52833838b3c0a000f5ead1f862fcf75",
+      "verified": true
+    },
+    {
+      "key": "accepted010",
+      "path": "/workspace/work/visible-snapshot-acceptance/index.json",
+      "bytes": 5751,
+      "sha256": "65ad82843d95148aa65b44c609f72d0b6872e70d1b25c8ac83c3d0f1baf5924d",
+      "verified": true
+    },
+    {
+      "key": "accepted008",
+      "path": "/workspace/work/output-recovery-acceptance/index.json",
+      "bytes": 9850,
+      "sha256": "ae1eaf30663ac05beb90a99e4a99d5591c000a1e30f1fb8de96935e009414e2d",
+      "verified": true
+    },
+    {
+      "key": "upstreamAcceptedMap",
+      "path": "/workspace/work/terminal.ui/docs/reviews/R22/008/input-manifest.json",
+      "bytes": 83652,
+      "sha256": "6f10c6eb41e83164bae545cb3b7fd93fa56fffd4f6613ca9b85755fa9c81a3fb",
+      "verified": true
+    }
+  ],
+  "sourceTree": "e8dc344c356991923a16d954d787911c7a0b8f17",
+  "nativeTree": "8f600492375fa82b7f9451097cf64cc3b76928a3",
+  "tests": [
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/delivery.mjs",
+      "bytes": 1218,
+      "sha256": "d51bed045ebf996187ea0242f3af0d3ce3cf7b4941d575ec368ab2b9374270be",
+      "relativePath": "tests/composition/application/delivery.mjs",
+      "gitBlob": "b5dc4209a02702ff077a239d67fc8ad342bb0253"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/fixtures.mjs",
+      "bytes": 712,
+      "sha256": "8589783c183c5802364a5cd588bb64b73cd17c9273f9e50b2d51d65cb8a481ad",
+      "relativePath": "tests/composition/application/fixtures.mjs",
+      "gitBlob": "f772f2e832cc66c3e628a84bf06a05fe355085d0"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/goldens/modal.json",
+      "bytes": 3486,
+      "sha256": "ca86898a1a0f7d640f38d8683d674ebc8cd1c1d5d9f5ecb4c8b6fb04b77a8862",
+      "relativePath": "tests/composition/application/goldens/modal.json",
+      "gitBlob": "8a89db8f07df87f5a5eb07c51aa8bef565367b12"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/goldens/startup.json",
+      "bytes": 6515,
+      "sha256": "57e3df15cb68cdddf54708122db8a821910441a5025550bcf2e0de7c504c961e",
+      "relativePath": "tests/composition/application/goldens/startup.json",
+      "gitBlob": "93ac2d0dc796c28abb161b541af35413094991e4"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/interaction-contract.md",
+      "bytes": 13185,
+      "sha256": "08172a9d9ad38793f084979b399c6011abef17bcacdbe29b80fc64e598cbabe4",
+      "relativePath": "tests/composition/application/interaction-contract.md",
+      "gitBlob": "660657ef768053d30f5ec6cba4686688aec67ca1"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/oracle-selftest.mjs",
+      "bytes": 2397,
+      "sha256": "e3bd95280151be3ae128b3d301446ff20144963d1aa1a8d5aea779b844d86d69",
+      "relativePath": "tests/composition/application/oracle-selftest.mjs",
+      "gitBlob": "6e210f4978a71cce6ef4d07a8e0fbe6e42fa73a9"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/pty.mjs",
+      "bytes": 17986,
+      "sha256": "a9fcffa2dda43ec8455e5842d75f1e61209c1ff213930263c50a02cb4c79a2d2",
+      "relativePath": "tests/composition/application/pty.mjs",
+      "gitBlob": "9f1e911ebbc9dfbecfd2ab1a444334824797493e"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/public-api-basis.md",
+      "bytes": 3455,
+      "sha256": "66e98efe14e468e707911e66c713e69c78d4432fc594515b1188fb3829973ec4",
+      "relativePath": "tests/composition/application/public-api-basis.md",
+      "gitBlob": "3791164d67c85f3cc4349323004336be8bdb649c"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/run.sh",
+      "bytes": 280,
+      "sha256": "c2c9f8bb89862ae16915f47194650d9edb9bc882e60b01c017a3695429fc5729",
+      "relativePath": "tests/composition/application/run.sh",
+      "gitBlob": "a53e26ca029eacec39f0fa9368d43615b93e0415"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/smoke.mjs",
+      "bytes": 2885,
+      "sha256": "0c167e76b9ab48e9d160d77a0c6520517fe6efc51edec4dbf01e673e3145dfaa",
+      "relativePath": "tests/composition/application/smoke.mjs",
+      "gitBlob": "2538a4a28b7661480891bd26cd00dec13f6b3826"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/run.sh",
+      "bytes": 1344,
+      "sha256": "d02b0cbcac0ee6fde9b6a977dfae7c2a5f5dd5f79e3b9f619e5e405acbdd88c5",
+      "relativePath": "tests/composition/run.sh",
+      "gitBlob": "9606895d7c2128e714b00b4576635fe582cfa904"
+    }
+  ],
+  "manualData": [
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/goldens/modal.json",
+      "bytes": 3486,
+      "sha256": "ca86898a1a0f7d640f38d8683d674ebc8cd1c1d5d9f5ecb4c8b6fb04b77a8862",
+      "relativePath": "tests/composition/application/goldens/modal.json",
+      "gitBlob": "8a89db8f07df87f5a5eb07c51aa8bef565367b12"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/goldens/startup.json",
+      "bytes": 6515,
+      "sha256": "57e3df15cb68cdddf54708122db8a821910441a5025550bcf2e0de7c504c961e",
+      "relativePath": "tests/composition/application/goldens/startup.json",
+      "gitBlob": "93ac2d0dc796c28abb161b541af35413094991e4"
+    }
+  ],
+  "contracts": [
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/interaction-contract.md",
+      "bytes": 13185,
+      "sha256": "08172a9d9ad38793f084979b399c6011abef17bcacdbe29b80fc64e598cbabe4",
+      "relativePath": "tests/composition/application/interaction-contract.md",
+      "gitBlob": "660657ef768053d30f5ec6cba4686688aec67ca1"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/source/tests/composition/application/public-api-basis.md",
+      "bytes": 3455,
+      "sha256": "66e98efe14e468e707911e66c713e69c78d4432fc594515b1188fb3829973ec4",
+      "relativePath": "tests/composition/application/public-api-basis.md",
+      "gitBlob": "3791164d67c85f3cc4349323004336be8bdb649c"
+    }
+  ],
+  "preservedOldTree": {
+    "path": "/workspace/work/composition-application-tests/evidence/preserved-old-tree.txt",
+    "bytes": 522,
+    "sha256": "0cbbf43006b815bd83b757c3bf1c46c838ab29db34c768d4a0838b3b3f810447"
+  },
+  "oldRunner": {
+    "bytes": 1302,
+    "sha256": "e2d663439ba225c4fa627ac0a4c9a72bdb7196af26f36859aa7b4af9c4cfc9d3"
+  },
+  "runnerIntegration": "byte-identical old runner prefix plus one application/run.sh call",
+  "commandScript": {
+    "path": "/workspace/work/composition-application-tests/evidence/verify.sh",
+    "bytes": 1463,
+    "sha256": "840194f3e34edde79d921aa04732237caca2f7e29758f0682db1b8ec357dcc8c"
+  },
+  "commands": [
+    {
+      "name": "application-runner-red",
+      "exit": 1,
+      "stdout": "/workspace/work/composition-application-tests/evidence/application-runner-red.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/application-runner-red.stderr"
+    },
+    {
+      "name": "delivery-red",
+      "exit": 1,
+      "stdout": "/workspace/work/composition-application-tests/evidence/delivery-red.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/delivery-red.stderr"
+    },
+    {
+      "name": "node-version",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/node-version.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/node-version.stderr"
+    },
+    {
+      "name": "oracle-selftest",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/oracle-selftest.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/oracle-selftest.stderr"
+    },
+    {
+      "name": "pty-host-version",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/pty-host-version.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/pty-host-version.stderr"
+    },
+    {
+      "name": "sdk-compiler",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/sdk-compiler.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/sdk-compiler.stderr"
+    },
+    {
+      "name": "sdk-project-manager",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/sdk-project-manager.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/sdk-project-manager.stderr"
+    },
+    {
+      "name": "syntax-bash",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/syntax-bash.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/syntax-bash.stderr"
+    },
+    {
+      "name": "syntax-delivery",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/syntax-delivery.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/syntax-delivery.stderr"
+    },
+    {
+      "name": "syntax-fixtures",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/syntax-fixtures.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/syntax-fixtures.stderr"
+    },
+    {
+      "name": "syntax-oracle-selftest",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/syntax-oracle-selftest.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/syntax-oracle-selftest.stderr"
+    },
+    {
+      "name": "syntax-pty",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/syntax-pty.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/syntax-pty.stderr"
+    },
+    {
+      "name": "syntax-smoke",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/syntax-smoke.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/syntax-smoke.stderr"
+    },
+    {
+      "name": "unchanged-old-product",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/unchanged-old-product.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/unchanged-old-product.stderr"
+    },
+    {
+      "name": "whitespace",
+      "exit": 0,
+      "stdout": "/workspace/work/composition-application-tests/evidence/whitespace.stdout",
+      "stderr": "/workspace/work/composition-application-tests/evidence/whitespace.stderr"
+    }
+  ],
+  "tools": [
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/bin/cjc",
+      "bytes": 72906096,
+      "sha256": "023be1bb2ded1078906fc91919b3c1175ad14436ad88d23d505f7b8dcd0d7118",
+      "invokedPath": "/workspace/work/validation/sdk/cangjie/bin/cjc"
+    },
+    {
+      "path": "/workspace/work/validation/sdk/cangjie/tools/bin/cjpm",
+      "bytes": 15266336,
+      "sha256": "a565d86540656c62340aacf6ac89c175b50c1f4d9ba4f69cee6a0fdacdee412d",
+      "invokedPath": "/workspace/work/validation/sdk/cangjie/tools/bin/cjpm"
+    },
+    {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "bytes": 126939688,
+      "sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d",
+      "invokedPath": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node"
+    },
+    {
+      "path": "/usr/bin/script",
+      "bytes": 80264,
+      "sha256": "f8a06924c5f5ef0047609e0a1b4f69543a96ce03709932f94f65a5debcfa9760",
+      "invokedPath": "/usr/bin/script"
+    },
+    {
+      "path": "/usr/bin/dash",
+      "bytes": 129736,
+      "sha256": "a6f559e00b69a4aa4d8cb607be18d9386c5aee55c509e2c075549dcf00e00fc7",
+      "invokedPath": "/bin/sh"
+    }
+  ],
+  "sdk": {
+    "version": "1.2.0",
+    "envsetup": {
+      "path": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+      "bytes": 8027,
+      "sha256": "179d4e52c8a8d29a23d28691351f2b0897391243e5d5cb873f8a8e4502f2a288"
+    },
+    "stdxPath": "/workspace/work/linux-build-recon/stdx-env",
+    "unicodeArchive": {
+      "path": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+      "bytes": 9101877,
+      "sha256": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e"
+    },
+    "registry": "https://pkg.cangjie-lang.cn/registry",
+    "cache": "/workspace/work/viewport-tests/cache",
+    "consumerConfig": null,
+    "consumerConfigReason": "No build attempted after actual delivery prerequisite failed; no config mutation required."
+  },
+  "examples": {
+    "minimal": {
+      "source": {
+        "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+        "path": "examples/minimal/src/main.cj",
+        "bytes": 279,
+        "sha256": "6887f6e6a8c8412017e8cd4b6c715cf10c2f11ce40c893d3de59fff44476a296",
+        "gitBlob": "de94f52027d1f7c169770dd64504ffe40c61f71b",
+        "verified": true
+      },
+      "binary": null,
+      "consumerBuild": "pending",
+      "smoke": "pending",
+      "ordinary": "pending"
+    },
+    "composition": {
+      "source": null,
+      "binary": null,
+      "consumerBuild": "pending: project missing",
+      "smoke": "pending",
+      "ordinary": "pending"
+    }
+  },
+  "coverage": {
+    "U1": [
+      "minimal delivery/smoke/ordinary styled Text",
+      "independent construction review pending"
+    ],
+    "U2": [
+      "horizontal menu/disabled navigation/StatusBar/SplitPane",
+      "wide/narrow/minimum and resize grids/styles",
+      "theme preservation"
+    ],
+    "U3": [
+      "two real Cangjie worker calculations via public post, review pause",
+      "visible half/full progress, computed results, long-to-short, color-only acknowledge",
+      "real execution and source-review pending"
+    ],
+    "U4": [
+      "same JobPanel ordinary/modal source-review gate",
+      "literal wide/narrow centered rounded/shadow grids",
+      "PopupMenu disabled skip, nested confirm/cancel, F9 ancestor close",
+      "shared latest data, focus/selection/undo return"
+    ],
+    "U5": [
+      "distinct 24-record log filtering/errors-only/newest/scroll",
+      "business order and retention ownership",
+      "same primitives, independent review pending"
+    ]
+  },
+  "skills": {
+    "used": [
+      "cloud c6/test-driven-development + writing-good-tests reference",
+      "cloud c6/verification-before-completion",
+      "cloud c6/using-git-worktrees",
+      "CangjieSkills cangjie-coding fixed277f2e1234ca5217496966887243c679653887a8; read + batched signature query"
+    ],
+    "usingSuperpowers": "subagent-stop applies",
+    "approvedDesign": "C005 existing approved two-project plan; no new design approval requested"
+  },
+  "actualRed": {
+    "cases": [
+      "delivery-red",
+      "application-runner-red"
+    ],
+    "exit": 1,
+    "reason": "composition cjpm.toml/src/main.cj/README.md and minimal README.md absent",
+    "notACompilerError": true
+  },
+  "limits": [
+    "No application compilation, --smoke, TTY or background result claimed. All application runtime assertions pending.",
+    "Infrastructure selfchecks and /bin/sh exit7 control are not product correctness evidence.",
+    "No fresh Cangjie construction consumer written or compiled; API usability remains independent source/build review gate.",
+    "Existing old Frame/product trees unchanged; accepted inputs reused under AGENTS11.1, no unrelated cold suite.",
+    "Synthetic PTY default Auto with explicitly labeled test host profile is not actual cross-host proof.",
+    "No SDK/cache/CJP copies or disposable build intermediates indexed.",
+    "No new public CLI/hooks/framework API; no product/examples/src/native edits; no push.",
+    "No full021/027/M1/Linux/release/parent020 completion claim.",
+    "F6/F4 accepts worker completion before or after modal opening; no strict covered-completion timing claim. Shared modal note edit and unchanged accepted C112 finite proofs cover underlying shared updates."
+  ],
+  "report": {
+    "path": "/workspace/work/composition-application-tests/report.md",
+    "bytes": 1779,
+    "sha256": "693c71b92994a508eddb70af7f914e22d1861deaa03b7647a8a8ae0d77be2915"
+  },
+  "evidence": [
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/application-runner-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/application-runner-red.stderr",
+      "bytes": 262,
+      "sha256": "a060ce94709085e07ffb9e79c68199e5390c066885b28561985b1f6a95881296"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/application-runner-red.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/delivery-red.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/delivery-red.stderr",
+      "bytes": 262,
+      "sha256": "a060ce94709085e07ffb9e79c68199e5390c066885b28561985b1f6a95881296"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/delivery-red.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/direct-exit-negative-control.json",
+      "bytes": 196,
+      "sha256": "a493d0a9d6ee8fe0ef259b13d7e6dc68b36f7d599f67e3bb7ce2f24442791896"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/end.utc",
+      "bytes": 21,
+      "sha256": "219ad08a997717bc293c8a570d9c5912386016f8ed62515232f527d7de9e0593"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/input-manifest.json",
+      "bytes": 6503,
+      "sha256": "883136757e06ec26152ba9652cfe1f4f6efe7424d0a55e334bad645f3903b02e"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/node-version.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/node-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/node-version.stdout",
+      "bytes": 9,
+      "sha256": "249baf635bb43877fcb9422efa1a4904b702d0ddf14d3949b7cd0950d5229c81"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/oracle-selftest.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/oracle-selftest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/oracle-selftest.stdout",
+      "bytes": 133,
+      "sha256": "bfa300b2032dfe4e04bc26da0c2ed5b2568a018f70491ff98ee6953ea528ef62"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/preserved-old-tree.txt",
+      "bytes": 522,
+      "sha256": "0cbbf43006b815bd83b757c3bf1c46c838ab29db34c768d4a0838b3b3f810447"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/pty-host-version.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/pty-host-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/pty-host-version.stdout",
+      "bytes": 30,
+      "sha256": "8db3da27b966d2973ec8ab60b032a0c9eacae51180d4264a2cbd682e901b485c"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/sdk-compiler.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/sdk-compiler.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/sdk-compiler.stdout",
+      "bytes": 68,
+      "sha256": "4eaba42334a04cb16bb8d4cf8b68d2bd7810723bc23d40338b8507a5ddda892c"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/sdk-project-manager.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/sdk-project-manager.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/sdk-project-manager.stdout",
+      "bytes": 31,
+      "sha256": "ada9097c78c13232bea46dfc84558073aba921f010cc023addc0deec8791fe98"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/start.utc",
+      "bytes": 21,
+      "sha256": "219ad08a997717bc293c8a570d9c5912386016f8ed62515232f527d7de9e0593"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-bash.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-bash.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-bash.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-delivery.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-delivery.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-delivery.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-fixtures.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-fixtures.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-fixtures.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-oracle-selftest.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-oracle-selftest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-oracle-selftest.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-pty.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-pty.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-pty.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-smoke.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-smoke.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/syntax-smoke.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/tool-paths.stdout",
+      "bytes": 186,
+      "sha256": "453d46a08448fc29e12f5fb0f87fea7b3ac061e634dc2b76e9ef0e812bfd676a"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/unchanged-old-product.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/unchanged-old-product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/unchanged-old-product.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/verify.sh",
+      "bytes": 1463,
+      "sha256": "840194f3e34edde79d921aa04732237caca2f7e29758f0682db1b8ec357dcc8c"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/whitespace.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/whitespace.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/evidence/whitespace.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "acceptedCoveredUpdateProofs": [
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "tests/interaction_c/src/surface_grids.cj",
+      "gitBlob": "bacf4b0e745d28e02d1102e52ef8a033cac7e9f3",
+      "bytes": 4006,
+      "sha256": "3dd3dc10ff2e457868569a9612f99f29df676b8c1b5fe50ebda78c608fe21a84",
+      "scope": "G04 covered binding update and latest-base reveal"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "tests/interaction_c/src/pending_and_identity.cj",
+      "gitBlob": "401612f43bd5b751f210d8efc2c2a2b99800c18c",
+      "bytes": 3479,
+      "sha256": "eb648a305c1c5fd91f36dbdbe905b4c456f6def89f941c413fc7384f6f0b2740",
+      "scope": "N02 same custom component and shared business state"
+    }
+  ]
+}

@@ -1,0 +1,2718 @@
+{
+  "task": "TASK021 independent Linux VT VM execution",
+  "created_utc": "2026-11-14T03:41:01.584600+00:00",
+  "source_commit": "b77307b3b70423739f56855952c56acedbdc17b6",
+  "source_src_git_tree": "e8dc344c356991923a16d954d787911c7a0b8f17",
+  "external": [
+    {
+      "path": "/workspace/work/linux-console-hosts/hosts/debian/usr/bin/qemu-system-x86_64",
+      "bytes": 28994112,
+      "sha256": "d3c1a558ad220e77a4412048c8d96b44f8c2b41c7ad2a4ecfe522a4b122fe067"
+    },
+    {
+      "path": "/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/bios-256k.bin",
+      "bytes": 262144,
+      "sha256": "fc6d2ea888862e6b26d53fb877ab712324726eb8f44eb6baf076c64a31f1c3fb"
+    },
+    {
+      "path": "/workspace/work/linux-console-hosts/hosts/debian/usr/share/seabios/vgabios-stdvga.bin",
+      "bytes": 39424,
+      "sha256": "88277c3ebff60fe83696d99d44b7eee4426112ee1763c87347c30a5b75781932"
+    },
+    {
+      "path": "/workspace/work/linux-console-hosts/packages/linux",
+      "bytes": 12142528,
+      "sha256": "2b2358b37674d2505350528875bb17afae2a36522a9e8a9417eaca65a7da0e08"
+    },
+    {
+      "path": "/workspace/work/session-lifecycle-vt-execution/payload-v2.cpio.gz",
+      "bytes": 13677161,
+      "sha256": "9f5e35df48b8948367c39100c4ab38d873242f2ddd1da87cc76cfe56ba8d4399"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/AGENTS.md",
+      "bytes": 35500,
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/tests/composition/application/interaction-contract.md",
+      "bytes": 15417,
+      "sha256": "ffe0a667608b6431c6ba3299e0b64b815388b1385e77f93ce5bc52ca85d7cd1a"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/minimal/target/release/bin/main",
+      "bytes": 18985696,
+      "sha256": "bf7da646f091436f0ef7bf3663b3a18d18436f73b0f8aec93be634c8a70f3a0e"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/composition/target/release/bin/main",
+      "bytes": 19229256,
+      "sha256": "69e94b7afac0670c1fac08183d6e75e76b4f140e89a97c2b3192cc572e2de0c1"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/minimal/src/main.cj",
+      "bytes": 917,
+      "sha256": "384bb2bc59b766f4d631abdc2b7e13a16eaf7518076136e1d4485c7234eab97a"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/composition/src/application_view.cj",
+      "bytes": 1434,
+      "sha256": "f57177b1f7c662c46b40ad0dba7d5073a1981e8e5e0b3429403f91ff0cbbb280"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/composition/src/commands.cj",
+      "bytes": 3177,
+      "sha256": "e9fb3297c5c721a27cbc9d97a6bfc6c7627c5a6178bf7f779c363505fd45d1c2"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/composition/src/job_data.cj",
+      "bytes": 2648,
+      "sha256": "57c8c141de9ce6e4096af5674cf35d5b4093d23ba0c2a88cbb52abdf3ee92d7d"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/composition/src/job_panel.cj",
+      "bytes": 2339,
+      "sha256": "85ffe69f24048f0074d4797682afe5e797567ac19e0f3059db26fffa79c6f03a"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/composition/src/logs_scene.cj",
+      "bytes": 1072,
+      "sha256": "9fd5a5e6ed1dabd66321dc7f171d9d75f7be833ac4fd5eee33e96c8d85e3fff1"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/composition/src/main.cj",
+      "bytes": 1887,
+      "sha256": "546ab16e176aa69777dbb2fb19a68ceebcfb8882ef888ca37dd70c02a2ba164e"
+    },
+    {
+      "path": "/workspace/work/composition-application-execution/source/examples/composition/src/tasks_scene.cj",
+      "bytes": 1727,
+      "sha256": "5a17560296e0efe7f9bbadc922423f0d80d4d8818855e734d842260e82275cbd"
+    }
+  ],
+  "owned": [
+    {
+      "path": "/workspace/work/composition-application-vt-execution/payload.cpio.gz",
+      "bytes": 16032894,
+      "sha256": "e9337a0b3eb5c50435f732ed3bab161d847591dbe2fe12db2ba216b9eb974a4f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/captures.json",
+      "bytes": 11865,
+      "sha256": "c5732a19032605a7ee4bcf3be62eea0109248ad89d28c47f8fbb9d17b571d4f4"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/failure.json",
+      "bytes": 2413,
+      "sha256": "56f5003f326026d2f651456e4fb6e19a77a260be238cebee49350056022a239a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/launch.json",
+      "bytes": 1765,
+      "sha256": "054f0cb1ad142c231af0f474157a80ca7d4d61f77fa8b9733bd6e3931425359a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/logs-startup.png",
+      "bytes": 7213,
+      "sha256": "a2252ee93adf8c0a2f80f76104ae62ca19817ff60887496bb9d95433c4d78c7f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/logs-startup.ppm.gz",
+      "bytes": 6199,
+      "sha256": "0521a97b01affd0d388cb5e8b058d231dbba8add3968de0dcb7c9b087d186e27"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/logs-startup.vcsa",
+      "bytes": 4004,
+      "sha256": "d43a319583d53ebb75719f925bd96351893bbbedac2e4359f7557c55730db6ed"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/qemu.stderr",
+      "bytes": 72,
+      "sha256": "7bb7295c809ed68cfdb960fc38d3aaba312e6d39559eaafa8ea0543438047b33"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/qmp.jsonl",
+      "bytes": 12271,
+      "sha256": "4ddcd774a5bba0133ba43055dc4d8c27d2242fe918e0c168e74814d44b655162"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/serial-original.json",
+      "bytes": 242,
+      "sha256": "f703d884608d29e5dab139df3c864c3bd53942bcadf463668573f0d8d8276a51"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/serial.log.gz",
+      "bytes": 7180,
+      "sha256": "431a2ad3fd772ab47770e7caf8aeb3652b77116c5f551552548a8629ada16302"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-filter.png",
+      "bytes": 4221,
+      "sha256": "ae29bf7b3ff84fc8c955f9c3790910fa759187d775e5dedba4b437ba9f760245"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-filter.ppm.gz",
+      "bytes": 3463,
+      "sha256": "0dc7e5e19407ea6d6cd2a85a422299cf053f7274a70da1fd5aac805d513b0234"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-filter.vcsa",
+      "bytes": 4004,
+      "sha256": "44a5955ad4d11c761c6f35fd7d8cdceef2ea0d04f1a77702d9ae3958e8d20e6a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-typed.png",
+      "bytes": 3801,
+      "sha256": "81c28876a7bf35374e36632197387dd3e0be74bacaef3fc5a3d5e2f2538a0695"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-typed.ppm.gz",
+      "bytes": 3159,
+      "sha256": "78832643cb0ca985d30df401d439d58cb281b8c38a2bc8f20ad145ff637962bb"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-typed.vcsa",
+      "bytes": 4004,
+      "sha256": "e9bbbaf7aaa441e7e1fd0c93904aa9462e5f6e0f77cd891a4984cd690b6582dd"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/tasks-startup.png",
+      "bytes": 4460,
+      "sha256": "84fe489e0de69ca2ae79b43fc9b3c8ab3fb4399655e90d31ec71e4bfc55f0232"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/tasks-startup.ppm.gz",
+      "bytes": 3635,
+      "sha256": "dbacd67c9f34b7c457fb7c519bc4810ea435020b82e50cdcf8ebef0f43c91e6d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/tasks-startup.vcsa",
+      "bytes": 4004,
+      "sha256": "6ff5a4ebda14b18f32ce7e1ab0d4dc2bdd63645014b47d37f0c73fcb5e28e293"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/captures.json",
+      "bytes": 18450,
+      "sha256": "d589707f0e0b26573bcb6d25a009096f0b6310825dcee647d7c923984874656e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/events.json",
+      "bytes": 1731,
+      "sha256": "14b4c47d14184efe439d3b00d42fe1332a6ac4939ceb1eca839e3f4c39d3478f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/evidence/boot-cmdline.txt",
+      "bytes": 97,
+      "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/evidence/console-font.bin",
+      "bytes": 32768,
+      "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/evidence/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/evidence/outer-termios-after.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/evidence/outer-termios-before.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/evidence/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/evidence/product.strace.gz",
+      "bytes": 17241,
+      "sha256": "3eb472de63cc001f471985634ae3f2d9cf9bd6a648f2aef78681664c2e31d292"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/evidence/trace-original.json",
+      "bytes": 103,
+      "sha256": "029256fbffd3fd4cef5c86e5a2b2908ab9413e6563dc390b367971b6cf008515"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/evidence/vt-default-utf8.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/guest-export.tar.gz",
+      "bytes": 20735,
+      "sha256": "3fcf6faeab373659be1712c0df2a3dba941034756df0bb95b9be9b2067b45804"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/launch.json",
+      "bytes": 1768,
+      "sha256": "3bb8a8d66b9434ab9b97ea6db654059301627b555cbbc58a8ef4baa569a6b479"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down-light.png",
+      "bytes": 7790,
+      "sha256": "68fadac0732532207e14c04f431acab8e2b6514ca5bad0ef866281dce278e8be"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down-light.ppm.gz",
+      "bytes": 6179,
+      "sha256": "dadac8e94ee3b9956af84ecbd11e50f81f4e782bb57a98aa03181b0d3be1c7c4"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down-light.vcsa",
+      "bytes": 4004,
+      "sha256": "c66064d6b534100b412751e0f858494cbdde508f8d5a8235edc4ce66b401dfed"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down.png",
+      "bytes": 7352,
+      "sha256": "3cdfa73538a832036cdc59861df1b087ce57bbc37fe9cefe17f6e4cbd725a2c0"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down.ppm.gz",
+      "bytes": 6280,
+      "sha256": "508b92e6d0de226cf4b3fa1f12157dcea37f8dcbe2fe69a21e3a9c306ef6e731"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down.vcsa",
+      "bytes": 4004,
+      "sha256": "0d06b4a047ee32aa7882652386684c8fe6aee4eb22d1a0c78aa59ce02f558302"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-scroll-after-layer.png",
+      "bytes": 7790,
+      "sha256": "68fadac0732532207e14c04f431acab8e2b6514ca5bad0ef866281dce278e8be"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-scroll-after-layer.ppm.gz",
+      "bytes": 6182,
+      "sha256": "02da59379953e0179dadc07b4fa9e1c8dc7481b3eadf86e2bb37d1c46999db08"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-scroll-after-layer.vcsa",
+      "bytes": 4004,
+      "sha256": "dc1ef7c93eb00b244e1438d616cb0de49db44bb516a2c3d3bf190b4b1af332bf"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-top.png",
+      "bytes": 7247,
+      "sha256": "38b8ad4f5c04bc0e04f8b98572a4e7c3bf0102a33f5810856d41b5aa3b0142e8"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-top.ppm.gz",
+      "bytes": 6213,
+      "sha256": "b3ada3f81f508aa455289d23bc94b83fee8c9ffd5ef8323fd84d12128ba6ee07"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-top.vcsa",
+      "bytes": 4004,
+      "sha256": "564635d511c78c85f80a3195866527c66403148a98c5f03f58faec687ac6d131"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/modal-over-scrolled-logs.png",
+      "bytes": 9416,
+      "sha256": "ce911443b54f3fa8e15c2f91a4f8b37a29fad9cf8af36778fcbb3cc002310199"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/modal-over-scrolled-logs.ppm.gz",
+      "bytes": 7386,
+      "sha256": "a58d8ead92392c23c8f48006611ba303e5836bae767fba614e9ba919cda4eeb1"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/modal-over-scrolled-logs.vcsa",
+      "bytes": 4004,
+      "sha256": "e9150805e5be3cf894d4a3e8820ccc8768fab5b2b879c19f3f5361ee6791a659"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/qemu.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/qmp.jsonl",
+      "bytes": 8390,
+      "sha256": "60e85143c9a453a24a519f2d6ec439eaccb069ca958f13ead04fc29fc4e5207d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/restored.png",
+      "bytes": 7790,
+      "sha256": "68fadac0732532207e14c04f431acab8e2b6514ca5bad0ef866281dce278e8be"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/restored.ppm.gz",
+      "bytes": 6167,
+      "sha256": "712455380845854b8d7a8e053a2533060934a180c321e6d0555b8c56ae9897de"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/restored.vcsa",
+      "bytes": 4004,
+      "sha256": "dc1ef7c93eb00b244e1438d616cb0de49db44bb516a2c3d3bf190b4b1af332bf"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/result.json",
+      "bytes": 463,
+      "sha256": "2b7c3376b267dc557959cae5272e80a0f08d2958913c531217430e3b5431d616"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/serial-original.json",
+      "bytes": 102,
+      "sha256": "aeb30634587bf92b3b54c471dda77433344be1557d249f4d7dc0c72b55077fd3"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/serial.log.gz",
+      "bytes": 22792,
+      "sha256": "beda502a06a0ad643ba6d268d2b3ea67d865f9a7668b73af7e06acd4468b6a9d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/captures.json",
+      "bytes": 40521,
+      "sha256": "b1111aefe5e5f06504d25a6925864358a5a1f3cea72b138173295a5cf10f0277"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/confirm-open.png",
+      "bytes": 6661,
+      "sha256": "dfce9dd4b97301ea4211511f2cb4809cae8ab246268d8d1517df3902a2dddef7"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/confirm-open.ppm.gz",
+      "bytes": 5559,
+      "sha256": "3a3f4bdedaed8e9eed37665e13a7869389d51983e59462653773aa4ae30e05da"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/confirm-open.vcsa",
+      "bytes": 4004,
+      "sha256": "eb5af65e6d9727b3b41939495530af979b59b43c2cdb5137793caa826fc433a9"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/done-full.png",
+      "bytes": 4577,
+      "sha256": "51ecc49e58a84d5c4106a09bd39fde3404b984c87baa710669caf6a07e26bfdb"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/done-full.ppm.gz",
+      "bytes": 3784,
+      "sha256": "7356590d36bc261ddcb3b5fce8ac77ff38306bb358a1393f8718eaac2f62e931"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/done-full.vcsa",
+      "bytes": 4004,
+      "sha256": "6f0b4800d05d6707e15c170d6ad3c6283af343e60fefd4e601332a6b0446cabd"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/events.json",
+      "bytes": 5278,
+      "sha256": "953a71cb5cc00a15ef92ab1c8698767b335cb9a1a7b2483726fc8bb7e0cd45eb"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/evidence/boot-cmdline.txt",
+      "bytes": 97,
+      "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/evidence/console-font.bin",
+      "bytes": 32768,
+      "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/evidence/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/evidence/outer-termios-after.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/evidence/outer-termios-before.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/evidence/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/evidence/product.strace.gz",
+      "bytes": 17727,
+      "sha256": "1f672035479b34072e7a4339484e9fb00f5fede453d9956ed63dd65adcc5b7ff"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/evidence/trace-original.json",
+      "bytes": 103,
+      "sha256": "f20b99b13112ebe7200c4194b3d52c4bb464a59aee7af17c630ca8bd65dbb479"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/evidence/vt-default-utf8.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/guest-export.tar.gz",
+      "bytes": 21310,
+      "sha256": "e033833cc61b27c9ab65527da9df61a76d9763121004200ac6aeb2ba480bbe0d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/launch.json",
+      "bytes": 1765,
+      "sha256": "3c48f29ff10aab526c2c5c40b637febf5a79edb8c5f5315d82c3a200c5e41445"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/logs-startup.png",
+      "bytes": 7213,
+      "sha256": "a2252ee93adf8c0a2f80f76104ae62ca19817ff60887496bb9d95433c4d78c7f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/logs-startup.ppm.gz",
+      "bytes": 6199,
+      "sha256": "93e194d462f481a355e291068f0ac4a6e56b0c779fcb7bce4c618dc1779d5149"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/logs-startup.vcsa",
+      "bytes": 4004,
+      "sha256": "d43a319583d53ebb75719f925bd96351893bbbedac2e4359f7557c55730db6ed"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/modal-open.png",
+      "bytes": 4499,
+      "sha256": "c38fefe75b62c4e83c139a3bc94d892e7f4d6650a67a0122d024013ccef89255"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/modal-open.ppm.gz",
+      "bytes": 3657,
+      "sha256": "87a5390a2ff12f13a59d342011aa633b7826b1e11ad271ef7b0240e38e9a7f7d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/modal-open.vcsa",
+      "bytes": 4004,
+      "sha256": "cdaaf08b32600fa867f887ba90077af0e77acdc15b0ec6666f6e795ee63f611d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/physical-undo-one-key.png",
+      "bytes": 4231,
+      "sha256": "9f9d7740ee0d52615fba74080f573e9faec91695d4b9636155adb8a73ac4999e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/physical-undo-one-key.ppm.gz",
+      "bytes": 3479,
+      "sha256": "79f3873566d6e4df3af10af0e53bf5e53a8e3137fd6cd2d5ab04211d27d18997"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/physical-undo-one-key.vcsa",
+      "bytes": 4004,
+      "sha256": "44a5955ad4d11c761c6f35fd7d8cdceef2ea0d04f1a77702d9ae3958e8d20e6a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/popup-open.png",
+      "bytes": 6835,
+      "sha256": "a76cdf5f4ef1ca4098f006a83dea071aa450c95b03630bbdbcb7a7fbfe1d9ecd"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/popup-open.ppm.gz",
+      "bytes": 5676,
+      "sha256": "d6e13ad8cbc69231cc30a7013a7d1552bca54cfa5190ca34a266ea4ce1ab1b8e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/popup-open.vcsa",
+      "bytes": 4004,
+      "sha256": "8c2ad0b36fe78f6d47fcf7aadfc4c84a109e67de2af00333e9d3b444130552aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/qemu.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/qmp.jsonl",
+      "bytes": 28169,
+      "sha256": "45b1fcf1176e50268f6b702e905dfc38bfb20e1ec08c36480aecb21917dc61c0"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/restored.png",
+      "bytes": 4588,
+      "sha256": "728d5a17387c18d18e4f6dacdbf8abaa790c47260a6798a0814fa33209251298"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/restored.ppm.gz",
+      "bytes": 3791,
+      "sha256": "8334f33e817be6936df6fea4fb1db0378e355637a3c1f1d45806db7488c3ac28"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/restored.vcsa",
+      "bytes": 4004,
+      "sha256": "6f0b4800d05d6707e15c170d6ad3c6283af343e60fefd4e601332a6b0446cabd"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/result.json",
+      "bytes": 464,
+      "sha256": "a86ed963b8256048170bbe0ff50407f9a8a5131723020cff3d05cc339c4ebced"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/review-half.png",
+      "bytes": 6508,
+      "sha256": "d71969435a1becf27339368c8dab16e945d7216fe44bde9e51c1d3f691d43ac6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/review-half.ppm.gz",
+      "bytes": 5417,
+      "sha256": "5254f096496c7b1697703430cbda97f12039540efdcd5cd0a69ee4570fcb3e4f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/review-half.vcsa",
+      "bytes": 4004,
+      "sha256": "0b519ad488c0f85b2a0704d7cfbe8ebbb49e6566ed838f3867214fe4b9cc8816"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/serial-original.json",
+      "bytes": 103,
+      "sha256": "da1c1fd029ab05a3da86c6572bda6c20312196fbb30541d338e89dea6db8b16d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/serial.log.gz",
+      "bytes": 29234,
+      "sha256": "f5d16c1be945f4b91b4a6e95c59799e27525c52d7e0b9dcf5ae932838c307a1f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-filter.png",
+      "bytes": 4221,
+      "sha256": "ae29bf7b3ff84fc8c955f9c3790910fa759187d775e5dedba4b437ba9f760245"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-filter.ppm.gz",
+      "bytes": 3463,
+      "sha256": "fa4502bd7571cf93827ff124c93928a3be810a24db96c076ec133d6e193b9cb0"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-filter.vcsa",
+      "bytes": 4004,
+      "sha256": "44a5955ad4d11c761c6f35fd7d8cdceef2ea0d04f1a77702d9ae3958e8d20e6a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-hide-done.png",
+      "bytes": 4316,
+      "sha256": "60a41f7b7264f6072fdb1589e2f1c0eff13601e2c43c1362f27ff35e89db847e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-hide-done.ppm.gz",
+      "bytes": 3533,
+      "sha256": "96e80a2c60a7247b77a066f369f3060d0c08545a3a75e5dae105963b51083423"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-hide-done.vcsa",
+      "bytes": 4004,
+      "sha256": "09421a8f74e9b4537dbdbe2c804293b5493067e46725eaaf47f1c9b7bd6d870b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-name-sort.png",
+      "bytes": 4505,
+      "sha256": "d0ddcd4b37072e7c12692faac3fce9c04b313ae0fcfd2d175c409727b13c3224"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-name-sort.ppm.gz",
+      "bytes": 3669,
+      "sha256": "1cd13723e49d34f218ff64869c3fe2280a0a43332d5196b37febf45791f61a97"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-name-sort.vcsa",
+      "bytes": 4004,
+      "sha256": "cdaaf08b32600fa867f887ba90077af0e77acdc15b0ec6666f6e795ee63f611d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-typed.png",
+      "bytes": 3801,
+      "sha256": "81c28876a7bf35374e36632197387dd3e0be74bacaef3fc5a3d5e2f2538a0695"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-typed.ppm.gz",
+      "bytes": 3159,
+      "sha256": "3262e3a87ccbb3e68bf66cb1fa3397682b15754cc308ec157f9e135a73df8d77"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-typed.vcsa",
+      "bytes": 4004,
+      "sha256": "e9bbbaf7aaa441e7e1fd0c93904aa9462e5f6e0f77cd891a4984cd690b6582dd"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/tasks-startup.png",
+      "bytes": 4460,
+      "sha256": "84fe489e0de69ca2ae79b43fc9b3c8ab3fb4399655e90d31ec71e4bfc55f0232"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/tasks-startup.ppm.gz",
+      "bytes": 3635,
+      "sha256": "a20cddac77b84f273768fa91750abb0c869e61dfa7f1d0d0900739cc9b6c6faf"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/tasks-startup.vcsa",
+      "bytes": 4004,
+      "sha256": "6ff5a4ebda14b18f32ce7e1ab0d4dc2bdd63645014b47d37f0c73fcb5e28e293"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/after-f9-ancestor-close.png",
+      "bytes": 4442,
+      "sha256": "573b1e7b2adb396d3e0f3f32f0a53800df8207eb908dec3d2823df1c5761213e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/after-f9-ancestor-close.ppm.gz",
+      "bytes": 3647,
+      "sha256": "5b48a78c2f972542f6ffc3a7ba24ca9bf0e7a84cce5b21dbfef82aef401bc81a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/after-f9-ancestor-close.vcsa",
+      "bytes": 4004,
+      "sha256": "a70f24756c19478e730f13dce5ea895d43338387d978987044c466182bfe7707"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/captures.json",
+      "bytes": 41679,
+      "sha256": "df954e11f41a20073d10fdabd1617a6ddc2d1a33e2b3c62528746815a5cc1315"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/events.json",
+      "bytes": 5578,
+      "sha256": "63119f254aba7ed117460a0d2fa15beb0013a981e53ece1e7afd0c0f498fab16"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/evidence/boot-cmdline.txt",
+      "bytes": 97,
+      "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/evidence/console-font.bin",
+      "bytes": 32768,
+      "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/evidence/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/evidence/outer-termios-after.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/evidence/outer-termios-before.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/evidence/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/evidence/product.strace.gz",
+      "bytes": 18379,
+      "sha256": "adb93e3d0153b40ce90b6f06d19c967e4aae413c25e9f8269d915c796c2b2086"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/evidence/trace-original.json",
+      "bytes": 103,
+      "sha256": "5e2d1e6687bd37bf31184760cd5590067c34101ab8542e44c8b3105d85b66ad3"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/evidence/vt-default-utf8.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/guest-export.tar.gz",
+      "bytes": 22228,
+      "sha256": "77871d37caada77e9b88f080b099af9c7349b7e15029506d74658e091b1bda51"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/launch.json",
+      "bytes": 1765,
+      "sha256": "fd6aac69d52e7afc81d947d5c07c8c221fce7f6c24e4f614a4ce28042189f0fc"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-f9.png",
+      "bytes": 5755,
+      "sha256": "89bab2301d4a393b51ade34e629f079c36412b65383d6fcb121e61a2f858e865"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-f9.ppm.gz",
+      "bytes": 4208,
+      "sha256": "66821ab4713146f573af71be9e9576ee7cfa0a8298938d4b6c4c0cbc16235c1a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-f9.vcsa",
+      "bytes": 4004,
+      "sha256": "80d13ba989ee4845a675f6c4a3cd543b9af845aea17e24d81245ab60f69a92c4"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-theme.png",
+      "bytes": 5755,
+      "sha256": "89bab2301d4a393b51ade34e629f079c36412b65383d6fcb121e61a2f858e865"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-theme.ppm.gz",
+      "bytes": 4211,
+      "sha256": "d1b838b24b74d41180756507910a6ea85774691b67238369990603dd9738a697"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-theme.vcsa",
+      "bytes": 4004,
+      "sha256": "80d13ba989ee4845a675f6c4a3cd543b9af845aea17e24d81245ab60f69a92c4"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-errors-only.png",
+      "bytes": 7683,
+      "sha256": "1b28616a696c111c22b474e51932d5a25073473ecc7ed99c7fd3dbdb36a88a59"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-errors-only.ppm.gz",
+      "bytes": 6100,
+      "sha256": "819b498d2638f930fd635e38cdf97010d9ae5bbe723279c73109c0b3ab3e687b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-errors-only.vcsa",
+      "bytes": 4004,
+      "sha256": "11fe05bea0b2f1825c2b5c1c691c2908c8fcfd4c5d49540368e5022609e0f810"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter-cleared.png",
+      "bytes": 7674,
+      "sha256": "65b37f21e37f182af2ab5c218b29c026339a3d600c159c410b7a59058de49183"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter-cleared.ppm.gz",
+      "bytes": 6096,
+      "sha256": "6f1a72c429fb503dbba14641f6c32dc2bfb2385173ebc4c108dae479d0558b74"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter-cleared.vcsa",
+      "bytes": 4004,
+      "sha256": "11fe05bea0b2f1825c2b5c1c691c2908c8fcfd4c5d49540368e5022609e0f810"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter.png",
+      "bytes": 7683,
+      "sha256": "1b28616a696c111c22b474e51932d5a25073473ecc7ed99c7fd3dbdb36a88a59"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter.ppm.gz",
+      "bytes": 6095,
+      "sha256": "d4dc7e155c6e0c561f999450b88eea6329de3585390a2a06c2c211acdac6c67b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter.vcsa",
+      "bytes": 4004,
+      "sha256": "11fe05bea0b2f1825c2b5c1c691c2908c8fcfd4c5d49540368e5022609e0f810"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-initial.png",
+      "bytes": 7674,
+      "sha256": "65b37f21e37f182af2ab5c218b29c026339a3d600c159c410b7a59058de49183"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-initial.ppm.gz",
+      "bytes": 6089,
+      "sha256": "e124d47772357c72a3071d3970e162aa32e74592f187d648c0b0c7e125c589d7"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-initial.vcsa",
+      "bytes": 4004,
+      "sha256": "11fe05bea0b2f1825c2b5c1c691c2908c8fcfd4c5d49540368e5022609e0f810"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-newest.png",
+      "bytes": 7674,
+      "sha256": "65b37f21e37f182af2ab5c218b29c026339a3d600c159c410b7a59058de49183"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-newest.ppm.gz",
+      "bytes": 6088,
+      "sha256": "28f3b9f2caee711e468ee7202435e6b7aaf8eafe28a7911fd98cd4208df4f2e9"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-newest.vcsa",
+      "bytes": 4004,
+      "sha256": "11fe05bea0b2f1825c2b5c1c691c2908c8fcfd4c5d49540368e5022609e0f810"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-after-theme.png",
+      "bytes": 4435,
+      "sha256": "1306a7f540bc1407dea7677303f5eddcb0aa687fb5d623dc59b666a904a6809d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-after-theme.ppm.gz",
+      "bytes": 3634,
+      "sha256": "1b0c4a92ad2bd16ce233bf0ffce6bb1508ea8bfd39a12165af47af2c65646628"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-after-theme.vcsa",
+      "bytes": 4004,
+      "sha256": "a70f24756c19478e730f13dce5ea895d43338387d978987044c466182bfe7707"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-from-logs.png",
+      "bytes": 5755,
+      "sha256": "89bab2301d4a393b51ade34e629f079c36412b65383d6fcb121e61a2f858e865"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-from-logs.ppm.gz",
+      "bytes": 4210,
+      "sha256": "ac690ee8bb22052c8cb0652fe42b46816b35cca28893c0c87108fd8db6bf0bca"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-from-logs.vcsa",
+      "bytes": 4004,
+      "sha256": "80d13ba989ee4845a675f6c4a3cd543b9af845aea17e24d81245ab60f69a92c4"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-after-theme.png",
+      "bytes": 4442,
+      "sha256": "573b1e7b2adb396d3e0f3f32f0a53800df8207eb908dec3d2823df1c5761213e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-after-theme.ppm.gz",
+      "bytes": 3641,
+      "sha256": "061d44ff2a49b5072103906d886777687d780f95d39f10556de163f8f29bf881"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-after-theme.vcsa",
+      "bytes": 4004,
+      "sha256": "a70f24756c19478e730f13dce5ea895d43338387d978987044c466182bfe7707"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-physical-multiline.png",
+      "bytes": 4449,
+      "sha256": "7fb73081fc0700947d4edf4d78b5fde35a13a508e6a114f5b362d5593f439001"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-physical-multiline.ppm.gz",
+      "bytes": 3639,
+      "sha256": "0de0161568918744813657220ceaebac8966d1b203d142de60192b6b2307f4c5"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-physical-multiline.vcsa",
+      "bytes": 4004,
+      "sha256": "6ff5a4ebda14b18f32ce7e1ab0d4dc2bdd63645014b47d37f0c73fcb5e28e293"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/qemu.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/qmp.jsonl",
+      "bytes": 27350,
+      "sha256": "9990c07edaacd82a8b88293a193217f21f29d62769b1f11088e40a25031f8558"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/restored.png",
+      "bytes": 5106,
+      "sha256": "f18643611586ac752740b2bd9c3ccaeda8fdd0a191a21fc2b061ef0f08f34b2d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/restored.ppm.gz",
+      "bytes": 4295,
+      "sha256": "ec6605953e45ddeb758e4f0b2f5be847bcf9cc50e6636b1c418971c4238be3a4"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/restored.vcsa",
+      "bytes": 4004,
+      "sha256": "3955c96123cdaf758044f4537473e0ec2816efaf6d71ce8cba067aa3ed9f5971"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/result.json",
+      "bytes": 464,
+      "sha256": "53cf3c8f726e78f8e32b78eb803569635714b4195e2020083eca94b6b4ed0984"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/serial-original.json",
+      "bytes": 102,
+      "sha256": "9f1f2ac4f36a9bdfb88ba32823aec06ccf697a7d5b8b9d7bbec9012e541f462f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/serial.log.gz",
+      "bytes": 28710,
+      "sha256": "e9a4f7bd9c52f1c484f5285a6339e1894067e61dc305fbcbc922bc708996980e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/task-initial.png",
+      "bytes": 4460,
+      "sha256": "84fe489e0de69ca2ae79b43fc9b3c8ab3fb4399655e90d31ec71e4bfc55f0232"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/task-initial.ppm.gz",
+      "bytes": 3634,
+      "sha256": "59a8fb76d43b04de32b1031d78d33e840c8813b7942aa705898c08f45d5187d2"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/task-initial.vcsa",
+      "bytes": 4004,
+      "sha256": "6ff5a4ebda14b18f32ce7e1ab0d4dc2bdd63645014b47d37f0c73fcb5e28e293"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/captures.json",
+      "bytes": 2976,
+      "sha256": "17107ae864698b59e6500ab72502fa77e72ceb4c28661c95376eef2fef506ed2"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/failure.json",
+      "bytes": 1161,
+      "sha256": "0cf519d391044a1b4500873f3c2f033174f968f44f86ba8c7a167a5bcff18127"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/launch.json",
+      "bytes": 1765,
+      "sha256": "b86fdd7451400407ab06e75040087a42513391ecf28e23e6a65e6815634a94cf"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/qemu.stderr",
+      "bytes": 72,
+      "sha256": "0ae2e469b2b2dc7e1f49e87f67cc50c979ef28783dd9fd9a77473f46adae0853"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/qmp.jsonl",
+      "bytes": 4537,
+      "sha256": "f4fe478b55c6b0b24df699d9169649415aaa991b618f8c1d020a58ff16e77101"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/serial-original.json",
+      "bytes": 241,
+      "sha256": "4d0bf4692527af67ca56248aee3e318a208a65f66cf6828b21c80ddce8b878d0"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/serial.log.gz",
+      "bytes": 5799,
+      "sha256": "d8c5e439494a91c991c58f0cd6c5a2f804d15fbe0f47cc955770e6b668b08e52"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/textarea-focus.png",
+      "bytes": 4487,
+      "sha256": "78d3bf610fb1ba697f7cc4f6f1cf21fa4471f7ed99e4aff514c4f4b1cbc00291"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/textarea-focus.ppm.gz",
+      "bytes": 3637,
+      "sha256": "bb34f7cd46ae0b9655a36c3495e37bf0b6d521afdedfe34eec99be40338b3c5d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/textarea-focus.vcsa",
+      "bytes": 4004,
+      "sha256": "25edac3c79adb24b68dc0ffbdac6af16a22ed1988281e66255b15f9bfaafe02b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/captures.json",
+      "bytes": 2976,
+      "sha256": "f8b752c36d8bc326b90923989f7279445978bfee3c8378f814abfcb21d98f428"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/failure.json",
+      "bytes": 2169,
+      "sha256": "bed148f7481c86c280edb29071b133b31048d7444299741d90123f277ce83ea0"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/launch.json",
+      "bytes": 1765,
+      "sha256": "9733355a1b437b0c37d6246ae882b950f8913fef39281192f98f5371a52ffac0"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/qemu.stderr",
+      "bytes": 72,
+      "sha256": "a4be24eaffb2f55bff6be682dd23a28e5831b9ca79c77c501336bd36bf0e4026"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/qmp.jsonl",
+      "bytes": 7963,
+      "sha256": "993a75273c368d95533c1a220e4a38e024adc3f6c138098fbde9684687261877"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/serial-original.json",
+      "bytes": 241,
+      "sha256": "05d2bdd6e074b805568502cb949f696a52a5b96763cce162374145d08a9043ea"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/serial.log.gz",
+      "bytes": 6217,
+      "sha256": "d2cc26224f30e89c1facff42a795c0ca222df0c8a6ef7dade5fa0433cb1ca2df"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/textarea-focus.png",
+      "bytes": 4490,
+      "sha256": "67477c1d174e9a886cb3e455d0a44433f09d40a494a70c41776f18ba5a4db34a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/textarea-focus.ppm.gz",
+      "bytes": 3660,
+      "sha256": "9b070d8b87f1ac25d5d4f21e700338f2cc831e7089a74d165688b742543c1e87"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/textarea-focus.vcsa",
+      "bytes": 4004,
+      "sha256": "33214f7b24daf722a6b33af3ec6df0359c30282fad950c93c4fdc91243b8b34a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/captures.json",
+      "bytes": 2976,
+      "sha256": "c54e339b82b70d1efe2b74128bd91d14ff9fc00ec3eb62355bbe88cf2b06ad95"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/failure.json",
+      "bytes": 2048,
+      "sha256": "aa6efdf17f63dfcd8f472a97a0cac91667b8f3e784cf392159f785d2b38251c5"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/launch.json",
+      "bytes": 1765,
+      "sha256": "0fb2e75b0c03d652c7f654f96333c1bcfc312f871264dec9a235fc4fcf3340b1"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/qemu.stderr",
+      "bytes": 72,
+      "sha256": "5cfa3c5f8d781315672279af44be0c467a1cd82d7d7ac2725e7d0e681f759c78"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/qmp.jsonl",
+      "bytes": 7392,
+      "sha256": "7929872fcb0e995de58e06ccbdab905a81c68561daf37fe2c45707342778a0dc"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/serial-original.json",
+      "bytes": 241,
+      "sha256": "9ca4d2fabfac03f5ef479e3dccb34569eaf7eea8f7a3a5ba8e0bd8cc201c305e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/serial.log.gz",
+      "bytes": 6181,
+      "sha256": "ef1c3e93b44c07a8e6f0eb26687f1f4ec80050566c2a6be71c77a1c85c7c001c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/textarea-focus.png",
+      "bytes": 4490,
+      "sha256": "67477c1d174e9a886cb3e455d0a44433f09d40a494a70c41776f18ba5a4db34a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/textarea-focus.ppm.gz",
+      "bytes": 3660,
+      "sha256": "48bc90858d823bc25649d2f74b2d14674ed45c54a5b588045b3684a1bb6f5514"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/textarea-focus.vcsa",
+      "bytes": 4004,
+      "sha256": "3967f999cb42258ed1c1fae6a6feb282ffc2b9d0a6ba863903a6938488cf8b94"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/ancestor-closed.png",
+      "bytes": 5234,
+      "sha256": "c8b15e037ce9d7e6703390f819c01695e61e72effbc727ad2d6f743a61493e98"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/ancestor-closed.ppm.gz",
+      "bytes": 3730,
+      "sha256": "4fe62afc1ce38bfd00120fecb5e7ab7019780fb44cd1c29d4c9df39c00177833"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/ancestor-closed.vcsa",
+      "bytes": 4004,
+      "sha256": "fee432c829ee9ca2e06b94e58cdd1554070e9216956c95e48dff901814b7bcfa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/captures.json",
+      "bytes": 42273,
+      "sha256": "a5589523982a49c5f2302c1f80cfa7b1b72fb7b64d186d57bd548877d9c7a785"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/events.json",
+      "bytes": 6308,
+      "sha256": "91fcced394d806ce774d3d37ef94e2309e739addc8b7118375f2955c3e95a625"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/evidence/boot-cmdline.txt",
+      "bytes": 97,
+      "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/evidence/console-font.bin",
+      "bytes": 32768,
+      "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/evidence/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/evidence/outer-termios-after.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/evidence/outer-termios-before.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/evidence/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/evidence/product.strace.gz",
+      "bytes": 18562,
+      "sha256": "4c3417533f9c5b4fc5aa7447adcb3348b99e37bdcbfaa6119c083d8d0754106d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/evidence/trace-original.json",
+      "bytes": 103,
+      "sha256": "1087e7cfd9048ff449618f55ce5029642e8cbb162d44205ffbfdec51199eab9c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/evidence/vt-default-utf8.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/focus-return-typed.png",
+      "bytes": 4934,
+      "sha256": "28f697e79982101fa2f3a055780ccee5be293e85f2dd2c5d7588ecb8752f8a1f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/focus-return-typed.ppm.gz",
+      "bytes": 3439,
+      "sha256": "c972d1a7d7e5401e956f2d61721dd84986aee748448f8850f1ea3e1b808fdaff"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/focus-return-typed.vcsa",
+      "bytes": 4004,
+      "sha256": "e123085c4eead58c54bbb8aae7f241d4586a16697217472011253021ebd803c4"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/guest-export.tar.gz",
+      "bytes": 22468,
+      "sha256": "c91449fd059c7594b41f997339d4119b05bd88bcee078ba3edc6e4e5ac25a041"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/launch.json",
+      "bytes": 1765,
+      "sha256": "e3cc0dfa8c73d2b12d65dc780269ad243827c197740090cf4678c485f388deae"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-cleared.png",
+      "bytes": 7674,
+      "sha256": "65b37f21e37f182af2ab5c218b29c026339a3d600c159c410b7a59058de49183"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-cleared.ppm.gz",
+      "bytes": 6089,
+      "sha256": "368b14cd0224d55b2fecaa4045dfdf2e139d417fe451e9d0daba5d26bfcab051"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-cleared.vcsa",
+      "bytes": 4004,
+      "sha256": "11fe05bea0b2f1825c2b5c1c691c2908c8fcfd4c5d49540368e5022609e0f810"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-errors.png",
+      "bytes": 5702,
+      "sha256": "431d0dfc12d0147c1a3f208bbd4f90caae5d2ba9ff5f0e747a43af1d85eed5d3"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-errors.ppm.gz",
+      "bytes": 4204,
+      "sha256": "41d3827f66555c73203e628ed98d96173411ce3274a1289dc1803b4ddded256c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-errors.vcsa",
+      "bytes": 4004,
+      "sha256": "601356ac8c693a1a6e5d20ef2712a1eca80fefebce454635476a2b4821fe8390"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-filtered.png",
+      "bytes": 3903,
+      "sha256": "ee39dbb1f9b75c5d060b0520c3a6ff5b3ae7d4f28100793ed1f4c93ff99bc244"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-filtered.ppm.gz",
+      "bytes": 2634,
+      "sha256": "5c1662c790d867495775993b065a5bc35bfb9ea1118622dcf15c00b95669afcd"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-filtered.vcsa",
+      "bytes": 4004,
+      "sha256": "178faf736f8e1dd8c2833c932755331bddeeaf8b920d2950e799c02a1814b70a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-reversed.png",
+      "bytes": 5709,
+      "sha256": "1944f1c8a7167c7f52f6a2c6b1e62da1d09cdb11779d622ae0459f9c0f67a646"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-reversed.ppm.gz",
+      "bytes": 4221,
+      "sha256": "99d7d55d394492b3950decf2a25c358ae2df657bb4feb74996279d96d94c5480"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-reversed.vcsa",
+      "bytes": 4004,
+      "sha256": "47b4a20802414c19c51245755512e84f56430895796cc4a1f9d7af2b96460fed"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-theme-preserved.png",
+      "bytes": 5113,
+      "sha256": "82a04ab5a370ba237b2b320c23e73369125c47cbaf618d917d98ac56f4a6e69f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-theme-preserved.ppm.gz",
+      "bytes": 4313,
+      "sha256": "c4f79661b40a6227c799f2bfead968b647900a2c17a8b6e143054393d1588db9"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-theme-preserved.vcsa",
+      "bytes": 4004,
+      "sha256": "98019013850a8b3f01ba4f570b1a301d0798a3e23866e43689ef8ae345eb0d4b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/modal-from-editor.png",
+      "bytes": 6757,
+      "sha256": "40d196d98242cb5fb0c1ce2b5f29017f611b32cca1a28a0e1e0e4abb67e1084d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/modal-from-editor.ppm.gz",
+      "bytes": 5104,
+      "sha256": "5f69c1c137ec6166517ba23eb1a6944483707d2892fd33f977281f6e9f1d75ca"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/modal-from-editor.vcsa",
+      "bytes": 4004,
+      "sha256": "9c974c746a6437b196e2e05f5776ef15a910a4015441ddad7e09cdba7663898a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-multiline.png",
+      "bytes": 4584,
+      "sha256": "8bd25b9c2d9f861df94acb8abfdd3ecd2fc9fcf8ae926926275f6715b8b4d7b2"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-multiline.ppm.gz",
+      "bytes": 3761,
+      "sha256": "ea89e91829a17e9308ad6262f2398eb20d1904e7d791def91f22acc8b31acac2"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-multiline.vcsa",
+      "bytes": 4004,
+      "sha256": "5979c5c4b7987acc491f86f58f587d321917676f3209f8ee91d114f0f874d839"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selected-theme.png",
+      "bytes": 5234,
+      "sha256": "c8b15e037ce9d7e6703390f819c01695e61e72effbc727ad2d6f743a61493e98"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selected-theme.ppm.gz",
+      "bytes": 3735,
+      "sha256": "19efe76038d6c0e60b4d006e4995631680b4faf966079d3156304dc1f0f05593"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selected-theme.vcsa",
+      "bytes": 4004,
+      "sha256": "fee432c829ee9ca2e06b94e58cdd1554070e9216956c95e48dff901814b7bcfa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selection-replaced.png",
+      "bytes": 4946,
+      "sha256": "cc20cee6a10b5adef1e03c2905e3b2ad2e895113665115d0328af5afc712a432"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selection-replaced.ppm.gz",
+      "bytes": 3442,
+      "sha256": "fefec1d8a9b81f1f061b8de22a786cdc1d83773ce2fda6c835c5d3c5d92825d7"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selection-replaced.vcsa",
+      "bytes": 4004,
+      "sha256": "273c99e60e43eaaa977588e0f5c1c961ea3c13a5dbc3ec7e5a85a58f35ccc3d1"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-undo-after-theme.png",
+      "bytes": 5234,
+      "sha256": "c8b15e037ce9d7e6703390f819c01695e61e72effbc727ad2d6f743a61493e98"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-undo-after-theme.ppm.gz",
+      "bytes": 3737,
+      "sha256": "ab060a55dd1464a06df84a0e7ca84837ad0661433855083a0dad7ef15e6f6fac"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-undo-after-theme.vcsa",
+      "bytes": 4004,
+      "sha256": "fee432c829ee9ca2e06b94e58cdd1554070e9216956c95e48dff901814b7bcfa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/qemu.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/qmp.jsonl",
+      "bytes": 30217,
+      "sha256": "bfcd31c45d63e01b6db86f8895d799a82e3d92a1582b52b49011aa3787427aa9"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/restored.png",
+      "bytes": 5106,
+      "sha256": "f18643611586ac752740b2bd9c3ccaeda8fdd0a191a21fc2b061ef0f08f34b2d"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/restored.ppm.gz",
+      "bytes": 4295,
+      "sha256": "157640aec4707fa78e6ed0905f82084b6acc63f799f4eeeca287f0123e8109d4"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/restored.vcsa",
+      "bytes": 4004,
+      "sha256": "98019013850a8b3f01ba4f570b1a301d0798a3e23866e43689ef8ae345eb0d4b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/result.json",
+      "bytes": 464,
+      "sha256": "31cf119828edac2285b5fb0e1d588c0473a0c9053fe8007ceec25f529175c6ed"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/serial-original.json",
+      "bytes": 102,
+      "sha256": "51af7e5282544e53d5dfa1a9a83ac42babc863b3c6525696fa7171a98ac2a4e5"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/serial.log.gz",
+      "bytes": 29286,
+      "sha256": "4f3ee13378fb11a21859b85eaf4195bd8ee7da22179a387c30ba6c26147f96a9"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/textarea-focus.png",
+      "bytes": 4492,
+      "sha256": "0b379c572ffc2d36e98936eb28db029c0b67e8a34703e31453185a159290f7af"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/textarea-focus.ppm.gz",
+      "bytes": 3667,
+      "sha256": "1709ab9999c593fcde95316c18472034a0b06401a0565b311410f5ebbe9e7cf5"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/textarea-focus.vcsa",
+      "bytes": 4004,
+      "sha256": "33214f7b24daf722a6b33af3ec6df0359c30282fad950c93c4fdc91243b8b34a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v8/failure.json",
+      "bytes": 251,
+      "sha256": "a14cb3c3a10763525f96ff6f063523cca81f00cbc548004b722ad8cc192253c8"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v8/launch.json",
+      "bytes": 1765,
+      "sha256": "93c14ca5ba056ed96f7ea8e3e3db05ef301fae45c98cacb808770d0b697d303c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v8/qemu.stderr",
+      "bytes": 72,
+      "sha256": "47c1cef6bb32e7b7180680ea929d26881adc0b6dc02dd5e27be24966e97e861e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v8/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v8/qmp.jsonl",
+      "bytes": 1396,
+      "sha256": "555bcd2a6360fee749fa67de5a4728c7c3b6aae9c3a8e5254ed6b6fbd4bc0357"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v8/serial-original.json",
+      "bytes": 241,
+      "sha256": "e4ba696db9f780904c32355b73659504dcba45cfa777ddef85e36ff75fec1e6c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v8/serial.log.gz",
+      "bytes": 4783,
+      "sha256": "915f766d30f8ee296be941dbf277702dd0d5d8e18b450e45ea1a5a8625382743"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/ack-color.json",
+      "bytes": 321,
+      "sha256": "3da2cb8c55c47dcecde0cd7631d1f46ab92d80d082f94dc32ec07164e9ce4f8a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/captures.json",
+      "bytes": 28239,
+      "sha256": "cdf8091e5cff9172aa9a6e5b7d59f291bdb598dd8226f30d569b040720e9f88c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-ack.png",
+      "bytes": 4575,
+      "sha256": "f9bb02a95583d93a2f79816df89dab3b4f7fcc183183be1d8cc1b8c848f2edc5"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-ack.ppm.gz",
+      "bytes": 3774,
+      "sha256": "b587a1aba0987bca51e645b73a7530b8bd8310339e956e876c987417d4fae64a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-ack.vcsa",
+      "bytes": 4004,
+      "sha256": "40ace74b1db7faeaae75b6dd85cefc6674c55133ce5c694e1fa81e8b963b6ca9"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-nested-f9.png",
+      "bytes": 4585,
+      "sha256": "b75f8ee3dbdd9a60ebf1502a415412bddf9ac0772be8f69fca5ff27c5372ca11"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-nested-f9.ppm.gz",
+      "bytes": 3782,
+      "sha256": "bb1758b58ef9031fd8d47b1d93f11640b204ca28848198e9d5d16ff6d0692595"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-nested-f9.vcsa",
+      "bytes": 4004,
+      "sha256": "14c97930367e80ebc3440213fad0de255390f3b762102f6b4276954dc5a4ae09"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-before-ack.png",
+      "bytes": 4585,
+      "sha256": "b75f8ee3dbdd9a60ebf1502a415412bddf9ac0772be8f69fca5ff27c5372ca11"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-before-ack.ppm.gz",
+      "bytes": 3777,
+      "sha256": "00ec1d2ddaa5e449a44e96a45f00b7a3645376cecd3e7544ac796e0a86997750"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-before-ack.vcsa",
+      "bytes": 4004,
+      "sha256": "14c97930367e80ebc3440213fad0de255390f3b762102f6b4276954dc5a4ae09"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/events.json",
+      "bytes": 3676,
+      "sha256": "428891b1e5678fe94c5a061d68958d866cc56d5e644605c6b3feafd884407be6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/evidence/boot-cmdline.txt",
+      "bytes": 97,
+      "sha256": "190e7a8cd1af2374d6c71a075a5f0f1213b25a1401a24a56e75a10a2371eff42"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/evidence/console-font.bin",
+      "bytes": 32768,
+      "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/evidence/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/evidence/outer-termios-after.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/evidence/outer-termios-before.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/evidence/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/evidence/product.strace.gz",
+      "bytes": 18524,
+      "sha256": "76ef8a4cb5e9a3796f9f025b1aa98ae74018cb9514f2d3edd3f39bfd725a581e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/evidence/trace-original.json",
+      "bytes": 103,
+      "sha256": "b0578e826ef594b23871c4d59a65210bd4ec00c73af283c9a9d1c53ae1b04d22"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/evidence/vt-default-utf8.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/guest-export.tar.gz",
+      "bytes": 22488,
+      "sha256": "2d75344505cde883461d36797e6015d88d33fffb0f50d9dbcedc840d96654f6c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/launch.json",
+      "bytes": 1765,
+      "sha256": "43b5c72affde654b94117b9f022744d8533b8aa0cd07690b6fc9b7e0edc22397"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-after-pagedown.png",
+      "bytes": 7213,
+      "sha256": "a2252ee93adf8c0a2f80f76104ae62ca19817ff60887496bb9d95433c4d78c7f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-after-pagedown.ppm.gz",
+      "bytes": 6206,
+      "sha256": "5ff2a63d56aa1e9e8104472c7f777493a6e7a6a73a2de038c623cd98035dca14"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-after-pagedown.vcsa",
+      "bytes": 4004,
+      "sha256": "6fb9f6775108a197c1eba8e7f0f5a65abd7b9a5542b421293050bb81eeced055"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-before-scroll.png",
+      "bytes": 7250,
+      "sha256": "978afffaa63b730bb0ba130ddabcf0a7fa283e3ebb6c36834de8498f9d8ee05c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-before-scroll.ppm.gz",
+      "bytes": 6227,
+      "sha256": "7f1dd99ff27aed4f6f393d6095919050035f8d3db288c8a97227f8ec54fd2b72"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-before-scroll.vcsa",
+      "bytes": 4004,
+      "sha256": "564635d511c78c85f80a3195866527c66403148a98c5f03f58faec687ac6d131"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-scroll-after-theme.png",
+      "bytes": 7790,
+      "sha256": "68fadac0732532207e14c04f431acab8e2b6514ca5bad0ef866281dce278e8be"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-scroll-after-theme.ppm.gz",
+      "bytes": 6182,
+      "sha256": "66c8730cbaf86e63675b7621fa465cdcbd891eb724728238736834d05319fead"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-scroll-after-theme.vcsa",
+      "bytes": 4004,
+      "sha256": "32dc4981255a1c4a3db98b36b8a02fabc36bce5f9f006fffd8fe0971e806ee71"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/modal-acknowledged.png",
+      "bytes": 6246,
+      "sha256": "a91632842c36161b2ff03ce3049161d67630b902c4426be7e630c1b35f1f046b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/modal-acknowledged.ppm.gz",
+      "bytes": 5145,
+      "sha256": "e75417f071a828c87323d248b1c5b228ebde115b69c457e4313fe1698ad5450a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/modal-acknowledged.vcsa",
+      "bytes": 4004,
+      "sha256": "c566b44c41726b805235cca64d60db44a1083f6fc3e441ce9ed340928c44388b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/nested-confirm-before-f9.png",
+      "bytes": 6434,
+      "sha256": "97d02dc1988369bf14b7245824d48fdc0ff32547a88a75ae65ce43d75de5c7b9"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/nested-confirm-before-f9.ppm.gz",
+      "bytes": 5281,
+      "sha256": "35826e9f0deac6a5284fb8246b58596199071a8b11d3a37cc4ce23acc850e916"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/nested-confirm-before-f9.vcsa",
+      "bytes": 4004,
+      "sha256": "a9aec9bd46d8a984205c13db3f69d971049da9dc96d83ab5a447d0462201004c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/qemu.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/qmp.jsonl",
+      "bytes": 17885,
+      "sha256": "e162d252e280a5b7bde91ea845cb744396e0dcdd63fe0efdcb7ed0c1601a1cdd"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/restored.png",
+      "bytes": 4587,
+      "sha256": "40d803a94c16d8780cfdcb256704fd9f67a23170da210aa08c4e6f7ae78fdd2f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/restored.ppm.gz",
+      "bytes": 3775,
+      "sha256": "65153ae315ea8ead7076e3035e37f48fca97ed25383d21df67dd3381659d308e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/restored.vcsa",
+      "bytes": 4004,
+      "sha256": "40ace74b1db7faeaae75b6dd85cefc6674c55133ce5c694e1fa81e8b963b6ca9"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/result.json",
+      "bytes": 463,
+      "sha256": "e5a1f966a1474929cdc73364963a635a35a7f95e072693d0afa099b7e26f192e"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/serial-original.json",
+      "bytes": 102,
+      "sha256": "41e901efac3396a8092f363edd5e8625486dfd58e4bdb14572bde47b9a361304"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/serial.log.gz",
+      "bytes": 28864,
+      "sha256": "ae6de572d6994782c468b0868b97e5e8043ff6c48230e633f209b68bb0abb41c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal/failure.json",
+      "bytes": 114,
+      "sha256": "528ebf6aa761c28bd1a835cef09ff31d40334ba4c50173dae22338afb993ff2b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal/launch.json",
+      "bytes": 1740,
+      "sha256": "26f4aa1f2f7d8e2884dd3de9e00be49a576f06273e4ce55be34ff14a5ba06ab2"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal/qemu.stderr",
+      "bytes": 72,
+      "sha256": "04b3b80d06827b37990e46f5dfaf1b067a24d1eb9ccb02336a8961a620b5fa79"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal/qmp.jsonl",
+      "bytes": 831,
+      "sha256": "804129ed98cc9065d060baa9fb15ef01773e59faf0104e4d977f3d2ed7d7da64"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal/serial-original.json",
+      "bytes": 241,
+      "sha256": "e5c9c8946d367110451c74efcee0d118f6167897343dff9178cbe8f7e09e65db"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal/serial.log.gz",
+      "bytes": 2770,
+      "sha256": "bb82dd5914825fbd7d10aab96d144f90795f0f426c2681b64fc42cffd58d3579"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/captures.json",
+      "bytes": 5910,
+      "sha256": "12dc64bce71c5b634d7d0ffd9f12478bbb5d65d39b7f851a77531e603edbe165"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/events.json",
+      "bytes": 311,
+      "sha256": "484c5b3df156a22a97ff44038b3550b7b74dda0b1a561d34e2bfbfcf895cc9b8"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/evidence/boot-cmdline.txt",
+      "bytes": 93,
+      "sha256": "cd54c9a67f7e280df17582cd02a55063dba1c7ef110ad7bf299080f6ce10dbd6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/evidence/console-font.bin",
+      "bytes": 32768,
+      "sha256": "218014b049082b9b579496c32297e322f81311404b6602fd5cd6f760df58d28c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/evidence/direct.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/evidence/outer-termios-after.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/evidence/outer-termios-before.bin",
+      "bytes": 60,
+      "sha256": "f92e80aae19eab9ca7c575018677a017a9ac7d2624d3033d0d36d8a0eeb4e6e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/evidence/product.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/evidence/product.strace.gz",
+      "bytes": 15458,
+      "sha256": "d93578e79ce654685ce9b4888c37dde2bfbb9fc9cfc473313665f3b528553576"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/evidence/trace-original.json",
+      "bytes": 103,
+      "sha256": "88d9f1b119d6207f83d66563054e12876e43b3193e410b5c1fe40847f5111f7a"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/evidence/vt-default-utf8.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/guest-export.tar.gz",
+      "bytes": 18608,
+      "sha256": "a06c572d476bbd54ceda03c86a016ab1aab47c1c4e15bc2a7079b3e5d0d380f6"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/launch.json",
+      "bytes": 1749,
+      "sha256": "18ac24c9fd027e7782e6f76f37adfc0bab5ed979b2d63836e9199c80b3028a7f"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/qemu.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/qemu.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/qmp.jsonl",
+      "bytes": 1985,
+      "sha256": "324602a5008f5319ccedb10b61ea2022ea44342179d667c203af171ca7fb5c86"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/restored.png",
+      "bytes": 1104,
+      "sha256": "6764433f6c058c2d0a08df1345dc6dd3ae6ac85bad690eade5d6be026341e423"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/restored.ppm.gz",
+      "bytes": 1043,
+      "sha256": "d8376f1acfc4189471354ae035436af94e918092863f12cb7bc441f5564f1e73"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/restored.vcsa",
+      "bytes": 4004,
+      "sha256": "59ddf01f9cd314760317218bc12556e0f761965746dddbcdabf16c2df46e26d8"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/result.json",
+      "bytes": 454,
+      "sha256": "7e7da38c45272c6eb0c321139bd9df2bd5c42f7f25a276a63f890fce1e808ba0"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/serial-original.json",
+      "bytes": 102,
+      "sha256": "10dda3c0c40c777706f090e38ac37ccffc52bd5d42957aa2f87b82622741b199"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/serial.log.gz",
+      "bytes": 17014,
+      "sha256": "fd7f270f218f07b0cdd826f62dcd03149f7550858b2f859cea22f7d99dd85dd9"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/startup.png",
+      "bytes": 1119,
+      "sha256": "b0647d62e143acdec5f0dd156a5ec3cc55060293361346f2419f7ce99de64afa"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/startup.ppm.gz",
+      "bytes": 1049,
+      "sha256": "ab0e71e7566797f1000a7cab9b228d3eaa9e58969fb48c07b873f0c3c8ff5a8c"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/startup.vcsa",
+      "bytes": 4004,
+      "sha256": "59ddf01f9cd314760317218bc12556e0f761965746dddbcdabf16c2df46e26d8"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/raw/payload-manifest.json",
+      "bytes": 13114,
+      "sha256": "f3d1e03cc753b56a3925e151c4c0e52548e4f00c39280f4f3a14d1bf4b902090"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/report.md",
+      "bytes": 3230,
+      "sha256": "a462d129b5e15ed98cda2bf596a82389c64d70b44c82008233a744d2c8f6bace"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/tools/pack.py",
+      "bytes": 2832,
+      "sha256": "4a354d778352be12d7d67f6434e3ca91f01e3d832095aa920affb8041202201b"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/tools/run.py",
+      "bytes": 15297,
+      "sha256": "91db2b15c2ca8a565980c53b8cab1b0b5dec9db5eb7afef8ca906d128a5b7638"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/tools/vt-init.sh",
+      "bytes": 763,
+      "sha256": "908cd753a1fe1852f71a63d542d981c1a7468917826590e026243b10d7c7bf58"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/tools/vt-supervisor",
+      "bytes": 17936,
+      "sha256": "b1f7a670399e5b2484f93111ac1654336f00d0eb70dcc899c64643cd830b3dbd"
+    },
+    {
+      "path": "/workspace/work/composition-application-vt-execution/tools/vt-supervisor.c",
+      "bytes": 4710,
+      "sha256": "f8428458be3dfa74097d996a85b56040a921e4883d17e228da8ce63738835e82"
+    }
+  ],
+  "original_ppm_maps": [
+    {
+      "case": "composition-v1",
+      "capture": "tasks-startup",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/tasks-startup.ppm",
+        "bytes": 864015,
+        "sha256": "6ec043dc0a468a70e0674d5bc8d187c5e7d7ef90ed1f6c8d7e60e3a430f0a779",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v1/tasks-startup.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v1/tasks-startup.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v1",
+      "capture": "logs-startup",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/logs-startup.ppm",
+        "bytes": 864015,
+        "sha256": "2a44f5646e67a648812d5b6de32575404329c35c5cafe4e3816025a703ef3e21",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v1/logs-startup.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v1/logs-startup.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v1",
+      "capture": "task-typed",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-typed.ppm",
+        "bytes": 864015,
+        "sha256": "76b9932746930d837cc49412a0534d100ded82b730484427841f540032c59b41",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-typed.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-typed.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v1",
+      "capture": "task-filter",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-filter.ppm",
+        "bytes": 864015,
+        "sha256": "03b64eea676aa4b782e12a9b98aca0e802d5e67c380f7214185f1113f6194bfe",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-filter.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v1/task-filter.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v10",
+      "capture": "logs-top",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-top.ppm",
+        "bytes": 864015,
+        "sha256": "b286702d663753b91f2d26243d480351cb4f1cb63e473f390d161923180101e3",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-top.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-top.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v10",
+      "capture": "logs-page-down",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down.ppm",
+        "bytes": 864015,
+        "sha256": "c46da5493d0160b1e5952721e0ef8599607a1d0d502975ce4b721cbe000a3823",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v10",
+      "capture": "logs-page-down-light",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down-light.ppm",
+        "bytes": 864015,
+        "sha256": "256409c842268aae8671bc9abe88c2da2798d2fa751f5864405f0eb223a4ba34",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down-light.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-page-down-light.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v10",
+      "capture": "modal-over-scrolled-logs",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/modal-over-scrolled-logs.ppm",
+        "bytes": 864015,
+        "sha256": "08636518edefa0e315f147b3360dbcd84ad73d0d5968c429646b3e6d3fe1091d",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v10/modal-over-scrolled-logs.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v10/modal-over-scrolled-logs.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v10",
+      "capture": "logs-scroll-after-layer",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-scroll-after-layer.ppm",
+        "bytes": 864015,
+        "sha256": "256409c842268aae8671bc9abe88c2da2798d2fa751f5864405f0eb223a4ba34",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-scroll-after-layer.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v10/logs-scroll-after-layer.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v10",
+      "capture": "restored",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v10/restored.ppm",
+        "bytes": 864015,
+        "sha256": "256409c842268aae8671bc9abe88c2da2798d2fa751f5864405f0eb223a4ba34",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v10/restored.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v10/restored.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "tasks-startup",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/tasks-startup.ppm",
+        "bytes": 864015,
+        "sha256": "6ec043dc0a468a70e0674d5bc8d187c5e7d7ef90ed1f6c8d7e60e3a430f0a779",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/tasks-startup.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/tasks-startup.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "logs-startup",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/logs-startup.ppm",
+        "bytes": 864015,
+        "sha256": "2a44f5646e67a648812d5b6de32575404329c35c5cafe4e3816025a703ef3e21",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/logs-startup.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/logs-startup.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "task-typed",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-typed.ppm",
+        "bytes": 864015,
+        "sha256": "76b9932746930d837cc49412a0534d100ded82b730484427841f540032c59b41",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-typed.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-typed.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "task-filter",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-filter.ppm",
+        "bytes": 864015,
+        "sha256": "03b64eea676aa4b782e12a9b98aca0e802d5e67c380f7214185f1113f6194bfe",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-filter.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-filter.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "physical-undo-one-key",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/physical-undo-one-key.ppm",
+        "bytes": 864015,
+        "sha256": "4db8c58434dd5cc9cc517864badd79958f03528598a2aea4f33411fd07384426",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/physical-undo-one-key.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/physical-undo-one-key.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "task-hide-done",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-hide-done.ppm",
+        "bytes": 864015,
+        "sha256": "715aedbdb3eef18b9da8d6e976fbfe43fbcd383d788c4d4330167594007a7f29",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-hide-done.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-hide-done.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "task-name-sort",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-name-sort.ppm",
+        "bytes": 864015,
+        "sha256": "36bad9f0d00a439f3ea3d5c8c8c97c986093b86e5fd2ce4aa65f8a2266b8c03c",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-name-sort.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/task-name-sort.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "modal-open",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/modal-open.ppm",
+        "bytes": 864015,
+        "sha256": "7b847239d05cf556e8ab1a2830f1acbfc902003d5774d806d7ca1cfb5c4832ae",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/modal-open.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/modal-open.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "popup-open",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/popup-open.ppm",
+        "bytes": 864015,
+        "sha256": "607d66c652737f0108068fb8da9bee2c27de5ed27d722b1614fdd4059b8c39c3",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/popup-open.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/popup-open.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "confirm-open",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/confirm-open.ppm",
+        "bytes": 864015,
+        "sha256": "ad93e00a5ed711541d0aa021b92f496b3112715990dce6182674b81dec5e2806",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/confirm-open.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/confirm-open.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "review-half",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/review-half.ppm",
+        "bytes": 864015,
+        "sha256": "8372882124125bb4ee3cf684af7a65afda667741c5a3a22b5edd437a768f0fbb",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/review-half.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/review-half.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "done-full",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/done-full.ppm",
+        "bytes": 864015,
+        "sha256": "d95b11906ddaa8b81329dd5ee3183fc37b26061ce2c2453a88273581e8febc11",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/done-full.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/done-full.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v2",
+      "capture": "restored",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v2/restored.ppm",
+        "bytes": 864015,
+        "sha256": "ee906ba21ba33138821831077529421a273d2a605c1ad8da17cab4000fbaeb6d",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v2/restored.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v2/restored.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "task-initial",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/task-initial.ppm",
+        "bytes": 864015,
+        "sha256": "6ec043dc0a468a70e0674d5bc8d187c5e7d7ef90ed1f6c8d7e60e3a430f0a779",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/task-initial.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/task-initial.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "notes-physical-multiline",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-physical-multiline.ppm",
+        "bytes": 864015,
+        "sha256": "758dcf119f67ea63a85853556532e0443e2896ee5078d69632dd1c44ebbab7d4",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-physical-multiline.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-physical-multiline.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "notes-after-theme",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-after-theme.ppm",
+        "bytes": 864015,
+        "sha256": "8eb341de04237c5b7853bf2a0fe98073260600cdcad6f64e98db9409d507e91a",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-after-theme.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/notes-after-theme.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "modal-after-theme",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-after-theme.ppm",
+        "bytes": 864015,
+        "sha256": "54dba46acb408a384b588d801f6a3fc54b4675c9b582d8dee0496e5746322c65",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-after-theme.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-after-theme.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "after-f9-ancestor-close",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/after-f9-ancestor-close.ppm",
+        "bytes": 864015,
+        "sha256": "8eb341de04237c5b7853bf2a0fe98073260600cdcad6f64e98db9409d507e91a",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/after-f9-ancestor-close.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/after-f9-ancestor-close.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "logs-initial",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-initial.ppm",
+        "bytes": 864015,
+        "sha256": "4eb708c36f60095fbe2754fea1d8a95ff009298a9d8764abce328b6c9bf7e07c",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-initial.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-initial.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "logs-filter",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter.ppm",
+        "bytes": 864015,
+        "sha256": "75ff444022f7577f634c240fd9f2d2c88e3966ecaed00d59b36384465be0f9c4",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "logs-filter-cleared",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter-cleared.ppm",
+        "bytes": 864015,
+        "sha256": "4eb708c36f60095fbe2754fea1d8a95ff009298a9d8764abce328b6c9bf7e07c",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter-cleared.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-filter-cleared.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "logs-errors-only",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-errors-only.ppm",
+        "bytes": 864015,
+        "sha256": "75ff444022f7577f634c240fd9f2d2c88e3966ecaed00d59b36384465be0f9c4",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-errors-only.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-errors-only.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "logs-newest",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-newest.ppm",
+        "bytes": 864015,
+        "sha256": "4eb708c36f60095fbe2754fea1d8a95ff009298a9d8764abce328b6c9bf7e07c",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-newest.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-newest.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "logs-after-theme",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-theme.ppm",
+        "bytes": 864015,
+        "sha256": "0eb4bbaf70987e551f7689e704bc1723e9323c5b4ef754fa378752dc43daf3f2",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-theme.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-theme.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "modal-from-logs",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-from-logs.ppm",
+        "bytes": 864015,
+        "sha256": "0eb4bbaf70987e551f7689e704bc1723e9323c5b4ef754fa378752dc43daf3f2",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-from-logs.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/modal-from-logs.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "logs-after-f9",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-f9.ppm",
+        "bytes": 864015,
+        "sha256": "0eb4bbaf70987e551f7689e704bc1723e9323c5b4ef754fa378752dc43daf3f2",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-f9.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/logs-after-f9.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v3",
+      "capture": "restored",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v3/restored.ppm",
+        "bytes": 864015,
+        "sha256": "05a82f52af9fedfaf22d1c08af4c3aef64871543ea1eb4477341722b49d941d5",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v3/restored.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v3/restored.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v4",
+      "capture": "textarea-focus",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v4/textarea-focus.ppm",
+        "bytes": 864015,
+        "sha256": "bf97764a9b78555138ee32a5799f25024183c29f867b3eba7af45b1556036f2a",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v4/textarea-focus.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v4/textarea-focus.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v5",
+      "capture": "textarea-focus",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v5/textarea-focus.ppm",
+        "bytes": 864015,
+        "sha256": "f2128cb635182b0563765142bd0e22a1d13b5eb50a2c58e653766ac39a8eceac",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v5/textarea-focus.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v5/textarea-focus.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v6",
+      "capture": "textarea-focus",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v6/textarea-focus.ppm",
+        "bytes": 864015,
+        "sha256": "f2128cb635182b0563765142bd0e22a1d13b5eb50a2c58e653766ac39a8eceac",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v6/textarea-focus.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v6/textarea-focus.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "textarea-focus",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/textarea-focus.ppm",
+        "bytes": 864015,
+        "sha256": "d9378d7b73244b30ae75f55cb1bc0878b5056f5c8583edd9738e0f7a9d8d2e4f",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/textarea-focus.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/textarea-focus.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "notes-multiline",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-multiline.ppm",
+        "bytes": 864015,
+        "sha256": "dd18a44146fbe84dc23d9d8e58b6c35144b14c3aba6203ff6f9204b094b3af9c",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-multiline.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-multiline.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "notes-selected-theme",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selected-theme.ppm",
+        "bytes": 864015,
+        "sha256": "159e7aa0c7dcf9afc742bd3b4ec0d16152d5e8e387d78e8c7a5d8789699a2b86",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selected-theme.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selected-theme.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "notes-selection-replaced",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selection-replaced.ppm",
+        "bytes": 864015,
+        "sha256": "3e6b95498b032d07fa15257c1e0d3960c5431eab83c32a5687426724288e5b36",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selection-replaced.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-selection-replaced.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "notes-undo-after-theme",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-undo-after-theme.ppm",
+        "bytes": 864015,
+        "sha256": "159e7aa0c7dcf9afc742bd3b4ec0d16152d5e8e387d78e8c7a5d8789699a2b86",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-undo-after-theme.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/notes-undo-after-theme.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "modal-from-editor",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/modal-from-editor.ppm",
+        "bytes": 864015,
+        "sha256": "aacd40ee562973ec7da74ed4e6347ac3fcd016717df2ec677ef42c03fa54eafd",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/modal-from-editor.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/modal-from-editor.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "ancestor-closed",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/ancestor-closed.ppm",
+        "bytes": 864015,
+        "sha256": "159e7aa0c7dcf9afc742bd3b4ec0d16152d5e8e387d78e8c7a5d8789699a2b86",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/ancestor-closed.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/ancestor-closed.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "focus-return-typed",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/focus-return-typed.ppm",
+        "bytes": 864015,
+        "sha256": "5107d0013bb4686b94daaf959c472eb6124702be7e8648828e7603c403cc8148",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/focus-return-typed.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/focus-return-typed.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "logs-filtered",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-filtered.ppm",
+        "bytes": 864015,
+        "sha256": "e4749490a250824640947961da846a6ccf24b797c42b79cc414933d99f43d2ae",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-filtered.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-filtered.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "logs-cleared",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-cleared.ppm",
+        "bytes": 864015,
+        "sha256": "4eb708c36f60095fbe2754fea1d8a95ff009298a9d8764abce328b6c9bf7e07c",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-cleared.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-cleared.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "logs-errors",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-errors.ppm",
+        "bytes": 864015,
+        "sha256": "f3789b986f75baa9f8fdb2fd5f5b55bc35402a3ccc6cf827f79fbf7f3c066e5d",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-errors.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-errors.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "logs-reversed",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-reversed.ppm",
+        "bytes": 864015,
+        "sha256": "c9ac3d8297b98441cda7c26754ac497dbb379b4d61f2b3d7f1a9439fea99c250",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-reversed.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-reversed.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "logs-theme-preserved",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-theme-preserved.ppm",
+        "bytes": 864015,
+        "sha256": "de9d3db41708848d5a570b5a53b57b770db4cc069128f8a1b99c160511fb2367",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-theme-preserved.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/logs-theme-preserved.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v7",
+      "capture": "restored",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v7/restored.ppm",
+        "bytes": 864015,
+        "sha256": "05a82f52af9fedfaf22d1c08af4c3aef64871543ea1eb4477341722b49d941d5",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v7/restored.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v7/restored.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v9",
+      "capture": "logs-before-scroll",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-before-scroll.ppm",
+        "bytes": 864015,
+        "sha256": "04e53852c910d41b09eb110b4b57090572845416d5eab993293b5c57023ff2c9",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-before-scroll.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-before-scroll.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v9",
+      "capture": "logs-after-pagedown",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-after-pagedown.ppm",
+        "bytes": 864015,
+        "sha256": "2a44f5646e67a648812d5b6de32575404329c35c5cafe4e3816025a703ef3e21",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-after-pagedown.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-after-pagedown.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v9",
+      "capture": "logs-scroll-after-theme",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-scroll-after-theme.ppm",
+        "bytes": 864015,
+        "sha256": "256409c842268aae8671bc9abe88c2da2798d2fa751f5864405f0eb223a4ba34",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-scroll-after-theme.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v9/logs-scroll-after-theme.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v9",
+      "capture": "done-before-ack",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-before-ack.ppm",
+        "bytes": 864015,
+        "sha256": "11aae9766ddfd8446400f8db44d99d7a71aead0bfec6c8dd4803b25bc98fdda2",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-before-ack.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-before-ack.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v9",
+      "capture": "nested-confirm-before-f9",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/nested-confirm-before-f9.ppm",
+        "bytes": 864015,
+        "sha256": "cc3aa3b2735f887a87099493ef8052ac4a2c47ae9dc85c4daef1fd9c1cf0c8ca",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v9/nested-confirm-before-f9.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v9/nested-confirm-before-f9.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v9",
+      "capture": "done-after-nested-f9",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-nested-f9.ppm",
+        "bytes": 864015,
+        "sha256": "11aae9766ddfd8446400f8db44d99d7a71aead0bfec6c8dd4803b25bc98fdda2",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-nested-f9.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-nested-f9.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v9",
+      "capture": "modal-acknowledged",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/modal-acknowledged.ppm",
+        "bytes": 864015,
+        "sha256": "f56a5d4a10563713a9ff44d747ef6e0fc3629669414f2c09c0b22f4ac13039e0",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v9/modal-acknowledged.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v9/modal-acknowledged.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v9",
+      "capture": "done-after-ack",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-ack.ppm",
+        "bytes": 864015,
+        "sha256": "c5277a5cb17322d45689c75c8dd91e14dff10b9fcddf6a93bfd81b3fb509f0a2",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-ack.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v9/done-after-ack.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "composition-v9",
+      "capture": "restored",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/composition-v9/restored.ppm",
+        "bytes": 864015,
+        "sha256": "93bddc3e8e45b51c561fe3d35c52fece56e2bd67417fb668dbb4b52741a160f8",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/composition-v9/restored.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/composition-v9/restored.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "minimal-v2",
+      "capture": "startup",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/startup.ppm",
+        "bytes": 864015,
+        "sha256": "2c9ed1d2dc4aed8b2504c00cb60aa0a6c24db4324315b131b206ff76d1c53255",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/startup.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/startup.png",
+      "pixel_equal": true
+    },
+    {
+      "case": "minimal-v2",
+      "capture": "restored",
+      "original_ppm": {
+        "path": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/restored.ppm",
+        "bytes": 864015,
+        "sha256": "a7a8373384d7a3b18fd3ddd6d657c1b7ac21d861e9be15ee88957d136f704405",
+        "stored_as": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/restored.ppm.gz"
+      },
+      "png": "/workspace/work/composition-application-vt-execution/raw/minimal-v2/restored.png",
+      "pixel_equal": true
+    }
+  ],
+  "selected_runs": [
+    "minimal-v2",
+    "composition-v2",
+    "composition-v7",
+    "composition-v9",
+    "composition-v10"
+  ],
+  "failed_infrastructure_attempts": [
+    "minimal",
+    "composition-v1",
+    "composition-v4",
+    "composition-v5",
+    "composition-v6",
+    "composition-v8"
+  ],
+  "unproven": [
+    "VT bracketed paste",
+    "VT arbitrary Unicode input",
+    "physical hardware",
+    "variable viewport"
+  ]
+}

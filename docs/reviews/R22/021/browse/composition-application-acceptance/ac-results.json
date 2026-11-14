@@ -1,0 +1,151 @@
+{
+  "task": "TASK021",
+  "acceptance": "AC-021",
+  "verdict": "PASS_AC021_M1_U1_U5",
+  "status": "passed",
+  "required_gaps": [],
+  "functional_product": "e3016afe7e61133ef549302cf01383848507d5c3",
+  "main_reviewed": "c190e6f957a18f47be2f329a40cf444d9985cb6c",
+  "final_test_product": "384a90053a3e9467799ef8600e8ecc9253647f92",
+  "created_utc": "2026-11-14T04:40:48.753825+00:00",
+  "conditions": [
+    {
+      "id": "public_delivery",
+      "condition": "Two ordinary CJPM consumers and usable construction docs",
+      "status": "passed",
+      "source": "examples/{minimal,composition}/cjpm.toml; READMEs; docs/product/composition.md",
+      "finding": "Both manifests depend on ../..; independent normal cjpm builds exit0 with SDK1.2.0. Thin entry wires Application; one entity per lower_case file. Host shortcut paragraph matches actual default VTE interception and supported profile.",
+      "raw_evidence": "raw/build/{minimal,composition}.{command,stdout,exit}; current doc diff c190^..c190"
+    },
+    {
+      "id": "U1",
+      "condition": "Styled minimal application",
+      "status": "passed",
+      "source": "examples/minimal/src/main.cj",
+      "finding": "Public Column/Row/Text and cyan style; actual headless 16x3 frame exactly matches literal golden; actual XTerm/VTE/VM VT ordinary q exits cleanly.",
+      "raw_evidence": "raw/smoke/minimal-smoke.*; raw/gui-minimal-{xterm,vte}; VT raw/minimal-v2"
+    },
+    {
+      "id": "U2",
+      "condition": "Menu/body/status/theme",
+      "status": "passed",
+      "source": "examples/composition/src/application_view.cj; tasks_scene.cj; commands.cj",
+      "finding": "HorizontalMenu, weighted body, StatusBar, Classic/Light loadTheme; genuine blocks/chains. Settled style predicates observe both foreground/background; old label-only pending frame is not counted as applied.",
+      "raw_evidence": "PTY interactions frames11-14,34-35,42-44; GUI full runs light.png/final-replay; VT v7/v10"
+    },
+    {
+      "id": "U3",
+      "condition": "Real background calculations, post, review, progress and color-only update",
+      "status": "passed",
+      "source": "examples/composition/src/commands.cj::calculate; job_data.cj; tasks_scene.cj",
+      "finding": "spawn computes/checks sum1..10000=50005000 then squares333383335000, posts UI-owned updates. F6 explicit review resume; no blocking wait/sleep/manual flush. Long Waiting phase becomes Done with 76 blank columns; Done yellow\u2192green retains all text.",
+      "raw_evidence": "PTY frames40,42,45-47,52; GUI full trace/review/done/ack; VT v2/v9 and same-character VCSA comparison"
+    },
+    {
+      "id": "U4",
+      "condition": "Same reusable component, separate view state and owned nested overlays",
+      "status": "passed",
+      "source": "examples/composition/src/{tasks_scene,commands,job_panel}.cj",
+      "finding": "Two fresh JobPanel instances share JobData notes/status and each owns TextEditController. NodeRef-owned popup\u2192confirmation ancestry, centered modal, rounded border/shadow; F9 closes outer handle. Local closure cells carry handles, not a parallel layer stack.",
+      "raw_evidence": "PTY modal goldens and frames15-29; GUI nested/selection-restored; VT v7/v9"
+    },
+    {
+      "id": "U5",
+      "condition": "Distinct Logs business using the same public primitives",
+      "status": "passed",
+      "source": "examples/composition/src/{logs_scene,job_data}.cj",
+      "finding": "Independent logQuery/errorsOnly/newest and 24 immutable records; query record03 yields003, errors8, newest024/021/018. Task and log visibility/order remain application business decisions; no core changes.",
+      "raw_evidence": "PTY frames30-39; GUI full input/output; VT v7 log predicates and v10 scroll"
+    },
+    {
+      "id": "retained_state",
+      "condition": "Editing, selection/undo, focus and scroll retain through theme/layer changes",
+      "status": "passed",
+      "source": "examples/composition/src retained controllers and visible scene bindings; existing public editing contracts",
+      "finding": "PTY multiline Unicode input, exact Shared !ote after [7,8] retained selection; actual GUI predetermined Alpha [0,1]\u2192modal Bravo\u2192nested F9\u2192? gives ?ravo. Logs offset survives theme and overlay close. Real host paste Parse/undo both; VTE UTF8 TextArea paste retained with Auto glyph projection.",
+      "raw_evidence": "PTY frames10-39; GUI XTEST events/native reads/selection-restored and paste runs; VT v7/v10"
+    },
+    {
+      "id": "modal_navigation",
+      "condition": "Disabled skip, modal isolation, cancel and ancestor closure",
+      "status": "passed",
+      "source": "examples/composition/src/{application_view,commands,job_panel}.cj plus unchanged accepted overlay dispatch",
+      "finding": "Horizontal disabled item skipped; Popup Delete disabled; Escape closes current layer; F6 blocked under review modal; F3/F9/F10 handled in current modal domain. Closure restores exact ordinary selection/focus; lower business updates remain latest.",
+      "raw_evidence": "PTY events/frames1,21-29,41-44; GUI nested XTEST/native reads; VT v9 nested F9"
+    },
+    {
+      "id": "actual_layout",
+      "condition": "Real wide/narrow/minimum layout and retained state on resize",
+      "status": "passed",
+      "source": "examples/composition/src/application_view.cj::build; tasks_scene.cj; logs_scene.cj",
+      "finding": "Actual viewport drives weighted menu/body/footer; advisory40x12 is not a virtual minimum. Startup literal frames80x24/40x12/16x6; live actual GUI ioctl readbacks80x24\u219240x12\u219216x6\u219280x24, latest edited/completed state persists.",
+      "raw_evidence": "PTY startup-wide/narrow/minimum; GUI full final-replay/strace; full VTE capture-retry3 original817x458 PNGs"
+    },
+    {
+      "id": "finite_cli",
+      "condition": "Finite smoke and genuine invalid direct exits",
+      "status": "passed",
+      "source": "examples/{minimal,composition}/src/main.cj",
+      "finding": "Actual Application headless snapshots compare byte-for-byte with every literal startup frame and emit no ESC. Six direct processes: each smoke0, --invalid1, --smoke --invalid1; diagnostics retained. Smoke does not establish key/worker behavior.",
+      "raw_evidence": "raw/smoke/*.json/*.stdout; initial sealed index"
+    },
+    {
+      "id": "quit_restoration",
+      "condition": "Ordinary quits restore native terminal state",
+      "status": "passed",
+      "source": "public Application lifecycle reused unchanged; example q/F10 handlers",
+      "finding": "Five PTY runs direct0 with exact termios bytes. Eight GUI process records direct0, termios equal and actual external mode25 replies equal; native input trace independently contains host reply and mode writes. Five selected VT direct0, native termios and mode writes retained. Default-F1 attempt is only an exit/restoration observation.",
+      "raw_evidence": "PTY before/after/direct.exit; GUI terminal-before/after/mode25/product.strace.gz; VT evidence trace/direct.exit/outer-termios"
+    },
+    {
+      "id": "actual_hosts",
+      "condition": "Actual XTerm/VTE/VM VT with profiles and original images",
+      "status": "passed",
+      "source": "same pinned independent executor ELF bf7da646/69e94b7a",
+      "finding": "XTerm398 full interaction; isolated xfce4-terminal1.1.4/VTE full interaction plus separate corrected full captures. VT selected minimal-v2/composition-v2/v7/v9/v10 at real tty1 80x25 KD_TEXT kernel6.12.107+deb13 font8x16/256. 65 originalPPM gzip hashes and pixel-equal PNGs verified,44 in selected runs;12 serial maps. Execution-time engine versions/profiles plus bounded addendum497d2e3c establish actual host provenance. Current VTE package0.80.1-1 is supplementary present-environment observation, not exact historical loaded-library attestation.",
+      "raw_evidence": "GUI index10e7c8b2 and VT index72c26c46; independent artifact/condition audits; gui-provenance/index.json497d2e3c; actual XTerm TERM=xterm/COLORTERM absent, VTE TERM=xterm-256color/COLORTERM=truecolor"
+    },
+    {
+      "id": "public_construction",
+      "condition": "Convenient declarative source without private shortcuts",
+      "status": "passed",
+      "source": "full public example sources; independent source-quality index0aa511da",
+      "finding": "Reusable JobPanel, model/view/commands separation and standard public mount references avoid duplicated rendering or coordinates. No private RuntimeNode/Canvas/ANSI/manual flush/new dependency/core special case. Bounded Cangjie handle cells are justified by closure capture and lifecycle ownership, not hidden framework plumbing.",
+      "raw_evidence": "exact functional Git-tree equality e301\u2192c190; quality review plus full source inspection"
+    },
+    {
+      "id": "provenance",
+      "condition": "Immutable inputs, corrections and correctly scoped evidence reuse",
+      "status": "passed",
+      "source": "fixed review indices0aa511da/586fb6e5/020e94cd/d745f32d/df853662; adopted tests84da9599",
+      "finding": "Reviewed fixture corrections retain assertions and source semantics; no product changes to fit failures. All current index bindings verified; two historical initial-index test paths resolve exactly through pinned9c0bd3d6 Git objects. Five PTY original frames and GUI/VT byte maps losslessly verified. Accepted unchanged Frame/Glyph/E/C112/008/010/current020M1 reused within scope.",
+      "raw_evidence": "artifact-audit.json; gui-finite-audit.json; review-bindings.json; reused-proof-bindings.json"
+    }
+  ],
+  "limitations": [
+    "PASS applies to original AC021 frozen M1 U1\u2013U5 public examples and construction convenience. It is not all-M1, full Linux/041, four-theme027, M2/031, full parent020, final001\u2013004/023/024 or release readiness.",
+    "Synthetic PTY profile is explicitly xterm-256color/truecolor with synthetic DECRQM reply. It is not real-host proof. Actual XTerm used TERM=xterm and no COLORTERM; VTE used xterm-256color/truecolor; both use native Auto application policy.",
+    "Default VTE F1 Help consumption remains a failed default-host F1 attempt. Full VTE interactions use an isolated ordinary host shortcut profile disabling contents/save-contents accelerators. Eight clean exits/restoration records include that failed F1 attempt; only the stated full interaction runs certify those full sequences.",
+    "Earlier VTE PNGs clipped at600px are retained but do not prove a full80-column image. Separate same-ELF capture-retry3 supplies original full817x458 wide images and actual narrow/minimum images.",
+    "Current xfce4-terminal1.1.4-1/libvte0.80.1-1 resolved paths and SHA values do not attest complete historical host argv, executable inode/hash or loaded library map, which were not captured. Execution-time version files, process IDs/stderr, profiles, actual native I/O and original images identify actual engines sufficiently for AC021; no exact historical host-binary certification is claimed.",
+    "VT is a VM tty1 fixed80x25 KD_TEXT with QMP physical key input, not physical hardware. No VT arbitrary Unicode input, emulator bracketed paste or variable viewport is claimed. Font256/8x16 and Auto fallback are recorded. Existing accepted Glyph/editing rules and actual GUI paste supplement this limited host route.",
+    "Sixty-five PPM gzip-original/PNG pixel pairs and12 serial-original maps include unselected infrastructure attempts. Five selected successful VT runs contain44 images; remaining21 pairs are retained evidence, not additional passing runs. Premature v2/v9 capture labels are not taken as established predicates; settled later frames and v7/v10 addenda provide those facts.",
+    "F6 followed by F4 proves latest completed shared state visible with modal open, not that completion necessarily occurred after opening. Actual modal note edits and unchanged accepted C112 G04/N02 supply covered-update semantics.",
+    "Initial nonadopted5ca test candidate index4a/report bytes were overwritten before adoption and are unavailable. Original Git source/first RED/tool raw survive; adopted c51/index84da and later corrections are immutable. No claim that all candidate metadata survived.",
+    "Historical initial execution index references two test-source paths subsequently changed by reviewed test-only patches; their exact bytes are resolved through pinned9c0bd3d6 Git objects. Current retry4/GUI source paths match their sealed hashes.",
+    "TASK020 lossless-store migration and later stage2 receipts are separate evidence representation. Original indexed logical bytes and resolver preserve scope; this acceptance does not claim original intermediate absolute files remain physically present.",
+    "Normal pre-doc bundle evidence belongs to pre-doc product bytes; this four-line host-doc clarification is independently reviewed without a new bundle claim. Final freeze/package023 remains open."
+  ],
+  "methods": [
+    "Independent full public-source/contract/doc inspection, distinct from product-author self-assessment",
+    "Existing raw artifact read/hash/byte/pixel and Git-object verification; no builds, functional reruns, source edits, main writes or subagents",
+    "Existing accepted unchanged proof reused under AGENTS11.1; no functional success inferred from test counts"
+  ],
+  "skills": [
+    {
+      "name": "superpowers:verification-before-completion",
+      "source": "skill://plugins~Plugin_60aea7460bd4819199fd97a9553a5e12/verification-before-completion/SKILL.md",
+      "application": "Fresh artifact and exact source bindings checked before verdict; fixed raw outcomes reused per AGENTS11.1 and assigned no-rerun role."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "product_commit": "e3016afe7e61133ef549302cf01383848507d5c3",
+  "original_product_base": "d80c62be5f902d0dbce64002b5060a1b49677aa5",
+  "test_correction": {
+    "source": "2e5e998d00f2f60e45376bca4ada8376273d339a",
+    "cherry_pick": "fd7a6b73096f66499343b937cfefff8d24e6dfd8"
+  },
+  "environment": "source /workspace/work/validation/sdk/cangjie/envsetup.sh; CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env; CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip; official registry and /workspace/work/viewport-tests/cache",
+  "builds": [
+    {
+      "cwd": "examples/minimal",
+      "command": "cjpm build",
+      "exit": 0,
+      "raw": "minimal-build.txt",
+      "binary": "binaries/minimal",
+      "sha256": "79c06ed511c9bb0ba50b9b14352cbf24575a110f5b8df7939bab14f8119f0e29"
+    },
+    {
+      "cwd": "examples/composition",
+      "command": "cjpm build",
+      "exit": 0,
+      "raw": "composition-build-eleventh.txt",
+      "binary": "binaries/composition",
+      "sha256": "3725e846cf379fb27b5026b39812248fdeabe6c326bc55557f24f182d8d4490e"
+    }
+  ],
+  "direct": {
+    "command": "node tests/composition/application/smoke.mjs",
+    "exit": 0,
+    "raw": "direct-separated.txt",
+    "artifacts": "direct-separated",
+    "checks": "both binaries: --smoke exit 0 with literal grids, --invalid and --smoke --invalid nonzero"
+  },
+  "pty": {
+    "command": "node tests/composition/application/pty.mjs",
+    "exit": 1,
+    "raw": "pty-first.txt",
+    "artifacts": "pty-first",
+    "note": "pre-separation binary; all sessions stopped in fixture parser before interaction"
+  },
+  "bundle": {
+    "command": "cjpm bundle",
+    "exit": 0,
+    "raw": "bundle-candidate.txt",
+    "artifact": "candidate.cjp",
+    "sha256": "40c0d2e3050a92a5d394fc1e2bc2d6b5560876285f31a8d2d937c8dacd76649a",
+    "warnings": 789,
+    "mandatory_or_error": 0
+  }
+}

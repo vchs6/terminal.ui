@@ -1,0 +1,315 @@
+{
+  "task": "TASK021.a bounded shadow fixture correction",
+  "classification": "execution; confirmed test fixture error, no product behavior change",
+  "utc": "2026-11-14T02:49:59.035Z",
+  "parent": "c51f9bfc02e2844391282ea80b761362aba400d2",
+  "commit": "2e5e998d00f2f60e45376bca4ada8376273d339a",
+  "source": "/workspace/work/composition-application-tests/fix-shadow/source",
+  "reason": "The frozen expected space glyph conflicts with existing public shadow API/Frame logical glyph ░ and existing width fallback. Correct the test to the unchanged public contract; no weakening or new API.",
+  "originalSeal": {
+    "index": {
+      "path": "/workspace/work/composition-application-tests/index.json",
+      "bytes": 34083,
+      "sha256": "84da95998e32c641a893a9d95583eae5b0b31a9be2059a9786a61273ec4bea08"
+    },
+    "report": {
+      "path": "/workspace/work/composition-application-tests/report.md",
+      "bytes": 1779,
+      "sha256": "693c71b92994a508eddb70af7f914e22d1861deaa03b7647a8a8ae0d77be2915"
+    },
+    "sourceCommit": "c51f9bfc02e2844391282ea80b761362aba400d2",
+    "rawVerification": "All original index.evidence file bytes/hash references checked unchanged",
+    "originalDeliveryRed": {
+      "cases": [
+        "delivery-red",
+        "application-runner-red"
+      ],
+      "exit": 1,
+      "reason": "composition cjpm.toml/src/main.cj/README.md and minimal README.md absent",
+      "notACompilerError": true
+    }
+  },
+  "metadataHistory": {
+    "firstCandidateIndexSha256": "4a3eb0e8b547a3a24c861cdd7a78b48b776d0356b81c0548a448a4d743536441",
+    "firstExactIndexAndReportRetained": false,
+    "firstCandidateSourceCommit": "5cae7aea7206905f36011d58750fbb8d17421dd6",
+    "sourceCommitStillAvailable": true,
+    "noReconstruction": true
+  },
+  "publicSourceProofs": [
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/component.cj",
+      "gitBlob": "153e5074c4e02461efb6f03314c4a301a1ec6f4b",
+      "bytes": 25566,
+      "sha256": "d76852e978a70f47b7b4f784544f4685fc9fb5e1f0c927953df601c2124cfc8c"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/layout.cj",
+      "gitBlob": "af7cdd100dcf91fdcbc8bc6371404dd68fc68256",
+      "bytes": 24987,
+      "sha256": "0fbeef2122d1c95125abe3dff3737eac4c39357d32c3f0c1eaecbcb63051fe43"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/frame.cj",
+      "gitBlob": "7ad627b0652266f3a8e2ad320a1a5982fb5308e7",
+      "bytes": 12900,
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "docs/product/README.md",
+      "gitBlob": "b3d9c6e449e53f0c5b7cbf298b049aa30d607ff5",
+      "bytes": 14821,
+      "sha256": "73bd3bf5883ae3dea38b56457f72f903210f961a6736f97786a96702f2ffef77"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "tests/visible_snapshot/src/decoration_snapshots.cj",
+      "gitBlob": "be0f0772d20f7a5b557f0964497a278513de0328",
+      "bytes": 2321,
+      "sha256": "e20718c168c06e89692b240e95e38d09cad8279fef94fc2914ee901af53f44b4"
+    }
+  ],
+  "accepted010": {
+    "index": {
+      "path": "/workspace/work/visible-snapshot-acceptance/index.json",
+      "bytes": 5751,
+      "sha256": "65ad82843d95148aa65b44c609f72d0b6872e70d1b25c8ac83c3d0f1baf5924d"
+    },
+    "corroboratingRaw": {
+      "path": "/workspace/work/visible-snapshot-execution/raw/files/decorated-initial.txt",
+      "bytes": 77,
+      "sha256": "f9bfcba4b3c8f1be2c42c28f25fd1c87cf6a9cf204bf2feae6c529b4b4cf5d31"
+    },
+    "role": "Corroboration only; hand-authored expectations derived from fixed public source/docs."
+  },
+  "changes": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/source/tests/composition/application/goldens/modal.json",
+      "bytes": 3646,
+      "sha256": "efbae496d4ce3aff277bc7f9e60ebf90474ac42b0cfae366345ae293066a909f",
+      "relativePath": "tests/composition/application/goldens/modal.json",
+      "gitBlob": "14f0e8a050c1b7dbcf1b2ca5fcdfe4b30e48b4f9"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/source/tests/composition/application/interaction-contract.md",
+      "bytes": 13338,
+      "sha256": "8a8fe1c45c93cd95cae53bcc7edb0bb58d46b50ea89d556dce4039cdc8565f61",
+      "relativePath": "tests/composition/application/interaction-contract.md",
+      "gitBlob": "3d196d0d052db12d905d06069e09a3ca18d1f1fe"
+    }
+  ],
+  "diff": {
+    "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/bounded.diff",
+    "bytes": 5656,
+    "sha256": "a798189da6502c0dc6fa761dfe1324f96723fe648487b4844678708b1325c207"
+  },
+  "independentManualDerivation": {
+    "wide": {
+      "right": {
+        "x": 56,
+        "rows": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ]
+      },
+      "bottom": {
+        "y": 16,
+        "firstX": 25,
+        "lastX": 56
+      },
+      "count": 40,
+      "glyph": "░"
+    },
+    "narrow": {
+      "right": {
+        "x": 36,
+        "rows": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "bottom": {
+        "y": 10,
+        "firstX": 5,
+        "lastX": 36
+      },
+      "count": 40,
+      "glyph": "░"
+    },
+    "background": "named:40 unchanged",
+    "fallback": "Existing logical width fallback .; no new product glyph option"
+  },
+  "commands": {
+    "before": [
+      "node",
+      "/workspace/work/composition-application-tests/fix-shadow/evidence/check-shadow-glyph.mjs",
+      "tests/composition/application/goldens/modal.json"
+    ],
+    "beforeSourceCommit": "c51f9bfc02e2844391282ea80b761362aba400d2",
+    "afterScript": {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/verify.sh",
+      "bytes": 691,
+      "sha256": "59fe34d096fcc6a2fd86683e953975765fcd561137c3285f6ed7d276a7295fde"
+    }
+  },
+  "outcomes": [
+    {
+      "name": "fixture-after",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-after.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-after.stderr"
+    },
+    {
+      "name": "fixture-before",
+      "trueExit": 1,
+      "stdout": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-before.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-before.stderr"
+    },
+    {
+      "name": "oracle-selftest",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-shadow/evidence/oracle-selftest.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-shadow/evidence/oracle-selftest.stderr"
+    },
+    {
+      "name": "syntax-check",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-shadow/evidence/syntax-check.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-shadow/evidence/syntax-check.stderr"
+    },
+    {
+      "name": "whitespace",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-shadow/evidence/whitespace.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-shadow/evidence/whitespace.stderr"
+    }
+  ],
+  "tools": {
+    "node": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "bytes": 126939688,
+      "sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d"
+    },
+    "sdkEnvironmentSourced": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+    "compilerBuilds": 0,
+    "applicationRuns": 0
+  },
+  "evidence": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/bounded.diff",
+      "bytes": 5656,
+      "sha256": "a798189da6502c0dc6fa761dfe1324f96723fe648487b4844678708b1325c207"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/check-shadow-glyph.mjs",
+      "bytes": 580,
+      "sha256": "e7cbd72ff3406ac368a223c8689240712c0813c9e3798a2b077486d5c35339be"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-after.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-after.stdout",
+      "bytes": 113,
+      "sha256": "cea6727077779b0624048ec805cc8490b7ded792fdbe5cc7763e8df550bb886d"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-before.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-before.stderr",
+      "bytes": 653,
+      "sha256": "bd14a3ac0228af15eed94e9015eb0261b25320096976e52b08edf843b31ecdc9"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/fixture-before.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/oracle-selftest.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/oracle-selftest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/oracle-selftest.stdout",
+      "bytes": 133,
+      "sha256": "bfa300b2032dfe4e04bc26da0c2ed5b2568a018f70491ff98ee6953ea528ef62"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/syntax-check.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/syntax-check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/syntax-check.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/verify.sh",
+      "bytes": 691,
+      "sha256": "59fe34d096fcc6a2fd86683e953975765fcd561137c3285f6ed7d276a7295fde"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/whitespace.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/whitespace.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-shadow/evidence/whitespace.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/composition-application-tests/fix-shadow/report.md",
+    "bytes": 1612,
+    "sha256": "1dc5d66fd11bea4a9c8ef31ae949fc0458126ed1fc9505228ffe22021df7c5a2"
+  },
+  "limits": [
+    "Tools-only fixture/oracle checks do not certify application correctness.",
+    "No source/product edits, new API, new coverage, compiler build, application run or release claim.",
+    "Original c51/index84da/report/raw seal unchanged; fix is separately versioned."
+  ]
+}

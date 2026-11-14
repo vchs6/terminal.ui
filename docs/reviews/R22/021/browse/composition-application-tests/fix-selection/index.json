@@ -1,0 +1,402 @@
+{
+  "task": "TASK021.a bounded retained-selection fixture correction",
+  "classification": "execution; wrong test append expectation, no demonstrated product defect",
+  "utc": "2026-11-14T03:17:02.258Z",
+  "parent": "d07a6933be8ff2429ee9799ee32043642e0dfeb4",
+  "commit": "95b6d780a92b65bf4c83540d3e7c8a47c131df64",
+  "source": "/workspace/work/composition-application-tests/fix-selection/source",
+  "originalSeals": [
+    {
+      "index": {
+        "path": "/workspace/work/composition-application-tests/index.json",
+        "bytes": 34083,
+        "sha256": "84da95998e32c641a893a9d95583eae5b0b31a9be2059a9786a61273ec4bea08"
+      },
+      "report": {
+        "path": "/workspace/work/composition-application-tests/report.md",
+        "bytes": 1779,
+        "sha256": "693c71b92994a508eddb70af7f914e22d1861deaa03b7647a8a8ae0d77be2915"
+      },
+      "sourceCommit": "c51f9bfc02e2844391282ea80b761362aba400d2",
+      "evidenceEntriesVerified": 52
+    },
+    {
+      "index": {
+        "path": "/workspace/work/composition-application-tests/fix-shadow/index.json",
+        "bytes": 12301,
+        "sha256": "47984eeaba69f3ac4e204d2d7cf7887b784dacb0f0625bf80f915be7fdea6f62"
+      },
+      "report": {
+        "path": "/workspace/work/composition-application-tests/fix-shadow/report.md",
+        "bytes": 1612,
+        "sha256": "1dc5d66fd11bea4a9c8ef31ae949fc0458126ed1fc9505228ffe22021df7c5a2"
+      },
+      "sourceCommit": "2e5e998d00f2f60e45376bca4ada8376273d339a",
+      "evidenceEntriesVerified": 18
+    },
+    {
+      "index": {
+        "path": "/workspace/work/composition-application-tests/fix-pty/index.json",
+        "bytes": 20324,
+        "sha256": "805afd1936fe84bc413b4e094b5e94a13faf7fc66751c34888f73ef5ee0877ee"
+      },
+      "report": {
+        "path": "/workspace/work/composition-application-tests/fix-pty/report.md",
+        "bytes": 1842,
+        "sha256": "fc7b037ff1d573b4d8a80acb7dbc81d6e1ae1ca0033a90002fdec77e7a2088a5"
+      },
+      "sourceCommit": "6dbece66e2989849d87729a5da10d95b4fbb0a24",
+      "evidenceEntriesVerified": 33
+    },
+    {
+      "index": {
+        "path": "/workspace/work/composition-application-tests/fix-theme-wait/index.json",
+        "bytes": 16933,
+        "sha256": "204e0fa8d91ed8b471601312d59e4e8d9bee64bba0cff27367c7db5b70d8a0ad"
+      },
+      "report": {
+        "path": "/workspace/work/composition-application-tests/fix-theme-wait/report.md",
+        "bytes": 1888,
+        "sha256": "2903a19af1bdafc5e7b9c3097fb5d3fee2c8d9b20e326c3f354b14bacecbc1c7"
+      },
+      "sourceCommit": "d07a6933be8ff2429ee9799ee32043642e0dfeb4",
+      "evidenceEntriesVerified": 25
+    }
+  ],
+  "sourceProofs": [
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "docs/product/text-editing.md",
+      "gitBlob": "018af8f9a8989453023027076f41da88c3ece59c",
+      "bytes": 2261,
+      "sha256": "cc94829878b7ac62d7cff5ad1693a06f60398f390c51e1678c72b393bfc1666d"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/text_edit_session.cj",
+      "gitBlob": "f7d02f093796b40081850d5fdf06592c18dae0dc",
+      "bytes": 20826,
+      "sha256": "b132b5407da05f6978bccd2ea06222dfb6403974997e2e489251b60f5d4086f6"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/text_edit_record.cj",
+      "gitBlob": "8ab513065fd7c6b40394367dced2e3a488ef4576",
+      "bytes": 486,
+      "sha256": "7219e1cd618787451657014440f68e1532146378edb8a5501945af76501fbb90"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/text_selection.cj",
+      "gitBlob": "191f1fc8b125005f0f4cc8f1e77e4d618e56feee",
+      "bytes": 474,
+      "sha256": "f99a45a313953b139b35ab6966be11c068db9f6d4064e392829c9c39984b2210"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "tests/editing/src/shared_source.cj",
+      "gitBlob": "e11edc2e84fb4e7b02d7d9190c43d22fdcb748f6",
+      "bytes": 2627,
+      "sha256": "96c03fb59093b5570c741bc278e1e4b016cad0bf109bd4cc74cc84792160d5b9"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "tests/editing/src/validation_history.cj",
+      "gitBlob": "9eac6fb5b0b19ef9105de3f46bda32d51a4c59cb",
+      "bytes": 6009,
+      "sha256": "0b7487deeba13a666bca00b32e04a1baeed56e1a613c2d31e0cf30f907d9247d"
+    },
+    {
+      "gitCommit": "e3016afe7e61133ef549302cf01383848507d5c3",
+      "relativePath": "examples/composition/src/job_panel.cj",
+      "gitBlob": "9ba48dbc3a367c1743f6f8cbd1deb58ed271ff6a",
+      "bytes": 2339,
+      "sha256": "85ffe69f24048f0074d4797682afe5e797567ac19e0f3059db26fffa79c6f03a"
+    }
+  ],
+  "derivation": {
+    "originalText": "qrcvzy\nreview 中文 👩‍💻",
+    "initialSelection": [
+      7,
+      8
+    ],
+    "originalSelectedCluster": "r",
+    "history": "undo restores beforeSelection [7,8]",
+    "externalText": "Shared note",
+    "externalClusterCount": 11,
+    "sync": "clamp each endpoint only to new count;7 and8 unchanged",
+    "selectedClusterAfterSync": "n",
+    "typed": "!",
+    "expected": "Shared !ote",
+    "rejectedAlternatives": [
+      "Shared note!",
+      "Shared !note",
+      "!Shared note"
+    ],
+    "caretMovementAdded": false
+  },
+  "capture": {
+    "directory": "/workspace/work/composition-application-execution/raw/pty-retry2/pty-8wZyWz/interactions",
+    "originals": [
+      {
+        "path": "/workspace/work/composition-application-execution/raw/pty-retry2/pty-8wZyWz/interactions/events.json",
+        "bytes": 3846,
+        "sha256": "2533a8f4ac19aadb70f10d29e1b6aceb9c064f47cf4dd34fbc8eab62fb823d19"
+      },
+      {
+        "path": "/workspace/work/composition-application-execution/raw/pty-retry2/pty-8wZyWz/interactions/frames.json",
+        "bytes": 7863359,
+        "sha256": "7a40155422ca4ccc30f081ba94cda9384cadd67bcaf874347ed8ddf6eed50715"
+      },
+      {
+        "path": "/workspace/work/composition-application-execution/raw/pty-retry2/pty-8wZyWz/interactions/stdout.raw",
+        "bytes": 30972,
+        "sha256": "2e1e81e872659243dca611ca3c00cfcb03c3a448bfecec7f8e1d2a987a8b4218"
+      }
+    ],
+    "preservedRaw": {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/original-stdout.raw",
+      "bytes": 30972,
+      "sha256": "2e1e81e872659243dca611ca3c00cfcb03c3a448bfecec7f8e1d2a987a8b4218"
+    },
+    "preservedEvents": {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/original-events.json",
+      "bytes": 3846,
+      "sha256": "2533a8f4ac19aadb70f10d29e1b6aceb9c064f47cf4dd34fbc8eab62fb823d19"
+    },
+    "frameBeforeTyping": {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/frame-before-replacement.json",
+      "bytes": 247323,
+      "sha256": "a2c573be8c365b877574f8c36399ac941ee2d5acd16767059a90a9f83622fdde"
+    },
+    "role": "Corroborating observed result/failure reproduction, never expected-text generation"
+  },
+  "changes": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/source/tests/composition/application/interaction-contract.md",
+      "bytes": 15417,
+      "sha256": "ffe0a667608b6431c6ba3299e0b64b815388b1385e77f93ce5bc52ca85d7cd1a",
+      "relativePath": "tests/composition/application/interaction-contract.md",
+      "gitBlob": "e8d863cc98599efd3454d92f52b4398c5465e5f7"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/source/tests/composition/application/oracle-selftest.mjs",
+      "bytes": 7908,
+      "sha256": "c85ace88221251dc9e0b63c6a3b1c4d0849b1b3cbda1fccba6d4b303b741e010",
+      "relativePath": "tests/composition/application/oracle-selftest.mjs",
+      "gitBlob": "db8ad7d79d3d1ac4a082b150452097ce6a36d6a0"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/source/tests/composition/application/pty.mjs",
+      "bytes": 18959,
+      "sha256": "324193d4a74524891d0fc47841e2429962a118ecba684c3c4e3fe0e4187e6113",
+      "relativePath": "tests/composition/application/pty.mjs",
+      "gitBlob": "20f06a4529409ebd2c6d8f9da5e851907e7489db"
+    }
+  ],
+  "diff": {
+    "path": "/workspace/work/composition-application-tests/fix-selection/evidence/bounded.diff",
+    "bytes": 5691,
+    "sha256": "60636d63f197a1b79d227b3cd04722246dc994276809171839ea249b55a308ba"
+  },
+  "ptyScope": "Exactly2 expected literal replacements, same keys and stronger exact-selection outcome; downstream roundtrip updated consistently",
+  "commands": {
+    "before": [
+      "node",
+      "/workspace/work/composition-application-tests/fix-selection/evidence/selection-before.mjs"
+    ],
+    "beforeSourceCommit": "d07a6933be8ff2429ee9799ee32043642e0dfeb4",
+    "after": {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/verify.sh",
+      "bytes": 733,
+      "sha256": "f5abc398ed56334cae349f34ad63ff6d473c145dde58216b22701c292636cb90"
+    }
+  },
+  "outcomes": [
+    {
+      "name": "oracle-selftest",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-selection/evidence/oracle-selftest.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-selection/evidence/oracle-selftest.stderr"
+    },
+    {
+      "name": "selection-before",
+      "trueExit": 1,
+      "stdout": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-before.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-before.stderr"
+    },
+    {
+      "name": "selection-replay",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-replay.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-replay.stderr"
+    },
+    {
+      "name": "syntax-oracle",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-oracle.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-oracle.stderr"
+    },
+    {
+      "name": "syntax-pty",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-pty.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-pty.stderr"
+    },
+    {
+      "name": "whitespace",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-selection/evidence/whitespace.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-selection/evidence/whitespace.stderr"
+    }
+  ],
+  "tools": {
+    "node": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "bytes": 126939688,
+      "sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d"
+    },
+    "sdkEnvironmentSourced": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+    "compilerBuilds": 0,
+    "applicationLaunches": 0
+  },
+  "evidence": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/bounded.diff",
+      "bytes": 5691,
+      "sha256": "60636d63f197a1b79d227b3cd04722246dc994276809171839ea249b55a308ba"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/frame-before-replacement.json",
+      "bytes": 247323,
+      "sha256": "a2c573be8c365b877574f8c36399ac941ee2d5acd16767059a90a9f83622fdde"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/oracle-selftest.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/oracle-selftest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/oracle-selftest.stdout",
+      "bytes": 133,
+      "sha256": "bfa300b2032dfe4e04bc26da0c2ed5b2568a018f70491ff98ee6953ea528ef62"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/original-events.json",
+      "bytes": 3846,
+      "sha256": "2533a8f4ac19aadb70f10d29e1b6aceb9c064f47cf4dd34fbc8eab62fb823d19"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/original-stdout.raw",
+      "bytes": 30972,
+      "sha256": "2e1e81e872659243dca611ca3c00cfcb03c3a448bfecec7f8e1d2a987a8b4218"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-before.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-before.mjs",
+      "bytes": 455,
+      "sha256": "a2243799489330f7caada955125bfedefbaf1046926883762179a24b1d2a71bd"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-before.stderr",
+      "bytes": 419,
+      "sha256": "980fd67cc8a116bf5b3866c8932c37d23aaf778caa47955dc823cc1d2b841926"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-before.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-replay.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-replay.mjs",
+      "bytes": 747,
+      "sha256": "dfe132fd711366fe1fef6506e9d1a2b0aea1a3b3c3dd9207f6c3555a9a290286"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-replay.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/selection-replay.stdout",
+      "bytes": 114,
+      "sha256": "693aed340aa1e7f274e0fe92c3c0fd63a709a48157875d6e4324028971780293"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-oracle.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-oracle.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-oracle.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-pty.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-pty.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/syntax-pty.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/verify.sh",
+      "bytes": 733,
+      "sha256": "f5abc398ed56334cae349f34ad63ff6d473c145dde58216b22701c292636cb90"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/whitespace.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/whitespace.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-selection/evidence/whitespace.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "report": {
+    "path": "/workspace/work/composition-application-tests/fix-selection/report.md",
+    "bytes": 1615,
+    "sha256": "432b8d8da83826f8bd511ea5ad17ae3840538cfff0a268a18db276fd49b68d8b"
+  },
+  "limits": [
+    "Only current failed exact-selection outcome and downstream reference corrected; later independent runtime sequence pending.",
+    "No framework editor logic or app view/focus behavior changed; same exact key sequence.",
+    "Existing local-selection/clamp semantics supported by fixed accepted editing tests, not cold-rebuilt.",
+    "Tools/replay do not replace independent real-key application execution.",
+    "All previous artifacts immutable; no app build/run, source/core edit, public hooks, override, sleep or release claim."
+  ]
+}

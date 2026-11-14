@@ -1,0 +1,472 @@
+{
+  "task": "TASK021 supplemental PTY fixture review",
+  "created_utc": "2026-11-14T03:04:41.246855+00:00",
+  "base": "2e5e998d00f2f60e45376bca4ada8376273d339a",
+  "head": "6dbece66e2989849d87729a5da10d95b4fbb0a24",
+  "repository": "/workspace/work/composition-application-tests/fix-pty/source",
+  "verdicts": {
+    "SPEC": {
+      "verdict": "passed",
+      "scope": "Only bounded TESTONLY parser/glyph correction"
+    },
+    "QUALITY": {
+      "verdict": "passed",
+      "scope": "Only five-file test correction"
+    },
+    "overall_application_acceptance": "insufficient_evidence; independent ordinary execution and actual-host gate pending"
+  },
+  "findings": 0,
+  "prior_product_review": {
+    "index": "/workspace/work/composition-application-review/index.json",
+    "sha256": "0aa511da9cf52025f0467aac29f2fea5e3171156ea82f1ba7c0e8fa2a0fd388c",
+    "product_revision": "e3016afe7e61133ef549302cf01383848507d5c3",
+    "reuse": "Unchanged; not re-reviewed or overwritten"
+  },
+  "fixed_inputs": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/index.json",
+      "sha256": "805afd1936fe84bc413b4e094b5e94a13faf7fc66751c34888f73ef5ee0877ee",
+      "bytes": 20324
+    },
+    {
+      "path": "/workspace/work/terminal.ui/.superpowers/sdd/tasks-complete-linux-integration/task-021-pty-fix-review-package.txt",
+      "sha256": "43528e8a68068d7d6fd82eb9d3d52d3db2b49bd1a660f06e6099c7f3e9a1c084",
+      "bytes": 21586
+    }
+  ],
+  "source_inputs": [
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:src/frame.cj",
+      "bytes": 12900,
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604",
+      "changed": false
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:src/glyph_render_policy.cj",
+      "bytes": 847,
+      "sha256": "df352bc39e7b21eceb7b5e9e5deb0773233663a7abf7037ffa3087b138678cbd",
+      "changed": false
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:src/terminal_glyph_detection.cj",
+      "bytes": 1497,
+      "sha256": "77328de70bb2968b063b20e28cc2d44cf8d672a302b5bb545b99e49f88c0c6a6",
+      "changed": false
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:src/terminal_glyph_projection.cj",
+      "bytes": 1933,
+      "sha256": "4779f17a52662433694dcd59b3d913c1767a28794854089820f4e757ca848ac3",
+      "changed": false
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:src/terminal_projected_row.cj",
+      "bytes": 1869,
+      "sha256": "8b0a60a64125834945d0e5294dd5e05605df67222df5f118006d6dab6a376974",
+      "changed": false
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:tests/colors/pty.mjs",
+      "bytes": 19635,
+      "sha256": "96ace9fa46e97b14bf8653a06a2a8e730a8ce6dd306697794ed3c9ff23e90ae5",
+      "changed": false
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:tests/composition/application/fixtures.mjs",
+      "bytes": 826,
+      "sha256": "59da0b2f6d49ef34ce3a9f4a678a1566b3a50997d671742faeadde93ddf50a10",
+      "changed": true
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:tests/composition/application/goldens/minimal-pty.json",
+      "bytes": 238,
+      "sha256": "fd4f329822017e866e5b203adeecae0827416cfa71fe5a86ad82c9ff10d423cd",
+      "changed": true
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:tests/composition/application/goldens/modal.json",
+      "bytes": 3646,
+      "sha256": "efbae496d4ce3aff277bc7f9e60ebf90474ac42b0cfae366345ae293066a909f",
+      "changed": false
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:tests/composition/application/goldens/startup.json",
+      "bytes": 6515,
+      "sha256": "57e3df15cb68cdddf54708122db8a821910441a5025550bcf2e0de7c504c961e",
+      "changed": false
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:tests/composition/application/interaction-contract.md",
+      "bytes": 14337,
+      "sha256": "8b485d4a8068a47f45635f51b71c3b4e071e1fc2e047e9a3a71bafb781e34a51",
+      "changed": true
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:tests/composition/application/oracle-selftest.mjs",
+      "bytes": 5451,
+      "sha256": "242c8b6a05bfbe5031363ba1d287957380f8237f3a8b185d4aea278db72f3661",
+      "changed": true
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:tests/composition/application/pty.mjs",
+      "bytes": 18534,
+      "sha256": "73917a07395f352b38ae1e0b16bae7527ed0de5e53f513d6a198f6c9d74dd1af",
+      "changed": true
+    },
+    {
+      "git_ref": "6dbece66e2989849d87729a5da10d95b4fbb0a24:tests/support/terminal_frames.mjs",
+      "bytes": 2903,
+      "sha256": "4a9ecfd661a7db4d1bee9b8098726ebc80f13bdae346e728bb4cf31cb3626ab1",
+      "changed": false
+    }
+  ],
+  "verified_evidence_and_changed_files": [
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/bounded.diff",
+      "bytes": 13728,
+      "sha256": "7f01b963f2664e8df3048536ceae5812e52160bd41458b2218f4125be927ce9f"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/glyph-before.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/glyph-before.stderr",
+      "bytes": 639,
+      "sha256": "4aa16cc5df3de8e82b4bd1d20d9329b49657cab5d1b84352109326348e6c4fb0"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/glyph-before.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/glyph-predicate-red.mjs",
+      "bytes": 341,
+      "sha256": "af91247e226905a05449707934485ff3675d7db86b5199a4d0af4be24a6c3bbe"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/oracle-selftest.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/oracle-selftest.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/oracle-selftest.stdout",
+      "bytes": 133,
+      "sha256": "bfa300b2032dfe4e04bc26da0c2ed5b2568a018f70491ff98ee6953ea528ef62"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/original-minimal.raw",
+      "bytes": 110,
+      "sha256": "0a89badf12054b8da3ef4e61d855211028103a07ff994868d8c3b02b7a1a7770"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/raw-replay.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/raw-replay.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/raw-replay.stdout",
+      "bytes": 113,
+      "sha256": "377d083d922558b1c200a1adad77bb721d2e4f660cbfde85d4a957331ec0a493"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/replay-existing-raw.mjs",
+      "bytes": 970,
+      "sha256": "847c0d21ba7aeab0c3ee17c8dac19d0072ad0cb3221c4365448bf87bdfb07dfe"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/row-after.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/row-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/row-after.stdout",
+      "bytes": 56,
+      "sha256": "778730bb632a643b3730ec89b7364d4eb8ab872ba296184cc09bcdf0aa13bbbb"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/row-before.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/row-before.stderr",
+      "bytes": 542,
+      "sha256": "b91df51d98cccd1bd975c87ddac3b5771ad63302e0dbd2ca79974010b06642e6"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/row-before.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/row-boundary-red.mjs",
+      "bytes": 452,
+      "sha256": "33863ef9491b8b13c44d998ec88367ff8bf35d8ead8e3fe1f03847618feaca86"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-fixtures.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-fixtures.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-fixtures.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-oracle.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-oracle.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-oracle.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-pty.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-pty.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-pty.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/verify.sh",
+      "bytes": 856,
+      "sha256": "3fd5a65283217c49037b661dc6c1e5374cdced19141f0b1f9807f72d87b91421"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/whitespace.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/whitespace.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/evidence/whitespace.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/source/tests/composition/application/fixtures.mjs",
+      "bytes": 826,
+      "sha256": "59da0b2f6d49ef34ce3a9f4a678a1566b3a50997d671742faeadde93ddf50a10"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/source/tests/composition/application/goldens/minimal-pty.json",
+      "bytes": 238,
+      "sha256": "fd4f329822017e866e5b203adeecae0827416cfa71fe5a86ad82c9ff10d423cd"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/source/tests/composition/application/interaction-contract.md",
+      "bytes": 14337,
+      "sha256": "8b485d4a8068a47f45635f51b71c3b4e071e1fc2e047e9a3a71bafb781e34a51"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/source/tests/composition/application/oracle-selftest.mjs",
+      "bytes": 5451,
+      "sha256": "242c8b6a05bfbe5031363ba1d287957380f8237f3a8b185d4aea278db72f3661"
+    },
+    {
+      "path": "/workspace/work/composition-application-tests/fix-pty/source/tests/composition/application/pty.mjs",
+      "bytes": 18534,
+      "sha256": "73917a07395f352b38ae1e0b16bae7527ed0de5e53f513d6a198f6c9d74dd1af"
+    }
+  ],
+  "verified_git_source_proofs": [
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/frame.cj",
+      "gitBlob": "7ad627b0652266f3a8e2ad320a1a5982fb5308e7",
+      "bytes": 12900,
+      "sha256": "19dd2a01b4ecce1672a6445d028d832b747fa4ac1733b951bca53c7c0b75a604"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/terminal_projected_row.cj",
+      "gitBlob": "886069df022ed58175edef0a43df123b640d2abf",
+      "bytes": 1869,
+      "sha256": "8b0a60a64125834945d0e5294dd5e05605df67222df5f118006d6dab6a376974"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/terminal_glyph_projection.cj",
+      "gitBlob": "0d3cf924ebb0ebd8d017449f32709f02f5156f05",
+      "bytes": 1933,
+      "sha256": "4779f17a52662433694dcd59b3d913c1767a28794854089820f4e757ca848ac3"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/terminal_glyph_detection.cj",
+      "gitBlob": "caff9ac59e49891e7d00718896e430fe132753fe",
+      "bytes": 1497,
+      "sha256": "77328de70bb2968b063b20e28cc2d44cf8d672a302b5bb545b99e49f88c0c6a6"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "src/glyph_render_policy.cj",
+      "gitBlob": "840ec34659e2844e078b1db3a6be5729bbe90139",
+      "bytes": 847,
+      "sha256": "df352bc39e7b21eceb7b5e9e5deb0773233663a7abf7037ffa3087b138678cbd"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "docs/product/README.md",
+      "gitBlob": "b3d9c6e449e53f0c5b7cbf298b049aa30d607ff5",
+      "bytes": 14821,
+      "sha256": "73bd3bf5883ae3dea38b56457f72f903210f961a6736f97786a96702f2ffef77"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "openspec/changes/fix-uncertain-glyph-advance/design.md",
+      "gitBlob": "88cb7bea5e6f8d8f298ab108802cdf2235248310",
+      "bytes": 10210,
+      "sha256": "adc4395b6f7645c71d1876f77a6003161451f723d7c67f6323d8f03623279d23"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "openspec/changes/implement-linux-vt-glyph-fallback/design.md",
+      "gitBlob": "f79a6c56d6351564a7482233a8736d174ed3c936",
+      "bytes": 20752,
+      "sha256": "ff789df4251f4a953e5c8547b91e2a6231d9978bc060a78c824d5d54955a3947"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "tests/glyphs/internal/glyph_conservative_test.cj",
+      "gitBlob": "a7ce2397356ce2790c2d50c4c1a296709dcd7cb9",
+      "bytes": 6636,
+      "sha256": "8f0dc708a7bf884c736fe29fd849c07c64c440859924fec77d5c9929469a26fd"
+    },
+    {
+      "gitCommit": "e35d407a87ab197537ccc931c143c9927458a75f",
+      "relativePath": "tests/colors/pty.mjs",
+      "gitBlob": "1e28625f7ba741a240279b2c8cf5a9c03d3e7570",
+      "bytes": 19635,
+      "sha256": "96ace9fa46e97b14bf8653a06a2a8e730a8ce6dd306697794ed3c9ff23e90ae5"
+    }
+  ],
+  "outcomes_reused": [
+    {
+      "name": "glyph-before",
+      "trueExit": 1,
+      "stdout": "/workspace/work/composition-application-tests/fix-pty/evidence/glyph-before.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-pty/evidence/glyph-before.stderr"
+    },
+    {
+      "name": "oracle-selftest",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-pty/evidence/oracle-selftest.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-pty/evidence/oracle-selftest.stderr"
+    },
+    {
+      "name": "raw-replay",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-pty/evidence/raw-replay.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-pty/evidence/raw-replay.stderr"
+    },
+    {
+      "name": "row-after",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-pty/evidence/row-after.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-pty/evidence/row-after.stderr"
+    },
+    {
+      "name": "row-before",
+      "trueExit": 1,
+      "stdout": "/workspace/work/composition-application-tests/fix-pty/evidence/row-before.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-pty/evidence/row-before.stderr"
+    },
+    {
+      "name": "syntax-fixtures",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-fixtures.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-fixtures.stderr"
+    },
+    {
+      "name": "syntax-oracle",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-oracle.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-oracle.stderr"
+    },
+    {
+      "name": "syntax-pty",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-pty.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-pty/evidence/syntax-pty.stderr"
+    },
+    {
+      "name": "whitespace",
+      "trueExit": 0,
+      "stdout": "/workspace/work/composition-application-tests/fix-pty/evidence/whitespace.stdout",
+      "stderr": "/workspace/work/composition-application-tests/fix-pty/evidence/whitespace.stderr"
+    }
+  ],
+  "inspection_checks": {
+    "fixed_head_and_clean_tree": true,
+    "five_changed_test_files_only": true,
+    "full_diff_reviewed": true,
+    "original_source_review_unchanged": true,
+    "no_execution_performed": true,
+    "actual_key_sequence_unchanged_except_projected_visible_glyph_expectation": true,
+    "headless_goldens_unchanged": true,
+    "existing_screen_and_support_unchanged": true
+  },
+  "limits": [
+    "No ordinary application or actual-host success inferred from infrastructure/replay checks",
+    "This adapter separates known full-row records and native controls; review does not certify a general ANSI parser",
+    "Historical missing nonadopted candidate metadata is retained as a limitation in the original immutable review"
+  ],
+  "skills_reused": [
+    "superpowers:requesting-code-review independent review role",
+    "superpowers:verification-before-completion with AGENTS11.1 existing evidence reuse; no reruns authorized"
+  ],
+  "outputs": [
+    {
+      "path": "/workspace/work/composition-application-review/pty-fix/report.md",
+      "sha256": "ed4a3f559964461d49ba6c9622ce34d52c651571a49d7f6672183fb052cc99b3"
+    },
+    {
+      "path": "/workspace/work/composition-application-review/pty-fix/findings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  ]
+}
