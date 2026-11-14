@@ -10,7 +10,7 @@
 ## Global Constraints
 
 - 原TASK-031/022为完整验收责任归属；123–142实现031各单元，143–147实现022并供031成本验收。实际工程层级依原WP002/WP005，角色工作为独立L3，不把原L3强行嵌另一套L3树。主仓接入时031/022转为本tasks唯一状态引用，不能保留两份勾选权威。
-- 单元A/B/C123–137已独立接受；138测试已固定，139实施中，140–147仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
+- 单元A/B/C/D123–142已独立接受；143正式测试已固定，144实施中，145–147仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
 - A→B→C→D→E顺序集成。测试可按冻结合同准备，但产品只消费前单元验收固定提交；共享Component/Layout/Frame禁止多个产品作者同时编辑。
 - 每实体一个小写下划线.cj文件，最小可见性，原public调用兼容，新增RuntimeStats三项仅只读；无私有测试hook、无强制M1/M2模式开关。
 - 测试作者Sol/high、产品Terra/high或适合仓颉任务的Sol/high、审核/验收Astra/high、执行Sol/medium；记录指定配置，无法核验serving时不冒充实测。
@@ -65,7 +65,7 @@
 - [x] TASK-140（verification/D）：固定139与138独立审核draw上下文、重放顺序、目标/显示提交分离。
 - [x] TASK-141（testing/D）：独立执行逐帧Cell等价、设备故障/恢复与真实适用TTY输入输出。
 - [x] TASK-142（acceptance/D）：验收局部渲染功能完整；成本证据等E，不提前关031。
-- [ ] TASK-143（testing/E）：冻结公开benchmark场景/动作/同epoch配对/CSV指标/干净消费与计量方法。
+- [x] TASK-143（testing/E）：冻结公开benchmark场景/动作/同epoch配对/CSV指标/干净消费与计量方法。
 - [ ] TASK-144（implementation/E）：交付benchmarks/rendering正常独立CJPM与产品方法说明。
 - [ ] TASK-145（verification/E）：固定144与143独立审核公平性、纯公共API、数据口径及制品边界。
 - [ ] TASK-146（testing/E）：独立运行重复headless、真实TTY/输出、M1/M2普通包双版本、CPU/分配/退化与干净bundle消费。
@@ -132,8 +132,8 @@
 
 输入142与完整M1冻结普通制品。输出普通公开benchmark、原始重复数据与方法，供023干净最终制品消费。
 
-- [ ] 143冻结80×24/160×48混合Unicode、各类变化/横向同行代价/全局退化动作与业务barrier；正确性按完整Cell+独立caret断言，性能不运行oracle/equality/hash。
-- [ ] 143冻结CSV列的单位/范围：measure/arrange/paint/frame/cellWrites、frame_allocated_cell_slots、CPU user/system、wall、heap/GC/RSS、成功输出bytes/calls、环境/源码/seed/尺寸/重复编号；缺某采样工具记录实际限制，不自动取消其他必要证据。
+- [x] 143冻结80×24/160×48混合Unicode、各类变化/横向同行代价/全局退化动作与业务barrier；正确性按完整Cell+独立caret断言，性能不运行oracle/equality/hash。
+- [x] 143冻结CSV列的单位/范围：measure/arrange/paint/frame/cellWrites、frame_allocated_cell_slots、CPU user/system、wall、heap/GC/RSS、成功输出bytes/calls、环境/源码/seed/尺寸/重复编号；缺某采样工具记录实际限制，不自动取消其他必要证据。
 - [ ] 144按M013交付同源compat correctness/snapshot-headless/tty双版本入口，以及最终库专用correctness/m1-headless/m2-headless诊断入口；冻结资格表并拒绝不支持组合，库无测试模式；外部计量不进入运行依赖。
 - [ ] 144说明旧M1制品与最终M2制品正常CJPM构建并核相同业务/完整帧，记录普通bundle/依赖/SDK前置；原八统计之外新增三计量口径与未覆盖成本公开。
 - [ ] 145审公平性、M1 oracle GC污染、错误状态配对、伪TTY/伪allocated bytes、工具退出0但无有效数据、选择性汇报与产品制品边界。
@@ -207,3 +207,9 @@ Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/A
 正常包 `1110d0ffbb626a8bda6f3daa67daf0198688aa0b59cd795f1a2da2e0f27dee0a` 默认测试/lint成功，解包17领域、Frame baseline/cow各7领域有效同源原件复用；205包成员经独立核对等于固定源。主代理核验354产品绑定、271执行绑定及20最终PNG，合并唯一registry冲突取固定候选原件，最终树 `8a60b845f469aeedb2bcbd699d86fd781c029b3c` 与预演完全相同，产品及D测试字节不变，无重复运行相同测试。
 
 E143源码准备 `cc178b86294dc6a640b468888c4aadf06863bb2e` 现在可消费已接受D做正常验证器构建与真实缺项基线；准备不等于143正式通过。M013独立方法预审通过后已同步规格，保留36场景、35个非idle主要双版本/独立M2场景及10个同库配对资格；144仍须固定143正式测试后才实施。新增Int64绘制归属元数据/transfer scratch、全可见节点遍历和真实CPU/heap/GC成本仍由E核验，Cell槽下降不等于总体收益。T087-G01 release检查器缺口留023；031/022、完整六宿主C008矩阵和001/002/003/004/041、023/024继续开放。
+
+### D归档与143正式冻结
+
+[D完整证据和截图](../../../docs/reviews/R24/D/README.md)以43个D文件保存8,888个原件成员、20张可浏览的真实终端截图及失败历史；raw SHA `c2e3c3c17d1e83e0c8669cf593cf4c2cc0263bdcbd737fd113297d880df0ee10`，索引 `5c01e698d5a513b2e23bfeae28a565141f8d13684f255c2ad497f9d644dcb948`。主代理逐成员核验安全路径、唯一普通文件、权限、字节与SHA，零不符；9,989绑定零未解析，历史runtime迁移保留精确还原映射。
+
+143固定正式测试 `4dc4ba804c1ec8fb67b0971b659bd1ab8dece4ba`，索引 `3bc6dd5c7e3204e6d71d5a0224f8ba84506bbc1acce2b97c76327cabef9bca64`：独立无依赖验证器正常构建/自测通过，外部观察工具成功/退出7/执行缺失127夹具通过；公开项目正常构建实际RED为workloads缺失，三个必需manifest均未实现。两次解析器自测失败及修正原件保留，不是产品缺陷。主代理核47项制品/原始结果绑定，合入只新增tests/rendering_benchmark 28文件、产品与D测试字节不变。144独立Terra/high现按固定合同实施三公开项目与说明，暂不宣称基准、性能、022/031或Linux完成。
