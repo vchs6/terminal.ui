@@ -1,6 +1,7 @@
 package cjtui
 
 import std.fs.File
+import std.collection.ArrayList
 
 public class Frame {
     public let width: Int64
@@ -10,12 +11,16 @@ public class Frame {
     private let transparent: Bool
     private let maxCells: Int64
     private var owner: ?RuntimeSession
+    private var damage: ?DamageRows = None
+    private var painting: ?RuntimeNode = None
+    private var observedCaret: ?CaretRequest = None
+    private var caretCovered = false
     public init(width: Int64, height: Int64, ambiguousWide!: Bool = false, transparent!: Bool = false,
         maxCells!: Int64 = 1048576) {
         this(Option<RuntimeSession>.None, width, height, ambiguousWide, transparent, maxCells)
     }
     private init(owner: ?RuntimeSession, width: Int64, height: Int64, ambiguousWide: Bool, transparent: Bool,
-        maxCells: Int64) {
+        maxCells: Int64, sharedBlank!: Bool = false) {
         if (width < 0 || height < 0 || maxCells <= 0 ||
             (height != 0 && width > Int64.Max / height) ||
             (width > 0 && height > 0 && width > maxCells / height)) {
@@ -28,7 +33,11 @@ public class Frame {
         this.transparent = transparent
         this.maxCells = maxCells
         let rowCount = if (width == 0) { 0 } else { height }
-        rows = Array<FrameRow>(rowCount, {_ => FrameRow(width, transparent, owner)})
+        rows = if (sharedBlank && rowCount > 0) {
+            let blank = FrameRow(width, transparent, owner)
+            blank.frozen = true
+            Array<FrameRow>(rowCount, {_ => blank})
+        } else { Array<FrameRow>(rowCount, {_ => FrameRow(width, transparent, owner)}) }
     }
     private init(source: Frame, owner: ?RuntimeSession) {
         this.owner = owner
@@ -46,9 +55,51 @@ public class Frame {
     static func forSession(width: Int64, height: Int64, session: RuntimeSession, transparent!: Bool = false): Frame {
         Frame(Some(session), width, height, false, transparent, 1048576)
     }
-    func releaseOwner(): Unit { owner = None }
+    static func replayLayer(width: Int64, height: Int64, session: RuntimeSession, damage: DamageRows): Frame {
+        let result = Frame(Some(session), width, height, false, true, 1048576, sharedBlank:true)
+        result.filterRows(damage)
+        result
+    }
+    // Internal composition clone. Public copies never inherit the write filter.
+    func replayForSession(session: RuntimeSession, damaged: DamageRows): Frame {
+        let result = Frame(this, Some(session))
+        for (y in 0..result.rows.size) {
+            if (damaged.contains(y)) { result.rows[y] = FrameRow(width, transparent, Some(session)) }
+        }
+        result.damage = Some(damaged)
+        result
+    }
+    func finishReplay(): Unit { damage = None }
+    func filterRows(value: DamageRows): Unit { damage = Some(value) }
+    func paintingNode(node: ?RuntimeNode): Unit { painting = node }
+    func finishCaret(session: RuntimeSession): Unit {
+        if (let Some(request) <- session.pendingCaret) {
+            if (let Some(observed) <- observedCaret) {
+                if (refEq(request, observed) && caretCovered) { session.pendingCaret = None }
+            }
+        }
+    }
+    func releaseOwner(): Unit {
+        owner = None; damage = None; painting = None; observedCaret = None; caretCovered = false
+    }
     private func writeCell(index: Int64, cell: Cell): Unit {
         let y = index / width
+        if (let Some(session) <- owner) {
+            if (session.trackCaret) {
+                if (let Some(node) <- painting) {
+                    if (let Some(request) <- session.pendingCaret) {
+                        var same = false
+                        if (let Some(observed) <- observedCaret) { same = refEq(request, observed) }
+                        if (!same) { observedCaret = Some(request); caretCovered = false }
+                        if (request.x == index % width && request.y == y) {
+                            let nodeRef = node.reference()
+                            let sameOwner = request.owner.sameNode(nodeRef)
+                            caretCovered = !cell.isTransparent && !sameOwner
+                        }
+                    }
+                }
+            }
+        }
         var row = rows[y]
         if (row.frozen) {
             row = FrameRow(row)
@@ -100,7 +151,8 @@ public class Frame {
             if (w <= 0) {
                 continue
             }
-            if (cy >= 0 && cy < height && cx >= 0 && cx < width && w <= width - cx) {
+            let writable = if (let Some(rows) <- damage) { rows.contains(cy) } else { true }
+            if (writable && cy >= 0 && cy < height && cx >= 0 && cx < width && w <= width - cx) {
                 for (i in 0..w) {
                     clearAt(cx + i, cy, transparent)
                 }
@@ -227,6 +279,7 @@ public class Frame {
         let x1 = lesser(width, signedAdd(rect.x, rect.width))
         let y1 = lesser(height, signedAdd(rect.y, rect.height))
         for (y in y0..greater(y0, y1)) {
+            if (let Some(rows) <- damage) { if (!rows.contains(y)) { continue } }
             for (x in x0..greater(x0, x1)) {
                 clearAt(x, y, transparent)
             }
@@ -268,15 +321,22 @@ public class Frame {
         let dy = if (y > 0) { y } else { 0 }
         let columns = lesser(width - dx, layer.width - sx)
         let rows = lesser(height - dy, layer.height - sy)
-        // Snapshot only the intersecting cells, so overlapping self-composition reads the original.
-        let source = Array<Cell>(columns * rows, {i =>
-            layer.rows[sy + i / columns].cells[sx + i % columns]
+        // Snapshot the selected source rows before writing, including for
+        // overlapping self-composition. Internal replay excludes clean rows.
+        let selected = ArrayList<Int64>()
+        for (row in 0..rows) {
+            let include = if (let Some(damaged) <- damage) { damaged.contains(dy + row) } else { true }
+            if (include) { selected.add(row) }
+        }
+        let source = Array<Cell>(columns * selected.size, {i =>
+            layer.rows[sy + selected[i / columns]].cells[sx + i % columns]
         })
         if (let Some(session) <- owner) { session.recordCells(source.size, source.size) }
-        for (row in 0..rows) {
+        for (entry in 0..selected.size) {
+            let row = selected[entry]
             var col = 0
             while (col < columns) {
-                let cell = source[row * columns + col]
+                let cell = source[entry * columns + col]
                 if (cell.isTransparent) {
                     if (!skipTransparent) {
                         clearAt(dx + col, dy + row, transparent)
@@ -288,7 +348,7 @@ public class Frame {
                 if (!cell.continuation && cell.width <= columns - col) {
                     for (i in 0..cell.width) { clearAt(dx + col + i, dy + row, transparent) }
                     for (i in 0..cell.width) {
-                        writeCell(index(dx + col + i, dy + row), source[row * columns + col + i])
+                        writeCell(index(dx + col + i, dy + row), source[entry * columns + col + i])
                     }
                     col += cell.width
                 } else {
