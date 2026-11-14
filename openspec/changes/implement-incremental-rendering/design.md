@@ -281,3 +281,5 @@ init(mountedNodes: Int64, activeBindings: Int64, subscriptions: Int64,
 诊断入口--mode correctness|m1-headless|m2-headless，compat为correctness|snapshot-headless|tty；共用--scenario/--width/--height/--seed/--warmup/--updates/--repetition/--csv/--run-id。correctness另可--cells-csv/--caret-csv：UTF8/RFC4180完整Cell含结构化style、簇宽/continuation/透明位；caret包含可见性、坐标及稳定业务owner，不比较跨session内部ID。性能窗口无逐Cell导出/equality/hash/oracle。外部验证manifest以唯一opaque run-id绑定实际源码/CJP/ELF/native/deps/SDK/host/设置/重复编号；CSV回显标签本身不是hash证明，不要求干净包运行时发现Git。
 
 原八Stats在compat真实报告，新增三字段在旧/新compat均not_available；最终库专用诊断真实采集三字段。成功输出bytes/calls来自实际系统调用返回，不取PTY read块；请求/成功/short/EINTR重试及baseline/update/exit分开，trace与未扰动CPU测量分进程。SDK heap/GC、CPU/wall/RSS及Cell槽口径保留，不声称总allocated bytes或零CPU。143冻结完整场景到模式表/窗口/schema与负向拒绝，145核公平性与普通包隔离，146执行全表重复原始数据，147仍按完整AC022/031验收。
+
+M013资格表区分“可成对比较”与“单独M2诊断”：m2-headless可独立测量全部非idle场景（含stateful/caret）的正常snapshot及真实三诊断；不具备已提交输入等价性的m1-headless请求明确失败，此时不得生成同库M1/M2对照结论。idle仍只在正常run中测量；首次生成保留新生命周期。
