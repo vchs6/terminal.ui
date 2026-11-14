@@ -10,7 +10,7 @@
 ## Global Constraints
 
 - 原TASK-031/022为完整验收责任归属；123–142实现031各单元，143–147实现022并供031成本验收。实际工程层级依原WP002/WP005，角色工作为独立L3，不把原L3强行嵌另一套L3树。主仓接入时031/022转为本tasks唯一状态引用，不能保留两份勾选权威。
-- TASK123正式测试已固定，TASK124开始实施，其余仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
+- 单元A123–127已独立接受；128测试已固定、129实施中，其余仍planned；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
 - A→B→C→D→E顺序集成。测试可按冻结合同准备，但产品只消费前单元验收固定提交；共享Component/Layout/Frame禁止多个产品作者同时编辑。
 - 每实体一个小写下划线.cj文件，最小可见性，原public调用兼容，新增RuntimeStats三项仅只读；无私有测试hook、无强制M1/M2模式开关。
 - 测试作者Sol/high、产品Terra/high或适合仓颉任务的Sol/high、审核/验收Astra/high、执行Sol/medium；记录指定配置，无法核验serving时不冒充实测。
@@ -46,11 +46,11 @@
 ## Tasks
 
 - [x] TASK-123（testing/A）：冻结共享算法重构的公开行为/统计消费者及可复现正常基线。
-- [ ] TASK-124（implementation/A）：同核measure/arrange/paint分离、M1独立临时结果、三统计真实作用域。
-- [ ] TASK-125（verification/A）：固定124与123独立spec/quality审核。
-- [ ] TASK-126（testing/A）：自有工作目录独立执行A公开消费者及受影响旧布局/主题/Canvas证据。
-- [ ] TASK-127（acceptance/A）：验收算法单核/参考隔离/统计真实，不提前声明M2。
-- [ ] TASK-128（testing/B）：冻结Frame COW别名/宽簇/透明/任意baseline与真实分配槽观察用例。
+- [x] TASK-124（implementation/A）：同核measure/arrange/paint分离、M1独立临时结果、三统计真实作用域。
+- [x] TASK-125（verification/A）：固定124与123独立spec/quality审核。
+- [x] TASK-126（testing/A）：自有工作目录独立执行A公开消费者及受影响旧布局/主题/Canvas证据。
+- [x] TASK-127（acceptance/A）：验收算法单核/参考隔离/统计真实，不提前声明M2。
+- [x] TASK-128（testing/B）：冻结Frame COW别名/宽簇/透明/任意baseline与真实分配槽观察用例。
 - [ ] TASK-129（implementation/B）：Frame私有行共享/脱离及精确行身份比较；保留通用慢路径。
 - [ ] TASK-130（verification/B）：固定129与128独立审核含所有写入口/零面积/来源证明。
 - [ ] TASK-131（testing/B）：独立执行受影响R11/F003、旧快照/输出及公开计槽消费者。
@@ -153,3 +153,9 @@ Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/A
 ### L005：041最终汇合不反向阻塞M2输入
 
 主代理据独立范围审计修正Admission：124冻结的是全部功能M1库、SDK/deps/native及真实M1设备输入证据，不要求尚含M2最终矩阵的原AC041完整passed。123–147消费已冻结的041 M1子接口；完成M2后原041再随全Linux宿主矩阵最终验收。原041任务/AC保持pending到完整证据具备，不缩减其范围、不新增生产模式，也不把这一规划裁决当产品通过。此消除“041完整最终验收等M2，而M2等完整041”的语义环；沿总计划L002分阶段输入原则，008/020在M1阶段的实际恢复条件仍必须满足。
+
+## 2026-11-14 当前实施状态
+
+单元A123–127完成并独立接受：源码 `4f7e853f821c334318e2038d4e20ab26e72c16c8` → main `0f83f73d`，正式9例独立构建运行通过；127 `PASS_UNIT_A`，12条件通过，索引 `a47adf3f2aa3311fd7fdb810869428c6f4094d14c1f888c4bf70f3e7936d6272`。[原始证据与范围](../../../docs/reviews/R24/A/README.md)保留125/126及CJP `56a7318d7931490545ee5fd255628170ed0bdc32aca71a11bc549955cfa53b49`。Q1内部临时Frame owner清理为非阻塞观察，交129涉及相同Frame生命周期时处理。
+
+128正式测试 `9908551d206922d0083711abbc70738c60da9215`/index `c9538b0eea0d6cae5e1c9ee5e4c491ae1254481cd5c35f255abf6f41c37b145f`：7个公共正确性GREEN，未变snapshot分配48/48槽而COW要求0/0为真实RED；原9例字节不变并复用A126有效证据。129正在自有工作树实施，首轮新测试全部GREEN，最终字节/旧例/后端/正常包及130–132质量门尚待完成。公开实际API为Frame.copy/resized；私有backend任意old/profile比较明确由现有output_recovery夹具与130/131覆盖，不增加public测试hook。B–E/完整AC031/M2/Linux保持开放。
