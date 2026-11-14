@@ -61,10 +61,10 @@
 - [x] TASK-136（testing/C）：独立执行局部measure/arrange与M1逐帧对照、生命周期/顺序/主题回归。
 - [x] TASK-137（acceptance/C）：验收无关计算减少及连带完整，局部合成仍待D。
 - [x] TASK-138（testing/D）：冻结整行damage相交重绘、滚动/层/宽簇/caret/失败baseline组合证据。
-- [ ] TASK-139（implementation/D）：局部合成目标、旧新bounds、缓存caret/层来源及后端安全消费。
-- [ ] TASK-140（verification/D）：固定139与138独立审核draw上下文、重放顺序、目标/显示提交分离。
-- [ ] TASK-141（testing/D）：独立执行逐帧Cell等价、设备故障/恢复与真实适用TTY输入输出。
-- [ ] TASK-142（acceptance/D）：验收局部渲染功能完整；成本证据等E，不提前关031。
+- [x] TASK-139（implementation/D）：局部合成目标、旧新bounds、缓存caret/层来源及后端安全消费。
+- [x] TASK-140（verification/D）：固定139与138独立审核draw上下文、重放顺序、目标/显示提交分离。
+- [x] TASK-141（testing/D）：独立执行逐帧Cell等价、设备故障/恢复与真实适用TTY输入输出。
+- [x] TASK-142（acceptance/D）：验收局部渲染功能完整；成本证据等E，不提前关031。
 - [ ] TASK-143（testing/E）：冻结公开benchmark场景/动作/同epoch配对/CSV指标/干净消费与计量方法。
 - [ ] TASK-144（implementation/E）：交付benchmarks/rendering正常独立CJPM与产品方法说明。
 - [ ] TASK-145（verification/E）：固定144与143独立审核公平性、纯公共API、数据口径及制品边界。
@@ -122,9 +122,9 @@
 
 - [x] 138冻结长→短/移动/隐藏/卸载/阴影、背景移除、透明hole与StyledSpace、目标宽簇伙伴、滚动/anchor、nested modal close/下层后台最新值、caret-only及opaque同字符遮挡。
 - [x] 138用受控Canvas记录draw次数和可观察clip，证明相交节点每目标至多一次、上下文不随damage改变；全量M1另运行不混计。
-- [ ] 139以旧新paint bounds并集形成整行带，清初值后全场景顺序重绘相交前后节点/层；subtree bounds含后代阴影，不只dirty节点。
-- [ ] 139缓存未draw节点caret请求、按焦点/geometry/层opaque覆盖重算；设备grid零差分也输出caret变化，输出成功才提交组合baseline。
-- [ ] 140审未知lineage/profile、partial write/resize、缓存clean但设备失同步、异常清理围栏；141独立执行138与008受影响恢复矩阵/真实适用TTY；142核M1逐Cell等价与交互caret结果，保留E成本前置。
+- [x] 139以旧新paint bounds并集形成整行带，清初值后全场景顺序重绘相交前后节点/层；subtree bounds含后代阴影，不只dirty节点。
+- [x] 139缓存未draw节点caret请求、按焦点/geometry/层opaque覆盖重算；设备grid零差分也输出caret变化，输出成功才提交组合baseline。
+- [x] 140审未知lineage/profile、partial write/resize、缓存clean但设备失同步、异常清理围栏；141独立执行138与008受影响恢复矩阵/真实适用TTY；142核M1逐Cell等价与交互caret结果，保留E成本前置。
 
 ### E / 143–147（父022并供031，REQ006/NFR05/AC022/031）
 
@@ -197,3 +197,13 @@ Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/A
 ### D根组件显隐补充测试已冻结
 
 独立测试提交 `16b9f25dcef0f7d163a7651bf2617d6d3a14b13a`、索引 `04bf90e9d7527eca88805f2323771a21441d59fdac2656632c8e690aa2289199` 在原C基线上正常构建0/运行1：16领域、71组完整配对、正确性零失败，18项工作量RED。原15用例及产品字节不变；新增3×1根Canvas在8×5帧隐藏/恢复，回调1/0/1及上下文正确，hide slots/writes=40/40、show=40/42，使新增4项整帧代价断言真实失败。源码/配置/原始结果/ELF由主代理核验；139已接入固定补充测试，尚待最终正常包、恢复验证和140–142独立质量门，不能标记D完成。
+
+## 单元D完成与E正式测试准入
+
+139最终源 `f48ca45608247f52a6876ad5c27b4ca36867f406` 已由142独立接受并合入 `cae9e743`，139–142完成。142为PASS_UNIT_D，15项要求零阻断，索引 `19b9fc0ef2bd4fe4dc1f6280b9b26687bd4e22a2ead724f396a17a6cd06fecfa`；140完整审核发现跨损伤行的遮挡caret恢复错误，独立测试 `df679c58` 实际RED后修复，限定复审索引 `d36cec40cf929587ba777ae21838f9ccd756c28bdd49dad77ef9db8457fd0cda` PASS，初始失败与修复历史保留。
+
+141独立执行索引 `159189b07c8348e1289f7ed23e284e95d375f0ba7bf069bc041055d09ae842eb`：同源公开17领域/74组完整Cell配对零正确性及工作量失败；当前源native PTY普通5、补充45、完整故障切点338均零失败。实际XTerm398与xfce4-terminal1.1.4/VTE0.80.1各10张最终原始PNG，编辑/模态关闭与焦点/80×24→100×30→80×24缩放/F10退出及termios恢复通过。VTE默认F10被菜单拦截的失败保留，成功轮使用已核实的隔离ShortcutsNoMenukey配置；仅代表已测配置。
+
+正常包 `1110d0ffbb626a8bda6f3daa67daf0198688aa0b59cd795f1a2da2e0f27dee0a` 默认测试/lint成功，解包17领域、Frame baseline/cow各7领域有效同源原件复用；205包成员经独立核对等于固定源。主代理核验354产品绑定、271执行绑定及20最终PNG，合并唯一registry冲突取固定候选原件，最终树 `8a60b845f469aeedb2bcbd699d86fd781c029b3c` 与预演完全相同，产品及D测试字节不变，无重复运行相同测试。
+
+E143源码准备 `cc178b86294dc6a640b468888c4aadf06863bb2e` 现在可消费已接受D做正常验证器构建与真实缺项基线；准备不等于143正式通过。M013独立方法预审通过后已同步规格，保留36场景、35个非idle主要双版本/独立M2场景及10个同库配对资格；144仍须固定143正式测试后才实施。新增Int64绘制归属元数据/transfer scratch、全可见节点遍历和真实CPU/heap/GC成本仍由E核验，Cell槽下降不等于总体收益。T087-G01 release检查器缺口留023；031/022、完整六宿主C008矩阵和001/002/003/004/041、023/024继续开放。
