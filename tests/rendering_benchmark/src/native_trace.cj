@@ -10,14 +10,15 @@ func nativeReturns(path: String, targetFd: String): (Int64,Int64,Int64,Int64,Int
     var requested: Int64 = 0; var successful: Int64 = 0
     var calls: Int64 = 0; var failed: Int64 = 0; var shorts: Int64 = 0
     for (line in text.split("\n")) {
+        if (line.isEmpty()) { continue }
         demand(line.split("<unfinished ...>").size == 1 && line.split("resumed>").size == 1,
             "incomplete native trace requires complete-aware observer: ${path}")
-        var parts = line.split("write(",1)
+        var parts = line.split("write(",2)
         var vector = false
-        if (parts.size == 1) { parts = line.split("writev(",1); vector = true }
+        if (parts.size == 1) { parts = line.split("writev(",2); vector = true }
         if (parts.size == 1) { continue }
         let body = parts[1]
-        let fdParts = body.split(", ",1)
+        let fdParts = body.split(", ",2)
         demand(fdParts.size == 2, "unparseable native write ${line}")
         if (fdParts[0] != targetFd) { continue }
         let completed = body.split(") = ")
@@ -29,7 +30,7 @@ func nativeReturns(path: String, targetFd: String): (Int64,Int64,Int64,Int64,Int
             let vectors = completed[0].split("iov_len=")
             demand(vectors.size > 1, "writev trace omits iov_len; require verbose trace")
             for (i in 1..vectors.size) {
-                let lengthParts = vectors[i].split("}",1)
+                let lengthParts = vectors[i].split("}",2)
                 demand(lengthParts.size == 2, "truncated writev iovec")
                 amount += natural(lengthParts[0],"iov_len")
             }

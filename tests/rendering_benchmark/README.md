@@ -1,9 +1,15 @@
 # Independent public rendering benchmark contract — TASK143
 
-**Preparation only.** No build, benchmark, TTY run, tool probe or dependency copy
-has been performed. The product benchmark does not yet exist at the preparation
-input. D142 and coordinator GO are mandatory before formal baseline execution.
-No claim of a passing library, benchmark, artifact or performance result is made.
+**TASK143 formal missing-project baseline.** After accepted D142 and root GO, the
+dependency-free validator normally built with SDK1.2, its own parser/Cell/caret
+selftests passed, and the separate native observer compiled and passed its small
+exit-status fixtures. Two native-parser selftest failures and their harness-only
+corrections are retained. Actual `build-public` is RED with `MISSING_PUBLIC_PROJECT`;
+all three required benchmark manifests are absent. No cjtui/old/new product build,
+benchmark workload, TTY, profiler probe or performance measurement was run.
+Raw commands, final normal ELF/fixture hashes and scope are frozen in the external
+test evidence index `/workspace/work/rendering-benchmark-tests/index.json`.
+No passing benchmark, artifact consumption, performance or TASK022/031 claim is made.
 
 Binding requirements: approved `implement-incremental-rendering/design.md` §11,
 M003/M005/M006/M011/M012/M013 and its rendering-benchmark spec, fixed at canonical

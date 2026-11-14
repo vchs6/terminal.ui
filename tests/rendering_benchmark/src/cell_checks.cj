@@ -75,13 +75,13 @@ func validateRawColor(value: String): Unit {
         "BrightBlack","BrightRed","BrightGreen","BrightYellow","BrightBlue","BrightMagenta","BrightCyan","BrightWhite"]) {
         if (value == name) { return }
     }
-    let indexed = value.split("Indexed(",1)
+    let indexed = value.split("Indexed(",2)
     if (indexed.size == 2 && indexed[0].isEmpty()) {
         let closed = indexed[1].split(")")
         demand(closed.size == 2 && closed[1].isEmpty() && natural(closed[0],"raw Indexed color") <= 255, "invalid raw color ${value}")
         return
     }
-    let rgb = value.split("Rgb(",1)
+    let rgb = value.split("Rgb(",2)
     if (rgb.size == 2 && rgb[0].isEmpty()) {
         let closed = rgb[1].split(")")
         demand(closed.size == 2 && closed[1].isEmpty(), "invalid raw color ${value}")
