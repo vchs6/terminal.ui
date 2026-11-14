@@ -73,6 +73,9 @@ class RuntimeSession {
     var focusedViewportResized = false
     var caret = CaretSnapshot(Option<NodeRef>.None,0,0,false)
     var cached: ?Frame = None
+    var paintStates = ArrayList<PaintState>()
+    var paintStatesValid = false
+    var paintOwners: ?PaintOwners = None
     var layoutGlyphPolicy = GlyphRenderPolicy.unicode()
     var cachedGlyphMarker = ""
     var measuredGlyphMarker = ""
