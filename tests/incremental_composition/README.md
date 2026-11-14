@@ -1,11 +1,17 @@
 # Incremental composition public consumer — TASK138
 
-Preparation only. This new executable has not been built or run; C137 accepted
-source and root GO are prerequisites. It consumes only `import cjtui.*` through
+The consumer was normally built and directly executed against accepted C137
+source `ee84e7ac7a35bb6481a17ecb91f1ec07804b672a` after root capacity GO. Final
+baseline: all 15 domains completed with zero correctness failures and 14 expected
+work RED assertions in row replay, hide/show/removal and cached-caret domains.
+The process correctly exits 1 for that work RED; this is not a passing D product.
+Raw build/run evidence and the initial fixture correction are indexed at
+`/workspace/work/incremental-composition-tests/index.json` in the test workspace.
+It consumes only `import cjtui.*` through
 the ordinary CJPM path dependency, with no package-local test code, native
 adapter, rendering mode switch or new product flag. Existing tests are unchanged.
 
-After that handoff, source the SDK environment and set the established stdx/UCD
+For reproduction, source the SDK environment and set the established stdx/UCD
 environment, then use `bash tests/incremental_composition/run.sh build` and
 `bash tests/incremental_composition/run.sh run`. The executable requires no TTY.
 `run.sh` itself does not set SDK, registry, cache or product configuration.
@@ -41,7 +47,7 @@ These are contract work counts, without time/CPU thresholds or performance claim
 | `widePartners` | Base row `ab界efgh`, centered 3-cell layer at x=2. A one-cell opaque write at target continuation x=3 clears partner x=2. Negative Canvas source position skips the complete clipped cluster and preserves subsequent Q. Right-clipped wide source writes neither half. |
 | `negativeFrameTransfer` | Public Frame composition at x=-1 turns a clipped source half into one opaque red blank. A transparent hole on a target continuation preserves its cluster; an opaque blank clears both target partners. Explicit canonical transparency metadata checked. |
 | `scrollAndAnchor` | Header row, 6×2 viewport, footer row. Anchor B scrolls screen y=2→1, moving BelowStart popup y=3→2 and restoring its old footer row. Scroll to 2 clips anchor completely, closes AnchorGone and restores latest C/D rows. |
-| `viewportCaret` | Focused 6×4 Canvas within 6×2 viewport. Local caret (1,2) starts clipped; offset 1 maps to screen (1,1). Resize to width 3 changes allocation/clip; offset 2 maps to (1,0). Local context clip remains (0,offset,width,2), never damage-shaped. |
+| `viewportCaret` | Focused 6×4 Canvas within 6×2 viewport; the ScrollView wrapper is explicitly nonfocusable because it otherwise owns initial focus. Local caret (1,2) starts clipped; offset 1 maps to screen (1,1). Resize to width 3 changes allocation/clip; offset 2 maps to (1,0). Local context clip remains (0,offset,width,2), never damage-shaped. |
 | `cachedCaretAndOwnership` | 6×3. Unrelated second-row change skips first-row Canvas but preserves its caret. Caret-only movement leaves all grid Cells identical. Empty passive host layer preserves caret; opaque default StyledSpace at the same blank cell hides it without any grid change. Close/focus/hide/show/remove independently verify ownership and no stale resurrection. |
 | `invalidCaretRequests` | Literal wide leader/continuation plus blanks. Leader caret valid; continuation, right edge, negative and explicit invisible requests normalize to hidden. |
 | `nestedModalClose` | 6×3 base, centered 4×1 parent and 2×1 child modals. Both lower layers change while covered. Child close exposes latest parent; parent close closes attached replacement child, invalidates both identities and restores current base/caret. Stable target afterward draws none. |

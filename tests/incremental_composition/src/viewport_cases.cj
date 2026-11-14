@@ -32,11 +32,13 @@ func scrollAndAnchor(): Unit {
 func viewportCaret(): Unit {
     let epoch = [Int64(0)]; let probe = DrawProbe("scrolling-caret",6,4)
     let content = [Option<Component>.None]
+    // ScrollView itself is focusable by default; this fixture needs the Canvas
+    // to own focus so its caret request is eligible in the public contract.
     let root = ScrollView {
         content[0] = Some(Canvas({_ => Size(6,4)},{p =>
             probe.record(p); p.put(0,0,"AAAAAA"); p.put(0,1,"BBBBBB"); p.put(0,2,"CCCCCC"); p.put(0,3,"DDDDDD"); p.caret(1,2)
         }).width(6).height(4).focusable(true))
-    }
+    }.focusable(false)
     let app = Application(root,theme:plainTheme()); app.startHeadless()
     try {
         probe.expected = DrawObservation(6,4,Rect(0,0,6,2))

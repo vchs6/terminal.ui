@@ -40,3 +40,24 @@ This records the fixed input, not a new independent C acceptance.
 Root explicitly retained BUILD HOLD pending capacity GO. No build/run/dependency
 copy occurs during this source-only update. Expected D baseline outcome remains
 M1-equivalent correctness with work RED because accepted C still paints fully.
+
+## Authorized normal baseline
+
+Root capacity GO supplied 157.04 MiB and receipt
+`validation/accepted-c-history-runtime-witnesses-20261114/index.json`, SHA-256
+`238a306d546207885d2b106243fdc913cd886ead6ea17eb0b901c7c964c4a4b0`.
+The first ordinary build against accepted C succeeded on SDK/CJPM 1.2.0 without
+syntax corrections. First direct execution completed all 15 domains with 14 work
+RED assertions and three viewport-caret correctness failures. Read-only public
+source inspection identified a genuine fixture mistake: ScrollView is focusable
+by default, so the fixture had focused the container rather than its Canvas.
+The viewport fixture now explicitly makes only that wrapper nonfocusable, as
+required by its already documented focused-Canvas scenario. All caret expectations
+and product source remain unchanged. The corrected second ordinary build succeeded
+and direct execution completed all 15 domains: zero correctness failures, 14 work
+RED assertions, exit 1. Both builds and both direct results remain preserved in
+the workspace evidence/index. The work RED is confined to unnecessary unrelated
+row callbacks (row replay 2, hide/show/removal 6, cached caret 6); at-most-once,
+literal contexts, complete Cell pairs and explicit caret expectations all passed.
+No SDK syntax or literal-cell oracle correction was needed. This fixes the D
+test input for subsequent product implementation; it is not D product acceptance.
