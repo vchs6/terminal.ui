@@ -108,6 +108,16 @@ focus is its TextArea. Tab enters Actions; Enter opens PopupMenu, with entries
 opens a nested width24 height4 centered rounded modal containing Text `Confirm?`
 and Button `Acknowledge`. Enter acknowledges; close the confirmation then popup;
 Escape closes the outer modal and returns exact original focus/selection.
+Selection proof after shared-note replacement: `qrcvzy` has six clusters and LF
+one, so Home then Shift+Right selects gaps [7,8] around `r` on the second
+line. X/Y undo restores that selection. The modal replaces the shared source
+with `Shared note` (eleven clusters); the ordinary editor keeps its local [7,8]
+gaps because neither exceeds the new count. Those gaps now select `n`. After
+F9 returns focus, typing `!` must yield exactly `Shared !ote`, retained on the
+subsequent Tasks roundtrip. Appending `Shared note!` or inserting
+`Shared !note` would lose or collapse the selection and must fail. No End or
+other caret movement is added before this proof.
+
 Escape on popup cancels just popup; Escape on confirmation cancels just it.
 Modal blocks F1/F2/F4/F5/F6 and underlying editor input. F3, F9 and F10 stay active. F9 closes the owned outer Details handle even from
 a nested confirmation, proving descendant closure and original focus return.

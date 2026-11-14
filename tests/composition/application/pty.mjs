@@ -199,7 +199,7 @@ async function interactions(directory){
     s.send(keys.f4+keys.tab+keys.enter,'reopen nested ownership case');await s.has('Inspect');
     s.send(keys.down+keys.enter,'confirm under owned Details');await s.has('Confirm?');
     await s.key(keys.f9,rows=>!text(rows).includes('╭')&&!text(rows).includes('Inspect')&&!text(rows).includes('Confirm?'),'close ancestor removes all owned layers');
-    await s.key('!',contains('Shared note!'),'focus returns to underlying editor');
+    await s.key('!',contains('Shared !ote'),'focus returns to underlying editor');
     await s.key(keys.f2,contains('Logs | 24/24'),'different business scene');
     await s.key(keys.tab.repeat(4)+keys.pageDown,contains('024 ERROR record 24'),'vertical ScrollView reaches record24');
     const scrolled=s.view.rows();
@@ -213,7 +213,7 @@ async function interactions(directory){
     await s.key(paste('record 03'),rows=>text(rows).includes('003 ERROR record 03')&&text(rows).includes('Logs | 1/24'),'log query business predicate');
     await s.key(keys.ctrlA+'\x7f'+keys.tab+' ',contains('Logs | 8/24'),'errors-only AND filter');
     await s.key(keys.tab+keys.tab+' ',rows=>rows[7].text.startsWith('024 ERROR record 24'),'newest radio reverses business order');
-    await s.key(keys.f1,contains('Shared note!'),'scene roundtrip retains task editor data');
+    await s.key(keys.f1,contains('Shared !ote'),'scene roundtrip retains task editor data');
     s.send(keys.f5,'start actual first background computation');
     await s.has('Waiting for review: Parse complete','posted half-progress from completed worker');
     assert(s.view.rows()[8].text.startsWith('==========----------'),'useful half progress');

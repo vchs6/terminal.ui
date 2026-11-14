@@ -64,6 +64,19 @@ assert.equal(themeVisible('Classic')(themeRows('Classic','rgb:255,255,255','rgb:
 assert.equal(themeVisible('Classic')(themeRows('Classic','default','default')),true,'Classic label and default colors release wait');
 const partialTheme=themeRows('Light','rgb:255,255,255','rgb:24,32,40');partialTheme[0].cells[3].bg='default';
 assert.equal(themeVisible('Light')(partialTheme),false,'partially painted background cannot release wait');
+// Manual local-selection fixture: undo restores [7,8], external source sync
+// only clamps endpoints; eleven-cluster Shared note leaves both unchanged.
+const selectedSource=[...segmenter.segment('qrcvzy\nreview 中文 👩‍💻')].map(item=>item.segment);
+assert.equal(selectedSource.slice(0,7).join(''),'qrcvzy\n','six text clusters plus LF place second-line start at7');
+assert.equal(selectedSource[7],'r','gap7..8 originally selects r');
+const externalNote='Shared note';
+assert.equal([...segmenter.segment(externalNote)].length,11,'new source has eleven clusters, so gaps7 and8 do not clamp');
+assert.equal(externalNote.slice(7,8),'n','retained gap7..8 now selects n');
+const replacedNote=externalNote.slice(0,7)+'!'+externalNote.slice(8);
+assert.equal(replacedNote,'Shared !ote','literal exact-selection replacement');
+assert.notEqual(replacedNote,'Shared note!','caret moved to end would fail exact replacement');
+assert.notEqual(replacedNote,'Shared !note','collapsed gap7 would fail exact replacement');
+assert.notEqual(replacedNote,'!Shared note','focus/caret reset to start would fail exact replacement');
 const fake={status:0,signal:null,error:undefined,stdout:'PASS composition\n',stderr:''};
 assert.throws(()=>verify(fake,true,'composition'),/literal startup/,'marker without actual grids is rejected');
 assert.throws(()=>verify({...fake,stdout:'diagnostic'},false,'composition'),/invalid CLI/,'false successful invalid argument rejected');
