@@ -24,3 +24,5 @@ node scripts/review-archive.mjs --root . restore docs/reviews/R11/acceptance/SOU
 [迁移执行报告](audit/execution.md)记录逐组数量、原始哈希、全部移除文件的恢复验证及三项额外保留决定。[工具说明](../../../scripts/review-archive/README.md)说明分片、保留策略和中断恢复。历史目录版本以哈希命名保存在 `catalog-history/`，封存时的目录记录可继续还原。
 
 后续新增资料使用新的归档版本，不覆盖现有分片、清单或历史结论。
+
+[最终工具复审](audit/source-review.md)与[70 项独立工具测试](audit/tool-tests.md)分别给出源码和实际执行结论。[审计原件包](audit/evidence.tar.gz)及[逐成员哈希清单](audit/manifest.json.gz)保留初始失败、修复、独立测试、迁移和恢复记录；所有 1,696 个审计成员已逐项核验。生产轮次分片仍位于各轮次目录，没有重复打入审计包。
