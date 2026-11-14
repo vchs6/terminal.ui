@@ -45,7 +45,7 @@ L4 010.a：手写Unicode/Auto=Unicode/Ascii框架生成标记且业务Unicode不
 
 - [ ] 1.3 原TASK-020：按C004形成全部功能M1模式/资源恢复输入（WP004/REQ004/011；implementation及独立质量活动）。
 
-当前status=in_progress；当前M1恢复输入已独立验收为PASS_CURRENT_M1_RECOVERY_INPUT / COMPLETE_CURRENT_M1_HANDOFF_ONLY，无阻塞发现；[原验收与完整证据](../../../docs/reviews/R22/020/README.md)固定受检main `e35d407a87ab197537ccc931c143c9927458a75f`及正式测试 `8929bd09ca0e77093ac8d070e513b388e02487a7`。020.a–d当前阶段已交付，020.e的M2/release受影响最终部分仍待024汇合；本父项复选框保留未完成，完整原AC020仍pending。原[input-manifest](../../../docs/reviews/R22/020/input-manifest.json)保留历史正式测试准入原字节，不重写为当前结论。此输入仅供021/124前置，不代表全部M1功能、041、Linux或release通过。
+当前status=in_progress；当前M1恢复输入已独立验收为PASS_CURRENT_M1_RECOVERY_INPUT / COMPLETE_CURRENT_M1_HANDOFF_ONLY，无阻塞发现；[原验收与完整证据](../../../docs/reviews/R22/020/README.md)固定受检main `e35d407a87ab197537ccc931c143c9927458a75f`及正式测试 `8929bd09ca0e77093ac8d070e513b388e02487a7`。020.a–d当前阶段已交付，020.e的M2/release受影响最终部分仍待024汇合；已索引构建中间文件另有[无损存储补充](../../../docs/reviews/R22/020/intermediates/README.md)，原证据索引及字节保留，物理路径迁移尚待单独记录；本父项复选框保留未完成，完整原AC020仍pending。原[input-manifest](../../../docs/reviews/R22/020/input-manifest.json)保留历史正式测试准入原字节，不重写为当前结论。此输入仅供021/124前置，不代表全部M1功能、041、Linux或release通过。
 
 输入=008/152/117/122/112/162及I015实际输入；不会反向等待最终041/M2。输出=tests/session_lifecycle/、同一Application/native必要恢复小修、完整C004模式表及M1证据manifest。排除额外会话writer/模式所有者。
 L4 020.a：独立测试列每种退出/原可见隐藏/knownunknown/原2004/title/termios/handler/owner以及业务+清理双错误，手工判定表固定。020.b：复用有效原件，补最终所有新增模式真实PTY和实际host可确认结果，unsafe零后续output。020.c：有真实缺陷才独立作者修最小路径。020.d：双审核→独立执行→有限M1恢复验收；CLI `tests/session_lifecycle/run.sh`。020.e：M2/release影响部分再补后由024核完整原AC020，候选卡不提前宣称最终所有源码恢复PASS。
