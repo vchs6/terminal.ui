@@ -1,0 +1,20 @@
+{
+  "source": "39d56c0f7ca2d751a9ce5fb4e18913636fdff43a",
+  "toolchain": "Cangjie Compiler and CJPM 1.2.0, x86_64-unknown-linux-gnu",
+  "entry": "bash tests/theme_showcase/run.sh",
+  "build": "(cd examples/theme_showcase && cjpm build)",
+  "direct": [
+    "examples/theme_showcase/target/release/bin/main --smoke",
+    "examples/theme_showcase/target/release/bin/main --invalid",
+    "examples/theme_showcase/target/release/bin/main --theme-file",
+    "examples/theme_showcase/target/release/bin/main --smoke --theme-file anything",
+    "examples/theme_showcase/target/release/bin/main --theme-file /absolute/test-owned/selected.toml"
+  ],
+  "expected": "selftest exit0; missing product delivery exit1; after product, normal build and finite direct smoke exit0, invalid forms direct nonzero, PTY real key/file cases exit0",
+  "environment": {
+    "sdk": "/workspace/work/validation/sdk/cangjie/envsetup.sh",
+    "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+    "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+    "registry": "https://pkg.cangjie-lang.cn/registry"
+  }
+}
