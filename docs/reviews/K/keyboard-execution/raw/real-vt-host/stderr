@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/workspace/work/keyboard-execution/tools/vt-host.py", line 46, in <module>
-    wait(marker,'visible kernel cells marker');capture('running')
-                                               ^^^^^^^^^^^^^^^^^^
-  File "/workspace/work/keyboard-execution/tools/vt-host.py", line 39, in capture
-    seq,n,data=re.findall(pattern,serial())[-1];raw=bytes.fromhex(data);assert len(raw)==int(n);(out/(name+'-vcsa.bin')).write_bytes(raw)
-                                                                               ^^^^^^^^^^^^^^^^
-AssertionError

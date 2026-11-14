@@ -1,1 +1,0 @@
-bash -c source\ /workspace/work/validation/sdk/cangjie/envsetup.sh\ \&\&\ for\ f\ in\ tests/interaction_c/src/\*.cj\ tests/interaction_c/baseline/src/\*.cj\;\ do\ cjfmt\ -f\ \"\$f\"\ \|\|\ exit\ \$\?\;\ done 

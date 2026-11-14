@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/fixtures/review_regressions.py", line 57, in run
-    try:clock_idle(binary,out/'I05');result=dict(case='I05',utc=start,exit=0)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/work/interaction-a-tests/review-regressions/replay/tests/interaction_a/fixtures/review_regressions.py", line 43, in clock_idle
-    assert record['closed_events']=='text:b|escape:|text:x|text:s|text:q|','I05 UnknownClock must retain bare ESC idle and subsequent ordinary keys; actual='+str(record['closed_events'])
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError: I05 UnknownClock must retain bare ESC idle and subsequent ordinary keys; actual=text:b|text:s|text:q|

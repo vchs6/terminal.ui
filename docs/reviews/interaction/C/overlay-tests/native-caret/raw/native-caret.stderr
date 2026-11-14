@@ -1,9 +1,0 @@
-Traceback (most recent call last):
-  File "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c/native_caret_pty.py", line 112, in <module>
-    a=p.parse_args();run(a.binary,a.output.resolve(),a.cursor_reply)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c/native_caret_pty.py", line 74, in run
-    wait(lambda:span(start,b'   ') is not None,'opaque row1 columns2..4 actual paint')
-  File "/workspace/work/overlay-tests/native-caret/replay/tests/interaction_c/native_caret_pty.py", line 32, in wait
-    raise AssertionError('missing native observation '+label)
-AssertionError: missing native observation opaque row1 columns2..4 actual paint

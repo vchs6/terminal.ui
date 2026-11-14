@@ -1,7 +1,0 @@
-Traceback (most recent call last):
-  File "/workspace/work/glyph-execution/tools/gui.py", line 39, in <module>
-    keyboard.chord('p');wait(lambda:(p/'profile.txt').exists() and f'serial={serial}\n' in (p/'profile.txt').read_text());time.sleep(.15)
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/work/glyph-execution/tools/gui.py", line 11, in wait
-    raise TimeoutError(str(fn))
-TimeoutError: <function <lambda> at 0x7ff102398ae0>

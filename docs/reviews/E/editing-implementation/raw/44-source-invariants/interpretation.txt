@@ -1,3 +1,0 @@
-Exactly one issue(TextEditIssue.ConcurrentValueChanged) call, immediately after failed source.editingCommit with reportConflict; replace reads source.editingSnapshot before commit, history calls sync which atomically reads source before commit. Applied cut and guarded replace do not report that issue.
-Both local UInt64 revisions precheck capacity before own source commit or selection publication; external sync prechecks before local publication. Actual unreachable 2^64 exhaustion was not executed.
-Shared pure cjtui.text.graphemeIterator delegates to the existing pinned unicode.GraphemeIterator; graphemeClusters and editor both use it. Editor scans entire new text to snap caret and uses no full-document cluster array.

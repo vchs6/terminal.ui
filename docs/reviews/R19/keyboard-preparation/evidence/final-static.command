@@ -1,1 +1,0 @@
-bash -c git\ diff\ --cached\ --check\ \&\&\ bash\ -n\ tests/keyboard/run.sh\ tests/keyboard/check-api.sh\ \&\&\ node\ --check\ tests/keyboard/pty.mjs\ \&\&\ diff\ -qr\ tests/keyboard/src\ /workspace/work/keyboard-tests/syntax-consumer/src\ \&\&\ diff\ -q\ tests/keyboard/device/src/main.cj\ /workspace/work/keyboard-tests/device-syntax/src/main.cj 

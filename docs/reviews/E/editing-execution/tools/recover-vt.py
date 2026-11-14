@@ -1,6 +1,0 @@
-import pathlib,tarfile,base64,io,sys,json,re
-sys.path.insert(0,'/workspace/work/keyboard-execution/tools');from trace_bytes import extract
-B=pathlib.Path('/workspace/work/editing-execution');src=B/'raw/host-vt-example';out=B/'raw/vt-first-run-recovery';out.mkdir(exist_ok=False);s=(src/'serial.log').read_text();block=s.split('EVIDENCE_TAR_BASE64_BEGIN',1)[1].split('EVIDENCE_TAR_BASE64_END',1)[0];data=base64.b64decode(''.join(block.split()));(out/'guest-evidence.tar').write_bytes(data)
-with tarfile.open(fileobj=io.BytesIO(data)) as t:t.extractall(out/'evidence',filter='data')
-trace=(out/'evidence/example.strace').read_text();inp,ins=extract(trace,0,'read');wire,outs=extract(trace);(out/'input.raw').write_bytes(inp);(out/'output.raw').write_bytes(wire)
-(out/'observation.json').write_text(json.dumps(dict(input_hex=inp.hex(),input_repr=repr(inp),wire_stats=[ins,outs],product_exit_observed=re.findall(r'PRODUCT_EXIT=.*',s),termios_equal=(out/'evidence/termios-before.bin').read_bytes()==(out/'evidence/termios-after.bin').read_bytes(),note='Recovery from original serial base64 after collector timed out; original failed phase and captures preserved. No rerendered screenshot or replacement verdict.'),indent=2)+'\n');print(repr(inp));print([x for x in s.splitlines() if x.startswith('INIT_CHILD_EXIT')])

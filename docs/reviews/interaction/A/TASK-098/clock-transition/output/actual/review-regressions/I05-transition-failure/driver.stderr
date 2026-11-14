@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/workspace/work/interaction-a-tests/review-regressions/transition/replay/tests/interaction_a/fixtures/review_regressions.py", line 97, in run_transitions
-    try:clock_transition(binary,directory,failure);result=dict(case=name,utc=start,exit=0)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/workspace/work/interaction-a-tests/review-regressions/transition/replay/tests/interaction_a/fixtures/review_regressions.py", line 90, in clock_transition
-    assert record['closed_events']=='up:|text:q|','I05 sub100ms CSI must survive clock transition; actual='+str(record['closed_events'])
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError: I05 sub100ms CSI must survive clock transition; actual=escape:|text:[|text:A|text:q|

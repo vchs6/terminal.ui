@@ -1,9 +1,0 @@
-Traceback (most recent call last):
-  File "/workspace/work/session-extension-execution/scripts/hosts.py", line 47, in <module>
-    server=s.Popen(['/workspace/work/session-extension-recon/ssh/probes/start-stock-sshd.sh'],stdout=(R/'sshd.stdout').open('wb'),stderr=(R/'sshd.log').open('wb'))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-PermissionError: [Errno 13] Permission denied: '/workspace/work/session-extension-recon/ssh/probes/start-stock-sshd.sh'

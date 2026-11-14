@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-source /workspace/work/validation/sdk/cangjie/envsetup.sh
-export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip
-export CJTUI_COLOR_ARTIFACTS=/workspace/work/auto-final-execution/artifacts/colors
-export CJTUI_CAPABILITY_ARTIFACTS=/workspace/work/auto-final-execution/artifacts/capabilities
-export CJTUI_LAYOUT_PTY_ARTIFACTS=/workspace/work/auto-final-execution/artifacts/layout
-export CJTUI_LIFECYCLE_ARTIFACTS=/workspace/work/auto-final-execution/artifacts/lifecycle
-export CJTUI_SDK_ENV=/workspace/work/validation/sdk/cangjie/envsetup.sh
-export CJTUI_TERMINAL_HOST_ROOT=/workspace/work/cross-terminal-recon

@@ -1,7 +1,0 @@
-PASS: owner render starts with a mounted getter: got [ok ], want [ok ]
-PASS: owner work accepted before render failure
-owner-render aggregate=false error=OWNER_GETTER_SENTINEL valid=false cleanup=1 mounted=0 bindings=0 subscriptions=0 posts=0
-PASS: owner render getter failure disposes generation and cleanup
-PASS: owner render failure releases nodes, bindings, subscriptions and posts
-PASS: owner render without cleanup failure preserves original exception object/type
-PASS: owner render failure cleanup is not replayed by dispose

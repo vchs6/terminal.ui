@@ -1,7 +1,0 @@
-PASS: other session is initially usable: got [B ], want [B ]
-cleanup-context observed=accepted cleanups=2 A-valid=false B-valid=true
-PASS: cross-session attempt does not abort complete A cleanup
-PASS: A cleanup releases every resource
-PASS: rejected callback entry preserves B session
-PASS: B remains usable after A cleanup and TLS restoration: got [C ], want [C ]
-PASS: next B active boundary has restored ownership: got [D ], want [D ]

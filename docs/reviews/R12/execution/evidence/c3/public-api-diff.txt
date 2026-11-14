@@ -1,2 +1,0 @@
--    public func visible(value: Bool): Component { removeBinding("visible"); isVisible = value; markChanged(); this }
-+    public func visible(value: Bool): Component { removeBinding("visible"); isVisible = value; markChanged(ChangeKind.Layout); this }

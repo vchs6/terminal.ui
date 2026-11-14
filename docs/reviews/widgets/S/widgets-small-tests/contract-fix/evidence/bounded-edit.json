@@ -1,9 +1,0 @@
-{
-  "file": "/workspace/work/widgets-small-tests/contract-fix/source/tests/widgets_small/src/construction_cases.cj",
-  "old_block": "    expectInvalidProperty({ => Label(\"L\").gap(1); () }, \"Text-root Label has no gap capability\")\n    expectInvalidProperty({ => Button(\"B\", { => () }).gap(1); () }, \"Text-root Button has no gap capability\")",
-  "new_block": "    expectLegacyPropertyError({ => Label(\"L\").gap(1); () }, \"Label legacy constant gap rejects with IllegalArgumentException\")\n    expectLegacyPropertyError({ => Button(\"B\", { => () }).gap(1); () }, \"Button legacy constant gap rejects with IllegalArgumentException\")\n    expectInvalidProperty({ => Label(\"L\").setStyle(StyleKeys.gap, StyleValue<Int64>.Value(1)); () }, \"Label typed gap rejects with InvalidProperty\")\n    expectInvalidProperty({ => Button(\"B\", { => () }).gap({ => 1 }); () }, \"Button getter gap rejects with InvalidProperty\")\n    let incompatible = StyleRule().withValue(StyleKeys.gap, StyleValue<Int64>.Value(1))\n    expectInvalidProperty({ => frame(Label(\"L\").styles([StyleUse.Inline(incompatible)]), 2, 1); () }, \"Label resolved Inline gap rejects with InvalidProperty\")",
-  "added_helper": "\n// LEGACY-PROP-001 preserves this old shortcut's concrete exception type.\nfunc expectLegacyPropertyError(action: () -> Unit, caseName: String): Unit {\n    var rejected = false\n    try { action() } catch (_: IllegalArgumentException) { rejected = true }\n    if (!rejected) { throw IllegalStateException(\"${caseName}: expected IllegalArgumentException\") }\n}\n",
-  "old_import": "Radio, TextWrap}",
-  "new_import": "Radio, StyleKeys, StyleRule, StyleUse, StyleValue, TextWrap}",
-  "inverse_equals_baseline": true
-}

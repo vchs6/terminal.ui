@@ -1,9 +1,0 @@
-Compiling package `macro_lib`: LD_LIBRARY_PATH=/workspace/work/linux-build-recon/bundle_consumer/target/release/macro_lib:$LD_LIBRARY_PATH cjc -p /workspace/work/linux-build-recon/unpacked/macro_lib-1.0.0/src --import-path=/workspace/work/linux-build-recon/bundle_consumer/target/release --output-dir=/workspace/work/linux-build-recon/bundle_consumer/target/release/macro_lib/ --output-type=staticlib -o=libmacro_lib.a
-Compiling package `macro_lib.macros`: LD_LIBRARY_PATH=/workspace/work/linux-build-recon/bundle_consumer/target/release/macro_lib:$LD_LIBRARY_PATH cjc -p /workspace/work/linux-build-recon/unpacked/macro_lib-1.0.0/src/macros --import-path=/workspace/work/linux-build-recon/bundle_consumer/target/release --no-sub-pkg --output-dir=/workspace/work/linux-build-recon/bundle_consumer/target/release/macro_lib/ --compile-macro
-Compiling package `macro_consumer`: LD_LIBRARY_PATH=/workspace/work/linux-build-recon/bundle_consumer/target/release/macro_lib:$LD_LIBRARY_PATH cjc -p /workspace/work/linux-build-recon/bundle_consumer/src --import-path=/workspace/work/linux-build-recon/bundle_consumer/target/release --no-sub-pkg --output-dir=/workspace/work/linux-build-recon/bundle_consumer/target/release/bin/ -L /workspace/work/linux-build-recon/bundle_consumer/target/release/macro_lib/ -lmacro_lib --output-type=exe -o=main
-   Finished `build` profile compilation
-   Executable files at `/workspace/work/linux-build-recon/bundle_consumer/target/release/bin`
-Run current project: LD_LIBRARY_PATH=/workspace/work/linux-build-recon/bundle_consumer/target/release/macro_lib:$LD_LIBRARY_PATH /workspace/work/linux-build-recon/bundle_consumer/target/release/bin/main
-answer=42; macro=42
-
-cjpm run finished

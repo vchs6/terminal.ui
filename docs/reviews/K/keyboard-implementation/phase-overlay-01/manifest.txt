@@ -1,4 +1,0 @@
-HEAD c80e5e4130aea89dd0177cfb10f4a235d64be090; source precheck/postcheck against phase-fix-01/pre-source.sha256; binary before bin-before.sha256 after bin-after.sha256
-cwd /workspace/work/keyboard-implementation/source
-argv source /workspace/work/validation/sdk/cangjie/envsetup.sh; export CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip; (cd tests/interaction_c && cjpm build); for REPLY in 1 2 none: python3 tests/interaction_c/native_caret_pty.py --binary tests/interaction_c/target/release/bin/main --output /workspace/work/keyboard-implementation/phase-overlay-01/raw-REPLY --cursor-reply REPLY
-UTC recorded 2026-11-13T05:05:44Z; build and each case exit 0; stdout/stderr/exit per command

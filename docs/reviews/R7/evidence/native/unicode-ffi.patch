@@ -1,9 +1,0 @@
---- unicode-0.1.0/cjpm.toml (official)
-+++ unicode-0.1.0/cjpm.toml (isolated FFI repair)
-@@ -19,3 +19,6 @@
-   link-option = "-Llib -lunicodedata"
- 
- [dependencies]
-+
-+[ffi.c]
-+unicodedata = { path = "./lib" }
