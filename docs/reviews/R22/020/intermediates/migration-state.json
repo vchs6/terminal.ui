@@ -1,0 +1,67 @@
+{
+  "authority": {
+    "archiveSha256": "769d6469a2c4f4012b14f45d144bf54247035a63356811b108d649f86865b0aa",
+    "durableMainCommitRecordedInReceipts": "6de3bb61e7ffd177a443ea049a07eb75aa1aa984",
+    "frozenIndexSha256": [
+      "06b9228d5f74f7f21187204cac7d5cf6db28413661c93b0392691118520e126c",
+      "a0d0d4280f263af90fc7ed75ac37fb70e4ac4e716d1e27d3147b923184a3be26"
+    ],
+    "mapSha256": "7f0694e8ef1e854c241cc2b809e08f03e380a6a86f04b54af8611196ae5d0192"
+  },
+  "currentVerification": {
+    "all124DirectPathsAbsent": true,
+    "archiveMembersVerified": 67,
+    "command": "python3 restore.py verify-store",
+    "frozenIndicesVerified": 2,
+    "result": "PASS verify-store: 124 paths, 67 verified archive members"
+  },
+  "physicalMigration": {
+    "deletedInRun": 124,
+    "freeAfterBytes": 92446720,
+    "freeBeforeUnlinkBytes": 27402240,
+    "freeDeltaBytes": 65044480
+  },
+  "receipts": {
+    "phase2-after.json": {
+      "bytes": 17186,
+      "sha256": "11668994e94ef7c399eb26bb73a6309e08c8d791104adc94ce1bb7920e6e839c"
+    },
+    "phase2-before.json": {
+      "bytes": 48277,
+      "sha256": "53dfdc6110982015f176295754be1bc2261e61036a3f7ce5a98564fb26e76016"
+    },
+    "phase2-sample.json": {
+      "bytes": 1446,
+      "sha256": "522bf28f051907196dd3e0e1f4d62ffb74d247e5144e6243b279562015963cd0"
+    },
+    "phase2-unlink-intent.json": {
+      "bytes": 48154,
+      "sha256": "df6209f29e1296485af91653bfefaf7e76cc21c43de1ea4156de04a41ed92a90"
+    }
+  },
+  "resolution": {
+    "archive": "../PUBLICATION/packed-build-targets.tar.gz",
+    "contentRecovery": "verified",
+    "directPathVerification": "intentionally_inapplicable_while_absent",
+    "inodeAndCtime": "historical_observations_not_restorable",
+    "map": "../PUBLICATION/packed-build-targets-map.json",
+    "originalPathsAreHistoricalLogicalIdentifiers": true,
+    "restoreTool": "../PUBLICATION/restore.py"
+  },
+  "sampleRestore": {
+    "overwriteRefusedWithoutChange": true,
+    "restoredBytesAndShaMatch": true,
+    "result": "SAMPLE_RESTORE_AND_OVERWRITE_REFUSAL_PASS"
+  },
+  "schema": 1,
+  "scope": {
+    "directPathsAbsent": 124,
+    "directPathsPresent": 0,
+    "logicalPaths": 124,
+    "originalAllocatedBytes": 65093632,
+    "originalLogicalBytes": 64823224,
+    "uniqueArchiveMembers": 67
+  },
+  "status": "COMPLETE_ARCHIVED_124_DIRECT_PATHS_ABSENT",
+  "verifiedAtUtc": "2026-11-14T04:32:00.413258+00:00"
+}
