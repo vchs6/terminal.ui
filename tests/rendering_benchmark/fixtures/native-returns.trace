@@ -1,0 +1,8 @@
+10 write(1</dev/pts/7>, "abcd", 4) = 4
+10 write(1</dev/pts/7>, "efghi", 5) = 2
+10 write(1</dev/pts/7>, "xyz", 3) = -1 EINTR (Interrupted system call)
+10 writev(1</dev/pts/7>, [{iov_base="ab", iov_len=2}, {iov_base="cde", iov_len=3}], 2) = 5
+11 write(2</tmp/stderr>, "ignored", 7) = 7
+12 read(3</dev/pts/8>, "abcdefghij", 10) = 10
+12 read(3</dev/pts/8>, "k", 1) = 1
+10 +++ exited with 0 +++
