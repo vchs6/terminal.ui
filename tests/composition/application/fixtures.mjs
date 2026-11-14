@@ -7,3 +7,4 @@ export const keys = Object.freeze({f1:'\x1bOP', f2:'\x1bOQ', f3:'\x1bOR', f4:'\x
   pageDown:'\x1b[6~', ctrlA:'\x01', undo:'\x1a', redo:'\x19'});
 export const paste = text => `\x1b[200~${text}\x1b[201~`;
 export const modalGoldens = JSON.parse(readFileSync(new URL('./goldens/modal.json', import.meta.url)));
+export const minimalPtyGolden = JSON.parse(readFileSync(new URL('./goldens/minimal-pty.json', import.meta.url)));

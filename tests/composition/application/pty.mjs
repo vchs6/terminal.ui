@@ -6,7 +6,7 @@ import {resolve,join} from 'node:path';
 import {StringDecoder} from 'node:string_decoder';
 import {Screen} from '../../colors/pty.mjs';
 import {prepareTerminalSizeTool,atomicResize} from '../../support/terminal_frames.mjs';
-import {goldens,modalGoldens,keys,paste} from './fixtures.mjs';
+import {goldens,modalGoldens,minimalPtyGolden,keys,paste} from './fixtures.mjs';
 const quote=value=>`'${value.replaceAll("'","'\\''")}'`;
 const delay=ms=>new Promise(done=>setTimeout(done,ms));
 const read=async path=>{try{return await readFile(path,'utf8')}catch(error){if(error.code==='ENOENT')return '';throw error}};
@@ -22,26 +22,33 @@ async function until(predicate,label,ms=12000){
 export class WireScreen {
   constructor(w,h){this.screen=new Screen(w,h);this.decoder=new StringDecoder('utf8');this.wire='';this.offset=0}
   feed(bytes){
-    this.wire+=this.decoder.write(bytes);
+    this.wire+=this.decoder.write(bytes);this.incompleteRow=false;
     const pattern=/\x1b\[(\d+);1H((?:\x1b\[[0-9;]*m|[^\x1b\x00-\x1f])*)/gu;
     pattern.lastIndex=this.offset;
     for(let m; (m=pattern.exec(this.wire));){
       if(!m[2].replaceAll(/\x1b\[[0-9;]*m/g,'').length){continue}
       const endsReset=m[2].endsWith('\x1b[0m');
       const nextAvailable=/^\x1b\[(?:\d+;\d+H|\?(?:25|2004)[hl]|\?25\$p)/.test(this.wire.slice(pattern.lastIndex));
-      if(!endsReset){if(nextAvailable)assert.fail('incomplete renderer row before next control');break}
+      if(!endsReset&&!nextAvailable){this.incompleteRow=true;break}
       const widths=this.screen.transition?[this.screen.transition.old[0],this.screen.transition.target[0]]:[this.screen.w];
       let complete=false;
       for(const w of new Set(widths)){
         const probe=new Screen(w,Math.max(this.screen.h,Number(m[1])));
-        probe.feed(Buffer.from(m[0]));
-        if(probe.row===null){complete=true;break}
+        try{
+          probe.feed(Buffer.from(m[0]));probe.flush();complete=true;break;
+        }catch(error){if(!/^complete row \d+:/.test(error.message))throw error}
       }
-      if(!complete){if(nextAvailable)assert.fail('renderer row has wrong complete width');break}
-      this.screen.feed(Buffer.from(m[0]));this.offset=pattern.lastIndex;
+      if(!complete){if(nextAvailable)assert.fail('renderer row has wrong complete width');this.incompleteRow=true;break}
+      this.screen.feed(Buffer.from(m[0]));this.screen.flush();this.offset=pattern.lastIndex;
     }
   }
   rows(){return this.screen.snapshot()}
+  finish(){
+    assert.equal(this.decoder.end(),'','no incomplete UTF-8 at wire close');
+    assert(!this.incompleteRow,'no incomplete renderer row at wire close');
+    assert(!/\x1b(?:\[[0-9;?]*\$?)?$/.test(this.wire),'no incomplete terminal control at wire close');
+    return this.screen.finalize();
+  }
 }
 export class Session {
   constructor(directory,w,h,binary=resolve('examples/composition/target/release/bin/main')) {
@@ -71,7 +78,7 @@ export class Session {
   async wait(predicate,label){
     let rows;
     await until(()=>{if(this.error)throw this.error;assert(!this.finished,`direct binary exited before ${label}: ${this.code}`);
-      if(this.view.screen.row!==null||this.view.screen.pending)return false;
+      if(this.view.incompleteRow||this.view.screen.row!==null||this.view.screen.pending)return false;
       rows=this.view.rows();return predicate(rows)},label);
     this.frames.push({label,utc:new Date().toISOString(),rows});return rows;
   }
@@ -89,6 +96,7 @@ export class Session {
   async stop(exitKey=keys.f10){
     this.send(exitKey,'ordinary quit');await until(()=>this.finished,'ordinary successful quit');
     if(this.error)throw this.error;
+    this.view.finish();
     assert.equal(this.code,0,'script --return true exit');assert.equal(this.signal,null);
     assert.equal((await read(join(this.dir,'direct.exit'))).trim(),'0','actual binary true exit');
     const before=(await read(join(this.dir,'before'))).trim();assert(before,'before termios recorded');
@@ -137,7 +145,8 @@ async function startup(directory,w,h){
 }
 async function minimal(directory){
   const s=new Session(directory,16,3,resolve('examples/minimal/target/release/bin/main'));
-  try{await s.start();const rows=await s.has('中文 👩‍💻');sameGrid(rows,16,3,'minimal');
+  try{await s.start();const rows=await s.has('中文 ??');
+    assert.deepEqual(rows.map(row=>row.text),minimalPtyGolden.rows,'minimal synthetic unknown-PTY Auto grid');
     assert.equal(at(rows,0,0).fg,'named:36','minimal styled Text uses cyan');await s.stop('q');
   }finally{await s.save()}
 }
@@ -159,7 +168,7 @@ async function interactions(directory){
     await s.wait(rows=>rows[10].text.startsWith('03 Done Export')&&rows[11].text.startsWith('01 Ready Parse'),'name order Export Parse Render');
     await s.key(keys.backtab+' ',rows=>rows[10].text.startsWith('01 Ready Parse'),'ID radio owns sorting');
     // ID -> Name -> Run -> scroll -> notes. Edit in the real TextArea.
-    await s.key(keys.tab.repeat(4)+keys.ctrlA+paste('qrcvzy\r\nreview 中文 👩‍💻'),contains('review 中文 👩‍💻'),'multiline paste is editor data');
+    await s.key(keys.tab.repeat(4)+keys.ctrlA+paste('qrcvzy\r\nreview 中文 👩‍💻'),contains('review 中文 ??'),'multiline paste is editor data');
     s.send(keys.home+'\x1b[1;2C','select first character');
     const light=await s.key(keys.f3,contains('Light'),'theme changes without losing editor');
     assert.equal(at(light,79,22).bg,'rgb:255,255,255','Light applies root background');

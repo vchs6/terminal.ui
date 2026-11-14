@@ -133,6 +133,20 @@ tests/support/terminal_frames.mjs. This is explicitly a synthetic PTY profile,
 not XTerm/VTE/VT/SSH certification. Waits poll completed visible predicates with
 a deadline; no sleep establishes background success. Raw bytes, input events,
 frames, direct exit and exact before/after termios are archived even on failure.
+The wire adapter accepts complete rows bounded by the next CUP/native control
+or the frame reset; encodeTerminalRow need not reset each row whose final style
+is already default. Existing Screen validates full row width and styles; row
+completion does not inject a reset or replace the actual SGR state.
+
+Headless minimal smoke remains the literal Unicode `中文 👩‍💻`. For this
+unknown synthetic PTY, default Auto uses G012/A003 conservativeUnicode: CJK
+scalar/logical widths agree and stay unchanged; 👩(2)+ZWJ(0)+💻(2)=4 differs
+from the logical cluster width2, so its visible projection is exactly `??`.
+The separate hand-authored goldens/minimal-pty.json fixes this device result;
+it does not change business text, input paste bytes, or the headless golden.
+The Unicode TextArea paste likewise expects visible `review 中文 ??` on this
+profile. Real-host projections follow their proven Glyph facts; the app must
+retain default Auto and must not force Unicode to satisfy this test.
 The --smoke and invalid-argument tests call the binary directly with pipes.
 
 Required TTY sequence: startup wide; type `qrcvzy`, verify still editing; select
