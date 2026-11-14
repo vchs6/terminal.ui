@@ -16,7 +16,7 @@ import time
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / 'interaction_a' / 'fixtures'))
 from pty_capture import Capture, restored  # existing real PTY/termios/resource handling
-from oracle import QUERY, verify_wire, verify_records, verify_native
+from oracle import QUERY, verify_wire, verify_records, verify_native, verify_termios_snapshots
 
 
 def until(cap, predicate, label, timeout=4):
@@ -109,6 +109,7 @@ def run(binary, out, case, cursor):
         verify_records(records, case)
         verify_wire(bytes(cap.raw), cursor)
         verify_native(read(native), case['close_failure'])
+        verify_termios_snapshots(out)
         host_auto = os.environ.get('CJTUI_020_HOST_AUTO') == '1'
         assert read(out / 'session-policy') == ('Auto/NoTitleRequest' if host_auto else 'DeclaredSupported-title-stress')
         count = 0 if host_auto else 2
@@ -173,6 +174,7 @@ def run_initial(binary, out, case, cursor):
         assert native.count('raw-active\t1\t0') == native.count('buffer-released\t1') == 2
         assert native.count('signal-flags\t') == 6 and not any(line.endswith('\t0') for line in native.splitlines() if line.startswith('signal-flags'))
         assert native.count('buffer-free\t') == queries, 'native allocation only once per run that wrote'
+        verify_termios_snapshots(out)
         (out / 'check.json').write_text(json.dumps({'passed': True, 'directExit': metadata['exit']}) + '\n')
     finally:
         if not finalized: cap.finish(send_quit=False)

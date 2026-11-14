@@ -10,6 +10,7 @@
 #undef __wrap_cjt_buffer_add
 #undef __wrap_poll
 #include <termios.h>
+#include <sys/stat.h>
 extern void *__real_realloc(void *, size_t);
 extern void __real_free(void *);
 extern ssize_t __real_read(int, void *, size_t);
@@ -17,6 +18,36 @@ static int tracking, observations_ready, pipe_input = -1;
 static void *owned_buffer;
 static int allocations, frees;
 static struct sigaction full_before[3];
+static int observed_run;
+/* Observe every defined Linux termios field on fd0 itself. Do not reset it. */
+static void termios_snapshot(const char *phase) {
+    int caller_errno = errno;
+    struct termios value;
+    int result = tcgetattr(STDIN_FILENO, &value);
+    int termios_errno = result < 0 ? errno : 0;
+    struct stat endpoint;
+    if (fstat(STDIN_FILENO, &endpoint)) abort();
+    const char *directory = getenv("CJTUI_020_OUTPUT");
+    if (!directory) abort();
+    char path[4096];
+    int length = snprintf(path, sizeof(path), "%s/native-termios-%s-%d.json", directory, phase, observed_run);
+    if (length < 0 || (size_t)length >= sizeof(path)) abort();
+    FILE *file = fopen(path, "w"); if (!file) abort();
+    fprintf(file, "{\"run\":%d,\"phase\":\"%s\",\"endpoint\":{\"fd\":0,\"dev\":%llu,\"ino\":%llu,\"rdev\":%llu},\"rc\":%d,\"errno\":",
+        observed_run, phase, (unsigned long long)endpoint.st_dev,
+        (unsigned long long)endpoint.st_ino, (unsigned long long)endpoint.st_rdev, result);
+    if (result < 0) fprintf(file, "%d,\"fields\":null}\n", termios_errno);
+    else {
+        fprintf(file, "null,\"fields\":{\"iflag\":%llu,\"oflag\":%llu,\"cflag\":%llu,\"lflag\":%llu,\"line\":%u,\"cc\":[",
+            (unsigned long long)value.c_iflag, (unsigned long long)value.c_oflag,
+            (unsigned long long)value.c_cflag, (unsigned long long)value.c_lflag, (unsigned)value.c_line);
+        for (int i = 0; i < NCCS; i++) fprintf(file, "%s%u", i ? "," : "", (unsigned)value.c_cc[i]);
+        fprintf(file, "],\"ispeed\":%llu,\"ospeed\":%llu}}\n",
+            (unsigned long long)value.c_ispeed, (unsigned long long)value.c_ospeed);
+    }
+    if (fclose(file)) abort();
+    errno = caller_errno;
+}
 static void original_handler(int sig) { (void)sig; }
 void *__wrap_realloc(void *ptr, size_t size) {
     void *result = __real_realloc(ptr, size);
@@ -31,6 +62,7 @@ int __wrap_cjt_buffer_add(int byte) {
     tracking = 1; int result = session_base_add(byte); tracking = 0; return result;
 }
 int __wrap_cjt_open(void) {
+    observed_run++; termios_snapshot("before");
     if (!observations_ready) {
         struct sigaction custom = {0};
         custom.sa_handler = original_handler; custom.sa_flags = SA_RESTART | SA_NODEFER;
@@ -84,6 +116,17 @@ int __wrap_poll(struct pollfd *fds, nfds_t n, int timeout) {
 }
 int __wrap_cjt_close(void) {
     int result = session_base_close();
+    /* Explicit negative-control only: create a real wrong child post-state.
+     * Never repair/reset that endpoint to make the observation pass. */
+    const char *negative = getenv("CJTUI_020_NEGATIVE_CHILD_DRIFT");
+    if (negative && !strcmp(negative, "1") && observed_run == 1) {
+        struct termios drift;
+        if (tcgetattr(STDIN_FILENO, &drift)) abort();
+        drift.c_lflag ^= ECHO;
+        if (tcsetattr(STDIN_FILENO, TCSANOW, &drift)) abort();
+        event("negative-child-drift", 1, 0);
+    }
+    termios_snapshot("after");
     for (int i = 0; i < 3; i++) {
         struct sigaction after; if (sigaction(signals[i], NULL, &after)) abort();
         event("signal-flags", signals[i], after.sa_flags == full_before[i].sa_flags);

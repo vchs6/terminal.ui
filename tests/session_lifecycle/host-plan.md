@@ -7,7 +7,9 @@ wrapper uses util-linux script to forward actual host replies; it neither
 changes TERM nor injects DECRQM reports. Preserve child wire/input/timing,
 native.tsv, outer exact termios, direct.exit, all consumer files, UTC and SHA.
 Its own run is a new PTY within the actual host, so child termios is independently
-observed by native helper and outer termios by stty. This is not author runtime
+observed by native before-open/after-each-close snapshots of all defined Linux
+termios fields and endpoint identity, compared exactly by host_verify.py. Outer
+termios by stty remains supplementary script-endpoint evidence only. This is not author runtime
 host evidence. No script session can certify hardware/terminal host identity.
 `host_probe.py` records actual /dev/tty mode25/2004 replies before and after,
 restoring its exact termios; `host_verify.py` consumes these literal replies,
@@ -85,3 +87,12 @@ bytes and rejected same-process open without resetting its latch. No338 rerun.
 Remaining real-host execution/independent review/acceptance and final M1 widget
 integration are required downstream. This plan and the author PTY results do
 not close TASK020, M1, M2, release or Linux acceptance.
+
+R1 readiness: run host_transport_check.py against the frozen binary first.
+This uses actual nested PTYs with explicitly emulated mode replies to exercise
+the full host_run/probe/oracle path; it does not establish an actual terminal
+host. Its child-state negative must yield direct.exit0, equal outer stty and
+host runner exit1 from exact same-child termios mismatch. Actual-host execution
+must retain native-termios-before-N.json and native-termios-after-N.json for
+both runs. Endpoint HUP is separate and must identify actual Auto versus
+explicit declared policy; Auto owns no title scope. No child state is repaired.

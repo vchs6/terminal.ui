@@ -1,5 +1,8 @@
 """Literal lifecycle expectations, not a terminal parser or renderer."""
 from collections import Counter
+import errno
+import json
+import pathlib
 
 QUERY = b'\x1b[?25$p'
 PASTE_ON = b'\x1b[?2004h'
@@ -17,11 +20,22 @@ def verify_wire(raw, cursor):
     if cursor == 'unknown':
         assert not any(b in raw for b in (SHOW, HIDE, b'\x1b[?25s', b'\x1b[?25r')), 'Unknown preserves native visibility'
     else:
-        first = raw[starts[0]:starts[1]]
-        change, restore = (HIDE, SHOW) if cursor == 'visible' else (SHOW, HIDE)
-        assert change in first and restore in first, 'first run actually changes and restores native visibility'
-        assert first.rfind(restore) > first.rfind(change), 'restoration follows actual managed change'
-        assert first.rfind(restore) > first.rfind(PASTE_OFF), 'mode restoration order after owned paste cleanup'
+        sessions = (raw[starts[0]:starts[1]], raw[starts[1]:])
+        original = SHOW if cursor == 'visible' else HIDE
+        opposite = HIDE if cursor == 'visible' else SHOW
+        for number, segment in enumerate(sessions, 1):
+            commands = [(offset, seq) for offset in range(len(segment))
+                        for seq in (SHOW, HIDE) if segment.startswith(seq, offset)]
+            if commands:
+                assert commands[-1][1] == original, f'run {number} final native visibility equals original'
+            # Run1 deliberately changes visibility via its layer. In run2 the
+            # base caret is visible: hidden original must be restored, whereas
+            # visible original needs no redundant cleanup command.
+            changed = number == 1 or cursor == 'hidden'
+            if changed:
+                assert opposite in segment and original in segment, f'run {number} actual managed change and restoration'
+                assert segment.rfind(original) > segment.rfind(opposite), f'run {number} restore follows managed change'
+                assert segment.rfind(original) > segment.rfind(PASTE_OFF), f'run {number} restore follows paste cleanup'
 
 
 def verify_records(records, case):
@@ -37,8 +51,7 @@ def verify_records(records, case):
             assert records.get('error-1') == primary, 'single failure exact literal primary'
         if case['first_extras']:
             assert records.get('primary-1') == primary, 'business error remains primary'
-            for extra in case['first_extras']:
-                assert extra in records.get('extras-1', ''), 'cleanup error remains additional'
+            assert records.get('extras-1', '').splitlines() == case['first_extras'], 'complete ordered cleanup list/cardinality'
     if case['close_failure']:
         assert records.get('error-2') == 'terminal restore failed', 'native close injection remains a reported second-run cleanup error'
     else:
@@ -63,3 +76,20 @@ def verify_native(text, close_failure):
     assert [e[1] for e in entries if e[0] == 'buffer-released'] == ['1', '1'], 'native tracked buffer freed both runs'
     assert len([e for e in entries if e[0] == 'buffer-free']) == 2, 'real native allocation freed exactly once per run'
     assert [e[1] for e in entries if e[0] == 'competing-open'] == ['-1', '-1'], 'single native owner rejects actual competing open'
+
+
+def verify_termios_snapshots(directory, runs=2, destroyed=False):
+    """Compare actual native child endpoint fields, never outer script termios."""
+    directory = pathlib.Path(directory)
+    keys = {'iflag', 'oflag', 'cflag', 'lflag', 'line', 'cc', 'ispeed', 'ospeed'}
+    for number in range(1, runs + 1):
+        before = json.loads((directory / f'native-termios-before-{number}.json').read_text())
+        after = json.loads((directory / f'native-termios-after-{number}.json').read_text())
+        assert before['rc'] == 0 and before['errno'] is None, 'child termios captured before native open'
+        assert set(before['fields']) == keys and len(before['fields']['cc']) == 32, 'all Linux termios fields/cc captured'
+        assert before['endpoint'] == after['endpoint'], 'same actual child endpoint before/after close'
+        if destroyed:
+            assert after['rc'] == -1 and after['errno'] == errno.EIO and after['fields'] is None, 'destroyed child termios explicitly unavailable'
+        else:
+            assert after['rc'] == 0 and after['errno'] is None, 'child termios captured after safe close'
+            assert after['fields'] == before['fields'], 'same child exact termios restored after each close'

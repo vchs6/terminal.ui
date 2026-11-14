@@ -16,12 +16,15 @@ import signal
 import termios
 import time
 from driver import Capture, until, read, QUERY
+from oracle import verify_termios_snapshots
 
 
 def main(binary, out):
     out.mkdir(parents=True, exist_ok=False)
+    host_auto = os.environ.get('CJTUI_020_HOST_AUTO') == '1'
+    expected_policy = 'Auto/NoTitleRequest' if host_auto else 'DeclaredSupported-title-stress'
     cap = Capture([str(binary)], out, {'TERM': 'xterm-256color',
-        'CJTUI_020_OUTPUT': str(out), 'CJTUI_020_CASE': 'tty-hangup', 'CJTUI_020_HOST_AUTO': '0',
+        'CJTUI_020_OUTPUT': str(out), 'CJTUI_020_CASE': 'tty-hangup', 'CJTUI_020_HOST_AUTO': '1' if host_auto else '0',
         'CJTUI_SESSION_NATIVE': str(out / 'native.tsv')})
     master_closed = False
     try:
@@ -52,6 +55,7 @@ def main(binary, out):
         metadata = {'binary': str(binary), 'binarySha256': hashlib.sha256(binary.read_bytes()).hexdigest(),
             'utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
             'exit': result, 'timed_out': timed_out, 'before': cap.before, 'active': active,
+            'requestedPolicy': expected_policy, 'actualPolicy': read(out / 'session-policy'),
             'lastMasterClosedMonotonicNs': closed_ns, 'after': after, 'afterError': after_error,
             'inputs': cap.sent, 'sameEndpointRestart': 'ineligible: endpoint destroyed',
             'transport': 'actual last PTY master close; no FD repair/replacement; no actual terminal host'}
@@ -61,6 +65,10 @@ def main(binary, out):
         assert read(out / 'complete') == 'yes' and read(out / 'closed-1') == '0/0/0/0'
         assert not (out / 'closed-2').exists(), 'no fake endpoint restart'
         native = read(out / 'native.tsv')
+        assert read(out / 'session-policy') == expected_policy, 'actual endpoint policy matches requested configuration'
+        verify_termios_snapshots(out, runs=1, destroyed=True)
+        if host_auto:
+            assert b'\x1b]2;' not in cap.raw and b'\x1b[22;2t' not in cap.raw, 'Auto endpoint has no optional title request/scope'
         title_error = 'host title restore failed; visual title state not confirmed'
         cleanup_tail = 'terminal write failed\nterminal restore failed\n'
         # K004 follows the real native result. Kernel endpoint closure may
@@ -68,14 +76,14 @@ def main(binary, out):
         # Select a literal outcome only with matching real native evidence.
         if 'native-read\t-4\t0' in native:
             assert 'tty-read\t0\t0' in native, 'actual kernel TTY read0 required'
-            primary, extras = title_error, cleanup_tail
+            primary, extras = ('terminal write failed', 'terminal restore failed\n') if host_auto else (title_error, cleanup_tail)
             branch = 'read0/EOF (-4)'
         elif 'native-read\t-3\t0' in native:
-            primary, extras = 'terminal input failed', title_error + '\n' + cleanup_tail
+            primary, extras = 'terminal input failed', ('' if host_auto else title_error + '\n') + cleanup_tail
             branch = 'actual native input error (-3)'
         else:
             assert 'size-result\t-1\t' in native, 'actual size failure required'
-            primary, extras = 'terminal size unavailable', title_error + '\n' + cleanup_tail
+            primary, extras = 'terminal size unavailable', ('' if host_auto else title_error + '\n') + cleanup_tail
             branch = 'actual ioctl size error before next input read'
         assert read(out / 'primary-1') == primary, 'exact primary for observed kernel branch'
         assert read(out / 'extras-1') == extras, 'exact ordered title/paste/native cleanup failures'
@@ -84,6 +92,7 @@ def main(binary, out):
         assert native.count('buffer-released\t1') == 1
         assert not any(seq in cap.raw for seq in (b'\x1b[?25h', b'\x1b[?25l', b'\x1b[?25s', b'\x1b[?25r'))
         (out / 'check.json').write_text(json.dumps({'passed': True, 'directExit': result,
+            'requestedPolicy': expected_policy, 'actualPolicy': read(out / 'session-policy'),
             'termiosRestoration': 'unavailable with explicit native failure; no success claim', 'kernelBranch': branch}) + '\n')
     finally:
         if cap.process.poll() is None:

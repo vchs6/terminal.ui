@@ -15,6 +15,8 @@ export CJTUI_SESSION_NATIVE="$CJTUI_020_OUTPUT/native.tsv"
 case "$3" in close|callback-close) export CJTUI_SESSION_CLOSE_FAIL=1;; *) export CJTUI_SESSION_CLOSE_FAIL=0;; esac
 here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 python "$here/host_probe.py" "$CJTUI_020_OUTPUT/host-before.json"
+# Ambient script endpoint only. Application child proof comes from native
+# snapshots before open/after each close, required by host_verify.py.
 stty -g > "$CJTUI_020_OUTPUT/outer-termios-before"
 stty size > "$CJTUI_020_OUTPUT/geometry"
 sha256sum "$CJTUI_020_BINARY" > "$CJTUI_020_OUTPUT/binary.sha256"

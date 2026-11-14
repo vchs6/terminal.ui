@@ -55,3 +55,18 @@ PNG/title property observations remain required.
 Unchanged production code/deps/env/config/scope reuses prior valid proof under
 AGENTS11.1. No008338 bytecut rerun; old captures never become this binary's
 host proof. RuntimeStats.frames is never a device commit/success counter.
+
+Review fix R1 (020R1–020R4): endpoint HUP now honors and records the requested
+Auto/declared policy, with separate exact first-error lists. The native observer
+records every Linux termios field (including raw speed fields) and endpoint
+identity before native open and after each close. The host oracle requires
+same-child equality; outer script stty is supplementary only. A destroyed
+endpoint must retain EIO/unavailable, never a repaired state. Combined-error
+lists are exact/ordered; mode25 restoration is checked for each managed run.
+
+`python tests/session_lifecycle/host_transport_check.py --binary BINARY --output NEW_DIR`
+validates the host runner/probes/oracle using real nested kernel PTYs and
+explicitly emulated protocol replies. Its wrong-child-ECHO negative control
+must fail the host runner despite direct child exit0 and restored outer stty.
+It is transport validation, not actual XTerm/VTE/VM-VT evidence. The negative
+mutation is opt-in test fixture code; it never repairs state to pass an oracle.

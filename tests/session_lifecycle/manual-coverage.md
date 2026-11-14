@@ -97,3 +97,34 @@ Host fixtures currently syntax-only. Final M1 all-widget/input/edit/native
 integration must be assessed by independent review/execution/acceptance against
 unchanged scoped evidence and this delta; this author cannot close020/M1/Linux.
 M2/release affected changes later return to024; no early final Linux claim.
+
+## Review-fix R1 exact additions
+
+020R1 corrects the original Auto endpoint artifact: it had been forced to
+DeclaredSupported-title-stress. Those old63 safe Auto rows remain valid; the
+old Auto-labelled endpoint is not Auto proof. New endpoint capture/check files
+record both requestedPolicy and actualPolicy and require equality.
+
+| Real native HUP branch | Auto/no-title primary and exact extras | Declared-title primary and exact extras |
+|---|---|---|
+| read -4 with actual read0 | terminal write failed; [terminal restore failed] | title-restore failure; [terminal write failed, terminal restore failed] |
+| read -3 | terminal input failed; [terminal write failed, terminal restore failed] | terminal input failed; [title-restore failure, terminal write failed, terminal restore failed] |
+| size -1 before next read | terminal size unavailable; [terminal write failed, terminal restore failed] | terminal size unavailable; [title-restore failure, terminal write failed, terminal restore failed] |
+
+Here title-restore failure is the exact string `host title restore failed;
+visual title state not confirmed`. Branch selection uses actual native return
+records, not observed exception text. Auto must have no title set/save bytes.
+020R2 snapshots the same fd0 endpoint identity and every defined Linux termios
+field before open/after each close: iflag/oflag/cflag/lflag/line/all32 cc/raw
+ispeed/ospeed. All safe closes, including post-real-close error injection, must
+match exactly. Destroyed HUP records EIO/null fields and retains unavailability.
+The host oracle checks child snapshots; outer script stty cannot substitute.
+A separate opt-in negative control toggles the real child post-close ECHO bit,
+without repair, and must fail despite restored outer state and child exit0.
+020R3 extras must equal the complete parsed literal list, preserving order and
+cardinality; unexpected, duplicate and reordered negatives must be rejected.
+020R4 checks both runs. Run1 deliberately changes visibility; run2 hidden
+original is shown by its visible base caret and must hide after paste cleanup.
+Run2 visible original requires no redundant restore if it was never changed.
+Real nested-PTY transport validation emulates protocol replies explicitly; it
+is neither actual-host acknowledgement nor a replacement for later real hosts.

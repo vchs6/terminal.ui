@@ -4,7 +4,7 @@ sys.dont_write_bytecode = True
 import argparse
 import json
 import pathlib
-from oracle import verify_wire, verify_native, verify_records
+from oracle import verify_wire, verify_native, verify_records, verify_termios_snapshots
 
 
 def verify(out, case_id):
@@ -17,6 +17,7 @@ def verify(out, case_id):
     records = {p.name: p.read_text() for p in out.iterdir() if p.is_file() and p.name in {
         'complete', 'assertion', 'closed-1', 'closed-2', 'error-1', 'error-2', 'primary-1', 'extras-1', 'prevented'}}
     assert (out / 'direct.exit').read_text().strip() == '0'
+    verify_termios_snapshots(out)
     raw = (out / 'wire.bin').read_bytes()
     if case_id.startswith('initial-'):
         assert records.get('complete') == 'yes' and 'assertion' not in records
@@ -52,6 +53,7 @@ def verify(out, case_id):
     result = {'passed': True, 'case': case_id, 'cursor': cursor,
         'prior2004Observation': before['2004'], 'post2004Observation': after['2004'],
         'titleProtocol': 'Auto no title request/scope; explicit stress RestoreSentUnconfirmed only, actual X11 originals still required',
+        'applicationEndpointTermios': 'all defined fields observed before native open and after each safe close; exact same endpoint equality',
         'hostIdentityAndPNG': 'independent executor/acceptor must verify actual host originals'}
     (out / 'host-check.json').write_text(json.dumps(result, indent=2) + '\n')
 
