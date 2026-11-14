@@ -10,3 +10,4 @@ export CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0
 (cd examples/theme_showcase && cjpm build)
 node tests/theme_showcase/smoke.mjs
 node tests/theme_showcase/pty.mjs
+node tests/theme_showcase/modal-keys.mjs

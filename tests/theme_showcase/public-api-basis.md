@@ -54,6 +54,8 @@ shadow. Every preset adds one cell of left and right padding inside the border,
 leaving 28 content columns. The preset controls border, padding and shadow;
 its lines are `Preview`, `Theme sample`, `é 中 👩‍💻`, `Select action`, two blanks,
 `Actions`. It offers a PopupMenu with Inspect, disabled Delete, Confirm.
+F2 must accept Dark while Preview remains open, and also while its owned
+PopupMenu remains open; popup navigation still skips disabled Delete afterward.
 Failed file load/reload shows `Load failed` at right y9 without altering
 accepted theme or business state; F6 without a configured file shows `No theme
 file`. The next success restores the business `Idle`/`Pending` label.
