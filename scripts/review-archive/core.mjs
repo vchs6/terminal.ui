@@ -46,6 +46,6 @@ export async function groupData(root, catalog, group) {
   return {records,byPath,shards};
 }
 export async function checkInline(root,r) {
-  const f=safe(root,r.path), s=fs.lstatSync(f); if (!s.isFile() || (s.mode & 0o7777)!==r.mode) fail(`inline type/mode mismatch: ${r.path}`);
+  const f=safe(root,r.path), s=fs.lstatSync(f); if (!s.isFile() || (s.mode & 0o100)!==(r.mode & 0o100)) fail(`inline type/mode mismatch: ${r.path}`);
   const d=await digest(f); if (d.size!==r.size || d.sha256!==r.sha256) fail(`inline mismatch: ${r.path}`);
 }

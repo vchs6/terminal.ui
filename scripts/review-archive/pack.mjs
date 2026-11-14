@@ -90,15 +90,22 @@ async function checkOriginal(root,r) {
   let file;
   try { file=safe(root,r.path); } catch(e) { if(e.code==='ENOENT'&&!r.inline) return null; throw e; }
   const stat=fs.lstatSync(file);
-  if(!stat.isFile()||(stat.mode&0o7777)!==r.mode) fail(`changed before removal: ${r.path}`);
+  if(!stat.isFile()||(r.inline ? (stat.mode&0o100)!==(r.mode&0o100) : (stat.mode&0o7777)!==r.mode)) fail(`changed before removal: ${r.path}`);
   const d=await digest(file);
   if(d.size!==r.size||d.sha256!==r.sha256) fail(`changed before removal: ${r.path}`);
   return file;
 }
 export async function remove(root,group,keepFile) {
   const {files,keep}=inventory(root,group,keepFile,true), catalog=await load(root), data=await groupData(root,catalog,group);
-  if(files.length!==data.records.length || files.some((p,i)=>p!==data.records[i].path)) fail('tracked inventory changed');
-  for(const r of data.records) if(keep.has(r.path)&&!r.inline) fail(`retention inventory changed: ${r.path}`);
+  const tracked=new Set(files);
+  if(files.some(p=>!data.byPath.has(p))) fail('tracked inventory changed');
+  for(const r of data.records) {
+    if(!tracked.has(r.path)) {
+      if(r.inline) fail('tracked inventory changed');
+      try { safe(root,r.path); fail(`untracked original present: ${r.path}`); } catch(e) { if(e.code!=='ENOENT') throw e; }
+    }
+    if(keep.has(r.path)&&!r.inline) fail(`retention inventory changed: ${r.path}`);
+  }
   for(const s of data.shards.values())await verifyShard(root,s,data.records.filter(r=>r.shard===s.path));
   for(const r of data.records) await checkOriginal(root,r);
   for(const r of data.records) {if(r.inline||keep.has(r.path))continue; const f=await checkOriginal(root,r); if(f) fs.unlinkSync(f);}
