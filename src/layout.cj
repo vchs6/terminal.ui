@@ -66,7 +66,27 @@ func mulDiv(a: Int64, b: Int64, d: Int64): (Int64, Int64) {
     (q, r)
 }
 
-func paint(n: LayoutNode, frame: Frame): Unit {
+func paint(n: LayoutNode, frame: Frame, damage!: ?DamageRows = None): Unit {
+    let intersects = if (let Some(rows) <- damage) {
+        let shadowX = if (n.resolved.shadowEnabled) { signedAdd(n.screenX, n.resolved.shadowX) } else { n.screenX }
+        let shadowY = if (n.resolved.shadowEnabled) { signedAdd(n.screenY, n.resolved.shadowY) } else { n.screenY }
+        let left = greater(n.paintLeft, lesser(n.screenX, shadowX))
+        let right = lesser(n.paintRight, greater(signedAdd(n.screenX, n.boxWidth), signedAdd(shadowX, n.boxWidth)))
+        let top = greater(n.paintTop, lesser(n.screenY, shadowY))
+        let bottom = lesser(n.paintBottom, greater(signedAdd(n.screenY, n.boxHeight), signedAdd(shadowY, n.boxHeight)))
+        let touches = rows.intersects(top, bottom)
+        left < right && touches
+    } else { true }
+    if (intersects) {
+        frame.paintingNode(Some(n.component.readMount().getOrThrow()))
+        try { paintSelf(n, frame) } finally { frame.paintingNode(Option<RuntimeNode>.None) }
+    }
+    if (n.component.kind != 0 && n.component.kind != 3) {
+        for (child in n.children()) { paint(child, frame, damage:damage) }
+    }
+}
+
+func paintSelf(n: LayoutNode, frame: Frame): Unit {
     n.session.recordPaint()
     let c = n.component
     let r = n.resolved
@@ -138,7 +158,6 @@ func paint(n: LayoutNode, frame: Frame): Unit {
         }
         return
     }
-    for (child in n.children()) { paint(child, frame) }
 }
 
 // Arrange geometry once for paint and side-effect-free preflight.
@@ -446,9 +465,27 @@ func overlayGeometry(session: RuntimeSession, record: OverlayRecord, width: Int6
 
 func renderLayout(root: Component, width: Int64, height: Int64, session: RuntimeSession, reuse!: Bool = true,
     glyphPolicy!: ?GlyphRenderPolicy = None): Frame {
-    let frame = Frame.forSession(width, height, session)
-    try {
-        if (!root.isVisible) { return frame }
+        if (!root.isVisible) {
+            let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
+            let nextStates = ArrayList<PaintState>()
+            let canReplay = sessionRoot && session.paintStatesValid && session.cached.isSome() && session.paintOwners.isSome() &&
+                session.cachedWidth == width && session.cachedHeight == height &&
+                session.cachedGlyphMarker == session.measuredGlyphMarker
+            let empty = if (canReplay) {
+                let rows = compositionDamage(session.paintStates, nextStates, if (width == 0) { 0 } else { height })
+                let result = session.cached.getOrThrow().replayForSession(session, rows)
+                result.setPaintOwners(session.paintOwners.getOrThrow().replay(rows))
+                result
+            } else { Frame.forSession(width, height, session) }
+            try {
+                if (sessionRoot) {
+                    if (!canReplay) { empty.setPaintOwners(PaintOwners(width, height)) }
+                    session.paintStates = nextStates; session.paintOwners = Some(empty.getPaintOwners())
+                    session.paintStatesValid = true
+                }
+                return empty
+            } finally { empty.finishReplay(); empty.releaseOwner() }
+        }
         // Public render may target a mounted subtree in the same session.
         // Only the application root owns this reusable measurement.
         let sessionRoot = reuse && root.descriptionId == session.root.descriptionId
@@ -544,26 +581,56 @@ func renderLayout(root: Component, width: Int64, height: Int64, session: Runtime
             }
         }
         }
-        paint(node, frame)
-        for (layer in layers) {
-            let overlay = Frame.forSession(width,height,session,transparent:true)
-            try {
-                let previousCaret = session.pendingCaret
-                paint(layer.node,overlay)
-                if (reuse) {
-                    if (let Some(previous) <- previousCaret) {
-                        if (let Some(current) <- session.pendingCaret) {
-                            if (refEq(previous,current) && previous.x >= 0 && previous.y >= 0 && previous.x < width && previous.y < height) {
-                                if (!overlay.cellAt(previous.x,previous.y).isTransparent) { session.pendingCaret = None }
-                            }
+        let nextStates = ArrayList<PaintState>()
+        if (sessionRoot) {
+            collectPaintStates(node, nextStates)
+            for (layer in layers) { collectPaintStates(layer.node, nextStates) }
+        }
+        let canReplay = sessionRoot && session.paintStatesValid && session.cached.isSome() && session.paintOwners.isSome() &&
+            session.cachedWidth == width && session.cachedHeight == height &&
+            session.cachedGlyphMarker == session.measuredGlyphMarker
+        let damage: ?DamageRows = if (canReplay) {
+            Some(compositionDamage(session.paintStates, nextStates, if (width == 0) { 0 } else { height }))
+        } else { None }
+        let frame = if (let Some(rows) <- damage) {
+            session.cached.getOrThrow().replayForSession(session, rows)
+        } else { Frame.forSession(width, height, session) }
+        try {
+        if (sessionRoot) {
+            let owners = if (let Some(rows) <- damage) {
+                session.paintOwners.getOrThrow().replay(rows)
+            } else { PaintOwners(width, height) }
+            frame.setPaintOwners(owners)
+        }
+        if (let Some(rows) <- damage) {
+            if (let Some(previous) <- session.lastCaret) {
+                if (!rows.contains(previous.y) && previous.owner.isValid()) {
+                    if (let Some(focused) <- session.focusManager.focused) {
+                        if (previous.owner.sameNode(focused.reference()) && session.focusManager.effective(focused, false)) {
+                            session.pendingCaret = Some(previous)
                         }
                     }
                 }
+            }
+        }
+        paint(node, frame, damage:damage)
+        for (layer in layers) {
+            let overlay = if (let Some(rows) <- damage) {
+                Frame.replayLayer(width,height,session,rows)
+            } else { Frame.forSession(width,height,session,transparent:true) }
+            try {
+                if (sessionRoot) { overlay.setPaintOwners(PaintOwners(width, height, damage:damage)) }
+                paint(layer.node,overlay,damage:damage)
                 frame.composite(overlay)
             } finally { overlay.releaseOwner() }
         }
+        if (sessionRoot) {
+            resolvePaintedCaret(session, frame, nextStates)
+            session.paintStates = nextStates; session.paintOwners = Some(frame.getPaintOwners())
+            session.paintStatesValid = true
+        }
         return frame
-    } finally { frame.releaseOwner() }
+    } finally { frame.finishReplay(); frame.releaseOwner() }
 }
 
 public func render(root: Component, width: Int64, height: Int64, glyphMode!: GlyphMode = GlyphMode.Unicode): Frame {
