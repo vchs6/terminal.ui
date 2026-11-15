@@ -1,0 +1,1719 @@
+{
+ "schema": "bounded-history-custody-next-queue-v1",
+ "scope": "34 exact earlier gzip ELF witnesses only; read-only metadata reconciliation; packaging and payload verification deferred",
+ "baseline_delivered_main": "980ba689",
+ "limit_bytes": 104857600,
+ "payload_rehashed": false,
+ "delivered_manifest_records": 9795,
+ "delivered_manifests": [
+  "/workspace/shared/downloads/terminal-ui-migration-20261115/first-batch-files.json",
+  "/workspace/work/migration-part02/manifest.json",
+  "/workspace/work/migration-part03/manifest.json",
+  "/workspace/work/migration-part04/manifest.json",
+  "/workspace/work/migration-part05/manifest.json",
+  "/workspace/work/migration-part06a/manifest.json",
+  "/workspace/work/migration-part06b/manifest.json",
+  "/workspace/work/migration-part06c/manifest.json"
+ ],
+ "historical_metadata_checked": {
+  "canonical_manifests": [
+   "docs/reviews/E/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/K/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R0/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R1/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R10/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R11/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R12/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R13/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R14/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R15/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R16/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R17/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R18/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R19/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R20/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R22/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R22/008/raw-evidence.manifest.jsonl",
+   "docs/reviews/R22/010/raw-evidence.manifest.jsonl",
+   "docs/reviews/R22/020/raw-evidence.manifest.jsonl",
+   "docs/reviews/R22/021/raw-evidence.manifest.jsonl",
+   "docs/reviews/R22/027/completed/original-manifest.json.gz",
+   "docs/reviews/R23/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R24/A/original-manifest.json.gz",
+   "docs/reviews/R24/B/original-manifest.json.gz",
+   "docs/reviews/R24/C/original-manifest.json.gz",
+   "docs/reviews/R24/D/original-manifest.json.gz",
+   "docs/reviews/R24/E/original-manifest.json.gz",
+   "docs/reviews/R3/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R4/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R5/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R6/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R7/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R8/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/R9/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/interaction/.archive-v1/manifest.jsonl.gz",
+   "docs/reviews/widgets/.archive-v1/manifest.jsonl.gz"
+  ],
+  "archive_index_count": 99,
+  "positive_payload_bindings_for_34": 0,
+  "only_matching_records": "R24/B original-manifest bindings/8806,8807 and exclusions/14,15: explicit exclusions of two frame-cow ELF identities; no archived payload member"
+ },
+ "groups": [
+  {
+   "proposed_part": "06d",
+   "custody_roots": [
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114",
+     "mapping_path": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json",
+     "index_path": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json",
+     "index_sha256": "93ed60afd84ff197fe4b9e5c70d58be5bd299fec7b15e1224797033c34b06cef",
+     "mapping_sha256": "2e76bf62d500855ee156af9142fd43fe83d6c7df7c4523b1b1b58a47f7314822",
+     "root_verification_path": "/workspace/work/validation/input-fix-build-headroom-20261114/root-verification.json",
+     "payload_count": 12,
+     "metadata_scope": "all direct regular files in this exact root; witness/ only for mapped gzip; no recursion into any sibling or other directory"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1",
+     "mapping_path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/progress.json",
+     "index_path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json",
+     "index_sha256": "2199f48e487478f317807071d54fc5fb070d0048eb057493ad74fbdd4541d70e",
+     "mapping_sha256": "4a0bf003b1350ca71cebcc613819c44bcf859cf5b4ce8c67f752c93278544da6",
+     "root_verification_path": null,
+     "payload_count": 4,
+     "metadata_scope": "all direct regular files in this exact root; witness/ only for mapped gzip; no recursion into any sibling or other directory"
+    }
+   ],
+   "payloads": [
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/b95417bd4b6ca190a39f6ef02b38fb6d02d8e69b1866c6b3f36ef783fbb537c6.gz",
+     "bytes": 5543816,
+     "sha256": "2e222391fdc44b4463e4a4be563da1790056c551f1276b40cb19a4283aff10de",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/43",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/0",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/frame-cow-execution/source/tests/incremental_layout/frame_cow/target/release/bin/main",
+      "bytes": 19164736,
+      "sha256": "b95417bd4b6ca190a39f6ef02b38fb6d02d8e69b1866c6b3f36ef783fbb537c6",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/R24/B/browse/frame-cow-execution/index.json",
+       "sha256": "def84e323b1bd40c59b5f54b5965282a4311e00bf5758e92bb5f349613fd89c1"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/f0a0074f26946cd1c8562dc2d48f5dec3c00ad6c13c9dfd088fa76912ea52134.gz",
+     "bytes": 5523897,
+     "sha256": "71e287878a41d31aad6f300fc807e0515841b4d7518ab167f3ef9e650a8f7519",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/46",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/1",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/frame-cow-execution/source/tests/incremental_layout/frame_cow/target/release/bin/unit_recovery",
+      "bytes": 19107232,
+      "sha256": "f0a0074f26946cd1c8562dc2d48f5dec3c00ad6c13c9dfd088fa76912ea52134",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/R24/B/browse/frame-cow-execution/index.json",
+       "sha256": "def84e323b1bd40c59b5f54b5965282a4311e00bf5758e92bb5f349613fd89c1"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/7d323999ba5df11cb7ded9a480a0c555ef5f61ad6b01129235dce75740673a3b.gz",
+     "bytes": 5484107,
+     "sha256": "157e770e43efe33d10b0a975a76b48ac44a24191f96b6ac231b13210d092d86f",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/40",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/2",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/widgets-composite-tests/notify-kind-fix/evidence/notify-proof/target/release/bin/main",
+      "bytes": 18962424,
+      "sha256": "7d323999ba5df11cb7ded9a480a0c555ef5f61ad6b01129235dce75740673a3b",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/widgets/M/test158/corrections/notify-kind-fix/evidence/index.json",
+       "sha256": "efa3a7bb64be0f8c78e7ee7a434cd67fb0d46ef5a9c1c89a503d5255233b626b"
+      },
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/widgets/M/test158/corrections/notify-kind-fix/collector-fix/evidence/index.json",
+       "sha256": "922708fcbe10372bc8179b1bd1edc16d423d23ddc10eef0cd601ab904a95dbca"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/bd469b450232cff198a2d967bb6bf189454e2652b03305f0bc5ce84e497122dd.gz",
+     "bytes": 5476665,
+     "sha256": "3e7fee8766d095a7d27a247490ebafdc04c05ff0ad2e9cb5c9f95806b7f27284",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/44",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/3",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/widgets-composite-tests/theme-fill-fix/evidence/row-proof/target/release/bin/main",
+      "bytes": 18936432,
+      "sha256": "bd469b450232cff198a2d967bb6bf189454e2652b03305f0bc5ce84e497122dd",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/widgets/M/test158/corrections/theme-fill-fix/evidence/index.json",
+       "sha256": "0b6e6813178010e1ab134b9c3c8a5d430f533dd2b5f2a83a5c48a2b35ae3bb05"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/23e7fe959bf3f37c454267c1c76d1eddeeda931deaa8a8430ec3895a71c48290.gz",
+     "bytes": 5468778,
+     "sha256": "d95536296bf0a934509b17de2b5d65587e58f509280968658ab62e0b12818da6",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/35",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/4",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/widgets-small-tests/final/source/tests/widgets_small/prerequisite/target/release/bin/main",
+      "bytes": 18918848,
+      "sha256": "23e7fe959bf3f37c454267c1c76d1eddeeda931deaa8a8430ec3895a71c48290",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-tests/final/evidence/index.json",
+       "sha256": "24a862bf4a6976a559f882ad1cb138f6b792bd04573693035aa1bfc8248b659d"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/8f541124d2c7a6717bbf7968b66eebfdeb98d210eab79d07bf64a1a1488b73c7.gz",
+     "bytes": 5464775,
+     "sha256": "e492e5d78a1b4d369e7761ad3d9af91beaa1e37c7f5b41a8da63d3a31d9cf8db",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/41",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/5",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/widgets-small-tests/contract-fix/evidence/public-probe/target/release/bin/main",
+      "bytes": 18896968,
+      "sha256": "8f541124d2c7a6717bbf7968b66eebfdeb98d210eab79d07bf64a1a1488b73c7",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-tests/contract-fix/evidence/index.json",
+       "sha256": "9fa1376e3108b8bb7e99f9faee009d515d8d765fa100fb1c5e97d0548aaa6513"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/c16b50f33159df3e98024d8db919507125366c7669444c44318a01cc6ff05f05.gz",
+     "bytes": 5464083,
+     "sha256": "060f474e5e0400ba73af334febfe20091f56494cd1e40c99a0d209413ef38b1f",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/45",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/6",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/widgets-small-tests/palette-fix/evidence/public-probe/target/release/bin/main",
+      "bytes": 18885792,
+      "sha256": "c16b50f33159df3e98024d8db919507125366c7669444c44318a01cc6ff05f05",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-tests/palette-fix/evidence/index.json",
+       "sha256": "bcad37f6568793e1927eafb0021f2406416423699b1612eccdea88f4a305961d"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/57c4756b5756252242d5e53ea8ffd33d62b98cb9be9fddf317e13809af885a48.gz",
+     "bytes": 5460053,
+     "sha256": "0fce32d904902c9b245e9f285aa1fd83ce8449ec741733239079501cabf1aebc",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/37",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/7",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/widgets-small-tests/focus-fixture-fix/evidence/public-probe/target/release/bin/main",
+      "bytes": 18882776,
+      "sha256": "57c4756b5756252242d5e53ea8ffd33d62b98cb9be9fddf317e13809af885a48",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-tests/focus-fixture-fix/evidence/index.json",
+       "sha256": "299e44ddd76be1bffde303a1a55808d590eb9751a2e36a532411d3ad4bba8eb0"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/7601ba6067cd671e3294513e0b0064e37978aeb83f9d96c072bbbc07764a7da8.gz",
+     "bytes": 5459163,
+     "sha256": "e4fa2a7500590dba95e27cc2717727e84ada1cdf1799216b76abaa4d42a10999",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/38",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/8",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/widgets-small-tests/zero-frame-fix/evidence/public-probe/target/release/bin/main",
+      "bytes": 18873976,
+      "sha256": "7601ba6067cd671e3294513e0b0064e37978aeb83f9d96c072bbbc07764a7da8",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/widgets/S/widgets-small-tests/zero-frame-fix/evidence/index.json",
+       "sha256": "dd25c3e4da3b7a943be3b3b1b87d7f5c50171aede670374f53a57d8069f03440"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/7adad718dffebd93858195e2a46d6c88976117c381cd296075e171416bc09fe6.gz",
+     "bytes": 5392873,
+     "sha256": "d5fac568b95e0fa20153fd40e8a5a75aaf1a9ac2aa733d7e78edeaf8284fe5fa",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/39",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/9",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/keyboard-implementation/source/tests/keyboard/upstream/target/release/bin/main",
+      "bytes": 18660768,
+      "sha256": "7adad718dffebd93858195e2a46d6c88976117c381cd296075e171416bc09fe6",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/validation/round1-cache-fix-headroom-20261114/old-roots-noncandidates-after.json.gz",
+       "sha256": "2284f66e8075033bed4a583627db22dc33d616534bda621b4012cbdcaa43da9e"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/3bf48d04d85a9d8b31b3f979f7ae1a65e9fc1cff02f69649d5f1ef9c9d8235fd.gz",
+     "bytes": 5387348,
+     "sha256": "fd6c0e102e05f551727c575966be8c8f8e78aa4ef888b762d2b3fe1ace2ebad7",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/36",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/10",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/keyboard-implementation/source/tests/application-lifecycle/target/release/bin/main",
+      "bytes": 18638344,
+      "sha256": "3bf48d04d85a9d8b31b3f979f7ae1a65e9fc1cff02f69649d5f1ef9c9d8235fd",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/validation/round1-cache-fix-headroom-20261114/old-roots-noncandidates-after.json.gz",
+       "sha256": "2284f66e8075033bed4a583627db22dc33d616534bda621b4012cbdcaa43da9e"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/witness/9509cf35359a9f61fbc8dca5526cb3febe9dd094f7e2f0785a7733b0fa12dc96.gz",
+     "bytes": 5385943,
+     "sha256": "bebfdf809a192bf7f5633efcb14652fadd74e15f2ea19c2ecbc23af19a8b2b3d",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/42",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json#/11",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/keyboard-implementation/source/examples/keyboard/target/release/bin/main",
+      "bytes": 18634920,
+      "sha256": "9509cf35359a9f61fbc8dca5526cb3febe9dd094f7e2f0785a7733b0fa12dc96",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/validation/round1-cache-fix-headroom-20261114/old-roots-noncandidates-after.json.gz",
+       "sha256": "2284f66e8075033bed4a583627db22dc33d616534bda621b4012cbdcaa43da9e"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/witness/a4663f3ad288cb931b0d8b43e8df9b42f54b621a9e8fce3fff5e801b401ce3c0.gz",
+     "bytes": 5675681,
+     "sha256": "6346015e25ab1859f4cf133590a3cab3b61ab0ade03a4f54e6870c806ca6670d",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/21",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/progress.json#/0",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/overlay-execution/product/tests/interaction_c/target/release/bin/main",
+      "bytes": 19702064,
+      "sha256": "a4663f3ad288cb931b0d8b43e8df9b42f54b621a9e8fce3fff5e801b401ce3c0",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/overlay-execution/stablemanifest.json",
+       "sha256": "cda293604be2e912103e0358c3fcd28f7c24af4511337b591d1036ee0a592ad2"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/witness/4e44a3864cd8d35b959d3fb485da0f5e440b005c0cf6d38a3e9867b8eab8378d.gz",
+     "bytes": 5665077,
+     "sha256": "b24dc2dd067e704ffc84d944debedfc18b9f576d8f7ac8045565c067222a1951",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/18",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/progress.json#/1",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/overlay-execution/clean-consumer/tests/interaction_c/target/release/bin/main",
+      "bytes": 19672784,
+      "sha256": "4e44a3864cd8d35b959d3fb485da0f5e440b005c0cf6d38a3e9867b8eab8378d",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/overlay-execution/stablemanifest.json",
+       "sha256": "cda293604be2e912103e0358c3fcd28f7c24af4511337b591d1036ee0a592ad2"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/witness/8f9247fff55a420d9da584c3d16dd0d42c446f72164d227903c1e95aabbc5e9b.gz",
+     "bytes": 5361947,
+     "sha256": "8f0e652e985998768242be9901a3df1088da465d2060415761b947239bf7c061",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/20",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/progress.json#/2",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/overlay-execution/clean-consumer/examples/overlay/target/release/bin/main",
+      "bytes": 18562496,
+      "sha256": "8f9247fff55a420d9da584c3d16dd0d42c446f72164d227903c1e95aabbc5e9b",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/overlay-execution/stablemanifest.json",
+       "sha256": "cda293604be2e912103e0358c3fcd28f7c24af4511337b591d1036ee0a592ad2"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/witness/7180c076355e634fe60b629a0aed803409b3fcd7d87779e5468002eba2d76474.gz",
+     "bytes": 325676,
+     "sha256": "cf4c9e6636bc1560e5f4d5abd636f32144952b5577f05d03808dd3ada04a6455",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/19",
+     "map_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/progress.json#/3",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/widgets-composite-tests/device-typing-fix/evidence/sdk-probe/target/release/bin/main",
+      "bytes": 1044624,
+      "sha256": "7180c076355e634fe60b629a0aed803409b3fcd7d87779e5468002eba2d76474",
+      "mode": 448
+     },
+     "source_indices": [
+      {
+       "path": "/workspace/work/terminal.ui/docs/reviews/widgets/M/test158/corrections/device-typing-fix/evidence/index.json",
+       "sha256": "5416d4eb283bb2afc312fd9ff0899f8cbe5f02683dbb54092b39bcdc3f9db546"
+      }
+     ],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "exact bytes custody per prior source index; no fresh acceptance claim"
+    }
+   ],
+   "metadata": [
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/1-before.json",
+     "bytes": 9421,
+     "mode": 384,
+     "sha256": "138ff9e85d7d1fbc79ac50b5212277d73b37c84ea71ba7d0058782067a1d3fd1",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/0"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/1-verified-before-unlink.json",
+     "bytes": 9716,
+     "mode": 384,
+     "sha256": "78e8ff767b0d350c091d926c7ef59f775ef813225beba4e14663088fa6d276cd",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/1"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/10-before.json",
+     "bytes": 6152,
+     "mode": 384,
+     "sha256": "02c208b5d834c8675807344825c78007397565ab100c311a00d3f72b62da3c57",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/2"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/10-verified-before-unlink.json",
+     "bytes": 6552,
+     "mode": 384,
+     "sha256": "f082c595727358a4ca92ac3feba158e244e11e0ffb8c72b1e029d2b5561ce687",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/3"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/11-before.json",
+     "bytes": 6015,
+     "mode": 384,
+     "sha256": "155617871107641c4ada344215b6549638fb5958c890d6891a15c577f9198564",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/4"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/11-verified-before-unlink.json",
+     "bytes": 6417,
+     "mode": 384,
+     "sha256": "63775954371d28a92d6383776ca63d2864411140b1f54cc2c5bce250bbca3002",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/5"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/12-before.json",
+     "bytes": 5955,
+     "mode": 384,
+     "sha256": "7fd2d6711ce5f734649cbe4bcd1a81977d150f4521b2ee32f4d4edf3752a44d8",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/6"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/12-verified-before-unlink.json",
+     "bytes": 6356,
+     "mode": 384,
+     "sha256": "6ffc8f1d1caf9df9a78954296140e481bfe610bd978e69c96560fb1f8dae000a",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/7"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/2-before.json",
+     "bytes": 9431,
+     "mode": 384,
+     "sha256": "0eb0f05f7e951006730b49f13cd456486b78a069cc06bb0d142b6e827ed8eb2d",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/8"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/2-verified-before-unlink.json",
+     "bytes": 9725,
+     "mode": 384,
+     "sha256": "0ed49664f56904707b891db120a4eba40aa92d6e998516024839377cf9a277e1",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/9"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/3-before.json",
+     "bytes": 6281,
+     "mode": 384,
+     "sha256": "8374faca16cf80a733a0897edcfc01c4fd1ad4935ca0f7957001e0923f2ed05b",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/10"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/3-verified-before-unlink.json",
+     "bytes": 6676,
+     "mode": 384,
+     "sha256": "8e79182a07139f35f989561bef9afaa66fc2131ce966e62afe10df2926953d07",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/11"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/4-before.json",
+     "bytes": 6014,
+     "mode": 384,
+     "sha256": "2fddf22624340cde54a98436e84a3e7a1e74ae72034ed955585c2b2cfd5c289a",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/12"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/4-verified-before-unlink.json",
+     "bytes": 6417,
+     "mode": 384,
+     "sha256": "2d8a691e2fa3c2875c0aacaf1c25d453f29129a26a91edd39f621281df6fc9d4",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/13"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/5-before.json",
+     "bytes": 6054,
+     "mode": 384,
+     "sha256": "69129d1cd554b1bd5aac12edc7056fafd004afe09d79edc7372e5215f3c19662",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/14"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/5-verified-before-unlink.json",
+     "bytes": 6456,
+     "mode": 384,
+     "sha256": "526699609e205d3927c6874181ce7a42e3a4709095cd1e1d58622ed015accf58",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/15"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/6-before.json",
+     "bytes": 5995,
+     "mode": 384,
+     "sha256": "cb8b341e0e6acbd4f3f717dad8844e3b5f7c95a6a694ceb0865755942ff26b6b",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/16"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/6-verified-before-unlink.json",
+     "bytes": 6397,
+     "mode": 384,
+     "sha256": "731b5ec71c2fc7f620c78088350bb65db83a075574a78769ed022a7001127753",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/17"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/7-before.json",
+     "bytes": 5986,
+     "mode": 384,
+     "sha256": "bf2680b1e0ab7635363d860f7c2c2550fd1fa23fd699cbe1e9a9c8cfebc23adb",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/18"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/7-verified-before-unlink.json",
+     "bytes": 6390,
+     "mode": 384,
+     "sha256": "a9f2ea1f9453214cbb0c9705e8e056aa996a507944d2427692d89106e1cfe6a2",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/19"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/8-before.json",
+     "bytes": 6029,
+     "mode": 384,
+     "sha256": "5767242c68939a48b868f4b016224a39f5463adcdc3edbd3e566b84ad7d956e9",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/20"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/8-verified-before-unlink.json",
+     "bytes": 6432,
+     "mode": 384,
+     "sha256": "053bd769e58603780aed8f2acb05e684b7b800d43563be7ab782d3bf0be07d62",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/21"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/9-before.json",
+     "bytes": 6009,
+     "mode": 384,
+     "sha256": "cea0c30cf98b9269251f792ab20cb82acf8cb0a305c7bf6bf19d2ee8a8b22a01",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/22"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/9-verified-before-unlink.json",
+     "bytes": 6410,
+     "mode": 384,
+     "sha256": "1e75a43b12c6a58633f2bd99b47d5d8f24766830273d38c4f5205cc141d7c438",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/23"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/bounded-addendum.md",
+     "bytes": 786,
+     "mode": 384,
+     "sha256": "9126492145f51aa7d67006c08221f7fc46fd7be470b2ff025b29e05532c4db93",
+     "sha_evidence": "current small metadata digest; unindexed addendum or index itself"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/brief-with-addendum.root-snapshot.md",
+     "bytes": 4087,
+     "mode": 384,
+     "sha256": "5413bd46c6520dbad2ecaf909554171cfff115f7a224f0acab5dfa0b2ca7ad0e",
+     "sha_evidence": "current small metadata digest; unindexed addendum or index itself"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/brief.md",
+     "bytes": 3301,
+     "mode": 384,
+     "sha256": "1b78402983e12e90e2078daab0803dcec981dfc0a8ec91b241a93835bb5152e8",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/24"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/free-before.json",
+     "bytes": 24,
+     "mode": 384,
+     "sha256": "475fe59be7eeed861cc8a42341689606cb7e3c83a488fec8e988640dedf5b279",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/25"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json",
+     "bytes": 8628,
+     "mode": 384,
+     "sha256": "93ed60afd84ff197fe4b9e5c70d58be5bd299fec7b15e1224797033c34b06cef",
+     "sha_evidence": "current small metadata digest; unindexed addendum or index itself"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/migrate.py",
+     "bytes": 12888,
+     "mode": 384,
+     "sha256": "58efa9e935ee5eebeac5383f61836e7eca9c68fb4370e2d62b68c96d28d16d5a",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/26"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/plan.json",
+     "bytes": 32767,
+     "mode": 384,
+     "sha256": "909446ef8b17bbd90a0662559954605f03bba5f50eb2ba4c407644f32ba7fff4",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/27"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/process-latest.json",
+     "bytes": 3473,
+     "mode": 384,
+     "sha256": "0373769fa3ba62bad5635458f845114b98e817bdeecd518cbce9ade49a0871b4",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/28"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/progress.json",
+     "bytes": 90863,
+     "mode": 384,
+     "sha256": "2e76bf62d500855ee156af9142fd43fe83d6c7df7c4523b1b1b58a47f7314822",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/29"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/report.md",
+     "bytes": 950,
+     "mode": 384,
+     "sha256": "0e97e875ffc247e4ef05572c26c67c0e51f507277dddbffea84494cdbe0ff000",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/30"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/restore.py",
+     "bytes": 1342,
+     "mode": 384,
+     "sha256": "4becb0eedb07536f9265c12bc7162f5673179e726fac710120462436b10af4d0",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/31"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/root-brief-restoration.json",
+     "bytes": 435,
+     "mode": 384,
+     "sha256": "1d77d96c58af5cb0049885535519f777c487ce0612ab242d8208b9947cc60788",
+     "sha_evidence": "current small metadata digest; unindexed addendum or index itself"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/root-verification.json",
+     "bytes": 181,
+     "mode": 384,
+     "sha256": "08e75e8f004c60a739c705e32ab304f94fb33f0351238755d26b8d45fc65fdd2",
+     "sha_evidence": "current small metadata digest; unindexed addendum or index itself"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/state-after.json",
+     "bytes": 358,
+     "mode": 384,
+     "sha256": "f6f4cff651d7a02a7eeaf09c7da304538ad718cfe610c7316ccd3cb64fbee3a9",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/32"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/state-before.json",
+     "bytes": 358,
+     "mode": 384,
+     "sha256": "f6f4cff651d7a02a7eeaf09c7da304538ad718cfe610c7316ccd3cb64fbee3a9",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/33"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/summary.json",
+     "bytes": 558,
+     "mode": 384,
+     "sha256": "1c9a144ad32d1f6366e479f3f39737b265762e4bf85cb31e34d012fa39e1a008",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/index.json#/files/34"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/1-before.json",
+     "bytes": 9844,
+     "mode": 384,
+     "sha256": "ff28c6e7898d03dbc943adf3c7be9e62caf0ccbb7796fae9b9f0626ef080e021",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/0"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/1-verified-before-unlink.json",
+     "bytes": 10205,
+     "mode": 384,
+     "sha256": "6442a19b905a9c2ec6265ab4d1925f1b6c485be740750b1506345f045f2d3988",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/1"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/2-before.json",
+     "bytes": 9878,
+     "mode": 384,
+     "sha256": "0df861faef9d4ee4f80ee6791ec4c425189ec6a0580192353218d23e54049186",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/2"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/2-verified-before-unlink.json",
+     "bytes": 10240,
+     "mode": 384,
+     "sha256": "9b7498d8586c055157428b3077cf4dbd68499193b6b8d1a40c172e76c265495f",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/3"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/3-before.json",
+     "bytes": 6252,
+     "mode": 384,
+     "sha256": "b4448a3ca668a0305c61affa37616f688b09dfc72040e932ac639121d968695d",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/4"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/3-verified-before-unlink.json",
+     "bytes": 6658,
+     "mode": 384,
+     "sha256": "4bfda36b7ff0110d0038a75860111426f427f30f4b7c5a9c5b5e9c1e39afff6f",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/5"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/4-before.json",
+     "bytes": 5866,
+     "mode": 384,
+     "sha256": "d9b215445e52478341fba993510de49959c6191ac7267ef6806b88256876788c",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/6"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/4-verified-before-unlink.json",
+     "bytes": 6275,
+     "mode": 384,
+     "sha256": "173d420b5daf620252aeaf7580520127880ca486e1a27e3769ba6aee296bb177",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/7"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/free-before.json",
+     "bytes": 25,
+     "mode": 384,
+     "sha256": "4a9a74c81059daad6c09e9b4650fb7746ea2513cd69bb3249661e1f3e1806c57",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/8"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json",
+     "bytes": 4347,
+     "mode": 384,
+     "sha256": "2199f48e487478f317807071d54fc5fb070d0048eb057493ad74fbdd4541d70e",
+     "sha_evidence": "current small metadata digest; unindexed addendum or index itself"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/migrate.py",
+     "bytes": 13599,
+     "mode": 384,
+     "sha256": "d1bb57a544b931a3d96ab612761143b99c15491e282eacafbb167837447ea0d5",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/9"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/plan.json",
+     "bytes": 16317,
+     "mode": 384,
+     "sha256": "a7a181ace2ff1522299ad5c13f2ca623f80f6c5041db46aa0a0c05b08622d107",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/10"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/process-latest.json",
+     "bytes": 3474,
+     "mode": 384,
+     "sha256": "09489d96dce5386600c7c89a74eedaeea6de750debfbe11ffa6c5b205b92ce46",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/11"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/progress.json",
+     "bytes": 35709,
+     "mode": 384,
+     "sha256": "4a0bf003b1350ca71cebcc613819c44bcf859cf5b4ce8c67f752c93278544da6",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/12"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/report.md",
+     "bytes": 969,
+     "mode": 384,
+     "sha256": "53020a7aad58165fed666ead7b47f9aa77a2479ebaaa554d838e08501f56c83e",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/13"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/restore.py",
+     "bytes": 1342,
+     "mode": 384,
+     "sha256": "4becb0eedb07536f9265c12bc7162f5673179e726fac710120462436b10af4d0",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/14"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/state-after.json",
+     "bytes": 839,
+     "mode": 384,
+     "sha256": "a485a1b9c7ce90ea18ef57854cee58acd2f3a7aad0f7358c64055bd1486efdd9",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/15"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/state-before.json",
+     "bytes": 839,
+     "mode": 384,
+     "sha256": "a485a1b9c7ce90ea18ef57854cee58acd2f3a7aad0f7358c64055bd1486efdd9",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/16"
+    },
+    {
+     "path": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/summary.json",
+     "bytes": 612,
+     "mode": 384,
+     "sha256": "5f7d105716661c5496db455f8b52ef8bfc99bbb4fcc1f9cd91221b3c6b464ed7",
+     "sha_evidence": "/workspace/work/validation/input-fix-build-headroom-20261114/round1/index.json#/files/17"
+    }
+   ],
+   "gzip_bytes": 82539882,
+   "logical_original_bytes": 285545184,
+   "metadata_bytes": 467575,
+   "payload_count": 16,
+   "metadata_count": 59,
+   "source_bytes_total": 83007457,
+   "remaining_before_100MiB": 21850143,
+   "conservative_tar_size_budget": 83580897
+  },
+  {
+   "proposed_part": "06e",
+   "custody_roots": [
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115",
+     "mapping_path": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json",
+     "index_path": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json",
+     "index_sha256": "4ceaf676759ecf8a37cfba4064cd8c19904707a0e132d9be27ed9cc25f22843b",
+     "mapping_sha256": "f93f72be9de511a5735812203d73cf1402a58cb5360afa1e0ea649a64f317883",
+     "root_verification_path": "/workspace/work/validation/ended-role-build-output-custody-20261115/root-verification.json",
+     "payload_count": 18,
+     "metadata_scope": "all direct regular files in this exact root; witness/ only for mapped gzip; no recursion into any sibling or other directory"
+    }
+   ],
+   "payloads": [
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/33762b61c34a03611c9053294c4025fc5f25a2580bd77bab685a918c4185fa2b.gz",
+     "bytes": 5730834,
+     "sha256": "84f67f7526a5980e4aa475ae97ecf37dedddc0490b31c257464e9b76a1d38197",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/54",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/0",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/editing-implementation/source/tests/editing/target/release/bin/main",
+      "bytes": 19786016,
+      "sha256": "33762b61c34a03611c9053294c4025fc5f25a2580bd77bab685a918c4185fa2b",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/editing-implementation/source",
+     "recorded_project_HEAD": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/3d2dcfa4493882cdf88f54c61083a3036e7153270c9421b1da11a1b250ab6d60.gz",
+     "bytes": 5631125,
+     "sha256": "13c11af38fec8c12a1e655614343fecc640aff22331d2c904d90208e77ba9b5b",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/55",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/1",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/editing-implementation/source/tests/interaction_a/target/release/bin/main",
+      "bytes": 19521240,
+      "sha256": "3d2dcfa4493882cdf88f54c61083a3036e7153270c9421b1da11a1b250ab6d60",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/editing-implementation/source",
+     "recorded_project_HEAD": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/2c0f3241041df2801326b0441fe27bc1e7c45d33e4a09862abf2d66d295bffa3.gz",
+     "bytes": 5631126,
+     "sha256": "9d8ff525342897e9382b19972a564a5b3c9ecb869a65069d8cec336209fff3ce",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/52",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/2",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/editing-implementation/source/tests/interaction_b/target/release/bin/main",
+      "bytes": 19493632,
+      "sha256": "2c0f3241041df2801326b0441fe27bc1e7c45d33e4a09862abf2d66d295bffa3",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/editing-implementation/source",
+     "recorded_project_HEAD": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/f9f508ca8f07b340a571b4cb040e91764a8dd8d9155705db46c91d3c9174c2a5.gz",
+     "bytes": 5622374,
+     "sha256": "24b9561a0a5beea561af816794838ba51878c42b0150ea2582d0c87c2773a425",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/65",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/3",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/editing-implementation/source/tests/runtime/target/release/bin/main",
+      "bytes": 19471360,
+      "sha256": "f9f508ca8f07b340a571b4cb040e91764a8dd8d9155705db46c91d3c9174c2a5",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/editing-implementation/source",
+     "recorded_project_HEAD": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/9ae8f5caa8fc5f8db2032b1eab131e5e0a3e97e731d0ca99c575216b457a8d8d.gz",
+     "bytes": 5573713,
+     "sha256": "712aa03ec2e36ca15ec5d40836b6f380324a607f28e55b8f2863a606d1584f0a",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/61",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/4",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/editing-implementation/source/tests/rich-text/target/release/bin/main",
+      "bytes": 19213248,
+      "sha256": "9ae8f5caa8fc5f8db2032b1eab131e5e0a3e97e731d0ca99c575216b457a8d8d",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/editing-implementation/source",
+     "recorded_project_HEAD": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/2649860e1f6a1cd5836b16dd87c1aada57815f5ea41b344ba181ba5ed0224655.gz",
+     "bytes": 5486316,
+     "sha256": "571cc0b04b1906f2e902811780c18d9dda8de59f48a7446f90a86ac040141dc2",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/51",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/5",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/editing-implementation/source/tests/session_extensions/target/release/bin/main",
+      "bytes": 18960512,
+      "sha256": "2649860e1f6a1cd5836b16dd87c1aada57815f5ea41b344ba181ba5ed0224655",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/editing-implementation/source",
+     "recorded_project_HEAD": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/0951ccace8912640dbdd657a5c57505d9b5dafc31b9017ee94f1e6829cb453c5.gz",
+     "bytes": 5458882,
+     "sha256": "93591acf8927a63af091582c1553b132c9757d20694908a0458dbc965c3ff25c",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/48",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/6",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/editing-implementation/source/tests/theme_canvas_integration/target/release/bin/main",
+      "bytes": 18871976,
+      "sha256": "0951ccace8912640dbdd657a5c57505d9b5dafc31b9017ee94f1e6829cb453c5",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/editing-implementation/source",
+     "recorded_project_HEAD": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/173ba857167fb9711b790aaeda08b522b24ecacbd2a8623fea758f786a371527.gz",
+     "bytes": 5448787,
+     "sha256": "505d6e0a09435a429d4ccba79849ae392507233f7f4a5d76d052fbea76c63743",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/49",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/7",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/editing-implementation/source/tests/runtime/session/target/release/bin/main",
+      "bytes": 18839616,
+      "sha256": "173ba857167fb9711b790aaeda08b522b24ecacbd2a8623fea758f786a371527",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/editing-implementation/source",
+     "recorded_project_HEAD": "22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/89d7c6683be044a2735502268b66b4e0172f1089c195b5c616ed6d06bd56ebe6.gz",
+     "bytes": 5317437,
+     "sha256": "c9af9faa87e34978a55b3a79dd9b2de989b865e05f5ac7c8c200b1c123663626",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/59",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/8",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/theme-implementation/source/tests/theme-loading/consumer/target/release/bin/main",
+      "bytes": 18447936,
+      "sha256": "89d7c6683be044a2735502268b66b4e0172f1089c195b5c616ed6d06bd56ebe6",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/theme-implementation/source",
+     "recorded_project_HEAD": "fa6a46ec339ea0f098dea521c814226a7a373c7e"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/51ba03d09d4cf88877053b245ad75105a3db7933e787ced4c3496aa7bdece0b9.gz",
+     "bytes": 5206652,
+     "sha256": "8089c574a5e4236c10829b45308947022177c1579320be2b433bdcf391e48aad",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/56",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/9",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/theme-implementation/source/tests/theme-loading/api-probe/target/release/bin/main",
+      "bytes": 18074776,
+      "sha256": "51ba03d09d4cf88877053b245ad75105a3db7933e787ced4c3496aa7bdece0b9",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/theme-implementation/source",
+     "recorded_project_HEAD": "fa6a46ec339ea0f098dea521c814226a7a373c7e"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/a22f5259e4a12878f94e7b065349c3e3763e71396969ca1c272923cd6a67bc23.gz",
+     "bytes": 5207392,
+     "sha256": "02269bfb9194e4587d8235770d8ca987018f395c278fb0f256705dab52835292",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/62",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/10",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/theme-implementation/source/tests/theme-loading/foundation/target/release/bin/main",
+      "bytes": 18075424,
+      "sha256": "a22f5259e4a12878f94e7b065349c3e3763e71396969ca1c272923cd6a67bc23",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/theme-implementation/source",
+     "recorded_project_HEAD": "fa6a46ec339ea0f098dea521c814226a7a373c7e"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/d96ccc7fd641ccf80bc46e1320f1f8972238da28ddd77b2d46b6297acf954bbf.gz",
+     "bytes": 5198002,
+     "sha256": "13c740cdb0d463b35a24a3d7652054b4ec6ebb68a8f6d2c2db13d7504eae7300",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/64",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/11",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/theme-implementation/source/tests/contract/target/release/bin/main",
+      "bytes": 18063624,
+      "sha256": "d96ccc7fd641ccf80bc46e1320f1f8972238da28ddd77b2d46b6297acf954bbf",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/theme-implementation/source",
+     "recorded_project_HEAD": "fa6a46ec339ea0f098dea521c814226a7a373c7e"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/21a86a2bccd391ff1d35240a5a714ec72abacc74ee39b527b665e90ad6a2a0c4.gz",
+     "bytes": 5189928,
+     "sha256": "764a8896f7be0d041cf0151368862d23bb2a1ca1c4717c9f0f5260bf2a5987f2",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/50",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/12",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/theme-implementation/source/tests/themes/.negative-run/review-integration/target/release/bin/main",
+      "bytes": 18039576,
+      "sha256": "21a86a2bccd391ff1d35240a5a714ec72abacc74ee39b527b665e90ad6a2a0c4",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/theme-implementation/source",
+     "recorded_project_HEAD": "fa6a46ec339ea0f098dea521c814226a7a373c7e"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/954781f8109776c6b66e80180771a731046e379f2d5f4c7926a06954f2250dae.gz",
+     "bytes": 4808890,
+     "sha256": "10c714a20aaaf5ddab26c0288ff73350214237b5513010653cf9ab0ecd5701a1",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/60",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/13",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/runtime-execution/source/tests/runtime/target/release/bin/main",
+      "bytes": 16593432,
+      "sha256": "954781f8109776c6b66e80180771a731046e379f2d5f4c7926a06954f2250dae",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/runtime-execution/source",
+     "recorded_project_HEAD": "c3d743d2dd5cb125e4ca435b2842d1b10c501281"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/71073a66f2d8b2891a1e4bd586e253f41ea362edc9bdeb5ac38fdaf87651cd57.gz",
+     "bytes": 4705030,
+     "sha256": "a9b0529358ab67df5999d95c3cbff545001f6336ddbc2f82573a98774903668c",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/58",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/14",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/runtime-execution/source/tests/composition/target/release/bin/main",
+      "bytes": 16150240,
+      "sha256": "71073a66f2d8b2891a1e4bd586e253f41ea362edc9bdeb5ac38fdaf87651cd57",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/runtime-execution/source",
+     "recorded_project_HEAD": "c3d743d2dd5cb125e4ca435b2842d1b10c501281"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/5ca755f146b34d503479fc3cb709ecbd3b07643c286e1dfea4ed8afbbddd6fc7.gz",
+     "bytes": 4685460,
+     "sha256": "3189c270f509aebfd47f9d0a01e7ad91200bdb54900a68cfeeb43fefb6e39964",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/57",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/15",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/runtime-execution/source/tests/layout/target/release/bin/main",
+      "bytes": 16116104,
+      "sha256": "5ca755f146b34d503479fc3cb709ecbd3b07643c286e1dfea4ed8afbbddd6fc7",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/runtime-execution/source",
+     "recorded_project_HEAD": "c3d743d2dd5cb125e4ca435b2842d1b10c501281"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/b6ccb0a88ffa5f937d20a7ab30ee1228a050d2be0809d041d97fa621f05f3c4f.gz",
+     "bytes": 4689777,
+     "sha256": "c551440781baae5189b548bdd67e3f4a29b64b33d9e261f7a80cb0394ea5d612",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/63",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/16",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/runtime-execution/source/tests/colors/target/release/bin/main",
+      "bytes": 16099600,
+      "sha256": "b6ccb0a88ffa5f937d20a7ab30ee1228a050d2be0809d041d97fa621f05f3c4f",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/runtime-execution/source",
+     "recorded_project_HEAD": "c3d743d2dd5cb125e4ca435b2842d1b10c501281"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/witness/2c55c8c3bd61521adcc82028256d892e98032efe84561af59cd51b8a35d8864a.gz",
+     "bytes": 4680907,
+     "sha256": "e27d1f9ec35bfb3a279d4199f52868bd2cc855571cb44cc3bf02d88c19cef280",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/53",
+     "map_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json#/17",
+     "mode": 292,
+     "logical_original": {
+      "path": "/workspace/work/runtime-execution/source/tests/contract/target/release/bin/main",
+      "bytes": 16079968,
+      "sha256": "2c55c8c3bd61521adcc82028256d892e98032efe84561af59cd51b8a35d8864a",
+      "mode": 448
+     },
+     "source_indices": [],
+     "prior_delivery": "gzip path, gzip SHA and logical ELF SHA absent from all 9795 delivered manifest rows",
+     "historical_archive": "no positive payload binding in 36 canonical manifests / 99 archive indices; two frame-cow logical identities explicitly excluded by R24/B, other 32 have no matching record",
+     "custody_scope": "current bytes custody only; no inferred historical compiler-source identity or retroactive index acceptance",
+     "recorded_source_project": "/workspace/work/runtime-execution/source",
+     "recorded_project_HEAD": "c3d743d2dd5cb125e4ca435b2842d1b10c501281"
+    }
+   ],
+   "metadata": [
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/1-before.json",
+     "bytes": 9790,
+     "mode": 384,
+     "sha256": "43e496ada94681e562c6985b657435bea3912601995496436067173272706851",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/0"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/1-verified-before-unlink.json",
+     "bytes": 10156,
+     "mode": 384,
+     "sha256": "81de37e14783c3efef9842737a801e73710e6f3953e66556ce758846af468cab",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/1"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/10-before.json",
+     "bytes": 6174,
+     "mode": 384,
+     "sha256": "630c32640ffc1190fdb92cd701685dc6c4d02b17497bb879129a0abbca55cdfd",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/2"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/10-verified-before-unlink.json",
+     "bytes": 6587,
+     "mode": 384,
+     "sha256": "d8d85fb63047f83f8fa5eeb7933965222744cd46d440aa13234545e92a46ae45",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/3"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/11-before.json",
+     "bytes": 6180,
+     "mode": 384,
+     "sha256": "4ca497e89f6f1848513c234f9e4160d3ffc7da2dd0ae89a5735bc17ceb28724f",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/4"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/11-verified-before-unlink.json",
+     "bytes": 6593,
+     "mode": 384,
+     "sha256": "2222641c7b5247339d6418f0b01af062fa2a7b2cf254fa65673332e17f6472da",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/5"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/12-before.json",
+     "bytes": 6084,
+     "mode": 384,
+     "sha256": "5a77a60808a04083d3119a5f64f09d87cdfa7a876cb9aa3b3b48f26bbb85a24a",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/6"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/12-verified-before-unlink.json",
+     "bytes": 6497,
+     "mode": 384,
+     "sha256": "ec2242c792a7e5e679e6f1ce2cb0e2c5b159c3a1de228b024dea8494c0191dba",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/7"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/13-before.json",
+     "bytes": 6655,
+     "mode": 384,
+     "sha256": "7ef20f7f4d154d2619a20d39762129764edc7920c4d385d7541e3213795a4181",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/8"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/13-verified-before-unlink.json",
+     "bytes": 7064,
+     "mode": 384,
+     "sha256": "c5bbcd2d25079960f62e19856b449f614e58f4796bdac2ace8b4a765c7e06147",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/9"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/14-before.json",
+     "bytes": 8962,
+     "mode": 384,
+     "sha256": "f8da26eefbefbc06fac669dbc682546805df955801dd2923cf5116c561e03210",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/10"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/14-verified-before-unlink.json",
+     "bytes": 9338,
+     "mode": 384,
+     "sha256": "e07a71726a7c2d6e8ed4dea21da12f8a8ac2a76b564eeb05f0e615b553e69b4e",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/11"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/15-before.json",
+     "bytes": 6551,
+     "mode": 384,
+     "sha256": "f56b4a3aa2300d16329899a45e7844777f292ee628a970beb4d4b7a519a1ca6e",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/12"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/15-verified-before-unlink.json",
+     "bytes": 6958,
+     "mode": 384,
+     "sha256": "6d37aa58b010978dd6c2b8b3c8c25ddd355a6b0d1c14e92cda9c4d2ef8eb2eff",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/13"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/16-before.json",
+     "bytes": 6050,
+     "mode": 384,
+     "sha256": "f8d5cefc11619cf721c2756c24f96138e044b3a1594cef50f1b4c0e64c4843c3",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/14"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/16-verified-before-unlink.json",
+     "bytes": 6463,
+     "mode": 384,
+     "sha256": "d6c23c49e835d8bc0d089d1fa13b8ab1e545df4f30657c495bcd166b53e8502f",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/15"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/17-before.json",
+     "bytes": 6050,
+     "mode": 384,
+     "sha256": "2744a8f34d8a7f5526568f0bb850c550a5663c70ed285f4c566d22e8b7f1ef5b",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/16"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/17-verified-before-unlink.json",
+     "bytes": 6462,
+     "mode": 384,
+     "sha256": "7973ca4fc5df95148ec5dcbf8752b6b3c227c2b1195bda76d092b34ef128e413",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/17"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/18-before.json",
+     "bytes": 6062,
+     "mode": 384,
+     "sha256": "52cf22736cadd9364bffc7e9b47eed4ace9f98bd89b4c807960831a0f58fb243",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/18"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/18-verified-before-unlink.json",
+     "bytes": 6473,
+     "mode": 384,
+     "sha256": "d2ff3b8d0ee86635ed39388fd1a2d06ec1083026bc4b036f08334ea0f6011f8d",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/19"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/2-before.json",
+     "bytes": 9648,
+     "mode": 384,
+     "sha256": "734b75747369c233d9dc9bb5268c050e92e1ba9d236065e31b76c979d136c6b2",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/20"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/2-verified-before-unlink.json",
+     "bytes": 10019,
+     "mode": 384,
+     "sha256": "91f2e701ace6cf83f617f0d8c841826bec9520781d285809b731636f8c4c109b",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/21"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/3-before.json",
+     "bytes": 9950,
+     "mode": 384,
+     "sha256": "83d3db35ef70b0bc5adf4691b3e31b94af00d8593b62a66fe671c1e7cba92a85",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/22"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/3-verified-before-unlink.json",
+     "bytes": 10317,
+     "mode": 384,
+     "sha256": "1bab976298a590ab03628c62e4d69f541d8581707e91dbdd0a6caf4b8aa39c09",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/23"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/4-before.json",
+     "bytes": 9092,
+     "mode": 384,
+     "sha256": "3b12ca24300c40db6fe40d2accbebcabdcda62f6d5d4bf6318b8312512865235",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/24"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/4-verified-before-unlink.json",
+     "bytes": 9467,
+     "mode": 384,
+     "sha256": "193efc3624012d9e1f031edb7031a289c28f5ef707148952b7f5794ac8594554",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/25"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/5-before.json",
+     "bytes": 8489,
+     "mode": 384,
+     "sha256": "90b63853515ac3073dfe1ee8fd7e9166932d58b8561a0ed5452acb16d07ba6c0",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/26"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/5-verified-before-unlink.json",
+     "bytes": 8872,
+     "mode": 384,
+     "sha256": "7e56f8388f0a5262fcc8edc4be1d6b411e5e6fe68d013b212aa7684044f888dc",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/27"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/6-before.json",
+     "bytes": 6813,
+     "mode": 384,
+     "sha256": "b958a7cf4430e6597de2b263f8a4a392bbd2320fad5ddd252d17d9d8cdfd2046",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/28"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/6-verified-before-unlink.json",
+     "bytes": 7218,
+     "mode": 384,
+     "sha256": "b29e399e691a3d95076d6eb836e6a7a72ba2150e9a26771c8395b719ff62552f",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/29"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/7-before.json",
+     "bytes": 6359,
+     "mode": 384,
+     "sha256": "1e0d93e0938f54908288dde9af4c43750b14e833321eb4bf4098dcca96ce5539",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/30"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/7-verified-before-unlink.json",
+     "bytes": 6770,
+     "mode": 384,
+     "sha256": "70ee1825b442168d5dc54a46a328b3b863c7c518eb02b8dce227823ddcf1b80e",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/31"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/8-before.json",
+     "bytes": 6138,
+     "mode": 384,
+     "sha256": "3c16d13feca5fe750e83ab5ef47ba9e8f9b7a92132798087bb8ff31792f1d687",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/32"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/8-verified-before-unlink.json",
+     "bytes": 6551,
+     "mode": 384,
+     "sha256": "1deb03865ac5c37dd53d1ef58306bcb9bc3b08a52db5a574c84dcebc428bc61c",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/33"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/9-before.json",
+     "bytes": 9961,
+     "mode": 384,
+     "sha256": "58a0d5b709f91b5b900c5acce48ef157ecfb1ad9dc6ad8c10aa6d884a04067f3",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/34"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/9-verified-before-unlink.json",
+     "bytes": 10330,
+     "mode": 384,
+     "sha256": "8b8a0cae1e98a074d16869d5534144efdc0ad0af275680890ae2ef718b5b6bee",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/35"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/brief.md",
+     "bytes": 3171,
+     "mode": 384,
+     "sha256": "fcfb939db86b82c37e1493ddbc44121fa3ebb82e40091b4590312ad3a5038d7d",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/36"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/discovery.json",
+     "bytes": 3401,
+     "mode": 384,
+     "sha256": "ce5b52d4b62ed5841f76896e6c8fed1cfb157ae1922a08f99d6466aa8e6bdc20",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/37"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/free-before.json",
+     "bytes": 25,
+     "mode": 384,
+     "sha256": "d8fbf02b7bd523a8482c4bf94ebff08d8dbadbd127aa0bcc8b5034ee2f20a763",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/38"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json",
+     "bytes": 11941,
+     "mode": 384,
+     "sha256": "4ceaf676759ecf8a37cfba4064cd8c19904707a0e132d9be27ed9cc25f22843b",
+     "sha_evidence": "current small metadata digest; unindexed addendum or index itself"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/migrate.py",
+     "bytes": 16227,
+     "mode": 384,
+     "sha256": "bea25e6b1523ad44a93c555edfdc7603093fba9b26aa5394ec81eebc2873248c",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/39"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/plan.json",
+     "bytes": 69551,
+     "mode": 384,
+     "sha256": "7db6542e4031e95b0e5d8cde27e181bf28fe5adf067201d87a5297a3734a3e11",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/40"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/process-latest.json",
+     "bytes": 3472,
+     "mode": 384,
+     "sha256": "1ea8f4c0186844a31a43f14db2d75a507f1045184fbc8463543a51dc0777f88f",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/41"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/progress.json",
+     "bytes": 152408,
+     "mode": 384,
+     "sha256": "f93f72be9de511a5735812203d73cf1402a58cb5360afa1e0ea649a64f317883",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/42"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/report.md",
+     "bytes": 936,
+     "mode": 384,
+     "sha256": "006656913863338f7e879b7a816bace75d2ec862d68ef2232918ef969643f40d",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/43"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/restore.py",
+     "bytes": 1342,
+     "mode": 384,
+     "sha256": "4becb0eedb07536f9265c12bc7162f5673179e726fac710120462436b10af4d0",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/44"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/root-verification.json",
+     "bytes": 161,
+     "mode": 384,
+     "sha256": "de3956e5cf8dc6773868750d9b8d2192d8f667c4e89adb54c0999f9d04bbd9d0",
+     "sha_evidence": "current small metadata digest; unindexed addendum or index itself"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/state-after.json",
+     "bytes": 14807,
+     "mode": 384,
+     "sha256": "9eaab776a3c6d61055e48753598c981a636eb90faadca446a171a1022edfa18d",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/45"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/state-before.json",
+     "bytes": 14807,
+     "mode": 384,
+     "sha256": "9eaab776a3c6d61055e48753598c981a636eb90faadca446a171a1022edfa18d",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/46"
+    },
+    {
+     "path": "/workspace/work/validation/ended-role-build-output-custody-20261115/summary.json",
+     "bytes": 544,
+     "mode": 384,
+     "sha256": "56185ec591caaf48ab1b33423a7f17b4ef6e88e787df97c53af6e681f8864432",
+     "sha_evidence": "/workspace/work/validation/ended-role-build-output-custody-20261115/index.json#/files/47"
+    }
+   ],
+   "gzip_bytes": 94272632,
+   "logical_original_bytes": 325898280,
+   "metadata_bytes": 569936,
+   "payload_count": 18,
+   "metadata_count": 50,
+   "source_bytes_total": 94842568,
+   "remaining_before_100MiB": 10015032,
+   "conservative_tar_size_budget": 95387336
+  }
+ ],
+ "other_candidates_deferred": [
+  {
+   "root": "/workspace/work/validation/reviewed-e124-runtime-witnesses-20261114",
+   "observed_gzip_count": 3,
+   "index": "/workspace/work/validation/reviewed-e124-runtime-witnesses-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/accepted-unit-a-elf-witnesses-20261114",
+   "observed_gzip_count": 6,
+   "index": "/workspace/work/validation/accepted-unit-a-elf-witnesses-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/accepted-unit-b-elf-witnesses-20261114",
+   "observed_gzip_count": 6,
+   "index": "/workspace/work/validation/accepted-unit-b-elf-witnesses-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/accepted-c-history-runtime-witnesses-20261114",
+   "observed_gzip_count": 3,
+   "index": "/workspace/work/validation/accepted-c-history-runtime-witnesses-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/failed-c-candidate-elf-witnesses-20261114",
+   "observed_gzip_count": 4,
+   "index": "/workspace/work/validation/failed-c-candidate-elf-witnesses-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/accepted-d-runtime-headroom-20261114",
+   "observed_gzip_count": 7,
+   "index": "/workspace/work/validation/accepted-d-runtime-headroom-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/d-caret-fix-headroom-20261114",
+   "observed_gzip_count": 2,
+   "index": "/workspace/work/validation/d-caret-fix-headroom-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/d-local-composition-headroom-20261114",
+   "observed_gzip_count": 3,
+   "index": "/workspace/work/validation/d-local-composition-headroom-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/e144-package-headroom-20261114",
+   "observed_gzip_count": 7,
+   "index": "/workspace/work/validation/e144-package-headroom-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/e144-fix-package-headroom-20261114",
+   "observed_gzip_count": 6,
+   "index": "/workspace/work/validation/e144-fix-package-headroom-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/ended-runtime-witnesses-20261114",
+   "observed_gzip_count": 4,
+   "index": "/workspace/work/validation/ended-runtime-witnesses-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/ended-more-runtime-witnesses-20261114",
+   "observed_gzip_count": 3,
+   "index": "/workspace/work/validation/ended-more-runtime-witnesses-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/round1-cache-fix-headroom-20261114",
+   "observed_gzip_count": 6,
+   "index": "/workspace/work/validation/round1-cache-fix-headroom-20261114/index.json",
+   "status": "candidate only; map/source/hash and previous-publication dedup not completed; not added to executable 06d/06e queue"
+  },
+  {
+   "root": "/workspace/work/validation/ended-cache-counterexample-headroom-20261114",
+   "observed_gzip_count": 1,
+   "status": "candidate only, may be compiler/cache archive rather than ELF; needs exact omission/reacquisition proof"
+  },
+  {
+   "root": "/workspace/work/validation/task020-intermediates-store-20261114",
+   "observed_gzip_count": 1,
+   "mapping": "/workspace/work/validation/task020-intermediates-store-20261114/packed-build-targets-map.json",
+   "status": "candidate only, packed build targets; do not automatically retain cache without exact map/dedup and reacquisition check"
+  }
+ ],
+ "limits": [
+  "No payload bytes or archives were hashed, decompressed, executed, rebuilt, uploaded, or altered. Only existing JSON/index/manifest metadata and bounded file stat were read.",
+  "Index metadata SHA values below were computed from small metadata only; payload SHA values are inherited from immutable custody records and need independent verification before delivery.",
+  "No proof of complete migration of all 342 roots or all gzip custody is claimed.",
+  "No forbidden directories or credential files were traversed."
+ ]
+}
