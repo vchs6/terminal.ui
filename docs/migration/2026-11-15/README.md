@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第五批发布后已交付5个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组第一卷发布后已交付6个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 待逐文件对账，可能分卷 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 第一卷已交付20份历史gzip ELF；其余继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -118,3 +118,23 @@ tar -xzf terminal-ui-migration-20261115-part05.tar.gz -C /第一批恢复目标�
 本批压缩包和Git blob在云端专用宿主共享内存中暂存，工作树标记skip-worktree；原始镜像与安装包仍在原目录。访问该暂存Git对象需宿主执行命名空间，新clone直接从GitHub取得完整文件，不依赖此临时路径。
 
 [第五批独立核查报告](part05-independent-report.md)、[机器可读记录](part05-independent-findings.json)与[只读审计脚本](part05-audit-readonly.py)记录48原件、完整归档、四个CPIO内部清单与历史绑定核验。审计脚本保留原工作环境路径，跨机器运行需按迁移根映射，不作为产品运行依赖。
+
+## 第六组第一卷：历史二进制原件（part06a）
+
+- [下载第六组第一卷](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06a.tar.gz)（90,909,862 字节）
+- [SHA256 校验文件](terminal-ui-migration-20261115-part06a.tar.gz.sha256)
+
+SHA256：`77b360183bacc9b1f499b1a40e2ec68c9b051b11127a4b69bc74cf631098a451`。
+
+本卷保存linux-final-capacity第一轮保管的20份原ELF的gzip文件及既有回执、恢复映射、来源记录和恢复工具：共71份原件，另附migration-part06a/manifest.json。每个gzip对应原始二进制字节，不通过重新构建替代；已有历史性能/功能结论和旧索引保持原样。此前仓库归档保留了大量日志与哈希引用，但相应ELF payload明确不在其交付范围。本卷补交这些原始字节，不重复运行旧测试或基准。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06a.tar.gz.sha256
+tar -xzf terminal-ui-migration-20261115-part06a.tar.gz -C /第一批恢复目标目录
+```
+
+恢复后原gzip位于work/linux-final-capacity/gzip/；restore-map.json中的20行包含gzip和解压ELF的大小/哈希及原始路径。原恢复脚本保留旧/workspace/work前缀，使用前应在本地副本中映射新根目录并创建相应父目录，保留原映射不改写。也可以直接按映射流式读取gzip校验旧证据，无需立即解压全部原二进制。
+
+本卷**不含round2的另外21份压缩ELF，也不代表第六组全部历史原件已迁移完成**。第六组继续按未覆盖原件分卷，实际下载文件总数尚未核定；本卷只验证迁移完整性，不构成新的Linux验收或性能测试结论。
+
+[第六组第一卷独立核查报告](part06a-independent-report.md)与[机器可读记录](part06a-independent-findings.json)记录71原件、完整归档和20份gzip还原317,561,592字节原ELF的核验结果。
