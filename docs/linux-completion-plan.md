@@ -57,6 +57,6 @@ TASK-006、011、012 及既有支持任务保持已验范围，不重新实现�
 
 ## 当前执行入口
 
-当前：完整功能 M1、统一主题展示及 M2 的 A/B/C/D 单元已完成各自独立验收。公开基准 TASK-144 已交付到候选分支 `implement/task144-public-benchmark`（当前 `d7e9d1445f98021a798d223de97b97b45239de93`，含独立回归与输入超时修复），TASK-145 独立源码及制品审核通过；TASK-146 正在运行旧版/新版普通包的完整正确性、重复成本及真实 XTerm/VTE 验证，TASK-147 尚待该实测输入。实测暴露的“重绘期间排队控制序列被提前判定超时”已用独立 PTY 回归固定，源修复通过独立审核；最终普通包消费及受影响设备验证正在执行，旧版原始数据仍保留各自版本标签。状态以[增量渲染任务](../openspec/changes/implement-incremental-rendering/tasks.md)为准，尚不关闭原 TASK-022/031。
+当前：完整功能M1、统一主题展示及M2的A–E单元已分别独立验收。公开基准与输入超时修复固定源码 `d7e9d144` 已集成main；独立147接受原AC-022/031，规格与质量/证据均PASS。完整成本分布、退化、历史版本标签、普通包消费与真实XTerm/VTE原件已[按轮次压缩归档](reviews/R24/E/README.md)，包含[实际终端截图](reviews/R24/E/gallery.md)。状态以[增量渲染任务](../openspec/changes/implement-incremental-rendering/tasks.md)为唯一入口；Linux整体尚未完成。
 
-后续顺序：独立成本验收147 → 基准接入与按轮次压缩证据 → Linux 六宿主最终汇合（含真实 Linux VT、tmux、screen、SSH）→ TASK-023 正常完整源码包、发行检查及干净消费 → TASK-024 独立整体审查与全部 required AC 验收。发行检查器 T087-G01 已有独立负向测试失败证据，修复和真实完整 release 仍在后续阶段；B-M01、T105-M01 等精确边界继续交由最终验收核对。未发布，Linux 整体尚未完成。
+后续顺序：Linux 六宿主最终汇合（含真实 Linux VT、tmux、screen、SSH）→ TASK-023 正常完整源码包、发行检查及干净消费 → TASK-024 独立整体审查与全部 required AC 验收。发行检查器 T087-G01 已有独立负向测试失败证据，修复和真实完整 release 仍在后续阶段；B-M01、T105-M01 等精确边界继续交由最终验收核对。未发布，Linux 整体尚未完成。

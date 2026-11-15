@@ -25,7 +25,7 @@
 | AC-019 | REQ-003 | 菜单与状态条组合行为 | TASK-019 | 水平/弹出菜单导航、选择、取消、禁用与窄屏状态条可组合；[M01–M05有限162证据](reviews/widgets/M/acceptance162/acceptance.md)已交付，原父AC完整汇合仍待主代理判定 | pending |
 | AC-020 | REQ-004、REQ-011 | 应用退出与终端模式恢复 | TASK-020 | [当前M1恢复输入独立验收](reviews/R22/020/README.md)为PASS_CURRENT_M1_RECOVERY_INPUT / COMPLETE_CURRENT_M1_HANDOFF_ONLY，无阻塞发现；原正式测试/独立执行/真实GUI及VM VT证据保留。完整父项仍待M2/release受影响最终部分及024汇合，其他OS后续扩展 | pending（当前M1恢复输入已接受；完整原AC020待验） |
 | AC-021 | REQ-001 | 交付 U1–U5 公开接口示例 | TASK-021 | [冻结M1 U1–U5独立验收](reviews/R22/021/README.md)：PASS_AC021_M1_U1_U5，14条件通过、无必需缺口；minimal/composition独立构建、公开组合与不同业务U5、合成PTY及真实XTerm/VTE/VM VT原件。完整四主题展示归AC-027，M2归AC-031；不代表完整M1/Linux或发行 | passed（当前冻结C005/AC021范围） |
-| AC-022 | REQ-004 | 交付可重复渲染基准项目 | TASK-022 | 固定尺寸、中文/emoji 和批更新负载可运行，记录环境与重复结果；证据待实施时链接 | pending |
+| AC-022 | REQ-004 | 交付可重复渲染基准项目 | TASK-022 | [独立147原AC验收](reviews/R24/E/browse/rendering-benchmark-acceptance/findings.md)：固定尺寸、中文/emoji、批更新、环境与全部重复/负面结果；普通包公开三项目，1150次headless及最终真实XTerm/VTE成本证据，保留版本和口径限制 | passed（固定Linux基准范围；不代表023/024） |
 | AC-023 | REQ-006、REQ-011 | 验证最终源码制品可独立使用 | TASK-023 | 实际cjp无开发资料，含四主题及统一展示；TASK-027/031/032等交付纳入制品，当前Linux冻结配置干净消费构建运行，其他OS在Linux全量验收后扩展；目标依赖/版本/许可证完整；证据待实施时链接 | pending |
 | AC-024 | REQ-001–011 | 整体验收与发行准备 | TASK-024 | 当前Linux范围的需求全部有证据（含M2），产品文档与制品一致；后续OS独立扩展验收，不宣称跨平台完成；Battle 无未关闭必需失败；证据待实施时链接 | pending |
 | AC-025 | REQ-008 | 分类主题配置解析与诊断 | TASK-025 | 合法单文件主题形成结构化配置；未知字段/非法值/坏引用带位置错误，不执行代码 | passed（基础范围；[独立验收](reviews/R15/acceptance/report.md)） |
@@ -34,7 +34,7 @@
 | AC-028 | REQ-001.8、REQ-009 | 基础输入编辑与标准快捷操作 | TASK-028 | 单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交；E001–E005有限编辑已获122 PASS_FINITE_E，见[E原件](reviews/E/README.md)；父级完整汇合保留 | finite_passed（完整父AC pending） |
 | AC-029 | REQ-001.8、REQ-009 | 按钮标签与选择进度基础组件 | TASK-029 | 标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致；[独立157接受五控件S01–S05](reviews/widgets/S/widgets-small-acceptance/acceptance.md)；027/041全状态/Unicode/四主题展示另汇合 | passed（有限S语义范围） |
 | AC-030 | REQ-010 | 可选会话能力与本地剪贴板通道 | TASK-030 | SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心；产品证据待实现 | pending |
-| AC-031 | REQ-004.8 | M2局部布局绘制及基线对照 | TASK-031 | 局部负载减少无关工作，移动/遮挡/宽字符/resize与M1帧结果一致，记录CPU/分配/输出及大范围退化；产品证据待实现 | pending |
+| AC-031 | REQ-004.8 | M2局部布局绘制及基线对照 | TASK-031 | [A–E及独立147原AC验收](reviews/R24/E/README.md)：局部负载减少无关工作与实际CPU成本，移动/遮挡/宽字符/resize保持M1帧；CPU、Cell槽、heap/GC/RSS、原生输出及大范围退化均保留，无普遍加速或总分配字节声明 | passed（固定Linux M2范围；最终六宿主与023/024另验） |
 | AC-032 | REQ-001.9、REQ-002.7/.8 | 混合子元素操作与定向通知集成 | TASK-032 | 声明A/B/C中插X融合排序位置；显式移动/移除、无效锚点/卸载/重入操作有诊断；定向通知合批无手动flush；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
 | AC-033 | REQ-007 | 本轮规格与追踪一致性 | TASK-033 |R5最终严格检查与覆盖记录；实际证据：R5/validation-final.txt、check-consistency.mjs及re-review.md| passed |
 | AC-034 | REQ-001 | SDK语言隔离调查交付 | TASK-034 |R5语言正负例、重跑及闭包/收集边界；不替代AC-002/004完整验收；实际证据：R5/evidence/README.md语言正负例；主代理重跑退出0| passed |

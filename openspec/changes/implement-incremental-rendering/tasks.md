@@ -10,7 +10,7 @@
 ## Global Constraints
 
 - 原TASK-031/022为完整验收责任归属；123–142实现031各单元，143–147实现022并供031成本验收。实际工程层级依原WP002/WP005，角色工作为独立L3，不把原L3强行嵌另一套L3树。主仓接入时031/022转为本tasks唯一状态引用，不能保留两份勾选权威。
-- 单元A/B/C/D123–142已独立接受；143正式测试已固定，144已交付、145独立审核通过，146正在独立实测、147待验收；144源码位于已推送候选分支implement/task144-public-benchmark，尚未集成main；有上游合同不等于上游产品已通过。正式产品124前必须冻结全部功能M1源码/制品及下表最终SHA；禁止提前用c3d743d有限功能作性能基线。
+- 单元A–E123–147已独立接受；147对固定 `d7e9d144` 给出 `PASS_E_AC022_AC031`，原TASK-022/031状态为completed，源码经 `39d580b2` 集成main。[压缩原件与范围](../../../docs/reviews/R24/E/README.md)保存正常制品、重复成本、真实终端与负面结果；最终六宿主、023/024和Linux整体仍开放。正式产品124前冻结的完整M1源码/制品仍按下表保留；禁止用c3d743d有限功能替代性能基线。
 - A→B→C→D→E顺序集成。测试可按冻结合同准备，但产品只消费前单元验收固定提交；共享Component/Layout/Frame禁止多个产品作者同时编辑。
 - 每实体一个小写下划线.cj文件，最小可见性，原public调用兼容，新增RuntimeStats三项仅只读；无私有测试hook、无强制M1/M2模式开关。
 - 测试作者Sol/high、产品Terra/high或适合仓颉任务的Sol/high、审核/验收Astra/high、执行Sol/medium；记录指定配置，无法核验serving时不冒充实测。
@@ -68,8 +68,8 @@
 - [x] TASK-143（testing/E）：冻结公开benchmark场景/动作/同epoch配对/CSV指标/干净消费与计量方法。
 - [x] TASK-144（implementation/E）：交付benchmarks/rendering正常独立CJPM与产品方法说明。
 - [x] TASK-145（verification/E）：固定144与143独立审核公平性、纯公共API、数据口径及制品边界。
-- [ ] TASK-146（testing/E）：独立运行重复headless、真实TTY/输出、M1/M2普通包双版本、CPU/分配/退化与干净bundle消费。
-- [ ] TASK-147（acceptance/E）：逐AC-022/031核原始结果与限制，完整通过后回写父任务并继续023/024。
+- [x] TASK-146（testing/E）：独立运行重复headless、真实TTY/输出、M1/M2普通包双版本、CPU/分配/退化与干净bundle消费。
+- [x] TASK-147（acceptance/E）：逐AC-022/031核原始结果与限制，完整通过后回写父任务并继续023/024。
 
 ## Task Cards and Checkable L4
 
@@ -134,11 +134,11 @@
 
 - [x] 143冻结80×24/160×48混合Unicode、各类变化/横向同行代价/全局退化动作与业务barrier；正确性按完整Cell+独立caret断言，性能不运行oracle/equality/hash。
 - [x] 143冻结CSV列的单位/范围：measure/arrange/paint/frame/cellWrites、frame_allocated_cell_slots、CPU user/system、wall、heap/GC/RSS、成功输出bytes/calls、环境/源码/seed/尺寸/重复编号；缺某采样工具记录实际限制，不自动取消其他必要证据。
-- [ ] 144按M013交付同源compat correctness/snapshot-headless/tty双版本入口，以及最终库专用correctness/m1-headless/m2-headless诊断入口；冻结资格表并拒绝不支持组合，库无测试模式；外部计量不进入运行依赖。
-- [ ] 144说明旧M1制品与最终M2制品正常CJPM构建并核相同业务/完整帧，记录普通bundle/依赖/SDK前置；原八统计之外新增三计量口径与未覆盖成本公开。
-- [ ] 145审公平性、M1 oracle GC污染、错误状态配对、伪TTY/伪allocated bytes、工具退出0但无有效数据、选择性汇报与产品制品边界。
-- [ ] 146独立执行足够时长/重复的分进程CPU与Cell存储分配，SDK heap/GC/RSS补充，单独真实TTY输出采样；报告所有重复、分布及噪声，不只best；干净目录从普通cjp构建并运行。
-- [ ] 147逐原AC记录代表局部负载无关工作/实际成本减少与全局退化；计数下降但CPU恶化须解释，不以通过个数宣称收益。所有功能、方法、资源与制品证据足够后才关闭022/031，其他Linux任务继续。
+- [x] 144按M013交付同源compat correctness/snapshot-headless/tty双版本入口，以及最终库专用correctness/m1-headless/m2-headless诊断入口；冻结资格表并拒绝不支持组合，库无测试模式；外部计量不进入运行依赖。
+- [x] 144说明旧M1制品与最终M2制品正常CJPM构建并核相同业务/完整帧，记录普通bundle/依赖/SDK前置；原八统计之外新增三计量口径与未覆盖成本公开。
+- [x] 145审公平性、M1 oracle GC污染、错误状态配对、伪TTY/伪allocated bytes、工具退出0但无有效数据、选择性汇报与产品制品边界。
+- [x] 146独立执行足够时长/重复的分进程CPU与Cell存储分配，SDK heap/GC/RSS补充，单独真实TTY输出采样；报告所有重复、分布及噪声，不只best；干净目录从普通cjp构建并运行。
+- [x] 147逐原AC记录代表局部负载无关工作/实际成本减少与全局退化；计数下降但CPU恶化须解释，不以通过个数宣称收益。所有功能、方法、资源与制品证据足够后才关闭022/031，其他Linux任务继续。
 
 ## Quality and DQ Exit
 
@@ -213,3 +213,11 @@ E143源码准备 `cc178b86294dc6a640b468888c4aadf06863bb2e` 现在可消费已�
 [D完整证据和截图](../../../docs/reviews/R24/D/README.md)以43个D文件保存8,888个原件成员、20张可浏览的真实终端截图及失败历史；raw SHA `c2e3c3c17d1e83e0c8669cf593cf4c2cc0263bdcbd737fd113297d880df0ee10`，索引 `5c01e698d5a513b2e23bfeae28a565141f8d13684f255c2ad497f9d644dcb948`。主代理逐成员核验安全路径、唯一普通文件、权限、字节与SHA，零不符；9,989绑定零未解析，历史runtime迁移保留精确还原映射。
 
 143固定正式测试 `4dc4ba804c1ec8fb67b0971b659bd1ab8dece4ba`，索引 `3bc6dd5c7e3204e6d71d5a0224f8ba84506bbc1acce2b97c76327cabef9bca64`：独立无依赖验证器正常构建/自测通过，外部观察工具成功/退出7/执行缺失127夹具通过；公开项目正常构建实际RED为workloads缺失，三个必需manifest均未实现。两次解析器自测失败及修正原件保留，不是产品缺陷。主代理核47项制品/原始结果绑定，合入只新增tests/rendering_benchmark 28文件、产品与D测试字节不变。144独立Terra/high现按固定合同实施三公开项目与说明，暂不宣称基准、性能、022/031或Linux完成。
+
+## 2026-11-15 E与原022/031完成
+
+TASK144–147完成：固定源码 `d7e9d1445f98021a798d223de97b97b45239de93`，独立147规格与质量/证据均PASS、零阻塞，索引 `e4961c95bc46bb4384ab5cd2f484c1320e2acf946dbb440f4bb077920ab69f55`。原TASK-022/031在本唯一状态入口记completed；[逐原条件判断](../../../docs/reviews/R24/E/browse/rendering-benchmark-acceptance/findings.md)与[实际测量](../../../docs/reviews/R24/E/browse/rendering-benchmark-execution/finalreport.md)保留1150次原版本headless、完整Cell/caret对照、最终176新M2与176M1终端CPU、288项原生输出。历史源码/ELF标签不改写，新输入修复另有独立回归、审核、普通包与受影响执行。
+
+[按轮次压缩归档](../../../docs/reviews/R24/E/README.md)用36个检出文件保存27514个安全原件成员，raw SHA `654e881a747ce75b77491369d63199347c2e298c517e6135589cdc8c8c8db817`，归档索引 `c605b71ad7ffeee955c67b57648715eda0d9813e8b5e37f82931a0d88ddd39b4`；主代理逐成员复核字节/权限/SHA零不符。全部852张原PNG留在归档，12张可直接浏览。保留全部CPU/内存/输出退化、短窗口噪声与口径限制，不承诺所有场景加速或总分配字节下降。
+
+下一步是最终001/002/003/004/041与六宿主C008实际汇合、023完整正常制品/新缓存消费/失败负控、024逐原Linux验收；本结论不代替这些任务，不publish。
