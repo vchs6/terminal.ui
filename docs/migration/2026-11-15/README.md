@@ -60,3 +60,39 @@ tar -xzf terminal-ui-migration-20261115-part03.tar.gz -C /第一批恢复目标�
 本批未包含 SDK、stdx 动态库或完整运行闭包，恢复后二进制能否运行仍取决于本机 Linux 架构及相应运行库；本批只证明原二进制字节已迁移。VM 镜像、历史性能基准原二进制与其他历史证据仍待后续批次。
 
 [第三批独立完整性报告](part03-independent-report.md)及[机器可读核查记录](part03-independent-findings.json)记录原件与归档验证、历史来源证据边界。
+
+## 第四批：五份性能基准原 ELF 的压缩原件
+
+- [下载第四批](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part04.tar.gz)（28,189,699 字节）
+- [SHA256 校验文件](terminal-ui-migration-20261115-part04.tar.gz.sha256)
+
+SHA256：`adbfa1516c9c41caabdb8055aa1ae65809ecaebc79bd8e9adc01c8803dfc316c`。
+
+本批包含 c008-capacity 保存的五份既有性能基准 ELF 的 gzip 原件，以及原恢复映射、逐项 custody 回执和相关记录。23份原件以原路径/字节/权限保存，另有 migration-part04/manifest.json；不重新构建二进制，不改写原性能或来源结论。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part04.tar.gz.sha256
+tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标目录
+```
+
+原压缩件恢复到 work/c008-capacity/gzip/01.gz 至05.gz。原 restore-map.json 为每份 gzip 记录原始 ELF 的路径、大小、模式、SHA256 与 gzip SHA256。无需立即解压全部二进制；检查旧证据时可按映射流式读取。若要恢复可执行文件，先在本地副本中映射旧 /workspace/work 前缀并创建父目录，再按原大小/哈希核验并恢复权限；保留原映射不改写。原 restore.py 保留旧绝对路径，不能在新机器不经映射就直接运行。
+
+本批并不包含其他capacity目录保管的全部历史ELF，也不表示Linux最终验收通过。
+
+## 总体交付安排与批数边界
+
+目前固定为7个逻辑交付组，第四组发布后已交付4个下载包。第5、6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+
+| 组 | 内容 | 状态 |
+|---|---|---|
+| 1 | 源码、Git引用、未提交源码、当前交接 | 已交付1包 |
+| 2 | C008原始runtime证据和截图 | 已交付1包 |
+| 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
+| 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
+| 5 | VM镜像与复现输入 | 待按原件去重，可能分卷 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 待逐文件对账，可能分卷 |
+| 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
+
+[第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
+
+[第四批独立核查报告](part04-independent-report.md)与[机器可读记录](part04-independent-findings.json)确认23原件、完整归档字节和五份解压ELF的哈希。云端为节省空间以Git blob保留本批压缩包，工作树标为skip-worktree；远端和新clone仍包含完整文件，原gzip原件未删除。
