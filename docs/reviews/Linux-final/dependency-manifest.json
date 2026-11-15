@@ -1,0 +1,1420 @@
+{
+  "schema_version": 1,
+  "projection": "Original TASK-003 dependency/native facts; docs-only independent projection, not final task acceptance",
+  "project": {
+    "name": "cjtui",
+    "version": "0.0.0",
+    "released": false,
+    "source_commit": "d7e9d1445f98021a798d223de97b97b45239de93",
+    "cjpm_manifest": {
+      "path": "cjpm.toml",
+      "bytes": 1541,
+      "sha256": "c931c193a9f67e2dfef8ca43a26d0f950d169f3bba380c7013423c7c1abb4828"
+    }
+  },
+  "status": {
+    "dependency_native_projection": "F1_F2_FACTS_BOUND_WITH_LIMITATIONS",
+    "original_TASK_003_acceptance": "pending independent final review and final source/release-chain reconciliation",
+    "original_TASK_023": "pending T087 fresh-cache/release/source-package checks",
+    "whole_Linux_acceptance": "pending",
+    "other_required_platforms": [
+      "Windows",
+      "macOS",
+      "HarmonyOS"
+    ],
+    "platform_policy": "Linux functionality and acceptance first; later platforms remain required and pending"
+  },
+  "evidence": {
+    "admission.json": {
+      "path": "/workspace/work/input-timeout-execution/actual/admission.json",
+      "bytes": 103940,
+      "sha256": "8c97c5e39650ace8fce95a27d6417ad7ffb3ebbb7bb6c0a1ce919fe4779a7677"
+    },
+    "final-provenance.json": {
+      "path": "/workspace/work/input-timeout-execution/actual/final-provenance.json",
+      "bytes": 135424,
+      "sha256": "0710ecc9ad26b5df3a20fde7fb1072f368e35bcd75346db4efeaacabee20d2f8"
+    },
+    "package-source-proof.json": {
+      "path": "/workspace/work/input-timeout-execution/actual/package-source-proof.json",
+      "bytes": 89509,
+      "sha256": "f099c434034d5e5e9dd64a7b637d12a30a746c23def2a36ef9227195b36cb354"
+    },
+    "smoke/summary.json": {
+      "path": "/workspace/work/input-timeout-execution/actual/smoke/summary.json",
+      "bytes": 5456,
+      "sha256": "1261fdb8a5c218c13f94340bf3f28361918513d551fccdf991479732ede5abc6"
+    },
+    "reuse-transfer.json": {
+      "path": "/workspace/work/input-timeout-execution/actual/reuse-transfer.json",
+      "bytes": 52577,
+      "sha256": "06005af07d2b93e3167878a9a5db82f631e9214580a6b218fccf0fb5e17c09ed"
+    }
+  },
+  "final_package": {
+    "path": "/workspace/work/input-timeout-implementation/source/target/cjtui-0.0.0.cjp",
+    "sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+    "bytes": 216424,
+    "source_members_compared": 333,
+    "source_member_differences": 0,
+    "clean_scope": "New package extraction and ordinary builds with established official dependency cache and declared SDK/stdx/UCD inputs; no empty-cache/hermetic/offline claim",
+    "proof_evidence_key": "package-source-proof.json"
+  },
+  "resolved_dependency_sources": {
+    "ansies": {
+      "version": "1.3.113",
+      "sealed_cache_root": "/workspace/work/viewport-tests/cache/repository/source/default/ansies-1.3.113",
+      "selected_file_count": 57,
+      "files": [
+        {
+          "path": "cjpm.toml",
+          "bytes": 512,
+          "sha256": "554516e616d2c76aaad5d55dbea69980be62959b13cad910be964e9240b6478e"
+        },
+        {
+          "path": "examples/demo/src/main.cj",
+          "bytes": 16887,
+          "sha256": "e5fa264be0a10c03c02f8d81d027ff913a96a94bea676d1076da6fa7bdb83129"
+        },
+        {
+          "path": "src/api/color.cj",
+          "bytes": 1521,
+          "sha256": "a187d9b4c59e04f6f413851d375472d34b8f38dc7ff8bd34bc4e22d1c8c6f51a"
+        },
+        {
+          "path": "src/api/cursor.cj",
+          "bytes": 5704,
+          "sha256": "8680775431fb04cb63430a112b120a2af059faf928fe047a73c19c4a9b163bb5"
+        },
+        {
+          "path": "src/api/hyperlink.cj",
+          "bytes": 1273,
+          "sha256": "82df5ced9b0700a745d6f9a3c5a3aec91b333fb7acf3f56ecd77b6f36e10a84c"
+        },
+        {
+          "path": "src/api/query.cj",
+          "bytes": 4308,
+          "sha256": "826cef8eacd6b024d17017eba47960687694b5be89cd9f4c6611dbdfaed8ebc1"
+        },
+        {
+          "path": "src/api/response.cj",
+          "bytes": 8462,
+          "sha256": "f4bc252e763c3a95cbe095ad11e2c7cd37837ff1e5a8e807c131f02ee41512ee"
+        },
+        {
+          "path": "src/api/screen.cj",
+          "bytes": 4265,
+          "sha256": "701f0d8b5c949955a9b55eb19d680eb59276de0455c18cf4a04fbc3cf7928227"
+        },
+        {
+          "path": "src/api/style.cj",
+          "bytes": 433,
+          "sha256": "28204516eaf1d82c0c39b89b4f1903f62c96a259bac649eae01bd89e45d122b6"
+        },
+        {
+          "path": "src/api/text_style.cj",
+          "bytes": 12705,
+          "sha256": "3121825253ade0f6d340e8a891e60db4ef7be9f042ed7bb95da4453594d9116e"
+        },
+        {
+          "path": "src/api/window.cj",
+          "bytes": 3443,
+          "sha256": "62d9c5078ba4e3b739cc4adb9d2e9cc20a6b16423b9bce6cf930a8c6066f94ca"
+        },
+        {
+          "path": "src/core/ansi_clean_mode.cj",
+          "bytes": 1863,
+          "sha256": "b95e3dd487e7f8869d134820d9a0eab1f41a341b79b25d0a475e4cce0950f119"
+        },
+        {
+          "path": "src/core/ansi_color.cj",
+          "bytes": 6087,
+          "sha256": "6039e86f68bb0b1eba5c0efe130d55458898b6a533497b4ec6da67c3ed1e06f9"
+        },
+        {
+          "path": "src/core/ansi_color_converter.cj",
+          "bytes": 11053,
+          "sha256": "be0a71d0d420d1e545a79e2c5aea07880477a96e36ae22cb20533a8d809ae81d"
+        },
+        {
+          "path": "src/core/ansi_color_spec.cj",
+          "bytes": 386,
+          "sha256": "d3ef1e8e74379e4626dc04099c6c915bd155d2b47ed69df81c082d485ce8fc6e"
+        },
+        {
+          "path": "src/core/ansi_cursor_direction.cj",
+          "bytes": 105,
+          "sha256": "15d2adfa2c8eb2a0ccab1d574c6670c9374660753ff2a99ea6a6d7abc0fade7c"
+        },
+        {
+          "path": "src/core/ansi_cursor_style.cj",
+          "bytes": 355,
+          "sha256": "46a156e844e8256b1a7353ac668b166c5cd5da870778ff1d8830cb224506539e"
+        },
+        {
+          "path": "src/core/ansi_dec_private_mode.cj",
+          "bytes": 888,
+          "sha256": "a6cb200fe1659754b20bb34002eb42a3ea695a728404b9a488e2320b548efdfa"
+        },
+        {
+          "path": "src/core/ansi_device_status_request.cj",
+          "bytes": 518,
+          "sha256": "3f21b756c62f430706d949f6571a3b7f1b8f854e9c89b93204e447403f99d83c"
+        },
+        {
+          "path": "src/core/ansi_line_style.cj",
+          "bytes": 1205,
+          "sha256": "2f5d520fc9cc38c94b74e5fcdaac39afd1fdc0cc533460253daf8e78cebd6d07"
+        },
+        {
+          "path": "src/core/ansi_mode.cj",
+          "bytes": 339,
+          "sha256": "4ad05c5a38a1f4f9ccda3859e170e488a0378a64a0b8d8edb0b30a64801a10ed"
+        },
+        {
+          "path": "src/core/ansi_parameter_composer.cj",
+          "bytes": 1439,
+          "sha256": "202cd5eedd086d4d276e7016d4f3415ab75fbbb029645fdc5427f0393f807133"
+        },
+        {
+          "path": "src/core/ansi_parameter_provider.cj",
+          "bytes": 5776,
+          "sha256": "0835bb232dd49a530aca105401bcca6416bd7abe7f258f44dd8ba03633446d41"
+        },
+        {
+          "path": "src/core/ansi_style.cj",
+          "bytes": 4839,
+          "sha256": "ac86aea794d5d8c80fc959681bf6f429fa9bd3a2481e80a042b0210d2d52c737"
+        },
+        {
+          "path": "src/core/ansi_style_spec.cj",
+          "bytes": 347,
+          "sha256": "4f6d1989582e1204536a2cdace96eef489727c25e6ba423abf6d94cb06f268e3"
+        },
+        {
+          "path": "src/core/ansi_tab_clean_mode.cj",
+          "bytes": 184,
+          "sha256": "da958a3491207f1994a172a786f79affc9d2f039203bbd7d166b197645fa77ac"
+        },
+        {
+          "path": "src/core/c0.cj",
+          "bytes": 2500,
+          "sha256": "0a0a20f8a6cf77c2d8116a39e289af469fbbca827ffbb7172beef2c6e3fabb7e"
+        },
+        {
+          "path": "src/core/c1.cj",
+          "bytes": 2809,
+          "sha256": "c529b02705fb0edb28984a560e9b853af88ceef286641dc45508a21d3da03525"
+        },
+        {
+          "path": "src/core/cpr_result.cj",
+          "bytes": 446,
+          "sha256": "59868bab96a2c2beb5e420aae048b2c3c6c31a9bc1259208ab2330887ceea40a"
+        },
+        {
+          "path": "src/core/csi.cj",
+          "bytes": 14793,
+          "sha256": "a886dbacf266d6578989889d90f271e7624a15981937bd204650c3b12a4a1b6a"
+        },
+        {
+          "path": "src/core/dcs.cj",
+          "bytes": 996,
+          "sha256": "a2a4a1cdd60b9ddeea2e566c6f15126ce34308027f77d6e4a82eb02c42081b26"
+        },
+        {
+          "path": "src/core/dec_rqss_result.cj",
+          "bytes": 544,
+          "sha256": "7c06bb6b6b0d4307610f05f47d31b0c5c6787c11f51569ba591bbb3ca11f4302"
+        },
+        {
+          "path": "src/core/osc.cj",
+          "bytes": 1754,
+          "sha256": "2b97ec77a77a25f01d5b5ab2f5497948dae4ccf5163db17e75fe5e10a21a6cbf"
+        },
+        {
+          "path": "src/core/osc_color.cj",
+          "bytes": 602,
+          "sha256": "328aad8f361c593e134370120b06ffa300b9c036eb63c20805a1c8dbe9f42d0e"
+        },
+        {
+          "path": "src/core/palette_color.cj",
+          "bytes": 465,
+          "sha256": "51a7cdd5beb0655892bd71c571d6acb1ee5f0ebdf21294f8cc60bd7b579ce21e"
+        },
+        {
+          "path": "src/core/response.cj",
+          "bytes": 2430,
+          "sha256": "25b06a735914823815570da8242f13cd71af881c3fe87770514ec19074342026"
+        },
+        {
+          "path": "src/core/secondary_da_info.cj",
+          "bytes": 667,
+          "sha256": "7f4f347536ba68980fb92c479da64e28e25b5f0cbca36008beda49c326e3ebd1"
+        },
+        {
+          "path": "src/extensions/foot.cj",
+          "bytes": 2245,
+          "sha256": "ce3a8688bb82badd6e752adb7840af61c1feda4417058b4b0e1fc07c57e5ab90"
+        },
+        {
+          "path": "src/extensions/iterm2.cj",
+          "bytes": 6477,
+          "sha256": "dead7cc8d65219a6ea6cb7003b4cb6ae3403a8d94971fb46e7ab9c20e867fb37"
+        },
+        {
+          "path": "src/extensions/kitty.cj",
+          "bytes": 3409,
+          "sha256": "53061af33b3bf46e0da1c86b9b29d98d964fac2e68b5191af0a9aa9000304b6c"
+        },
+        {
+          "path": "src/extensions/winterm.cj",
+          "bytes": 3807,
+          "sha256": "d710e111ac00e4ce65604311676d7092d9bf664e82cb1d7034337ec0feaf93f7"
+        },
+        {
+          "path": "src/extensions/xterm.cj",
+          "bytes": 7656,
+          "sha256": "68bc608dcb8f56389bf825ca1c01055c8313dd3997cf46f1bab70435376cd8de"
+        },
+        {
+          "path": "src/package.cj",
+          "bytes": 1154,
+          "sha256": "f16b6ceea2bf800c9c6623e9d1e08715b71913879570f16bcb2ea566023cff79"
+        },
+        {
+          "path": "src/test/api_query_test.cj",
+          "bytes": 3916,
+          "sha256": "5b56d797730a3388cfdaf3c7e5647828da7ba9d55c629d13c1344239d4470498"
+        },
+        {
+          "path": "src/test/core_color_test.cj",
+          "bytes": 4218,
+          "sha256": "61290b9f03488daff541673edac8cd489f130240196951f9f91fde40a3191e66"
+        },
+        {
+          "path": "src/test/core_csi_test.cj",
+          "bytes": 1757,
+          "sha256": "6376ba4f8ead58f902c80e26542ddc2fddf57424d462cfc9a905b50f63942f25"
+        },
+        {
+          "path": "src/test/core_parameter_composer_test.cj",
+          "bytes": 1885,
+          "sha256": "3d1a6ceb9897626a8b25da3f90749927e593d7ae6d923d28d467c614f070426b"
+        },
+        {
+          "path": "src/test/core_style_clean_test.cj",
+          "bytes": 4397,
+          "sha256": "7345d9f9965b13594aa312fd087f43a07222a810a9f840e88b2cf7047b2eee94"
+        },
+        {
+          "path": "src/test/helpers_cursor_test.cj",
+          "bytes": 1348,
+          "sha256": "7dfaefc36043f3d8e419df30b3746d5b5fe750ed20ff040533297d48710e0333"
+        },
+        {
+          "path": "src/test/helpers_screen_test.cj",
+          "bytes": 885,
+          "sha256": "a88cddb57f98ea071bea5d3ab1555b483c3dbedc30ed7cfb1cb483fcc0c2b3e2"
+        },
+        {
+          "path": "src/test/standards_dec_test.cj",
+          "bytes": 2242,
+          "sha256": "3db1bbedeaa1c90ea90cb8586c4578fa72953399dfcb2e2542aa1ab374caa536"
+        },
+        {
+          "path": "src/test/standards_kitty_test.cj",
+          "bytes": 1944,
+          "sha256": "309561be665e6b7ecf9b39588f8b5b1e8e1f07de26e9c16e3a8f16eede23c084"
+        },
+        {
+          "path": "src/test/standards_xterm_test.cj",
+          "bytes": 1269,
+          "sha256": "be9e27886691f65fb68901551e5e2ed5407590637519cc04825de8beff7cd62e"
+        },
+        {
+          "path": "src/test/terminal_parsers_test.cj",
+          "bytes": 2176,
+          "sha256": "22bf26b883eb6c5a881c4d67ad4303879bb1b6f3c031876b8560449736dd14ca"
+        },
+        {
+          "path": "src/test/utils_styled_text_test.cj",
+          "bytes": 3292,
+          "sha256": "b3e5ca507cde372261da344dbd16cd49d05c8bed2a8e869c0a7127d8ebcdeb64"
+        },
+        {
+          "path": "src/test/utils_text_style_test.cj",
+          "bytes": 3877,
+          "sha256": "a84ad11c43cfbbfba847ac330bbf2d8047ab1e31e0acd6025ffad01ba2af2bf5"
+        },
+        {
+          "path": "src/utils/styled_text.cj",
+          "bytes": 5629,
+          "sha256": "e4b5ba64aa488e666fb25eb2a0d3242832b75a12780a8537347e30716fe04c9a"
+        }
+      ]
+    },
+    "bitarray": {
+      "version": "0.1.0",
+      "sealed_cache_root": "/workspace/work/viewport-tests/cache/repository/source/default/bitarray-0.1.0",
+      "selected_file_count": 8,
+      "files": [
+        {
+          "path": "cjpm.toml",
+          "bytes": 626,
+          "sha256": "f3a0c41d07823621d5abd3c4783694b8b081daad534313ee71e4054a1b862915"
+        },
+        {
+          "path": "examples/demo/src/demo.cj",
+          "bytes": 5654,
+          "sha256": "58f2c39df9b99a102a02022663389f4c86a4c8e1f834ed0844ca4ce848eda5e6"
+        },
+        {
+          "path": "src/bitarray.cj",
+          "bytes": 14753,
+          "sha256": "ffa2aa563d487d28d7462d3e95daaad8b9c64a9b38f92b8b65cb746a0076d0fa"
+        },
+        {
+          "path": "src/bitpartition.cj",
+          "bytes": 3599,
+          "sha256": "dbb5a9c3410fa53cc2391a927e63455eadb040f8aaace6c13b9f9ffb1680b630"
+        },
+        {
+          "path": "src/bitsegment.cj",
+          "bytes": 1318,
+          "sha256": "43e71066b865a4c2c842f03cd54a99632d7fd836570c63db9f249f763f9a374e"
+        },
+        {
+          "path": "src/partitioned_bitarray.cj",
+          "bytes": 4286,
+          "sha256": "a3d851a200d8042549b17cebb9985e66be68a6ef4eb068e5ef54ef1c54406ce7"
+        },
+        {
+          "path": "src/segmented_bitarray.cj",
+          "bytes": 3724,
+          "sha256": "acc66e07b8b90f7c73dbcf039d4712217855aebbe2b8deff4e4b62c1a4ff5969"
+        },
+        {
+          "path": "src/test/bitarray_test.cj",
+          "bytes": 15668,
+          "sha256": "01175a07a0312d6d2782f72013f12c3752d0e0c8e68efc30bf8ac13d98d7c117"
+        }
+      ]
+    },
+    "cangjie_toml": {
+      "version": "0.2.3",
+      "sealed_cache_root": "/workspace/work/viewport-tests/cache/repository/source/default/cangjie_toml-0.2.3",
+      "selected_file_count": 60,
+      "files": [
+        {
+          "path": "cjpm.toml",
+          "bytes": 2825,
+          "sha256": "4e35fd94079dd198fe964992b6e03558302a7d2c1f5d12d62ee3880187b90f8d"
+        },
+        {
+          "path": "examples/cjpm_datamodel/src/cjpm_lock.cj",
+          "bytes": 1212,
+          "sha256": "af4ff91a9e81eb49bc5e3b4a6491b89ce0f711ac7bc2cd5bfa4fa2a3dc6f5dce"
+        },
+        {
+          "path": "examples/cjpm_datamodel/src/cjpm_toml.cj",
+          "bytes": 1231,
+          "sha256": "080cb6ee8ff34daa8eaef22ceeeb2cd8891030b86db74931440ccbeb1f0fdf1d"
+        },
+        {
+          "path": "examples/cjpm_datamodel/src/main.cj",
+          "bytes": 99,
+          "sha256": "82b534a0706eff4dce94c7566c66d2274feb61f523cf548c2ea7e388ca05be18"
+        },
+        {
+          "path": "examples/object_deserialization/src/complex.cj",
+          "bytes": 4380,
+          "sha256": "6a76c666724c9d1b67f80882cc6178d5af5cdef5d804c3804abbc1ef6221b25f"
+        },
+        {
+          "path": "examples/object_deserialization/src/main.cj",
+          "bytes": 89,
+          "sha256": "68787abc5cb33baf1a7d6e63ce86a772420aa0b0da335c671a30517622fefac1"
+        },
+        {
+          "path": "examples/object_deserialization/src/simple.cj",
+          "bytes": 1246,
+          "sha256": "84cfcd53c8d1fe48aeacb34545612835933e44650a5111c7014422147399f0f4"
+        },
+        {
+          "path": "src/cangjie_toml/from_toml.cj",
+          "bytes": 3784,
+          "sha256": "ddee339d58e2275ffaff9ffd0ab519b3204b46026c6233d1d8f40158f5a5f700"
+        },
+        {
+          "path": "src/cangjie_toml/import.cj",
+          "bytes": 356,
+          "sha256": "eb309bed5ee23a744518c137bdd11e2a2d6860e2603194419f8457ebe07e1242"
+        },
+        {
+          "path": "src/cangjie_toml/lexer/import.cj",
+          "bytes": 483,
+          "sha256": "aa808901c8f699da1cad9fcfb1abe949b4311b8f9273af0c08a59093e3b2248a"
+        },
+        {
+          "path": "src/cangjie_toml/lexer/lex_exception.cj",
+          "bytes": 924,
+          "sha256": "d140f549d8a8ed1f35047f78f2a69b347e0843cac4caffdc5f38af63b667ba0a"
+        },
+        {
+          "path": "src/cangjie_toml/lexer/lexer.cj",
+          "bytes": 5798,
+          "sha256": "ea66ad647e41d61399c4627e47f0c5adf1ef581482db0d830adc64105de547d7"
+        },
+        {
+          "path": "src/cangjie_toml/lexer/position.cj",
+          "bytes": 682,
+          "sha256": "81635882044bc3e19796a298abb84f3dae8aef98439d555d3f8011bc6d3cd7ac"
+        },
+        {
+          "path": "src/cangjie_toml/lexer/state.cj",
+          "bytes": 34278,
+          "sha256": "3f9919590baebdfe3b67a656f66f72ed22a3cea51326c92386f161efad4905b9"
+        },
+        {
+          "path": "src/cangjie_toml/lexer/token.cj",
+          "bytes": 2283,
+          "sha256": "32a238b83f04380d5ef651f7986d6bba63b4c5cf7347008ef71e42840240c82d"
+        },
+        {
+          "path": "src/cangjie_toml/lexer/util.cj",
+          "bytes": 1086,
+          "sha256": "eb5aa23820736d76f0d1819e4394edd2424eca6bdd681dfdcf04bb8d3a5debce"
+        },
+        {
+          "path": "src/cangjie_toml/parser/import.cj",
+          "bytes": 453,
+          "sha256": "becedcfc99dd11f62a2e8247872322cd7ca396ab2648f030cda7a7da81cfdf68"
+        },
+        {
+          "path": "src/cangjie_toml/parser/key.cj",
+          "bytes": 2270,
+          "sha256": "287deb0a7105597ea8ebc247a18ed36119963ca47ff874501138f063efff5228"
+        },
+        {
+          "path": "src/cangjie_toml/parser/key_info.cj",
+          "bytes": 168,
+          "sha256": "a07d115a23c08932920ed8eb6156c069b2c7269fcb3bc8ec2b207e34cd9af112"
+        },
+        {
+          "path": "src/cangjie_toml/parser/parse_exception.cj",
+          "bytes": 558,
+          "sha256": "918ac322cc539155d8e1234c82481651fe021ba7a129e09fe825fbadcfebc4d0"
+        },
+        {
+          "path": "src/cangjie_toml/parser/parser.cj",
+          "bytes": 28964,
+          "sha256": "4aff446046fa532c92449e19a905313ed8c4bee11dfecfae568a8aba18e452b5"
+        },
+        {
+          "path": "src/cangjie_toml/parser/toml_type.cj",
+          "bytes": 664,
+          "sha256": "783a902dc072f11619ce7117b75df211df21e6f0dfd6312723ad93380516018c"
+        },
+        {
+          "path": "src/cangjie_toml/parser/util.cj",
+          "bytes": 2419,
+          "sha256": "76549fc57bdc7dad6946216bf4b620b18dce25aa0209808bc23dc676747221f3"
+        },
+        {
+          "path": "src/cangjie_toml/util/collection.cj",
+          "bytes": 3856,
+          "sha256": "ce447567b288e3327b53e7fe1caadcb257f0a3c498a12fb8a15598f69318ee1b"
+        },
+        {
+          "path": "src/cangjie_toml/util/escape.cj",
+          "bytes": 1298,
+          "sha256": "ce3d9bbf019217b1c56b676aa38e6f3194b069cbe5a234caa54497626cfa6472"
+        },
+        {
+          "path": "src/cangjie_toml/util/import.cj",
+          "bytes": 72,
+          "sha256": "8ca3e184e7a54562ef55533f6caa63f05f93a155c46df4e5eb96bab6f73fc4f7"
+        },
+        {
+          "path": "src/cangjie_toml/util/parse.cj",
+          "bytes": 516,
+          "sha256": "5a152ea64e7436dfb3ea65a4076e28e4e8962fd9eb0ae93d2ce39d731c4b2cca"
+        },
+        {
+          "path": "src/cangjie_toml/util/string.cj",
+          "bytes": 1034,
+          "sha256": "827bdbf89b4f003c066b6678da1566e89672f69cdd5acb3a64de8f55eea85cf2"
+        },
+        {
+          "path": "src/package.cj",
+          "bytes": 20,
+          "sha256": "df8e5f684e132180eb1758fab93ca89859c3e6d865bdff7f1b99660856dfd0cc"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/import.cj",
+          "bytes": 48,
+          "sha256": "f17319ceb5ec0ff69abb2d96e5e8bbbcc11ab47382a91c422d02d49701be3393"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/array_test.cj",
+          "bytes": 4695,
+          "sha256": "520ca713b3f4889ed2f9a5eb7aaccb591d165097a93155017d2deae4d65cb7f0"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/bool_test.cj",
+          "bytes": 2489,
+          "sha256": "2f087634a92f2291704fb623f2106e8863a71ad83373579e74fceaad949b147f"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/control_test.cj",
+          "bytes": 4730,
+          "sha256": "3fb60363afe8002e45f1cd0bf003bf5294eb143b1ac81d391e5b463ad6f4b65d"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/encoding_test.cj",
+          "bytes": 3902,
+          "sha256": "068f56cb85932d7095f59fb2382b42f91a12087edd1ffe181c4ad6d406598a10"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/float_test.cj",
+          "bytes": 5735,
+          "sha256": "6eb50fe25afbac628bb6ffb2736e21dfbf5f0bf6a2934747adc1f367c9981e89"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/import.cj",
+          "bytes": 502,
+          "sha256": "d1e25ac185f52418cba2813fd9ec9ef83e64118310b11ebb2d8c7f9fc5c6cb5c"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/inline_table_test.cj",
+          "bytes": 5277,
+          "sha256": "bc911e4d8de32b920c340974e0f7d2e2faf2f0b4822c0d375a488efa19ad80a9"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/integer_test.cj",
+          "bytes": 5646,
+          "sha256": "05e2d9ae332faf1741ed7dbe6fbf6c5d69bbc87d79768edb3e895ed6d61a4bbe"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/key_test.cj",
+          "bytes": 5776,
+          "sha256": "7584442f6721332177ca3bdddf702458faa854192dddd4ba93e0e493e09bcfaf"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/spec_test.cj",
+          "bytes": 2730,
+          "sha256": "0bdd5787e3c5b0ddff257240eab7fe7201743e232b1f9bbf84d7dad44bff29e0"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/string_test.cj",
+          "bytes": 8408,
+          "sha256": "edb54ef7e22c86f67541d1f1ec8bb073361fc831b3e1f6c6aecb6809d95ec638"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/invalid/table_test.cj",
+          "bytes": 7428,
+          "sha256": "af536fe412a0541079aded71965343a1139fa82d2e7fc7e4c05d2fa6e3193548"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/array_test.cj",
+          "bytes": 8972,
+          "sha256": "5dfa2a0c929c10cc9aeabb2667a49ef7db73c09de54a628f1faf4e1d572f6c0b"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/bool_test.cj",
+          "bytes": 364,
+          "sha256": "bfa62748f4c865e7924b9923b2f79fadfe0689d71004af0435ede40126dbf7c6"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/comment_test.cj",
+          "bytes": 3760,
+          "sha256": "3b72df7f94eebd5e3cb8d412d709cad6d56c88b3b312073b17b8e4706585c50f"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/float_test.cj",
+          "bytes": 4170,
+          "sha256": "a1db326f759f91eea230dec28a1e8ecfec27864511807a5665b91a873018e12b"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/import.cj",
+          "bytes": 459,
+          "sha256": "a91a76d8f31f6e597d75c5a396b349bf43241799cf3edf242bc75bb9d6cf4857"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/inline_table_test.cj",
+          "bytes": 16404,
+          "sha256": "04867abd11b6ef2bb35a44b633e8081aa8ec30ccce5023d8c1b9f66946522511"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/integer_test.cj",
+          "bytes": 3033,
+          "sha256": "59ecacf7a534047f21b2c898f3cb1941f39f88a3194c7c56a82528a2a458566d"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/key_test.cj",
+          "bytes": 13552,
+          "sha256": "b695158c95d82d809257edd022e03f82c9be75a21997b9e2cdef0fcce3ee4531"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/misc_test.cj",
+          "bytes": 6761,
+          "sha256": "5543858925485b88f321218e70d4fa418e6c3f045302deb99f6d7d6e40f27430"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/spec_test.cj",
+          "bytes": 29022,
+          "sha256": "daeb8f4d09112db766e87c4ccbe3c7a91e038a9bf17f5c525f7c699ecfe26e24"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/string_test.cj",
+          "bytes": 15484,
+          "sha256": "c0bc1ffe18c412843eb53397da65b28abbbb2afe11229ed1918a3064f8a68c8f"
+        },
+        {
+          "path": "src/test/cangjie_toml/from_toml/valid/table_test.cj",
+          "bytes": 9562,
+          "sha256": "4e97bbaaca50528402511c5146f7be326e052b4f5164161a33cd15b183ca150c"
+        },
+        {
+          "path": "src/test/cangjie_toml/import.cj",
+          "bytes": 39,
+          "sha256": "3c3453ebbe9788a67fbdb1ffdbf77fe0ac3d74ae5c55e1421e6ec50de1f0c8d3"
+        },
+        {
+          "path": "src/test/cangjie_toml/util/import.cj",
+          "bytes": 124,
+          "sha256": "3f2e360b729b486d2c5f2d5468b95f828a06d4ed8e976b0bf0dacc27f544d76e"
+        },
+        {
+          "path": "src/test/from_toml_test.cj",
+          "bytes": 3590,
+          "sha256": "8d7b606ee7e497ad87f44c2e6841b4e8b2717dc5f4cd856f9de56697585de1ea"
+        },
+        {
+          "path": "src/test/import.cj",
+          "bytes": 381,
+          "sha256": "b5c0b6efccedf7fee2319f616d5fc520e0f6d1e6a506939c4b872bccb75dc2ad"
+        },
+        {
+          "path": "src/test/test_util/import.cj",
+          "bytes": 602,
+          "sha256": "5e850d60123e7300a200132ef1fb1a8e659b084e90314c20937921a544966615"
+        },
+        {
+          "path": "src/test/test_util/util.cj",
+          "bytes": 6855,
+          "sha256": "f022edc1cdaf61c688fbb83553741dae00a626138b94161d208c205b744c0c15"
+        }
+      ]
+    },
+    "unicode": {
+      "version": "0.1.0",
+      "sealed_cache_root": "/workspace/work/viewport-tests/cache/repository/source/default/unicode-0.1.0",
+      "selected_file_count": 29,
+      "files": [
+        {
+          "path": "cjpm.toml",
+          "bytes": 657,
+          "sha256": "42049dd08985115f3c6c6c7e26acb385c9fc48d59b7556e78bb1d7cf42a54dbc"
+        },
+        {
+          "path": "generator/src/codepoints.cj",
+          "bytes": 9370,
+          "sha256": "98c49e28c2a55753e2f5b09f2867f538b4e25bd4a29f4f67e5fff1c41faec70c"
+        },
+        {
+          "path": "generator/src/encodetest.cj",
+          "bytes": 476,
+          "sha256": "4e51cd0e3be62fb27233f957e0a62db001c49defa2af6987b4c5b7c33037406b"
+        },
+        {
+          "path": "generator/src/main.cj",
+          "bytes": 4501,
+          "sha256": "69cafcba66cd75f465fd8da8ff233c45958f237d9ad5ce9ed3dcdd764e70663a"
+        },
+        {
+          "path": "generator/src/parser.cj",
+          "bytes": 8598,
+          "sha256": "e3e437c02a421f17254bf7a83bd76f426ae25e92c266a04a6239dc8d37e4a2ba"
+        },
+        {
+          "path": "unicode/codepoint.cj",
+          "bytes": 16563,
+          "sha256": "d9893fb11919327f181657cfa8495e32cea26ce84523e53e9f18a88a9c5c9b9e"
+        },
+        {
+          "path": "unicode/codepointiterator.cj",
+          "bytes": 816,
+          "sha256": "7db920c4dd7ac118347d0ed408b071e3642d50d67398845f22cedf9d8339d026"
+        },
+        {
+          "path": "unicode/constants/blockalias.cj",
+          "bytes": 15779,
+          "sha256": "acbc435cac0576877ac0798854c939e6649c6c8b763e006331310cecf1f28563"
+        },
+        {
+          "path": "unicode/constants/unicodedata.cj",
+          "bytes": 231,
+          "sha256": "555747b796aa8ebccff296d6a657b8a37511ce02099c36547d9fb5ad43ee3c1d"
+        },
+        {
+          "path": "unicode/grapheme.cj",
+          "bytes": 2264,
+          "sha256": "b35f9669b76779910de192504c64d51f9f456055c0a11f2dfa104d3a1b17398f"
+        },
+        {
+          "path": "unicode/graphemeiterator.cj",
+          "bytes": 6519,
+          "sha256": "b95fe1156178423e4ad0e95c5bd299d33011f142446f407006a36b21afea6f7c"
+        },
+        {
+          "path": "unicode/test/casetest.cj",
+          "bytes": 2553,
+          "sha256": "ea3081d3155f38f35b69e3e72efa5ff415d197a78a39868ed9b50526568c7979"
+        },
+        {
+          "path": "unicode/test/charwidthtest.cj",
+          "bytes": 3150,
+          "sha256": "8fe5ef0ba043e7e5c80ba8450e15c63db0beef33c9acf54a4f655721f53cd37b"
+        },
+        {
+          "path": "unicode/test/decomposetest.cj",
+          "bytes": 1789,
+          "sha256": "745cd76500d67a2cc3d21cec129b8dd2505c5ed8645f1fcb7703810e5677ad46"
+        },
+        {
+          "path": "unicode/test/graphemetest.cj",
+          "bytes": 62744,
+          "sha256": "6967561fe5bc82332bb5d0e0c73e2e68fd92bbcbc8bde913a3ec336571217e9e"
+        },
+        {
+          "path": "unicode/types/bidirectionalclass.cj",
+          "bytes": 3101,
+          "sha256": "3a928255d304aa1d6d08276947ddb4c4ea314631e52cb82685e48d180c605cdd"
+        },
+        {
+          "path": "unicode/types/block.cj",
+          "bytes": 815,
+          "sha256": "be4f561ba0f34c1a0f53422a50ab2b649f88c7dc30fbb560ceaae423ffc96e13"
+        },
+        {
+          "path": "unicode/types/codable.cj",
+          "bytes": 1297,
+          "sha256": "2e3d9cef5c0b70647397aa564546413b920d62953a1b11156664fcaeff374a8f"
+        },
+        {
+          "path": "unicode/types/decompositiontype.cj",
+          "bytes": 2509,
+          "sha256": "4375d7ab19a1e759b2b175890f13e198f587fbcbcb1c72515da66f6441b662fe"
+        },
+        {
+          "path": "unicode/types/eastasianwidth.cj",
+          "bytes": 1632,
+          "sha256": "11ad45e7809e21a45d0604a3d700d477122166c106ab6370d7eceb3c0821ad0c"
+        },
+        {
+          "path": "unicode/types/generalcategory.cj",
+          "bytes": 8268,
+          "sha256": "cc199126c4b6a6968ad1735f51ab2e7a37ef4a8db81bf9d6400445b5cce3eb5b"
+        },
+        {
+          "path": "unicode/types/graphemeclusterbreak.cj",
+          "bytes": 2076,
+          "sha256": "c7fd2dfacf7339e9164a580911ae96e2303d0ed267712eff029243e03af95e92"
+        },
+        {
+          "path": "unicode/types/hangulsyllabletype.cj",
+          "bytes": 1437,
+          "sha256": "57182310651ba5035f0e96097126256281932599f7c482fd18f91a4a47cddecf"
+        },
+        {
+          "path": "unicode/types/indicconjunctbreak.cj",
+          "bytes": 1530,
+          "sha256": "a1548efc5f2f3e682a2c770bb79b577fedad362d624b2a1ca545c4483a8bb20e"
+        },
+        {
+          "path": "unicode/types/normalizationform.cj",
+          "bytes": 567,
+          "sha256": "2abce6f5c2728175dc5405c9a1f209683db33d273556280677b87d076a215978"
+        },
+        {
+          "path": "unicode/types/pvam.cj",
+          "bytes": 226,
+          "sha256": "59ef943565aeba000a45442a68ab3c8e8dd054e8f72f95685c91e5eb7f3ac821"
+        },
+        {
+          "path": "unicode/unicodewidth.cj",
+          "bytes": 752,
+          "sha256": "b0adb7ec3a77949716b6092eeb9cc4cb62965c9f3a3a062e77bafc9fc305adee"
+        },
+        {
+          "path": "unicode/utf/utf16.cj",
+          "bytes": 2263,
+          "sha256": "3c0a2a8be93aff33704f5e7bb1974bd0ea74c1517fb6c8b9369ae2fa831d090b"
+        },
+        {
+          "path": "unicode/utf/utf8.cj",
+          "bytes": 2809,
+          "sha256": "3a3c86ba4e37085c691820217de4f89bf1b2f48bc2e91a3cca747bab2c34b403"
+        }
+      ]
+    },
+    "unicodewidth": {
+      "version": "0.1.113",
+      "sealed_cache_root": "/workspace/work/viewport-tests/cache/repository/source/default/unicodewidth-0.1.113",
+      "selected_file_count": 13,
+      "files": [
+        {
+          "path": "cjpm.toml",
+          "bytes": 687,
+          "sha256": "f5819f0562ef4079f76b2d68e09f4d67806fbd68e0e410e51817a15df5cce36e"
+        },
+        {
+          "path": "examples/src/main.cj",
+          "bytes": 609,
+          "sha256": "41b03b09966a445cc6d9ee458227bf915790762ef2c7bc1b799715939bf8543c"
+        },
+        {
+          "path": "src/gen/lookup.cj",
+          "bytes": 7181,
+          "sha256": "6a4a6736dfe49d56b0f9771a1eb2038814dea1347aaa19cfe8b219972f06535b"
+        },
+        {
+          "path": "src/gen/props.cj",
+          "bytes": 4782,
+          "sha256": "15f711535b70ddfb1abf353a1532ad0a2792263e557a52f3010a7b56e5f95376"
+        },
+        {
+          "path": "src/gen/tables.cj",
+          "bytes": 100130,
+          "sha256": "838b9529adfd7b198e713ba1d85ab91d8739f8cfe8e52483c44ba7aacbcaaf4b"
+        },
+        {
+          "path": "src/gen/width_info.cj",
+          "bytes": 5415,
+          "sha256": "78cadcdd3b43bb464be01b629acc98288ace74e81e0aab8e1091ed124a006975"
+        },
+        {
+          "path": "src/lib.cj",
+          "bytes": 2893,
+          "sha256": "1f0bd8f2107b93511c5b82b49e9e0a47943e7fd3dfeb5555f8004a31c1649c1e"
+        },
+        {
+          "path": "src/lookup.cj",
+          "bytes": 15163,
+          "sha256": "42f30b21e60e7cd5db5f8456284c6694c82418166dc0b4a142cdc340a4c86550"
+        },
+        {
+          "path": "src/props.cj",
+          "bytes": 2313,
+          "sha256": "e8168c2a995251b274b3f278c366d8560685a146e29440a7e2bdf1e3d92c406d"
+        },
+        {
+          "path": "src/tables_test.cj",
+          "bytes": 536735,
+          "sha256": "8a5710f86aacd8b069adce7c9fb8fd5cff65eafca3144e202379e322b6c7b852"
+        },
+        {
+          "path": "src/test_test.cj",
+          "bytes": 2920,
+          "sha256": "d079af515ba2357cdb3b067eb381fb5396a9bcf5a42e874d886181ef8904a302"
+        },
+        {
+          "path": "src/tests.cj",
+          "bytes": 21836,
+          "sha256": "129f93d6caa66eab1c8639a6ab85c5c865aca34a4fc233a559b83f539d76ef19"
+        },
+        {
+          "path": "src/width_info.cj",
+          "bytes": 4322,
+          "sha256": "b891f694ad79aa54c963fd372f02ea5879735593bb2beb14bfdc9442700e5d17"
+        }
+      ]
+    }
+  },
+  "dependency_scope_seal": {
+    "sha256": "1e113e80daff1d1ff43c9945cb02a2f8275e3a9898dd1ac4386f4e91496d4ccc",
+    "selected_files": 174,
+    "semantics": "Original F1 aggregate includes source-cache files plus product/consumer manifests and lockfiles, with original absolute custody paths; not a payload SHA-256. Complete original records remain in final-provenance.json."
+  },
+  "dependency_index": "../../development/central-packages.json",
+  "sdk": {
+    "version": "1.2.0",
+    "backend": "cjnative",
+    "target": "x86_64-unknown-linux-gnu",
+    "hash_scope": "explicit cjc/cjpm and supplied runtime files; not full installed SDK",
+    "scope_sha256": "9d195c3c0dec2c51870908e2c44086791f8d8d22196d4437bb21a3c0f47a339a",
+    "files": [
+      {
+        "path": "/workspace/work/validation/sdk/cangjie/bin/cjc",
+        "bytes": 72906096,
+        "sha256": "023be1bb2ded1078906fc91919b3c1175ad14436ad88d23d505f7b8dcd0d7118"
+      },
+      {
+        "path": "/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative/libboundscheck.so",
+        "bytes": 71720,
+        "sha256": "3ad04fe38be88d5123078bd11d78cbc82377c114f6e6514b393ecd374e559bb7"
+      },
+      {
+        "path": "/workspace/work/validation/sdk/cangjie/runtime/lib/linux_x86_64_cjnative/libcangjie-runtime.so",
+        "bytes": 4392824,
+        "sha256": "2e32485852cbc8648c1298c23f2d1ff5f90bdb6c0331da20b29ee3d97d03e167"
+      },
+      {
+        "path": "/workspace/work/validation/sdk/cangjie/tools/bin/cjpm",
+        "bytes": 15266336,
+        "sha256": "a565d86540656c62340aacf6ac89c175b50c1f4d9ba4f69cee6a0fdacdee412d"
+      }
+    ],
+    "sdk_archive_sha256": null,
+    "sdk_archive_limit": "Archive/full installation digest is not supplied by this explicit-file seal; do not infer it from the scope digest."
+  },
+  "stdx": {
+    "version": "1.2.0-beta.02.1",
+    "sdk_version": "1.2.0",
+    "origin": "https://gitcode.com/Cangjie/cangjie_stdx/releases/download/v1.2.0-beta.02.1/cangjie-stdx-linux-x64-1.2.0-beta.02.1.zip",
+    "archive_sha256": "0d35811d84a770315c6fa2d1090a10568b3f7c763a1d1d54a1433b324f76afc0",
+    "archive_hash_source": "fixed docs/product/native-build.md; reused documented release checksum, no archive rehash in this docs-only projection",
+    "installed_scope_sha256": "f4da8079fe12b0256bc11578c34735ebb2e15a4751a2906d8804f007331d50b3",
+    "selected_installed_files": 125,
+    "layout": "${CANGJIE_STDX_PATH}/linux_x86_64_llvm/static/stdx -> extracted official archive/static/stdx",
+    "use": "cangjie_toml imports stdx.serialization.serialization; static binary dependency declared by product and upstream manifest",
+    "license": {
+      "path": "third_party/licenses/cangjie_stdx/LICENSE",
+      "bytes": 12396,
+      "sha256": "c6b19ceadc94d277930cd8a91ea324c73f322e22561a58457e92962b1ffb110e"
+    },
+    "license_name": "Apache-2.0 with Runtime Library Exception",
+    "upstream_notice": "Official stdx release also contains its upstream open-source software notice; retain it when redistributing the SDK/stdx distribution."
+  },
+  "ucd": {
+    "version": "17.0.0",
+    "origin": "https://www.unicode.org/Public/17.0.0/ucd/UCD.zip",
+    "archive_sha256": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e",
+    "bytes": 9101877,
+    "purpose": "Official unicode generator input for native property/normalization tables",
+    "override": "CJTUI_UCD_ARCHIVE points to the same checksum-verified archive",
+    "license": {
+      "path": "third_party/licenses/UNICODE-DATA-LICENSE.txt",
+      "bytes": 1995,
+      "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+    },
+    "license_name": "Unicode License v3",
+    "license_source": "https://www.unicode.org/license.txt",
+    "data_copyright": "UCD 17 data ©2025; retained retrieved license text ©1991–2026; original years preserved"
+  },
+  "native": {
+    "integration": "build.cj pre-build/pre-test -> bash native/build.sh -> four [ffi.c] static archives; no manual consumer FFI declaration",
+    "hook_inputs": [
+      {
+        "path": "build.cj",
+        "bytes": 191,
+        "sha256": "9d54e18173976d6828edb8c0c603a302935174d826a52cc112626e62c6ef37b9"
+      },
+      {
+        "path": "native/build.sh",
+        "bytes": 2312,
+        "sha256": "35f60ac54647452cd0a614d05cc6bab8c7adc72987b7bd1bcaed90d4bc33c3e9"
+      },
+      {
+        "path": "src/terminal_bridge.cj",
+        "bytes": 2436,
+        "sha256": "659798da1bf63458c3dff2b0a075ae899a9413589ee24ea00232b32df16cb523"
+      },
+      {
+        "path": "src/text/unicode.cj",
+        "bytes": 864,
+        "sha256": "09a190283fbbcd9c58886e7182de79f138469903fe643762e22fa178374d8cdc"
+      }
+    ],
+    "additional_official_generator_and_C_ASM_inputs": [
+      {
+        "path": "unicode-0.1.0/generator/cjpm.toml",
+        "bytes": 487,
+        "sha256": "7065bcbec8dddaa56c90da9b5ca428019def03c6bb314d8e41a37b8989ccf970",
+        "origin": "small targeted official source-cache read; whole original payload pinned separately"
+      },
+      {
+        "path": "unicode-0.1.0/unicodedata/include/unicodedata.h",
+        "bytes": 1713,
+        "sha256": "b475438f339860128f476b6748a86d40f9457cfdffd576dde64194d5c2af507b",
+        "origin": "small targeted official source-cache read; whole original payload pinned separately"
+      },
+      {
+        "path": "unicode-0.1.0/unicodedata/src/library.c",
+        "bytes": 6142,
+        "sha256": "d7dd1cf74ebe51d8048cf7f02de597e1ce6a6e2f39ef370d51eff7139f4a82f3",
+        "origin": "small targeted official source-cache read; whole original payload pinned separately"
+      },
+      {
+        "path": "unicode-0.1.0/unicodedata/src/data.S",
+        "bytes": 1407,
+        "sha256": "1e28abecb687bedbe4a9aba320b893e4f8b560eb62079f691f4dd3fcb95f449e",
+        "origin": "small targeted official source-cache read; whole original payload pinned separately"
+      }
+    ],
+    "generator": {
+      "package": "unicode 0.1.0 official payload",
+      "name": "generator",
+      "version": "1.0.0",
+      "declared_cjc_version": "1.0.0",
+      "actual_build_sdk": "1.2.0",
+      "direct_dependencies": [],
+      "source_hashes": "resolved_dependency_sources/unicode/files entries under generator/src/",
+      "command": "(cd unicode/generator && cjpm build), then target/generate UCD memmap"
+    },
+    "scope_sha256": "0e1a43655dc8f6c213d3554fe9a3a8a198c42d24c917d53534d81b4a2ffe0203",
+    "sources_and_archives": [
+      {
+        "path": "native/build.sh",
+        "bytes": 2312,
+        "sha256": "35f60ac54647452cd0a614d05cc6bab8c7adc72987b7bd1bcaed90d4bc33c3e9"
+      },
+      {
+        "path": "native/cjtui_capabilities.c",
+        "bytes": 7293,
+        "sha256": "e1a3a8148562f0b31c5924e8526505a662873f13dc0779f0ced770957d19d7e2"
+      },
+      {
+        "path": "native/cjtui_glyphs.c",
+        "bytes": 1664,
+        "sha256": "0b795a39e75f5efeac0a43cfde7c0f8e76c27e79c4ad50ef5a40cb0fe1b72405"
+      },
+      {
+        "path": "native/cjtui_terminal.c",
+        "bytes": 4769,
+        "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4"
+      },
+      {
+        "path": "native/libcjtui_capabilities.a",
+        "bytes": 7378,
+        "sha256": "91e88b9d5609439379aada1a226f70b7e30ebc96b3ac0193f1e672f9c9cd057c"
+      },
+      {
+        "path": "native/libcjtui_glyphs.a",
+        "bytes": 2512,
+        "sha256": "db4cdf35eb6d480719cca48dd9df2cff2b46330c5428f63a9019751a949076b7"
+      },
+      {
+        "path": "native/libcjtui_terminal.a",
+        "bytes": 6700,
+        "sha256": "c9ba953570aa4fbb25d21d94b36a012e06b70a4b0cbe833b6affb368b94213a4"
+      },
+      {
+        "path": "native/libunicodedata.a",
+        "bytes": 234778,
+        "sha256": "96f0552e197c0f02a7860f13cd0174617df639315252221828785103628e0c03"
+      }
+    ],
+    "compile": "GCC -fPIC -O2 for product C bridges and Unicode library.c; GCC -fPIC for upstream data.S; GNU ar rcs creates .a files",
+    "ABI": "Verified ordinary Linux x86_64 GNU/Cangjie cjnative consumption only. Product C FFI uses Int32/Int64 and byte/result pointers; upstream Unicode header includes platform-sized C unsigned long typedef. No cross-platform ABI claim.",
+    "archive_roles": {
+      "libunicodedata.a": "Generated Unicode data and upstream C queries; Unicode package FFI supplied transitively by cjtui",
+      "libcjtui_terminal.a": "POSIX terminal session, input, monotonic clock, output buffering/write",
+      "libcjtui_capabilities.a": "Terminal capability detection",
+      "libcjtui_glyphs.a": "Terminal glyph probe support"
+    },
+    "cache_behavior": "Product-local .cjtui-build lock and verified Unicode/UCD inputs; native-ready checks only libunicodedata.a reuse. Three product C bridge archives rebuild on hook invocation. No shared official source-cache mutation by hook.",
+    "shipping": "cjpm include contains native source, build hook and attribution; **/*.a, **/*.o, .cjtui-build, target and cjpm.lock excluded from source CJP. Compiled archives above are consumed build outputs, not shipped binaries."
+  },
+  "build_prerequisites": {
+    "required": [
+      "SDK/CJPM 1.2.0 environment sourced",
+      "Official stdx 1.2.0-beta.02.1 compatibility layout and CANGJIE_STDX_PATH",
+      "Bash",
+      "curl",
+      "tar",
+      "unzip",
+      "sha256sum",
+      "realpath",
+      "flock",
+      "GCC with C/ASM support",
+      "GNU ar",
+      "Writable package-local build directory",
+      "Official registry and Unicode download access, or existing verified inputs"
+    ],
+    "recorded_R8_tools": {
+      "gcc": "14.2.0 (Debian 14.2.0-19)",
+      "ar": "GNU Binutils 2.44",
+      "kernel": "Linux 6.18.57 x86_64",
+      "evidence": "../R8/execution/logs/slice-environment.log"
+    },
+    "final_tool_limit": "F1 seals compiler/CJPM and supplied runtime files and native output bytes; it does not separately seal GCC/ar binaries or every system tool version."
+  },
+  "normal_consumer_evidence": {
+    "public_projects": [
+      "benchmarks/rendering/workloads",
+      "benchmarks/rendering/compat",
+      "benchmarks/rendering"
+    ],
+    "ordinary_commands": [
+      {
+        "argv": [
+          "cjpm",
+          "build",
+          "-j",
+          "1",
+          "--target-dir",
+          "/workspace/work/input-timeout-execution/consumer/target",
+          "-o",
+          "final-d7e9-compat"
+        ],
+        "cwd": "/workspace/work/input-timeout-execution/consumer/cjtui-0.0.0/benchmarks/rendering/compat",
+        "end_ns": 1794700912253033368,
+        "environment": {
+          "CANGJIE_HOME": "/workspace/work/validation/sdk/cangjie",
+          "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+          "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+          "LANG": "C.UTF-8"
+        },
+        "exit_code": 0,
+        "free_after": 106401792,
+        "free_before": 130142208,
+        "min_free": 69783552,
+        "start_ns": 1794700846992923593
+      },
+      {
+        "argv": [
+          "cjpm",
+          "build",
+          "-j",
+          "1",
+          "--target-dir",
+          "/workspace/work/input-timeout-execution/consumer/target",
+          "-o",
+          "final-d7e9-diagnostic"
+        ],
+        "cwd": "/workspace/work/input-timeout-execution/consumer/cjtui-0.0.0/benchmarks/rendering",
+        "end_ns": 1794702299122163513,
+        "environment": {
+          "CANGJIE_HOME": "/workspace/work/validation/sdk/cangjie",
+          "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+          "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+          "LANG": "C.UTF-8"
+        },
+        "exit_code": 0,
+        "free_after": 313221120,
+        "free_before": 336936960,
+        "min_free": 297439232,
+        "start_ns": 1794702235790523291
+      },
+      {
+        "argv": [
+          "cjpm",
+          "build",
+          "-j",
+          "1",
+          "--target-dir",
+          "/workspace/work/input-timeout-execution/consumer/target",
+          "-o",
+          "final-d7e9-formal-device"
+        ],
+        "cwd": "/workspace/work/input-timeout-execution/fixtures/formal-device",
+        "end_ns": 1794702482453750638,
+        "environment": {
+          "CANGJIE_HOME": "/workspace/work/validation/sdk/cangjie",
+          "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+          "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+          "LANG": "C.UTF-8"
+        },
+        "exit_code": 0,
+        "free_after": 290078720,
+        "free_before": 313143296,
+        "min_free": 238211072,
+        "start_ns": 1794702417370414442
+      },
+      {
+        "argv": [
+          "cjpm",
+          "build",
+          "-j",
+          "1",
+          "--target-dir",
+          "/workspace/work/input-timeout-execution/consumer/target",
+          "-o",
+          "final-d7e9-i015"
+        ],
+        "cwd": "/workspace/work/input-timeout-execution/fixtures/i015",
+        "end_ns": 1794702635841325979,
+        "environment": {
+          "CANGJIE_HOME": "/workspace/work/validation/sdk/cangjie",
+          "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+          "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+          "LANG": "C.UTF-8"
+        },
+        "exit_code": 0,
+        "free_after": 267079680,
+        "free_before": 290054144,
+        "min_free": 250564608,
+        "start_ns": 1794702573032162096
+      },
+      {
+        "argv": [
+          "cjpm",
+          "build",
+          "-j",
+          "1",
+          "--target-dir",
+          "/workspace/work/input-timeout-execution/consumer/target",
+          "-o",
+          "final-d7e9-runtime-session"
+        ],
+        "cwd": "/workspace/work/input-timeout-execution/fixtures/runtime-session",
+        "end_ns": 1794702772725214482,
+        "environment": {
+          "CANGJIE_HOME": "/workspace/work/validation/sdk/cangjie",
+          "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+          "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+          "LANG": "C.UTF-8"
+        },
+        "exit_code": 0,
+        "free_after": 241496064,
+        "free_before": 264519680,
+        "min_free": 241397760,
+        "start_ns": 1794702710981787278
+      },
+      {
+        "argv": [
+          "cjpm",
+          "build",
+          "-j",
+          "1",
+          "--target-dir",
+          "/workspace/work/input-timeout-execution/consumer/target"
+        ],
+        "cwd": "/workspace/work/input-timeout-execution/consumer/cjtui-0.0.0/benchmarks/rendering/workloads",
+        "end_ns": 1794700802154111867,
+        "environment": {
+          "CANGJIE_HOME": "/workspace/work/validation/sdk/cangjie",
+          "CANGJIE_STDX_PATH": "/workspace/work/linux-build-recon/stdx-env",
+          "CJTUI_UCD_ARCHIVE": "/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip",
+          "LANG": "C.UTF-8"
+        },
+        "exit_code": 0,
+        "free_after": 130158592,
+        "free_before": 169086976,
+        "min_free": 103387136,
+        "start_ns": 1794700710912572605
+      }
+    ],
+    "executables": {
+      "compat": {
+        "path": "/workspace/work/input-timeout-execution/consumer/target/release/bin/final-d7e9-compat",
+        "sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+        "bytes": 19945664
+      },
+      "diagnostic": {
+        "path": "/workspace/work/input-timeout-execution/consumer/target/release/bin/final-d7e9-diagnostic",
+        "sha256": "d52f443b32588013eafc814b73ce2e8ee5393698cc19caf3a5de99a3cb8e3b98",
+        "bytes": 19926720
+      },
+      "formal_device": {
+        "path": "/workspace/work/input-timeout-execution/consumer/target/release/bin/final-d7e9-formal-device",
+        "sha256": "31520e9e2f9746b1bddd1761f21728c0630784a4127853fcc605d994fde4158a",
+        "bytes": 19275344
+      },
+      "i015": {
+        "path": "/workspace/work/input-timeout-execution/consumer/target/release/bin/final-d7e9-i015",
+        "sha256": "d80acf921b1c54fe8a766e5eb1dbf0f22f45907593cae5cfe237264cf7190d00",
+        "bytes": 19193488
+      },
+      "runtime_session": {
+        "path": "/workspace/work/input-timeout-execution/consumer/target/release/bin/final-d7e9-runtime-session",
+        "sha256": "119f6eee2a3e84076a5bfb49392ef571bbaab42648432032176376ba178eed7f",
+        "bytes": 19205248
+      }
+    },
+    "finite_smokes": [
+      {
+        "run_id": "smoke-0a0a328267674ef2ae31e09d7fe45b54",
+        "version": "compat",
+        "exit_code": 0,
+        "validation_exits": {
+          "cells": 0,
+          "carets": 0,
+          "samples": 0
+        }
+      },
+      {
+        "run_id": "smoke-61c468aea9f847b9be6e902b273771d2",
+        "version": "diagnostic",
+        "exit_code": 0,
+        "validation_exits": {
+          "cells": 0,
+          "carets": 0,
+          "samples": 0
+        }
+      }
+    ],
+    "smoke_correction": "Original external metadata/selector errors retained in raw evidence; corrected joins reuse the same product observations, no fabricated product rerun.",
+    "affected_device_runtime_cases": {
+      "formal_device": 13,
+      "partial_expiry_I015": 1,
+      "queued_controls": 2,
+      "runtime_session": 12,
+      "total": 28
+    },
+    "continuity": {
+      "common_workload_source_bytes": true,
+      "external_process_observer": true,
+      "native_source_and_archive_bytes": true,
+      "official_cache_source_bytes": true,
+      "sdk_explicit_tools_and_runtime": true,
+      "stdx_distribution": true,
+      "ucd_archive": true
+    },
+    "scope": "Six ordinary build commands exit 0; three public projects plus three existing independent device/runtime fixtures. Test-local fixture C shims/link wrappers are not new product dependencies."
+  },
+  "runtime_closure": {
+    "native_archives": "Four static .a inputs; not shared runtime dependencies",
+    "historical_independent_ldd": {
+      "source": "../R8/execution/logs/slice-runtime.log",
+      "libraries": [
+        "libcangjie-runtime.so",
+        "libboundscheck.so",
+        "libm.so.6",
+        "libc.so.6",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "/lib64/ld-linux-x86-64.so.2"
+      ],
+      "execution": "Copied R8 consumer ran exit 0 without product checkout/cache/UCD access; original artifact scope retained"
+    },
+    "final_evidence": "Fresh D7 consumer execution and exact supplied SDK-runtime hashes are bound by F1/F2. No final-D7 ldd/file-access audit is present in this evidence subset; historical R8 audit is not relabeled as a new-ELF audit.",
+    "runtime_environment": "Keep SDK runtime library resolution configured; native generation tools/UCD are build prerequisites, not claimed runtime data files. Fresh-cache/release closure reconciliation stays with TASK-023."
+  },
+  "history_and_reuse": {
+    "R5_R7": "Original missing automatic libunicodedata build/link and package/source correspondence limits retained in dependencies.md; normal cjtui hook resolves integration, upstream unicode package alone still lacks that hook.",
+    "M1_CJP": "29cab0f8de79a3b42ebc6a8bf7e2c2648217b565ccbc0e03f77f4cb915852c7a",
+    "pre_fix_M2_CJP": "8572434f9b83603e96b2bf9ea50965a8b3b6a888ff69680a7e8df24d9c805ff6",
+    "scope": "Old headless/correctness and prior independent normal-consumer evidence keep original source/CJP/ELF identities; no quantitative performance or final-device claim in this dependency projection.",
+    "original_independent_manifest_bindings": {
+      "/workspace/work/rendering-benchmark-execution/actual/admission.json": {
+        "bytes": 10947,
+        "sha256": "a07d36fd680472cc3569bad87ee55def667fb6439e7f0ee02587ae26c31132cc"
+      },
+      "/workspace/work/rendering-benchmark-execution/actual/new-provenance.json": {
+        "bytes": 135776,
+        "sha256": "ca4bc95c36c3dfb30be8c73cbc665a4bbb0e9eadfc00b0f21a55ce6ac452c41c"
+      },
+      "/workspace/work/rendering-benchmark-execution/actual/old-provenance.json": {
+        "bytes": 134834,
+        "sha256": "3ba1fec26cfd8f55cb8549ac8cb95e80cc5b91baf19caaded43c25015c5de814"
+      }
+    },
+    "reuse_admission": {
+      "path": "/workspace/work/input-timeout-review/reuse-admission.json",
+      "sha256": "6dbb61fd3cad7b4edc2f335b467433ccdd4a6d361febdff0f73c9ab9e98d8532"
+    }
+  },
+  "license_policy": "User ruling after R7: usable packages may be used; preserve original licenses and attribution. Recorded declaration conflicts are not project implementation/delivery blockers; do not rewrite upstream texts.",
+  "limits": [
+    "No builds, tests, network lookups, GUI/TTY/native probes, decompression or large archive/SDK rehash by the docs-only projection.",
+    "Full SDK/archive/system-tool seal and final ELF runtime audit are not implied by selected-file scope hashes.",
+    "Existing official cache accepted; first-download, empty-cache, hermetic and offline consumption not established by F1.",
+    "Final TASK-003 independent acceptance and TASK-023 T087 fresh-cache/release/source-package reconciliation remain pending.",
+    "No full Linux, all-host, cross-CPU or other required platform acceptance."
+  ]
+}

@@ -24,7 +24,39 @@
         "cjcVersion": "1.0.0",
         "indexVersion": 1
       },
-      "name": "ansies"
+      "name": "ansies",
+      "relationship": "direct",
+      "role": "ANSI generation and supported terminal-reply parsing; not a complete keyboard/rich-text parser",
+      "registry_payload": {
+        "url": "https://pkg.cangjie-lang.cn/registry/pkg/ansies/1.3.113",
+        "sha256": "396ead6ab841eddd12b196fb657848587c4514a435c536146810ee5675344940",
+        "checksum_origin": "official registry index; first four packages also retained in R8 dependency-inputs.sha256"
+      },
+      "resolved_source": {
+        "manifest": "../reviews/Linux-final/dependency-manifest.json",
+        "json_pointer": "/resolved_dependency_sources/ansies",
+        "selected_files": 57,
+        "scope": "Sealed F1 source .cj files and top-level package manifest; not every payload member or an SDK/cache-wide digest"
+      },
+      "license_provenance": {
+        "repository": "https://github.com/cangjielanguage-sig/ansies4cj.git",
+        "commit": "dac6fe9ab1407cd533153e98b091cda0d8610713",
+        "texts": [
+          {
+            "path": "third_party/licenses/ansies/LICENSE",
+            "source_url": "https://github.com/cangjielanguage-sig/ansies4cj/blob/dac6fe9ab1407cd533153e98b091cda0d8610713/LICENSE",
+            "sha256": "3ff90416cfa7c39fa712549d388be9f6a6c9f08b56a5df3b8a19727978eae0a5"
+          },
+          {
+            "path": "third_party/licenses/ansies/README.OpenSource",
+            "source_url": "https://github.com/cangjielanguage-sig/ansies4cj/blob/dac6fe9ab1407cd533153e98b091cda0d8610713/README.OpenSource",
+            "sha256": "b077416cdd0bb7d739c7fed04f8089ae37a8090a0c7c9a821d43232c6cd54040"
+          }
+        ],
+        "comparison_evidence": "../reviews/R7/evidence/licenses/evidence-index.json",
+        "whole_payload_equals_upstream": false,
+        "source_correspondence": "Runtime source matches fixed mirror; version/manifest/test/macrocall differences remain."
+      }
     },
     "unicode": {
       "version": "0.1.0",
@@ -43,7 +75,39 @@
         "cjcVersion": "1.1.0",
         "indexVersion": 1
       },
-      "name": "unicode"
+      "name": "unicode",
+      "relationship": "direct",
+      "role": "Grapheme segmentation and normalization provider; cjtui uses graphemes, not unicode width",
+      "registry_payload": {
+        "url": "https://pkg.cangjie-lang.cn/registry/pkg/unicode/0.1.0",
+        "sha256": "d810505f62b43417ce673fb9c811f740503d3df88665307557544eae6d073c4c",
+        "checksum_origin": "official registry index; first four packages also retained in R8 dependency-inputs.sha256"
+      },
+      "resolved_source": {
+        "manifest": "../reviews/Linux-final/dependency-manifest.json",
+        "json_pointer": "/resolved_dependency_sources/unicode",
+        "selected_files": 29,
+        "scope": "Sealed F1 source .cj files and top-level package manifest; not every payload member or an SDK/cache-wide digest"
+      },
+      "license_provenance": {
+        "repository": "https://gitcode.com/vchuoshen6/libunicode.git",
+        "commit": "a12b0d8009e3111cc3f98563026a5b2dbfaf149f",
+        "texts": [
+          {
+            "path": "third_party/licenses/unicode/LICENSE",
+            "source_url": "https://gitcode.com/vchuoshen6/libunicode/blob/a12b0d8009e3111cc3f98563026a5b2dbfaf149f/LICENSE",
+            "sha256": "3ff90416cfa7c39fa712549d388be9f6a6c9f08b56a5df3b8a19727978eae0a5"
+          },
+          {
+            "path": "third_party/licenses/unicode/README.OpenSource",
+            "source_url": "https://gitcode.com/vchuoshen6/libunicode/blob/a12b0d8009e3111cc3f98563026a5b2dbfaf149f/README.OpenSource",
+            "sha256": "1e962fe7c70199c241e4a2241eaf1d61af8bc1fbf32c3af1a4f333749c37949e"
+          }
+        ],
+        "comparison_evidence": "../reviews/R7/evidence/licenses/evidence-index.json",
+        "whole_payload_equals_upstream": false,
+        "source_correspondence": "Most runtime/generator/C/ASM files differ only in line endings; README/test differences and package-only unicode/unicodewidth.cj remain."
+      }
     },
     "unicodewidth": {
       "version": "0.1.113",
@@ -63,7 +127,54 @@
         "cjcVersion": "1.1.3",
         "indexVersion": 1
       },
-      "name": "unicodewidth"
+      "name": "unicodewidth",
+      "relationship": "direct",
+      "role": "Sole display-width provider, including widthCjk ambiguous-width policy",
+      "registry_payload": {
+        "url": "https://pkg.cangjie-lang.cn/registry/pkg/unicodewidth/0.1.113",
+        "sha256": "6fa20716cc224c4d774ca83e5a20ebaa1f86b52ac495cff392655dc2b34eea94",
+        "checksum_origin": "official registry index; first four packages also retained in R8 dependency-inputs.sha256"
+      },
+      "resolved_source": {
+        "manifest": "../reviews/Linux-final/dependency-manifest.json",
+        "json_pointer": "/resolved_dependency_sources/unicodewidth",
+        "selected_files": 13,
+        "scope": "Sealed F1 source .cj files and top-level package manifest; not every payload member or an SDK/cache-wide digest"
+      },
+      "license_provenance": {
+        "repository": "https://atomgit.com/cj-awesome/unicodewidth4cj.git",
+        "commit": "b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5",
+        "texts": [
+          {
+            "path": "third_party/licenses/unicodewidth/COPYRIGHT",
+            "source_url": "https://atomgit.com/cj-awesome/unicodewidth4cj/blob/b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5/COPYRIGHT",
+            "sha256": "23860c2a7b5d96b21569afedf033469bab9fe14a1b24a35068b8641c578ce24d"
+          },
+          {
+            "path": "third_party/licenses/unicodewidth/LICENSE",
+            "source_url": "https://atomgit.com/cj-awesome/unicodewidth4cj/blob/b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5/LICENSE",
+            "sha256": "57a0e7f3270c6b6b341aa5080207063c77b2639ed5da56e0f7e0bbcc1e34b02b"
+          },
+          {
+            "path": "third_party/licenses/unicodewidth/LICENSE-APACHE",
+            "source_url": "https://atomgit.com/cj-awesome/unicodewidth4cj/blob/b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5/LICENSE-APACHE",
+            "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+          },
+          {
+            "path": "third_party/licenses/unicodewidth/LICENSE-MIT",
+            "source_url": "https://atomgit.com/cj-awesome/unicodewidth4cj/blob/b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5/LICENSE-MIT",
+            "sha256": "7b63ecd5f1902af1b63729947373683c32745c16a10e8e6292e2e2dcd7e90ae0"
+          },
+          {
+            "path": "third_party/licenses/unicodewidth/README.OpenSource",
+            "source_url": "https://atomgit.com/cj-awesome/unicodewidth4cj/blob/b3d9c8c8684f3a093a2e9d9d306ec36a3eb67cb5/README.OpenSource",
+            "sha256": "6c0a7fe96d19fc8367c3e524a5e4d5ab2316f6aab981e59539ab657135798754"
+          }
+        ],
+        "comparison_evidence": "../reviews/R7/evidence/licenses/evidence-index.json",
+        "whole_payload_equals_upstream": false,
+        "source_correspondence": "All 35 files correspond: one byte-identical and 34 CRLF/LF differences."
+      }
     },
     "bitarray": {
       "version": "0.1.0",
@@ -83,7 +194,104 @@
         "cjcVersion": "1.0.5",
         "indexVersion": 1
       },
-      "name": "bitarray"
+      "name": "bitarray",
+      "relationship": "transitive: ansies",
+      "role": "Transitive ansies TextStyle bit storage",
+      "registry_payload": {
+        "url": "https://pkg.cangjie-lang.cn/registry/pkg/bitarray/0.1.0",
+        "sha256": "3c5d7f12e9a1ce68295fb547f0892016911e1cef54218343102a2101ece4d01c",
+        "checksum_origin": "official registry index; first four packages also retained in R8 dependency-inputs.sha256"
+      },
+      "resolved_source": {
+        "manifest": "../reviews/Linux-final/dependency-manifest.json",
+        "json_pointer": "/resolved_dependency_sources/bitarray",
+        "selected_files": 8,
+        "scope": "Sealed F1 source .cj files and top-level package manifest; not every payload member or an SDK/cache-wide digest"
+      },
+      "license_provenance": {
+        "repository": "https://atomgit.com/vchuoshen6/libbitarray.git",
+        "commit": "c6c5a40a5ed2a51199cb3a8b9702c01a8da1e694",
+        "texts": [
+          {
+            "path": "third_party/licenses/bitarray/LICENSE",
+            "source_url": "https://atomgit.com/vchuoshen6/libbitarray/blob/c6c5a40a5ed2a51199cb3a8b9702c01a8da1e694/LICENSE",
+            "sha256": "57a0e7f3270c6b6b341aa5080207063c77b2639ed5da56e0f7e0bbcc1e34b02b"
+          },
+          {
+            "path": "third_party/licenses/bitarray/LICENSE-APACHE",
+            "source_url": "https://atomgit.com/vchuoshen6/libbitarray/blob/c6c5a40a5ed2a51199cb3a8b9702c01a8da1e694/LICENSE-APACHE",
+            "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+          },
+          {
+            "path": "third_party/licenses/bitarray/LICENSE-MIT",
+            "source_url": "https://atomgit.com/vchuoshen6/libbitarray/blob/c6c5a40a5ed2a51199cb3a8b9702c01a8da1e694/LICENSE-MIT",
+            "sha256": "7b63ecd5f1902af1b63729947373683c32745c16a10e8e6292e2e2dcd7e90ae0"
+          }
+        ],
+        "comparison_evidence": "../reviews/R7/evidence/licenses/evidence-index.json",
+        "whole_payload_equals_upstream": false,
+        "source_correspondence": "14 source/document/manifest files match; four extra example cache/lock files. README/license project-name and copyright conflicts retained.",
+        "declaration_conflicts": "Registry MIT/Apache-2.0; README says 无。; root LICENSE names unicodewidth4cj/cfgif4cj; separate MIT names Rust Project Developers. Preserve original texts; user ruling makes these nonblocking."
+      }
+    },
+    "cangjie_toml": {
+      "name": "cangjie_toml",
+      "version": "0.2.3",
+      "license": [
+        "MIT"
+      ],
+      "index": {
+        "group": null,
+        "name": "cangjie_toml",
+        "version": "0.2.3",
+        "dependencies": [],
+        "testDependencies": [],
+        "scriptDependencies": [],
+        "sha256sum": "297998b23b08f2a43bb6821765c8991b3a078ceb31649068e777db8cb8a5f398",
+        "yanked": false,
+        "cjcVersion": "1.1.0",
+        "indexVersion": 1
+      },
+      "relationship": "direct",
+      "role": "Theme TOML lexer/parser; requires external stdx serialization binary interfaces",
+      "registry_payload": {
+        "url": "https://pkg.cangjie-lang.cn/registry/pkg/cangjie_toml/0.2.3",
+        "sha256": "297998b23b08f2a43bb6821765c8991b3a078ceb31649068e777db8cb8a5f398",
+        "checksum_origin": "official registry index; first four packages also retained in R8 dependency-inputs.sha256"
+      },
+      "resolved_source": {
+        "manifest": "../reviews/Linux-final/dependency-manifest.json",
+        "json_pointer": "/resolved_dependency_sources/cangjie_toml",
+        "selected_files": 60,
+        "scope": "Sealed F1 source .cj files and top-level package manifest; not every payload member or an SDK/cache-wide digest"
+      },
+      "license_provenance": {
+        "text": "third_party/licenses/cangjie_toml/LICENSE",
+        "sha256": "0a9a0ef0c4ba374a7e00ea46de8078e0fdeb6d6ba17bf915c6a3e037a74864b0",
+        "copyright": "Copyright (c) 2025 Shibo Meng",
+        "source": "official cangjie_toml 0.2.3 package LICENSE; retained original text"
+      }
     }
-  }
+  },
+  "projection_at": "2026-11-15",
+  "projection_source": "d7e9d1445f98021a798d223de97b97b45239de93",
+  "registry": "https://pkg.cangjie-lang.cn/registry",
+  "resolution": {
+    "direct": [
+      "ansies",
+      "unicode",
+      "unicodewidth",
+      "cangjie_toml"
+    ],
+    "transitive": {
+      "ansies": [
+        "bitarray"
+      ]
+    },
+    "external_binary_prerequisite": "Cangjie stdx 1.2.0-beta.02.1 for cangjie_toml; not a registry package dependency",
+    "evidence": "../reviews/Linux-final/dependency-manifest.json",
+    "scope": "Final D7 clean package; established official cache, not an empty-cache/hermetic proof"
+  },
+  "license_policy": "User ruling after R7: usable packages may be used; preserve original licenses and attribution. Recorded declaration conflicts are not project implementation/delivery blockers; do not rewrite upstream texts.",
+  "retrieved_at_scope": "2026-11-09 records for the original four packages; cangjie_toml projected from existing official index/source cache and fixed product attribution, with no new network retrieval."
 }
