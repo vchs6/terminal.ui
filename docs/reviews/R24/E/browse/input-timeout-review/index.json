@@ -1,0 +1,342 @@
+{
+  "status": "SCOPED_SOURCE_SPEC_QUALITY_PASS_AND_REUSE_PREFLIGHT_COMPLETE",
+  "base": "c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960",
+  "test_intermediate": "555a0a127a485f6ac8498bb31e5257ece69e2367",
+  "head": "d7e9d1445f98021a798d223de97b97b45239de93",
+  "reviewer": "independent source/quality and scoped evidence-admission role",
+  "ranked_source_findings": [],
+  "report_lines": 26,
+  "changed_files": [
+    "M\tsrc/application.cj",
+    "A\ttests/keyboard/queued_input/README.md",
+    "A\ttests/keyboard/queued_input/regression.py"
+  ],
+  "prior_product_source_diff": "",
+  "selected_benchmark_sha_matches": {
+    "benchmarks/rendering/compat/src/main.cj": true,
+    "benchmarks/rendering/compat/src/terminal_state.cj": true,
+    "benchmarks/rendering/compat/src/terminal_runner.cj": true,
+    "benchmarks/rendering/compat/src/terminal_initial.cj": true,
+    "benchmarks/rendering/workloads/src/timing_runner.cj": true,
+    "benchmarks/rendering/workloads/src/initial_runner.cj": true,
+    "benchmarks/rendering/workloads/src/simple_runner.cj": true,
+    "benchmarks/rendering/src/initial_diagnostic.cj": true
+  },
+  "checked_bindings": [
+    {
+      "path": "/workspace/work/input-timeout-review/brief.md",
+      "bytes": 3622,
+      "sha256": "82ffd9a01503ba45d3cafe04fd0d18ee4d39151bf8d8360f9b719fcd6a5a431e",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-review/review-package.txt",
+      "bytes": 21340,
+      "sha256": "4a8723908a8d37524cca5ed00c389b0d601fef5a98e1839fcd604f8105a3a714",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/brief.md",
+      "bytes": 4813,
+      "sha256": "de0e9875b69eb2045ba6b9ce49319cd42f13d2c613612442421a76f81dc33adc",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/AGENTS.md",
+      "bytes": 35500,
+      "sha256": "262e6e870226dd626a80a40f64b7ce75aea76d4e4c0a33235b529029e89345dd",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/docs/product/keyboard-input.md",
+      "bytes": 2071,
+      "sha256": "ee49f1734b551400e4426cf723c529e57174e7719b81806ba4d11da5b947cacf",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/src/application.cj",
+      "bytes": 36183,
+      "sha256": "1aee59e7215e581ce411a6fb914dcad0da06db88d61fffd651316653e124516d",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/src/keyboard_decoder.cj",
+      "bytes": 16119,
+      "sha256": "4f3ebcffb0e809a8f3b08d98afff46554f56297ed64a2a9cb6d7517e183b4beb",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/native/cjtui_terminal.c",
+      "bytes": 4769,
+      "sha256": "789257911dbef9c8fa90f76097af04e5a08c0850f5367400ab5e5f7ccf4555f4",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/tests/keyboard/queued_input/regression.py",
+      "bytes": 14290,
+      "sha256": "564902e6cd9b31599af2179084647853255484a4972c51e732f47bd4c6d362ed",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/tests/keyboard/queued_input/README.md",
+      "bytes": 4086,
+      "sha256": "41c63a241a2da01587b5404b64c7bc479ac4a06eb4cba13f692935483de7b916",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/openspec/changes/implement-incremental-rendering/design.md",
+      "bytes": 45619,
+      "sha256": "c7b714cc030695cecea3f22206b2c6303d2e3bbd1814b6d4a65321602b3f5c8a",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/queued-input-regression/index.json",
+      "bytes": 23248,
+      "sha256": "8f679b6d8c2cd2b18d1545cf78bcf01f4f24be5918564d291faad5ab2fd22f38",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/index.json",
+      "bytes": 9340,
+      "sha256": "6059f00dad2da8c7447763b5c0f41fd355d65d045d11621c98ad36e7a7e0efba",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/vte-protocol-counterexample/report.md",
+      "bytes": 3443,
+      "sha256": "db677b23e36509070ac0fa3a5804ba1b37efd63357f4c3be3c37e56263849a4f",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/vte-protocol-counterexample/index.json",
+      "bytes": 32827,
+      "sha256": "07683e0dcaa2d8ea16f1909020feedb47f569c2b88b9dca19167973fc6ee2329",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-execution/actual/admission.json",
+      "bytes": 10947,
+      "sha256": "a07d36fd680472cc3569bad87ee55def667fb6439e7f0ee02587ae26c31132cc",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-execution/actual/new-provenance.json",
+      "bytes": 135776,
+      "sha256": "ca4bc95c36c3dfb30be8c73cbc665a4bbb0e9eadfc00b0f21a55ce6ac452c41c",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-execution/actual/old-provenance.json",
+      "bytes": 134834,
+      "sha256": "3ba1fec26cfd8f55cb8549ac8cb95e80cc5b91baf19caaded43c25015c5de814",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-execution/actual/correctness/summary.json",
+      "bytes": 180,
+      "sha256": "8ec7ba7a192d22a04c1cb9326277e90ef7e11c043d5df6d3f44e2f8000903749",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-execution/actual/headless/repetitions-raw.receipt.json",
+      "bytes": 29101,
+      "sha256": "faf65f56fa97a439a6b3d5e386a51a0b034ef9299195113815ebf6448fac4b45",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/compat-build.log",
+      "bytes": 91,
+      "sha256": "3585e3f00aab41251ba399b3995cdeb9fbd8bbe9a572c0bcdabac8f8bc9be31e",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/compat-build-normal.log",
+      "bytes": 19,
+      "sha256": "caa08521da2dafb0047aaac6a5919e00072e873ce9f52f4262e2212794d78e5b",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/bundle.log",
+      "bytes": 155221,
+      "sha256": "2161911175520a48c9cbd358239d6d2a28b1d93dfcbaa385788ed67e0359ef38",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-tests/source/tests/rendering_benchmark/native/process_cost.c",
+      "bytes": 2402,
+      "sha256": "45b61b8f21c0842305ce74786f6bbd5e7a3aea1eef74a0a350de35332b3d07ba",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-execution/operator/realhosts.py",
+      "bytes": 9852,
+      "sha256": "e78bcd76e2af216ce12605e1efd534ef19f07ec4b5332e02025027bf14b281f7",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-execution/operator/remaining_cpu.py",
+      "bytes": 1684,
+      "sha256": "86d5fe5368c027b598b9b1d27b2a1c38a9e4b0aa192e719e0b74ffd19cc4c126",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/queued-input-regression/actual-baseline-final-queued/result.json",
+      "bytes": 5328,
+      "sha256": "a87b1d1d30365c18973482d7901e216fe1ec61186cfd1e08f0d7f519cf360303",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/queued-input-regression/actual-baseline-final-queued/native-records.json",
+      "bytes": 25076,
+      "sha256": "df0682cc7f2841f2d5517e0e709e1877d1f8a92a55077b0dd45cf23bf5b5512a",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/queued-input-regression/actual-baseline-final-queued/events.json",
+      "bytes": 1064,
+      "sha256": "78e14efcaf36533aa593ef91919d384d8ddf6fb58039aeaa9ead18bd7b64c4dc",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/queued-input-regression/actual-baseline-final-idle-escape/result.json",
+      "bytes": 5296,
+      "sha256": "5e849a1ed2fdeeb010f06a3c0ed89d7b7a53af410089f7bf6e6b5e1a78c92428",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/queued-input-regression/actual-baseline-final-idle-escape/native-records.json",
+      "bytes": 31687,
+      "sha256": "291c58db7f03439a67c7ec09ad211ace00bda1f7d88b4cd28109c9585a57408c",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/queued-input-regression/actual-baseline-final-idle-escape/events.json",
+      "bytes": 1497,
+      "sha256": "e83229ebb19d3b4508573e6020a6fd9b8970bd46d5b510245ca9713704753268",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/queued/result.json",
+      "bytes": 5493,
+      "sha256": "41156ce7c19c7e01cde7ee8df81b89116f794a763fa483f0c1d242972724ade8",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/queued/native-records.json",
+      "bytes": 43488,
+      "sha256": "9288ffbd3e029030c0e7c0c5b63adf7df3e0c68940278c433f25946878c2be79",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/queued/events.json",
+      "bytes": 6189,
+      "sha256": "33d5d450594eb0b94bf30fb306a8ca823a761223a7eeb342cf950bb47fa27e28",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/idle-escape/result.json",
+      "bytes": 5227,
+      "sha256": "ec797d8adf4863fbbb2327d57f12daf46316effbe4845ba0fc26f8a7b8aebbf2",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/idle-escape/native-records.json",
+      "bytes": 31625,
+      "sha256": "9c707cb7153eb5e336d518a7f63775ff302f87438b296059b4ae2d844dfe9b59",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/idle-escape/events.json",
+      "bytes": 1497,
+      "sha256": "6b16cf6747dd2833015d2b4d076a4c6eac515d67ba8ea4fa85738b11b63ce8d3",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/benchmarks/rendering/compat/src/main.cj",
+      "bytes": 909,
+      "sha256": "c829f222d42b46b2a001fd1f2f11c17c4ba6660002e6229318630c050d840eed",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/benchmarks/rendering/compat/src/terminal_state.cj",
+      "bytes": 7188,
+      "sha256": "28e14ddde498114879c1ad1ec518b4a1310fd6b7a5ece0c81c3dfae73db7796c",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/benchmarks/rendering/compat/src/terminal_runner.cj",
+      "bytes": 1358,
+      "sha256": "a4edfe823e943ca813904e3261849fbabd8adcb1311dbd28a3a9174f7ddd4fb8",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/benchmarks/rendering/compat/src/terminal_initial.cj",
+      "bytes": 2591,
+      "sha256": "8deb635fbe441eae427fb09741e805d1c7d64cb37ece8eb61d2835d156b1c080",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/benchmarks/rendering/workloads/src/timing_runner.cj",
+      "bytes": 2512,
+      "sha256": "cffdf5dfab584f47ee6e5fc6e4d611407142a1b7c66f71ffd4baf8ff12b6c07f",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/benchmarks/rendering/workloads/src/initial_runner.cj",
+      "bytes": 2248,
+      "sha256": "470fe60f0057be332215487406442fef604304d83a7402fddc3e95114aee979e",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/benchmarks/rendering/workloads/src/simple_runner.cj",
+      "bytes": 1666,
+      "sha256": "f9d39e3bce1cf1f4ce921dd874bdec0f4c4b4d1751ed0ae240e6ab889fde5440",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/benchmarks/rendering/src/initial_diagnostic.cj",
+      "bytes": 2160,
+      "sha256": "d60d4cb908d4a27b4f7a0a5a0a10eba67fc2a377ee555b86c2fecb34c239dfb6",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-review/report.md",
+      "bytes": 5104,
+      "sha256": "1e4033be540a3971764164e68777b50e9da3b45039d818762d32bdb39528e124",
+      "check": "selected bytes read and SHA256 computed"
+    },
+    {
+      "path": "/workspace/work/input-timeout-review/reuse-admission.json",
+      "bytes": 11367,
+      "sha256": "6dbb61fd3cad7b4edc2f335b467433ccdd4a6d361febdff0f73c9ab9e98d8532",
+      "check": "selected bytes read and SHA256 computed"
+    }
+  ],
+  "checked_new_artifacts": [
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/target/cjtui-0.0.0.cjp",
+      "sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f"
+    },
+    {
+      "path": "/workspace/work/input-timeout-implementation/source/benchmarks/rendering/compat/target/release/bin/main",
+      "sha256": "a4726c73a8f184200217eb0a3e5baa11def9dbb1a22893c5bbd0f421c8f6ae8b"
+    }
+  ],
+  "git_blob_reads": [
+    {
+      "revision": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "path": "docs/acceptance.md",
+      "git_blob": "391c8aa148c6c2bf42d9aac2ab4aed44a073f771"
+    },
+    {
+      "revision": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "path": "docs/development/cangjie-conventions.md",
+      "git_blob": "7793bd359ea88321b696d264c662001cd0412bd9"
+    }
+  ],
+  "evidence_limits": "Selected bounded source/index/raw reads and selected SHA checks only; original ELF hashes inherited from actual admission/custody, not independently rehashed; archived 6900 payload verification inherited from custody receipt; no decompression, no performance verdict.",
+  "outputs": [
+    "report.md",
+    "reuse-admission.json"
+  ]
+}

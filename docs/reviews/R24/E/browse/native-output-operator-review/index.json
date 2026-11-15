@@ -1,0 +1,34 @@
+{
+  "verdict": "no_blocking_source_or_spec_finding_separate_runtime_pilot_required",
+  "review_type": "single_full_independent_source_and_measurement_quality_review",
+  "runtime_acceptance": false,
+  "checked_bindings": {
+    "/workspace/work/native-output-operator-fix/exact.diff": "8035c64a6b3dbf24456be87e7b2b91fa88776539f6d21a150322b7e3882f9a4e",
+    "/workspace/work/native-output-operator-fix/source/trace_output.py": "ecd7cad0f170fe52a4d97b82ed0d826aa48fe58ed127980fc2eaac1797e63592",
+    "/workspace/work/native-output-operator-fix/source/realhosts.py": "e78bcd76e2af216ce12605e1efd534ef19f07ec4b5332e02025027bf14b281f7",
+    "/workspace/work/native-output-operator-fix/source/tty_protocol.py": "43d4c8d1be4527e7ccbf8d260c64bead8929ca6b011da27a2a94024f6be90ae8",
+    "/workspace/work/rendering-benchmark-execution/operator/trace_output.py": "226bc8127dc9eddb9b355d0bb5a46cc30ea68404594fc6aef4d19e5bde82788f",
+    "/workspace/work/rendering-benchmark-execution/operator/realhosts.py": "81ce67d1539025a746d57dcd5178206ed0aa8879a1c393783300497823d211cd",
+    "/workspace/work/rendering-benchmark-execution/operator/tty_protocol.py": "d3b2e481d8fbc13683fecbf0a761038806c9129f8e5c285148b0f2b39584e438",
+    "/workspace/work/rendering-benchmark-tests/source/tests/rendering_benchmark/src/native_trace.cj": "6b363e673bb4486f635dee3469ec496df38e46112cdc21bc796760904bff0876",
+    "/workspace/work/rendering-benchmark-tests/source/tests/rendering_benchmark/src/external_checks.cj": "35f691d303bdfd09342543b4dd28fa29a447310f5fe488b45ea3a6fa59ebef1d",
+    "/workspace/work/rendering-benchmark-tests/source/tests/rendering_benchmark/fixtures/native-returns.trace": "c719c90a5cc75a411b485f3cb64b669afb0ecd9b66efdaa9d298d8f1eb06662e",
+    "/workspace/work/rendering-benchmark-tests/source/tests/rendering_benchmark/fixtures/incomplete.trace": "a827f03576ae570689d41b05d29a6438e1bb79a353151e26fe5a9eb9a6894175",
+    "/workspace/work/rendering-benchmark-execution/source/benchmarks/rendering/compat/src/terminal_initial.cj": "8deb635fbe441eae427fb09741e805d1c7d64cb37ece8eb61d2835d156b1c080",
+    "/workspace/work/rendering-benchmark-execution/actual/realhosts/historical-native-audit.json": "18c6c881a3b830d7eae47d3d1161fd66dc39cd3b81f225f4f9d21c5814335cc2",
+    "/workspace/work/rendering-benchmark-execution/actual/realhosts/xterm/80x24/posted_epoch/new/output/0/fd.json": "08603dd669f499b5e01efb5a04249fc19fdf36876eba8094cb02719df4dd2e73",
+    "/workspace/work/native-output-operator-fix/check-output.json": "4d02e9e36d1303f791aa5ffd879df683a8caa23224be0afa3ebd98cc16826e2a"
+  },
+  "source_anchors": {
+    "capture_flags_inventory_lineage": "trace_output.py:14-181",
+    "native_return_and_target_handling": "trace_output.py:184-235",
+    "initial_order_and_boundaries": "trace_output.py:238-319",
+    "canonical_provenance_schema": "trace_output.py:320-392",
+    "normal_cpu_vte_integration": "realhosts.py:21-99",
+    "closed_tty_and_geometry_guards": "tty_protocol.py:101-153"
+  },
+  "historical_scope": "Audit reused as independent prior evidence; no archive rescan and no upgrade to new lineage/per-write annotation proof. Actual posted_epoch remains NeedsReobservation.",
+  "selfchecks": "Read raw 21-check output and cover commands only; no rerun and no independent functional-proof claim.",
+  "limitations": ["No runtime executions or probes", "No actual -yy trace pilot yet", "Source review cannot establish runtime parser/host compatibility", "No product or final performance acceptance"],
+  "mutations": "Only this review report and index; no source or operator edits"
+}

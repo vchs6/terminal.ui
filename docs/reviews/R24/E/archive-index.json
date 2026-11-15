@@ -1,0 +1,647 @@
+{
+  "schema": "unit-e-publication-v1",
+  "scope": "Accepted Unit E / original AC022 and AC031 only; no fresh probes or release",
+  "publication_base": "53991cd7c0ee023821bc366ab39ba654b7b39c0a",
+  "source_commit": "d7e9d1445f98021a798d223de97b97b45239de93",
+  "source_tree": "0121ec3815cef7971d325533fda66fdc57675d7a",
+  "version": "0.0.0",
+  "verdict": "PASS_E_AC022_AC031",
+  "blockers": 0,
+  "archive_members": 27514,
+  "original_count": 40022,
+  "index_binding_count": 2626,
+  "logical_aliases": 12262,
+  "unresolved_count": 0,
+  "headless_repetitions_historical": 1150,
+  "correctness_joins_historical": 216,
+  "final_M2_TTY_CPU": 176,
+  "final_M2_native": 144,
+  "all_original_PNGs": 852,
+  "representative_PNGs": 12,
+  "files": {
+    "raw-evidence.tar.gz": {
+      "bytes": 40206680,
+      "sha256": "654e881a747ce75b77491369d63199347c2e298c517e6135589cdc8c8c8db817"
+    },
+    "original-manifest.json.gz": {
+      "bytes": 4015541,
+      "sha256": "21c165694daf348cc3468e27b6b09cff047ef0db3d53a5bc52804a48e3e1a11b"
+    },
+    "capture-metadata.json": {
+      "bytes": 18592,
+      "sha256": "4b851ec9dc0b0c1332e49760a64bda128cb6400c3601b6c5caeafbf6a1b7de5f"
+    }
+  },
+  "fixed_intake_indices": [
+    {
+      "path": "/workspace/work/rendering-benchmark-execution/index.json",
+      "sha256": "faa8d89132f5242e88d6f8210d600f8f17b643aa5c6cf6274c80895f7c9092e6",
+      "bytes": 10040
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-execution/finalreport.md",
+      "sha256": "0ad019f913dbdfe690c66e736121a74266b522d8cd29d8a38e12e7b56d81bb53",
+      "bytes": 2448
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-tests/index.json",
+      "sha256": "3bc6dd5c7e3204e6d71d5a0224f8ba84506bbc1acce2b97c76327cabef9bca64",
+      "bytes": 13261
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-review/final/index.json",
+      "sha256": "8962ae80eefa580ddeac013e5ae37c26a660fd099f6fdbd84ca6cdb3904efaa3",
+      "bytes": 202059
+    },
+    {
+      "path": "/workspace/work/input-timeout-review/index.json",
+      "sha256": "924ae1374a0bbb4f41fe70cec8a1b0b90cd694607b7e0b0d12d083732f3a8662",
+      "bytes": 15255
+    },
+    {
+      "path": "/workspace/work/vte-protocol-counterexample/index.json",
+      "sha256": "07683e0dcaa2d8ea16f1909020feedb47f569c2b88b9dca19167973fc6ee2329",
+      "bytes": 32827
+    },
+    {
+      "path": "/workspace/work/native-output-operator-review/index.json",
+      "sha256": "c56649f7ba11e1961f2a80e6ad2bface953521e4f0a5cb7730b10b38e2e770a6",
+      "bytes": 3578
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-acceptance/index.json",
+      "sha256": "e4961c95bc46bb4384ab5cd2f484c1320e2acf946dbb440f4bb077920ab69f55",
+      "bytes": 3190
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-acceptance/report.md",
+      "sha256": "112c137dc9474501a715334e3864d7eb62eb1531dc2cf093d12594ff33d27926",
+      "bytes": 2961
+    },
+    {
+      "path": "/workspace/work/rendering-benchmark-acceptance/findings.md",
+      "sha256": "6f65c9a2e5503fe116dab72272a6f93148d62f70f872bb121a279afa6df44dfc",
+      "bytes": 17373
+    },
+    {
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/publication-inventory.json.gz",
+      "sha256": "af5abde7ad2650877485f4d7fa4053aabd47c68d459c0e4e32322051947e038b",
+      "bytes": 912356
+    }
+  ],
+  "browse": [
+    {
+      "path": "browse/rendering-benchmark-execution/index.json",
+      "member": "work/rendering-benchmark-execution/index.json",
+      "sha256": "faa8d89132f5242e88d6f8210d600f8f17b643aa5c6cf6274c80895f7c9092e6",
+      "bytes": 10040,
+      "mode": 384
+    },
+    {
+      "path": "browse/rendering-benchmark-execution/finalreport.md",
+      "member": "work/rendering-benchmark-execution/finalreport.md",
+      "sha256": "0ad019f913dbdfe690c66e736121a74266b522d8cd29d8a38e12e7b56d81bb53",
+      "bytes": 2448,
+      "mode": 384
+    },
+    {
+      "path": "browse/rendering-benchmark-tests/index.json",
+      "member": "work/rendering-benchmark-tests/index.json",
+      "sha256": "3bc6dd5c7e3204e6d71d5a0224f8ba84506bbc1acce2b97c76327cabef9bca64",
+      "bytes": 13261,
+      "mode": 384
+    },
+    {
+      "path": "browse/rendering-benchmark-review/final/index.json",
+      "member": "work/rendering-benchmark-review/final/index.json",
+      "sha256": "8962ae80eefa580ddeac013e5ae37c26a660fd099f6fdbd84ca6cdb3904efaa3",
+      "bytes": 202059,
+      "mode": 384
+    },
+    {
+      "path": "browse/input-timeout-review/index.json",
+      "member": "work/input-timeout-review/index.json",
+      "sha256": "924ae1374a0bbb4f41fe70cec8a1b0b90cd694607b7e0b0d12d083732f3a8662",
+      "bytes": 15255,
+      "mode": 384
+    },
+    {
+      "path": "browse/vte-protocol-counterexample/index.json",
+      "member": "work/vte-protocol-counterexample/index.json",
+      "sha256": "07683e0dcaa2d8ea16f1909020feedb47f569c2b88b9dca19167973fc6ee2329",
+      "bytes": 32827,
+      "mode": 384
+    },
+    {
+      "path": "browse/native-output-operator-review/index.json",
+      "member": "work/native-output-operator-review/index.json",
+      "sha256": "c56649f7ba11e1961f2a80e6ad2bface953521e4f0a5cb7730b10b38e2e770a6",
+      "bytes": 3578,
+      "mode": 384
+    },
+    {
+      "path": "browse/rendering-benchmark-acceptance/index.json",
+      "member": "work/rendering-benchmark-acceptance/index.json",
+      "sha256": "e4961c95bc46bb4384ab5cd2f484c1320e2acf946dbb440f4bb077920ab69f55",
+      "bytes": 3190,
+      "mode": 384
+    },
+    {
+      "path": "browse/rendering-benchmark-acceptance/report.md",
+      "member": "work/rendering-benchmark-acceptance/report.md",
+      "sha256": "112c137dc9474501a715334e3864d7eb62eb1531dc2cf093d12594ff33d27926",
+      "bytes": 2961,
+      "mode": 384
+    },
+    {
+      "path": "browse/rendering-benchmark-acceptance/findings.md",
+      "member": "work/rendering-benchmark-acceptance/findings.md",
+      "sha256": "6f65c9a2e5503fe116dab72272a6f93148d62f70f872bb121a279afa6df44dfc",
+      "bytes": 17373,
+      "mode": 384
+    },
+    {
+      "path": "browse/rendering-benchmark-review/final/report.md",
+      "member": "work/rendering-benchmark-review/final/report.md",
+      "sha256": "74a94ad2c2b5b0eab3e7f179f91fd7ebc44ee37133b7254230f6d1b87d0c7869",
+      "bytes": 7245,
+      "mode": 384
+    },
+    {
+      "path": "browse/input-timeout-review/report.md",
+      "member": "work/input-timeout-review/report.md",
+      "sha256": "1e4033be540a3971764164e68777b50e9da3b45039d818762d32bdb39528e124",
+      "bytes": 5104,
+      "mode": 384
+    },
+    {
+      "path": "browse/input-timeout-review/reuse-admission.json",
+      "member": "work/input-timeout-review/reuse-admission.json",
+      "sha256": "6dbb61fd3cad7b4edc2f335b467433ccdd4a6d361febdff0f73c9ab9e98d8532",
+      "bytes": 11367,
+      "mode": 384
+    },
+    {
+      "path": "browse/input-timeout-execution/report.md",
+      "member": "work/input-timeout-execution/report.md",
+      "sha256": "5e815b3672bff8ba1b5cacbcabde20f9b05f9508804edf3abcbb703a15d34c68",
+      "bytes": 2032,
+      "mode": 384
+    },
+    {
+      "path": "browse/vte-protocol-counterexample/report.md",
+      "member": "work/vte-protocol-counterexample/report.md",
+      "sha256": "db677b23e36509070ac0fa3a5804ba1b37efd63357f4c3be3c37e56263849a4f",
+      "bytes": 3443,
+      "mode": 384
+    },
+    {
+      "path": "browse/native-output-operator-review/report.md",
+      "member": "work/native-output-operator-review/report.md",
+      "sha256": "4eeabff43e726909623ffa3bcf76e9e15c4b73a579d432a92fcba79d0523ca87",
+      "bytes": 3477,
+      "mode": 384
+    }
+  ],
+  "captures": [
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 10167,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 24,
+      "host": "xterm",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/80x24/initial/new/output/0/original.png",
+      "pixels": [
+        644,
+        412
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-8986a444cf9c454393a045cc4f4620cc",
+      "scenario": "initial",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "dada983eab9cff2d0b789dfa1660aff365698679cf40956eef805a5a6e488aaf",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 80,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/xterm/80x24/initial/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/80x24/initial/new/output/0/record.json",
+      "record_sha256": "0ffee573b3d97682a79fb1c8b37f0c33b6c3418eb3017f2a171af8f3fa3575e0",
+      "process_pid": 2047369,
+      "time_metadata": {
+        "end_ns": 1794704536597115671,
+        "start_ns": 1794704536096195895
+      },
+      "planned_browse_path": "captures/xterm/80x24/initial.png",
+      "copied": true,
+      "browse_path": "captures/xterm/80x24/initial.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 3824,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 24,
+      "host": "xterm",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/80x24/unicode_cells/new/output/0/original.png",
+      "pixels": [
+        644,
+        412
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-91242ca828a744fc95569ab9116cbfa1",
+      "scenario": "unicode_cells",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "745a193774db28a2c3438a1cacc5a374cf7b19367e4c5da203fb5d110fb69c2e",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 80,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/xterm/80x24/unicode_cells/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/80x24/unicode_cells/new/output/0/record.json",
+      "record_sha256": "3d8509683b5b2a160d02f9e9dcaf0e437c0b7f5bf91a15e1face55ca9dea2507",
+      "process_pid": 2046465,
+      "time_metadata": {
+        "end_ns": 1794704493266428788,
+        "start_ns": 1794704491296583164
+      },
+      "planned_browse_path": "captures/xterm/80x24/unicode_cells.png",
+      "copied": true,
+      "browse_path": "captures/xterm/80x24/unicode_cells.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 35598,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 24,
+      "host": "xterm",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/80x24/overlay_nested_close/new/output/0/original.png",
+      "pixels": [
+        644,
+        412
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-2e883baacbe34ec6822e60240ae67b49",
+      "scenario": "overlay_nested_close",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "04db21ed20f04a9ec4aea798011ee9e712b4390284bbee4d8037a8e97946eba3",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 80,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/xterm/80x24/overlay_nested_close/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/80x24/overlay_nested_close/new/output/0/record.json",
+      "record_sha256": "a90fb8b045dff372ee20642b41eb50786931bb4c24e4a678c618f0a60e1d8392",
+      "process_pid": 2047195,
+      "time_metadata": {
+        "end_ns": 1794704529401615992,
+        "start_ns": 1794704527761988245
+      },
+      "planned_browse_path": "captures/xterm/80x24/overlay_nested_close.png",
+      "copied": true,
+      "browse_path": "captures/xterm/80x24/overlay_nested_close.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 2790,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 48,
+      "host": "xterm",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/160x48/glyph_projection/new/output/0/original.png",
+      "pixels": [
+        1259,
+        779
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-1e5e3f34599d4649bece4978fe84e0d4",
+      "scenario": "glyph_projection",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "4519ce78b726f7ed97bc01222eb118e325776ae7366064ed2495bc61647ef846",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 160,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/xterm/160x48/glyph_projection/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/160x48/glyph_projection/new/output/0/record.json",
+      "record_sha256": "a4303a0813fb37fda779f4c2c2a356e485662dc7a1c58f65b1b635e774745d97",
+      "process_pid": 2049871,
+      "time_metadata": {
+        "end_ns": 1794704679712474546,
+        "start_ns": 1794704678073185265
+      },
+      "planned_browse_path": "captures/xterm/160x48/glyph_projection.png",
+      "copied": true,
+      "browse_path": "captures/xterm/160x48/glyph_projection.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 14013,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 48,
+      "host": "xterm",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/160x48/scroll_multistep/new/output/0/original.png",
+      "pixels": [
+        1259,
+        779
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-d1d204d5087642d7996545af2323173c",
+      "scenario": "scroll_multistep",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "ace4129b485f97fbb5d39f7e3dfbc3fe218faa4a0a55c6d88030b3f1d20dfdec",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 160,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/xterm/160x48/scroll_multistep/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/160x48/scroll_multistep/new/output/0/record.json",
+      "record_sha256": "9992e7058c2729c38e2ca96d95877a4179564c149e19e647ce8a3955f1d36217",
+      "process_pid": 2048876,
+      "time_metadata": {
+        "end_ns": 1794704623480385727,
+        "start_ns": 1794704621737030912
+      },
+      "planned_browse_path": "captures/xterm/160x48/scroll_multistep.png",
+      "copied": true,
+      "browse_path": "captures/xterm/160x48/scroll_multistep.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 8760,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 48,
+      "host": "xterm",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/160x48/root_fallback/new/output/0/original.png",
+      "pixels": [
+        1259,
+        779
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-dff32a24baad44678029ec6548da88a7",
+      "scenario": "root_fallback",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "92e464f69ea411e339044c871a9b8f84a0d69d7c21809835c3f1057eead8a69a",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 160,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/xterm/160x48/root_fallback/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/xterm/160x48/root_fallback/new/output/0/record.json",
+      "record_sha256": "15cb892a64b90466172a4b2c61fe6bd313a232e058b21136b98c66886acfdc8e",
+      "process_pid": 2048936,
+      "time_metadata": {
+        "end_ns": 1794704627056000462,
+        "start_ns": 1794704625265178684
+      },
+      "planned_browse_path": "captures/xterm/160x48/root_fallback.png",
+      "copied": true,
+      "browse_path": "captures/xterm/160x48/root_fallback.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 63285,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 24,
+      "host": "vte",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/80x24/initial/new/output/0/original.png",
+      "pixels": [
+        817,
+        485
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-f5be264c85154a9b81682e3667e87755",
+      "scenario": "initial",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "bcb75425d99be1d366cff3bea78eea4bce39429005d6c148bd461f78c5f41f50",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 80,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/vte/80x24/initial/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/80x24/initial/new/output/0/record.json",
+      "record_sha256": "5ca0b6963a2e114566cba8cd9398ad7b12916bebdb6da03d5520acaf3f68b357",
+      "process_pid": 2053917,
+      "time_metadata": {
+        "end_ns": 1794704965996829272,
+        "start_ns": 1794704965297080902
+      },
+      "planned_browse_path": "captures/vte/80x24/initial.png",
+      "copied": true,
+      "browse_path": "captures/vte/80x24/initial.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 8031,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 24,
+      "host": "vte",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/80x24/unicode_cells/new/output/0/original.png",
+      "pixels": [
+        817,
+        485
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-2bde1fe013ae42b38ea5dfff4a8f1173",
+      "scenario": "unicode_cells",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "8780de9dff21a7784cc9a54739f28fe2a225f78c03cabd6b07a3754ff3b9be26",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 80,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/vte/80x24/unicode_cells/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/80x24/unicode_cells/new/output/0/record.json",
+      "record_sha256": "6148e4ad30886afece710682113d9e7746260beb00aa1480ff19fd854057dc8a",
+      "process_pid": 2050001,
+      "time_metadata": {
+        "end_ns": 1794704690252779374,
+        "start_ns": 1794704688011646772
+      },
+      "planned_browse_path": "captures/vte/80x24/unicode_cells.png",
+      "copied": true,
+      "browse_path": "captures/vte/80x24/unicode_cells.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 54138,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 24,
+      "host": "vte",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/80x24/overlay_nested_close/new/output/0/original.png",
+      "pixels": [
+        817,
+        485
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-cdf0a9929a6b467183bcf7a338eb017c",
+      "scenario": "overlay_nested_close",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "bf3bedc89d78bbc355403c428ea42754f0cde84998e6e7c2a8286c5749cf4d5a",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 80,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/vte/80x24/overlay_nested_close/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/80x24/overlay_nested_close/new/output/0/record.json",
+      "record_sha256": "c34bb216443f329f0728691d830f995d740890bfafea987a63eae4cfb9131e4b",
+      "process_pid": 2053108,
+      "time_metadata": {
+        "end_ns": 1794704913940717576,
+        "start_ns": 1794704912205583623
+      },
+      "planned_browse_path": "captures/vte/80x24/overlay_nested_close.png",
+      "copied": true,
+      "browse_path": "captures/vte/80x24/overlay_nested_close.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 4651,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 48,
+      "host": "vte",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/160x48/glyph_projection/new/output/0/original.png",
+      "pixels": [
+        1260,
+        780
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-11369dc8ee82429b95d4b27aa9f93fa0",
+      "scenario": "glyph_projection",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "cc16e56da8900fae8a0bfa2f6734739317212d99c7caefca9ed8328181a55267",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 160,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/vte/160x48/glyph_projection/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/160x48/glyph_projection/new/output/0/record.json",
+      "record_sha256": "5736b756e9edf3f142124086ccfc8324cb0bc43bdb853a21faf8579115533ad5",
+      "process_pid": 2059513,
+      "time_metadata": {
+        "end_ns": 1794705377282587868,
+        "start_ns": 1794705375289816963
+      },
+      "planned_browse_path": "captures/vte/160x48/glyph_projection.png",
+      "copied": true,
+      "browse_path": "captures/vte/160x48/glyph_projection.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 18244,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 48,
+      "host": "vte",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/160x48/scroll_multistep/new/output/0/original.png",
+      "pixels": [
+        1260,
+        780
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-914343d27b8442339132327594be2898",
+      "scenario": "scroll_multistep",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "dd324f0e98de4a1d10648f17b4ce4405dab0a374bf1a3abff1ece2ba5943d775",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 160,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/vte/160x48/scroll_multistep/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/160x48/scroll_multistep/new/output/0/record.json",
+      "record_sha256": "e434b6ac8fea1fa7121022d2296e8fa210f613c8afbb6c4fe69b066b6959d930",
+      "process_pid": 2057337,
+      "time_metadata": {
+        "end_ns": 1794705218605875874,
+        "start_ns": 1794705216836030789
+      },
+      "planned_browse_path": "captures/vte/160x48/scroll_multistep.png",
+      "copied": true,
+      "browse_path": "captures/vte/160x48/scroll_multistep.png",
+      "mode": 384
+    },
+    {
+      "artifact_sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "bytes": 11121,
+      "elf_sha256": "8a80880135436869bc4272322721ce51f8daabf8c550a3baf593374d858c854f",
+      "height": 48,
+      "host": "vte",
+      "path": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/160x48/root_fallback/new/output/0/original.png",
+      "pixels": [
+        1260,
+        780
+      ],
+      "purpose": "output",
+      "repetition": 0,
+      "run_id": "tty-2294a113716a434c94c8c9c6783a7266",
+      "scenario": "root_fallback",
+      "scope": "Accepted final table; original capture, see events for lifecycle position",
+      "sha256": "15ac231d88fa12407d919641caa6539ca474a800e64bd3ef4fb06d12b7315ea0",
+      "source_sha": "d7e9d1445f98021a798d223de97b97b45239de93",
+      "version": "new",
+      "width": 160,
+      "archive_member": "work/input-timeout-execution/actual/final-d7e9/vte/160x48/root_fallback/new/output/0/original.png",
+      "record": "/workspace/work/input-timeout-execution/actual/final-d7e9/vte/160x48/root_fallback/new/output/0/record.json",
+      "record_sha256": "541566ea3e9f328a1ad7ac6a4127cb68a6b08ec29b0c904c2c84719b724650e8",
+      "process_pid": 2057476,
+      "time_metadata": {
+        "end_ns": 1794705228202182226,
+        "start_ns": 1794705226501927165
+      },
+      "planned_browse_path": "captures/vte/160x48/root_fallback.png",
+      "copied": true,
+      "browse_path": "captures/vte/160x48/root_fallback.png",
+      "mode": 384
+    }
+  ],
+  "pending": [
+    "Final TASK001/002/003/004/041",
+    "six-host C008",
+    "release023 including T087-G01",
+    "whole Linux024"
+  ],
+  "negative_native_VTE_resize": {
+    "80x24": {
+      "bytes": [
+        10355,
+        13777
+      ],
+      "calls": [
+        8,
+        9
+      ]
+    },
+    "160x48": {
+      "bytes": [
+        26559,
+        15460
+      ],
+      "calls": [
+        7,
+        6
+      ]
+    }
+  },
+  "limits": "All adverse CPU distributions, negative/global cases and failed attempts retained. No blanket speedup, significance, universal memory, fresh host, release or whole Linux claim.",
+  "publication_files": {
+    "README.md": {
+      "bytes": 3066,
+      "sha256": "6d46b3e0ab14b3e9cc34974784534dd3534d1d2bb9c2cff21f005d16c3b402b6"
+    },
+    "gallery.md": {
+      "bytes": 2516,
+      "sha256": "4f5b9cd8b35dfa850a6322de6d3c1d60957884cffe1b29428dd55e22dbf4764d"
+    },
+    "verification.json": {
+      "bytes": 1123,
+      "sha256": "35e1c210068a6faf654ac6e19916d6433d8009922f8c3f520fc7e72b913681b4"
+    }
+  }
+}
