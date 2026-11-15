@@ -14,7 +14,7 @@
 
 ## 运行示例
 
-加载仓颉SDK1.2.0后，在真实Linux ANSI TTY中运行：
+先加载仓颉 SDK/CJPM 1.2.0，安装官方 stdx 1.2.0-beta.02.1 并设置 `CANGJIE_STDX_PATH`；准备 Bash、curl、tar、unzip、SHA-256 工具、realpath、flock、GCC 和 GNU ar。目录映射、固定输入校验及首次下载要求见[产品构建说明](docs/product/native-build.md)。正常 CJPM 构建会自动生成并链接 native 归档。随后在真实 Linux ANSI TTY 中运行：
 
 ```sh
 cd examples/layout
