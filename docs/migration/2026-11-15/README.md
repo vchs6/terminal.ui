@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第六组第一卷发布后已交付6个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组三卷发布后已交付8个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 第一卷已交付20份历史gzip ELF；其余继续逐文件对账 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付三卷共41份历史gzip ELF；其他目录继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -138,3 +138,28 @@ tar -xzf terminal-ui-migration-20261115-part06a.tar.gz -C /第一批恢复目标
 本卷**不含round2的另外21份压缩ELF，也不代表第六组全部历史原件已迁移完成**。第六组继续按未覆盖原件分卷，实际下载文件总数尚未核定；本卷只验证迁移完整性，不构成新的Linux验收或性能测试结论。
 
 [第六组第一卷独立核查报告](part06a-independent-report.md)与[机器可读记录](part06a-independent-findings.json)记录71原件、完整归档和20份gzip还原317,561,592字节原ELF的核验结果。
+
+## 第六组第二、三卷：第二轮21份历史二进制（part06b / part06c）
+
+| 卷 | 下载 | 大小 | 内容 |
+|---|---|---|---|
+| 06b | [下载第二卷](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06b.tar.gz) | 53,783,785 字节 | 前10份gzip和全部第二轮保管记录 |
+| 06c | [下载第三卷](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06c.tar.gz) | 53,861,580 字节 | 其余11份gzip |
+
+- [06b校验文件](terminal-ui-migration-20261115-part06b.tar.gz.sha256)：`05231d0eeaba8b9253ec876c8d4c22634585f5e421481dcaaf9eddd3e7949b31`。
+- [06c校验文件](terminal-ui-migration-20261115-part06c.tar.gz.sha256)：`bc133b37fa46d1431f5a57ca304b9513184888ac760cf85114338c0adf2d65ca`。
+
+校验后依次解压两卷到第一批恢复目标目录：
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06b.tar.gz.sha256
+sha256sum -c terminal-ui-migration-20261115-part06c.tar.gz.sha256
+tar -xzf terminal-ui-migration-20261115-part06b.tar.gz -C /第一批恢复目标目录
+tar -xzf terminal-ui-migration-20261115-part06c.tar.gz -C /第一批恢复目标目录
+```
+
+两卷合用恢复work/linux-final-capacity/round2/gzip/的21份原件。第二卷含75份payload及manifest，第三卷含11份payload及manifest。第二轮完整21件映射以restore-map-final.json和receipt-index-final.json为准；restore-map.json、receipt-index.json是保留的partial10历史快照，不应当作迁移缺失或覆写成新结论。原路径仍按/workspace/work前缀映射，使用原gzip按原ELF大小和SHA校验；没有重建或执行二进制。
+
+06a、06b、06c三卷共交付两轮41份历史gzip原ELF及记录。其他目录的未覆盖原件仍需继续对账，**三卷通过不表示整个第六组收口，更不表示Linux最终验收通过**。
+
+[06b独立核查报告](part06b-independent-report.md)、[06b机器记录](part06b-independent-findings.json)、[06c独立核查报告](part06c-independent-report.md)及[06c机器记录](part06c-independent-findings.json)验证两卷21件不重不漏，流式还原378,506,472字节，并保留partial10与final21各自原状态。
