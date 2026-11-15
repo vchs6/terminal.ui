@@ -2,7 +2,7 @@
   "schema": "cjtui-task002-final-syntax-projection-v1",
   "task": "TASK-002 / AC-002",
   "classification": "independent language evidence projection; documentation only; no new design/API",
-  "candidate": "c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960",
+  "candidate": "d7e9d1445f98021a798d223de97b97b45239de93",
   "product_version": "0.0.0",
   "sdk": {
     "compiler": "1.2.0 (cjnative)",
@@ -1526,9 +1526,9 @@
     },
     {
       "path": "src/application.cj",
-      "bytes": 36536,
-      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56",
-      "git_blob": "2afcaa0e05a86e42c8f1b28e573c70868f9aefe0"
+      "bytes": 36183,
+      "sha256": "1aee59e7215e581ce411a6fb914dcad0da06db88d61fffd651316653e124516d",
+      "git_blob": "f6afd132aec79cfdc6b89c17900682df3e5ce67b"
     },
     {
       "path": "src/binding.cj",
@@ -2330,5 +2330,70 @@
     "restore_command_template": "node scripts/review-archive.mjs --root . restore <logical_path> <new-destination>",
     "executed": false,
     "meaning": "No archive scan/decompression here; preserved archive-index/manifests and acceptance supply historical relocation binding."
+  },
+  "forward_projection": {
+    "historical_projection_commit": "c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960",
+    "current_product_commit": "d7e9d1445f98021a798d223de97b97b45239de93",
+    "product_delta": {
+      "path": "src/application.cj",
+      "method": "Application.run(): Unit",
+      "insertions": 2,
+      "deletions": 10,
+      "current_changed_region": {
+        "first_line": 731,
+        "last_line": 735
+      },
+      "meaning": "Feed ready input before expiry; only an idle read can establish sequence timeout. Private device-loop behavior repair; public declarations, macros, native code, consumers and build configuration unchanged."
+    },
+    "independent_source_review": {
+      "bindings": [
+        {
+          "path": "/workspace/work/input-timeout-review/report.md",
+          "bytes": 5104,
+          "sha256": "1e4033be540a3971764164e68777b50e9da3b45039d818762d32bdb39528e124"
+        },
+        {
+          "path": "/workspace/work/input-timeout-review/reuse-admission.json",
+          "bytes": 11367,
+          "sha256": "6dbb61fd3cad7b4edc2f335b467433ccdd4a6d361febdff0f73c9ab9e98d8532"
+        },
+        {
+          "path": "/workspace/work/input-timeout-review/index.json",
+          "bytes": 15255,
+          "sha256": "924ae1374a0bbb4f41fe70cec8a1b0b90cd694607b7e0b0d12d083732f3a8662"
+        }
+      ],
+      "scope": "Scoped source/spec/quality and unchanged-path reuse admission only; not final consumer, performance or Linux acceptance."
+    },
+    "current_normal_cjp": {
+      "sha256": "05c99476961be72022f0ea98adb3d283453b9b41fd7adcbf428880d24d6de86f",
+      "binding": "Independent input-timeout review records the normal D7 package identity; this projection neither builds nor consumes it."
+    },
+    "continuity": {
+      "compared_paths": [
+        "src",
+        "native",
+        "examples",
+        "build.cj",
+        "cjpm.toml"
+      ],
+      "changed_paths": [
+        "src/application.cj"
+      ],
+      "unchanged_scope": "All mapped public signatures/line anchors, macro sources and original positive/negative fixtures, public consumer source/manifests, native code and build configuration remain unchanged from c862. The src tree and Application bytes differ; no f48-to-D7 whole-source equality is claimed."
+    },
+    "reuse_limits": [
+      "All original f48/c862/R12/R13/AC021/AC027/D141/D142/TASK145 source, package, ELF, commands, raw diagnostics and acceptance bindings retain their original identities and finite scopes; none becomes new D7 execution.",
+      "D141 ordinary public showcase and tests/incremental_composition are distinct from final examples/minimal and examples/composition consumers.",
+      "Unchanged syntax/construction/native/headless source scopes may use explicit AGENTS11.1 continuity. Source/API equality alone does not establish D7 device-loop or fresh package-consumer acceptance.",
+      "Original input-timeout review F1–F5 obligations keep their assigned independent evidence and acceptance; this projection does not adjudicate subsequent executions. Final TASK002/004 acceptance, actual final public minimal/composition consumers, device/runtime, performance, whole Linux and release remain pending where unverified."
+    ],
+    "execution": "Documentation/source metadata checks only; no compiler, test, Node/npm, GUI/TTY/probe, archive decompression or performance execution.",
+    "historical_application_binding": {
+      "path": "src/application.cj",
+      "bytes": 36536,
+      "sha256": "4aabe948e9acab2d4cdccb39531e6d9588b5fce4c6e2a57278b011ff3d991c56",
+      "git_blob": "2afcaa0e05a86e42c8f1b28e573c70868f9aefe0"
+    }
   }
 }

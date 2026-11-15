@@ -4,7 +4,7 @@
 
 本文回答“系统由什么组成、各自负责什么、数据如何流动、怎样保持一致并从失败中恢复”。它是产品总体参考架构，不是目录说明或已经完成的实现报告。产品动机见 [整体提案](development/proposal.md)，外部行为见 [需求说明](requirements.md)，使用方式见 [用户构造设计](ui-construction.md)。
 
-已确定：仓颉实现、包名 cjtui、约定 ArkUI 构造形式、字符终端语义和依赖薄适配。本文的总体职责与不变量继续有效；第 21 节将它们映射到固定实际源码，而非将全部模块继续视为尚未实现。当前源码 `c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960` 的 src/native/examples/build.cj/根清单分别与已接受 `f48ca45608247f52a6876ad5c27b4ca36867f406` 相同，精确对象/小范围文件 hash 见 [construction-map.json](reviews/Linux-final/construction-map.json)。
+已确定：仓颉实现、包名 cjtui、约定 ArkUI 构造形式、字符终端语义和依赖薄适配。本文的总体职责与不变量继续有效；第 21 节将它们映射到固定实际源码，而非将全部模块继续视为尚未实现。当前源码为 `d7e9d1445f98021a798d223de97b97b45239de93`；历史 c862 的 src/native/examples/build.cj/根清单分别与已接受 `f48ca45608247f52a6876ad5c27b4ca36867f406` 相同，D7 仅修复 Application.run 内部输入超时行为，公开签名、宏、native、消费者及构建配置未变，精确对象/小范围文件 hash 见 [construction-map.json](reviews/Linux-final/construction-map.json)。
 
 | 层次 | 当前事实 | 证据边界 |
 |---|---|---|
@@ -374,8 +374,10 @@ Observable 的读版本/订阅和失效通知受同步保护；getter 在 UI 求
 
 ### 21.2 已有接受范围与最终 AC004 边界
 
-AC021 已接受 M1 U1–U5；其 minimal/composition 源码和 manifest 与当前逐对象一致，但原 core 后已改变。AC027 已接受 M1 四主题/全控件展示；其 showcase 源码/manifest 与当前一致。原执行时间、宿主配置、失败历史、原包/ELF hash 仍属于各自原记录，不能标成 c862 新运行。
+AC021 已接受 M1 U1–U5；其 minimal/composition 源码和 manifest 与当前逐对象一致，但原 core 后已改变。AC027 已接受 M1 四主题/全控件展示；其 showcase 源码/manifest 与当前一致。原执行时间、宿主配置、失败历史、原包/ELF hash 仍属于各自原记录，不能标成 c862 或 D7 新运行。
 
-D141/142 的 `f48ca456` core 与本次 src/native/examples/build/manifest 对象全部相同。可复用其普通 showcase 编译和 XTerm398 / VTE0.80.1 配置内的实际编辑、模态、resize、退出/termios，以及独立 composition consumer 和 native recovery 的接受范围。D composition consumer 是 `tests/incremental_composition`，不是 `examples/composition`；原 VTE 默认 F10 失败与成功所需 `ShortcutsNoMenukey=TRUE` 都保留。TASK145 补 `c862` 正常 CJP 和解包 workloads/compat/diagnostic 普通构建事实，不构成原 U1–U5 完整接受。
+D141/142 的 `f48ca456` core 与历史 c862 的 src/native/examples/build/manifest 对象全部相同。D7 的 Application.run 已改变，不再具有整个 src 对象相同关系；原证明保留历史身份，可按未变范围复用其普通 showcase 编译和 XTerm398 / VTE0.80.1 配置内的实际编辑、模态、resize、退出/termios，以及独立 composition consumer 和 native recovery 的接受范围。D composition consumer 是 `tests/incremental_composition`，不是 `examples/composition`；原 VTE 默认 F10 失败与成功所需 `ShortcutsNoMenukey=TRUE` 都保留。TASK145 补 `c862` 正常 CJP 和解包 workloads/compat/diagnostic 普通构建事实，不构成原 U1–U5 完整接受。
+
+当前前向范围见 construction-map 的 `forward_projection`：独立输入修复审核确认就绪字节先进入 decoder、真实空闲读取才判超时，构造/宏/公开 API 不变。该审核只准入未变范围复用，不替代 D7 实际最终公开 minimal/composition 消费、设备/运行时或性能证明；当前正常 CJP 身份与旧 f48/c862 包/ELF 分别记录。
 
 本次只读检查与文档验证按 AGENTS §11.1/11.2 复用有效结果，没有运行编译、测试、Node/npm、GUI/TTY 或基准。机器映射记录源码/证据的版本、hash、scope 与未决动作。原 AC004 的逐条独立审核/接受，以及最终 minimal/composition 消费者命令/环境/ELF/运行绑定仍 pending；先寻找已有同源有效证明，再由相应独立执行角色处理实际缺口。这里不关闭最终语法/依赖/平台/发行、AC022/031 或全部 Linux，也不承诺其他平台、ArkUI SDK 或编辑器支持。

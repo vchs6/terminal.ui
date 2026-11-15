@@ -1,6 +1,6 @@
 # 仓颉声明式语法：固定源码与编译证据
 
-本文投影原 AC-002（REQ-001，TASK-002）的六项语法要求，不新增语法或 API。固定候选为 `c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960`，产品版本 `0.0.0`；已有实际语言证据使用 Linux x86_64 的 cjc/cjpm **1.2.0**。逐成员 SHA-256、原始命令、退出值、诊断及归档定位见 [syntax-map.json](../reviews/Linux-final/syntax-map.json)。本次仅核对源码、现有原件和文档，没有执行编译器、测试或宿主程序。
+本文投影原 AC-002（REQ-001，TASK-002）的六项语法要求，不新增语法或 API。当前固定候选为 `d7e9d1445f98021a798d223de97b97b45239de93`，历史投影候选为 `c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960`，产品版本 `0.0.0`；已有实际语言证据使用 Linux x86_64 的 cjc/cjpm **1.2.0**。逐成员 SHA-256、原始命令、退出值、诊断及归档定位见 [syntax-map.json](../reviews/Linux-final/syntax-map.json)。本次仅核对源码、现有原件和文档，没有执行编译器、测试或宿主程序。
 
 原 [AC-002](../acceptance.md) 要求分别证明组件块、属性链、状态、条件/列表、自定义组件和回调，并记录失败定位与限制。R12/R13 的独立验收已经接受相应有限运行时、宏和动态构造证据，但没有关闭原 AC-002。本文与映射供最终 TASK-002 独立审核/验收使用；002.d 与最终登记仍为 pending，不代表 Linux、性能、制品或完整跨平台验收。
 
@@ -30,12 +30,12 @@ cjpm run
 
 | 原要求 | 已有原始仓颉消费者 | 实际证据与边界 |
 | --- | --- | --- |
-| 组件块 | `examples/reactive/src/main.cj` 的 `Column { Text(...) }`；`examples/theme_showcase/src/gallery_view.cj` 的嵌套块 | R12/R13 实际宏正例；最终共同产品源码的 D141 showcase 普通构建及独立 D142 验收。块与属性链使用同一组件模型。 |
+| 组件块 | `examples/reactive/src/main.cj` 的 `Column { Text(...) }`；`examples/theme_showcase/src/gallery_view.cj` 的嵌套块 | R12/R13 实际宏正例；历史共同产品源码 f48 的 D141 showcase 普通构建及独立 D142 验收。块与属性链使用同一组件模型。 |
 | 属性链 | `examples/dynamic/src/main.cj` 的 `Text(...).foreground(...)`；showcase 的 `.height/.layoutWeight/.alignItems/.onMount` | R13 动态例子实际 build/smoke，D141 showcase 实际 build/宿主消费。普通 CJPM 直接消费这些源码。 |
 | 状态与绑定 | reactive 的 `@State var count: Int64 = 0`、`Text(@Bind(...))`；宏正例的 private/public/generic State | R13 宏正例普通 build/direct exit 0；R12/R13 原负例记录类型、初值、可见性等限制。普通值表达式只是初值；自动更新用 `@Bind(expr)` 或类型明确的 `{ => expr }`，观察 `Observable.get()` / State getter。 |
 | 条件/列表 | `tests/dynamic/src/conditional_cases.cj`、`identity_cases.cj` 和 `examples/dynamic/src/main.cj` 的 `If`、`ForEach<String>` | R13 普通动态消费者 build/direct exit 0，34 组既定行为；包含普通 `if/for` 一次构造与显式响应式组的区别。 |
-| 自定义组件 | `tests/runtime/macros/positive/src/{generic_panel,parameter_panel,default_panel,nested_return_panel}.cj`；公开 `examples/composition/src/job_panel.cj`、showcase `GalleryView` | R13 宏正例保留泛型、双接口、带参 init、默认 init、嵌套 lambda return 和 throw；AC021 接受普通手写派生组件组合；D141/D142 接受最终共同产品上的 showcase。 |
-| 仓颉回调 | reactive 的 `.onKey({ _ => counter.count++ })`；dynamic 的 `app.onKey { event => ... }`；showcase 按钮、菜单、onMount | R12 reactive、R13 dynamic 原实际编译/运行；D141/D142 showcase 当前共同产品源码消费。回调是仓颉 closure；生命周期清理函数也由仓颉 closure 返回。 |
+| 自定义组件 | `tests/runtime/macros/positive/src/{generic_panel,parameter_panel,default_panel,nested_return_panel}.cj`；公开 `examples/composition/src/job_panel.cj`、showcase `GalleryView` | R13 宏正例保留泛型、双接口、带参 init、默认 init、嵌套 lambda return 和 throw；AC021 接受普通手写派生组件组合；D141/D142 接受 f48 固定产品上的 showcase。 |
+| 仓颉回调 | reactive 的 `.onKey({ _ => counter.count++ })`；dynamic 的 `app.onKey { event => ... }`；showcase 按钮、菜单、onMount | R12 reactive、R13 dynamic 原实际编译/运行；D141/D142 showcase 的 f48 固定源码消费。回调是仓颉 closure；生命周期清理函数也由仓颉 closure 返回。 |
 
 六项均有产品实际编译证据；声明-only scratch、旧缺 API 的 RED 和语言微探针不作为产品 GREEN。R12/R13 原件及独立验收的原始受检版本仍保留，不能把历史运行改写为 c862 新执行。
 
@@ -61,6 +61,8 @@ public func ForEach<T>(items: () -> Array<T>, key: (T) -> String,
 ## 复用边界与编辑器事实
 
 按 AGENTS 11.1，c862 的四个宏实现文件及全部正负宏消费者相对已验证 `f07ff633` 内容未变；动态消费者和 reactive/dynamic 公开例子相对 R13 固定产品 `216b2ab5` 未变。`If`、`ForEach`、`ListItem` 声明与 collector 也未变。后续运行时/Observable 有变化，映射不声称整个 R13 产品源码未变或把旧运行算作最终全运行时验收：Observable 的后续修改增加内部编辑提交方法，公开 get/set/宏接口保留；最终产品实际普通编译由共同源码 `f48ca456` 的 D141/D142 证据补充。c862 相对 f48 的 `src/`、`native/`、`build.cj`、根 `cjpm.toml` 和全部公开例子未变；因此这些普通入口的源码/配置绑定保持。
+
+当前 D7 相对 c862 的产品差异仅为 `Application.run` 内部输入超时修复（2 行新增、10 行删除）：先喂入就绪字节，只有空闲读取才判定序列超时；公开签名、宏、原正负语法消费者和构建配置未变。上述 f48→c862 全源相同关系及 D141/TASK145 编译/包记录保留为历史事实，不能外推为 f48→D7 全源相同或 D7 新执行。映射的 `forward_projection` 绑定独立输入修复审核、当前 App 文件及普通 D7 CJP 身份；该审核仅准入未变范围复用，不替代实际最终 minimal/composition 消费、设备/运行时、性能或最终 TASK-002/004 验收。
 
 历史 raw 部分已无损迁入分片。映射同时保留逻辑路径、原始独立执行目录、逐原件 SHA-256、R12/R13 验收/归档索引及统一 catalog；本次只读取仍存在的原始执行文件，没有解压或修改归档。
 

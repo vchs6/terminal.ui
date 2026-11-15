@@ -4,7 +4,7 @@
 
 本文说明应用作者如何组织界面、业务状态和事件，并投影已实现的公共构造契约。需求见 [需求说明](requirements.md) REQ-001–003；可运行入口和使用说明见 [产品文档](product/README.md)、[组合应用](product/composition.md)。本文仍是开发契约，不表示发布。
 
-本次固定源码为 `c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960`；`src/`、`native/`、`examples/`、`build.cj`、根 `cjpm.toml` 与已接受的 `f48ca45608247f52a6876ad5c27b4ca36867f406` 分别具有相同 Git 对象。下文第 9–12 节和 [construction-map.json](reviews/Linux-final/construction-map.json) 记录实际签名、来源、消费者、错误和证据范围；第 2–8 节保留总体使用目标。U1–U5 已有 [AC-021 冻结 M1 验收](reviews/R22/021/README.md)，四主题展示已有 [AC-027 冻结 M1 验收](reviews/R22/027/completed/README.md)。两者不能自行关闭原 AC-004、全部 Linux 或发行验收。最终消费者绑定及原 AC-004 独立审核/验收仍为 pending，任务状态仍由 OpenSpec `complete-linux-integration/tasks.md` 2.1.4 管理。
+本次固定源码为 `d7e9d1445f98021a798d223de97b97b45239de93`。历史 c862 的 `src/`、`native/`、`examples/`、`build.cj`、根 `cjpm.toml` 与已接受的 `f48ca45608247f52a6876ad5c27b4ca36867f406` 分别具有相同 Git 对象；D7 仅改变 `src/application.cj` 的 `run()` 内部输入超时行为，公开签名及其余上述范围不变。下文第 9–12 节和 [construction-map.json](reviews/Linux-final/construction-map.json) 记录实际签名、来源、消费者、错误和证据范围；第 2–8 节保留总体使用目标。U1–U5 已有 [AC-021 冻结 M1 验收](reviews/R22/021/README.md)，四主题展示已有 [AC-027 冻结 M1 验收](reviews/R22/027/completed/README.md)。两者不能自行关闭原 AC-004、全部 Linux 或发行验收。最终消费者绑定及原 AC-004 独立审核/验收仍为 pending，任务状态仍由 OpenSpec `complete-linux-integration/tasks.md` 2.1.4 管理。
 ## 2. 统一构造模型
 
 | 用户操作 | 设计契约 | 框架承担的工作 |
@@ -160,7 +160,9 @@ UI 事件、batch 与已投递 post 在统一执行域内运行。后台计算�
 
 - AC-021 原接受源 `e3016afe`/main `c190e6f9` 的 minimal/composition 业务源码与 manifest 均与当前相同；原运行仍标历史 M1，不能因接口不变把已改变的 core 当作旧执行。
 - AC-027 原接受源 `b5de3dd6` 的 showcase 源码/manifest 与当前相同；保留四主题、文件失败、编辑/焦点/滚动和 VTE 的原范围。Run=Pending 与真实 worker 分开。
-- 当前固定 core `f48ca456` 的 [D141 执行](reviews/R24/D/browse/incremental-composition-execution/report.md) / [D142 独立接受](reviews/R24/D/browse/incremental-composition-acceptance/report.md) 提供普通 showcase 构建、XTerm/VTE 实际运行及组合/输出恢复证明。D 的 composition consumer 位于 tests/incremental_composition，不能误写为最终 examples/composition 构建。原 VTE F10 截获失败保留；成功配置为 `ShortcutsNoMenukey=TRUE`。
+- 历史固定 core `f48ca456` 的 [D141 执行](reviews/R24/D/browse/incremental-composition-execution/report.md) / [D142 独立接受](reviews/R24/D/browse/incremental-composition-acceptance/report.md) 提供普通 showcase 构建、XTerm/VTE 实际运行及组合/输出恢复证明。D 的 composition consumer 位于 tests/incremental_composition，不能误写为最终 examples/composition 构建。原 VTE F10 截获失败保留；成功配置为 `ShortcutsNoMenukey=TRUE`。
 - 历史 R12 宏正/负编译证据和 R13 条件/列表机制，仅按相同源码对象复用相应范围；不把已变化的运行时套件整体标为当前新执行。TASK145 固定 `c862` 普通包和解包 benchmark 消费证据补包入口，不能替代全部 U1–U5 或 AC-004 验收。
+
+D7 前向范围见映射 `forward_projection`：就绪输入先送入 decoder，真实空闲读取才判定超时；独立输入修复审核确认构造、宏和公开 API 未变，仅准入相应有限复用。旧 f48/c862 包、ELF、原始执行与审核保持原身份，不改写为 D7 新执行；当前普通 D7 CJP 的身份记录也不替代最终公开 minimal/composition 消费者证明。设备/运行时、性能和完整 Linux 仍由原任务独立验收。
 
 原 AC-004 保持 pending：需要独立逐条审核/验收，以及最终 minimal/composition 的固定消费者、构建环境/命令/ELF 与运行绑定，或既有同源接受证据的明确复用裁定。具体入口为上述目录的 `cjpm build`、`target/release/bin/main --smoke` 和既定实际交互序列；应先查已有有效证据，避免重复检查。本角色受 CPU 测量约束没有执行这些命令。最终语法/依赖/平台/发行证据仍由相应原任务汇合；本投影不宣称 Linux、M2 性能、跨平台、发布或完整 SDK/LSP 通过。
