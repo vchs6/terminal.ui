@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第四组发布后已交付4个下载包。第5、6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第五批发布后已交付5个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -89,10 +89,32 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 2 | C008原始runtime证据和截图 | 已交付1包 |
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
-| 5 | VM镜像与复现输入 | 待按原件去重，可能分卷 |
+| 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
 | 6 | 尚未覆盖的独有历史成果和原始证据 | 待逐文件对账，可能分卷 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
 
 [第四批独立核查报告](part04-independent-report.md)与[机器可读记录](part04-independent-findings.json)确认23原件、完整归档字节和五份解压ELF的哈希。云端为节省空间以Git blob保留本批压缩包，工作树标为skip-worktree；远端和新clone仍包含完整文件，原gzip原件未删除。
+
+## 第五批：C008 VM镜像、内核与复现工具
+
+- [下载第五批](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part05.tar.gz)（90,995,785 字节）
+- [SHA256 校验文件](terminal-ui-migration-20261115-part05.tar.gz.sha256)
+
+SHA256：`82658e9aa729d6142cbaf79a41a1a19812efbc69907441f2e427e67ee7a09e0a`。
+
+本批包含48份原件：C008三份历史initramfs（最初启动、R3启动、一次控制诊断），原始基础initramfs、原测试内核、QEMU/宿主工具的原下载deb包、对应官方获取元数据，以及linux-console-hosts和linux-vt-product-probe的复现probes与报告。没有重新打包VM镜像或运行其中程序。三份C008镜像属于既有未完成VT验收的历史阶段，**不包含最新6a399c88公平调度修复，不代表真实VT或Linux已通过**。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part05.tar.gz.sha256
+tar -xzf terminal-ui-migration-20261115-part05.tar.gz -C /第一批恢复目标目录
+```
+
+原件恢复在work/下对应的linux-final-host-actual、linux-console-hosts和linux-vt-product-probe路径；migration-part05/manifest.json记录逐文件字节、权限与SHA256。第二批已有启动/诊断命令和结果；第一批保留operator和测试契约；第三批保留原公开应用与旧supervisor二进制。本批提供原安装包，未重复装入可由这些deb重建的完整hosts解包树。
+
+复现前应映射旧/workspace/work前缀，并在相容的Linux x86_64环境中按已归档probes/获取记录准备QEMU及其库。不得将initramfs直接解到宿主根目录，也不应把导入证据当作应自动启动的程序。工具包仅证明原下载字节被保存，原获取报告未证明InRelease签名已经验证，本次也未新增签名验证或在新机器重跑VM。SDK/stdx及其他历史复现输入仍按第6、7组覆盖清单补齐，不能据此声称所有环境依赖已完整迁移。
+
+本批压缩包和Git blob在云端专用宿主共享内存中暂存，工作树标记skip-worktree；原始镜像与安装包仍在原目录。访问该暂存Git对象需宿主执行命名空间，新clone直接从GitHub取得完整文件，不依赖此临时路径。
+
+[第五批独立核查报告](part05-independent-report.md)、[机器可读记录](part05-independent-findings.json)与[只读审计脚本](part05-audit-readonly.py)记录48原件、完整归档、四个CPIO内部清单与历史绑定核验。审计脚本保留原工作环境路径，跨机器运行需按迁移根映射，不作为产品运行依赖。
