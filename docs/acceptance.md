@@ -33,7 +33,7 @@
 | AC-027 | REQ-008、REQ-006 | 四套预置主题及统一组件展示 | TASK-027 | [冻结M1 C006完整统一展示](reviews/R22/027/completed/README.md)：PASS_AC027_M1_THEME_SHOWCASE，16条件通过；全部控件/状态/窄屏/切换保持/显式文件重载、公开消费者、23张真实原PNG及受限色/ASCII同核复用；最终C008/M2/041/023另汇合 | passed（当前冻结C006/AC027 M1范围） |
 | AC-028 | REQ-001.8、REQ-009 | 基础输入编辑与标准快捷操作 | TASK-028 | 单/多行输入、Unicode簇级移动删除选择、剪贴板结果、撤销重做；Enter默认正确，坏粘贴不误提交；E001–E005有限编辑已获122 PASS_FINITE_E，见[E原件](reviews/E/README.md)；父级完整汇合保留 | finite_passed（完整父AC pending） |
 | AC-029 | REQ-001.8、REQ-009 | 按钮标签与选择进度基础组件 | TASK-029 | 标签/按钮/单选/复选/进度条通过公开接口组合，状态可控、事件一次、主题一致；[独立157接受五控件S01–S05](reviews/widgets/S/widgets-small-acceptance/acceptance.md)；027/041全状态/Unicode/四主题展示另汇合 | passed（有限S语义范围） |
-| AC-030 | REQ-010 | 可选会话能力与本地剪贴板通道 | TASK-030 | SSH复制目标为用户本地，粘贴接收不主动读；标题/图片图标按支持证据，发送与确认分开；缺能力不影响核心；产品证据待实现 | pending |
+| AC-030 | REQ-010 | 可选会话能力与本地剪贴板通道 | TASK-030 | [R18有限会话验收](reviews/R18/acceptance/report.md)及K粘贴接收已交付；发送与确认分开、缺能力不影响核心、无图片适配返回Unsupported。SSH本地目标与完整父项仍待最终六宿主/024汇合 | pending（有限会话能力已接受；完整父AC待验） |
 | AC-031 | REQ-004.8 | M2局部布局绘制及基线对照 | TASK-031 | [A–E及独立147原AC验收](reviews/R24/E/README.md)：局部负载减少无关工作与实际CPU成本，移动/遮挡/宽字符/resize保持M1帧；CPU、Cell槽、heap/GC/RSS、原生输出及大范围退化均保留，无普遍加速或总分配字节声明 | passed（固定Linux M2范围；最终六宿主与023/024另验） |
 | AC-032 | REQ-001.9、REQ-002.7/.8 | 混合子元素操作与定向通知集成 | TASK-032 | 声明A/B/C中插X融合排序位置；显式移动/移除、无效锚点/卸载/重入操作有诊断；定向通知合批无手动flush；见R13原件与独立验收 | passed（[R13独立有限验收](reviews/R13/acceptance/report.md)；原015/016/032完整范围） |
 | AC-033 | REQ-007 | 本轮规格与追踪一致性 | TASK-033 |R5最终严格检查与覆盖记录；实际证据：R5/validation-final.txt、check-consistency.mjs及re-review.md| passed |
@@ -207,31 +207,31 @@ REQ-007 的既有配置证据见 docs/reviews/R0/result.md；该记录只覆盖�
 
 | AC | 需求 | 任务 | 验收边界 | 状态 |
 |---|---|---|---|---|
-| AC-123 | REQ-001/003/004/007 | TASK-123 | 独立同核算法/统计测试与新增API RED | pending |
-| AC-124 | REQ-001/003/004/007 | TASK-124 | 单measure/arrange/paint重构及真实统计 | pending |
-| AC-125 | REQ-001/003/004/007 | TASK-125 | 算法分离独立双审 | pending |
-| AC-126 | REQ-001/003/004/007 | TASK-126 | 算法分离独立执行及回归 | pending |
-| AC-127 | REQ-001/003/004/007 | TASK-127 | A有限验收，不提前称局部渲染 | pending |
-| AC-128 | REQ-001/003/004/007 | TASK-128 | 独立Frame共享/宽簇/透明/分配槽测试 | pending |
-| AC-129 | REQ-001/003/004/007 | TASK-129 | Frame私有行COW及精确来源 | pending |
-| AC-130 | REQ-001/003/004/007 | TASK-130 | 行共享独立双审 | pending |
-| AC-131 | REQ-001/003/004/007 | TASK-131 | 行共享独立执行和旧Frame回归 | pending |
-| AC-132 | REQ-001/003/004/007 | TASK-132 | B有限验收，不提前关031 | pending |
-| AC-133 | REQ-001/003/004/007 | TASK-133 | 独立dirty/cache/布局连带golden | pending |
-| AC-134 | REQ-001/003/004/007 | TASK-134 | 节点约束缓存/精确失效传播 | pending |
-| AC-135 | REQ-001/003/004/007 | TASK-135 | 缓存失效独立双审 | pending |
-| AC-136 | REQ-001/003/004/007 | TASK-136 | 缓存/逐帧M1对照独立执行 | pending |
-| AC-137 | REQ-001/003/004/007 | TASK-137 | C有限验收，局部合成待D | pending |
-| AC-138 | REQ-001/003/004/007 | TASK-138 | 独立damage/层/滚动/caret/故障golden | pending |
-| AC-139 | REQ-001/003/004/007 | TASK-139 | 同Frame局部合成与后端安全提交 | pending |
-| AC-140 | REQ-001/003/004/007 | TASK-140 | 局部合成独立双审 | pending |
-| AC-141 | REQ-001/003/004/007 | TASK-141 | 局部渲染/M1等价与设备故障独立执行 | pending |
-| AC-142 | REQ-001/003/004/007 | TASK-142 | D功能验收，031成本待E | pending |
-| AC-143 | REQ-001/003/004/007 | TASK-143 | 公开benchmark独立公平性与计量测试 | pending |
-| AC-144 | REQ-001/003/004/007 | TASK-144 | 独立CJPM benchmark实现与说明 | pending |
-| AC-145 | REQ-001/003/004/007 | TASK-145 | benchmark公平性/公共API独立双审 | pending |
-| AC-146 | REQ-001/003/004/007 | TASK-146 | 独立重复CPU/Cell槽/heap/GC/RSS/输出与干净消费 | pending |
-| AC-147 | REQ-001/003/004/007 | TASK-147 | 原022/031完整成本及metadata验收 | pending |
+| AC-123 | REQ-001/003/004/007 | TASK-123 | 独立同核算法/统计测试与新增API RED | passed（[A独立验收与原件](reviews/R24/A/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-124 | REQ-001/003/004/007 | TASK-124 | 单measure/arrange/paint重构及真实统计 | passed（[A独立验收与原件](reviews/R24/A/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-125 | REQ-001/003/004/007 | TASK-125 | 算法分离独立双审 | passed（[A独立验收与原件](reviews/R24/A/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-126 | REQ-001/003/004/007 | TASK-126 | 算法分离独立执行及回归 | passed（[A独立验收与原件](reviews/R24/A/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-127 | REQ-001/003/004/007 | TASK-127 | A有限验收，不提前称局部渲染 | passed（[A独立验收与原件](reviews/R24/A/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-128 | REQ-001/003/004/007 | TASK-128 | 独立Frame共享/宽簇/透明/分配槽测试 | passed（[B独立验收与原件](reviews/R24/B/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-129 | REQ-001/003/004/007 | TASK-129 | Frame私有行COW及精确来源 | passed（[B独立验收与原件](reviews/R24/B/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-130 | REQ-001/003/004/007 | TASK-130 | 行共享独立双审 | passed（[B独立验收与原件](reviews/R24/B/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-131 | REQ-001/003/004/007 | TASK-131 | 行共享独立执行和旧Frame回归 | passed（[B独立验收与原件](reviews/R24/B/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-132 | REQ-001/003/004/007 | TASK-132 | B有限验收，不提前关031 | passed（[B独立验收与原件](reviews/R24/B/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-133 | REQ-001/003/004/007 | TASK-133 | 独立dirty/cache/布局连带golden | passed（[C独立验收与原件](reviews/R24/C/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-134 | REQ-001/003/004/007 | TASK-134 | 节点约束缓存/精确失效传播 | passed（[C独立验收与原件](reviews/R24/C/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-135 | REQ-001/003/004/007 | TASK-135 | 缓存失效独立双审 | passed（[C独立验收与原件](reviews/R24/C/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-136 | REQ-001/003/004/007 | TASK-136 | 缓存/逐帧M1对照独立执行 | passed（[C独立验收与原件](reviews/R24/C/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-137 | REQ-001/003/004/007 | TASK-137 | C有限验收，局部合成待D | passed（[C独立验收与原件](reviews/R24/C/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-138 | REQ-001/003/004/007 | TASK-138 | 独立damage/层/滚动/caret/故障golden | passed（[D独立验收与原件](reviews/R24/D/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-139 | REQ-001/003/004/007 | TASK-139 | 同Frame局部合成与后端安全提交 | passed（[D独立验收与原件](reviews/R24/D/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-140 | REQ-001/003/004/007 | TASK-140 | 局部合成独立双审 | passed（[D独立验收与原件](reviews/R24/D/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-141 | REQ-001/003/004/007 | TASK-141 | 局部渲染/M1等价与设备故障独立执行 | passed（[D独立验收与原件](reviews/R24/D/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-142 | REQ-001/003/004/007 | TASK-142 | D功能验收，031成本待E | passed（[D独立验收与原件](reviews/R24/D/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-143 | REQ-001/003/004/007 | TASK-143 | 公开benchmark独立公平性与计量测试 | passed（[E独立验收与原件](reviews/R24/E/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-144 | REQ-001/003/004/007 | TASK-144 | 独立CJPM benchmark实现与说明 | passed（[E独立验收与原件](reviews/R24/E/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-145 | REQ-001/003/004/007 | TASK-145 | benchmark公平性/公共API独立双审 | passed（[E独立验收与原件](reviews/R24/E/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-146 | REQ-001/003/004/007 | TASK-146 | 独立重复CPU/Cell槽/heap/GC/RSS/输出与干净消费 | passed（[E独立验收与原件](reviews/R24/E/README.md)；本质量任务范围，完整Linux仍归024） |
+| AC-147 | REQ-001/003/004/007 | TASK-147 | 原022/031完整成本及metadata验收 | passed（[E独立验收与原件](reviews/R24/E/README.md)；本质量任务范围，完整Linux仍归024） |
 
 唯一任务状态见[具体变更](../openspec/changes/implement-incremental-rendering/tasks.md)，规划和探针不代表产品已完成。
 
