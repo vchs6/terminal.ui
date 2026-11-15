@@ -1,0 +1,85 @@
+{
+  "status": "pass",
+  "verified_at_utc": "2026-11-15T13:24:46.493278+00:00",
+  "scope": "Independent physical evidence migration verification only; no final Linux product success claim.",
+  "source_root": "/workspace/work/linux-final-host-actual/actual/runtime",
+  "manifest_sha256": "07ad9e9742c86df4d5aa753c5fd1f1d15365f78d2cec9d7b9f04a1c1c9685b0e",
+  "omissions_sha256": "1abf3acc7b007237193486e367a6902d35c5b59b3930ad5b0c2d3400943245a0",
+  "source_regular_files_in_manifest": 7404,
+  "source_bytes": 30849827,
+  "png_originals": 737,
+  "gzip_files_verified": 77,
+  "cleanup_evidence_files": 90,
+  "actual_owned_cleanup_included": true,
+  "attempt_group_counts": {
+    "screen-attempt1": 860,
+    "screen-attempt2": 115,
+    "screen-attempt3": 192,
+    "ssh-attempt1": 8,
+    "ssh-attempt2": 8,
+    "ssh-attempt3": 597,
+    "ssh-attempt4": 179,
+    "ssh-attempt5": 200,
+    "tmux-attempt1": 770,
+    "tmux-attempt2": 932,
+    "tmux-attempt3": 200,
+    "vte-attempt1": 281,
+    "vte-attempt2": 901,
+    "vte-attempt3": 348,
+    "vte-attempt4": 230,
+    "xterm-attempt1": 1000,
+    "xterm-attempt2": 200
+  },
+  "archive": {
+    "path": "/workspace/shared/downloads/terminal-ui-migration-20261115-part02.tar.gz",
+    "sha256": "33f2864cb281a1b1fae5dea6b12f922ebe3b74c19365366ecc09471726eab6ae",
+    "bytes": 10096232,
+    "total_members": 7406,
+    "regular_members": 7406,
+    "nonregular_members": 0,
+    "evidence_members": 7404,
+    "control_members": 2,
+    "all_regular": true,
+    "no_duplicate_names": true,
+    "all_hashes_sizes_modes_match": true,
+    "no_escape_or_noncanonical_paths": true
+  },
+  "excluded_vm_images": [
+    "/workspace/work/linux-final-host-actual/actual/runtime/vt-control-diagnostic-once/diagnostic.cpio.gz",
+    "/workspace/work/linux-final-host-actual/actual/runtime/vt-preparation-r3/final-public-r3.cpio.gz",
+    "/workspace/work/linux-final-host-actual/actual/runtime/vt-preparation/final-public.cpio.gz"
+  ],
+  "excluded_native_binaries": [
+    "/workspace/work/linux-final-host-actual/actual/runtime/vt-preparation-r3/vt-product-supervisor",
+    "/workspace/work/linux-final-host-actual/actual/runtime/vt-preparation/vt-product-supervisor"
+  ],
+  "pruned_directories": [
+    "/workspace/work/linux-final-host-actual/actual/runtime/ssh-server"
+  ],
+  "nonregular_sources": [
+    "/workspace/work/linux-final-host-actual/actual/runtime/vt-control-diagnostic-once/vt-run/supervisor-trace.out",
+    "/workspace/work/linux-final-host-actual/actual/runtime/vt-control-diagnostic-once/vt-run/supervisor-trace.in"
+  ],
+  "omission_observation": "omissions.json labels ssh-server excluded as a whole, but its permitted final-owned-cleanup.json exception is present in the manifest and archive. This wording does not create an evidence omission.",
+  "errors": [],
+  "limitations": [
+    "No build, VM run, network action, extraction, source edits, or archive modification performed.",
+    "No SSH keys, authentication materials, environment values, or quarantine content inspected. Manifest-listed evidence was read only for byte hashes, magic-header classification, or gzip integrity, without printing contents.",
+    "No GitHub main reachability verification is performed by this physical archive audit."
+  ],
+  "source_verification_reused": "Earlier full byte/size/mode audit remains applicable: manifest and omissions SHA-256 are unchanged; source originals were not modified.",
+  "resolved_findings": [
+    {
+      "initial_issue": "Five paste002-facts/declaration-ready.json archive members were hard links (tar type 1), violating the all-regular requirement.",
+      "affected_attempt_groups": [
+        "screen-attempt3",
+        "ssh-attempt5",
+        "tmux-attempt3",
+        "vte-attempt4",
+        "xterm-attempt2"
+      ],
+      "repair": "Parent rebuilt the archive with tarfile.open(..., dereference=True), without modifying original evidence or manifest.",
+      "verification": "Full rebuilt archive member coverage, regular types, canonical safe paths, SHA-256, byte lengths, and permission modes checked again; no remaining failures."
+    }
+  ]
+}
