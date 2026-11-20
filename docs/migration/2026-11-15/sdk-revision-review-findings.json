@@ -1,0 +1,53 @@
+{
+  "schema": "independent-sdk-stdx-receipt-revision-review-v1",
+  "date": "2026-11-20",
+  "scope": "Original R1 receipt custody and relocation; existing full member audit reused.",
+  "verdict": "pass",
+  "original_R1": "closed_for_pinned_revision",
+  "original_R2": "open_delivery_condition",
+  "inputs": {
+    "manifest_sha256": "1075caa430fd969d59f4e149ba38c2cafdb6c6a985220cdc2f8e3fde3c4dd6b4",
+    "restore_sha256": "f6ae7e3da8d4553d88cb051d602c2cbf21c9a62b4279cdd2c081d18c7b86a925",
+    "verify_sha256": "968af67806c5990b29023fe73568016b2e8ee09e675805ca1ced17260f8865f9",
+    "verification_record_sha256": "d67202f23912e5a5de5e52cc02e4de1aaec322fe83e266c7ce18d1583126a358",
+    "artifact_sha256_entries_rehashed": 8,
+    "required_payloads": 3,
+    "required_payload_bytes": 264993197,
+    "release_archive_bytes": 264992703,
+    "source_sizes_and_digests_reverified": true
+  },
+  "independent_test": {
+    "root": "/dev/shm/terminal-ui-migration-20261115-host/independent-sdk-revision.lHh8KEYn/new project",
+    "fresh_restores": 1,
+    "restore_exit": 0,
+    "verify_exit": 0,
+    "original_receipt_path": "migration-evidence/stdx/install.original.json",
+    "original_receipt_bytes": 494,
+    "original_receipt_sha256": "a8c7c4e5750cf9f5f2e381a24e3e8f47496a56cc8971318d634bd152f0830dec",
+    "original_receipt_mode": "0600",
+    "original_installation_preserved": true,
+    "active_path": "linux-build-recon/stdx/cangjie-stdx-linux-x64-1.2.0-beta.02.1/install.json",
+    "active_receipt_mode": "0600",
+    "active_receipt_distinct_inode": true,
+    "only_changed_field": "installation",
+    "trial_active_bytes": 569,
+    "trial_active_sha256": "d5036b0e9c9cf6e30b20d2593267df6a931a6499001b1f3d062fd7d50736be17",
+    "new_absolute_compatibility_link_verified": true
+  },
+  "negative_controls": {
+    "invalid_sdk_before_write": 1,
+    "invalid_stdx_before_write": 1,
+    "invalid_receipt_before_write": 1,
+    "populated_target_hidden_sentinel_preserved": 1,
+    "direct_symlink_to_populated_target_preserved": 1,
+    "repeat_on_restored_target": 1,
+    "evidence_mode_tampered_verify": 1,
+    "active_old_path_verify": 1
+  },
+  "preconditions": [
+    "stable original input files",
+    "fresh canonical destination in a trusted writable parent on Linux; an existing empty root can be replaced as a directory"
+  ],
+  "outstanding": "Release archive transfer and recipient-side rehash not evidenced. Network reacquisition not verified.",
+  "build_or_runtime_checked": false
+}

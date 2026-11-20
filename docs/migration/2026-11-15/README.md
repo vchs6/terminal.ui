@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第六组十二卷发布后已交付17个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组十五卷发布后已交付20个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十二卷（134份历史gzip ELF、原路径小报告和阶段目录账本）；其他目录继续逐文件对账 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十五卷（历史gzip ELF、原路径小报告、目录账本及SDK输入）；其他目录继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -276,3 +276,44 @@ tar -xzf terminal-ui-migration-20261115-part06l.tar.gz -C /新的空暂存目录
 ```
 
 两卷独立审核只覆盖各自冻结范围。SDK/依赖输入与剩余大原件的覆盖证明、旧exact member对当前原件SHA联核、第七组最终恢复与交接仍在推进，不能据目录数量或此小文件集合声明全部迁移完成。
+
+## 第六组第十三至十五卷：离线SDK/stdx输入（part06m1 / m2 / m3）
+
+**三卷必须一起使用。** 它们保存原发行输入，不传输约854,845,304字节的重复展开树。SDK是Linux x64的1.2.0，stdx是Linux x64的1.2.0-beta.02.1，不表示其他平台已支持。
+
+| 卷 | 下载 | 大小 | 校验 | 审核 |
+|---|---|---|---|---|
+| 06m1 | [下载](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06m1.tar.gz) | 83,104,663 字节 | [校验文件](terminal-ui-migration-20261115-part06m1.tar.gz.sha256) | [独立核验](part06m1-independent-report.md) |
+| 06m2 | [下载](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06m2.tar.gz) | 83,239,360 字节 | [校验文件](terminal-ui-migration-20261115-part06m2.tar.gz.sha256) | [独立核验](part06m2-independent-report.md) |
+| 06m3 | [下载](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06m3.tar.gz) | 96,035,644 字节 | [校验文件](terminal-ui-migration-20261115-part06m3.tar.gz.sha256) | [独立核验](part06m3-independent-report.md) |
+
+m1/m2各含SDK tar的连续84,000,000字节，m3含余33,602,997字节、原stdx ZIP、494字节历史回执、固定input-manifest、已修订并独立实测的restore.sh/verify.sh与审查记录。每卷outer manifest及三卷实际分片均经完整字节核验；按001/002/003拼接得到原SDK 201,602,997字节，无重叠缺口。
+
+先在一个新的空暂存目录解压三卷，再进入sdk-inputs-20261120，按固定顺序拼接并验原输入：
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06m1.tar.gz.sha256
+sha256sum -c terminal-ui-migration-20261115-part06m2.tar.gz.sha256
+sha256sum -c terminal-ui-migration-20261115-part06m3.tar.gz.sha256
+tar -xzf terminal-ui-migration-20261115-part06m1.tar.gz -C /新的空暂存目录
+tar -xzf terminal-ui-migration-20261115-part06m2.tar.gz -C /新的空暂存目录
+tar -xzf terminal-ui-migration-20261115-part06m3.tar.gz -C /新的空暂存目录
+cd /新的空暂存目录/sdk-inputs-20261120
+cat parts/cangjie-sdk-linux-x64-1.2.0.tar.gz.001 parts/cangjie-sdk-linux-x64-1.2.0.tar.gz.002 parts/cangjie-sdk-linux-x64-1.2.0.tar.gz.003 > cangjie-sdk-linux-x64-1.2.0.tar.gz
+sha256sum -c SHA256SUMS.inputs
+```
+
+[三个必需输入清单](sdk-input-manifest.json)：SDK tar SHA256为8c5fd944cd9cc51ee63d4a240e3ecc4f540345dae1468e8b47c927ecf2ba998f；stdx ZIP为0d35811d84a770315c6fa2d1090a10568b3f7c763a1d1d54a1433b324f76afc0；原回执为a8c7c4e5750cf9f5f2e381a24e3e8f47496a56cc8971318d634bd152f0830dec。三者共264,993,197字节。
+
+接收方核验原输入后，在可信Linux文件系统选择一个尚不存在的新SDK根。该根与已恢复的项目工作根分开，以免覆盖已有工作目录：
+
+```bash
+bash ./restore.sh /新的独立SDK根目录 ./cangjie-sdk-linux-x64-1.2.0.tar.gz ./cangjie-stdx-linux-x64-1.2.0-beta.02.1.zip ./stdx-install.original.json
+bash ./verify.sh /新的独立SDK根目录
+```
+
+恢复脚本只解包、恢复权限与配置链接；原494字节回执按0600独立保存为migration-evidence/stdx/install.original.json，另生成指向新根的active回执。SDK 778文件和22链接、stdx 370发行文件及兼容链接在独立RAM新根已实际还原逐项核验。SDK envsetup.sh和编译器没有在本轮自动执行，应用/工程也未编译。后续开发入口可指向新SDK根的validation/sdk/cangjie/envsetup.sh和linux-build-recon/stdx-env；按项目依赖文档配置CANGJIE_STDX_PATH。
+
+[独立修订审核](sdk-revision-review-report.md)和[机器记录](sdk-revision-review-findings.json)保留正常恢复、坏输入、旧路径active回执、回执mode及已有目标拒绝的实际结果。恢复记录原现场绝对路径属历史证据，不冒充新机配置。
+
+官方下载本轮未完成整包重取验证，因此提供现场固定原档作离线输入。三卷可取得并通过接收方SHA验收后，SDK/stdx展开树可由这些原档恢复，不必再逐目录复制。此范围不包括仓颉包源缓存、负控修改、native/system依赖或全部编译闭包；整体历史成果与第七组交接仍未收口。

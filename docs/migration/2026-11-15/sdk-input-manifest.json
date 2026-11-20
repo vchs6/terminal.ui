@@ -1,0 +1,39 @@
+{
+  "schema": "cangjie-sdk-stdx-delivery-inputs-v2",
+  "purpose": "All three payloads are required to recover the bounded SDK/stdx tree and historical receipt evidence offline.",
+  "inputs": [
+    {
+      "role": "sdk_original_release_archive",
+      "handoff_filename": "cangjie-sdk-linux-x64-1.2.0.tar.gz",
+      "project_source_path": "validation/sdk/sdk.tar.gz",
+      "bytes": 201602997,
+      "sha256": "8c5fd944cd9cc51ee63d4a240e3ecc4f540345dae1468e8b47c927ecf2ba998f"
+    },
+    {
+      "role": "stdx_original_release_archive",
+      "handoff_filename": "cangjie-stdx-linux-x64-1.2.0-beta.02.1.zip",
+      "project_source_path": "linux-build-recon/stdx/.cache/cangjie-stdx-linux-x64-1.2.0-beta.02.1.zip",
+      "bytes": 63389706,
+      "sha256": "0d35811d84a770315c6fa2d1090a10568b3f7c763a1d1d54a1433b324f76afc0"
+    },
+    {
+      "role": "stdx_original_installation_receipt",
+      "handoff_filename": "stdx-install.original.json",
+      "project_source_path": "linux-build-recon/stdx/cangjie-stdx-linux-x64-1.2.0-beta.02.1/install.json",
+      "bundled_proof_path": "stdx-install.original.json",
+      "bytes": 494,
+      "sha256": "a8c7c4e5750cf9f5f2e381a24e3e8f47496a56cc8971318d634bd152f0830dec",
+      "mode_octal": "0600"
+    }
+  ],
+  "payload_count": 3,
+  "payload_bytes": 264993197,
+  "restore_support_files": [
+    "input-manifest.json",
+    "restore.sh",
+    "verify.sh",
+    "report.md",
+    "proposal.json"
+  ],
+  "archive_custody_status": "Pinned originals are available at the given local source paths. Transfer and recipient-side rehash are pending."
+}
