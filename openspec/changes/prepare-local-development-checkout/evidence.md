@@ -36,4 +36,11 @@
 | GOV-007 测试环境 | 控件及主题脚本使用调用者激活的 SDK/stdx。shell 语法和 Python 编译检查通过。小控件 `--oracle`、组合控件 53 项 oracle 及 10 项 PTY 控制在未配置 SDK/stdx 环境通过。 |
 | GOV-008 常规构建 | SDK 默认及显式官方中心仓使用空 cache 直连均收到连接拒绝 111，官方 TOML payload 经 curl 校验匹配。隔离的初始空 cache 经环境现有代理桥取官方包后，`cjpm build`、`cjpm test`（0 项注册测试）、最小示例正常编译和直接 `--smoke` 均退出 0，输出 `PASS minimal`。代理桥只用于本次验证。 |
 | GOV-009 历史退出 | 两处历史目录在当前树已移除。受影响 Markdown 链接的目标已核对固定 Git 版本，当前链接检查通过。历史归档读、归档操作和检出合约分别有 51、13、6 项通过。 |
-| GOV-009 独立检出 | 用本地 Git wire 协议创建可过滤对象、无 alternates 且保留完整祖先的独立候选检出。`npm ci`、24 项检查、交互 C 活动准入及 19 项控制、颜色 oracle、C008 源码检查均通过。候选检出的 Git pack 约 4 MiB。远端 main 检出由集成后独立验收。 |
+| GOV-009 独立检出 | 用本地 Git wire 协议创建可过滤对象、无 alternates 且保留完整祖先的独立候选检出。`npm ci`、24 项检查、交互 C 活动准入及 19 项控制、颜色 oracle、C008 源码检查均通过。候选检出的 Git pack 约 4 MiB。 |
+
+## GitHub 干净克隆独立验收
+
+- 按 README 从 GitHub 部分克隆 main，固定版本为 `0e440a8901125f8e8c3b6fb03899fc1892b3d36b`。保留 529 个可达提交，当前树 1,778 项、7,898,444 字节，两个历史目录无跟踪项。开发工具安装与仓库检查通过，OpenSpec 24/24。交互 C 准入与 19 项控制、颜色 resize oracle、C008 的 105 个源码和模式均通过。
+- 官方 SDK、stdx、五个中心仓包及 UCD 的 SHA-256 匹配锁定值。本环境用空缓存直连官方中心仓收到连接拒绝 111，`cjpm build -j 1` 退出 1。随后在独立缓存中填入已校验的上游包与锁定索引，保留官方仓库配置并完成重新编译。
+- `cjpm build -j 1`、`cjpm check`、`cjpm test -j 1` 均退出 0。根包注册单测为 0 项。`bash tests/run-slice.sh contract` 输出 109 条 PASS，最小示例正常构建且无交互 `--smoke` 输出 `PASS minimal`。真实 Linux VT 和整体验收继续由原任务负责。
+- 独立报告 SHA-256 `ac5aec47fcadcf1e11def4ddacf8bb30060cea04e80927c29081959189cfe5b1`，结构化结果 SHA-256 `4f374392b7f19bc9af8ae23452dd4ee30099bd923a0dd94f736c816102521f8d`。
