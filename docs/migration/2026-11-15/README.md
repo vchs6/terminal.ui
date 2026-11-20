@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第六组十九卷发布后已交付24个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组二十卷发布后已交付25个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十九卷（历史gzip ELF、文本与图像原件、恢复账本、补齐原件及SDK输入）；其他目录继续逐文件对账 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付二十卷（历史gzip ELF、文本与图像原件、恢复账本、补齐原件及SDK输入）；其他目录继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -393,3 +393,25 @@ tar -xzf terminal-ui-migration-20261115-part06q.tar.gz -C part06q-staging
 ```
 
 `migration-part06q/manifest.json` 记录逐成员 SHA256、大小、权限和原纳秒修改时间；tar 时间精度为秒。audit/ 记录选择范围、固定路径规则、筛查结果及暂缓清单。核对后将 work/ 合并到第一批恢复的 work/，保留本地已修改文件；旧 /workspace/work 前缀按本机恢复位置映射。内容和历史结论均未改写，本轮没有重新运行原 Linux 测试。完整迁移、新电脑构建和 Linux 整体验收仍未完成，旧原件继续保留。
+
+## 第六组 06r：剩余记录、源码配置与暂缓 JSON 补齐
+
+- [下载 06r](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06r.tar.gz)（14,561,424 字节）
+- [SHA256 校验文件](terminal-ui-migration-20261115-part06r.tar.gz.sha256)
+- [独立核验报告](part06r-independent-report.md)与[机器可读结果](part06r-independent-findings.json)
+
+本卷装入 20,715 份新增原件，以及 06q 暂缓后经独立复核准入的 10 份 JSON，共 20,725 个原路径、220,520,334 原字节。包括此前未覆盖的运行记录、源码、脚本、配置、校验输入及原始 gzip。每个原路径保留原字节及元数据，内容重复文件通过压缩降低体积。
+
+固定新候选为 20,884 项、206,119,342 字节；169 项暂缓：141 项含审查工具未识别的 ESC 序列、23 项非 UTF-8、4 项匹配凭据或环境规则、1 项含其他控制字节。这里记录的是归档审查处置，本轮没有重新执行原测试。另一个 06q 日志仍暂缓，仅复核文件元数据，未打开正文，原 SHA 沿用旧审查队列。
+
+包内 audit/metadata-census.json 保留原类型盘点，policy-clarification.json 补全缓存、SDK、Git 和安装目录的延后规则只检查目录组件；保护规则同时检查文件名。select.py 是当时固定选择器的审计副本。独立核验已按实际规则逐项复现固定候选；包内原 census 和 queue 保持原字节。原提议清单在旧环境保留，其摘要及固定路径摘要随澄清记录交付。源码选择器引用旧环境，不是本机直接执行的恢复入口。
+
+盘点是在本轮路径排除和延后规则后的两类目录记录中进行，不能视为全局剩余规模。筛选后的另 138,477 项、2,710,778,695 字节只完成类型统计；其他 SDK、缓存、生成物及未决范围仍需各自恢复证明。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06r.tar.gz.sha256
+mkdir part06r-staging
+tar -xzf terminal-ui-migration-20261115-part06r.tar.gz -C part06r-staging
+```
+
+`migration-part06r/manifest.json` 记录逐成员 SHA256、大小、权限及原纳秒修改时间，tar 时间精度为秒。audit/ 是新增原件范围和审查记录，hold-independent-review/ 是前卷 11 项的独立复核。核对后将 work/ 合并到第一批恢复目标的 work/，保留本地已修改文件；旧 /workspace/work 路径应按本机位置映射。完整迁移、新电脑构建和 Linux 整体验收仍未完成，旧原件继续保留。
