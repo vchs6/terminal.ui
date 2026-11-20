@@ -1,0 +1,195 @@
+{
+  "schema": "report-candidate-publication-audit-v1",
+  "timestamp_utc": "2026-11-20T06:08:22.406567+00:00",
+  "catalog": "/dev/shm/terminal-ui-migration-20261115-host/global-catalog-restored-20261120",
+  "ram_output": "/dev/shm/terminal-ui-migration-20261115-host/report-candidates-audit-20261120",
+  "source_root": "/workspace/work",
+  "historical_baseline": "a5aed68544d7681a522400d2f061e5cf64532ee4",
+  "candidate_scope": {
+    "intersection": [
+      "small-safe-candidates.jsonl",
+      "priority-original-candidates.jsonl"
+    ],
+    "files": 7801,
+    "bytes": 31227880,
+    "per_file_max_bytes": 200000
+  },
+  "scope_notes": [
+    "Only selected candidate content bytes were read and hashed. A candidate with changed metadata is not read.",
+    "Published and historical archive fingerprints are existing manifest evidence. Archive payloads were not reopened.",
+    "Exact byte duplicates may use a different restore path. Each duplicate record retains its original path, mode, size, and mtime.",
+    "UTF-8 text was screened automatically. This did not exercise the original Linux tests.",
+    "No archive build or upload was performed."
+  ],
+  "analysis_checks": {
+    "synthetic_content_cases": 16,
+    "byte_hashes_computed": {
+      "files": 7801,
+      "bytes": 31227880
+    },
+    "candidate_git_clean_recovery_rows": 0,
+    "single_volume_uncompressed_payload_and_tar_overhead_estimate_bytes": 5336064,
+    "single_volume_limit_bytes": 104857600,
+    "max_archive_path_utf8_bytes": 141
+  },
+  "dedup_evidence": {
+    "eligible_rows": {
+      "historical_archive_v1_member": 36755,
+      "historical_exact_copy": 898,
+      "historical_exact_locator": 98023,
+      "package_manifest": 10505
+    },
+    "ineligible_rows": {
+      "historical_exact_locator": 31784
+    },
+    "eligible_distinct_sha256": 41353,
+    "delivery_manifests": {
+      "part01": 2151,
+      "part02": 7403,
+      "part03": 12,
+      "part04": 23,
+      "part05": 48,
+      "part06a": 71,
+      "part06b": 75,
+      "part06c": 11,
+      "part06d": 75,
+      "part06e": 68,
+      "part06f": 113,
+      "part06g": 154,
+      "part06h": 137,
+      "part06i": 159,
+      "part06j": 5
+    }
+  },
+  "duplicate_reasons": {
+    "historical_archive_v1_member": 2437,
+    "package_manifest": 1560,
+    "same_batch_payload_digest_match": 2224,
+    "historical_exact_locator": 717
+  },
+  "held_finding_counts_overlapping": {},
+  "queues": {
+    "safe_to_package": {
+      "json": {
+        "bytes": 407484,
+        "sha256": "14d9dd47f1a2d67ba3a3c97d6289570ef474d64a95cf02c285006318a36a557a"
+      },
+      "gzip": {
+        "bytes": 58175,
+        "sha256": "2daabad5a7fb858972dccd8eedbaaf52dbb517d29cdae6dca20d5022f9e579a7"
+      },
+      "files": 863,
+      "bytes": 2878777
+    },
+    "duplicate": {
+      "json": {
+        "bytes": 5203520,
+        "sha256": "ee5efe418b1b3e6aa4d20d9828d7ef7aa1f918a9f0ebd442705c0ea3a6bb7f1d"
+      },
+      "gzip": {
+        "bytes": 219798,
+        "sha256": "94f6e54245859b76e6153dc3c2cf9a4d02585af5eee465f52462ab2953463693"
+      },
+      "files": 6938,
+      "bytes": 28349103
+    },
+    "pending": {
+      "json": {
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "gzip": {
+        "bytes": 23,
+        "sha256": "abc129be8d26e8d4afe9ce45f9d5a73c8ed9aa62810ca24ee789fe4581dc4a80"
+      },
+      "files": 0,
+      "bytes": 0
+    },
+    "held": {
+      "json": {
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "gzip": {
+        "bytes": 23,
+        "sha256": "abc129be8d26e8d4afe9ce45f9d5a73c8ed9aa62810ca24ee789fe4581dc4a80"
+      },
+      "files": 0,
+      "bytes": 0
+    },
+    "stale": {
+      "json": {
+        "bytes": 3,
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "gzip": {
+        "bytes": 23,
+        "sha256": "abc129be8d26e8d4afe9ce45f9d5a73c8ed9aa62810ca24ee789fe4581dc4a80"
+      },
+      "files": 0,
+      "bytes": 0
+    }
+  },
+  "verification": {
+    "queue_rows_and_bytes_closed": true,
+    "all_queue_json_gzip_sha256_and_round_trips_verified": true,
+    "safe_candidate_fresh_digests_and_content_scans": 863,
+    "safe_candidate_fresh_bytes": 2878777,
+    "duplicate_witnesses_reconciled": 6938,
+    "duplicate_witness_counts": {
+      "historical_archive_v1_member": 2437,
+      "package_manifest": 1560,
+      "same_batch": 2224,
+      "historical_exact_locator": 717
+    },
+    "same_original_path_witness_counts": {},
+    "audit_script_sha256": "83ef60a63c2eb2a021a631ec734372817c5db41d377493746c12f2a5566109f8"
+  },
+  "self_contained_original_paths": {
+    "queue": "/dev/shm/terminal-ui-migration-20261115-host/report-candidates-audit-20261120/all_source_paths_for_self_contained.json",
+    "gzip_queue": "/dev/shm/terminal-ui-migration-20261115-host/report-candidates-audit-20261120/all_source_paths_for_self_contained.json.gz",
+    "sort": [
+      "sha256",
+      "path"
+    ],
+    "files": 7801,
+    "bytes": 31227880,
+    "distinct_content_sha256": 1666,
+    "publication_screened_paths": 7801,
+    "publication_screened_content_sha256": 1666,
+    "publication_held_paths": 0,
+    "publication_unknown_paths": 0,
+    "publication_scan_evidence": "Verified first-pass audit script calls scan_text before every safe or duplicate append; all source paths reached these two statuses and existing SHA-bound queues matched verified receipts.",
+    "intentional_repeats": {
+      "files": 6938,
+      "bytes": 28349103
+    },
+    "classes": {
+      "unique_in_batch_against_recovery_evidence": {
+        "files": 863,
+        "bytes": 2878777
+      },
+      "intentional_repeat_other_path_in_volume": {
+        "files": 2224,
+        "bytes": 6091935
+      },
+      "intentional_repeat_delivered_member": {
+        "files": 1560,
+        "bytes": 8642595
+      },
+      "intentional_repeat_canonical_historical_member": {
+        "files": 3154,
+        "bytes": 13614573
+      }
+    },
+    "uncompressed_tar_bound_estimate_bytes": 53316096,
+    "json": {
+      "bytes": 3009773,
+      "sha256": "719b84501cd8ace33dca4a970d8e6055c32f082a5273d4845c6021d94dca538a"
+    },
+    "gzip": {
+      "bytes": 211692,
+      "sha256": "bfee5b61faeaddb32b3b297e2ce244c6c65a72d52ad06508998ebc96bfdb877f"
+    }
+  }
+}

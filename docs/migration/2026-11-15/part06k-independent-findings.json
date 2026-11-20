@@ -1,0 +1,564 @@
+{
+  "status": "PASS",
+  "scope": "2026-11-20 restored metadata catalog stage. Original payload backup and seventh-group final acceptance require separate evidence.",
+  "archive": {
+    "bytes": 48092495,
+    "sha256": "d43944f006545c7ce8fbe49248d4cd81e4ab71c0e5c01e7d8a35fdaa5385b025",
+    "git_blob": "961cf6232e65e487a0509ab0fbc122ea815f3518",
+    "local_git_blob_bytes_match": true,
+    "payload_files": 19,
+    "tar_members": 20,
+    "all_members_regular_unique_safe_and_exact": true,
+    "control_manifest_exact_bytes_and_mode": true,
+    "outer_gzip_single_stream_crc_eof": true,
+    "only_pax_mtime_extensions": true
+  },
+  "snapshot_date_utc": "2026-11-20",
+  "historical_records_snapshot_date_utc": "2026-11-15",
+  "members": [
+    {
+      "archive_path": "migration-catalog-20261120/compressed-ledger/catalog.sql.gz",
+      "bytes": 39669748,
+      "sha256": "443cee1711de5d242aa5aa877cd473c7f1ffb01e01a2c51ec97192a2fe7d290d",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/dev/shm/terminal-ui-migration-20261115-host/global-catalog-restored-20261120/compressed-ledger/catalog.sql.gz"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/compressed-ledger/lineage-only-unresolved.jsonl.gz",
+      "bytes": 9782,
+      "sha256": "92b9240a4d105fbf48bb691599ab19376172aeee2ae85441824c72d4bb61426c",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/dev/shm/terminal-ui-migration-20261115-host/global-catalog-restored-20261120/compressed-ledger/lineage-only-unresolved.jsonl.gz"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/compressed-ledger/logical-custody.jsonl.gz",
+      "bytes": 557656,
+      "sha256": "6fab24ac55fa42fd85843c6f67a26766a173569f97bdd0535efaa90e0d8b057a",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/dev/shm/terminal-ui-migration-20261115-host/global-catalog-restored-20261120/compressed-ledger/logical-custody.jsonl.gz"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/compressed-ledger/priority-original-candidates.jsonl.gz",
+      "bytes": 71600,
+      "sha256": "ca733557559d0f264fd854754279569ffa967c1261c0682a23992891d38ed841",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/dev/shm/terminal-ui-migration-20261115-host/global-catalog-restored-20261120/compressed-ledger/priority-original-candidates.jsonl.gz"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/compressed-ledger/small-safe-candidates.jsonl.gz",
+      "bytes": 326452,
+      "sha256": "d727903a43f6531739c900c10432fb795002834fd8aee5ca56d82c0c53c93c3c",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/dev/shm/terminal-ui-migration-20261115-host/global-catalog-restored-20261120/compressed-ledger/small-safe-candidates.jsonl.gz"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/compressed-ledger/source-sha-obligations.jsonl.gz",
+      "bytes": 4550304,
+      "sha256": "60fd5a099ef3fc0d4ddcbf34303f762963da359562ac84dae2ea2234003147df",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/dev/shm/terminal-ui-migration-20261115-host/global-catalog-restored-20261120/compressed-ledger/source-sha-obligations.jsonl.gz"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/compressed-ledger/unresolved.jsonl.gz",
+      "bytes": 3973917,
+      "sha256": "2ffe61856cf684725ec8eb399f57e07824c39f4d55d8b58580879fdfef41c66a",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/dev/shm/terminal-ui-migration-20261115-host/global-catalog-restored-20261120/compressed-ledger/unresolved.jsonl.gz"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/report.md",
+      "bytes": 6656,
+      "sha256": "b32fc470c4daa26c6f99c8c6b9ddfd30c7406d96c389c0695a5b6a355fde46bf",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog-restored-20261120/report.md"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/summary.json",
+      "bytes": 55082,
+      "sha256": "94737cd2d715145ab33a05bfd0e7cc38e0f32dd661b405e132f9acedb19d4b6e",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog-restored-20261120/summary.json"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/stage.json",
+      "bytes": 747,
+      "sha256": "e82b27861a6aeec80afae0554818ba7eebea7d9d5662be94ca96d9ab368bd978",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog-restored-20261120/stage.json"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/operation-record.json",
+      "bytes": 8365,
+      "sha256": "5fe75bbc8b4fc292e8855f0ecc2d36e5888757010027d27462eb2abb3d5b8274",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog-restored-20261120/operation-record.json"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/snapshot-20261115/report.md",
+      "bytes": 6240,
+      "sha256": "33bb4159bc7a3cdbfe8561e1c4f8e4052323811c796f446154521c681767148e",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog-restored-20261120/snapshot-20261115/report.md"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/snapshot-20261115/stage.json",
+      "bytes": 418,
+      "sha256": "a44175d13d6a9076c2a25aabb1b54462c33def81dfaaa5c4fd5d8edebb76f0ee",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog-restored-20261120/snapshot-20261115/stage.json"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/snapshot-20261115/summary.json",
+      "bytes": 53750,
+      "sha256": "e1a1d6cd63a9e95a803bdf10caecb445693394dd9272ebfb00b9c730f2134f67",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog-restored-20261120/snapshot-20261115/summary.json"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/audit-scripts/build_catalog.py",
+      "bytes": 21244,
+      "sha256": "2607c0148f10a68e875ada20ec04989e848f2acc057a7537b59d2783ccde1442",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog/build_catalog.py"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/audit-scripts/finalize_catalog.py",
+      "bytes": 9641,
+      "sha256": "6683c27ad4351f8bc86809039e667f687223e754ba19d063d5bdb879ab39066b",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog/finalize_catalog.py"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/audit-scripts/finish_edges.py",
+      "bytes": 3438,
+      "sha256": "6d21d49f669f1c5f2a5cb41740193097b08e7015c5dcd95d1a4f5e74a0dad376",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog/finish_edges.py"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/audit-scripts/refine_catalog.py",
+      "bytes": 4711,
+      "sha256": "ffeeb37cb46b2bfe8a7be3453c9c2924b2b42586115832e3b919c65cf563e9d4",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog/refine_catalog.py"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/audit-scripts/write_report.py",
+      "bytes": 12300,
+      "sha256": "bb129944b1c977adfb2ba8f3f181bf55c973b4f1f3fd2282420db5cca9b860c0",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true,
+      "source": "/workspace/work/migration-global-catalog/write_report.py"
+    },
+    {
+      "archive_path": "migration-catalog-20261120/package-manifest.json",
+      "bytes": 6470,
+      "sha256": "0aceff5dcca23bd0510a8d44c2f4f7619938fa08aab68f467cd92a274cee22ba",
+      "mode": 384,
+      "source_regular": true,
+      "source_and_archive_bytes_identical": true,
+      "source_uid_gid_mtime_match": true
+    }
+  ],
+  "producer_exports": {
+    "catalog.sql.gz": {
+      "bytes": 39669748,
+      "sha256": "443cee1711de5d242aa5aa877cd473c7f1ffb01e01a2c51ec97192a2fe7d290d",
+      "uncompressed": {
+        "bytes": 502064355,
+        "sha256": "e7569d07a6c2fc5b31c0ee900f18038f5922da4bfb9f91b3fc0d032fce6e369d"
+      },
+      "table_rows": {
+        "files": 1077804,
+        "directories": 148535,
+        "repositories": 264,
+        "evidence": 237804,
+        "inputs": 171,
+        "logical_custody": 10974,
+        "scan_errors": 0
+      }
+    },
+    "unresolved.jsonl.gz": {
+      "bytes": 3973917,
+      "sha256": "2ffe61856cf684725ec8eb399f57e07824c39f4d55d8b58580879fdfef41c66a",
+      "uncompressed": {
+        "bytes": 118070815,
+        "sha256": "557c64cff6baec74542c577f90eab4446d16d32fae078933f4a01e46c8ad1017"
+      },
+      "rows": 295486
+    },
+    "source-sha-obligations.jsonl.gz": {
+      "bytes": 4550304,
+      "sha256": "60fd5a099ef3fc0d4ddcbf34303f762963da359562ac84dae2ea2234003147df",
+      "uncompressed": {
+        "bytes": 101676094,
+        "sha256": "f184618068820b0221fdd48e64314a7cab9c4aab29e8160e965524b1ec487e47"
+      },
+      "rows": 124925
+    },
+    "logical-custody.jsonl.gz": {
+      "bytes": 557656,
+      "sha256": "6fab24ac55fa42fd85843c6f67a26766a173569f97bdd0535efaa90e0d8b057a",
+      "uncompressed": {
+        "bytes": 7006770,
+        "sha256": "6f6d7cca374ad2fdb187c76c996fe9f5bccdb2bbe692b2fe22d5d45daf263e23"
+      },
+      "rows": 10974
+    },
+    "small-safe-candidates.jsonl.gz": {
+      "bytes": 326452,
+      "sha256": "d727903a43f6531739c900c10432fb795002834fd8aee5ca56d82c0c53c93c3c",
+      "uncompressed": {
+        "bytes": 8021639,
+        "sha256": "3532412bf70952c3e2625bf7fb008314721421bf27a6a2ab0d06c8ff41e73ca5"
+      },
+      "rows": 36833
+    },
+    "lineage-only-unresolved.jsonl.gz": {
+      "bytes": 9782,
+      "sha256": "92b9240a4d105fbf48bb691599ab19376172aeee2ae85441824c72d4bb61426c",
+      "uncompressed": {
+        "bytes": 168940,
+        "sha256": "b66fd3f291bd646663dae9752b845c34b6e82c6c4ab57828fb7cb888c605e553"
+      },
+      "rows": 1428
+    },
+    "priority-original-candidates.jsonl.gz": {
+      "bytes": 71600,
+      "sha256": "ca733557559d0f264fd854754279569ffa967c1261c0682a23992891d38ed841",
+      "uncompressed": {
+        "bytes": 1656357,
+        "sha256": "9942171dfa9a081b29f982d35b22e8f013fe540dd292d45c4475f67d862c519e"
+      },
+      "rows": 7801
+    }
+  },
+  "exports_stream_checks": {
+    "catalog.sql.gz": {
+      "uncompressed_bytes": 502064355,
+      "uncompressed_sha256": "e7569d07a6c2fc5b31c0ee900f18038f5922da4bfb9f91b3fc0d032fce6e369d",
+      "lines_scanned": 1475566,
+      "parsed_jsonl_rows": null,
+      "credential_pattern_hits": {},
+      "metadata_field_names": []
+    },
+    "unresolved.jsonl.gz": {
+      "uncompressed_bytes": 118070815,
+      "uncompressed_sha256": "557c64cff6baec74542c577f90eab4446d16d32fae078933f4a01e46c8ad1017",
+      "lines_scanned": 295486,
+      "parsed_jsonl_rows": 295486,
+      "credential_pattern_hits": {},
+      "metadata_field_names": [
+        "bytes",
+        "category",
+        "git_evidence",
+        "git_root",
+        "git_status",
+        "head",
+        "head_blob",
+        "index_blob",
+        "index_flags",
+        "mode",
+        "mtime_ns",
+        "path",
+        "top",
+        "tracked",
+        "type"
+      ]
+    },
+    "source-sha-obligations.jsonl.gz": {
+      "uncompressed_bytes": 101676094,
+      "uncompressed_sha256": "f184618068820b0221fdd48e64314a7cab9c4aab29e8160e965524b1ec487e47",
+      "lines_scanned": 124925,
+      "parsed_jsonl_rows": 124925,
+      "credential_pattern_hits": {},
+      "metadata_field_names": [
+        "archive",
+        "bytes",
+        "category",
+        "expected_bytes",
+        "expected_mode",
+        "expected_sha256",
+        "git_evidence",
+        "git_root",
+        "git_status",
+        "head",
+        "head_blob",
+        "index_blob",
+        "index_flags",
+        "kind",
+        "member",
+        "mode",
+        "mtime_ns",
+        "path",
+        "source_index",
+        "top",
+        "tracked",
+        "type"
+      ]
+    },
+    "logical-custody.jsonl.gz": {
+      "uncompressed_bytes": 7006770,
+      "uncompressed_sha256": "6f6d7cca374ad2fdb187c76c996fe9f5bccdb2bbe692b2fe22d5d45daf263e23",
+      "lines_scanned": 10974,
+      "parsed_jsonl_rows": 10974,
+      "credential_pattern_hits": {},
+      "metadata_field_names": [
+        "bytes",
+        "detail",
+        "logical_present",
+        "member",
+        "mode",
+        "path",
+        "physical",
+        "physical_package_manifest",
+        "physical_present",
+        "physical_sha256",
+        "sha256",
+        "source_index"
+      ]
+    },
+    "small-safe-candidates.jsonl.gz": {
+      "uncompressed_bytes": 8021639,
+      "uncompressed_sha256": "3532412bf70952c3e2625bf7fb008314721421bf27a6a2ab0d06c8ff41e73ca5",
+      "lines_scanned": 36833,
+      "parsed_jsonl_rows": 36833,
+      "credential_pattern_hits": {},
+      "metadata_field_names": [
+        "bytes",
+        "category",
+        "git_root",
+        "git_status",
+        "mode",
+        "path",
+        "tracked",
+        "type"
+      ]
+    },
+    "lineage-only-unresolved.jsonl.gz": {
+      "uncompressed_bytes": 168940,
+      "uncompressed_sha256": "b66fd3f291bd646663dae9752b845c34b6e82c6c4ab57828fb7cb888c605e553",
+      "lines_scanned": 1428,
+      "parsed_jsonl_rows": 1428,
+      "credential_pattern_hits": {},
+      "metadata_field_names": [
+        "bytes",
+        "category",
+        "path"
+      ]
+    },
+    "priority-original-candidates.jsonl.gz": {
+      "uncompressed_bytes": 1656357,
+      "uncompressed_sha256": "9942171dfa9a081b29f982d35b22e8f013fe540dd292d45c4475f67d862c519e",
+      "lines_scanned": 7801,
+      "parsed_jsonl_rows": 7801,
+      "credential_pattern_hits": {},
+      "metadata_field_names": [
+        "bytes",
+        "category",
+        "git_root",
+        "git_status",
+        "mode",
+        "path",
+        "tracked",
+        "type"
+      ]
+    }
+  },
+  "credential_pattern_categories": [
+    "pem_private",
+    "github",
+    "gitlab",
+    "openai",
+    "anthropic",
+    "aws_key_id",
+    "aws_secret",
+    "google_key",
+    "google_oauth",
+    "slack",
+    "stripe",
+    "sendgrid",
+    "npm",
+    "pypi",
+    "huggingface",
+    "jwt",
+    "bearer",
+    "uri_credential",
+    "credential_assignment"
+  ],
+  "screening_hit_locations_first_80": [],
+  "sqlite": {
+    "existing_database_read_only": true,
+    "schema_columns": {
+      "directories": {
+        "path": "TEXT",
+        "mode": "INTEGER",
+        "git_root": "TEXT"
+      },
+      "evidence": {
+        "path": "TEXT",
+        "kind": "TEXT",
+        "source_index": "TEXT",
+        "sha256": "TEXT",
+        "bytes": "INTEGER",
+        "mode": "TEXT",
+        "member": "TEXT",
+        "archive": "TEXT",
+        "detail": "TEXT"
+      },
+      "files": {
+        "path": "TEXT",
+        "top": "TEXT",
+        "type": "TEXT",
+        "bytes": "INTEGER",
+        "mode": "INTEGER",
+        "mtime_ns": "INTEGER",
+        "git_root": "TEXT",
+        "tracked": "INTEGER",
+        "git_status": "TEXT",
+        "head": "TEXT",
+        "head_blob": "TEXT",
+        "index_blob": "TEXT",
+        "index_flags": "TEXT",
+        "git_evidence": "TEXT",
+        "category": "TEXT"
+      },
+      "inputs": {
+        "path": "TEXT",
+        "sha256": "TEXT",
+        "bytes": "INTEGER",
+        "source": "TEXT"
+      },
+      "logical_custody": {
+        "path": "TEXT",
+        "sha256": "TEXT",
+        "bytes": "INTEGER",
+        "mode": "TEXT",
+        "physical": "TEXT",
+        "physical_sha256": "TEXT",
+        "source_index": "TEXT",
+        "member": "TEXT",
+        "detail": "TEXT"
+      },
+      "repositories": {
+        "path": "TEXT",
+        "head": "TEXT",
+        "kind": "TEXT",
+        "exported": "INTEGER",
+        "head_exported": "INTEGER",
+        "export_ref": "TEXT",
+        "tracked_count": "INTEGER",
+        "changes_count": "INTEGER",
+        "flags_count": "INTEGER",
+        "error": "TEXT"
+      },
+      "scan_errors": {
+        "path": "TEXT",
+        "operation": "TEXT",
+        "error": "TEXT"
+      }
+    },
+    "table_rows": {
+      "directories": 148535,
+      "evidence": 237804,
+      "files": 1077804,
+      "inputs": 171,
+      "logical_custody": 10974,
+      "repositories": 264,
+      "scan_errors": 0
+    },
+    "typed_bytes": 28008244375,
+    "producer_restore_log_sha256": "8d918c19b127e4667aa995103cff3fdfb1256a25b00637e808562c2b6e3c6d32",
+    "producer_reloaded_sql_quick_check": "ok",
+    "producer_reloaded_sql_schema_and_counts_match": true,
+    "independent_sql_reimport_repeated": false
+  },
+  "source_implementation_review": {
+    "archived_audit_scripts_and_executed_ram_copies_read": 5,
+    "executed_copy_differences": [
+      "Redirected RAM and workspace outputs and excluded both catalog output directories from the scan.",
+      "Disabled lazy Git fetch and interactive prompting and applied Git status path exclusions."
+    ],
+    "catalog_input_methods": [
+      "Filesystem lstat and directory enumeration for paths, types, sizes, modes and mtimes.",
+      "Git tree, index, status and refs outputs for object IDs and repository metadata.",
+      "Known metadata indices, manifests and custody maps for digests and recovery evidence."
+    ],
+    "collector_persists_original_file_contents": false,
+    "collector_persists_environment_values": false,
+    "git_status_caveat": "Git status can refresh or compare a tracked worktree file internally. The catalog retains its status metadata."
+  },
+  "verification_boundaries": {
+    "listed_target_paths_opened": 0,
+    "excluded_or_credential_directories_opened": 0,
+    "decoded_payloads_written_to_disk": 0,
+    "credential_values_emitted": 0,
+    "network_used": false,
+    "build_or_vm_used": false,
+    "reconstructed_catalog_matches_historical_ram_byte_for_byte_claimed": false,
+    "original_payload_backup_complete_claimed": false,
+    "group_7_final_handoff_complete_claimed": false
+  },
+  "credential_screening": {
+    "total_pattern_hits": 0,
+    "uncompressed_bytes_scanned": 738664970,
+    "total_jsonl_rows_parsed": 477447,
+    "scope": "Pattern-based credential screen of full SQL and six JSONL gzip streams. It cannot rule out formats outside the patterns."
+  }
+}

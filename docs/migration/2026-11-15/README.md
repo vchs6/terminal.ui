@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第六组十卷发布后已交付15个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组十二卷发布后已交付17个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十卷（134份历史gzip ELF及元数据补充）；其他目录继续逐文件对账 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十二卷（134份历史gzip ELF、原路径小报告和阶段目录账本）；其他目录继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -245,3 +245,34 @@ tar -xOf docs/reviews/R22/.archive-v1/part-000006.tar.gz docs/reviews/R22/020/in
 对账另确认前80份与新增59份decoded ELF SHA无交集，共139个不同原ELF身份。有限validation保管根未发现额外gzip缺口；这不代表SDK、所有raw/log或整工作目录已经完整迁移，第六组全局覆盖及第七组最终交接仍待收口。
 
 2026-11-20恢复环境后，临时宿主RAM缓存已从已发布的固定GitHub提交重新取回，并逐对象验证大小、SHA256和Git blob SHA1；[缓存恢复记录](git-cache-restoration-20261120.json)不改变原件或历史验证结论。
+
+## 第六组第十一、十二卷：目录账本阶段与原路径报告（part06k / part06l）
+
+| 卷 | 下载 | 大小 | 校验 | 审核 |
+|---|---|---|---|---|
+| 06k | [下载](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06k.tar.gz) | 48,092,495 字节 | [校验文件](terminal-ui-migration-20261115-part06k.tar.gz.sha256) | [独立报告](part06k-independent-report.md) |
+| 06l | [下载](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06l.tar.gz) | 4,223,266 字节 | [校验文件](terminal-ui-migration-20261115-part06l.tar.gz.sha256) | [独立报告](part06l-independent-report.md) |
+
+### 06k：目录账本阶段包
+
+本包保留2026-11-20恢复的全局目录metadata快照，包含完整SQL和六份JSONL压缩导出、审计脚本、报告与计数、旧2026-11-15历史小报告。19份payload加控制清单共20个tar成员，均为metadata/审计材料。**目录账本不是其列举的全部原文件备份，也不是第七组最终交接。**
+
+解压后在migration-catalog-20261120/下：compressed-ledger/catalog.sql.gz可用SQLite导入，六份JSONL分别给未闭环、lineage、逻辑custody及SHA义务等队列。所列/workspace/work路径需映射到本地迁移根目录；不改变原记录。账本记录1,077,804节点、28,008,244,375逻辑字节，SQLite quick_check、SQL重导入schema/逐表计数已通过，metadata未采集所列文件内容或实际环境值。[阶段报告](catalog-stage-20261120-report.md)与[摘要](catalog-stage-20261120-summary.json)说明约20.9GB未证明类别不能当成全是独有成果，更不能凭cache/target名称排除。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06k.tar.gz.sha256
+tar -xzf terminal-ui-migration-20261115-part06k.tar.gz -C /新的空暂存目录
+```
+
+### 06l：7,801个原路径小报告与测试原件
+
+本包保存已逐内容SHA与发布内容检查通过的7,801个原路径文件，共31,227,880原始字节。包含863项未被现有恢复证据覆盖的不同内容，另6,938路径与已交付、旧exact member或本批内其他文件同字节，**有意重复保留以便直接按原路径恢复，不计作6,938份新增独有数据**。另8份审核上下文和1份控制清单，总7,810个tar成员。全部1,666个不同内容SHA都通过发布审核，暂缓/待复核为0。[内容审查报告](report-candidates-20261120-report.md)与[分类摘要](report-candidates-20261120-summary.json)保留重复恢复依据的范围及限制。
+
+本包work/树与先前恢复文件可能重名，先解压到新的空暂存目录，再按需要合入已有工作目录并保留本地修改。审核账本在migration-reports-20261120/audit/，package-manifest.json逐文件保存路径/字节/模式/SHA与分类。并未执行这些源码、脚本或旧测试，也不补称原Linux验收结论。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06l.tar.gz.sha256
+tar -xzf terminal-ui-migration-20261115-part06l.tar.gz -C /新的空暂存目录
+```
+
+两卷独立审核只覆盖各自冻结范围。SDK/依赖输入与剩余大原件的覆盖证明、旧exact member对当前原件SHA联核、第七组最终恢复与交接仍在推进，不能据目录数量或此小文件集合声明全部迁移完成。
