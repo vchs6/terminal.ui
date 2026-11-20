@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第六组十五卷发布后已交付20个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组十六卷发布后已交付21个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十五卷（历史gzip ELF、原路径小报告、目录账本及SDK输入）；其他目录继续逐文件对账 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十六卷（历史gzip ELF、原路径小报告、恢复账本、补齐原件及SDK输入）；其他目录继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -317,3 +317,21 @@ bash ./verify.sh /新的独立SDK根目录
 [独立修订审核](sdk-revision-review-report.md)和[机器记录](sdk-revision-review-findings.json)保留正常恢复、坏输入、旧路径active回执、回执mode及已有目标拒绝的实际结果。恢复记录原现场绝对路径属历史证据，不冒充新机配置。
 
 官方下载本轮未完成整包重取验证，因此提供现场固定原档作离线输入。三卷可取得并通过接收方SHA验收后，SDK/stdx展开树可由这些原档恢复，不必再逐目录复制。此范围不包括仓颉包源缓存、负控修改、native/system依赖或全部编译闭包；整体历史成果与第七组交接仍未收口。
+
+## 第六组 06n：恢复定位账本与缺失原件补齐
+
+- [下载 06n](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06n.tar.gz)（4,927,385 字节）
+- [SHA256 校验文件](terminal-ui-migration-20261115-part06n.tar.gz.sha256)
+- [独立核验报告](part06n-independent-report.md)与[机器可读结果](part06n-independent-findings.json)
+
+本卷包含 62,422 条历史恢复定位核验记录及其实际成员/分片账本，并补齐 30 份历史日志与静态库原件（297,647 字节）。历史账本确认的 62,238 个可恢复当前物理节点中，7,242 项仅证明 curated 文件自身；不能据此推断其他原件已迁移。历史成员需结合第一批固定 Git 基线恢复，本卷不重复携带历史归档。
+
+对 33 个旧定位缺口，30 项按原路径装入本卷，两份 SDK 库由 06m 的恢复输入覆盖；另一个 CJP 因内嵌文本命中疑似凭据赋值规则暂缓发布，原件仍保留。151 项环境材料不含正文，未被当成已完成迁移。清单保留缺口和处置，不改写历史账本的原有状态。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06n.tar.gz.sha256
+mkdir part06n-staging
+tar -xzf terminal-ui-migration-20261115-part06n.tar.gz -C part06n-staging
+```
+
+`migration-part06n/manifest.json` 记录逐成员大小、权限和 SHA256；`payload-audit/queue.json` 记录补齐、SDK 覆盖及暂缓项，`old-members/` 为原始账本。核对后，将 staging 中的 work/ 合并到第一批恢复目标的 work/，保留本地已修改文件。包内原报告的旧工作区引用用于追溯来源，不能在新电脑直接访问。整个工作区迁移与 Linux 整体验收仍未完成。
