@@ -1,0 +1,411 @@
+{
+  "archive": {
+    "bytes": 4190870,
+    "git_blob_sha1": "58e720e5af22a90c121be31aeff4c4914b42b33c",
+    "local_pax_path_headers": 1080,
+    "member_mtime_seconds_checks": 2955,
+    "member_size_sha256_and_mode_checks": 2955,
+    "members_safe_regular_unique": 2955,
+    "name": "terminal-ui-migration-20261115-part06t.tar.gz",
+    "pax_fallback_truncation_counts": {
+      "truncated_trailing_slash": 60
+    },
+    "sha256": "38dcdb873105eb0d931291034577fb3b0f3aac8e840b2bb6f3a22a50ab8afa17",
+    "single_gzip_stream_clean_eof_crc_and_isize": true,
+    "tar_extra_zero_padding_bytes": 5120,
+    "tar_two_zero_end_blocks": true,
+    "tar_uncompressed_bytes": 240179200
+  },
+  "author_queue": {
+    "archive_path": "migration-part06t/audit/queue.json",
+    "author_inflated_bytes_with_held_archive_checks": 79268352,
+    "bytes": 167335,
+    "content_screening_bound_by_fresh_sha256": true,
+    "excluded_hold": {
+      "bytes": 46309206,
+      "files": 55
+    },
+    "held_by_family": {
+      ".tar": {
+        "bytes": 45648896,
+        "files": 33
+      },
+      ".tar.gz": {
+        "bytes": 660310,
+        "files": 22
+      }
+    },
+    "held_reason_counts": {
+      "unrecognized_or_nested_binary_member": 55
+    },
+    "payload": {
+      "bytes": 219636829,
+      "files": 263
+    },
+    "payload_by_family": {
+      ".cjp": {
+        "bytes": 1367914,
+        "files": 11
+      },
+      ".ppm": {
+        "bytes": 204771555,
+        "files": 237
+      },
+      ".tar": {
+        "bytes": 13497344,
+        "files": 14
+      },
+      ".zip": {
+        "bytes": 16,
+        "files": 1
+      }
+    },
+    "sha256": "a954daa3ce491ef274551de8566c87ca88a7a4c73d3964ed37df13e9c0857b31"
+  },
+  "bounds": {
+    "held_source_body_reads": 0,
+    "historical_source_set_reverified": false,
+    "migration_acceptance_complete": false,
+    "old_historical_tar_reads": 0,
+    "terminal_or_linux_tests_executed": false
+  },
+  "current_work_payload": {
+    "bytes": 234147685,
+    "fresh_source_reads": 2946,
+    "source_sizes_sha256_modes_mtime_ns_matched": true
+  },
+  "findings": [],
+  "format_verification": {
+    "cjp_decoded_byte_cap": 1073741824,
+    "cjp_decoded_bytes_across_all_paths": 7288832,
+    "cjp_decoded_bytes_unique_inputs": 5440512,
+    "cjp_gzip_crc_isize_eof_and_tar_structure_checked": 11,
+    "cjp_nested_gzip_members": 11,
+    "cjp_unique_inputs": 9,
+    "former_review_format_class_and_screening_bound_by_fresh_sha256": true,
+    "invalid_zip_fixture_current_bytes_checked": 1,
+    "invalid_zip_fixture_historical_identity_verified": false,
+    "ppm_basic_structure_checked": 237,
+    "tar_structure_and_allowed_member_names_checked": 14
+  },
+  "manifest": {
+    "archive_path": "migration-part06t/manifest.json",
+    "bytes": 1202497,
+    "entries": 2954,
+    "regular_mode": 420,
+    "sha256": "43d7c1103a69f8780a7a535e8f4eb4c5c017e75380d2e136b80bf0a1e87c7b38"
+  },
+  "metadata_members": [
+    {
+      "bytes": 1193,
+      "mode": 384,
+      "path": "migration-part06t/README.md",
+      "sha256": "5c141da890188518ce62d3d6cf41222d5a2ee71f5efa98deb919212be55215ba",
+      "tar_mtime_seconds": 1795182523
+    },
+    {
+      "bytes": 61446,
+      "mode": 384,
+      "path": "migration-part06t/audit/metadata-census.json",
+      "sha256": "cf5f1a9ea9a965660d211392dfaa93c21fee04404bb9320d89624160e019df33",
+      "tar_mtime_seconds": 1795182519
+    },
+    {
+      "bytes": 167335,
+      "mode": 384,
+      "path": "migration-part06t/audit/queue.json",
+      "sha256": "a954daa3ce491ef274551de8566c87ca88a7a4c73d3964ed37df13e9c0857b31",
+      "tar_mtime_seconds": 1795182966
+    },
+    {
+      "bytes": 2460,
+      "mode": 384,
+      "path": "migration-part06t/audit/report.md",
+      "sha256": "d05393c878a38a74a5b8110d13eae1c045f14a42f1f54551dcf5ec1e14e7e8f9",
+      "tar_mtime_seconds": 1795182966
+    },
+    {
+      "bytes": 6896,
+      "mode": 384,
+      "path": "migration-part06t/audit/select.py",
+      "sha256": "f9d1faeb0acf55dfb7f002534858ba359b56f6423d3779035233ccc37fcfe232",
+      "tar_mtime_seconds": 1795182836
+    },
+    {
+      "bytes": 9507,
+      "mode": 384,
+      "path": "migration-part06t/audit/summary.json",
+      "sha256": "aaf818c1889e39782db861e1ce8090ee72fa24678e22fd18fddadbb9e60a641e",
+      "tar_mtime_seconds": 1795182966
+    },
+    {
+      "bytes": 1237244,
+      "mode": 384,
+      "path": "migration-part06t/hold-independent-review/queue.json",
+      "sha256": "fb9af15992bb53c1db34014647b59f11fc0bb552f3db0c56fca670123ccde27c",
+      "tar_mtime_seconds": 1795182973
+    },
+    {
+      "bytes": 3337,
+      "mode": 384,
+      "path": "migration-part06t/hold-independent-review/report.md",
+      "sha256": "26db5eca5a33ee7925963f9eff81e8687c5ad51361b5dedb5db3dcad0eba6edd",
+      "tar_mtime_seconds": 1795182973
+    }
+  ],
+  "part": "06t",
+  "prior_06s_independent_hold_review": {
+    "archive_path": "migration-part06t/hold-independent-review/queue.json",
+    "bytes": 1237244,
+    "content_review_bound_by_fresh_sha256": true,
+    "release": {
+      "bytes": 14510856,
+      "files": 2683
+    },
+    "review_classifications": {
+      "audit_scope_text": {
+        "distinct_content_bytes": 56589,
+        "distinct_digests": 5,
+        "path_bytes": 166361,
+        "paths": 10
+      },
+      "bounded_build_manifest": {
+        "distinct_content_bytes": 189403,
+        "distinct_digests": 1,
+        "path_bytes": 189403,
+        "paths": 1
+      },
+      "bounded_terminal_metadata": {
+        "distinct_content_bytes": 65419,
+        "distinct_digests": 67,
+        "path_bytes": 65419,
+        "paths": 67
+      },
+      "dependency_path_digests": {
+        "distinct_content_bytes": 4352750,
+        "distinct_digests": 28,
+        "path_bytes": 4517994,
+        "paths": 29
+      },
+      "incomplete_keyboard_input": {
+        "distinct_content_bytes": 2,
+        "distinct_digests": 1,
+        "path_bytes": 10,
+        "paths": 5
+      },
+      "keyboard_input_trace": {
+        "distinct_content_bytes": 942,
+        "distinct_digests": 20,
+        "path_bytes": 1940,
+        "paths": 57
+      },
+      "manual_placeholder": {
+        "distinct_content_bytes": 132986,
+        "distinct_digests": 1,
+        "path_bytes": 132986,
+        "paths": 1
+      },
+      "nul_padded_build_log": {
+        "distinct_content_bytes": 1509,
+        "distinct_digests": 1,
+        "path_bytes": 13581,
+        "paths": 9
+      },
+      "nul_padded_grid_capture": {
+        "distinct_content_bytes": 977,
+        "distinct_digests": 3,
+        "path_bytes": 3498,
+        "paths": 12
+      },
+      "nul_padded_validation_log": {
+        "distinct_content_bytes": 422,
+        "distinct_digests": 1,
+        "path_bytes": 422,
+        "paths": 1
+      },
+      "package_dependency_lock": {
+        "distinct_content_bytes": 30341,
+        "distinct_digests": 1,
+        "path_bytes": 333751,
+        "paths": 11
+      },
+      "package_validation_listing": {
+        "distinct_content_bytes": 114250,
+        "distinct_digests": 1,
+        "path_bytes": 1256750,
+        "paths": 11
+      },
+      "parser_token_types": {
+        "distinct_content_bytes": 203471,
+        "distinct_digests": 2,
+        "path_bytes": 203471,
+        "paths": 2
+      },
+      "reference_path_tokens": {
+        "distinct_content_bytes": 176657,
+        "distinct_digests": 1,
+        "path_bytes": 176657,
+        "paths": 1
+      },
+      "session_control_test": {
+        "distinct_content_bytes": 2088417,
+        "distinct_digests": 446,
+        "path_bytes": 6708940,
+        "paths": 2309
+      },
+      "ssh_algorithm_names": {
+        "distinct_content_bytes": 288574,
+        "distinct_digests": 18,
+        "path_bytes": 466076,
+        "paths": 28
+      },
+      "ssh_key_path_references": {
+        "distinct_content_bytes": 1188,
+        "distinct_digests": 1,
+        "path_bytes": 1188,
+        "paths": 1
+      },
+      "truncated_unicode_test": {
+        "distinct_content_bytes": 108707,
+        "distinct_digests": 41,
+        "path_bytes": 272409,
+        "paths": 128
+      }
+    },
+    "sha256": "fb9af15992bb53c1db34014647b59f11fc0bb552f3db0c56fca670123ccde27c",
+    "source_queue_sha256": "6e9209686f817e5b56cb99ae40b21f9a9aeab13c76ddba76f9b00f9c4c6566a7",
+    "unrelated_prior_holds_not_in_pack": 5,
+    "workspace_queue_pointer": {
+      "bytes": 4065,
+      "path": "/workspace/work/migration-part06t-hold-review/queue.json",
+      "sha256": "5a51e22f1fba862ed051e1d75558cce655db05aaef77fc9ae9b792168862b507"
+    }
+  },
+  "ram_member_detail": {
+    "bytes": 946300,
+    "path": "/dev/shm/terminal-ui-migration-20261115-host/part06t-independent-members.jsonl",
+    "rows": 2955,
+    "sha256": "749343efc41890cfba2210d5b3936e86f1c6fd3fc884349c36f2dea8eeff3d81"
+  },
+  "selection_metadata": {
+    "deferred_checks_directory_only": true,
+    "fixed_selected_rows": {
+      "bytes": 95967,
+      "path": "/dev/shm/terminal-ui-migration-20261115-host/part06t-audit/metadata-selected.json",
+      "sha256": "a6fd23d0f07f5bcf0cd73ed50499dbcc0fb8f534e98f7c45fc557d6ef7a3fd42"
+    },
+    "narrow_selector": {
+      "bytes": 6896,
+      "path": "/dev/shm/terminal-ui-migration-20261115-host/part06t-audit/select.py",
+      "sha256": "f9d1faeb0acf55dfb7f002534858ba359b56f6423d3779035233ccc37fcfe232"
+    },
+    "original_census": {
+      "bytes": 61446,
+      "path": "/dev/shm/terminal-ui-migration-20261115-host/part06t-audit/metadata-census.json",
+      "sha256": "cf5f1a9ea9a965660d211392dfaa93c21fee04404bb9320d89624160e019df33"
+    },
+    "previous_independent_parent_metadata_sha256": "ce6fc641de41f2eb07d29b3a5eb3df8e3ff6dcca7b6dd65194972f9629b114a2",
+    "prior_manifest_unique_work_paths": 135634,
+    "prior_s_paths": 65948,
+    "protected_checks_include_basename": true,
+    "remaining": {
+      "by_category": {
+        "historical_hash_reference_unresolved": {
+          "bytes": 283717689,
+          "files": 3076,
+          "max_file_bytes": 19229416
+        },
+        "unresolved": {
+          "bytes": 2168466265,
+          "files": 66935,
+          "max_file_bytes": 20855646
+        }
+      },
+      "bytes": 2452183954,
+      "files": 70011
+    },
+    "selected": {
+      "bytes": 265946035,
+      "files": 318
+    },
+    "selected_by_family": {
+      ".cjp": {
+        "bytes": 1367914,
+        "files": 11,
+        "max_file_bytes": 170812
+      },
+      ".ppm": {
+        "bytes": 204771555,
+        "files": 237,
+        "max_file_bytes": 864015
+      },
+      ".tar": {
+        "bytes": 59146240,
+        "files": 47,
+        "max_file_bytes": 2690048
+      },
+      ".tar.gz": {
+        "bytes": 660310,
+        "files": 22,
+        "max_file_bytes": 30789
+      },
+      ".zip": {
+        "bytes": 16,
+        "files": 1,
+        "max_file_bytes": 16
+      }
+    },
+    "zip_distribution_metadata_only": {
+      "candidate_common_file_size": 9101877,
+      "candidate_directory_bytes": 364075080,
+      "candidate_paths": 40,
+      "canonical_url": "https://www.unicode.org/Public/17.0.0/ucd/UCD.zip",
+      "catalog_records_with_the_pinned_sha256": {
+        "validation/replay-dependencies/UCD-17.0.0.zip": [
+          {
+            "kind": "historical_hash_reference",
+            "source_index": "docs/reviews/R14/code-review/archive-index.json"
+          },
+          {
+            "kind": "historical_hash_reference",
+            "source_index": "docs/reviews/R23/code-review/archive-index.json"
+          },
+          {
+            "kind": "historical_hash_reference",
+            "source_index": "docs/reviews/R24/A/original-manifest.json.gz"
+          },
+          {
+            "kind": "historical_hash_reference",
+            "source_index": "docs/reviews/R24/A/original-manifest.json.gz"
+          },
+          {
+            "kind": "historical_hash_reference",
+            "source_index": "docs/reviews/R24/B/original-manifest.json.gz"
+          },
+          {
+            "kind": "historical_hash_reference",
+            "source_index": "docs/reviews/R24/B/original-manifest.json.gz"
+          },
+          {
+            "kind": "historical_hash_reference",
+            "source_index": "docs/reviews/R24/D/original-manifest.json.gz"
+          },
+          {
+            "kind": "historical_hash_reference",
+            "source_index": "docs/reviews/R24/D/original-manifest.json.gz"
+          }
+        ]
+      },
+      "disposition": "metadata-only canonical archive and possible alias inputs; actual same-byte restoration still requires evidence for each alias path.",
+      "pinned_distribution_sha256": "2066d1909b2ea93916ce092da1c0ee4808ea3ef8407c94b4f14f5b7eb263d28e",
+      "project_build_source": {
+        "bytes": 2312,
+        "path": "/workspace/work/terminal.ui/native/build.sh",
+        "sha256": "35f60ac54647452cd0a614d05cc6bab8c7adc72987b7bd1bcaed90d4bc33c3e9"
+      },
+      "release": "Unicode 17.0.0 UCD.zip",
+      "source_bodies_opened": 0
+    }
+  },
+  "status": "pass"
+}

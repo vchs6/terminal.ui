@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第六组二十一卷发布后已交付26个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组二十二卷发布后已交付27个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付二十一卷（历史gzip ELF、文本与图像原件、恢复账本、补齐原件及SDK输入）；其他目录继续逐文件对账 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付二十二卷（历史gzip ELF、文本与图像原件、恢复账本、补齐原件及SDK输入）；其他目录继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -437,3 +437,23 @@ tar -xzf terminal-ui-migration-20261115-part06s.tar.gz -C part06s-staging
 ```
 
 `migration-part06s/manifest.json` 记录逐成员 SHA256、大小、权限及原纳秒时间，tar 时间精度为秒。audit/ 是新增范围与内容审查记录，hold-independent-review/ 是旧暂缓项复核。核对后将 work/ 合并到第一批恢复目标的 work/，保留本地已修改文件，旧 /workspace/work 前缀按本机位置映射。原始记录中的失败和诊断结论保持原样，本轮没有重新执行原测试。完整迁移、新电脑构建及 Linux 整体验收仍未完成，旧原件继续保留。
+
+## 第六组 06t：VT 图像、项目归档及旧暂缓补齐
+
+- [下载 06t](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06t.tar.gz)（4,190,870 字节）
+- [SHA256 校验文件](terminal-ui-migration-20261115-part06t.tar.gz.sha256)
+- [独立核验报告](part06t-independent-report.md)与[机器可读结果](part06t-independent-findings.json)
+
+本卷装入 263 份新增原件和独立复核准入的全部 2,683 份 06s 暂缓原件，共 2,946 个原路径、234,147,685 原字节。新增部分为 237 份原始 PPM 图像、14 份项目 TAR、11 份 cjtui CJP 源包和 1 份 16 字节故意损坏的 ZIP 测试件。PPM 按原字节保留，没有重绘，格式检查包含 P6 标头、720×400 尺寸和像素长度。图像与历史失败记录的迁移不构成原测试通过的证明。
+
+固定新候选 318 项、265,946,035 字节，其中 55 份 TAR/TAR.GZ、46,309,206 字节因未解释或嵌套二进制成员暂缓。原归档只作有界内存检查，未执行成员。16 字节坏 ZIP 保管的是当前实物及其测试用途，历史运行时字节身份没有固定摘要可供证明。40 份 Unicode 发行 ZIP、initramfs 和其余未决格式本轮仅保留元数据及现有来源记录，未被当作已迁移。
+
+06s 的 2,683 项经独立复核全部准入，按 639 个不同 SHA256 内容审查，并逐原路径复核实物。终端控制帧、截断片段和测试构造输入具有对应来源；28 条令牌启发式匹配实际为 OpenSSH 安全密钥算法名称，相关 GUI 环境记录为有限配置字段。此前 q 日志及 r 的环境转储暂缓不在这组复核范围内。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06t.tar.gz.sha256
+mkdir part06t-staging
+tar -xzf terminal-ui-migration-20261115-part06t.tar.gz -C part06t-staging
+```
+
+`migration-part06t/manifest.json` 记录逐成员 SHA256、大小、权限和原纳秒时间，tar 时间精度为秒。audit/ 保留候选、格式与来源检查，hold-independent-review/queue.json 是完整实际复核队列。核对后将 work/ 合并到第一批恢复目标的 work/，保留本地已修改文件。旧 /workspace/work 前缀按本机位置映射，历史程序、控制输入和原始归档未经检查不直接运行或解压执行。完整迁移、新电脑构建及 Linux 整体验收仍未完成，旧原件继续保留。
