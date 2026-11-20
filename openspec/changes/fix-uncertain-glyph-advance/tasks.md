@@ -45,4 +45,4 @@ DQ候选自查：独立目标/输入/输出/paths/上下游单向，163→164→
 
 ## 实际完成记录
 
-163–167有限范围已由[独立167最终验收](../../../docs/reviews/R23/acceptance/report.md)确认PASS，0 open C/I/M；产品199f000（集成b08c92d）、正式测试614d0a2（集成23ac7aa）、修后colors设施0d46c35（集成216bb9f）。[166实际测试与80张原PNG](../../../docs/reviews/R23/execution/report.md)及[165双审](../../../docs/reviews/R23/code-review/report.md)分别独立；旧R14真实FAIL和CRF001初审FAIL保留。R14T083001只在该固定两宿主/字体配置及有限矩阵CLOSED_VERIFIED，不承诺任意host/font。原083/084由各自后续独立角色收尾，完整094/041/010/M2/Linux不随本件关闭。
+163–167有限范围已由[独立167最终验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R23/acceptance/report.md)确认PASS，0 open C/I/M；产品199f000（集成b08c92d）、正式测试614d0a2（集成23ac7aa）、修后colors设施0d46c35（集成216bb9f）。[166实际测试与80张原PNG](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R23/execution/report.md)及[165双审](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R23/code-review/report.md)分别独立；旧R14真实FAIL和CRF001初审FAIL保留。R14T083001只在该固定两宿主/字体配置及有限矩阵CLOSED_VERIFIED，不承诺任意host/font。原083/084由各自后续独立角色收尾，完整094/041/010/M2/Linux不随本件关闭。

@@ -10,7 +10,7 @@
 ## Global Constraints
 
 - 原TASK-031/022为完整验收责任归属；123–142实现031各单元，143–147实现022并供031成本验收。实际工程层级依原WP002/WP005，角色工作为独立L3，不把原L3强行嵌另一套L3树。主仓接入时031/022转为本tasks唯一状态引用，不能保留两份勾选权威。
-- 单元A–E123–147已独立接受；147对固定 `d7e9d144` 给出 `PASS_E_AC022_AC031`，原TASK-022/031状态为completed，源码经 `39d580b2` 集成main。[压缩原件与范围](../../../docs/reviews/R24/E/README.md)保存正常制品、重复成本、真实终端与负面结果；最终六宿主、023/024和Linux整体仍开放。正式产品124前冻结的完整M1源码/制品仍按下表保留；禁止用c3d743d有限功能替代性能基线。
+- 单元A–E123–147已独立接受；147对固定 `d7e9d144` 给出 `PASS_E_AC022_AC031`，原TASK-022/031状态为completed，源码经 `39d580b2` 集成main。[压缩原件与范围](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R24/E/README.md)保存正常制品、重复成本、真实终端与负面结果；最终六宿主、023/024和Linux整体仍开放。正式产品124前冻结的完整M1源码/制品仍按下表保留；禁止用c3d743d有限功能替代性能基线。
 - A→B→C→D→E顺序集成。测试可按冻结合同准备，但产品只消费前单元验收固定提交；共享Component/Layout/Frame禁止多个产品作者同时编辑。
 - 每实体一个小写下划线.cj文件，最小可见性，原public调用兼容，新增RuntimeStats三项仅只读；无私有测试hook、无强制M1/M2模式开关。
 - 测试作者Sol/high、产品Terra/high或适合仓颉任务的Sol/high、审核/验收Astra/high、执行Sol/medium；记录指定配置，无法核验serving时不冒充实测。
@@ -23,17 +23,17 @@
 
 | 输入 | 合同来源 | 正式产品固定SHA/证据 |
 | --- | --- | --- |
-| Runtime A+B/C | reactive-runtime R001–019、单序列C | Runtime075 `0912436b647f701e1de607fe03ce1bfba6a9bbf4`；Runtime080 `216b2ab5f2315f4be19467b7e49f4047aec78ab9`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row1。 |
-| RichText | implement-rich-text冻结design | RichText084 `199f00076c1a79cfa6d0be92e7be09366e1a06af`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row2。 |
-| 主题基础/加载/展示 | T001–015及后续正式修订 | Theme088 `8d75233c664fd61be08d441f74d464cbcdff2d9c`；Theme092 `fa6a46ec339ea0f098dea521c814226a7a373c7e`；AC027 `b5de3dd6610e90fcdcd951c5703a1429ec13b417`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row3。 |
-| Canvas/焦点/viewport/overlay | 主代理采用interaction合同，含root Vertical有限布局fallback | InteractionA102/I011/I012 `f8a028b39daf8a341576f304335d262544b9cca5`；ViewportB107 `62039552a26da295dcd710d7cfc40cb9e43ca5fd`；OverlayC112 `7f43176505aa3c392afc5fc897181a9eeba89e6e`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row4。 |
-| 输入编辑/标准控件/应用示例 | 原017–021/028–030/037等完整Linux公共功能 | Keyboard117 `c3c4642d84df57bbd9550d222ed22f602acd13ef`；Finite editing E122/current combined input `22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167`；S157 `1df1325f7b51777d8adab62f950c936051aa5876`；M162 `6e3f26aaaeee9442fde91ce31d720a841eeda473`；Session152 `83094ca92acab37ed0a38042e2e40ead55049f41`；AC021 `c190e6f957a18f47be2f329a40cf444d9985cb6c`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row5。 |
-| Frame/Unicode/装饰/输出恢复 | 原005/007/008/011/012/020功能M1证据，以及041已冻结M1 Linux设备/ABI/输入输出/尺寸/恢复子接口证据；完整041最终全组件/M2/全部宿主验收后置 | R10 `8af39f6c8882772b946ae1d9507361f8a6082388`；070 `5c2a7e7d956b5d8c0284e96514276608616bf8a6`；Glyph097 `1f67e27358254e9daef637b5c2f5a93707ee7cef`；AC008 `80d21e071537898cde27f1c7de4328ab6f27d991`；AC010 `13e7880ce96d1331fc9e12a2b62275a307183e9a`；AC020_M1 `e35d407a87ab197537ccc931c143c9927458a75f`；LayoutDecoration057_054_060 `40aa4db6c2b7673bb3e8c9a80fdb5b4e385cb940`；LinuxNativeFirstSlice053 `2ad6c5ceeb0068d3b2b2d5efe010059965b9415a`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row6。 |
-| 完整M1性能基线 | 全部功能齐全、M2实施前 | AC021 `c190e6f957a18f47be2f329a40cf444d9985cb6c`；AC027 `b5de3dd6610e90fcdcd951c5703a1429ec13b417`；AC008 `80d21e071537898cde27f1c7de4328ab6f27d991`；AC010 `13e7880ce96d1331fc9e12a2b62275a307183e9a`；AC020_M1 `e35d407a87ab197537ccc931c143c9927458a75f`；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row7。 |
-| 本候选 | design14与三个spec、独立preflight/DQ | M2_preflight（固定证据映射）；L005_planning_preflight（固定证据映射）；统一M1源 `d654ae59`，详[公开准入记录](../../../docs/reviews/Linux-final/m1/admission.json) row8。 |
+| Runtime A+B/C | reactive-runtime R001–019、单序列C | Runtime075 `0912436b647f701e1de607fe03ce1bfba6a9bbf4`；Runtime080 `216b2ab5f2315f4be19467b7e49f4047aec78ab9`；统一M1源 `d654ae59`，详[公开准入记录](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/admission.json) row1。 |
+| RichText | implement-rich-text冻结design | RichText084 `199f00076c1a79cfa6d0be92e7be09366e1a06af`；统一M1源 `d654ae59`，详[公开准入记录](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/admission.json) row2。 |
+| 主题基础/加载/展示 | T001–015及后续正式修订 | Theme088 `8d75233c664fd61be08d441f74d464cbcdff2d9c`；Theme092 `fa6a46ec339ea0f098dea521c814226a7a373c7e`；AC027 `b5de3dd6610e90fcdcd951c5703a1429ec13b417`；统一M1源 `d654ae59`，详[公开准入记录](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/admission.json) row3。 |
+| Canvas/焦点/viewport/overlay | 主代理采用interaction合同，含root Vertical有限布局fallback | InteractionA102/I011/I012 `f8a028b39daf8a341576f304335d262544b9cca5`；ViewportB107 `62039552a26da295dcd710d7cfc40cb9e43ca5fd`；OverlayC112 `7f43176505aa3c392afc5fc897181a9eeba89e6e`；统一M1源 `d654ae59`，详[公开准入记录](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/admission.json) row4。 |
+| 输入编辑/标准控件/应用示例 | 原017–021/028–030/037等完整Linux公共功能 | Keyboard117 `c3c4642d84df57bbd9550d222ed22f602acd13ef`；Finite editing E122/current combined input `22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167`；S157 `1df1325f7b51777d8adab62f950c936051aa5876`；M162 `6e3f26aaaeee9442fde91ce31d720a841eeda473`；Session152 `83094ca92acab37ed0a38042e2e40ead55049f41`；AC021 `c190e6f957a18f47be2f329a40cf444d9985cb6c`；统一M1源 `d654ae59`，详[公开准入记录](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/admission.json) row5。 |
+| Frame/Unicode/装饰/输出恢复 | 原005/007/008/011/012/020功能M1证据，以及041已冻结M1 Linux设备/ABI/输入输出/尺寸/恢复子接口证据；完整041最终全组件/M2/全部宿主验收后置 | R10 `8af39f6c8882772b946ae1d9507361f8a6082388`；070 `5c2a7e7d956b5d8c0284e96514276608616bf8a6`；Glyph097 `1f67e27358254e9daef637b5c2f5a93707ee7cef`；AC008 `80d21e071537898cde27f1c7de4328ab6f27d991`；AC010 `13e7880ce96d1331fc9e12a2b62275a307183e9a`；AC020_M1 `e35d407a87ab197537ccc931c143c9927458a75f`；LayoutDecoration057_054_060 `40aa4db6c2b7673bb3e8c9a80fdb5b4e385cb940`；LinuxNativeFirstSlice053 `2ad6c5ceeb0068d3b2b2d5efe010059965b9415a`；统一M1源 `d654ae59`，详[公开准入记录](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/admission.json) row6。 |
+| 完整M1性能基线 | 全部功能齐全、M2实施前 | AC021 `c190e6f957a18f47be2f329a40cf444d9985cb6c`；AC027 `b5de3dd6610e90fcdcd951c5703a1429ec13b417`；AC008 `80d21e071537898cde27f1c7de4328ab6f27d991`；AC010 `13e7880ce96d1331fc9e12a2b62275a307183e9a`；AC020_M1 `e35d407a87ab197537ccc931c143c9927458a75f`；统一M1源 `d654ae59`，详[公开准入记录](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/admission.json) row7。 |
+| 本候选 | design14与三个spec、独立preflight/DQ | M2_preflight（固定证据映射）；L005_planning_preflight（固定证据映射）；统一M1源 `d654ae59`，详[公开准入记录](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/admission.json) row8。 |
 
 
-当前正式冻结：普通CJP `29cab0f8de79a3b42ebc6a8bf7e2c2648217b565ccbc0e03f77f4cb915852c7a`，独立准入索引 `c1f7320ae7e5a1659ba83fee2f9083566cdf688d5f5585941ad2a8b8f05972b5`，041.a仅M1设备输入已固化，完整041保持开放。[原件及旧包](../../../docs/reviews/Linux-final/m1/README.md)保存原始准备、身份补充与固定SDK/deps/native/ABI。123正式tests `34240845e4bf393cc5d83475a2c9860a8de10f0e`/index `345ff318bc070a8535858e087fe44d605c1cec11c62354c58389698d5a828f64`：原行为6项GREEN，Canvas窄reference替换持久draw订阅为真实RED；新三统计缺API为真实编译RED（29条均属缺字段）。该Canvas失败属于124/M004明确修复义务，保留冻结M1原件，不伪称所有baseline用例GREEN。124按A固定合同实施，125–127独立质量门后才关闭本单元。
+当前正式冻结：普通CJP `29cab0f8de79a3b42ebc6a8bf7e2c2648217b565ccbc0e03f77f4cb915852c7a`，独立准入索引 `c1f7320ae7e5a1659ba83fee2f9083566cdf688d5f5585941ad2a8b8f05972b5`，041.a仅M1设备输入已固化，完整041保持开放。[原件及旧包](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/README.md)保存原始准备、身份补充与固定SDK/deps/native/ABI。123正式tests `34240845e4bf393cc5d83475a2c9860a8de10f0e`/index `345ff318bc070a8535858e087fe44d605c1cec11c62354c58389698d5a828f64`：原行为6项GREEN，Canvas窄reference替换持久draw订阅为真实RED；新三统计缺API为真实编译RED（29条均属缺字段）。该Canvas失败属于124/M004明确修复义务，保留冻结M1原件，不伪称所有baseline用例GREEN。124按A固定合同实施，125–127独立质量门后才关闭本单元。
 
 ## Review Focus
 
@@ -156,7 +156,7 @@ Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/A
 
 ## 2026-11-14 当前实施状态
 
-单元A123–127完成并独立接受：源码 `4f7e853f821c334318e2038d4e20ab26e72c16c8` → main `0f83f73d`，正式9例独立构建运行通过；127 `PASS_UNIT_A`，12条件通过，索引 `a47adf3f2aa3311fd7fdb810869428c6f4094d14c1f888c4bf70f3e7936d6272`。[原始证据与范围](../../../docs/reviews/R24/A/README.md)保留125/126及CJP `56a7318d7931490545ee5fd255628170ed0bdc32aca71a11bc549955cfa53b49`。Q1内部临时Frame owner清理为非阻塞观察，交129涉及相同Frame生命周期时处理。
+单元A123–127完成并独立接受：源码 `4f7e853f821c334318e2038d4e20ab26e72c16c8` → main `0f83f73d`，正式9例独立构建运行通过；127 `PASS_UNIT_A`，12条件通过，索引 `a47adf3f2aa3311fd7fdb810869428c6f4094d14c1f888c4bf70f3e7936d6272`。[原始证据与范围](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R24/A/README.md)保留125/126及CJP `56a7318d7931490545ee5fd255628170ed0bdc32aca71a11bc549955cfa53b49`。Q1内部临时Frame owner清理为非阻塞观察，交129涉及相同Frame生命周期时处理。
 
 128正式测试 `9908551d206922d0083711abbc70738c60da9215`/index `c9538b0eea0d6cae5e1c9ee5e4c491ae1254481cd5c35f255abf6f41c37b145f`：7个公共正确性GREEN，未变snapshot分配48/48槽而COW要求0/0为真实RED；原9例字节不变并复用A126有效证据。随后129完成，最终证据及130–132质量门结果见下节。公开实际API为Frame.copy/resized；私有backend任意old/profile比较明确由现有output_recovery夹具与130/131覆盖，不增加public测试hook。D–E/完整AC031/M2/Linux保持开放。
 
@@ -168,7 +168,7 @@ Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/A
 
 ### B证据归档与133最终准入
 
-[B完整证据](../../../docs/reviews/R24/B/README.md)以19个检出文件保存8,607个原件成员，raw SHA `7671c1ac21c81144a7303b4be358438218746ff941e768025d5bdff2f58ba8c4`，归档索引 `6a2fe776a27805082789319e9a3c02246f1a2488684187bdfb910f099dc0baea`；主代理逐成员核验安全路径、字节、权限及SHA，零不符。
+[B完整证据](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R24/B/README.md)以19个检出文件保存8,607个原件成员，raw SHA `7671c1ac21c81144a7303b4be358438218746ff941e768025d5bdff2f58ba8c4`，归档索引 `6a2fe776a27805082789319e9a3c02246f1a2488684187bdfb910f099dc0baea`；主代理逐成员核验安全路径、字节、权限及SHA，零不符。
 
 133固定测试源码 `d901cf39292230c11abbe1c1958126b123fb1794` → main merge `ca7772dfc24ef79f252c381c6a3219130a8559c0`，仅新增27个测试文件、产品源码与既有测试无变化；索引 `93d591fd0c7ca2735206d0018bbd60872348a501b2a57406213e885a2b34ad82`。正常build05退出0，直接run03退出1：19个正确性场景、90组完整Cell/手算配对均通过，10个场景共27项C工作量断言为真实RED。编译诊断与原始run01/02、格式整理前索引均保留；纯函数辅助按内聚职责合并，函数/断言/场景不变，最终stdout与run02逐字节相同。旧235运行文件曾被正常重建替换，原hash作为历史记录而非当前物理文件，最终ELF与测试清单另行核验。未冒称新的解包消费。
 
@@ -182,7 +182,7 @@ Admission新增Glyph G001–G011及097实际接受SHA。133增加Unicode/Ascii/A
 
 138已在独立工作树准备测试源码 `fa4354173a78aa1751acc5c2c840619f297d4fa6`，尚未正常编译/运行；下一步消费已接受C源码完成公开局部合成反例基线，再准入139。D局部绘制/光标/覆盖层与E真实基准、原031/022、最终Linux宿主矩阵及023/024保持开放。
 
-[C完整证据归档](../../../docs/reviews/R24/C/README.md)保留339个原件成员、三份不同候选源码制品、首次审核失败与两轮修复及最终独立执行/验收；仅32个检出文件。raw SHA `3c71f72ea247fc2129e35cd1b20bc91a48572afbcd2ef56b7013aad4e7187e4e`，索引 `e77b1ba2a5261315b20b59c1da537b7120a58d30edbe9f1d88cce89ef15a5cd3`，主代理逐成员核验安全路径、字节、权限与SHA一致；无新终端PNG，因本轮为无终端的布局单元，最终宿主效果图仍由Linux矩阵交付。
+[C完整证据归档](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R24/C/README.md)保留339个原件成员、三份不同候选源码制品、首次审核失败与两轮修复及最终独立执行/验收；仅32个检出文件。raw SHA `3c71f72ea247fc2129e35cd1b20bc91a48572afbcd2ef56b7013aad4e7187e4e`，索引 `e77b1ba2a5261315b20b59c1da537b7120a58d30edbe9f1d88cce89ef15a5cd3`，主代理逐成员核验安全路径、字节、权限与SHA一致；无新终端PNG，因本轮为无终端的布局单元，最终宿主效果图仍由Linux矩阵交付。
 
 ## 138最终测试准入与139实施
 
@@ -210,14 +210,14 @@ E143源码准备 `cc178b86294dc6a640b468888c4aadf06863bb2e` 现在可消费已�
 
 ### D归档与143正式冻结
 
-[D完整证据和截图](../../../docs/reviews/R24/D/README.md)以43个D文件保存8,888个原件成员、20张可浏览的真实终端截图及失败历史；raw SHA `c2e3c3c17d1e83e0c8669cf593cf4c2cc0263bdcbd737fd113297d880df0ee10`，索引 `5c01e698d5a513b2e23bfeae28a565141f8d13684f255c2ad497f9d644dcb948`。主代理逐成员核验安全路径、唯一普通文件、权限、字节与SHA，零不符；9,989绑定零未解析，历史runtime迁移保留精确还原映射。
+[D完整证据和截图](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R24/D/README.md)以43个D文件保存8,888个原件成员、20张可浏览的真实终端截图及失败历史；raw SHA `c2e3c3c17d1e83e0c8669cf593cf4c2cc0263bdcbd737fd113297d880df0ee10`，索引 `5c01e698d5a513b2e23bfeae28a565141f8d13684f255c2ad497f9d644dcb948`。主代理逐成员核验安全路径、唯一普通文件、权限、字节与SHA，零不符；9,989绑定零未解析，历史runtime迁移保留精确还原映射。
 
 143固定正式测试 `4dc4ba804c1ec8fb67b0971b659bd1ab8dece4ba`，索引 `3bc6dd5c7e3204e6d71d5a0224f8ba84506bbc1acce2b97c76327cabef9bca64`：独立无依赖验证器正常构建/自测通过，外部观察工具成功/退出7/执行缺失127夹具通过；公开项目正常构建实际RED为workloads缺失，三个必需manifest均未实现。两次解析器自测失败及修正原件保留，不是产品缺陷。主代理核47项制品/原始结果绑定，合入只新增tests/rendering_benchmark 28文件、产品与D测试字节不变。144独立Terra/high现按固定合同实施三公开项目与说明，暂不宣称基准、性能、022/031或Linux完成。
 
 ## 2026-11-15 E与原022/031完成
 
-TASK144–147完成：固定源码 `d7e9d1445f98021a798d223de97b97b45239de93`，独立147规格与质量/证据均PASS、零阻塞，索引 `e4961c95bc46bb4384ab5cd2f484c1320e2acf946dbb440f4bb077920ab69f55`。原TASK-022/031在本唯一状态入口记completed；[逐原条件判断](../../../docs/reviews/R24/E/browse/rendering-benchmark-acceptance/findings.md)与[实际测量](../../../docs/reviews/R24/E/browse/rendering-benchmark-execution/finalreport.md)保留1150次原版本headless、完整Cell/caret对照、最终176新M2与176M1终端CPU、288项原生输出。历史源码/ELF标签不改写，新输入修复另有独立回归、审核、普通包与受影响执行。
+TASK144–147完成：固定源码 `d7e9d1445f98021a798d223de97b97b45239de93`，独立147规格与质量/证据均PASS、零阻塞，索引 `e4961c95bc46bb4384ab5cd2f484c1320e2acf946dbb440f4bb077920ab69f55`。原TASK-022/031在本唯一状态入口记completed；[逐原条件判断](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R24/E/browse/rendering-benchmark-acceptance/findings.md)与[实际测量](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R24/E/browse/rendering-benchmark-execution/finalreport.md)保留1150次原版本headless、完整Cell/caret对照、最终176新M2与176M1终端CPU、288项原生输出。历史源码/ELF标签不改写，新输入修复另有独立回归、审核、普通包与受影响执行。
 
-[按轮次压缩归档](../../../docs/reviews/R24/E/README.md)用36个检出文件保存27514个安全原件成员，raw SHA `654e881a747ce75b77491369d63199347c2e298c517e6135589cdc8c8c8db817`，归档索引 `c605b71ad7ffeee955c67b57648715eda0d9813e8b5e37f82931a0d88ddd39b4`；主代理逐成员复核字节/权限/SHA零不符。全部852张原PNG留在归档，12张可直接浏览。保留全部CPU/内存/输出退化、短窗口噪声与口径限制，不承诺所有场景加速或总分配字节下降。
+[按轮次压缩归档](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R24/E/README.md)用36个检出文件保存27514个安全原件成员，raw SHA `654e881a747ce75b77491369d63199347c2e298c517e6135589cdc8c8c8db817`，归档索引 `c605b71ad7ffeee955c67b57648715eda0d9813e8b5e37f82931a0d88ddd39b4`；主代理逐成员复核字节/权限/SHA零不符。全部852张原PNG留在归档，12张可直接浏览。保留全部CPU/内存/输出退化、短窗口噪声与口径限制，不承诺所有场景加速或总分配字节下降。
 
 下一步是最终001/002/003/004/041与六宿主C008实际汇合、023完整正常制品/新缓存消费/失败负控、024逐原Linux验收；本结论不代替这些任务，不publish。

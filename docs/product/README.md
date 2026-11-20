@@ -1,6 +1,6 @@
 # 产品说明
 
-当前已接受公共 Canvas/焦点/caret、视口滚动与覆盖层，使用方法见[交互原语](interaction.md)，独立证据分别见[A绘制与焦点](../reviews/interaction/A/README.md)、[B视口与滚动](../reviews/interaction/B/README.md)、[C覆盖层](../reviews/interaction/C/README.md)。归一化键盘/paste已获[有限K验收](../reviews/K/README.md)；单/多行[TextInput/TextArea](text-editing.md)已获[有限E验收](../reviews/E/README.md)。这些已接受范围不等于完整Linux验收。
+当前已接受公共 Canvas/焦点/caret、视口滚动与覆盖层，使用方法见[交互原语](interaction.md)，独立证据分别见[A绘制与焦点](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/interaction/A/README.md)、[B视口与滚动](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/interaction/B/README.md)、[C覆盖层](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/interaction/C/README.md)。归一化键盘/paste已获[有限K验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/K/README.md)；单/多行[TextInput/TextArea](text-editing.md)已获[有限E验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/E/README.md)。这些已接受范围不等于完整Linux验收。
 
 完整应用构造示例见[组合应用](composition.md)。运行阶段与 Cell 槽计数范围见[运行统计](runtime-stats.md)。
 
@@ -17,7 +17,7 @@ cjpm run
 
 按 `q` 退出，Ctrl-C 取消；程序需要实际 TTY。构建依赖及可选离线 Unicode 数据输入见 [原生构建](native-build.md)。
 
-当前依赖采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。基础五控件已获[有限S验收](../reviews/widgets/S/README.md)，新native S证据仅覆盖ASCII/default Classic；Unicode/disabled/explicit palette另有headless与源码证据。菜单/状态栏/分区已获[有限M验收](../reviews/widgets/M/README.md)。[TASK008当前M1输出契约已独立验收](../reviews/R22/008/README.md)，[TASK010当前C003/原AC010快照与文件契约已独立验收](../reviews/R22/010/README.md)；[TASK020当前M1恢复输入已独立验收](../reviews/R22/020/README.md)，完整原AC020仍待M2/release受影响最终部分及024汇合；TASK021的冻结M1 U1–U5/composition与TASK027统一四主题展示已分别独立验收。M2局部布局、绘制与公开渲染基准已通过独立原AC022/031验收，使用方法及成本口径见[渲染基准](rendering-benchmark.md)；代表局部负载受益，仍保留全局退化与较慢场景，不承诺普遍加速。最终六宿主、完整制品及Linux整体验收仍在汇合。Windows、macOS、HarmonyOS尚未实现，当前未发布发行版。
+当前依赖采用 `ansies` 1.3.113、`unicode` 0.1.0 和 `unicodewidth` 0.1.113。基础五控件已获[有限S验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/widgets/S/README.md)，新native S证据仅覆盖ASCII/default Classic；Unicode/disabled/explicit palette另有headless与源码证据。菜单/状态栏/分区已获[有限M验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/widgets/M/README.md)。[TASK008当前M1输出契约已独立验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R22/008/README.md)，[TASK010当前C003/原AC010快照与文件契约已独立验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R22/010/README.md)；[TASK020当前M1恢复输入已独立验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R22/020/README.md)，完整原AC020仍待M2/release受影响最终部分及024汇合；TASK021的冻结M1 U1–U5/composition与TASK027统一四主题展示已分别独立验收。M2局部布局、绘制与公开渲染基准已通过独立原AC022/031验收，使用方法及成本口径见[渲染基准](rendering-benchmark.md)；代表局部负载受益，仍保留全局退化与较慢场景，不承诺普遍加速。最终六宿主、完整制品及Linux整体验收仍在汇合。Windows、macOS、HarmonyOS尚未实现，当前未发布发行版。
 
 低层可用 `Frame(width, height)` 和 `put(x, y, text, style: Style(...))` 写入网格，`cellAt` 查询，`toPlainText` 和 `toAnsi` 导出完整快照。负尺寸与越界查询报错；写入按边界裁剪，拒绝除换行外的控制字符。`render(root, width, height)` 使用同一网格渲染组件树。`Application(root).onKey { event => ... }.run()` 负责终端会话；文本按 Unicode 字符提供，`stop()` 可从回调退出。
 
@@ -78,6 +78,6 @@ stty size  # 输出“行 列”；确认至少 25 行、80 列后再继续
 拒绝控制字符。整篇字符簇、布局、绑定与 Frame 路径共享，组件显式属性逐字段覆盖 span。
 API、样式优先级、限制及错误见[富文本说明](rich-text.md)，示例见 `examples/rich-text`。
 
-Label/Button/Checkbox/Radio/Progress用法见[基础控件](widgets.md)，证据见[有限S归档](../reviews/widgets/S/README.md)；新native覆盖ASCII/default Classic，完整展示027/041另汇合。
+Label/Button/Checkbox/Radio/Progress用法见[基础控件](widgets.md)，证据见[有限S归档](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/widgets/S/README.md)；新native覆盖ASCII/default Classic，完整展示027/041另汇合。
 
 本次仅更新验收状态说明。正常bundle/CJP证据绑定更新前的已接受源`80d21e071537898cde27f1c7de4328ab6f27d991`及main别名`ecbf0999a392e5298e6e5bd15bd796dd9d40e582`，不声称新README字节已重打包或完整release通过；本次无功能/API/打包配置变更，按AGENTS11.1复用原验证。

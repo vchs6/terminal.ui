@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 here=$(cd "$(dirname "$0")" && pwd)
-source /workspace/work/validation/sdk/cangjie/envsetup.sh
-export CANGJIE_STDX_PATH=${CANGJIE_STDX_PATH:-/workspace/work/linux-build-recon/stdx-env}
-export CJTUI_UCD_ARCHIVE=${CJTUI_UCD_ARCHIVE:-/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip}
 node "$here/oracle.mjs"
 if [[ ${1:-} == --oracle ]]; then exit 0; fi
 if [[ $# -ne 0 ]]; then printf 'usage: %s [--oracle]\n' "$0" >&2; exit 64; fi
@@ -14,7 +11,7 @@ cd "$here"
 cjpm build
 TERM=dumb COLORTERM= timeout 90s "$here/target/release/bin/main" </dev/null
 (cd "$here/device" && cjpm build)
-pty_output=${CJTUI_SMALL_PTY_OUTPUT:-$(mktemp -d /tmp/cjtui-small-pty.XXXXXX)}
+pty_output=${CJTUI_SMALL_PTY_OUTPUT:-$(mktemp -d "${TMPDIR:-/tmp}/cjtui-small-pty.XXXXXX")}
 printf 'PTY artifacts: %s\n' "$pty_output"
 python3 "$here/pty.py" --binary "$here/device/target/release/bin/main" --output "$pty_output"
 # Only reached after normal API/behavior builds: absence is never accepted as a

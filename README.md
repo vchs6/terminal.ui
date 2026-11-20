@@ -1,38 +1,22 @@
 # cjtui
 
-采用仓颉语言及约定范围的 ArkUI 声明式语法，面向终端应用提供组件组合、状态绑定、布局、主题与多层界面能力。
+cjtui 是用仓颉编写的声明式终端界面框架，支持组件组合、状态绑定、布局、主题和多层界面。当前面向 Linux ANSI 终端开发，版本 `0.0.0`，尚未发布。
 
-**当前提供 Linux ANSI TTY 文本界面、横纵/弹性布局与字符装饰；完整框架仍在开发。**
-
-- 产品范围与当前状态：[产品说明](docs/product/README.md)。
-- 仓颉包名：`cjtui`；当前开发版本 `0.0.0`，未发布。
-- 实施顺序：先完成支持 ANSI 转义序列的 Linux 终端全部功能和验收，再考虑 Windows、macOS、HarmonyOS；四平台产品支持目前均待验。
-- 许可证：[MulanPSL-2.0](LICENSE)。
-- ANSI 与 Unicode 采用仓颉中心仓 `ansies`、`unicode`、`unicodewidth`；首片通过这三个依赖提供 ANSI 与 Unicode 处理。
-
-发布制品包含主库源码、示例项目、基准项目、产品文档与许可证。开发流程资料仅在源码仓库维护。
-
-## 运行示例
-
-先加载仓颉 SDK/CJPM 1.2.0，安装官方 stdx 1.2.0-beta.02.1 并设置 `CANGJIE_STDX_PATH`；准备 Bash、curl、tar、unzip、SHA-256 工具、realpath、flock、GCC 和 GNU ar。目录映射、固定输入校验及首次下载要求见[产品构建说明](docs/product/native-build.md)。正常 CJPM 构建会自动生成并链接 native 归档。随后在真实 Linux ANSI TTY 中运行：
+## 开始开发
 
 ```sh
-cd examples/layout
-cjpm run
+git clone --filter=blob:none --single-branch --branch main https://github.com/vchs6/terminal.ui.git
+cd terminal.ui
 ```
 
-`d`切换边框/阴影，`q`退出；窗口改变尺寸自动重排。最小入口见`examples/minimal`。
+[本地开发指南](docs/development/local-setup.md)列出 SDK、stdx、中心仓依赖的确切版本、下载来源和 SHA-256，并提供正常构建、测试和运行示例的命令。依赖由开发者从上游获取。
 
-## 项目文档
+部分克隆保留交互 C 测试所需的提交祖先，按需获取历史文件。普通完整克隆还会下载旧迁移卷和证据归档。查询历史时可打开[清理前的固定快照](https://github.com/vchs6/terminal.ui/tree/61e25f009f8f26c991c3f2ba758987db83bedc4a)。
 
-以下为源码仓库的在线开发文档，不随产品制品打包：
+## 继续项目
 
-- [项目整体提案](https://github.com/vchs6/terminal.ui/blob/main/docs/development/proposal.md)：产品定位、目标、范围、交付阶段和成功标准。
-- [需求说明书](https://github.com/vchs6/terminal.ui/blob/main/docs/requirements.md)：使用场景、功能/非功能约束、异常边界和验收映射。
-- [总体架构设计](https://github.com/vchs6/terminal.ui/blob/main/docs/architecture.md)：模块、数据模型、状态/事件、布局/多层、渲染和恢复设计。
-- [用户构造设计](https://github.com/vchs6/terminal.ui/blob/main/docs/ui-construction.md)：声明式构造、状态/事件关联、U1–U5 和接口冻结边界。
-- [工程任务与验收入口](https://github.com/vchs6/terminal.ui/blob/main/docs/README.md)：任务、证据、流程规格和开发环境。
+- [当前 Linux 工作](docs/development/continue-linux.md)提供宿主验证、制品与整体验收的执行顺序和任务入口。
+- [项目文档](docs/README.md)索引需求、架构、构造设计及验收矩阵。
+- [产品说明](docs/product/README.md)记录可用能力，[最小示例](examples/minimal/README.md)提供非交互快照和真实终端入口。
 
-有限单/多行编辑：[产品用法](docs/product/text-editing.md)、[独立验收与真实终端原件](docs/reviews/E/README.md)。完整Linux/父AC仍待后续汇合。
-
-五个公开基础控件：[产品用法](docs/product/widgets.md)、[有限S独立验收与真实宿主原件](docs/reviews/widgets/S/README.md)。菜单/M与完整Linux仍待后续交付。
+仓颉包名为 `cjtui`。项目采用 [MulanPSL-2.0](LICENSE)，第三方授权见 [NOTICE](NOTICE)。

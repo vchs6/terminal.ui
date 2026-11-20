@@ -85,5 +85,5 @@ DQ复核：目标/输入/输出/可观察AC及具体文件已齐；每角色范�
 | DQ-10 | pass：标准File.writeTo已有实际消费者证据，SDK命名默认参数已验；零轴冲突已按F001改规格，关键未知未藏为代码前提 |
 | DQ-11 | pass：每角色具体文件、输入、命令/退出、提交和独立核对步骤可检查 |
 | DQ-12 | pass：docs/tasks唯一转移005/007和067–070，acceptance原AC与新AC齐全；计划与已执行prepare分开 |
-| DQ-13 | pass（当前规划/067）：执行分类/OpenSpec/已裁决F001F002明确；[技能来源与可用性](../../../docs/reviews/R11/skills.json)、[实际读取/角色记录](progress.md)定位；后续角色按其任务实际调用，不把安装当使用 |
+| DQ-13 | pass（当前规划/067）：执行分类/OpenSpec/已裁决F001F002明确；[技能来源与可用性](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R11/skills.json)、[实际读取/角色记录](progress.md)定位；后续角色按其任务实际调用，不把安装当使用 |
 | DQ-14 | pass：canonical_owner、旧blank/clearAt路径、合法域兼容、复杂度/开销和例外均有定义；不替换第三方/持久用户数据 |

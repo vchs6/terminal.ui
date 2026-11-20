@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 here=$(cd "$(dirname "$0")" && pwd)
-source /workspace/work/validation/sdk/cangjie/envsetup.sh
-export CANGJIE_STDX_PATH=${CANGJIE_STDX_PATH:-/workspace/work/linux-build-recon/stdx-env}
-export CJTUI_UCD_ARCHIVE=${CJTUI_UCD_ARCHIVE:-/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip}
 mode=${1:-formal}
 if [[ "$mode" == self-test ]]; then
     python3 "$here/oracle.py" --self-test
@@ -25,5 +22,5 @@ if [[ "$mode" != formal ]]; then printf 'usage: %s [formal|self-test]\n' "$0" >&
 (cd "$here/prerequisite" && cjpm build && TERM=dumb COLORTERM= timeout 90s target/release/bin/main </dev/null)
 (cd "$here" && cjpm build && TERM=dumb COLORTERM= timeout 90s target/release/bin/main </dev/null)
 (cd "$here/device" && cjpm build)
-output=${CJTUI_COMPOSITE_PTY_OUTPUT:-$(mktemp -d /tmp/cjtui-composite-pty.XXXXXX)}
+output=${CJTUI_COMPOSITE_PTY_OUTPUT:-$(mktemp -d "${TMPDIR:-/tmp}/cjtui-composite-pty.XXXXXX")}
 python3 "$here/pty.py" --binary "$here/device/target/release/bin/main" --output "$output"

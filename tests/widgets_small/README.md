@@ -6,14 +6,7 @@ This is a normal public CJPM consumer. Only `tests/widgets_small/**` changes. It
 
 ## Reproduce
 
-Source `/workspace/work/validation/sdk/cangjie/envsetup.sh`; use SDK1.2. Export `CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env` and `CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip`. Do not copy the SDK or cache. Put this ignored configuration in the source root and every consumer package run below:
-
-```toml
-[repository.cache]
-path = "/workspace/work/viewport-tests/cache"
-[repository.home]
-registry = "https://pkg.cangjie-lang.cn/registry"
-```
+For compiler and PTY runs, activate SDK 1.2.0 and stdx from [Linux local setup](../../docs/development/local-setup.md). The runners inherit the shell environment. Set `CJTUI_UCD_ARCHIVE` only when using a local archive with the documented checksum.
 
 From the source root:
 
@@ -23,7 +16,7 @@ bash tests/widgets_small/run.sh
 CJTUI_SMALL_RED_OUTPUT=/tmp/small-red-NEW bash tests/widgets_small/target-red.sh
 ```
 
-The ordinary runner builds/runs `prerequisite`, builds/runs the full headless consumer **directly**, then builds the device consumer, drives its real PTY normal/callback-failure/getter-failure modes, and checks the two independent forbidden Bool constructors. It propagates the real CJPM/direct-binary exit. Current source lacks all five factories, so the full target build fails before headless or PTY execution. A failed import is not a behavioral test or Bool-signature rejection. `target-red.sh` is the intentional RED verifier: after prerequisite build/direct0, each tiny public `red_*` package must independently produce compiler exit1 naming its own missing factory; the wrapper's exit0 means only that RED classification was checked.
+The ordinary runner builds/runs `prerequisite`, builds/runs the full headless consumer **directly**, then builds the device consumer, drives its real PTY normal/callback-failure/getter-failure modes, and checks the two independent forbidden Bool constructors. It propagates the real CJPM/direct-binary exit. At the original preparation freeze, the five public factories were absent and the full target build stopped before headless or PTY execution. A failed import is not a behavioral test or Bool-signature rejection. `target-red.sh` replays the original missing-factory RED: after prerequisite build/direct0, each tiny public `red_*` package must independently produce compiler exit1 naming its own missing factory; the wrapper's exit0 means only that RED classification was checked.
 
 The obsolete synthetic gate tool is retired from this final suite. Its original source/logs/report remain untouched in `/workspace/work/widgets-small-tests/source` and `/workspace/work/widgets-small-tests/evidence`. The normal runner has no symbol gate, synthetic list, stub, or target-as-prerequisite check. Old77 and synthetic gate controls are not used as current RED evidence.
 
@@ -48,6 +41,8 @@ After TASK-154 supplies the factories and a real `cjpm bundle` archive, run:
 ```sh
 python3 tests/widgets_small/bundle-run.py /ABS/PATH/cjtui-0.0.0.cjp --output /tmp/small-bundle-NEW
 ```
+
+The bundle consumer inherits the SDK/stdx settings and creates a new `.cjpm-cache` in its output directory.
 
 This extracts only regular source archive entries into a new directory, copies this test suite there without targets/locks/registry/SDK/cache, binds dependencies to that extracted product, and invokes the same normal runner. It prints the actual archive SHA. No clean-bundle target PASS is claimed now.
 

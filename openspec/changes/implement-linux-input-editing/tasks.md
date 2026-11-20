@@ -1,6 +1,6 @@
 # Linux keyboard and text editing implementation plan
 
-当前控制器准入（2026-11-13，有限K/E完成）：TASK113–122已完成有限K/E交付；E独立122为PASS_FINITE_E，接受源22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167对应main b71cb2ebd740a22eba3759abd35b9b0fff068bdd，产品/测试/例子/产品文档逐字节一致；[E原件、独立报告及真实截图](../../../docs/reviews/E/README.md)。TASK120初审四项Important在修复轮1全部关闭；121普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付，122规格/质量/证据均PASS_FINITE_E。完整Linux/AC041/024、父030/020/019/027及M1/M2仍未关闭；T087-G01→023、B-M01→024保留，整个OpenSpec变更待最终023/024汇合。
+当前控制器准入（2026-11-13，有限K/E完成）：TASK113–122已完成有限K/E交付；E独立122为PASS_FINITE_E，接受源22ca8cf7c756c5185064a6f8bc7e9f2c58d4f167对应main b71cb2ebd740a22eba3759abd35b9b0fff068bdd，产品/测试/例子/产品文档逐字节一致；[E原件、独立报告及真实截图](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/E/README.md)。TASK120初审四项Important在修复轮1全部关闭；121普通制品/干净消费/真实XTerm、VTE、kernelVT执行已交付，122规格/质量/证据均PASS_FINITE_E。完整Linux/AC041/024、父030/020/019/027及M1/M2仍未关闭；T087-G01→023、B-M01→024保留，整个OpenSpec变更待最终023/024汇合。
 
 > **For agentic workers:** 本件已登记；K/E已有限验收；整体Linux仍待023/024；后续由主代理按冻结合同与实际前置，按用户已选独立测试/产品/审查/执行/验收流程执行。REQUIRED SUB-SKILL: superpowers:subagent-driven-development；本起草角色不执行、不派代理。
 

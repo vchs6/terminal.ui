@@ -1,0 +1,38 @@
+{
+  "status": "SOURCE_ONLY_NOTEXECUTED",
+  "interfaces": [
+    {
+      "path": "/workspace/work/linux-final-host-execution/operator/run-frozen.mjs",
+      "sha256": "61aaeae557af4d5098102e3658059e0aaad1b9802942926d3095c1ba23b465fa"
+    },
+    {
+      "path": "/workspace/work/linux-final-host-execution/operator/frozen-loader.mjs",
+      "sha256": "418bda8eedac32cd45e385f70404d4178458318f6aca908a470609d2fd426c5b"
+    },
+    {
+      "path": "/workspace/work/linux-final-host-execution/operator/actual-session.mjs",
+      "sha256": "d6c125fa27304dd922e8dbc8af8719acdd5e5d1c8eedab9f9ad5c1f765bc744b"
+    },
+    {
+      "path": "/workspace/work/linux-final-host-execution/operator/vt-session.mjs",
+      "sha256": "ccb167cee286d79223621a295fa262a5a5b2cbf5fdfd2383feda0f171aa6a3e3"
+    }
+  ],
+  "SessionInterface": [
+    "constructor(directory,w,h,binary)",
+    "start()",
+    "send(bytes,label)",
+    "wait(predicate,label)",
+    "key(bytes,predicate,label)",
+    "has(value,label)",
+    "resize(w,h)",
+    "stop(exitKey)",
+    "save()"
+  ],
+  "source_test_selection": "C008_TEST_INPUT_ROOT (frozen copied input root); final binaries resolve relative to cwd final source checkout",
+  "VT_fixed_dimensions": [
+    80,
+    25
+  ],
+  "expected_data_changes": []
+}

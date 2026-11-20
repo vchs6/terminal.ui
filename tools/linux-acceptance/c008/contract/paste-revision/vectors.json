@@ -1,0 +1,920 @@
+{
+  "status": "PURE_FIXTURES_NOT_ACTUAL_HOST_EVIDENCE",
+  "vectors": [
+    {
+      "name": "xterm default exact translated complete packet",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "XTERM398_DEFAULT_NL_TO_CR",
+        "owner": {
+          "engine": "XTerm",
+          "version": "398"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "reset",
+          "literalNewline": "reset",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "b3bf2c65bdb7fce396465919541f08d5144cc2c4eb8b7bdd8af5dad659000d0d"
+      },
+      "expected": "match"
+    },
+    {
+      "name": "VTE fixed source policy exact translated packet",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "VTE0801_FIXED_NL_TO_CR",
+        "owner": {
+          "engine": "VTE",
+          "version": "0.80.1"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "fixed-reset",
+          "literalNewline": "fixed-reset",
+          "basis": "fixed-official-source"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "b3bf2c65bdb7fce396465919541f08d5144cc2c4eb8b7bdd8af5dad659000d0d"
+      },
+      "expected": "match"
+    },
+    {
+      "name": "proven direct VT raw LF packet",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "DIRECT_VT_RAW_LF",
+        "owner": {
+          "engine": "LinuxVT",
+          "version": "fixture-kernel"
+        },
+        "route": {
+          "kind": "controlled-keyboard-raw",
+          "chain": [
+            "actual tty1 raw keyboard path",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "not-applicable",
+          "literalNewline": "not-applicable",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "5a4f63fbbf1c3987b253e0c3bd0f3c6b2db5f9f6fcf2d59489e08f906e4d4d82"
+      },
+      "expected": "match"
+    },
+    {
+      "name": "missing opener",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "XTERM398_DEFAULT_NL_TO_CR",
+        "owner": {
+          "engine": "XTerm",
+          "version": "398"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "reset",
+          "literalNewline": "reset",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "01717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 39,
+        "packetStart": 1,
+        "packetEnd": 39,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "5758a12d17f86edcc1f56ecd190590c3da6ca920959e4d7008602350c9fa7c5e"
+      },
+      "expected": "FAILED_PASTE_WIRE"
+    },
+    {
+      "name": "missing closer",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "VTE0801_FIXED_NL_TO_CR",
+        "owner": {
+          "engine": "VTE",
+          "version": "0.80.1"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "fixed-reset",
+          "literalNewline": "fixed-reset",
+          "basis": "fixed-official-source"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 39,
+        "packetStart": 1,
+        "packetEnd": 39,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "ee551ba0a28983a3cf78868f2af4ad57206482bb3fa98303632008b1d4656fb4"
+      },
+      "expected": "FAILED_PASTE_WIRE"
+    },
+    {
+      "name": "mixed Unicode bytes rejected",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "XTERM398_DEFAULT_NL_TO_CR",
+        "owner": {
+          "engine": "XTerm",
+          "version": "398"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "reset",
+          "literalNewline": "reset",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8aee6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "31feaee695f0a1d7450668264eb8641ab23e92c222855c9ba771f69976a05d36"
+      },
+      "expected": "FAILED_PASTE_WIRE"
+    },
+    {
+      "name": "GUI wrong literal LF rejected",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "XTERM398_DEFAULT_NL_TO_CR",
+        "owner": {
+          "engine": "XTerm",
+          "version": "398"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "reset",
+          "literalNewline": "reset",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "5a4f63fbbf1c3987b253e0c3bd0f3c6b2db5f9f6fcf2d59489e08f906e4d4d82"
+      },
+      "expected": "FAILED_PASTE_WIRE"
+    },
+    {
+      "name": "direct VT wrong CR rejected",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "DIRECT_VT_RAW_LF",
+        "owner": {
+          "engine": "LinuxVT",
+          "version": "fixture-kernel"
+        },
+        "route": {
+          "kind": "controlled-keyboard-raw",
+          "chain": [
+            "actual tty1 raw keyboard path",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "not-applicable",
+          "literalNewline": "not-applicable",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "b3bf2c65bdb7fce396465919541f08d5144cc2c4eb8b7bdd8af5dad659000d0d"
+      },
+      "expected": "FAILED_PASTE_WIRE"
+    },
+    {
+      "name": "inherited CRLF source explicitly rejected",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "XTERM398_DEFAULT_NL_TO_CR",
+        "owner": {
+          "engine": "XTerm",
+          "version": "398"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "reset",
+          "literalNewline": "reset",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790d0a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "b3bf2c65bdb7fce396465919541f08d5144cc2c4eb8b7bdd8af5dad659000d0d"
+      },
+      "expected": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "name": "old VTE CRLF source with translated CR is not a new LF-source pass",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "VTE0801_FIXED_NL_TO_CR",
+        "owner": {
+          "engine": "VTE",
+          "version": "0.80.1"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "fixed-reset",
+          "literalNewline": "fixed-reset",
+          "basis": "fixed-official-source"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790d0a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "b3bf2c65bdb7fce396465919541f08d5144cc2c4eb8b7bdd8af5dad659000d0d"
+      },
+      "expected": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "name": "original XTerm CRLF to CRCR failure retained",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "XTERM398_DEFAULT_NL_TO_CR",
+        "owner": {
+          "engine": "XTerm",
+          "version": "398"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "reset",
+          "literalNewline": "reset",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d0d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 46,
+        "packetStart": 1,
+        "packetEnd": 46,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "b9a16a28d06453def1b366b73e90e799303d84a1f49fc8ace33d44dc8c345a70"
+      },
+      "expected": "FAILED_PASTE_WIRE"
+    },
+    {
+      "name": "raw unchanged CRLF default failure",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "VTE0801_FIXED_NL_TO_CR",
+        "owner": {
+          "engine": "VTE",
+          "version": "0.80.1"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "fixed-reset",
+          "literalNewline": "fixed-reset",
+          "basis": "fixed-official-source"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d0a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 46,
+        "packetStart": 1,
+        "packetEnd": 46,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "cbe9aca9052e58f3c1b95f5e6192f2368c52a34df86e10683ab7ac6d788a8137"
+      },
+      "expected": "FAILED_PASTE_WIRE"
+    },
+    {
+      "name": "extra/new nested packet rejected",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "XTERM398_DEFAULT_NL_TO_CR",
+        "owner": {
+          "engine": "XTerm",
+          "version": "398"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "reset",
+          "literalNewline": "reset",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e1b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 89,
+        "packetStart": 1,
+        "packetEnd": 89,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "ba5a0590438e4515ca3dd18987e005bc57a53ffd51ab0d514cad7a4f67f026fb"
+      },
+      "expected": "FAILED_PASTE_WIRE"
+    },
+    {
+      "name": "old packet before declared new window rejected",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "XTERM398_DEFAULT_NL_TO_CR",
+        "owner": {
+          "engine": "XTerm",
+          "version": "398"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "reset",
+          "literalNewline": "reset",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 2,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-15T00:00:01.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "b3bf2c65bdb7fce396465919541f08d5144cc2c4eb8b7bdd8af5dad659000d0d"
+      },
+      "expected": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "name": "post-send policy chronology rejected",
+      "declaration": {
+        "schema": "C008-PASTE002-v1",
+        "policyId": "XTERM398_DEFAULT_NL_TO_CR",
+        "owner": {
+          "engine": "XTerm",
+          "version": "398"
+        },
+        "route": {
+          "kind": "gui-selection",
+          "chain": [
+            "owned actual outer terminal",
+            "optional mux/SSH forwarding must be independently proven",
+            "actual app tty"
+          ]
+        },
+        "modes": {
+          "bracketedPaste": "set",
+          "pasteQuote": "reset",
+          "literalNewline": "reset",
+          "basis": "genuine-observation"
+        },
+        "declaredBeforeOffset": 0,
+        "declaredUTC": "2026-11-15T00:00:00.000Z",
+        "evidence": [
+          {
+            "kind": "owner-config",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "newline-policy",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "mode-state",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          },
+          {
+            "kind": "raw-route",
+            "path": "fixture-only",
+            "sha256": "33f130f393657fa1424aa5096c77e94e63ed075f15972e870df2a16d0dab5761"
+          }
+        ]
+      },
+      "sourceHex": "717263767a790a72657669657720e4b8ade6968720f09f91a9e2808df09f92bb",
+      "rawHex": "011b5b3230307e717263767a790d72657669657720e4b8ade6968720f09f91a9e2808df09f92bb1b5b3230317e",
+      "observation": {
+        "beforeOffset": 1,
+        "afterOffset": 45,
+        "packetStart": 1,
+        "packetEnd": 45,
+        "sentUTC": "2026-11-14T23:59:59.000Z",
+        "capturedUTC": "2026-11-15T00:00:02.000Z",
+        "rawSha256": "b3bf2c65bdb7fce396465919541f08d5144cc2c4eb8b7bdd8af5dad659000d0d"
+      },
+      "expected": "INSUFFICIENT_EVIDENCE"
+    }
+  ]
+}

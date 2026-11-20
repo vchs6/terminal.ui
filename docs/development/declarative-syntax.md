@@ -1,6 +1,6 @@
 # 仓颉声明式语法：固定源码与编译证据
 
-本文投影原 AC-002（REQ-001，TASK-002）的六项语法要求，不新增语法或 API。当前固定候选为 `d7e9d1445f98021a798d223de97b97b45239de93`，历史投影候选为 `c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960`，产品版本 `0.0.0`；已有实际语言证据使用 Linux x86_64 的 cjc/cjpm **1.2.0**。逐成员 SHA-256、原始命令、退出值、诊断及归档定位见 [syntax-map.json](../reviews/Linux-final/syntax-map.json)。本次仅核对源码、现有原件和文档，没有执行编译器、测试或宿主程序。
+本文投影原 AC-002（REQ-001，TASK-002）的六项语法要求，不新增语法或 API。当前固定候选为 `d7e9d1445f98021a798d223de97b97b45239de93`，历史投影候选为 `c8624c1de5ab7ec6727ef59d9f2897f9cf6b7960`，产品版本 `0.0.0`；已有实际语言证据使用 Linux x86_64 的 cjc/cjpm **1.2.0**。逐成员 SHA-256、原始命令、退出值、诊断及归档定位见 [syntax-map.json](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/syntax-map.json)。本次仅核对源码、现有原件和文档，没有执行编译器、测试或宿主程序。
 
 原 [AC-002](../acceptance.md) 要求分别证明组件块、属性链、状态、条件/列表、自定义组件和回调，并记录失败定位与限制。R12/R13 的独立验收已经接受相应有限运行时、宏和动态构造证据，但没有关闭原 AC-002。本文与映射供最终 TASK-002 独立审核/验收使用；002.d 与最终登记仍为 pending，不代表 Linux、性能、制品或完整跨平台验收。
 

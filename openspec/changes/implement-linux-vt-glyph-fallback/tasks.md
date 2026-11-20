@@ -107,8 +107,8 @@ G012前置修订候选：094消费fix-uncertain-glyph-advance已接受167纯owne
 
 ## 当前准入投影
 
-G012已冻结并由167/084接受有限partial owner；本tasks上文旧“未知PTY Unicode”历史解释以G012为准，现已机械同步文字，无新行为选择。093原daf2及刷新df21f3d（root9454f22）只表示正式test-design交付，证据[R16刷新](../../../docs/reviews/R16/test-refresh-g012/report.md)，readonly正向仍blocked2、完整API真实RED1，不是AC093/094/097已通过。094继续等Session152；不并行写Application/Runtime/Frame/native。
+G012已冻结并由167/084接受有限partial owner；本tasks上文旧“未知PTY Unicode”历史解释以G012为准，现已机械同步文字，无新行为选择。093原daf2及刷新df21f3d（root9454f22）只表示正式test-design交付，证据[R16刷新](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R16/test-refresh-g012/report.md)，readonly正向仍blocked2、完整API真实RED1，不是AC093/094/097已通过。094继续等Session152；不并行写Application/Runtime/Frame/native。
 
 ## 2026-11-11 最终有限验收投影
 
-TASK097独立最终findings为PASS_FINITE_SCOPE，0C/I/M；33项矩阵为30passed、1项P30有限通过、1项marker接口通过但Theme布局待验、1项父范围待验。固定product1f67e273（rootb3b24f8）、正式093 df21+bfd0715+dc6fdbf；上述历史RED/等待说明保留原时点。当前AC093–097仅本有限字形范围通过，证据见[R16独立验收](../../../docs/reviews/R16/acceptance/report.md)、[执行原件](../../../docs/reviews/R16/execution/report.md)。实际P30仅此次kernel组合（含Direct正常wire/unknown-title），不关闭全041/008/020/030、输入/resize、全部路由故障、M2、Linux或发行。Theme013/025可消费已接受policy及固定085测试，完整ellipsis布局仍待013/088。
+TASK097独立最终findings为PASS_FINITE_SCOPE，0C/I/M；33项矩阵为30passed、1项P30有限通过、1项marker接口通过但Theme布局待验、1项父范围待验。固定product1f67e273（rootb3b24f8）、正式093 df21+bfd0715+dc6fdbf；上述历史RED/等待说明保留原时点。当前AC093–097仅本有限字形范围通过，证据见[R16独立验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R16/acceptance/report.md)、[执行原件](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R16/execution/report.md)。实际P30仅此次kernel组合（含Direct正常wire/unknown-title），不关闭全041/008/020/030、输入/resize、全部路由故障、M2、Linux或发行。Theme013/025可消费已接受policy及固定085测试，完整ellipsis布局仍待013/088。

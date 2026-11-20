@@ -1,4 +1,12 @@
-# Generic overlay test PREPARATION (TASK108)
+# Generic overlay tests (TASK108)
+
+## Current entry
+
+Load the SDK and stdx environment in [Local development](../../docs/development/local-setup.md). Use a Git checkout with commit ancestry for the eight admission rows. A blob-filtered clone retains that ancestry.
+
+`bash tests/interaction_c/run.sh preparation` checks the current admission table. It requires eight accepted ancestors and eight local evidence files. Seven fixed inputs live under `tests/fixtures/admission/`; links inside those byte-identical fixtures describe the historical paths in the [original review snapshot](https://github.com/vchs6/terminal.ui/tree/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews). The eighth input is the current admission JSON. Run `bash tests/interaction_c/gate-selftest.sh` for the independent driver controls or `bash tests/interaction_c/run.sh formal` to build and run the overlay cases.
+
+## Historical preparation notes
 
 **PREPARATION/BLOCKED. Not a complete TASK108, TASK109 admission, product RED,
 product PASS, native PASS or host PASS.** Independent test-only scope is
@@ -27,11 +35,11 @@ negative controls. Recipe-only vectors must be finished before a formal freeze.
 Source SDK1.2 environment, then use the ordinary entry:
 
 ```sh
-source /workspace/work/validation/sdk/cangjie/envsetup.sh
+source "$cjtui_sdk_dir/cangjie/envsetup.sh"
 bash tests/interaction_c/run.sh preparation
-# Current expected status: 77; prints every actual-source/test-freeze blocker.
+# At the preparation freeze, expected status: 77; prints every actual-source/test-freeze blocker.
 bash tests/interaction_c/run.sh
-# Current expected status: 77, with NO overlay build/execution.
+# At the preparation freeze, expected status: 77, with NO overlay build/execution.
 
 # Separate existing-public-API sanity only, already available at the base:
 bash tests/interaction_c/run.sh baseline

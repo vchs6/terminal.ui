@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {pathToFileURL} from 'node:url';
+import {resolve,join} from 'node:path';
+import {installActualSession} from './actual-session.mjs';
+import {installVTSession} from './vt-session.mjs';
+assert.equal(process.env.C008_ROOT_ACTUAL_GO,'1','NOTEXECUTED until root actual GO');
+const root=resolve(process.env.C008_TEST_INPUT_ROOT??process.env.C008_SOURCE), app=await import(pathToFileURL(join(root,'tests/composition/application/pty.mjs')));
+if(process.env.C008_HOST_KIND==='vt')installVTSession(app.Session);else installActualSession(app.Session);
+const group=process.argv[2],name=process.argv[3],dir=resolve(process.argv[4]);
+const table={composition:{module:app,cases:['startup','interactions','minimal']},showcase:{module:await import(pathToFileURL(join(root,'tests/theme_showcase/pty.mjs'))),cases:['startup','fullCycle','retainedState','fileReload','absentFile']},modal:{module:await import(pathToFileURL(join(root,'tests/theme_showcase/modal-keys.mjs'))),cases:['previewSwitch','popupSwitch']}};
+assert(table[group]?.cases.includes(name),'select existing frozen case only');
+await table[group].module[name](dir,...(name==='startup'?[Number(process.argv[5]??80),Number(process.argv[6]??24)]:[]));
+console.log('Existing frozen case passed on actual attempted transport; this is not final host acceptance.');

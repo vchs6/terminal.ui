@@ -1,6 +1,6 @@
 # 标准控件支持任务候选
 
-本文件为TASK029/019及153–162唯一任务状态入口，docs/tasks.md只保留编号映射。TASK153–157有限S已独立PASS_FINITE_S；TASK158–162有限M及受影响S02已独立PASS_FINITE_M（spec/quality/evidence PASS），角色均complete。四个公开工厂HorizontalMenu/PopupMenu/StatusBar/SplitPane与MenuEntry/SplitAxis已交付；[一次性M原件归档](../../../docs/reviews/widgets/M/README.md)链接独立审核、执行、验收及65原PNG。author6f7d6fee→accepted6e3f26aa→mainc5a875f0，最终testsad100/treeff16；[精确别名](../../../docs/reviews/widgets/M/main-map.json)。M160-S01仍open非阻塞建议，未修，不作产品缺陷。原失败/修正历史保留，不以新结果改写。
+本文件为TASK029/019及153–162唯一任务状态入口，docs/tasks.md只保留编号映射。TASK153–157有限S已独立PASS_FINITE_S；TASK158–162有限M及受影响S02已独立PASS_FINITE_M（spec/quality/evidence PASS），角色均complete。四个公开工厂HorizontalMenu/PopupMenu/StatusBar/SplitPane与MenuEntry/SplitAxis已交付；[一次性M原件归档](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/widgets/M/README.md)链接独立审核、执行、验收及65原PNG。author6f7d6fee→accepted6e3f26aa→mainc5a875f0，最终testsad100/treeff16；[精确别名](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/widgets/M/main-map.json)。M160-S01仍open非阻塞建议，未修，不作产品缺陷。原失败/修正历史保留，不以新结果改写。
 
 ## Current admission — 2026-11-13
 

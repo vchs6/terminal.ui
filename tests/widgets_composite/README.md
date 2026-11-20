@@ -12,18 +12,11 @@ bash tests/widgets_composite/run.sh formal
 CJTUI_COMPOSITE_RED_OUTPUT=/tmp/M-red-NEW bash tests/widgets_composite/target-red.sh
 ```
 
-The scripts source SDK `/workspace/work/validation/sdk/cangjie/envsetup.sh`, use `CANGJIE_STDX_PATH=/workspace/work/linux-build-recon/stdx-env` and `CJTUI_UCD_ARCHIVE=/workspace/work/validation/replay-dependencies/UCD-17.0.0.zip`. Reuse the existing cache without copying it. Each consumer and source root needs this ignored `cangjie-repo.toml`:
-
-```toml
-[repository.cache]
-path = "/workspace/work/viewport-tests/cache"
-[repository.home]
-registry = "https://pkg.cangjie-lang.cn/registry"
-```
+For compiler and PTY runs, activate SDK 1.2.0 and stdx from [Linux local setup](../../docs/development/local-setup.md). The runners inherit the shell environment. Set `CJTUI_UCD_ARCHIVE` only when using a local archive with the documented checksum.
 
 `formal` normally builds/runs the accepted prerequisite, builds/runs the complete headless consumer, then builds the device consumer and drives three real PTY modes. It returns the actual first failing build/binary status. There is no old exit77 admission gate. On the pre-TASK159 baseline the M factories/types are absent, so headless M execution and native PTY execution remain blocked. Missing-API compiler RED proves that boundary only; it does not prove M runtime behavior or full consumer type correctness after M becomes available.
 
-`target-red.sh` isolates only six absent public targets in a tiny normal consumer. At this fixed baseline it requires compiler exit1 and exactly six attributed diagnostics: undeclared MenuEntry/SplitAxis, and non-callable HorizontalMenu/PopupMenu/StatusBar/SplitPane (the existing imported ThemeRole variants have those spellings). The classifier rejects any extra diagnostic, package/import/macro/syntax/setup contamination, or non-target source location. Wrapper exit0 means the actual RED was correctly classified. TASK159 must make this historical RED recipe cease to succeed; the formal runner must then pass instead.
+`target-red.sh` isolates only six absent public targets in a tiny normal consumer. At this fixed baseline it requires compiler exit1 and exactly six attributed diagnostics: undeclared MenuEntry/SplitAxis, and non-callable HorizontalMenu/PopupMenu/StatusBar/SplitPane (the existing imported ThemeRole variants have those spellings). The classifier rejects any extra diagnostic, package/import/macro/syntax/setup contamination, or non-target source location. Wrapper exit0 means the actual RED was correctly classified. Use the formal runner with the implemented APIs. The historical RED fixture should only be expected to classify the original missing targets at its frozen baseline.
 
 `src/*.cj` contains executable assertions over public frame cells and exact styles, refs, physical children, focus, events, error codes, overlay handles/reasons, and resource stats. Expectations are literal and hand authored. `expected.json` is a matching observation catalogue, not synthetic actual output. `oracle.py --self-test` only checks that catalogue and mutation rejection; direct CJPM consumer assertions are the runtime oracle. `COVERAGE.md` maps each condition to its executable fixture and remaining execution obligation.
 

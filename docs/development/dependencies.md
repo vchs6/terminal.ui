@@ -19,7 +19,7 @@ unicodewidth 不提供分段，单独使用不能满足编辑；unicode 的宽�
 
 ## 2. 来源、校验与实际输入
 
-完整固定版本、官方索引记录、原包 SHA-256、许可来源与使用职责见 [central-packages.json](central-packages.json)。[最终依赖/native 清单](../reviews/Linux-final/dependency-manifest.json)保存独立 F1 来源绑定、167 项实际依赖源码/清单文件摘要、生成器输入、四个 native 归档及选定 SDK/stdx 文件集的封存摘要。**文件集摘要不等于原始发行包摘要**；保留原清单的绝对路径仅用于证据保管定位，不作为用户安装要求。
+完整固定版本、官方索引记录、原包 SHA-256、许可来源与使用职责见 [central-packages.json](central-packages.json)。[最终依赖/native 清单](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/dependency-manifest.json)保存独立 F1 来源绑定、167 项实际依赖源码/清单文件摘要、生成器输入、四个 native 归档及选定 SDK/stdx 文件集的封存摘要。**文件集摘要不等于原始发行包摘要**；保留原清单的绝对路径仅用于证据保管定位，不作为用户安装要求。
 
 | 输入 | 官方来源 | 原始载荷 SHA-256 |
 |---|---|---|
@@ -69,7 +69,7 @@ cjpm build
 
 这里的“干净”指**新包解包和正常构建入口**；独立执行复用了既有官方依赖 cache、声明的 SDK/stdx 及已校验 UCD，不是空缓存、密封环境、断网或首次联网下载验证。历史 CJPM 直接联网失败时使用的本地 HTTP relay 只转发官方原字节并校验原包，不是产品依赖或用户必需部署。hook 不改共享官方源码 cache。
 
-四个 native `.a` 是静态链接输入，不是动态运行库。R8 的独立复制消费者执行与文件访问 trace 表明，该**历史产物**运行无需 checkout/cache/UCD；其 `ldd` 仍需要 SDK 的 `libcangjie-runtime.so`、`libboundscheck.so` 及 Linux 的 libc/libm/libstdc++/libgcc_s/libpthread/libdl 和 ELF loader，见 [原始运行日志](../reviews/R8/execution/logs/slice-runtime.log)。F1/F2 的新 ELF 已实际运行并绑定相同选定 SDK runtime 字节；此证据子集中没有最终 D7 ELF 的新 `ldd`/文件访问审计，不能把旧日志改标为新 ELF 的完整运行闭包审计。继续保留 SDK runtime 库搜索环境；最终发行闭包由 TASK-023 核对。
+四个 native `.a` 是静态链接输入，不是动态运行库。R8 的独立复制消费者执行与文件访问 trace 表明，该**历史产物**运行无需 checkout/cache/UCD；其 `ldd` 仍需要 SDK 的 `libcangjie-runtime.so`、`libboundscheck.so` 及 Linux 的 libc/libm/libstdc++/libgcc_s/libpthread/libdl 和 ELF loader，见 [原始运行日志](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R8/execution/logs/slice-runtime.log)。F1/F2 的新 ELF 已实际运行并绑定相同选定 SDK runtime 字节；此证据子集中没有最终 D7 ELF 的新 `ldd`/文件访问审计，不能把旧日志改标为新 ELF 的完整运行闭包审计。继续保留 SDK runtime 库搜索环境；最终发行闭包由 TASK-023 核对。
 
 ## 5. 许可原文、归属与来源边界
 
@@ -85,11 +85,11 @@ cjpm build
 | stdx | `cangjie_stdx/LICENSE`；官方 Apache-2.0 with Runtime Library Exception。外置 stdx 发行包还带上游 open-source notice，分发该发行内容时保留其原件 |
 | UCD 17 | `UNICODE-DATA-LICENSE.txt`；官方 Unicode License v3，数据头 ©2025 与已取得许可文本 ©1991–2026 保留原样；不以其他库许可替代 Unicode 数据归属 |
 
-[历史固定来源与差异](../reviews/R7/evidence/licenses/README.md)、[原证据索引](../reviews/R7/evidence/licenses/evidence-index.json)继续保留，不改历史原件。原证据所写的“冲突阻塞发布”已经用户后续裁决替代；本轮记录事实和原文保管，不声称矛盾已经消失，也不建立新的法律审查等待流程。最终源码 CJP 的 333 成员比对包含随包许可证，归属材料的实际发行/源码包核对仍由 TASK-023 承担。
+[历史固定来源与差异](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R7/evidence/licenses/README.md)、[原证据索引](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R7/evidence/licenses/evidence-index.json)继续保留，不改历史原件。原证据所写的“冲突阻塞发布”已经用户后续裁决替代；本轮记录事实和原文保管，不声称矛盾已经消失，也不建立新的法律审查等待流程。最终源码 CJP 的 333 成员比对包含随包许可证，归属材料的实际发行/源码包核对仍由 TASK-023 承担。
 
 ## 6. 历史验证与必需的后续范围
 
-R5 的普通 unicode 直接依赖链接缺 `libunicodedata`，隔离生成并显式链接才成功；R7 确认原因是上游缺自动 native 构建，调查过依赖副本 FFI 与中间静态适配库持有 `[ffi.c]` 两种路径。R8 转成随包 hook、正式适配和普通独立消费者。前两阶段的手动链接限制保留为历史，不能继续描述为当前 cjtui 普通消费缺口；也不能反向称上游原包已自带集成。[R7 风险处置](../reviews/R7/risks.md)与 [R8 独立验收](../reviews/R8/verification/verification.md)保留其各自产物/范围。
+R5 的普通 unicode 直接依赖链接缺 `libunicodedata`，隔离生成并显式链接才成功；R7 确认原因是上游缺自动 native 构建，调查过依赖副本 FFI 与中间静态适配库持有 `[ffi.c]` 两种路径。R8 转成随包 hook、正式适配和普通独立消费者。前两阶段的手动链接限制保留为历史，不能继续描述为当前 cjtui 普通消费缺口；也不能反向称上游原包已自带集成。[R7 风险处置](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R7/risks.md)与 [R8 独立验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R8/verification/verification.md)保留其各自产物/范围。
 
 R5 代表样本覆盖 ASCII、CJK、组合、ZWJ、肤色、心形/国旗 emoji 与 `widthCjk`；R7 的 Unicode 17 官方 GraphemeBreakTest 766 条分段用例通过。它们仍不等于规范化全量、编辑换行或字体一致性证明，不声明完整 IME、BiDi、所有字形支持；word boundary / line breaking 不是 unicode 包已经实现的能力，框架行为另有契约。旧 M1 CJP `29cab0…`、旧 M2 CJP `857243…` 的正常消费/headless/正确性证据保持原身份和可复用范围，不改标为新 ELF 的 CPU/native 输出测量。
 

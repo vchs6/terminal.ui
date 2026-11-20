@@ -24,7 +24,7 @@ T009窄独立Battle中间实证：正常SDK/自有cache/未改upstream0.2.3，40
 
 T009正式wording独立窄复核PASS_NARROW_FORMAL_WORDING，designSHA084b1623937055426e0e7c57c2cc5b9cfa2e474a787ce7e81fee3cea286c30a4，KB01 formal歧义已闭合；KB02仅未选B的公开decoder缺口，KB03新增产品测试仍待。独立085 Sol/high theme_glyph_test_refresh恢复到新目录theme-key-budget-tests，BASE51a22fe/testonly，要求所有原断言不变、只追加raw/escaped上下文边界/valuecomment/1030与103及预算内语义等价；不读产品作者目录。预算实现等固定追加，013025其它继续。决策实证原180index归档时完整设计snapshot不复制，保外部hash/精确省略说明、原report/index字节不改；root机械archive处理中。
 
-T009决策与上游实证已归档[R15/key-budget-review](../../../docs/reviews/R15/key-budget-review/report.md)：源实际181files/原index180entries含完整设计snapshot；归档180原件（179indexpayload+原index本体）+3wrapper，共183，唯一完整设计snapshot外部保hash/理由，不改原报告或index，不声称完整index自包含重放。rootfresh180sourcecopy360SHA0差异，正式designhash084b1623不变；当前npm run check实际23/23exit0仅metadata/OpenSpec。新增测试及013025产品仍未完成。
+T009决策与上游实证已归档[R15/key-budget-review](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R15/key-budget-review/report.md)：源实际181files/原index180entries含完整设计snapshot；归档180原件（179indexpayload+原index本体）+3wrapper，共183，唯一完整设计snapshot外部保hash/理由，不改原报告或index，不声称完整index自包含重放。rootfresh180sourcecopy360SHA0差异，正式designhash084b1623不变；当前npm run check实际23/23exit0仅metadata/OpenSpec。新增测试及013025产品仍未完成。
 
 085 T009追加51986bb（root92fe4f3）已独立spec PASS_TEST_ASSET_SCOPE/quality PASS_STATIC_TEST_ASSET_SCOPE0C/I/M；独立重算63原源/41旧生成/16negative/4preset保留，132边界/151新增、最大1846bytes、完整接线。缺Theme实际SDKexit1，新增Cj消费者未完整typecheck/行为未执行，不能冒行为RED/GREEN。测试原件R15/key-budget-tests34份rootfresh68hash全同，独立review原件随后归档。
 

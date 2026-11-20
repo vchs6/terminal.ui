@@ -1,0 +1,615 @@
+{
+  "provenance": "D031 Basic8 + Deterministic projection integer squared distance, tie smaller index; standalone nominal table arithmetic, no product imports",
+  "modes": {
+    "TrueColor": {
+      "rgb:232,237,242": {
+        "fg": "rgb:232,237,242",
+        "bg": "rgb:232,237,242"
+      },
+      "rgb:16,24,32": {
+        "fg": "rgb:16,24,32",
+        "bg": "rgb:16,24,32"
+      },
+      "rgb:102,204,255": {
+        "fg": "rgb:102,204,255",
+        "bg": "rgb:102,204,255"
+      },
+      "rgb:24,32,40": {
+        "fg": "rgb:24,32,40",
+        "bg": "rgb:24,32,40"
+      },
+      "rgb:255,255,255": {
+        "fg": "rgb:255,255,255",
+        "bg": "rgb:255,255,255"
+      },
+      "rgb:0,90,156": {
+        "fg": "rgb:0,90,156",
+        "bg": "rgb:0,90,156"
+      },
+      "named:30": {
+        "fg": "named:30"
+      },
+      "named:40": {
+        "bg": "named:40"
+      },
+      "named:31": {
+        "fg": "named:31"
+      },
+      "named:41": {
+        "bg": "named:41"
+      },
+      "named:32": {
+        "fg": "named:32"
+      },
+      "named:42": {
+        "bg": "named:42"
+      },
+      "named:33": {
+        "fg": "named:33"
+      },
+      "named:43": {
+        "bg": "named:43"
+      },
+      "named:34": {
+        "fg": "named:34"
+      },
+      "named:44": {
+        "bg": "named:44"
+      },
+      "named:35": {
+        "fg": "named:35"
+      },
+      "named:45": {
+        "bg": "named:45"
+      },
+      "named:36": {
+        "fg": "named:36"
+      },
+      "named:46": {
+        "bg": "named:46"
+      },
+      "named:37": {
+        "fg": "named:37"
+      },
+      "named:47": {
+        "bg": "named:47"
+      },
+      "named:90": {
+        "fg": "named:90"
+      },
+      "named:100": {
+        "bg": "named:100"
+      },
+      "named:91": {
+        "fg": "named:91"
+      },
+      "named:101": {
+        "bg": "named:101"
+      },
+      "named:92": {
+        "fg": "named:92"
+      },
+      "named:102": {
+        "bg": "named:102"
+      },
+      "named:93": {
+        "fg": "named:93"
+      },
+      "named:103": {
+        "bg": "named:103"
+      },
+      "named:94": {
+        "fg": "named:94"
+      },
+      "named:104": {
+        "bg": "named:104"
+      },
+      "named:95": {
+        "fg": "named:95"
+      },
+      "named:105": {
+        "bg": "named:105"
+      },
+      "named:96": {
+        "fg": "named:96"
+      },
+      "named:106": {
+        "bg": "named:106"
+      },
+      "named:97": {
+        "fg": "named:97"
+      },
+      "named:107": {
+        "bg": "named:107"
+      }
+    },
+    "Indexed256": {
+      "rgb:232,237,242": {
+        "fg": "indexed:255",
+        "bg": "indexed:255"
+      },
+      "rgb:16,24,32": {
+        "fg": "indexed:234",
+        "bg": "indexed:234"
+      },
+      "rgb:102,204,255": {
+        "fg": "indexed:81",
+        "bg": "indexed:81"
+      },
+      "rgb:24,32,40": {
+        "fg": "indexed:234",
+        "bg": "indexed:234"
+      },
+      "rgb:255,255,255": {
+        "fg": "named:97",
+        "bg": "named:107"
+      },
+      "rgb:0,90,156": {
+        "fg": "indexed:25",
+        "bg": "indexed:25"
+      },
+      "named:30": {
+        "fg": "named:30"
+      },
+      "named:40": {
+        "bg": "named:40"
+      },
+      "named:31": {
+        "fg": "named:31"
+      },
+      "named:41": {
+        "bg": "named:41"
+      },
+      "named:32": {
+        "fg": "named:32"
+      },
+      "named:42": {
+        "bg": "named:42"
+      },
+      "named:33": {
+        "fg": "named:33"
+      },
+      "named:43": {
+        "bg": "named:43"
+      },
+      "named:34": {
+        "fg": "named:34"
+      },
+      "named:44": {
+        "bg": "named:44"
+      },
+      "named:35": {
+        "fg": "named:35"
+      },
+      "named:45": {
+        "bg": "named:45"
+      },
+      "named:36": {
+        "fg": "named:36"
+      },
+      "named:46": {
+        "bg": "named:46"
+      },
+      "named:37": {
+        "fg": "named:37"
+      },
+      "named:47": {
+        "bg": "named:47"
+      },
+      "named:90": {
+        "fg": "named:90"
+      },
+      "named:100": {
+        "bg": "named:100"
+      },
+      "named:91": {
+        "fg": "named:91"
+      },
+      "named:101": {
+        "bg": "named:101"
+      },
+      "named:92": {
+        "fg": "named:92"
+      },
+      "named:102": {
+        "bg": "named:102"
+      },
+      "named:93": {
+        "fg": "named:93"
+      },
+      "named:103": {
+        "bg": "named:103"
+      },
+      "named:94": {
+        "fg": "named:94"
+      },
+      "named:104": {
+        "bg": "named:104"
+      },
+      "named:95": {
+        "fg": "named:95"
+      },
+      "named:105": {
+        "bg": "named:105"
+      },
+      "named:96": {
+        "fg": "named:96"
+      },
+      "named:106": {
+        "bg": "named:106"
+      },
+      "named:97": {
+        "fg": "named:97"
+      },
+      "named:107": {
+        "bg": "named:107"
+      }
+    },
+    "Basic16": {
+      "rgb:232,237,242": {
+        "fg": "named:97",
+        "bg": "named:107"
+      },
+      "rgb:16,24,32": {
+        "fg": "named:30",
+        "bg": "named:40"
+      },
+      "rgb:102,204,255": {
+        "fg": "named:37",
+        "bg": "named:47"
+      },
+      "rgb:24,32,40": {
+        "fg": "named:30",
+        "bg": "named:40"
+      },
+      "rgb:255,255,255": {
+        "fg": "named:97",
+        "bg": "named:107"
+      },
+      "rgb:0,90,156": {
+        "fg": "named:36",
+        "bg": "named:46"
+      },
+      "named:30": {
+        "fg": "named:30"
+      },
+      "named:40": {
+        "bg": "named:40"
+      },
+      "named:31": {
+        "fg": "named:31"
+      },
+      "named:41": {
+        "bg": "named:41"
+      },
+      "named:32": {
+        "fg": "named:32"
+      },
+      "named:42": {
+        "bg": "named:42"
+      },
+      "named:33": {
+        "fg": "named:33"
+      },
+      "named:43": {
+        "bg": "named:43"
+      },
+      "named:34": {
+        "fg": "named:34"
+      },
+      "named:44": {
+        "bg": "named:44"
+      },
+      "named:35": {
+        "fg": "named:35"
+      },
+      "named:45": {
+        "bg": "named:45"
+      },
+      "named:36": {
+        "fg": "named:36"
+      },
+      "named:46": {
+        "bg": "named:46"
+      },
+      "named:37": {
+        "fg": "named:37"
+      },
+      "named:47": {
+        "bg": "named:47"
+      },
+      "named:90": {
+        "fg": "named:90"
+      },
+      "named:100": {
+        "bg": "named:100"
+      },
+      "named:91": {
+        "fg": "named:91"
+      },
+      "named:101": {
+        "bg": "named:101"
+      },
+      "named:92": {
+        "fg": "named:92"
+      },
+      "named:102": {
+        "bg": "named:102"
+      },
+      "named:93": {
+        "fg": "named:93"
+      },
+      "named:103": {
+        "bg": "named:103"
+      },
+      "named:94": {
+        "fg": "named:94"
+      },
+      "named:104": {
+        "bg": "named:104"
+      },
+      "named:95": {
+        "fg": "named:95"
+      },
+      "named:105": {
+        "bg": "named:105"
+      },
+      "named:96": {
+        "fg": "named:96"
+      },
+      "named:106": {
+        "bg": "named:106"
+      },
+      "named:97": {
+        "fg": "named:97"
+      },
+      "named:107": {
+        "bg": "named:107"
+      }
+    },
+    "Basic8": {
+      "rgb:232,237,242": {
+        "fg": "named:37",
+        "bg": "named:47"
+      },
+      "rgb:16,24,32": {
+        "fg": "named:30",
+        "bg": "named:40"
+      },
+      "rgb:102,204,255": {
+        "fg": "named:37",
+        "bg": "named:47"
+      },
+      "rgb:24,32,40": {
+        "fg": "named:30",
+        "bg": "named:40"
+      },
+      "rgb:255,255,255": {
+        "fg": "named:37",
+        "bg": "named:47"
+      },
+      "rgb:0,90,156": {
+        "fg": "named:36",
+        "bg": "named:46"
+      },
+      "named:30": {
+        "fg": "named:30"
+      },
+      "named:40": {
+        "bg": "named:40"
+      },
+      "named:31": {
+        "fg": "named:31"
+      },
+      "named:41": {
+        "bg": "named:41"
+      },
+      "named:32": {
+        "fg": "named:32"
+      },
+      "named:42": {
+        "bg": "named:42"
+      },
+      "named:33": {
+        "fg": "named:33"
+      },
+      "named:43": {
+        "bg": "named:43"
+      },
+      "named:34": {
+        "fg": "named:34"
+      },
+      "named:44": {
+        "bg": "named:44"
+      },
+      "named:35": {
+        "fg": "named:35"
+      },
+      "named:45": {
+        "bg": "named:45"
+      },
+      "named:36": {
+        "fg": "named:36"
+      },
+      "named:46": {
+        "bg": "named:46"
+      },
+      "named:37": {
+        "fg": "named:37"
+      },
+      "named:47": {
+        "bg": "named:47"
+      },
+      "named:90": {
+        "fg": "named:37"
+      },
+      "named:100": {
+        "bg": "named:47"
+      },
+      "named:91": {
+        "fg": "named:31"
+      },
+      "named:101": {
+        "bg": "named:41"
+      },
+      "named:92": {
+        "fg": "named:32"
+      },
+      "named:102": {
+        "bg": "named:42"
+      },
+      "named:93": {
+        "fg": "named:33"
+      },
+      "named:103": {
+        "bg": "named:43"
+      },
+      "named:94": {
+        "fg": "named:34"
+      },
+      "named:104": {
+        "bg": "named:44"
+      },
+      "named:95": {
+        "fg": "named:35"
+      },
+      "named:105": {
+        "bg": "named:45"
+      },
+      "named:96": {
+        "fg": "named:36"
+      },
+      "named:106": {
+        "bg": "named:46"
+      },
+      "named:97": {
+        "fg": "named:37"
+      },
+      "named:107": {
+        "bg": "named:47"
+      }
+    },
+    "Monochrome": {
+      "rgb:232,237,242": {
+        "fg": "default",
+        "bg": "default"
+      },
+      "rgb:16,24,32": {
+        "fg": "default",
+        "bg": "default"
+      },
+      "rgb:102,204,255": {
+        "fg": "default",
+        "bg": "default"
+      },
+      "rgb:24,32,40": {
+        "fg": "default",
+        "bg": "default"
+      },
+      "rgb:255,255,255": {
+        "fg": "default",
+        "bg": "default"
+      },
+      "rgb:0,90,156": {
+        "fg": "default",
+        "bg": "default"
+      },
+      "named:30": {
+        "fg": "default"
+      },
+      "named:40": {
+        "bg": "default"
+      },
+      "named:31": {
+        "fg": "default"
+      },
+      "named:41": {
+        "bg": "default"
+      },
+      "named:32": {
+        "fg": "default"
+      },
+      "named:42": {
+        "bg": "default"
+      },
+      "named:33": {
+        "fg": "default"
+      },
+      "named:43": {
+        "bg": "default"
+      },
+      "named:34": {
+        "fg": "default"
+      },
+      "named:44": {
+        "bg": "default"
+      },
+      "named:35": {
+        "fg": "default"
+      },
+      "named:45": {
+        "bg": "default"
+      },
+      "named:36": {
+        "fg": "default"
+      },
+      "named:46": {
+        "bg": "default"
+      },
+      "named:37": {
+        "fg": "default"
+      },
+      "named:47": {
+        "bg": "default"
+      },
+      "named:90": {
+        "fg": "default"
+      },
+      "named:100": {
+        "bg": "default"
+      },
+      "named:91": {
+        "fg": "default"
+      },
+      "named:101": {
+        "bg": "default"
+      },
+      "named:92": {
+        "fg": "default"
+      },
+      "named:102": {
+        "bg": "default"
+      },
+      "named:93": {
+        "fg": "default"
+      },
+      "named:103": {
+        "bg": "default"
+      },
+      "named:94": {
+        "fg": "default"
+      },
+      "named:104": {
+        "bg": "default"
+      },
+      "named:95": {
+        "fg": "default"
+      },
+      "named:105": {
+        "bg": "default"
+      },
+      "named:96": {
+        "fg": "default"
+      },
+      "named:106": {
+        "bg": "default"
+      },
+      "named:97": {
+        "fg": "default"
+      },
+      "named:107": {
+        "bg": "default"
+      }
+    }
+  }
+}

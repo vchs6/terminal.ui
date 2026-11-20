@@ -8,4 +8,4 @@
 
 按M011/M012：124前freeze的是完整功能M1库source/cjp/SDK/native/依赖；benchmark源由143/144后置交付，146前freeze同一compat/workloads代码，对旧/新库制品正常构建。新三Stats仅新库诊断项目读取，旧字段缺失不可写0。没有上游实际证据、独立preflight及正式tests时产品不ready。
 
-2026-11-14正式准入采用[完整M1公开冻结](../../../docs/reviews/Linux-final/m1/README.md)与admission.json；历史PENDING由tasks唯一Admission表覆盖。源d654ae59、CJP29cab0、独立reviewc1f732与固定tests34240845精确SHA见该记录。123 Canvas case6真实RED为124/M004修复义务，新三统计缺API RED保留；完整041/020/M2/Linux仍开放。
+2026-11-14正式准入采用[完整M1公开冻结](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/m1/README.md)与admission.json；历史PENDING由tasks唯一Admission表覆盖。源d654ae59、CJP29cab0、独立reviewc1f732与固定tests34240845精确SHA见该记录。123 Canvas case6真实RED为124/M004修复义务，新三统计缺API RED保留；完整041/020/M2/Linux仍开放。

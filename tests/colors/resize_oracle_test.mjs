@@ -1,13 +1,10 @@
 #!/usr/bin/env node
 // Deterministic regression controls for the existing color fixture parser.
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { fileURLToPath } from 'node:url';
 import { Screen, expectedResize } from './pty.mjs';
 
-const root=fileURLToPath(new URL('../../',import.meta.url));
 const origins=JSON.parse(await readFile(new URL('fixtures/origins.json',import.meta.url),'utf8'));
 const raw=await readFile(new URL('fixtures/old-failure-session.raw',import.meta.url));
 const trace=await readFile(new URL('fixtures/stty-resize-ioctl.trace',import.meta.url));
@@ -15,7 +12,9 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 assert.equal(sha(raw),origins.session.sha256);assert.equal(sha(trace),origins.trace.sha256);
 const sets=[...trace.toString().matchAll(/TIOCSWINSZ, \{ws_row=(\d+), ws_col=(\d+).*?= 0/g)].map(m=>[Number(m[2]),Number(m[1])]);
 assert.deepEqual(sets,[[100,12],[31,12]],'old stty really passes through100x12');
-const oldSource=execFileSync('git',['show',`${origins.old_test_base}:tests/colors/pty.mjs`],{cwd:root,encoding:'utf8'});
+const oldBytes = await readFile(new URL('../fixtures/colors/legacy-pty-91c22f82.mjs', import.meta.url));
+assert.equal(sha(oldBytes), origins.old_test_source.sha256, 'historical Screen fixture digest');
+const oldSource = oldBytes.toString('utf8');
 // Execute the exact historical Screen implementation, not a recreated oracle.
 const body=oldSource.slice(oldSource.indexOf('function width('),oldSource.indexOf('class Session'));
 const module='data:text/javascript;base64,'+Buffer.from("import assert from 'node:assert/strict'; import { StringDecoder } from 'node:string_decoder';\n"+body+'\nexport {Screen};').toString('base64');

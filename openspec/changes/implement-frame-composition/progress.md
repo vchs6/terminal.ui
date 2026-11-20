@@ -1,6 +1,6 @@
 # SDD ledger — plan: openspec/changes/implement-frame-composition/tasks.md
 
-全阶段目标与连续调度由 docs/linux-completion-plan.md / openspec/linux-completion-progress.md 协调；本日志只记录当前具体增量。
+全阶段目标与连续调度由 docs/linux-completion-plan.md / docs/development/continue-linux.md 协调；本日志只记录当前具体增量。
 
 BASE31a7017。主代理拟定具体帧契约，/root/frame_contract_review（Sol/high）首轮提出S1预算/零面积兼容、S2文件语义、P1准入记录、P2 AC映射四项，均属可自主修正，无用户问题。测试作者独立prepare指出旧decoration的Frame(0,Int64.Max)用例；主代理核源码84–88确认，绝不改弱旧断言。初始设计/计划副本保存在该计划scratch contract-before。
 

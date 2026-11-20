@@ -229,7 +229,7 @@ L4：
 
 ## 开发治理变更映射
 
-GOV-001 治理修订的任务状态见 [已归档变更](../openspec/changes/archive/2026-10-18-refine-development-governance/tasks.md)，复核证据见 [R4](reviews/R4/result.md)。该变更不启动任何产品任务。
+GOV-001 治理修订的任务状态见 [已归档变更](../openspec/changes/archive/2026-10-18-refine-development-governance/tasks.md)，复核证据见 [R4](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R4/result.md)。该变更不启动任何产品任务。
 
 ## 6. 本轮新增产品候选（状态权威仍在本文）
 
@@ -424,9 +424,9 @@ TASK-033（AC-033）、TASK-034（AC-034，语言）、TASK-035（AC-035）、TA
 | inputs / depends_on | TASK004/005/011/017及已接受Runtime/Rich/Theme/Session；确切固定源码及测试见B验收原件 |
 | acceptance / verification | 原AC037：80×24访问100行、横向宽内容、宽字符完整、resize钳制及焦点保持；107已据真实PTY/XTerm/VTE/LinuxVT及公开消费者判定 |
 | preconditions / status | 用户已授权Linux实施及main推送；passed（原037范围），B.1 getter/onMount axes的M01明确延期TASK024 |
-| required_skills / skill_evidence_refs | Superpowers独立测试/实现/源码审核/执行/验收；[B有限验收](reviews/interaction/B/TASK-107/report.md) |
+| required_skills / skill_evidence_refs | Superpowers独立测试/实现/源码审核/执行/验收；[B有限验收](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/interaction/B/TASK-107/report.md) |
 | quality_governance | 唯一Runtime/节点/viewport状态/Frame/resolver；I009最多两次根协商，Root min不强撑实际Frame；保M1完整参考 |
-| risks / evidence_refs | 重要缺陷经原完整审核及两轮限定复核关闭；[原件及运行图](reviews/interaction/B/README.md)，有限验收不关闭C/Keyboard/M2/023/Linux |
+| risks / evidence_refs | 重要缺陷经原完整审核及两轮限定复核关闭；[原件及运行图](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/interaction/B/README.md)，有限验收不关闭C/Keyboard/M2/023/Linux |
 
 产品原固定源62039552已机械整合为main9cfaaa24，源码/正式测试逐字节相同。TASK027继续完整主题展示，TASK031继续局部渲染，TASK023/024继续最终集成；M01关闭前不得宣称全部B.1满足。
 
@@ -549,7 +549,7 @@ Linux布局/装饰实施：TASK-011/012状态及替代前置仅见[implement-lay
 
 持久运行时支持TASK071–080唯一状态在[reactive-runtime tasks](../openspec/changes/implement-reactive-runtime/tasks.md)。014/015/016/032本表原完整AC保持；构造/绑定子接口分阶段交付，列表/混合结构由R13验收；014跨弹窗已由C-05同类型组件普通/覆盖层两实例及干净公开例子验证，见C独立验收。精确接口与分段前置见该design第6节。
 
-当前用户要求完成全部 Linux；[总执行计划](linux-completion-plan.md)与[恢复日志](../openspec/linux-completion-progress.md)协调全部稳定任务，不维护第二份完成复选框。TASK-067–070（测试/审核/执行/验收支持）唯一状态在[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，对应 AC-067–070。TASK-010 唯一复选框与状态已转[complete-linux-integration tasks](../openspec/changes/complete-linux-integration/tasks.md)；本表只保留原范围/依赖与编号映射。文件原语和覆盖层相关既有证据按已接受范围复用，完整010汇合由该收尾变更维护。
+当前用户要求完成全部 Linux；[总执行计划](linux-completion-plan.md)与[当前 Linux 交接](development/continue-linux.md)协调全部稳定任务，不维护第二份完成复选框。TASK-067–070（测试/审核/执行/验收支持）唯一状态在[帧合成变更](../openspec/changes/implement-frame-composition/tasks.md)，对应 AC-067–070。TASK-010 唯一复选框与状态已转[complete-linux-integration tasks](../openspec/changes/complete-linux-integration/tasks.md)；本表只保留原范围/依赖与编号映射。文件原语和覆盖层相关既有证据按已接受范围复用，完整010汇合由该收尾变更维护。
 
 有界富文本支持TASK081–084唯一状态在[implement-rich-text](../openspec/changes/implement-rich-text/tasks.md)，对应AC081–084；原009状态同变更，010仍保持实际可见层前置。
 
@@ -568,3 +568,7 @@ M2支持TASK123–147唯一状态在[incremental-rendering tasks](../openspec/ch
 Linux收尾原001/002/003/004/008/010/020/021/023/024/041的唯一复选框/状态在[complete-linux-integration tasks](../openspec/changes/complete-linux-integration/tasks.md)。原027继续theme，022/031继续incremental-rendering，030继续session/extensions与input的原父汇合；AC事实仍只在acceptance维护。规划preflight已独立复核59bea180，不等于产品ready或passed。
 
 实际终端宽度冲突修复TASK163–167唯一状态在[fix-uncertain-glyph-advance tasks](../openspec/changes/fix-uncertain-glyph-advance/tasks.md)。R14T083001原实际GUI失败保留；同一G005/G007/G010私有owner的纯子接口先行，完整094 native/map/publicAPI仍后置，不造084↔094环。全部当前planned，独立preflight/正式RED/实现/审核/执行/验收按该change，不因仅逻辑grid通过关闭物理失败或041/Linux。
+
+## 仓库维护映射
+
+GOV-007–GOV-010 的准入、执行及验收见[独立开发检出维护任务](../openspec/changes/prepare-local-development-checkout/tasks.md)。

@@ -4,7 +4,7 @@
 
 本文回答“系统由什么组成、各自负责什么、数据如何流动、怎样保持一致并从失败中恢复”。它是产品总体参考架构，不是目录说明或已经完成的实现报告。产品动机见 [整体提案](development/proposal.md)，外部行为见 [需求说明](requirements.md)，使用方式见 [用户构造设计](ui-construction.md)。
 
-已确定：仓颉实现、包名 cjtui、约定 ArkUI 构造形式、字符终端语义和依赖薄适配。本文的总体职责与不变量继续有效；第 21 节将它们映射到固定实际源码，而非将全部模块继续视为尚未实现。当前源码为 `d7e9d1445f98021a798d223de97b97b45239de93`；历史 c862 的 src/native/examples/build.cj/根清单分别与已接受 `f48ca45608247f52a6876ad5c27b4ca36867f406` 相同，D7 仅修复 Application.run 内部输入超时行为，公开签名、宏、native、消费者及构建配置未变，精确对象/小范围文件 hash 见 [construction-map.json](reviews/Linux-final/construction-map.json)。
+已确定：仓颉实现、包名 cjtui、约定 ArkUI 构造形式、字符终端语义和依赖薄适配。本文的总体职责与不变量继续有效；第 21 节将它们映射到固定实际源码，而非将全部模块继续视为尚未实现。当前源码为 `d7e9d1445f98021a798d223de97b97b45239de93`；历史 c862 的 src/native/examples/build.cj/根清单分别与已接受 `f48ca45608247f52a6876ad5c27b4ca36867f406` 相同，D7 仅修复 Application.run 内部输入超时行为，公开签名、宏、native、消费者及构建配置未变，精确对象/小范围文件 hash 见 [construction-map.json](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/construction-map.json)。
 
 | 层次 | 当前事实 | 证据边界 |
 |---|---|---|
@@ -326,7 +326,7 @@ M2 必须对照 M1 帧结果，并记录布局节点数、绘制单元数、CPU�
 
 ### 19.5 事实、证据与冻结
 
-框架研究见 [调研](development/framework-research.md)，仅作机制比较，不构成横向性能排名。语言/依赖实测见 [R5 证据](reviews/R5/evidence/)，只更新对应事实，不将 TASK-001–004 或产品 AC 整体标完成。首版实际语法、绑定、批次与错误类型现按固定源码投影到 [构造契约](ui-construction.md) 和 construction-map；历史 R5 只是语言事实来源。最终独立接受继续由原任务承担，源码存在与设计说明均不代替运行证明。
+框架研究见 [调研](development/framework-research.md)，仅作机制比较，不构成横向性能排名。语言/依赖实测见 [R5 证据](https://github.com/vchs6/terminal.ui/tree/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R5/evidence)，只更新对应事实，不将 TASK-001–004 或产品 AC 整体标完成。首版实际语法、绑定、批次与错误类型现按固定源码投影到 [构造契约](ui-construction.md) 和 construction-map；历史 R5 只是语言事实来源。最终独立接受继续由原任务承担，源码存在与设计说明均不代替运行证明。
 
 ## 20. 跨平台与HarmonyOS适配
 
@@ -338,13 +338,13 @@ HarmonyOS必须识别真实运行形态：系统控制台、受支持终端应�
 
 依赖适配的目标三元组、原生Unicode数据格式/端序、归档类型及链接参数须逐平台记录。Linux probe中的GCC/ASM/libunicodedata.a只是该目标的证据，不能复制到HarmonyOS/Windows/macOS。TASK-003需验证目标工具链路径，TASK-038–041的依赖只有已冻结共同契约与依赖调查，不相互等待；TASK-020当前只等待Linux后端及共同前置，TASK-023/024先完成Linux全部功能与制品验收；038/039/040在该阶段完成后再启动，之后逐目标扩展相同验收。非Linux后端不阻塞Linux。
 
-同输入、同字符宽度与能力策略下比较结构化核心帧；真实终端的字形、色彩、键盘协议、可选宿主能力按矩阵区分。M1/M2的公共API和本地剪贴板等边界不因平台而变化。官方证据和未知见[R6平台调查](reviews/R6/platform-evidence.md)，仅说明来源事实，不是平台运行通过。
+同输入、同字符宽度与能力策略下比较结构化核心帧；真实终端的字形、色彩、键盘协议、可选宿主能力按矩阵区分。M1/M2的公共API和本地剪贴板等边界不因平台而变化。官方证据和未知见[R6平台调查](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R6/platform-evidence.md)，仅说明来源事实，不是平台运行通过。
 
-用户后续明确实施顺序：当前先完成支持 ANSI 转义序列的 Linux 终端全部约定能力和验收，再考虑 Windows、macOS、HarmonyOS；后者保留为后续必需目标，不作为 Linux 阶段前置条件。Linux 阶段通过不等于完整跨平台支持。 初始可用验证主机为Debian 13.6/x86_64/glibc/SDK1.2.0，不据此承诺其他Linux配置或固定控制台/模拟终端已通过。风险验证及原生依赖构建边界见[本轮记录](reviews/R7/input.md)。
+用户后续明确实施顺序：当前先完成支持 ANSI 转义序列的 Linux 终端全部约定能力和验收，再考虑 Windows、macOS、HarmonyOS；后者保留为后续必需目标，不作为 Linux 阶段前置条件。Linux 阶段通过不等于完整跨平台支持。 初始可用验证主机为Debian 13.6/x86_64/glibc/SDK1.2.0，不据此承诺其他Linux配置或固定控制台/模拟终端已通过。风险验证及原生依赖构建边界见[本轮记录](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/R7/input.md)。
 
 ## 21. 固定实现到公共构造的责任映射
 
-本节是 TASK-004 执行型文档整理，不增加包、方法或组件。原 AC004 要求逐 U1–U5 对应语法、签名、模块与验收；完整调用/声明位置和内容 hash 在 [construction-map.json](reviews/Linux-final/construction-map.json)。U1–U5 的实际入口、签名表、错误与待验项见 [公共构造契约](ui-construction.md#9-实际源码包与普通构建入口)。
+本节是 TASK-004 执行型文档整理，不增加包、方法或组件。原 AC004 要求逐 U1–U5 对应语法、签名、模块与验收；完整调用/声明位置和内容 hash 在 [construction-map.json](https://github.com/vchs6/terminal.ui/blob/61e25f009f8f26c991c3f2ba758987db83bedc4a/docs/reviews/Linux-final/construction-map.json)。U1–U5 的实际入口、签名表、错误与待验项见 [公共构造契约](ui-construction.md#9-实际源码包与普通构建入口)。
 
 | 实际源码/包 | 责任与边界 | 公开消费 |
 |---|---|---|
