@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第六组十七卷发布后已交付22个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组十八卷发布后已交付23个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十七卷（历史gzip ELF、文本原件、恢复账本、补齐原件及SDK输入）；其他目录继续逐文件对账 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十八卷（历史gzip ELF、文本与图像原件、恢复账本、补齐原件及SDK输入）；其他目录继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -355,3 +355,23 @@ tar -xzf terminal-ui-migration-20261115-part06o.tar.gz -C part06o-staging
 ```
 
 `migration-part06o/manifest.json` 记录逐成员 SHA256、大小、权限及原纳秒修改时间，tar 时间精度为秒。先解压到新建空目录核对，再将 work/ 合并到第一批恢复目标的 work/，保留本地已修改文件。原始报告中的 /workspace/work 是旧环境前缀，不能直接作为新机器路径使用。完整工作区迁移、新电脑构建及 Linux 整体验收仍未完成，原件继续保留。
+
+## 第六组 06p：PNG、较大运行记录及暂缓项补齐
+
+- [下载 06p](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06p.tar.gz)（5,966,553 字节）
+- [SHA256 校验文件](terminal-ui-migration-20261115-part06p.tar.gz.sha256)
+- [独立核验报告](part06p-independent-report.md)与[机器可读结果](part06p-independent-findings.json)
+
+本卷保留 3,280 张原始 PNG、54 份较大运行记录，并补齐独立复核获准的 64 份前卷暂缓原件，共 3,398 个原路径、78,868,895 原字节。按原路径和字节保存，没有重新执行测试或重绘图片。
+
+图像来源分类随队列保留：142 张有直接实际终端捕获记录，240 个其他路径与已记录捕获的 SHA256 相同，2,898 张为项目渲染或测试输出，捕获方式待核。不能把本卷全部 PNG 都称为真实终端截图。17 张来源待核或软件包图标未入包；本轮延后的缓存和其他大文本保留在范围记录中，不被声明为已完成迁移。
+
+06o 的 65 个暂缓项此次全部有处置：62 份无效 UTF-8 文件逐字节匹配测试生成器构造的样本，两份清理脚本的自动敏感规则匹配经独立复核判为范围说明和路径变量；这 64 份原件装入本卷。另一个 README 在核对时与固定 Git 提交及索引一致，由 Git 恢复。详细复核范围、生成依据、逐项指纹和固定 Git blob 见包内 hold-independent-review/，不改写旧队列。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06p.tar.gz.sha256
+mkdir part06p-staging
+tar -xzf terminal-ui-migration-20261115-part06p.tar.gz -C part06p-staging
+```
+
+`migration-part06p/manifest.json` 给出逐成员大小、SHA256、权限及原纳秒修改时间，tar 时间精度为秒。audit/ 保留本轮来源分类、选择规则和暂缓清单；hold-independent-review/ 是旧暂缓项的独立复核。核对后，将 work/ 合并到第一批恢复目标的 work/，保留本地已修改文件。旧 /workspace/work 前缀映射到本机的 work/，原历史命令不应未经检查直接执行。完整迁移、新电脑构建及 Linux 整体验收仍未完成，旧环境原件继续保留。
