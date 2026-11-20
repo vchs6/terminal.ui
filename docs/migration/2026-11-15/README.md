@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第六组九卷发布后已交付14个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组十卷发布后已交付15个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付九卷共134份历史gzip ELF；其他目录继续逐文件对账 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十卷（134份历史gzip ELF及元数据补充）；其他目录继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -215,3 +215,33 @@ tar -xzf terminal-ui-migration-20261115-part06i.tar.gz -C /第一批恢复目标
 旧/workspace/work前缀仍需在本地副本中映射，不覆写原历史索引。各卷完整机器核查记录为part06*-independent-findings.json。06g旧index的14条范围外fallback/cache引用未在本卷读取或补称已交付；06i两个历史source_index未枚举相应ELF digest，仅其原索引SHA及完整custody回执一致，见报告限制。四卷验证的是原始字节迁移，不重建程序，不补造历史compiler/source验收或更改Linux结论。
 
 round1-cache-fix-headroom的两份同SHA metadata JSON.gz和另一个packed-build-targets归档仍在下一轮对账，不因目录名cache而默认排除。第六组九卷加第四批5份，累计移交139份逻辑ELF原件；第六组全部历史成果覆盖和第七组最终交接仍未收口。
+
+## 第六组第十卷：两份库存元数据见证（part06j）
+
+- [下载06j](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06j.tar.gz)（2,103,699 字节）
+- [SHA256校验文件](terminal-ui-migration-20261115-part06j.tar.gz.sha256)
+
+SHA256：`08873ae2298cd363dfc44d6008d0941cb578b3a75088bfca2f5f0e06d7260df2`。
+
+本卷为元数据，不新增ELF：两个同SHA的old-roots-noncandidates-before/after.json.gz保留各自原路径，每份解码为30,303条目录/文件保管元数据；另带原index、result、combined-summary三份上下文，后者有意与06i重复以方便独立解释。只保存path/stat/type/sha256/symlink-target字段，没有所列文件的内容。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06j.tar.gz.sha256
+tar -xzf terminal-ui-migration-20261115-part06j.tar.gz -C /第一批恢复目标目录
+```
+
+恢复到work/validation/round1-cache-fix-headroom-20261114/。原index与历史状态不改。[独立报告](part06j-independent-report.md)、[机器记录](part06j-independent-findings.json)及[只读审计脚本](part06j-audit-readonly.py)核验5原件和6个tar成员。环境恢复后于2026-11-20重新核对全部源文件并重建派生压缩包，其SHA256及Git blob与此前独立验证的冻结包完全相同；[恢复核对记录](part06j-restored-verification-20261120.json)据此复用原独立结果，不重跑无变化范围。
+
+### 已在Git内的packed124不重复下载
+
+[小缺口对账报告](part06j-closure-report.md)与[精确恢复映射](part06j-closure-queue.json)确认旧packed-build-targets.tar.gz实际字节已在Git历史：shard为docs/reviews/R22/.archive-v1/part-000006.tar.gz，member为docs/reviews/R22/020/intermediates/packed-build-targets.tar.gz。可从第一批恢复的Git仓库提取：
+
+```bash
+tar -xOf docs/reviews/R22/.archive-v1/part-000006.tar.gz docs/reviews/R22/020/intermediates/packed-build-targets.tar.gz > packed-build-targets.tar.gz
+```
+
+提取后应为3,880,864字节，SHA256为769d6469a2c4f4012b14f45d144bf54247035a63356811b108d649f86865b0aa。同一shard中的packed-build-targets-map.json、restore.py、pack.py和phase2 receipts也有exact member绑定，见queue.support_old_member_bindings（位于packed_target下）。67个实际对象已按SHA验证，覆盖124条逻辑映射；不因hash引用就认定原件已迁移。
+
+对账另确认前80份与新增59份decoded ELF SHA无交集，共139个不同原ELF身份。有限validation保管根未发现额外gzip缺口；这不代表SDK、所有raw/log或整工作目录已经完整迁移，第六组全局覆盖及第七组最终交接仍待收口。
+
+2026-11-20恢复环境后，临时宿主RAM缓存已从已发布的固定GitHub提交重新取回，并逐对象验证大小、SHA256和Git blob SHA1；[缓存恢复记录](git-cache-restoration-20261120.json)不改变原件或历史验证结论。
