@@ -1,5 +1,7 @@
 # Linux 工作成果分批迁移
 
+**统一入口：[全部下载文件与批量脚本](DOWNLOADS.md)**。现有全部27卷一次列全，无需逐卷获取地址；剩余范围见[当前盘点](remaining-current-report.md)。
+
 这是执行型交付修正：聊天中的环境文件链接无法下载，改由 GitHub 仓库提供同一份已校验压缩包；不修改产品或迁移包内容。
 
 - [下载第一批源码与交接包](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part01.tar.gz)（12,961,852 字节）
