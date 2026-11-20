@@ -15,9 +15,10 @@
 | [仓颉 SDK](https://cangjie-lang.cn/v1/files/auth/downLoad?nsId=142267&fileName=cangjie-sdk-linux-x64-1.2.0.tar.gz&objectKey=6ab1e26eece1f87ff5befa73) | Linux x86_64，1.2.0，附带 CJPM | `8c5fd944cd9cc51ee63d4a240e3ecc4f540345dae1468e8b47c927ecf2ba998f` |
 | [仓颉 stdx](https://gitcode.com/Cangjie/cangjie_stdx/releases/download/v1.2.0-beta.02.1/cangjie-stdx-linux-x64-1.2.0-beta.02.1.zip) | Linux x86_64，1.2.0-beta.02.1 | `0d35811d84a770315c6fa2d1090a10568b3f7c763a1d1d54a1433b324f76afc0` |
 
-从仓库根目录执行一次安装。SDK 安装脚本按 [tools.lock.json](tools.lock.json) 下载并校验。已有同版本 SDK 时，`cjtui_sdk_dir` 指向包含 `cangjie/envsetup.sh` 的父目录。
+从仓库根目录执行一次安装。任一步骤失败时，安装立即停止。SDK 安装脚本按 [tools.lock.json](tools.lock.json) 下载并校验。已有同版本 SDK 时，`cjtui_sdk_dir` 指向包含 `cangjie/envsetup.sh` 的父目录。
 
 ```bash
+bash -eu -o pipefail <<'CJTUI_INSTALL'
 cjtui_tool_dir="$HOME/.local/share/cjtui"
 cjtui_sdk_dir="$cjtui_tool_dir/sdk-1.2.0"
 cjtui_stdx_dir="$cjtui_tool_dir/stdx-1.2.0-beta.02.1"
@@ -31,6 +32,7 @@ printf '%s  %s\n' '0d35811d84a770315c6fa2d1090a10568b3f7c763a1d1d54a1433b324f76a
 unzip -oq "$cjtui_stdx_dir/stdx.zip" -d "$cjtui_stdx_dir"
 test -d "$cjtui_stdx_dir/linux_x86_64_cjnative/static/stdx"
 ln -sfnT linux_x86_64_cjnative "$cjtui_stdx_dir/linux_x86_64_llvm"
+CJTUI_INSTALL
 ```
 
 在每个构建 shell 中加载环境。stdx 兼容链接提供 TOML 包查找的 `linux_x86_64_llvm/static/stdx` 路径。详见 [产品构建说明](../product/native-build.md)。
