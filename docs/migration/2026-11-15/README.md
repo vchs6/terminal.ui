@@ -81,7 +81,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 
 ## 总体交付安排与批数边界
 
-目前固定为7个逻辑交付组，第六组十六卷发布后已交付21个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
+目前固定为7个逻辑交付组，第六组十七卷发布后已交付22个下载包。尚未覆盖的历史输入在第6组继续对账；第6组可能分卷，因此 **7个逻辑组不等于总共只有7个下载文件；实际总卷数尚未核定**。
 
 | 组 | 内容 | 状态 |
 |---|---|---|
@@ -90,7 +90,7 @@ tar -xzf terminal-ui-migration-20261115-part04.tar.gz -C /第一批恢复目标�
 | 3 | 原公开ELF、测试CJP、旧native及来源 | 已交付1包 |
 | 4 | 五份性能基准gzip ELF及custody | 已交付1包 |
 | 5 | VM镜像与复现输入 | C008相关原件已交付1包；其余历史输入在第6组对账 |
-| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十六卷（历史gzip ELF、原路径小报告、恢复账本、补齐原件及SDK输入）；其他目录继续逐文件对账 |
+| 6 | 尚未覆盖的独有历史成果和原始证据 | 已交付十七卷（历史gzip ELF、文本原件、恢复账本、补齐原件及SDK输入）；其他目录继续逐文件对账 |
 | 7 | 最终覆盖索引、依赖pins、恢复说明和交接 | 待收口 |
 
 [第四组发布前的盘点报告](remaining-plan-report.md)和[342项范围清单](remaining-plan.json)说明现有证据与未决项。旧baseline的docs/reviews已含180个历史tar.gz，合计111,861,126压缩字节，随第一批要求的Git clone恢复；不能重复计算为待打包原件，也不能仅因存在归档就认定原目录全部覆盖。最终总卷数需按路径+SHA+归档member/custody恢复映射完成去重后确定。
@@ -335,3 +335,23 @@ tar -xzf terminal-ui-migration-20261115-part06n.tar.gz -C part06n-staging
 ```
 
 `migration-part06n/manifest.json` 记录逐成员大小、权限和 SHA256；`payload-audit/queue.json` 记录补齐、SDK 覆盖及暂缓项，`old-members/` 为原始账本。核对后，将 staging 中的 work/ 合并到第一批恢复目标的 work/，保留本地已修改文件。包内原报告的旧工作区引用用于追溯来源，不能在新电脑直接访问。整个工作区迁移与 Linux 整体验收仍未完成。
+
+## 第六组 06o：安全文本原件与 CJP 补齐
+
+- [下载 06o](https://github.com/vchs6/terminal.ui/raw/refs/heads/main/docs/migration/2026-11-15/terminal-ui-migration-20261115-part06o.tar.gz)（12,521,223 字节）
+- [SHA256 校验文件](terminal-ui-migration-20261115-part06o.tar.gz.sha256)
+- [独立核验报告](part06o-independent-report.md)与[机器可读结果](part06o-independent-findings.json)
+
+从既有小文件队列中按明确规则选定 26,864 个尚无恢复闭环的原路径（快照合计 75,704,226 字节），装入其中 26,799 份 UTF-8 文本原件（75,664,371 字节）。每个原路径直接保留；相同内容由压缩减少体积，不依赖别名恢复。原件包括源代码、测试工具、历史报告及执行记录，内容与旧结论均未改写，也未重新执行原测试。
+
+65 项仍暂缓：62 项无法按 UTF-8 解码，2 项命中凭据或环境规则，1 项与目录快照元数据不符。另有 567 项 SDK/cache/target 等路径本轮延后，134 项受保护路径在元数据阶段拦截，均不因分类被声明为已经迁移。完整筛选规则、计数和处置在包内 audit/queue.json 与 audit/summary.json。
+
+06n 暂缓的 CJP 已独立复核，assigned_credential 命中被判断为词法分析器变量及参数类型误报；本卷按原始 SHA256 补齐该 179,148 字节原件，附 cjp-independent-review/ 的独立报告与判定范围。合计装入 26,800 个 work/ 原路径，共 75,843,519 原字节。
+
+```bash
+sha256sum -c terminal-ui-migration-20261115-part06o.tar.gz.sha256
+mkdir part06o-staging
+tar -xzf terminal-ui-migration-20261115-part06o.tar.gz -C part06o-staging
+```
+
+`migration-part06o/manifest.json` 记录逐成员 SHA256、大小、权限及原纳秒修改时间，tar 时间精度为秒。先解压到新建空目录核对，再将 work/ 合并到第一批恢复目标的 work/，保留本地已修改文件。原始报告中的 /workspace/work 是旧环境前缀，不能直接作为新机器路径使用。完整工作区迁移、新电脑构建及 Linux 整体验收仍未完成，原件继续保留。
